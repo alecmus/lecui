@@ -236,4 +236,9 @@
       <Filter>Source Files\form\widgets\toggle</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="LICENSE.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+  </ItemGroup>
 </Project>
