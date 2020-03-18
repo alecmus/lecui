@@ -1,0 +1,330 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="appearance.h" />
+    <ClInclude Include="button.h" />
+    <ClInclude Include="combo.h" />
+    <ClInclude Include="controls.h" />
+    <ClInclude Include="error\win_error.h" />
+    <ClInclude Include="form\form_common.h" />
+    <ClInclude Include="form\widgets\button\button_impl.h" />
+    <ClInclude Include="form\widgets\combo\combo_impl.h" />
+    <ClInclude Include="form\widgets\control_buttons\close_button\close_button.h" />
+    <ClInclude Include="form\widgets\control_buttons\maximize_button\maximize_button.h" />
+    <ClInclude Include="form\widgets\control_buttons\minimize_button\minimize_button.h" />
+    <ClInclude Include="form\widgets\group\group_impl.h" />
+    <ClInclude Include="form\widgets\h_scrollbar\h_scrollbar.h" />
+    <ClInclude Include="form\widgets\label\label_impl.h" />
+    <ClInclude Include="form\widgets\list\list_impl.h" />
+    <ClInclude Include="form\widgets\page\page_impl.h" />
+    <ClInclude Include="form\widgets\rectangle\rectangle_impl.h" />
+    <ClInclude Include="form\widgets\tab_control\tab_control_impl.h" />
+    <ClInclude Include="form\widgets\toggle\toggle_impl.h" />
+    <ClInclude Include="form\widgets\v_scrollbar\v_scrollbar.h" />
+    <ClInclude Include="form\widgets\widget_impl.h" />
+    <ClInclude Include="group.h" />
+    <ClInclude Include="label.h" />
+    <ClInclude Include="list.h" />
+    <ClInclude Include="page.h" />
+    <ClInclude Include="rectangle.h" />
+    <ClInclude Include="tab_control.h" />
+    <ClInclude Include="timer.h" />
+    <ClInclude Include="toggle.h" />
+    <ClInclude Include="widget.h" />
+    <ClInclude Include="form.h" />
+    <ClInclude Include="lecui.h" />
+    <ClInclude Include="versioninfo.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="versioninfo.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="error\win_error.cpp" />
+    <ClCompile Include="form\form.cpp" />
+    <ClCompile Include="form\widgets\button\button_impl.cpp" />
+    <ClCompile Include="form\widgets\combo\combo_impl.cpp" />
+    <ClCompile Include="form\widgets\control_buttons\close_button\close_button.cpp" />
+    <ClCompile Include="form\widgets\control_buttons\maximize_button\maximize_button.cpp" />
+    <ClCompile Include="form\widgets\control_buttons\minimize_button\minimize_button.cpp" />
+    <ClCompile Include="form\widgets\group\group_impl.cpp" />
+    <ClCompile Include="form\widgets\h_scrollbar\h_scrollbar.cpp" />
+    <ClCompile Include="form\widgets\label\label_impl.cpp" />
+    <ClCompile Include="form\widgets\list\list_impl.cpp" />
+    <ClCompile Include="form\widgets\page\page_impl.cpp" />
+    <ClCompile Include="form\widgets\rectangle\rectangle_impl.cpp" />
+    <ClCompile Include="form\widgets\tab_control\tab_control_impl.cpp" />
+    <ClCompile Include="form\widgets\toggle\toggle_impl.cpp" />
+    <ClCompile Include="form\widgets\v_scrollbar\v_scrollbar.cpp" />
+    <ClCompile Include="form\widgets\widget_impl.cpp" />
+    <ClCompile Include="lecui.cpp" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{704F2071-38A4-4B4D-AFB8-39DDA0F6C7CC}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>lecui</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <TargetName>$(ProjectName)$(PlatformArchitecture)d</TargetName>
+    <OutDir>..\.temp\$(ProjectName)\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>..\.temp\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>..\.temp\$(ProjectName)\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>..\.temp\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
+    <TargetName>$(ProjectName)$(PlatformArchitecture)d</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>..\.temp\$(ProjectName)\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>..\.temp\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
+    <TargetName>$(ProjectName)$(PlatformArchitecture)</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>..\.temp\$(ProjectName)\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>..\.temp\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
+    <TargetName>$(ProjectName)$(PlatformArchitecture)</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;LECUI_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\local\libs\boost_1_70_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>C:\local\libs\boost_1_70_0\lib32-msvc-14.2;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+    <PostBuildEvent>
+      <Command>xcopy "$(OutDir)$(TargetName).lib" "$(ProjectDir)..\lib\" /F /R /Y /I
+xcopy "$(OutDir)$(TargetName)$(TargetExt)" "$(ProjectDir)..\bin\" /F /R /Y /I
+xcopy "$(ProjectDir)$(ProjectName).h" "$(SolutionDir)..\include\liblec\" /F /R /Y /I
+xcopy "$(ProjectDir)gui.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
+xcopy "$(ProjectDir)CUi\CUi.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\gui_raw\" /F /R /Y /I
+xcopy "$(ProjectDir)gui_app.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
+
+xcopy "$(ProjectDir)form.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
+xcopy "$(ProjectDir)appearance.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
+xcopy "$(ProjectDir)controls.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
+
+xcopy "$(ProjectDir)widget.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+xcopy "$(ProjectDir)page.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+xcopy "$(ProjectDir)rectangle.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+xcopy "$(ProjectDir)label.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+xcopy "$(ProjectDir)timer.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+xcopy "$(ProjectDir)group.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+xcopy "$(ProjectDir)tab_control.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+xcopy "$(ProjectDir)button.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+xcopy "$(ProjectDir)toggle.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+xcopy "$(ProjectDir)combo.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+xcopy "$(ProjectDir)list.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;LECUI_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalIncludeDirectories>C:\local\libs\boost_1_70_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>C:\local\libs\boost_1_70_0\lib64-msvc-14.2;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+    <PostBuildEvent>
+      <Command>xcopy "$(OutDir)$(TargetName).lib" "$(ProjectDir)..\lib\" /F /R /Y /I
+xcopy "$(OutDir)$(TargetName)$(TargetExt)" "$(ProjectDir)..\bin\" /F /R /Y /I
+xcopy "$(ProjectDir)$(ProjectName).h" "$(SolutionDir)..\include\liblec\" /F /R /Y /I
+xcopy "$(ProjectDir)gui.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
+xcopy "$(ProjectDir)CUi\CUi.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\gui_raw\" /F /R /Y /I
+xcopy "$(ProjectDir)gui_app.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
+
+xcopy "$(ProjectDir)form.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
+xcopy "$(ProjectDir)appearance.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
+xcopy "$(ProjectDir)controls.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
+
+xcopy "$(ProjectDir)widget.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+xcopy "$(ProjectDir)page.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+xcopy "$(ProjectDir)rectangle.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+xcopy "$(ProjectDir)label.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+xcopy "$(ProjectDir)timer.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+xcopy "$(ProjectDir)group.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+xcopy "$(ProjectDir)tab_control.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+xcopy "$(ProjectDir)button.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+xcopy "$(ProjectDir)toggle.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+xcopy "$(ProjectDir)combo.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+xcopy "$(ProjectDir)list.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;LECUI_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\local\libs\boost_1_70_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>C:\local\libs\boost_1_70_0\lib32-msvc-14.2;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+    <PostBuildEvent>
+      <Command>xcopy "$(OutDir)$(TargetName).lib" "$(ProjectDir)..\lib\" /F /R /Y /I
+xcopy "$(OutDir)$(TargetName)$(TargetExt)" "$(ProjectDir)..\bin\" /F /R /Y /I
+xcopy "$(ProjectDir)$(ProjectName).h" "$(SolutionDir)..\include\liblec\" /F /R /Y /I
+xcopy "$(ProjectDir)gui.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
+xcopy "$(ProjectDir)CUi\CUi.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\gui_raw\" /F /R /Y /I
+xcopy "$(ProjectDir)gui_app.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
+
+xcopy "$(ProjectDir)form.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
+xcopy "$(ProjectDir)appearance.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
+xcopy "$(ProjectDir)controls.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
+
+xcopy "$(ProjectDir)widget.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+xcopy "$(ProjectDir)page.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+xcopy "$(ProjectDir)rectangle.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+xcopy "$(ProjectDir)label.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+xcopy "$(ProjectDir)timer.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+xcopy "$(ProjectDir)group.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+xcopy "$(ProjectDir)tab_control.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+xcopy "$(ProjectDir)button.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+xcopy "$(ProjectDir)toggle.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+xcopy "$(ProjectDir)combo.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+xcopy "$(ProjectDir)list.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;LECUI_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalIncludeDirectories>C:\local\libs\boost_1_70_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>C:\local\libs\boost_1_70_0\lib64-msvc-14.2;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+    <PostBuildEvent>
+      <Command>xcopy "$(OutDir)$(TargetName).lib" "$(ProjectDir)..\lib\" /F /R /Y /I
+xcopy "$(OutDir)$(TargetName)$(TargetExt)" "$(ProjectDir)..\bin\" /F /R /Y /I
+xcopy "$(ProjectDir)$(ProjectName).h" "$(SolutionDir)..\include\liblec\" /F /R /Y /I
+xcopy "$(ProjectDir)gui.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
+xcopy "$(ProjectDir)CUi\CUi.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\gui_raw\" /F /R /Y /I
+xcopy "$(ProjectDir)gui_app.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
+
+xcopy "$(ProjectDir)form.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
+xcopy "$(ProjectDir)appearance.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
+xcopy "$(ProjectDir)controls.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
+
+xcopy "$(ProjectDir)widget.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+xcopy "$(ProjectDir)page.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+xcopy "$(ProjectDir)rectangle.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+xcopy "$(ProjectDir)label.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+xcopy "$(ProjectDir)timer.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+xcopy "$(ProjectDir)group.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+xcopy "$(ProjectDir)tab_control.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+xcopy "$(ProjectDir)button.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+xcopy "$(ProjectDir)toggle.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+xcopy "$(ProjectDir)combo.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+xcopy "$(ProjectDir)list.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

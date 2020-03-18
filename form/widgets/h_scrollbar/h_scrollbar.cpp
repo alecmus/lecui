@@ -1,0 +1,164 @@
+/*
+** h_scrollbar.cpp - horizontal scroll bar widget implementation
+**
+** lecui user interface library
+** Copyright (c) 2019 Alec T. Musasa (alecmus at live dot com)
+**
+*******************************************************************************
+** This file is part of the liblec library which is released under the Creative
+** Commons Attribution Non-Commercial 2.0 license (CC-BY-NC 2.0). See the file
+** LICENSE.txt or go to https://github.com/alecmus/liblec/blob/master/LICENSE.md
+** for full license details.
+*/
+
+#include "h_scrollbar.h"
+
+liblec::lecui::widgets_implementation::h_scrollbar::h_scrollbar(const std::string& page) :
+	p_brush_(nullptr),
+	p_brush_hot_(nullptr),
+	p_brush_hot_pressed_(nullptr),
+	p_brush_background_(nullptr),
+	rectA_({ 0.f, 0.f, 0.f, 0.f }),
+	rectB_({ 0.f, 0.f, 0.f, 0.f }),
+	rectC_({ 0.f, 0.f, 0.f, 0.f }),
+	rectD_({ 0.f, 0.f, 0.f, 0.f }),
+	x_displacement_previous_(0.f),
+	x_displacement_(0.f),
+	x_off_set_(0.f),
+	max_displacement_left_(0.f),
+	max_displacement_right_(0.f),
+	force_translate_(false) {
+	page_ = page;
+	name_ = "h_scrollbar";
+	log("constructor: " + page_ + ":" + name_);
+}
+
+liblec::lecui::widgets_implementation::h_scrollbar::~h_scrollbar() {
+	discard_resources();
+	log("destructor: " + page_ + ":" + name_);
+}
+
+std::string liblec::lecui::widgets_implementation::h_scrollbar::name() { return name_; }
+std::string liblec::lecui::widgets_implementation::h_scrollbar::page() { return page_; }
+
+liblec::lecui::widgets_implementation::widget_type
+liblec::lecui::widgets_implementation::h_scrollbar::type() {
+	return lecui::widgets_implementation::widget_type::h_scrollbar;
+}
+
+HRESULT liblec::lecui::widgets_implementation::h_scrollbar::create_resources(
+	ID2D1HwndRenderTarget* p_render_target) {
+	log("creating resources:   " + page_ + ":" + name_);
+	is_static_ = false;
+
+	HRESULT hr = S_OK;
+
+	if (SUCCEEDED(hr))
+		hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_fill),
+			&p_brush_);
+	if (SUCCEEDED(hr))
+		hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_hot),
+			&p_brush_hot_);
+	if (SUCCEEDED(hr))
+		hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_hot_pressed),
+			&p_brush_hot_pressed_);
+	if (SUCCEEDED(hr))
+		hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_background),
+			&p_brush_background_);
+
+	return hr;
+}
+
+void liblec::lecui::widgets_implementation::h_scrollbar::discard_resources() {
+	log("discarding resources: " + page_ + ":" + name_);
+	safe_release(&p_brush_);
+	safe_release(&p_brush_hot_);
+	safe_release(&p_brush_hot_pressed_);
+	safe_release(&p_brush_background_);
+}
+
+D2D1_RECT_F&
+liblec::lecui::widgets_implementation::h_scrollbar::render(ID2D1HwndRenderTarget* p_render_target,
+	const float& change_in_width, const float& change_in_height, float x_off_set, float y_off_set,
+	const bool& render) {
+	const int precision = 3;	// to prevent false-positives (4 is enough, 3 is a failsafe)
+	auto equal = [&](const D2D1_RECT_F& rect_1, const D2D1_RECT_F& rect_2) {
+		if (roundoff::tof(rect_1.left, precision) == roundoff::tof(rect_2.left, precision) &&
+			roundoff::tof(rect_1.top, precision) == roundoff::tof(rect_2.top, precision) &&
+			roundoff::tof(rect_1.right, precision) == roundoff::tof(rect_2.right, precision) &&
+			roundoff::tof(rect_1.bottom, precision) == roundoff::tof(rect_2.bottom, precision))
+			return true;
+		else
+			return false;
+	};
+
+	rect_ = position(specs_.rect, specs_.resize, change_in_width, change_in_height);
+	rect_.left -= x_off_set;
+	rect_.right -= x_off_set;
+	rect_.top -= y_off_set;
+	rect_.bottom -= y_off_set;
+
+	rectC_ = rect_;
+
+	rectD_ = { 0.f, 0.f, 0.f, 0.f };
+	position_h_scrollbar(rectA_, rectB_, rectC_, rectD_);
+
+	if (!render)
+		return rect_;
+
+	if (!equal(rectC_, rectD_) &&
+		!(roundoff::tof((rectD_.right - rectD_.left), precision) >=
+			roundoff::tof((rectC_.right - rectC_.left), precision))) {
+		const auto corner_radius = smallest((rectD_.bottom - rectD_.top) / 3.f, (rectD_.right - rectD_.left) / 3.f);
+
+		// scroll area
+		D2D1_ROUNDED_RECT rounded_rectC{ rectC_, corner_radius, corner_radius };
+		p_render_target->FillRoundedRectangle(&rounded_rectC, p_brush_background_);
+
+		// scroll bar
+		D2D1_ROUNDED_RECT rounded_rectD{ rectD_, corner_radius, corner_radius };
+		p_render_target->FillRoundedRectangle(&rounded_rectD,
+			pressed_ ? p_brush_hot_pressed_ : (hit_ ? p_brush_hot_ : p_brush_));
+
+		visible_ = true;
+	}
+	else
+		visible_ = false;
+
+	return rect_;
+}
+
+void liblec::lecui::widgets_implementation::h_scrollbar::on_click() {
+	if (specs_.on_click)
+		specs_.on_click();
+}
+
+liblec::lecui::widgets::specs::h_scrollbar&
+liblec::lecui::widgets_implementation::h_scrollbar::specs() { return specs_; }
+
+void liblec::lecui::widgets_implementation::h_scrollbar::max_displacement(float& left,
+	float& right) {
+	right = rectC_.right - rectD_.right;
+	left = rectC_.left - rectD_.left;
+}
+
+bool liblec::lecui::widgets_implementation::h_scrollbar::translate_x_displacement(
+	const float& displacement, float& x_displacement_translated, bool force) {
+	if (pressed_ || force) {
+		// calculate the scale factor for amplifying the movement of the scroll bar
+		const float width_A = rectA_.right - rectA_.left;
+		const float width_C = rectC_.right - rectC_.left;
+		const float scale_factor = width_C != 0.f ? width_A / width_C : 1.f;
+
+		x_displacement_translated = displacement * scale_factor;
+		return true;
+	}
+
+	return false;
+}
+
+void liblec::lecui::widgets_implementation::h_scrollbar::setup(const D2D1_RECT_F& rectA,
+	const D2D1_RECT_F& rectB) {
+	rectA_ = rectA;
+	rectB_ = rectB;
+}

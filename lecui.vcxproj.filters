@@ -1,0 +1,239 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\form">
+      <UniqueIdentifier>{794e6598-e459-4651-acbb-35d27ac3416d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\form\widgets">
+      <UniqueIdentifier>{5e07e18e-1fd4-492b-83a2-48cb3e8e4bb4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\form\widgets\page">
+      <UniqueIdentifier>{0f1ec86c-0f56-4c95-aed4-5a558d6d014f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\form\widgets\rectangle">
+      <UniqueIdentifier>{55f84534-e029-4e44-bc15-e862b717c6e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\form\widgets\label">
+      <UniqueIdentifier>{eaf024c3-1b20-4173-b7b3-8b6a6ce9c97a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\form\widgets\control_buttons">
+      <UniqueIdentifier>{4d8aa734-f2f5-48d2-b255-586c7dcbd5c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\form\widgets\control_buttons\close_button">
+      <UniqueIdentifier>{e2cc52e2-007a-4613-ab59-a936e409442a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\form\widgets\control_buttons\minimize_button">
+      <UniqueIdentifier>{c81be4ff-48ab-4fe8-9a41-22b077088cd7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\form\widgets\control_buttons\maximize_button">
+      <UniqueIdentifier>{15f4c094-a97c-473b-98c5-5c9987a0d2a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\form\widgets\h_scrollbar">
+      <UniqueIdentifier>{b435cd21-1bc2-408e-b0e0-fe319959bc5a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\form\widgets\group">
+      <UniqueIdentifier>{d0f0d386-f8b2-4e3c-89d0-f02a747954de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\form\widgets\tab_control">
+      <UniqueIdentifier>{185303ab-4331-488d-bdc2-ba1055aad702}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\form\widgets\v_scrollbar">
+      <UniqueIdentifier>{59ed1936-2c29-4a9a-b87c-6258984ec56d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\form\widgets\button">
+      <UniqueIdentifier>{f55e2ef8-c292-4eaa-93d7-4fb66a87f1bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\lecui">
+      <UniqueIdentifier>{a33a71e4-fef5-4e0b-8150-737ea6de2e26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\lecui\widgets">
+      <UniqueIdentifier>{36533b47-30e4-4cc1-b1de-cfe0e9ccb339}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\form\widgets\toggle">
+      <UniqueIdentifier>{c706b808-6931-441b-9054-e7fa0ab36b40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\form\widgets\combo">
+      <UniqueIdentifier>{7bbba2df-2016-441c-8219-0af295474788}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\form\widgets\list">
+      <UniqueIdentifier>{aba077a1-fa50-42a6-bae7-c758134f3a5a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\error">
+      <UniqueIdentifier>{4200a6e3-1de7-48ff-957b-4e36ed09508f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="lecui.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="form.h">
+      <Filter>Header Files\lecui</Filter>
+    </ClInclude>
+    <ClInclude Include="appearance.h">
+      <Filter>Header Files\lecui</Filter>
+    </ClInclude>
+    <ClInclude Include="controls.h">
+      <Filter>Header Files\lecui</Filter>
+    </ClInclude>
+    <ClInclude Include="button.h">
+      <Filter>Header Files\lecui\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="group.h">
+      <Filter>Header Files\lecui\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="label.h">
+      <Filter>Header Files\lecui\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="page.h">
+      <Filter>Header Files\lecui\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="rectangle.h">
+      <Filter>Header Files\lecui\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="tab_control.h">
+      <Filter>Header Files\lecui\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="toggle.h">
+      <Filter>Header Files\lecui\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="timer.h">
+      <Filter>Header Files\lecui\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="widget.h">
+      <Filter>Header Files\lecui\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="versioninfo.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="combo.h">
+      <Filter>Header Files\lecui\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="list.h">
+      <Filter>Header Files\lecui\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="form\form_common.h">
+      <Filter>Source Files\form</Filter>
+    </ClInclude>
+    <ClInclude Include="form\widgets\widget_impl.h">
+      <Filter>Source Files\form\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="form\widgets\button\button_impl.h">
+      <Filter>Source Files\form\widgets\button</Filter>
+    </ClInclude>
+    <ClInclude Include="form\widgets\combo\combo_impl.h">
+      <Filter>Source Files\form\widgets\combo</Filter>
+    </ClInclude>
+    <ClInclude Include="form\widgets\control_buttons\close_button\close_button.h">
+      <Filter>Source Files\form\widgets\control_buttons\close_button</Filter>
+    </ClInclude>
+    <ClInclude Include="form\widgets\control_buttons\maximize_button\maximize_button.h">
+      <Filter>Source Files\form\widgets\control_buttons\maximize_button</Filter>
+    </ClInclude>
+    <ClInclude Include="form\widgets\control_buttons\minimize_button\minimize_button.h">
+      <Filter>Source Files\form\widgets\control_buttons\minimize_button</Filter>
+    </ClInclude>
+    <ClInclude Include="form\widgets\group\group_impl.h">
+      <Filter>Source Files\form\widgets\group</Filter>
+    </ClInclude>
+    <ClInclude Include="form\widgets\h_scrollbar\h_scrollbar.h">
+      <Filter>Source Files\form\widgets\h_scrollbar</Filter>
+    </ClInclude>
+    <ClInclude Include="form\widgets\label\label_impl.h">
+      <Filter>Source Files\form\widgets\label</Filter>
+    </ClInclude>
+    <ClInclude Include="form\widgets\list\list_impl.h">
+      <Filter>Source Files\form\widgets\list</Filter>
+    </ClInclude>
+    <ClInclude Include="form\widgets\page\page_impl.h">
+      <Filter>Source Files\form\widgets\page</Filter>
+    </ClInclude>
+    <ClInclude Include="form\widgets\rectangle\rectangle_impl.h">
+      <Filter>Source Files\form\widgets\rectangle</Filter>
+    </ClInclude>
+    <ClInclude Include="form\widgets\tab_control\tab_control_impl.h">
+      <Filter>Source Files\form\widgets\tab_control</Filter>
+    </ClInclude>
+    <ClInclude Include="form\widgets\v_scrollbar\v_scrollbar.h">
+      <Filter>Source Files\form\widgets\v_scrollbar</Filter>
+    </ClInclude>
+    <ClInclude Include="error\win_error.h">
+      <Filter>Source Files\error</Filter>
+    </ClInclude>
+    <ClInclude Include="form\widgets\toggle\toggle_impl.h">
+      <Filter>Source Files\form\widgets\toggle</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="versioninfo.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="lecui.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="form\form.cpp">
+      <Filter>Source Files\form</Filter>
+    </ClCompile>
+    <ClCompile Include="form\widgets\widget_impl.cpp">
+      <Filter>Source Files\form\widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="form\widgets\button\button_impl.cpp">
+      <Filter>Source Files\form\widgets\button</Filter>
+    </ClCompile>
+    <ClCompile Include="form\widgets\combo\combo_impl.cpp">
+      <Filter>Source Files\form\widgets\combo</Filter>
+    </ClCompile>
+    <ClCompile Include="form\widgets\control_buttons\close_button\close_button.cpp">
+      <Filter>Source Files\form\widgets\control_buttons\close_button</Filter>
+    </ClCompile>
+    <ClCompile Include="form\widgets\control_buttons\maximize_button\maximize_button.cpp">
+      <Filter>Source Files\form\widgets\control_buttons\maximize_button</Filter>
+    </ClCompile>
+    <ClCompile Include="form\widgets\control_buttons\minimize_button\minimize_button.cpp">
+      <Filter>Source Files\form\widgets\control_buttons\minimize_button</Filter>
+    </ClCompile>
+    <ClCompile Include="form\widgets\group\group_impl.cpp">
+      <Filter>Source Files\form\widgets\group</Filter>
+    </ClCompile>
+    <ClCompile Include="form\widgets\h_scrollbar\h_scrollbar.cpp">
+      <Filter>Source Files\form\widgets\h_scrollbar</Filter>
+    </ClCompile>
+    <ClCompile Include="form\widgets\label\label_impl.cpp">
+      <Filter>Source Files\form\widgets\label</Filter>
+    </ClCompile>
+    <ClCompile Include="form\widgets\list\list_impl.cpp">
+      <Filter>Source Files\form\widgets\list</Filter>
+    </ClCompile>
+    <ClCompile Include="form\widgets\page\page_impl.cpp">
+      <Filter>Source Files\form\widgets\page</Filter>
+    </ClCompile>
+    <ClCompile Include="form\widgets\rectangle\rectangle_impl.cpp">
+      <Filter>Source Files\form\widgets\rectangle</Filter>
+    </ClCompile>
+    <ClCompile Include="form\widgets\tab_control\tab_control_impl.cpp">
+      <Filter>Source Files\form\widgets\tab_control</Filter>
+    </ClCompile>
+    <ClCompile Include="form\widgets\v_scrollbar\v_scrollbar.cpp">
+      <Filter>Source Files\form\widgets\v_scrollbar</Filter>
+    </ClCompile>
+    <ClCompile Include="error\win_error.cpp">
+      <Filter>Source Files\error</Filter>
+    </ClCompile>
+    <ClCompile Include="form\widgets\toggle\toggle_impl.cpp">
+      <Filter>Source Files\form\widgets\toggle</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
