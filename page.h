@@ -13,10 +13,10 @@
 
 #pragma once
 
-#ifdef LECUI_EXPORTS
-#include "form.h"
+#if defined(LECUI_EXPORTS)
+	#include "form.h"
 #else
-#include <liblec/lecui/form.h>
+	#include <liblec/lecui/form.h>
 #endif
 
 namespace liblec {
@@ -32,7 +32,7 @@ namespace liblec {
 			class combo;
 			class list;
 
-			class form_api page {
+			class lecui_api page {
 			public:
 				page(const std::string& name);
 				~page();
@@ -61,7 +61,7 @@ namespace liblec {
 			};
 		}
 
-		class form_api page {
+		class lecui_api page {
 		public:
 			page(form& fm);
 			~page();

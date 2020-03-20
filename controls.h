@@ -13,15 +13,15 @@
 
 #pragma once
 
-#ifdef LECUI_EXPORTS
-#include "form.h"
+#if defined(LECUI_EXPORTS)
+	#include "form.h"
 #else
-#include <liblec/lecui/form.h>
+	#include <liblec/lecui/form.h>
 #endif
 
 namespace liblec {
 	namespace lecui {
-		class form_api controls {
+		class lecui_api controls {
 		public:
 			controls(form& fm);
 			~controls();
@@ -38,7 +38,7 @@ namespace liblec {
 			controls& operator=(const controls&);
 		};
 
-		class form_api dimensions {
+		class lecui_api dimensions {
 		public:
 			dimensions(form& fm);
 			~dimensions();

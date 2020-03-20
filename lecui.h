@@ -13,29 +13,30 @@
 
 #pragma once
 
-#ifdef LECUI_EXPORTS
-#define lecui_api __declspec(dllexport)
+#if defined(LECUI_EXPORTS)
+	#define lecui_api __declspec(dllexport)
 #else
-#define lecui_api __declspec(dllimport)
+	#define lecui_api __declspec(dllimport)
 
-#ifdef _WIN64
+	// for visual styles (message box, open file, save file)
+	#pragma comment(linker, "\"/manifestdependency:type='win32' \
+	name='Microsoft.Windows.Common-Controls' version='6.0.0.0' \
+	processorArchitecture='*' publicKeyToken='6595b64144ccf1df' \
+	language='*'\"")
 
-#ifdef _DEBUG
-#pragma comment(lib, "lecui64d.lib")
-#else
-#pragma comment(lib, "lecui64.lib")
-#endif // _DEBUG
-
-#else
-
-#ifdef _DEBUG
-#pragma comment(lib, "lecui32d.lib")
-#else
-#pragma comment(lib, "lecui32.lib")
-#endif // _DEBUG
-
-#endif // _WIN64
-
+	#if defined(_WIN64)
+		#if defined(_DEBUG)
+			#pragma comment(lib, "lecui64d.lib")
+		#else
+			#pragma comment(lib, "lecui64.lib")
+		#endif
+	#else
+		#if defined(_DEBUG)
+			#pragma comment(lib, "lecui32d.lib")
+		#else
+			#pragma comment(lib, "lecui32.lib")
+		#endif
+	#endif
 #endif
 
 #include <string>

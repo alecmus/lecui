@@ -13,16 +13,16 @@
 
 #pragma once
 
-#ifdef LECUI_EXPORTS
-#include "widget.h"
+#if defined(LECUI_EXPORTS)
+	#include "widget.h"
 #else
-#include <liblec/lecui/widgets/widget.h>
+	#include <liblec/lecui/widgets/widget.h>
 #endif
 
 namespace liblec {
 	namespace lecui {
 		namespace widgets {
-			class form_api timer {
+			class lecui_api timer {
 			public:
 				timer(form& fm);
 				~timer();

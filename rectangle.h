@@ -13,10 +13,10 @@
 
 #pragma once
 
-#ifdef LECUI_EXPORTS
-#include "widget.h"
+#if defined(LECUI_EXPORTS)
+	#include "widget.h"
 #else
-#include <liblec/lecui/widgets/widget.h>
+	#include <liblec/lecui/widgets/widget.h>
 #endif
 
 namespace liblec {
@@ -34,7 +34,7 @@ namespace liblec {
 				};
 			}
 
-			class form_api rectangle {
+			class lecui_api rectangle {
 			public:
 				rectangle(liblec::lecui::widgets::page& page);
 				~rectangle();

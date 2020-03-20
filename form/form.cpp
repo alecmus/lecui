@@ -65,10 +65,9 @@ class mouse_track {
 	bool mouse_tracking_;
 
 public:
-	mouse_track() :
-		mouse_tracking_(false) {}
+	mouse_track() : mouse_tracking_(false) {}
 
-	void OnMouseMove(HWND hWnd) {
+	void on_mouse_move(HWND hWnd) {
 		if (!mouse_tracking_) {
 			// Enable mouse tracking
 			TRACKMOUSEEVENT tme;
@@ -81,9 +80,7 @@ public:
 		}
 	}
 
-	void Reset(HWND hWnd) {
-		mouse_tracking_ = false;
-	}
+	void reset(HWND hWnd) { mouse_tracking_ = false; }
 };
 
 class liblec::lecui::form::form_impl {
@@ -154,9 +151,7 @@ public:
 			}
 			if (SUCCEEDED(hres)) {
 				// Create a DirectWrite factory.
-				hres = DWriteCreateFactory(
-					DWRITE_FACTORY_TYPE_SHARED,
-					__uuidof(p_directwrite_factory_),
+				hres = DWriteCreateFactory(DWRITE_FACTORY_TYPE_SHARED, __uuidof(p_directwrite_factory_),
 					reinterpret_cast<IUnknown * *>(&p_directwrite_factory_));
 			}
 
@@ -166,7 +161,7 @@ public:
 				std::wstring error = com_error.ErrorMessage();
 				error = L"An error occured while initializing the library: " + error;
 
-				MessageBox(nullptr, error.c_str(), L"liblec::lecui::gui_app", MB_ICONERROR);
+				MessageBox(nullptr, error.c_str(), L"liblec::lecui::form", MB_ICONERROR);
 
 				// initialization has failed. Go no further.
 				return;
@@ -180,7 +175,7 @@ public:
 			if (!SetProcessDPIAware())
 				MessageBox(nullptr,
 					L"This program is not DPI aware. As a result, UI elements may not be clear.",
-					L"liblec::lecui::gui_app", MB_ICONWARNING);
+					L"liblec::lecui::form", MB_ICONWARNING);
 		}
 
 		// capture current DPI scale
@@ -221,8 +216,7 @@ public:
 	}
 
 	/// Creates resources that are bound to a particular Direct3D device. These resources need to
-	/// be recreated if the Direct3D device dissapears, such as when the display changes, the
-	/// window is remoted, etc
+	/// be recreated if the Direct3D device disappears, such as when the display changes, etc
 	HRESULT create_device_resources() {
 		HRESULT hr = S_OK;
 
@@ -233,8 +227,7 @@ public:
 			D2D1_SIZE_U size = D2D1::SizeU(rc.right - rc.left, rc.bottom - rc.top);
 
 			// Create a Direct2D render target.
-			hr = p_direct2d_factory_->CreateHwndRenderTarget(
-				D2D1::RenderTargetProperties(),
+			hr = p_direct2d_factory_->CreateHwndRenderTarget(D2D1::RenderTargetProperties(),
 				D2D1::HwndRenderTargetProperties(hWnd_, size),
 				&p_render_target_);
 
@@ -255,9 +248,7 @@ public:
 					for (auto& widget : widgets_)
 						hr = widget.second.create_resources(p_render_target_);
 				}
-				catch (const std::exception& e) {
-					log(e.what());
-				}
+				catch (const std::exception& e) { log(e.what()); }
 			}
 			if (SUCCEEDED(hr)) {
 				class helper {
@@ -288,9 +279,7 @@ public:
 					for (auto& p_page : p_pages_)
 						helper::create_resources(p_page.second, p_render_target_);
 				}
-				catch (const std::exception& e) {
-					log(e.what());
-				}
+				catch (const std::exception& e) { log(e.what()); }
 			}
 		}
 
@@ -352,11 +341,9 @@ public:
 		p_close_button_->specs().rect.right = static_cast<long>(size_.width) -
 			static_cast<long>(control_button_margin_);
 		p_close_button_->specs().rect.top = static_cast<long>(control_button_margin_);
-		p_close_button_->specs().rect.left =
-			p_close_button_->specs().rect.right -
+		p_close_button_->specs().rect.left = p_close_button_->specs().rect.right -
 			static_cast<long>(caption_bar_height_ - 2.0f * control_button_margin_);
-		p_close_button_->specs().rect.bottom =
-			p_close_button_->specs().rect.top +
+		p_close_button_->specs().rect.bottom = p_close_button_->specs().rect.top +
 			static_cast<long>(caption_bar_height_ - 2.0f * control_button_margin_);
 
 		p_close_button_->specs().on_click = on_click;
@@ -379,13 +366,10 @@ public:
 
 		p_maximize_button_->specs().rect.right = static_cast<long>(right_edge) -
 			static_cast<long>(control_button_margin_);
-		p_maximize_button_->specs().rect.top =
-			static_cast<long>(control_button_margin_);
-		p_maximize_button_->specs().rect.left =
-			p_maximize_button_->specs().rect.right -
+		p_maximize_button_->specs().rect.top = static_cast<long>(control_button_margin_);
+		p_maximize_button_->specs().rect.left = p_maximize_button_->specs().rect.right -
 			static_cast<long>(caption_bar_height_ - 2.0f * control_button_margin_);
-		p_maximize_button_->specs().rect.bottom =
-			p_maximize_button_->specs().rect.top +
+		p_maximize_button_->specs().rect.bottom = p_maximize_button_->specs().rect.top +
 			static_cast<long>(caption_bar_height_ - 2.0f * control_button_margin_);
 	}
 
@@ -408,13 +392,10 @@ public:
 
 		p_minimize_button_->specs().rect.right = static_cast<long>(right_edge) -
 			static_cast<long>(control_button_margin_);
-		p_minimize_button_->specs().rect.top =
-			static_cast<long>(control_button_margin_);
-		p_minimize_button_->specs().rect.left =
-			p_minimize_button_->specs().rect.right -
+		p_minimize_button_->specs().rect.top = static_cast<long>(control_button_margin_);
+		p_minimize_button_->specs().rect.left = p_minimize_button_->specs().rect.right -
 			static_cast<long>(caption_bar_height_ - 2.0f * control_button_margin_);
-		p_minimize_button_->specs().rect.bottom =
-			p_minimize_button_->specs().rect.top +
+		p_minimize_button_->specs().rect.bottom = p_minimize_button_->specs().rect.top +
 			static_cast<long>(caption_bar_height_ - 2.0f * control_button_margin_);
 	}
 
@@ -438,19 +419,15 @@ public:
 
 		p_caption_->specs().rect.right = static_cast<long>(right_edge) -
 			static_cast<long>(control_button_margin_);
-		p_caption_->specs().rect.top =
-			static_cast<long>(control_button_margin_);
+		p_caption_->specs().rect.top = static_cast<long>(control_button_margin_);
 		p_caption_->specs().rect.left = 10;
-		p_caption_->specs().rect.bottom =
-			p_caption_->specs().rect.top +
+		p_caption_->specs().rect.bottom = p_caption_->specs().rect.top +
 			static_cast<long>(caption_bar_height_ - 2.0f * control_button_margin_);
 
 		p_caption_->specs().on_click = on_click;
 	}
 
-	void update() {
-		InvalidateRect(hWnd_, nullptr, FALSE);
-	}
+	void update() { InvalidateRect(hWnd_, nullptr, FALSE); }
 
 	/// This method discards device-specific resources if the Direct3D device dissapears during
 	/// execution and recreates the resources the next time it's invoked
@@ -697,10 +674,14 @@ public:
 									// get client area for this tab control
 									const auto& client_area = tab_control.client_area();
 
-									const float change_in_width = (tab_control.tab_control_area().right - tab_control.tab_control_area().left)
-										- static_cast<float>(tab_control.specs().rect.right - tab_control.specs().rect.left);
-									const float change_in_height = (tab_control.tab_control_area().bottom - tab_control.tab_control_area().top)
-										- static_cast<float>(tab_control.specs().rect.bottom - tab_control.specs().rect.top);
+									const float change_in_width =
+										(tab_control.tab_control_area().right - tab_control.tab_control_area().left) -
+										static_cast<float>(tab_control.specs().rect.right -
+										tab_control.specs().rect.left);
+									const float change_in_height =
+										(tab_control.tab_control_area().bottom - tab_control.tab_control_area().top) -
+										static_cast<float>(tab_control.specs().rect.bottom -
+										tab_control.specs().rect.top);
 
 									for (auto& tab : tab_control.p_tabs_) {
 										const float page_tolerance_ = 10.f;
@@ -710,9 +691,9 @@ public:
 										rect_page.right -= page_tolerance_;
 										rect_page.bottom -= page_tolerance_;
 
-										render_page(render, tab.first, tab_control.current_tab_,
-											tab.second, p_render_target_, rect_page, rect_page,
-											change_in_width, change_in_height, dpi_scale_, p_brush_theme_, p_brush_theme_hot_);
+										render_page(render, tab.first, tab_control.current_tab_, tab.second,
+											p_render_target_, rect_page, rect_page, change_in_width, change_in_height,
+											dpi_scale_, p_brush_theme_, p_brush_theme_hot_);
 									}
 								}
 								catch (const std::exception&) {}
@@ -731,12 +712,14 @@ public:
 					// setup horizontal scroll bar and render it
 					page.d_page_.h_scrollbar().setup(rectA, rectB);
 					page.d_page_.h_scrollbar().render(p_render_target_,
-						change_in_width, change_in_height, 0.f - client_area.left, 0.f - client_area.top, render);
+						change_in_width, change_in_height, 0.f - client_area.left,
+						0.f - client_area.top, render);
 
 					// setup vertical scroll bar and render it
 					page.d_page_.v_scrollbar().setup(rectA, rectB);
 					page.d_page_.v_scrollbar().render(p_render_target_,
-						change_in_width, change_in_height, 0.f - client_area.left, 0.f - client_area.top, render);
+						change_in_width, change_in_height, 0.f - client_area.left,
+						0.f - client_area.top, render);
 				}
 
 				static void render_menu(ID2D1HwndRenderTarget* p_render_target_,
@@ -773,10 +756,14 @@ public:
 								// get client area for this tab control
 								const auto& client_area = tab_control.client_area();
 
-								const float change_in_width = (tab_control.tab_control_area().right - tab_control.tab_control_area().left)
-									- static_cast<float>(tab_control.specs().rect.right - tab_control.specs().rect.left);
-								const float change_in_height = (tab_control.tab_control_area().bottom - tab_control.tab_control_area().top)
-									- static_cast<float>(tab_control.specs().rect.bottom - tab_control.specs().rect.top);
+								const float change_in_width =
+									(tab_control.tab_control_area().right - tab_control.tab_control_area().left) -
+									static_cast<float>(tab_control.specs().rect.right -
+										tab_control.specs().rect.left);
+								const float change_in_height =
+									(tab_control.tab_control_area().bottom - tab_control.tab_control_area().top) -
+									static_cast<float>(tab_control.specs().rect.bottom -
+									tab_control.specs().rect.top);
 
 								for (auto& tab : tab_control.p_tabs_) {
 									const float page_tolerance_ = 10.f;
@@ -867,10 +854,9 @@ public:
 	}
 
 	D2D1_POINT_2F get_cursor_position() {
-		POINT pt;
+		POINT pt = { 0 };
 		GetCursorPos(&pt);
 		ScreenToClient(hWnd_, &pt);
-
 		return { static_cast<float>(pt.x), static_cast<float>(pt.y) };
 	}
 
@@ -1094,11 +1080,10 @@ public:
 
 	static bool maximized(HWND hwnd) {
 		WINDOWPLACEMENT placement = { 0 };
-
-		if (!::GetWindowPlacement(hwnd, &placement))
+		if (GetWindowPlacement(hwnd, &placement))
+			return placement.showCmd == SW_MAXIMIZE;
+		else
 			return false;
-
-		return placement.showCmd == SW_MAXIMIZE;
 	}
 
 	/// Adjust client rect to not spill over monitor edges when maximized.
@@ -1215,7 +1200,8 @@ public:
 					}
 
 					// capture the displacement
-					page.d_page_.h_scrollbar().x_displacement_ = page.d_page_.h_scrollbar().x_displacement_previous_ + (point.x - point_before.x);
+					page.d_page_.h_scrollbar().x_displacement_ =
+						page.d_page_.h_scrollbar().x_displacement_previous_ + (point.x - point_before.x);
 				}
 
 				if (!change) {
@@ -1246,7 +1232,8 @@ public:
 					}
 
 					// capture the displacement
-					page.d_page_.v_scrollbar().y_displacement_ = page.d_page_.v_scrollbar().y_displacement_previous_ + (point.y - point_before.y);
+					page.d_page_.v_scrollbar().y_displacement_ =
+						page.d_page_.v_scrollbar().y_displacement_previous_ + (point.y - point_before.y);
 				}
 
 				if (!change) {
@@ -1392,31 +1379,42 @@ public:
 						auto page_iterator = tab_control.p_tabs_.find(tab_control.current_tab_);
 
 						if (page_iterator != tab_control.p_tabs_.end())
-							helper::check_widgets(page_iterator->second, point, dpi_scale, pressed, update_anyway);
+							helper::check_widgets(page_iterator->second, point, dpi_scale, pressed,
+								update_anyway);
 					}
 				}
 
 				// check scroll bars
 				if (page.d_page_.h_scrollbar().pressed()) {
-					page.d_page_.h_scrollbar().max_displacement(page.d_page_.h_scrollbar().max_displacement_left_, page.d_page_.h_scrollbar().max_displacement_right_);
+					page.d_page_.h_scrollbar().max_displacement(
+						page.d_page_.h_scrollbar().max_displacement_left_,
+						page.d_page_.h_scrollbar().max_displacement_right_);
 					page.d_page_.h_scrollbar().max_displacement_left_ *= dpi_scale;
 					page.d_page_.h_scrollbar().max_displacement_right_ *= dpi_scale;
 
 					// translate the environment
-					page.d_page_.h_scrollbar().x_displacement_previous_ = page.d_page_.h_scrollbar().x_displacement_;
-					page.d_page_.h_scrollbar().max_displacement_left_ += page.d_page_.h_scrollbar().x_displacement_previous_;
-					page.d_page_.h_scrollbar().max_displacement_right_ += page.d_page_.h_scrollbar().x_displacement_previous_;
+					page.d_page_.h_scrollbar().x_displacement_previous_ =
+						page.d_page_.h_scrollbar().x_displacement_;
+					page.d_page_.h_scrollbar().max_displacement_left_ +=
+						page.d_page_.h_scrollbar().x_displacement_previous_;
+					page.d_page_.h_scrollbar().max_displacement_right_ +=
+						page.d_page_.h_scrollbar().x_displacement_previous_;
 				}
 				else
 					if (page.d_page_.v_scrollbar().pressed()) {
-						page.d_page_.v_scrollbar().max_displacement(page.d_page_.v_scrollbar().max_displacement_top_, page.d_page_.v_scrollbar().max_displacement_bottom_);
+						page.d_page_.v_scrollbar().max_displacement(
+							page.d_page_.v_scrollbar().max_displacement_top_,
+							page.d_page_.v_scrollbar().max_displacement_bottom_);
 						page.d_page_.v_scrollbar().max_displacement_top_ *= dpi_scale;
 						page.d_page_.v_scrollbar().max_displacement_bottom_ *= dpi_scale;
 
 						// translate the environment
-						page.d_page_.v_scrollbar().y_displacement_previous_ = page.d_page_.v_scrollbar().y_displacement_;
-						page.d_page_.v_scrollbar().max_displacement_top_ += page.d_page_.v_scrollbar().y_displacement_previous_;
-						page.d_page_.v_scrollbar().max_displacement_bottom_ += page.d_page_.v_scrollbar().y_displacement_previous_;
+						page.d_page_.v_scrollbar().y_displacement_previous_ =
+							page.d_page_.v_scrollbar().y_displacement_;
+						page.d_page_.v_scrollbar().max_displacement_top_ +=
+							page.d_page_.v_scrollbar().y_displacement_previous_;
+						page.d_page_.v_scrollbar().max_displacement_bottom_ +=
+							page.d_page_.v_scrollbar().y_displacement_previous_;
 					}
 			}
 		};
@@ -1592,7 +1590,8 @@ public:
 				form_.value().get().d_.p_minimize_button_->set_hwnd(hWnd);
 
 			form_.value().get().d_.set_borderless(hWnd, form_.value().get().d_.borderless_);
-			form_.value().get().d_.set_borderless_shadow(hWnd, form_.value().get().d_.borderless_shadow_);
+			form_.value().get().d_.set_borderless_shadow(hWnd,
+				form_.value().get().d_.borderless_shadow_);
 
 			if (!form_.value().get().d_.allow_resizing_)
 				SetWindowLong(hWnd, GWL_STYLE,
@@ -1668,7 +1667,7 @@ public:
 						}
 						else {
 							if (system_resizing)
-								log("system: width decreasing");	// to-do: there is an issue here with scrollbar (sometimes) ... hunt it and fix it
+								log("system: width decreasing");	// to-do: issue with scrollbar (sometimes) ...
 
 							// impose a limit on change_in_width
 							float x_displacement =
@@ -1712,7 +1711,7 @@ public:
 						}
 						else {
 							if (system_resizing)
-								log("system: height decreasing");	// to-do: there is an issue here with scrollbar (sometimes) ... hunt it and fix it
+								log("system: height decreasing");	// to-do: issue with scrollbar (sometimes) ...
 
 							// impose a limit on change_in_height
 							float y_displacement =
@@ -1742,18 +1741,18 @@ public:
 			return NULL;
 
 		case WM_MOUSEMOVE:
-			form_.value().get().d_.mouse_track_.OnMouseMove(hWnd);
+			form_.value().get().d_.mouse_track_.on_mouse_move(hWnd);
 			form_.value().get().d_.client_hittest(form_.value().get().d_.get_cursor_position());
 			return NULL;
 
 		case WM_MOUSELEAVE:
 			// form_.value().get().d_.get_cursor_position() doesn't work here
 			form_.value().get().d_.client_hittest({ (float)LOWORD(lParam), (float)HIWORD(lParam) });
-			form_.value().get().d_.mouse_track_.Reset(hWnd);
+			form_.value().get().d_.mouse_track_.reset(hWnd);
 			return NULL;
 
 		case WM_MOUSEHOVER:
-			form_.value().get().d_.mouse_track_.Reset(hWnd);
+			form_.value().get().d_.mouse_track_.reset(hWnd);
 			return NULL;
 
 		case WM_DISPLAYCHANGE:
@@ -2090,7 +2089,8 @@ public:
 									auto page_iterator = tab_control.p_tabs_.find(tab_control.current_tab_);
 
 									if (page_iterator != tab_control.p_tabs_.end())
-										helper::check_widgets(page_iterator->second, reverse_tab_navigation, select_next, selected);
+										helper::check_widgets(page_iterator->second, reverse_tab_navigation,
+											select_next, selected);
 								}
 								else {
 									if (widget.selected()) {
@@ -2116,7 +2116,8 @@ public:
 				for (size_t i = 0; i < 2; i++) {
 					// check form widgets
 					auto widgets = form_.value().get().d_.widgets_order_;
-					if (form_.value().get().d_.reverse_tab_navigation_) std::reverse(widgets.begin(), widgets.end());
+					if (form_.value().get().d_.reverse_tab_navigation_)
+						std::reverse(widgets.begin(), widgets.end());
 
 					for (auto& name : widgets) {
 						try {
@@ -2149,7 +2150,8 @@ public:
 						form_.value().get().d_.p_pages_.find(form_.value().get().d_.current_page_);
 
 					if (page_iterator != form_.value().get().d_.p_pages_.end())
-						helper::check_widgets(page_iterator->second, form_.value().get().d_.reverse_tab_navigation_, select_next, selected);
+						helper::check_widgets(page_iterator->second,
+							form_.value().get().d_.reverse_tab_navigation_, select_next, selected);
 
 					if (select_next)
 						form_.value().get().d_.update();
@@ -2644,9 +2646,7 @@ void liblec::lecui::form::close() {
 }
 
 bool liblec::lecui::form::layout(std::string& error) { return true; }
-
 void liblec::lecui::form::on_close() { close(); }
-
 void liblec::lecui::form::on_caption() {}
 
 bool liblec::lecui::form::prompt(const std::string& question) {
@@ -2703,7 +2703,8 @@ auto make_filter_string(const std::vector<liblec::lecui::file_type>& file_types,
 	std::vector<liblec::lecui::file_type> types;
 
 	for (size_t i = 0; i < file_types.size(); i++) {
-		// check if type description hasn't already been captured; if it has, append it's extension to the other
+		// check if type description hasn't already been captured; if it has,
+		// append it's extension to the other
 		bool b_new = true;
 
 		for (size_t x = 0; x < types.size(); x++) {
@@ -2768,9 +2769,9 @@ void rem_tail(std::string& str, char c) {
 }
 
 std::string liblec::lecui::form::open_file(const liblec::lecui::open_file_params& params) {
-	std::string file;
 	std::vector<std::string> filetypes_indexed;
-	const auto filter_string = make_filter_string(params.file_types, params.include_all_supported_types, filetypes_indexed);
+	const auto filter_string =
+		make_filter_string(params.file_types, params.include_all_supported_types, filetypes_indexed);
 
 	char _FilePath[MAX_PATH];
 	OPENFILENAMEA ofn;
@@ -2784,17 +2785,16 @@ std::string liblec::lecui::form::open_file(const liblec::lecui::open_file_params
 	ofn.nFilterIndex = 1;
 	ofn.hInstance = GetModuleHandle(NULL);
 	ofn.lpstrTitle = params.title.c_str();
-	ofn.Flags = OFN_ENABLEHOOK | OFN_EXPLORER | OFN_HIDEREADONLY | OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST | OFN_ENABLESIZING;
-
-	if (GetOpenFileNameA(&ofn) == TRUE)
-		file = _FilePath;
-	return file;
+	ofn.Flags = OFN_ENABLEHOOK | OFN_EXPLORER | OFN_HIDEREADONLY | OFN_PATHMUSTEXIST |
+		OFN_FILEMUSTEXIST | OFN_ENABLESIZING;
+	return (GetOpenFileNameA(&ofn) == TRUE) ? std::string(_FilePath) : std::string();
 }
 
 std::string liblec::lecui::form::save_file(const std::string& file,
 	const liblec::lecui::save_file_params& params) {
 	std::vector<std::string> filetypes_indexed;
-	const auto filter_string = make_filter_string(params.file_types, params.include_all_supported_types, filetypes_indexed);
+	const auto filter_string =
+		make_filter_string(params.file_types, params.include_all_supported_types, filetypes_indexed);
 
 	OPENFILENAMEA ofn;
 	ZeroMemory(&ofn, sizeof(ofn));
@@ -2811,7 +2811,8 @@ std::string liblec::lecui::form::save_file(const std::string& file,
 	ofn.nFilterIndex = 1;
 	ofn.hInstance = GetModuleHandle(NULL);
 	ofn.lpstrTitle = params.title.c_str();
-	ofn.Flags = OFN_ENABLEHOOK | OFN_EXPLORER | OFN_HIDEREADONLY | OFN_PATHMUSTEXIST | OFN_NOTESTFILECREATE | OFN_ENABLESIZING;
+	ofn.Flags = OFN_ENABLEHOOK | OFN_EXPLORER | OFN_HIDEREADONLY | OFN_PATHMUSTEXIST |
+		OFN_NOTESTFILECREATE | OFN_ENABLESIZING;
 
 	std::string fullpath;
 	if (GetSaveFileNameA(&ofn) == TRUE) {
@@ -2837,7 +2838,7 @@ std::string liblec::lecui::form::save_file(const std::string& file,
 		/// If all three members are zero or NULL, the system does not use any filters and does not show any files in
 		/// the file list control of the dialog box.
 		/// https://msdn.microsoft.com/en-us/library/windows/desktop/ms646839(v=vs.85).aspx
-		/// 
+		///
 		if (filetypes_indexed.size() > 0 && filetypes_indexed.size() >= ofn.nFilterIndex - 1)
 			sExtension = filetypes_indexed[ofn.nFilterIndex - 1];
 
@@ -2859,13 +2860,8 @@ std::string liblec::lecui::form::save_file(const std::string& file,
 	return fullpath;
 }
 
-void liblec::lecui::form::enable(const std::string& name, bool enable) {
-	d_.enable(name, enable);
-}
-
-void liblec::lecui::form::show(const std::string& name, bool show) {
-	d_.show(name, show);
-}
+void liblec::lecui::form::enable(const std::string& name, bool enable) { d_.enable(name, enable); }
+void liblec::lecui::form::show(const std::string& name, bool show) { d_.show(name, show); }
 
 class liblec::lecui::widgets::timer::timer_impl {
 public:
@@ -2896,10 +2892,8 @@ void liblec::lecui::widgets::timer::add(const std::string& name,
 
 	if (IsWindow(d_.fm_.d_.hWnd_))
 		d_.fm_.d_.start_timer(name);
-	else {
-		// timer will be started on window creation
-		d_.fm_.d_.timers_.at(name).running = false;
-	}
+	else
+		d_.fm_.d_.timers_.at(name).running = false;	// timer will be started on window creation
 }
 
 bool liblec::lecui::widgets::timer::running(const std::string& name) {
@@ -2925,9 +2919,7 @@ public:
 liblec::lecui::dimensions::dimensions(form& fm) :
 	d_(*(new dimensions_impl(fm))) {}
 
-liblec::lecui::dimensions::~dimensions() {
-	delete& d_;
-}
+liblec::lecui::dimensions::~dimensions() { delete& d_; }
 
 void liblec::lecui::dimensions::size(const liblec::lecui::size& size) {
 	if (size.width) {
@@ -3007,13 +2999,10 @@ public:
 	form& fm_;
 };
 
-liblec::lecui::controls::controls(form& fm) :
-	d_(*(new controls_impl(fm))) {}
-
+liblec::lecui::controls::controls(form& fm) : d_(*(new controls_impl(fm))) {}
 liblec::lecui::controls::~controls() { delete& d_; }
 
 void liblec::lecui::controls::resize(bool enable) { d_.fm_.d_.allow_resizing_ = enable; }
-
 void liblec::lecui::controls::minimize(bool enable) { d_.fm_.d_.allow_minimize_ = enable; }
 
 class liblec::lecui::page::page_impl {
@@ -3023,9 +3012,7 @@ public:
 	form& fm_;
 };
 
-liblec::lecui::page::page(form& fm) :
-	d_(*(new page_impl(fm))) {}
-
+liblec::lecui::page::page(form& fm) : d_(*(new page_impl(fm))) {}
 liblec::lecui::page::~page() { delete& d_; }
 
 liblec::lecui::widgets::page& liblec::lecui::page::add(const std::string& name) {
@@ -3059,9 +3046,14 @@ liblec::lecui::widgets::page& liblec::lecui::page::add(const std::string& name) 
 		d_.fm_.d_.p_pages_.at(name).d_page_.h_scrollbar().specs().resize.perc_width = 100;
 		d_.fm_.d_.p_pages_.at(name).d_page_.h_scrollbar().specs().resize.perc_y = 100;
 
-		d_.fm_.d_.p_pages_.at(name).d_page_.h_scrollbar().specs().rect.left = margin + thickness - static_cast<long>(d_.fm_.d_.page_tolerance_);
-		d_.fm_.d_.p_pages_.at(name).d_page_.h_scrollbar().specs().rect.right = static_cast<long>(d_.fm_.d_.size_.width) - (margin + thickness) - static_cast<long>(d_.fm_.d_.page_tolerance_);
-		d_.fm_.d_.p_pages_.at(name).d_page_.h_scrollbar().specs().rect.bottom = static_cast<long>(d_.fm_.d_.size_.height) - margin - static_cast<long>(d_.fm_.d_.caption_bar_height_ + d_.fm_.d_.page_tolerance_);
+		d_.fm_.d_.p_pages_.at(name).d_page_.h_scrollbar().specs().rect.left =
+			margin + thickness - static_cast<long>(d_.fm_.d_.page_tolerance_);
+		d_.fm_.d_.p_pages_.at(name).d_page_.h_scrollbar().specs().rect.right =
+			static_cast<long>(d_.fm_.d_.size_.width) - (margin + thickness) -
+			static_cast<long>(d_.fm_.d_.page_tolerance_);
+		d_.fm_.d_.p_pages_.at(name).d_page_.h_scrollbar().specs().rect.bottom =
+			static_cast<long>(d_.fm_.d_.size_.height) - margin -
+			static_cast<long>(d_.fm_.d_.caption_bar_height_ + d_.fm_.d_.page_tolerance_);
 		d_.fm_.d_.p_pages_.at(name).d_page_.h_scrollbar().specs().rect.top =
 			d_.fm_.d_.p_pages_.at(name).d_page_.h_scrollbar().specs().rect.bottom - thickness;
 
@@ -3074,23 +3066,31 @@ liblec::lecui::widgets::page& liblec::lecui::page::add(const std::string& name) 
 		d_.fm_.d_.p_pages_.at(name).d_page_.v_scrollbar().specs().color_fill.alpha = 150;
 		d_.fm_.d_.p_pages_.at(name).d_page_.v_scrollbar().specs().color_hot = d_.fm_.d_.clr_theme_;
 		d_.fm_.d_.p_pages_.at(name).d_page_.v_scrollbar().specs().color_hot.alpha = 200;
-		d_.fm_.d_.p_pages_.at(name).d_page_.v_scrollbar().specs().color_hot_pressed = d_.fm_.d_.clr_theme_;
-		d_.fm_.d_.p_pages_.at(name).d_page_.v_scrollbar().specs().color_background = d_.fm_.d_.clr_theme_;
+		d_.fm_.d_.p_pages_.at(name).d_page_.v_scrollbar().specs().color_hot_pressed =
+			d_.fm_.d_.clr_theme_;
+		d_.fm_.d_.p_pages_.at(name).d_page_.v_scrollbar().specs().color_background =
+			d_.fm_.d_.clr_theme_;
 		d_.fm_.d_.p_pages_.at(name).d_page_.v_scrollbar().specs().color_background.alpha = 50;
 
 		d_.fm_.d_.p_pages_.at(name).d_page_.v_scrollbar().specs().resize.perc_height = 100;
 		d_.fm_.d_.p_pages_.at(name).d_page_.v_scrollbar().specs().resize.perc_x = 100;
 
-		d_.fm_.d_.p_pages_.at(name).d_page_.v_scrollbar().specs().rect.top = margin + thickness - static_cast<long>(d_.fm_.d_.page_tolerance_);
-		d_.fm_.d_.p_pages_.at(name).d_page_.v_scrollbar().specs().rect.bottom = static_cast<long>(d_.fm_.d_.size_.height) - (margin + thickness) - static_cast<long>(d_.fm_.d_.caption_bar_height_ + d_.fm_.d_.page_tolerance_);
-		d_.fm_.d_.p_pages_.at(name).d_page_.v_scrollbar().specs().rect.right = static_cast<long>(d_.fm_.d_.size_.width) - margin - static_cast<long>(d_.fm_.d_.page_tolerance_);
+		d_.fm_.d_.p_pages_.at(name).d_page_.v_scrollbar().specs().rect.top =
+			margin + thickness - static_cast<long>(d_.fm_.d_.page_tolerance_);
+		d_.fm_.d_.p_pages_.at(name).d_page_.v_scrollbar().specs().rect.bottom =
+			static_cast<long>(d_.fm_.d_.size_.height) - (margin + thickness) -
+			static_cast<long>(d_.fm_.d_.caption_bar_height_ + d_.fm_.d_.page_tolerance_);
+		d_.fm_.d_.p_pages_.at(name).d_page_.v_scrollbar().specs().rect.right =
+			static_cast<long>(d_.fm_.d_.size_.width) - margin -
+			static_cast<long>(d_.fm_.d_.page_tolerance_);
 		d_.fm_.d_.p_pages_.at(name).d_page_.v_scrollbar().specs().rect.left =
 			d_.fm_.d_.p_pages_.at(name).d_page_.v_scrollbar().specs().rect.right - thickness;
 
 		d_.fm_.d_.p_pages_.at(name).d_page_.v_scrollbar().specs().on_click = nullptr;
 	}
 
-	// add an invisible rect to bound the page. This is essential for scroll bars to work appropriately when contents don't reach the page borders
+	// add an invisible rect to bound the page. This is essential for scroll bars to work
+	// appropriately when contents don't reach the page borders
 	auto& rectangle = d_.fm_.d_.p_pages_.at(name).d_page_.add_rectangle("minimal_page_border_rect");
 	rectangle.is_filled = false;
 
@@ -3109,10 +3109,13 @@ liblec::lecui::widgets::page& liblec::lecui::page::add(const std::string& name) 
 	else
 		d_.fm_.d_.p_pages_.at(name).d_page_.size({ d_.fm_.d_.size_.width, d_.fm_.d_.size_.height });
 
-	d_.fm_.d_.p_pages_.at(name).d_page_.width(d_.fm_.d_.p_pages_.at(name).d_page_.width() - static_cast<long>(2.f * d_.fm_.d_.page_tolerance_));
-	d_.fm_.d_.p_pages_.at(name).d_page_.height(d_.fm_.d_.p_pages_.at(name).d_page_.height() - static_cast<long>(2.f * d_.fm_.d_.page_tolerance_ + d_.fm_.d_.caption_bar_height_));
+	d_.fm_.d_.p_pages_.at(name).d_page_.width(d_.fm_.d_.p_pages_.at(name).d_page_.width() -
+		static_cast<long>(2.f * d_.fm_.d_.page_tolerance_));
+	d_.fm_.d_.p_pages_.at(name).d_page_.height(d_.fm_.d_.p_pages_.at(name).d_page_.height() -
+		static_cast<long>(2.f * d_.fm_.d_.page_tolerance_ + d_.fm_.d_.caption_bar_height_));
 
-	rectangle.rect.set(0, 0, d_.fm_.d_.p_pages_.at(name).d_page_.width(), d_.fm_.d_.p_pages_.at(name).d_page_.height());
+	rectangle.rect.set(0, 0, d_.fm_.d_.p_pages_.at(name).d_page_.width(),
+		d_.fm_.d_.p_pages_.at(name).d_page_.height());
 
 	rectangle.corner_radius_x = 15.f;
 	rectangle.corner_radius_y = 15.f;

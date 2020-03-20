@@ -13,10 +13,10 @@
 
 #pragma once
 
-#ifdef LECUI_EXPORTS
-#include "widget.h"
+#if defined(LECUI_EXPORTS)
+	#include "widget.h"
 #else
-#include <liblec/lecui/widgets/widget.h>
+	#include <liblec/lecui/widgets/widget.h>
 #endif
 
 namespace liblec {
@@ -41,7 +41,7 @@ namespace liblec {
 
 			class tab;
 
-			class form_api tab_control {
+			class lecui_api tab_control {
 			public:
 				tab_control(liblec::lecui::widgets::page& page, const std::string& name);
 				~tab_control();
@@ -60,7 +60,7 @@ namespace liblec {
 				friend tab;
 			};
 
-			class form_api tab {
+			class lecui_api tab {
 			public:
 				tab(tab_control& tc);
 				~tab();

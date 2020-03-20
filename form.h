@@ -13,12 +13,10 @@
 
 #pragma once
 
-#ifdef LECUI_EXPORTS
-#define form_api __declspec(dllexport)
-#include "lecui.h"
+#if defined(LECUI_EXPORTS)
+	#include "lecui.h"
 #else
-#define form_api __declspec(dllimport)
-#include <liblec/lecui.h>
+	#include <liblec/lecui.h>
 #endif
 
 namespace liblec {
@@ -47,7 +45,7 @@ namespace liblec {
 			bottom_right_offset,
 		};
 
-		class form_api form {
+		class lecui_api form {
 		public:
 			form();
 			form(const std::string& caption);

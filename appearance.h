@@ -13,15 +13,15 @@
 
 #pragma once
 
-#ifdef LECUI_EXPORTS
-#include "form.h"
+#if defined(LECUI_EXPORTS)
+	#include "form.h"
 #else
-#include <liblec/lecui/form.h>
+	#include <liblec/lecui/form.h>
 #endif
 
 namespace liblec {
 	namespace lecui {
-		class form_api appearance {
+		class lecui_api appearance {
 		public:
 			appearance(form& fm);
 			~appearance();
