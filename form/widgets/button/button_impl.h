@@ -52,6 +52,7 @@ namespace liblec {
 
 				liblec::lecui::widgets::specs::button specs_;
 				ID2D1SolidColorBrush* p_brush_;
+				ID2D1SolidColorBrush* p_brush_border_;
 				ID2D1SolidColorBrush* p_brush_fill_;
 				ID2D1SolidColorBrush* p_brush_hot_;
 				ID2D1SolidColorBrush* p_brush_disabled_;

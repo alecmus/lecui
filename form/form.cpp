@@ -57,8 +57,8 @@
 #include <optional>
 #include <memory>
 
-#ifdef min
-#undef min	// to circumvent conflict with liblec::lecui::dimensions::min
+#if defined(min)
+	#undef min	// to circumvent conflict with liblec::lecui::dimensions::min
 #endif
 
 class mouse_track {
@@ -451,8 +451,8 @@ public:
 			const D2D1_RECT_F rect_titlebar_ = { 0.f, 0.f, rtSize.width, caption_bar_height_ };
 			p_render_target_->FillRectangle(&rect_titlebar_, p_brush_titlebar_);
 
-#ifdef _DEBUG
-			if (true) {
+#if defined(_DEBUG)
+			if (false) {
 				// Draw a grid background
 				int width = static_cast<int>(rtSize.width);
 				int height = static_cast<int>(rtSize.height);
@@ -469,7 +469,7 @@ public:
 						D2D1::Point2F(rtSize.width, static_cast<FLOAT>(y)),
 						p_brush_theme_, line_width);
 			}
-#endif // _DEBUG
+#endif
 
 			class helper {
 			public:
@@ -700,13 +700,13 @@ public:
 							}
 						}
 
-#ifdef _DEBUG
+#if defined(_DEBUG)
 						if (render) {
 							// draw rectA and rectB
 							p_render_target_->DrawRectangle(&rectA, p_brush_theme_, .5f);
 							p_render_target_->DrawRectangle(&rectB, p_brush_theme_hot_, .5f);
 						}
-#endif // _DEBUG
+#endif
 					}
 
 					// setup horizontal scroll bar and render it

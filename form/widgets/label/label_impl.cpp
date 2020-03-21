@@ -285,7 +285,7 @@ liblec::lecui::widgets_implementation::label::render(ID2D1HwndRenderTarget* p_re
 					p_render_target->FillRectangle(&rect_, pressed_ ? p_brush_hot_pressed_ : p_brush_hot_);
 
 				if (selected_)
-					show_selected(p_render_target, p_brush_selected_, rect_, pressed_);
+					p_render_target->FillRectangle(&rect_, p_brush_selected_);
 			}
 
 			// draw the text layout

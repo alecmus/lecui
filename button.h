@@ -26,10 +26,16 @@ namespace liblec {
 			namespace specs {
 				class button : public widget {
 				public:
-					button() { color_text = { 255, 255, 255, 255 }; color_hot = { 20, 80, 140, 100 }; }
+					button() {
+						color_text = { 0, 0, 0, 255 };
+						color_fill = { 222, 222, 222, 255 };
+						color_hot = { 232, 232, 232, 255 };
+						color_selected = { 20, 80, 140, 100 };
+					}
 					float border = 0.5f;
 					float corner_radius_x = 5.f;
 					float corner_radius_y = 5.f;
+					liblec::lecui::color color_border = { 150, 150, 150, 255 };
 				};
 			}
 

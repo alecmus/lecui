@@ -33,6 +33,7 @@ liblec::lecui::widgets_implementation::button::button(const std::string& page,
 	const std::string& name,
 	IDWriteFactory* p_directwrite_factory) :
 	p_brush_(nullptr),
+	p_brush_border_(nullptr),
 	p_brush_fill_(nullptr),
 	p_brush_hot_(nullptr),
 	p_brush_disabled_(nullptr),
@@ -68,6 +69,9 @@ HRESULT liblec::lecui::widgets_implementation::button::create_resources(
 	if (SUCCEEDED(hr))
 		hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_fill),
 			&p_brush_fill_);
+	if (SUCCEEDED(hr))
+		hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_border),
+			&p_brush_border_);
 	if (SUCCEEDED(hr))
 		hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_hot),
 			&p_brush_hot_);
@@ -105,6 +109,7 @@ HRESULT liblec::lecui::widgets_implementation::button::create_resources(
 void liblec::lecui::widgets_implementation::button::discard_resources() {
 	log("discarding resources: " + page_ + ":" + name_);
 	safe_release(&p_brush_);
+	safe_release(&p_brush_border_);
 	safe_release(&p_brush_fill_);
 	safe_release(&p_brush_hot_);
 	safe_release(&p_brush_disabled_);
@@ -134,6 +139,13 @@ liblec::lecui::widgets_implementation::button::render(ID2D1HwndRenderTarget* p_r
 		hit_ ? p_brush_hot_ :
 		p_brush_fill_);
 
+	p_render_target->DrawRoundedRectangle(&rounded_rect, !is_enabled_ ? p_brush_disabled_ :
+		p_brush_border_, 0.5f);
+
+	if (!is_static_ && is_enabled_ && selected_)
+		p_render_target->DrawRoundedRectangle(&rounded_rect, !is_enabled_ ? p_brush_disabled_ :
+			p_brush_selected_, pressed_ ? 1.75f : 1.0f);
+
 	// create a text layout
 	HRESULT hr = p_directwrite_factory_->CreateTextLayout(convert_string(specs_.text).c_str(),
 		(UINT32)specs_.text.length(), p_text_format_, rect_.right - rect_.left,
@@ -144,9 +156,6 @@ liblec::lecui::widgets_implementation::button::render(ID2D1HwndRenderTarget* p_r
 		p_render_target->DrawTextLayout(D2D1_POINT_2F{ rect_.left, rect_.top },
 			p_text_layout_, p_brush_, D2D1_DRAW_TEXT_OPTIONS_CLIP);
 	}
-
-	if (!is_static_ && is_enabled_ && selected_)
-		show_selected(p_render_target, p_brush_selected_, rect_, pressed_);
 
 	// release the text layout
 	safe_release(&p_text_layout_);

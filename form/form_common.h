@@ -25,7 +25,7 @@
 #include <map>
 
 static inline void log(const std::string& string) {
-#ifdef _DEBUG
+#if defined(_DEBUG)
 	std::string string_ = "-->" + string + "\n";
 	printf(string_.c_str());
 	OutputDebugStringA(string_.c_str());

@@ -108,16 +108,16 @@ liblec::lecui::widgets_implementation::rectangle::render(ID2D1HwndRenderTarget* 
 
 	if (specs_.is_filled)
 		p_render_target->FillRoundedRectangle(&rounded_rect, is_enabled_ ? p_brush_fill_ : p_brush_disabled_);
-	else
-		p_render_target->DrawRoundedRectangle(&rounded_rect, is_enabled_ ? p_brush_border_ : p_brush_disabled_, specs_.border);
+	
+	p_render_target->DrawRoundedRectangle(&rounded_rect, is_enabled_ ? p_brush_border_ : p_brush_disabled_, specs_.border);
 
 	if (!is_static_ && is_enabled_)
 	{
 		if (hit_ || pressed_)
-			p_render_target->DrawRoundedRectangle(&rounded_rect, p_brush_hot_, pressed_ ? 1.5f : 0.8f);
+			p_render_target->DrawRoundedRectangle(&rounded_rect, p_brush_hot_, pressed_ ? 1.75f : 1.0f);
 
 		if (selected_)
-			show_selected(p_render_target, p_brush_selected_, rect_, pressed_);
+			p_render_target->DrawRoundedRectangle(&rounded_rect, p_brush_selected_, pressed_ ? 1.75f : 1.0f);
 	}
 
 	return rect_;
