@@ -206,20 +206,21 @@ liblec::lecui::widgets_implementation::toggle::render(ID2D1HwndRenderTarget* p_r
 		DWRITE_TEXT_METRICS textMetrics;
 		p_text_layout_->GetMetrics(&textMetrics);
 
-		if (render && visible_)
-			p_render_target->DrawTextLayout(D2D1_POINT_2F{ rect_text_.left, rect_text_.top },
-				p_text_layout_, p_brush_, D2D1_DRAW_TEXT_OPTIONS_CLIP);
-
+		const auto rect_text_og = rect_text_;
 		rect_text_.left += textMetrics.left;
 		rect_text_.top += textMetrics.top;
 		rect_text_.right = smallest(rect_text_.left + textMetrics.width, rect_text_.right);
 		rect_text_.bottom = smallest(rect_text_.top + textMetrics.height, rect_text_.bottom);
+
+		if (render && visible_ && !is_static_ && is_enabled_ && selected_)
+			p_render_target->FillRectangle(&rect_text_, p_brush_selected_);
+
+		if (render && visible_)
+			p_render_target->DrawTextLayout(D2D1_POINT_2F{ rect_text_og.left, rect_text_og.top },
+				p_text_layout_, p_brush_, D2D1_DRAW_TEXT_OPTIONS_CLIP);
 	}
 
 	rect_.right = rect_text_.right;
-
-	if (render && visible_ && !is_static_ && is_enabled_ && selected_)
-		show_selected(p_render_target, p_brush_selected_, rect_, pressed_);
 
 	// release the text layout
 	safe_release(&p_text_layout_);

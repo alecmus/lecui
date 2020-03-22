@@ -106,6 +106,14 @@ liblec::lecui::widgets::page::page_impl::add_list(const std::string& name) {
 	return lists_.at(name).specs();
 }
 
+liblec::lecui::widgets::specs::custom&
+liblec::lecui::widgets::page::page_impl::add_custom(const std::string& name) {
+	customs_.try_emplace(name, name_, name, p_directwrite_factory_);
+	widgets_.emplace(name, customs_.at(name));
+	widgets_order_.emplace_back(name);
+	return customs_.at(name).specs();
+}
+
 std::map<std::string, liblec::lecui::widgets_implementation::widget&>&
 liblec::lecui::widgets::page::page_impl::widgets() { return widgets_; }
 
@@ -131,6 +139,9 @@ liblec::lecui::widgets::page::page_impl::get_combo(const std::string& name) { re
 
 liblec::lecui::widgets_implementation::list&
 liblec::lecui::widgets::page::page_impl::get_list(const std::string& name) { return lists_.at(name); }
+
+liblec::lecui::widgets_implementation::custom&
+liblec::lecui::widgets::page::page_impl::get_custom(const std::string& name) { return customs_.at(name); }
 
 liblec::lecui::widgets::page::page(const std::string& name) :
 	d_page_(*new liblec::lecui::widgets::page::page_impl(name)) {}

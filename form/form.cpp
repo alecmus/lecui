@@ -61,6 +61,8 @@
 	#undef min	// to circumvent conflict with liblec::lecui::dimensions::min
 #endif
 
+#define DESIGNLINES	0	// set to 1 to show design lines, 0 otherwise
+
 class mouse_track {
 	bool mouse_tracking_;
 
@@ -94,7 +96,7 @@ public:
 		resource_module_handle_(nullptr),
 		idi_icon_(0),
 		idi_icon_small_(0),
-		clr_background_(liblec::lecui::color{ 255, 255, 255 }),
+		clr_background_(liblec::lecui::color{ 244, 244, 244 }),
 		clr_titlebar_background_(clr_background_),
 		clr_theme_(liblec::lecui::color{ 20, 80, 140, 255 }),
 		clr_theme_hot_(liblec::lecui::color{ 255, 180, 0, 255 }),
@@ -131,7 +133,8 @@ public:
 		unique_id_(1000),
 		reverse_tab_navigation_(false),
 		shift_pressed_(false),
-		space_pressed_(false) {
+		space_pressed_(false),
+		new_page_added_(false) {
 		log("entering form_impl constructor");
 
 		++instances_;	// increment instances count
@@ -432,6 +435,11 @@ public:
 	/// This method discards device-specific resources if the Direct3D device dissapears during
 	/// execution and recreates the resources the next time it's invoked
 	HRESULT on_render() {
+		if (new_page_added_) {
+			new_page_added_ = false;	// reset flag
+			discard_device_resources();
+		}
+
 		HRESULT hr = S_OK;
 
 		hr = create_device_resources();
@@ -451,24 +459,22 @@ public:
 			const D2D1_RECT_F rect_titlebar_ = { 0.f, 0.f, rtSize.width, caption_bar_height_ };
 			p_render_target_->FillRectangle(&rect_titlebar_, p_brush_titlebar_);
 
-#if defined(_DEBUG)
-			if (false) {
-				// Draw a grid background
-				int width = static_cast<int>(rtSize.width);
-				int height = static_cast<int>(rtSize.height);
+#if defined(_DEBUG) and DESIGNLINES
+			// Draw a grid background
+			int width = static_cast<int>(rtSize.width);
+			int height = static_cast<int>(rtSize.height);
 
-				const float line_width = 0.05f;
+			const float line_width = 0.05f;
 
-				for (int x = 0; x < width; x += 10)
-					p_render_target_->DrawLine(D2D1::Point2F(static_cast<FLOAT>(x), 0.0f),
-						D2D1::Point2F(static_cast<FLOAT>(x), rtSize.height),
-						p_brush_theme_, line_width);
+			for (int x = 0; x < width; x += 10)
+				p_render_target_->DrawLine(D2D1::Point2F(static_cast<FLOAT>(x), 0.0f),
+					D2D1::Point2F(static_cast<FLOAT>(x), rtSize.height),
+					p_brush_theme_, line_width);
 
-				for (int y = 0; y < height; y += 10)
-					p_render_target_->DrawLine(D2D1::Point2F(0.0f, static_cast<FLOAT>(y)),
-						D2D1::Point2F(rtSize.width, static_cast<FLOAT>(y)),
-						p_brush_theme_, line_width);
-			}
+			for (int y = 0; y < height; y += 10)
+				p_render_target_->DrawLine(D2D1::Point2F(0.0f, static_cast<FLOAT>(y)),
+					D2D1::Point2F(rtSize.width, static_cast<FLOAT>(y)),
+					p_brush_theme_, line_width);
 #endif
 
 			class helper {
@@ -700,7 +706,7 @@ public:
 							}
 						}
 
-#if defined(_DEBUG)
+#if defined(_DEBUG) and DESIGNLINES
 						if (render) {
 							// draw rectA and rectB
 							p_render_target_->DrawRectangle(&rectA, p_brush_theme_, .5f);
@@ -1114,6 +1120,7 @@ public:
 		// Note: On Windows 10, windows behave differently and
 		// allow resizing outside the visible window frame.
 		// This implementation does not replicate that behavior.
+		// to-do: check if this behavior can be replicated for a borderless window.
 		POINT border {
 			::GetSystemMetrics(SM_CXFRAME) + ::GetSystemMetrics(SM_CXPADDEDBORDER),
 			::GetSystemMetrics(SM_CYFRAME) + ::GetSystemMetrics(SM_CXPADDEDBORDER)
@@ -1644,93 +1651,110 @@ public:
 			}
 
 			if (user_resizing || system_resizing) {
-				for (auto& page : form_.value().get().d_.p_pages_) {
-					// check if a horizontal scroll bar exists
-					if (page.second.d_page_.h_scrollbar().x_displacement_ > 0.f) {
-						// check if width is increasing
-						if (change_in_width > 0.f) {
-							if (system_resizing)
-								log("system: width increasing");
+				class helper {
+				public:
+					static void check_page(liblec::lecui::widgets::page& page,
+						float change_in_width, float change_in_height, bool system_resizing) {
+						// check if a horizontal scroll bar exists
+						if (page.d_page_.h_scrollbar().x_displacement_ > 0.f) {
+							// check if width is increasing
+							if (change_in_width > 0.f) {
+								if (system_resizing)
+									log("system: width increasing");
 
-							// impose a limit on change_in_width
-							float x_displacement =
-								page.second.d_page_.h_scrollbar().x_displacement_ - change_in_width;
-							x_displacement = largest(x_displacement, 0.f);
+								// impose a limit on change_in_width
+								float x_displacement =
+									page.d_page_.h_scrollbar().x_displacement_ - change_in_width;
+								x_displacement = largest(x_displacement, 0.f);
 
-							const float change =
-								page.second.d_page_.h_scrollbar().x_displacement_ - x_displacement;
+								const float change =
+									page.d_page_.h_scrollbar().x_displacement_ - x_displacement;
 
-							// translate the environment
-							page.second.d_page_.h_scrollbar().x_displacement_ -= change;
-							page.second.d_page_.h_scrollbar().max_displacement_left_ -= change;
-							page.second.d_page_.h_scrollbar().max_displacement_right_ -= change;
+								// translate the environment
+								page.d_page_.h_scrollbar().x_displacement_ -= change;
+								page.d_page_.h_scrollbar().max_displacement_left_ -= change;
+								page.d_page_.h_scrollbar().max_displacement_right_ -= change;
+							}
+							else {
+								if (system_resizing)
+									log("system: width decreasing");	// to-do: issue with scrollbar (sometimes) ...
+
+								// impose a limit on change_in_width
+								float x_displacement =
+									page.d_page_.h_scrollbar().x_displacement_ + change_in_width;
+								x_displacement = largest(x_displacement, 0.f);
+
+								const float change =
+									x_displacement - page.d_page_.h_scrollbar().x_displacement_;
+
+								// translate the environment
+								page.d_page_.h_scrollbar().x_displacement_ += change;
+								page.d_page_.h_scrollbar().max_displacement_left_ += change;
+								page.d_page_.h_scrollbar().max_displacement_right_ += change;
+							}
+
+							// force translate in on_render()
+							page.d_page_.h_scrollbar().force_translate_ = true;
 						}
-						else {
-							if (system_resizing)
-								log("system: width decreasing");	// to-do: issue with scrollbar (sometimes) ...
 
-							// impose a limit on change_in_width
-							float x_displacement =
-								page.second.d_page_.h_scrollbar().x_displacement_ + change_in_width;
-							x_displacement = largest(x_displacement, 0.f);
+						// check if a vertical scroll bar exists
+						if (page.d_page_.v_scrollbar().y_displacement_ > 0.f) {
+							// check if height is increasing
+							if (change_in_height > 0.f) {
+								if (system_resizing)
+									log("system: height increasing");
 
-							const float change =
-								x_displacement - page.second.d_page_.h_scrollbar().x_displacement_;
+								// impose a limit on change_in_height
+								float y_displacement =
+									page.d_page_.v_scrollbar().y_displacement_ - change_in_height;
+								y_displacement = largest(y_displacement, 0.f);
 
-							// translate the environment
-							page.second.d_page_.h_scrollbar().x_displacement_ += change;
-							page.second.d_page_.h_scrollbar().max_displacement_left_ += change;
-							page.second.d_page_.h_scrollbar().max_displacement_right_ += change;
+								const float change =
+									page.d_page_.v_scrollbar().y_displacement_ - y_displacement;
+
+								// translate the environment
+								page.d_page_.v_scrollbar().y_displacement_ -= change;
+								page.d_page_.v_scrollbar().max_displacement_top_ -= change;
+								page.d_page_.v_scrollbar().max_displacement_bottom_ -= change;
+							}
+							else {
+								if (system_resizing)
+									log("system: height decreasing");	// to-do: issue with scrollbar (sometimes) ...
+
+								// impose a limit on change_in_height
+								float y_displacement =
+									page.d_page_.v_scrollbar().y_displacement_ + change_in_width;
+								y_displacement = largest(y_displacement, 0.f);
+
+								const float change =
+									y_displacement - page.d_page_.v_scrollbar().y_displacement_;
+
+								// translate the environment
+								page.d_page_.v_scrollbar().y_displacement_ += change;
+								page.d_page_.v_scrollbar().max_displacement_top_ += change;
+								page.d_page_.v_scrollbar().max_displacement_bottom_ += change;
+							}
+
+							// force translate in on_render()
+							page.d_page_.v_scrollbar().force_translate_ = true;
 						}
 
-						// force translate in on_render()
-						page.second.d_page_.h_scrollbar().force_translate_ = true;
+						// to-do: check actual change in width and height of tab instead of inheriting from page
+
+						for (auto& widget : page.d_page_.widgets()) {
+							if (widget.second.type() == liblec::lecui::widgets_implementation::widget_type::tab_control) {
+								// get this tab control
+								auto& tab_control = page.d_page_.get_tab_control(widget.first);
+
+								for (auto& tab : tab_control.p_tabs_)
+									helper::check_page(tab.second, change_in_width, change_in_height, system_resizing);	// recursion
+							}
+						}
 					}
-				}
+				};
 
-				for (auto& page : form_.value().get().d_.p_pages_) {
-					// check if a vertical scroll bar exists
-					if (page.second.d_page_.v_scrollbar().y_displacement_ > 0.f) {
-						// check if height is increasing
-						if (change_in_height > 0.f) {
-							if (system_resizing)
-								log("system: height increasing");
-
-							// impose a limit on change_in_height
-							float y_displacement =
-								page.second.d_page_.v_scrollbar().y_displacement_ - change_in_height;
-							y_displacement = largest(y_displacement, 0.f);
-
-							const float change =
-								page.second.d_page_.v_scrollbar().y_displacement_ - y_displacement;
-
-							// translate the environment
-							page.second.d_page_.v_scrollbar().y_displacement_ -= change;
-							page.second.d_page_.v_scrollbar().max_displacement_top_ -= change;
-							page.second.d_page_.v_scrollbar().max_displacement_bottom_ -= change;
-						}
-						else {
-							if (system_resizing)
-								log("system: height decreasing");	// to-do: issue with scrollbar (sometimes) ...
-
-							// impose a limit on change_in_height
-							float y_displacement =
-								page.second.d_page_.v_scrollbar().y_displacement_ + change_in_width;
-							y_displacement = largest(y_displacement, 0.f);
-
-							const float change =
-								y_displacement - page.second.d_page_.v_scrollbar().y_displacement_;
-
-							// translate the environment
-							page.second.d_page_.v_scrollbar().y_displacement_ += change;
-							page.second.d_page_.v_scrollbar().max_displacement_top_ += change;
-							page.second.d_page_.v_scrollbar().max_displacement_bottom_ += change;
-						}
-
-						// force translate in on_render()
-						page.second.d_page_.v_scrollbar().force_translate_ = true;
-					}
-				}
+				for (auto& page : form_.value().get().d_.p_pages_)
+					helper::check_page(page.second, change_in_width, change_in_height, system_resizing);
 			}
 		}
 		break;
@@ -2459,7 +2483,7 @@ private:
 	bool user_sizing_;
 
 	struct timer {
-		int unique_id;
+		int unique_id = -1;
 		bool running = false;
 		unsigned long milliseconds = 1000;
 		std::function<void()> on_timer = nullptr;
@@ -2472,6 +2496,7 @@ private:
 	bool reverse_tab_navigation_;
 	bool shift_pressed_;
 	bool space_pressed_;
+	bool new_page_added_;
 
 	friend form;
 	friend liblec::lecui::dimensions;
@@ -3015,6 +3040,10 @@ public:
 liblec::lecui::page::page(form& fm) : d_(*(new page_impl(fm))) {}
 liblec::lecui::page::~page() { delete& d_; }
 
+bool liblec::lecui::page::exists(const std::string& name) {
+	return d_.fm_.d_.p_pages_.count(name) != 0;
+}
+
 liblec::lecui::widgets::page& liblec::lecui::page::add(const std::string& name) {
 	log("liblec::lecui::page::add");
 
@@ -3026,6 +3055,7 @@ liblec::lecui::widgets::page& liblec::lecui::page::add(const std::string& name) 
 	}
 
 	d_.fm_.d_.p_pages_.emplace(name, name);
+	d_.fm_.d_.new_page_added_ = true;		// essential for this page's resources to be created
 
 	// specify directwrite factory (used internally for text rendering)
 	d_.fm_.d_.p_pages_.at(name).d_page_.directwrite_factory(d_.fm_.d_.p_directwrite_factory_);
@@ -3098,16 +3128,7 @@ liblec::lecui::widgets::page& liblec::lecui::page::add(const std::string& name) 
 	rectangle.color_border = { 255, 0, 0, 0 };
 	rectangle.color_hot = { 255, 0, 0, 0 };
 
-	d_.fm_.d_.p_pages_.at(name).d_page_.size({ 0, 0 });
-
-	if (IsWindow(d_.fm_.d_.hWnd_)) {
-		RECT rect;
-		GetWindowRect(d_.fm_.d_.hWnd_, &rect);
-		d_.fm_.d_.p_pages_.at(name).d_page_.width(rect.right - rect.left);
-		d_.fm_.d_.p_pages_.at(name).d_page_.height(rect.bottom - rect.top);
-	}
-	else
-		d_.fm_.d_.p_pages_.at(name).d_page_.size({ d_.fm_.d_.size_.width, d_.fm_.d_.size_.height });
+	d_.fm_.d_.p_pages_.at(name).d_page_.size({ d_.fm_.d_.size_.width, d_.fm_.d_.size_.height });
 
 	d_.fm_.d_.p_pages_.at(name).d_page_.width(d_.fm_.d_.p_pages_.at(name).d_page_.width() -
 		static_cast<long>(2.f * d_.fm_.d_.page_tolerance_));

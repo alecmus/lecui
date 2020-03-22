@@ -53,7 +53,7 @@ namespace liblec {
 					liblec::lecui::color color_fill = { 20, 80, 140, 255 };
 					liblec::lecui::color color_hot = { 20, 80, 140, 255 };
 					liblec::lecui::color color_selected = { 20, 80, 140, 30 };
-					liblec::lecui::color color_disabled = { 225, 225, 225, 255 };
+					liblec::lecui::color color_disabled = { 180, 180, 180, 255 };
 					std::function<void()> on_click = nullptr;
 				};
 			}

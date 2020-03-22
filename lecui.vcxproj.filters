@@ -73,6 +73,9 @@
     <Filter Include="Source Files\error">
       <UniqueIdentifier>{4200a6e3-1de7-48ff-957b-4e36ed09508f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\form\widgets\custom">
+      <UniqueIdentifier>{c22ad232-5587-4a26-81bd-f1b0f7454882}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="lecui.h">
@@ -174,6 +177,12 @@
     <ClInclude Include="form\widgets\toggle\toggle_impl.h">
       <Filter>Source Files\form\widgets\toggle</Filter>
     </ClInclude>
+    <ClInclude Include="custom.h">
+      <Filter>Header Files\lecui\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="form\widgets\custom\custom_impl.h">
+      <Filter>Source Files\form\widgets\custom</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="versioninfo.rc">
@@ -234,6 +243,9 @@
     </ClCompile>
     <ClCompile Include="form\widgets\toggle\toggle_impl.cpp">
       <Filter>Source Files\form\widgets\toggle</Filter>
+    </ClCompile>
+    <ClCompile Include="form\widgets\custom\custom_impl.cpp">
+      <Filter>Source Files\form\widgets\custom</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

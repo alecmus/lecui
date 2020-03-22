@@ -31,6 +31,7 @@ namespace liblec {
 			class toggle;
 			class combo;
 			class list;
+			class custom;
 
 			class lecui_api page {
 			public:
@@ -58,6 +59,7 @@ namespace liblec {
 				friend liblec::lecui::widgets::toggle;
 				friend liblec::lecui::widgets::combo;
 				friend liblec::lecui::widgets::list;
+				friend liblec::lecui::widgets::custom;
 			};
 		}
 
@@ -66,6 +68,7 @@ namespace liblec {
 			page(form& fm);
 			~page();
 
+			bool exists(const std::string& name);
 			liblec::lecui::widgets::page& add(const std::string& name);
 			void show(const std::string& name);
 

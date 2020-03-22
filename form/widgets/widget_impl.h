@@ -34,6 +34,7 @@ namespace liblec {
 				toggle,
 				combo,
 				list,
+				custom,
 			};
 
 			class widget {

@@ -23,6 +23,7 @@
     <ClInclude Include="button.h" />
     <ClInclude Include="combo.h" />
     <ClInclude Include="controls.h" />
+    <ClInclude Include="custom.h" />
     <ClInclude Include="error\win_error.h" />
     <ClInclude Include="form\form_common.h" />
     <ClInclude Include="form\widgets\button\button_impl.h" />
@@ -30,6 +31,7 @@
     <ClInclude Include="form\widgets\control_buttons\close_button\close_button.h" />
     <ClInclude Include="form\widgets\control_buttons\maximize_button\maximize_button.h" />
     <ClInclude Include="form\widgets\control_buttons\minimize_button\minimize_button.h" />
+    <ClInclude Include="form\widgets\custom\custom_impl.h" />
     <ClInclude Include="form\widgets\group\group_impl.h" />
     <ClInclude Include="form\widgets\h_scrollbar\h_scrollbar.h" />
     <ClInclude Include="form\widgets\label\label_impl.h" />
@@ -64,6 +66,7 @@
     <ClCompile Include="form\widgets\control_buttons\close_button\close_button.cpp" />
     <ClCompile Include="form\widgets\control_buttons\maximize_button\maximize_button.cpp" />
     <ClCompile Include="form\widgets\control_buttons\minimize_button\minimize_button.cpp" />
+    <ClCompile Include="form\widgets\custom\custom_impl.cpp" />
     <ClCompile Include="form\widgets\group\group_impl.cpp" />
     <ClCompile Include="form\widgets\h_scrollbar\h_scrollbar.cpp" />
     <ClCompile Include="form\widgets\label\label_impl.cpp" />
@@ -193,7 +196,8 @@ xcopy "$(ProjectDir)tab_control.h" "$(SolutionDir)..\include\liblec\$(ProjectNam
 xcopy "$(ProjectDir)button.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)toggle.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)combo.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
-xcopy "$(ProjectDir)list.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I</Command>
+xcopy "$(ProjectDir)list.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+xcopy "$(ProjectDir)custom.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -234,7 +238,8 @@ xcopy "$(ProjectDir)tab_control.h" "$(SolutionDir)..\include\liblec\$(ProjectNam
 xcopy "$(ProjectDir)button.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)toggle.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)combo.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
-xcopy "$(ProjectDir)list.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I</Command>
+xcopy "$(ProjectDir)list.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+xcopy "$(ProjectDir)custom.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -279,7 +284,8 @@ xcopy "$(ProjectDir)tab_control.h" "$(SolutionDir)..\include\liblec\$(ProjectNam
 xcopy "$(ProjectDir)button.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)toggle.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)combo.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
-xcopy "$(ProjectDir)list.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I</Command>
+xcopy "$(ProjectDir)list.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+xcopy "$(ProjectDir)custom.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -324,7 +330,8 @@ xcopy "$(ProjectDir)tab_control.h" "$(SolutionDir)..\include\liblec\$(ProjectNam
 xcopy "$(ProjectDir)button.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)toggle.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)combo.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
-xcopy "$(ProjectDir)list.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I</Command>
+xcopy "$(ProjectDir)list.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+xcopy "$(ProjectDir)custom.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

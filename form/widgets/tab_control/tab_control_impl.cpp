@@ -107,8 +107,8 @@ liblec::lecui::widgets::page& liblec::lecui::widgets::tab::add(const std::string
 		tab_control_.p_tabs_.at(name).d_page_.v_scrollbar().specs().color_background = { 20, 80, 140, 255 };
 		tab_control_.p_tabs_.at(name).d_page_.v_scrollbar().specs().color_background.alpha = 50;
 
-		tab_control_.p_tabs_.at(name).d_page_.v_scrollbar().specs().resize.perc_width = 100;
-		tab_control_.p_tabs_.at(name).d_page_.v_scrollbar().specs().resize.perc_y = 100;
+		tab_control_.p_tabs_.at(name).d_page_.v_scrollbar().specs().resize.perc_height = 100;
+		tab_control_.p_tabs_.at(name).d_page_.v_scrollbar().specs().resize.perc_x = 100;
 
 		tab_control_.p_tabs_.at(name).d_page_.v_scrollbar().specs().rect.top = 0;
 		tab_control_.p_tabs_.at(name).d_page_.v_scrollbar().specs().rect.bottom = static_cast<long>(rect_client_area.bottom - rect_client_area.top) - (margin + thickness) - static_cast<long>(caption_bar_height_);

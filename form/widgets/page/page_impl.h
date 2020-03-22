@@ -26,6 +26,7 @@
 #include "../toggle/toggle_impl.h"
 #include "../combo/combo_impl.h"
 #include "../list/list_impl.h"
+#include "../custom/custom_impl.h"
 
 class liblec::lecui::widgets::page::page_impl {
 public:
@@ -59,6 +60,8 @@ public:
 		add_combo(const std::string& name);
 	liblec::lecui::widgets::specs::list&
 		add_list(const std::string& name);
+	liblec::lecui::widgets::specs::custom&
+		add_custom(const std::string& name);
 
 	std::map<std::string,
 		liblec::lecui::widgets_implementation::widget&>&
@@ -79,6 +82,8 @@ public:
 		get_combo(const std::string& name);
 	liblec::lecui::widgets_implementation::list&
 		get_list(const std::string& name);
+	liblec::lecui::widgets_implementation::custom&
+		get_custom(const std::string& name);
 
 private:
 	IDWriteFactory* p_directwrite_factory_;
@@ -99,4 +104,5 @@ private:
 	std::map<std::string, liblec::lecui::widgets_implementation::toggle> toggles_;
 	std::map<std::string, liblec::lecui::widgets_implementation::combo> combos_;
 	std::map<std::string, liblec::lecui::widgets_implementation::list> lists_;
+	std::map<std::string, liblec::lecui::widgets_implementation::custom> customs_;
 };
