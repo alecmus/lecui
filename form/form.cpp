@@ -21,6 +21,7 @@
 #include "../group.h"
 #include "../tab_control.h"
 #include "../button.h"
+#include "../pane.h"
 
 #include "form_common.h"
 #include "widgets/page/page_impl.h"
@@ -273,6 +274,18 @@ public:
 								}
 								catch (const std::exception&) {}
 							}
+							else
+								if (widget.second.type() ==
+									liblec::lecui::widgets_implementation::widget_type::pane) {
+									try {
+										// get this pane
+										auto& pane = page.d_page_.get_pane(widget.first);
+
+										for (auto& page : pane.p_panes_)
+											create_resources(page.second, p_render_target_);
+									}
+									catch (const std::exception&) {}
+								}
 						}
 					}
 				};
@@ -316,6 +329,18 @@ public:
 						}
 						catch (const std::exception&) {}
 					}
+					else
+						if (widget.second.type() ==
+							liblec::lecui::widgets_implementation::widget_type::pane) {
+							try {
+								// get this pane
+								const auto& pane = page.d_page_.get_pane(widget.first);
+
+								for (const auto& page : pane.p_panes_)
+									discard(page.second);
+							}
+							catch (const std::exception&) {}
+						}
 				}
 			}
 		};
@@ -704,6 +729,40 @@ public:
 								}
 								catch (const std::exception&) {}
 							}
+							else
+								if (widget.second.type() ==
+									liblec::lecui::widgets_implementation::widget_type::pane) {
+									try {
+										// get this pane
+										auto& pane = page.d_page_.get_pane(widget.first);
+
+										// get client area for this pane
+										const auto& client_area = pane.client_area();
+
+										const float change_in_width =
+											(pane.pane_area().right - pane.pane_area().left) -
+											static_cast<float>(pane.specs().rect.right -
+												pane.specs().rect.left);
+										const float change_in_height =
+											(pane.pane_area().bottom - pane.pane_area().top) -
+											static_cast<float>(pane.specs().rect.bottom -
+												pane.specs().rect.top);
+
+										for (auto& page : pane.p_panes_) {
+											const float page_tolerance_ = 10.f;
+											D2D1_RECT_F rect_page = client_area;
+											rect_page.left += page_tolerance_;
+											rect_page.top += page_tolerance_;
+											rect_page.right -= page_tolerance_;
+											rect_page.bottom -= page_tolerance_;
+
+											render_page(render, page.first, pane.current_pane_, page.second,
+												p_render_target_, rect_page, rect_page, change_in_width, change_in_height,
+												dpi_scale_, p_brush_theme_, p_brush_theme_hot_);
+										}
+									}
+									catch (const std::exception&) {}
+								}
 						}
 
 #if defined(_DEBUG) and DESIGNLINES
@@ -785,6 +844,39 @@ public:
 							}
 							catch (const std::exception&) {}
 						}
+						else
+							if (widget.second.type() ==
+								liblec::lecui::widgets_implementation::widget_type::pane) {
+								try {
+									// get this pane
+									auto& pane = page.d_page_.get_pane(widget.first);
+
+									// get client area for this pane
+									const auto& client_area = pane.client_area();
+
+									const float change_in_width =
+										(pane.pane_area().right - pane.pane_area().left) -
+										static_cast<float>(pane.specs().rect.right -
+											pane.specs().rect.left);
+									const float change_in_height =
+										(pane.pane_area().bottom - pane.pane_area().top) -
+										static_cast<float>(pane.specs().rect.bottom -
+											pane.specs().rect.top);
+
+									for (auto& page : pane.p_panes_) {
+										const float page_tolerance_ = 10.f;
+										D2D1_RECT_F rect_page = client_area;
+										rect_page.left += page_tolerance_;
+										rect_page.top += page_tolerance_;
+										rect_page.right -= page_tolerance_;
+										rect_page.bottom -= page_tolerance_;
+
+										render_menu(p_render_target_, page.first,
+											pane.current_pane_, page.second, rect_page);
+									}
+								}
+								catch (const std::exception&) {}
+							}
 					}
 				}
 			};
@@ -1222,6 +1314,16 @@ public:
 								hittest_hscrollbar(tab.first, tab_control.current_tab_, tab.second,
 									point, point_before, contains, change);
 						}
+						else
+							if (widget.second.type() ==
+								liblec::lecui::widgets_implementation::widget_type::pane) {
+								// get this pane
+								auto& pane = page.d_page_.get_pane(widget.first);
+
+								for (auto& page : pane.p_panes_)
+									hittest_hscrollbar(page.first, pane.current_pane_, page.second,
+										point, point_before, contains, change);
+							}
 					}
 				}
 			}
@@ -1254,6 +1356,16 @@ public:
 								hittest_vscrollbar(tab.first, tab_control.current_tab_, tab.second,
 									point, point_before, contains, change);
 						}
+						else
+							if (widget.second.type() ==
+								liblec::lecui::widgets_implementation::widget_type::pane) {
+								// get this pane
+								auto& pane = page.d_page_.get_pane(widget.first);
+
+								for (auto& page : pane.p_panes_)
+									hittest_vscrollbar(page.first, pane.current_pane_, page.second,
+										point, point_before, contains, change);
+							}
 					}
 				}
 			}
@@ -1282,6 +1394,17 @@ public:
 						if (page_iterator != tab_control.p_tabs_.end())
 							helper::hittest_widgets(page_iterator->second, point, contains, change);
 					}
+					else
+						if (widget.second.type() ==
+							liblec::lecui::widgets_implementation::widget_type::pane) {
+							// get this pane
+							auto& pane = page.d_page_.get_pane(widget.first);
+
+							auto page_iterator = pane.p_panes_.find(pane.current_pane_);
+
+							if (page_iterator != pane.p_panes_.end())
+								helper::hittest_widgets(page_iterator->second, point, contains, change);
+						}
 				}
 			}
 		};
@@ -1369,6 +1492,10 @@ public:
 						if (widget.second.type() !=
 							liblec::lecui::widgets_implementation::widget_type::tab_control)
 							widget.second.select(pressed);
+						else
+							if (widget.second.type() !=
+								liblec::lecui::widgets_implementation::widget_type::pane)
+								widget.second.select(pressed);
 					}
 					else {
 						// pressed widget found
@@ -1389,6 +1516,18 @@ public:
 							helper::check_widgets(page_iterator->second, point, dpi_scale, pressed,
 								update_anyway);
 					}
+					else
+						if (widget.second.type() ==
+							liblec::lecui::widgets_implementation::widget_type::pane) {
+							// get this pane
+							auto& pane = page.d_page_.get_pane(widget.first);
+
+							auto page_iterator = pane.p_panes_.find(pane.current_pane_);
+
+							if (page_iterator != pane.p_panes_.end())
+								helper::check_widgets(page_iterator->second, point, dpi_scale, pressed,
+									update_anyway);
+						}
 				}
 
 				// check scroll bars
@@ -1493,6 +1632,18 @@ public:
 							check_widgets(page_iterator->second, point, clicked, update_anyway,
 								on_click_handler);
 					}
+					else
+						if (widget.second.type() ==
+							liblec::lecui::widgets_implementation::widget_type::pane) {
+							// get this pane
+							auto& pane = page.d_page_.get_pane(widget.first);
+
+							auto page_iterator = pane.p_panes_.find(pane.current_pane_);
+
+							if (page_iterator != pane.p_panes_.end())
+								check_widgets(page_iterator->second, point, clicked, update_anyway,
+									on_click_handler);
+						}
 				}
 			}
 		};
@@ -1552,6 +1703,17 @@ public:
 						if (page_iterator != tab_control.p_tabs_.end())
 							helper::check_widgets(page_iterator->second, update);
 					}
+					else
+						if (widget.second.type() ==
+							liblec::lecui::widgets_implementation::widget_type::pane) {
+							// get this pane
+							auto& pane = page.d_page_.get_pane(widget.first);
+
+							auto page_iterator = pane.p_panes_.find(pane.current_pane_);
+
+							if (page_iterator != pane.p_panes_.end())
+								helper::check_widgets(page_iterator->second, update);
+						}
 				}
 			}
 		};
@@ -1739,7 +1901,7 @@ public:
 							page.d_page_.v_scrollbar().force_translate_ = true;
 						}
 
-						// to-do: check actual change in width and height of tab instead of inheriting from page
+						// to-do: check actual change in width and height of tab/pane instead of inheriting from page
 
 						for (auto& widget : page.d_page_.widgets()) {
 							if (widget.second.type() == liblec::lecui::widgets_implementation::widget_type::tab_control) {
@@ -1749,6 +1911,14 @@ public:
 								for (auto& tab : tab_control.p_tabs_)
 									helper::check_page(tab.second, change_in_width, change_in_height, system_resizing);	// recursion
 							}
+							else
+								if (widget.second.type() == liblec::lecui::widgets_implementation::widget_type::pane) {
+									// get this pane
+									auto& pane = page.d_page_.get_pane(widget.first);
+
+									for (auto& page : pane.p_panes_)
+										helper::check_page(page.second, change_in_width, change_in_height, system_resizing);	// recursion
+								}
 						}
 					}
 				};
@@ -1927,6 +2097,17 @@ public:
 								if (page_iterator != tab_control.p_tabs_.end())
 									helper::check_widgets(page_iterator->second);
 							}
+							else
+								if (widget.second.type() ==
+									liblec::lecui::widgets_implementation::widget_type::pane) {
+									// get this pane
+									auto& pane = page.d_page_.get_pane(widget.first);
+
+									auto page_iterator = pane.p_panes_.find(pane.current_pane_);
+
+									if (page_iterator != pane.p_panes_.end())
+										helper::check_widgets(page_iterator->second);
+								}
 						}
 					}
 				};
@@ -1992,6 +2173,17 @@ public:
 								if (page_iterator != tab_control.p_tabs_.end())
 									helper::check_widgets(page_iterator->second, wParam, update, on_click_handler);
 							}
+							else
+								if (widget.second.type() ==
+									liblec::lecui::widgets_implementation::widget_type::pane) {
+									// get this pane
+									auto& pane = page.d_page_.get_pane(widget.first);
+
+									auto page_iterator = pane.p_panes_.find(pane.current_pane_);
+
+									if (page_iterator != pane.p_panes_.end())
+										helper::check_widgets(page_iterator->second, wParam, update, on_click_handler);
+								}
 					}
 				}
 			};
@@ -2059,6 +2251,17 @@ public:
 									if (page_iterator != tab_control.p_tabs_.end())
 										helper::check_widgets(page_iterator->second, on_space);
 								}
+								else
+									if (widget.second.type() ==
+										liblec::lecui::widgets_implementation::widget_type::pane) {
+										// get this pane
+										auto& pane = page.d_page_.get_pane(widget.first);
+
+										auto page_iterator = pane.p_panes_.find(pane.current_pane_);
+
+										if (page_iterator != pane.p_panes_.end())
+											helper::check_widgets(page_iterator->second, on_space);
+									}
 
 							// reset pressed status
 							widget.second.press(false);
@@ -2116,17 +2319,29 @@ public:
 										helper::check_widgets(page_iterator->second, reverse_tab_navigation,
 											select_next, selected);
 								}
-								else {
-									if (widget.selected()) {
-										widget.select(false);
-										select_next = true;
+								else
+									if (widget.type() ==
+										liblec::lecui::widgets_implementation::widget_type::pane) {
+										// get this pane
+										auto& pane = page.d_page_.get_pane(name);
+
+										auto page_iterator = pane.p_panes_.find(pane.current_pane_);
+
+										if (page_iterator != pane.p_panes_.end())
+											helper::check_widgets(page_iterator->second, reverse_tab_navigation,
+												select_next, selected);
 									}
-									else
-										if (select_next && !selected) {
-											widget.select(true);
-											selected = true;
+									else {
+										if (widget.selected()) {
+											widget.select(false);
+											select_next = true;
 										}
-								}
+										else
+											if (select_next && !selected) {
+												widget.select(true);
+												selected = true;
+											}
+									}
 							}
 							catch (const std::exception& e) { log(e.what()); }
 						}
@@ -2246,6 +2461,17 @@ public:
 								if (page_iterator != tab_control.p_tabs_.end())
 									helper::check_widgets(page_iterator->second, units, update);
 							}
+							else
+								if (widget.second.type() ==
+									liblec::lecui::widgets_implementation::widget_type::pane) {
+									// get this pane
+									auto& pane = page.d_page_.get_pane(widget.first);
+
+									auto page_iterator = pane.p_panes_.find(pane.current_pane_);
+
+									if (page_iterator != pane.p_panes_.end())
+										helper::check_widgets(page_iterator->second, units, update);
+								}
 					}
 				}
 			};
@@ -2323,8 +2549,19 @@ public:
 		if (path.size() == 0)
 			return page.d_page_.widgets().at(widget_name);
 		else
-			if (path.size() == 1)
-				throw std::exception("invalid path specified");
+			if (path.size() == 1) {
+				// assume this is a pane
+				const auto& pane_name = path[0];
+				auto& pane = page.d_page_.get_pane(pane_name);
+
+				auto& page = pane.p_panes_.at("pane");
+
+				std::vector<std::string> path_(path.size() - 1);
+				for (size_t i = 1; i < path.size(); i++)
+					path_[i - 1] = path[i];
+
+				return find_widget(page, path_, widget_name);
+			}
 			else {
 				// assume first level is a tab control
 				const auto& tab_control_name = path[0];

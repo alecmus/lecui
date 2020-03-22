@@ -275,8 +275,8 @@ liblec::lecui::widgets_implementation::tab_control::render(ID2D1HwndRenderTarget
 
 	if (specs_.is_filled)
 		p_render_target->FillRoundedRectangle(&rounded_rect, is_enabled_ ? p_brush_fill_ : p_brush_disabled_);
-	else
-		p_render_target->DrawRoundedRectangle(&rounded_rect, is_enabled_ ? p_brush_border_ : p_brush_disabled_, specs_.border);
+	
+	p_render_target->DrawRoundedRectangle(&rounded_rect, is_enabled_ ? p_brush_border_ : p_brush_disabled_, specs_.border);
 
 	auto measure_string = [](IDWriteFactory* p_directwrite_factory_,
 		IDWriteTextFormat* p_text_format_, IDWriteTextLayout* p_text_layout_,
@@ -304,7 +304,9 @@ liblec::lecui::widgets_implementation::tab_control::render(ID2D1HwndRenderTarget
 	// draw tabs rectangle
 	rounded_rect = { rect_tabs_,
 		specs_.corner_radius_x, specs_.corner_radius_y };
+
 	p_render_target->FillRoundedRectangle(&rounded_rect, p_brush_tabs_);
+	p_render_target->DrawRoundedRectangle(&rounded_rect, is_enabled_ ? p_brush_border_ : p_brush_disabled_, specs_.border);
 
 	// draw the tab text
 	D2D1_RECT_F rect_current_tab_ = rect_tabs_;

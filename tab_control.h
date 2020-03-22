@@ -26,11 +26,11 @@ namespace liblec {
 			namespace specs {
 				class tab_control : public widget {
 				public:
-					tab_control() { color_fill = { 0, 0, 0, 15 }; }
+					tab_control() { color_fill = { 100, 100, 100, 15 }; }
 
 					bool is_filled = true;
 					liblec::lecui::color color_tabs = { 20, 80, 140, 15 };
-					liblec::lecui::color color_border = { 20, 80, 140, 100 };
+					liblec::lecui::color color_border = { 20, 80, 140, 50 };
 					liblec::lecui::color color_selected = { 20, 80, 140, 255 };
 					float border = 0.5f;
 					long margin = 5;

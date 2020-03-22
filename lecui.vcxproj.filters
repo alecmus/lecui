@@ -76,6 +76,9 @@
     <Filter Include="Source Files\form\widgets\custom">
       <UniqueIdentifier>{c22ad232-5587-4a26-81bd-f1b0f7454882}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\form\widgets\pane">
+      <UniqueIdentifier>{fdf6babf-03ac-4928-84ac-5e80623b0c44}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="lecui.h">
@@ -97,9 +100,6 @@
       <Filter>Header Files\lecui\widgets</Filter>
     </ClInclude>
     <ClInclude Include="label.h">
-      <Filter>Header Files\lecui\widgets</Filter>
-    </ClInclude>
-    <ClInclude Include="page.h">
       <Filter>Header Files\lecui\widgets</Filter>
     </ClInclude>
     <ClInclude Include="rectangle.h">
@@ -183,6 +183,15 @@
     <ClInclude Include="form\widgets\custom\custom_impl.h">
       <Filter>Source Files\form\widgets\custom</Filter>
     </ClInclude>
+    <ClInclude Include="page.h">
+      <Filter>Header Files\lecui\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="form\widgets\pane\pane_impl.h">
+      <Filter>Source Files\form\widgets\pane</Filter>
+    </ClInclude>
+    <ClInclude Include="pane.h">
+      <Filter>Header Files\lecui\widgets</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="versioninfo.rc">
@@ -246,6 +255,9 @@
     </ClCompile>
     <ClCompile Include="form\widgets\custom\custom_impl.cpp">
       <Filter>Source Files\form\widgets\custom</Filter>
+    </ClCompile>
+    <ClCompile Include="form\widgets\pane\pane_impl.cpp">
+      <Filter>Source Files\form\widgets\pane</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -32,6 +32,7 @@ namespace liblec {
 			class combo;
 			class list;
 			class custom;
+			class pane;
 
 			class lecui_api page {
 			public:
@@ -60,6 +61,7 @@ namespace liblec {
 				friend liblec::lecui::widgets::combo;
 				friend liblec::lecui::widgets::list;
 				friend liblec::lecui::widgets::custom;
+				friend liblec::lecui::widgets::pane;
 			};
 		}
 

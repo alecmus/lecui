@@ -1,5 +1,5 @@
 /*
-** page_impl.cpp - page widget implementation
+** page_impl.cpp - page_impl implementation
 **
 ** lecui user interface library
 ** Copyright (c) 2019 Alec T. Musasa (alecmus at live dot com)
@@ -114,6 +114,14 @@ liblec::lecui::widgets::page::page_impl::add_custom(const std::string& name) {
 	return customs_.at(name).specs();
 }
 
+liblec::lecui::widgets::specs::pane&
+liblec::lecui::widgets::page::page_impl::add_pane(const std::string& name) {
+	panes_.try_emplace(name, name_, name);
+	widgets_.emplace(name, panes_.at(name));
+	widgets_order_.emplace_back(name);
+	return panes_.at(name).specs();
+}
+
 std::map<std::string, liblec::lecui::widgets_implementation::widget&>&
 liblec::lecui::widgets::page::page_impl::widgets() { return widgets_; }
 
@@ -142,6 +150,9 @@ liblec::lecui::widgets::page::page_impl::get_list(const std::string& name) { ret
 
 liblec::lecui::widgets_implementation::custom&
 liblec::lecui::widgets::page::page_impl::get_custom(const std::string& name) { return customs_.at(name); }
+
+liblec::lecui::widgets_implementation::pane&
+liblec::lecui::widgets::page::page_impl::get_pane(const std::string& name) { return panes_.at(name); }
 
 liblec::lecui::widgets::page::page(const std::string& name) :
 	d_page_(*new liblec::lecui::widgets::page::page_impl(name)) {}

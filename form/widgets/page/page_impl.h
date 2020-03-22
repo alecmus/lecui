@@ -1,5 +1,5 @@
 /*
-** page_impl.h - page widget interface
+** page_impl.h - page_impl interface
 **
 ** lecui user interface library
 ** Copyright (c) 2019 Alec T. Musasa (alecmus at live dot com)
@@ -27,6 +27,7 @@
 #include "../combo/combo_impl.h"
 #include "../list/list_impl.h"
 #include "../custom/custom_impl.h"
+#include "../pane/pane_impl.h"
 
 class liblec::lecui::widgets::page::page_impl {
 public:
@@ -62,6 +63,8 @@ public:
 		add_list(const std::string& name);
 	liblec::lecui::widgets::specs::custom&
 		add_custom(const std::string& name);
+	liblec::lecui::widgets::specs::pane&
+		add_pane(const std::string& name);
 
 	std::map<std::string,
 		liblec::lecui::widgets_implementation::widget&>&
@@ -84,6 +87,8 @@ public:
 		get_list(const std::string& name);
 	liblec::lecui::widgets_implementation::custom&
 		get_custom(const std::string& name);
+	liblec::lecui::widgets_implementation::pane&
+		get_pane(const std::string& name);
 
 private:
 	IDWriteFactory* p_directwrite_factory_;
@@ -105,4 +110,5 @@ private:
 	std::map<std::string, liblec::lecui::widgets_implementation::combo> combos_;
 	std::map<std::string, liblec::lecui::widgets_implementation::list> lists_;
 	std::map<std::string, liblec::lecui::widgets_implementation::custom> customs_;
+	std::map<std::string, liblec::lecui::widgets_implementation::pane> panes_;
 };

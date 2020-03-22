@@ -35,6 +35,7 @@ namespace liblec {
 				combo,
 				list,
 				custom,
+				pane,
 			};
 
 			class widget {

@@ -435,8 +435,8 @@ liblec::lecui::widgets_implementation::list::render(ID2D1HwndRenderTarget* p_ren
 
 		// step11b: figure out which rows are hidden from view and exclude them from the rendering
 		// this gives a major performance boost when dealing with very large lists
-		unsigned long hidden_above = static_cast<unsigned long>((rectB_.top - rectA_.top) / row_height_);
-		unsigned long hidden_below = static_cast<unsigned long>((rectA_.bottom - rectB_.bottom) / row_height_);
+		unsigned long hidden_above = (rectB_.top > rectA_.top) ? (static_cast<unsigned long>((rectB_.top - rectA_.top) / row_height_)) : 0;
+		unsigned long hidden_below = (rectA_.bottom > rectB_.bottom) ? (static_cast<unsigned long>((rectA_.bottom - rectB_.bottom) / row_height_)) : 0;
 
 		// step11c: do the drawing
 		{

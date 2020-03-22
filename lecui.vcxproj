@@ -37,6 +37,7 @@
     <ClInclude Include="form\widgets\label\label_impl.h" />
     <ClInclude Include="form\widgets\list\list_impl.h" />
     <ClInclude Include="form\widgets\page\page_impl.h" />
+    <ClInclude Include="form\widgets\pane\pane_impl.h" />
     <ClInclude Include="form\widgets\rectangle\rectangle_impl.h" />
     <ClInclude Include="form\widgets\tab_control\tab_control_impl.h" />
     <ClInclude Include="form\widgets\toggle\toggle_impl.h" />
@@ -46,6 +47,7 @@
     <ClInclude Include="label.h" />
     <ClInclude Include="list.h" />
     <ClInclude Include="page.h" />
+    <ClInclude Include="pane.h" />
     <ClInclude Include="rectangle.h" />
     <ClInclude Include="tab_control.h" />
     <ClInclude Include="timer.h" />
@@ -72,6 +74,7 @@
     <ClCompile Include="form\widgets\label\label_impl.cpp" />
     <ClCompile Include="form\widgets\list\list_impl.cpp" />
     <ClCompile Include="form\widgets\page\page_impl.cpp" />
+    <ClCompile Include="form\widgets\pane\pane_impl.cpp" />
     <ClCompile Include="form\widgets\rectangle\rectangle_impl.cpp" />
     <ClCompile Include="form\widgets\tab_control\tab_control_impl.cpp" />
     <ClCompile Include="form\widgets\toggle\toggle_impl.cpp" />
@@ -178,9 +181,6 @@
       <Command>xcopy "$(OutDir)$(TargetName).lib" "$(ProjectDir)..\lib\" /F /R /Y /I
 xcopy "$(OutDir)$(TargetName)$(TargetExt)" "$(ProjectDir)..\bin\" /F /R /Y /I
 xcopy "$(ProjectDir)$(ProjectName).h" "$(SolutionDir)..\include\liblec\" /F /R /Y /I
-xcopy "$(ProjectDir)gui.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
-xcopy "$(ProjectDir)CUi\CUi.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\gui_raw\" /F /R /Y /I
-xcopy "$(ProjectDir)gui_app.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
 
 xcopy "$(ProjectDir)form.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
 xcopy "$(ProjectDir)appearance.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
@@ -197,7 +197,8 @@ xcopy "$(ProjectDir)button.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\wi
 xcopy "$(ProjectDir)toggle.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)combo.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)list.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
-xcopy "$(ProjectDir)custom.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I</Command>
+xcopy "$(ProjectDir)custom.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+xcopy "$(ProjectDir)pane.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -220,9 +221,6 @@ xcopy "$(ProjectDir)custom.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\wi
       <Command>xcopy "$(OutDir)$(TargetName).lib" "$(ProjectDir)..\lib\" /F /R /Y /I
 xcopy "$(OutDir)$(TargetName)$(TargetExt)" "$(ProjectDir)..\bin\" /F /R /Y /I
 xcopy "$(ProjectDir)$(ProjectName).h" "$(SolutionDir)..\include\liblec\" /F /R /Y /I
-xcopy "$(ProjectDir)gui.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
-xcopy "$(ProjectDir)CUi\CUi.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\gui_raw\" /F /R /Y /I
-xcopy "$(ProjectDir)gui_app.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
 
 xcopy "$(ProjectDir)form.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
 xcopy "$(ProjectDir)appearance.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
@@ -239,7 +237,8 @@ xcopy "$(ProjectDir)button.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\wi
 xcopy "$(ProjectDir)toggle.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)combo.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)list.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
-xcopy "$(ProjectDir)custom.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I</Command>
+xcopy "$(ProjectDir)custom.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+xcopy "$(ProjectDir)pane.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -266,9 +265,6 @@ xcopy "$(ProjectDir)custom.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\wi
       <Command>xcopy "$(OutDir)$(TargetName).lib" "$(ProjectDir)..\lib\" /F /R /Y /I
 xcopy "$(OutDir)$(TargetName)$(TargetExt)" "$(ProjectDir)..\bin\" /F /R /Y /I
 xcopy "$(ProjectDir)$(ProjectName).h" "$(SolutionDir)..\include\liblec\" /F /R /Y /I
-xcopy "$(ProjectDir)gui.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
-xcopy "$(ProjectDir)CUi\CUi.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\gui_raw\" /F /R /Y /I
-xcopy "$(ProjectDir)gui_app.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
 
 xcopy "$(ProjectDir)form.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
 xcopy "$(ProjectDir)appearance.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
@@ -285,7 +281,8 @@ xcopy "$(ProjectDir)button.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\wi
 xcopy "$(ProjectDir)toggle.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)combo.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)list.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
-xcopy "$(ProjectDir)custom.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I</Command>
+xcopy "$(ProjectDir)custom.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+xcopy "$(ProjectDir)pane.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -312,9 +309,6 @@ xcopy "$(ProjectDir)custom.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\wi
       <Command>xcopy "$(OutDir)$(TargetName).lib" "$(ProjectDir)..\lib\" /F /R /Y /I
 xcopy "$(OutDir)$(TargetName)$(TargetExt)" "$(ProjectDir)..\bin\" /F /R /Y /I
 xcopy "$(ProjectDir)$(ProjectName).h" "$(SolutionDir)..\include\liblec\" /F /R /Y /I
-xcopy "$(ProjectDir)gui.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
-xcopy "$(ProjectDir)CUi\CUi.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\gui_raw\" /F /R /Y /I
-xcopy "$(ProjectDir)gui_app.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
 
 xcopy "$(ProjectDir)form.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
 xcopy "$(ProjectDir)appearance.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
@@ -331,7 +325,8 @@ xcopy "$(ProjectDir)button.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\wi
 xcopy "$(ProjectDir)toggle.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)combo.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)list.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
-xcopy "$(ProjectDir)custom.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I</Command>
+xcopy "$(ProjectDir)custom.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+xcopy "$(ProjectDir)pane.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
