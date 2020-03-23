@@ -91,7 +91,8 @@ public:
 	form_impl(const std::string& caption) :
 		show_called_(false),
 		caption_bar_height_(30.f),
-		page_tolerance_(10.f),
+		form_border_thickness_(1.f),
+		page_tolerance_(form_border_thickness_ / 2.f),
 		control_button_margin_(2.f),
 		resource_dll_filename_(std::string()),
 		resource_module_handle_(nullptr),
@@ -917,7 +918,8 @@ public:
 			if (!maximized(hWnd_)) {
 				const D2D1_RECT_F form_rectangle =
 					D2D1::RectF(0.0f, 0.0f, rtSize.width, rtSize.height);
-				p_render_target_->DrawRectangle(&form_rectangle, p_brush_theme_, 1.0f);
+				p_render_target_->DrawRectangle(&form_rectangle,
+					p_brush_theme_, form_border_thickness_);
 			}
 
 			hr = p_render_target_->EndDraw();
@@ -1214,8 +1216,8 @@ public:
 		// This implementation does not replicate that behavior.
 		// to-do: check if this behavior can be replicated for a borderless window.
 		POINT border {
-			::GetSystemMetrics(SM_CXFRAME) + ::GetSystemMetrics(SM_CXPADDEDBORDER),
-			::GetSystemMetrics(SM_CYFRAME) + ::GetSystemMetrics(SM_CXPADDEDBORDER)
+			::GetSystemMetrics(SM_CXFRAME),
+			::GetSystemMetrics(SM_CYFRAME)
 		};
 
 		border.x = static_cast<long>(0.5f + dpi_scale_ * border.x);
@@ -2658,6 +2660,7 @@ private:
 
 	// constant members
 	const float caption_bar_height_;
+	const float form_border_thickness_;
 	const float page_tolerance_;
 	const float control_button_margin_;
 
@@ -3298,7 +3301,7 @@ liblec::lecui::widgets::page& liblec::lecui::page::add(const std::string& name) 
 	d_.fm_.d_.p_pages_.at(name).d_page_.directwrite_factory(d_.fm_.d_.p_directwrite_factory_);
 
 	const unsigned long thickness = 10;
-	const unsigned long margin = 10;
+	const unsigned long margin = (unsigned long)(d_.fm_.d_.page_tolerance_ + 0.5);
 
 	// initialize the page's horizontal scroll bar
 	{
