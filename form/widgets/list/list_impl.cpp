@@ -427,6 +427,10 @@ liblec::lecui::widgets_implementation::list::render(ID2D1HwndRenderTarget* p_ren
 				rect_text.bottom - rect_text.top,
 				&p_text_layout_);
 
+			DWRITE_TEXT_RANGE text_range = { 0, static_cast<UINT32>(it.name.length()) };
+
+			p_text_layout_->SetFontWeight(DWRITE_FONT_WEIGHT_BOLD, text_range);
+
 			if (SUCCEEDED(hr) && render && visible_)
 				p_render_target->DrawTextLayout(D2D1_POINT_2F{ rect_text.left, rect_text.top },
 					p_text_layout_, p_brush_text_header_, D2D1_DRAW_TEXT_OPTIONS_CLIP);
@@ -672,7 +676,7 @@ liblec::lecui::widgets_implementation::list::render(ID2D1HwndRenderTarget* p_ren
 		specs_.corner_radius_x, specs_.corner_radius_y };
 
 		p_render_target->DrawRoundedRectangle(&rounded_rect, !is_enabled_ ? p_brush_disabled_ :
-			p_brush_border_);
+			p_brush_border_, 0.5f);
 	}
 
 	return rect_;

@@ -32,12 +32,12 @@ namespace liblec {
 				class list : public widget {
 				public:
 					list() { color_fill = { 255, 255, 255, 255 }; color_hot = { 200, 200, 200, 50 }; }
-					liblec::lecui::color color_border = { 20, 80, 140, 255 };
+					liblec::lecui::color color_border = { 150, 150, 150, 255 };
 					liblec::lecui::color color_dropdown_hot = { 255, 255, 255, 255 };
 					liblec::lecui::color color_menu = { 255, 255, 255, 255 };
 					liblec::lecui::color color_grid = { 215, 215, 215, 255 };
-					liblec::lecui::color color_text_header = { 255, 255, 255, 255 };
-					liblec::lecui::color color_fill_header = { 20, 80, 140, 80 };
+					liblec::lecui::color color_text_header = { 0, 0, 0, 255 };
+					liblec::lecui::color color_fill_header = { 222, 222, 222, 255 };
 					liblec::lecui::color color_fill_alternate = { 20, 80, 140, 15 };
 					liblec::lecui::color color_row_hot = { 225, 242, 255, 255 };
 					liblec::lecui::color color_row_selected = { 40, 160, 200, 255 };
