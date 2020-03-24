@@ -16,12 +16,12 @@
 
 class liblec::lecui::widgets::group::group::group_impl {
 public:
-	group_impl(liblec::lecui::widgets::page& page) :
+	group_impl(liblec::lecui::containers::page& page) :
 		page_(page) {}
-	liblec::lecui::widgets::page& page_;
+	liblec::lecui::containers::page& page_;
 };
 
-liblec::lecui::widgets::group::group(liblec::lecui::widgets::page& page) :
+liblec::lecui::widgets::group::group(liblec::lecui::containers::page& page) :
 	d_(*(new group_impl(page))) {}
 
 liblec::lecui::widgets::group::~group() { delete& d_; }

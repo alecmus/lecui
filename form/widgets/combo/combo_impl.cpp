@@ -16,12 +16,12 @@
 
 class liblec::lecui::widgets::combo::combo::combo_impl {
 public:
-	combo_impl(liblec::lecui::widgets::page& page) :
+	combo_impl(liblec::lecui::containers::page& page) :
 		page_(page) {}
-	liblec::lecui::widgets::page& page_;
+	liblec::lecui::containers::page& page_;
 };
 
-liblec::lecui::widgets::combo::combo(liblec::lecui::widgets::page& page) :
+liblec::lecui::widgets::combo::combo(liblec::lecui::containers::page& page) :
 	d_(*(new combo_impl(page))) {}
 
 liblec::lecui::widgets::combo::~combo() { delete& d_; }

@@ -21,10 +21,10 @@
 
 namespace liblec {
 	namespace lecui {
-		namespace widgets {
+		namespace containers {
 			class page;
 			namespace specs {
-				class tab_control : public widget {
+				class tab_control : public liblec::lecui::widgets::specs::widget {
 				public:
 					tab_control() { color_fill = { 100, 100, 100, 15 }; }
 
@@ -43,10 +43,10 @@ namespace liblec {
 
 			class lecui_api tab_control {
 			public:
-				tab_control(liblec::lecui::widgets::page& page, const std::string& name);
+				tab_control(liblec::lecui::containers::page& page, const std::string& name);
 				~tab_control();
 
-				liblec::lecui::widgets::specs::tab_control& specs();
+				liblec::lecui::containers::specs::tab_control& specs();
 				void select(const std::string& name);
 
 			private:
@@ -65,7 +65,7 @@ namespace liblec {
 				tab(tab_control& tc);
 				~tab();
 
-				liblec::lecui::widgets::page& add(const std::string& name);
+				liblec::lecui::containers::page& add(const std::string& name);
 
 			private:
 				class tab_impl;

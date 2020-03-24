@@ -14,51 +14,51 @@
 #include "tab_control_impl.h"
 #include "../page/page_impl.h"
 
-class liblec::lecui::widgets::tab_control::tab_control::tab_control_impl {
+class liblec::lecui::containers::tab_control::tab_control::tab_control_impl {
 public:
-	tab_control_impl(liblec::lecui::widgets::page& page,
-		liblec::lecui::widgets::specs::tab_control& specs,
+	tab_control_impl(liblec::lecui::containers::page& page,
+		liblec::lecui::containers::specs::tab_control& specs,
 		const std::string& name) :
 		page_(page), specs_(specs), name_(name) {}
-	liblec::lecui::widgets::page& page_;
-	liblec::lecui::widgets::specs::tab_control& specs_;
+	liblec::lecui::containers::page& page_;
+	liblec::lecui::containers::specs::tab_control& specs_;
 	std::string name_;
 };
 
-liblec::lecui::widgets::tab_control::tab_control(liblec::lecui::widgets::page& page,
+liblec::lecui::containers::tab_control::tab_control(liblec::lecui::containers::page& page,
 	const std::string& name) :
 	d_(*(new tab_control_impl(page, page.d_page_.add_tab_control(name), name))) {}
 
-liblec::lecui::widgets::tab_control::~tab_control() { delete& d_; }
+liblec::lecui::containers::tab_control::~tab_control() { delete& d_; }
 
-liblec::lecui::widgets::specs::tab_control& liblec::lecui::widgets::tab_control::specs() {
+liblec::lecui::containers::specs::tab_control& liblec::lecui::containers::tab_control::specs() {
 	return d_.specs_;
 }
 
-void liblec::lecui::widgets::tab_control::select(const std::string& name) {
+void liblec::lecui::containers::tab_control::select(const std::string& name) {
 	auto& tab_control_ = d_.page_.d_page_.get_tab_control(d_.name_);
 	tab_control_.current_tab_ = name;
 }
 
-class liblec::lecui::widgets::tab::tab::tab_impl {
+class liblec::lecui::containers::tab::tab::tab_impl {
 public:
-	tab_impl(liblec::lecui::widgets::tab_control& tc) :
+	tab_impl(liblec::lecui::containers::tab_control& tc) :
 		tc_(tc) {}
-	liblec::lecui::widgets::tab_control& tc_;
+	liblec::lecui::containers::tab_control& tc_;
 };
 
-liblec::lecui::widgets::tab::tab(liblec::lecui::widgets::tab_control& tc) :
+liblec::lecui::containers::tab::tab(liblec::lecui::containers::tab_control& tc) :
 	d_(*(new tab_impl(tc))) {}
 
-liblec::lecui::widgets::tab::~tab() { delete& d_; }
+liblec::lecui::containers::tab::~tab() { delete& d_; }
 
-liblec::lecui::widgets::page& liblec::lecui::widgets::tab::add(const std::string& name) {
+liblec::lecui::containers::page& liblec::lecui::containers::tab::add(const std::string& name) {
 	auto& tab_control_ = d_.tc_.d_.page_.d_page_.get_tab_control(d_.tc_.d_.name_);
 
-	log("liblec::lecui::widgets::tab::add");
+	log("liblec::lecui::containers::tab::add");
 
 	if (tab_control_.p_tabs_.count(name)) {
-		log("library usage error liblec::lecui::widgets::tab::add");
+		log("library usage error liblec::lecui::containers::tab::add");
 
 		/// to-do: find a mechanism that makes sense ...
 		return tab_control_.p_tabs_.at(name);
@@ -390,7 +390,7 @@ void liblec::lecui::widgets_implementation::tab_control::on_click() {
 	}
 }
 
-liblec::lecui::widgets::specs::tab_control&
+liblec::lecui::containers::specs::tab_control&
 liblec::lecui::widgets_implementation::tab_control::specs() { return specs_; }
 
 const D2D1_RECT_F& liblec::lecui::widgets_implementation::tab_control::client_area() {

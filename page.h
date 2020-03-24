@@ -25,13 +25,16 @@ namespace liblec {
 			class rectangle;
 			class label;
 			class group;
-			class tab_control;
-			class tab;
 			class button;
 			class toggle;
 			class combo;
 			class list;
 			class custom;
+		}
+
+		namespace containers {
+			class tab_control;
+			class tab;
 			class pane;
 
 			class lecui_api page {
@@ -51,17 +54,19 @@ namespace liblec {
 
 				friend liblec::lecui::form;
 				friend liblec::lecui::page;
+
+				friend liblec::lecui::containers::tab_control;
+				friend liblec::lecui::containers::tab;
+				friend liblec::lecui::containers::pane;
+
 				friend liblec::lecui::widgets::rectangle;
 				friend liblec::lecui::widgets::label;
 				friend liblec::lecui::widgets::group;
-				friend liblec::lecui::widgets::tab_control;
-				friend liblec::lecui::widgets::tab;
 				friend liblec::lecui::widgets::button;
 				friend liblec::lecui::widgets::toggle;
 				friend liblec::lecui::widgets::combo;
 				friend liblec::lecui::widgets::list;
 				friend liblec::lecui::widgets::custom;
-				friend liblec::lecui::widgets::pane;
 			};
 		}
 
@@ -71,7 +76,7 @@ namespace liblec {
 			~page();
 
 			bool exists(const std::string& name);
-			liblec::lecui::widgets::page& add(const std::string& name);
+			liblec::lecui::containers::page& add(const std::string& name);
 			void show(const std::string& name);
 
 		private:

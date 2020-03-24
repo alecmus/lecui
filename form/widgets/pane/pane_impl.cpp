@@ -14,36 +14,36 @@
 #include "pane_impl.h"
 #include "../page/page_impl.h"
 
-class liblec::lecui::widgets::pane::pane::pane_impl {
+class liblec::lecui::containers::pane::pane::pane_impl {
 public:
-	pane_impl(liblec::lecui::widgets::page& page,
-		liblec::lecui::widgets::specs::pane& specs,
+	pane_impl(liblec::lecui::containers::page& page,
+		liblec::lecui::containers::specs::pane& specs,
 		const std::string& name) :
 		page_(page), specs_(specs), name_(name) {}
-	liblec::lecui::widgets::page& page_;
-	liblec::lecui::widgets::specs::pane& specs_;
+	liblec::lecui::containers::page& page_;
+	liblec::lecui::containers::specs::pane& specs_;
 	std::string name_;
 };
 
-liblec::lecui::widgets::pane::pane(liblec::lecui::widgets::page& page,
+liblec::lecui::containers::pane::pane(liblec::lecui::containers::page& page,
 	const std::string& name) :
 	d_(*(new pane_impl(page, page.d_page_.add_pane(name), name))) {}
 
-liblec::lecui::widgets::pane::~pane() { delete& d_; }
+liblec::lecui::containers::pane::~pane() { delete& d_; }
 
-liblec::lecui::widgets::specs::pane& liblec::lecui::widgets::pane::specs() {
+liblec::lecui::containers::specs::pane& liblec::lecui::containers::pane::specs() {
 	return d_.specs_;
 }
 
-liblec::lecui::widgets::page& liblec::lecui::widgets::pane::get() {
+liblec::lecui::containers::page& liblec::lecui::containers::pane::get() {
 	auto& pane_ = d_.page_.d_page_.get_pane(d_.name_);
 
-	log("liblec::lecui::widgets::pane::add");
+	log("liblec::lecui::containers::pane::add");
 
 	const std::string name = "pane";
 
 	if (pane_.p_panes_.count(name)) {
-		log("library usage error liblec::lecui::widgets::pane::add");
+		log("library usage error liblec::lecui::containers::pane::add");
 
 		/// to-do: find a mechanism that makes sense ...
 		return pane_.p_panes_.at(name);
@@ -206,7 +206,7 @@ liblec::lecui::widgets_implementation::pane::render(ID2D1HwndRenderTarget* p_ren
 
 void liblec::lecui::widgets_implementation::pane::on_click() {}
 
-liblec::lecui::widgets::specs::pane&
+liblec::lecui::containers::specs::pane&
 liblec::lecui::widgets_implementation::pane::specs() { return specs_; }
 
 const D2D1_RECT_F& liblec::lecui::widgets_implementation::pane::client_area() {

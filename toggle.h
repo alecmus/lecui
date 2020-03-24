@@ -21,8 +21,11 @@
 
 namespace liblec {
 	namespace lecui {
-		namespace widgets {
+		namespace containers {
 			class page;
+		}
+
+		namespace widgets {
 			namespace specs {
 				class toggle : public widget {
 				public:
@@ -37,7 +40,7 @@ namespace liblec {
 
 			class lecui_api toggle {
 			public:
-				toggle(liblec::lecui::widgets::page& page);
+				toggle(liblec::lecui::containers::page& page);
 				~toggle();
 
 				liblec::lecui::widgets::specs::toggle& add(const std::string& name);

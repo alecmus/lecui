@@ -21,8 +21,11 @@
 
 namespace liblec {
 	namespace lecui {
-		namespace widgets {
+		namespace containers {
 			class page;
+		}
+
+		namespace widgets {
 			namespace specs {
 				class rectangle : public widget {
 				public:
@@ -41,7 +44,7 @@ namespace liblec {
 
 			class lecui_api rectangle {
 			public:
-				rectangle(liblec::lecui::widgets::page& page);
+				rectangle(liblec::lecui::containers::page& page);
 				~rectangle();
 
 				liblec::lecui::widgets::specs::rectangle& add(const std::string& name);

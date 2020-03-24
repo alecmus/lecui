@@ -187,18 +187,20 @@ xcopy "$(ProjectDir)appearance.h" "$(SolutionDir)..\include\liblec\$(ProjectName
 xcopy "$(ProjectDir)controls.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
 
 xcopy "$(ProjectDir)widget.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
-xcopy "$(ProjectDir)page.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+
+xcopy "$(ProjectDir)page.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\containers\" /F /R /Y /I
+xcopy "$(ProjectDir)tab_control.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\containers\" /F /R /Y /I
+xcopy "$(ProjectDir)pane.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\containers\" /F /R /Y /I
+
 xcopy "$(ProjectDir)rectangle.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)label.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)timer.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)group.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
-xcopy "$(ProjectDir)tab_control.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)button.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)toggle.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)combo.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)list.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
-xcopy "$(ProjectDir)custom.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
-xcopy "$(ProjectDir)pane.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I</Command>
+xcopy "$(ProjectDir)custom.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -227,18 +229,20 @@ xcopy "$(ProjectDir)appearance.h" "$(SolutionDir)..\include\liblec\$(ProjectName
 xcopy "$(ProjectDir)controls.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
 
 xcopy "$(ProjectDir)widget.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
-xcopy "$(ProjectDir)page.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+
+xcopy "$(ProjectDir)page.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\containers\" /F /R /Y /I
+xcopy "$(ProjectDir)tab_control.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\containers\" /F /R /Y /I
+xcopy "$(ProjectDir)pane.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\containers\" /F /R /Y /I
+
 xcopy "$(ProjectDir)rectangle.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)label.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)timer.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)group.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
-xcopy "$(ProjectDir)tab_control.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)button.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)toggle.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)combo.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)list.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
-xcopy "$(ProjectDir)custom.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
-xcopy "$(ProjectDir)pane.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I</Command>
+xcopy "$(ProjectDir)custom.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -271,18 +275,20 @@ xcopy "$(ProjectDir)appearance.h" "$(SolutionDir)..\include\liblec\$(ProjectName
 xcopy "$(ProjectDir)controls.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
 
 xcopy "$(ProjectDir)widget.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
-xcopy "$(ProjectDir)page.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+
+xcopy "$(ProjectDir)page.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\containers\" /F /R /Y /I
+xcopy "$(ProjectDir)tab_control.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\containers\" /F /R /Y /I
+xcopy "$(ProjectDir)pane.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\containers\" /F /R /Y /I
+
 xcopy "$(ProjectDir)rectangle.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)label.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)timer.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)group.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
-xcopy "$(ProjectDir)tab_control.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)button.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)toggle.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)combo.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)list.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
-xcopy "$(ProjectDir)custom.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
-xcopy "$(ProjectDir)pane.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I</Command>
+xcopy "$(ProjectDir)custom.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -315,18 +321,20 @@ xcopy "$(ProjectDir)appearance.h" "$(SolutionDir)..\include\liblec\$(ProjectName
 xcopy "$(ProjectDir)controls.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
 
 xcopy "$(ProjectDir)widget.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
-xcopy "$(ProjectDir)page.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+
+xcopy "$(ProjectDir)page.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\containers\" /F /R /Y /I
+xcopy "$(ProjectDir)tab_control.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\containers\" /F /R /Y /I
+xcopy "$(ProjectDir)pane.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\containers\" /F /R /Y /I
+
 xcopy "$(ProjectDir)rectangle.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)label.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)timer.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)group.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
-xcopy "$(ProjectDir)tab_control.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)button.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)toggle.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)combo.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)list.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
-xcopy "$(ProjectDir)custom.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
-xcopy "$(ProjectDir)pane.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I</Command>
+xcopy "$(ProjectDir)custom.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -258,7 +258,7 @@ public:
 			if (SUCCEEDED(hr)) {
 				class helper {
 				public:
-					static void create_resources(const liblec::lecui::widgets::page& page,
+					static void create_resources(const liblec::lecui::containers::page& page,
 						ID2D1HwndRenderTarget* p_render_target_) {
 						// create widget resources
 						for (auto& widget : page.d_page_.widgets()) {
@@ -314,7 +314,7 @@ public:
 
 		class helper {
 		public:
-			static void discard(const liblec::lecui::widgets::page& page) {
+			static void discard(const liblec::lecui::containers::page& page) {
 				// discard widget resources
 				for (const auto& widget : page.d_page_.widgets()) {
 					widget.second.discard_resources();
@@ -508,7 +508,7 @@ public:
 				static void render_page(bool allow_render,
 					const std::string& page_name,
 					const std::string& current_page,
-					liblec::lecui::widgets::page& page,
+					liblec::lecui::containers::page& page,
 					ID2D1HwndRenderTarget* p_render_target_,
 					const D2D1_RECT_F& rectB,
 					const D2D1_RECT_F& client_area,
@@ -791,7 +791,7 @@ public:
 				static void render_menu(ID2D1HwndRenderTarget* p_render_target_,
 					const std::string& page_name,
 					const std::string& current_page,
-					liblec::lecui::widgets::page& page,
+					liblec::lecui::containers::page& page,
 					const D2D1_RECT_F& client_area) {
 					bool render = page_name == current_page;
 
@@ -1289,7 +1289,7 @@ public:
 		class helper {
 		public:
 			static void hittest_hscrollbar(const std::string& page_name,
-				const std::string& current_page, liblec::lecui::widgets::page& page,
+				const std::string& current_page, liblec::lecui::containers::page& page,
 				const D2D1_POINT_2F& point, const D2D1_POINT_2F& point_before,
 				bool& contains, bool& change) {
 				// hit test horizontal scroll bar
@@ -1331,7 +1331,7 @@ public:
 			}
 
 			static void hittest_vscrollbar(const std::string& page_name,
-				const std::string& current_page, liblec::lecui::widgets::page& page,
+				const std::string& current_page, liblec::lecui::containers::page& page,
 				const D2D1_POINT_2F& point, const D2D1_POINT_2F& point_before,
 				bool& contains, bool& change) {
 				// hit test vertical scroll bar
@@ -1372,7 +1372,7 @@ public:
 				}
 			}
 
-			static void hittest_widgets(liblec::lecui::widgets::page& page,
+			static void hittest_widgets(liblec::lecui::containers::page& page,
 				const D2D1_POINT_2F& point, bool& contains, bool& change) {
 				// hit test widgets
 				for (auto& widget : page.d_page_.widgets()) {
@@ -1475,7 +1475,7 @@ public:
 
 		class helper {
 		public:
-			static void check_widgets(liblec::lecui::widgets::page& page,
+			static void check_widgets(liblec::lecui::containers::page& page,
 				const D2D1_POINT_2F& point, const float& dpi_scale, bool& pressed,
 				bool& update_anyway) {
 				// check widgets
@@ -1602,7 +1602,7 @@ public:
 
 		class helper {
 		public:
-			static void check_widgets(liblec::lecui::widgets::page& page,
+			static void check_widgets(liblec::lecui::containers::page& page,
 				const D2D1_POINT_2F& point, bool& clicked, bool& update_anyway,
 				std::function<void()>& on_click_handler) {
 				// check widgets
@@ -1681,7 +1681,7 @@ public:
 
 		class helper {
 		public:
-			static void check_widgets(liblec::lecui::widgets::page& page,
+			static void check_widgets(liblec::lecui::containers::page& page,
 				bool& update) {
 				// check widgets
 				for (auto& widget : page.d_page_.widgets()) {
@@ -1817,7 +1817,7 @@ public:
 			if (user_resizing || system_resizing) {
 				class helper {
 				public:
-					static void check_page(liblec::lecui::widgets::page& page,
+					static void check_page(liblec::lecui::containers::page& page,
 						float change_in_width, float change_in_height, bool system_resizing) {
 						// check if a horizontal scroll bar exists
 						if (page.d_page_.h_scrollbar().x_displacement_ > 0.f) {
@@ -2078,7 +2078,7 @@ public:
 
 				class helper {
 				public:
-					static void check_widgets(liblec::lecui::widgets::page& page) {
+					static void check_widgets(liblec::lecui::containers::page& page) {
 						// check widgets
 						for (auto& widget : page.d_page_.widgets()) {
 							if (widget.second.is_static() || !widget.second.visible() || !widget.second.enabled())
@@ -2152,7 +2152,7 @@ public:
 
 			class helper {
 			public:
-				static void check_widgets(liblec::lecui::widgets::page& page,
+				static void check_widgets(liblec::lecui::containers::page& page,
 					WPARAM wParam, bool& update, std::function<void()>& on_click_handler) {
 					// check widgets
 					for (auto& widget : page.d_page_.widgets()) {
@@ -2233,7 +2233,7 @@ public:
 
 				class helper {
 				public:
-					static void check_widgets(liblec::lecui::widgets::page& page,
+					static void check_widgets(liblec::lecui::containers::page& page,
 						std::function<void()>& on_space) {
 						// check widgets
 						for (auto& widget : page.d_page_.widgets()) {
@@ -2296,7 +2296,7 @@ public:
 
 				class helper {
 				public:
-					static void check_widgets(liblec::lecui::widgets::page& page,
+					static void check_widgets(liblec::lecui::containers::page& page,
 						const bool& reverse_tab_navigation,
 						bool& select_next, bool& selected) {
 						// check widgets
@@ -2441,7 +2441,7 @@ public:
 
 			class helper {
 			public:
-				static void check_widgets(liblec::lecui::widgets::page& page,
+				static void check_widgets(liblec::lecui::containers::page& page,
 					float units, bool& update) {
 					// check widgets
 					for (auto& widget : page.d_page_.widgets()) {
@@ -2545,7 +2545,7 @@ public:
 
 	// throws on failure!
 	liblec::lecui::widgets_implementation::widget& find_widget(
-		const liblec::lecui::widgets::page& page,
+		const liblec::lecui::containers::page& page,
 		const std::vector<std::string>& path,
 		const std::string& widget_name) {
 		if (path.size() == 0)
@@ -2583,7 +2583,7 @@ public:
 
 	// throws on failure!
 	liblec::lecui::widgets_implementation::widget& find_widget(
-		const std::map<std::string, liblec::lecui::widgets::page>& pages,
+		const std::map<std::string, liblec::lecui::containers::page>& pages,
 		const std::vector<std::string>& path,
 		const std::string& widget_name) {
 		if (path.size() == 0)
@@ -2706,7 +2706,7 @@ private:
 	ID2D1SolidColorBrush* p_brush_titlebar_;
 
 	// pages <K = page name, T>
-	std::map<std::string, liblec::lecui::widgets::page> p_pages_;
+	std::map<std::string, liblec::lecui::containers::page> p_pages_;
 	std::string current_page_;
 
 	mouse_track mouse_track_;
@@ -3278,7 +3278,7 @@ bool liblec::lecui::page::exists(const std::string& name) {
 	return d_.fm_.d_.p_pages_.count(name) != 0;
 }
 
-liblec::lecui::widgets::page& liblec::lecui::page::add(const std::string& name) {
+liblec::lecui::containers::page& liblec::lecui::page::add(const std::string& name) {
 	log("liblec::lecui::page::add");
 
 	if (d_.fm_.d_.p_pages_.count(name)) {

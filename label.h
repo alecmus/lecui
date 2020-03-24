@@ -21,8 +21,11 @@
 
 namespace liblec {
 	namespace lecui {
-		namespace widgets {
+		namespace containers {
 			class page;
+		}
+
+		namespace widgets {
 			namespace specs {
 				class label : public widget {
 				public:
@@ -36,7 +39,7 @@ namespace liblec {
 
 			class lecui_api label {
 			public:
-				label(liblec::lecui::widgets::page& page);
+				label(liblec::lecui::containers::page& page);
 				~label();
 
 				liblec::lecui::widgets::specs::label& add(const std::string& name);

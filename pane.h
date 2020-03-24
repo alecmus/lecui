@@ -21,10 +21,13 @@
 
 namespace liblec {
 	namespace lecui {
-		namespace widgets {
+		namespace containers {
 			class page;
+		}
+
+		namespace containers {
 			namespace specs {
-				class pane : public widget {
+				class pane : public liblec::lecui::widgets::specs::widget {
 				public:
 					pane() { color_fill = { 100, 100, 100, 15 }; }
 
@@ -39,11 +42,11 @@ namespace liblec {
 
 			class lecui_api pane {
 			public:
-				pane(liblec::lecui::widgets::page& page, const std::string& name);
+				pane(liblec::lecui::containers::page& page, const std::string& name);
 				~pane();
 
-				liblec::lecui::widgets::specs::pane& specs();
-				liblec::lecui::widgets::page& get();
+				liblec::lecui::containers::specs::pane& specs();
+				liblec::lecui::containers::page& get();
 
 			private:
 				class pane_impl;

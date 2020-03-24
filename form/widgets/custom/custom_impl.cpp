@@ -21,12 +21,12 @@
 
 class liblec::lecui::widgets::custom::custom::custom_impl {
 public:
-	custom_impl(liblec::lecui::widgets::page& page) :
+	custom_impl(liblec::lecui::containers::page& page) :
 		page_(page) {}
-	liblec::lecui::widgets::page& page_;
+	liblec::lecui::containers::page& page_;
 };
 
-liblec::lecui::widgets::custom::custom(liblec::lecui::widgets::page& page) :
+liblec::lecui::widgets::custom::custom(liblec::lecui::containers::page& page) :
 	d_(*(new custom_impl(page))) {}
 
 liblec::lecui::widgets::custom::~custom() { delete& d_; }

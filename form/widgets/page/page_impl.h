@@ -29,7 +29,7 @@
 #include "../custom/custom_impl.h"
 #include "../pane/pane_impl.h"
 
-class liblec::lecui::widgets::page::page_impl {
+class liblec::lecui::containers::page::page_impl {
 public:
 	page_impl(const std::string& name);
 	~page_impl();
@@ -51,7 +51,7 @@ public:
 		add_label(const std::string& name);
 	liblec::lecui::widgets::specs::group&
 		add_group(const std::string& name);
-	liblec::lecui::widgets::specs::tab_control&
+	liblec::lecui::containers::specs::tab_control&
 		add_tab_control(const std::string& name);
 	liblec::lecui::widgets::specs::button&
 		add_button(const std::string& name);
@@ -63,7 +63,7 @@ public:
 		add_list(const std::string& name);
 	liblec::lecui::widgets::specs::custom&
 		add_custom(const std::string& name);
-	liblec::lecui::widgets::specs::pane&
+	liblec::lecui::containers::specs::pane&
 		add_pane(const std::string& name);
 
 	std::map<std::string,

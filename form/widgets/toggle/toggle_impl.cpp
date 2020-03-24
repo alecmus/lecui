@@ -16,12 +16,12 @@
 
 class liblec::lecui::widgets::toggle::toggle::toggle_impl {
 public:
-	toggle_impl(liblec::lecui::widgets::page& page) :
+	toggle_impl(liblec::lecui::containers::page& page) :
 		page_(page) {}
-	liblec::lecui::widgets::page& page_;
+	liblec::lecui::containers::page& page_;
 };
 
-liblec::lecui::widgets::toggle::toggle(liblec::lecui::widgets::page& page) :
+liblec::lecui::widgets::toggle::toggle(liblec::lecui::containers::page& page) :
 	d_(*(new toggle_impl(page))) {}
 
 liblec::lecui::widgets::toggle::~toggle() { delete& d_; }

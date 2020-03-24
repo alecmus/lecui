@@ -41,12 +41,12 @@ namespace liblec {
 
 				// widget specific
 
-				liblec::lecui::widgets::specs::pane& specs();
+				liblec::lecui::containers::specs::pane& specs();
 				const D2D1_RECT_F& client_area();
 				const D2D1_RECT_F& pane_area();
 
 				// pages <K = pane name, T>
-				std::map<std::string, liblec::lecui::widgets::page> p_panes_;
+				std::map<std::string, liblec::lecui::containers::page> p_panes_;
 				std::string current_pane_;
 
 			private:
@@ -56,7 +56,7 @@ namespace liblec {
 				pane(const pane&);
 				pane& operator=(const pane&);
 
-				liblec::lecui::widgets::specs::pane specs_;
+				liblec::lecui::containers::specs::pane specs_;
 				ID2D1SolidColorBrush* p_brush_;
 				ID2D1SolidColorBrush* p_brush_fill_;
 				ID2D1SolidColorBrush* p_brush_border_;

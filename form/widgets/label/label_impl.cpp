@@ -36,12 +36,12 @@
 
 class liblec::lecui::widgets::label::label::label_impl {
 public:
-	label_impl(liblec::lecui::widgets::page& page) :
+	label_impl(liblec::lecui::containers::page& page) :
 		page_(page) {}
-	liblec::lecui::widgets::page& page_;
+	liblec::lecui::containers::page& page_;
 };
 
-liblec::lecui::widgets::label::label(liblec::lecui::widgets::page& page) :
+liblec::lecui::widgets::label::label(liblec::lecui::containers::page& page) :
 	d_(*(new label_impl(page))) {}
 
 liblec::lecui::widgets::label::~label() { delete& d_; }

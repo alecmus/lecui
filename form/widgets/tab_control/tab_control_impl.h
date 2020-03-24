@@ -42,13 +42,13 @@ namespace liblec {
 
 				// widget specific
 
-				liblec::lecui::widgets::specs::tab_control& specs();
+				liblec::lecui::containers::specs::tab_control& specs();
 				const D2D1_RECT_F& client_area();
 				const D2D1_RECT_F& tab_control_area();
 				float caption_bar_height();
 
 				// pages <K = tab name, T>
-				std::map<std::string, liblec::lecui::widgets::page> p_tabs_;
+				std::map<std::string, liblec::lecui::containers::page> p_tabs_;
 				std::string current_tab_;
 
 			private:
@@ -58,7 +58,7 @@ namespace liblec {
 				tab_control(const tab_control&);
 				tab_control& operator=(const tab_control&);
 
-				liblec::lecui::widgets::specs::tab_control specs_;
+				liblec::lecui::containers::specs::tab_control specs_;
 				ID2D1SolidColorBrush* p_brush_;
 				ID2D1SolidColorBrush* p_brush_fill_;
 				ID2D1SolidColorBrush* p_brush_border_;

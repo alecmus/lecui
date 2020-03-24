@@ -21,8 +21,11 @@
 
 namespace liblec {
 	namespace lecui {
-		namespace widgets {
+		namespace containers {
 			class page;
+		}
+
+		namespace widgets {
 			namespace specs {
 				class combo : public widget {
 				public:
@@ -43,7 +46,7 @@ namespace liblec {
 
 			class lecui_api combo {
 			public:
-				combo(liblec::lecui::widgets::page& page);
+				combo(liblec::lecui::containers::page& page);
 				~combo();
 
 				liblec::lecui::widgets::specs::combo& add(const std::string& name);
