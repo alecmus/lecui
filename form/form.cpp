@@ -1887,7 +1887,7 @@ public:
 
 								// impose a limit on change_in_height
 								float y_displacement =
-									page.d_page_.v_scrollbar().y_displacement_ + change_in_width;
+									page.d_page_.v_scrollbar().y_displacement_ + change_in_height;
 								y_displacement = largest(y_displacement, 0.f);
 
 								const float change =
