@@ -276,11 +276,10 @@ public:
 static inline void make_single_line(IDWriteFactory* p_directwrite_factory,
 	IDWriteTextFormat* p_text_format) {
 	// to-do: verify this function's correctness
-	p_text_format->SetWordWrapping(DWRITE_WORD_WRAPPING_NO_WRAP);
-
 	DWRITE_TRIMMING trimming;
 	trimming.granularity = DWRITE_TRIMMING_GRANULARITY_CHARACTER;
-	trimming.delimiter = '.';
+	trimming.delimiter = 0;
+	trimming.delimiterCount = 0;
 
 	IDWriteInlineObject* trimmingSign = nullptr;
 	p_directwrite_factory->CreateEllipsisTrimmingSign(p_text_format, &trimmingSign);
