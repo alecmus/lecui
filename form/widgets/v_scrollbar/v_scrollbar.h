@@ -20,11 +20,7 @@ namespace liblec {
 	namespace lecui {
 		namespace widgets {
 			namespace specs {
-				class v_scrollbar : public widget {
-				public:
-					liblec::lecui::color color_hot_pressed;
-					liblec::lecui::color color_background;
-				};
+				class v_scrollbar : public scrollbar {};
 			}
 		}
 
@@ -67,6 +63,7 @@ namespace liblec {
 
 				liblec::lecui::widgets::specs::v_scrollbar specs_;
 				ID2D1SolidColorBrush* p_brush_;
+				ID2D1SolidColorBrush* p_brush_border_;
 				ID2D1SolidColorBrush* p_brush_hot_;
 				ID2D1SolidColorBrush* p_brush_hot_pressed_;
 				ID2D1SolidColorBrush* p_brush_background_;

@@ -34,6 +34,7 @@ liblec::lecui::widgets_implementation::list::list(const std::string& page,
 	IDWriteFactory* p_directwrite_factory) :
 	p_brush_(nullptr),
 	p_brush_fill_(nullptr),
+	p_brush_scrollbar_border_(nullptr),
 	p_brush_text_header_(nullptr),
 	p_brush_fill_header_(nullptr),
 	p_brush_fill_alternate_(nullptr),
@@ -50,11 +51,6 @@ liblec::lecui::widgets_implementation::list::list(const std::string& page,
 	p_directwrite_factory_(p_directwrite_factory),
 	p_text_layout_(nullptr),
 	scrollbar_thickness_(10),
-
-	color_scrollbar_({ 20, 80, 140, 150 }),
-	color_scrollbar_hot_({ 20, 80, 140, 200 }),
-	color_scrollbar_hot_pressed_({ 20, 80, 140, 255 }),
-	color_scrollbar_background_({ 20, 80, 140, 50 }),
 
 	p_brush_scrollbar_(nullptr),
 	p_brush_scrollbar_hot_(nullptr),
@@ -82,6 +78,15 @@ liblec::lecui::widgets_implementation::list::list(const std::string& page,
 	book_on_selection_(false) {
 	page_ = page;
 	name_ = name;
+
+	liblec::lecui::widgets::specs::scrollbar bar;
+
+	color_scrollbar_ = bar.color_fill;
+	color_scrollbar_hot_ = bar.color_hot;
+	color_scrollbar_hot_pressed_ = bar.color_hot_pressed;
+	color_scrollbar_background_ = bar.color_background;
+	color_scrollbar_border_ = bar.color_scrollbar_border;
+
 	log("constructor: " + page_ + ":" + name_);
 }
 
@@ -108,6 +113,9 @@ HRESULT liblec::lecui::widgets_implementation::list::create_resources(
 	if (SUCCEEDED(hr))
 		hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_fill),
 			&p_brush_fill_);
+	if (SUCCEEDED(hr))
+		hr = p_render_target->CreateSolidColorBrush(convert_color(color_scrollbar_border_),
+			&p_brush_scrollbar_border_);
 	if (SUCCEEDED(hr))
 		hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_text_header),
 			&p_brush_text_header_);
@@ -187,6 +195,7 @@ void liblec::lecui::widgets_implementation::list::discard_resources() {
 	log("discarding resources: " + page_ + ":" + name_);
 	safe_release(&p_brush_);
 	safe_release(&p_brush_fill_);
+	safe_release(&p_brush_scrollbar_border_);
 	safe_release(&p_brush_text_header_);
 	safe_release(&p_brush_fill_header_);
 	safe_release(&p_brush_fill_alternate_);
@@ -589,7 +598,7 @@ liblec::lecui::widgets_implementation::list::render(ID2D1HwndRenderTarget* p_ren
 		if (!equal(rectC_v_, rectD_) &&
 			!(roundoff::tof((rectD_.bottom - rectD_.top), precision) >=
 				roundoff::tof((rectC_v_.bottom - rectC_v_.top), precision))) {
-			const auto corner_radius = smallest((rectD_.right - rectD_.left) / 3.f, (rectD_.bottom - rectD_.top) / 3.f);
+			auto corner_radius = smallest((rectD_.right - rectD_.left) / 3.f, (rectD_.bottom - rectD_.top) / 3.f);
 
 			// scroll area
 			D2D1_ROUNDED_RECT rounded_rectC{ rectC_v_, corner_radius, corner_radius };
@@ -598,11 +607,20 @@ liblec::lecui::widgets_implementation::list::render(ID2D1HwndRenderTarget* p_ren
 				p_render_target->FillRoundedRectangle(&rounded_rectC, p_brush_scrollbar_background_);
 
 			// scroll bar
-			D2D1_ROUNDED_RECT rounded_rectD{ rectD_, corner_radius, corner_radius };
+			auto rect_scroll_bar = rectD_;
+			const float scroll_bar_margin = 2.f;
+			rect_scroll_bar.left += scroll_bar_margin;
+			rect_scroll_bar.top += scroll_bar_margin;
+			rect_scroll_bar.right -= scroll_bar_margin;
+			rect_scroll_bar.bottom -= scroll_bar_margin;
+			corner_radius = smallest((rect_scroll_bar.bottom - rect_scroll_bar.top) / 3.f, (rect_scroll_bar.right - rect_scroll_bar.left) / 3.f);
+			D2D1_ROUNDED_RECT rounded_rectD{ rect_scroll_bar, corner_radius, corner_radius };
 
-			if (render && visible_)
+			if (render && visible_) {
 				p_render_target->FillRoundedRectangle(&rounded_rectD,
 					v_scrollbar_pressed_ ? p_brush_scrollbar_hot_pressed_ : (v_scrollbar_hit_ ? p_brush_scrollbar_hot_ : p_brush_scrollbar_));
+				p_render_target->DrawRoundedRectangle(&rounded_rectD, p_brush_scrollbar_border_);
+			}
 
 			v_scrollbar_visible_ = true;
 		}
@@ -618,7 +636,7 @@ liblec::lecui::widgets_implementation::list::render(ID2D1HwndRenderTarget* p_ren
 		if (!equal(rectC_h_, rectD_) &&
 			!(roundoff::tof((rectD_.right - rectD_.left), precision) >=
 				roundoff::tof((rectC_h_.right - rectC_h_.left), precision))) {
-			const auto corner_radius = smallest((rectD_.bottom - rectD_.top) / 3.f, (rectD_.right - rectD_.left) / 3.f);
+			auto corner_radius = smallest((rectD_.bottom - rectD_.top) / 3.f, (rectD_.right - rectD_.left) / 3.f);
 
 			// scroll area
 			D2D1_ROUNDED_RECT rounded_rectC{ rectC_h_, corner_radius, corner_radius };
@@ -627,11 +645,20 @@ liblec::lecui::widgets_implementation::list::render(ID2D1HwndRenderTarget* p_ren
 				p_render_target->FillRoundedRectangle(&rounded_rectC, p_brush_scrollbar_background_);
 
 			// scroll bar
-			D2D1_ROUNDED_RECT rounded_rectD{ rectD_, corner_radius, corner_radius };
+			auto rect_scroll_bar = rectD_;
+			const float scroll_bar_margin = 2.f;
+			rect_scroll_bar.left += scroll_bar_margin;
+			rect_scroll_bar.top += scroll_bar_margin;
+			rect_scroll_bar.right -= scroll_bar_margin;
+			rect_scroll_bar.bottom -= scroll_bar_margin;
+			corner_radius = smallest((rect_scroll_bar.bottom - rect_scroll_bar.top) / 3.f, (rect_scroll_bar.right - rect_scroll_bar.left) / 3.f);
+			D2D1_ROUNDED_RECT rounded_rectD{ rect_scroll_bar, corner_radius, corner_radius };
 
-			if (render && visible_)
+			if (render && visible_) {
 				p_render_target->FillRoundedRectangle(&rounded_rectD,
 					h_scrollbar_pressed_ ? p_brush_scrollbar_hot_pressed_ : (h_scrollbar_hit_ ? p_brush_scrollbar_hot_ : p_brush_scrollbar_));
+				p_render_target->DrawRoundedRectangle(&rounded_rectD, p_brush_scrollbar_border_);
+			}
 
 			h_scrollbar_visible_ = true;
 		}

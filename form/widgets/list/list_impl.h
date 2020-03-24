@@ -56,6 +56,7 @@ namespace liblec {
 				liblec::lecui::widgets::specs::list specs_;
 				ID2D1SolidColorBrush* p_brush_;
 				ID2D1SolidColorBrush* p_brush_fill_;
+				ID2D1SolidColorBrush* p_brush_scrollbar_border_;
 				ID2D1SolidColorBrush* p_brush_text_header_;
 				ID2D1SolidColorBrush* p_brush_fill_header_;
 				ID2D1SolidColorBrush* p_brush_fill_alternate_;
@@ -76,6 +77,7 @@ namespace liblec {
 				unsigned long scrollbar_thickness_;
 
 				liblec::lecui::color color_scrollbar_;
+				liblec::lecui::color color_scrollbar_border_;
 				liblec::lecui::color color_scrollbar_hot_;
 				liblec::lecui::color color_scrollbar_hot_pressed_;
 				liblec::lecui::color color_scrollbar_background_;

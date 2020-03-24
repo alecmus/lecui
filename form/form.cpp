@@ -3305,14 +3305,6 @@ liblec::lecui::widgets::page& liblec::lecui::page::add(const std::string& name) 
 
 	// initialize the page's horizontal scroll bar
 	{
-		d_.fm_.d_.p_pages_.at(name).d_page_.h_scrollbar().specs().color_fill = d_.fm_.d_.clr_theme_;
-		d_.fm_.d_.p_pages_.at(name).d_page_.h_scrollbar().specs().color_fill.alpha = 150;
-		d_.fm_.d_.p_pages_.at(name).d_page_.h_scrollbar().specs().color_hot = d_.fm_.d_.clr_theme_;
-		d_.fm_.d_.p_pages_.at(name).d_page_.h_scrollbar().specs().color_hot.alpha = 200;
-		d_.fm_.d_.p_pages_.at(name).d_page_.h_scrollbar().specs().color_hot_pressed = d_.fm_.d_.clr_theme_;
-		d_.fm_.d_.p_pages_.at(name).d_page_.h_scrollbar().specs().color_background = d_.fm_.d_.clr_theme_;
-		d_.fm_.d_.p_pages_.at(name).d_page_.h_scrollbar().specs().color_background.alpha = 50;
-
 		d_.fm_.d_.p_pages_.at(name).d_page_.h_scrollbar().specs().resize.perc_width = 100;
 		d_.fm_.d_.p_pages_.at(name).d_page_.h_scrollbar().specs().resize.perc_y = 100;
 
@@ -3332,16 +3324,6 @@ liblec::lecui::widgets::page& liblec::lecui::page::add(const std::string& name) 
 
 	// initialize the page's vertical scroll bar
 	{
-		d_.fm_.d_.p_pages_.at(name).d_page_.v_scrollbar().specs().color_fill = d_.fm_.d_.clr_theme_;
-		d_.fm_.d_.p_pages_.at(name).d_page_.v_scrollbar().specs().color_fill.alpha = 150;
-		d_.fm_.d_.p_pages_.at(name).d_page_.v_scrollbar().specs().color_hot = d_.fm_.d_.clr_theme_;
-		d_.fm_.d_.p_pages_.at(name).d_page_.v_scrollbar().specs().color_hot.alpha = 200;
-		d_.fm_.d_.p_pages_.at(name).d_page_.v_scrollbar().specs().color_hot_pressed =
-			d_.fm_.d_.clr_theme_;
-		d_.fm_.d_.p_pages_.at(name).d_page_.v_scrollbar().specs().color_background =
-			d_.fm_.d_.clr_theme_;
-		d_.fm_.d_.p_pages_.at(name).d_page_.v_scrollbar().specs().color_background.alpha = 50;
-
 		d_.fm_.d_.p_pages_.at(name).d_page_.v_scrollbar().specs().resize.perc_height = 100;
 		d_.fm_.d_.p_pages_.at(name).d_page_.v_scrollbar().specs().resize.perc_x = 100;
 

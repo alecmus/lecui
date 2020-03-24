@@ -77,14 +77,6 @@ liblec::lecui::widgets::page& liblec::lecui::widgets::tab::add(const std::string
 
 	// initialize the page's horizontal scroll bar
 	{
-		tab_control_.p_tabs_.at(name).d_page_.h_scrollbar().specs().color_fill = { 20, 80, 140, 255 };
-		tab_control_.p_tabs_.at(name).d_page_.h_scrollbar().specs().color_fill.alpha = 150;
-		tab_control_.p_tabs_.at(name).d_page_.h_scrollbar().specs().color_hot = { 20, 80, 140, 255 };
-		tab_control_.p_tabs_.at(name).d_page_.h_scrollbar().specs().color_hot.alpha = 200;
-		tab_control_.p_tabs_.at(name).d_page_.h_scrollbar().specs().color_hot_pressed = { 20, 80, 140, 255 };
-		tab_control_.p_tabs_.at(name).d_page_.h_scrollbar().specs().color_background = { 20, 80, 140, 255 };
-		tab_control_.p_tabs_.at(name).d_page_.h_scrollbar().specs().color_background.alpha = 50;
-
 		tab_control_.p_tabs_.at(name).d_page_.h_scrollbar().specs().resize.perc_width = 100;
 		tab_control_.p_tabs_.at(name).d_page_.h_scrollbar().specs().resize.perc_y = 100;
 
@@ -99,14 +91,6 @@ liblec::lecui::widgets::page& liblec::lecui::widgets::tab::add(const std::string
 
 	// initialize the page's vertical scroll bar
 	{
-		tab_control_.p_tabs_.at(name).d_page_.v_scrollbar().specs().color_fill = { 20, 80, 140, 255 };
-		tab_control_.p_tabs_.at(name).d_page_.v_scrollbar().specs().color_fill.alpha = 150;
-		tab_control_.p_tabs_.at(name).d_page_.v_scrollbar().specs().color_hot = { 20, 80, 140, 255 };
-		tab_control_.p_tabs_.at(name).d_page_.v_scrollbar().specs().color_hot.alpha = 200;
-		tab_control_.p_tabs_.at(name).d_page_.v_scrollbar().specs().color_hot_pressed = { 20, 80, 140, 255 };
-		tab_control_.p_tabs_.at(name).d_page_.v_scrollbar().specs().color_background = { 20, 80, 140, 255 };
-		tab_control_.p_tabs_.at(name).d_page_.v_scrollbar().specs().color_background.alpha = 50;
-
 		tab_control_.p_tabs_.at(name).d_page_.v_scrollbar().specs().resize.perc_height = 100;
 		tab_control_.p_tabs_.at(name).d_page_.v_scrollbar().specs().resize.perc_x = 100;
 

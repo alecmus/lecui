@@ -18,6 +18,21 @@
 
 namespace liblec {
 	namespace lecui {
+		namespace widgets {
+			namespace specs {
+				class scrollbar : public widget {
+				public:
+					scrollbar () {
+						color_fill = { 241, 241, 241, 255 };
+						color_hot = { 231, 231, 231, 255 };
+					}
+					liblec::lecui::color color_scrollbar_border = { 180, 180, 180, 255 };
+					liblec::lecui::color color_hot_pressed = { 221, 221, 221, 255 };
+					liblec::lecui::color color_background = { 0, 0, 0, 0 };
+				};
+			}
+		}
+
 		namespace widgets_implementation {
 			enum class widget_type {
 				close_button,

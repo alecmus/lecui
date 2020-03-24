@@ -15,6 +15,7 @@
 
 liblec::lecui::widgets_implementation::h_scrollbar::h_scrollbar(const std::string& page) :
 	p_brush_(nullptr),
+	p_brush_border_(nullptr),
 	p_brush_hot_(nullptr),
 	p_brush_hot_pressed_(nullptr),
 	p_brush_background_(nullptr),
@@ -57,6 +58,9 @@ HRESULT liblec::lecui::widgets_implementation::h_scrollbar::create_resources(
 		hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_fill),
 			&p_brush_);
 	if (SUCCEEDED(hr))
+		hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_scrollbar_border),
+			&p_brush_border_);
+	if (SUCCEEDED(hr))
 		hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_hot),
 			&p_brush_hot_);
 	if (SUCCEEDED(hr))
@@ -72,6 +76,7 @@ HRESULT liblec::lecui::widgets_implementation::h_scrollbar::create_resources(
 void liblec::lecui::widgets_implementation::h_scrollbar::discard_resources() {
 	log("discarding resources: " + page_ + ":" + name_);
 	safe_release(&p_brush_);
+	safe_release(&p_brush_border_);
 	safe_release(&p_brush_hot_);
 	safe_release(&p_brush_hot_pressed_);
 	safe_release(&p_brush_background_);
@@ -109,16 +114,24 @@ liblec::lecui::widgets_implementation::h_scrollbar::render(ID2D1HwndRenderTarget
 	if (!equal(rectC_, rectD_) &&
 		!(roundoff::tof((rectD_.right - rectD_.left), precision) >=
 			roundoff::tof((rectC_.right - rectC_.left), precision))) {
-		const auto corner_radius = smallest((rectD_.bottom - rectD_.top) / 3.f, (rectD_.right - rectD_.left) / 3.f);
+		auto corner_radius = smallest((rectD_.bottom - rectD_.top) / 3.f, (rectD_.right - rectD_.left) / 3.f);
 
 		// scroll area
 		D2D1_ROUNDED_RECT rounded_rectC{ rectC_, corner_radius, corner_radius };
 		p_render_target->FillRoundedRectangle(&rounded_rectC, p_brush_background_);
 
 		// scroll bar
-		D2D1_ROUNDED_RECT rounded_rectD{ rectD_, corner_radius, corner_radius };
+		auto rect_scroll_bar = rectD_;
+		const float scroll_bar_margin = 2.f;
+		rect_scroll_bar.left += scroll_bar_margin;
+		rect_scroll_bar.top += scroll_bar_margin;
+		rect_scroll_bar.right -= scroll_bar_margin;
+		rect_scroll_bar.bottom -= scroll_bar_margin;
+		corner_radius = smallest((rect_scroll_bar.bottom - rect_scroll_bar.top) / 3.f, (rect_scroll_bar.right - rect_scroll_bar.left) / 3.f);
+		D2D1_ROUNDED_RECT rounded_rectD{ rect_scroll_bar, corner_radius, corner_radius };
 		p_render_target->FillRoundedRectangle(&rounded_rectD,
 			pressed_ ? p_brush_hot_pressed_ : (hit_ ? p_brush_hot_ : p_brush_));
+		p_render_target->DrawRoundedRectangle(&rounded_rectD, p_brush_border_);
 
 		visible_ = true;
 	}

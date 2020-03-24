@@ -62,14 +62,6 @@ liblec::lecui::widgets::page& liblec::lecui::widgets::pane::get() {
 
 	// initialize the page's horizontal scroll bar
 	{
-		pane_.p_panes_.at(name).d_page_.h_scrollbar().specs().color_fill = { 20, 80, 140, 255 };
-		pane_.p_panes_.at(name).d_page_.h_scrollbar().specs().color_fill.alpha = 150;
-		pane_.p_panes_.at(name).d_page_.h_scrollbar().specs().color_hot = { 20, 80, 140, 255 };
-		pane_.p_panes_.at(name).d_page_.h_scrollbar().specs().color_hot.alpha = 200;
-		pane_.p_panes_.at(name).d_page_.h_scrollbar().specs().color_hot_pressed = { 20, 80, 140, 255 };
-		pane_.p_panes_.at(name).d_page_.h_scrollbar().specs().color_background = { 20, 80, 140, 255 };
-		pane_.p_panes_.at(name).d_page_.h_scrollbar().specs().color_background.alpha = 50;
-
 		pane_.p_panes_.at(name).d_page_.h_scrollbar().specs().resize.perc_width = 100;
 		pane_.p_panes_.at(name).d_page_.h_scrollbar().specs().resize.perc_y = 100;
 
@@ -84,14 +76,6 @@ liblec::lecui::widgets::page& liblec::lecui::widgets::pane::get() {
 
 	// initialize the page's vertical scroll bar
 	{
-		pane_.p_panes_.at(name).d_page_.v_scrollbar().specs().color_fill = { 20, 80, 140, 255 };
-		pane_.p_panes_.at(name).d_page_.v_scrollbar().specs().color_fill.alpha = 150;
-		pane_.p_panes_.at(name).d_page_.v_scrollbar().specs().color_hot = { 20, 80, 140, 255 };
-		pane_.p_panes_.at(name).d_page_.v_scrollbar().specs().color_hot.alpha = 200;
-		pane_.p_panes_.at(name).d_page_.v_scrollbar().specs().color_hot_pressed = { 20, 80, 140, 255 };
-		pane_.p_panes_.at(name).d_page_.v_scrollbar().specs().color_background = { 20, 80, 140, 255 };
-		pane_.p_panes_.at(name).d_page_.v_scrollbar().specs().color_background.alpha = 50;
-
 		pane_.p_panes_.at(name).d_page_.v_scrollbar().specs().resize.perc_height = 100;
 		pane_.p_panes_.at(name).d_page_.v_scrollbar().specs().resize.perc_x = 100;
 
