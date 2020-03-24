@@ -59,8 +59,8 @@ namespace liblec {
 		};
 
 		struct size {
-			unsigned long width = 0;
-			unsigned long height = 0;
+			long width = 0;
+			long height = 0;
 		};
 
 		class lecui_api rect {

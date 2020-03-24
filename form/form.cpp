@@ -367,7 +367,7 @@ public:
 		p_close_button_->specs().color_disabled = clr_theme_disabled_;
 		p_close_button_->specs().resize.perc_x = 100;
 
-		p_close_button_->specs().rect.right = static_cast<long>(size_.width) -
+		p_close_button_->specs().rect.right = size_.width -
 			static_cast<long>(control_button_margin_);
 		p_close_button_->specs().rect.top = static_cast<long>(control_button_margin_);
 		p_close_button_->specs().rect.left = p_close_button_->specs().rect.right -
@@ -961,7 +961,7 @@ public:
 	}
 
 	void set_position(const int& ix, const int& iy,
-		const unsigned long& icx, const unsigned long& icy) {
+		const long& icx, const long& icy) {
 		size_.width = icx;
 		size_.height = icy;
 
@@ -971,9 +971,9 @@ public:
 	}
 
 	void set_position(const liblec::lecui::form_position& wndPos,
-		const int& icx_in, const int& icy_in) {
-		unsigned long icx = icx_in;
-		unsigned long icy = icy_in;
+		const long& icx_in, const long& icy_in) {
+		long icx = icx_in;
+		long icy = icy_in;
 
 		const int offset = 10;
 
@@ -995,11 +995,11 @@ public:
 				RECT rcParent;
 				GetWindowRect(hWnd_parent_, &rcParent);
 
-				unsigned long user_width = rcParent.right - rcParent.left;
-				unsigned long user_height = rcParent.bottom - rcParent.top;
+				long user_width = rcParent.right - rcParent.left;
+				long user_height = rcParent.bottom - rcParent.top;
 
-				unsigned long ix = 0;
-				unsigned long iy = 0;
+				long ix = 0;
+				long iy = 0;
 
 				// center to working area
 				ix = rcParent.left + ((user_width - icx) / 2);
@@ -1017,11 +1017,11 @@ public:
 		}
 
 		case liblec::lecui::form_position::center_to_working_area: {
-			unsigned long user_width = rcWork.right - rcWork.left;
-			unsigned long user_height = rcWork.bottom - rcWork.top;
+			long user_width = rcWork.right - rcWork.left;
+			long user_height = rcWork.bottom - rcWork.top;
 
-			unsigned long ix = 0;
-			unsigned long iy = 0;
+			long ix = 0;
+			long iy = 0;
 
 			// center to working area
 			ix = rcWork.left + ((user_width - icx) / 2);
@@ -3207,17 +3207,11 @@ const liblec::lecui::size& liblec::lecui::dimensions::size() {
 }
 
 void liblec::lecui::dimensions::min(const liblec::lecui::size& size) {
-	if (size.width) {
-		// do not allow the minimum width to be greater than the current window width
-		d_.fm_.d_.min_size_.width = smallest(static_cast<unsigned long>(size.width),
-			d_.fm_.d_.size_.width);
-	}
+	if (size.width)		// do not allow minimum width to be greater than current window width
+		d_.fm_.d_.min_size_.width = smallest(size.width, d_.fm_.d_.size_.width);
 
-	if (size.height) {
-		// do not allow minimum height to be greater than the current window height
-		d_.fm_.d_.min_size_.height = smallest(static_cast<unsigned long>(size.height),
-			d_.fm_.d_.size_.height);
-	}
+	if (size.height)	// do not allow minimum height to be greater than current window height
+		d_.fm_.d_.min_size_.height = smallest(size.height, d_.fm_.d_.size_.height);
 }
 
 const liblec::lecui::size& liblec::lecui::dimensions::min() {
@@ -3300,8 +3294,8 @@ liblec::lecui::widgets::page& liblec::lecui::page::add(const std::string& name) 
 	// specify directwrite factory (used internally for text rendering)
 	d_.fm_.d_.p_pages_.at(name).d_page_.directwrite_factory(d_.fm_.d_.p_directwrite_factory_);
 
-	const unsigned long thickness = 10;
-	const unsigned long margin = (unsigned long)(d_.fm_.d_.page_tolerance_ + 0.5);
+	const long thickness = 10;
+	const long margin = static_cast<long>(d_.fm_.d_.page_tolerance_ + 0.5);
 
 	// initialize the page's horizontal scroll bar
 	{
@@ -3311,10 +3305,10 @@ liblec::lecui::widgets::page& liblec::lecui::page::add(const std::string& name) 
 		d_.fm_.d_.p_pages_.at(name).d_page_.h_scrollbar().specs().rect.left =
 			margin + thickness - static_cast<long>(d_.fm_.d_.page_tolerance_);
 		d_.fm_.d_.p_pages_.at(name).d_page_.h_scrollbar().specs().rect.right =
-			static_cast<long>(d_.fm_.d_.size_.width) - (margin + thickness) -
+			d_.fm_.d_.size_.width - (margin + thickness) -
 			static_cast<long>(d_.fm_.d_.page_tolerance_);
 		d_.fm_.d_.p_pages_.at(name).d_page_.h_scrollbar().specs().rect.bottom =
-			static_cast<long>(d_.fm_.d_.size_.height) - margin -
+			d_.fm_.d_.size_.height - margin -
 			static_cast<long>(d_.fm_.d_.caption_bar_height_ + d_.fm_.d_.page_tolerance_);
 		d_.fm_.d_.p_pages_.at(name).d_page_.h_scrollbar().specs().rect.top =
 			d_.fm_.d_.p_pages_.at(name).d_page_.h_scrollbar().specs().rect.bottom - thickness;
@@ -3330,10 +3324,10 @@ liblec::lecui::widgets::page& liblec::lecui::page::add(const std::string& name) 
 		d_.fm_.d_.p_pages_.at(name).d_page_.v_scrollbar().specs().rect.top =
 			margin + thickness - static_cast<long>(d_.fm_.d_.page_tolerance_);
 		d_.fm_.d_.p_pages_.at(name).d_page_.v_scrollbar().specs().rect.bottom =
-			static_cast<long>(d_.fm_.d_.size_.height) - (margin + thickness) -
+			d_.fm_.d_.size_.height - (margin + thickness) -
 			static_cast<long>(d_.fm_.d_.caption_bar_height_ + d_.fm_.d_.page_tolerance_);
 		d_.fm_.d_.p_pages_.at(name).d_page_.v_scrollbar().specs().rect.right =
-			static_cast<long>(d_.fm_.d_.size_.width) - margin -
+			d_.fm_.d_.size_.width - margin -
 			static_cast<long>(d_.fm_.d_.page_tolerance_);
 		d_.fm_.d_.p_pages_.at(name).d_page_.v_scrollbar().specs().rect.left =
 			d_.fm_.d_.p_pages_.at(name).d_page_.v_scrollbar().specs().rect.right - thickness;
@@ -3350,7 +3344,7 @@ liblec::lecui::widgets::page& liblec::lecui::page::add(const std::string& name) 
 	rectangle.color_border = { 255, 0, 0, 0 };
 	rectangle.color_hot = { 255, 0, 0, 0 };
 
-	d_.fm_.d_.p_pages_.at(name).d_page_.size({ d_.fm_.d_.size_.width, d_.fm_.d_.size_.height });
+	d_.fm_.d_.p_pages_.at(name).d_page_.size(d_.fm_.d_.size_);
 
 	d_.fm_.d_.p_pages_.at(name).d_page_.width(d_.fm_.d_.p_pages_.at(name).d_page_.width() -
 		static_cast<long>(2.f * d_.fm_.d_.page_tolerance_));

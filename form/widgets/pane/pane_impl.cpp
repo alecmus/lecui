@@ -55,8 +55,8 @@ liblec::lecui::widgets::page& liblec::lecui::widgets::pane::get() {
 	// specify directwrite factory (used internally for text rendering)
 	pane_.p_panes_.at(name).d_page_.directwrite_factory(d_.page_.d_page_.directwrite_factory());
 
-	const unsigned long thickness = 10;
-	const unsigned long margin = 10;
+	const long thickness = 10;
+	const long margin = 10;
 	const float page_tolerance_ = 10.f;
 	liblec::lecui::rect rect_client_area = pane_.specs().rect;
 
@@ -66,8 +66,8 @@ liblec::lecui::widgets::page& liblec::lecui::widgets::pane::get() {
 		pane_.p_panes_.at(name).d_page_.h_scrollbar().specs().resize.perc_y = 100;
 
 		pane_.p_panes_.at(name).d_page_.h_scrollbar().specs().rect.left = 0;
-		pane_.p_panes_.at(name).d_page_.h_scrollbar().specs().rect.right = static_cast<long>(rect_client_area.right - rect_client_area.left) - (margin + thickness);
-		pane_.p_panes_.at(name).d_page_.h_scrollbar().specs().rect.bottom = static_cast<long>(rect_client_area.bottom - rect_client_area.top) - static_cast<long>(page_tolerance_);
+		pane_.p_panes_.at(name).d_page_.h_scrollbar().specs().rect.right = (rect_client_area.right - rect_client_area.left) - (margin + thickness);
+		pane_.p_panes_.at(name).d_page_.h_scrollbar().specs().rect.bottom = (rect_client_area.bottom - rect_client_area.top) - static_cast<long>(page_tolerance_);
 		pane_.p_panes_.at(name).d_page_.h_scrollbar().specs().rect.top =
 			pane_.p_panes_.at(name).d_page_.h_scrollbar().specs().rect.bottom - thickness;
 
@@ -80,8 +80,8 @@ liblec::lecui::widgets::page& liblec::lecui::widgets::pane::get() {
 		pane_.p_panes_.at(name).d_page_.v_scrollbar().specs().resize.perc_x = 100;
 
 		pane_.p_panes_.at(name).d_page_.v_scrollbar().specs().rect.top = 0;
-		pane_.p_panes_.at(name).d_page_.v_scrollbar().specs().rect.bottom = static_cast<long>(rect_client_area.bottom - rect_client_area.top) - (margin + thickness);
-		pane_.p_panes_.at(name).d_page_.v_scrollbar().specs().rect.right = static_cast<long>(rect_client_area.right - rect_client_area.left) - margin;
+		pane_.p_panes_.at(name).d_page_.v_scrollbar().specs().rect.bottom = (rect_client_area.bottom - rect_client_area.top) - (margin + thickness);
+		pane_.p_panes_.at(name).d_page_.v_scrollbar().specs().rect.right = (rect_client_area.right - rect_client_area.left) - margin;
 		pane_.p_panes_.at(name).d_page_.v_scrollbar().specs().rect.left =
 			pane_.p_panes_.at(name).d_page_.v_scrollbar().specs().rect.right - thickness;
 

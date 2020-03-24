@@ -69,8 +69,8 @@ liblec::lecui::widgets::page& liblec::lecui::widgets::tab::add(const std::string
 	// specify directwrite factory (used internally for text rendering)
 	tab_control_.p_tabs_.at(name).d_page_.directwrite_factory(d_.tc_.d_.page_.d_page_.directwrite_factory());
 
-	const unsigned long thickness = 10;
-	const unsigned long margin = 10;
+	const long thickness = 10;
+	const long margin = 10;
 	const float page_tolerance_ = 10.f;
 	const float caption_bar_height_ = tab_control_.caption_bar_height();
 	liblec::lecui::rect rect_client_area = tab_control_.specs().rect;
@@ -81,8 +81,8 @@ liblec::lecui::widgets::page& liblec::lecui::widgets::tab::add(const std::string
 		tab_control_.p_tabs_.at(name).d_page_.h_scrollbar().specs().resize.perc_y = 100;
 
 		tab_control_.p_tabs_.at(name).d_page_.h_scrollbar().specs().rect.left = 0;
-		tab_control_.p_tabs_.at(name).d_page_.h_scrollbar().specs().rect.right = static_cast<long>(rect_client_area.right - rect_client_area.left) - (margin + thickness);
-		tab_control_.p_tabs_.at(name).d_page_.h_scrollbar().specs().rect.bottom = static_cast<long>(rect_client_area.bottom - rect_client_area.top) - static_cast<long>(caption_bar_height_ + page_tolerance_);
+		tab_control_.p_tabs_.at(name).d_page_.h_scrollbar().specs().rect.right = (rect_client_area.right - rect_client_area.left) - (margin + thickness);
+		tab_control_.p_tabs_.at(name).d_page_.h_scrollbar().specs().rect.bottom = (rect_client_area.bottom - rect_client_area.top) - static_cast<long>(caption_bar_height_ + page_tolerance_);
 		tab_control_.p_tabs_.at(name).d_page_.h_scrollbar().specs().rect.top =
 			tab_control_.p_tabs_.at(name).d_page_.h_scrollbar().specs().rect.bottom - thickness;
 
@@ -95,8 +95,8 @@ liblec::lecui::widgets::page& liblec::lecui::widgets::tab::add(const std::string
 		tab_control_.p_tabs_.at(name).d_page_.v_scrollbar().specs().resize.perc_x = 100;
 
 		tab_control_.p_tabs_.at(name).d_page_.v_scrollbar().specs().rect.top = 0;
-		tab_control_.p_tabs_.at(name).d_page_.v_scrollbar().specs().rect.bottom = static_cast<long>(rect_client_area.bottom - rect_client_area.top) - (margin + thickness) - static_cast<long>(caption_bar_height_);
-		tab_control_.p_tabs_.at(name).d_page_.v_scrollbar().specs().rect.right = static_cast<long>(rect_client_area.right - rect_client_area.left) - margin;
+		tab_control_.p_tabs_.at(name).d_page_.v_scrollbar().specs().rect.bottom = (rect_client_area.bottom - rect_client_area.top) - (margin + thickness) - static_cast<long>(caption_bar_height_);
+		tab_control_.p_tabs_.at(name).d_page_.v_scrollbar().specs().rect.right = (rect_client_area.right - rect_client_area.left) - margin;
 		tab_control_.p_tabs_.at(name).d_page_.v_scrollbar().specs().rect.left =
 			tab_control_.p_tabs_.at(name).d_page_.v_scrollbar().specs().rect.right - thickness;
 
