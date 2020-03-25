@@ -47,8 +47,8 @@ namespace liblec {
 
 		class lecui_api form {
 		public:
-			form();
 			form(const std::string& caption);
+			form(const std::string& caption, form& parent);
 			~form();
 
 			void move(const liblec::lecui::point& point);
@@ -75,6 +75,8 @@ namespace liblec {
 		private:
 			class form_impl;
 			form_impl& d_;
+
+			form();
 
 			form(const form&);
 			form& operator=(const form&);

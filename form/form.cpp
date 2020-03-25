@@ -89,6 +89,8 @@ public:
 class liblec::lecui::form::form_impl {
 public:
 	form_impl(const std::string& caption) :
+		p_parent_(nullptr),
+		parent_closing_(false),
 		show_called_(false),
 		caption_bar_height_(30.f),
 		form_border_thickness_(1.f),
@@ -994,6 +996,7 @@ public:
 				// get coordinates of parent window
 				RECT rcParent;
 				GetWindowRect(hWnd_parent_, &rcParent);
+				unscale_RECT(rcParent, dpi_scale_);
 
 				long user_width = rcParent.right - rcParent.left;
 				long user_height = rcParent.bottom - rcParent.top;
@@ -2656,6 +2659,9 @@ private:
 	static ID2D1Factory* p_direct2d_factory_;
 	static IDWriteFactory* p_directwrite_factory_;
 
+	form* p_parent_;
+	bool parent_closing_;
+	std::map<form*, form*> m_children_;
 	bool show_called_;
 
 	// constant members
@@ -2752,13 +2758,32 @@ std::atomic<bool> liblec::lecui::form::form_impl::initialized_ = false;
 ID2D1Factory* liblec::lecui::form::form_impl::p_direct2d_factory_ = nullptr;
 IDWriteFactory* liblec::lecui::form::form_impl::p_directwrite_factory_ = nullptr;
 
+// this is the constructor that all the others below call
+liblec::lecui::form::form(const std::string& caption) :
+	d_(*new form_impl(caption)) {
+	log("entering form constructor");
+}
+
 liblec::lecui::form::form() :
 	liblec::lecui::form::form("liblec::lecui::form") {}
 
-liblec::lecui::form::form(const std::string& caption) :
-	d_(*new form_impl(caption)) { log("entering form constructor"); }
+liblec::lecui::form::form(const std::string& caption, form& parent) :
+	liblec::lecui::form::form(caption) {
+	// capture parent
+	d_.p_parent_ = &parent;
+	d_.hWnd_parent_ = parent.d_.hWnd_;
+
+	// this is a child window. add it to the parent's map of children.
+	parent.d_.m_children_.insert(std::make_pair(this, this));
+}
 
 liblec::lecui::form::~form() {
+	if (d_.hWnd_parent_ && d_.p_parent_) {
+		// this is a child window. remove it from the parent's map of children
+		try { d_.p_parent_->d_.m_children_.erase(this); }
+		catch (const std::exception&) {}
+	}
+
 	delete& d_;
 	log("exiting form destructor");
 }
@@ -2854,9 +2879,14 @@ bool liblec::lecui::form::show(std::string& error) {
 		else
 			d_.set_position(d_.point_.x, d_.point_.y, d_.size_.width, d_.size_.height);
 	}
-	else
-		d_.set_position(liblec::lecui::form_position::center_to_working_area,
-			d_.size_.width, d_.size_.height);
+	else {
+		if (IsWindow(d_.hWnd_parent_) && IsWindowEnabled(d_.hWnd_parent_))
+			d_.set_position(liblec::lecui::form_position::center_to_parent,
+				d_.size_.width, d_.size_.height);
+		else
+			d_.set_position(liblec::lecui::form_position::center_to_working_area,
+				d_.size_.width, d_.size_.height);
+	}
 
 	// perform initialization (d_.hWnd_ will be captured in WM_CREATE)
 	if (!CreateWindowEx(d_.top_most_ == true ? WS_EX_TOPMOST : NULL, wcex.lpszClassName,
@@ -2893,6 +2923,9 @@ bool liblec::lecui::form::show(std::string& error) {
 		}
 	}
 
+	if (d_.parent_closing_)
+		PostQuitMessage(0);
+
 	return true;
 }
 
@@ -2905,6 +2938,18 @@ void liblec::lecui::form::close() {
 			if (timer.running(it.first))
 				timer.stop(it.first);
 		}
+
+		if (!d_.m_children_.empty()) {
+			// children exist, notify them the parent is closing and close them
+			for (auto& child : d_.m_children_) {
+				child.second->d_.parent_closing_ = true;
+				child.second->close();
+			}
+		}
+
+		// enable parent
+		if (IsWindow(d_.hWnd_parent_) && !IsWindowEnabled(d_.hWnd_parent_))
+			EnableWindow(d_.hWnd_parent_, TRUE);
 
 		DestroyWindow(d_.hWnd_);
 	}
