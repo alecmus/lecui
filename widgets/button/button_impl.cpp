@@ -133,8 +133,7 @@ liblec::lecui::widgets_implementation::button::render(ID2D1HwndRenderTarget* p_r
 	D2D1_ROUNDED_RECT rounded_rect{ rect_,
 		specs_.corner_radius_x, specs_.corner_radius_y };
 
-	p_render_target->FillRoundedRectangle(&rounded_rect, !is_enabled_ ? p_brush_disabled_ :
-		is_static_ ? p_brush_fill_ :
+	p_render_target->FillRoundedRectangle(&rounded_rect, is_static_ ? p_brush_fill_ :
 		hit_ && pressed_ ? p_brush_fill_ :
 		hit_ ? p_brush_hot_ :
 		p_brush_fill_);
@@ -154,7 +153,7 @@ liblec::lecui::widgets_implementation::button::render(ID2D1HwndRenderTarget* p_r
 	if (SUCCEEDED(hr)) {
 		// draw the text layout
 		p_render_target->DrawTextLayout(D2D1_POINT_2F{ rect_.left, rect_.top },
-			p_text_layout_, p_brush_, D2D1_DRAW_TEXT_OPTIONS_CLIP);
+			p_text_layout_, is_enabled_ ? p_brush_ : p_brush_disabled_, D2D1_DRAW_TEXT_OPTIONS_CLIP);
 	}
 
 	// release the text layout
