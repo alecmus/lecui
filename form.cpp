@@ -140,6 +140,7 @@ public:
 		reverse_tab_navigation_(false),
 		shift_pressed_(false),
 		space_pressed_(false),
+		lbutton_pressed_(false),
 		new_page_added_(false) {
 		log("entering form_impl constructor");
 
@@ -520,7 +521,8 @@ public:
 					const float& change_in_height,
 					const float& dpi_scale_,
 					ID2D1SolidColorBrush* p_brush_theme_,
-					ID2D1SolidColorBrush* p_brush_theme_hot_) {
+					ID2D1SolidColorBrush* p_brush_theme_hot_,
+					bool lbutton_pressed) {
 					bool render = page_name == current_page;
 
 					if (!allow_render)
@@ -535,81 +537,124 @@ public:
 						// clip
 						auto_clip clip(render, p_render_target_, client_area, 1.f);
 
-						// h_scrollbar
-						{
-							// impose limits
-							if (page.d_page_.h_scrollbar().x_displacement_ < 0.f)
-								page.d_page_.h_scrollbar().x_displacement_ =
-								largest(page.d_page_.h_scrollbar().x_displacement_,
-									page.d_page_.h_scrollbar().max_displacement_left_);
-							else
-								page.d_page_.h_scrollbar().x_displacement_ =
-								smallest(page.d_page_.h_scrollbar().x_displacement_,
-									page.d_page_.h_scrollbar().max_displacement_right_);
+						do {
+							// h_scrollbar
+							{
+								// impose limits
+								if (page.d_page_.h_scrollbar().x_displacement_ < 0.f)
+									page.d_page_.h_scrollbar().x_displacement_ =
+									largest(page.d_page_.h_scrollbar().x_displacement_,
+										page.d_page_.h_scrollbar().max_displacement_left_);
+								else
+									page.d_page_.h_scrollbar().x_displacement_ =
+									smallest(page.d_page_.h_scrollbar().x_displacement_,
+										page.d_page_.h_scrollbar().max_displacement_right_);
 
-							// translate the displacement
-							float x_displacement_translated_ = 0.f;
-							if (page.d_page_.h_scrollbar().translate_x_displacement(
-								page.d_page_.h_scrollbar().x_displacement_, x_displacement_translated_,
-								page.d_page_.h_scrollbar().force_translate_)) {
-								page.d_page_.h_scrollbar().force_translate_ = false;
-								page.d_page_.h_scrollbar().x_off_set_ = x_displacement_translated_;
+								// translate the displacement
+								float x_displacement_translated_ = 0.f;
+								if (page.d_page_.h_scrollbar().translate_x_displacement(
+									page.d_page_.h_scrollbar().x_displacement_, x_displacement_translated_,
+									page.d_page_.h_scrollbar().force_translate_)) {
+									page.d_page_.h_scrollbar().force_translate_ = false;
+									page.d_page_.h_scrollbar().x_off_set_ = x_displacement_translated_;
+								}
 							}
-						}
 
-						// v_scrollbar
-						{
-							// impose limits
-							if (page.d_page_.v_scrollbar().y_displacement_ < 0.f)
-								page.d_page_.v_scrollbar().y_displacement_ =
-								largest(page.d_page_.v_scrollbar().y_displacement_,
-									page.d_page_.v_scrollbar().max_displacement_top_);
-							else
-								page.d_page_.v_scrollbar().y_displacement_ =
-								smallest(page.d_page_.v_scrollbar().y_displacement_,
-									page.d_page_.v_scrollbar().max_displacement_bottom_);
+							// v_scrollbar
+							{
+								// impose limits
+								if (page.d_page_.v_scrollbar().y_displacement_ < 0.f)
+									page.d_page_.v_scrollbar().y_displacement_ =
+									largest(page.d_page_.v_scrollbar().y_displacement_,
+										page.d_page_.v_scrollbar().max_displacement_top_);
+								else
+									page.d_page_.v_scrollbar().y_displacement_ =
+									smallest(page.d_page_.v_scrollbar().y_displacement_,
+										page.d_page_.v_scrollbar().max_displacement_bottom_);
 
-							// translate the displacement
-							float y_displacement_translated_ = 0.f;
-							if (page.d_page_.v_scrollbar().translate_y_displacement(
-								page.d_page_.v_scrollbar().y_displacement_, y_displacement_translated_,
-								page.d_page_.v_scrollbar().force_translate_)) {
-								page.d_page_.v_scrollbar().force_translate_ = false;
-								page.d_page_.v_scrollbar().y_off_set_ = y_displacement_translated_;
+								// translate the displacement
+								float y_displacement_translated_ = 0.f;
+								if (page.d_page_.v_scrollbar().translate_y_displacement(
+									page.d_page_.v_scrollbar().y_displacement_, y_displacement_translated_,
+									page.d_page_.v_scrollbar().force_translate_)) {
+									page.d_page_.v_scrollbar().force_translate_ = false;
+									page.d_page_.v_scrollbar().y_off_set_ = y_displacement_translated_;
+								}
 							}
-						}
 
-						// figure out furthest left and right
+							// figure out furthest left and right
 
-						// measure widgets
-						bool initialized = false;
-						D2D1_RECT_F rect_widgets_ = { 0.f, 0.f, 0.f, 0.f };
-						for (auto& widget : page.d_page_.widgets()) {
-							if (widget.second.type() ==
-								liblec::lecui::widgets_implementation::widget_type::h_scrollbar ||
-								widget.second.type() ==
-								liblec::lecui::widgets_implementation::widget_type::v_scrollbar ||
-								widget.second.type() ==
-								liblec::lecui::widgets_implementation::widget_type::group)
-								continue;
+							// measure widgets
+							bool initialized = false;
+							D2D1_RECT_F rect_widgets_ = { 0.f, 0.f, 0.f, 0.f };
+							for (auto& widget : page.d_page_.widgets()) {
+								if (widget.second.type() ==
+									liblec::lecui::widgets_implementation::widget_type::h_scrollbar ||
+									widget.second.type() ==
+									liblec::lecui::widgets_implementation::widget_type::v_scrollbar ||
+									widget.second.type() ==
+									liblec::lecui::widgets_implementation::widget_type::group)
+									continue;
 
-							rect_widgets_ = widget.second.render(p_render_target_,
-								change_in_width, change_in_height,
-								(page.d_page_.h_scrollbar().x_off_set_ / dpi_scale_) - client_area.left,
-								(page.d_page_.v_scrollbar().y_off_set_ / dpi_scale_) - client_area.top,
-								false);
+								rect_widgets_ = widget.second.render(p_render_target_,
+									change_in_width, change_in_height,
+									(page.d_page_.h_scrollbar().x_off_set_ / dpi_scale_) - client_area.left,
+									(page.d_page_.v_scrollbar().y_off_set_ / dpi_scale_) - client_area.top,
+									false);
 
-							if (!initialized) {
-								initialized = true;
-								rectA = rect_widgets_;
+								if (!initialized) {
+									initialized = true;
+									rectA = rect_widgets_;
+								}
+								else {
+									rectA.left = smallest(rectA.left, rect_widgets_.left);
+									rectA.right = largest(rectA.right, rect_widgets_.right);
+									rectA.top = smallest(rectA.top, rect_widgets_.top);
+									rectA.bottom = largest(rectA.bottom, rect_widgets_.bottom);
+								}
 							}
-							else {
-								rectA.left = smallest(rectA.left, rect_widgets_.left);
-								rectA.right = largest(rectA.right, rect_widgets_.right);
-								rectA.top = smallest(rectA.top, rect_widgets_.top);
-								rectA.bottom = largest(rectA.bottom, rect_widgets_.bottom);
+
+							// only attempt to correct needlessly hidden widgets if the left
+							// mouse button is not pressed
+							if (!lbutton_pressed) {
+								bool correct = false;
+
+								// don't let widgets be needlessly hidden to the left while
+								// there's room on the right!
+								if ((rectA.left < rectB.left) && (rectA.right < rectB.right)) {
+									const auto left = rectA.left - rectB.left;
+									const auto right = rectA.right - rectB.right;
+									const auto x_overflow = abs(left) < abs(right) ? left : right;
+									log(current_page + " correcting needless x_overflow of " +
+										std::to_string(x_overflow));
+
+									// translate the environment
+									page.d_page_.h_scrollbar().x_displacement_ += x_overflow;
+									page.d_page_.h_scrollbar().force_translate_ = true;
+									correct = true;
+								}
+
+								// don't let widgets be needlessly hidden to the top while
+								// there's room at the bottom!
+								if ((rectA.top < rectB.top) && (rectA.bottom < rectB.bottom)) {
+									const auto top = rectA.top - rectB.top;
+									const auto bottom = rectA.bottom - rectB.bottom;
+									const auto y_overflow = abs(top) < abs(bottom) ? top : bottom;
+									log(current_page + " correcting needless y_overflow of " +
+										std::to_string(y_overflow));
+
+									// translate the environment
+									page.d_page_.v_scrollbar().y_displacement_ += y_overflow;
+									page.d_page_.v_scrollbar().force_translate_ = true;
+									correct = true;
+								}
+
+								if (correct)
+									continue;
 							}
-						}
+
+							break;
+						} while (true);
 
 						// resize groupboxes
 						for (auto& widget : page.d_page_.widgets()) {
@@ -729,7 +774,7 @@ public:
 
 										render_page(render, tab.first, tab_control.current_tab_, tab.second,
 											p_render_target_, rect_page, rect_page, change_in_width, change_in_height,
-											dpi_scale_, p_brush_theme_, p_brush_theme_hot_);
+											dpi_scale_, p_brush_theme_, p_brush_theme_hot_, lbutton_pressed);	// recursion
 									}
 								}
 								catch (const std::exception&) {}
@@ -763,7 +808,7 @@ public:
 
 											render_page(render, page.first, pane.current_pane_, page.second,
 												p_render_target_, rect_page, rect_page, change_in_width, change_in_height,
-												dpi_scale_, p_brush_theme_, p_brush_theme_hot_);
+												dpi_scale_, p_brush_theme_, p_brush_theme_hot_, lbutton_pressed);	// recursion
 										}
 									}
 									catch (const std::exception&) {}
@@ -898,7 +943,7 @@ public:
 
 				helper::render_page(true, page.first, current_page_, page.second, p_render_target_,
 					rect_page, client_area, change_in_width, change_in_height, dpi_scale_,
-					p_brush_theme_, p_brush_theme_hot_);
+					p_brush_theme_, p_brush_theme_hot_, lbutton_pressed_);
 			}
 
 			// render form widgets
@@ -1780,6 +1825,7 @@ public:
 			return TRUE;
 
 		case WM_LBUTTONDOWN:
+			form_.value().get().d_.lbutton_pressed_ = true;
 			// capture the mouse
 			SetCapture(hWnd);
 			form_.value().get().d_.on_lbuttondown(form_.value().get().d_.get_cursor_position());
@@ -1789,6 +1835,7 @@ public:
 			// release the mouse capture
 			ReleaseCapture();
 			form_.value().get().d_.on_lbuttonup(form_.value().get().d_.get_cursor_position());
+			form_.value().get().d_.lbutton_pressed_ = false;
 			return NULL;
 
 		case WM_SIZING:
@@ -2744,6 +2791,7 @@ private:
 	bool reverse_tab_navigation_;
 	bool shift_pressed_;
 	bool space_pressed_;
+	bool lbutton_pressed_;
 	bool new_page_added_;
 
 	friend form;
