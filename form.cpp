@@ -2614,7 +2614,7 @@ public:
 				for (size_t i = 1; i < path.size(); i++)
 					path_[i - 1] = path[i];
 
-				return find_widget(page, path_, widget_name);
+				return find_widget(page, path_, widget_name);	// recursion
 			}
 			else {
 				// assume first level is a tab control
@@ -2629,7 +2629,7 @@ public:
 				for (size_t i = 2; i < path.size(); i++)
 					path_[i - 2] = path[i];
 
-				return find_widget(tab, path_, widget_name);
+				return find_widget(tab, path_, widget_name);	// recursion
 			}
 	}
 
@@ -2657,6 +2657,67 @@ public:
 
 				return find_widget(page, path_, widget_name);
 			}
+	}
+
+	// throws on failure!
+	liblec::lecui::containers::page& find_page(
+		liblec::lecui::containers::page& page,
+		const std::vector<std::string>& path,
+		const std::string& widget_name) {
+		if (path.size() == 0)
+			return page;
+		else
+			if (path.size() == 1) {
+				// assume this is a pane
+				const auto& pane_name = path[0];
+				auto& pane = page.d_page_.get_pane(pane_name);
+
+				auto& page = pane.p_panes_.at("pane");
+
+				std::vector<std::string> path_(path.size() - 1);
+				for (size_t i = 1; i < path.size(); i++)
+					path_[i - 1] = path[i];
+
+				return find_page(page, path_, widget_name);	// recursion
+			}
+			else {
+				// assume first level is a tab control
+				const auto& tab_control_name = path[0];
+				auto& tab_control = page.d_page_.get_tab_control(tab_control_name);
+
+				// assume second level is a tab
+				const auto& tab_name = path[1];
+				auto& tab = tab_control.p_tabs_.at(tab_name);
+
+				std::vector<std::string> path_(path.size() - 2);
+				for (size_t i = 2; i < path.size(); i++)
+					path_[i - 2] = path[i];
+
+				return find_page(tab, path_, widget_name);	// recursion
+			}
+	}
+
+	// throws on failure!
+	liblec::lecui::containers::page& find_page(
+		std::map<std::string, liblec::lecui::containers::page>& pages,
+		const std::vector<std::string>& path,
+		const std::string& widget_name) {
+		if (path.size() == 1) {
+			const auto page_name = path[0];
+			return pages.at(page_name);
+		}
+		else {
+			// assume first level is a page
+			const auto page_name = path[0];
+
+			auto& page = pages.at(page_name);
+
+			std::vector<std::string> path_(path.size() - 1);
+			for (size_t i = 1; i < path.size(); i++)
+				path_[i - 1] = path[i];
+
+			return find_page(page, path_, widget_name);
+		}
 	}
 
 	void enable(const std::string& name, bool enable) {
@@ -2696,6 +2757,79 @@ public:
 			parse_widget_path(name, path, widget_name);
 			auto& widget = find_widget(p_pages_, path, widget_name);
 			widget.show(show);
+			update();
+		}
+		catch (const std::exception&) {}
+	}
+
+	void close(const std::string& name) {
+		try {
+			std::vector<std::string> path;
+			std::string widget_name;
+			parse_widget_path(name, path, widget_name);
+
+			auto& widget = find_widget(p_pages_, path, widget_name);
+			auto& page = find_page(p_pages_, path, widget_name);
+
+			const auto type = widget.type();
+
+			///
+			/// close widget by
+			/// 1. removing it from widgets_
+			/// 2. removing it from the page it's in, e.g. tab_controls_ for tab controls
+			/// 3. removing it from widgets_order_
+			
+			// step 1
+			page.d_page_.widgets_.erase(widget_name);
+
+			// step 2
+			switch (type) {
+			case liblec::lecui::widgets_implementation::widget_type::rectangle:
+				page.d_page_.rectangles_.erase(widget_name);
+				break;
+			case liblec::lecui::widgets_implementation::widget_type::label:
+				page.d_page_.labels_.erase(widget_name);
+				break;
+			case liblec::lecui::widgets_implementation::widget_type::group:
+				page.d_page_.groups_.erase(widget_name);
+				break;
+			case liblec::lecui::widgets_implementation::widget_type::tab_control:
+				page.d_page_.tab_controls_.erase(widget_name);
+				break;
+			case liblec::lecui::widgets_implementation::widget_type::button:
+				page.d_page_.buttons_.erase(widget_name);
+				break;
+			case liblec::lecui::widgets_implementation::widget_type::toggle:
+				page.d_page_.toggles_.erase(widget_name);
+				break;
+			case liblec::lecui::widgets_implementation::widget_type::combo:
+				page.d_page_.combos_.erase(widget_name);
+				break;
+			case liblec::lecui::widgets_implementation::widget_type::list:
+				page.d_page_.lists_.erase(widget_name);
+				break;
+			case liblec::lecui::widgets_implementation::widget_type::custom:
+				page.d_page_.customs_.erase(widget_name);
+				break;
+			case liblec::lecui::widgets_implementation::widget_type::pane:
+				page.d_page_.panes_.erase(widget_name);
+				break;
+			case liblec::lecui::widgets_implementation::widget_type::close_button:
+			case liblec::lecui::widgets_implementation::widget_type::maximize_button:
+			case liblec::lecui::widgets_implementation::widget_type::minimize_button:
+			case liblec::lecui::widgets_implementation::widget_type::h_scrollbar:
+			case liblec::lecui::widgets_implementation::widget_type::v_scrollbar:
+			default:
+				break;
+			}
+
+			// step 3
+			std::vector<std::string> widgets_order;
+			for (auto name : page.d_page_.widgets_order_)
+				if (name != widget_name)
+					widgets_order.push_back(name);
+			page.d_page_.widgets_order_ = widgets_order;
+
 			update();
 		}
 		catch (const std::exception&) {}
@@ -3222,6 +3356,16 @@ std::string liblec::lecui::form::save_file(const std::string& file,
 
 void liblec::lecui::form::enable(const std::string& name, bool enable) { d_.enable(name, enable); }
 void liblec::lecui::form::show(const std::string& name, bool show) { d_.show(name, show); }
+void liblec::lecui::form::close(const std::string& name) {
+	// use timer in case a widget is closed from its own handler.
+	// this way the actual closing will be done (hopefully) outside the handler coz of async.
+	// the caller still has to exercise caution by avoiding such logical errors.
+	lecui::widgets::timer(*this).add("close_widget_timer", 0,
+		[&]() {
+			lecui::widgets::timer(*this).stop("close_widget_timer");
+			d_.close(name);
+		});
+}
 
 class liblec::lecui::widgets::timer::timer_impl {
 public:

@@ -71,6 +71,7 @@ namespace liblec {
 
 			void enable(const std::string& name, bool enable);
 			void show(const std::string& name, bool show);
+			void close(const std::string& name);
 
 		private:
 			class form_impl;

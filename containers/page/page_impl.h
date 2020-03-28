@@ -111,4 +111,6 @@ private:
 	std::map<std::string, liblec::lecui::widgets_implementation::list> lists_;
 	std::map<std::string, liblec::lecui::widgets_implementation::custom> customs_;
 	std::map<std::string, liblec::lecui::widgets_implementation::pane> panes_;
+
+	friend liblec::lecui::form;
 };
