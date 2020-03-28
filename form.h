@@ -73,6 +73,8 @@ namespace liblec {
 			void show(const std::string& name, bool show);
 			void close(const std::string& name);
 
+			void refresh();
+
 		private:
 			class form_impl;
 			form_impl& d_;

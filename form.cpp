@@ -3356,6 +3356,7 @@ std::string liblec::lecui::form::save_file(const std::string& file,
 
 void liblec::lecui::form::enable(const std::string& name, bool enable) { d_.enable(name, enable); }
 void liblec::lecui::form::show(const std::string& name, bool show) { d_.show(name, show); }
+
 void liblec::lecui::form::close(const std::string& name) {
 	// use timer in case a widget is closed from its own handler.
 	// this way the actual closing will be done (hopefully) outside the handler coz of async.
@@ -3366,6 +3367,8 @@ void liblec::lecui::form::close(const std::string& name) {
 			d_.close(name);
 		});
 }
+
+void liblec::lecui::form::refresh() { d_.discard_device_resources(); d_.update(); }
 
 class liblec::lecui::widgets::timer::timer_impl {
 public:
