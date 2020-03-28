@@ -106,13 +106,10 @@ liblec::lecui::widgets_implementation::rectangle::render(ID2D1HwndRenderTarget* 
 	D2D1_ROUNDED_RECT rounded_rect{ rect_,
 		specs_.corner_radius_x, specs_.corner_radius_y };
 
-	if (specs_.is_filled)
-		p_render_target->FillRoundedRectangle(&rounded_rect, is_enabled_ ? p_brush_fill_ : p_brush_disabled_);
-	
+	p_render_target->FillRoundedRectangle(&rounded_rect, is_enabled_ ? p_brush_fill_ : p_brush_disabled_);
 	p_render_target->DrawRoundedRectangle(&rounded_rect, is_enabled_ ? p_brush_border_ : p_brush_disabled_, specs_.border);
 
-	if (!is_static_ && is_enabled_)
-	{
+	if (!is_static_ && is_enabled_) {
 		if (hit_ || pressed_)
 			p_render_target->DrawRoundedRectangle(&rounded_rect, p_brush_hot_, pressed_ ? 1.75f : 1.0f);
 

@@ -105,7 +105,7 @@ liblec::lecui::containers::page& liblec::lecui::containers::tab::add(const std::
 
 	// add an invisible rect to bound the page. This is essential for scroll bars to work appropriately when contents don't reach the page borders
 	auto& rectangle = tab_control_.p_tabs_.at(name).d_page_.add_rectangle("minimal_page_border_rect");
-	rectangle.is_filled = false;
+	rectangle.color_fill.alpha = 0;
 
 	// make it transparent
 	rectangle.color_border = { 255, 0, 0, 0 };

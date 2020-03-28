@@ -90,7 +90,7 @@ liblec::lecui::containers::page& liblec::lecui::containers::pane::get() {
 
 	// add an invisible rect to bound the page. This is essential for scroll bars to work appropriately when contents don't reach the page borders
 	auto& rectangle = pane_.p_panes_.at(name).d_page_.add_rectangle("minimal_page_border_rect");
-	rectangle.is_filled = false;
+	rectangle.color_fill.alpha = 0;
 
 	// make it transparent
 	rectangle.color_border = { 255, 0, 0, 0 };

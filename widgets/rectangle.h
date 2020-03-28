@@ -34,7 +34,6 @@ namespace liblec {
 						color_hot = { 20, 80, 140, 100 };
 						color_selected = { 20, 80, 140, 100 };
 					}
-					bool is_filled = true;
 					float border = 0.5f;
 					float corner_radius_x = 0.0f;
 					float corner_radius_y = 0.0f;
