@@ -44,6 +44,7 @@ public:
 	const long width();
 	void height(const long& height);
 	const long height();
+	bool contains(const D2D1_POINT_2F& point);
 
 	liblec::lecui::widgets::specs::rectangle&
 		add_rectangle(const std::string& name);

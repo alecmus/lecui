@@ -1364,7 +1364,7 @@ public:
 
 							for (auto& tab : tab_control.p_tabs_)
 								hittest_hscrollbar(tab.first, tab_control.current_tab_, tab.second,
-									point, point_before, contains, change);
+									point, point_before, contains, change);	// recursion
 						}
 						else
 							if (widget.second.type() ==
@@ -1374,7 +1374,7 @@ public:
 
 								for (auto& page : pane.p_panes_)
 									hittest_hscrollbar(page.first, pane.current_pane_, page.second,
-										point, point_before, contains, change);
+										point, point_before, contains, change);	// recursion
 							}
 					}
 				}
@@ -1406,7 +1406,7 @@ public:
 
 							for (auto& tab : tab_control.p_tabs_)
 								hittest_vscrollbar(tab.first, tab_control.current_tab_, tab.second,
-									point, point_before, contains, change);
+									point, point_before, contains, change);	// recursion
 						}
 						else
 							if (widget.second.type() ==
@@ -1416,23 +1416,30 @@ public:
 
 								for (auto& page : pane.p_panes_)
 									hittest_vscrollbar(page.first, pane.current_pane_, page.second,
-										point, point_before, contains, change);
+										point, point_before, contains, change);	// recursion
 							}
 					}
 				}
 			}
 
 			static void hittest_widgets(liblec::lecui::containers::page& page,
-				const D2D1_POINT_2F& point, bool& contains, bool& change) {
+				const D2D1_POINT_2F& point, bool& contains, bool& change, bool lbutton_pressed) {
+				bool in_page = page.d_page_.contains(point);
+
 				// hit test widgets
 				for (auto& widget : page.d_page_.widgets()) {
+					bool is_scroll_bar = (widget.second.type() ==
+						liblec::lecui::widgets_implementation::widget_type::h_scrollbar) ||
+						(widget.second.type() ==
+							liblec::lecui::widgets_implementation::widget_type::v_scrollbar);
+
 					if (widget.second.is_static() || !widget.second.visible() || !widget.second.enabled())
 						continue;
 
 					if (change)
 						break;
 
-					contains = widget.second.contains(point);
+					contains = (in_page || is_scroll_bar || lbutton_pressed) ? widget.second.contains(point) : false;
 					if (change = widget.second.hit(contains))
 						break;
 
@@ -1444,7 +1451,7 @@ public:
 						auto page_iterator = tab_control.p_tabs_.find(tab_control.current_tab_);
 
 						if (page_iterator != tab_control.p_tabs_.end())
-							helper::hittest_widgets(page_iterator->second, point, contains, change);
+							helper::hittest_widgets(page_iterator->second, point, contains, change, lbutton_pressed);	// recursion
 					}
 					else
 						if (widget.second.type() ==
@@ -1455,7 +1462,7 @@ public:
 							auto page_iterator = pane.p_panes_.find(pane.current_pane_);
 
 							if (page_iterator != pane.p_panes_.end())
-								helper::hittest_widgets(page_iterator->second, point, contains, change);
+								helper::hittest_widgets(page_iterator->second, point, contains, change, lbutton_pressed);	// recursion
 						}
 				}
 			}
@@ -1476,7 +1483,7 @@ public:
 			auto page_iterator = p_pages_.find(current_page_);
 
 			if (page_iterator != p_pages_.end())
-				helper::hittest_widgets(page_iterator->second, point, contains, change);
+				helper::hittest_widgets(page_iterator->second, point, contains, change, lbutton_pressed_);
 		}
 
 		if (!change) {
@@ -1528,8 +1535,15 @@ public:
 			static void check_widgets(liblec::lecui::containers::page& page,
 				const D2D1_POINT_2F& point, const float& dpi_scale, bool& pressed,
 				bool& update_anyway) {
+				bool in_page = page.d_page_.contains(point);
+
 				// check widgets
 				for (auto& widget : page.d_page_.widgets()) {
+					bool is_scroll_bar = (widget.second.type() ==
+						liblec::lecui::widgets_implementation::widget_type::h_scrollbar) ||
+						(widget.second.type() ==
+							liblec::lecui::widgets_implementation::widget_type::v_scrollbar);
+
 					if (widget.second.is_static() || !widget.second.visible() || !widget.second.enabled())
 						continue;
 
@@ -1538,7 +1552,7 @@ public:
 
 					if (!pressed) {
 						// pressed widget not yet found
-						pressed = widget.second.contains(point);
+						pressed = (in_page || is_scroll_bar) ? widget.second.contains(point) : false;
 						widget.second.press(pressed);
 
 						if (widget.second.type() !=

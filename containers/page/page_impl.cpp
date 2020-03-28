@@ -42,6 +42,16 @@ const long liblec::lecui::containers::page::page_impl::width() { return size_.wi
 void liblec::lecui::containers::page::page_impl::height(const long& height) { size_.height = height; }
 const long liblec::lecui::containers::page::page_impl::height() { return size_.height; }
 
+bool liblec::lecui::containers::page::page_impl::contains(const D2D1_POINT_2F& point) {
+	try {
+		// check if minimal page border rect contains the point
+		auto& rect = rectangles_.at("minimal_page_border_rect");
+		return rect.contains(point);
+	}
+	catch (const std::exception&) {}
+	return false;
+}
+
 liblec::lecui::widgets::specs::rectangle&
 liblec::lecui::containers::page::page_impl::add_rectangle(const std::string& name) {
 	rectangles_.try_emplace(name, name_, name);
