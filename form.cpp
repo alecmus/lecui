@@ -41,7 +41,7 @@
 #include <dwmapi.h>		// for DwmExtendFrameIntoClientArea
 #pragma comment(lib, "Dwmapi.lib")
 
-// Direct2D and DirectWrite headers
+// Direct2D, DirectWrite and WIC (Windows Imaging Component) headers
 #include <d2d1.h>
 #include <d2d1helper.h>
 #include <dwrite.h>
@@ -49,6 +49,7 @@
 
 #pragma comment(lib, "d2d1.lib")
 #pragma comment(lib, "dwrite.lib")
+#pragma comment (lib, "windowscodecs.lib")
 
 // COM
 #include <comdef.h>
@@ -164,6 +165,11 @@ public:
 				hres = DWriteCreateFactory(DWRITE_FACTORY_TYPE_SHARED, __uuidof(p_directwrite_factory_),
 					reinterpret_cast<IUnknown * *>(&p_directwrite_factory_));
 			}
+			if (SUCCEEDED(hres)) {
+				// Create IWIC Imaging factory.
+				hres = CoCreateInstance(CLSID_WICImagingFactory, nullptr, CLSCTX_INPROC_SERVER,
+					IID_PPV_ARGS(&p_iwic_factory_));
+			}
 
 			if (FAILED(hres)) {
 				// CoInitializeEx failed, get detailed error information
@@ -200,6 +206,9 @@ public:
 		// ....
 
 		if (initialized_ && instances_ == 1) {
+			// release IWIC Imaging resources used by all instances
+			safe_release(&p_iwic_factory_);
+
 			// release DirectWrite resources used by all instances
 			safe_release(&p_directwrite_factory_);
 
@@ -2855,6 +2864,7 @@ private:
 	static std::atomic<bool> initialized_;
 	static ID2D1Factory* p_direct2d_factory_;
 	static IDWriteFactory* p_directwrite_factory_;
+	static IWICImagingFactory* p_iwic_factory_;
 
 	form* p_parent_;
 	bool parent_closing_;
@@ -2955,6 +2965,7 @@ std::atomic<unsigned long> liblec::lecui::form::form_impl::instances_ = 0;
 std::atomic<bool> liblec::lecui::form::form_impl::initialized_ = false;
 ID2D1Factory* liblec::lecui::form::form_impl::p_direct2d_factory_ = nullptr;
 IDWriteFactory* liblec::lecui::form::form_impl::p_directwrite_factory_ = nullptr;
+IWICImagingFactory* liblec::lecui::form::form_impl::p_iwic_factory_ = nullptr;
 
 // this is the constructor that all the others below call
 liblec::lecui::form::form(const std::string& caption) :
@@ -3549,6 +3560,9 @@ liblec::lecui::containers::page& liblec::lecui::page::add(const std::string& nam
 
 	// specify directwrite factory (used internally for text rendering)
 	d_.fm_.d_.p_pages_.at(name).d_page_.directwrite_factory(d_.fm_.d_.p_directwrite_factory_);
+
+	// specify iwic imaging factory (used internally for image rendering)
+	d_.fm_.d_.p_pages_.at(name).d_page_.iwic_factory(d_.fm_.d_.p_iwic_factory_);
 
 	const long thickness = 10;
 	const long margin = static_cast<long>(d_.fm_.d_.page_tolerance_ + 0.5);

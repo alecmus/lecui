@@ -18,6 +18,7 @@
 #include <Windows.h>
 #include <d2d1.h>
 #include <dwrite.h>
+#include <wincodec.h>
 
 #include <iostream>
 #include <string>
@@ -335,7 +336,8 @@ public:
 		float tolerance) :
 		render_(render),
 		p_render_target_(p_render_target),
-		rect_({ rect.left - tolerance, rect.top - tolerance, rect.right + tolerance, rect.bottom + tolerance }) {
+		rect_({ rect.left - tolerance, rect.top - tolerance,
+			rect.right + tolerance, rect.bottom + tolerance }) {
 		if (render)
 			p_render_target_->PushAxisAlignedClip(rect_,
 				D2D1_ANTIALIAS_MODE_PER_PRIMITIVE);
@@ -351,3 +353,190 @@ private:
 	ID2D1HwndRenderTarget* p_render_target_;
 	D2D1_RECT_F rect_;
 };
+
+static inline HRESULT load_bitmap_resource(ID2D1RenderTarget* pRenderTarget,
+	IWICImagingFactory* pIWICFactory, HINSTANCE hInst, PCWSTR resourceName,
+	PCWSTR resourceType, ID2D1Bitmap** ppBitmap) {
+	IWICBitmapDecoder* pDecoder = NULL;
+	IWICBitmapFrameDecode* pSource = NULL;
+	IWICStream* pStream = NULL;
+	IWICFormatConverter* pConverter = NULL;
+
+	HRSRC imageResHandle = NULL;
+	HGLOBAL imageResDataHandle = NULL;
+	void* pImageFile = NULL;
+	DWORD imageFileSize = 0;
+
+	// Locate the resource.
+	imageResHandle = FindResourceW(hInst, resourceName, resourceType);
+	HRESULT hr = imageResHandle ? S_OK : E_FAIL;
+	if (SUCCEEDED(hr)) {
+		// Load the resource.
+		imageResDataHandle = LoadResource(hInst, imageResHandle);
+		hr = imageResDataHandle ? S_OK : E_FAIL;
+	}
+
+	if (SUCCEEDED(hr)) {
+		// Lock it to get a system memory pointer.
+		pImageFile = LockResource(imageResDataHandle);
+		hr = pImageFile ? S_OK : E_FAIL;
+	}
+
+	if (SUCCEEDED(hr)) {
+		// Calculate the size.
+		imageFileSize = SizeofResource(hInst, imageResHandle);
+		hr = imageFileSize ? S_OK : E_FAIL;
+	}
+	if (SUCCEEDED(hr)) {
+		// Create a WIC stream to map onto the memory.
+		hr = pIWICFactory->CreateStream(&pStream);
+	}
+	if (SUCCEEDED(hr)) {
+		// Initialize the stream with the memory pointer and size.
+		hr = pStream->InitializeFromMemory(reinterpret_cast<BYTE*>(pImageFile), imageFileSize);
+	}
+	if (SUCCEEDED(hr)) {
+		// Create a decoder for the stream.
+		hr = pIWICFactory->CreateDecoderFromStream(pStream, NULL,
+			WICDecodeMetadataCacheOnLoad, &pDecoder);
+	}
+	if (SUCCEEDED(hr)) {
+		// Create the initial frame.
+		hr = pDecoder->GetFrame(0, &pSource);
+	}
+	if (SUCCEEDED(hr)) {
+		// Convert the image format to 32bppPBGRA
+		// (DXGI_FORMAT_B8G8R8A8_UNORM + D2D1_ALPHA_MODE_PREMULTIPLIED).
+		hr = pIWICFactory->CreateFormatConverter(&pConverter);
+	}
+	if (SUCCEEDED(hr)) {
+		hr = pConverter->Initialize(pSource, GUID_WICPixelFormat32bppPBGRA,
+			WICBitmapDitherTypeNone, NULL, 0.f, WICBitmapPaletteTypeMedianCut);
+	}
+	if (SUCCEEDED(hr)) {
+		//create a Direct2D bitmap from the WIC bitmap.
+		hr = pRenderTarget->CreateBitmapFromWicBitmap(pConverter, NULL, ppBitmap);
+	}
+
+	safe_release(&pDecoder);
+	safe_release(&pSource);
+	safe_release(&pStream);
+	safe_release(&pConverter);
+	return hr;
+}
+
+static inline HRESULT load_bitmap_file(ID2D1RenderTarget* pRenderTarget,
+	IWICImagingFactory* pIWICFactory, PCWSTR uri, ID2D1Bitmap** ppBitmap) {
+	IWICBitmapDecoder* pDecoder = NULL;
+	IWICBitmapFrameDecode* pSource = NULL;
+	IWICFormatConverter* pConverter = NULL;
+
+	HRESULT hr = pIWICFactory->CreateDecoderFromFilename(uri, NULL, GENERIC_READ,
+		WICDecodeMetadataCacheOnLoad, &pDecoder);
+
+	if (SUCCEEDED(hr)) {
+		// Create the initial frame.
+		hr = pDecoder->GetFrame(0, &pSource);
+	}
+
+	if (SUCCEEDED(hr)) {
+		// Convert the image format to 32bppPBGRA
+		// (DXGI_FORMAT_B8G8R8A8_UNORM + D2D1_ALPHA_MODE_PREMULTIPLIED).
+		hr = pIWICFactory->CreateFormatConverter(&pConverter);
+	}
+
+	if (SUCCEEDED(hr)) {
+		hr = pConverter->Initialize(pSource, GUID_WICPixelFormat32bppPBGRA,
+			WICBitmapDitherTypeNone, NULL, 0.f, WICBitmapPaletteTypeMedianCut);
+	}
+
+	if (SUCCEEDED(hr)) {
+		// Create a Direct2D bitmap from the WIC bitmap.
+		hr = pRenderTarget->CreateBitmapFromWicBitmap(pConverter, NULL, ppBitmap);
+	}
+
+	safe_release(&pDecoder);
+	safe_release(&pSource);
+	safe_release(&pConverter);
+	return hr;
+}
+
+/// <summary>
+/// Fit a rectangle within another.
+/// </summary>
+/// <param name="rect_container">The container rectangle.</param>
+/// <param name="stretch">Whether to stretch the bitmap to the supplied dimensions.</param>
+/// <param name="enlarge_if_smaller">Enlarge if it's smaller than the container.</param>
+/// <param name="center">Whether to center the rectangle in the container.</param>
+/// <param name="rect"></param>
+static inline void fit_rect(const D2D1_RECT_F rect_container, D2D1_RECT_F& rect,
+	bool stretch, bool enlarge_if_smaller, bool center) {
+	auto width = rect_container.right - rect_container.left;
+	auto height = rect_container.bottom - rect_container.top;
+
+	// deduce old height and ratio
+	const auto old_height = rect.bottom - rect.top;
+	const auto old_width = rect.right - rect.left;
+	const auto ratio = old_width / old_height;
+
+	if (enlarge_if_smaller == false) {
+		if (old_width < width && old_height < height) {
+			// both sides of the rectangle are smaller than the container, preserve size
+			width = old_width;
+			height = old_height;
+		}
+	}
+
+	// save target dimensions
+	const auto control_w = width;
+	const auto control_h = height;
+
+	if (ratio == 1) {
+		if (!stretch) {
+			if (width > height)
+				width = height;	// landscape
+			else
+				height = width;	// portrait
+		}
+	}
+	else {
+		if (!stretch) {
+			// adjust either new width or height to keep aspect ratio
+			if (old_width > old_height) {
+				// old width is greater than old height
+				// adjust new height using new width to keep aspect ratio
+				height = width / ratio;
+
+				if (height > control_h) {
+					// new width is greater than target width, adjust it accordingly
+					height = control_h;
+					width = height * ratio;
+				}
+			}
+			else {
+				// old height is greater than old width
+				// adjust new width using new height to keep aspect ratio
+				width = height * ratio;
+
+				if (width > control_w) {
+					// new width is greater than target width, adjust it accordingly
+					width = control_w;
+					height = width / ratio;
+				}
+			}
+		}
+	}
+
+	rect.left = 0.f;
+	rect.top = 0.f;
+
+	if (center) {
+		rect.left = ((rect_container.right - rect_container.left) - width) / 2.f;
+		rect.top = ((rect_container.bottom - rect_container.top) - height) / 2.f;
+	}
+
+	rect.left += rect_container.left;
+	rect.top += rect_container.top;
+	rect.right = rect.left + width;
+	rect.bottom = rect.top + height;
+}

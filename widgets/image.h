@@ -1,5 +1,5 @@
 /*
-** custom.h - custom widget interface
+** image.h - image interface
 **
 ** lecui user interface library
 ** Copyright (c) 2019 Alec T. Musasa (alecmus at live dot com)
@@ -27,32 +27,36 @@ namespace liblec {
 
 		namespace widgets {
 			namespace specs {
-				class custom : public widget {
+				class image : public widget {
 				public:
-					std::function<void(void* ID2D1HwndRenderTarget_, void* IDWriteFactory_,
-						void* IWICImagingFactory_)>
-						on_create_resources = nullptr;
-					std::function<void()> on_discard_resources = nullptr;
-					std::function<
-						void(void* D2D1_RECT_F_, bool enabled_, bool hit_,
-							bool pressed_, bool selected_)> on_render = nullptr;
+					image() {
+						color_fill = { 222, 222, 222, 0 };
+						color_hot = { 20, 80, 140, 100 };
+						color_selected = { 20, 80, 140, 100 };
+					}
+					float border = 0.5f;
+					float corner_radius_x = 0.0f;
+					float corner_radius_y = 0.0f;
+					liblec::lecui::color color_border = { 150, 150, 150, 255 };
+					std::string file;
+					int png_resource = 0;
 				};
 			}
 
-			class lecui_api custom {
+			class lecui_api image {
 			public:
-				custom(liblec::lecui::containers::page& page);
-				~custom();
+				image(liblec::lecui::containers::page& page);
+				~image();
 
-				liblec::lecui::widgets::specs::custom& add(const std::string& name);
+				liblec::lecui::widgets::specs::image& add(const std::string& name);
 
 			private:
-				class custom_impl;
-				custom_impl& d_;
+				class image_impl;
+				image_impl& d_;
 
-				custom();
-				custom(const custom&);
-				custom& operator=(const custom&);
+				image();
+				image(const image&);
+				image& operator=(const image&);
 			};
 		}
 	}

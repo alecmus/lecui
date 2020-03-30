@@ -55,6 +55,9 @@ liblec::lecui::containers::page& liblec::lecui::containers::pane::get() {
 	// specify directwrite factory (used internally for text rendering)
 	pane_.p_panes_.at(name).d_page_.directwrite_factory(d_.page_.d_page_.directwrite_factory());
 
+	// specify iwic imaging factory (used internally for image rendering)
+	pane_.p_panes_.at(name).d_page_.iwic_factory(d_.page_.d_page_.iwic_factory());
+
 	const long thickness = 10;
 	const long margin = 10;
 	const float page_tolerance_ = 10.f;

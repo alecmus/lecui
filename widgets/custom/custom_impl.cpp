@@ -37,8 +37,9 @@ liblec::lecui::widgets::specs::custom& liblec::lecui::widgets::custom::add(const
 
 liblec::lecui::widgets_implementation::custom::custom(const std::string& page,
 	const std::string& name,
-	IDWriteFactory* p_directwrite_factory) :
-	p_directwrite_factory_(p_directwrite_factory) {
+	IDWriteFactory* p_directwrite_factory, IWICImagingFactory* p_iwic_factory) :
+	p_directwrite_factory_(p_directwrite_factory),
+	p_iwic_factory_(p_iwic_factory){
 	page_ = page;
 	name_ = name;
 	log("constructor: " + page_ + ":" + name_);
@@ -68,7 +69,7 @@ HRESULT liblec::lecui::widgets_implementation::custom::create_resources(
 	is_static_ = (specs_.on_click == nullptr);
 
 	if (specs_.on_create_resources != nullptr)
-		specs_.on_create_resources(p_render_target, p_directwrite_factory_);
+		specs_.on_create_resources(p_render_target, p_directwrite_factory_, p_iwic_factory_);
 
 	return S_OK;
 }

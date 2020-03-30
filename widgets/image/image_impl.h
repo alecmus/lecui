@@ -1,5 +1,5 @@
 /*
-** custom_impl.h - custom widget interface
+** image_impl.h - image widget interface
 **
 ** lecui user interface library
 ** Copyright (c) 2019 Alec T. Musasa (alecmus at live dot com)
@@ -15,18 +15,17 @@
 
 #include "../../form_common.h"
 #include "../widget_impl.h"
-#include "../custom.h"
+#include "../image.h"
 
 namespace liblec {
 	namespace lecui {
 		namespace widgets_implementation {
-			class custom : public widget {
+			class image : public widget {
 			public:
-				custom(const std::string& page,
+				image(const std::string& page,
 					const std::string& name,
-					IDWriteFactory* p_directwrite_factory,
-					IWICImagingFactory* p_iwic_factory);
-				~custom();
+					IWICImagingFactory* p_IWICFactory);
+				~image();
 
 				// virtual function override
 
@@ -42,19 +41,23 @@ namespace liblec {
 
 				// widget specific
 
-				liblec::lecui::widgets::specs::custom& specs();
+				liblec::lecui::widgets::specs::image& specs();
 
 			private:
-				custom() :
-					custom(std::string(), std::string(), nullptr, nullptr) {}
+				image() :
+					image(std::string(), std::string(), nullptr) {}
 
-				custom(const custom&);
-				custom& operator=(const custom&);
+				image(const image&);
+				image& operator=(const image&);
 
-				liblec::lecui::widgets::specs::custom specs_;
-
-				IDWriteFactory* p_directwrite_factory_;
-				IWICImagingFactory* p_iwic_factory_;
+				liblec::lecui::widgets::specs::image specs_;
+				ID2D1SolidColorBrush* p_brush_fill_;
+				ID2D1SolidColorBrush* p_brush_border_;
+				ID2D1SolidColorBrush* p_brush_hot_;
+				ID2D1SolidColorBrush* p_brush_disabled_;
+				ID2D1SolidColorBrush* p_brush_selected_;
+				ID2D1Bitmap* p_bitmap_;
+				IWICImagingFactory* p_IWICFactory_;
 			};
 		}
 	}

@@ -15,6 +15,7 @@
 
 liblec::lecui::containers::page::page_impl::page_impl(const std::string& name) :
 	p_directwrite_factory_(nullptr),
+	p_iwic_factory_(nullptr),
 	name_(name),
 	h_scrollbar_(name),
 	v_scrollbar_(name) {
@@ -35,6 +36,15 @@ IDWriteFactory* liblec::lecui::containers::page::page_impl::directwrite_factory(
 	return p_directwrite_factory_;
 }
 
+void
+liblec::lecui::containers::page::page_impl::iwic_factory(IWICImagingFactory* p_iwic_factory) {
+	p_iwic_factory_ = p_iwic_factory;
+}
+
+IWICImagingFactory* liblec::lecui::containers::page::page_impl::iwic_factory() {
+	return p_iwic_factory_;
+}
+
 void liblec::lecui::containers::page::page_impl::size(const liblec::lecui::size& size) { size_ = size; }
 const liblec::lecui::size& liblec::lecui::containers::page::page_impl::size() { return size_; }
 void liblec::lecui::containers::page::page_impl::width(const long& width) { size_.width = width; }
@@ -50,6 +60,22 @@ bool liblec::lecui::containers::page::page_impl::contains(const D2D1_POINT_2F& p
 	}
 	catch (const std::exception&) {}
 	return false;
+}
+
+liblec::lecui::containers::specs::tab_control&
+liblec::lecui::containers::page::page_impl::add_tab_control(const std::string& name) {
+	tab_controls_.try_emplace(name, name_, name, p_directwrite_factory_);
+	widgets_.emplace(name, tab_controls_.at(name));
+	widgets_order_.emplace_back(name);
+	return tab_controls_.at(name).specs();
+}
+
+liblec::lecui::containers::specs::pane&
+liblec::lecui::containers::page::page_impl::add_pane(const std::string& name) {
+	panes_.try_emplace(name, name_, name);
+	widgets_.emplace(name, panes_.at(name));
+	widgets_order_.emplace_back(name);
+	return panes_.at(name).specs();
 }
 
 liblec::lecui::widgets::specs::rectangle&
@@ -74,14 +100,6 @@ liblec::lecui::containers::page::page_impl::add_group(const std::string& name) {
 	widgets_.emplace(name, groups_.at(name));
 	widgets_order_.emplace_back(name);
 	return groups_.at(name).specs();
-}
-
-liblec::lecui::containers::specs::tab_control&
-liblec::lecui::containers::page::page_impl::add_tab_control(const std::string& name) {
-	tab_controls_.try_emplace(name, name_, name, p_directwrite_factory_);
-	widgets_.emplace(name, tab_controls_.at(name));
-	widgets_order_.emplace_back(name);
-	return tab_controls_.at(name).specs();
 }
 
 liblec::lecui::widgets::specs::button&
@@ -118,18 +136,18 @@ liblec::lecui::containers::page::page_impl::add_list(const std::string& name) {
 
 liblec::lecui::widgets::specs::custom&
 liblec::lecui::containers::page::page_impl::add_custom(const std::string& name) {
-	customs_.try_emplace(name, name_, name, p_directwrite_factory_);
+	customs_.try_emplace(name, name_, name, p_directwrite_factory_, p_iwic_factory_);
 	widgets_.emplace(name, customs_.at(name));
 	widgets_order_.emplace_back(name);
 	return customs_.at(name).specs();
 }
 
-liblec::lecui::containers::specs::pane&
-liblec::lecui::containers::page::page_impl::add_pane(const std::string& name) {
-	panes_.try_emplace(name, name_, name);
-	widgets_.emplace(name, panes_.at(name));
+liblec::lecui::widgets::specs::image&
+liblec::lecui::containers::page::page_impl::add_image(const std::string& name) {
+	images_.try_emplace(name, name_, name, p_iwic_factory_);
+	widgets_.emplace(name, images_.at(name));
 	widgets_order_.emplace_back(name);
-	return panes_.at(name).specs();
+	return images_.at(name).specs();
 }
 
 std::map<std::string, liblec::lecui::widgets_implementation::widget&>&
@@ -143,11 +161,14 @@ liblec::lecui::containers::page::page_impl::h_scrollbar() { return h_scrollbar_;
 liblec::lecui::widgets_implementation::v_scrollbar&
 liblec::lecui::containers::page::page_impl::v_scrollbar() { return v_scrollbar_; }
 
-liblec::lecui::widgets_implementation::group&
-liblec::lecui::containers::page::page_impl::get_group(const std::string& name) { return groups_.at(name); }
-
 liblec::lecui::widgets_implementation::tab_control&
 liblec::lecui::containers::page::page_impl::get_tab_control(const std::string& name) { return tab_controls_.at(name); }
+
+liblec::lecui::widgets_implementation::pane&
+liblec::lecui::containers::page::page_impl::get_pane(const std::string& name) { return panes_.at(name); }
+
+liblec::lecui::widgets_implementation::group&
+liblec::lecui::containers::page::page_impl::get_group(const std::string& name) { return groups_.at(name); }
 
 liblec::lecui::widgets_implementation::toggle&
 liblec::lecui::containers::page::page_impl::get_toggle(const std::string& name) { return toggles_.at(name); }
@@ -161,8 +182,8 @@ liblec::lecui::containers::page::page_impl::get_list(const std::string& name) { 
 liblec::lecui::widgets_implementation::custom&
 liblec::lecui::containers::page::page_impl::get_custom(const std::string& name) { return customs_.at(name); }
 
-liblec::lecui::widgets_implementation::pane&
-liblec::lecui::containers::page::page_impl::get_pane(const std::string& name) { return panes_.at(name); }
+liblec::lecui::widgets_implementation::image&
+liblec::lecui::containers::page::page_impl::get_image(const std::string& name) { return images_.at(name); }
 
 liblec::lecui::containers::page::page(const std::string& name) :
 	d_page_(*new liblec::lecui::containers::page::page_impl(name)) {}

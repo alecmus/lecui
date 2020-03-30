@@ -69,6 +69,9 @@ liblec::lecui::containers::page& liblec::lecui::containers::tab::add(const std::
 	// specify directwrite factory (used internally for text rendering)
 	tab_control_.p_tabs_.at(name).d_page_.directwrite_factory(d_.tc_.d_.page_.d_page_.directwrite_factory());
 
+	// specify iwic imaging factory (used internally for image rendering)
+	tab_control_.p_tabs_.at(name).d_page_.iwic_factory(d_.tc_.d_.page_.d_page_.iwic_factory());
+
 	const long thickness = 10;
 	const long margin = 10;
 	const float page_tolerance_ = 10.f;

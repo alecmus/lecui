@@ -65,6 +65,9 @@
     <Filter Include="lecui\widgets\v_scrollbar">
       <UniqueIdentifier>{a5a36564-a316-4ee2-9738-c9f5dcc00668}</UniqueIdentifier>
     </Filter>
+    <Filter Include="lecui\widgets\image">
+      <UniqueIdentifier>{5b4c8621-0198-4500-8d24-7cd7214ff67c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="error\win_error.h">
@@ -176,6 +179,12 @@
       <Filter>lecui</Filter>
     </ClInclude>
     <ClInclude Include="lecui.h" />
+    <ClInclude Include="widgets\image.h">
+      <Filter>lecui\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="widgets\image\image_impl.h">
+      <Filter>lecui\widgets\image</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="error\win_error.cpp">
@@ -236,6 +245,9 @@
       <Filter>lecui\widgets\v_scrollbar</Filter>
     </ClCompile>
     <ClCompile Include="lecui.cpp" />
+    <ClCompile Include="widgets\image\image_impl.cpp">
+      <Filter>lecui\widgets\image</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="LICENSE.md">

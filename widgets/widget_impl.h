@@ -41,16 +41,18 @@ namespace liblec {
 				h_scrollbar,
 				v_scrollbar,
 
+				tab_control,
+				pane,
+
 				rectangle,
 				label,
 				group,
-				tab_control,
 				button,
 				toggle,
 				combo,
 				list,
 				custom,
-				pane,
+				image,
 			};
 
 			class widget {
