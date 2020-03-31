@@ -20,6 +20,34 @@
 namespace liblec {
 	namespace lecui {
 		namespace widgets_implementation {
+			struct text_range_properties {
+				DWRITE_TEXT_RANGE text_range = { 0, 0 };
+				std::string font;
+				float size = 0.0f;
+				bool bold = false;
+				bool italic = false;
+				bool underline = false;
+				D2D1_COLOR_F color = { 0.f, 0.f, 0.f, 1.f };
+			};
+
+			void parse_formatted_text(const std::string& formatted_text,
+				std::string& plain_text_,
+				std::vector<text_range_properties>& formatting_);
+
+			void apply_formatting(const std::vector<text_range_properties>& formatting_,
+				ID2D1HwndRenderTarget* p_render_target,
+				IDWriteTextLayout* p_text_layout_,
+				bool is_enabled,
+				ID2D1SolidColorBrush* p_brush_disabled);
+
+			D2D1_RECT_F measure_label(IDWriteFactory* p_directwrite_factory_,
+				const std::string& formatted_text,
+				const std::string& font,
+				const float font_size,
+				bool center_h,
+				bool center_v,
+				const D2D1_RECT_F max_rect);
+
 			class label : public widget {
 			public:
 				label(const std::string& page,
@@ -49,17 +77,6 @@ namespace liblec {
 
 				label(const label&);
 				label& operator=(const label&);
-
-				struct text_range_properties
-				{
-					DWRITE_TEXT_RANGE text_range = { 0, 0 };
-					std::string font;
-					float size = 0.0f;
-					bool bold = false;
-					bool italic = false;
-					bool underline = false;
-					D2D1_COLOR_F color = { 0.f, 0.f, 0.f, 1.f };
-				};
 
 				liblec::lecui::widgets::specs::label specs_;
 				ID2D1SolidColorBrush* p_brush_;
