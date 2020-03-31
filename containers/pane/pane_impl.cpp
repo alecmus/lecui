@@ -168,11 +168,13 @@ HRESULT liblec::lecui::widgets_implementation::pane::create_resources(
 		hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_disabled),
 			&p_brush_disabled_);
 
+	resources_created_ = true;
 	return hr;
 }
 
 void liblec::lecui::widgets_implementation::pane::discard_resources() {
 	log("discarding resources: " + page_ + ":" + name_);
+	resources_created_ = false;
 	safe_release(&p_brush_);
 	safe_release(&p_brush_fill_);
 	safe_release(&p_brush_border_);
@@ -183,6 +185,9 @@ D2D1_RECT_F&
 liblec::lecui::widgets_implementation::pane::render(ID2D1HwndRenderTarget* p_render_target,
 	const float& change_in_width, const float& change_in_height, float x_off_set, float y_off_set,
 	const bool& render) {
+	if (!resources_created_)
+		create_resources(p_render_target);
+
 	rect_pane_ = position(specs_.rect, specs_.resize, change_in_width, change_in_height);
 	rect_pane_.left -= x_off_set;
 	rect_pane_.right -= x_off_set;

@@ -27,7 +27,8 @@ liblec::lecui::widgets_implementation::widget::widget() :
 	selected_(false),
 	point_on_press_({ 0.f,0.f }),
 	point_on_release_({ 0.f,0.f }),
-	draw_menu_(false) {
+	draw_menu_(false),
+	resources_created_(false) {
 	log("entering widget constructor");
 
 	HDC hdc_screen = GetDC(NULL);

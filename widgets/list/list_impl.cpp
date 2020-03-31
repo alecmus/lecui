@@ -188,11 +188,13 @@ HRESULT liblec::lecui::widgets_implementation::list::create_resources(
 		make_single_line(p_directwrite_factory_, p_text_format_);
 	}
 
+	resources_created_ = true;
 	return hr;
 }
 
 void liblec::lecui::widgets_implementation::list::discard_resources() {
 	log("discarding resources: " + page_ + ":" + name_);
+	resources_created_ = false;
 	safe_release(&p_brush_);
 	safe_release(&p_brush_fill_);
 	safe_release(&p_brush_scrollbar_border_);
@@ -219,6 +221,9 @@ D2D1_RECT_F&
 liblec::lecui::widgets_implementation::list::render(ID2D1HwndRenderTarget* p_render_target,
 	const float& change_in_width, const float& change_in_height, float x_off_set, float y_off_set,
 	const bool& render) {
+	if (!resources_created_)
+		create_resources(p_render_target);
+
 	const int precision = 3;	// to prevent false-positives (4 is enough, 3 is a failsafe)
 	auto equal = [&](const D2D1_RECT_F& rect_1, const D2D1_RECT_F& rect_2) {
 		if (roundoff::tof(rect_1.left, precision) == roundoff::tof(rect_2.left, precision) &&

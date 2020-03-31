@@ -110,6 +110,7 @@ namespace liblec {
 				bool selected_;
 				D2D1_POINT_2F point_on_press_, point_on_release_;
 				bool draw_menu_;
+				bool resources_created_;	// for the creation of widget resources on-the-fly
 			};
 		}
 	}

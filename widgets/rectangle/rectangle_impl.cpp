@@ -78,11 +78,14 @@ HRESULT liblec::lecui::widgets_implementation::rectangle::create_resources(
 	if (SUCCEEDED(hr))
 		hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_selected),
 			&p_brush_selected_);
+
+	resources_created_ = true;
 	return hr;
 }
 
 void liblec::lecui::widgets_implementation::rectangle::discard_resources() {
 	log("discarding resources: " + page_ + ":" + name_);
+	resources_created_ = false;
 	safe_release(&p_brush_fill_);
 	safe_release(&p_brush_border_);
 	safe_release(&p_brush_hot_);
@@ -94,6 +97,9 @@ D2D1_RECT_F&
 liblec::lecui::widgets_implementation::rectangle::render(ID2D1HwndRenderTarget* p_render_target,
 	const float& change_in_width, const float& change_in_height, float x_off_set, float y_off_set,
 	const bool& render) {
+	if (!resources_created_)
+		create_resources(p_render_target);
+
 	rect_ = position(specs_.rect, specs_.resize, change_in_width, change_in_height);
 	rect_.left -= x_off_set;
 	rect_.right -= x_off_set;

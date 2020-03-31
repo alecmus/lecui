@@ -84,11 +84,13 @@ HRESULT liblec::lecui::widgets_implementation::image::create_resources(
 		load_bitmap_file(p_render_target, p_IWICFactory_, convert_string(specs_.file).c_str(),
 			&p_bitmap_);
 
+	resources_created_ = true;
 	return hr;
 }
 
 void liblec::lecui::widgets_implementation::image::discard_resources() {
 	log("discarding resources: " + page_ + ":" + name_);
+	resources_created_ = false;
 	safe_release(&p_brush_fill_);
 	safe_release(&p_brush_border_);
 	safe_release(&p_brush_hot_);
@@ -101,6 +103,9 @@ D2D1_RECT_F&
 liblec::lecui::widgets_implementation::image::render(ID2D1HwndRenderTarget* p_render_target,
 	const float& change_in_width, const float& change_in_height, float x_off_set, float y_off_set,
 	const bool& render) {
+	if (!resources_created_)
+		create_resources(p_render_target);
+
 	rect_ = position(specs_.rect, specs_.resize, change_in_width, change_in_height);
 	rect_.left -= x_off_set;
 	rect_.right -= x_off_set;

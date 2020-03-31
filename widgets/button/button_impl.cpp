@@ -103,11 +103,13 @@ HRESULT liblec::lecui::widgets_implementation::button::create_resources(
 		make_single_line(p_directwrite_factory_, p_text_format_);
 	}
 
+	resources_created_ = true;
 	return hr;
 }
 
 void liblec::lecui::widgets_implementation::button::discard_resources() {
 	log("discarding resources: " + page_ + ":" + name_);
+	resources_created_ = false;
 	safe_release(&p_brush_);
 	safe_release(&p_brush_border_);
 	safe_release(&p_brush_fill_);
@@ -121,6 +123,9 @@ D2D1_RECT_F&
 liblec::lecui::widgets_implementation::button::render(ID2D1HwndRenderTarget* p_render_target,
 	const float& change_in_width, const float& change_in_height, float x_off_set, float y_off_set,
 	const bool& render) {
+	if (!resources_created_)
+		create_resources(p_render_target);
+
 	rect_ = position(specs_.rect, specs_.resize, change_in_width, change_in_height);
 	rect_.left -= x_off_set;
 	rect_.right -= x_off_set;

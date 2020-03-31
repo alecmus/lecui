@@ -142,7 +142,6 @@ public:
 		shift_pressed_(false),
 		space_pressed_(false),
 		lbutton_pressed_(false),
-		new_page_added_(false),
 		on_drop_files_(nullptr) {
 		log("entering form_impl constructor");
 
@@ -237,6 +236,13 @@ public:
 
 	/// Creates resources that are bound to a particular Direct3D device. These resources need to
 	/// be recreated if the Direct3D device disappears, such as when the display changes, etc
+	/// 
+	/// This function will only create widget resources for those pages that have been
+	/// added in layout(). The resources for pages added later will be created
+	/// on-the-fly through the use of the
+	/// liblec::lecui::widgets_implementation::widget::resources_created_ flag (this flag is
+	/// used internally by each widget's implementation to check if resources have been created
+	/// and to create them if not).
 	HRESULT create_device_resources() {
 		HRESULT hr = S_OK;
 
@@ -476,11 +482,6 @@ public:
 	/// This method discards device-specific resources if the Direct3D device dissapears during
 	/// execution and recreates the resources the next time it's invoked
 	HRESULT on_render() {
-		if (new_page_added_) {
-			new_page_added_ = false;	// reset flag
-			discard_device_resources();
-		}
-
 		HRESULT hr = S_OK;
 
 		hr = create_device_resources();
@@ -2969,7 +2970,6 @@ private:
 	bool shift_pressed_;
 	bool space_pressed_;
 	bool lbutton_pressed_;
-	bool new_page_added_;
 
 	std::function<void(const std::string& file)> on_drop_files_;
 
@@ -3584,7 +3584,6 @@ liblec::lecui::containers::page& liblec::lecui::page::add(const std::string& nam
 	}
 
 	d_.fm_.d_.p_pages_.emplace(name, name);
-	d_.fm_.d_.new_page_added_ = true;		// essential for this page's resources to be created
 
 	// specify directwrite factory (used internally for text rendering)
 	d_.fm_.d_.p_pages_.at(name).d_page_.directwrite_factory(d_.fm_.d_.p_directwrite_factory_);
