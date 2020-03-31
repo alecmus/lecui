@@ -142,7 +142,8 @@ public:
 		shift_pressed_(false),
 		space_pressed_(false),
 		lbutton_pressed_(false),
-		new_page_added_(false) {
+		new_page_added_(false),
+		on_drop_files_(nullptr) {
 		log("entering form_impl constructor");
 
 		++instances_;	// increment instances count
@@ -1841,6 +1842,8 @@ public:
 				SetWindowLong(hWnd, GWL_STYLE,
 					GetWindowLong(hWnd, GWL_STYLE) & ~(WS_SIZEBOX | WS_MAXIMIZEBOX));
 
+			form_.value().get().on_start();
+
 			for (auto& it : form_.value().get().d_.timers_)
 				if (!it.second.running)
 					form_.value().get().d_.start_timer(it.first);
@@ -2051,6 +2054,7 @@ public:
 			return NULL;
 
 		case WM_DESTROY:
+			form_.value().get().on_shutdown();
 			PostQuitMessage(0);
 			return NULL;
 
@@ -2564,6 +2568,21 @@ public:
 		}
 		break;
 
+		case WM_DROPFILES: {
+			if (form_.value().get().d_.on_drop_files_ != nullptr) {
+				// a file has been dropped onto the form
+				CHAR file[MAX_PATH];
+				ZeroMemory(file, sizeof(file));
+
+				HDROP hDrp = (HDROP)wParam;
+				DragQueryFileA(hDrp, 0, file, sizeof(file));
+				DragFinish(hDrp);
+
+				const std::string fullpath = file;
+				form_.value().get().d_.on_drop_files_(fullpath);
+			}
+		} break;
+
 		default:
 			break;
 		}
@@ -2952,6 +2971,8 @@ private:
 	bool lbutton_pressed_;
 	bool new_page_added_;
 
+	std::function<void(const std::string& file)> on_drop_files_;
+
 	friend form;
 	friend liblec::lecui::dimensions;
 	friend liblec::lecui::appearance;
@@ -3165,8 +3186,10 @@ void liblec::lecui::form::close() {
 }
 
 bool liblec::lecui::form::layout(std::string& error) { return true; }
-void liblec::lecui::form::on_close() { close(); }
+void liblec::lecui::form::on_start() {}
 void liblec::lecui::form::on_caption() {}
+void liblec::lecui::form::on_close() { close(); }
+void liblec::lecui::form::on_shutdown() {}
 
 bool liblec::lecui::form::prompt(const std::string& question) {
 	if (MessageBoxA(IsWindow(d_.hWnd_) ? d_.hWnd_ : GetForegroundWindow(),
@@ -3394,6 +3417,11 @@ void liblec::lecui::form::close(const std::string& name) {
 }
 
 void liblec::lecui::form::refresh() { d_.discard_device_resources(); d_.update(); }
+
+void liblec::lecui::form::dropped_files(std::function<void(const std::string& file)> on_drop_files) {
+	d_.on_drop_files_ = on_drop_files;
+	DragAcceptFiles(d_.hWnd_, on_drop_files == nullptr ? FALSE : TRUE);
+}
 
 class liblec::lecui::widgets::timer::timer_impl {
 public:

@@ -19,6 +19,8 @@
 	#include <liblec/lecui.h>
 #endif
 
+#include <functional>
+
 namespace liblec {
 	namespace lecui {
 		class page;
@@ -58,8 +60,10 @@ namespace liblec {
 			void close();
 
 			virtual bool layout(std::string& error);
-			virtual void on_close();
+			virtual void on_start();
 			virtual void on_caption();
+			virtual void on_close();
+			virtual void on_shutdown();
 
 			bool prompt(const std::string& question);
 			void message(const std::string& message);
@@ -74,6 +78,8 @@ namespace liblec {
 			void close(const std::string& name);
 
 			void refresh();
+
+			void dropped_files(std::function<void(const std::string& file)>on_drop_files);
 
 		private:
 			class form_impl;
