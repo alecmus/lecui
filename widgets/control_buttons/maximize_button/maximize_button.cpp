@@ -81,7 +81,7 @@ D2D1_RECT_F& liblec::lecui::widgets_implementation::maximize_button::render(
 		specs_.resize, change_in_width, change_in_height);
 
 	if (!is_static_ && hit_)
-		p_render_target->DrawRectangle(&rect_, p_brush_, pressed_ ? 0.5f : 0.0f);
+		p_render_target->DrawRectangle(&rect_, p_brush_, pressed_ ? .5f : .0f);
 
 	if (!render || !visible_)
 		return rect_;
@@ -89,7 +89,7 @@ D2D1_RECT_F& liblec::lecui::widgets_implementation::maximize_button::render(
 	// draw maximize button
 	D2D1_RECT_F specs_(rect_);
 
-	float margin_ = (rect_.right - rect_.left) * 0.30f;
+	float margin_ = (rect_.right - rect_.left) * .30f;
 
 	specs_.left += margin_;
 	specs_.top += margin_;
@@ -100,32 +100,32 @@ D2D1_RECT_F& liblec::lecui::widgets_implementation::maximize_button::render(
 		p_render_target->DrawLine(
 			D2D1_POINT_2F{ specs_.left, specs_.top },
 			D2D1_POINT_2F{ specs_.right, specs_.top },
-			p_brush_current_, 1.0f);
+			p_brush_current_, 1.f);
 		p_render_target->DrawLine(
 			D2D1_POINT_2F{ specs_.right, specs_.top },
 			D2D1_POINT_2F{ specs_.right, specs_.bottom },
-			p_brush_current_, 1.0f);
+			p_brush_current_, 1.f);
 
 		D2D1_RECT_F specs_fore_(specs_);
-		float margin_ = (specs_fore_.right - specs_fore_.left) * 0.25f;
+		float margin_ = (specs_fore_.right - specs_fore_.left) * .25f;
 
 		specs_fore_.right -= margin_;
 		specs_fore_.top += margin_;
 
-		p_render_target->DrawRectangle(&specs_fore_, p_brush_current_, 1.0f);
+		p_render_target->DrawRectangle(&specs_fore_, p_brush_current_, 1.f);
 
 		p_render_target->DrawLine(
-			D2D1_POINT_2F{ specs_fore_.left, specs_fore_.top + 1.0f },
-			D2D1_POINT_2F{ specs_fore_.right, specs_fore_.top + 1.0f },
-			p_brush_current_, 2.0f);
+			D2D1_POINT_2F{ specs_fore_.left, specs_fore_.top + 1.f },
+			D2D1_POINT_2F{ specs_fore_.right, specs_fore_.top + 1.f },
+			p_brush_current_, 2.f);
 	}
 	else {
-		p_render_target->DrawRectangle(&specs_, p_brush_current_, 1.0f);
+		p_render_target->DrawRectangle(&specs_, p_brush_current_, 1.f);
 
 		p_render_target->DrawLine(
-			D2D1_POINT_2F{ specs_.left, specs_.top + 1.0f },
-			D2D1_POINT_2F{ specs_.right, specs_.top + 1.0f },
-			p_brush_current_, 2.0f);
+			D2D1_POINT_2F{ specs_.left, specs_.top + 1.f },
+			D2D1_POINT_2F{ specs_.right, specs_.top + 1.f },
+			p_brush_current_, 2.f);
 	}
 
 	return rect_;

@@ -26,20 +26,20 @@ namespace liblec {
 		namespace widgets {
 			namespace specs {
 				struct on_resize {
-					long perc_x = 0;
-					long perc_y = 0;
-					long perc_width = 0;
-					long perc_height = 0;
+					float perc_x = 0.f;
+					float perc_y = 0.f;
+					float perc_width = 0.f;
+					float perc_height = 0.f;
 
-					long min_x = 0;
-					long min_y = 0;
-					long max_x = 0;
-					long max_y = 0;
+					float min_x = 0.f;
+					float min_y = 0.f;
+					float max_x = 0.f;
+					float max_y = 0.f;
 
-					long min_width = 0;
-					long min_height = 0;
-					long max_width = 0;
-					long max_height = 0;
+					float min_width = 0.f;
+					float min_height = 0.f;
+					float max_width = 0.f;
+					float max_height = 0.f;
 				};
 
 				class widget {

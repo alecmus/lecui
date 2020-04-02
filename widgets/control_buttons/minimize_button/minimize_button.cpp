@@ -65,8 +65,8 @@ void liblec::lecui::widgets_implementation::minimize_button::discard_resources()
 	safe_release(&p_brush_disabled_);
 }
 
-D2D1_RECT_F&
-liblec::lecui::widgets_implementation::minimize_button::render(ID2D1HwndRenderTarget* p_render_target,
+D2D1_RECT_F& liblec::lecui::widgets_implementation::minimize_button::render(
+	ID2D1HwndRenderTarget* p_render_target,
 	const float& change_in_width, const float& change_in_height, float x_off_set, float y_off_set,
 	const bool& render) {
 	if (!resources_created_)
@@ -84,12 +84,12 @@ liblec::lecui::widgets_implementation::minimize_button::render(ID2D1HwndRenderTa
 		return rect_;
 
 	if (!is_static_ && hit_)
-		p_render_target->DrawRectangle(&rect_, p_brush_, pressed_ ? 0.5f : 0.0f);
+		p_render_target->DrawRectangle(&rect_, p_brush_, pressed_ ? .5f : .0f);
 
 	// draw minimize button
 	D2D1_RECT_F specs_(rect_);
 
-	float margin_ = (rect_.right - rect_.left) * 0.30f;
+	float margin_ = (rect_.right - rect_.left) * .30f;
 
 	specs_.left += margin_;
 	specs_.top += margin_;
@@ -97,9 +97,9 @@ liblec::lecui::widgets_implementation::minimize_button::render(ID2D1HwndRenderTa
 	specs_.bottom -= margin_;
 
 	p_render_target->DrawLine(
-		D2D1_POINT_2F{ specs_.left, specs_.bottom - 1.0f },
-		D2D1_POINT_2F{ specs_.right, specs_.bottom - 1.0f },
-		p_brush_current_, 2.0f);
+		D2D1_POINT_2F{ specs_.left, specs_.bottom - 1.f },
+		D2D1_POINT_2F{ specs_.right, specs_.bottom - 1.f },
+		p_brush_current_, 2.f);
 
 	return rect_;
 }

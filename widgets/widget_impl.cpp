@@ -16,7 +16,7 @@
 liblec::lecui::widgets_implementation::widget::widget() :
 	page_(std::string()),
 	name_(std::string()),
-	dpi_scale_(1.0f),
+	dpi_scale_(1.f),
 	is_static_(true),
 	hit_(false),
 	pressed_(false),
@@ -82,14 +82,15 @@ bool liblec::lecui::widgets_implementation::widget::pressed() { return pressed_;
 bool liblec::lecui::widgets_implementation::widget::is_static() { return is_static_; }
 void liblec::lecui::widgets_implementation::widget::show(const bool& show) { visible_ = show; }
 bool liblec::lecui::widgets_implementation::widget::visible() { return visible_; }
-void liblec::lecui::widgets_implementation::widget::enable(const bool& enable) { is_enabled_ = enable; }
+void liblec::lecui::widgets_implementation::widget::enable(const bool& enable) {
+	is_enabled_ = enable; }
 bool liblec::lecui::widgets_implementation::widget::enabled() { return is_enabled_; }
 const D2D1_RECT_F& liblec::lecui::widgets_implementation::widget::get_rect() { return rect_; }
 bool liblec::lecui::widgets_implementation::widget::selected() { return selected_; }
 bool liblec::lecui::widgets_implementation::widget::menu_visible() { return draw_menu_; }
 bool liblec::lecui::widgets_implementation::widget::hit() { return hit_; }
-bool liblec::lecui::widgets_implementation::widget::on_menu(ID2D1HwndRenderTarget* p_render_target,
-	const D2D1_RECT_F& client_area) { return false; }
+bool liblec::lecui::widgets_implementation::widget::on_menu(
+	ID2D1HwndRenderTarget* p_render_target, const D2D1_RECT_F& client_area) { return false; }
 void liblec::lecui::widgets_implementation::widget::reset_menu() { draw_menu_ = false; }
 bool liblec::lecui::widgets_implementation::widget::on_mousewheel(float units) { return false; }
 bool liblec::lecui::widgets_implementation::widget::on_keydown(WPARAM wParam) { return false; }
@@ -108,17 +109,17 @@ D2D1_RECT_F
 liblec::lecui::widgets_implementation::widget::position(const liblec::lecui::rect& rect,
 	const liblec::lecui::widgets::specs::on_resize& resize,
 	const float& change_in_width, const float& change_in_height) {
-	float x_change = change_in_width * static_cast<float>(resize.perc_x) / 100.f;
-	float y_change = change_in_height * static_cast<float>(resize.perc_y) / 100.f;
-	float width_change =
-		change_in_width * static_cast<float>(resize.perc_width) / 100.f;
-	float height_change =
-		change_in_height * static_cast<float>(resize.perc_height) / 100.f;
+	auto x_change = change_in_width * resize.perc_x / 100.f;
+	auto y_change = change_in_height * resize.perc_y / 100.f;
+	auto width_change =
+		change_in_width * resize.perc_width / 100.f;
+	auto height_change =
+		change_in_height * resize.perc_height / 100.f;
 
-	float left = static_cast<float>(rect.left) + x_change;
-	float top = static_cast<float>(rect.top) + y_change;
-	float right = static_cast<float>(rect.right) + x_change + width_change;
-	float bottom = static_cast<float>(rect.bottom) + y_change + height_change;
+	auto left = rect.left + x_change;
+	auto top = rect.top + y_change;
+	auto right = rect.right + x_change + width_change;
+	auto bottom = rect.bottom + y_change + height_change;
 
 	// apply limits on width and height
 
@@ -138,21 +139,21 @@ liblec::lecui::widgets_implementation::widget::position(const liblec::lecui::rec
 		if ((bottom - top) > resize.max_height)
 			bottom = top + resize.max_height;
 
-	const float width = right - left;
-	const float height = bottom - top;
+	const auto width = right - left;
+	const auto height = bottom - top;
 
-	// apply limits on x-position
+	// apply limits on position
 
 	// x
 
 	if (left < resize.min_x) {
-		left = static_cast<float>(resize.min_x);
+		left = resize.min_x;
 		right = left + width;
 	}
 
 	if (resize.max_x > resize.min_x) {
 		if (left > resize.max_x) {
-			left = static_cast<float>(resize.max_x);
+			left = resize.max_x;
 			right = left + width;
 		}
 	}
@@ -160,13 +161,13 @@ liblec::lecui::widgets_implementation::widget::position(const liblec::lecui::rec
 	// y
 
 	if (top < resize.min_y) {
-		top = static_cast<float>(resize.min_y);
+		top = resize.min_y;
 		bottom = top + height;
 	}
 
 	if (resize.max_y > resize.min_y) {
 		if (top > resize.max_y) {
-			top = static_cast<float>(resize.max_y);
+			top = resize.max_y;
 			bottom = top + height;
 		}
 	}

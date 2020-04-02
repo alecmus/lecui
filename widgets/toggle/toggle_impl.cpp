@@ -26,9 +26,9 @@ liblec::lecui::widgets::toggle::toggle(liblec::lecui::containers::page& page) :
 
 liblec::lecui::widgets::toggle::~toggle() { delete& d_; }
 
-liblec::lecui::widgets::specs::toggle& liblec::lecui::widgets::toggle::add(const std::string& name) {
-	return d_.page_.d_page_.add_toggle(name);
-}
+liblec::lecui::widgets::specs::toggle&
+liblec::lecui::widgets::toggle::add(const std::string& name) {
+	return d_.page_.d_page_.add_toggle(name); }
 
 liblec::lecui::widgets_implementation::toggle::toggle(const std::string& page,
 	const std::string& name,
@@ -77,11 +77,11 @@ HRESULT liblec::lecui::widgets_implementation::toggle::create_resources(
 		hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_off),
 			&p_brush_off_);
 	if (SUCCEEDED(hr))
-		hr = p_render_target->CreateSolidColorBrush(convert_color(lighten_color(specs_.color_on, 25)),
-			&p_brush_on_hot_);
+		hr = p_render_target->CreateSolidColorBrush(
+			convert_color(lighten_color(specs_.color_on, 25)), &p_brush_on_hot_);
 	if (SUCCEEDED(hr))
-		hr = p_render_target->CreateSolidColorBrush(convert_color(lighten_color(specs_.color_off, 25)),
-			&p_brush_off_hot_);
+		hr = p_render_target->CreateSolidColorBrush(
+			convert_color(lighten_color(specs_.color_off, 25)), &p_brush_off_hot_);
 	if (SUCCEEDED(hr))
 		hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_disabled),
 			&p_brush_disabled_);
@@ -151,10 +151,13 @@ liblec::lecui::widgets_implementation::toggle::render(ID2D1HwndRenderTarget* p_r
 	rect_toggle_.right = rect_toggle_.left + toggle_width;
 
 	D2D1_RECT_F toggle_background_ = rect_toggle_;
-	D2D1_ROUNDED_RECT toggle_background_round_ = { toggle_background_, (toggle_background_.bottom - toggle_background_.top) / 2.f, (toggle_background_.bottom - toggle_background_.top) / 2.f };
+	D2D1_ROUNDED_RECT toggle_background_round_ = { toggle_background_,
+		(toggle_background_.bottom - toggle_background_.top) / 2.f,
+		(toggle_background_.bottom - toggle_background_.top) / 2.f };
 
 	D2D1_RECT_F toggle_foreground_ = rect_toggle_;
-	toggle_foreground_.right = toggle_foreground_.right - (toggle_foreground_.right - toggle_foreground_.left) / 2.f;
+	toggle_foreground_.right = toggle_foreground_.right -
+		(toggle_foreground_.right - toggle_foreground_.left) / 2.f;
 
 	perc_along_ = specs_.on ? 100.f : 0.f;
 
@@ -178,20 +181,25 @@ liblec::lecui::widgets_implementation::toggle::render(ID2D1HwndRenderTarget* p_r
 	pos_rect(rect_toggle_, toggle_foreground_, perc_along_, 50.f);
 
 	// to-do: shrink by exactly 90%
-	const float shrink_amount = 0.05f * (toggle_foreground_.right - toggle_foreground_.left);
+	const float shrink_amount = .05f * (toggle_foreground_.right - toggle_foreground_.left);
 	toggle_foreground_.left += shrink_amount;
 	toggle_foreground_.right -= shrink_amount;
 	toggle_foreground_.top += shrink_amount;
 	toggle_foreground_.bottom -= shrink_amount;
 
-	D2D1_ROUNDED_RECT toggle_foreground_round_ = { toggle_foreground_, (toggle_foreground_.bottom - toggle_foreground_.top) / 2.f, (toggle_foreground_.bottom - toggle_foreground_.top) / 2.f };
+	D2D1_ROUNDED_RECT toggle_foreground_round_ = { toggle_foreground_,
+		(toggle_foreground_.bottom - toggle_foreground_.top) / 2.f,
+		(toggle_foreground_.bottom - toggle_foreground_.top) / 2.f };
 
 	ID2D1SolidColorBrush* p_brush = (perc_along_ >= 50.f) ? p_brush_on_ : p_brush_off_;
-	ID2D1SolidColorBrush* p_brush_hot = (perc_along_ >= 50.f) ? p_brush_on_hot_ : p_brush_off_hot_;
+	ID2D1SolidColorBrush* p_brush_hot = (perc_along_ >= 50.f) ?
+		p_brush_on_hot_ : p_brush_off_hot_;
 
 	if (render && visible_) {
-		p_render_target->FillRoundedRectangle(&toggle_background_round_, !is_enabled_ ? p_brush_disabled_ : hit_ ? p_brush_hot : p_brush);
-		p_render_target->FillRoundedRectangle(&toggle_foreground_round_, !is_enabled_ ? p_brush_fill_ : p_brush_fill_);
+		p_render_target->FillRoundedRectangle(&toggle_background_round_, !is_enabled_ ?
+			p_brush_disabled_ : hit_ ? p_brush_hot : p_brush);
+		p_render_target->FillRoundedRectangle(&toggle_foreground_round_, !is_enabled_ ?
+			p_brush_fill_ : p_brush_fill_);
 	}
 
 	rect_text_ = rect_;

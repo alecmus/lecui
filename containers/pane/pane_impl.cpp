@@ -58,19 +58,21 @@ liblec::lecui::containers::page& liblec::lecui::containers::pane::get() {
 	// specify iwic imaging factory (used internally for image rendering)
 	pane_.p_panes_.at(name).d_page_.iwic_factory(d_.page_.d_page_.iwic_factory());
 
-	const long thickness = 10;
-	const long margin = 10;
+	const float thickness = 10.f;
+	const float margin = 10.f;
 	const float page_tolerance_ = 10.f;
 	liblec::lecui::rect rect_client_area = pane_.specs().rect;
 
 	// initialize the page's horizontal scroll bar
 	{
-		pane_.p_panes_.at(name).d_page_.h_scrollbar().specs().resize.perc_width = 100;
-		pane_.p_panes_.at(name).d_page_.h_scrollbar().specs().resize.perc_y = 100;
+		pane_.p_panes_.at(name).d_page_.h_scrollbar().specs().resize.perc_width = 100.f;
+		pane_.p_panes_.at(name).d_page_.h_scrollbar().specs().resize.perc_y = 100.f;
 
-		pane_.p_panes_.at(name).d_page_.h_scrollbar().specs().rect.left = 0;
-		pane_.p_panes_.at(name).d_page_.h_scrollbar().specs().rect.right = (rect_client_area.right - rect_client_area.left) - (margin + thickness);
-		pane_.p_panes_.at(name).d_page_.h_scrollbar().specs().rect.bottom = (rect_client_area.bottom - rect_client_area.top) - static_cast<long>(page_tolerance_);
+		pane_.p_panes_.at(name).d_page_.h_scrollbar().specs().rect.left = 0.f;
+		pane_.p_panes_.at(name).d_page_.h_scrollbar().specs().rect.right =
+			(rect_client_area.right - rect_client_area.left) - (margin + thickness);
+		pane_.p_panes_.at(name).d_page_.h_scrollbar().specs().rect.bottom =
+			(rect_client_area.bottom - rect_client_area.top) - page_tolerance_;
 		pane_.p_panes_.at(name).d_page_.h_scrollbar().specs().rect.top =
 			pane_.p_panes_.at(name).d_page_.h_scrollbar().specs().rect.bottom - thickness;
 
@@ -79,19 +81,22 @@ liblec::lecui::containers::page& liblec::lecui::containers::pane::get() {
 
 	// initialize the page's vertical scroll bar
 	{
-		pane_.p_panes_.at(name).d_page_.v_scrollbar().specs().resize.perc_height = 100;
-		pane_.p_panes_.at(name).d_page_.v_scrollbar().specs().resize.perc_x = 100;
+		pane_.p_panes_.at(name).d_page_.v_scrollbar().specs().resize.perc_height = 100.f;
+		pane_.p_panes_.at(name).d_page_.v_scrollbar().specs().resize.perc_x = 100.f;
 
 		pane_.p_panes_.at(name).d_page_.v_scrollbar().specs().rect.top = 0;
-		pane_.p_panes_.at(name).d_page_.v_scrollbar().specs().rect.bottom = (rect_client_area.bottom - rect_client_area.top) - (margin + thickness);
-		pane_.p_panes_.at(name).d_page_.v_scrollbar().specs().rect.right = (rect_client_area.right - rect_client_area.left) - margin;
+		pane_.p_panes_.at(name).d_page_.v_scrollbar().specs().rect.bottom =
+			(rect_client_area.bottom - rect_client_area.top) - (margin + thickness);
+		pane_.p_panes_.at(name).d_page_.v_scrollbar().specs().rect.right =
+			(rect_client_area.right - rect_client_area.left) - margin;
 		pane_.p_panes_.at(name).d_page_.v_scrollbar().specs().rect.left =
 			pane_.p_panes_.at(name).d_page_.v_scrollbar().specs().rect.right - thickness;
 
 		pane_.p_panes_.at(name).d_page_.v_scrollbar().specs().on_click = nullptr;
 	}
 
-	// add an invisible rect to bound the page. This is essential for scroll bars to work appropriately when contents don't reach the page borders
+	// add an invisible rect to bound the page. This is essential for scroll bars
+	// to work appropriately when contents don't reach the page borders
 	auto& rectangle = pane_.p_panes_.at(name).d_page_.add_rectangle("minimal_page_border_rect");
 	rectangle.color_fill.alpha = 0;
 
@@ -100,22 +105,22 @@ liblec::lecui::containers::page& liblec::lecui::containers::pane::get() {
 	rectangle.color_hot = { 255, 0, 0, 0 };
 
 	pane_.p_panes_.at(name).d_page_.size({ 0, 0 });
+	pane_.p_panes_.at(name).d_page_.width(rect_client_area.right - rect_client_area.left);
+	pane_.p_panes_.at(name).d_page_.height(rect_client_area.bottom - rect_client_area.top);
 
-	{
-		pane_.p_panes_.at(name).d_page_.width(static_cast<long>(rect_client_area.right - rect_client_area.left));
-		pane_.p_panes_.at(name).d_page_.height(static_cast<long>(rect_client_area.bottom - rect_client_area.top));
-	}
+	pane_.p_panes_.at(name).d_page_.width(pane_.p_panes_.at(name).d_page_.width() -
+		(2.f * page_tolerance_));
+	pane_.p_panes_.at(name).d_page_.height(pane_.p_panes_.at(name).d_page_.height() -
+		(2.f * page_tolerance_));
 
-	pane_.p_panes_.at(name).d_page_.width(pane_.p_panes_.at(name).d_page_.width() - static_cast<long>(2.f * page_tolerance_));
-	pane_.p_panes_.at(name).d_page_.height(pane_.p_panes_.at(name).d_page_.height() - static_cast<long>(2.f * page_tolerance_));
-
-	rectangle.rect.set(0, 0, pane_.p_panes_.at(name).d_page_.width(), pane_.p_panes_.at(name).d_page_.height());
+	rectangle.rect.set(0.f, 0.f, pane_.p_panes_.at(name).d_page_.width(),
+		pane_.p_panes_.at(name).d_page_.height());
 
 	rectangle.corner_radius_x = 15.f;
 	rectangle.corner_radius_y = 15.f;
 
-	rectangle.resize.perc_width = 100;
-	rectangle.resize.perc_height = 100;
+	rectangle.resize.perc_width = 100.f;
+	rectangle.resize.perc_height = 100.f;
 
 	// return reference to page so caller can add widgets to it
 	return pane_.p_panes_.at(name);
@@ -183,8 +188,8 @@ void liblec::lecui::widgets_implementation::pane::discard_resources() {
 
 D2D1_RECT_F&
 liblec::lecui::widgets_implementation::pane::render(ID2D1HwndRenderTarget* p_render_target,
-	const float& change_in_width, const float& change_in_height, float x_off_set, float y_off_set,
-	const bool& render) {
+	const float& change_in_width, const float& change_in_height,
+	float x_off_set, float y_off_set, const bool& render) {
 	if (!resources_created_)
 		create_resources(p_render_target);
 
@@ -194,7 +199,9 @@ liblec::lecui::widgets_implementation::pane::render(ID2D1HwndRenderTarget* p_ren
 	rect_pane_.top -= y_off_set;
 	rect_pane_.bottom -= y_off_set;
 
-	rect_ = { 0.f, 0.f, 0.f, 0.f };	// no reponse to hit testing, even though for scroll bar at form level we need to return the entire region through rect_pane_
+	// no reponse to hit testing, even though for scroll bar at form level
+	// we need to return the entire region through rect_pane_
+	rect_ = { 0.f, 0.f, 0.f, 0.f };
 
 	rect_client_area_ = rect_pane_;
 
@@ -205,9 +212,11 @@ liblec::lecui::widgets_implementation::pane::render(ID2D1HwndRenderTarget* p_ren
 		specs_.corner_radius_x, specs_.corner_radius_y };
 
 	if (specs_.is_filled)
-		p_render_target->FillRoundedRectangle(&rounded_rect, is_enabled_ ? p_brush_fill_ : p_brush_disabled_);
+		p_render_target->FillRoundedRectangle(&rounded_rect,
+			is_enabled_ ? p_brush_fill_ : p_brush_disabled_);
 	
-	p_render_target->DrawRoundedRectangle(&rounded_rect, is_enabled_ ? p_brush_border_ : p_brush_disabled_, specs_.border);
+	p_render_target->DrawRoundedRectangle(&rounded_rect, is_enabled_ ?
+		p_brush_border_ : p_brush_disabled_, specs_.border);
 
 	return rect_pane_;
 }

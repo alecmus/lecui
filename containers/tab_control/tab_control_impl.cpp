@@ -67,25 +67,29 @@ liblec::lecui::containers::page& liblec::lecui::containers::tab::add(const std::
 	tab_control_.p_tabs_.emplace(name, name);
 
 	// specify directwrite factory (used internally for text rendering)
-	tab_control_.p_tabs_.at(name).d_page_.directwrite_factory(d_.tc_.d_.page_.d_page_.directwrite_factory());
+	tab_control_.p_tabs_.at(name).d_page_.directwrite_factory(
+		d_.tc_.d_.page_.d_page_.directwrite_factory());
 
 	// specify iwic imaging factory (used internally for image rendering)
 	tab_control_.p_tabs_.at(name).d_page_.iwic_factory(d_.tc_.d_.page_.d_page_.iwic_factory());
 
-	const long thickness = 10;
-	const long margin = 10;
+	const float thickness = 10.f;
+	const float margin = 10.f;
 	const float page_tolerance_ = 10.f;
 	const float caption_bar_height_ = tab_control_.caption_bar_height();
 	liblec::lecui::rect rect_client_area = tab_control_.specs().rect;
 
 	// initialize the page's horizontal scroll bar
 	{
-		tab_control_.p_tabs_.at(name).d_page_.h_scrollbar().specs().resize.perc_width = 100;
-		tab_control_.p_tabs_.at(name).d_page_.h_scrollbar().specs().resize.perc_y = 100;
+		tab_control_.p_tabs_.at(name).d_page_.h_scrollbar().specs().resize.perc_width = 100.f;
+		tab_control_.p_tabs_.at(name).d_page_.h_scrollbar().specs().resize.perc_y = 100.f;
 
-		tab_control_.p_tabs_.at(name).d_page_.h_scrollbar().specs().rect.left = 0;
-		tab_control_.p_tabs_.at(name).d_page_.h_scrollbar().specs().rect.right = (rect_client_area.right - rect_client_area.left) - (margin + thickness);
-		tab_control_.p_tabs_.at(name).d_page_.h_scrollbar().specs().rect.bottom = (rect_client_area.bottom - rect_client_area.top) - static_cast<long>(caption_bar_height_ + page_tolerance_);
+		tab_control_.p_tabs_.at(name).d_page_.h_scrollbar().specs().rect.left = 0.f;
+		tab_control_.p_tabs_.at(name).d_page_.h_scrollbar().specs().rect.right =
+			(rect_client_area.right - rect_client_area.left) - (margin + thickness);
+		tab_control_.p_tabs_.at(name).d_page_.h_scrollbar().specs().rect.bottom =
+			(rect_client_area.bottom - rect_client_area.top) -
+			(caption_bar_height_ + page_tolerance_);
 		tab_control_.p_tabs_.at(name).d_page_.h_scrollbar().specs().rect.top =
 			tab_control_.p_tabs_.at(name).d_page_.h_scrollbar().specs().rect.bottom - thickness;
 
@@ -94,43 +98,48 @@ liblec::lecui::containers::page& liblec::lecui::containers::tab::add(const std::
 
 	// initialize the page's vertical scroll bar
 	{
-		tab_control_.p_tabs_.at(name).d_page_.v_scrollbar().specs().resize.perc_height = 100;
-		tab_control_.p_tabs_.at(name).d_page_.v_scrollbar().specs().resize.perc_x = 100;
+		tab_control_.p_tabs_.at(name).d_page_.v_scrollbar().specs().resize.perc_height = 100.f;
+		tab_control_.p_tabs_.at(name).d_page_.v_scrollbar().specs().resize.perc_x = 100.f;
 
-		tab_control_.p_tabs_.at(name).d_page_.v_scrollbar().specs().rect.top = 0;
-		tab_control_.p_tabs_.at(name).d_page_.v_scrollbar().specs().rect.bottom = (rect_client_area.bottom - rect_client_area.top) - (margin + thickness) - static_cast<long>(caption_bar_height_);
-		tab_control_.p_tabs_.at(name).d_page_.v_scrollbar().specs().rect.right = (rect_client_area.right - rect_client_area.left) - margin;
+		tab_control_.p_tabs_.at(name).d_page_.v_scrollbar().specs().rect.top = 0.f;
+		tab_control_.p_tabs_.at(name).d_page_.v_scrollbar().specs().rect.bottom =
+			(rect_client_area.bottom - rect_client_area.top) -
+			(margin + thickness) - caption_bar_height_;
+		tab_control_.p_tabs_.at(name).d_page_.v_scrollbar().specs().rect.right =
+			(rect_client_area.right - rect_client_area.left) - margin;
 		tab_control_.p_tabs_.at(name).d_page_.v_scrollbar().specs().rect.left =
 			tab_control_.p_tabs_.at(name).d_page_.v_scrollbar().specs().rect.right - thickness;
 
 		tab_control_.p_tabs_.at(name).d_page_.v_scrollbar().specs().on_click = nullptr;
 	}
 
-	// add an invisible rect to bound the page. This is essential for scroll bars to work appropriately when contents don't reach the page borders
-	auto& rectangle = tab_control_.p_tabs_.at(name).d_page_.add_rectangle("minimal_page_border_rect");
+	// add an invisible rect to bound the page. This is essential for scroll bars
+	// to work appropriately when contents don't reach the page borders
+	auto& rectangle =
+		tab_control_.p_tabs_.at(name).d_page_.add_rectangle("minimal_page_border_rect");
 	rectangle.color_fill.alpha = 0;
 
 	// make it transparent
 	rectangle.color_border = { 255, 0, 0, 0 };
 	rectangle.color_hot = { 255, 0, 0, 0 };
 
-	tab_control_.p_tabs_.at(name).d_page_.size({ 0, 0 });
+	tab_control_.p_tabs_.at(name).d_page_.size({ 0.f, 0.f });
+	tab_control_.p_tabs_.at(name).d_page_.width(rect_client_area.right - rect_client_area.left);
+	tab_control_.p_tabs_.at(name).d_page_.height(rect_client_area.bottom - rect_client_area.top);
 
-	{
-		tab_control_.p_tabs_.at(name).d_page_.width(static_cast<long>(rect_client_area.right - rect_client_area.left));
-		tab_control_.p_tabs_.at(name).d_page_.height(static_cast<long>(rect_client_area.bottom - rect_client_area.top));
-	}
+	tab_control_.p_tabs_.at(name).d_page_.width(tab_control_.p_tabs_.at(name).d_page_.width() -
+		(2.f * page_tolerance_));
+	tab_control_.p_tabs_.at(name).d_page_.height(tab_control_.p_tabs_.at(name).d_page_.height() -
+		(2.f * page_tolerance_ + caption_bar_height_));
 
-	tab_control_.p_tabs_.at(name).d_page_.width(tab_control_.p_tabs_.at(name).d_page_.width() - static_cast<long>(2.f * page_tolerance_));
-	tab_control_.p_tabs_.at(name).d_page_.height(tab_control_.p_tabs_.at(name).d_page_.height() - static_cast<long>(2.f * page_tolerance_ + caption_bar_height_));
-
-	rectangle.rect.set(0, 0, tab_control_.p_tabs_.at(name).d_page_.width(), tab_control_.p_tabs_.at(name).d_page_.height());
+	rectangle.rect.set(0.f, 0.f, tab_control_.p_tabs_.at(name).d_page_.width(),
+		tab_control_.p_tabs_.at(name).d_page_.height());
 
 	rectangle.corner_radius_x = 15.f;
 	rectangle.corner_radius_y = 15.f;
 
-	rectangle.resize.perc_width = 100;
-	rectangle.resize.perc_height = 100;
+	rectangle.resize.perc_width = 100.f;
+	rectangle.resize.perc_height = 100.f;
 
 	// return reference to page so caller can add widgets to it
 	return tab_control_.p_tabs_.at(name);
@@ -254,7 +263,9 @@ liblec::lecui::widgets_implementation::tab_control::render(ID2D1HwndRenderTarget
 	rect_tabs_ = rect_tab_control_;
 	rect_tabs_.bottom = rect_tabs_.top + tab_height_ + bar_height_;
 
-	rect_ = rect_tabs_;	// only make the tab area respond to hit testing, even though for scroll bar at form level we need to return the entire region through rect_tab_control_
+	// only make the tab area respond to hit testing, even though for scroll bar at form level
+	// we need to return the entire region through rect_tab_control_
+	rect_ = rect_tabs_;
 
 	rect_client_area_ = rect_tab_control_;
 	rect_client_area_.top = rect_tabs_.bottom;
@@ -266,9 +277,11 @@ liblec::lecui::widgets_implementation::tab_control::render(ID2D1HwndRenderTarget
 		specs_.corner_radius_x, specs_.corner_radius_y };
 
 	if (specs_.is_filled)
-		p_render_target->FillRoundedRectangle(&rounded_rect, is_enabled_ ? p_brush_fill_ : p_brush_disabled_);
+		p_render_target->FillRoundedRectangle(&rounded_rect, is_enabled_ ?
+			p_brush_fill_ : p_brush_disabled_);
 	
-	p_render_target->DrawRoundedRectangle(&rounded_rect, is_enabled_ ? p_brush_border_ : p_brush_disabled_, specs_.border);
+	p_render_target->DrawRoundedRectangle(&rounded_rect, is_enabled_ ?
+		p_brush_border_ : p_brush_disabled_, specs_.border);
 
 	auto measure_string = [](IDWriteFactory* p_directwrite_factory_,
 		IDWriteTextFormat* p_text_format_, IDWriteTextLayout* p_text_layout_,
@@ -298,7 +311,8 @@ liblec::lecui::widgets_implementation::tab_control::render(ID2D1HwndRenderTarget
 		specs_.corner_radius_x, specs_.corner_radius_y };
 
 	p_render_target->FillRoundedRectangle(&rounded_rect, p_brush_tabs_);
-	p_render_target->DrawRoundedRectangle(&rounded_rect, is_enabled_ ? p_brush_border_ : p_brush_disabled_, specs_.border);
+	p_render_target->DrawRoundedRectangle(&rounded_rect, is_enabled_ ?
+		p_brush_border_ : p_brush_disabled_, specs_.border);
 
 	// draw the tab text
 	D2D1_RECT_F rect_current_tab_ = rect_tabs_;
@@ -362,7 +376,8 @@ liblec::lecui::widgets_implementation::tab_control::render(ID2D1HwndRenderTarget
 		if (SUCCEEDED(hr)) {
 			// draw the text layout
 			p_render_target->DrawTextLayout(D2D1_POINT_2F{ rect_text_.left, rect_text_.top },
-				p_text_layout_, is_enabled_ ? p_brush_ : p_brush_disabled_, D2D1_DRAW_TEXT_OPTIONS_CLIP);
+				p_text_layout_, is_enabled_ ?
+				p_brush_ : p_brush_disabled_, D2D1_DRAW_TEXT_OPTIONS_CLIP);
 		}
 
 		// release the text layout

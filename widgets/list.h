@@ -31,7 +31,9 @@ namespace liblec {
 			namespace specs {
 				class list : public widget {
 				public:
-					list() { color_fill = { 255, 255, 255, 255 }; color_hot = { 200, 200, 200, 50 }; }
+					list() {
+						color_fill = { 255, 255, 255, 255 };
+						color_hot = { 200, 200, 200, 50 }; }
 					liblec::lecui::color color_border = { 150, 150, 150, 255 };
 					liblec::lecui::color color_dropdown_hot = { 255, 255, 255, 255 };
 					liblec::lecui::color color_menu = { 255, 255, 255, 255 };
@@ -41,7 +43,7 @@ namespace liblec {
 					liblec::lecui::color color_fill_alternate = { 20, 80, 140, 15 };
 					liblec::lecui::color color_row_hot = { 225, 242, 255, 255 };
 					liblec::lecui::color color_row_selected = { 40, 160, 200, 255 };
-					float border = 0.5f;
+					float border = .5f;
 					float corner_radius_x = 2.f;
 					float corner_radius_y = 2.f;
 					std::vector<liblec::lecui::list_column> columns;

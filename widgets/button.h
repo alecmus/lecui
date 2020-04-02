@@ -35,7 +35,7 @@ namespace liblec {
 						color_hot = { 240, 240, 240, 255 };
 						color_selected = { 20, 80, 140, 100 };
 					}
-					float border = 0.5f;
+					float border = .5f;
 					float corner_radius_x = 5.f;
 					float corner_radius_y = 5.f;
 					liblec::lecui::color color_border = { 150, 150, 150, 255 };

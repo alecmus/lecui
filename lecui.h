@@ -54,29 +54,29 @@ namespace liblec {
 		std::string lecui_api version();
 
 		struct point {
-			long x = 0;
-			long y = 0;
+			float x = 0.f;
+			float y = 0.f;
 		};
 
 		struct size {
-			long width = 0;
-			long height = 0;
+			float width = 0.f;
+			float height = 0.f;
 		};
 
 		class lecui_api rect {
 		public:
-			long left = 0;
-			long right = 0;
-			long top = 0;
-			long bottom = 0;
+			float left = 0.f;
+			float right = 0.f;
+			float top = 0.f;
+			float bottom = 0.f;
 
-			long width() { return right - left; }
-			long height() { return bottom - top; }
-			void width(long width) { right = left + width; }
-			void height(long height) { bottom = top + height; }
-			void size(long width, long height) { right = left + width; bottom = top + height; }
-			void position(long x, long y) { left = x; top = y; }
-			void set(long x, long y, long cx, long cy) {
+			float width() { return right - left; }
+			float height() { return bottom - top; }
+			void width(float width) { right = left + width; }
+			void height(float height) { bottom = top + height; }
+			void size(float width, float height) { right = left + width; bottom = top + height; }
+			void position(float x, float y) { left = x; top = y; }
+			void set(float x, float y, float cx, float cy) {
 				left = x; top = y; right = left + cx; bottom = top + cy;
 			}
 		};

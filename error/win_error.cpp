@@ -19,10 +19,10 @@ std::string get_last_error() {
 
 	CHAR buffer[256] = "?";
 
-	DWORD dw_last_error = GetLastError();
+	const DWORD dw_last_error = GetLastError();
 
-	if (dw_last_error != 0) {    // Don't want to see a "operation done successfully" error ;-)
-		::FormatMessageA(FORMAT_MESSAGE_FROM_SYSTEM,	// It´s a system error
+	if (dw_last_error != 0) {
+		FormatMessageA(FORMAT_MESSAGE_FROM_SYSTEM,		// It's a system error
 			NULL,										// No string to be formatted needed
 			dw_last_error,								// Hey Windows: Please explain this error!
 			MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),	// Do it in the standard language

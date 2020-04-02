@@ -32,11 +32,10 @@ namespace liblec {
 					image() {
 						color_fill = { 222, 222, 222, 0 };
 						color_hot = { 20, 80, 140, 100 };
-						color_selected = { 20, 80, 140, 100 };
-					}
-					float border = 0.5f;
-					float corner_radius_x = 0.0f;
-					float corner_radius_y = 0.0f;
+						color_selected = { 20, 80, 140, 100 }; }
+					float border = .5f;
+					float corner_radius_x = .0f;
+					float corner_radius_y = .0f;
 					liblec::lecui::color color_border = { 150, 150, 150, 255 };
 					std::string file;
 					int png_resource = 0;

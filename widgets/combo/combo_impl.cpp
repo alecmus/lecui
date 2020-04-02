@@ -213,15 +213,16 @@ liblec::lecui::widgets_implementation::combo::render(ID2D1HwndRenderTarget* p_re
 	rect_dropdown_ = rect_combo_;
 
 	// width 80% of height
-	rect_dropdown_.left = rect_dropdown_.right - .8f * (rect_dropdown_.bottom - rect_dropdown_.top);
+	rect_dropdown_.left = rect_dropdown_.right -
+		.8f * (rect_dropdown_.bottom - rect_dropdown_.top);
 
 	D2D1_ROUNDED_RECT dropdown_rounded_rect{rect_dropdown_,
 		specs_.corner_radius_x, specs_.corner_radius_y };
 
 	// draw dropdown rectangle
 	if (render && visible_ && hit_)
-		p_render_target->FillRoundedRectangle(&dropdown_rounded_rect, !is_enabled_ ? p_brush_disabled_ :
-			p_brush_border_);
+		p_render_target->FillRoundedRectangle(&dropdown_rounded_rect, !is_enabled_ ?
+			p_brush_disabled_ : p_brush_border_);
 
 	// define dropdown confines
 	D2D1_POINT_2F top_left, top_right, bottom;
@@ -239,8 +240,10 @@ liblec::lecui::widgets_implementation::combo::render(ID2D1HwndRenderTarget* p_re
 
 	if (render && visible_) {
 		// draw dropdown
-		p_render_target->DrawLine(top_left, bottom, hit_ ? p_brush_dropdown_hot_ : p_brush_border_);
-		p_render_target->DrawLine(top_right, bottom, hit_ ? p_brush_dropdown_hot_ : p_brush_border_);
+		p_render_target->DrawLine(top_left, bottom, hit_ ?
+			p_brush_dropdown_hot_ : p_brush_border_);
+		p_render_target->DrawLine(top_right, bottom, hit_ ?
+			p_brush_dropdown_hot_ : p_brush_border_);
 
 		// draw combo border
 		p_render_target->DrawRoundedRectangle(&rounded_rect, !is_enabled_ ? p_brush_disabled_ :
@@ -332,7 +335,8 @@ void liblec::lecui::widgets_implementation::combo::on_click() {
 bool liblec::lecui::widgets_implementation::combo::on_menu(ID2D1HwndRenderTarget* p_render_target,
 	const D2D1_RECT_F& client_area) {
 	if (draw_menu_) {
-		menu_below_ = (rect_dropdown_.top - client_area.top) < (client_area.bottom - rect_dropdown_.bottom);
+		menu_below_ =
+			(rect_dropdown_.top - client_area.top) < (client_area.bottom - rect_dropdown_.bottom);
 
 		// define menu space
 		D2D1_RECT_F rect_menu_space = rect_combo_;
@@ -380,7 +384,8 @@ bool liblec::lecui::widgets_implementation::combo::on_menu(ID2D1HwndRenderTarget
 		const auto spacing = rect_item.bottom - rect_item.top;
 
 		// check out how many items can fit (using truncation)
-		const auto max_items = static_cast<unsigned long>((rect_menu_space.bottom - rect_menu_space.top) / spacing);
+		const auto max_items =
+			static_cast<unsigned long>((rect_menu_space.bottom - rect_menu_space.top) / spacing);
 
 		bool scroll_bar = false;
 		unsigned long starting_point = 0;
@@ -426,7 +431,8 @@ bool liblec::lecui::widgets_implementation::combo::on_menu(ID2D1HwndRenderTarget
 			if ((specs_.items.size() - idx) > max_items)
 				starting_point = idx;
 			else
-				starting_point = idx - (max_items - (static_cast<unsigned long>(specs_.items.size()) - idx));
+				starting_point = idx -
+				(max_items - (static_cast<unsigned long>(specs_.items.size()) - idx));
 
 			end_point = starting_point + max_items;
 		}
@@ -510,7 +516,8 @@ bool liblec::lecui::widgets_implementation::combo::on_menu(ID2D1HwndRenderTarget
 				rectD_.bottom += displacement_;
 			}
 
-			const auto corner_radius = smallest((rectD_.right - rectD_.left) / 3.f, (rectD_.bottom - rectD_.top) / 3.f);
+			const auto corner_radius = smallest((rectD_.right - rectD_.left) / 3.f,
+				(rectD_.bottom - rectD_.top) / 3.f);
 
 			// scroll area
 			D2D1_ROUNDED_RECT rounded_rectC{ rectC_, corner_radius, corner_radius };
@@ -519,7 +526,8 @@ bool liblec::lecui::widgets_implementation::combo::on_menu(ID2D1HwndRenderTarget
 			// scroll bar
 			D2D1_ROUNDED_RECT rounded_rectD{ rectD_, corner_radius, corner_radius };
 			p_render_target->FillRoundedRectangle(&rounded_rectD,
-				scrollbar_pressed_ ? p_brush_scrollbar_hot_pressed_ : (scrollbar_hit_ ? p_brush_scrollbar_hot_ : p_brush_scrollbar_));
+				scrollbar_pressed_ ? p_brush_scrollbar_hot_pressed_ : (scrollbar_hit_ ?
+					p_brush_scrollbar_hot_ : p_brush_scrollbar_));
 		}
 
 		// do the magic ... use y_displacement_translated and translate everything
@@ -527,7 +535,8 @@ bool liblec::lecui::widgets_implementation::combo::on_menu(ID2D1HwndRenderTarget
 		// figure out how many items to move by
 		if (scrollbar_pressed_) {
 			float correction = y_displacement_translated > 0 ? .5f : -.5f;
-			move_by_ = static_cast<unsigned long>(correction + (y_displacement_translated / spacing));
+			move_by_ =
+				static_cast<unsigned long>(correction + (y_displacement_translated / spacing));
 		}
 
 		starting_point += move_by_;
@@ -581,7 +590,8 @@ bool liblec::lecui::widgets_implementation::combo::on_menu(ID2D1HwndRenderTarget
 			if (SUCCEEDED(hr)) {
 				// draw the text layout
 				p_render_target->DrawTextLayout(D2D1_POINT_2F{ rect_item.left, rect_item.top },
-					p_text_layout_, selected ? p_brush_dropdown_hot_ : p_brush_, D2D1_DRAW_TEXT_OPTIONS_CLIP);
+					p_text_layout_, selected ?
+					p_brush_dropdown_hot_ : p_brush_, D2D1_DRAW_TEXT_OPTIONS_CLIP);
 			}
 
 			// release the text layout

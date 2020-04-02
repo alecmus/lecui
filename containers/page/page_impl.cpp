@@ -47,10 +47,10 @@ IWICImagingFactory* liblec::lecui::containers::page::page_impl::iwic_factory() {
 
 void liblec::lecui::containers::page::page_impl::size(const liblec::lecui::size& size) { size_ = size; }
 const liblec::lecui::size& liblec::lecui::containers::page::page_impl::size() { return size_; }
-void liblec::lecui::containers::page::page_impl::width(const long& width) { size_.width = width; }
-const long liblec::lecui::containers::page::page_impl::width() { return size_.width; }
-void liblec::lecui::containers::page::page_impl::height(const long& height) { size_.height = height; }
-const long liblec::lecui::containers::page::page_impl::height() { return size_.height; }
+void liblec::lecui::containers::page::page_impl::width(const float& width) { size_.width = width; }
+const float liblec::lecui::containers::page::page_impl::width() { return size_.width; }
+void liblec::lecui::containers::page::page_impl::height(const float& height) { size_.height = height; }
+const float liblec::lecui::containers::page::page_impl::height() { return size_.height; }
 
 bool liblec::lecui::containers::page::page_impl::contains(const D2D1_POINT_2F& point) {
 	try {

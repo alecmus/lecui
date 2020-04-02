@@ -31,9 +31,9 @@ liblec::lecui::widgets::custom::custom(liblec::lecui::containers::page& page) :
 
 liblec::lecui::widgets::custom::~custom() { delete& d_; }
 
-liblec::lecui::widgets::specs::custom& liblec::lecui::widgets::custom::add(const std::string& name) {
-	return d_.page_.d_page_.add_custom(name);
-}
+liblec::lecui::widgets::specs::custom&
+liblec::lecui::widgets::custom::add(const std::string& name) {
+	return d_.page_.d_page_.add_custom(name); }
 
 liblec::lecui::widgets_implementation::custom::custom(const std::string& page,
 	const std::string& name,
@@ -82,8 +82,8 @@ void liblec::lecui::widgets_implementation::custom::discard_resources() {
 		specs_.on_discard_resources();
 }
 
-D2D1_RECT_F&
-liblec::lecui::widgets_implementation::custom::render(ID2D1HwndRenderTarget* p_render_target,
+D2D1_RECT_F& liblec::lecui::widgets_implementation::custom::render(
+	ID2D1HwndRenderTarget* p_render_target,
 	const float& change_in_width, const float& change_in_height, float x_off_set, float y_off_set,
 	const bool& render) {
 	if (!resources_created_)

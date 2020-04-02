@@ -27,7 +27,8 @@ liblec::lecui::widgets::button::button(liblec::lecui::containers::page& page) :
 liblec::lecui::widgets::button::~button() { delete& d_; }
 
 liblec::lecui::widgets::specs::button&
-liblec::lecui::widgets::button::add(const std::string& name) { return d_.page_.d_page_.add_button(name); }
+liblec::lecui::widgets::button::add(const std::string& name) {
+	return d_.page_.d_page_.add_button(name); }
 
 liblec::lecui::widgets_implementation::button::button(const std::string& page,
 	const std::string& name,
@@ -144,11 +145,11 @@ liblec::lecui::widgets_implementation::button::render(ID2D1HwndRenderTarget* p_r
 		p_brush_fill_);
 
 	p_render_target->DrawRoundedRectangle(&rounded_rect, !is_enabled_ ? p_brush_disabled_ :
-		p_brush_border_, 0.5f);
+		p_brush_border_, .5f);
 
 	if (!is_static_ && is_enabled_ && selected_)
 		p_render_target->DrawRoundedRectangle(&rounded_rect, !is_enabled_ ? p_brush_disabled_ :
-			p_brush_selected_, pressed_ ? 1.75f : 1.0f);
+			p_brush_selected_, pressed_ ? 1.75f : 1.f);
 
 	// create a text layout
 	HRESULT hr = p_directwrite_factory_->CreateTextLayout(convert_string(specs_.text).c_str(),
@@ -158,7 +159,8 @@ liblec::lecui::widgets_implementation::button::render(ID2D1HwndRenderTarget* p_r
 	if (SUCCEEDED(hr)) {
 		// draw the text layout
 		p_render_target->DrawTextLayout(D2D1_POINT_2F{ rect_.left, rect_.top },
-			p_text_layout_, is_enabled_ ? p_brush_ : p_brush_disabled_, D2D1_DRAW_TEXT_OPTIONS_CLIP);
+			p_text_layout_, is_enabled_ ?
+			p_brush_ : p_brush_disabled_, D2D1_DRAW_TEXT_OPTIONS_CLIP);
 	}
 
 	// release the text layout

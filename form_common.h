@@ -49,10 +49,10 @@ static inline void scale_RECT(RECT& rc, const float& DPIScale) {
 	int iUnscaledW = rc.right - rc.left;
 	int iUnscaledH = rc.bottom - rc.top;
 
-	rc.left = int(0.5f + rc.left * DPIScale);
-	rc.top = int(0.5f + rc.top * DPIScale);
-	rc.right = rc.left + int(0.5f + iUnscaledW * DPIScale);
-	rc.bottom = rc.top + int(0.5f + iUnscaledH * DPIScale);
+	rc.left = int(.5f + rc.left * DPIScale);
+	rc.top = int(.5f + rc.top * DPIScale);
+	rc.right = rc.left + int(.5f + iUnscaledW * DPIScale);
+	rc.bottom = rc.top + int(.5f + iUnscaledH * DPIScale);
 }
 
 /// <summary>Adjust a rectangle to a given DPI scale.</summary>
@@ -77,10 +77,10 @@ static inline void unscale_RECT(RECT& rc, const float& DPIScale) {
 	int iScaledW = rc.right - rc.left;
 	int iScaledH = rc.bottom - rc.top;
 
-	rc.left = int(0.5f + rc.left / DPIScale);
-	rc.top = int(0.5f + rc.top / DPIScale);
-	rc.right = rc.left + int(0.5f + iScaledW / DPIScale);
-	rc.bottom = rc.top + int(0.5f + iScaledH / DPIScale);
+	rc.left = int(.5f + rc.left / DPIScale);
+	rc.top = int(.5f + rc.top / DPIScale);
+	rc.right = rc.left + int(.5f + iScaledW / DPIScale);
+	rc.bottom = rc.top + int(.5f + iScaledH / DPIScale);
 }
 
 /// <summary>Adjust a rectangle to a scale of 96dpi.</summary>
@@ -124,15 +124,15 @@ static inline std::string convert_string(const std::wstring& string_) {
 }
 
 static inline D2D1::ColorF convert_color(const liblec::lecui::color& color_) {
-	return D2D1::ColorF(static_cast<float>(color_.red) / 255.0f,
-		static_cast<float>(color_.green) / 255.0f,
-		static_cast<float>(color_.blue) / 255.0f,
-		static_cast<float>(color_.alpha) / 255.0f
+	return D2D1::ColorF(static_cast<float>(color_.red) / 255.f,
+		static_cast<float>(color_.green) / 255.f,
+		static_cast<float>(color_.blue) / 255.f,
+		static_cast<float>(color_.alpha) / 255.f
 	);
 }
 
 static inline float convert_fontsize_to_dip(const float& points) {
-	return points * 96.0f / 72.0f;
+	return points * 96.f / 72.f;
 }
 
 /// <summary>position rect within rect_reference,
@@ -219,19 +219,19 @@ static inline void position_v_scrollbar(const D2D1_RECT_F& rectA,
 
 static inline D2D1_RECT_F convert_rect(const liblec::lecui::rect& rect) {
 	D2D1_RECT_F rect_;
-	rect_.left = static_cast<float>(rect.left);
-	rect_.top = static_cast<float>(rect.top);
-	rect_.right = static_cast<float>(rect.right);
-	rect_.bottom = static_cast<float>(rect.bottom);
+	rect_.left = rect.left;
+	rect_.top = rect.top;
+	rect_.right = rect.right;
+	rect_.bottom = rect.bottom;
 	return rect_;
 }
 
 static inline liblec::lecui::rect convert_rect(const D2D1_RECT_F& rect) {
 	liblec::lecui::rect rect_;
-	rect_.left = static_cast<long>(rect.left);
-	rect_.top = static_cast<long>(rect.top);
-	rect_.right = static_cast<long>(rect.right);
-	rect_.bottom = static_cast<long>(rect.bottom);
+	rect_.left = rect.left;
+	rect_.top = rect.top;
+	rect_.right = rect.right;
+	rect_.bottom = rect.bottom;
 	return rect_;
 }
 

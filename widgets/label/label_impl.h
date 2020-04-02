@@ -23,7 +23,7 @@ namespace liblec {
 			struct text_range_properties {
 				DWRITE_TEXT_RANGE text_range = { 0, 0 };
 				std::string font;
-				float size = 0.0f;
+				float size = .0f;
 				bool bold = false;
 				bool italic = false;
 				bool underline = false;

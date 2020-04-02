@@ -27,7 +27,8 @@ liblec::lecui::widgets::list::list(liblec::lecui::containers::page& page) :
 liblec::lecui::widgets::list::~list() { delete& d_; }
 
 liblec::lecui::widgets::specs::list&
-liblec::lecui::widgets::list::add(const std::string& name) { return d_.page_.d_page_.add_list(name); }
+liblec::lecui::widgets::list::add(const std::string& name) {
+	return d_.page_.d_page_.add_list(name); }
 
 liblec::lecui::widgets_implementation::list::list(const std::string& page,
 	const std::string& name,
@@ -247,12 +248,16 @@ liblec::lecui::widgets_implementation::list::render(ID2D1HwndRenderTarget* p_ren
 	// step2: detecting changes in dimensions and adjust the displacement accordingly
 	{	
 		// calculate change in dimensions
-		const float change_in_width_ = (rect_.right - rect_.left) - static_cast<float>(specs_.rect.right - specs_.rect.left);
-		const float change_in_height_ = (rect_.bottom - rect_.top) - static_cast<float>(specs_.rect.bottom - specs_.rect.top);
+		const float change_in_width_ = (rect_.right - rect_.left) -
+			static_cast<float>(specs_.rect.right - specs_.rect.left);
+		const float change_in_height_ = (rect_.bottom - rect_.top) -
+			static_cast<float>(specs_.rect.bottom - specs_.rect.top);
 
 		// calculate adjustments to make to displacement
-		const float height_adjustment = change_in_height_ - change_in_height_previous_; change_in_height_previous_ = change_in_height_;
-		const float width_adjustment = change_in_width_ - change_in_width_previous_; change_in_width_previous_ = change_in_width_;
+		const float height_adjustment = change_in_height_ - change_in_height_previous_;
+		change_in_height_previous_ = change_in_height_;
+		const float width_adjustment = change_in_width_ - change_in_width_previous_;
+		change_in_width_previous_ = change_in_width_;
 
 		// apply height adjustment
 		if (v_displacement_ != 0.f) {
@@ -273,8 +278,8 @@ liblec::lecui::widgets_implementation::list::render(ID2D1HwndRenderTarget* p_ren
 			specs_.corner_radius_x, specs_.corner_radius_y };
 
 		if (render && visible_)
-			p_render_target->FillRoundedRectangle(&rounded_rect, !is_enabled_ ? p_brush_disabled_ :
-				p_brush_fill_);
+			p_render_target->FillRoundedRectangle(&rounded_rect, !is_enabled_ ?
+				p_brush_disabled_ : p_brush_fill_);
 	}
 
 	// step4: draw header background
@@ -292,7 +297,8 @@ liblec::lecui::widgets_implementation::list::render(ID2D1HwndRenderTarget* p_ren
 	// step5: define rectB_ (the table area)
 	rectB_ = { rect_.left, rect_header_.bottom, rect_.right, rect_.bottom };
 
-	float table_width = 0.f; for (const auto& it : specs_.columns) table_width += static_cast<float>(it.width);
+	float table_width = 0.f;
+	for (const auto& it : specs_.columns) table_width += static_cast<float>(it.width);
 	float table_height = row_height_ * specs_.table.size();
 
 	// step6: define rectC_ for scroll bars
@@ -395,10 +401,14 @@ liblec::lecui::widgets_implementation::list::render(ID2D1HwndRenderTarget* p_ren
 	/// 
 	/// rectA_.left is not allowed to get greater than rectB_.left
 	/// rectA_.top is not allowed to get greater than rectB_.top
-	/// rectA_.right is only allowed to get smaller than rectB_.right if rectA_.left is equal to rectB_.left
-	/// rectA_.bottom is only allowed to get smaller than rectB_.bottom if rectA_.top is equal to rectB_.top
-	h_displacement_ = smallest(0.f, largest(h_displacement_, (rectB_.right - rectB_.left) - table_width));
-	v_displacement_ = smallest(0.f, largest(v_displacement_, (rectB_.bottom - rectB_.top) - table_height));
+	/// rectA_.right is only allowed to get smaller than rectB_.right
+	/// if rectA_.left is equal to rectB_.left
+	/// rectA_.bottom is only allowed to get smaller than rectB_.bottom
+	/// if rectA_.top is equal to rectB_.top
+	h_displacement_ = smallest(0.f,
+		largest(h_displacement_, (rectB_.right - rectB_.left) - table_width));
+	v_displacement_ = smallest(0.f,
+		largest(v_displacement_, (rectB_.bottom - rectB_.top) - table_height));
 
 	// step9: define rectA_ (the area containing all the table contents)
 
@@ -453,8 +463,10 @@ liblec::lecui::widgets_implementation::list::render(ID2D1HwndRenderTarget* p_ren
 
 		// step11b: figure out which rows are hidden from view and exclude them from the rendering
 		// this gives a major performance boost when dealing with very large lists
-		unsigned long hidden_above = (rectB_.top > rectA_.top) ? (static_cast<unsigned long>((rectB_.top - rectA_.top) / row_height_)) : 0;
-		unsigned long hidden_below = (rectA_.bottom > rectB_.bottom) ? (static_cast<unsigned long>((rectA_.bottom - rectB_.bottom) / row_height_)) : 0;
+		unsigned long hidden_above = (rectB_.top > rectA_.top) ?
+			(static_cast<unsigned long>((rectB_.top - rectA_.top) / row_height_)) : 0;
+		unsigned long hidden_below = (rectA_.bottom > rectB_.bottom) ?
+			(static_cast<unsigned long>((rectA_.bottom - rectB_.bottom) / row_height_)) : 0;
 
 		// step11c: do the drawing
 		{
@@ -466,7 +478,8 @@ liblec::lecui::widgets_implementation::list::render(ID2D1HwndRenderTarget* p_ren
 				rect_row.top = rect_row.bottom;
 				rect_row.bottom = rect_row.top + row_height_;
 
-				bool selected = std::find(specs_.selected.begin(), specs_.selected.end(), row_number) != specs_.selected.end();
+				bool selected = std::find(specs_.selected.begin(), specs_.selected.end(),
+					row_number) != specs_.selected.end();
 				bool hot = false;
 
 				{
@@ -474,13 +487,19 @@ liblec::lecui::widgets_implementation::list::render(ID2D1HwndRenderTarget* p_ren
 					rect.left = rectB_.left;
 					rect.right = rectB_.right;
 
-					if (!h_scrollbar_hit_ && !v_scrollbar_hit_ && !h_scrollbar_pressed_ && !v_scrollbar_pressed_)
+					if (!h_scrollbar_hit_ &&
+						!v_scrollbar_hit_ &&
+						!h_scrollbar_pressed_ &&
+						!v_scrollbar_pressed_)
 						hot_spots_[row_number] = rect;
 
 					scale_RECT(rect, dpi_scale_);
 
 					// handle hit status
-					if (!h_scrollbar_hit_ && !v_scrollbar_hit_ && !h_scrollbar_pressed_ && !v_scrollbar_pressed_ &&
+					if (!h_scrollbar_hit_ &&
+						!v_scrollbar_hit_ &&
+						!h_scrollbar_pressed_ &&
+						!v_scrollbar_pressed_ &&
 						point_.x >= rect.left && point_.x <= rect.right &&
 						point_.y >= rect.top && point_.y <= rect.bottom)
 						hot = true;
@@ -497,7 +516,8 @@ liblec::lecui::widgets_implementation::list::render(ID2D1HwndRenderTarget* p_ren
 						specs_.corner_radius_x, specs_.corner_radius_y };
 
 					if (render && visible_)
-						p_render_target->FillRoundedRectangle(&rounded_rect, p_brush_row_selected_);
+						p_render_target->FillRoundedRectangle(&rounded_rect,
+							p_brush_row_selected_);
 				}
 				else
 					if (hot) {
@@ -509,7 +529,8 @@ liblec::lecui::widgets_implementation::list::render(ID2D1HwndRenderTarget* p_ren
 							specs_.corner_radius_x, specs_.corner_radius_y };
 
 						if (render && visible_)
-							p_render_target->FillRoundedRectangle(&rounded_rect, p_brush_row_hot_);
+							p_render_target->FillRoundedRectangle(&rounded_rect,
+								p_brush_row_hot_);
 					}
 					else
 						if (row_number % 2 == 0) {
@@ -522,7 +543,8 @@ liblec::lecui::widgets_implementation::list::render(ID2D1HwndRenderTarget* p_ren
 								specs_.corner_radius_x, specs_.corner_radius_y };
 
 							if (render && visible_)
-								p_render_target->FillRoundedRectangle(&rounded_rect, p_brush_fill_alternate_);
+								p_render_target->FillRoundedRectangle(&rounded_rect,
+									p_brush_fill_alternate_);
 						}
 
 				// step11cii: draw row
@@ -551,8 +573,10 @@ liblec::lecui::widgets_implementation::list::render(ID2D1HwndRenderTarget* p_ren
 
 						if (SUCCEEDED(hr) && render && visible_) {
 							// draw the text layout
-							p_render_target->DrawTextLayout(D2D1_POINT_2F{ rect_text.left, rect_text.top },
-								p_text_layout_, selected ? p_brush_menu_ : p_brush_, D2D1_DRAW_TEXT_OPTIONS_CLIP);
+							p_render_target->DrawTextLayout(
+								D2D1_POINT_2F{ rect_text.left, rect_text.top },
+								p_text_layout_, selected ?
+								p_brush_menu_ : p_brush_, D2D1_DRAW_TEXT_OPTIONS_CLIP);
 						}
 
 						// release the text layout
@@ -565,7 +589,7 @@ liblec::lecui::widgets_implementation::list::render(ID2D1HwndRenderTarget* p_ren
 
 		// step12: draw grid
 		if (render && visible_) {
-			const float line_width = 0.5f;
+			const float line_width = .5f;
 
 			// step12a: draw horizontal lines
 			{
@@ -607,13 +631,15 @@ liblec::lecui::widgets_implementation::list::render(ID2D1HwndRenderTarget* p_ren
 		if (!equal(rectC_v_, rectD_) &&
 			!(roundoff::tof((rectD_.bottom - rectD_.top), precision) >=
 				roundoff::tof((rectC_v_.bottom - rectC_v_.top), precision))) {
-			auto corner_radius = smallest((rectD_.right - rectD_.left) / 3.f, (rectD_.bottom - rectD_.top) / 3.f);
+			auto corner_radius = smallest((rectD_.right - rectD_.left) / 3.f,
+				(rectD_.bottom - rectD_.top) / 3.f);
 
 			// scroll area
 			D2D1_ROUNDED_RECT rounded_rectC{ rectC_v_, corner_radius, corner_radius };
 
 			if (render && visible_)
-				p_render_target->FillRoundedRectangle(&rounded_rectC, p_brush_scrollbar_background_);
+				p_render_target->FillRoundedRectangle(&rounded_rectC,
+					p_brush_scrollbar_background_);
 
 			// scroll bar
 			auto rect_scroll_bar = rectD_;
@@ -622,12 +648,14 @@ liblec::lecui::widgets_implementation::list::render(ID2D1HwndRenderTarget* p_ren
 			rect_scroll_bar.top += scroll_bar_margin;
 			rect_scroll_bar.right -= scroll_bar_margin;
 			rect_scroll_bar.bottom -= scroll_bar_margin;
-			corner_radius = smallest((rect_scroll_bar.bottom - rect_scroll_bar.top) / 3.f, (rect_scroll_bar.right - rect_scroll_bar.left) / 3.f);
+			corner_radius = smallest((rect_scroll_bar.bottom - rect_scroll_bar.top) / 3.f,
+				(rect_scroll_bar.right - rect_scroll_bar.left) / 3.f);
 			D2D1_ROUNDED_RECT rounded_rectD{ rect_scroll_bar, corner_radius, corner_radius };
 
 			if (render && visible_) {
 				p_render_target->FillRoundedRectangle(&rounded_rectD,
-					v_scrollbar_pressed_ ? p_brush_scrollbar_hot_pressed_ : (v_scrollbar_hit_ ? p_brush_scrollbar_hot_ : p_brush_scrollbar_));
+					v_scrollbar_pressed_ ? p_brush_scrollbar_hot_pressed_ : (v_scrollbar_hit_ ?
+						p_brush_scrollbar_hot_ : p_brush_scrollbar_));
 				p_render_target->DrawRoundedRectangle(&rounded_rectD, p_brush_scrollbar_border_);
 			}
 
@@ -645,13 +673,15 @@ liblec::lecui::widgets_implementation::list::render(ID2D1HwndRenderTarget* p_ren
 		if (!equal(rectC_h_, rectD_) &&
 			!(roundoff::tof((rectD_.right - rectD_.left), precision) >=
 				roundoff::tof((rectC_h_.right - rectC_h_.left), precision))) {
-			auto corner_radius = smallest((rectD_.bottom - rectD_.top) / 3.f, (rectD_.right - rectD_.left) / 3.f);
+			auto corner_radius = smallest((rectD_.bottom - rectD_.top) / 3.f,
+				(rectD_.right - rectD_.left) / 3.f);
 
 			// scroll area
 			D2D1_ROUNDED_RECT rounded_rectC{ rectC_h_, corner_radius, corner_radius };
 
 			if (render && visible_)
-				p_render_target->FillRoundedRectangle(&rounded_rectC, p_brush_scrollbar_background_);
+				p_render_target->FillRoundedRectangle(&rounded_rectC,
+					p_brush_scrollbar_background_);
 
 			// scroll bar
 			auto rect_scroll_bar = rectD_;
@@ -660,12 +690,14 @@ liblec::lecui::widgets_implementation::list::render(ID2D1HwndRenderTarget* p_ren
 			rect_scroll_bar.top += scroll_bar_margin;
 			rect_scroll_bar.right -= scroll_bar_margin;
 			rect_scroll_bar.bottom -= scroll_bar_margin;
-			corner_radius = smallest((rect_scroll_bar.bottom - rect_scroll_bar.top) / 3.f, (rect_scroll_bar.right - rect_scroll_bar.left) / 3.f);
+			corner_radius = smallest((rect_scroll_bar.bottom - rect_scroll_bar.top) / 3.f,
+				(rect_scroll_bar.right - rect_scroll_bar.left) / 3.f);
 			D2D1_ROUNDED_RECT rounded_rectD{ rect_scroll_bar, corner_radius, corner_radius };
 
 			if (render && visible_) {
 				p_render_target->FillRoundedRectangle(&rounded_rectD,
-					h_scrollbar_pressed_ ? p_brush_scrollbar_hot_pressed_ : (h_scrollbar_hit_ ? p_brush_scrollbar_hot_ : p_brush_scrollbar_));
+					h_scrollbar_pressed_ ? p_brush_scrollbar_hot_pressed_ : (h_scrollbar_hit_ ?
+						p_brush_scrollbar_hot_ : p_brush_scrollbar_));
 				p_render_target->DrawRoundedRectangle(&rounded_rectD, p_brush_scrollbar_border_);
 			}
 
@@ -681,7 +713,7 @@ liblec::lecui::widgets_implementation::list::render(ID2D1HwndRenderTarget* p_ren
 		specs_.corner_radius_x, specs_.corner_radius_y };
 
 		p_render_target->DrawRoundedRectangle(&rounded_rect, !is_enabled_ ? p_brush_disabled_ :
-			p_brush_border_, 0.5f);
+			p_brush_border_, .5f);
 	}
 
 	return rect_;
@@ -715,13 +747,17 @@ void liblec::lecui::widgets_implementation::list::on_click() {
 				selection_made = true;
 
 				if (ctrl_pressed) {
-					if (std::find(selected_previous.begin(), selected_previous.end(), it.first) == selected_previous.end()) {
-						// add this row to the current selection, using the order in which items appear in the list
-						for (unsigned long row_number = 0; row_number < specs_.table.size(); row_number++) {
+					if (std::find(selected_previous.begin(), selected_previous.end(),
+						it.first) == selected_previous.end()) {
+						// add this row to the current selection, using the
+						// order in which items appear in the list
+						for (unsigned long row_number = 0; row_number < specs_.table.size();
+							row_number++) {
 							if (row_number == it.first)
 								specs_.selected.push_back(row_number);
 							else
-								if (std::find(selected_previous.begin(), selected_previous.end(), row_number) != selected_previous.end())
+								if (std::find(selected_previous.begin(), selected_previous.end(),
+									row_number) != selected_previous.end())
 									specs_.selected.push_back(row_number);
 						}
 					}
@@ -739,10 +775,12 @@ void liblec::lecui::widgets_implementation::list::on_click() {
 					if (shift_pressed && !selected_previous.empty()) {
 						// select all items beginning with the last selected item and this one
 						if (it.first > last_selected_)
-							for (unsigned long current_row = last_selected_; current_row <= it.first; current_row++)
+							for (unsigned long current_row = last_selected_;
+								current_row <= it.first; current_row++)
 								specs_.selected.push_back(current_row);
 						else
-							for (unsigned long current_row = it.first; current_row <= last_selected_; current_row++)
+							for (unsigned long current_row = it.first;
+								current_row <= last_selected_; current_row++)
 								specs_.selected.push_back(current_row);
 					}
 					else
@@ -800,7 +838,8 @@ bool liblec::lecui::widgets_implementation::list::on_keydown(WPARAM wParam) {
 		else {
 			// move last selection one unit (unless it's at the beginning or the end)
 			long new_selection = smallest(static_cast<long>(specs_.table.size() - 1),
-				largest(0L, static_cast<long>(last_selected_) - static_cast<long>(adjustment / row_height_)));
+				largest(0L, static_cast<long>(last_selected_) -
+					static_cast<long>(adjustment / row_height_)));
 
 			specs_.selected.clear();
 			specs_.selected.push_back(new_selection);

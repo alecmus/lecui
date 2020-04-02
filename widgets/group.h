@@ -33,7 +33,7 @@ namespace liblec {
 
 					bool is_filled = true;
 					liblec::lecui::color color_border = { 20, 80, 140, 100 };
-					float border = 0.5f;
+					float border = .5f;
 					long margin = 5;
 					float corner_radius_x = 5.f;
 					float corner_radius_y = 5.f;

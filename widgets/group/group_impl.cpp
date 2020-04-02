@@ -27,7 +27,8 @@ liblec::lecui::widgets::group::group(liblec::lecui::containers::page& page) :
 liblec::lecui::widgets::group::~group() { delete& d_; }
 
 liblec::lecui::widgets::specs::group&
-liblec::lecui::widgets::group::add(const std::string& name) { return d_.page_.d_page_.add_group(name); }
+liblec::lecui::widgets::group::add(const std::string& name) {
+	return d_.page_.d_page_.add_group(name); }
 
 liblec::lecui::widgets_implementation::group::group(const std::string& page,
 	const std::string& name) :
@@ -86,8 +87,8 @@ void liblec::lecui::widgets_implementation::group::discard_resources() {
 	safe_release(&p_brush_disabled_);
 }
 
-D2D1_RECT_F&
-liblec::lecui::widgets_implementation::group::render(ID2D1HwndRenderTarget* p_render_target,
+D2D1_RECT_F& liblec::lecui::widgets_implementation::group::render(
+	ID2D1HwndRenderTarget* p_render_target,
 	const float& change_in_width, const float& change_in_height, float x_off_set, float y_off_set,
 	const bool& render) {
 	if (!resources_created_)
@@ -102,12 +103,15 @@ liblec::lecui::widgets_implementation::group::render(ID2D1HwndRenderTarget* p_re
 		specs_.corner_radius_x, specs_.corner_radius_y };
 
 	if (specs_.is_filled)
-		p_render_target->FillRoundedRectangle(&rounded_rect, is_enabled_ ? p_brush_fill_ : p_brush_disabled_);
+		p_render_target->FillRoundedRectangle(&rounded_rect, is_enabled_ ?
+			p_brush_fill_ : p_brush_disabled_);
 	else
-		p_render_target->DrawRoundedRectangle(&rounded_rect, is_enabled_ ? p_brush_border_ : p_brush_disabled_, specs_.border);
+		p_render_target->DrawRoundedRectangle(&rounded_rect, is_enabled_ ?
+			p_brush_border_ : p_brush_disabled_, specs_.border);
 
 	if (!is_static_ && is_enabled_ && hit_)
-		p_render_target->DrawRoundedRectangle(&rounded_rect, p_brush_hot_, pressed_ ? 1.5f : 0.8f);
+		p_render_target->DrawRoundedRectangle(&rounded_rect, p_brush_hot_, pressed_ ?
+			1.5f : 0.8f);
 
 	return rect_;
 }

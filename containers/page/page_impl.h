@@ -44,10 +44,10 @@ public:
 
 	void size(const liblec::lecui::size& size);
 	const liblec::lecui::size& size();
-	void width(const long& width);
-	const long width();
-	void height(const long& height);
-	const long height();
+	void width(const float& width);
+	const float width();
+	void height(const float& height);
+	const float height();
 	bool contains(const D2D1_POINT_2F& point);
 
 	liblec::lecui::containers::specs::tab_control&

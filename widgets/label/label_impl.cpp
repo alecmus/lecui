@@ -101,7 +101,7 @@ void liblec::lecui::widgets_implementation::parse_formatted_text(
 			properties.underline = get_attribute("text.<xmlattr>.underline") == "true";
 
 			auto get_color = [&](const std::string& text) {
-				D2D1_COLOR_F color = { 0.f, 0.f, 0.f, 1.0f };
+				D2D1_COLOR_F color = { 0.f, 0.f, 0.f, 1.f };
 
 				try {
 					auto color_ = tree.get<std::string>("text.<xmlattr>.color");
@@ -242,7 +242,8 @@ liblec::lecui::widgets::label::label(liblec::lecui::containers::page& page) :
 
 liblec::lecui::widgets::label::~label() { delete& d_; }
 
-liblec::lecui::widgets::specs::label& liblec::lecui::widgets::label::add(const std::string& name) {
+liblec::lecui::widgets::specs::label&
+liblec::lecui::widgets::label::add(const std::string& name) {
 	return d_.page_.d_page_.add_label(name);
 }
 
