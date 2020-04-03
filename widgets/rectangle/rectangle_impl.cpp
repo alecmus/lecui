@@ -12,24 +12,6 @@
 */
 
 #include "rectangle_impl.h"
-#include "../../containers/page/page_impl.h"
-
-class liblec::lecui::widgets::rectangle::rectangle::rectangle_impl {
-public:
-	rectangle_impl(liblec::lecui::containers::page& page) :
-		page_(page) {}
-	liblec::lecui::containers::page& page_;
-};
-
-liblec::lecui::widgets::rectangle::rectangle(liblec::lecui::containers::page& page) :
-	d_(*(new rectangle_impl(page))) {}
-
-liblec::lecui::widgets::rectangle::~rectangle() { delete& d_; }
-
-liblec::lecui::widgets::specs::rectangle&
-liblec::lecui::widgets::rectangle::add(const std::string& name) {
-	return d_.page_.d_page_.add_rectangle(name);
-}
 
 liblec::lecui::widgets_implementation::rectangle::rectangle(const std::string& page,
 	const std::string& name) :

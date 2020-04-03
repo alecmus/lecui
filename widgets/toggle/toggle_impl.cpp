@@ -12,23 +12,6 @@
 */
 
 #include "toggle_impl.h"
-#include "../../containers/page/page_impl.h"
-
-class liblec::lecui::widgets::toggle::toggle::toggle_impl {
-public:
-	toggle_impl(liblec::lecui::containers::page& page) :
-		page_(page) {}
-	liblec::lecui::containers::page& page_;
-};
-
-liblec::lecui::widgets::toggle::toggle(liblec::lecui::containers::page& page) :
-	d_(*(new toggle_impl(page))) {}
-
-liblec::lecui::widgets::toggle::~toggle() { delete& d_; }
-
-liblec::lecui::widgets::specs::toggle&
-liblec::lecui::widgets::toggle::add(const std::string& name) {
-	return d_.page_.d_page_.add_toggle(name); }
 
 liblec::lecui::widgets_implementation::toggle::toggle(const std::string& page,
 	const std::string& name,

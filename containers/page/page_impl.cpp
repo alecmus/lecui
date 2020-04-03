@@ -184,13 +184,3 @@ liblec::lecui::containers::page::page_impl::get_custom(const std::string& name) 
 
 liblec::lecui::widgets_implementation::image&
 liblec::lecui::containers::page::page_impl::get_image(const std::string& name) { return images_.at(name); }
-
-liblec::lecui::containers::page::page(const std::string& name) :
-	d_page_(*new liblec::lecui::containers::page::page_impl(name)) {}
-
-liblec::lecui::containers::page::page() :
-	liblec::lecui::containers::page(std::string()) {}
-
-liblec::lecui::containers::page::~page() { delete& d_page_; }
-
-inline liblec::lecui::size liblec::lecui::containers::page::size() { return d_page_.size(); }

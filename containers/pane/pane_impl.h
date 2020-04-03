@@ -13,10 +13,8 @@
 
 #pragma once
 
-#include "../../form_common.h"
 #include "../../widgets/widget_impl.h"
 #include "../pane.h"
-#include "../../form.h"
 
 namespace liblec {
 	namespace lecui {

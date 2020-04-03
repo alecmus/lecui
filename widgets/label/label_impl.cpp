@@ -27,8 +27,6 @@
 /// 
 
 #include "label_impl.h"
-#include "../../containers/page/page_impl.h"
-#include "../../form_common.h"
 
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/xml_parser.hpp>
@@ -228,23 +226,6 @@ liblec::lecui::widgets_implementation::measure_label(IDWriteFactory* p_directwri
 	safe_release(&p_text_layout_);
 	safe_release(&p_text_format_);
 	return rect;
-}
-
-class liblec::lecui::widgets::label::label::label_impl {
-public:
-	label_impl(liblec::lecui::containers::page& page) :
-		page_(page) {}
-	liblec::lecui::containers::page& page_;
-};
-
-liblec::lecui::widgets::label::label(liblec::lecui::containers::page& page) :
-	d_(*(new label_impl(page))) {}
-
-liblec::lecui::widgets::label::~label() { delete& d_; }
-
-liblec::lecui::widgets::specs::label&
-liblec::lecui::widgets::label::add(const std::string& name) {
-	return d_.page_.d_page_.add_label(name);
 }
 
 liblec::lecui::widgets_implementation::label::label(const std::string& page,

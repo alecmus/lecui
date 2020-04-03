@@ -185,6 +185,9 @@
     <ClInclude Include="widgets\image\image_impl.h">
       <Filter>lecui\widgets\image</Filter>
     </ClInclude>
+    <ClInclude Include="form_impl.h">
+      <Filter>lecui</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="error\win_error.cpp">
@@ -247,6 +250,54 @@
     <ClCompile Include="lecui.cpp" />
     <ClCompile Include="widgets\image\image_impl.cpp">
       <Filter>lecui\widgets\image</Filter>
+    </ClCompile>
+    <ClCompile Include="form_impl.cpp">
+      <Filter>lecui</Filter>
+    </ClCompile>
+    <ClCompile Include="appearance.cpp">
+      <Filter>lecui</Filter>
+    </ClCompile>
+    <ClCompile Include="controls.cpp">
+      <Filter>lecui</Filter>
+    </ClCompile>
+    <ClCompile Include="timer.cpp">
+      <Filter>lecui</Filter>
+    </ClCompile>
+    <ClCompile Include="containers\page\page.cpp">
+      <Filter>lecui\containers\page</Filter>
+    </ClCompile>
+    <ClCompile Include="containers\pane\pane.cpp">
+      <Filter>lecui\containers\pane</Filter>
+    </ClCompile>
+    <ClCompile Include="containers\tab_control\tab_control.cpp">
+      <Filter>lecui\containers\tab_control</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\button\button.cpp">
+      <Filter>lecui\widgets\button</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\combo\combo.cpp">
+      <Filter>lecui\widgets\combo</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\custom\custom.cpp">
+      <Filter>lecui\widgets\custom</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\group\group.cpp">
+      <Filter>lecui\widgets\group</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\image\image.cpp">
+      <Filter>lecui\widgets\image</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\label\label.cpp">
+      <Filter>lecui\widgets\label</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\list\list.cpp">
+      <Filter>lecui\widgets\list</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\rectangle\rectangle.cpp">
+      <Filter>lecui\widgets\rectangle</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\toggle\toggle.cpp">
+      <Filter>lecui\widgets\toggle</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

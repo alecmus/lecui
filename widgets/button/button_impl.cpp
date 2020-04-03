@@ -12,23 +12,6 @@
 */
 
 #include "button_impl.h"
-#include "../../containers/page/page_impl.h"
-
-class liblec::lecui::widgets::button::button::button_impl {
-public:
-	button_impl(liblec::lecui::containers::page& page) :
-		page_(page) {}
-	liblec::lecui::containers::page& page_;
-};
-
-liblec::lecui::widgets::button::button(liblec::lecui::containers::page& page) :
-	d_(*(new button_impl(page))) {}
-
-liblec::lecui::widgets::button::~button() { delete& d_; }
-
-liblec::lecui::widgets::specs::button&
-liblec::lecui::widgets::button::add(const std::string& name) {
-	return d_.page_.d_page_.add_button(name); }
 
 liblec::lecui::widgets_implementation::button::button(const std::string& page,
 	const std::string& name,

@@ -12,23 +12,6 @@
 */
 
 #include "combo_impl.h"
-#include "../../containers/page/page_impl.h"
-
-class liblec::lecui::widgets::combo::combo::combo_impl {
-public:
-	combo_impl(liblec::lecui::containers::page& page) :
-		page_(page) {}
-	liblec::lecui::containers::page& page_;
-};
-
-liblec::lecui::widgets::combo::combo(liblec::lecui::containers::page& page) :
-	d_(*(new combo_impl(page))) {}
-
-liblec::lecui::widgets::combo::~combo() { delete& d_; }
-
-liblec::lecui::widgets::specs::combo& liblec::lecui::widgets::combo::add(const std::string& name) {
-	return d_.page_.d_page_.add_combo(name);
-}
 
 liblec::lecui::widgets_implementation::combo::combo(const std::string& page,
 	const std::string& name,

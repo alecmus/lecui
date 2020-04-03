@@ -12,24 +12,6 @@
 */
 
 #include "image_impl.h"
-#include "../../containers/page/page_impl.h"
-
-class liblec::lecui::widgets::image::image::image_impl {
-public:
-	image_impl(liblec::lecui::containers::page& page) :
-		page_(page) {}
-	liblec::lecui::containers::page& page_;
-};
-
-liblec::lecui::widgets::image::image(liblec::lecui::containers::page& page) :
-	d_(*(new image_impl(page))) {}
-
-liblec::lecui::widgets::image::~image() { delete& d_; }
-
-liblec::lecui::widgets::specs::image&
-liblec::lecui::widgets::image::add(const std::string& name) {
-	return d_.page_.d_page_.add_image(name);
-}
 
 liblec::lecui::widgets_implementation::image::image(const std::string& page,
 	const std::string& name, IWICImagingFactory* p_IWICFactory) :

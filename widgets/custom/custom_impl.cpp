@@ -12,28 +12,10 @@
 */
 
 #include "custom_impl.h"
-#include "../../containers/page/page_impl.h"
-#include "../../form_common.h"
 
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/xml_parser.hpp>
 #include <boost/lexical_cast.hpp>
-
-class liblec::lecui::widgets::custom::custom::custom_impl {
-public:
-	custom_impl(liblec::lecui::containers::page& page) :
-		page_(page) {}
-	liblec::lecui::containers::page& page_;
-};
-
-liblec::lecui::widgets::custom::custom(liblec::lecui::containers::page& page) :
-	d_(*(new custom_impl(page))) {}
-
-liblec::lecui::widgets::custom::~custom() { delete& d_; }
-
-liblec::lecui::widgets::specs::custom&
-liblec::lecui::widgets::custom::add(const std::string& name) {
-	return d_.page_.d_page_.add_custom(name); }
 
 liblec::lecui::widgets_implementation::custom::custom(const std::string& page,
 	const std::string& name,

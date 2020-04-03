@@ -12,23 +12,6 @@
 */
 
 #include "list_impl.h"
-#include "../../containers/page/page_impl.h"
-
-class liblec::lecui::widgets::list::list::list_impl {
-public:
-	list_impl(liblec::lecui::containers::page& page) :
-		page_(page) {}
-	liblec::lecui::containers::page& page_;
-};
-
-liblec::lecui::widgets::list::list(liblec::lecui::containers::page& page) :
-	d_(*(new list_impl(page))) {}
-
-liblec::lecui::widgets::list::~list() { delete& d_; }
-
-liblec::lecui::widgets::specs::list&
-liblec::lecui::widgets::list::add(const std::string& name) {
-	return d_.page_.d_page_.add_list(name); }
 
 liblec::lecui::widgets_implementation::list::list(const std::string& page,
 	const std::string& name,
