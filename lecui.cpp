@@ -52,7 +52,7 @@ bool liblec::lecui::rect::operator==(const rect& param) {
 }
 
 bool liblec::lecui::rect::operator!=(const rect& param) {
-	return !(*this == param);
+	return !operator==(param);
 }
 
 bool liblec::lecui::color::operator==(const color& param) {
@@ -64,5 +64,15 @@ bool liblec::lecui::color::operator==(const color& param) {
 }
 
 bool liblec::lecui::color::operator!=(const color& param) {
-	return !(*this == param);
+	return !operator==(param);
+}
+
+bool liblec::lecui::list_column::operator==(const list_column& param) {
+	return
+		(name == param.name) &&
+		(width == param.width);
+}
+
+bool liblec::lecui::list_column::operator!=(const list_column& param) {
+	return !operator==(param);
 }

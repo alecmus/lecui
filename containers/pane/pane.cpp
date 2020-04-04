@@ -35,6 +35,20 @@ liblec::lecui::containers::specs::pane& liblec::lecui::containers::pane::specs()
 	return d_.specs_;
 }
 
+liblec::lecui::containers::specs::pane&
+liblec::lecui::containers::pane::specs(form& fm, const std::string& name) {
+	// parse container path
+	std::vector<std::string> path;
+	std::string container_name;
+	fm.d_.parse_container_path(name, path, container_name);
+
+	// find the page
+	auto& page = fm.d_.find_page(fm.d_.p_pages_, path);
+
+	// find the container
+	return page.d_page_.get_pane(container_name).specs();
+}
+
 liblec::lecui::containers::page& liblec::lecui::containers::pane::get() {
 	auto& pane_ = d_.page_.d_page_.get_pane(d_.name_);
 
@@ -124,4 +138,19 @@ liblec::lecui::containers::page& liblec::lecui::containers::pane::get() {
 
 	// return reference to page so caller can add widgets to it
 	return pane_.p_panes_.at(name);
+}
+
+liblec::lecui::containers::page&
+liblec::lecui::containers::pane::get(form& fm, const std::string& name) {
+	// parse container path
+	std::vector<std::string> path;
+	std::string container_name;
+	fm.d_.parse_container_path(name, path, container_name);
+
+	// find the page
+	auto& page = fm.d_.find_page(fm.d_.p_pages_, path);
+
+	// find the container
+	auto& pane_ = page.d_page_.get_pane(container_name);
+	return pane_.p_panes_.at("pane");
 }

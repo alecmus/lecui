@@ -52,7 +52,7 @@ namespace liblec {
 				toggle(const toggle&);
 				toggle& operator=(const toggle&);
 
-				liblec::lecui::widgets::specs::toggle specs_;
+				liblec::lecui::widgets::specs::toggle specs_, specs_old_;
 				ID2D1SolidColorBrush* p_brush_;
 				ID2D1SolidColorBrush* p_brush_fill_;
 				ID2D1SolidColorBrush* p_brush_on_;

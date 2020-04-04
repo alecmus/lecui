@@ -148,17 +148,17 @@ bool liblec::lecui::form::show(std::string& error) {
 	}
 	else {
 		if (IsWindow(d_.hWnd_parent_) && IsWindowEnabled(d_.hWnd_parent_))
-			d_.set_position(liblec::lecui::form_position::center_to_parent,
+			d_.set_position(form_position::center_to_parent,
 				d_.size_.width, d_.size_.height);
 		else
-			d_.set_position(liblec::lecui::form_position::center_to_working_area,
+			d_.set_position(form_position::center_to_working_area,
 				d_.size_.width, d_.size_.height);
 	}
 
 	// perform initialization (d_.hWnd_ will be captured in WM_CREATE)
 	if (!CreateWindowEx(d_.top_most_ == true ? WS_EX_TOPMOST : NULL, wcex.lpszClassName,
 		convert_string(d_.caption_plain_).c_str(),
-		static_cast<DWORD>(liblec::lecui::form::form_impl::style::aero_borderless),
+		static_cast<DWORD>(form::form_impl::style::aero_borderless),
 		static_cast<int>(.5f + d_.point_.x * d_.dpi_scale_),
 		static_cast<int>(.5f + d_.point_.y * d_.dpi_scale_),
 		static_cast<int>(.5f + d_.size_.width * d_.dpi_scale_),
@@ -200,7 +200,7 @@ void liblec::lecui::form::close() {
 		// stop all timers
 		for (auto& it : d_.timers_)
 		{
-			liblec::lecui::widgets::timer timer(*this);
+			widgets::timer timer(*this);
 			if (timer.running(it.first))
 				timer.stop(it.first);
 		}
@@ -273,7 +273,7 @@ void liblec::lecui::form::message(const std::string& message) {
 			}
 
 			bool layout(std::string& error) override {
-				liblec::lecui::page home_page(*this);
+				page home_page(*this);
 				auto& specs_home_page = home_page.add("home");
 
 				auto& specs_lbl = widgets::label(specs_home_page).add("message");
@@ -430,7 +430,7 @@ std::string liblec::lecui::form::open_file(const liblec::lecui::open_file_params
 }
 
 std::string liblec::lecui::form::save_file(const std::string& file,
-	const liblec::lecui::save_file_params& params) {
+	const save_file_params& params) {
 	std::vector<std::string> filetypes_indexed;
 	const auto filter_string =
 		make_filter_string(params.file_types, params.include_all_supported_types,

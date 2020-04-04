@@ -52,7 +52,7 @@ namespace liblec {
 				list(const list&);
 				list& operator=(const list&);
 
-				liblec::lecui::widgets::specs::list specs_;
+				liblec::lecui::widgets::specs::list specs_, specs_old_;
 				ID2D1SolidColorBrush* p_brush_;
 				ID2D1SolidColorBrush* p_brush_fill_;
 				ID2D1SolidColorBrush* p_brush_scrollbar_border_;

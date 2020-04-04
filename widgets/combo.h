@@ -43,6 +43,9 @@ namespace liblec {
 					std::vector<std::string> items;
 					std::string selected;
 					std::function<void(const std::string&)> on_selection = nullptr;
+
+					bool operator==(const combo&);
+					bool operator!=(const combo&);
 				};
 			}
 
@@ -51,7 +54,10 @@ namespace liblec {
 				combo(liblec::lecui::containers::page& page);
 				~combo();
 
-				liblec::lecui::widgets::specs::combo& add(const std::string& name);
+				liblec::lecui::widgets::specs::combo&
+					add(const std::string& name);
+				static liblec::lecui::widgets::specs::combo&
+					specs(form& fm, const std::string& name);
 
 			private:
 				class combo_impl;

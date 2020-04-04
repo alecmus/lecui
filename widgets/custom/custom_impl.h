@@ -50,7 +50,7 @@ namespace liblec {
 				custom(const custom&);
 				custom& operator=(const custom&);
 
-				liblec::lecui::widgets::specs::custom specs_;
+				liblec::lecui::widgets::specs::custom specs_, specs_old_;
 
 				IDWriteFactory* p_directwrite_factory_;
 				IWICImagingFactory* p_iwic_factory_;

@@ -49,7 +49,7 @@ namespace liblec {
 				button(const button&);
 				button& operator=(const button&);
 
-				liblec::lecui::widgets::specs::button specs_;
+				liblec::lecui::widgets::specs::button specs_, specs_old_;
 				ID2D1SolidColorBrush* p_brush_;
 				ID2D1SolidColorBrush* p_brush_border_;
 				ID2D1SolidColorBrush* p_brush_fill_;

@@ -82,7 +82,7 @@ class liblec::lecui::form::form_impl {
 	int idi_icon_, idi_icon_small_;
 
 	// colors
-	liblec::lecui::color clr_background_, clr_titlebar_background_, clr_theme_, clr_theme_hot_,
+	color clr_background_, clr_titlebar_background_, clr_theme_, clr_theme_hot_,
 		clr_theme_disabled_;
 
 	bool top_most_;
@@ -94,13 +94,13 @@ class liblec::lecui::form::form_impl {
 	bool activate_;
 
 	// window coordinates
-	liblec::lecui::point point_;
-	liblec::lecui::size size_, min_size_;
+	point point_;
+	size size_, min_size_;
 	bool allow_resizing_, allow_minimize_;
 
 	bool user_pos_;
 	bool preset_pos_;
-	liblec::lecui::form_position form_position_;
+	form_position form_position_;
 
 	float dpi_scale_;
 
@@ -116,18 +116,18 @@ class liblec::lecui::form::form_impl {
 	ID2D1SolidColorBrush* p_brush_titlebar_;
 
 	// pages <K = page name, T>
-	std::map<std::string, liblec::lecui::containers::page> p_pages_;
+	std::map<std::string, containers::page> p_pages_;
 	std::string current_page_;
 
 	mouse_track mouse_track_;
 
 	// form widgets <K = widget name, T>
-	std::map<std::string, liblec::lecui::widgets_implementation::widget&> widgets_;
+	std::map<std::string, widgets_implementation::widget&> widgets_;
 	std::vector<std::string> widgets_order_;
-	std::unique_ptr<liblec::lecui::widgets_implementation::close_button> p_close_button_;
-	std::unique_ptr<liblec::lecui::widgets_implementation::maximize_button> p_maximize_button_;
-	std::unique_ptr<liblec::lecui::widgets_implementation::minimize_button> p_minimize_button_;
-	std::unique_ptr<liblec::lecui::widgets_implementation::label> p_caption_;
+	std::unique_ptr<widgets_implementation::close_button> p_close_button_;
+	std::unique_ptr<widgets_implementation::maximize_button> p_maximize_button_;
+	std::unique_ptr<widgets_implementation::minimize_button> p_minimize_button_;
+	std::unique_ptr<widgets_implementation::label> p_caption_;
 
 	D2D1_POINT_2F point_before_;
 	bool user_sizing_;
@@ -167,13 +167,22 @@ class liblec::lecui::form::form_impl {
 	};
 
 	friend form;
-	friend liblec::lecui::dimensions;
-	friend liblec::lecui::appearance;
-	friend liblec::lecui::controls;
-	friend liblec::lecui::page;
-	friend liblec::lecui::widgets::timer;
-	friend liblec::lecui::widgets::label;
-	friend liblec::lecui::widgets::image;
+	friend dimensions;
+	friend appearance;
+	friend controls;
+	friend page;
+	friend containers::tab_control;
+	friend containers::pane;
+	friend widgets::timer;
+	friend widgets::label;
+	friend widgets::image;
+	friend widgets::button;
+	friend widgets::combo;
+	friend widgets::custom;
+	friend widgets::group;
+	friend widgets::list;
+	friend widgets::rectangle;
+	friend widgets::toggle;
 
 public:
 	form_impl(const std::string& caption_formatted);
@@ -192,7 +201,7 @@ public:
 	D2D1_POINT_2F get_cursor_position();
 	void set_position(const float& ix, const float& iy,
 		const float& icx, const float& icy);
-	void set_position(const liblec::lecui::form_position& wndPos,
+	void set_position(const form_position& wndPos,
 		const float& icx_in, const float& icy_in);
 
 	static bool composition_enabled();
@@ -213,22 +222,23 @@ public:
 	void parse_widget_path(const std::string& name,
 		std::vector<std::string>& path,
 		std::string& widget_name);
-	liblec::lecui::widgets_implementation::widget& find_widget(
-		const liblec::lecui::containers::page& page,
+	void parse_container_path(const std::string& name,
+		std::vector<std::string>& path,
+		std::string& container_name);
+	widgets_implementation::widget& find_widget(
+		const containers::page& page,
 		const std::vector<std::string>& path,
 		const std::string& widget_name);
-	liblec::lecui::widgets_implementation::widget& find_widget(
-		const std::map<std::string, liblec::lecui::containers::page>& pages,
+	widgets_implementation::widget& find_widget(
+		const std::map<std::string, containers::page>& pages,
 		const std::vector<std::string>& path,
 		const std::string& widget_name);
-	liblec::lecui::containers::page& find_page(
-		liblec::lecui::containers::page& page,
-		const std::vector<std::string>& path,
-		const std::string& widget_name);
-	liblec::lecui::containers::page& find_page(
-		std::map<std::string, liblec::lecui::containers::page>& pages,
-		const std::vector<std::string>& path,
-		const std::string& widget_name);
+	containers::page& find_page(
+		containers::page& page,
+		const std::vector<std::string>& path);
+	containers::page& find_page(
+		std::map<std::string, containers::page>& pages,
+		const std::vector<std::string>& path);
 	void enable(const std::string& name, bool enable);
 	void show(const std::string& name, bool show);
 	void close(const std::string& name);

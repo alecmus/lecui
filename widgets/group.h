@@ -38,6 +38,9 @@ namespace liblec {
 					float corner_radius_x = 5.f;
 					float corner_radius_y = 5.f;
 					std::vector<std::string> widgets;
+
+					bool operator==(const group&);
+					bool operator!=(const group&);
 				};
 			}
 
@@ -46,7 +49,10 @@ namespace liblec {
 				group(liblec::lecui::containers::page& page);
 				~group();
 
-				liblec::lecui::widgets::specs::group& add(const std::string& name);
+				liblec::lecui::widgets::specs::group&
+					add(const std::string& name);
+				static liblec::lecui::widgets::specs::group&
+					specs(form& fm, const std::string& name);
 
 			private:
 				class group_impl;

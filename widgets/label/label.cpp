@@ -27,7 +27,7 @@ bool liblec::lecui::widgets::specs::label::operator==(const label& param) {
 }
 
 bool liblec::lecui::widgets::specs::label::operator!=(const label& param) {
-	return !(*this == param);
+	return !operator==(param);
 }
 
 class liblec::lecui::widgets::label::label::label_impl {
@@ -56,7 +56,7 @@ liblec::lecui::widgets::label::specs(form& fm,
 	fm.d_.parse_widget_path(name, path, widget_name);
 
 	// find the page
-	auto& page = fm.d_.find_page(fm.d_.p_pages_, path, widget_name);
+	auto& page = fm.d_.find_page(fm.d_.p_pages_, path);
 	
 	// find the widget
 	return page.d_page_.get_label(widget_name).specs();

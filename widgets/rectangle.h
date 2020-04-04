@@ -37,6 +37,9 @@ namespace liblec {
 					float corner_radius_x = .0f;
 					float corner_radius_y = .0f;
 					liblec::lecui::color color_border = { 150, 150, 150, 255 };
+
+					bool operator==(const rectangle&);
+					bool operator!=(const rectangle&);
 				};
 			}
 
@@ -45,7 +48,10 @@ namespace liblec {
 				rectangle(liblec::lecui::containers::page& page);
 				~rectangle();
 
-				liblec::lecui::widgets::specs::rectangle& add(const std::string& name);
+				liblec::lecui::widgets::specs::rectangle&
+					add(const std::string& name);
+				static liblec::lecui::widgets::specs::rectangle&
+					specs(form& fm, const std::string& name);
 
 			private:
 				class rectangle_impl;

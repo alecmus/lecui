@@ -14,6 +14,24 @@
 #include "../combo.h"
 #include "../../form_impl.h"
 
+bool liblec::lecui::widgets::specs::combo::operator==(const combo& param) {
+	return
+		// generic specs
+		widget::operator==(param) &&
+		
+		// widget specific specs
+		(color_border == param.color_border) &&
+		(color_dropdown_hot == param.color_dropdown_hot) &&
+		(color_menu == param.color_menu) &&
+		(color_menu_hot == param.color_menu_hot) &&
+		(color_menu_selected == param.color_menu_selected) &&
+		(items == param.items);
+}
+
+bool liblec::lecui::widgets::specs::combo::operator!=(const combo& param) {
+	return !operator==(param);
+}
+
 class liblec::lecui::widgets::combo::combo::combo_impl {
 public:
 	combo_impl(liblec::lecui::containers::page& page) :
@@ -28,4 +46,18 @@ liblec::lecui::widgets::combo::~combo() { delete& d_; }
 
 liblec::lecui::widgets::specs::combo& liblec::lecui::widgets::combo::add(const std::string& name) {
 	return d_.page_.d_page_.add_combo(name);
+}
+
+liblec::lecui::widgets::specs::combo&
+liblec::lecui::widgets::combo::specs(form& fm, const std::string& name) {
+	// parse widget path
+	std::vector<std::string> path;
+	std::string widget_name;
+	fm.d_.parse_widget_path(name, path, widget_name);
+
+	// find the page
+	auto& page = fm.d_.find_page(fm.d_.p_pages_, path);
+
+	// find the widget
+	return page.d_page_.get_combo(widget_name).specs();
 }

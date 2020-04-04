@@ -48,7 +48,7 @@ namespace liblec {
 				group(const group&);
 				group& operator=(const group&);
 
-				liblec::lecui::widgets::specs::group specs_;
+				liblec::lecui::widgets::specs::group specs_, specs_old_;
 				ID2D1SolidColorBrush* p_brush_fill_;
 				ID2D1SolidColorBrush* p_brush_border_;
 				ID2D1SolidColorBrush* p_brush_hot_;

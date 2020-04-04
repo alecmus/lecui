@@ -20,16 +20,13 @@ bool liblec::lecui::widgets::specs::image::operator==(const image& param) {
 		widget::operator==(param) &&
 
 		// widget specific specs
-		(border == param.border) &&
-		(corner_radius_x == param.corner_radius_x) &&
-		(corner_radius_y == param.corner_radius_y) &&
 		(color_border == param.color_border) &&
 		(file == param.file) &&
 		(png_resource == param.png_resource);
 }
 
 bool liblec::lecui::widgets::specs::image::operator!=(const image& param) {
-	return !(*this == param);
+	return !operator==(param);
 }
 
 class liblec::lecui::widgets::image::image::image_impl {
@@ -57,7 +54,7 @@ liblec::lecui::widgets::image::specs(form& fm, const std::string& name) {
 	fm.d_.parse_widget_path(name, path, widget_name);
 
 	// find the page
-	auto& page = fm.d_.find_page(fm.d_.p_pages_, path, widget_name);
+	auto& page = fm.d_.find_page(fm.d_.p_pages_, path);
 
 	// find the widget
 	return page.d_page_.get_image(widget_name).specs();

@@ -39,6 +39,9 @@ namespace liblec {
 					float corner_radius_x = 5.f;
 					float corner_radius_y = 5.f;
 					liblec::lecui::color color_border = { 150, 150, 150, 255 };
+
+					bool operator==(const button&);
+					bool operator!=(const button&);
 				};
 			}
 
@@ -47,7 +50,10 @@ namespace liblec {
 				button(liblec::lecui::containers::page& page);
 				~button();
 
-				liblec::lecui::widgets::specs::button& add(const std::string& name);
+				liblec::lecui::widgets::specs::button&
+					add(const std::string& name);
+				static liblec::lecui::widgets::specs::button&
+					specs(form& fm, const std::string& name);
 
 			private:
 				class button_impl;

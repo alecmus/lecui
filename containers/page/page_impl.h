@@ -88,6 +88,10 @@ public:
 	liblec::lecui::widgets_implementation::pane&
 		get_pane(const std::string& name);
 
+	liblec::lecui::widgets_implementation::rectangle&
+		get_rectangle(const std::string& name);
+	liblec::lecui::widgets_implementation::button&
+		get_button(const std::string& name);
 	liblec::lecui::widgets_implementation::label&
 		get_label(const std::string& name);
 	liblec::lecui::widgets_implementation::group&

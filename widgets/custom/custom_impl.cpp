@@ -48,6 +48,7 @@ liblec::lecui::widgets_implementation::custom::type() {
 HRESULT liblec::lecui::widgets_implementation::custom::create_resources(
 	ID2D1HwndRenderTarget* p_render_target) {
 	log("creating resources:   " + page_ + ":" + name_);
+	specs_old_ = specs_;
 	is_static_ = (specs_.on_click == nullptr);
 
 	if (specs_.on_create_resources != nullptr)
@@ -68,6 +69,12 @@ D2D1_RECT_F& liblec::lecui::widgets_implementation::custom::render(
 	ID2D1HwndRenderTarget* p_render_target,
 	const float& change_in_width, const float& change_in_height, float x_off_set, float y_off_set,
 	const bool& render) {
+	if (specs_old_ != specs_) {
+		log("specs changed: " + name_);
+		specs_old_ = specs_;
+		discard_resources();
+	}
+
 	if (!resources_created_)
 		create_resources(p_render_target);
 

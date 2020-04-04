@@ -28,10 +28,22 @@ namespace liblec {
 		class appearance;
 		class controls;
 
+		namespace containers {
+			class tab_control;
+			class pane;
+		}
+
 		namespace widgets {
 			class timer;
 			class label;
 			class image;
+			class button;
+			class combo;
+			class custom;
+			class group;
+			class list;
+			class rectangle;
+			class toggle;
 		}
 
 		enum class form_position {
@@ -55,8 +67,8 @@ namespace liblec {
 			form(const std::string& caption, form& parent);
 			~form();
 
-			void move(const liblec::lecui::point& point);
-			void move(const liblec::lecui::form_position& form_position);
+			void move(const point& point);
+			void move(const form_position& form_position);
 
 			bool show(std::string& error);
 			void close();
@@ -71,9 +83,9 @@ namespace liblec {
 			void message(const std::string& message);
 
 			std::string select_folder(const std::string& title);
-			std::string open_file(const liblec::lecui::open_file_params& params);
+			std::string open_file(const open_file_params& params);
 			std::string save_file(const std::string& file,
-				const liblec::lecui::save_file_params& params);
+				const save_file_params& params);
 
 			void enable(const std::string& name, bool enable);
 			void show(const std::string& name, bool show);
@@ -93,13 +105,22 @@ namespace liblec {
 			form(const form&);
 			form& operator=(const form&);
 
-			friend liblec::lecui::page;
-			friend liblec::lecui::dimensions;
-			friend liblec::lecui::appearance;
-			friend liblec::lecui::controls;
-			friend liblec::lecui::widgets::timer;
-			friend liblec::lecui::widgets::label;
-			friend liblec::lecui::widgets::image;
+			friend page;
+			friend dimensions;
+			friend appearance;
+			friend controls;
+			friend containers::tab_control;
+			friend containers::pane;
+			friend widgets::timer;
+			friend widgets::label;
+			friend widgets::image;
+			friend widgets::button;
+			friend widgets::combo;
+			friend widgets::custom;
+			friend widgets::group;
+			friend widgets::list;
+			friend widgets::rectangle;
+			friend widgets::toggle;
 		};
 	}
 }

@@ -30,7 +30,7 @@ bool liblec::lecui::widgets::specs::on_resize::operator==(const on_resize& param
 }
 
 bool liblec::lecui::widgets::specs::on_resize::operator!=(const on_resize& param) {
-	return !(*this == param);
+	return !operator==(param);
 }
 
 bool liblec::lecui::widgets::specs::widget::operator==(const widget& param) {
@@ -50,5 +50,5 @@ bool liblec::lecui::widgets::specs::widget::operator==(const widget& param) {
 }
 
 bool liblec::lecui::widgets::specs::widget::operator!=(const widget& param) {
-	return !(*this == param);
+	return !operator==(param);
 }

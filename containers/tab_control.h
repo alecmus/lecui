@@ -45,7 +45,10 @@ namespace liblec {
 				tab_control(liblec::lecui::containers::page& page, const std::string& name);
 				~tab_control();
 
-				liblec::lecui::containers::specs::tab_control& specs();
+				liblec::lecui::containers::specs::tab_control&
+					specs();
+				static liblec::lecui::containers::specs::tab_control&
+					specs(form& fm, const std::string& name);
 				void select(const std::string& name);
 
 			private:

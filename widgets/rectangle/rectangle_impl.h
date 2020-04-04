@@ -48,7 +48,7 @@ namespace liblec {
 				rectangle(const rectangle&);
 				rectangle& operator=(const rectangle&);
 
-				liblec::lecui::widgets::specs::rectangle specs_;
+				liblec::lecui::widgets::specs::rectangle specs_, specs_old_;
 				ID2D1SolidColorBrush* p_brush_fill_;
 				ID2D1SolidColorBrush* p_brush_border_;
 				ID2D1SolidColorBrush* p_brush_hot_;

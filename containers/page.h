@@ -78,7 +78,10 @@ namespace liblec {
 			~page();
 
 			bool exists(const std::string& name);
-			liblec::lecui::containers::page& add(const std::string& name);
+			liblec::lecui::containers::page&
+				add(const std::string& name);
+			static liblec::lecui::containers::page&
+				get(form& fm, const std::string& name);
 			void show(const std::string& name);
 
 		private:

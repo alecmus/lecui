@@ -125,6 +125,12 @@ liblec::lecui::containers::page& liblec::lecui::page::add(const std::string& nam
 	return d_.fm_.d_.p_pages_.at(name);
 }
 
+liblec::lecui::containers::page&
+liblec::lecui::page::get(form& fm, const std::string& name) {
+	// find the page
+	return fm.d_.p_pages_.at(name);
+}
+
 void liblec::lecui::page::show(const std::string& name) {
 	log("liblec::lecui::page::show");
 

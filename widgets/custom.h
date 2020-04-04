@@ -36,6 +36,9 @@ namespace liblec {
 					std::function<
 						void(void* D2D1_RECT_F_, bool enabled_, bool hit_,
 							bool pressed_, bool selected_)> on_render = nullptr;
+
+					bool operator==(const custom&);
+					bool operator!=(const custom&);
 				};
 			}
 
@@ -44,7 +47,10 @@ namespace liblec {
 				custom(liblec::lecui::containers::page& page);
 				~custom();
 
-				liblec::lecui::widgets::specs::custom& add(const std::string& name);
+				liblec::lecui::widgets::specs::custom&
+					add(const std::string& name);
+				static liblec::lecui::widgets::specs::custom&
+					specs(form& fm, const std::string& name);
 
 			private:
 				class custom_impl;

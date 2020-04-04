@@ -167,6 +167,12 @@ liblec::lecui::containers::page::page_impl::get_tab_control(const std::string& n
 liblec::lecui::widgets_implementation::pane&
 liblec::lecui::containers::page::page_impl::get_pane(const std::string& name) { return panes_.at(name); }
 
+liblec::lecui::widgets_implementation::rectangle&
+liblec::lecui::containers::page::page_impl::get_rectangle(const std::string& name) { return rectangles_.at(name); }
+
+liblec::lecui::widgets_implementation::button&
+liblec::lecui::containers::page::page_impl::get_button(const std::string& name) { return buttons_.at(name); }
+
 liblec::lecui::widgets_implementation::label&
 liblec::lecui::containers::page::page_impl::get_label(const std::string& name) { return labels_.at(name); }
 

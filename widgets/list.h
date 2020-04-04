@@ -50,6 +50,9 @@ namespace liblec {
 					std::vector<std::map<std::string, std::string>> table;
 					std::vector<long> selected;
 					std::function<void(const std::vector<std::map<std::string, std::string>>&)> on_selection = nullptr;
+
+					bool operator==(const list&);
+					bool operator!=(const list&);
 				};
 			}
 
@@ -58,7 +61,10 @@ namespace liblec {
 				list(liblec::lecui::containers::page& page);
 				~list();
 
-				liblec::lecui::widgets::specs::list& add(const std::string& name);
+				liblec::lecui::widgets::specs::list&
+					add(const std::string& name);
+				static liblec::lecui::widgets::specs::list&
+					specs(form& fm, const std::string& name);
 
 			private:
 				class list_impl;

@@ -35,6 +35,21 @@ liblec::lecui::containers::specs::tab_control& liblec::lecui::containers::tab_co
 	return d_.specs_;
 }
 
+liblec::lecui::containers::specs::tab_control&
+liblec::lecui::containers::tab_control::specs(form& fm,
+	const std::string& name) {
+	// parse container path
+	std::vector<std::string> path;
+	std::string container_name;
+	fm.d_.parse_container_path(name, path, container_name);
+
+	// find the page
+	auto& page = fm.d_.find_page(fm.d_.p_pages_, path);
+
+	// find the container
+	return page.d_page_.get_tab_control(container_name).specs();
+}
+
 void liblec::lecui::containers::tab_control::select(const std::string& name) {
 	auto& tab_control_ = d_.page_.d_page_.get_tab_control(d_.name_);
 	tab_control_.current_tab_ = name;

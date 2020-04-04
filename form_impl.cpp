@@ -67,11 +67,11 @@ liblec::lecui::form::form_impl::form_impl(const std::string& caption_formatted) 
 	resource_module_handle_(nullptr),
 	idi_icon_(0),
 	idi_icon_small_(0),
-	clr_background_(liblec::lecui::color{ 244, 244, 244 }),
+	clr_background_(color{ 244, 244, 244 }),
 	clr_titlebar_background_(clr_background_),
-	clr_theme_(liblec::lecui::color{ 20, 80, 140, 255 }),
-	clr_theme_hot_(liblec::lecui::color{ 255, 180, 0, 255 }),
-	clr_theme_disabled_(liblec::lecui::color{ 225, 225, 225, 255 }),
+	clr_theme_(color{ 20, 80, 140, 255 }),
+	clr_theme_hot_(color{ 255, 180, 0, 255 }),
+	clr_theme_disabled_(color{ 225, 225, 225, 255 }),
 	top_most_(false),
 	hWnd_(nullptr),
 	hWnd_parent_(nullptr),
@@ -84,7 +84,7 @@ liblec::lecui::form::form_impl::form_impl(const std::string& caption_formatted) 
 	allow_minimize_(true),
 	user_pos_(false),
 	preset_pos_(false),
-	form_position_(liblec::lecui::form_position::center_to_working_area),
+	form_position_(form_position::center_to_working_area),
 	dpi_scale_(1.f),
 	borderless_(true),
 	borderless_shadow_(true),
@@ -250,14 +250,14 @@ HRESULT liblec::lecui::form::form_impl::create_device_resources() {
 		if (SUCCEEDED(hr)) {
 			class helper {
 			public:
-				static void create_resources(const liblec::lecui::containers::page& page,
+				static void create_resources(const containers::page& page,
 					ID2D1HwndRenderTarget* p_render_target_) {
 					// create widget resources
 					for (auto& widget : page.d_page_.widgets()) {
 						HRESULT hr = widget.second.create_resources(p_render_target_);
 
 						if (widget.second.type() ==
-							liblec::lecui::widgets_implementation::widget_type::tab_control) {
+							widgets_implementation::widget_type::tab_control) {
 							try {
 								// get this tab control
 								auto& tab_control = page.d_page_.get_tab_control(widget.first);
@@ -269,7 +269,7 @@ HRESULT liblec::lecui::form::form_impl::create_device_resources() {
 						}
 						else
 							if (widget.second.type() ==
-								liblec::lecui::widgets_implementation::widget_type::pane) {
+								widgets_implementation::widget_type::pane) {
 								try {
 									// get this pane
 									auto& pane = page.d_page_.get_pane(widget.first);
@@ -306,12 +306,12 @@ void liblec::lecui::form::form_impl::discard_device_resources(bool in_destructor
 
 	class helper {
 	public:
-		static void discard(const liblec::lecui::containers::page& page, bool in_destructor) {
+		static void discard(const containers::page& page, bool in_destructor) {
 			// discard widget resources
 			for (const auto& widget : page.d_page_.widgets()) {
 				if (in_destructor &&
 					widget.second.type() ==
-					liblec::lecui::widgets_implementation::widget_type::custom) {
+					widgets_implementation::widget_type::custom) {
 					log("Skipping custom widget discard resources because by now custom widget will have long been destroyed so don't discard resources");
 					continue;
 				}
@@ -319,7 +319,7 @@ void liblec::lecui::form::form_impl::discard_device_resources(bool in_destructor
 				widget.second.discard_resources();
 
 				if (widget.second.type() ==
-					liblec::lecui::widgets_implementation::widget_type::tab_control) {
+					widgets_implementation::widget_type::tab_control) {
 					try {
 						// get this tab control
 						const auto& tab_control = page.d_page_.get_tab_control(widget.first);
@@ -331,7 +331,7 @@ void liblec::lecui::form::form_impl::discard_device_resources(bool in_destructor
 				}
 				else
 					if (widget.second.type() ==
-						liblec::lecui::widgets_implementation::widget_type::pane) {
+						widgets_implementation::widget_type::pane) {
 						try {
 							// get this pane
 							const auto& pane = page.d_page_.get_pane(widget.first);
@@ -356,8 +356,8 @@ void liblec::lecui::form::form_impl::discard_device_resources(bool in_destructor
 
 void liblec::lecui::form::form_impl::create_close_button(std::function<void()> on_click) {
 	p_close_button_ =
-		std::unique_ptr<liblec::lecui::widgets_implementation::close_button>(new
-			liblec::lecui::widgets_implementation::close_button());
+		std::unique_ptr<widgets_implementation::close_button>(new
+			widgets_implementation::close_button());
 	widgets_.emplace(p_close_button_->name(), *p_close_button_);
 	widgets_order_.emplace_back(p_close_button_->name());
 
@@ -379,8 +379,8 @@ void liblec::lecui::form::form_impl::create_close_button(std::function<void()> o
 // should be called after create_close_button()
 void liblec::lecui::form::form_impl::create_maximize_button() {
 	p_maximize_button_ =
-		std::unique_ptr<liblec::lecui::widgets_implementation::maximize_button>(new
-			liblec::lecui::widgets_implementation::maximize_button());
+		std::unique_ptr<widgets_implementation::maximize_button>(new
+			widgets_implementation::maximize_button());
 	widgets_.emplace(p_maximize_button_->name(), *p_maximize_button_);
 	widgets_order_.emplace_back(p_maximize_button_->name());
 
@@ -402,8 +402,8 @@ void liblec::lecui::form::form_impl::create_maximize_button() {
 // should be called after create_close_button() and create_maximize_button()
 void liblec::lecui::form::form_impl::create_minimize_button() {
 	p_minimize_button_ =
-		std::unique_ptr<liblec::lecui::widgets_implementation::minimize_button>(new
-			liblec::lecui::widgets_implementation::minimize_button());
+		std::unique_ptr<widgets_implementation::minimize_button>(new
+			widgets_implementation::minimize_button());
 	widgets_.emplace(p_minimize_button_->name(), *p_minimize_button_);
 	widgets_order_.emplace_back(p_minimize_button_->name());
 
@@ -426,8 +426,8 @@ void liblec::lecui::form::form_impl::create_minimize_button() {
 
 void liblec::lecui::form::form_impl::create_form_caption(std::function<void()> on_click) {
 	p_caption_ =
-		std::unique_ptr<liblec::lecui::widgets_implementation::label>(new
-			liblec::lecui::widgets_implementation::label("", "form_caption",
+		std::unique_ptr<widgets_implementation::label>(new
+			widgets_implementation::label("", "form_caption",
 				p_directwrite_factory_));
 	widgets_.emplace(p_caption_->name(), *p_caption_);
 	widgets_order_.emplace_back(p_caption_->name());
@@ -506,7 +506,7 @@ HRESULT liblec::lecui::form::form_impl::on_render() {
 			static void render_page(bool allow_render,
 				const std::string& page_name,
 				const std::string& current_page,
-				liblec::lecui::containers::page& page,
+				containers::page& page,
 				ID2D1HwndRenderTarget* p_render_target_,
 				const D2D1_RECT_F& rectB,
 				const D2D1_RECT_F& client_area,
@@ -586,11 +586,11 @@ HRESULT liblec::lecui::form::form_impl::on_render() {
 						D2D1_RECT_F rect_widgets_ = { 0.f, 0.f, 0.f, 0.f };
 						for (auto& widget : page.d_page_.widgets()) {
 							if (widget.second.type() ==
-								liblec::lecui::widgets_implementation::widget_type::h_scrollbar ||
+								widgets_implementation::widget_type::h_scrollbar ||
 								widget.second.type() ==
-								liblec::lecui::widgets_implementation::widget_type::v_scrollbar ||
+								widgets_implementation::widget_type::v_scrollbar ||
 								widget.second.type() ==
-								liblec::lecui::widgets_implementation::widget_type::group)
+								widgets_implementation::widget_type::group)
 								continue;
 
 							rect_widgets_ = widget.second.render(p_render_target_,
@@ -656,7 +656,7 @@ HRESULT liblec::lecui::form::form_impl::on_render() {
 					// resize groupboxes
 					for (auto& widget : page.d_page_.widgets()) {
 						if (widget.second.type() !=
-							liblec::lecui::widgets_implementation::widget_type::group)
+							widgets_implementation::widget_type::group)
 							continue;
 
 						try {
@@ -707,7 +707,7 @@ HRESULT liblec::lecui::form::form_impl::on_render() {
 					// render groupboxes
 					for (auto& widget : page.d_page_.widgets()) {
 						if (widget.second.type() !=
-							liblec::lecui::widgets_implementation::widget_type::group)
+							widgets_implementation::widget_type::group)
 							continue;
 
 						try {
@@ -730,11 +730,11 @@ HRESULT liblec::lecui::form::form_impl::on_render() {
 					// render widgets
 					for (auto& widget : page.d_page_.widgets()) {
 						if (widget.second.type() ==
-							liblec::lecui::widgets_implementation::widget_type::h_scrollbar ||
+							widgets_implementation::widget_type::h_scrollbar ||
 							widget.second.type() ==
-							liblec::lecui::widgets_implementation::widget_type::v_scrollbar ||
+							widgets_implementation::widget_type::v_scrollbar ||
 							widget.second.type() ==
-							liblec::lecui::widgets_implementation::widget_type::group)
+							widgets_implementation::widget_type::group)
 							continue;
 
 						widget.second.render(p_render_target_,
@@ -744,7 +744,7 @@ HRESULT liblec::lecui::form::form_impl::on_render() {
 							render);
 
 						if (widget.second.type() ==
-							liblec::lecui::widgets_implementation::widget_type::tab_control) {
+							widgets_implementation::widget_type::tab_control) {
 							try {
 								// get this tab control
 								auto& tab_control = page.d_page_.get_tab_control(widget.first);
@@ -776,7 +776,7 @@ HRESULT liblec::lecui::form::form_impl::on_render() {
 						}
 						else
 							if (widget.second.type() ==
-								liblec::lecui::widgets_implementation::widget_type::pane) {
+								widgets_implementation::widget_type::pane) {
 								try {
 									// get this pane
 									auto& pane = page.d_page_.get_pane(widget.first);
@@ -833,7 +833,7 @@ HRESULT liblec::lecui::form::form_impl::on_render() {
 			static void render_menu(ID2D1HwndRenderTarget* p_render_target_,
 				const std::string& page_name,
 				const std::string& current_page,
-				liblec::lecui::containers::page& page,
+				containers::page& page,
 				const D2D1_RECT_F& client_area) {
 				bool render = page_name == current_page;
 
@@ -846,17 +846,17 @@ HRESULT liblec::lecui::form::form_impl::on_render() {
 				// render widgets
 				for (auto& widget : page.d_page_.widgets()) {
 					if (widget.second.type() ==
-						liblec::lecui::widgets_implementation::widget_type::h_scrollbar ||
+						widgets_implementation::widget_type::h_scrollbar ||
 						widget.second.type() ==
-						liblec::lecui::widgets_implementation::widget_type::v_scrollbar ||
+						widgets_implementation::widget_type::v_scrollbar ||
 						widget.second.type() ==
-						liblec::lecui::widgets_implementation::widget_type::group)
+						widgets_implementation::widget_type::group)
 						continue;
 
 					widget.second.on_menu(p_render_target_, client_area);
 
 					if (widget.second.type() ==
-						liblec::lecui::widgets_implementation::widget_type::tab_control) {
+						widgets_implementation::widget_type::tab_control) {
 						try {
 							// get this tab control
 							auto& tab_control = page.d_page_.get_tab_control(widget.first);
@@ -887,7 +887,7 @@ HRESULT liblec::lecui::form::form_impl::on_render() {
 					}
 					else
 						if (widget.second.type() ==
-							liblec::lecui::widgets_implementation::widget_type::pane) {
+							widgets_implementation::widget_type::pane) {
 							try {
 								// get this pane
 								auto& pane = page.d_page_.get_pane(widget.first);
@@ -1018,16 +1018,16 @@ void liblec::lecui::form::form_impl::set_position(const liblec::lecui::form_posi
 	// get coordinates of working area
 	RECT rcWork = get_working_area(GetDesktopWindow());
 
-	liblec::lecui::form_position m_wndPos = wndPos;
+	form_position m_wndPos = wndPos;
 
-	if (wndPos == liblec::lecui::form_position::center_to_parent &&
+	if (wndPos == form_position::center_to_parent &&
 		hWnd_parent_ &&
 		IsWindow(hWnd_parent_) &&
 		(!IsWindowVisible(hWnd_parent_) || IsIconic(hWnd_parent_)))
-		m_wndPos = liblec::lecui::form_position::center_to_working_area;
+		m_wndPos = form_position::center_to_working_area;
 
 	switch (m_wndPos) {
-	case liblec::lecui::form_position::center_to_parent: {
+	case form_position::center_to_parent: {
 		if (hWnd_parent_ && IsWindow(hWnd_parent_)) {
 			// get coordinates of parent window
 			RECT rcParent;
@@ -1049,10 +1049,10 @@ void liblec::lecui::form::form_impl::set_position(const liblec::lecui::form_posi
 			break;
 		}
 
-		// allow to fall through to liblec::lecui::form_position::center_to_working_area
+		// allow to fall through to form_position::center_to_working_area
 	}
 
-	case liblec::lecui::form_position::center_to_working_area: {
+	case form_position::center_to_working_area: {
 		const float user_width = rcWork.right - rcWork.left + 0.f;
 		const float user_height = rcWork.bottom - rcWork.top + 0.f;
 
@@ -1064,72 +1064,63 @@ void liblec::lecui::form::form_impl::set_position(const liblec::lecui::form_posi
 		point_.y = iy;
 		size_.width = icx;
 		size_.height = icy;
-	}
-															 break;
+	} break;
 
-	case liblec::lecui::form_position::top_left: {
+	case form_position::top_left: {
 		point_.x = rcWork.left + 0.f;
 		point_.y = rcWork.top + 0.f;
 		size_.width = icx;
 		size_.height = icy;
-	}
-											   break;
+	} break;
 
-	case liblec::lecui::form_position::top_left_offset: {
+	case form_position::top_left_offset: {
 		point_.x = rcWork.left + offset;
 		point_.y = rcWork.top + offset;
 		size_.width = icx;
 		size_.height = icy;
-	}
-													  break;
+	} break;
 
-	case liblec::lecui::form_position::top_right: {
+	case form_position::top_right: {
 		point_.x = rcWork.right - icx;
 		point_.y = rcWork.top + 0.f;
 		size_.width = icx;
 		size_.height = icy;
-	}
-												break;
+	} break;
 
-	case liblec::lecui::form_position::top_right_offset: {
+	case form_position::top_right_offset: {
 		point_.x = rcWork.right - icx - offset;
 		point_.y = rcWork.top + offset;
 		size_.width = icx;
 		size_.height = icy;
-	}
-													   break;
+	} break;
 
-	case liblec::lecui::form_position::bottom_right: {
+	case form_position::bottom_right: {
 		point_.x = rcWork.right - icx;
 		point_.y = rcWork.bottom - icy;
 		size_.width = icx;
 		size_.height = icy;
-	}
-												   break;
+	} break;
 
-	case liblec::lecui::form_position::bottom_right_offset: {
+	case form_position::bottom_right_offset: {
 		point_.x = rcWork.right - icx - offset;
 		point_.y = rcWork.bottom - icy - offset;
 		size_.width = icx;
 		size_.height = icy;
-	}
-														  break;
+	} break;
 
-	case liblec::lecui::form_position::bottom_left: {
+	case form_position::bottom_left: {
 		point_.x = rcWork.left + 0.f;
 		point_.y = rcWork.bottom - icy;
 		size_.width = icx;
 		size_.height = icy;
-	}
-												  break;
+	} break;
 
-	case liblec::lecui::form_position::bottom_left_offset: {
+	case form_position::bottom_left_offset: {
 		point_.x = rcWork.left + offset;
 		point_.y = rcWork.bottom - icy - offset;
 		size_.width = icx;
 		size_.height = icy;
-	}
-														 break;
+	} break;
 
 	default: {
 		// default to top left
@@ -1137,8 +1128,7 @@ void liblec::lecui::form::form_impl::set_position(const liblec::lecui::form_posi
 		point_.y = rcWork.top + 0.f;
 		size_.width = icx;
 		size_.height = icy;
-	}
-		   break;
+	} break;
 	}
 
 	// ensure visibility of top left
@@ -1306,7 +1296,7 @@ void liblec::lecui::form::form_impl::client_hittest(const D2D1_POINT_2F& point) 
 	class helper {
 	public:
 		static void hittest_hscrollbar(const std::string& page_name,
-			const std::string& current_page, liblec::lecui::containers::page& page,
+			const std::string& current_page, containers::page& page,
 			const D2D1_POINT_2F& point, const D2D1_POINT_2F& point_before,
 			bool& contains, bool& change) {
 			// hit test horizontal scroll bar
@@ -1325,7 +1315,7 @@ void liblec::lecui::form::form_impl::client_hittest(const D2D1_POINT_2F& point) 
 			if (!change) {
 				for (auto& widget : page.d_page_.widgets()) {
 					if (widget.second.type() ==
-						liblec::lecui::widgets_implementation::widget_type::tab_control) {
+						widgets_implementation::widget_type::tab_control) {
 						// get this tab control
 						auto& tab_control = page.d_page_.get_tab_control(widget.first);
 
@@ -1335,7 +1325,7 @@ void liblec::lecui::form::form_impl::client_hittest(const D2D1_POINT_2F& point) 
 					}
 					else
 						if (widget.second.type() ==
-							liblec::lecui::widgets_implementation::widget_type::pane) {
+							widgets_implementation::widget_type::pane) {
 							// get this pane
 							auto& pane = page.d_page_.get_pane(widget.first);
 
@@ -1348,7 +1338,7 @@ void liblec::lecui::form::form_impl::client_hittest(const D2D1_POINT_2F& point) 
 		}
 
 		static void hittest_vscrollbar(const std::string& page_name,
-			const std::string& current_page, liblec::lecui::containers::page& page,
+			const std::string& current_page, containers::page& page,
 			const D2D1_POINT_2F& point, const D2D1_POINT_2F& point_before,
 			bool& contains, bool& change) {
 			// hit test vertical scroll bar
@@ -1367,7 +1357,7 @@ void liblec::lecui::form::form_impl::client_hittest(const D2D1_POINT_2F& point) 
 			if (!change) {
 				for (auto& widget : page.d_page_.widgets()) {
 					if (widget.second.type() ==
-						liblec::lecui::widgets_implementation::widget_type::tab_control) {
+						widgets_implementation::widget_type::tab_control) {
 						// get this tab control
 						auto& tab_control = page.d_page_.get_tab_control(widget.first);
 
@@ -1377,7 +1367,7 @@ void liblec::lecui::form::form_impl::client_hittest(const D2D1_POINT_2F& point) 
 					}
 					else
 						if (widget.second.type() ==
-							liblec::lecui::widgets_implementation::widget_type::pane) {
+							widgets_implementation::widget_type::pane) {
 							// get this pane
 							auto& pane = page.d_page_.get_pane(widget.first);
 
@@ -1389,16 +1379,16 @@ void liblec::lecui::form::form_impl::client_hittest(const D2D1_POINT_2F& point) 
 			}
 		}
 
-		static void hittest_widgets(liblec::lecui::containers::page& page,
+		static void hittest_widgets(containers::page& page,
 			const D2D1_POINT_2F& point, bool& contains, bool& change, bool lbutton_pressed) {
 			bool in_page = page.d_page_.contains(point);
 
 			// hit test widgets
 			for (auto& widget : page.d_page_.widgets()) {
 				bool is_scroll_bar = (widget.second.type() ==
-					liblec::lecui::widgets_implementation::widget_type::h_scrollbar) ||
+					widgets_implementation::widget_type::h_scrollbar) ||
 					(widget.second.type() ==
-						liblec::lecui::widgets_implementation::widget_type::v_scrollbar);
+						widgets_implementation::widget_type::v_scrollbar);
 
 				if (widget.second.is_static() || !widget.second.visible() || !widget.second.enabled())
 					continue;
@@ -1411,7 +1401,7 @@ void liblec::lecui::form::form_impl::client_hittest(const D2D1_POINT_2F& point) 
 					break;
 
 				if (widget.second.type() ==
-					liblec::lecui::widgets_implementation::widget_type::tab_control) {
+					widgets_implementation::widget_type::tab_control) {
 					// get this tab control
 					auto& tab_control = page.d_page_.get_tab_control(widget.first);
 
@@ -1422,7 +1412,7 @@ void liblec::lecui::form::form_impl::client_hittest(const D2D1_POINT_2F& point) 
 				}
 				else
 					if (widget.second.type() ==
-						liblec::lecui::widgets_implementation::widget_type::pane) {
+						widgets_implementation::widget_type::pane) {
 						// get this pane
 						auto& pane = page.d_page_.get_pane(widget.first);
 
@@ -1499,7 +1489,7 @@ void liblec::lecui::form::form_impl::on_lbuttondown(const D2D1_POINT_2F& point) 
 
 	class helper {
 	public:
-		static void check_widgets(liblec::lecui::containers::page& page,
+		static void check_widgets(containers::page& page,
 			const D2D1_POINT_2F& point, const float& dpi_scale, bool& pressed,
 			bool& update_anyway) {
 			bool in_page = page.d_page_.contains(point);
@@ -1507,9 +1497,9 @@ void liblec::lecui::form::form_impl::on_lbuttondown(const D2D1_POINT_2F& point) 
 			// check widgets
 			for (auto& widget : page.d_page_.widgets()) {
 				bool is_scroll_bar = (widget.second.type() ==
-					liblec::lecui::widgets_implementation::widget_type::h_scrollbar) ||
+					widgets_implementation::widget_type::h_scrollbar) ||
 					(widget.second.type() ==
-						liblec::lecui::widgets_implementation::widget_type::v_scrollbar);
+						widgets_implementation::widget_type::v_scrollbar);
 
 				if (widget.second.is_static() || !widget.second.visible() || !widget.second.enabled())
 					continue;
@@ -1523,11 +1513,11 @@ void liblec::lecui::form::form_impl::on_lbuttondown(const D2D1_POINT_2F& point) 
 					widget.second.press(pressed);
 
 					if (widget.second.type() !=
-						liblec::lecui::widgets_implementation::widget_type::tab_control)
+						widgets_implementation::widget_type::tab_control)
 						widget.second.select(pressed);
 					else
 						if (widget.second.type() !=
-							liblec::lecui::widgets_implementation::widget_type::pane)
+							widgets_implementation::widget_type::pane)
 							widget.second.select(pressed);
 				}
 				else {
@@ -1539,7 +1529,7 @@ void liblec::lecui::form::form_impl::on_lbuttondown(const D2D1_POINT_2F& point) 
 
 			for (auto& widget : page.d_page_.widgets()) {
 				if (widget.second.type() ==
-					liblec::lecui::widgets_implementation::widget_type::tab_control) {
+					widgets_implementation::widget_type::tab_control) {
 					// get this tab control
 					auto& tab_control = page.d_page_.get_tab_control(widget.first);
 
@@ -1551,7 +1541,7 @@ void liblec::lecui::form::form_impl::on_lbuttondown(const D2D1_POINT_2F& point) 
 				}
 				else
 					if (widget.second.type() ==
-						liblec::lecui::widgets_implementation::widget_type::pane) {
+						widgets_implementation::widget_type::pane) {
 						// get this pane
 						auto& pane = page.d_page_.get_pane(widget.first);
 
@@ -1633,7 +1623,7 @@ void liblec::lecui::form::form_impl::on_lbuttonup(const D2D1_POINT_2F& point) {
 
 	class helper {
 	public:
-		static void check_widgets(liblec::lecui::containers::page& page,
+		static void check_widgets(containers::page& page,
 			const D2D1_POINT_2F& point, bool& clicked, bool& update_anyway,
 			std::function<void()>& on_click_handler) {
 			// check widgets
@@ -1655,7 +1645,7 @@ void liblec::lecui::form::form_impl::on_lbuttonup(const D2D1_POINT_2F& point) {
 				widget.second.press(false);
 
 				if (widget.second.type() ==
-					liblec::lecui::widgets_implementation::widget_type::tab_control) {
+					widgets_implementation::widget_type::tab_control) {
 					// get this tab control
 					auto& tab_control = page.d_page_.get_tab_control(widget.first);
 
@@ -1667,7 +1657,7 @@ void liblec::lecui::form::form_impl::on_lbuttonup(const D2D1_POINT_2F& point) {
 				}
 				else
 					if (widget.second.type() ==
-						liblec::lecui::widgets_implementation::widget_type::pane) {
+						widgets_implementation::widget_type::pane) {
 						// get this pane
 						auto& pane = page.d_page_.get_pane(widget.first);
 
@@ -1712,7 +1702,7 @@ bool liblec::lecui::form::form_impl::destroy_menus() {
 
 	class helper {
 	public:
-		static void check_widgets(liblec::lecui::containers::page& page,
+		static void check_widgets(containers::page& page,
 			bool& update) {
 			// check widgets
 			for (auto& widget : page.d_page_.widgets()) {
@@ -1727,7 +1717,7 @@ bool liblec::lecui::form::form_impl::destroy_menus() {
 
 			for (auto& widget : page.d_page_.widgets()) {
 				if (widget.second.type() ==
-					liblec::lecui::widgets_implementation::widget_type::tab_control) {
+					widgets_implementation::widget_type::tab_control) {
 					// get this tab control
 					auto& tab_control = page.d_page_.get_tab_control(widget.first);
 
@@ -1738,7 +1728,7 @@ bool liblec::lecui::form::form_impl::destroy_menus() {
 				}
 				else
 					if (widget.second.type() ==
-						liblec::lecui::widgets_implementation::widget_type::pane) {
+						widgets_implementation::widget_type::pane) {
 						// get this pane
 						auto& pane = page.d_page_.get_pane(widget.first);
 
@@ -1774,8 +1764,7 @@ void liblec::lecui::form::form_impl::start_timer(const std::string& name) {
 }
 
 void liblec::lecui::form::form_impl::parse_widget_path(const std::string& name,
-	std::vector<std::string>& path,
-	std::string& widget_name) {
+	std::vector<std::string>& path, std::string& widget_name) {
 	if (name.empty())
 		return;
 
@@ -1806,9 +1795,14 @@ void liblec::lecui::form::form_impl::parse_widget_path(const std::string& name,
 	}
 }
 
+void liblec::lecui::form::form_impl::parse_container_path(const std::string& name,
+	std::vector<std::string>& path, std::string& container_name) {
+	return parse_widget_path(name, path, container_name);
+}
+
 // throws on failure!
 liblec::lecui::widgets_implementation::widget& liblec::lecui::form::form_impl::find_widget(
-	const liblec::lecui::containers::page& page,
+	const containers::page& page,
 	const std::vector<std::string>& path,
 	const std::string& widget_name) {
 	if (path.size() == 0)
@@ -1846,7 +1840,7 @@ liblec::lecui::widgets_implementation::widget& liblec::lecui::form::form_impl::f
 
 // throws on failure!
 liblec::lecui::widgets_implementation::widget& liblec::lecui::form::form_impl::find_widget(
-	const std::map<std::string, liblec::lecui::containers::page>& pages,
+	const std::map<std::string, containers::page>& pages,
 	const std::vector<std::string>& path,
 	const std::string& widget_name) {
 	if (path.size() == 0)
@@ -1872,9 +1866,7 @@ liblec::lecui::widgets_implementation::widget& liblec::lecui::form::form_impl::f
 
 // throws on failure!
 liblec::lecui::containers::page& liblec::lecui::form::form_impl::find_page(
-	liblec::lecui::containers::page& page,
-	const std::vector<std::string>& path,
-	const std::string& widget_name) {
+	containers::page& page, const std::vector<std::string>& path) {
 	if (path.size() == 0)
 		return page;
 	else
@@ -1889,7 +1881,7 @@ liblec::lecui::containers::page& liblec::lecui::form::form_impl::find_page(
 			for (size_t i = 1; i < path.size(); i++)
 				path_[i - 1] = path[i];
 
-			return find_page(page, path_, widget_name);	// recursion
+			return find_page(page, path_);	// recursion
 		}
 		else {
 			// assume first level is a tab control
@@ -1904,31 +1896,32 @@ liblec::lecui::containers::page& liblec::lecui::form::form_impl::find_page(
 			for (size_t i = 2; i < path.size(); i++)
 				path_[i - 2] = path[i];
 
-			return find_page(tab, path_, widget_name);	// recursion
+			return find_page(tab, path_);	// recursion
 		}
 }
 
 // throws on failure!
 liblec::lecui::containers::page& liblec::lecui::form::form_impl::find_page(
-	std::map<std::string, liblec::lecui::containers::page>& pages,
-	const std::vector<std::string>& path,
-	const std::string& widget_name) {
-	if (path.size() == 1) {
-		const auto page_name = path[0];
-		return pages.at(page_name);
-	}
-	else {
-		// assume first level is a page
-		const auto page_name = path[0];
+	std::map<std::string, containers::page>& pages, const std::vector<std::string>& path) {
+	if (path.size() == 0)
+		throw std::exception("Invalid path");
+	else
+		if (path.size() == 1) {
+			const auto page_name = path[0];
+			return pages.at(page_name);
+		}
+		else {
+			// assume first level is a page
+			const auto page_name = path[0];
 
-		auto& page = pages.at(page_name);
+			auto& page = pages.at(page_name);
 
-		std::vector<std::string> path_(path.size() - 1);
-		for (size_t i = 1; i < path.size(); i++)
-			path_[i - 1] = path[i];
+			std::vector<std::string> path_(path.size() - 1);
+			for (size_t i = 1; i < path.size(); i++)
+				path_[i - 1] = path[i];
 
-		return find_page(page, path_, widget_name);
-	}
+			return find_page(page, path_);
+		}
 }
 
 void liblec::lecui::form::form_impl::enable(const std::string& name, bool enable) {
@@ -1980,7 +1973,7 @@ void liblec::lecui::form::form_impl::close(const std::string& name) {
 		parse_widget_path(name, path, widget_name);
 
 		auto& widget = find_widget(p_pages_, path, widget_name);
-		auto& page = find_page(p_pages_, path, widget_name);
+		auto& page = find_page(p_pages_, path);
 
 		const auto type = widget.type();
 
@@ -1995,41 +1988,41 @@ void liblec::lecui::form::form_impl::close(const std::string& name) {
 
 		// step 2
 		switch (type) {
-		case liblec::lecui::widgets_implementation::widget_type::rectangle:
+		case widgets_implementation::widget_type::rectangle:
 			page.d_page_.rectangles_.erase(widget_name);
 			break;
-		case liblec::lecui::widgets_implementation::widget_type::label:
+		case widgets_implementation::widget_type::label:
 			page.d_page_.labels_.erase(widget_name);
 			break;
-		case liblec::lecui::widgets_implementation::widget_type::group:
+		case widgets_implementation::widget_type::group:
 			page.d_page_.groups_.erase(widget_name);
 			break;
-		case liblec::lecui::widgets_implementation::widget_type::tab_control:
+		case widgets_implementation::widget_type::tab_control:
 			page.d_page_.tab_controls_.erase(widget_name);
 			break;
-		case liblec::lecui::widgets_implementation::widget_type::button:
+		case widgets_implementation::widget_type::button:
 			page.d_page_.buttons_.erase(widget_name);
 			break;
-		case liblec::lecui::widgets_implementation::widget_type::toggle:
+		case widgets_implementation::widget_type::toggle:
 			page.d_page_.toggles_.erase(widget_name);
 			break;
-		case liblec::lecui::widgets_implementation::widget_type::combo:
+		case widgets_implementation::widget_type::combo:
 			page.d_page_.combos_.erase(widget_name);
 			break;
-		case liblec::lecui::widgets_implementation::widget_type::list:
+		case widgets_implementation::widget_type::list:
 			page.d_page_.lists_.erase(widget_name);
 			break;
-		case liblec::lecui::widgets_implementation::widget_type::custom:
+		case widgets_implementation::widget_type::custom:
 			page.d_page_.customs_.erase(widget_name);
 			break;
-		case liblec::lecui::widgets_implementation::widget_type::pane:
+		case widgets_implementation::widget_type::pane:
 			page.d_page_.panes_.erase(widget_name);
 			break;
-		case liblec::lecui::widgets_implementation::widget_type::close_button:
-		case liblec::lecui::widgets_implementation::widget_type::maximize_button:
-		case liblec::lecui::widgets_implementation::widget_type::minimize_button:
-		case liblec::lecui::widgets_implementation::widget_type::h_scrollbar:
-		case liblec::lecui::widgets_implementation::widget_type::v_scrollbar:
+		case widgets_implementation::widget_type::close_button:
+		case widgets_implementation::widget_type::maximize_button:
+		case widgets_implementation::widget_type::minimize_button:
+		case widgets_implementation::widget_type::h_scrollbar:
+		case widgets_implementation::widget_type::v_scrollbar:
 		default:
 			break;
 		}
@@ -2048,19 +2041,19 @@ void liblec::lecui::form::form_impl::close(const std::string& name) {
 
 LRESULT CALLBACK liblec::lecui::form::form_impl::window_procedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
 	auto get_form = [&]() {
-		liblec::lecui::form* p_form = nullptr;
+		form* p_form = nullptr;
 		if (msg == WM_CREATE) {
 			CREATESTRUCT* p_create = reinterpret_cast<CREATESTRUCT*>(lParam);
-			p_form = reinterpret_cast<liblec::lecui::form*>(p_create->lpCreateParams);
+			p_form = reinterpret_cast<form*>(p_create->lpCreateParams);
 			SetWindowLongPtr(hWnd, GWLP_USERDATA, (LONG_PTR)p_form);
 		}
 		else {
 			LONG_PTR ptr = GetWindowLongPtr(hWnd, GWLP_USERDATA);
-			p_form = reinterpret_cast<liblec::lecui::form*>(ptr);
+			p_form = reinterpret_cast<form*>(ptr);
 		}
 
 		return (p_form == nullptr) ? std::nullopt :
-			std::optional<std::reference_wrapper<liblec::lecui::form>>{ *p_form };
+			std::optional<std::reference_wrapper<form>>{ *p_form };
 	};
 
 	auto form_ = get_form();
@@ -2139,7 +2132,7 @@ LRESULT CALLBACK liblec::lecui::form::form_impl::window_procedure(HWND hWnd, UIN
 		if (user_resizing || system_resizing) {
 			class helper {
 			public:
-				static void check_page(liblec::lecui::containers::page& page,
+				static void check_page(containers::page& page,
 					float change_in_width, float change_in_height, bool system_resizing) {
 					// check if a horizontal scroll bar exists
 					if (page.d_page_.h_scrollbar().x_displacement_ > 0.f) {
@@ -2228,7 +2221,7 @@ LRESULT CALLBACK liblec::lecui::form::form_impl::window_procedure(HWND hWnd, UIN
 					// to-do: check actual change in width and height of tab/pane instead of inheriting from page
 
 					for (auto& widget : page.d_page_.widgets()) {
-						if (widget.second.type() == liblec::lecui::widgets_implementation::widget_type::tab_control) {
+						if (widget.second.type() == widgets_implementation::widget_type::tab_control) {
 							// get this tab control
 							auto& tab_control = page.d_page_.get_tab_control(widget.first);
 
@@ -2236,7 +2229,7 @@ LRESULT CALLBACK liblec::lecui::form::form_impl::window_procedure(HWND hWnd, UIN
 								helper::check_page(tab.second, change_in_width, change_in_height, system_resizing);	// recursion
 						}
 						else
-							if (widget.second.type() == liblec::lecui::widgets_implementation::widget_type::pane) {
+							if (widget.second.type() == widgets_implementation::widget_type::pane) {
 								// get this pane
 								auto& pane = page.d_page_.get_pane(widget.first);
 
@@ -2389,11 +2382,11 @@ LRESULT CALLBACK liblec::lecui::form::form_impl::window_procedure(HWND hWnd, UIN
 
 				if (widget.second.selected() &&
 					widget.second.type() !=
-					liblec::lecui::widgets_implementation::widget_type::close_button &&
+					widgets_implementation::widget_type::close_button &&
 					widget.second.type() !=
-					liblec::lecui::widgets_implementation::widget_type::maximize_button &&
+					widgets_implementation::widget_type::maximize_button &&
 					widget.second.type() !=
-					liblec::lecui::widgets_implementation::widget_type::minimize_button)
+					widgets_implementation::widget_type::minimize_button)
 					widget.second.press(true);
 				else
 					widget.second.press(false);
@@ -2401,7 +2394,7 @@ LRESULT CALLBACK liblec::lecui::form::form_impl::window_procedure(HWND hWnd, UIN
 
 			class helper {
 			public:
-				static void check_widgets(liblec::lecui::containers::page& page) {
+				static void check_widgets(containers::page& page) {
 					// check widgets
 					for (auto& widget : page.d_page_.widgets()) {
 						if (widget.second.is_static() || !widget.second.visible() || !widget.second.enabled())
@@ -2413,7 +2406,7 @@ LRESULT CALLBACK liblec::lecui::form::form_impl::window_procedure(HWND hWnd, UIN
 							widget.second.press(false);
 
 						if (widget.second.type() ==
-							liblec::lecui::widgets_implementation::widget_type::tab_control) {
+							widgets_implementation::widget_type::tab_control) {
 							// get this tab control
 							auto& tab_control = page.d_page_.get_tab_control(widget.first);
 
@@ -2424,7 +2417,7 @@ LRESULT CALLBACK liblec::lecui::form::form_impl::window_procedure(HWND hWnd, UIN
 						}
 						else
 							if (widget.second.type() ==
-								liblec::lecui::widgets_implementation::widget_type::pane) {
+								widgets_implementation::widget_type::pane) {
 								// get this pane
 								auto& pane = page.d_page_.get_pane(widget.first);
 
@@ -2462,11 +2455,11 @@ LRESULT CALLBACK liblec::lecui::form::form_impl::window_procedure(HWND hWnd, UIN
 
 			if (widget.second.selected() &&
 				widget.second.type() !=
-				liblec::lecui::widgets_implementation::widget_type::close_button &&
+				widgets_implementation::widget_type::close_button &&
 				widget.second.type() !=
-				liblec::lecui::widgets_implementation::widget_type::maximize_button &&
+				widgets_implementation::widget_type::maximize_button &&
 				widget.second.type() !=
-				liblec::lecui::widgets_implementation::widget_type::minimize_button)
+				widgets_implementation::widget_type::minimize_button)
 				if (widget.second.on_keydown(wParam)) {
 					update = true;
 					on_click_handler = [&]() { widget.second.on_click(); };
@@ -2475,7 +2468,7 @@ LRESULT CALLBACK liblec::lecui::form::form_impl::window_procedure(HWND hWnd, UIN
 
 		class helper {
 		public:
-			static void check_widgets(liblec::lecui::containers::page& page,
+			static void check_widgets(containers::page& page,
 				WPARAM wParam, bool& update, std::function<void()>& on_click_handler) {
 				// check widgets
 				for (auto& widget : page.d_page_.widgets()) {
@@ -2489,7 +2482,7 @@ LRESULT CALLBACK liblec::lecui::form::form_impl::window_procedure(HWND hWnd, UIN
 						}
 						else
 							if (widget.second.type() ==
-								liblec::lecui::widgets_implementation::widget_type::tab_control) {
+								widgets_implementation::widget_type::tab_control) {
 								// get this tab control
 								auto& tab_control = page.d_page_.get_tab_control(widget.first);
 
@@ -2500,7 +2493,7 @@ LRESULT CALLBACK liblec::lecui::form::form_impl::window_procedure(HWND hWnd, UIN
 							}
 							else
 								if (widget.second.type() ==
-									liblec::lecui::widgets_implementation::widget_type::pane) {
+									widgets_implementation::widget_type::pane) {
 									// get this pane
 									auto& pane = page.d_page_.get_pane(widget.first);
 
@@ -2543,11 +2536,11 @@ LRESULT CALLBACK liblec::lecui::form::form_impl::window_procedure(HWND hWnd, UIN
 
 				if (widget.second.selected() &&
 					widget.second.type() !=
-					liblec::lecui::widgets_implementation::widget_type::close_button &&
+					widgets_implementation::widget_type::close_button &&
 					widget.second.type() !=
-					liblec::lecui::widgets_implementation::widget_type::maximize_button &&
+					widgets_implementation::widget_type::maximize_button &&
 					widget.second.type() !=
-					liblec::lecui::widgets_implementation::widget_type::minimize_button)
+					widgets_implementation::widget_type::minimize_button)
 					on_space = [&]() { widget.second.on_click(); };
 
 				// reset pressed status
@@ -2556,7 +2549,7 @@ LRESULT CALLBACK liblec::lecui::form::form_impl::window_procedure(HWND hWnd, UIN
 
 			class helper {
 			public:
-				static void check_widgets(liblec::lecui::containers::page& page,
+				static void check_widgets(containers::page& page,
 					std::function<void()>& on_space) {
 					// check widgets
 					for (auto& widget : page.d_page_.widgets()) {
@@ -2567,7 +2560,7 @@ LRESULT CALLBACK liblec::lecui::form::form_impl::window_procedure(HWND hWnd, UIN
 							on_space = [&]() { widget.second.on_click(); };
 						else
 							if (widget.second.type() ==
-								liblec::lecui::widgets_implementation::widget_type::tab_control) {
+								widgets_implementation::widget_type::tab_control) {
 								// get this tab control
 								auto& tab_control = page.d_page_.get_tab_control(widget.first);
 
@@ -2578,7 +2571,7 @@ LRESULT CALLBACK liblec::lecui::form::form_impl::window_procedure(HWND hWnd, UIN
 							}
 							else
 								if (widget.second.type() ==
-									liblec::lecui::widgets_implementation::widget_type::pane) {
+									widgets_implementation::widget_type::pane) {
 									// get this pane
 									auto& pane = page.d_page_.get_pane(widget.first);
 
@@ -2619,7 +2612,7 @@ LRESULT CALLBACK liblec::lecui::form::form_impl::window_procedure(HWND hWnd, UIN
 
 			class helper {
 			public:
-				static void check_widgets(liblec::lecui::containers::page& page,
+				static void check_widgets(containers::page& page,
 					const bool& reverse_tab_navigation,
 					bool& select_next, bool& selected) {
 					// check widgets
@@ -2634,7 +2627,7 @@ LRESULT CALLBACK liblec::lecui::form::form_impl::window_procedure(HWND hWnd, UIN
 								continue;
 
 							if (widget.type() ==
-								liblec::lecui::widgets_implementation::widget_type::tab_control) {
+								widgets_implementation::widget_type::tab_control) {
 								// get this tab control
 								auto& tab_control = page.d_page_.get_tab_control(name);
 
@@ -2646,7 +2639,7 @@ LRESULT CALLBACK liblec::lecui::form::form_impl::window_procedure(HWND hWnd, UIN
 							}
 							else
 								if (widget.type() ==
-									liblec::lecui::widgets_implementation::widget_type::pane) {
+									widgets_implementation::widget_type::pane) {
 									// get this pane
 									auto& pane = page.d_page_.get_pane(name);
 
@@ -2691,11 +2684,11 @@ LRESULT CALLBACK liblec::lecui::form::form_impl::window_procedure(HWND hWnd, UIN
 							continue;
 
 						if (widget.type() !=
-							liblec::lecui::widgets_implementation::widget_type::close_button &&
+							widgets_implementation::widget_type::close_button &&
 							widget.type() !=
-							liblec::lecui::widgets_implementation::widget_type::maximize_button &&
+							widgets_implementation::widget_type::maximize_button &&
 							widget.type() !=
-							liblec::lecui::widgets_implementation::widget_type::minimize_button) {
+							widgets_implementation::widget_type::minimize_button) {
 							if (widget.selected()) {
 								widget.select(false);
 								select_next = true;
@@ -2753,18 +2746,18 @@ LRESULT CALLBACK liblec::lecui::form::form_impl::window_procedure(HWND hWnd, UIN
 
 			if (widget.second.hit() &&
 				widget.second.type() !=
-				liblec::lecui::widgets_implementation::widget_type::close_button &&
+				widgets_implementation::widget_type::close_button &&
 				widget.second.type() !=
-				liblec::lecui::widgets_implementation::widget_type::maximize_button &&
+				widgets_implementation::widget_type::maximize_button &&
 				widget.second.type() !=
-				liblec::lecui::widgets_implementation::widget_type::minimize_button)
+				widgets_implementation::widget_type::minimize_button)
 				if (widget.second.on_mousewheel(units))
 					update = true;
 		}
 
 		class helper {
 		public:
-			static void check_widgets(liblec::lecui::containers::page& page,
+			static void check_widgets(containers::page& page,
 				float units, bool& update) {
 				// check widgets
 				for (auto& widget : page.d_page_.widgets()) {
@@ -2777,7 +2770,7 @@ LRESULT CALLBACK liblec::lecui::form::form_impl::window_procedure(HWND hWnd, UIN
 					}
 					else
 						if (widget.second.type() ==
-							liblec::lecui::widgets_implementation::widget_type::tab_control) {
+							widgets_implementation::widget_type::tab_control) {
 							// get this tab control
 							auto& tab_control = page.d_page_.get_tab_control(widget.first);
 
@@ -2788,7 +2781,7 @@ LRESULT CALLBACK liblec::lecui::form::form_impl::window_procedure(HWND hWnd, UIN
 						}
 						else
 							if (widget.second.type() ==
-								liblec::lecui::widgets_implementation::widget_type::pane) {
+								widgets_implementation::widget_type::pane) {
 								// get this pane
 								auto& pane = page.d_page_.get_pane(widget.first);
 

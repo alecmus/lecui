@@ -53,7 +53,7 @@ namespace liblec {
 				combo(const combo&);
 				combo& operator=(const combo&);
 
-				liblec::lecui::widgets::specs::combo specs_;
+				liblec::lecui::widgets::specs::combo specs_, specs_old_;
 				ID2D1SolidColorBrush* p_brush_;
 				ID2D1SolidColorBrush* p_brush_fill_;
 				ID2D1SolidColorBrush* p_brush_hot_;

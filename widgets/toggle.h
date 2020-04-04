@@ -35,6 +35,9 @@ namespace liblec {
 					liblec::lecui::color color_off = { 150, 150, 150, 255 };
 					bool on = false;
 					std::function<void(bool)> on_toggle = nullptr;
+
+					bool operator==(const toggle&);
+					bool operator!=(const toggle&);
 				};
 			}
 
@@ -43,7 +46,10 @@ namespace liblec {
 				toggle(liblec::lecui::containers::page& page);
 				~toggle();
 
-				liblec::lecui::widgets::specs::toggle& add(const std::string& name);
+				liblec::lecui::widgets::specs::toggle&
+					add(const std::string& name);
+				static liblec::lecui::widgets::specs::toggle&
+					specs(form& fm, const std::string& name);
 
 			private:
 				class toggle_impl;

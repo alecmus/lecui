@@ -114,6 +114,9 @@ namespace liblec {
 		struct list_column {
 			std::string name;
 			unsigned short width = 80;
+
+			bool operator==(const list_column&);
+			bool operator!=(const list_column&);
 		};
 	}
 }

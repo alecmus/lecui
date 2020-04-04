@@ -44,8 +44,14 @@ namespace liblec {
 				pane(liblec::lecui::containers::page& page, const std::string& name);
 				~pane();
 
-				liblec::lecui::containers::specs::pane& specs();
-				liblec::lecui::containers::page& get();
+				liblec::lecui::containers::specs::pane&
+					specs();
+				static liblec::lecui::containers::specs::pane&
+					specs(form& fm, const std::string& name);
+				liblec::lecui::containers::page&
+					get();
+				static liblec::lecui::containers::page&
+					get(form& fm, const std::string& name);
 
 			private:
 				class pane_impl;
