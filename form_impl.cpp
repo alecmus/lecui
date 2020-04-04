@@ -175,6 +175,14 @@ liblec::lecui::form::form_impl::form_impl(const std::string& caption_formatted) 
 liblec::lecui::form::form_impl::~form_impl() {
 	// ....
 
+	// release Direct2D resources specific to this form
+	// 1. it is critical to do this before releasing the factories!!!!!
+	// 2. it is critical to set the flag to true so prevent access violation errors as a result of
+	//    attempting to call discard resources on custom widgets, which will probably have been
+	//    destroyed already by now. Even if they aren't, let the custom widgets destroy their own
+	//    resources in the client app when exiting; don't try doing it from here.
+	discard_device_resources(true);
+
 	if (initialized_ && instances_ == 1) {
 		// release IWIC Imaging resources used by all instances
 		safe_release(&p_iwic_factory_);
@@ -191,13 +199,6 @@ liblec::lecui::form::form_impl::~form_impl() {
 		// set initialized flag to false (only here)
 		initialized_ = false;
 	}
-
-	// release Direct2D resources specific to this form
-	safe_release(&p_render_target_);
-	safe_release(&p_brush_theme_);
-	safe_release(&p_brush_theme_hot_);
-	safe_release(&p_brush_theme_disabled_);
-	safe_release(&p_brush_titlebar_);
 
 	--instances_;	// decremement instances count
 
@@ -296,7 +297,7 @@ HRESULT liblec::lecui::form::form_impl::create_device_resources() {
 
 /// Discards device-dependent resources. These resources must be recreated when the Direct3D
 /// device is lost
-void liblec::lecui::form::form_impl::discard_device_resources() {
+void liblec::lecui::form::form_impl::discard_device_resources(bool in_destructor) {
 	safe_release(&p_render_target_);
 	safe_release(&p_brush_theme_);
 	safe_release(&p_brush_theme_hot_);
@@ -305,9 +306,16 @@ void liblec::lecui::form::form_impl::discard_device_resources() {
 
 	class helper {
 	public:
-		static void discard(const liblec::lecui::containers::page& page) {
+		static void discard(const liblec::lecui::containers::page& page, bool in_destructor) {
 			// discard widget resources
 			for (const auto& widget : page.d_page_.widgets()) {
+				if (in_destructor &&
+					widget.second.type() ==
+					liblec::lecui::widgets_implementation::widget_type::custom) {
+					log("Skipping custom widget discard resources because by now custom widget will have long been destroyed so don't discard resources");
+					continue;
+				}
+
 				widget.second.discard_resources();
 
 				if (widget.second.type() ==
@@ -317,7 +325,7 @@ void liblec::lecui::form::form_impl::discard_device_resources() {
 						const auto& tab_control = page.d_page_.get_tab_control(widget.first);
 
 						for (const auto& tab : tab_control.p_tabs_)
-							discard(tab.second);
+							discard(tab.second, in_destructor);			// recursion
 					}
 					catch (const std::exception&) {}
 				}
@@ -329,7 +337,7 @@ void liblec::lecui::form::form_impl::discard_device_resources() {
 							const auto& pane = page.d_page_.get_pane(widget.first);
 
 							for (const auto& page : pane.p_panes_)
-								discard(page.second);
+								discard(page.second, in_destructor);	// recursion
 						}
 						catch (const std::exception&) {}
 					}
@@ -339,7 +347,7 @@ void liblec::lecui::form::form_impl::discard_device_resources() {
 
 	// discard page resources
 	for (const auto& p_page : p_pages_)
-		helper::discard(p_page.second);
+		helper::discard(p_page.second, in_destructor);
 
 	// discard form widget resources
 	for (const auto& widget : widgets_)

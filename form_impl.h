@@ -180,7 +180,7 @@ public:
 	~form_impl();
 
 	HRESULT create_device_resources();
-	void discard_device_resources();
+	void discard_device_resources(bool in_destructor = false);
 	void create_close_button(std::function<void()> on_click);
 	void create_maximize_button();
 	void create_minimize_button();

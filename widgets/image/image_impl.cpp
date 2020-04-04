@@ -79,7 +79,7 @@ void liblec::lecui::widgets_implementation::image::discard_resources() {
 	safe_release(&p_brush_hot_);
 	safe_release(&p_brush_disabled_);
 	safe_release(&p_brush_selected_);
-	//safe_release(&p_bitmap_);	// to-do: why does this cause an access violation error?
+	safe_release(&p_bitmap_);
 }
 
 D2D1_RECT_F&
