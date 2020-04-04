@@ -159,3 +159,15 @@ liblec::lecui::containers::page& liblec::lecui::containers::tab::add(const std::
 	// return reference to page so caller can add widgets to it
 	return tab_control_.p_tabs_.at(name);
 }
+
+liblec::lecui::containers::page&
+liblec::lecui::containers::tab::get(form& fm, const std::string& name) {
+	// parse container path
+	std::vector<std::string> path;
+	std::string tab_name;
+	fm.d_.parse_container_path(name, path, tab_name);
+	path.push_back(tab_name);	// append tab name to path vector
+
+	// find the tab
+	return fm.d_.find_page(fm.d_.p_pages_, path);
+}

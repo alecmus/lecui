@@ -150,6 +150,8 @@ class liblec::lecui::form::form_impl {
 
 	std::function<void(const std::string& file)> on_drop_files_;
 
+	std::vector<std::string> scheduled_for_closure_;
+
 	/// we cannot just use WS_POPUP style
 	/// WS_THICKFRAME: without this the window cannot be resized and so aero snap, de-maximizing
 	///  and minimizing won't work
@@ -172,6 +174,7 @@ class liblec::lecui::form::form_impl {
 	friend controls;
 	friend page;
 	friend containers::tab_control;
+	friend containers::tab;
 	friend containers::pane;
 	friend widgets::timer;
 	friend widgets::label;

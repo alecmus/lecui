@@ -509,10 +509,14 @@ void liblec::lecui::form::close(const std::string& name) {
 	// use timer in case a widget is closed from its own handler.
 	// this way the actual closing will be done (hopefully) outside the handler coz of async.
 	// the caller still has to exercise caution by avoiding such logical errors.
+	d_.scheduled_for_closure_.push_back(name);
 	lecui::widgets::timer(*this).add("close_widget_timer", 0,
 		[&]() {
 			lecui::widgets::timer(*this).stop("close_widget_timer");
-			d_.close(name);
+			for (const auto& it : d_.scheduled_for_closure_)
+				d_.close(it);
+
+			d_.scheduled_for_closure_.clear();
 		});
 }
 

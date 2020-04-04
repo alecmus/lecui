@@ -67,7 +67,10 @@ namespace liblec {
 				tab(tab_control& tc);
 				~tab();
 
-				liblec::lecui::containers::page& add(const std::string& name);
+				liblec::lecui::containers::page&
+					add(const std::string& name);
+				static liblec::lecui::containers::page&
+					get(form& fm, const std::string& name);
 
 			private:
 				class tab_impl;
