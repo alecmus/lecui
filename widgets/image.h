@@ -39,6 +39,9 @@ namespace liblec {
 					liblec::lecui::color color_border = { 150, 150, 150, 255 };
 					std::string file;
 					int png_resource = 0;
+
+					bool operator==(const image&);
+					bool operator!=(const image&);
 				};
 			}
 
@@ -47,7 +50,10 @@ namespace liblec {
 				image(liblec::lecui::containers::page& page);
 				~image();
 
-				liblec::lecui::widgets::specs::image& add(const std::string& name);
+				liblec::lecui::widgets::specs::image&
+					add(const std::string& name);
+				static liblec::lecui::widgets::specs::image&
+					specs(form& fm, const std::string& name);
 
 			private:
 				class image_impl;

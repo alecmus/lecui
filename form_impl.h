@@ -173,6 +173,7 @@ class liblec::lecui::form::form_impl {
 	friend liblec::lecui::page;
 	friend liblec::lecui::widgets::timer;
 	friend liblec::lecui::widgets::label;
+	friend liblec::lecui::widgets::image;
 
 public:
 	form_impl(const std::string& caption_formatted);

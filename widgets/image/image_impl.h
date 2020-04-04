@@ -49,7 +49,7 @@ namespace liblec {
 				image(const image&);
 				image& operator=(const image&);
 
-				liblec::lecui::widgets::specs::image specs_;
+				liblec::lecui::widgets::specs::image specs_, specs_old_;
 				ID2D1SolidColorBrush* p_brush_fill_;
 				ID2D1SolidColorBrush* p_brush_border_;
 				ID2D1SolidColorBrush* p_brush_hot_;

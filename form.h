@@ -31,6 +31,7 @@ namespace liblec {
 		namespace widgets {
 			class timer;
 			class label;
+			class image;
 		}
 
 		enum class form_position {
@@ -98,6 +99,7 @@ namespace liblec {
 			friend liblec::lecui::controls;
 			friend liblec::lecui::widgets::timer;
 			friend liblec::lecui::widgets::label;
+			friend liblec::lecui::widgets::image;
 		};
 	}
 }

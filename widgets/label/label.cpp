@@ -17,7 +17,7 @@
 bool liblec::lecui::widgets::specs::label::operator==(const label& param) {
 	return
 		// generic specs
-		liblec::lecui::widgets::specs::widget::operator==(param) &&
+		widget::operator==(param) &&
 		
 		// widget specific specs
 		(color_hot_pressed == param.color_hot_pressed) &&
