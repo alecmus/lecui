@@ -42,3 +42,27 @@ BOOL APIENTRY DllMain(HMODULE hModule,
 std::string liblec::lecui::version() {
 	return lecuiname + std::string(" ") + lecuiversion + std::string(" ") + lecuidate;
 }
+
+bool liblec::lecui::rect::operator==(const rect& param) {
+	return
+		(left == param.left) &&
+		(right == param.right) &&
+		(top == param.top) &&
+		(bottom == param.bottom);
+}
+
+bool liblec::lecui::rect::operator!=(const rect& param) {
+	return !(*this == param);
+}
+
+bool liblec::lecui::color::operator==(const color& param) {
+	return
+		(red == param.red) &&
+		(green == param.green) &&
+		(blue == param.blue) &&
+		(alpha == param.alpha);
+}
+
+bool liblec::lecui::color::operator!=(const color& param) {
+	return !(*this == param);
+}

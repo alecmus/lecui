@@ -34,6 +34,9 @@ namespace liblec {
 					bool multiline = false;
 					bool center_h = false;
 					bool center_v = false;
+
+					bool operator==(const label&);
+					bool operator!=(const label&);
 				};
 			}
 
@@ -42,7 +45,10 @@ namespace liblec {
 				label(liblec::lecui::containers::page& page);
 				~label();
 
-				liblec::lecui::widgets::specs::label& add(const std::string& name);
+				liblec::lecui::widgets::specs::label&
+					add(const std::string& name);
+				static liblec::lecui::widgets::specs::label&
+					specs(form& fm,const std::string& name);
 
 			private:
 				class label_impl;

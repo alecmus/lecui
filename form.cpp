@@ -516,7 +516,10 @@ void liblec::lecui::form::close(const std::string& name) {
 		});
 }
 
-void liblec::lecui::form::refresh() { d_.discard_device_resources(); d_.update(); }
+void liblec::lecui::form::update() { d_.update(); }
+
+// this is an expensive call. only use if update() doesn't get the job done.
+void liblec::lecui::form::reload() { d_.discard_device_resources(); d_.update(); }
 
 void
 liblec::lecui::form::dropped_files(std::function<void(const std::string& file)> on_drop_files) {

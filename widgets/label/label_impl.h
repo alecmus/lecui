@@ -77,7 +77,7 @@ namespace liblec {
 				label(const label&);
 				label& operator=(const label&);
 
-				liblec::lecui::widgets::specs::label specs_;
+				liblec::lecui::widgets::specs::label specs_, specs_old_;
 				ID2D1SolidColorBrush* p_brush_;
 				ID2D1SolidColorBrush* p_brush_hot_;
 				ID2D1SolidColorBrush* p_brush_hot_pressed_;

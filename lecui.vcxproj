@@ -97,6 +97,7 @@
     <ClCompile Include="widgets\toggle\toggle.cpp" />
     <ClCompile Include="widgets\toggle\toggle_impl.cpp" />
     <ClCompile Include="widgets\v_scrollbar\v_scrollbar.cpp" />
+    <ClCompile Include="widgets\widget.cpp" />
     <ClCompile Include="widgets\widget_impl.cpp" />
   </ItemGroup>
   <ItemGroup>

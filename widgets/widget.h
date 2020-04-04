@@ -40,6 +40,9 @@ namespace liblec {
 					float min_height = 0.f;
 					float max_width = 0.f;
 					float max_height = 0.f;
+
+					bool operator==(const on_resize&);
+					bool operator!=(const on_resize&);
 				};
 
 				class widget {
@@ -55,6 +58,9 @@ namespace liblec {
 					liblec::lecui::color color_selected = { 20, 80, 140, 30 };
 					liblec::lecui::color color_disabled = { 180, 180, 180, 255 };
 					std::function<void()> on_click = nullptr;
+
+					bool operator==(const widget&);
+					bool operator!=(const widget&);
 				};
 			}
 		}

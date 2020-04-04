@@ -79,6 +79,9 @@ namespace liblec {
 			void set(float x, float y, float cx, float cy) {
 				left = x; top = y; right = left + cx; bottom = top + cy;
 			}
+
+			bool operator==(const rect&);
+			bool operator!=(const rect&);
 		};
 
 		struct color {
@@ -86,6 +89,9 @@ namespace liblec {
 			unsigned short green = 0;
 			unsigned short blue = 0;
 			unsigned short alpha = 255;
+
+			bool operator==(const color&);
+			bool operator!=(const color&);
 		};
 
 		struct file_type {

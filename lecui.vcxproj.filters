@@ -299,6 +299,9 @@
     <ClCompile Include="widgets\toggle\toggle.cpp">
       <Filter>lecui\widgets\toggle</Filter>
     </ClCompile>
+    <ClCompile Include="widgets\widget.cpp">
+      <Filter>lecui\widgets</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="LICENSE.md">

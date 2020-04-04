@@ -30,6 +30,7 @@ namespace liblec {
 
 		namespace widgets {
 			class timer;
+			class label;
 		}
 
 		enum class form_position {
@@ -77,7 +78,8 @@ namespace liblec {
 			void show(const std::string& name, bool show);
 			void close(const std::string& name);
 
-			void refresh();
+			void update();
+			void reload();
 
 			void dropped_files(std::function<void(const std::string& file)>on_drop_files);
 
@@ -95,6 +97,7 @@ namespace liblec {
 			friend liblec::lecui::appearance;
 			friend liblec::lecui::controls;
 			friend liblec::lecui::widgets::timer;
+			friend liblec::lecui::widgets::label;
 		};
 	}
 }

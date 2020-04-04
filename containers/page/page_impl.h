@@ -88,6 +88,8 @@ public:
 	liblec::lecui::widgets_implementation::pane&
 		get_pane(const std::string& name);
 
+	liblec::lecui::widgets_implementation::label&
+		get_label(const std::string& name);
 	liblec::lecui::widgets_implementation::group&
 		get_group(const std::string& name);
 	liblec::lecui::widgets_implementation::toggle&
