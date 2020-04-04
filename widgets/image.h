@@ -36,7 +36,7 @@ namespace liblec {
 					float border = .5f;
 					float corner_radius_x = .0f;
 					float corner_radius_y = .0f;
-					liblec::lecui::color color_border = { 150, 150, 150, 255 };
+					liblec::lecui::color color_border = { 150, 150, 150, 0 };
 					std::string file;
 					int png_resource = 0;
 
