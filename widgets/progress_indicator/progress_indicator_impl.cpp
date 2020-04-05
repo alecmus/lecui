@@ -1,5 +1,5 @@
 /*
-** progress_indicator_impl.cpp - progress_indicator widget implementation
+** progress_indicator_impl.cpp - progress_indicator_impl implementation
 **
 ** lecui user interface library
 ** Copyright (c) 2019 Alec T. Musasa (alecmus at live dot com)

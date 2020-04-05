@@ -2024,6 +2024,9 @@ void liblec::lecui::form::form_impl::close(const std::string& name) {
 		case widgets_implementation::widget_type::progress_indicator:
 			page.d_page_.progress_indicators_.erase(widget_name);
 			break;
+		case widgets_implementation::widget_type::progress_bar:
+			page.d_page_.progress_bars_.erase(widget_name);
+			break;
 		case widgets_implementation::widget_type::close_button:
 		case widgets_implementation::widget_type::maximize_button:
 		case widgets_implementation::widget_type::minimize_button:

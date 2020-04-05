@@ -71,6 +71,9 @@
     <Filter Include="lecui\widgets\progress_indicator">
       <UniqueIdentifier>{acf762c3-c9fc-4196-b814-7703a654a871}</UniqueIdentifier>
     </Filter>
+    <Filter Include="lecui\widgets\progress_bar">
+      <UniqueIdentifier>{ace77da3-d187-49db-a8db-4c1d0bfc750d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="error\win_error.h">
@@ -197,6 +200,12 @@
     <ClInclude Include="widgets\progress_indicator\progress_indicator_impl.h">
       <Filter>lecui\widgets\progress_indicator</Filter>
     </ClInclude>
+    <ClInclude Include="widgets\progress_bar.h">
+      <Filter>lecui\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="widgets\progress_bar\progress_bar_impl.h">
+      <Filter>lecui\widgets\progress_bar</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="error\win_error.cpp">
@@ -316,6 +325,12 @@
     </ClCompile>
     <ClCompile Include="widgets\progress_indicator\progress_indicator_impl.cpp">
       <Filter>lecui\widgets\progress_indicator</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\progress_bar\progress_bar.cpp">
+      <Filter>lecui\widgets\progress_bar</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\progress_bar\progress_bar_impl.cpp">
+      <Filter>lecui\widgets\progress_bar</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

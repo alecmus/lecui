@@ -166,6 +166,14 @@ liblec::lecui::containers::page::page_impl::add_progress_indicator(const std::st
 	return progress_indicators_.at(name).specs();
 }
 
+liblec::lecui::widgets::specs::progress_bar&
+liblec::lecui::containers::page::page_impl::add_progress_bar(const std::string& name) {
+	progress_bars_.try_emplace(name, name_, name, p_direct2d_factory_, p_directwrite_factory_);
+	widgets_.emplace(name, progress_bars_.at(name));
+	widgets_order_.emplace_back(name);
+	return progress_bars_.at(name).specs();
+}
+
 std::map<std::string, liblec::lecui::widgets_implementation::widget&>&
 liblec::lecui::containers::page::page_impl::widgets() { return widgets_; }
 
@@ -212,3 +220,6 @@ liblec::lecui::containers::page::page_impl::get_image(const std::string& name) {
 
 liblec::lecui::widgets_implementation::progress_indicator&
 liblec::lecui::containers::page::page_impl::get_progress_indicator(const std::string& name) { return progress_indicators_.at(name); }
+
+liblec::lecui::widgets_implementation::progress_bar&
+liblec::lecui::containers::page::page_impl::get_progress_bar(const std::string& name) { return progress_bars_.at(name); }

@@ -30,6 +30,7 @@
 #include "../../widgets/custom/custom_impl.h"
 #include "../../widgets/image/image_impl.h"
 #include "../../widgets/progress_indicator/progress_indicator_impl.h"
+#include "../../widgets/progress_bar/progress_bar_impl.h"
 
 class liblec::lecui::containers::page::page_impl {
 public:
@@ -77,6 +78,8 @@ public:
 		add_image(const std::string& name);
 	liblec::lecui::widgets::specs::progress_indicator&
 		add_progress_indicator(const std::string& name);
+	liblec::lecui::widgets::specs::progress_bar&
+		add_progress_bar(const std::string& name);
 
 	std::map<std::string,
 		liblec::lecui::widgets_implementation::widget&>&
@@ -113,6 +116,8 @@ public:
 		get_image(const std::string& name);
 	liblec::lecui::widgets_implementation::progress_indicator&
 		get_progress_indicator(const std::string& name);
+	liblec::lecui::widgets_implementation::progress_bar&
+		get_progress_bar(const std::string& name);
 
 private:
 	ID2D1Factory* p_direct2d_factory_;
@@ -140,6 +145,7 @@ private:
 	std::map<std::string, liblec::lecui::widgets_implementation::custom> customs_;
 	std::map<std::string, liblec::lecui::widgets_implementation::image> images_;
 	std::map<std::string, liblec::lecui::widgets_implementation::progress_indicator> progress_indicators_;
+	std::map<std::string, liblec::lecui::widgets_implementation::progress_bar> progress_bars_;
 
 	friend liblec::lecui::form;
 };

@@ -1,5 +1,5 @@
 /*
-** progress_indicator_impl.h - progress_indicator_impl interface
+** progress_indicator_impl.h - progress_bar_impl interface
 **
 ** lecui user interface library
 ** Copyright (c) 2019 Alec T. Musasa (alecmus at live dot com)
@@ -14,18 +14,18 @@
 #pragma once
 
 #include "../widget_impl.h"
-#include "../progress_indicator.h"
+#include "../progress_bar.h"
 
 namespace liblec {
 	namespace lecui {
 		namespace widgets_implementation {
-			class progress_indicator : public widget {
+			class progress_bar : public widget {
 			public:
-				progress_indicator(const std::string& page,
+				progress_bar(const std::string& page,
 					const std::string& name,
 					ID2D1Factory* p_direct2d_factory,
 					IDWriteFactory* p_directwrite_factory);
-				~progress_indicator();
+				~progress_bar();
 
 				// virtual function override
 
@@ -41,18 +41,18 @@ namespace liblec {
 
 				// widget specific
 
-				liblec::lecui::widgets::specs::progress_indicator& specs();
+				liblec::lecui::widgets::specs::progress_bar& specs();
 
 			private:
-				progress_indicator() :
-					progress_indicator(std::string(), std::string(), nullptr, nullptr) {}
+				progress_bar() :
+					progress_bar(std::string(), std::string(), nullptr, nullptr) {}
 
-				progress_indicator(const progress_indicator&);
-				progress_indicator& operator=(const progress_indicator&);
+				progress_bar(const progress_bar&);
+				progress_bar& operator=(const progress_bar&);
 
-				liblec::lecui::widgets::specs::progress_indicator specs_, specs_old_;
+				liblec::lecui::widgets::specs::progress_bar specs_, specs_old_;
 				ID2D1SolidColorBrush* p_brush_;
-				ID2D1SolidColorBrush* p_brush_empty_;
+				ID2D1SolidColorBrush* p_brush_border_;
 				ID2D1SolidColorBrush* p_brush_fill_;
 				ID2D1SolidColorBrush* p_brush_hot_;
 				ID2D1SolidColorBrush* p_brush_disabled_;
