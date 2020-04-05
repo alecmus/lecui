@@ -80,6 +80,10 @@ namespace liblec {
 				left = x; top = y; right = left + cx; bottom = top + cy;
 			}
 
+			/// <summary>place this rectangle on rect_reference, positioning it
+			/// perc_h% horizontally and perc_v% vertically</summary>
+			void place(const rect& rect_reference, const float& perc_h, const float& perc_v);
+
 			bool operator==(const rect&);
 			bool operator!=(const rect&);
 		};

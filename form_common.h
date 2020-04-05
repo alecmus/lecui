@@ -136,20 +136,21 @@ static inline float convert_fontsize_to_dip(const float& points) {
 	return points * 96.f / 72.f;
 }
 
-/// <summary>position rect within rect_reference,
+/// <summary>position rect_subject within rect_reference,
 /// perc_h% horizontally and perc_v% vertically</summary>
-static inline void pos_rect(const D2D1_RECT_F& rect_reference,
-	D2D1_RECT_F& rect, const float& perc_h, const float& perc_v) {
-	D2D1_RECT_F rcIn = rect;
+template <class t>
+static inline void pos_rect(const t& rect_reference,
+	t& rect_subject, const float& perc_h, const float& perc_v) {
+	t rect_original = rect_subject;
 
-	float iDeltaX = (rect_reference.right - rect_reference.left) - (rcIn.right - rcIn.left);
-	rect.left = rect_reference.left + (perc_h * iDeltaX) / 100.f;
+	const auto delta_x = (rect_reference.right - rect_reference.left) - (rect_original.right - rect_original.left);
+	rect_subject.left = rect_reference.left + (perc_h * delta_x) / 100.f;
 
-	float iDeltaY = (rect_reference.bottom - rect_reference.top) - (rcIn.bottom - rcIn.top);
-	rect.top = rect_reference.top + (perc_v * iDeltaY) / 100.f;
+	const auto delta_y = (rect_reference.bottom - rect_reference.top) - (rect_original.bottom - rect_original.top);
+	rect_subject.top = rect_reference.top + (perc_v * delta_y) / 100.f;
 
-	rect.right = rect.left + (rcIn.right - rcIn.left);
-	rect.bottom = rect.top + (rcIn.bottom - rcIn.top);
+	rect_subject.right = rect_subject.left + (rect_original.right - rect_original.left);
+	rect_subject.bottom = rect_subject.top + (rect_original.bottom - rect_original.top);
 }
 
 /// <summary>position D within C to reflect how B is positioned in A.</summary>

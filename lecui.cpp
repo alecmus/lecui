@@ -13,6 +13,7 @@
 
 #include "lecui.h"
 #include "versioninfo.h"
+#include "form_common.h"
 
 #include <Windows.h>
 
@@ -41,6 +42,11 @@ BOOL APIENTRY DllMain(HMODULE hModule,
 
 std::string liblec::lecui::version() {
 	return lecuiname + std::string(" ") + lecuiversion + std::string(" ") + lecuidate;
+}
+
+void liblec::lecui::rect::place(const rect& rect_reference,
+	const float& perc_h, const float& perc_v) {
+	pos_rect(rect_reference, *this, perc_h, perc_v);
 }
 
 bool liblec::lecui::rect::operator==(const rect& param) {
