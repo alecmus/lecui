@@ -31,7 +31,7 @@ namespace liblec {
 				public:
 					toggle() { text = "On"; color_fill = { 255, 255, 255, 200 }; }
 					std::string text_off = "Off";
-					liblec::lecui::color color_on = { 20, 80, 140, 255 };
+					liblec::lecui::color color_on = { 0, 120, 170, 255 };
 					liblec::lecui::color color_off = { 150, 150, 150, 255 };
 					bool on = false;
 					std::function<void(bool)> on_toggle = nullptr;

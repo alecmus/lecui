@@ -32,7 +32,7 @@ namespace liblec {
 				class progress_indicator : public widget {
 				public:
 					progress_indicator() {
-						color_text = { 20, 80, 140, 255 };
+						color_text = { 0, 120, 170, 255 };
 					}
 					liblec::lecui::color color_empty = { 200, 200, 200, 255 };
 					float line_thickness_empty = .5f;

@@ -33,7 +33,7 @@ namespace liblec {
 						color_text = { 0, 0, 0, 255 };
 						color_fill = { 229, 229, 229, 255 };
 						color_hot = { 240, 240, 240, 255 };
-						color_selected = { 20, 80, 140, 100 };
+						color_selected = { 0, 120, 170, 100 };
 					}
 					float border = .5f;
 					float corner_radius_x = 5.f;

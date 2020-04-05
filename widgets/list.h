@@ -40,7 +40,7 @@ namespace liblec {
 					liblec::lecui::color color_grid = { 215, 215, 215, 255 };
 					liblec::lecui::color color_text_header = { 0, 0, 0, 255 };
 					liblec::lecui::color color_fill_header = { 222, 222, 222, 255 };
-					liblec::lecui::color color_fill_alternate = { 20, 80, 140, 15 };
+					liblec::lecui::color color_fill_alternate = { 0, 120, 170, 15 };
 					liblec::lecui::color color_row_hot = { 225, 242, 255, 255 };
 					liblec::lecui::color color_row_selected = { 40, 160, 200, 255 };
 					float border = .5f;

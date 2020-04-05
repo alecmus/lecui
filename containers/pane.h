@@ -32,7 +32,7 @@ namespace liblec {
 					pane() { color_fill = { 100, 100, 100, 15 }; }
 
 					bool is_filled = true;
-					liblec::lecui::color color_border = { 20, 80, 140, 50 };
+					liblec::lecui::color color_border = { 0, 120, 170, 50 };
 					float border = .5f;
 					float corner_radius_x = 5.f;
 					float corner_radius_y = 5.f;

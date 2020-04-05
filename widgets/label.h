@@ -29,8 +29,8 @@ namespace liblec {
 			namespace specs {
 				class label : public widget {
 				public:
-					label() { color_hot = { 20, 80, 140, 20 }; };
-					liblec::lecui::color color_hot_pressed = { 20, 80, 140, 40 };
+					label() { color_hot = { 0, 120, 170, 20 }; };
+					liblec::lecui::color color_hot_pressed = { 0, 120, 170, 40 };
 					bool multiline = false;
 					bool center_h = false;
 					bool center_v = false;

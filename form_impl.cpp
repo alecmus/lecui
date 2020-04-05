@@ -69,7 +69,7 @@ liblec::lecui::form::form_impl::form_impl(const std::string& caption_formatted) 
 	idi_icon_small_(0),
 	clr_background_(color{ 244, 244, 244 }),
 	clr_titlebar_background_(clr_background_),
-	clr_theme_(color{ 20, 80, 140, 255 }),
+	clr_theme_(color{ 0, 120, 170, 255 }),
 	clr_theme_hot_(color{ 255, 180, 0, 255 }),
 	clr_theme_disabled_(color{ 225, 225, 225, 255 }),
 	top_most_(false),

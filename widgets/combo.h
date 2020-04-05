@@ -32,11 +32,11 @@ namespace liblec {
 					combo() {
 						color_fill = { 255, 255, 255, 0 };
 						color_hot = { 200, 200, 200, 50 }; }
-					liblec::lecui::color color_border = { 20, 80, 140, 255 };
+					liblec::lecui::color color_border = { 0, 120, 170, 255 };
 					liblec::lecui::color color_dropdown_hot = { 255, 255, 255, 255 };
 					liblec::lecui::color color_menu = { 255, 255, 255, 255 };
 					liblec::lecui::color color_menu_hot = { 200, 230, 255, 255 };
-					liblec::lecui::color color_menu_selected = { 20, 80, 140, 255 };
+					liblec::lecui::color color_menu_selected = { 0, 120, 170, 255 };
 					float border = .5f;
 					float corner_radius_x = 2.f;
 					float corner_radius_y = 2.f;
