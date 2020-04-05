@@ -50,6 +50,9 @@ liblec::lecui::containers::page& liblec::lecui::page::add(const std::string& nam
 
 	d_.fm_.d_.p_pages_.emplace(name, name);
 
+	// specify direct2d factory (used internally for geometries and stuff)
+	d_.fm_.d_.p_pages_.at(name).d_page_.direct2d_factory(d_.fm_.d_.p_direct2d_factory_);
+
 	// specify directwrite factory (used internally for text rendering)
 	d_.fm_.d_.p_pages_.at(name).d_page_.directwrite_factory(d_.fm_.d_.p_directwrite_factory_);
 

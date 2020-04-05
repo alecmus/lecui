@@ -81,6 +81,10 @@ liblec::lecui::containers::page& liblec::lecui::containers::tab::add(const std::
 
 	tab_control_.p_tabs_.emplace(name, name);
 
+	// specify direct2d factory (used internally for geometries and stuff)
+	tab_control_.p_tabs_.at(name).d_page_.direct2d_factory(
+		d_.tc_.d_.page_.d_page_.direct2d_factory());
+
 	// specify directwrite factory (used internally for text rendering)
 	tab_control_.p_tabs_.at(name).d_page_.directwrite_factory(
 		d_.tc_.d_.page_.d_page_.directwrite_factory());

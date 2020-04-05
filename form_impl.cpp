@@ -2021,6 +2021,9 @@ void liblec::lecui::form::form_impl::close(const std::string& name) {
 		case widgets_implementation::widget_type::image:
 			page.d_page_.images_.erase(widget_name);
 			break;
+		case widgets_implementation::widget_type::progress_indicator:
+			page.d_page_.progress_indicators_.erase(widget_name);
+			break;
 		case widgets_implementation::widget_type::close_button:
 		case widgets_implementation::widget_type::maximize_button:
 		case widgets_implementation::widget_type::minimize_button:

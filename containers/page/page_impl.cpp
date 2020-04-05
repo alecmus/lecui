@@ -27,6 +27,14 @@ liblec::lecui::containers::page::page_impl::page_impl(const std::string& name) :
 liblec::lecui::containers::page::page_impl::~page_impl() { log("destructor:  " + name_); }
 std::string liblec::lecui::containers::page::page_impl::name() { return name_; }
 
+void liblec::lecui::containers::page::page_impl::direct2d_factory(ID2D1Factory* p_direct2d_factory) {
+	p_direct2d_factory_ = p_direct2d_factory;
+}
+
+ID2D1Factory* liblec::lecui::containers::page::page_impl::direct2d_factory() {
+	return p_direct2d_factory_;
+}
+
 void
 liblec::lecui::containers::page::page_impl::directwrite_factory(IDWriteFactory* p_directwrite_factory) {
 	p_directwrite_factory_ = p_directwrite_factory;
@@ -150,6 +158,14 @@ liblec::lecui::containers::page::page_impl::add_image(const std::string& name) {
 	return images_.at(name).specs();
 }
 
+liblec::lecui::widgets::specs::progress_indicator&
+liblec::lecui::containers::page::page_impl::add_progress_indicator(const std::string& name) {
+	progress_indicators_.try_emplace(name, name_, name, p_direct2d_factory_, p_directwrite_factory_);
+	widgets_.emplace(name, progress_indicators_.at(name));
+	widgets_order_.emplace_back(name);
+	return progress_indicators_.at(name).specs();
+}
+
 std::map<std::string, liblec::lecui::widgets_implementation::widget&>&
 liblec::lecui::containers::page::page_impl::widgets() { return widgets_; }
 
@@ -193,3 +209,6 @@ liblec::lecui::containers::page::page_impl::get_custom(const std::string& name) 
 
 liblec::lecui::widgets_implementation::image&
 liblec::lecui::containers::page::page_impl::get_image(const std::string& name) { return images_.at(name); }
+
+liblec::lecui::widgets_implementation::progress_indicator&
+liblec::lecui::containers::page::page_impl::get_progress_indicator(const std::string& name) { return progress_indicators_.at(name); }

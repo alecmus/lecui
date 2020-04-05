@@ -51,6 +51,8 @@
     <ClInclude Include="widgets\label\label_impl.h" />
     <ClInclude Include="widgets\list.h" />
     <ClInclude Include="widgets\list\list_impl.h" />
+    <ClInclude Include="widgets\progress_indicator.h" />
+    <ClInclude Include="widgets\progress_indicator\progress_indicator_impl.h" />
     <ClInclude Include="widgets\rectangle.h" />
     <ClInclude Include="widgets\rectangle\rectangle_impl.h" />
     <ClInclude Include="widgets\timer.h" />
@@ -92,6 +94,8 @@
     <ClCompile Include="widgets\label\label_impl.cpp" />
     <ClCompile Include="widgets\list\list.cpp" />
     <ClCompile Include="widgets\list\list_impl.cpp" />
+    <ClCompile Include="widgets\progress_indicator\progress_indicator.cpp" />
+    <ClCompile Include="widgets\progress_indicator\progress_indicator_impl.cpp" />
     <ClCompile Include="widgets\rectangle\rectangle.cpp" />
     <ClCompile Include="widgets\rectangle\rectangle_impl.cpp" />
     <ClCompile Include="widgets\toggle\toggle.cpp" />
@@ -225,7 +229,8 @@ xcopy "$(ProjectDir)widgets\toggle.h" "$(SolutionDir)..\include\liblec\$(Project
 xcopy "$(ProjectDir)widgets\combo.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\list.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\custom.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
-xcopy "$(ProjectDir)widgets\image.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I</Command>
+xcopy "$(ProjectDir)widgets\image.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+xcopy "$(ProjectDir)widgets\progress_indicator.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -268,7 +273,8 @@ xcopy "$(ProjectDir)widgets\toggle.h" "$(SolutionDir)..\include\liblec\$(Project
 xcopy "$(ProjectDir)widgets\combo.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\list.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\custom.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
-xcopy "$(ProjectDir)widgets\image.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I</Command>
+xcopy "$(ProjectDir)widgets\image.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+xcopy "$(ProjectDir)widgets\progress_indicator.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -315,7 +321,8 @@ xcopy "$(ProjectDir)widgets\toggle.h" "$(SolutionDir)..\include\liblec\$(Project
 xcopy "$(ProjectDir)widgets\combo.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\list.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\custom.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
-xcopy "$(ProjectDir)widgets\image.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I</Command>
+xcopy "$(ProjectDir)widgets\image.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+xcopy "$(ProjectDir)widgets\progress_indicator.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -362,7 +369,8 @@ xcopy "$(ProjectDir)widgets\toggle.h" "$(SolutionDir)..\include\liblec\$(Project
 xcopy "$(ProjectDir)widgets\combo.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\list.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\custom.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
-xcopy "$(ProjectDir)widgets\image.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I</Command>
+xcopy "$(ProjectDir)widgets\image.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+xcopy "$(ProjectDir)widgets\progress_indicator.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

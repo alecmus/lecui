@@ -53,6 +53,7 @@ namespace liblec {
 				list,
 				custom,
 				image,
+				progress_indicator,
 			};
 
 			class widget {

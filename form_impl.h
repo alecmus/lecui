@@ -186,6 +186,7 @@ class liblec::lecui::form::form_impl {
 	friend widgets::list;
 	friend widgets::rectangle;
 	friend widgets::toggle;
+	friend widgets::progress_indicator;
 
 public:
 	form_impl(const std::string& caption_formatted);

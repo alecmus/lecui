@@ -29,6 +29,7 @@
 #include "../../widgets/list/list_impl.h"
 #include "../../widgets/custom/custom_impl.h"
 #include "../../widgets/image/image_impl.h"
+#include "../../widgets/progress_indicator/progress_indicator_impl.h"
 
 class liblec::lecui::containers::page::page_impl {
 public:
@@ -36,6 +37,8 @@ public:
 	~page_impl();
 
 	std::string name();
+	void direct2d_factory(ID2D1Factory* p_direct2d_factory);
+	ID2D1Factory* direct2d_factory();
 	void directwrite_factory(IDWriteFactory* p_directwrite_factory);
 	IDWriteFactory* directwrite_factory();
 	void iwic_factory(IWICImagingFactory* p_iwic_factory);
@@ -72,6 +75,8 @@ public:
 		add_custom(const std::string& name);
 	liblec::lecui::widgets::specs::image&
 		add_image(const std::string& name);
+	liblec::lecui::widgets::specs::progress_indicator&
+		add_progress_indicator(const std::string& name);
 
 	std::map<std::string,
 		liblec::lecui::widgets_implementation::widget&>&
@@ -106,8 +111,11 @@ public:
 		get_custom(const std::string& name);
 	liblec::lecui::widgets_implementation::image&
 		get_image(const std::string& name);
+	liblec::lecui::widgets_implementation::progress_indicator&
+		get_progress_indicator(const std::string& name);
 
 private:
+	ID2D1Factory* p_direct2d_factory_;
 	IDWriteFactory* p_directwrite_factory_;
 	IWICImagingFactory* p_iwic_factory_;
 	std::string name_;
@@ -131,6 +139,7 @@ private:
 	std::map<std::string, liblec::lecui::widgets_implementation::list> lists_;
 	std::map<std::string, liblec::lecui::widgets_implementation::custom> customs_;
 	std::map<std::string, liblec::lecui::widgets_implementation::image> images_;
+	std::map<std::string, liblec::lecui::widgets_implementation::progress_indicator> progress_indicators_;
 
 	friend liblec::lecui::form;
 };

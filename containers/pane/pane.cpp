@@ -66,6 +66,9 @@ liblec::lecui::containers::page& liblec::lecui::containers::pane::get() {
 	pane_.p_panes_.emplace(name, name);
 	pane_.current_pane_ = name;
 
+	// specify direct2d factory (used internally for geometries and stuff)
+	pane_.p_panes_.at(name).d_page_.direct2d_factory(d_.page_.d_page_.direct2d_factory());
+
 	// specify directwrite factory (used internally for text rendering)
 	pane_.p_panes_.at(name).d_page_.directwrite_factory(d_.page_.d_page_.directwrite_factory());
 

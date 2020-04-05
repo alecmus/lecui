@@ -31,6 +31,7 @@ namespace liblec {
 			class list;
 			class custom;
 			class image;
+			class progress_indicator;
 		}
 
 		namespace containers {
@@ -69,6 +70,7 @@ namespace liblec {
 				friend liblec::lecui::widgets::list;
 				friend liblec::lecui::widgets::custom;
 				friend liblec::lecui::widgets::image;
+				friend liblec::lecui::widgets::progress_indicator;
 			};
 		}
 
