@@ -27,15 +27,17 @@ namespace liblec {
 
 		namespace widgets {
 			namespace specs {
+				/// <summary>Progress indicator widget specifications.</summary>
+				/// <remarks>Recommended size with defaults is 50x50px</remarks>
 				class progress_indicator : public widget {
 				public:
 					progress_indicator() {
 						color_text = { 20, 80, 140, 255 };
 					}
-					liblec::lecui::color color_empty = { 180, 180, 180, 255 };
+					liblec::lecui::color color_empty = { 200, 200, 200, 255 };
 					float line_thickness_empty = .5f;
-					float line_thickness_fill = 1.f;
-					float percentage = 25.f;
+					float line_thickness_fill = 1.5f;
+					float percentage = 0.f;
 					int precision = 0;
 
 					bool operator==(const progress_indicator&);

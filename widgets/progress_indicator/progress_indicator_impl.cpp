@@ -132,31 +132,38 @@ liblec::lecui::widgets_implementation::progress_indicator::render(ID2D1HwndRende
 	if (!render || !visible_)
 		return rect_;
 
-	const auto radius_x = (rect_.right - rect_.left) / 2.f;
-	const auto radius_y = (rect_.bottom - rect_.top) / 2.f;
-	D2D1_ELLIPSE ellipse{ D2D1::Point2F(rect_.left + radius_x, rect_.top + radius_y),
+	auto rect_ellipse_ = rect_;
+	rect_ellipse_.left += (specs_.line_thickness_fill * 2.f);
+	rect_ellipse_.top += (specs_.line_thickness_fill * 2.f);
+	rect_ellipse_.right -= (specs_.line_thickness_fill * 2.f);
+	rect_ellipse_.bottom -= (specs_.line_thickness_fill * 2.f);
+
+	// draw unfilled circle
+	const auto radius_x = (rect_ellipse_.right - rect_ellipse_.left) / 2.f;
+	const auto radius_y = (rect_ellipse_.bottom - rect_ellipse_.top) / 2.f;
+	D2D1_ELLIPSE ellipse{ D2D1::Point2F(rect_ellipse_.left + radius_x, rect_ellipse_.top + radius_y),
 		radius_x,
 		radius_y
 	};
 
-	// draw unfilled circle
 	p_render_target->DrawEllipse(ellipse, p_brush_empty_, specs_.line_thickness_empty);
 
 	// draw filled arc
+	const auto start_point = D2D1::Point2F(rect_ellipse_.left + radius_x, rect_ellipse_.top);
+
+	const double pi = 3.1415926535897932384626433832795;
+
+	float percentage = specs_.percentage;
+	percentage = smallest(percentage, 99.9999f);	// so arc is drawn full
+	percentage = largest(percentage, 0.f);			// failsafe
+
+	const float angle = static_cast<float>((2 * pi) * percentage / 100.0);
+	const float x_adjust = static_cast<float>(radius_x * cos((pi / 2) - angle));
+	const float y_adjust = static_cast<float>(radius_y * (1.0 - sin((pi / 2) - angle)));
+
+	const auto end_point = D2D1::Point2F(start_point.x + x_adjust, start_point.y + y_adjust);
 	{
-		const auto start_point = D2D1::Point2F(rect_.left + radius_x, rect_.top);
-
-		const double pi = 3.1415926535897932384626433832795;
-
-		float percentage = specs_.percentage;
-		percentage = smallest(percentage, 99.9999f);	// so arc is drawn full
-		percentage = largest(percentage, 0.f);			// failsafe
-
-		const float angle = static_cast<float>((2 * pi) * percentage / 100.0);
-		const float x_adjust = static_cast<float>(radius_x * cos((pi / 2) - angle));
-		const float y_adjust = static_cast<float>(radius_y * (1.0 - sin((pi / 2) - angle)));
-
-		const auto end_point = D2D1::Point2F(start_point.x + x_adjust, start_point.y + y_adjust);
+		
 
 		HRESULT hr = S_OK;
 		ID2D1PathGeometry* p_arc_geometry = nullptr;
@@ -188,15 +195,27 @@ liblec::lecui::widgets_implementation::progress_indicator::render(ID2D1HwndRende
 		safe_release(&p_arc_geometry);
 	}
 
+	// draw start line
+	p_render_target->DrawLine(D2D1::Point2F(start_point.x, start_point.y - specs_.line_thickness_fill / 2.f),
+		D2D1::Point2F(start_point.x, start_point.y + specs_.line_thickness_fill * 2.f),
+		p_brush_fill_, specs_.line_thickness_fill / 2.f);
+
+	// draw end dot
+	D2D1_ELLIPSE dot{ end_point,
+		specs_.line_thickness_fill * 2.f,
+		specs_.line_thickness_fill * 2.f };
+
+	p_render_target->FillEllipse(dot, p_brush_fill_);
+
 	// create a text layout
 	std::string text = roundoff::tostr<char>(specs_.percentage, specs_.precision) + "%";
 	HRESULT hr = p_directwrite_factory_->CreateTextLayout(convert_string(text).c_str(),
-		(UINT32)text.length(), p_text_format_, rect_.right - rect_.left,
-		rect_.bottom - rect_.top, &p_text_layout_);
+		(UINT32)text.length(), p_text_format_, rect_ellipse_.right - rect_ellipse_.left,
+		rect_ellipse_.bottom - rect_ellipse_.top, &p_text_layout_);
 
 	if (SUCCEEDED(hr)) {
 		// draw the text layout
-		p_render_target->DrawTextLayout(D2D1_POINT_2F{ rect_.left, rect_.top },
+		p_render_target->DrawTextLayout(D2D1_POINT_2F{ rect_ellipse_.left, rect_ellipse_.top },
 			p_text_layout_, is_enabled_ ?
 			p_brush_ : p_brush_disabled_, D2D1_DRAW_TEXT_OPTIONS_CLIP);
 	}
