@@ -1,5 +1,5 @@
 /*
-** button_impl.cpp - button widget implementation
+** button_impl.cpp - button_impl implementation
 **
 ** lecui user interface library
 ** Copyright (c) 2019 Alec T. Musasa (alecmus at live dot com)

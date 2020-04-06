@@ -188,6 +188,7 @@ class liblec::lecui::form::form_impl {
 	friend widgets::toggle;
 	friend widgets::progress_indicator;
 	friend widgets::progress_bar;
+	friend widgets::checkbox;
 
 public:
 	form_impl(const std::string& caption_formatted);

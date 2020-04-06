@@ -55,6 +55,7 @@ namespace liblec {
 				image,
 				progress_indicator,
 				progress_bar,
+				checkbox,
 			};
 
 			class widget {

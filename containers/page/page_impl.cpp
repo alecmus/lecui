@@ -174,6 +174,14 @@ liblec::lecui::containers::page::page_impl::add_progress_bar(const std::string& 
 	return progress_bars_.at(name).specs();
 }
 
+liblec::lecui::widgets::specs::checkbox&
+liblec::lecui::containers::page::page_impl::add_checkbox(const std::string& name) {
+	checkboxes_.try_emplace(name, name_, name, p_direct2d_factory_, p_directwrite_factory_);
+	widgets_.emplace(name, checkboxes_.at(name));
+	widgets_order_.emplace_back(name);
+	return checkboxes_.at(name).specs();
+}
+
 std::map<std::string, liblec::lecui::widgets_implementation::widget&>&
 liblec::lecui::containers::page::page_impl::widgets() { return widgets_; }
 
@@ -223,3 +231,6 @@ liblec::lecui::containers::page::page_impl::get_progress_indicator(const std::st
 
 liblec::lecui::widgets_implementation::progress_bar&
 liblec::lecui::containers::page::page_impl::get_progress_bar(const std::string& name) { return progress_bars_.at(name); }
+
+liblec::lecui::widgets_implementation::checkbox&
+liblec::lecui::containers::page::page_impl::get_checkbox(const std::string& name) { return checkboxes_.at(name); }

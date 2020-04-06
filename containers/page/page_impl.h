@@ -31,6 +31,7 @@
 #include "../../widgets/image/image_impl.h"
 #include "../../widgets/progress_indicator/progress_indicator_impl.h"
 #include "../../widgets/progress_bar/progress_bar_impl.h"
+#include "../../widgets/checkbox/checkbox_impl.h"
 
 class liblec::lecui::containers::page::page_impl {
 public:
@@ -80,6 +81,8 @@ public:
 		add_progress_indicator(const std::string& name);
 	liblec::lecui::widgets::specs::progress_bar&
 		add_progress_bar(const std::string& name);
+	liblec::lecui::widgets::specs::checkbox&
+		add_checkbox(const std::string& name);
 
 	std::map<std::string,
 		liblec::lecui::widgets_implementation::widget&>&
@@ -118,6 +121,8 @@ public:
 		get_progress_indicator(const std::string& name);
 	liblec::lecui::widgets_implementation::progress_bar&
 		get_progress_bar(const std::string& name);
+	liblec::lecui::widgets_implementation::checkbox&
+		get_checkbox(const std::string& name);
 
 private:
 	ID2D1Factory* p_direct2d_factory_;
@@ -146,6 +151,7 @@ private:
 	std::map<std::string, liblec::lecui::widgets_implementation::image> images_;
 	std::map<std::string, liblec::lecui::widgets_implementation::progress_indicator> progress_indicators_;
 	std::map<std::string, liblec::lecui::widgets_implementation::progress_bar> progress_bars_;
+	std::map<std::string, liblec::lecui::widgets_implementation::checkbox> checkboxes_;
 
 	friend liblec::lecui::form;
 };

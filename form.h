@@ -47,6 +47,7 @@ namespace liblec {
 			class toggle;
 			class progress_indicator;
 			class progress_bar;
+			class checkbox;
 		}
 
 		enum class form_position {
@@ -127,6 +128,7 @@ namespace liblec {
 			friend widgets::toggle;
 			friend widgets::progress_indicator;
 			friend widgets::progress_bar;
+			friend widgets::checkbox;
 		};
 	}
 }

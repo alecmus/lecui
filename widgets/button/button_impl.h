@@ -1,5 +1,5 @@
 /*
-** button_impl.h - button widget interface
+** button_impl.h - button_impl interface
 **
 ** lecui user interface library
 ** Copyright (c) 2019 Alec T. Musasa (alecmus at live dot com)

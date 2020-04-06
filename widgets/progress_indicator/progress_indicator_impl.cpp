@@ -163,8 +163,6 @@ liblec::lecui::widgets_implementation::progress_indicator::render(ID2D1HwndRende
 
 	const auto end_point = D2D1::Point2F(start_point.x + x_adjust, start_point.y + y_adjust);
 	{
-		
-
 		HRESULT hr = S_OK;
 		ID2D1PathGeometry* p_arc_geometry = nullptr;
 		hr = p_direct2d_factory_->CreatePathGeometry(&p_arc_geometry);
@@ -184,15 +182,15 @@ liblec::lecui::widgets_implementation::progress_indicator::render(ID2D1HwndRende
 						percentage > 50.f ? D2D1_ARC_SIZE_LARGE : D2D1_ARC_SIZE_SMALL)
 					);
 				p_sink->EndFigure(D2D1_FIGURE_END_OPEN);
+
+				hr = p_sink->Close();
+				safe_release(&p_sink);
 			}
-			hr = p_sink->Close();
-			safe_release(&p_sink);
+
+			// draw the geometry
+			p_render_target->DrawGeometry(p_arc_geometry, p_brush_fill_, specs_.line_thickness_fill);
+			safe_release(&p_arc_geometry);
 		}
-
-		// draw the geometry
-		p_render_target->DrawGeometry(p_arc_geometry, p_brush_fill_, specs_.line_thickness_fill);
-
-		safe_release(&p_arc_geometry);
 	}
 
 	// draw start line

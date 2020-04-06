@@ -134,11 +134,13 @@ liblec::lecui::widgets_implementation::toggle::render(ID2D1HwndRenderTarget* p_r
 	rect_.top -= y_off_set;
 	rect_.bottom -= y_off_set;
 
-	const float toggle_height = rect_.bottom - rect_.top;
+	const float toggle_height = smallest(rect_.bottom - rect_.top, rect_.right - rect_.left);
 	const float toggle_width = 2.f * toggle_height;
 
 	rect_toggle_ = rect_;
 	rect_toggle_.right = rect_toggle_.left + toggle_width;
+	rect_toggle_.bottom = rect_toggle_.top + toggle_height;
+	pos_rect(rect_, rect_toggle_, 0.f, 50.f);
 
 	D2D1_RECT_F toggle_background_ = rect_toggle_;
 	D2D1_ROUNDED_RECT toggle_background_round_ = { toggle_background_,
@@ -192,7 +194,7 @@ liblec::lecui::widgets_implementation::toggle::render(ID2D1HwndRenderTarget* p_r
 			p_brush_fill_ : p_brush_fill_);
 	}
 
-	rect_text_ = rect_;
+	auto rect_text_ = rect_;
 	rect_text_.left = rect_toggle_.right + ((rect_toggle_.bottom - rect_toggle_.top) / 3.f);
 
 	// create a text layout
