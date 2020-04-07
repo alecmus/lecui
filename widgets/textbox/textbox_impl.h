@@ -66,11 +66,45 @@ namespace liblec {
 				ID2D1Factory* p_direct2d_factory_;
 				IDWriteFactory* p_directwrite_factory_;
 				IDWriteTextLayout* p_text_layout_;
+
+				const float margin_x_;
+				const float margin_y_;
 				
 				const std::string caret_blink_timer_name_;
 				UINT32 caret_position_;
 				bool caret_visible_;
 				float text_off_set_;
+				bool is_selecting_;
+				bool is_selected_;
+
+				struct selection_info {
+					UINT32 start = 0;
+					UINT32 end = 0;
+				} selection_info_;
+
+				void reset_selection() {
+					selection_info_ = { 0, 0 };
+					is_selected_ = false;
+				}
+
+				void set_selection(const UINT start, const UINT end) {
+					selection_info_.start = start;
+					selection_info_.end = end;
+					is_selected_ = true;
+				}
+
+				static UINT32 get_caret_position(IDWriteTextLayout* p_text_layout, const std::string& text,
+					const D2D1_RECT_F& rect_text, const D2D1_POINT_2F& point,
+					const float& dpi_scale);
+
+				static D2D1_RECT_F get_selection_rect(IDWriteTextLayout* p_text_layout,
+					const D2D1_RECT_F& rect_text, const UINT32& selection_start,
+					const UINT32& selection_end);
+
+				static float get_caret_width();
+
+				static D2D1_RECT_F get_caret_rect(IDWriteTextLayout* p_text_layout,
+					const D2D1_RECT_F& rect_text, const UINT32& caret_position);
 
 				form& fm_;
 			};

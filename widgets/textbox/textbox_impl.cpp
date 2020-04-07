@@ -30,10 +30,15 @@ liblec::lecui::widgets_implementation::textbox::textbox(const std::string& page,
 	fm_(fm),
 	p_directwrite_factory_(p_directwrite_factory),
 	p_text_layout_(nullptr),
+	margin_x_(7.5f),
+	margin_y_(2.5f),
 	caret_blink_timer_name_("caret_blink_timer::textbox"),
 	caret_position_(0),
 	caret_visible_(true),
-	text_off_set_(0.f) {
+	text_off_set_(0.f),
+	is_selecting_(false),
+	is_selected_(false),
+	selection_info_({ 0, 0 }) {
 	page_ = page;
 	name_ = name;
 	h_cursor_ = LoadCursor(NULL, IDC_IBEAM);
@@ -156,59 +161,37 @@ liblec::lecui::widgets_implementation::textbox::render(ID2D1HwndRenderTarget* p_
 		specs_.text : selected_ ?
 		std::string() : specs_.prompt;
 
-	const float margin_x_ = 7.5f;
-	const float margin_y_ = 2.5f;
-
 	auto rect_text_ = rect_;
 	rect_text_.left += margin_x_;
 	rect_text_.right -= margin_x_;
 	rect_text_.top += margin_y_;
 	rect_text_.bottom -= margin_y_;
 
+	// define rectangle for clipping text
 	auto rect_text_clip_ = rect_;
 	rect_text_clip_.left += (margin_x_ / 3.f);
 	rect_text_clip_.right -= (margin_x_ / 3.f);
 	rect_text_clip_.top += (margin_y_ / 3.f);
 	rect_text_clip_.bottom -= (margin_y_ / 3.f);
 
-	// measure text up to caret position
-	{
-		try
-		{
-			// measure the entire text
-			auto rect_text_all_ = measure_text(p_directwrite_factory_,
-				text_, specs_.font, specs_.font_size, false, true, true, false, rect_text_);
+	// define text box rect and actual text rect (with possible overflow)
+	const auto rect_text_box_ = rect_text_;
+	rect_text_ = measure_text(p_directwrite_factory_,
+		text_, specs_.font, specs_.font_size, false, true, true, false, rect_text_);
 
-			const auto text_width = rect_text_all_.right - rect_text_all_.left;
-			const auto text_height = rect_text_all_.bottom - rect_text_all_.top;
+	// measure the text up to the caret position
+	const auto text_to_caret = text_.substr(0, caret_position_);
+	const auto rect_up_to_caret_ = measure_text(p_directwrite_factory_,
+		text_to_caret, specs_.font, specs_.font_size, false, true, true, false, rect_text_);
 
-			std::string text_to_caret = text_.substr(0, caret_position_);
+	// compute offset to prevent caret from being hidden
+	const auto textbox_width = rect_text_box_.right - rect_text_box_.left;
+	const auto distance_to_caret = rect_up_to_caret_.right - rect_up_to_caret_.left;
+	text_off_set_ = smallest(0.f, textbox_width - distance_to_caret);
 
-			const auto box_width = rect_text_.right - rect_text_.left;
-			const auto box_height = rect_text_.bottom - rect_text_.top;
-
-			auto rect_text_measured_ = measure_text(p_directwrite_factory_,
-				text_to_caret, specs_.font, specs_.font_size, false, true, true, false, rect_text_);
-
-			const auto measured_width = rect_text_measured_.right - rect_text_measured_.left;
-			const auto measured_height = rect_text_measured_.bottom - rect_text_measured_.top;
-
-			text_off_set_ = smallest(0.f, box_width - measured_width);
-			log("text_off_set_: " + std::to_string(text_off_set_));
-
-			// adjust rect_text_ to carry all the text's width
-			rect_text_.right = rect_text_.left + text_width;
-
-			// adjust rect_text_ by the offset to ensure visibility of caret
-			rect_text_.left += text_off_set_;
-			rect_text_.right += text_off_set_;
-		}
-		catch (const std::exception&)
-		{
-
-		}
-		
-	}
+	// move text rect to ensure visibility of caret
+	rect_text_.left += text_off_set_;
+	rect_text_.right += text_off_set_;
 	
 	HRESULT hr = p_directwrite_factory_->CreateTextLayout(convert_string(text_).c_str(),
 		(UINT32)text_.length(), p_text_format_, rect_text_.right - rect_text_.left,
@@ -224,35 +207,45 @@ liblec::lecui::widgets_implementation::textbox::render(ID2D1HwndRenderTarget* p_
 			p_brush_ : p_brush_prompt_, D2D1_DRAW_TEXT_OPTIONS_CLIP);
 	}
 
+	if (!is_static_ && is_enabled_ && selected_) {
+		if (hit_ && pressed_) {
+			reset_selection();
+
+			caret_position_ = get_caret_position(p_text_layout_, specs_.text, rect_text_, point_, dpi_scale_);
+			caret_visible_ = true;
+
+			if (point_.x != point_on_press_.x || point_.y != point_on_press_.y) {
+				// user is making a selection
+				is_selecting_ = true;
+
+				auto selection_start_ = get_caret_position(p_text_layout_, specs_.text, rect_text_, point_on_press_, dpi_scale_);
+				auto selection_end_ = caret_position_;
+
+				auto rect_selection = get_selection_rect(p_text_layout_, rect_text_, selection_start_, selection_end_);
+				p_render_target->FillRectangle(rect_selection, p_brush_selected_);
+			}
+		}
+		else
+			if (!pressed_ && is_selecting_) {
+				// user is done with the selection
+				is_selecting_ = false;
+
+				set_selection(
+					get_caret_position(p_text_layout_, specs_.text, rect_text_, point_on_press_, dpi_scale_),
+					get_caret_position(p_text_layout_, specs_.text, rect_text_, point_on_release_, dpi_scale_));
+			}
+	}
+
+	// draw selection rectangle
+	if (!is_static_ && is_enabled_ && is_selected_) {
+		auto rect_selection = get_selection_rect(p_text_layout_, rect_text_, selection_info_.start, selection_info_.end);
+		p_render_target->FillRectangle(rect_selection, p_brush_selected_);
+	}
+
 	// draw caret
 	if (!is_static_ && is_enabled_ && selected_ && caret_visible_) {
-		DWRITE_HIT_TEST_METRICS hitTestMetrics;
-		float caretX, caretY;
-		bool isTrailingHit = false; // Use the leading character edge for simplicity here.
-		// Map text position index to caret coordinate and hit-test rectangle.
-		p_text_layout_->HitTestTextPosition(
-			caret_position_,
-			isTrailingHit,
-			OUT & caretX,
-			OUT & caretY,
-			OUT & hitTestMetrics
-			);
-
-		// Respect user settings.
-		DWORD caretWidth = 1;
-		SystemParametersInfo(SPI_GETCARETWIDTH, 0, OUT & caretWidth, 0);
-		const float halfCaretWidth = caretWidth / 2.f;
-
-		// Draw a thin rectangle.
-		float layoutOriginX = 0.f;
-		float layoutOriginY = 0.f;
-		
-		D2D1_RECT_F caretRect = D2D1::RectF(rect_text_.left + hitTestMetrics.left - halfCaretWidth,
-			rect_text_.top + hitTestMetrics.top,
-			rect_text_.left + hitTestMetrics.left + halfCaretWidth,
-			rect_text_.top + hitTestMetrics.top + hitTestMetrics.height);
-
-		p_render_target->FillRectangle(&caretRect, p_brush_caret_);
+		const auto caret_rect = get_caret_rect(p_text_layout_, rect_text_, caret_position_);
+		p_render_target->FillRectangle(&caret_rect, p_brush_caret_);
 	}
 
 	// release the text layout
@@ -280,6 +273,9 @@ void liblec::lecui::widgets_implementation::textbox::on_selection_change(const b
 		// stop blink timer
 		log("stopping caret blink timer: " + name_);
 		widgets::timer(fm_).stop(caret_blink_timer_name_);
+
+		// stop selection
+		reset_selection();
 	}
 }
 
@@ -287,39 +283,165 @@ liblec::lecui::widgets::specs::textbox&
 liblec::lecui::widgets_implementation::textbox::specs() { return specs_; }
 
 void liblec::lecui::widgets_implementation::textbox::insert_character(const char& c) {
-	std::string s;
-	s += c;
-	specs_.text.insert(caret_position_, s);
-	caret_position_++;
+	try {
+		if (is_selected_) {
+			if (selection_info_.start > selection_info_.end)
+				swap(selection_info_.start, selection_info_.end);
+
+			caret_position_ = selection_info_.start;
+			specs_.text.erase(selection_info_.start, selection_info_.end - selection_info_.start);
+			reset_selection();
+		}
+
+		std::string s;
+		s += c;
+		specs_.text.insert(caret_position_, s);
+		caret_position_++;
+		caret_visible_ = true;
+	}
+	catch (const std::exception& e) { log(e.what()); }
 }
 
 void liblec::lecui::widgets_implementation::textbox::key_backspace() {
 	try {
-		specs_.text.erase(caret_position_ - 1, 1);
-		caret_position_--;
+		if (is_selected_) {
+			if (selection_info_.start > selection_info_.end)
+				swap(selection_info_.start, selection_info_.end);
+
+			caret_position_ = selection_info_.start;
+			specs_.text.erase(selection_info_.start, selection_info_.end - selection_info_.start);
+			reset_selection();
+		}
+		else {
+			specs_.text.erase(caret_position_ - 1, 1);
+			caret_position_--;
+			caret_visible_ = true;
+		}
 	}
 	catch (const std::exception& e) { log(e.what()); }
 }
 
 void liblec::lecui::widgets_implementation::textbox::key_delete() {
 	try {
-		specs_.text.erase(caret_position_, 1);
+		if (is_selected_) {
+			if (selection_info_.start > selection_info_.end)
+				swap(selection_info_.start, selection_info_.end);
+
+			caret_position_ = selection_info_.start;
+			specs_.text.erase(selection_info_.start, selection_info_.end - selection_info_.start);
+			reset_selection();
+		}
+		else {
+			specs_.text.erase(caret_position_, 1);
+			caret_visible_ = true;
+		}
 	}
 	catch (const std::exception& e) { log(e.what()); }
 }
 
 void liblec::lecui::widgets_implementation::textbox::key_left() {
 	try {
+		if (is_selected_) {
+			if (selection_info_.start > selection_info_.end)
+				swap(selection_info_.start, selection_info_.end);
+
+			caret_position_ = selection_info_.start + 1;
+			reset_selection();
+		}
+
 		if (caret_position_ > 0)
 			caret_position_--;
+		caret_visible_ = true;
 	}
 	catch (const std::exception& e) { log(e.what()); }
 }
 
 void liblec::lecui::widgets_implementation::textbox::key_right() {
 	try {
+		if (is_selected_) {
+			if (selection_info_.start > selection_info_.end)
+				swap(selection_info_.start, selection_info_.end);
+
+			caret_position_ = selection_info_.end - 1;
+			reset_selection();
+		}
+
 		if (caret_position_ < specs_.text.length())
 			caret_position_++;
+		caret_visible_ = true;
 	}
 	catch (const std::exception& e) { log(e.what()); }
+}
+
+UINT32
+liblec::lecui::widgets_implementation::textbox::get_caret_position(IDWriteTextLayout* p_text_layout, const std::string& text,
+	const D2D1_RECT_F& rect_text, const D2D1_POINT_2F& point,
+	const float& dpi_scale) {
+	auto rect_hit = rect_text;
+	scale_RECT(rect_hit, dpi_scale);
+
+	auto p_x = point.x - rect_hit.left;
+	auto p_y = point.y - rect_hit.top;
+
+	p_x /= dpi_scale;
+	p_y /= dpi_scale;
+
+	BOOL is_trailing;
+	BOOL is_inside;
+	DWRITE_HIT_TEST_METRICS hitTestMetrics;
+
+	// check position of click
+	p_text_layout->HitTestPoint(p_x, p_y,
+		&is_trailing, &is_inside, &hitTestMetrics);
+
+	// change caret position
+	auto caret_position = hitTestMetrics.textPosition;
+
+	if (is_trailing && (caret_position < text.length()))
+		caret_position++;
+
+	return caret_position;
+}
+
+D2D1_RECT_F
+liblec::lecui::widgets_implementation::textbox::get_selection_rect(
+	IDWriteTextLayout* p_text_layout, const D2D1_RECT_F& rect_text,
+	const UINT32& selection_start, const UINT32& selection_end) {
+	DWRITE_HIT_TEST_METRICS hit_metrics_start, hit_metrics_end;
+
+	float p_x, p_y;
+	bool isTrailingHit = false;
+	p_text_layout->HitTestTextPosition(selection_start,
+		isTrailingHit, &p_x, &p_y, &hit_metrics_start);
+
+	p_text_layout->HitTestTextPosition(selection_end,
+		isTrailingHit, &p_x, &p_y, &hit_metrics_end);
+
+	return D2D1::RectF(rect_text.left + hit_metrics_start.left,
+		rect_text.top, rect_text.left + hit_metrics_end.left, rect_text.bottom);
+}
+
+float liblec::lecui::widgets_implementation::textbox::get_caret_width() {
+	// respect user settings
+	DWORD caret_width = 1;
+	SystemParametersInfo(SPI_GETCARETWIDTH, 0, &caret_width, 0);
+	return static_cast<float>(caret_width);
+}
+
+D2D1_RECT_F
+liblec::lecui::widgets_implementation::textbox::get_caret_rect(IDWriteTextLayout* p_text_layout,
+	const D2D1_RECT_F& rect_text, const UINT32& caret_position) {
+	DWRITE_HIT_TEST_METRICS hit_metrics;
+	float p_x, p_y;
+
+	bool is_trailing_hit = false;
+	p_text_layout->HitTestTextPosition(caret_position,
+		is_trailing_hit, &p_x, &p_y, &hit_metrics);
+
+	const float half_caret_width = get_caret_width() / 2.f;
+
+	return D2D1::RectF(rect_text.left + hit_metrics.left - half_caret_width,
+		rect_text.top + hit_metrics.top,
+		rect_text.left + hit_metrics.left + half_caret_width,
+		rect_text.top + hit_metrics.top + hit_metrics.height);
 }

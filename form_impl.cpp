@@ -2555,7 +2555,8 @@ LRESULT CALLBACK liblec::lecui::form::form_impl::window_procedure(HWND hWnd, UIN
 						if (widget.second.is_static() || !widget.second.visible() || !widget.second.enabled())
 							continue;
 
-						if (widget.second.selected())
+						if (widget.second.selected() &&
+							widget.second.type() != widgets_implementation::widget_type::textbox)	// exclude text box from space bar presses
 							widget.second.press(true);
 						else
 							widget.second.press(false);

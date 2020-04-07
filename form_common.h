@@ -299,6 +299,13 @@ static inline T largest(T a, T b) {
 	return (((a) > (b)) ? (a) : (b));
 }
 
+template <class t>
+static inline void swap(t& left, t& right) {
+	t temp = left;
+	left = right;
+	right = temp;
+}
+
 static inline void show_selected(ID2D1HwndRenderTarget* p_render_target,
 	ID2D1SolidColorBrush* p_brush_selected,
 	const D2D1_RECT_F& rect,
