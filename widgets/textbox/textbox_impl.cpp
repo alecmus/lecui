@@ -13,6 +13,7 @@
 
 #include "textbox_impl.h"
 #include "../timer.h"
+#include "../label/label_impl.h"
 
 liblec::lecui::widgets_implementation::textbox::textbox(const std::string& page,
 	const std::string& name,
@@ -31,7 +32,8 @@ liblec::lecui::widgets_implementation::textbox::textbox(const std::string& page,
 	p_text_layout_(nullptr),
 	caret_blink_timer_name_("caret_blink_timer::textbox"),
 	caret_position_(0),
-	caret_visible_(true) {
+	caret_visible_(true),
+	text_off_set_(0.f) {
 	page_ = page;
 	name_ = name;
 	h_cursor_ = LoadCursor(NULL, IDC_IBEAM);
@@ -154,17 +156,68 @@ liblec::lecui::widgets_implementation::textbox::render(ID2D1HwndRenderTarget* p_
 		specs_.text : selected_ ?
 		std::string() : specs_.prompt;
 
+	const float margin_x_ = 7.5f;
+	const float margin_y_ = 2.5f;
+
 	auto rect_text_ = rect_;
-	rect_text_.left += 7.5f;
-	rect_text_.right -= 7.5f;
-	rect_text_.top += 2.5f;
-	rect_text_.bottom -= 2.5f;
+	rect_text_.left += margin_x_;
+	rect_text_.right -= margin_x_;
+	rect_text_.top += margin_y_;
+	rect_text_.bottom -= margin_y_;
+
+	auto rect_text_clip_ = rect_;
+	rect_text_clip_.left += (margin_x_ / 3.f);
+	rect_text_clip_.right -= (margin_x_ / 3.f);
+	rect_text_clip_.top += (margin_y_ / 3.f);
+	rect_text_clip_.bottom -= (margin_y_ / 3.f);
+
+	// measure text up to caret position
+	{
+		try
+		{
+			// measure the entire text
+			auto rect_text_all_ = measure_text(p_directwrite_factory_,
+				text_, specs_.font, specs_.font_size, false, true, true, false, rect_text_);
+
+			const auto text_width = rect_text_all_.right - rect_text_all_.left;
+			const auto text_height = rect_text_all_.bottom - rect_text_all_.top;
+
+			std::string text_to_caret = text_.substr(0, caret_position_);
+
+			const auto box_width = rect_text_.right - rect_text_.left;
+			const auto box_height = rect_text_.bottom - rect_text_.top;
+
+			auto rect_text_measured_ = measure_text(p_directwrite_factory_,
+				text_to_caret, specs_.font, specs_.font_size, false, true, true, false, rect_text_);
+
+			const auto measured_width = rect_text_measured_.right - rect_text_measured_.left;
+			const auto measured_height = rect_text_measured_.bottom - rect_text_measured_.top;
+
+			text_off_set_ = smallest(0.f, box_width - measured_width);
+			log("text_off_set_: " + std::to_string(text_off_set_));
+
+			// adjust rect_text_ to carry all the text's width
+			rect_text_.right = rect_text_.left + text_width;
+
+			// adjust rect_text_ by the offset to ensure visibility of caret
+			rect_text_.left += text_off_set_;
+			rect_text_.right += text_off_set_;
+		}
+		catch (const std::exception&)
+		{
+
+		}
+		
+	}
 	
 	HRESULT hr = p_directwrite_factory_->CreateTextLayout(convert_string(text_).c_str(),
 		(UINT32)text_.length(), p_text_format_, rect_text_.right - rect_text_.left,
 		rect_text_.bottom - rect_text_.top, &p_text_layout_);
 
 	if (SUCCEEDED(hr)) {
+		// clip text
+		auto_clip clip(render, p_render_target, rect_text_clip_, 0.f);
+
 		// draw the text layout
 		p_render_target->DrawTextLayout(D2D1_POINT_2F{ rect_text_.left, rect_text_.top },
 			p_text_layout_, !specs_.text.empty() ?

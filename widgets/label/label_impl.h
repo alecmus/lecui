@@ -47,6 +47,16 @@ namespace liblec {
 				bool center_v,
 				const D2D1_RECT_F max_rect);
 
+			D2D1_RECT_F measure_text(IDWriteFactory* p_directwrite_factory_,
+				const std::string& formatted_text,
+				const std::string& font,
+				const float font_size,
+				bool center_h,
+				bool center_v,
+				bool allow_h_overflow,
+				bool allow_v_overflow,
+				const D2D1_RECT_F max_rect);
+
 			class label : public widget {
 			public:
 				label(const std::string& page,

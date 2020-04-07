@@ -228,6 +228,73 @@ liblec::lecui::widgets_implementation::measure_label(IDWriteFactory* p_directwri
 	return rect;
 }
 
+D2D1_RECT_F
+liblec::lecui::widgets_implementation::measure_text(IDWriteFactory* p_directwrite_factory,
+	const std::string& formatted_text,
+	const std::string& font,
+	const float font_size,
+	bool center_h,
+	bool center_v,
+	bool allow_h_overflow,
+	bool allow_v_overflow,
+	const D2D1_RECT_F max_rect) {
+	std::string plain_text_;
+	std::vector<text_range_properties> formatting_;
+	parse_formatted_text(formatted_text, plain_text_, formatting_);
+
+	D2D1_RECT_F rect = max_rect;
+
+	HRESULT hr = S_OK;
+
+	// Create a DirectWrite text format object.
+	IDWriteTextFormat* p_text_format_ = nullptr;
+	if (SUCCEEDED(hr)) {
+		hr = p_directwrite_factory->CreateTextFormat(convert_string(font).c_str(),
+			NULL, DWRITE_FONT_WEIGHT_NORMAL, DWRITE_FONT_STYLE_NORMAL, DWRITE_FONT_STRETCH_NORMAL,
+			convert_fontsize_to_dip(font_size), L"", //locale
+			&p_text_format_);
+	}
+
+	if (SUCCEEDED(hr) && allow_h_overflow) {
+		// make text overflow layout rectangle
+		p_text_format_->SetWordWrapping(DWRITE_WORD_WRAPPING::DWRITE_WORD_WRAPPING_NO_WRAP);
+	}
+
+	IDWriteTextLayout* p_text_layout_ = nullptr;
+	if (SUCCEEDED(hr)) {
+		p_text_format_->SetTextAlignment(center_h ?
+			DWRITE_TEXT_ALIGNMENT_CENTER : DWRITE_TEXT_ALIGNMENT_LEADING);
+		p_text_format_->SetParagraphAlignment(center_v ?
+			DWRITE_PARAGRAPH_ALIGNMENT_CENTER : DWRITE_PARAGRAPH_ALIGNMENT_NEAR);
+
+		// create a text layout
+		hr = p_directwrite_factory->CreateTextLayout(convert_string(plain_text_).c_str(),
+			(UINT32)plain_text_.length(), p_text_format_, rect.right - rect.left,
+			rect.bottom - rect.top, &p_text_layout_);
+	}
+
+	if (SUCCEEDED(hr)) {
+		apply_formatting(formatting_, nullptr, p_text_layout_, true, nullptr);
+
+		DWRITE_TEXT_METRICS textMetrics;
+		p_text_layout_->GetMetrics(&textMetrics);
+		rect.left += textMetrics.left;
+		rect.top += textMetrics.top;
+
+		if (allow_h_overflow)
+			rect.right = rect.left + textMetrics.width;
+		else
+			rect.right = smallest(rect.left + textMetrics.width, rect.right);
+
+		rect.bottom = smallest(rect.top + textMetrics.height, rect.bottom);
+	}
+
+	// release the text layout
+	safe_release(&p_text_layout_);
+	safe_release(&p_text_format_);
+	return rect;
+}
+
 liblec::lecui::widgets_implementation::label::label(const std::string& page,
 	const std::string& name,
 	IDWriteFactory* p_directwrite_factory) :
