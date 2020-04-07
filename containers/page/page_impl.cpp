@@ -13,7 +13,8 @@
 
 #include "page_impl.h"
 
-liblec::lecui::containers::page::page_impl::page_impl(const std::string& name) :
+liblec::lecui::containers::page::page_impl::page_impl(form& fm, const std::string& name) :
+	fm_(fm),
 	p_directwrite_factory_(nullptr),
 	p_iwic_factory_(nullptr),
 	name_(name),
@@ -184,7 +185,7 @@ liblec::lecui::containers::page::page_impl::add_checkbox(const std::string& name
 
 liblec::lecui::widgets::specs::textbox&
 liblec::lecui::containers::page::page_impl::add_textbox(const std::string& name) {
-	textboxes_.try_emplace(name, name_, name, p_direct2d_factory_, p_directwrite_factory_);
+	textboxes_.try_emplace(name, name_, name, fm_, p_directwrite_factory_);
 	widgets_.emplace(name, textboxes_.at(name));
 	widgets_order_.emplace_back(name);
 	return textboxes_.at(name).specs();

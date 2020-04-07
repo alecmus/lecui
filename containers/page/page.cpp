@@ -14,11 +14,8 @@
 #include "../page.h"
 #include "../../form_impl.h"
 
-liblec::lecui::containers::page::page(const std::string& name) :
-	d_page_(*new liblec::lecui::containers::page::page_impl(name)) {}
-
-liblec::lecui::containers::page::page() :
-	liblec::lecui::containers::page(std::string()) {}
+liblec::lecui::containers::page::page(form& fm, const std::string& name) :
+	d_page_(*new liblec::lecui::containers::page::page_impl(fm, name)) {}
 
 liblec::lecui::containers::page::~page() { delete& d_page_; }
 
@@ -48,7 +45,7 @@ liblec::lecui::containers::page& liblec::lecui::page::add(const std::string& nam
 		return d_.fm_.d_.p_pages_.at(name);
 	}
 
-	d_.fm_.d_.p_pages_.emplace(name, name);
+	d_.fm_.d_.p_pages_.try_emplace(name, d_.fm_, name);
 
 	// specify direct2d factory (used internally for geometries and stuff)
 	d_.fm_.d_.p_pages_.at(name).d_page_.direct2d_factory(d_.fm_.d_.p_direct2d_factory_);

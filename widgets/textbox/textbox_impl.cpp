@@ -12,10 +12,11 @@
 */
 
 #include "textbox_impl.h"
+#include "../timer.h"
 
 liblec::lecui::widgets_implementation::textbox::textbox(const std::string& page,
 	const std::string& name,
-	ID2D1Factory* p_direct2d_factory,
+	form& fm,
 	IDWriteFactory* p_directwrite_factory) :
 	p_brush_(nullptr),
 	p_brush_caret_(nullptr),
@@ -25,10 +26,12 @@ liblec::lecui::widgets_implementation::textbox::textbox(const std::string& page,
 	p_brush_disabled_(nullptr),
 	p_brush_selected_(nullptr),
 	p_text_format_(nullptr),
-	p_direct2d_factory_(p_direct2d_factory),
+	fm_(fm),
 	p_directwrite_factory_(p_directwrite_factory),
 	p_text_layout_(nullptr),
-	caret_position_(0) {
+	caret_blink_timer_name_("caret_blink_timer::textbox"),
+	caret_position_(0),
+	caret_visible_(true) {
 	page_ = page;
 	name_ = name;
 	h_cursor_ = LoadCursor(NULL, IDC_IBEAM);
@@ -169,7 +172,7 @@ liblec::lecui::widgets_implementation::textbox::render(ID2D1HwndRenderTarget* p_
 	}
 
 	// draw caret
-	if (!is_static_ && is_enabled_ && selected_) {
+	if (!is_static_ && is_enabled_ && selected_ && caret_visible_) {
 		DWRITE_HIT_TEST_METRICS hitTestMetrics;
 		float caretX, caretY;
 		bool isTrailingHit = false; // Use the leading character edge for simplicity here.
@@ -208,6 +211,23 @@ liblec::lecui::widgets_implementation::textbox::render(ID2D1HwndRenderTarget* p_
 void liblec::lecui::widgets_implementation::textbox::on_click() {
 	if (specs_.on_click)
 		specs_.on_click();
+}
+
+void liblec::lecui::widgets_implementation::textbox::on_selection_change(const bool& selected) {
+	if (selected) {
+		// start blink timer
+		log("starting caret blink timer: " + name_);
+		widgets::timer(fm_).add(caret_blink_timer_name_, 500,
+			[&]() {
+				caret_visible_ = !caret_visible_;
+				fm_.update();
+			});
+	}
+	else {
+		// stop blink timer
+		log("stopping caret blink timer: " + name_);
+		widgets::timer(fm_).stop(caret_blink_timer_name_);
+	}
 }
 
 liblec::lecui::widgets::specs::textbox&

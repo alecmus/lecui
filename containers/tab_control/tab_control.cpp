@@ -79,7 +79,7 @@ liblec::lecui::containers::page& liblec::lecui::containers::tab::add(const std::
 		return tab_control_.p_tabs_.at(name);
 	}
 
-	tab_control_.p_tabs_.emplace(name, name);
+	tab_control_.p_tabs_.try_emplace(name, d_.tc_.d_.page_.d_page_.fm_, name);
 
 	// specify direct2d factory (used internally for geometries and stuff)
 	tab_control_.p_tabs_.at(name).d_page_.direct2d_factory(

@@ -96,15 +96,17 @@ bool liblec::lecui::widgets_implementation::widget::on_menu(
 void liblec::lecui::widgets_implementation::widget::reset_menu() { draw_menu_ = false; }
 bool liblec::lecui::widgets_implementation::widget::on_mousewheel(float units) { return false; }
 bool liblec::lecui::widgets_implementation::widget::on_keydown(WPARAM wParam) { return false; }
+void liblec::lecui::widgets_implementation::widget::on_selection_change(const bool& selected) {}
 bool liblec::lecui::widgets_implementation::widget::contains() { return true; }
 
 void liblec::lecui::widgets_implementation::widget::select(const bool& selected) {
 	bool change = selected_ != selected;
 	selected_ = selected;
 
-	if (change)
-		if (!selected_)
-			reset_menu();
+	if (change) {
+		if (!selected_) reset_menu();
+		on_selection_change(selected_);
+	}
 }
 
 D2D1_RECT_F

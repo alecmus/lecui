@@ -36,7 +36,7 @@
 
 class liblec::lecui::containers::page::page_impl {
 public:
-	page_impl(const std::string& name);
+	page_impl(form& fm, const std::string& name);
 	~page_impl();
 
 	std::string name();
@@ -159,5 +159,9 @@ private:
 	std::map<std::string, liblec::lecui::widgets_implementation::checkbox> checkboxes_;
 	std::map<std::string, liblec::lecui::widgets_implementation::textbox> textboxes_;
 
+	form& fm_;
+
 	friend liblec::lecui::form;
+	friend liblec::lecui::containers::tab;
+	friend liblec::lecui::containers::pane;
 };

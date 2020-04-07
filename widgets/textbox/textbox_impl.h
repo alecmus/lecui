@@ -23,7 +23,7 @@ namespace liblec {
 			public:
 				textbox(const std::string& page,
 					const std::string& name,
-					ID2D1Factory* p_direct2d_factory,
+					form& fm,
 					IDWriteFactory* p_directwrite_factory);
 				~textbox();
 
@@ -38,6 +38,7 @@ namespace liblec {
 					const float& change_in_width, const float& change_in_height, float x_off_set,
 					float y_off_set, const bool& render);
 				void on_click();
+				void on_selection_change(const bool& selected) override;
 
 				// widget specific
 
@@ -49,9 +50,6 @@ namespace liblec {
 				void key_right();
 
 			private:
-				textbox() :
-					textbox(std::string(), std::string(), nullptr, nullptr) {}
-
 				textbox(const textbox&);
 				textbox& operator=(const textbox&);
 
@@ -68,8 +66,12 @@ namespace liblec {
 				ID2D1Factory* p_direct2d_factory_;
 				IDWriteFactory* p_directwrite_factory_;
 				IDWriteTextLayout* p_text_layout_;
-
+				
+				const std::string caret_blink_timer_name_;
 				UINT32 caret_position_;
+				bool caret_visible_;
+
+				form& fm_;
 			};
 		}
 	}

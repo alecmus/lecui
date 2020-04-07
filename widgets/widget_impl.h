@@ -94,6 +94,7 @@ namespace liblec {
 				virtual void reset_menu();
 				virtual bool on_mousewheel(float units);
 				virtual bool on_keydown(WPARAM wParam);
+				virtual void on_selection_change(const bool& selected);
 
 			protected:
 				D2D1_RECT_F position(const liblec::lecui::rect& rect,

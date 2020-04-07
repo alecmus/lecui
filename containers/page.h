@@ -44,7 +44,7 @@ namespace liblec {
 
 			class lecui_api page {
 			public:
-				page(const std::string& name);
+				page(form& fm, const std::string& name);
 				~page();
 
 				liblec::lecui::size size();
@@ -53,7 +53,6 @@ namespace liblec {
 				class page_impl;
 				page_impl& d_page_;
 
-				page();
 				page(const page&);
 				page& operator=(const page&);
 
