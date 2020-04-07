@@ -28,7 +28,8 @@ liblec::lecui::widgets_implementation::widget::widget() :
 	point_on_press_({ 0.f,0.f }),
 	point_on_release_({ 0.f,0.f }),
 	draw_menu_(false),
-	resources_created_(false) {
+	resources_created_(false),
+	h_cursor_(nullptr) {
 	log("entering widget constructor");
 
 	HDC hdc_screen = GetDC(NULL);
@@ -89,6 +90,7 @@ const D2D1_RECT_F& liblec::lecui::widgets_implementation::widget::get_rect() { r
 bool liblec::lecui::widgets_implementation::widget::selected() { return selected_; }
 bool liblec::lecui::widgets_implementation::widget::menu_visible() { return draw_menu_; }
 bool liblec::lecui::widgets_implementation::widget::hit() { return hit_; }
+HCURSOR liblec::lecui::widgets_implementation::widget::cursor() { return h_cursor_; }
 bool liblec::lecui::widgets_implementation::widget::on_menu(
 	ID2D1HwndRenderTarget* p_render_target, const D2D1_RECT_F& client_area) { return false; }
 void liblec::lecui::widgets_implementation::widget::reset_menu() { draw_menu_ = false; }

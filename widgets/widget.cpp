@@ -37,11 +37,6 @@ bool liblec::lecui::widgets::specs::widget::operator==(const widget& param) {
 	return
 		// to-do: find out how to check if a std::function has changed so we can
 		// also check if the on_click handler has been changed
-		(text == param.text) &&
-		(font == param.font) &&
-		(font_size == param.font_size) &&
-		(rect == param.rect) &&
-		(resize == param.resize) &&
 		(color_text == param.color_text) &&
 		(color_fill == param.color_fill) &&
 		(color_hot == param.color_hot) &&

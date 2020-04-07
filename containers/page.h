@@ -34,6 +34,7 @@ namespace liblec {
 			class progress_indicator;
 			class progress_bar;
 			class checkbox;
+			class textbox;
 		}
 
 		namespace containers {
@@ -75,6 +76,7 @@ namespace liblec {
 				friend liblec::lecui::widgets::progress_indicator;
 				friend liblec::lecui::widgets::progress_bar;
 				friend liblec::lecui::widgets::checkbox;
+				friend liblec::lecui::widgets::textbox;
 			};
 		}
 

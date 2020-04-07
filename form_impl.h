@@ -152,6 +152,8 @@ class liblec::lecui::form::form_impl {
 
 	std::vector<std::string> scheduled_for_closure_;
 
+	HCURSOR h_widget_cursor_;
+
 	/// we cannot just use WS_POPUP style
 	/// WS_THICKFRAME: without this the window cannot be resized and so aero snap, de-maximizing
 	///  and minimizing won't work
@@ -189,6 +191,7 @@ class liblec::lecui::form::form_impl {
 	friend widgets::progress_indicator;
 	friend widgets::progress_bar;
 	friend widgets::checkbox;
+	friend widgets::textbox;
 
 public:
 	form_impl(const std::string& caption_formatted);

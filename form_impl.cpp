@@ -106,7 +106,8 @@ liblec::lecui::form::form_impl::form_impl(const std::string& caption_formatted) 
 	shift_pressed_(false),
 	space_pressed_(false),
 	lbutton_pressed_(false),
-	on_drop_files_(nullptr) {
+	on_drop_files_(nullptr),
+	h_widget_cursor_(nullptr) {
 	log("entering form_impl constructor");
 
 	++instances_;	// increment instances count
@@ -1292,6 +1293,7 @@ LRESULT liblec::lecui::form::form_impl::hit_test(const POINT& cursor) {
 void liblec::lecui::form::form_impl::client_hittest(const D2D1_POINT_2F& point) {
 	bool contains = false;
 	bool change = false;
+	HCURSOR h_cursor = nullptr;
 
 	class helper {
 	public:
@@ -1380,7 +1382,7 @@ void liblec::lecui::form::form_impl::client_hittest(const D2D1_POINT_2F& point) 
 		}
 
 		static void hittest_widgets(containers::page& page,
-			const D2D1_POINT_2F& point, bool& contains, bool& change, bool lbutton_pressed) {
+			const D2D1_POINT_2F& point, bool& contains, bool& change, bool lbutton_pressed, HCURSOR& h_cursor) {
 			bool in_page = page.d_page_.contains(point);
 
 			// hit test widgets
@@ -1397,8 +1399,10 @@ void liblec::lecui::form::form_impl::client_hittest(const D2D1_POINT_2F& point) 
 					break;
 
 				contains = (in_page || is_scroll_bar || lbutton_pressed) ? widget.second.contains(point) : false;
-				if (change = widget.second.hit(contains))
+				if (change = widget.second.hit(contains)) {
+					if (widget.second.hit()) h_cursor = widget.second.cursor();
 					break;
+				}
 
 				if (widget.second.type() ==
 					widgets_implementation::widget_type::tab_control) {
@@ -1408,7 +1412,7 @@ void liblec::lecui::form::form_impl::client_hittest(const D2D1_POINT_2F& point) 
 					auto page_iterator = tab_control.p_tabs_.find(tab_control.current_tab_);
 
 					if (page_iterator != tab_control.p_tabs_.end())
-						helper::hittest_widgets(page_iterator->second, point, contains, change, lbutton_pressed);	// recursion
+						helper::hittest_widgets(page_iterator->second, point, contains, change, lbutton_pressed, h_cursor);	// recursion
 				}
 				else
 					if (widget.second.type() ==
@@ -1419,7 +1423,7 @@ void liblec::lecui::form::form_impl::client_hittest(const D2D1_POINT_2F& point) 
 						auto page_iterator = pane.p_panes_.find(pane.current_pane_);
 
 						if (page_iterator != pane.p_panes_.end())
-							helper::hittest_widgets(page_iterator->second, point, contains, change, lbutton_pressed);	// recursion
+							helper::hittest_widgets(page_iterator->second, point, contains, change, lbutton_pressed, h_cursor);	// recursion
 					}
 			}
 		}
@@ -1440,7 +1444,7 @@ void liblec::lecui::form::form_impl::client_hittest(const D2D1_POINT_2F& point) 
 		auto page_iterator = p_pages_.find(current_page_);
 
 		if (page_iterator != p_pages_.end())
-			helper::hittest_widgets(page_iterator->second, point, contains, change, lbutton_pressed_);
+			helper::hittest_widgets(page_iterator->second, point, contains, change, lbutton_pressed_, h_cursor);
 	}
 
 	if (!change) {
@@ -1455,8 +1459,10 @@ void liblec::lecui::form::form_impl::client_hittest(const D2D1_POINT_2F& point) 
 		}
 	}
 
-	if (change)
+	if (change) {
+		h_widget_cursor_ = h_cursor;
 		update();
+	}
 }
 
 void liblec::lecui::form::form_impl::on_lbuttondown(const D2D1_POINT_2F& point) {
@@ -2030,6 +2036,9 @@ void liblec::lecui::form::form_impl::close(const std::string& name) {
 		case widgets_implementation::widget_type::checkbox:
 			page.d_page_.checkboxes_.erase(widget_name);
 			break;
+		case widgets_implementation::widget_type::textbox:
+			page.d_page_.textboxes_.erase(widget_name);
+			break;
 		case widgets_implementation::widget_type::close_button:
 		case widgets_implementation::widget_type::maximize_button:
 		case widgets_implementation::widget_type::minimize_button:
@@ -2278,6 +2287,16 @@ LRESULT CALLBACK liblec::lecui::form::form_impl::window_procedure(HWND hWnd, UIN
 		form_.value().get().d_.mouse_track_.reset(hWnd);
 		return NULL;
 
+	case WM_SETCURSOR:
+		if (LOWORD(lParam) == HTCLIENT) {
+			HCURSOR h_cursor = form_.value().get().d_.h_widget_cursor_;
+			if (h_cursor) {
+				SetCursor(h_cursor);
+				return TRUE;
+			}
+		}
+		break;
+
 	case WM_DISPLAYCHANGE:
 		form_.value().get().d_.update();
 		return NULL;
@@ -2365,14 +2384,138 @@ LRESULT CALLBACK liblec::lecui::form::form_impl::window_procedure(HWND hWnd, UIN
 
 				break;
 			}
-	}
-				 break;
+	} break;
+
+	case WM_CHAR: {
+		const char c = (char)wParam;
+		bool change = false;
+
+		class helper {
+		public:
+			static void check_widgets(containers::page& page, const char& c, bool& change) {
+				for (auto& widget : page.d_page_.widgets()) {
+					if (widget.second.type() ==
+						widgets_implementation::widget_type::textbox && widget.second.selected()) {
+						change = true;
+						try {
+							// ignore backspace, tab and return
+							if (c == '\b' ||
+								c == '\t' ||
+								c == '\r')
+								break;
+
+							// insert character
+							auto& textbox = page.d_page_.get_textbox(widget.first);
+							textbox.insert_character(c);
+						}
+						catch (const std::exception& e) { log(e.what()); }
+						break;
+					}
+					else
+						if (widget.second.type() ==
+							widgets_implementation::widget_type::tab_control) {
+							// get this tab control
+							auto& tab_control = page.d_page_.get_tab_control(widget.first);
+
+							auto page_iterator = tab_control.p_tabs_.find(tab_control.current_tab_);
+
+							if (page_iterator != tab_control.p_tabs_.end())
+								helper::check_widgets(page_iterator->second, c, change);	// recursion
+						}
+						else
+							if (widget.second.type() ==
+								widgets_implementation::widget_type::pane) {
+								// get this pane
+								auto& pane = page.d_page_.get_pane(widget.first);
+
+								auto page_iterator = pane.p_panes_.find(pane.current_pane_);
+
+								if (page_iterator != pane.p_panes_.end())
+									helper::check_widgets(page_iterator->second, c, change);	// recursion
+							}
+				}
+			}
+		};
+		
+		// get current page
+		auto page_iterator = form_.value().get().d_.p_pages_.find(form_.value().get().d_.current_page_);
+
+		if (page_iterator != form_.value().get().d_.p_pages_.end())
+			helper::check_widgets(page_iterator->second, c, change);
+
+		if (change)
+			form_.value().get().d_.update();
+	} break;
 
 	case WM_GETDLGCODE:
 		return DLGC_WANTALLKEYS;	// for VK_UP, VK_DOWN to be received in WM_KEYDOWN
 
 	case WM_KEYDOWN: {
 		switch (wParam) {
+		case VK_LEFT:
+		case VK_RIGHT:
+		case VK_BACK:
+		case VK_DELETE: {
+			bool change = false;
+
+			class helper {
+			public:
+				static void check_widgets(containers::page& page, WPARAM wParam, bool& change) {
+					for (auto& widget : page.d_page_.widgets()) {
+						if (widget.second.type() ==
+							widgets_implementation::widget_type::textbox && widget.second.selected()) {
+							change = true;
+							try {
+								auto& textbox = page.d_page_.get_textbox(widget.first);
+
+								switch (wParam) {
+								case VK_LEFT: textbox.key_left(); break;
+								case VK_RIGHT: textbox.key_right(); break;
+								case VK_BACK: textbox.key_backspace(); break;
+								case VK_DELETE: textbox.key_delete(); break;
+								default:
+									break;
+								}
+							}
+							catch (const std::exception& e) { log(e.what()); }
+							break;
+						}
+						else
+							if (widget.second.type() ==
+								widgets_implementation::widget_type::tab_control) {
+								// get this tab control
+								auto& tab_control = page.d_page_.get_tab_control(widget.first);
+
+								auto page_iterator = tab_control.p_tabs_.find(tab_control.current_tab_);
+
+								if (page_iterator != tab_control.p_tabs_.end())
+									helper::check_widgets(page_iterator->second, wParam, change);	// recursion
+							}
+							else
+								if (widget.second.type() ==
+									widgets_implementation::widget_type::pane) {
+									// get this pane
+									auto& pane = page.d_page_.get_pane(widget.first);
+
+									auto page_iterator = pane.p_panes_.find(pane.current_pane_);
+
+									if (page_iterator != pane.p_panes_.end())
+										helper::check_widgets(page_iterator->second, wParam, change);	// recursion
+								}
+					}
+				}
+			};
+
+			// get current page
+			auto page_iterator = form_.value().get().d_.p_pages_.find(form_.value().get().d_.current_page_);
+
+			if (page_iterator != form_.value().get().d_.p_pages_.end())
+				helper::check_widgets(page_iterator->second, wParam, change);
+
+			if (change)
+				form_.value().get().d_.update();
+		} break;
+
 		case VK_SHIFT:
 			if (form_.value().get().d_.shift_pressed_)
 				break;

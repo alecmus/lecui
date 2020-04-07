@@ -56,6 +56,7 @@ namespace liblec {
 				progress_indicator,
 				progress_bar,
 				checkbox,
+				textbox,
 			};
 
 			class widget {
@@ -75,6 +76,7 @@ namespace liblec {
 				bool selected();
 				bool menu_visible();
 				bool hit();
+				HCURSOR cursor();
 
 				virtual bool contains(const D2D1_POINT_2F& point);
 				virtual bool hit(const bool& hit);
@@ -114,6 +116,7 @@ namespace liblec {
 				D2D1_POINT_2F point_on_press_, point_on_release_;
 				bool draw_menu_;
 				bool resources_created_;	// for the creation of widget resources on-the-fly
+				HCURSOR h_cursor_;
 			};
 		}
 	}

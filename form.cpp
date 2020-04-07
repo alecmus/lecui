@@ -182,11 +182,8 @@ bool liblec::lecui::form::show(std::string& error) {
 
 	// main message loop
 	while (GetMessage(&msg, nullptr, 0, 0)) {
-		// IsDialogMessage() is critical for WS_TABSTOP to work in a custom window
-		if (!IsDialogMessage(d_.hWnd_, &msg)) {
-			TranslateMessage(&msg);
-			DispatchMessage(&msg);
-		}
+		TranslateMessage(&msg);
+		DispatchMessage(&msg);
 	}
 
 	if (d_.parent_closing_)

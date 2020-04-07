@@ -77,6 +77,9 @@
     <Filter Include="lecui\widgets\checkbox">
       <UniqueIdentifier>{5843202b-d0a5-46a8-9c3e-a00ae8353c31}</UniqueIdentifier>
     </Filter>
+    <Filter Include="lecui\widgets\textbox">
+      <UniqueIdentifier>{7839b613-5c57-4acf-bfda-0c4461eeaf90}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="error\win_error.h">
@@ -215,6 +218,12 @@
     <ClInclude Include="widgets\checkbox\checkbox_impl.h">
       <Filter>lecui\widgets\checkbox</Filter>
     </ClInclude>
+    <ClInclude Include="widgets\textbox.h">
+      <Filter>lecui\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="widgets\textbox\textbox_impl.h">
+      <Filter>lecui\widgets\textbox</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="error\win_error.cpp">
@@ -346,6 +355,12 @@
     </ClCompile>
     <ClCompile Include="widgets\checkbox\checkbox_impl.cpp">
       <Filter>lecui\widgets\checkbox</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\textbox\textbox.cpp">
+      <Filter>lecui\widgets\textbox</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\textbox\textbox_impl.cpp">
+      <Filter>lecui\widgets\textbox</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
