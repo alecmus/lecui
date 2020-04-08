@@ -184,12 +184,63 @@ liblec::lecui::widgets_implementation::textbox::render(ID2D1HwndRenderTarget* p_
 	const auto rect_up_to_caret_ = measure_text(p_directwrite_factory_,
 		text_to_caret, specs_.font, specs_.font_size, false, true, true, false, rect_text_);
 
-	// compute offset to prevent caret from being hidden
+	// compute offset
+	UINT32 hidden_left = 0;
+	UINT32 hidden_right = 0;
+	const float off_set_right = ((rect_text_.right - rect_text_.left) - (rect_text_box_.right - rect_text_box_.left)) + text_off_set_;
+	{
+		HRESULT hr = p_directwrite_factory_->CreateTextLayout(convert_string(text_).c_str(),
+			(UINT32)text_.length(), p_text_format_, rect_text_.right - rect_text_.left,
+			rect_text_.bottom - rect_text_.top, &p_text_layout_);
+
+		// characters hidden to the left of text box
+		const D2D1_POINT_2F pt_left = D2D1::Point2F(rect_text_.left - text_off_set_, rect_text_.top + (rect_text_.bottom - rect_text_.top) / 2.f);
+		hidden_left = count_characters(p_text_layout_, text_, rect_text_, pt_left, dpi_scale_);
+
+		// characters hidden to the right of text box
+		
+		const D2D1_POINT_2F pt_right = D2D1::Point2F(rect_text_box_.left + off_set_right, rect_text_.top + (rect_text_.bottom - rect_text_.top) / 2.f);
+		hidden_right = count_characters(p_text_layout_, text_, rect_text_, pt_right, dpi_scale_);
+
+		safe_release(&p_text_layout_);
+	}
+
 	const auto textbox_width = rect_text_box_.right - rect_text_box_.left;
 	const auto distance_to_caret = rect_up_to_caret_.right - rect_up_to_caret_.left;
-	text_off_set_ = smallest(0.f, textbox_width - distance_to_caret);
+	const auto off_set_left = textbox_width - distance_to_caret;
 
-	// move text rect to ensure visibility of caret
+	if (off_set_left < text_off_set_ || hidden_left == 0) {
+		// Either
+		// 1. caret has reached far right and text is being added
+		// 2. text hasn't filled textbox
+		//
+		// keep caret to the rightmost but within textbox (pin to the right if end is reached,
+		// pushing text to the left).
+		text_off_set_ = off_set_left;
+	}
+	else {
+		if (hidden_left >= caret_position_) {
+			// caret has reached far left
+			// prevent caret from being hidden by off-setting text by up to 40px
+			text_off_set_ += 40.f;
+			
+		}
+		else
+			if (hidden_right == 0) {
+				// keep text pinned to the right as we downsize while there's some hidden on the left
+				text_off_set_ -= off_set_right;
+			}
+			else {
+				// do nothing under these circumstances
+				// * Text has overflown on either or both sides but caret is in the middle
+				//   while user is either adding or removing text
+			}
+	}
+
+	// this offset cannot be greater than zero or text will be indented!!!
+	text_off_set_ = smallest(text_off_set_, 0.f);
+
+	// apply offset to text rect to ensure visibility of caret
 	rect_text_.left += text_off_set_;
 	rect_text_.right += text_off_set_;
 	
@@ -374,10 +425,28 @@ void liblec::lecui::widgets_implementation::textbox::key_right() {
 }
 
 UINT32
+liblec::lecui::widgets_implementation::textbox::count_characters(IDWriteTextLayout* p_text_layout, const std::string& text,
+	const D2D1_RECT_F& rect_text, const D2D1_POINT_2F& point,
+	const float& dpi_scale) {
+	BOOL is_trailing;
+	BOOL is_inside;
+	DWRITE_HIT_TEST_METRICS hitTestMetrics;
+
+	// check position of click
+	p_text_layout->HitTestPoint(point.x - rect_text.left, point.y - rect_text.top,
+		&is_trailing, &is_inside, &hitTestMetrics);
+
+	auto characters = hitTestMetrics.textPosition;
+	if (is_trailing && (characters < text.length())) characters++;
+	return characters;
+}
+
+UINT32
 liblec::lecui::widgets_implementation::textbox::get_caret_position(IDWriteTextLayout* p_text_layout, const std::string& text,
 	const D2D1_RECT_F& rect_text, const D2D1_POINT_2F& point,
 	const float& dpi_scale) {
 	auto rect_hit = rect_text;
+
 	scale_RECT(rect_hit, dpi_scale);
 
 	auto p_x = point.x - rect_hit.left;

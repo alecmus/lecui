@@ -93,9 +93,13 @@ namespace liblec {
 					is_selected_ = true;
 				}
 
-				static UINT32 get_caret_position(IDWriteTextLayout* p_text_layout, const std::string& text,
-					const D2D1_RECT_F& rect_text, const D2D1_POINT_2F& point,
-					const float& dpi_scale);
+				static UINT32 count_characters(IDWriteTextLayout* p_text_layout,
+					const std::string& text, const D2D1_RECT_F& rect_text,
+					const D2D1_POINT_2F& point, const float& dpi_scale);
+
+				static UINT32 get_caret_position(IDWriteTextLayout* p_text_layout,
+					const std::string& text, const D2D1_RECT_F& rect_text,
+					const D2D1_POINT_2F& point, const float& dpi_scale);
 
 				static D2D1_RECT_F get_selection_rect(IDWriteTextLayout* p_text_layout,
 					const D2D1_RECT_F& rect_text, const UINT32& selection_start,
