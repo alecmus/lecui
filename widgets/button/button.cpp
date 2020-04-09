@@ -27,7 +27,6 @@ bool liblec::lecui::widgets::specs::button::operator!=(const button& param) {
 	return !operator==(param);
 }
 
-
 class liblec::lecui::widgets::button::button::button_impl {
 public:
 	button_impl(liblec::lecui::containers::page& page) :

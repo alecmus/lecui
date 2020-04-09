@@ -29,7 +29,6 @@ bool liblec::lecui::widgets::specs::textbox::operator!=(const textbox& param) {
 	return !operator==(param);
 }
 
-
 class liblec::lecui::widgets::textbox::textbox::textbox_impl {
 public:
 	textbox_impl(liblec::lecui::containers::page& page) :

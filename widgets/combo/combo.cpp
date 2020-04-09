@@ -24,8 +24,7 @@ bool liblec::lecui::widgets::specs::combo::operator==(const combo& param) {
 		(color_dropdown_hot == param.color_dropdown_hot) &&
 		(color_menu == param.color_menu) &&
 		(color_menu_hot == param.color_menu_hot) &&
-		(color_menu_selected == param.color_menu_selected) &&
-		(items == param.items);
+		(color_menu_selected == param.color_menu_selected);
 }
 
 bool liblec::lecui::widgets::specs::combo::operator!=(const combo& param) {

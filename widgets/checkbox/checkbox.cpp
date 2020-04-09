@@ -28,7 +28,6 @@ bool liblec::lecui::widgets::specs::checkbox::operator!=(const checkbox& param) 
 	return !operator==(param);
 }
 
-
 class liblec::lecui::widgets::checkbox::checkbox::checkbox_impl {
 public:
 	checkbox_impl(liblec::lecui::containers::page& page) :

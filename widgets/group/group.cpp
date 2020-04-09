@@ -20,8 +20,7 @@ bool liblec::lecui::widgets::specs::group::operator==(const group& param) {
 		widget::operator==(param) &&
 
 		// widget specific specs
-		(color_border == param.color_border) &&
-		(widgets == param.widgets);
+		(color_border == param.color_border);
 }
 
 bool liblec::lecui::widgets::specs::group::operator!=(const group& param) {
