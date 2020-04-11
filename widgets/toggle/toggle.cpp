@@ -49,14 +49,17 @@ liblec::lecui::widgets::toggle::add(const std::string& name) {
 
 liblec::lecui::widgets::specs::toggle&
 liblec::lecui::widgets::toggle::specs(form& fm, const std::string& name) {
-	// parse widget path
-	std::vector<std::string> path;
-	std::string widget_name;
-	fm.d_.parse_widget_path(name, path, widget_name);
+	auto path = name;
+	auto idx = path.find("/");
 
-	// find the page
-	auto& page = fm.d_.find_page(fm.d_.p_pages_, path);
+	if (idx != std::string::npos) {
+		auto page_name = path.substr(0, idx);
+		path = path.substr(idx + 1);
+		auto& page = fm.d_.p_pages_.at(page_name);
+		// find the widget
+		auto results = fm.d_.find_widget(page, path);
+		return results.page.d_page_.get_toggle(results.widget.name()).specs();
+	}
 
-	// find the widget
-	return page.d_page_.get_toggle(widget_name).specs();
+	throw std::exception("Invalid path");
 }

@@ -1769,176 +1769,135 @@ void liblec::lecui::form::form_impl::start_timer(const std::string& name) {
 	}
 }
 
-void liblec::lecui::form::form_impl::parse_widget_path(const std::string& name,
-	std::vector<std::string>& path, std::string& widget_name) {
-	if (name.empty())
-		return;
+liblec::lecui::form::form_impl::widget_search_results
+liblec::lecui::form::form_impl::find_widget(containers::page& container,
+	const std::string& path) {
+	// check if current path has a container
+	auto idx = path.find("/");
 
-	// extract page and widget names
-	std::string page_name;
-	std::string widget_name_;
+	if (idx == std::string::npos)
+		liblec::lecui::form::form_impl::widget_search_results{ container.d_page_.widgets_.at(path), container };
+	else {
+		// get the container's name
+		const auto container_name = path.substr(0, idx);
 
-	auto idx = name.find("/");
+		// get the rest of the path
+		const auto path_left = path.substr(idx + 1);
 
-	if (idx != std::string::npos) {
-		page_name = name.substr(0, idx);
-		widget_name_ = name.substr(idx + 1);
+		// check if the container is a tab control
+		try {
+			auto& tab_control = container.d_page_.get_tab_control(container_name);
+
+			// tab control confirmed ... get the tab
+			try {
+				idx = path_left.find("/");
+
+				if (idx != std::string::npos) {
+					// get the tab name
+					const auto tab_name = path_left.substr(0, idx);
+
+					// get the rest of the path
+					const auto tab_path_left = path_left.substr(idx + 1);
+
+					// get the tab
+					auto& tab = tab_control.p_tabs_.at(tab_name);
+
+					// tab confirmed ... recurse
+					return find_widget(tab, tab_path_left);	// recursion
+				}
+			}
+			catch (const std::exception&) {}
+		}
+		catch (const std::exception&) {}
+
+		// check if the container is a pane
+		auto& pane_control = container.d_page_.get_pane(container_name);
+
+		// pane control confirmed ... get the pane page
+		auto& pane = pane_control.p_panes_.at("pane");
+
+		// pane confirmed ... recurse
+		return find_widget(pane, path_left);
 	}
-	else
-		widget_name_ = name;
+}
 
-	if (page_name.empty()) {
-		widget_name = widget_name_;
-		return;
+liblec::lecui::containers::page&
+liblec::lecui::form::form_impl::find_page(containers::page& container, const std::string& path) {
+	auto idx = path.find("/");
+
+	if (path.empty()) {
+		return container;
 	}
-	else
-	{
-		path.push_back(page_name);
-		if (widget_name_.find("/") != std::string::npos)
-			parse_widget_path(widget_name_, path, widget_name);
-		else
-			widget_name = widget_name_;
+	else {
+		if (idx == std::string::npos) {
+			// check if the container is a pane
+			auto& pane_control = container.d_page_.get_pane(path);
+
+			// pane control confirmed ... get the pane page
+			return pane_control.p_panes_.at("pane");
+		}
+		else {
+			// get the container's name
+			const auto container_name = path.substr(0, idx);
+
+			// get the rest of the path
+			const auto path_left = path.substr(idx + 1);
+
+			// check if the container is a tab control
+			try {
+				auto& tab_control = container.d_page_.get_tab_control(container_name);
+
+				// tab control confirmed ... get the tab
+				try {
+					idx = path_left.find("/");
+
+					if (idx != std::string::npos) {
+						// get the tab name
+						const auto tab_name = path_left.substr(0, idx);
+
+						// get the rest of the path
+						const auto tab_path_left = path_left.substr(idx + 1);
+
+						// get the tab
+						auto& tab = tab_control.p_tabs_.at(tab_name);
+
+						// tab confirmed ... recurse
+						return find_page(tab, tab_path_left);	// recursion
+					}
+				}
+				catch (const std::exception&) {}
+			}
+			catch (const std::exception&) {}
+
+			// check if the container is a pane
+			auto& pane_control = container.d_page_.get_pane(container_name);
+
+			// pane control confirmed ... get the pane page
+			auto& pane = pane_control.p_panes_.at("pane");
+
+			// pane confirmed ... recurse
+			return find_page(pane, path_left);
+		}
 	}
-}
-
-void liblec::lecui::form::form_impl::parse_container_path(const std::string& name,
-	std::vector<std::string>& path, std::string& container_name) {
-	return parse_widget_path(name, path, container_name);
-}
-
-// throws on failure!
-liblec::lecui::widgets_implementation::widget& liblec::lecui::form::form_impl::find_widget(
-	const containers::page& page,
-	const std::vector<std::string>& path,
-	const std::string& widget_name) {
-	if (path.size() == 0)
-		return page.d_page_.widgets().at(widget_name);
-	else
-		if (path.size() == 1) {
-			// assume this is a pane
-			const auto& pane_name = path[0];
-			auto& pane = page.d_page_.get_pane(pane_name);
-
-			auto& page = pane.p_panes_.at("pane");
-
-			std::vector<std::string> path_(path.size() - 1);
-			for (size_t i = 1; i < path.size(); i++)
-				path_[i - 1] = path[i];
-
-			return find_widget(page, path_, widget_name);	// recursion
-		}
-		else {
-			// assume first level is a tab control
-			const auto& tab_control_name = path[0];
-			auto& tab_control = page.d_page_.get_tab_control(tab_control_name);
-
-			// assume second level is a tab
-			const auto& tab_name = path[1];
-			auto& tab = tab_control.p_tabs_.at(tab_name);
-
-			std::vector<std::string> path_(path.size() - 2);
-			for (size_t i = 2; i < path.size(); i++)
-				path_[i - 2] = path[i];
-
-			return find_widget(tab, path_, widget_name);	// recursion
-		}
-}
-
-// throws on failure!
-liblec::lecui::widgets_implementation::widget& liblec::lecui::form::form_impl::find_widget(
-	const std::map<std::string, containers::page>& pages,
-	const std::vector<std::string>& path,
-	const std::string& widget_name) {
-	if (path.size() == 0)
-		return widgets_.at(widget_name);
-	else
-		if (path.size() == 1) {
-			const auto page_name = path[0];
-			return pages.at(page_name).d_page_.widgets().at(widget_name);
-		}
-		else {
-			// assume first level is a page
-			const auto page_name = path[0];
-
-			auto& page = pages.at(page_name);
-
-			std::vector<std::string> path_(path.size() - 1);
-			for (size_t i = 1; i < path.size(); i++)
-				path_[i - 1] = path[i];
-
-			return find_widget(page, path_, widget_name);
-		}
-}
-
-// throws on failure!
-liblec::lecui::containers::page& liblec::lecui::form::form_impl::find_page(
-	containers::page& page, const std::vector<std::string>& path) {
-	if (path.size() == 0)
-		return page;
-	else
-		if (path.size() == 1) {
-			// assume this is a pane
-			const auto& pane_name = path[0];
-			auto& pane = page.d_page_.get_pane(pane_name);
-
-			auto& page = pane.p_panes_.at("pane");
-
-			std::vector<std::string> path_(path.size() - 1);
-			for (size_t i = 1; i < path.size(); i++)
-				path_[i - 1] = path[i];
-
-			return find_page(page, path_);	// recursion
-		}
-		else {
-			// assume first level is a tab control
-			const auto& tab_control_name = path[0];
-			auto& tab_control = page.d_page_.get_tab_control(tab_control_name);
-
-			// assume second level is a tab
-			const auto& tab_name = path[1];
-			auto& tab = tab_control.p_tabs_.at(tab_name);
-
-			std::vector<std::string> path_(path.size() - 2);
-			for (size_t i = 2; i < path.size(); i++)
-				path_[i - 2] = path[i];
-
-			return find_page(tab, path_);	// recursion
-		}
-}
-
-// throws on failure!
-liblec::lecui::containers::page& liblec::lecui::form::form_impl::find_page(
-	std::map<std::string, containers::page>& pages, const std::vector<std::string>& path) {
-	if (path.size() == 0)
-		throw std::exception("Invalid path");
-	else
-		if (path.size() == 1) {
-			const auto page_name = path[0];
-			return pages.at(page_name);
-		}
-		else {
-			// assume first level is a page
-			const auto page_name = path[0];
-
-			auto& page = pages.at(page_name);
-
-			std::vector<std::string> path_(path.size() - 1);
-			for (size_t i = 1; i < path.size(); i++)
-				path_[i - 1] = path[i];
-
-			return find_page(page, path_);
-		}
 }
 
 void liblec::lecui::form::form_impl::enable(const std::string& name, bool enable) {
 	try {
-		std::vector<std::string> path;
-		std::string widget_name_;
-		parse_widget_path(name, path, widget_name_);
+		std::string path = name;
+		// get the page name
+		auto idx = path.find("/");
 
-		auto& widget = find_widget(p_pages_, path, widget_name_);
-		widget.enable(enable);
-		update();
+		if (idx != std::string::npos) {
+			const auto page_name = path.substr(0, idx);
+			path = path.substr(idx + 1);
+
+			try {
+				auto result = find_widget(p_pages_.at(page_name), path);
+				result.widget.enable(enable);
+				update();
+			}
+			catch (const std::exception&) {}
+		}
 	}
 	catch (const std::exception&) {}
 
@@ -1962,32 +1921,46 @@ void liblec::lecui::form::form_impl::enable(const std::string& name, bool enable
 
 void liblec::lecui::form::form_impl::show(const std::string& name, bool show) {
 	try {
-		std::vector<std::string> path;
-		std::string widget_name;
-		parse_widget_path(name, path, widget_name);
-		auto& widget = find_widget(p_pages_, path, widget_name);
-		widget.show(show);
-		update();
+		std::string path = name;
+		// get the page name
+		auto idx = path.find("/");
+
+		if (idx != std::string::npos) {
+			const auto page_name = path.substr(0, idx);
+			path = path.substr(idx + 1);
+
+			try {
+				auto result = find_widget(p_pages_.at(page_name), path);
+				result.widget.show(show);
+				update();
+			}
+			catch (const std::exception&) {}
+		}
 	}
 	catch (const std::exception&) {}
 }
 
 void liblec::lecui::form::form_impl::close(const std::string& name) {
 	try {
-		std::vector<std::string> path;
-		std::string widget_name;
-		parse_widget_path(name, path, widget_name);
+		std::string path = name;
+		// get the page name
+		auto idx = path.find("/");
 
-		auto& widget = find_widget(p_pages_, path, widget_name);
-		auto& page = find_page(p_pages_, path);
+		if (idx != std::string::npos) {
+			const auto page_name = path.substr(0, idx);
+			path = path.substr(idx + 1);
 
-		const auto type = widget.type();
+			try {
+				auto result = find_widget(p_pages_.at(page_name), path);
 
-		// close widget
-		std::string error;
-		page.d_page_.close_widget(widget_name, type, error);
+				// close widget
+				std::string error;
+				result.page.d_page_.close_widget(result.widget.name(), result.widget.type(), error);
 
-		update();
+				update();
+			}
+			catch (const std::exception&) {}
+		}
 	}
 	catch (const std::exception&) {}
 }

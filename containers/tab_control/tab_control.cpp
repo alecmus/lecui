@@ -38,16 +38,19 @@ liblec::lecui::containers::specs::tab_control& liblec::lecui::containers::tab_co
 liblec::lecui::containers::specs::tab_control&
 liblec::lecui::containers::tab_control::specs(form& fm,
 	const std::string& name) {
-	// parse container path
-	std::vector<std::string> path;
-	std::string container_name;
-	fm.d_.parse_container_path(name, path, container_name);
+	auto path = name;
+	auto idx = path.find("/");
 
-	// find the page
-	auto& page = fm.d_.find_page(fm.d_.p_pages_, path);
+	if (idx != std::string::npos) {
+		auto page_name = path.substr(0, idx);
+		path = path.substr(idx + 1);
+		auto& page = fm.d_.p_pages_.at(page_name);
+		// find the widget
+		auto results = fm.d_.find_widget(page, path);
+		return results.page.d_page_.get_tab_control(results.widget.name()).specs();
+	}
 
-	// find the container
-	return page.d_page_.get_tab_control(container_name).specs();
+	throw std::exception("Invalid path");
 }
 
 void liblec::lecui::containers::tab_control::select(const std::string& name) {
@@ -166,12 +169,16 @@ liblec::lecui::containers::page& liblec::lecui::containers::tab::add(const std::
 
 liblec::lecui::containers::page&
 liblec::lecui::containers::tab::get(form& fm, const std::string& name) {
-	// parse container path
-	std::vector<std::string> path;
-	std::string tab_name;
-	fm.d_.parse_container_path(name, path, tab_name);
-	path.push_back(tab_name);	// append tab name to path vector
+	auto path = name;
+	auto idx = path.find("/");
 
-	// find the tab
-	return fm.d_.find_page(fm.d_.p_pages_, path);
+	if (idx == std::string::npos)
+		return fm.d_.p_pages_.at(path);
+	else {
+		auto page_name = path.substr(0, idx);
+		path = path.substr(idx + 1);
+		auto& page = fm.d_.p_pages_.at(page_name);
+		// find the page
+		return fm.d_.find_page(page, path);
+	}
 }

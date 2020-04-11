@@ -228,26 +228,15 @@ public:
 	bool destroy_menus();
 	int make_unique_id();
 	void start_timer(const std::string& name);
-	void parse_widget_path(const std::string& name,
-		std::vector<std::string>& path,
-		std::string& widget_name);
-	void parse_container_path(const std::string& name,
-		std::vector<std::string>& path,
-		std::string& container_name);
-	widgets_implementation::widget& find_widget(
-		const containers::page& page,
-		const std::vector<std::string>& path,
-		const std::string& widget_name);
-	widgets_implementation::widget& find_widget(
-		const std::map<std::string, containers::page>& pages,
-		const std::vector<std::string>& path,
-		const std::string& widget_name);
-	containers::page& find_page(
-		containers::page& page,
-		const std::vector<std::string>& path);
-	containers::page& find_page(
-		std::map<std::string, containers::page>& pages,
-		const std::vector<std::string>& path);
+
+	struct widget_search_results {
+		widgets_implementation::widget& widget;
+		containers::page& page;
+	};
+
+	widget_search_results find_widget(containers::page& container, const std::string& path);
+	containers::page& find_page(containers::page& container, const std::string& path);
+	
 	void enable(const std::string& name, bool enable);
 	void show(const std::string& name, bool show);
 	void close(const std::string& name);
