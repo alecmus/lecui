@@ -1983,77 +1983,9 @@ void liblec::lecui::form::form_impl::close(const std::string& name) {
 
 		const auto type = widget.type();
 
-		///
-		/// close widget by
-		/// 1. removing it from widgets_
-		/// 2. removing it from the page it's in, e.g. tab_controls_ for tab controls
-		/// 3. removing it from widgets_order_
-
-		// step 1
-		page.d_page_.widgets_.erase(widget_name);
-
-		// step 2
-		switch (type) {
-		case widgets_implementation::widget_type::rectangle:
-			page.d_page_.rectangles_.erase(widget_name);
-			break;
-		case widgets_implementation::widget_type::label:
-			page.d_page_.labels_.erase(widget_name);
-			break;
-		case widgets_implementation::widget_type::group:
-			page.d_page_.groups_.erase(widget_name);
-			break;
-		case widgets_implementation::widget_type::tab_control:
-			page.d_page_.tab_controls_.erase(widget_name);
-			break;
-		case widgets_implementation::widget_type::button:
-			page.d_page_.buttons_.erase(widget_name);
-			break;
-		case widgets_implementation::widget_type::toggle:
-			page.d_page_.toggles_.erase(widget_name);
-			break;
-		case widgets_implementation::widget_type::combo:
-			page.d_page_.combos_.erase(widget_name);
-			break;
-		case widgets_implementation::widget_type::list:
-			page.d_page_.lists_.erase(widget_name);
-			break;
-		case widgets_implementation::widget_type::custom:
-			page.d_page_.customs_.erase(widget_name);
-			break;
-		case widgets_implementation::widget_type::pane:
-			page.d_page_.panes_.erase(widget_name);
-			break;
-		case widgets_implementation::widget_type::image:
-			page.d_page_.images_.erase(widget_name);
-			break;
-		case widgets_implementation::widget_type::progress_indicator:
-			page.d_page_.progress_indicators_.erase(widget_name);
-			break;
-		case widgets_implementation::widget_type::progress_bar:
-			page.d_page_.progress_bars_.erase(widget_name);
-			break;
-		case widgets_implementation::widget_type::checkbox:
-			page.d_page_.checkboxes_.erase(widget_name);
-			break;
-		case widgets_implementation::widget_type::textbox:
-			page.d_page_.textboxes_.erase(widget_name);
-			break;
-		case widgets_implementation::widget_type::close_button:
-		case widgets_implementation::widget_type::maximize_button:
-		case widgets_implementation::widget_type::minimize_button:
-		case widgets_implementation::widget_type::h_scrollbar:
-		case widgets_implementation::widget_type::v_scrollbar:
-		default:
-			break;
-		}
-
-		// step 3
-		std::vector<std::string> widgets_order;
-		for (auto name : page.d_page_.widgets_order_)
-			if (name != widget_name)
-				widgets_order.push_back(name);
-		page.d_page_.widgets_order_ = widgets_order;
+		// close widget
+		std::string error;
+		page.d_page_.close_widget(widget_name, type, error);
 
 		update();
 	}

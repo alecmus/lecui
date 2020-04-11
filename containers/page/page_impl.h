@@ -129,6 +129,9 @@ public:
 	liblec::lecui::widgets_implementation::textbox&
 		get_textbox(const std::string& name);
 
+	bool close_widget(const std::string& name,
+		widgets_implementation::widget_type type, std::string& error);
+
 private:
 	ID2D1Factory* p_direct2d_factory_;
 	IDWriteFactory* p_directwrite_factory_;

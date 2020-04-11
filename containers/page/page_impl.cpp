@@ -246,3 +246,90 @@ liblec::lecui::containers::page::page_impl::get_checkbox(const std::string& name
 
 liblec::lecui::widgets_implementation::textbox&
 liblec::lecui::containers::page::page_impl::get_textbox(const std::string& name) { return textboxes_.at(name); }
+
+bool
+liblec::lecui::containers::page::page_impl::close_widget(const std::string& name,
+	widgets_implementation::widget_type type,
+	std::string& error) {
+	// to-do: prevent erasure from widgets_ only to throw later in the switch because the data
+	// was wrong to begin with!!!!!
+	try {
+		///
+		/// close widget by
+		/// 1. removing it from widgets_
+		/// 2. removing it from the page it's in, e.g. tab_controls_ for tab controls
+		/// 3. removing it from widgets_order_
+
+		// step 1
+		widgets_.erase(name);
+
+		// step 2
+		switch (type) {
+		case widgets_implementation::widget_type::rectangle:
+			rectangles_.erase(name);
+			break;
+		case widgets_implementation::widget_type::label:
+			labels_.erase(name);
+			break;
+		case widgets_implementation::widget_type::group:
+			groups_.erase(name);
+			break;
+		case widgets_implementation::widget_type::tab_control:
+			tab_controls_.erase(name);
+			break;
+		case widgets_implementation::widget_type::button:
+			buttons_.erase(name);
+			break;
+		case widgets_implementation::widget_type::toggle:
+			toggles_.erase(name);
+			break;
+		case widgets_implementation::widget_type::combo:
+			combos_.erase(name);
+			break;
+		case widgets_implementation::widget_type::list:
+			lists_.erase(name);
+			break;
+		case widgets_implementation::widget_type::custom:
+			customs_.erase(name);
+			break;
+		case widgets_implementation::widget_type::pane:
+			panes_.erase(name);
+			break;
+		case widgets_implementation::widget_type::image:
+			images_.erase(name);
+			break;
+		case widgets_implementation::widget_type::progress_indicator:
+			progress_indicators_.erase(name);
+			break;
+		case widgets_implementation::widget_type::progress_bar:
+			progress_bars_.erase(name);
+			break;
+		case widgets_implementation::widget_type::checkbox:
+			checkboxes_.erase(name);
+			break;
+		case widgets_implementation::widget_type::textbox:
+			textboxes_.erase(name);
+			break;
+		case widgets_implementation::widget_type::close_button:
+		case widgets_implementation::widget_type::maximize_button:
+		case widgets_implementation::widget_type::minimize_button:
+		case widgets_implementation::widget_type::h_scrollbar:
+		case widgets_implementation::widget_type::v_scrollbar:
+		default:
+			break;
+		}
+
+		// step 3
+		std::vector<std::string> widgets_order;
+		for (auto it : widgets_order_)
+			if (it != name)
+				widgets_order.push_back(it);
+		widgets_order_ = widgets_order;
+
+		return true;
+	}
+	catch (const std::exception& e) {
+		error = e.what();
+		return false;
+	}
+}
