@@ -57,6 +57,7 @@ namespace liblec {
 				progress_bar,
 				checkbox,
 				textbox,
+				tree,
 			};
 
 			class widget {

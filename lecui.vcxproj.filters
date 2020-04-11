@@ -80,6 +80,9 @@
     <Filter Include="lecui\widgets\textbox">
       <UniqueIdentifier>{7839b613-5c57-4acf-bfda-0c4461eeaf90}</UniqueIdentifier>
     </Filter>
+    <Filter Include="lecui\widgets\tree">
+      <UniqueIdentifier>{7a9514ff-02f0-4032-8db2-f4658a41cc01}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="error\win_error.h">
@@ -224,6 +227,12 @@
     <ClInclude Include="widgets\textbox\textbox_impl.h">
       <Filter>lecui\widgets\textbox</Filter>
     </ClInclude>
+    <ClInclude Include="widgets\tree.h">
+      <Filter>lecui\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="widgets\tree\tree_impl.h">
+      <Filter>lecui\widgets\tree</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="error\win_error.cpp">
@@ -361,6 +370,12 @@
     </ClCompile>
     <ClCompile Include="widgets\textbox\textbox_impl.cpp">
       <Filter>lecui\widgets\textbox</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\tree\tree_impl.cpp">
+      <Filter>lecui\widgets\tree</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\tree\tree.cpp">
+      <Filter>lecui\widgets\tree</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

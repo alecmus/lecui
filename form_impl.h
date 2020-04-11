@@ -192,6 +192,7 @@ class liblec::lecui::form::form_impl {
 	friend widgets::progress_bar;
 	friend widgets::checkbox;
 	friend widgets::textbox;
+	friend widgets::tree;
 
 public:
 	form_impl(const std::string& caption_formatted);
@@ -204,6 +205,7 @@ public:
 	void create_minimize_button();
 	void create_form_caption(std::function<void()> on_click);
 	void update();
+	void move_trees();
 	HRESULT on_render();
 	void on_resize(UINT width, UINT height);
 	RECT get_working_area(HWND hWnd);

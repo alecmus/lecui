@@ -33,6 +33,7 @@
 #include "../../widgets/progress_bar/progress_bar_impl.h"
 #include "../../widgets/checkbox/checkbox_impl.h"
 #include "../../widgets/textbox/textbox_impl.h"
+#include "../../widgets/tree/tree_impl.h"
 
 class liblec::lecui::containers::page::page_impl {
 public:
@@ -86,6 +87,8 @@ public:
 		add_checkbox(const std::string& name);
 	liblec::lecui::widgets::specs::textbox&
 		add_textbox(const std::string& name);
+	liblec::lecui::widgets::specs::tree&
+		add_tree(const std::string& name);
 
 	std::map<std::string,
 		liblec::lecui::widgets_implementation::widget&>&
@@ -128,6 +131,8 @@ public:
 		get_checkbox(const std::string& name);
 	liblec::lecui::widgets_implementation::textbox&
 		get_textbox(const std::string& name);
+	liblec::lecui::widgets_implementation::tree&
+		get_tree(const std::string& name);
 
 	bool close_widget(const std::string& name,
 		widgets_implementation::widget_type type, std::string& error);
@@ -161,6 +166,7 @@ private:
 	std::map<std::string, liblec::lecui::widgets_implementation::progress_bar> progress_bars_;
 	std::map<std::string, liblec::lecui::widgets_implementation::checkbox> checkboxes_;
 	std::map<std::string, liblec::lecui::widgets_implementation::textbox> textboxes_;
+	std::map<std::string, liblec::lecui::widgets_implementation::tree> trees_;
 
 	form& fm_;
 

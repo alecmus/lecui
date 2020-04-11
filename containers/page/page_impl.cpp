@@ -191,6 +191,14 @@ liblec::lecui::containers::page::page_impl::add_textbox(const std::string& name)
 	return textboxes_.at(name).specs();
 }
 
+liblec::lecui::widgets::specs::tree&
+liblec::lecui::containers::page::page_impl::add_tree(const std::string& name) {
+	trees_.try_emplace(name, name_, name, p_direct2d_factory_, p_directwrite_factory_);
+	widgets_.emplace(name, trees_.at(name));
+	widgets_order_.emplace_back(name);
+	return trees_.at(name).specs();
+}
+
 std::map<std::string, liblec::lecui::widgets_implementation::widget&>&
 liblec::lecui::containers::page::page_impl::widgets() { return widgets_; }
 
@@ -246,6 +254,9 @@ liblec::lecui::containers::page::page_impl::get_checkbox(const std::string& name
 
 liblec::lecui::widgets_implementation::textbox&
 liblec::lecui::containers::page::page_impl::get_textbox(const std::string& name) { return textboxes_.at(name); }
+
+liblec::lecui::widgets_implementation::tree&
+liblec::lecui::containers::page::page_impl::get_tree(const std::string& name) { return trees_.at(name); }
 
 bool
 liblec::lecui::containers::page::page_impl::close_widget(const std::string& name,
@@ -309,6 +320,9 @@ liblec::lecui::containers::page::page_impl::close_widget(const std::string& name
 			break;
 		case widgets_implementation::widget_type::textbox:
 			textboxes_.erase(name);
+			break;
+		case widgets_implementation::widget_type::tree:
+			trees_.erase(name);
 			break;
 		case widgets_implementation::widget_type::close_button:
 		case widgets_implementation::widget_type::maximize_button:

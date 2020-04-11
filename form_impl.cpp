@@ -462,6 +462,110 @@ void liblec::lecui::form::form_impl::create_form_caption(std::function<void()> o
 
 void liblec::lecui::form::form_impl::update() { InvalidateRect(hWnd_, nullptr, FALSE); }
 
+/// <summary>
+/// Move all the trees in a page into a special tree pane. If a tree has
+/// already been moved it will be left where it is.
+/// </summary>
+/// <param name="name"></param>
+void liblec::lecui::form::form_impl::move_trees() {
+	// check if this page has a lecui::containers::tree_pane
+	auto page_iterator = p_pages_.find(current_page_);
+
+	struct tree_info {
+		std::string name;
+
+		// important that it's not a reference because of deletion in a ranged for loop later
+		lecui::widgets::specs::tree tree;
+		lecui::containers::page& source;
+		lecui::containers::page& destination;
+	};
+
+	std::vector<tree_info> trees;
+
+	if (page_iterator != p_pages_.end()) {
+		auto& page = page_iterator->second;
+
+		class helper {
+		public:
+			static void find_trees_to_move(lecui::containers::page& page,
+				std::vector<tree_info>& trees) {
+				for (auto& widget : page.d_page_.widgets()) {
+					// check if this is a tree pane
+					const std::string key = "lecui::containers::tree_pane::";
+					if (widget.first.find(key) != std::string::npos)
+						continue;	// this is a tree pane (it has a tree inside. move was already done), continue to next widget
+
+					// check if this is a tree
+					if (widget.second.type() == widgets_implementation::widget_type::tree) {
+						// this is a tree, we need to "move" it into a special pane
+
+						// get the tree specs
+						auto& tree_specs = page.d_page_.get_tree(widget.first).specs();
+
+						// make pane named lecui::containers::tree_pane::treename
+						containers::pane pane(page, key + widget.first);
+
+						// clone essential properties to pane
+						pane.specs().rect = tree_specs.rect;
+						pane.specs().resize = tree_specs.resize;
+						pane.specs().color_fill = tree_specs.color_fill;
+						pane.specs().color_border = tree_specs.color_border;
+
+						// save move info so we can move the tree into the pane later
+						// we cannot do it here because we're iterating
+						trees.push_back({ widget.first, tree_specs, page, pane.get() });
+						break;
+					}
+
+					if (widget.second.type() == widgets_implementation::widget_type::tab_control) {
+						// get this tab control
+						auto& tab_control = page.d_page_.get_tab_control(widget.first);
+
+						// initialize tabs
+						for (auto& tab : tab_control.p_tabs_)
+							find_trees_to_move(tab.second, trees);	// recursion
+					}
+					else
+						if (widget.second.type() == widgets_implementation::widget_type::pane) {
+							// get this pane
+							auto& pane = page.d_page_.get_pane(widget.first);
+
+							// initialize panes
+							for (auto& page : pane.p_panes_)
+								find_trees_to_move(page.second, trees);	// recursion
+						}
+				}
+			}
+		};
+
+		helper::find_trees_to_move(page, trees);
+
+		// move the trees
+		for (auto& it : trees) {
+			log("moving tree: " + it.name + " from " + it.source.d_page_.name() + " to " + it.destination.d_page_.name());
+
+			try {
+				// clone into destination
+				auto& specs = widgets::tree(it.destination).add(it.name);
+				// copy specs
+				specs = it.tree;
+
+				// adjust specs
+				specs.rect = { 0, it.destination.size().width, 0, it.destination.size().height };
+				specs.resize = { 0, 0, 0, 0 };	// critical because tree will change size as tree is browsed or changed. the pane scroll bars will do the job.
+				specs.color_fill.alpha = 0;
+				specs.color_border.alpha = 0;
+
+				// close widget
+				std::string error;
+				it.source.d_page_.close_widget(it.name, widgets_implementation::widget_type::tree, error);
+				log("moving " + it.name + " successful!");
+			}
+			catch (const std::exception& e) { log("moving " + it.name + " failed: " + e.what()); }
+		}
+	}
+}
+
 /// This method discards device-specific resources if the Direct3D device dissapears during
 /// execution and recreates the resources the next time it's invoked
 HRESULT liblec::lecui::form::form_impl::on_render() {
@@ -1775,8 +1879,24 @@ liblec::lecui::form::form_impl::find_widget(containers::page& container,
 	// check if current path has a container
 	auto idx = path.find("/");
 
-	if (idx == std::string::npos)
-		liblec::lecui::form::form_impl::widget_search_results{ container.d_page_.widgets_.at(path), container };
+	if (idx == std::string::npos) {
+		try {
+			// check if widget is directly in container
+			return liblec::lecui::form::form_impl::widget_search_results{ container.d_page_.widgets_.at(path), container };
+		}
+		catch (const std::exception&) {}
+
+		// check if widget is in special pane
+
+		// check special tree pane
+		auto& tree_pane_control = container.d_page_.get_pane("lecui::containers::tree_pane::" + path);
+
+		// tree pane control confirmed ... get the pane page
+		auto& tree_pane = tree_pane_control.p_panes_.at("pane");
+
+		// pane confirmed ... recurse
+		return find_widget(tree_pane, path);
+	}
 	else {
 		// get the container's name
 		const auto container_name = path.substr(0, idx);
@@ -2213,6 +2333,7 @@ LRESULT CALLBACK liblec::lecui::form::form_impl::window_procedure(HWND hWnd, UIN
 		return NULL;
 
 	case WM_PAINT:
+		form_.value().get().d_.move_trees();
 		form_.value().get().d_.on_render();
 		ValidateRect(hWnd, nullptr);
 		return NULL;
