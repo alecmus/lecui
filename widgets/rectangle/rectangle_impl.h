@@ -36,6 +36,7 @@ namespace liblec {
 					const float& change_in_width, const float& change_in_height, float x_off_set,
 					float y_off_set, const bool& render);
 				void on_click();
+				bool contains(const D2D1_POINT_2F& point) override;
 
 				// widget specific
 
@@ -54,6 +55,10 @@ namespace liblec {
 				ID2D1SolidColorBrush* p_brush_hot_;
 				ID2D1SolidColorBrush* p_brush_disabled_;
 				ID2D1SolidColorBrush* p_brush_selected_;
+
+				float x_off_set_, y_off_set_;
+				float x_off_set_og_, y_off_set_og_;
+				bool og_off_set_captured_;
 			};
 		}
 	}

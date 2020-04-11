@@ -19,7 +19,12 @@ liblec::lecui::widgets_implementation::rectangle::rectangle(const std::string& p
 	p_brush_border_(nullptr),
 	p_brush_hot_(nullptr),
 	p_brush_disabled_(nullptr),
-	p_brush_selected_(nullptr) {
+	p_brush_selected_(nullptr),
+	x_off_set_(0.f),
+	y_off_set_(0.f),
+	x_off_set_og_(0.f),
+	y_off_set_og_(0.f),
+	og_off_set_captured_(false) {
 	page_ = page;
 	name_ = name;
 	log("constructor: " + page_ + ":" + name_);
@@ -95,6 +100,21 @@ liblec::lecui::widgets_implementation::rectangle::render(ID2D1HwndRenderTarget* 
 	rect_.top -= y_off_set;
 	rect_.bottom -= y_off_set;
 
+	if (name_ == "minimal_page_border_rect") {
+		// this is a special rectangle useful for the proper functioning of page
+		// scroll bars. Capture the initial offset so that changes made by the scrollbars can
+		// be ignored in the contains() virtual function override. If this is not done
+		// the page virtual "hit" area moves with the rectangles when the scrollbars are moved!!!!!
+		if (!og_off_set_captured_) {
+			x_off_set_og_ = x_off_set;
+			y_off_set_og_ = y_off_set;
+			og_off_set_captured_ = true;
+		}
+
+		x_off_set_ = x_off_set;
+		y_off_set_ = y_off_set;
+	}
+
 	if (!render || !visible_)
 		return rect_;
 
@@ -122,6 +142,37 @@ liblec::lecui::widgets_implementation::rectangle::render(ID2D1HwndRenderTarget* 
 void liblec::lecui::widgets_implementation::rectangle::on_click() {
 	if (specs_.on_click)
 		specs_.on_click();
+}
+
+bool liblec::lecui::widgets_implementation::rectangle::contains(const D2D1_POINT_2F& point) {
+	// capture the point
+	point_ = point;
+
+	D2D1_RECT_F rect = rect_;
+
+	if (name_ == "minimal_page_border_rect") {
+		// this is a special rectangle used to manage pages.
+		// scrollbar movements move everything, including the minimal page border rect.
+		// keep the page virtual hit area over the actual page by ignoring scrollbar movements.
+		auto x_change = x_off_set_ - x_off_set_og_;
+		auto y_change = y_off_set_ - y_off_set_og_;
+
+		rect.left += x_change;
+		rect.right += x_change;
+		rect.top += y_change;
+		rect.bottom += y_change;
+	}
+
+	if (point.x == 0.f && point.y == 0.f)
+		return false;
+
+	scale_RECT(rect, dpi_scale_);
+
+	if (point.x >= rect.left && point.x <= rect.right &&
+		point.y >= rect.top && point.y <= rect.bottom)
+		return true;
+	else
+		return false;
 }
 
 liblec::lecui::widgets::specs::rectangle&
