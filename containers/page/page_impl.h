@@ -1,5 +1,5 @@
 /*
-** page_impl.h - page_impl interface
+** page_impl.h - page::impl interface
 **
 ** lecui user interface library
 ** Copyright (c) 2019 Alec T. Musasa (alecmus at live dot com)
@@ -35,142 +35,146 @@
 #include "../../widgets/textbox/textbox_impl.h"
 #include "../../widgets/tree/tree_impl.h"
 
-class liblec::lecui::containers::page::page_impl {
-public:
-	page_impl(form& fm, const std::string& name);
-	~page_impl();
+namespace liblec {
+	namespace lecui {
+		class containers::page::impl {
+		public:
+			impl(form& fm, const std::string& alias);
+			~impl();
 
-	std::string name();
-	void direct2d_factory(ID2D1Factory* p_direct2d_factory);
-	ID2D1Factory* direct2d_factory();
-	void directwrite_factory(IDWriteFactory* p_directwrite_factory);
-	IDWriteFactory* directwrite_factory();
-	void iwic_factory(IWICImagingFactory* p_iwic_factory);
-	IWICImagingFactory* iwic_factory();
+			const std::string& alias();
+			void direct2d_factory(ID2D1Factory* p_direct2d_factory);
+			ID2D1Factory* direct2d_factory();
+			void directwrite_factory(IDWriteFactory* p_directwrite_factory);
+			IDWriteFactory* directwrite_factory();
+			void iwic_factory(IWICImagingFactory* p_iwic_factory);
+			IWICImagingFactory* iwic_factory();
 
-	void size(const liblec::lecui::size& size);
-	const liblec::lecui::size& size();
-	void width(const float& width);
-	const float width();
-	void height(const float& height);
-	const float height();
-	bool contains(const D2D1_POINT_2F& point);
+			void size(const lecui::size& size);
+			const lecui::size& size();
+			void width(const float& width);
+			const float width();
+			void height(const float& height);
+			const float height();
+			bool contains(const D2D1_POINT_2F& point);
 
-	liblec::lecui::containers::specs::tab_control&
-		add_tab_control(const std::string& name);
-	liblec::lecui::containers::specs::pane&
-		add_pane(const std::string& name);
+			containers::specs::tab_control&
+				add_tab_control(const std::string& alias);
+			containers::specs::pane&
+				add_pane(const std::string& alias);
 
-	liblec::lecui::widgets::specs::rectangle&
-		add_rectangle(const std::string& name);
-	liblec::lecui::widgets::specs::label&
-		add_label(const std::string& name);
-	liblec::lecui::widgets::specs::group&
-		add_group(const std::string& name);
-	liblec::lecui::widgets::specs::button&
-		add_button(const std::string& name);
-	liblec::lecui::widgets::specs::toggle&
-		add_toggle(const std::string& name);
-	liblec::lecui::widgets::specs::combo&
-		add_combo(const std::string& name);
-	liblec::lecui::widgets::specs::list&
-		add_list(const std::string& name);
-	liblec::lecui::widgets::specs::custom&
-		add_custom(const std::string& name);
-	liblec::lecui::widgets::specs::image&
-		add_image(const std::string& name);
-	liblec::lecui::widgets::specs::progress_indicator&
-		add_progress_indicator(const std::string& name);
-	liblec::lecui::widgets::specs::progress_bar&
-		add_progress_bar(const std::string& name);
-	liblec::lecui::widgets::specs::checkbox&
-		add_checkbox(const std::string& name);
-	liblec::lecui::widgets::specs::textbox&
-		add_textbox(const std::string& name);
-	liblec::lecui::widgets::specs::tree&
-		add_tree(const std::string& name);
+			widgets::specs::rectangle&
+				add_rectangle(const std::string& alias);
+			widgets::specs::label&
+				add_label(const std::string& alias);
+			widgets::specs::group&
+				add_group(const std::string& alias);
+			widgets::specs::button&
+				add_button(const std::string& alias);
+			widgets::specs::toggle&
+				add_toggle(const std::string& alias);
+			widgets::specs::combo&
+				add_combo(const std::string& alias);
+			widgets::specs::list&
+				add_list(const std::string& alias);
+			widgets::specs::custom&
+				add_custom(const std::string& alias);
+			widgets::specs::image&
+				add_image(const std::string& alias);
+			widgets::specs::progress_indicator&
+				add_progress_indicator(const std::string& alias);
+			widgets::specs::progress_bar&
+				add_progress_bar(const std::string& alias);
+			widgets::specs::checkbox&
+				add_checkbox(const std::string& alias);
+			widgets::specs::textbox&
+				add_textbox(const std::string& alias);
+			widgets::specs::tree&
+				add_tree(const std::string& alias);
 
-	std::map<std::string,
-		liblec::lecui::widgets_implementation::widget&>&
-		widgets();
-	const std::vector<std::string>&
-		widgets_order();
-	liblec::lecui::widgets_implementation::h_scrollbar&
-		h_scrollbar();
-	liblec::lecui::widgets_implementation::v_scrollbar&
-		v_scrollbar();
+			std::map<std::string,
+				widgets_impl::widget&>&
+				widgets();
+			const std::vector<std::string>&
+				widgets_order();
+			widgets_impl::h_scrollbar&
+				h_scrollbar();
+			widgets_impl::v_scrollbar&
+				v_scrollbar();
 
-	liblec::lecui::widgets_implementation::tab_control&
-		get_tab_control(const std::string& name);
-	liblec::lecui::widgets_implementation::pane&
-		get_pane(const std::string& name);
+			widgets_impl::tab_control&
+				get_tab_control(const std::string& alias);
+			widgets_impl::pane&
+				get_pane(const std::string& alias);
 
-	liblec::lecui::widgets_implementation::rectangle&
-		get_rectangle(const std::string& name);
-	liblec::lecui::widgets_implementation::button&
-		get_button(const std::string& name);
-	liblec::lecui::widgets_implementation::label&
-		get_label(const std::string& name);
-	liblec::lecui::widgets_implementation::group&
-		get_group(const std::string& name);
-	liblec::lecui::widgets_implementation::toggle&
-		get_toggle(const std::string& name);
-	liblec::lecui::widgets_implementation::combo&
-		get_combo(const std::string& name);
-	liblec::lecui::widgets_implementation::list&
-		get_list(const std::string& name);
-	liblec::lecui::widgets_implementation::custom&
-		get_custom(const std::string& name);
-	liblec::lecui::widgets_implementation::image&
-		get_image(const std::string& name);
-	liblec::lecui::widgets_implementation::progress_indicator&
-		get_progress_indicator(const std::string& name);
-	liblec::lecui::widgets_implementation::progress_bar&
-		get_progress_bar(const std::string& name);
-	liblec::lecui::widgets_implementation::checkbox&
-		get_checkbox(const std::string& name);
-	liblec::lecui::widgets_implementation::textbox&
-		get_textbox(const std::string& name);
-	liblec::lecui::widgets_implementation::tree&
-		get_tree(const std::string& name);
+			widgets_impl::rectangle&
+				get_rectangle(const std::string& alias);
+			widgets_impl::button&
+				get_button(const std::string& alias);
+			widgets_impl::label&
+				get_label(const std::string& alias);
+			widgets_impl::group&
+				get_group(const std::string& alias);
+			widgets_impl::toggle&
+				get_toggle(const std::string& alias);
+			widgets_impl::combo&
+				get_combo(const std::string& alias);
+			widgets_impl::list&
+				get_list(const std::string& alias);
+			widgets_impl::custom&
+				get_custom(const std::string& alias);
+			widgets_impl::image&
+				get_image(const std::string& alias);
+			widgets_impl::progress_indicator&
+				get_progress_indicator(const std::string& alias);
+			widgets_impl::progress_bar&
+				get_progress_bar(const std::string& alias);
+			widgets_impl::checkbox&
+				get_checkbox(const std::string& alias);
+			widgets_impl::textbox&
+				get_textbox(const std::string& alias);
+			widgets_impl::tree&
+				get_tree(const std::string& alias);
 
-	bool close_widget(const std::string& name,
-		widgets_implementation::widget_type type, std::string& error);
+			bool close_widget(const std::string& alias,
+				widgets_impl::widget_type type, std::string& error);
 
-private:
-	ID2D1Factory* p_direct2d_factory_;
-	IDWriteFactory* p_directwrite_factory_;
-	IWICImagingFactory* p_iwic_factory_;
-	std::string name_;
-	liblec::lecui::size size_;
+		private:
+			ID2D1Factory* p_direct2d_factory_;
+			IDWriteFactory* p_directwrite_factory_;
+			IWICImagingFactory* p_iwic_factory_;
+			std::string alias_;
+			lecui::size size_;
 
-	std::map<std::string, liblec::lecui::widgets_implementation::widget&> widgets_;
-	std::vector<std::string> widgets_order_;
+			std::map<std::string, widgets_impl::widget&> widgets_;
+			std::vector<std::string> widgets_order_;
 
-	liblec::lecui::widgets_implementation::h_scrollbar h_scrollbar_;
-	liblec::lecui::widgets_implementation::v_scrollbar v_scrollbar_;
+			widgets_impl::h_scrollbar h_scrollbar_;
+			widgets_impl::v_scrollbar v_scrollbar_;
 
-	std::map<std::string, liblec::lecui::widgets_implementation::tab_control> tab_controls_;
-	std::map<std::string, liblec::lecui::widgets_implementation::pane> panes_;
+			std::map<std::string, widgets_impl::tab_control> tab_controls_;
+			std::map<std::string, widgets_impl::pane> panes_;
 
-	std::map<std::string, liblec::lecui::widgets_implementation::rectangle> rectangles_;
-	std::map<std::string, liblec::lecui::widgets_implementation::label> labels_;
-	std::map<std::string, liblec::lecui::widgets_implementation::group> groups_;
-	std::map<std::string, liblec::lecui::widgets_implementation::button> buttons_;
-	std::map<std::string, liblec::lecui::widgets_implementation::toggle> toggles_;
-	std::map<std::string, liblec::lecui::widgets_implementation::combo> combos_;
-	std::map<std::string, liblec::lecui::widgets_implementation::list> lists_;
-	std::map<std::string, liblec::lecui::widgets_implementation::custom> customs_;
-	std::map<std::string, liblec::lecui::widgets_implementation::image> images_;
-	std::map<std::string, liblec::lecui::widgets_implementation::progress_indicator> progress_indicators_;
-	std::map<std::string, liblec::lecui::widgets_implementation::progress_bar> progress_bars_;
-	std::map<std::string, liblec::lecui::widgets_implementation::checkbox> checkboxes_;
-	std::map<std::string, liblec::lecui::widgets_implementation::textbox> textboxes_;
-	std::map<std::string, liblec::lecui::widgets_implementation::tree> trees_;
+			std::map<std::string, widgets_impl::rectangle> rectangles_;
+			std::map<std::string, widgets_impl::label> labels_;
+			std::map<std::string, widgets_impl::group> groups_;
+			std::map<std::string, widgets_impl::button> buttons_;
+			std::map<std::string, widgets_impl::toggle> toggles_;
+			std::map<std::string, widgets_impl::combo> combos_;
+			std::map<std::string, widgets_impl::list> lists_;
+			std::map<std::string, widgets_impl::custom> customs_;
+			std::map<std::string, widgets_impl::image> images_;
+			std::map<std::string, widgets_impl::progress_indicator> progress_indicators_;
+			std::map<std::string, widgets_impl::progress_bar> progress_bars_;
+			std::map<std::string, widgets_impl::checkbox> checkboxes_;
+			std::map<std::string, widgets_impl::textbox> textboxes_;
+			std::map<std::string, widgets_impl::tree> trees_;
 
-	form& fm_;
+			form& fm_;
 
-	friend liblec::lecui::form;
-	friend liblec::lecui::containers::tab;
-	friend liblec::lecui::containers::pane;
-};
+			friend form;
+			friend containers::tab;
+			friend containers::pane;
+		};
+	}
+}

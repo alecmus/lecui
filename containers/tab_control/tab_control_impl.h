@@ -1,5 +1,5 @@
 /*
-** tab_control_impl.h - tab control widget interface
+** tab_control_impl.h - tab_control_impl interface
 **
 ** lecui user interface library
 ** Copyright (c) 2019 Alec T. Musasa (alecmus at live dot com)
@@ -18,45 +18,45 @@
 
 namespace liblec {
 	namespace lecui {
-		namespace widgets_implementation {
+		namespace widgets_impl {
 			class tab_control : public widget {
 			public:
-				tab_control(const std::string& page,
-					const std::string& name,
+				// pages <K = tab name, T>
+				std::map<std::string, containers::page> p_tabs_;
+				std::string current_tab_;
+
+				/// constructor and destructor
+				tab_control(const std::string& page_alias,
+					const std::string& alias,
 					IDWriteFactory* p_directwrite_factory);
 				~tab_control();
 
-				// virtual function override
-
-				std::string page();
-				std::string name();
-				virtual liblec::lecui::widgets_implementation::widget_type type();
-				HRESULT create_resources(ID2D1HwndRenderTarget* p_render_target);
-				void discard_resources();
+				/// virtual function overrides
+				widgets_impl::widget_type type() override;
+				HRESULT create_resources(ID2D1HwndRenderTarget* p_render_target) override;
+				void discard_resources() override;
 				D2D1_RECT_F& render(ID2D1HwndRenderTarget* p_render_target,
-					const float& change_in_width, const float& change_in_height, float x_off_set,
-					float y_off_set, const bool& render);
-				void on_click();
+					const D2D1_SIZE_F& change_in_size, const D2D1_POINT_2F& offset,
+					const bool& render) override;
+				void on_click() override;
 
-				// widget specific
-
-				liblec::lecui::containers::specs::tab_control& specs();
+				/// widget specific methods
+				containers::specs::tab_control& specs();
 				const D2D1_RECT_F& client_area();
 				const D2D1_RECT_F& tab_control_area();
 				float caption_bar_height();
 
-				// pages <K = tab name, T>
-				std::map<std::string, liblec::lecui::containers::page> p_tabs_;
-				std::string current_tab_;
-
 			private:
+				/// Prevent the use of the default constructor.
 				tab_control() :
 					tab_control(std::string(), std::string(), nullptr) {}
 
+				/// Prevent copying an object of this class.
 				tab_control(const tab_control&);
 				tab_control& operator=(const tab_control&);
 
-				liblec::lecui::containers::specs::tab_control specs_;
+				/// Private variables
+				containers::specs::tab_control specs_;
 				ID2D1SolidColorBrush* p_brush_;
 				ID2D1SolidColorBrush* p_brush_fill_;
 				ID2D1SolidColorBrush* p_brush_border_;
@@ -76,10 +76,11 @@ namespace liblec {
 				D2D1_RECT_F rect_client_area_;
 				D2D1_RECT_F rect_tab_control_;
 
-				// tab rectangles <K = tap name, T>
+				// tab rectangles <K = tab name, T>
 				std::map<std::string, D2D1_RECT_F> p_tab_rects_;
 
-				bool contains();	// override of function for hit-testing in-widget controls
+				/// Important override for tab control to work properly.
+				bool contains();
 			};
 		}
 	}

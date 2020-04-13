@@ -26,14 +26,14 @@ namespace liblec {
 						color_fill = { 241, 241, 241, 255 };
 						color_hot = { 231, 231, 231, 255 };
 					}
-					liblec::lecui::color color_scrollbar_border = { 180, 180, 180, 255 };
-					liblec::lecui::color color_hot_pressed = { 221, 221, 221, 255 };
-					liblec::lecui::color color_background = { 0, 0, 0, 0 };
+					color color_scrollbar_border = { 180, 180, 180, 255 };
+					color color_hot_pressed = { 221, 221, 221, 255 };
+					color color_background = { 0, 0, 0, 0 };
 				};
 			}
 		}
 
-		namespace widgets_implementation {
+		namespace widgets_impl {
 			enum class widget_type {
 				close_button,
 				maximize_button,
@@ -65,6 +65,8 @@ namespace liblec {
 				widget();
 				virtual ~widget();
 
+				const std::string& page_alias();
+				const std::string& alias();
 				void press(const bool& pressed);
 				bool pressed();
 				bool is_static();
@@ -79,16 +81,26 @@ namespace liblec {
 				bool hit();
 				HCURSOR cursor();
 
+				/// <summary>Check whether a point is within the widget.</summary>
+				/// <param name="point">The point, in pixels.</param>
+				/// <returns>True if point is within the widget, false otherwise.</returns>
+				/// <remarks>For in-widget hit-testing avoid overriding this virtual function
+				/// directly; rather use the protected overload. Also remember to factor in the
+				/// dpi scale otherwise hit testing will not work properly in high-dpi
+				/// environments.</remarks>
 				virtual bool contains(const D2D1_POINT_2F& point);
+
+				/// <summary>Set the widget hit status.</summary>
+				/// <param name="hit">True if mouse is over widget, else false.</param>
+				/// <returns>True if the hit status has changed, false otherwise.</returns>
+				/// <remarks>When true is returned the UI is refreshed.</remarks>
 				virtual bool hit(const bool& hit);
-				virtual std::string page() = 0;
-				virtual std::string name() = 0;
-				virtual liblec::lecui::widgets_implementation::widget_type type() = 0;
+				virtual widgets_impl::widget_type type() = 0;
 				virtual HRESULT create_resources(ID2D1HwndRenderTarget* p_render_target) = 0;
 				virtual void discard_resources() = 0;
 				virtual D2D1_RECT_F& render(ID2D1HwndRenderTarget* p_render_target,
-					const float& change_in_width, const float& change_in_height,
-					float x_off_set, float y_off_set, const bool& render) = 0;
+					const D2D1_SIZE_F& change_in_size, const D2D1_POINT_2F& offset,
+					const bool& render) = 0;
 				virtual void on_click() = 0;
 				virtual bool on_menu(ID2D1HwndRenderTarget* p_render_target,
 					const D2D1_RECT_F& client_area);
@@ -98,26 +110,37 @@ namespace liblec {
 				virtual void on_selection_change(const bool& selected);
 
 			protected:
-				D2D1_RECT_F position(const liblec::lecui::rect& rect,
-					const liblec::lecui::widgets::specs::on_resize& resize,
+				D2D1_RECT_F position(const rect& rect,
+					const widgets::specs::on_resize& resize,
 					const float& change_in_width,
 					const float& change_in_height);
 
-				virtual bool contains();	// for use with in-widget hit-testing
+				/// <summary>For in-widget hit-testing of complex widgets. Called by default in
+				/// the public overload.</summary>
+				/// <returns>True if the point is over an essential area within the widget,
+				/// false otherwise.</returns>
+				/// <remarks>Useful for complex widgets with multiple hit points.</remarks>
+				virtual bool contains();
 
-				std::string page_, name_;
+				std::string page_alias_, alias_;
 				float dpi_scale_;
-				bool is_static_;
-				bool hit_;
-				bool pressed_;
+				bool is_static_, hit_, pressed_;
 				D2D1_RECT_F rect_;
-				bool visible_;
-				bool is_enabled_;
+				bool visible_, is_enabled_;
 				D2D1_POINT_2F point_;
 				bool selected_;
 				D2D1_POINT_2F point_on_press_, point_on_release_;
 				bool draw_menu_;
-				bool resources_created_;	// for the creation of widget resources on-the-fly
+
+				/// <summary>Flag to track the status of widget resources. Enables the creation of
+				/// widget resources on-the-fly and on-demand for best performance rather than
+				/// always creating resources for all page widgets in one batch.</summary>
+				bool resources_created_;
+
+				/// <summary>The cursor to be displayed when the mouse is over the widget. When
+				/// equal to a nullptr the default cursor is used. It is recommended to set within
+				/// the widget's constructor as in this example:
+				/// h_cursor_ = LoadCursor(NULL, IDC_IBEAM);</summary>
 				HCURSOR h_cursor_;
 			};
 		}

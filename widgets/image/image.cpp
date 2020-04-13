@@ -1,5 +1,5 @@
 /*
-** image.cpp - image implementation
+** image.cpp - image widget implementation
 **
 ** lecui user interface library
 ** Copyright (c) 2019 Alec T. Musasa (alecmus at live dot com)
@@ -14,51 +14,53 @@
 #include "../image.h"
 #include "../../form_impl.h"
 
-bool liblec::lecui::widgets::specs::image::operator==(const image& param) {
-	return
-		// generic specs
-		widget::operator==(param) &&
+namespace liblec {
+	namespace lecui {
+		bool widgets::specs::image::operator==(const image& param) {
+			return
+				// generic specs
+				widget::operator==(param) &&
 
-		// widget specific specs
-		(color_border == param.color_border) &&
-		(file == param.file) &&
-		(png_resource == param.png_resource);
-}
+				// widget specific specs
+				(color_border == param.color_border) &&
+				(file == param.file) &&
+				(png_resource == param.png_resource);
+		}
 
-bool liblec::lecui::widgets::specs::image::operator!=(const image& param) {
-	return !operator==(param);
-}
+		bool widgets::specs::image::operator!=(const image& param) {
+			return !operator==(param);
+		}
 
-class liblec::lecui::widgets::image::image::image_impl {
-public:
-	image_impl(liblec::lecui::containers::page& page) :
-		page_(page) {}
-	liblec::lecui::containers::page& page_;
-};
+		class widgets::image::impl {
+		public:
+			impl(containers::page& page) :
+				page_(page) {}
+			containers::page& page_;
+		};
 
-liblec::lecui::widgets::image::image(liblec::lecui::containers::page& page) :
-	d_(*(new image_impl(page))) {}
+		widgets::image::image(containers::page& page) :
+			d_(*(new impl(page))) {}
 
-liblec::lecui::widgets::image::~image() { delete& d_; }
+		widgets::image::~image() { delete& d_; }
 
-liblec::lecui::widgets::specs::image&
-liblec::lecui::widgets::image::add(const std::string& name) {
-	return d_.page_.d_page_.add_image(name);
-}
+		widgets::specs::image&
+			widgets::image::add(const std::string& alias) {
+			return d_.page_.d_page_.add_image(alias);
+		}
 
-liblec::lecui::widgets::specs::image&
-liblec::lecui::widgets::image::specs(form& fm, const std::string& name) {
-	auto path = name;
-	auto idx = path.find("/");
+		widgets::specs::image&
+			widgets::image::specs(form& fm, const std::string& path) {
+			const auto idx = path.find("/");
 
-	if (idx != std::string::npos) {
-		auto page_name = path.substr(0, idx);
-		path = path.substr(idx + 1);
-		auto& page = fm.d_.p_pages_.at(page_name);
-		// find the widget
-		auto results = fm.d_.find_widget(page, path);
-		return results.page.d_page_.get_image(results.widget.name()).specs();
+			if (idx != std::string::npos) {
+				const auto page_alias = path.substr(0, idx);
+				const auto path_remaining = path.substr(idx + 1);
+				auto& page = fm.d_.p_pages_.at(page_alias);
+				auto results = fm.d_.find_widget(page, path_remaining);
+				return results.page.d_page_.get_image(results.widget.alias()).specs();
+			}
+
+			throw std::invalid_argument("Invalid path");
+		}
 	}
-
-	throw std::exception("Invalid path");
 }

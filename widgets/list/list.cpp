@@ -1,5 +1,5 @@
 /*
-** list.cpp - list implementation
+** list.cpp - list widget implementation
 **
 ** lecui user interface library
 ** Copyright (c) 2019 Alec T. Musasa (alecmus at live dot com)
@@ -14,62 +14,59 @@
 #include "../list.h"
 #include "../../form_impl.h"
 
-bool liblec::lecui::widgets::specs::list::operator==(const list& param) {
-	return
-		// generic specs
-		widget::operator==(param) &&
+namespace liblec {
+	namespace lecui {
+		bool widgets::specs::list::operator==(const list& param) {
+			return
+				// generic specs
+				widget::operator==(param) &&
 
-		// widget specific specs
-		(color_border == param.color_border) &&
-		(color_dropdown_hot == param.color_dropdown_hot) &&
-		(color_menu == param.color_menu) &&
-		(color_grid == param.color_grid) &&
-		(color_text_header == param.color_text_header) &&
-		(color_fill_header == param.color_fill_header) &&
-		(color_fill_alternate == param.color_fill_alternate) &&
-		(color_row_hot == param.color_row_hot) &&
-		(color_row_selected == param.color_row_selected) &&
+				// widget specific specs
+				(color_border == param.color_border) &&
+				(color_dropdown_hot == param.color_dropdown_hot) &&
+				(color_menu == param.color_menu) &&
+				(color_grid == param.color_grid) &&
+				(color_text_header == param.color_text_header) &&
+				(color_fill_header == param.color_fill_header) &&
+				(color_fill_alternate == param.color_fill_alternate) &&
+				(color_row_hot == param.color_row_hot) &&
+				(color_row_selected == param.color_row_selected);
+		}
 
-		// ignore the following for the stated reasons
-		// 1. columns: to-do: find a way of checking this equality
-		// 2. table: performance issue (polling) when table is large!!!!!
-		true;
-}
+		bool widgets::specs::list::operator!=(const list& param) {
+			return !operator==(param);
+		}
 
-bool liblec::lecui::widgets::specs::list::operator!=(const list& param) {
-	return !operator==(param);
-}
+		class widgets::list::impl {
+		public:
+			impl(containers::page& page) :
+				page_(page) {}
+			containers::page& page_;
+		};
 
-class liblec::lecui::widgets::list::list::list_impl {
-public:
-	list_impl(liblec::lecui::containers::page& page) :
-		page_(page) {}
-	liblec::lecui::containers::page& page_;
-};
+		widgets::list::list(containers::page& page) :
+			d_(*(new impl(page))) {}
 
-liblec::lecui::widgets::list::list(liblec::lecui::containers::page& page) :
-	d_(*(new list_impl(page))) {}
+		widgets::list::~list() { delete& d_; }
 
-liblec::lecui::widgets::list::~list() { delete& d_; }
+		widgets::specs::list&
+			widgets::list::add(const std::string& alias) {
+			return d_.page_.d_page_.add_list(alias);
+		}
 
-liblec::lecui::widgets::specs::list&
-liblec::lecui::widgets::list::add(const std::string& name) {
-	return d_.page_.d_page_.add_list(name);
-}
+		widgets::specs::list&
+			widgets::list::specs(form& fm, const std::string& path) {
+			const auto idx = path.find("/");
 
-liblec::lecui::widgets::specs::list&
-liblec::lecui::widgets::list::specs(form& fm, const std::string& name) {
-	auto path = name;
-	auto idx = path.find("/");
+			if (idx != std::string::npos) {
+				const auto page_alias = path.substr(0, idx);
+				const auto path_remaining = path.substr(idx + 1);
+				auto& page = fm.d_.p_pages_.at(page_alias);
+				auto results = fm.d_.find_widget(page, path_remaining);
+				return results.page.d_page_.get_list(results.widget.alias()).specs();
+			}
 
-	if (idx != std::string::npos) {
-		auto page_name = path.substr(0, idx);
-		path = path.substr(idx + 1);
-		auto& page = fm.d_.p_pages_.at(page_name);
-		// find the widget
-		auto results = fm.d_.find_widget(page, path);
-		return results.page.d_page_.get_list(results.widget.name()).specs();
+			throw std::invalid_argument("Invalid path");
+		}
 	}
-
-	throw std::exception("Invalid path");
 }

@@ -1,5 +1,5 @@
 /*
-** button.h - button interface
+** button.h - button widget interface
 **
 ** lecui user interface library
 ** Copyright (c) 2019 Alec T. Musasa (alecmus at live dot com)
@@ -27,6 +27,8 @@ namespace liblec {
 
 		namespace widgets {
 			namespace specs {
+				/// <summary>Button widget specifications.</summary>
+				/// <remarks>Recommended size with defaults is 80x25px.</remarks>
 				class button : public widget {
 				public:
 					button() {
@@ -38,27 +40,40 @@ namespace liblec {
 					float border = .5f;
 					float corner_radius_x = 5.f;
 					float corner_radius_y = 5.f;
-					liblec::lecui::color color_border = { 150, 150, 150, 255 };
+					color color_border = { 150, 150, 150, 255 };
 
 					bool operator==(const button&);
 					bool operator!=(const button&);
 				};
 			}
 
+			/// <summary>Button widget.</summary>
 			class lecui_api button {
 			public:
-				button(liblec::lecui::containers::page& page);
+				button(containers::page& page);
 				~button();
 
-				liblec::lecui::widgets::specs::button&
-					add(const std::string& name);
-				static liblec::lecui::widgets::specs::button&
-					specs(form& fm, const std::string& name);
+				/// <summary>Add a button widget.</summary>
+				/// <param name="alias">The in-page unique alias, e.g. "next_button".</param>
+				/// <returns>A reference to the button specifications.</returns>
+				/// <remarks>Throws on failure.</remarks>
+				[[nodiscard]] widgets::specs::button&
+					add(const std::string& alias);
+
+				/// <summary>Get the specifications of an existing button.</summary>
+				/// <param name="fm">The form containing the button.</param>
+				/// <param name="path">The full path to the widget, e.g.
+				/// "sample_page/sample_pane/next_button".</param>
+				/// <returns>A reference to the button specifications.</returns>
+				/// <remarks>Throws on failure.</remarks>
+				[[nodiscard]] static widgets::specs::button&
+					specs(form& fm, const std::string& path);
 
 			private:
-				class button_impl;
-				button_impl& d_;
+				class impl;
+				impl& d_;
 
+				// Default constructor and copying an object of this class are not allowed
 				button();
 				button(const button&);
 				button& operator=(const button&);

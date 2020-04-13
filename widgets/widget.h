@@ -45,18 +45,19 @@ namespace liblec {
 					bool operator!=(const on_resize&);
 				};
 
+				/// <summary>Base class for all widget specifications.</summary>
 				class widget {
 				public:
 					std::string text;
 					std::string font = "Segoe UI";
 					float font_size = 9.0f;
-					liblec::lecui::rect rect;
-					liblec::lecui::widgets::specs::on_resize resize;
-					liblec::lecui::color color_text = { 0, 0, 0, 255 };
-					liblec::lecui::color color_fill = { 0, 120, 170, 255 };
-					liblec::lecui::color color_hot = { 0, 120, 170, 255 };
-					liblec::lecui::color color_selected = { 0, 120, 170, 30 };
-					liblec::lecui::color color_disabled = { 180, 180, 180, 255 };
+					rect rect;
+					widgets::specs::on_resize resize;
+					color color_text = { 0, 0, 0, 255 };
+					color color_fill = { 0, 120, 170, 255 };
+					color color_hot = { 0, 120, 170, 255 };
+					color color_selected = { 0, 120, 170, 30 };
+					color color_disabled = { 180, 180, 180, 255 };
 					std::function<void()> on_click = nullptr;
 
 					bool operator==(const widget&);

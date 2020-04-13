@@ -18,31 +18,28 @@
 
 namespace liblec {
 	namespace lecui {
-		namespace widgets_implementation {
+		namespace widgets_impl {
 			class textbox : public widget {
 			public:
-				textbox(const std::string& page,
-					const std::string& name,
+				/// constructor and destructor
+				textbox(const std::string& page_alias,
+					const std::string& alias,
 					form& fm,
 					IDWriteFactory* p_directwrite_factory);
 				~textbox();
 
-				// virtual function override
-
-				std::string page();
-				std::string name();
-				virtual liblec::lecui::widgets_implementation::widget_type type();
-				HRESULT create_resources(ID2D1HwndRenderTarget* p_render_target);
-				void discard_resources();
+				/// virtual function overrides
+				widgets_impl::widget_type type() override;
+				HRESULT create_resources(ID2D1HwndRenderTarget* p_render_target) override;
+				void discard_resources() override;
 				D2D1_RECT_F& render(ID2D1HwndRenderTarget* p_render_target,
-					const float& change_in_width, const float& change_in_height, float x_off_set,
-					float y_off_set, const bool& render);
-				void on_click();
+					const D2D1_SIZE_F& change_in_size, const D2D1_POINT_2F& offset,
+					const bool& render) override;
+				void on_click() override;
 				void on_selection_change(const bool& selected) override;
 
-				// widget specific
-
-				liblec::lecui::widgets::specs::textbox& specs();
+				/// widget specific methods
+				widgets::specs::textbox& specs();
 				void insert_character(const char& c);
 				void key_backspace();
 				void key_delete();
@@ -50,10 +47,12 @@ namespace liblec {
 				void key_right();
 
 			private:
+				/// Prevent copying an object of this class.
 				textbox(const textbox&);
 				textbox& operator=(const textbox&);
 
-				liblec::lecui::widgets::specs::textbox specs_, specs_old_;
+				/// Private variables
+				widgets::specs::textbox specs_, specs_old_;
 				ID2D1SolidColorBrush* p_brush_;
 				ID2D1SolidColorBrush* p_brush_caret_;
 				ID2D1SolidColorBrush* p_brush_prompt_;
@@ -82,6 +81,9 @@ namespace liblec {
 					UINT32 end = 0;
 				} selection_info_;
 
+				form& fm_;
+
+				/// Private methods.
 				void reset_selection() {
 					selection_info_ = { 0, 0 };
 					is_selected_ = false;
@@ -110,7 +112,6 @@ namespace liblec {
 				static D2D1_RECT_F get_caret_rect(IDWriteTextLayout* p_text_layout,
 					const D2D1_RECT_F& rect_text, const UINT32& caret_position);
 
-				form& fm_;
 			};
 		}
 	}

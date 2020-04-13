@@ -1,5 +1,5 @@
 /*
-** progress_indicator.h - progress_indicator interface
+** progress_indicator.h - progress indicator widget interface
 **
 ** lecui user interface library
 ** Copyright (c) 2019 Alec T. Musasa (alecmus at live dot com)
@@ -34,7 +34,7 @@ namespace liblec {
 					progress_indicator() {
 						color_text = { 0, 120, 170, 255 };
 					}
-					liblec::lecui::color color_empty = { 200, 200, 200, 255 };
+					color color_empty = { 200, 200, 200, 255 };
 					float line_thickness_empty = .5f;
 					float line_thickness_fill = 1.5f;
 					float percentage = 0.f;
@@ -45,20 +45,33 @@ namespace liblec {
 				};
 			}
 
+			/// <summary>Progress indicator widget.</summary>
 			class lecui_api progress_indicator {
 			public:
-				progress_indicator(liblec::lecui::containers::page& page);
+				progress_indicator(containers::page& page);
 				~progress_indicator();
 
-				liblec::lecui::widgets::specs::progress_indicator&
-					add(const std::string& name);
-				static liblec::lecui::widgets::specs::progress_indicator&
-					specs(form& fm, const std::string& name);
+				/// <summary>Add a progress indicator widget.</summary>
+				/// <param name="alias">The in-page unique alias, e.g. "file_transfer".</param>
+				/// <returns>A reference to the progress indicator specifications.</returns>
+				/// <remarks>Throws on failure.</remarks>
+				[[nodiscard]] widgets::specs::progress_indicator&
+					add(const std::string& alias);
+
+				/// <summary>Get the specifications of an existing progress indicator.</summary>
+				/// <param name="fm">The form containing the progress indicator.</param>
+				/// <param name="path">The full path to the widget, e.g.
+				/// "sample_page/files/file_transfer".</param>
+				/// <returns>A reference to the progress indicator specifications.</returns>
+				/// <remarks>Throws on failure.</remarks>
+				[[nodiscard]] static widgets::specs::progress_indicator&
+					specs(form& fm, const std::string& path);
 
 			private:
-				class progress_indicator_impl;
-				progress_indicator_impl& d_;
+				class impl;
+				impl& d_;
 
+				// Default constructor and copying an object of this class are not allowed
 				progress_indicator();
 				progress_indicator(const progress_indicator&);
 				progress_indicator& operator=(const progress_indicator&);

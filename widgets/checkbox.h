@@ -1,5 +1,5 @@
 /*
-** checkbox.h - checkbox interface
+** checkbox.h - checkbox widget interface
 **
 ** lecui user interface library
 ** Copyright (c) 2019 Alec T. Musasa (alecmus at live dot com)
@@ -28,7 +28,7 @@ namespace liblec {
 		namespace widgets {
 			namespace specs {
 				/// <summary>Checkbox widget specifications.</summary>
-				/// <remarks>Recommended height with defaults is 20px</remarks>
+				/// <remarks>Recommended size with defaults is 20x20px.</remarks>
 				class checkbox : public widget {
 				public:
 					checkbox() {
@@ -39,8 +39,8 @@ namespace liblec {
 					std::string text_unchecked;
 					std::string text_indeterminate;
 					float border = .5f;
-					liblec::lecui::color color_check = { 0, 120, 170, 255 };
-					liblec::lecui::color color_border = { 150, 150, 150, 255 };
+					color color_check = { 0, 120, 170, 255 };
+					color color_border = { 150, 150, 150, 255 };
 
 					enum class checkbox_status {
 						checked,
@@ -48,6 +48,7 @@ namespace liblec {
 						indeterminate,
 					} status = checkbox_status::indeterminate;
 
+					/// <summary>Called when the checkbox is clicked.</summary>
 					std::function<void(checkbox_status checked)> on_check = nullptr;
 
 					bool operator==(const checkbox&);
@@ -55,20 +56,33 @@ namespace liblec {
 				};
 			}
 
+			/// <summary>Checkbox widget.</summary>
 			class lecui_api checkbox {
 			public:
-				checkbox(liblec::lecui::containers::page& page);
+				checkbox(containers::page& page);
 				~checkbox();
 
-				liblec::lecui::widgets::specs::checkbox&
-					add(const std::string& name);
-				static liblec::lecui::widgets::specs::checkbox&
-					specs(form& fm, const std::string& name);
+				/// <summary>Add a checkbox widget.</summary>
+				/// <param name="alias">The in-page unique alias, e.g. "marital_status".</param>
+				/// <returns>A reference to the checkbox specifications.</returns>
+				/// <remarks>Throws on failure.</remarks>
+				[[nodiscard]] widgets::specs::checkbox&
+					add(const std::string& alias);
+
+				/// <summary>Get the specifications of an existing checkbox.</summary>
+				/// <param name="fm">The form containing the checkbox.</param>
+				/// <param name="path">The full path to the widget, e.g.
+				/// "sample_page/sample_tab_control/tab_one/marital_status".</param>
+				/// <returns>A reference to the checkbox specifications.</returns>
+				/// <remarks>Throws on failure.</remarks>
+				[[nodiscard]] static widgets::specs::checkbox&
+					specs(form& fm, const std::string& path);
 
 			private:
-				class checkbox_impl;
-				checkbox_impl& d_;
+				class impl;
+				impl& d_;
 
+				// Default constructor and copying an object of this class are not allowed
 				checkbox();
 				checkbox(const checkbox&);
 				checkbox& operator=(const checkbox&);

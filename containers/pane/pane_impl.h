@@ -18,53 +18,53 @@
 
 namespace liblec {
 	namespace lecui {
-		namespace widgets_implementation {
+		namespace widgets_impl {
 			class pane : public widget {
 			public:
-				pane(const std::string& page,
-					const std::string& name);
+				// pages <K = pane alias, T>
+				std::map<std::string, containers::page> p_panes_;
+				std::string current_pane_;
+
+				/// constructor and destructor
+				pane(const std::string& page_alias,
+					const std::string& alias);
 				~pane();
 
-				// virtual function override
-
-				std::string page();
-				std::string name();
-				virtual liblec::lecui::widgets_implementation::widget_type type();
-				HRESULT create_resources(ID2D1HwndRenderTarget* p_render_target);
-				void discard_resources();
+				/// virtual function override
+				widgets_impl::widget_type type() override;
+				HRESULT create_resources(ID2D1HwndRenderTarget* p_render_target) override;
+				void discard_resources() override;
 				D2D1_RECT_F& render(ID2D1HwndRenderTarget* p_render_target,
-					const float& change_in_width, const float& change_in_height, float x_off_set,
-					float y_off_set, const bool& render);
-				void on_click();
+					const D2D1_SIZE_F& change_in_size, const D2D1_POINT_2F& offset,
+					const bool& render) override;
+				void on_click() override;
 
-				// widget specific
-
-				liblec::lecui::containers::specs::pane& specs();
+				/// widget specific methods
+				containers::specs::pane& specs();
 				const D2D1_RECT_F& client_area();
 				const D2D1_RECT_F& pane_area();
 
-				// pages <K = pane name, T>
-				std::map<std::string, liblec::lecui::containers::page> p_panes_;
-				std::string current_pane_;
-
 			private:
+				/// Prevent the use of the default constructor.
 				pane() :
 					pane(std::string(), std::string()) {}
 
+				/// Prevent copying an object of this class.
 				pane(const pane&);
 				pane& operator=(const pane&);
 
-				liblec::lecui::containers::specs::pane specs_;
+				/// Private variables
+				containers::specs::pane specs_;
 				ID2D1SolidColorBrush* p_brush_;
 				ID2D1SolidColorBrush* p_brush_fill_;
 				ID2D1SolidColorBrush* p_brush_border_;
 				ID2D1SolidColorBrush* p_brush_disabled_;
-
 				const float margin_;
 				D2D1_RECT_F rect_client_area_;
 				D2D1_RECT_F rect_pane_;
 
-				bool contains();	// override of function for hit-testing in-widget controls
+				/// Important override for pane to work properly.
+				bool contains() override;
 			};
 		}
 	}

@@ -22,21 +22,36 @@
 namespace liblec {
 	namespace lecui {
 		namespace widgets {
+			/// <summary>Timer specifications.</summary>
 			class lecui_api timer {
 			public:
 				timer(form& fm);
 				~timer();
 
-				void add(const std::string& name,
+				/// <summary>Add a timer to the form.</summary>
+				/// <param name="alias">The in-form unique alias, e.g. "activation_timer".</param>
+				/// <param name="milliseconds">The cycle duration.</param>
+				/// <param name="on_timer">The handler that's called after the duration.</param>
+				/// <remarks>The timer will keep running until stopped manually, with the handler
+				/// getting called repeatedly in a cycle.</remarks>
+				void add(const std::string& alias,
 					const unsigned long& milliseconds,
 					std::function<void()> on_timer);
-				bool running(const std::string& name);
-				void stop(const std::string& name);
+
+				/// <summary>Check if a specific timer is running.</summary>
+				/// <param name="alias">The timer's unique alias.</param>
+				/// <returns>True if the timer is running, else false.</returns>
+				bool running(const std::string& alias);
+
+				/// <summary>Stop a specific timer.</summary>
+				/// <param name="alias">The timer's unique alias.</param>
+				void stop(const std::string& alias);
 
 			private:
-				class timer_impl;
-				timer_impl& d_;
+				class impl;
+				impl& d_;
 
+				// Default constructor and copying an object of this class are not allowed
 				timer();
 				timer(const timer&);
 				timer& operator=(const timer&);

@@ -14,112 +14,108 @@
 #include "pane_impl.h"
 #include "../../containers/page/page_impl.h"
 
-liblec::lecui::widgets_implementation::pane::pane(const std::string& page,
-	const std::string& name) :
-	p_brush_(nullptr),
-	p_brush_fill_(nullptr),
-	p_brush_border_(nullptr),
-	p_brush_disabled_(nullptr),
-	margin_(12.f),
-	rect_client_area_({ 0.f, 0.f, 0.f, 0.f }),
-	rect_pane_({ 0.f, 0.f, 0.f, 0.f }) {
-	page_ = page;
-	name_ = name;
-	log("constructor: " + page_ + ":" + name_);
+namespace liblec {
+	namespace lecui {
+		widgets_impl::pane::pane(const std::string& page_alias,
+			const std::string& alias) :
+			p_brush_(nullptr),
+			p_brush_fill_(nullptr),
+			p_brush_border_(nullptr),
+			p_brush_disabled_(nullptr),
+			margin_(12.f),
+			rect_client_area_({ 0.f, 0.f, 0.f, 0.f }),
+			rect_pane_({ 0.f, 0.f, 0.f, 0.f }) {
+			page_alias_ = page_alias;
+			alias_ = alias;
+		}
+
+		widgets_impl::pane::~pane() { discard_resources(); }
+
+		widgets_impl::widget_type
+			widgets_impl::pane::type() {
+			return lecui::widgets_impl::widget_type::pane;
+		}
+
+		HRESULT widgets_impl::pane::create_resources(
+			ID2D1HwndRenderTarget* p_render_target) {
+			log("creating resources:   " + page_alias_ + ":" + alias_);
+			is_static_ = false;
+
+			HRESULT hr = S_OK;
+
+			if (SUCCEEDED(hr))
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_text),
+					&p_brush_);
+			if (SUCCEEDED(hr))
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_fill),
+					&p_brush_fill_);
+			if (SUCCEEDED(hr))
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_border),
+					&p_brush_border_);
+			if (SUCCEEDED(hr))
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_disabled),
+					&p_brush_disabled_);
+
+			resources_created_ = true;
+			return hr;
+		}
+
+		void widgets_impl::pane::discard_resources() {
+			log("discarding resources: " + page_alias_ + ":" + alias_);
+			resources_created_ = false;
+			safe_release(&p_brush_);
+			safe_release(&p_brush_fill_);
+			safe_release(&p_brush_border_);
+			safe_release(&p_brush_disabled_);
+		}
+
+		D2D1_RECT_F&
+			widgets_impl::pane::render(ID2D1HwndRenderTarget* p_render_target,
+				const D2D1_SIZE_F& change_in_size, const D2D1_POINT_2F& offset, const bool& render) {
+			if (!resources_created_)
+				create_resources(p_render_target);
+
+			rect_pane_ = position(specs_.rect, specs_.resize, change_in_size.width, change_in_size.height);
+			rect_pane_.left -= offset.x;
+			rect_pane_.right -= offset.x;
+			rect_pane_.top -= offset.y;
+			rect_pane_.bottom -= offset.y;
+
+			// no reponse to hit testing, even though for scroll bar at form level
+			// we need to return the entire region through rect_pane_
+			rect_ = { 0.f, 0.f, 0.f, 0.f };
+
+			rect_client_area_ = rect_pane_;
+
+			if (!render || !visible_)
+				return rect_pane_;
+
+			D2D1_ROUNDED_RECT rounded_rect{ rect_client_area_,
+				specs_.corner_radius_x, specs_.corner_radius_y };
+
+			if (specs_.is_filled)
+				p_render_target->FillRoundedRectangle(&rounded_rect,
+					is_enabled_ ? p_brush_fill_ : p_brush_disabled_);
+
+			p_render_target->DrawRoundedRectangle(&rounded_rect, is_enabled_ ?
+				p_brush_border_ : p_brush_disabled_, specs_.border);
+
+			return rect_pane_;
+		}
+
+		void widgets_impl::pane::on_click() {}
+
+		containers::specs::pane&
+			widgets_impl::pane::specs() { return specs_; }
+
+		const D2D1_RECT_F& widgets_impl::pane::client_area() {
+			return rect_client_area_;
+		}
+
+		const D2D1_RECT_F& widgets_impl::pane::pane_area() {
+			return rect_pane_;
+		}
+
+		bool widgets_impl::pane::contains() { return false; }
+	}
 }
-
-liblec::lecui::widgets_implementation::pane::~pane() {
-	discard_resources();
-	log("destructor: " + page_ + ":" + name_);
-}
-
-std::string liblec::lecui::widgets_implementation::pane::name() { return name_; }
-std::string liblec::lecui::widgets_implementation::pane::page() { return page_; }
-
-liblec::lecui::widgets_implementation::widget_type
-liblec::lecui::widgets_implementation::pane::type() {
-	return lecui::widgets_implementation::widget_type::pane;
-}
-
-HRESULT liblec::lecui::widgets_implementation::pane::create_resources(
-	ID2D1HwndRenderTarget* p_render_target) {
-	log("creating resources:   " + page_ + ":" + name_);
-	is_static_ = false;
-
-	HRESULT hr = S_OK;
-
-	if (SUCCEEDED(hr))
-		hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_text),
-			&p_brush_);
-	if (SUCCEEDED(hr))
-		hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_fill),
-			&p_brush_fill_);
-	if (SUCCEEDED(hr))
-		hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_border),
-			&p_brush_border_);
-	if (SUCCEEDED(hr))
-		hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_disabled),
-			&p_brush_disabled_);
-
-	resources_created_ = true;
-	return hr;
-}
-
-void liblec::lecui::widgets_implementation::pane::discard_resources() {
-	log("discarding resources: " + page_ + ":" + name_);
-	resources_created_ = false;
-	safe_release(&p_brush_);
-	safe_release(&p_brush_fill_);
-	safe_release(&p_brush_border_);
-	safe_release(&p_brush_disabled_);
-}
-
-D2D1_RECT_F&
-liblec::lecui::widgets_implementation::pane::render(ID2D1HwndRenderTarget* p_render_target,
-	const float& change_in_width, const float& change_in_height,
-	float x_off_set, float y_off_set, const bool& render) {
-	if (!resources_created_)
-		create_resources(p_render_target);
-
-	rect_pane_ = position(specs_.rect, specs_.resize, change_in_width, change_in_height);
-	rect_pane_.left -= x_off_set;
-	rect_pane_.right -= x_off_set;
-	rect_pane_.top -= y_off_set;
-	rect_pane_.bottom -= y_off_set;
-
-	// no reponse to hit testing, even though for scroll bar at form level
-	// we need to return the entire region through rect_pane_
-	rect_ = { 0.f, 0.f, 0.f, 0.f };
-
-	rect_client_area_ = rect_pane_;
-
-	if (!render || !visible_)
-		return rect_pane_;
-
-	D2D1_ROUNDED_RECT rounded_rect{ rect_client_area_,
-		specs_.corner_radius_x, specs_.corner_radius_y };
-
-	if (specs_.is_filled)
-		p_render_target->FillRoundedRectangle(&rounded_rect,
-			is_enabled_ ? p_brush_fill_ : p_brush_disabled_);
-	
-	p_render_target->DrawRoundedRectangle(&rounded_rect, is_enabled_ ?
-		p_brush_border_ : p_brush_disabled_, specs_.border);
-
-	return rect_pane_;
-}
-
-void liblec::lecui::widgets_implementation::pane::on_click() {}
-
-liblec::lecui::containers::specs::pane&
-liblec::lecui::widgets_implementation::pane::specs() { return specs_; }
-
-const D2D1_RECT_F& liblec::lecui::widgets_implementation::pane::client_area() {
-	return rect_client_area_;
-}
-
-const D2D1_RECT_F& liblec::lecui::widgets_implementation::pane::pane_area() {
-	return rect_pane_;
-}
-
-bool liblec::lecui::widgets_implementation::pane::contains() { return false; }

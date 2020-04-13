@@ -21,22 +21,36 @@
 
 namespace liblec {
 	namespace lecui {
+		/// <summary>Manipulate the form's appearance.</summary>
 		class lecui_api appearance {
 		public:
 			appearance(form& fm);
 			~appearance();
 
+			/// <summary>Whether to add a shadow to the form.</summary>
+			/// <param name="enable">Set to false to disable the shadow.</param>
+			/// <remarks>The shadow is enabled by default if this method is never called.</remarks>
 			void shadow(const bool& enable);
-			void theme(const liblec::lecui::color& color,
-				const liblec::lecui::color& color_hot,
-				const liblec::lecui::color& color_disabled);
-			void background(const liblec::lecui::color& color,
-				const liblec::lecui::color& color_titlebar);
+
+			/// <summary>Set the theme color.</summary>
+			/// <param name="color">The color of controls and the form border.</param>
+			/// <param name="color_hot">The color on-hovering over a control.</param>
+			/// <param name="color_disabled">The color when a control is disabled.</param>
+			void theme(const lecui::color& color,
+				const lecui::color& color_hot,
+				const lecui::color& color_disabled);
+
+			/// <summary>Set the form's background colors.</summary>
+			/// <param name="color">The background color of the entire form.</param>
+			/// <param name="color_titlebar">The background color of the titlebar.</param>
+			void background(const lecui::color& color,
+				const lecui::color& color_titlebar);
 
 		private:
-			class appearance_impl;
-			appearance_impl& d_;
+			class impl;
+			impl& d_;
 
+			// Default constructor and copying an object of this class are not allowed
 			appearance();
 			appearance(const appearance&);
 			appearance& operator=(const appearance&);

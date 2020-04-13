@@ -1,5 +1,5 @@
 /*
-** checkbox.cpp - checkbox implementation
+** checkbox.cpp - checkbox widget implementation
 **
 ** lecui user interface library
 ** Copyright (c) 2019 Alec T. Musasa (alecmus at live dot com)
@@ -14,50 +14,52 @@
 #include "../checkbox.h"
 #include "../../form_impl.h"
 
-bool liblec::lecui::widgets::specs::checkbox::operator==(const checkbox& param) {
-	// generic specs
-	return
-		widget::operator==(param) &&
+namespace liblec {
+	namespace lecui {
+		bool widgets::specs::checkbox::operator==(const checkbox& param) {
+			return
+				// generic specs
+				widget::operator==(param) &&
 
-		// widget specific specs
-		(color_border == param.color_border) &&
-		(color_check == param.color_check);
-}
+				// widget specific specs
+				(color_border == param.color_border) &&
+				(color_check == param.color_check);
+		}
 
-bool liblec::lecui::widgets::specs::checkbox::operator!=(const checkbox& param) {
-	return !operator==(param);
-}
+		bool widgets::specs::checkbox::operator!=(const checkbox& param) {
+			return !operator==(param);
+		}
 
-class liblec::lecui::widgets::checkbox::checkbox::checkbox_impl {
-public:
-	checkbox_impl(liblec::lecui::containers::page& page) :
-		page_(page) {}
-	liblec::lecui::containers::page& page_;
-};
+		class widgets::checkbox::impl {
+		public:
+			impl(containers::page& page) :
+				page_(page) {}
+			containers::page& page_;
+		};
 
-liblec::lecui::widgets::checkbox::checkbox(liblec::lecui::containers::page& page) :
-	d_(*(new checkbox_impl(page))) {}
+		widgets::checkbox::checkbox(containers::page& page) :
+			d_(*(new impl(page))) {}
 
-liblec::lecui::widgets::checkbox::~checkbox() { delete& d_; }
+		widgets::checkbox::~checkbox() { delete& d_; }
 
-liblec::lecui::widgets::specs::checkbox&
-liblec::lecui::widgets::checkbox::add(const std::string& name) {
-	return d_.page_.d_page_.add_checkbox(name);
-}
+		widgets::specs::checkbox&
+			widgets::checkbox::add(const std::string& alias) {
+			return d_.page_.d_page_.add_checkbox(alias);
+		}
 
-liblec::lecui::widgets::specs::checkbox&
-liblec::lecui::widgets::checkbox::specs(form& fm, const std::string& name) {
-	auto path = name;
-	auto idx = path.find("/");
+		widgets::specs::checkbox&
+			widgets::checkbox::specs(form& fm, const std::string& path) {
+			const auto idx = path.find("/");
 
-	if (idx != std::string::npos) {
-		auto page_name = path.substr(0, idx);
-		path = path.substr(idx + 1);
-		auto& page = fm.d_.p_pages_.at(page_name);
-		// find the widget
-		auto results = fm.d_.find_widget(page, path);
-		return results.page.d_page_.get_checkbox(results.widget.name()).specs();
+			if (idx != std::string::npos) {
+				const auto page_alias = path.substr(0, idx);
+				const auto path_remaining = path.substr(idx + 1);
+				auto& page = fm.d_.p_pages_.at(page_alias);
+				auto results = fm.d_.find_widget(page, path_remaining);
+				return results.page.d_page_.get_checkbox(results.widget.alias()).specs();
+			}
+
+			throw std::invalid_argument("Invalid path");
+		}
 	}
-
-	throw std::exception("Invalid path");
 }

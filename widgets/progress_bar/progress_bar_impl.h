@@ -18,39 +18,39 @@
 
 namespace liblec {
 	namespace lecui {
-		namespace widgets_implementation {
+		namespace widgets_impl {
 			class progress_bar : public widget {
 			public:
-				progress_bar(const std::string& page,
-					const std::string& name,
+				/// constructor and destructor
+				progress_bar(const std::string& page_alias,
+					const std::string& alias,
 					ID2D1Factory* p_direct2d_factory,
 					IDWriteFactory* p_directwrite_factory);
 				~progress_bar();
 
-				// virtual function override
-
-				std::string page();
-				std::string name();
-				virtual liblec::lecui::widgets_implementation::widget_type type();
-				HRESULT create_resources(ID2D1HwndRenderTarget* p_render_target);
-				void discard_resources();
+				/// virtual function overrides
+				widgets_impl::widget_type type() override;
+				HRESULT create_resources(ID2D1HwndRenderTarget* p_render_target) override;
+				void discard_resources() override;
 				D2D1_RECT_F& render(ID2D1HwndRenderTarget* p_render_target,
-					const float& change_in_width, const float& change_in_height, float x_off_set,
-					float y_off_set, const bool& render);
-				void on_click();
+					const D2D1_SIZE_F& change_in_size, const D2D1_POINT_2F& offset,
+					const bool& render) override;
+				void on_click() override;
 
-				// widget specific
-
-				liblec::lecui::widgets::specs::progress_bar& specs();
+				/// widget specific methods
+				widgets::specs::progress_bar& specs();
 
 			private:
+				/// Prevent the use of the default constructor.
 				progress_bar() :
 					progress_bar(std::string(), std::string(), nullptr, nullptr) {}
 
+				/// Prevent copying an object of this class.
 				progress_bar(const progress_bar&);
 				progress_bar& operator=(const progress_bar&);
 
-				liblec::lecui::widgets::specs::progress_bar specs_, specs_old_;
+				/// Private variables
+				widgets::specs::progress_bar specs_, specs_old_;
 				ID2D1SolidColorBrush* p_brush_;
 				ID2D1SolidColorBrush* p_brush_border_;
 				ID2D1SolidColorBrush* p_brush_fill_;

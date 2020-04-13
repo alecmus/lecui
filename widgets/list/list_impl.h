@@ -1,5 +1,5 @@
 /*
-** list_impl.h - list widget interface
+** list_impl.h - list_impl interface
 **
 ** lecui user interface library
 ** Copyright (c) 2019 Alec T. Musasa (alecmus at live dot com)
@@ -18,41 +18,41 @@
 
 namespace liblec {
 	namespace lecui {
-		namespace widgets_implementation {
+		namespace widgets_impl {
 			class list : public widget {
 			public:
-				list(const std::string& page,
-					const std::string& name,
+				/// constructor and destructor
+				list(const std::string& page_alias,
+					const std::string& alias,
 					IDWriteFactory* p_directwrite_factory);
 				~list();
 
-				// virtual function override
-
-				std::string page();
-				std::string name();
-				virtual liblec::lecui::widgets_implementation::widget_type type();
-				HRESULT create_resources(ID2D1HwndRenderTarget* p_render_target);
-				void discard_resources();
+				/// virtual function overrides
+				widgets_impl::widget_type type() override;
+				HRESULT create_resources(ID2D1HwndRenderTarget* p_render_target) override;
+				void discard_resources() override;
 				D2D1_RECT_F& render(ID2D1HwndRenderTarget* p_render_target,
-					const float& change_in_width, const float& change_in_height, float x_off_set,
-					float y_off_set, const bool& render);
-				void on_click();
-				bool on_mousewheel(float units);
-				bool on_keydown(WPARAM wParam);
-				bool hit(const bool& hit);
+					const D2D1_SIZE_F& change_in_size, const D2D1_POINT_2F& offset,
+					const bool& render) override;
+				void on_click() override;
+				bool on_mousewheel(float units) override;
+				bool on_keydown(WPARAM wParam) override;
+				bool hit(const bool& hit) override;
 
-				// widget specific
-
-				liblec::lecui::widgets::specs::list& specs();
+				/// widget specific methods
+				widgets::specs::list& specs();
 
 			private:
+				/// Prevent the use of the default constructor.
 				list() :
 					list(std::string(), std::string(), nullptr) {}
 
+				/// Prevent copying an object of this class.
 				list(const list&);
 				list& operator=(const list&);
 
-				liblec::lecui::widgets::specs::list specs_, specs_old_;
+				/// Private variables
+				widgets::specs::list specs_, specs_old_;
 				ID2D1SolidColorBrush* p_brush_;
 				ID2D1SolidColorBrush* p_brush_fill_;
 				ID2D1SolidColorBrush* p_brush_scrollbar_border_;
@@ -75,11 +75,11 @@ namespace liblec {
 
 				unsigned long scrollbar_thickness_;
 
-				liblec::lecui::color color_scrollbar_;
-				liblec::lecui::color color_scrollbar_border_;
-				liblec::lecui::color color_scrollbar_hot_;
-				liblec::lecui::color color_scrollbar_hot_pressed_;
-				liblec::lecui::color color_scrollbar_background_;
+				color color_scrollbar_;
+				color color_scrollbar_border_;
+				color color_scrollbar_hot_;
+				color color_scrollbar_hot_pressed_;
+				color color_scrollbar_background_;
 
 				ID2D1SolidColorBrush* p_brush_scrollbar_;
 				ID2D1SolidColorBrush* p_brush_scrollbar_hot_;
@@ -107,8 +107,10 @@ namespace liblec {
 				std::map<unsigned long, D2D1_RECT_F> hot_spots_;
 				unsigned long last_selected_;
 
-				void on_selection();
 				bool book_on_selection_;
+
+				/// Private methods
+				void on_selection();
 			};
 		}
 	}

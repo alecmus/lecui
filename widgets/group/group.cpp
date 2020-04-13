@@ -1,5 +1,5 @@
 /*
-** group.cpp - group implementation
+** group.cpp - group widget implementation
 **
 ** lecui user interface library
 ** Copyright (c) 2019 Alec T. Musasa (alecmus at live dot com)
@@ -14,49 +14,51 @@
 #include "../group.h"
 #include "../../form_impl.h"
 
-bool liblec::lecui::widgets::specs::group::operator==(const group& param) {
-	return
-		// generic specs
-		widget::operator==(param) &&
+namespace liblec {
+	namespace lecui {
+		bool widgets::specs::group::operator==(const group& param) {
+			return
+				// generic specs
+				widget::operator==(param) &&
 
-		// widget specific specs
-		(color_border == param.color_border);
-}
+				// widget specific specs
+				(color_border == param.color_border);
+		}
 
-bool liblec::lecui::widgets::specs::group::operator!=(const group& param) {
-	return !operator==(param);
-}
+		bool widgets::specs::group::operator!=(const group& param) {
+			return !operator==(param);
+		}
 
-class liblec::lecui::widgets::group::group::group_impl {
-public:
-	group_impl(liblec::lecui::containers::page& page) :
-		page_(page) {}
-	liblec::lecui::containers::page& page_;
-};
+		class widgets::group::impl {
+		public:
+			impl(containers::page& page) :
+				page_(page) {}
+			containers::page& page_;
+		};
 
-liblec::lecui::widgets::group::group(liblec::lecui::containers::page& page) :
-	d_(*(new group_impl(page))) {}
+		widgets::group::group(containers::page& page) :
+			d_(*(new impl(page))) {}
 
-liblec::lecui::widgets::group::~group() { delete& d_; }
+		widgets::group::~group() { delete& d_; }
 
-liblec::lecui::widgets::specs::group&
-liblec::lecui::widgets::group::add(const std::string& name) {
-	return d_.page_.d_page_.add_group(name);
-}
+		widgets::specs::group&
+			widgets::group::add(const std::string& alias) {
+			return d_.page_.d_page_.add_group(alias);
+		}
 
-liblec::lecui::widgets::specs::group&
-liblec::lecui::widgets::group::specs(form& fm, const std::string& name) {
-	auto path = name;
-	auto idx = path.find("/");
+		widgets::specs::group&
+			widgets::group::specs(form& fm, const std::string& path) {
+			const auto idx = path.find("/");
 
-	if (idx != std::string::npos) {
-		auto page_name = path.substr(0, idx);
-		path = path.substr(idx + 1);
-		auto& page = fm.d_.p_pages_.at(page_name);
-		// find the widget
-		auto results = fm.d_.find_widget(page, path);
-		return results.page.d_page_.get_group(results.widget.name()).specs();
+			if (idx != std::string::npos) {
+				const auto page_alias = path.substr(0, idx);
+				const auto path_remaining = path.substr(idx + 1);
+				auto& page = fm.d_.p_pages_.at(page_alias);
+				auto results = fm.d_.find_widget(page, path_remaining);
+				return results.page.d_page_.get_group(results.widget.alias()).specs();
+			}
+
+			throw std::invalid_argument("Invalid path");
+		}
 	}
-
-	throw std::exception("Invalid path");
 }

@@ -1,5 +1,5 @@
 /*
-** checkbox_impl.h - checkboximpl interface
+** checkbox_impl.h - checkbox_impl interface
 **
 ** lecui user interface library
 ** Copyright (c) 2019 Alec T. Musasa (alecmus at live dot com)
@@ -18,39 +18,39 @@
 
 namespace liblec {
 	namespace lecui {
-		namespace widgets_implementation {
+		namespace widgets_impl {
 			class checkbox : public widget {
 			public:
-				checkbox(const std::string& page,
-					const std::string& name,
+				/// constructor and destructor
+				checkbox(const std::string& page_alias,
+					const std::string& alias,
 					ID2D1Factory* p_direct2d_factory,
 					IDWriteFactory* p_directwrite_factory);
 				~checkbox();
 
-				// virtual function override
-
-				std::string page();
-				std::string name();
-				virtual liblec::lecui::widgets_implementation::widget_type type();
-				HRESULT create_resources(ID2D1HwndRenderTarget* p_render_target);
-				void discard_resources();
+				/// virtual function overrides
+				widgets_impl::widget_type type() override;
+				HRESULT create_resources(ID2D1HwndRenderTarget* p_render_target) override;
+				void discard_resources() override;
 				D2D1_RECT_F& render(ID2D1HwndRenderTarget* p_render_target,
-					const float& change_in_width, const float& change_in_height, float x_off_set,
-					float y_off_set, const bool& render);
-				void on_click();
+					const D2D1_SIZE_F& change_in_size, const D2D1_POINT_2F& offset,
+					const bool& render) override;
+				void on_click() override;
 
-				// widget specific
-
-				liblec::lecui::widgets::specs::checkbox& specs();
+				/// widget specific methods
+				widgets::specs::checkbox& specs();
 
 			private:
+				/// Prevent the use of the default constructor.
 				checkbox() :
 					checkbox(std::string(), std::string(), nullptr, nullptr) {}
 
+				/// Prevent copying an object of this class.
 				checkbox(const checkbox&);
 				checkbox& operator=(const checkbox&);
 
-				liblec::lecui::widgets::specs::checkbox specs_, specs_old_;
+				/// Private variables
+				widgets::specs::checkbox specs_, specs_old_;
 				ID2D1SolidColorBrush* p_brush_;
 				ID2D1SolidColorBrush* p_brush_check_;
 				ID2D1SolidColorBrush* p_brush_border_;

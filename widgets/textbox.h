@@ -1,5 +1,5 @@
 /*
-** textbox.h - textbox interface
+** textbox.h - textbox widget interface
 **
 ** lecui user interface library
 ** Copyright (c) 2019 Alec T. Musasa (alecmus at live dot com)
@@ -41,29 +41,42 @@ namespace liblec {
 					float border = .5f;
 					float corner_radius_x = 5.f;
 					float corner_radius_y = 5.f;
-					liblec::lecui::color color_border = { 150, 150, 150, 255 };
-					liblec::lecui::color color_prompt = { 180, 180, 180, 255 };
-					liblec::lecui::color color_caret = { 50, 50, 50, 255 };
+					color color_border = { 150, 150, 150, 255 };
+					color color_prompt = { 180, 180, 180, 255 };
+					color color_caret = { 50, 50, 50, 255 };
 
 					bool operator==(const textbox&);
 					bool operator!=(const textbox&);
 				};
 			}
 
+			/// <summary>Textbox widget.</summary>
 			class lecui_api textbox {
 			public:
-				textbox(liblec::lecui::containers::page& page);
+				textbox(containers::page& page);
 				~textbox();
 
-				liblec::lecui::widgets::specs::textbox&
-					add(const std::string& name);
-				static liblec::lecui::widgets::specs::textbox&
-					specs(form& fm, const std::string& name);
+				/// <summary>Add a textbox widget.</summary>
+				/// <param name="alias">The in-page unique alias, e.g. "username".</param>
+				/// <returns>A reference to the textbox specifications.</returns>
+				/// <remarks>Throws on failure.</remarks>
+				[[nodiscard]] widgets::specs::textbox&
+					add(const std::string& alias);
+
+				/// <summary>Get the specifications of an existing textbox.</summary>
+				/// <param name="fm">The form containing the textbox.</param>
+				/// <param name="path">The full path to the widget, e.g.
+				/// "login_page/credentials_pane/username".</param>
+				/// <returns>A reference to the textbox specifications.</returns>
+				/// <remarks>Throws on failure.</remarks>
+				[[nodiscard]] static widgets::specs::textbox&
+					specs(form& fm, const std::string& path);
 
 			private:
-				class textbox_impl;
-				textbox_impl& d_;
+				class impl;
+				impl& d_;
 
+				// Default constructor and copying an object of this class are not allowed
 				textbox();
 				textbox(const textbox&);
 				textbox& operator=(const textbox&);

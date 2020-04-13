@@ -1,5 +1,5 @@
 /*
-** custom_impl.h - custom widget interface
+** custom_impl.h - custom_impl interface
 **
 ** lecui user interface library
 ** Copyright (c) 2019 Alec T. Musasa (alecmus at live dot com)
@@ -18,39 +18,39 @@
 
 namespace liblec {
 	namespace lecui {
-		namespace widgets_implementation {
+		namespace widgets_impl {
 			class custom : public widget {
 			public:
-				custom(const std::string& page,
-					const std::string& name,
+				/// constructor and destructor
+				custom(const std::string& page_alias,
+					const std::string& alias,
 					IDWriteFactory* p_directwrite_factory,
 					IWICImagingFactory* p_iwic_factory);
 				~custom();
 
-				// virtual function override
-
-				std::string page();
-				std::string name();
-				virtual liblec::lecui::widgets_implementation::widget_type type();
-				HRESULT create_resources(ID2D1HwndRenderTarget* p_render_target);
-				void discard_resources();
+				/// virtual function overrides
+				widgets_impl::widget_type type() override;
+				HRESULT create_resources(ID2D1HwndRenderTarget* p_render_target) override;
+				void discard_resources() override;
 				D2D1_RECT_F& render(ID2D1HwndRenderTarget* p_render_target,
-					const float& change_in_width, const float& change_in_height, float x_off_set,
-					float y_off_set, const bool& render);
-				void on_click();
+					const D2D1_SIZE_F& change_in_size, const D2D1_POINT_2F& offset,
+					const bool& render) override;
+				void on_click() override;
 
-				// widget specific
-
-				liblec::lecui::widgets::specs::custom& specs();
+				/// widget specific methods
+				widgets::specs::custom& specs();
 
 			private:
+				/// Prevent the use of the default constructor.
 				custom() :
 					custom(std::string(), std::string(), nullptr, nullptr) {}
 
+				/// Prevent copying an object of this class.
 				custom(const custom&);
 				custom& operator=(const custom&);
 
-				liblec::lecui::widgets::specs::custom specs_, specs_old_;
+				/// Private variables
+				widgets::specs::custom specs_, specs_old_;
 
 				IDWriteFactory* p_directwrite_factory_;
 				IWICImagingFactory* p_iwic_factory_;

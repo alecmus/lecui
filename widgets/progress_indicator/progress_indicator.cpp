@@ -1,5 +1,5 @@
 /*
-** progress_indicator.cpp - progress_indicator implementation
+** progress_indicator.cpp - progress indicator widget implementation
 **
 ** lecui user interface library
 ** Copyright (c) 2019 Alec T. Musasa (alecmus at live dot com)
@@ -14,49 +14,51 @@
 #include "../progress_indicator.h"
 #include "../../form_impl.h"
 
-bool liblec::lecui::widgets::specs::progress_indicator::operator==(const progress_indicator& param) {
-	return
-		// generic specs
-		widget::operator==(param) &&
+namespace liblec {
+	namespace lecui {
+		bool widgets::specs::progress_indicator::operator==(const progress_indicator& param) {
+			return
+				// generic specs
+				widget::operator==(param) &&
 
-		// widget specific specs
-		(color_empty == param.color_empty);
-}
+				// widget specific specs
+				(color_empty == param.color_empty);
+		}
 
-bool liblec::lecui::widgets::specs::progress_indicator::operator!=(const progress_indicator& param) {
-	return !operator==(param);
-}
+		bool widgets::specs::progress_indicator::operator!=(const progress_indicator& param) {
+			return !operator==(param);
+		}
 
-class liblec::lecui::widgets::progress_indicator::progress_indicator::progress_indicator_impl {
-public:
-	progress_indicator_impl(liblec::lecui::containers::page& page) :
-		page_(page) {}
-	liblec::lecui::containers::page& page_;
-};
+		class widgets::progress_indicator::impl {
+		public:
+			impl(containers::page& page) :
+				page_(page) {}
+			containers::page& page_;
+		};
 
-liblec::lecui::widgets::progress_indicator::progress_indicator(liblec::lecui::containers::page& page) :
-	d_(*(new progress_indicator_impl(page))) {}
+		widgets::progress_indicator::progress_indicator(containers::page& page) :
+			d_(*(new impl(page))) {}
 
-liblec::lecui::widgets::progress_indicator::~progress_indicator() { delete& d_; }
+		widgets::progress_indicator::~progress_indicator() { delete& d_; }
 
-liblec::lecui::widgets::specs::progress_indicator&
-liblec::lecui::widgets::progress_indicator::add(const std::string& name) {
-	return d_.page_.d_page_.add_progress_indicator(name);
-}
+		widgets::specs::progress_indicator&
+			widgets::progress_indicator::add(const std::string& alias) {
+			return d_.page_.d_page_.add_progress_indicator(alias);
+		}
 
-liblec::lecui::widgets::specs::progress_indicator&
-liblec::lecui::widgets::progress_indicator::specs(form& fm, const std::string& name) {
-	auto path = name;
-	auto idx = path.find("/");
+		widgets::specs::progress_indicator&
+			widgets::progress_indicator::specs(form& fm, const std::string& path) {
+			const auto idx = path.find("/");
 
-	if (idx != std::string::npos) {
-		auto page_name = path.substr(0, idx);
-		path = path.substr(idx + 1);
-		auto& page = fm.d_.p_pages_.at(page_name);
-		// find the widget
-		auto results = fm.d_.find_widget(page, path);
-		return results.page.d_page_.get_progress_indicator(results.widget.name()).specs();
+			if (idx != std::string::npos) {
+				const auto page_alias = path.substr(0, idx);
+				const auto path_remaining = path.substr(idx + 1);
+				auto& page = fm.d_.p_pages_.at(page_alias);
+				auto results = fm.d_.find_widget(page, path_remaining);
+				return results.page.d_page_.get_progress_indicator(results.widget.alias()).specs();
+			}
+
+			throw std::invalid_argument("Invalid path");
+		}
 	}
-
-	throw std::exception("Invalid path");
 }

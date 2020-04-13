@@ -1,5 +1,5 @@
 /*
-** custom_impl.cpp - custom widget implementation
+** custom_impl.cpp - custom_impl implementation
 **
 ** lecui user interface library
 ** Copyright (c) 2019 Alec T. Musasa (alecmus at live dot com)
@@ -13,89 +13,83 @@
 
 #include "custom_impl.h"
 
-#include <boost/property_tree/ptree.hpp>
-#include <boost/property_tree/xml_parser.hpp>
-#include <boost/lexical_cast.hpp>
+namespace liblec {
+	namespace lecui {
+		widgets_impl::custom::custom(const std::string& page_alias,
+			const std::string& alias,
+			IDWriteFactory* p_directwrite_factory, IWICImagingFactory* p_iwic_factory) :
+			p_directwrite_factory_(p_directwrite_factory),
+			p_iwic_factory_(p_iwic_factory) {
+			page_alias_ = page_alias;
+			alias_ = alias;
+			log("constructor: " + page_alias_ + ":" + alias_);
+		}
 
-liblec::lecui::widgets_implementation::custom::custom(const std::string& page,
-	const std::string& name,
-	IDWriteFactory* p_directwrite_factory, IWICImagingFactory* p_iwic_factory) :
-	p_directwrite_factory_(p_directwrite_factory),
-	p_iwic_factory_(p_iwic_factory){
-	page_ = page;
-	name_ = name;
-	log("constructor: " + page_ + ":" + name_);
-}
+		widgets_impl::custom::~custom() {
+			// DO NOT call discard_resources() here. Let the client do that
+			// in their own destructor (which will be called far before this one).
+			// Trying to discard resources here will result in an access violation
+			// if the custom widget is not a static object, and we certainly do
+			// not want any widget to be a static object!
+			log("destructor: " + page_alias_ + ":" + alias_);
+		}
 
-liblec::lecui::widgets_implementation::custom::~custom() {
-	// DO NOT call discard_resources() here. Let the client do that
-	// in their own destructor (which will be called far before this one).
-	// Trying to discard resources here will result in an access violation
-	// if the custom widget is not a static object, and we certainly do
-	// not want any widget to be a static object!
+		widgets_impl::widget_type
+			widgets_impl::custom::type() {
+			return lecui::widgets_impl::widget_type::custom;
+		}
 
-	log("destructor: " + page_ + ":" + name_);
-}
+		HRESULT widgets_impl::custom::create_resources(
+			ID2D1HwndRenderTarget* p_render_target) {
+			log("creating resources:   " + page_alias_ + ":" + alias_);
+			specs_old_ = specs_;
+			is_static_ = (specs_.on_click == nullptr);
 
-std::string liblec::lecui::widgets_implementation::custom::name() { return name_; }
-std::string liblec::lecui::widgets_implementation::custom::page() { return page_; }
+			if (specs_.on_create_resources != nullptr)
+				specs_.on_create_resources(p_render_target, p_directwrite_factory_, p_iwic_factory_);
 
-liblec::lecui::widgets_implementation::widget_type
-liblec::lecui::widgets_implementation::custom::type() {
-	return lecui::widgets_implementation::widget_type::custom;
-}
+			resources_created_ = true;
+			return S_OK;
+		}
 
-HRESULT liblec::lecui::widgets_implementation::custom::create_resources(
-	ID2D1HwndRenderTarget* p_render_target) {
-	log("creating resources:   " + page_ + ":" + name_);
-	specs_old_ = specs_;
-	is_static_ = (specs_.on_click == nullptr);
+		void widgets_impl::custom::discard_resources() {
+			log("discarding resources: " + page_alias_ + ":" + alias_);
+			resources_created_ = false;
+			if (specs_.on_discard_resources != nullptr)
+				specs_.on_discard_resources();
+		}
 
-	if (specs_.on_create_resources != nullptr)
-		specs_.on_create_resources(p_render_target, p_directwrite_factory_, p_iwic_factory_);
+		D2D1_RECT_F& widgets_impl::custom::render(ID2D1HwndRenderTarget* p_render_target,
+			const D2D1_SIZE_F& change_in_size, const D2D1_POINT_2F& offset, const bool& render) {
+			if (specs_old_ != specs_) {
+				log("specs changed: " + alias_);
+				specs_old_ = specs_;
+				discard_resources();
+			}
 
-	resources_created_ = true;
-	return S_OK;
-}
+			if (!resources_created_)
+				create_resources(p_render_target);
 
-void liblec::lecui::widgets_implementation::custom::discard_resources() {
-	log("discarding resources: " + page_ + ":" + name_);
-	resources_created_ = false;
-	if (specs_.on_discard_resources != nullptr)
-		specs_.on_discard_resources();
-}
+			rect_ = position(specs_.rect, specs_.resize, change_in_size.width, change_in_size.height);
+			rect_.left -= offset.x;
+			rect_.right -= offset.x;
+			rect_.top -= offset.y;
+			rect_.bottom -= offset.y;
 
-D2D1_RECT_F& liblec::lecui::widgets_implementation::custom::render(
-	ID2D1HwndRenderTarget* p_render_target,
-	const float& change_in_width, const float& change_in_height, float x_off_set, float y_off_set,
-	const bool& render) {
-	if (specs_old_ != specs_) {
-		log("specs changed: " + name_);
-		specs_old_ = specs_;
-		discard_resources();
+			if (render && (specs_.on_render != nullptr))
+				specs_.on_render(&rect_, is_enabled_, hit_, pressed_, selected_);
+
+			return rect_;
+		}
+
+		void widgets_impl::custom::on_click() {
+			if (specs_.on_click)
+				specs_.on_click();
+		}
+
+		widgets::specs::custom&
+			widgets_impl::custom::specs() {
+			return specs_;
+		}
 	}
-
-	if (!resources_created_)
-		create_resources(p_render_target);
-
-	rect_ = position(specs_.rect, specs_.resize, change_in_width, change_in_height);
-	rect_.left -= x_off_set;
-	rect_.right -= x_off_set;
-	rect_.top -= y_off_set;
-	rect_.bottom -= y_off_set;
-
-	if (render && (specs_.on_render != nullptr))
-		specs_.on_render(&rect_, is_enabled_, hit_, pressed_, selected_);
-
-	return rect_;
-}
-
-void liblec::lecui::widgets_implementation::custom::on_click() {
-	if (specs_.on_click)
-		specs_.on_click();
-}
-
-liblec::lecui::widgets::specs::custom&
-liblec::lecui::widgets_implementation::custom::specs() {
-	return specs_;
 }

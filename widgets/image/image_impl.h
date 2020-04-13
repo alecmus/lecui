@@ -1,5 +1,5 @@
 /*
-** image_impl.h - image widget interface
+** image_impl.h - image_impl interface
 **
 ** lecui user interface library
 ** Copyright (c) 2019 Alec T. Musasa (alecmus at live dot com)
@@ -18,38 +18,38 @@
 
 namespace liblec {
 	namespace lecui {
-		namespace widgets_implementation {
+		namespace widgets_impl {
 			class image : public widget {
 			public:
-				image(const std::string& page,
-					const std::string& name,
+				/// constructor and destructor
+				image(const std::string& page_alias,
+					const std::string& alias,
 					IWICImagingFactory* p_IWICFactory);
 				~image();
 
-				// virtual function override
-
-				std::string page();
-				std::string name();
-				virtual liblec::lecui::widgets_implementation::widget_type type();
-				HRESULT create_resources(ID2D1HwndRenderTarget* p_render_target);
-				void discard_resources();
+				/// virtual function overrides
+				widgets_impl::widget_type type() override;
+				HRESULT create_resources(ID2D1HwndRenderTarget* p_render_target) override;
+				void discard_resources() override;
 				D2D1_RECT_F& render(ID2D1HwndRenderTarget* p_render_target,
-					const float& change_in_width, const float& change_in_height, float x_off_set,
-					float y_off_set, const bool& render);
-				void on_click();
+					const D2D1_SIZE_F& change_in_size, const D2D1_POINT_2F& offset,
+					const bool& render) override;
+				void on_click() override;
 
-				// widget specific
-
-				liblec::lecui::widgets::specs::image& specs();
+				/// widget specific methods
+				widgets::specs::image& specs();
 
 			private:
+				/// Prevent the use of the default constructor.
 				image() :
 					image(std::string(), std::string(), nullptr) {}
 
+				/// Prevent copying an object of this class.
 				image(const image&);
 				image& operator=(const image&);
 
-				liblec::lecui::widgets::specs::image specs_, specs_old_;
+				/// Private variables
+				widgets::specs::image specs_, specs_old_;
 				ID2D1SolidColorBrush* p_brush_fill_;
 				ID2D1SolidColorBrush* p_brush_border_;
 				ID2D1SolidColorBrush* p_brush_hot_;

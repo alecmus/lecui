@@ -1,5 +1,5 @@
 /*
-** rectangle.cpp - rectangle implementation
+** rectangle.cpp - rectangle widget implementation
 **
 ** lecui user interface library
 ** Copyright (c) 2019 Alec T. Musasa (alecmus at live dot com)
@@ -14,49 +14,51 @@
 #include "../rectangle.h"
 #include "../../form_impl.h"
 
-bool liblec::lecui::widgets::specs::rectangle::operator==(const rectangle& param) {
-	return
-		// generic specs
-		widget::operator==(param) &&
-		
-		// widget specific specs
-		(color_border == param.color_border);
-}
+namespace liblec {
+	namespace lecui {
+		bool widgets::specs::rectangle::operator==(const rectangle& param) {
+			return
+				// generic specs
+				widget::operator==(param) &&
 
-bool liblec::lecui::widgets::specs::rectangle::operator!=(const rectangle& param) {
-	return !operator==(param);
-}
+				// widget specific specs
+				(color_border == param.color_border);
+		}
 
-class liblec::lecui::widgets::rectangle::rectangle::rectangle_impl {
-public:
-	rectangle_impl(liblec::lecui::containers::page& page) :
-		page_(page) {}
-	liblec::lecui::containers::page& page_;
-};
+		bool widgets::specs::rectangle::operator!=(const rectangle& param) {
+			return !operator==(param);
+		}
 
-liblec::lecui::widgets::rectangle::rectangle(liblec::lecui::containers::page& page) :
-	d_(*(new rectangle_impl(page))) {}
+		class widgets::rectangle::impl {
+		public:
+			impl(containers::page& page) :
+				page_(page) {}
+			containers::page& page_;
+		};
 
-liblec::lecui::widgets::rectangle::~rectangle() { delete& d_; }
+		widgets::rectangle::rectangle(containers::page& page) :
+			d_(*(new impl(page))) {}
 
-liblec::lecui::widgets::specs::rectangle&
-liblec::lecui::widgets::rectangle::add(const std::string& name) {
-	return d_.page_.d_page_.add_rectangle(name);
-}
+		widgets::rectangle::~rectangle() { delete& d_; }
 
-liblec::lecui::widgets::specs::rectangle&
-liblec::lecui::widgets::rectangle::specs(form& fm, const std::string& name) {
-	auto path = name;
-	auto idx = path.find("/");
+		widgets::specs::rectangle&
+			widgets::rectangle::add(const std::string& alias) {
+			return d_.page_.d_page_.add_rectangle(alias);
+		}
 
-	if (idx != std::string::npos) {
-		auto page_name = path.substr(0, idx);
-		path = path.substr(idx + 1);
-		auto& page = fm.d_.p_pages_.at(page_name);
-		// find the widget
-		auto results = fm.d_.find_widget(page, path);
-		return results.page.d_page_.get_rectangle(results.widget.name()).specs();
+		widgets::specs::rectangle&
+			widgets::rectangle::specs(form& fm, const std::string& path) {
+			const auto idx = path.find("/");
+
+			if (idx != std::string::npos) {
+				const auto page_alias = path.substr(0, idx);
+				const auto path_remaining = path.substr(idx + 1);
+				auto& page = fm.d_.p_pages_.at(page_alias);
+				auto results = fm.d_.find_widget(page, path_remaining);
+				return results.page.d_page_.get_rectangle(results.widget.alias()).specs();
+			}
+
+			throw std::invalid_argument("Invalid path");
+		}
 	}
-
-	throw std::exception("Invalid path");
 }

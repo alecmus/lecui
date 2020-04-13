@@ -1,5 +1,5 @@
 /*
-** toggle.cpp - toggle implementation
+** toggle.cpp - toggle widget implementation
 **
 ** lecui user interface library
 ** Copyright (c) 2019 Alec T. Musasa (alecmus at live dot com)
@@ -14,52 +14,52 @@
 #include "../toggle.h"
 #include "../../form_impl.h"
 
-bool liblec::lecui::widgets::specs::toggle::operator==(const toggle& param) {
-	return
-		// generic specs
-		widget::operator==(param) &&
+namespace liblec {
+	namespace lecui {
+		bool widgets::specs::toggle::operator==(const toggle& param) {
+			return
+				// generic specs
+				widget::operator==(param) &&
 
-		// widget specific specs
-		(text_off == param.text_off) &&
-		(color_on == param.color_on) &&
-		(color_off == param.color_off) &&
-		(on == param.on);
-}
+				// widget specific specs
+				(color_on == param.color_on) &&
+				(color_off == param.color_off);
+		}
 
-bool liblec::lecui::widgets::specs::toggle::operator!=(const toggle& param) {
-	return !operator==(param);
-}
+		bool widgets::specs::toggle::operator!=(const toggle& param) {
+			return !operator==(param);
+		}
 
-class liblec::lecui::widgets::toggle::toggle::toggle_impl {
-public:
-	toggle_impl(liblec::lecui::containers::page& page) :
-		page_(page) {}
-	liblec::lecui::containers::page& page_;
-};
+		class widgets::toggle::impl {
+		public:
+			impl(containers::page& page) :
+				page_(page) {}
+			containers::page& page_;
+		};
 
-liblec::lecui::widgets::toggle::toggle(liblec::lecui::containers::page& page) :
-	d_(*(new toggle_impl(page))) {}
+		widgets::toggle::toggle(containers::page& page) :
+			d_(*(new impl(page))) {}
 
-liblec::lecui::widgets::toggle::~toggle() { delete& d_; }
+		widgets::toggle::~toggle() { delete& d_; }
 
-liblec::lecui::widgets::specs::toggle&
-liblec::lecui::widgets::toggle::add(const std::string& name) {
-	return d_.page_.d_page_.add_toggle(name);
-}
+		widgets::specs::toggle&
+			widgets::toggle::add(const std::string& alias) {
+			return d_.page_.d_page_.add_toggle(alias);
+		}
 
-liblec::lecui::widgets::specs::toggle&
-liblec::lecui::widgets::toggle::specs(form& fm, const std::string& name) {
-	auto path = name;
-	auto idx = path.find("/");
+		widgets::specs::toggle&
+			widgets::toggle::specs(form& fm, const std::string& path) {
+			const auto idx = path.find("/");
 
-	if (idx != std::string::npos) {
-		auto page_name = path.substr(0, idx);
-		path = path.substr(idx + 1);
-		auto& page = fm.d_.p_pages_.at(page_name);
-		// find the widget
-		auto results = fm.d_.find_widget(page, path);
-		return results.page.d_page_.get_toggle(results.widget.name()).specs();
+			if (idx != std::string::npos) {
+				const auto page_alias = path.substr(0, idx);
+				const auto path_remaining = path.substr(idx + 1);
+				auto& page = fm.d_.p_pages_.at(page_alias);
+				auto results = fm.d_.find_widget(page, path_remaining);
+				return results.page.d_page_.get_toggle(results.widget.alias()).specs();
+			}
+
+			throw std::invalid_argument("Invalid path");
+		}
 	}
-
-	throw std::exception("Invalid path");
 }

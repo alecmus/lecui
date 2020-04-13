@@ -1,5 +1,5 @@
 /*
-** label.h - label interface
+** label.h - label widget interface
 **
 ** lecui user interface library
 ** Copyright (c) 2019 Alec T. Musasa (alecmus at live dot com)
@@ -27,10 +27,35 @@ namespace liblec {
 
 		namespace widgets {
 			namespace specs {
+				/// This widget supports formatting.
+				/// 
+				/// Start and end of XML formatting is marked by the 'text' tag: <text></text>
+				/// 
+				/// The supported attributes of the text are:
+				/// 
+				/// font		The font name
+				/// size		The font size, in points
+				/// bold		'true' or 'false'
+				/// italic		'true' or 'false'
+				/// underline	'true' or 'false'
+				/// color		0xAABBCCDD where r = AA, g = BB, b=CC, a=DD
+				/// 
+				/// e.g. "This is <text size='16.5' italic='true' color='0x0000FFFF'>good</text>.";
+				/// 
+				/// The above will display a label with the sentence:
+				/// 
+				/// This is good.
+				/// 
+				/// The word 'good' will be of size 16.5, italic and blue, while the rest
+				/// of the text will use the widget specifications.
+				/// 
+				
+				/// <summary>Label widget specifications.</summary>
+				/// <remarks>Recommended height with defaults is 20px.</remarks>
 				class label : public widget {
 				public:
 					label() { color_hot = { 0, 120, 170, 20 }; };
-					liblec::lecui::color color_hot_pressed = { 0, 120, 170, 40 };
+					color color_hot_pressed = { 0, 120, 170, 40 };
 					bool multiline = false;
 					bool center_h = false;
 					bool center_v = false;
@@ -40,20 +65,33 @@ namespace liblec {
 				};
 			}
 
+			/// <summary>Label widget.</summary>
 			class lecui_api label {
 			public:
-				label(liblec::lecui::containers::page& page);
+				label(containers::page& page);
 				~label();
 
-				liblec::lecui::widgets::specs::label&
-					add(const std::string& name);
-				static liblec::lecui::widgets::specs::label&
-					specs(form& fm,const std::string& name);
+				/// <summary>Add a label widget.</summary>
+				/// <param name="alias">The in-page unique alias, e.g. "caption".</param>
+				/// <returns>A reference to the label specifications.</returns>
+				/// <remarks>Throws on failure.</remarks>
+				[[nodiscard]] widgets::specs::label&
+					add(const std::string& alias);
+
+				/// <summary>Get the specifications of an existing label.</summary>
+				/// <param name="fm">The form containing the label.</param>
+				/// <param name="path">The full path to the widget, e.g.
+				/// "sample_page/sample_pane/caption".</param>
+				/// <returns>A reference to the label specifications.</returns>
+				/// <remarks>Throws on failure.</remarks>
+				[[nodiscard]] static widgets::specs::label&
+					specs(form& fm,const std::string& path);
 
 			private:
-				class label_impl;
-				label_impl& d_;
+				class impl;
+				impl& d_;
 
+				// Default constructor and copying an object of this class are not allowed
 				label();
 				label(const label&);
 				label& operator=(const label&);

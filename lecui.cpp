@@ -40,45 +40,49 @@ BOOL APIENTRY DllMain(HMODULE hModule,
 	return TRUE;
 }
 
-std::string liblec::lecui::version() {
-	return lecuiname + std::string(" ") + lecuiversion + std::string(" ") + lecuidate;
-}
+namespace liblec {
+	namespace lecui {
+		std::string version() {
+			return lecuiname + std::string(" ") + lecuiversion + std::string(" ") + lecuidate;
+		}
 
-void liblec::lecui::rect::place(const rect& rect_reference,
-	const float& perc_h, const float& perc_v) {
-	pos_rect(rect_reference, *this, perc_h, perc_v);
-}
+		void rect::place(const rect& rect_reference,
+			const float& perc_h, const float& perc_v) {
+			pos_rect(rect_reference, *this, perc_h, perc_v);
+		}
 
-bool liblec::lecui::rect::operator==(const rect& param) {
-	return
-		(left == param.left) &&
-		(right == param.right) &&
-		(top == param.top) &&
-		(bottom == param.bottom);
-}
+		bool rect::operator==(const rect& param) {
+			return
+				(left == param.left) &&
+				(right == param.right) &&
+				(top == param.top) &&
+				(bottom == param.bottom);
+		}
 
-bool liblec::lecui::rect::operator!=(const rect& param) {
-	return !operator==(param);
-}
+		bool rect::operator!=(const rect& param) {
+			return !operator==(param);
+		}
 
-bool liblec::lecui::color::operator==(const color& param) {
-	return
-		(red == param.red) &&
-		(green == param.green) &&
-		(blue == param.blue) &&
-		(alpha == param.alpha);
-}
+		bool color::operator==(const color& param) {
+			return
+				(red == param.red) &&
+				(green == param.green) &&
+				(blue == param.blue) &&
+				(alpha == param.alpha);
+		}
 
-bool liblec::lecui::color::operator!=(const color& param) {
-	return !operator==(param);
-}
+		bool color::operator!=(const color& param) {
+			return !operator==(param);
+		}
 
-bool liblec::lecui::list_column::operator==(const list_column& param) {
-	return
-		(name == param.name) &&
-		(width == param.width);
-}
+		bool list_column::operator==(const list_column& param) {
+			return
+				(name == param.name) &&
+				(width == param.width);
+		}
 
-bool liblec::lecui::list_column::operator!=(const list_column& param) {
-	return !operator==(param);
+		bool list_column::operator!=(const list_column& param) {
+			return !operator==(param);
+		}
+	}
 }

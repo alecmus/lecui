@@ -1,5 +1,5 @@
 /*
-** image.h - image interface
+** image.h - image widget interface
 **
 ** lecui user interface library
 ** Copyright (c) 2019 Alec T. Musasa (alecmus at live dot com)
@@ -27,6 +27,7 @@ namespace liblec {
 
 		namespace widgets {
 			namespace specs {
+				/// <summary>Image widget specifications.</summary>
 				class image : public widget {
 				public:
 					image() {
@@ -36,7 +37,7 @@ namespace liblec {
 					float border = .5f;
 					float corner_radius_x = .0f;
 					float corner_radius_y = .0f;
-					liblec::lecui::color color_border = { 150, 150, 150, 0 };
+					color color_border = { 150, 150, 150, 0 };
 					std::string file;
 					int png_resource = 0;
 
@@ -45,20 +46,33 @@ namespace liblec {
 				};
 			}
 
+			/// <summary>Image widget.</summary>
 			class lecui_api image {
 			public:
-				image(liblec::lecui::containers::page& page);
+				image(containers::page& page);
 				~image();
 
-				liblec::lecui::widgets::specs::image&
-					add(const std::string& name);
-				static liblec::lecui::widgets::specs::image&
-					specs(form& fm, const std::string& name);
+				/// <summary>Add an image widget.</summary>
+				/// <param name="alias">The in-page unique alias, e.g. "avatar".</param>
+				/// <returns>A reference to the image specifications.</returns>
+				/// <remarks>Throws on failure.</remarks>
+				[[nodiscard]] widgets::specs::image&
+					add(const std::string& alias);
+
+				/// <summary>Get the specifications of an existing image.</summary>
+				/// <param name="fm">The form containing the image.</param>
+				/// <param name="path">The full path to the widget, e.g.
+				/// "sample_page/sample_tab_control/tab_three/pane_two/avatar".</param>
+				/// <returns>A reference to the image specifications.</returns>
+				/// <remarks>Throws on failure.</remarks>
+				[[nodiscard]] static widgets::specs::image&
+					specs(form& fm, const std::string& path);
 
 			private:
-				class image_impl;
-				image_impl& d_;
+				class impl;
+				impl& d_;
 
+				// Default constructor and copying an object of this class are not allowed
 				image();
 				image(const image&);
 				image& operator=(const image&);

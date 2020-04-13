@@ -1,5 +1,5 @@
 /*
-** rectangle.h - rectangle interface
+** rectangle.h - rectangle widget interface
 **
 ** lecui user interface library
 ** Copyright (c) 2019 Alec T. Musasa (alecmus at live dot com)
@@ -27,6 +27,7 @@ namespace liblec {
 
 		namespace widgets {
 			namespace specs {
+				/// <summary>Rectangle widget specifications.</summary>
 				class rectangle : public widget {
 				public:
 					rectangle() {
@@ -36,27 +37,40 @@ namespace liblec {
 					float border = .5f;
 					float corner_radius_x = .0f;
 					float corner_radius_y = .0f;
-					liblec::lecui::color color_border = { 150, 150, 150, 255 };
+					color color_border = { 150, 150, 150, 255 };
 
 					bool operator==(const rectangle&);
 					bool operator!=(const rectangle&);
 				};
 			}
 
+			/// <summary>Rectangle widget.</summary>
 			class lecui_api rectangle {
 			public:
-				rectangle(liblec::lecui::containers::page& page);
+				rectangle(containers::page& page);
 				~rectangle();
 
-				liblec::lecui::widgets::specs::rectangle&
-					add(const std::string& name);
-				static liblec::lecui::widgets::specs::rectangle&
-					specs(form& fm, const std::string& name);
+				/// <summary>Add a rectangle widget.</summary>
+				/// <param name="alias">The in-page unique alias, e.g. "border_rect".</param>
+				/// <returns>A reference to the rectangle specifications.</returns>
+				/// <remarks>Throws on failure.</remarks>
+				[[nodiscard]] widgets::specs::rectangle&
+					add(const std::string& alias);
+
+				/// <summary>Get the specifications of an existing rectangle.</summary>
+				/// <param name="fm">The form containing the rectangle.</param>
+				/// <param name="path">The full path to the widget, e.g.
+				/// "sample_page/sample_tab_control/tab_three/border_rect".</param>
+				/// <returns>A reference to the rectangle specifications.</returns>
+				/// <remarks>Throws on failure.</remarks>
+				[[nodiscard]] static widgets::specs::rectangle&
+					specs(form& fm, const std::string& path);
 
 			private:
-				class rectangle_impl;
-				rectangle_impl& d_;
+				class impl;
+				impl& d_;
 
+				// Default constructor and copying an object of this class are not allowed
 				rectangle();
 				rectangle(const rectangle&);
 				rectangle& operator=(const rectangle&);

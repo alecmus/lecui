@@ -1,5 +1,5 @@
 /*
-** rectangle_impl.h - rectangle widget interface
+** rectangle_impl.h - rectangle_impl interface
 **
 ** lecui user interface library
 ** Copyright (c) 2019 Alec T. Musasa (alecmus at live dot com)
@@ -18,47 +18,54 @@
 
 namespace liblec {
 	namespace lecui {
-		namespace widgets_implementation {
+		namespace widgets_impl {
 			class rectangle : public widget {
 			public:
-				rectangle(const std::string& page,
-					const std::string& name);
+				/// <summary>
+				/// Get the alias of the special rectangle used with pages. This rectangle is
+				/// important as it keeps track of the page dimensions, and makes the scroll
+				/// bars work.
+				/// </summary>
+				/// <returns>The special alias. No other widget should have this alias.</returns>
+				static std::string page_rect_alias();
+
+				/// constructor and destructor
+				rectangle(const std::string& page_alias,
+					const std::string& alias);
 				~rectangle();
 
-				// virtual function override
-
-				std::string page();
-				std::string name();
-				virtual liblec::lecui::widgets_implementation::widget_type type();
-				HRESULT create_resources(ID2D1HwndRenderTarget* p_render_target);
-				void discard_resources();
+				/// virtual function overrides
+				widgets_impl::widget_type type() override;
+				HRESULT create_resources(ID2D1HwndRenderTarget* p_render_target) override;
+				void discard_resources() override;
 				D2D1_RECT_F& render(ID2D1HwndRenderTarget* p_render_target,
-					const float& change_in_width, const float& change_in_height, float x_off_set,
-					float y_off_set, const bool& render);
-				void on_click();
+					const D2D1_SIZE_F& change_in_size, const D2D1_POINT_2F& offset,
+					const bool& render) override;
+				void on_click() override;
 				bool contains(const D2D1_POINT_2F& point) override;
 
-				// widget specific
-
-				liblec::lecui::widgets::specs::rectangle& specs();
+				/// widget specific methods
+				widgets::specs::rectangle& specs();
 
 			private:
+				/// Prevent the use of the default constructor.
 				rectangle() :
 					rectangle(std::string(), std::string()) {}
 
+				/// Prevent copying an object of this class.
 				rectangle(const rectangle&);
 				rectangle& operator=(const rectangle&);
 
-				liblec::lecui::widgets::specs::rectangle specs_, specs_old_;
+				/// Private variables
+				widgets::specs::rectangle specs_;
+				widgets::specs::rectangle specs_old_;
 				ID2D1SolidColorBrush* p_brush_fill_;
 				ID2D1SolidColorBrush* p_brush_border_;
 				ID2D1SolidColorBrush* p_brush_hot_;
 				ID2D1SolidColorBrush* p_brush_disabled_;
 				ID2D1SolidColorBrush* p_brush_selected_;
-
-				float x_off_set_, y_off_set_;
-				float x_off_set_og_, y_off_set_og_;
-				bool og_off_set_captured_;
+				D2D1_POINT_2F offset_, offset_og_;
+				bool og_offset_captured_;
 			};
 		}
 	}

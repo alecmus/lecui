@@ -23,35 +23,33 @@ namespace liblec {
 			}
 		}
 
-		namespace widgets_implementation {
+		namespace widgets_impl {
 			class minimize_button : public widget {
 			public:
 				minimize_button();
 				~minimize_button();
 
-				// virtual function override
-
-				std::string page();
-				std::string name();
-				virtual liblec::lecui::widgets_implementation::widget_type type();
-				HRESULT create_resources(ID2D1HwndRenderTarget* p_render_target);
-				void discard_resources();
+				/// virtual function overrides
+				widgets_impl::widget_type type() override;
+				HRESULT create_resources(ID2D1HwndRenderTarget* p_render_target) override;
+				void discard_resources() override;
 				D2D1_RECT_F& render(ID2D1HwndRenderTarget* p_render_target,
-					const float& change_in_width, const float& change_in_height, float x_off_set,
-					float y_off_set, const bool& render);
-				void on_click();
+					const D2D1_SIZE_F& change_in_size, const D2D1_POINT_2F& offset,
+					const bool& render) override;
+				void on_click() override;
 
-				// widget specific
-
+				/// widget specific methods
 				void set_hwnd(HWND hWnd);
-				liblec::lecui::widgets::specs::minimize_button& specs();
+				widgets::specs::minimize_button& specs();
 
 			private:
+				/// Prevent copying an object of this class.
 				minimize_button(const minimize_button&);
 				minimize_button& operator=(const minimize_button&);
 
+				/// Private variables
 				HWND hWnd_;
-				liblec::lecui::widgets::specs::minimize_button specs_;
+				widgets::specs::minimize_button specs_;
 				ID2D1SolidColorBrush* p_brush_;
 				ID2D1SolidColorBrush* p_brush_hot_;
 				ID2D1SolidColorBrush* p_brush_disabled_;

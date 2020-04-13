@@ -1,5 +1,5 @@
 /*
-** combo.h - combo interface
+** combo.h - combo widget interface
 **
 ** lecui user interface library
 ** Copyright (c) 2019 Alec T. Musasa (alecmus at live dot com)
@@ -32,11 +32,11 @@ namespace liblec {
 					combo() {
 						color_fill = { 255, 255, 255, 0 };
 						color_hot = { 200, 200, 200, 50 }; }
-					liblec::lecui::color color_border = { 0, 120, 170, 255 };
-					liblec::lecui::color color_dropdown_hot = { 255, 255, 255, 255 };
-					liblec::lecui::color color_menu = { 255, 255, 255, 255 };
-					liblec::lecui::color color_menu_hot = { 200, 230, 255, 255 };
-					liblec::lecui::color color_menu_selected = { 0, 120, 170, 255 };
+					color color_border = { 0, 120, 170, 255 };
+					color color_dropdown_hot = { 255, 255, 255, 255 };
+					color color_menu = { 255, 255, 255, 255 };
+					color color_menu_hot = { 200, 230, 255, 255 };
+					color color_menu_selected = { 0, 120, 170, 255 };
 					float border = .5f;
 					float corner_radius_x = 2.f;
 					float corner_radius_y = 2.f;
@@ -51,13 +51,13 @@ namespace liblec {
 
 			class lecui_api combo {
 			public:
-				combo(liblec::lecui::containers::page& page);
+				combo(containers::page& page);
 				~combo();
 
-				liblec::lecui::widgets::specs::combo&
-					add(const std::string& name);
-				static liblec::lecui::widgets::specs::combo&
-					specs(form& fm, const std::string& name);
+				widgets::specs::combo&
+					add(const std::string& alias);
+				static widgets::specs::combo&
+					specs(form& fm, const std::string& path);
 
 			private:
 				class combo_impl;

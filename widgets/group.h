@@ -1,5 +1,5 @@
 /*
-** group.h - group interface
+** group.h - group widget interface
 **
 ** lecui user interface library
 ** Copyright (c) 2019 Alec T. Musasa (alecmus at live dot com)
@@ -27,14 +27,14 @@ namespace liblec {
 
 		namespace widgets {
 			namespace specs {
+				/// <summary>Group widget specifications.</summary>
 				class group : public widget {
 				public:
 					group() { color_fill.alpha = 25; }
 
-					bool is_filled = true;
-					liblec::lecui::color color_border = { 0, 120, 170, 100 };
+					color color_border = { 0, 120, 170, 100 };
 					float border = .5f;
-					long margin = 5;
+					float margin = 5.f;
 					float corner_radius_x = 5.f;
 					float corner_radius_y = 5.f;
 					std::vector<std::string> widgets;
@@ -44,20 +44,33 @@ namespace liblec {
 				};
 			}
 
+			/// <summary>Group widget.</summary>
 			class lecui_api group {
 			public:
-				group(liblec::lecui::containers::page& page);
+				group(containers::page& page);
 				~group();
 
-				liblec::lecui::widgets::specs::group&
-					add(const std::string& name);
-				static liblec::lecui::widgets::specs::group&
-					specs(form& fm, const std::string& name);
+				/// <summary>Add a group widget.</summary>
+				/// <param name="alias">The in-page unique alias, e.g. "left_group".</param>
+				/// <returns>A reference to the group specifications.</returns>
+				/// <remarks>Throws on failure.</remarks>
+				[[nodiscard]] widgets::specs::group&
+					add(const std::string& alias);
+
+				/// <summary>Get the specifications of an existing group.</summary>
+				/// <param name="fm">The form containing the group.</param>
+				/// <param name="path">The full path to the widget, e.g.
+				/// "sample_page/left_group".</param>
+				/// <returns>A reference to the group specifications.</returns>
+				/// <remarks>Throws on failure.</remarks>
+				[[nodiscard]] static widgets::specs::group&
+					specs(form& fm, const std::string& path);
 
 			private:
-				class group_impl;
-				group_impl& d_;
+				class impl;
+				impl& d_;
 
+				// Default constructor and copying an object of this class are not allowed
 				group();
 				group(const group&);
 				group& operator=(const group&);

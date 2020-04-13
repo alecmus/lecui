@@ -14,48 +14,52 @@
 #include "widgets/timer.h"
 #include "form_impl.h"
 
-class liblec::lecui::widgets::timer::timer_impl {
-public:
-	timer_impl(form& fm) :
-		fm_(fm) {}
-	form& fm_;
-};
+namespace liblec {
+	namespace lecui {
+		class widgets::timer::impl {
+		public:
+			impl(form& fm) :
+				fm_(fm) {}
+			form& fm_;
+		};
 
-liblec::lecui::widgets::timer::timer(form& fm) :
-	d_(*new timer_impl(fm)) {}
+		widgets::timer::timer(form& fm) :
+			d_(*new impl(fm)) {}
 
-liblec::lecui::widgets::timer::~timer() { delete& d_; }
+		widgets::timer::~timer() { delete& d_; }
 
-void liblec::lecui::widgets::timer::add(const std::string& name,
-	const unsigned long& milliseconds, std::function<void()> on_timer) {
-	if (running(name)) return;
+		void widgets::timer::add(const std::string& alias,
+			const unsigned long& milliseconds, std::function<void()> on_timer) {
+			if (running(alias)) return;
 
-	int unique_id = (d_.fm_.d_.timers_.find(name) == d_.fm_.d_.timers_.end()) ?
-		d_.fm_.d_.make_unique_id() : d_.fm_.d_.timers_.at(name).unique_id;
+			int unique_id = (d_.fm_.d_.timers_.find(alias) == d_.fm_.d_.timers_.end()) ?
+				d_.fm_.d_.make_unique_id() : d_.fm_.d_.timers_.at(alias).unique_id;
 
-	liblec::lecui::form::form_impl::timer timer_;
-	timer_.milliseconds = milliseconds;
-	timer_.on_timer = on_timer;
-	timer_.unique_id = unique_id;
+			form::impl::timer timer_;
+			timer_.milliseconds = milliseconds;
+			timer_.on_timer = on_timer;
+			timer_.unique_id = unique_id;
 
-	// insert to timer map
-	d_.fm_.d_.timers_[name] = timer_;
+			// insert to timer map
+			d_.fm_.d_.timers_[alias] = timer_;
 
-	if (IsWindow(d_.fm_.d_.hWnd_))
-		d_.fm_.d_.start_timer(name);
-	else
-		d_.fm_.d_.timers_.at(name).running = false;	// timer will be started on window creation
-}
+			if (IsWindow(d_.fm_.d_.hWnd_))
+				d_.fm_.d_.start_timer(alias);
+			else
+				d_.fm_.d_.timers_.at(alias).running = false;	// timer will be started on form creation
+		}
 
-bool liblec::lecui::widgets::timer::running(const std::string& name) {
-	return (d_.fm_.d_.timers_.find(name) == d_.fm_.d_.timers_.end()) ?
-		false : d_.fm_.d_.timers_.at(name).running;
-}
+		bool widgets::timer::running(const std::string& alias) {
+			return (d_.fm_.d_.timers_.find(alias) == d_.fm_.d_.timers_.end()) ?
+				false : d_.fm_.d_.timers_.at(alias).running;
+		}
 
-void liblec::lecui::widgets::timer::stop(const std::string& name) {
-	if (d_.fm_.d_.timers_.find(name) != d_.fm_.d_.timers_.end()) {
-		log("stopping timer: " + name);
-		KillTimer(d_.fm_.d_.hWnd_, (UINT_PTR)d_.fm_.d_.timers_.at(name).unique_id);
-		d_.fm_.d_.timers_.at(name).running = false;
+		void widgets::timer::stop(const std::string& alias) {
+			if (d_.fm_.d_.timers_.find(alias) != d_.fm_.d_.timers_.end()) {
+				log("stopping timer: " + alias);
+				KillTimer(d_.fm_.d_.hWnd_, (UINT_PTR)d_.fm_.d_.timers_.at(alias).unique_id);
+				d_.fm_.d_.timers_.at(alias).running = false;
+			}
+		}
 	}
 }

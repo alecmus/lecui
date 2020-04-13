@@ -1,5 +1,5 @@
 /*
-** button.cpp - button implementation
+** button.cpp - button widget implementation
 **
 ** lecui user interface library
 ** Copyright (c) 2019 Alec T. Musasa (alecmus at live dot com)
@@ -14,49 +14,51 @@
 #include "../button.h"
 #include "../../form_impl.h"
 
-bool liblec::lecui::widgets::specs::button::operator==(const button& param) {
-	// generic specs
-	return
-		widget::operator==(param) &&
+namespace liblec {
+	namespace lecui {
+		bool widgets::specs::button::operator==(const button& param) {
+			return
+				// generic specs
+				widget::operator==(param) &&
 
-		// widget specific specs
-		(color_border == param.color_border);
-}
+				// widget specific specs
+				(color_border == param.color_border);
+		}
 
-bool liblec::lecui::widgets::specs::button::operator!=(const button& param) {
-	return !operator==(param);
-}
+		bool widgets::specs::button::operator!=(const button& param) {
+			return !operator==(param);
+		}
 
-class liblec::lecui::widgets::button::button::button_impl {
-public:
-	button_impl(liblec::lecui::containers::page& page) :
-		page_(page) {}
-	liblec::lecui::containers::page& page_;
-};
+		class widgets::button::impl {
+		public:
+			impl(containers::page& page) :
+				page_(page) {}
+			containers::page& page_;
+		};
 
-liblec::lecui::widgets::button::button(liblec::lecui::containers::page& page) :
-	d_(*(new button_impl(page))) {}
+		widgets::button::button(containers::page& page) :
+			d_(*(new impl(page))) {}
 
-liblec::lecui::widgets::button::~button() { delete& d_; }
+		widgets::button::~button() { delete& d_; }
 
-liblec::lecui::widgets::specs::button&
-liblec::lecui::widgets::button::add(const std::string& name) {
-	return d_.page_.d_page_.add_button(name);
-}
+		widgets::specs::button&
+			widgets::button::add(const std::string& alias) {
+			return d_.page_.d_page_.add_button(alias);
+		}
 
-liblec::lecui::widgets::specs::button&
-liblec::lecui::widgets::button::specs(form& fm, const std::string& name) {
-	auto path = name;
-	auto idx = path.find("/");
+		widgets::specs::button&
+			widgets::button::specs(form& fm, const std::string& path) {
+			const auto idx = path.find("/");
 
-	if (idx != std::string::npos) {
-		auto page_name = path.substr(0, idx);
-		path = path.substr(idx + 1);
-		auto& page = fm.d_.p_pages_.at(page_name);
-		// find the widget
-		auto results = fm.d_.find_widget(page, path);
-		return results.page.d_page_.get_button(results.widget.name()).specs();
+			if (idx != std::string::npos) {
+				const auto page_alias = path.substr(0, idx);
+				const auto path_remaining = path.substr(idx + 1);
+				auto& page = fm.d_.p_pages_.at(page_alias);
+				auto results = fm.d_.find_widget(page, path_remaining);
+				return results.page.d_page_.get_button(results.widget.alias()).specs();
+			}
+
+			throw std::invalid_argument("Invalid path");
+		}
 	}
-
-	throw std::exception("Invalid path");
 }

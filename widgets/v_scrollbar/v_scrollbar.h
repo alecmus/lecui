@@ -23,44 +23,47 @@ namespace liblec {
 			}
 		}
 
-		namespace widgets_implementation {
+		namespace widgets_impl {
 			class v_scrollbar : public widget {
 			public:
-				v_scrollbar(const std::string& page);
+				float y_displacement_previous_;
+				float y_displacement_;
+				float y_off_set_;
+				float max_displacement_top_;
+				float max_displacement_bottom_;
+				bool force_translate_;
+
+				/// constructor and destructor
+				v_scrollbar(const std::string& page_alias);
 				~v_scrollbar();
 
-				// virtual function override
-
-				std::string page();
-				std::string name();
-				virtual liblec::lecui::widgets_implementation::widget_type type();
-				HRESULT create_resources(ID2D1HwndRenderTarget* p_render_target);
-				void discard_resources();
+				/// virtual function overrides
+				widgets_impl::widget_type type() override;
+				HRESULT create_resources(ID2D1HwndRenderTarget* p_render_target) override;
+				void discard_resources() override;
 				D2D1_RECT_F& render(ID2D1HwndRenderTarget* p_render_target,
-					const float& change_in_width, const float& change_in_height, float x_off_set,
-					float y_off_set, const bool& render);
-				void on_click();
+					const D2D1_SIZE_F& change_in_size, const D2D1_POINT_2F& offset,
+					const bool& render) override;
+				void on_click() override;
 
-				// widget specific
-
-				liblec::lecui::widgets::specs::v_scrollbar& specs();
+				/// widget specific methods
+				widgets::specs::v_scrollbar& specs();
 				void max_displacement(float& top, float& bottom);
 				bool translate_y_displacement(const float& y_displacement,
 					float& y_displacement_translated, bool force);
 				void setup(const D2D1_RECT_F& rectA, const D2D1_RECT_F& rectB);
 
-				float y_displacement_previous_, y_displacement_, y_off_set_;
-				float max_displacement_top_, max_displacement_bottom_;
-				bool force_translate_;
-
 			private:
+				/// Prevent the use of the default constructor.
 				v_scrollbar() :
 					v_scrollbar(std::string()) {}
 
+				/// Prevent copying an object of this class.
 				v_scrollbar(const v_scrollbar&);
 				v_scrollbar& operator=(const v_scrollbar&);
 
-				liblec::lecui::widgets::specs::v_scrollbar specs_;
+				/// Private variables
+				widgets::specs::v_scrollbar specs_;
 				ID2D1SolidColorBrush* p_brush_;
 				ID2D1SolidColorBrush* p_brush_border_;
 				ID2D1SolidColorBrush* p_brush_hot_;
