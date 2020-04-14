@@ -137,12 +137,12 @@ namespace liblec {
 			return combos_.at(alias).specs();
 		}
 
-		widgets::list_specs&
-			containers::page::impl::add_list(const std::string& alias) {
-			lists_.try_emplace(alias, alias_, alias, p_directwrite_factory_);
-			widgets_.emplace(alias, lists_.at(alias));
+		widgets::table_specs&
+			containers::page::impl::add_table(const std::string& alias) {
+			tables_.try_emplace(alias, alias_, alias, p_directwrite_factory_);
+			widgets_.emplace(alias, tables_.at(alias));
 			widgets_order_.emplace_back(alias);
-			return lists_.at(alias).specs();
+			return tables_.at(alias).specs();
 		}
 
 		widgets::custom_specs&
@@ -236,8 +236,8 @@ namespace liblec {
 		widgets_impl::combo&
 			containers::page::impl::get_combo(const std::string& alias) { return combos_.at(alias); }
 
-		widgets_impl::list&
-			containers::page::impl::get_list(const std::string& alias) { return lists_.at(alias); }
+		widgets_impl::table&
+			containers::page::impl::get_table(const std::string& alias) { return tables_.at(alias); }
 
 		widgets_impl::custom&
 			containers::page::impl::get_custom(const std::string& alias) { return customs_.at(alias); }
@@ -299,8 +299,8 @@ namespace liblec {
 				case widgets_impl::widget_type::combo:
 					combos_.erase(alias);
 					break;
-				case widgets_impl::widget_type::list:
-					lists_.erase(alias);
+				case widgets_impl::widget_type::table:
+					tables_.erase(alias);
 					break;
 				case widgets_impl::widget_type::custom:
 					customs_.erase(alias);

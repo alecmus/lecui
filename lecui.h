@@ -111,12 +111,12 @@ namespace liblec {
 			std::string title = "Save File";
 		};
 
-		struct list_column {
+		struct table_column {
 			std::string name;
 			unsigned short width = 80;
 
-			bool operator==(const list_column&);
-			bool operator!=(const list_column&);
+			bool operator==(const table_column&);
+			bool operator!=(const table_column&);
 		};
 	}
 }

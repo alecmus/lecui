@@ -1,5 +1,5 @@
 /*
-** list_impl.cpp - list_impl implementation
+** table_impl.cpp - table_impl implementation
 **
 ** lecui user interface library
 ** Copyright (c) 2019 Alec T. Musasa (alecmus at live dot com)
@@ -11,11 +11,11 @@
 ** for full license details.
 */
 
-#include "list_impl.h"
+#include "table_impl.h"
 
 namespace liblec {
 	namespace lecui {
-		widgets_impl::list::list(const std::string& page_alias,
+		widgets_impl::table::table(const std::string& page_alias,
 			const std::string& alias,
 			IDWriteFactory* p_directwrite_factory) :
 			p_brush_(nullptr),
@@ -74,14 +74,14 @@ namespace liblec {
 			color_scrollbar_border_ = bar.color_scrollbar_border;
 		}
 
-		widgets_impl::list::~list() { discard_resources(); }
+		widgets_impl::table::~table() { discard_resources(); }
 
 		widgets_impl::widget_type
-			widgets_impl::list::type() {
-			return lecui::widgets_impl::widget_type::list;
+			widgets_impl::table::type() {
+			return lecui::widgets_impl::widget_type::table;
 		}
 
-		HRESULT widgets_impl::list::create_resources(
+		HRESULT widgets_impl::table::create_resources(
 			ID2D1HwndRenderTarget* p_render_target) {
 			log("creating resources:   " + page_alias_ + ":" + alias_);
 			specs_old_ = specs_;
@@ -171,7 +171,7 @@ namespace liblec {
 			return hr;
 		}
 
-		void widgets_impl::list::discard_resources() {
+		void widgets_impl::table::discard_resources() {
 			log("discarding resources: " + page_alias_ + ":" + alias_);
 			resources_created_ = false;
 			safe_release(&p_brush_);
@@ -197,7 +197,7 @@ namespace liblec {
 		}
 
 		D2D1_RECT_F&
-			widgets_impl::list::render(ID2D1HwndRenderTarget* p_render_target,
+			widgets_impl::table::render(ID2D1HwndRenderTarget* p_render_target,
 				const D2D1_SIZE_F& change_in_size, const D2D1_POINT_2F& offset, const bool& render) {
 			if (specs_old_ != specs_) {
 				log("specs changed: " + alias_);
@@ -282,7 +282,7 @@ namespace liblec {
 
 			float table_width = 0.f;
 			for (const auto& it : specs_.columns) table_width += static_cast<float>(it.width);
-			float table_height = row_height_ * specs_.table.size();
+			float table_height = row_height_ * specs_.data.size();
 
 			// step6: define rectC_ for scroll bars
 
@@ -445,7 +445,7 @@ namespace liblec {
 				auto_clip clip(render, p_render_target, rectB_, 0.f);
 
 				// step11b: figure out which rows are hidden from view and exclude them from the rendering
-				// this gives a major performance boost when dealing with very large lists
+				// this gives a major performance boost when dealing with very large tables
 				unsigned long hidden_above = (rectB_.top > rectA_.top) ?
 					(static_cast<unsigned long>((rectB_.top - rectA_.top) / row_height_)) : 0;
 				unsigned long hidden_below = (rectA_.bottom > rectB_.bottom) ?
@@ -457,7 +457,7 @@ namespace liblec {
 					rect_row.bottom = rect_row.top + row_height_ * (hidden_above);
 
 					for (unsigned long row_number = hidden_above;
-						row_number < (specs_.table.size() - hidden_below); row_number++) {
+						row_number < (specs_.data.size() - hidden_below); row_number++) {
 						rect_row.top = rect_row.bottom;
 						rect_row.bottom = rect_row.top + row_height_;
 
@@ -543,7 +543,7 @@ namespace liblec {
 							rect_text.right -= margin_;
 
 							try {
-								std::string text = specs_.table.at(row_number).at(it.name);
+								std::string text = specs_.data.at(row_number).at(it.name);
 
 								// create a text layout
 								HRESULT hr = p_directwrite_factory_->CreateTextLayout(
@@ -702,7 +702,7 @@ namespace liblec {
 			return rect_;
 		}
 
-		void widgets_impl::list::on_click() {
+		void widgets_impl::table::on_click() {
 			if (!h_scrollbar_pressed_ && !v_scrollbar_pressed_) {
 				if (book_on_selection_) {
 					if (specs_.on_selection)
@@ -733,8 +733,8 @@ namespace liblec {
 							if (std::find(selected_previous.begin(), selected_previous.end(),
 								it.first) == selected_previous.end()) {
 								// add this row to the current selection, using the
-								// order in which items appear in the list
-								for (unsigned long row_number = 0; row_number < specs_.table.size();
+								// order in which items appear in the table
+								for (unsigned long row_number = 0; row_number < specs_.data.size();
 									row_number++) {
 									if (row_number == it.first)
 										specs_.selected.push_back(row_number);
@@ -790,7 +790,7 @@ namespace liblec {
 			}
 		}
 
-		bool widgets_impl::list::on_mousewheel(float units) {
+		bool widgets_impl::table::on_mousewheel(float units) {
 			float adjustment = units * row_height_;
 
 			v_displacement_ += adjustment;
@@ -798,7 +798,7 @@ namespace liblec {
 			return true;
 		}
 
-		bool widgets_impl::list::on_keydown(WPARAM wParam) {
+		bool widgets_impl::table::on_keydown(WPARAM wParam) {
 			float adjustment = 0.f;
 
 			switch (wParam) {
@@ -820,7 +820,7 @@ namespace liblec {
 				}
 				else {
 					// move last selection one unit (unless it's at the beginning or the end)
-					long new_selection = smallest(static_cast<long>(specs_.table.size() - 1),
+					long new_selection = smallest(static_cast<long>(specs_.data.size() - 1),
 						largest(0L, static_cast<long>(last_selected_) -
 							static_cast<long>(adjustment / row_height_)));
 
@@ -857,7 +857,7 @@ namespace liblec {
 				return false;
 		}
 
-		bool widgets_impl::list::hit(const bool& hit) {
+		bool widgets_impl::table::hit(const bool& hit) {
 			if (is_static_ || hit == hit_) {
 				if (hit || pressed_)
 					return true;
@@ -869,14 +869,14 @@ namespace liblec {
 			return true;
 		}
 
-		widgets::list_specs&
-			widgets_impl::list::specs() { return specs_; }
+		widgets::table_specs&
+			widgets_impl::table::specs() { return specs_; }
 
-		void widgets_impl::list::on_selection() {
+		void widgets_impl::table::on_selection() {
 			if (specs_.on_selection) {
 				std::vector<std::map<std::string, std::string>> var;
 				for (const auto& it : specs_.selected) {
-					try { var.push_back(specs_.table.at(it)); }
+					try { var.push_back(specs_.data.at(it)); }
 					catch (const std::exception&) {}
 				}
 

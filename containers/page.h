@@ -27,7 +27,7 @@ namespace liblec {
 			class button;
 			class toggle;
 			class combo;
-			class list;
+			class table;
 			class custom;
 			class image;
 			class progress_indicator;
@@ -92,7 +92,7 @@ namespace liblec {
 				friend widgets::button;
 				friend widgets::toggle;
 				friend widgets::combo;
-				friend widgets::list;
+				friend widgets::table;
 				friend widgets::custom;
 				friend widgets::image;
 				friend widgets::progress_indicator;

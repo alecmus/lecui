@@ -75,13 +75,13 @@ namespace liblec {
 			return !operator==(param);
 		}
 
-		bool list_column::operator==(const list_column& param) {
+		bool table_column::operator==(const table_column& param) {
 			return
 				(name == param.name) &&
 				(width == param.width);
 		}
 
-		bool list_column::operator!=(const list_column& param) {
+		bool table_column::operator!=(const table_column& param) {
 			return !operator==(param);
 		}
 	}

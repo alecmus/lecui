@@ -26,7 +26,7 @@
 #include "../../widgets/button/button_impl.h"
 #include "../../widgets/toggle/toggle_impl.h"
 #include "../../widgets/combo/combo_impl.h"
-#include "../../widgets/list/list_impl.h"
+#include "../../widgets/table/table_impl.h"
 #include "../../widgets/custom/custom_impl.h"
 #include "../../widgets/image/image_impl.h"
 #include "../../widgets/progress_indicator/progress_indicator_impl.h"
@@ -75,8 +75,8 @@ namespace liblec {
 				add_toggle(const std::string& alias);
 			widgets::combo_specs&
 				add_combo(const std::string& alias);
-			widgets::list_specs&
-				add_list(const std::string& alias);
+			widgets::table_specs&
+				add_table(const std::string& alias);
 			widgets::custom_specs&
 				add_custom(const std::string& alias);
 			widgets::image_specs&
@@ -119,8 +119,8 @@ namespace liblec {
 				get_toggle(const std::string& alias);
 			widgets_impl::combo&
 				get_combo(const std::string& alias);
-			widgets_impl::list&
-				get_list(const std::string& alias);
+			widgets_impl::table&
+				get_table(const std::string& alias);
 			widgets_impl::custom&
 				get_custom(const std::string& alias);
 			widgets_impl::image&
@@ -161,7 +161,7 @@ namespace liblec {
 			std::map<std::string, widgets_impl::button> buttons_;
 			std::map<std::string, widgets_impl::toggle> toggles_;
 			std::map<std::string, widgets_impl::combo> combos_;
-			std::map<std::string, widgets_impl::list> lists_;
+			std::map<std::string, widgets_impl::table> tables_;
 			std::map<std::string, widgets_impl::custom> customs_;
 			std::map<std::string, widgets_impl::image> images_;
 			std::map<std::string, widgets_impl::progress_indicator> progress_indicators_;

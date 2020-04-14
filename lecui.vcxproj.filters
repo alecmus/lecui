@@ -47,9 +47,6 @@
     <Filter Include="lecui\widgets\label">
       <UniqueIdentifier>{a6298d6c-0847-4813-8610-96a16327a6da}</UniqueIdentifier>
     </Filter>
-    <Filter Include="lecui\widgets\list">
-      <UniqueIdentifier>{bd387815-ca17-4f93-870f-4ce4e1b9a2e9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="lecui\widgets\rectangle">
       <UniqueIdentifier>{a2ebc386-9313-4ce2-b747-7347df3bc0f2}</UniqueIdentifier>
     </Filter>
@@ -82,6 +79,9 @@
     </Filter>
     <Filter Include="lecui\containers\group">
       <UniqueIdentifier>{4dfa9feb-9195-4283-addb-a192e719cb60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lecui\widgets\table">
+      <UniqueIdentifier>{cdb6740a-7a20-4782-85d5-ed23603da7ff}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -124,9 +124,6 @@
     <ClInclude Include="widgets\label\label_impl.h">
       <Filter>lecui\widgets\label</Filter>
     </ClInclude>
-    <ClInclude Include="widgets\list\list_impl.h">
-      <Filter>lecui\widgets\list</Filter>
-    </ClInclude>
     <ClInclude Include="widgets\rectangle\rectangle_impl.h">
       <Filter>lecui\widgets\rectangle</Filter>
     </ClInclude>
@@ -152,9 +149,6 @@
       <Filter>lecui\widgets</Filter>
     </ClInclude>
     <ClInclude Include="widgets\label.h">
-      <Filter>lecui\widgets</Filter>
-    </ClInclude>
-    <ClInclude Include="widgets\list.h">
       <Filter>lecui\widgets</Filter>
     </ClInclude>
     <ClInclude Include="widgets\rectangle.h">
@@ -233,6 +227,12 @@
     <ClInclude Include="containers\group\group_impl.h">
       <Filter>lecui\containers\group</Filter>
     </ClInclude>
+    <ClInclude Include="widgets\table.h">
+      <Filter>lecui\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="widgets\table\table_impl.h">
+      <Filter>lecui\widgets\table</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="error\win_error.cpp">
@@ -273,9 +273,6 @@
     </ClCompile>
     <ClCompile Include="widgets\label\label_impl.cpp">
       <Filter>lecui\widgets\label</Filter>
-    </ClCompile>
-    <ClCompile Include="widgets\list\list_impl.cpp">
-      <Filter>lecui\widgets\list</Filter>
     </ClCompile>
     <ClCompile Include="widgets\rectangle\rectangle_impl.cpp">
       <Filter>lecui\widgets\rectangle</Filter>
@@ -322,9 +319,6 @@
     </ClCompile>
     <ClCompile Include="widgets\label\label.cpp">
       <Filter>lecui\widgets\label</Filter>
-    </ClCompile>
-    <ClCompile Include="widgets\list\list.cpp">
-      <Filter>lecui\widgets\list</Filter>
     </ClCompile>
     <ClCompile Include="widgets\rectangle\rectangle.cpp">
       <Filter>lecui\widgets\rectangle</Filter>
@@ -376,6 +370,12 @@
     </ClCompile>
     <ClCompile Include="containers\group\group_impl.cpp">
       <Filter>lecui\containers\group</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\table\table.cpp">
+      <Filter>lecui\widgets\table</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\table\table_impl.cpp">
+      <Filter>lecui\widgets\table</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

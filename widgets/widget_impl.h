@@ -48,7 +48,7 @@ namespace liblec {
 				button,
 				toggle,
 				combo,
-				list,
+				table,
 				custom,
 				image,
 				progress_indicator,

@@ -187,7 +187,7 @@ namespace liblec {
 			friend widgets::button;
 			friend widgets::combo;
 			friend widgets::custom;
-			friend widgets::list;
+			friend widgets::table;
 			friend widgets::rectangle;
 			friend widgets::toggle;
 			friend widgets::progress_indicator;

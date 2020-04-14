@@ -1,5 +1,5 @@
 /*
-** list_impl.h - list_impl interface
+** table_impl.h - table_impl interface
 **
 ** lecui user interface library
 ** Copyright (c) 2019 Alec T. Musasa (alecmus at live dot com)
@@ -14,18 +14,18 @@
 #pragma once
 
 #include "../widget_impl.h"
-#include "../list.h"
+#include "../table.h"
 
 namespace liblec {
 	namespace lecui {
 		namespace widgets_impl {
-			class list : public widget {
+			class table : public widget {
 			public:
 				/// constructor and destructor
-				list(const std::string& page_alias,
+				table(const std::string& page_alias,
 					const std::string& alias,
 					IDWriteFactory* p_directwrite_factory);
-				~list();
+				~table();
 
 				/// virtual function overrides
 				widgets_impl::widget_type type() override;
@@ -40,19 +40,19 @@ namespace liblec {
 				bool hit(const bool& hit) override;
 
 				/// widget specific methods
-				widgets::list_specs& specs();
+				widgets::table_specs& specs();
 
 			private:
 				/// Prevent the use of the default constructor.
-				list() :
-					list(std::string(), std::string(), nullptr) {}
+				table() :
+					table(std::string(), std::string(), nullptr) {}
 
 				/// Prevent copying an object of this class.
-				list(const list&);
-				list& operator=(const list&);
+				table(const table&);
+				table& operator=(const table&);
 
 				/// Private variables
-				widgets::list_specs specs_, specs_old_;
+				widgets::table_specs specs_, specs_old_;
 				ID2D1SolidColorBrush* p_brush_;
 				ID2D1SolidColorBrush* p_brush_fill_;
 				ID2D1SolidColorBrush* p_brush_scrollbar_border_;

@@ -1,5 +1,5 @@
 /*
-** list.h - list widget interface
+** table.h - table widget interface
 **
 ** lecui user interface library
 ** Copyright (c) 2019 Alec T. Musasa (alecmus at live dot com)
@@ -28,10 +28,10 @@ namespace liblec {
 		}
 
 		namespace widgets {
-			/// <summary>List widget specifications.</summary>
-			class list_specs : public specs {
+			/// <summary>Table widget specifications.</summary>
+			class table_specs : public specs {
 			public:
-				list_specs() {
+				table_specs() {
 					color_fill = { 255, 255, 255, 255 };
 					color_hot = { 200, 200, 200, 50 }; }
 				color color_border = { 150, 150, 150, 255 };
@@ -52,10 +52,10 @@ namespace liblec {
 				/// Two columns can be defined as follows:
 				/// columns = { { "Name", 130 }, { "Surname", 210 } };
 				/// </example>
-				std::vector<list_column> columns;
+				std::vector<table_column> columns;
 
 				/// <summary>
-				/// The table. Each entry of the vector (a map) is a row and should
+				/// The table data. Each entry of the vector (a map) is a row and should
 				/// mirror the column structure. The key is the column name and the value is
 				/// the contents of the cell. Therefore the map size should be equivalent to
 				/// the number of columns, while the size of the vector will determine the
@@ -64,12 +64,12 @@ namespace liblec {
 				/// <example>
 				/// A table with two columns 'Name' and 'Surname' can be populated as follows
 				/// to a total of three rows:
-				/// table = {
+				/// data = {
 				/// { {"Name", "Emily Yolanda"}, { "Surname", "Moyo" } },
 				/// { {"Name", "Tanaka"}, {"Surname", "Sibanda"} },
 				/// { {"Name", "Precious"}, {"Surname", "Ncube"} }
 				/// </example>
-				std::vector<std::map<std::string, std::string>> table;
+				std::vector<std::map<std::string, std::string>> data;
 
 				/// <summary>The rows to select by default.</summary>
 				std::vector<long> selected;
@@ -80,40 +80,40 @@ namespace liblec {
 					const std::vector<std::map<std::string, std::string>>& rows)>
 					on_selection = nullptr;
 
-				bool operator==(const list_specs&);
-				bool operator!=(const list_specs&);
+				bool operator==(const table_specs&);
+				bool operator!=(const table_specs&);
 			};
 
-			/// <summary>List widget.</summary>
-			class lecui_api list {
+			/// <summary>Table widget.</summary>
+			class lecui_api table {
 			public:
-				list(containers::page& page);
-				~list();
+				table(containers::page& page);
+				~table();
 
-				/// <summary>Add a list widget.</summary>
+				/// <summary>Add a table widget.</summary>
 				/// <param name="alias">The in-page unique alias, e.g. "debtors".</param>
-				/// <returns>A reference to the list specifications.</returns>
+				/// <returns>A reference to the table specifications.</returns>
 				/// <remarks>Throws on failure.</remarks>
 				[[nodiscard]]
-				list_specs& add(const std::string& alias);
+				table_specs& add(const std::string& alias);
 
-				/// <summary>Get the specifications of an existing list.</summary>
-				/// <param name="fm">The form containing the list.</param>
+				/// <summary>Get the specifications of an existing table.</summary>
+				/// <param name="fm">The form containing the table.</param>
 				/// <param name="path">The full path to the widget, e.g.
 				/// "sample_page/sample_pane/debtors".</param>
-				/// <returns>A reference to the list specifications.</returns>
+				/// <returns>A reference to the table specifications.</returns>
 				/// <remarks>Throws on failure.</remarks>
 				[[nodiscard]]
-				static list_specs& specs(form& fm, const std::string& path);
+				static table_specs& specs(form& fm, const std::string& path);
 
 			private:
 				class impl;
 				impl& d_;
 
 				// Default constructor and copying an object of this class are not allowed
-				list();
-				list(const list&);
-				list& operator=(const list&);
+				table();
+				table(const table&);
+				table& operator=(const table&);
 			};
 		}
 	}

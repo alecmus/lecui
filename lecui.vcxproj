@@ -51,14 +51,14 @@
     <ClInclude Include="widgets\image\image_impl.h" />
     <ClInclude Include="widgets\label.h" />
     <ClInclude Include="widgets\label\label_impl.h" />
-    <ClInclude Include="widgets\list.h" />
-    <ClInclude Include="widgets\list\list_impl.h" />
+    <ClInclude Include="widgets\table.h" />
     <ClInclude Include="widgets\progress_bar.h" />
     <ClInclude Include="widgets\progress_bar\progress_bar_impl.h" />
     <ClInclude Include="widgets\progress_indicator.h" />
     <ClInclude Include="widgets\progress_indicator\progress_indicator_impl.h" />
     <ClInclude Include="widgets\rectangle.h" />
     <ClInclude Include="widgets\rectangle\rectangle_impl.h" />
+    <ClInclude Include="widgets\table\table_impl.h" />
     <ClInclude Include="widgets\textbox.h" />
     <ClInclude Include="widgets\textbox\textbox_impl.h" />
     <ClInclude Include="widgets\timer.h" />
@@ -102,14 +102,14 @@
     <ClCompile Include="widgets\image\image_impl.cpp" />
     <ClCompile Include="widgets\label\label.cpp" />
     <ClCompile Include="widgets\label\label_impl.cpp" />
-    <ClCompile Include="widgets\list\list.cpp" />
-    <ClCompile Include="widgets\list\list_impl.cpp" />
     <ClCompile Include="widgets\progress_bar\progress_bar.cpp" />
     <ClCompile Include="widgets\progress_bar\progress_bar_impl.cpp" />
     <ClCompile Include="widgets\progress_indicator\progress_indicator.cpp" />
     <ClCompile Include="widgets\progress_indicator\progress_indicator_impl.cpp" />
     <ClCompile Include="widgets\rectangle\rectangle.cpp" />
     <ClCompile Include="widgets\rectangle\rectangle_impl.cpp" />
+    <ClCompile Include="widgets\table\table.cpp" />
+    <ClCompile Include="widgets\table\table_impl.cpp" />
     <ClCompile Include="widgets\textbox\textbox.cpp" />
     <ClCompile Include="widgets\textbox\textbox_impl.cpp" />
     <ClCompile Include="widgets\toggle\toggle.cpp" />
@@ -243,7 +243,7 @@ xcopy "$(ProjectDir)widgets\timer.h" "$(SolutionDir)..\include\liblec\$(ProjectN
 xcopy "$(ProjectDir)widgets\button.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\toggle.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\combo.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
-xcopy "$(ProjectDir)widgets\list.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+xcopy "$(ProjectDir)widgets\table.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\custom.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\image.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\progress_indicator.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
@@ -291,7 +291,7 @@ xcopy "$(ProjectDir)widgets\timer.h" "$(SolutionDir)..\include\liblec\$(ProjectN
 xcopy "$(ProjectDir)widgets\button.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\toggle.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\combo.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
-xcopy "$(ProjectDir)widgets\list.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+xcopy "$(ProjectDir)widgets\table.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\custom.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\image.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\progress_indicator.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
@@ -343,7 +343,7 @@ xcopy "$(ProjectDir)widgets\timer.h" "$(SolutionDir)..\include\liblec\$(ProjectN
 xcopy "$(ProjectDir)widgets\button.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\toggle.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\combo.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
-xcopy "$(ProjectDir)widgets\list.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+xcopy "$(ProjectDir)widgets\table.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\custom.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\image.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\progress_indicator.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
@@ -395,7 +395,7 @@ xcopy "$(ProjectDir)widgets\timer.h" "$(SolutionDir)..\include\liblec\$(ProjectN
 xcopy "$(ProjectDir)widgets\button.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\toggle.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\combo.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
-xcopy "$(ProjectDir)widgets\list.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+xcopy "$(ProjectDir)widgets\table.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\custom.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\image.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\progress_indicator.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
