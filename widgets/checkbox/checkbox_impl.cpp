@@ -118,7 +118,7 @@ namespace liblec {
 			if (!resources_created_)
 				create_resources(p_render_target);
 
-			rect_ = position(specs_.rect, specs_.resize, change_in_size.width, change_in_size.height);
+			rect_ = position(specs_.rect, specs_.on_resize, change_in_size.width, change_in_size.height);
 			rect_.left -= offset.x;
 			rect_.right -= offset.x;
 			rect_.top -= offset.y;
@@ -153,7 +153,7 @@ namespace liblec {
 			// draw checkbox contents
 			std::string text;
 			switch (specs_.status) {
-			case widgets::specs::checkbox::checkbox_status::checked: {
+			case widgets::checkbox_specs::checkbox_status::checked: {
 				text = specs_.text;
 				HRESULT hr = S_OK;
 				ID2D1PathGeometry* p_checkbox_geometry = nullptr;
@@ -184,10 +184,10 @@ namespace liblec {
 					safe_release(&p_checkbox_geometry);
 				}
 			} break;
-			case widgets::specs::checkbox::checkbox_status::unchecked:
+			case widgets::checkbox_specs::checkbox_status::unchecked:
 				text = specs_.text_unchecked;
 				break;
-			case widgets::specs::checkbox::checkbox_status::indeterminate: {
+			case widgets::checkbox_specs::checkbox_status::indeterminate: {
 				text = specs_.text_indeterminate;
 				// draw a horizontal line to show indeterminate state
 				auto rect_indeterminate = rect_checkbox_;
@@ -240,13 +240,13 @@ namespace liblec {
 
 		void widgets_impl::checkbox::on_click() {
 			switch (specs_.status) {
-			case widgets::specs::checkbox::checkbox_status::unchecked:
-				specs_.status = widgets::specs::checkbox::checkbox_status::checked;
+			case widgets::checkbox_specs::checkbox_status::unchecked:
+				specs_.status = widgets::checkbox_specs::checkbox_status::checked;
 				break;
-			case widgets::specs::checkbox::checkbox_status::checked:
-			case widgets::specs::checkbox::checkbox_status::indeterminate:
+			case widgets::checkbox_specs::checkbox_status::checked:
+			case widgets::checkbox_specs::checkbox_status::indeterminate:
 			default:
-				specs_.status = widgets::specs::checkbox::checkbox_status::unchecked;
+				specs_.status = widgets::checkbox_specs::checkbox_status::unchecked;
 				break;
 			}
 
@@ -257,7 +257,7 @@ namespace liblec {
 				specs_.on_click();
 		}
 
-		widgets::specs::checkbox&
+		widgets::checkbox_specs&
 			widgets_impl::checkbox::specs() { return specs_; }
 	}
 }

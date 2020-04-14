@@ -16,16 +16,16 @@
 
 namespace liblec {
 	namespace lecui {
-		bool widgets::specs::custom::operator==(const custom& param) {
+		bool widgets::custom_specs::operator==(const custom_specs& param) {
 			return
 				// generic specs
-				widget::operator==(param) &&
+				specs::operator==(param) &&
 
 				// widget specific specs
 				true;
 		}
 
-		bool widgets::specs::custom::operator!=(const custom& param) {
+		bool widgets::custom_specs::operator!=(const custom_specs& param) {
 			return !operator==(param);
 		}
 
@@ -41,12 +41,12 @@ namespace liblec {
 
 		widgets::custom::~custom() { delete& d_; }
 
-		widgets::specs::custom&
+		widgets::custom_specs&
 			widgets::custom::add(const std::string& alias) {
 			return d_.page_.d_page_.add_custom(alias);
 		}
 
-		widgets::specs::custom&
+		widgets::custom_specs&
 			widgets::custom::specs(form& fm, const std::string& path) {
 			const auto idx = path.find("/");
 

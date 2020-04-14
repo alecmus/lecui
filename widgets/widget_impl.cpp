@@ -117,14 +117,14 @@ namespace liblec {
 
 		D2D1_RECT_F
 			widgets_impl::widget::position(const rect& rect,
-				const widgets::specs::on_resize& resize,
+				const widgets::specs::resize_params& on_resize,
 				const float& change_in_width, const float& change_in_height) {
-			auto x_change = change_in_width * resize.perc_x / 100.f;
-			auto y_change = change_in_height * resize.perc_y / 100.f;
+			auto x_change = change_in_width * on_resize.perc_x / 100.f;
+			auto y_change = change_in_height * on_resize.perc_y / 100.f;
 			auto width_change =
-				change_in_width * resize.perc_width / 100.f;
+				change_in_width * on_resize.perc_width / 100.f;
 			auto height_change =
-				change_in_height * resize.perc_height / 100.f;
+				change_in_height * on_resize.perc_height / 100.f;
 
 			auto left = rect.left + x_change;
 			auto top = rect.top + y_change;
@@ -134,20 +134,20 @@ namespace liblec {
 			// apply limits on width and height
 
 			// width
-			if ((right - left) < resize.min_width)
-				right = left + resize.min_width;
+			if ((right - left) < on_resize.min_width)
+				right = left + on_resize.min_width;
 
-			if (resize.max_width > resize.min_width)
-				if ((right - left) > resize.max_width)
-					right = left + resize.max_width;
+			if (on_resize.max_width > on_resize.min_width)
+				if ((right - left) > on_resize.max_width)
+					right = left + on_resize.max_width;
 
 			// height
-			if ((bottom - top) < resize.min_height)
-				bottom = top + resize.min_height;
+			if ((bottom - top) < on_resize.min_height)
+				bottom = top + on_resize.min_height;
 
-			if (resize.max_height > resize.min_height)
-				if ((bottom - top) > resize.max_height)
-					bottom = top + resize.max_height;
+			if (on_resize.max_height > on_resize.min_height)
+				if ((bottom - top) > on_resize.max_height)
+					bottom = top + on_resize.max_height;
 
 			const auto width = right - left;
 			const auto height = bottom - top;
@@ -156,28 +156,28 @@ namespace liblec {
 
 			// x
 
-			if (left < resize.min_x) {
-				left = resize.min_x;
+			if (left < on_resize.min_x) {
+				left = on_resize.min_x;
 				right = left + width;
 			}
 
-			if (resize.max_x > resize.min_x) {
-				if (left > resize.max_x) {
-					left = resize.max_x;
+			if (on_resize.max_x > on_resize.min_x) {
+				if (left > on_resize.max_x) {
+					left = on_resize.max_x;
 					right = left + width;
 				}
 			}
 
 			// y
 
-			if (top < resize.min_y) {
-				top = resize.min_y;
+			if (top < on_resize.min_y) {
+				top = on_resize.min_y;
 				bottom = top + height;
 			}
 
-			if (resize.max_y > resize.min_y) {
-				if (top > resize.max_y) {
-					top = resize.max_y;
+			if (on_resize.max_y > on_resize.min_y) {
+				if (top > on_resize.max_y) {
+					top = on_resize.max_y;
 					bottom = top + height;
 				}
 			}

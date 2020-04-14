@@ -23,22 +23,18 @@ namespace liblec {
 	namespace lecui {
 		namespace containers {
 			class page;
-		}
 
-		namespace containers {
-			namespace specs {
-				/// <summary>Pane container specifications.</summary>
-				class pane : public widgets::specs::widget {
-				public:
-					pane() { color_fill = { 100, 100, 100, 15 }; }
+			/// <summary>Pane container specifications.</summary>
+			class pane_specs : public widgets::specs {
+			public:
+				pane_specs() { color_fill = { 100, 100, 100, 15 }; }
 
-					bool is_filled = true;
-					color color_border = { 0, 120, 170, 50 };
-					float border = .5f;
-					float corner_radius_x = 5.f;
-					float corner_radius_y = 5.f;
-				};
-			}
+				bool is_filled = true;
+				color color_border = { 0, 120, 170, 50 };
+				float border = .5f;
+				float corner_radius_x = 5.f;
+				float corner_radius_y = 5.f;
+			};
 
 			/// <summary>Pane container.</summary>
 			/// <remarks>Any widget can be added to this container. Consequently, recursion is
@@ -57,16 +53,16 @@ namespace liblec {
 
 				/// <summary>Get the pane specifications.</summary>
 				/// <returns>A reference to the pane specifications.</returns>
-				[[nodiscard]] containers::specs::pane&
-					specs();
+				[[nodiscard]]
+				pane_specs& specs();
 
 				/// <summary>Get the specifications of an existing pane.</summary>
 				/// <param name="fm">The form the container is in.</param>
 				/// <param name="path">The full path to the pane, e.g.
 				/// "sample_page/settings_pane".</param>
 				/// <returns>A reference to the pane specifications.</returns>
-				[[nodiscard]] static containers::specs::pane&
-					specs(form& fm, const std::string& path);
+				[[nodiscard]]
+				static pane_specs& specs(form& fm, const std::string& path);
 
 				/// <summary>Get the pane container page.</summary>
 				/// <returns>A reference to the pane container page.</returns>
@@ -74,16 +70,16 @@ namespace liblec {
 				/// be added to a regular page can be added here as well. The page comes fully
 				/// featured with scroll bars when widgets exceed the dimensions of the pane, just
 				/// like a regular page.</remarks>
-				[[nodiscard]] containers::page&
-					get();
+				[[nodiscard]]
+				containers::page& get();
 
 				/// <summary>Get the pane container page of an existing pane.</summary>
 				/// <param name="fm">The form the container is in.</param>
 				/// <param name="path">The full path to the pane, e.g.
 				/// "sample_page/settings_pane".</param>
 				/// <returns>A reference to the pane container page.</returns>
-				[[nodiscard]] static containers::page&
-					get(form& fm, const std::string& path);
+				[[nodiscard]]
+				static containers::page& get(form& fm, const std::string& path);
 
 			private:
 				class impl;

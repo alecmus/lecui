@@ -18,9 +18,7 @@
 namespace liblec {
 	namespace lecui {
 		namespace widgets {
-			namespace specs {
-				class v_scrollbar : public scrollbar {};
-			}
+			class v_scrollbar_specs : public scrollbar_specs {};
 		}
 
 		namespace widgets_impl {
@@ -47,7 +45,7 @@ namespace liblec {
 				void on_click() override;
 
 				/// widget specific methods
-				widgets::specs::v_scrollbar& specs();
+				widgets::v_scrollbar_specs& specs();
 				void max_displacement(float& top, float& bottom);
 				bool translate_y_displacement(const float& y_displacement,
 					float& y_displacement_translated, bool force);
@@ -63,7 +61,7 @@ namespace liblec {
 				v_scrollbar& operator=(const v_scrollbar&);
 
 				/// Private variables
-				widgets::specs::v_scrollbar specs_;
+				widgets::v_scrollbar_specs specs_;
 				ID2D1SolidColorBrush* p_brush_;
 				ID2D1SolidColorBrush* p_brush_border_;
 				ID2D1SolidColorBrush* p_brush_hot_;

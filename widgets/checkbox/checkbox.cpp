@@ -16,17 +16,17 @@
 
 namespace liblec {
 	namespace lecui {
-		bool widgets::specs::checkbox::operator==(const checkbox& param) {
+		bool widgets::checkbox_specs::operator==(const checkbox_specs& param) {
 			return
 				// generic specs
-				widget::operator==(param) &&
+				specs::operator==(param) &&
 
 				// widget specific specs
 				(color_border == param.color_border) &&
 				(color_check == param.color_check);
 		}
 
-		bool widgets::specs::checkbox::operator!=(const checkbox& param) {
+		bool widgets::checkbox_specs::operator!=(const checkbox_specs& param) {
 			return !operator==(param);
 		}
 
@@ -42,12 +42,12 @@ namespace liblec {
 
 		widgets::checkbox::~checkbox() { delete& d_; }
 
-		widgets::specs::checkbox&
+		widgets::checkbox_specs&
 			widgets::checkbox::add(const std::string& alias) {
 			return d_.page_.d_page_.add_checkbox(alias);
 		}
 
-		widgets::specs::checkbox&
+		widgets::checkbox_specs&
 			widgets::checkbox::specs(form& fm, const std::string& path) {
 			const auto idx = path.find("/");
 

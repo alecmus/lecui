@@ -70,7 +70,7 @@ namespace liblec {
 			if (!is_static_ && is_enabled_ && hit_)
 				p_brush_current_ = p_brush_hot_;
 
-			rect_ = position(specs_.rect, specs_.resize, change_in_size.width, change_in_size.height);
+			rect_ = position(specs_.rect, specs_.on_resize, change_in_size.width, change_in_size.height);
 
 			if (!render || !visible_)
 				return rect_;
@@ -103,7 +103,7 @@ namespace liblec {
 
 		void widgets_impl::minimize_button::set_hwnd(HWND hWnd) { hWnd_ = hWnd; }
 
-		widgets::specs::minimize_button&
+		widgets::minimize_button_specs&
 			widgets_impl::minimize_button::specs() { return specs_; }
 	}
 }

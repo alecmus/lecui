@@ -16,16 +16,16 @@
 
 namespace liblec {
 	namespace lecui {
-		bool widgets::specs::rectangle::operator==(const rectangle& param) {
+		bool widgets::rectangle_specs::operator==(const rectangle_specs& param) {
 			return
 				// generic specs
-				widget::operator==(param) &&
+				specs::operator==(param) &&
 
 				// widget specific specs
 				(color_border == param.color_border);
 		}
 
-		bool widgets::specs::rectangle::operator!=(const rectangle& param) {
+		bool widgets::rectangle_specs::operator!=(const rectangle_specs& param) {
 			return !operator==(param);
 		}
 
@@ -41,12 +41,12 @@ namespace liblec {
 
 		widgets::rectangle::~rectangle() { delete& d_; }
 
-		widgets::specs::rectangle&
+		widgets::rectangle_specs&
 			widgets::rectangle::add(const std::string& alias) {
 			return d_.page_.d_page_.add_rectangle(alias);
 		}
 
-		widgets::specs::rectangle&
+		widgets::rectangle_specs&
 			widgets::rectangle::specs(form& fm, const std::string& path) {
 			const auto idx = path.find("/");
 

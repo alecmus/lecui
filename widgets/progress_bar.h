@@ -26,19 +26,17 @@ namespace liblec {
 		}
 
 		namespace widgets {
-			namespace specs {
-				/// <summary>Progress bar widget specifications.</summary>
-				/// <remarks>Recommended height with defaults is 12px</remarks>
-				class progress_bar : public widget {
-				public:
-					color color_border = { 200, 200, 200, 255 };
-					float border = 1.f;
-					float percentage = 0.f;
+			/// <summary>Progress bar widget specifications.</summary>
+			/// <remarks>Recommended height with defaults is 12px</remarks>
+			class progress_bar_specs : public specs {
+			public:
+				color color_border = { 200, 200, 200, 255 };
+				float border = 1.f;
+				float percentage = 0.f;
 
-					bool operator==(const progress_bar&);
-					bool operator!=(const progress_bar&);
-				};
-			}
+				bool operator==(const progress_bar_specs&);
+				bool operator!=(const progress_bar_specs&);
+			};
 
 			/// <summary>Progress bar widget.</summary>
 			class lecui_api progress_bar {
@@ -50,8 +48,8 @@ namespace liblec {
 				/// <param name="alias">The in-page unique alias, e.g. "encryption_status".</param>
 				/// <returns>A reference to the progress bar specifications.</returns>
 				/// <remarks>Throws on failure.</remarks>
-				[[nodiscard]] widgets::specs::progress_bar&
-					add(const std::string& alias);
+				[[nodiscard]]
+				progress_bar_specs& add(const std::string& alias);
 
 				/// <summary>Get the specifications of an existing progress bar.</summary>
 				/// <param name="fm">The form containing the progress bar.</param>
@@ -59,8 +57,8 @@ namespace liblec {
 				/// "sample_page/encryption_pane/encryption_status".</param>
 				/// <returns>A reference to the progress bar specifications.</returns>
 				/// <remarks>Throws on failure.</remarks>
-				[[nodiscard]] static widgets::specs::progress_bar&
-					specs(form& fm, const std::string& path);
+				[[nodiscard]]
+				static progress_bar_specs& specs(form& fm, const std::string& path);
 
 			private:
 				class impl;

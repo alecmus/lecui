@@ -41,7 +41,7 @@ namespace liblec {
 				void on_click() override;
 
 				/// widget specific methods
-				containers::specs::tab_pane& specs();
+				containers::tab_pane_specs& specs();
 				const D2D1_RECT_F& client_area();
 				const D2D1_RECT_F& tab_pane_area();
 				float caption_bar_height();
@@ -56,7 +56,7 @@ namespace liblec {
 				tab_pane& operator=(const tab_pane&);
 
 				/// Private variables
-				containers::specs::tab_pane specs_;
+				containers::tab_pane_specs specs_;
 				ID2D1SolidColorBrush* p_brush_;
 				ID2D1SolidColorBrush* p_brush_fill_;
 				ID2D1SolidColorBrush* p_brush_border_;

@@ -130,7 +130,7 @@ namespace liblec {
 			if (!resources_created_)
 				create_resources(p_render_target);
 
-			rect_ = position(specs_.rect, specs_.resize, change_in_size.width, change_in_size.height);
+			rect_ = position(specs_.rect, specs_.on_resize, change_in_size.width, change_in_size.height);
 			rect_.left -= offset.x;
 			rect_.right -= offset.x;
 			rect_.top -= offset.y;
@@ -324,7 +324,7 @@ namespace liblec {
 			}
 		}
 
-		widgets::specs::textbox&
+		widgets::textbox_specs&
 			widgets_impl::textbox::specs() { return specs_; }
 
 		void widgets_impl::textbox::insert_character(const char& c) {

@@ -255,7 +255,7 @@ namespace liblec {
 						D2D1_RECT_F rect = D2D1::RectF(0.f, 0.f, max_size_.width, max_size_.height);
 
 						// measure the message
-						widgets::specs::label specs_lbl;
+						widgets::label_specs specs_lbl;
 						rect = widgets_impl::measure_label(d_.p_directwrite_factory_, message,
 							specs_lbl.font, specs_lbl.font_size, false, false, rect);
 

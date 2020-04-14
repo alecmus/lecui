@@ -19,18 +19,16 @@
 namespace liblec {
 	namespace lecui {
 		namespace widgets {
-			namespace specs {
-				class scrollbar : public widget {
-				public:
-					scrollbar () {
-						color_fill = { 241, 241, 241, 255 };
-						color_hot = { 231, 231, 231, 255 };
-					}
-					color color_scrollbar_border = { 180, 180, 180, 255 };
-					color color_hot_pressed = { 221, 221, 221, 255 };
-					color color_background = { 0, 0, 0, 0 };
-				};
-			}
+			class scrollbar_specs : public specs {
+			public:
+				scrollbar_specs() {
+					color_fill = { 241, 241, 241, 255 };
+					color_hot = { 231, 231, 231, 255 };
+				}
+				color color_scrollbar_border = { 180, 180, 180, 255 };
+				color color_hot_pressed = { 221, 221, 221, 255 };
+				color color_background = { 0, 0, 0, 0 };
+			};
 		}
 
 		namespace widgets_impl {
@@ -111,7 +109,7 @@ namespace liblec {
 
 			protected:
 				D2D1_RECT_F position(const rect& rect,
-					const widgets::specs::on_resize& resize,
+					const widgets::specs::resize_params& on_resize,
 					const float& change_in_width,
 					const float& change_in_height);
 

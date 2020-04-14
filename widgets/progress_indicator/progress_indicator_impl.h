@@ -38,7 +38,7 @@ namespace liblec {
 				void on_click() override;
 
 				/// widget specific methods
-				widgets::specs::progress_indicator& specs();
+				widgets::progress_indicator_specs& specs();
 
 			private:
 				/// Prevent the use of the default constructor.
@@ -50,7 +50,7 @@ namespace liblec {
 				progress_indicator& operator=(const progress_indicator&);
 
 				/// Private variables
-				widgets::specs::progress_indicator specs_, specs_old_;
+				widgets::progress_indicator_specs specs_, specs_old_;
 				ID2D1SolidColorBrush* p_brush_;
 				ID2D1SolidColorBrush* p_brush_empty_;
 				ID2D1SolidColorBrush* p_brush_fill_;

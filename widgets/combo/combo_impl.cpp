@@ -170,7 +170,7 @@ namespace liblec {
 			if (!resources_created_)
 				create_resources(p_render_target);
 
-			rect_combo_ = position(specs_.rect, specs_.resize, change_in_size.width, change_in_size.height);
+			rect_combo_ = position(specs_.rect, specs_.on_resize, change_in_size.width, change_in_size.height);
 			rect_combo_.left -= offset.x;
 			rect_combo_.right -= offset.x;
 			rect_combo_.top -= offset.y;
@@ -612,7 +612,7 @@ namespace liblec {
 			return true;
 		}
 
-		widgets::specs::combo&
+		widgets::combo_specs&
 			widgets_impl::combo::specs() { return specs_; }
 	}
 }

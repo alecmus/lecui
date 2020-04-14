@@ -16,10 +16,10 @@
 
 namespace liblec {
 	namespace lecui {
-		bool widgets::specs::label::operator==(const label& param) {
+		bool widgets::label_specs::operator==(const label_specs& param) {
 			return
 				// generic specs
-				widget::operator==(param) &&
+				specs::operator==(param) &&
 
 				// widget specific specs
 				(color_hot_pressed == param.color_hot_pressed) &&
@@ -28,7 +28,7 @@ namespace liblec {
 				(center_v == param.center_v);
 		}
 
-		bool widgets::specs::label::operator!=(const label& param) {
+		bool widgets::label_specs::operator!=(const label_specs& param) {
 			return !operator==(param);
 		}
 
@@ -44,12 +44,12 @@ namespace liblec {
 
 		widgets::label::~label() { delete& d_; }
 
-		widgets::specs::label&
+		widgets::label_specs&
 			widgets::label::add(const std::string& alias) {
 			return d_.page_.d_page_.add_label(alias);
 		}
 
-		widgets::specs::label&
+		widgets::label_specs&
 			widgets::label::specs(form& fm,
 				const std::string& path) {
 			const auto idx = path.find("/");

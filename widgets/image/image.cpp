@@ -16,10 +16,10 @@
 
 namespace liblec {
 	namespace lecui {
-		bool widgets::specs::image::operator==(const image& param) {
+		bool widgets::image_specs::operator==(const image_specs& param) {
 			return
 				// generic specs
-				widget::operator==(param) &&
+				specs::operator==(param) &&
 
 				// widget specific specs
 				(color_border == param.color_border) &&
@@ -27,7 +27,7 @@ namespace liblec {
 				(png_resource == param.png_resource);
 		}
 
-		bool widgets::specs::image::operator!=(const image& param) {
+		bool widgets::image_specs::operator!=(const image_specs& param) {
 			return !operator==(param);
 		}
 
@@ -43,12 +43,12 @@ namespace liblec {
 
 		widgets::image::~image() { delete& d_; }
 
-		widgets::specs::image&
+		widgets::image_specs&
 			widgets::image::add(const std::string& alias) {
 			return d_.page_.d_page_.add_image(alias);
 		}
 
-		widgets::specs::image&
+		widgets::image_specs&
 			widgets::image::specs(form& fm, const std::string& path) {
 			const auto idx = path.find("/");
 

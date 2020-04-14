@@ -19,10 +19,10 @@
 
 #include "../tab_pane/tab_pane_impl.h"
 #include "../pane/pane_impl.h"
+#include "../group/group_impl.h"
 
 #include "../../widgets/rectangle/rectangle_impl.h"
 #include "../../widgets/label/label_impl.h"
-#include "../../widgets/group/group_impl.h"
 #include "../../widgets/button/button_impl.h"
 #include "../../widgets/toggle/toggle_impl.h"
 #include "../../widgets/combo/combo_impl.h"
@@ -58,38 +58,38 @@ namespace liblec {
 			const float height();
 			bool contains(const D2D1_POINT_2F& point);
 
-			containers::specs::tab_pane&
+			containers::tab_pane_specs&
 				add_tab_pane(const std::string& alias);
-			containers::specs::pane&
+			containers::pane_specs&
 				add_pane(const std::string& alias);
 
-			widgets::specs::rectangle&
+			widgets::rectangle_specs&
 				add_rectangle(const std::string& alias);
-			widgets::specs::label&
+			widgets::label_specs&
 				add_label(const std::string& alias);
-			widgets::specs::group&
+			containers::group_specs&
 				add_group(const std::string& alias);
-			widgets::specs::button&
+			widgets::button_specs&
 				add_button(const std::string& alias);
-			widgets::specs::toggle&
+			widgets::toggle_specs&
 				add_toggle(const std::string& alias);
-			widgets::specs::combo&
+			widgets::combo_specs&
 				add_combo(const std::string& alias);
-			widgets::specs::list&
+			widgets::list_specs&
 				add_list(const std::string& alias);
-			widgets::specs::custom&
+			widgets::custom_specs&
 				add_custom(const std::string& alias);
-			widgets::specs::image&
+			widgets::image_specs&
 				add_image(const std::string& alias);
-			widgets::specs::progress_indicator&
+			widgets::progress_indicator_specs&
 				add_progress_indicator(const std::string& alias);
-			widgets::specs::progress_bar&
+			widgets::progress_bar_specs&
 				add_progress_bar(const std::string& alias);
-			widgets::specs::checkbox&
+			widgets::checkbox_specs&
 				add_checkbox(const std::string& alias);
-			widgets::specs::textbox&
+			widgets::textbox_specs&
 				add_textbox(const std::string& alias);
-			widgets::specs::tree&
+			widgets::tree_specs&
 				add_tree(const std::string& alias);
 
 			std::map<std::string,

@@ -32,6 +32,7 @@ namespace liblec {
 			class tab_pane;
 			class tab;
 			class pane;
+			class group;
 		}
 
 		namespace widgets {
@@ -41,7 +42,6 @@ namespace liblec {
 			class button;
 			class combo;
 			class custom;
-			class group;
 			class list;
 			class rectangle;
 			class toggle;
@@ -256,13 +256,13 @@ namespace liblec {
 			friend containers::tab_pane;
 			friend containers::tab;
 			friend containers::pane;
+			friend containers::group;
 			friend widgets::timer;
 			friend widgets::label;
 			friend widgets::image;
 			friend widgets::button;
 			friend widgets::combo;
 			friend widgets::custom;
-			friend widgets::group;
 			friend widgets::list;
 			friend widgets::rectangle;
 			friend widgets::toggle;

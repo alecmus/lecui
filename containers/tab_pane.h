@@ -23,23 +23,21 @@ namespace liblec {
 	namespace lecui {
 		namespace containers {
 			class page;
-			namespace specs {
-				/// <summary>Tab pane specifications.</summary>
-				class tab_pane : public widgets::specs::widget {
-				public:
-					tab_pane() { color_fill = { 100, 100, 100, 15 }; }
-
-					bool is_filled = true;
-					color color_tabs = { 0, 120, 170, 15 };
-					color color_border = { 0, 120, 170, 50 };
-					color color_selected = { 0, 120, 170, 255 };
-					float border = .5f;
-					float corner_radius_x = 5.f;
-					float corner_radius_y = 5.f;
-				};
-			}
-
 			class tab;
+
+			/// <summary>Tab pane specifications.</summary>
+			class tab_pane_specs : public widgets::specs {
+			public:
+				tab_pane_specs() { color_fill = { 100, 100, 100, 15 }; }
+
+				bool is_filled = true;
+				color color_tabs = { 0, 120, 170, 15 };
+				color color_border = { 0, 120, 170, 50 };
+				color color_selected = { 0, 120, 170, 255 };
+				float border = .5f;
+				float corner_radius_x = 5.f;
+				float corner_radius_y = 5.f;
+			};
 
 			/// <summary>Tab pane container.</summary>
 			/// <remarks>Only tab containers can be added to this container.</remarks>
@@ -57,8 +55,8 @@ namespace liblec {
 
 				/// <summary>Get the tab pane specifications.</summary>
 				/// <returns>A reference to the control specifications.</returns>
-				[[nodiscard]] containers::specs::tab_pane&
-					specs();
+				[[nodiscard]]
+				tab_pane_specs& specs();
 
 				/// <summary>Get the specifications of an existing tab pane.</summary>
 				/// <param name="fm">The form the control is in.</param>
@@ -66,8 +64,8 @@ namespace liblec {
 				/// "sample_page/settings_tab_pane".</param>
 				/// <returns>A reference to the control specifications.</returns>
 				/// <remarks>Throws on failure.</remarks>
-				[[nodiscard]] static containers::specs::tab_pane&
-					specs(form& fm, const std::string& path);
+				[[nodiscard]]
+				static tab_pane_specs& specs(form& fm, const std::string& path);
 
 				/// <summary>Select the visible tab in the tab pane.</summary>
 				/// <param name="tab_name">The in-control unique name of the tab, e.g. "Options".
@@ -108,8 +106,8 @@ namespace liblec {
 				/// be added to a regular page can be added here as well. The page comes fully
 				/// featured with scroll bars when widgets exceed the dimensions of the tab, just
 				/// like a regular page.</remarks>
-				[[nodiscard]] containers::page&
-					add(const std::string& tab_name);
+				[[nodiscard]]
+				containers::page& add(const std::string& tab_name);
 
 				/// <summary>Get the tab container page of an existing tab.</summary>
 				/// <param name="fm">The form the container is in.</param>
@@ -117,8 +115,8 @@ namespace liblec {
 				/// "sample_page/settings_tab_pane/Options".
 				/// </param>
 				/// <returns>A reference to the tab container page.</returns>
-				[[nodiscard]] static containers::page&
-					get(form& fm, const std::string& path);
+				[[nodiscard]]
+				static containers::page& get(form& fm, const std::string& path);
 
 			private:
 				class impl;

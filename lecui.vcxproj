@@ -20,6 +20,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="appearance.h" />
+    <ClInclude Include="containers\group.h" />
+    <ClInclude Include="containers\group\group_impl.h" />
     <ClInclude Include="containers\page.h" />
     <ClInclude Include="containers\page\page_impl.h" />
     <ClInclude Include="containers\pane.h" />
@@ -44,8 +46,6 @@
     <ClInclude Include="widgets\control_buttons\minimize_button\minimize_button.h" />
     <ClInclude Include="widgets\custom.h" />
     <ClInclude Include="widgets\custom\custom_impl.h" />
-    <ClInclude Include="widgets\group.h" />
-    <ClInclude Include="widgets\group\group_impl.h" />
     <ClInclude Include="widgets\h_scrollbar\h_scrollbar.h" />
     <ClInclude Include="widgets\image.h" />
     <ClInclude Include="widgets\image\image_impl.h" />
@@ -72,6 +72,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="appearance.cpp" />
+    <ClCompile Include="containers\group\group.cpp" />
+    <ClCompile Include="containers\group\group_impl.cpp" />
     <ClCompile Include="containers\page\page.cpp" />
     <ClCompile Include="containers\page\page_impl.cpp" />
     <ClCompile Include="containers\pane\pane.cpp" />
@@ -95,8 +97,6 @@
     <ClCompile Include="widgets\control_buttons\minimize_button\minimize_button.cpp" />
     <ClCompile Include="widgets\custom\custom.cpp" />
     <ClCompile Include="widgets\custom\custom_impl.cpp" />
-    <ClCompile Include="widgets\group\group.cpp" />
-    <ClCompile Include="widgets\group\group_impl.cpp" />
     <ClCompile Include="widgets\h_scrollbar\h_scrollbar.cpp" />
     <ClCompile Include="widgets\image\image.cpp" />
     <ClCompile Include="widgets\image\image_impl.cpp" />
@@ -235,11 +235,11 @@ xcopy "$(ProjectDir)widgets\widget.h" "$(SolutionDir)..\include\liblec\$(Project
 xcopy "$(ProjectDir)containers\page.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\containers\" /F /R /Y /I
 xcopy "$(ProjectDir)containers\tab_pane.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\containers\" /F /R /Y /I
 xcopy "$(ProjectDir)containers\pane.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\containers\" /F /R /Y /I
+xcopy "$(ProjectDir)containers\group.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\containers\" /F /R /Y /I
 
 xcopy "$(ProjectDir)widgets\rectangle.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\label.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\timer.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
-xcopy "$(ProjectDir)widgets\group.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\button.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\toggle.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\combo.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
@@ -283,11 +283,11 @@ xcopy "$(ProjectDir)widgets\widget.h" "$(SolutionDir)..\include\liblec\$(Project
 xcopy "$(ProjectDir)containers\page.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\containers\" /F /R /Y /I
 xcopy "$(ProjectDir)containers\tab_pane.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\containers\" /F /R /Y /I
 xcopy "$(ProjectDir)containers\pane.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\containers\" /F /R /Y /I
+xcopy "$(ProjectDir)containers\group.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\containers\" /F /R /Y /I
 
 xcopy "$(ProjectDir)widgets\rectangle.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\label.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\timer.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
-xcopy "$(ProjectDir)widgets\group.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\button.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\toggle.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\combo.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
@@ -335,11 +335,11 @@ xcopy "$(ProjectDir)widgets\widget.h" "$(SolutionDir)..\include\liblec\$(Project
 xcopy "$(ProjectDir)containers\page.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\containers\" /F /R /Y /I
 xcopy "$(ProjectDir)containers\tab_pane.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\containers\" /F /R /Y /I
 xcopy "$(ProjectDir)containers\pane.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\containers\" /F /R /Y /I
+xcopy "$(ProjectDir)containers\group.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\containers\" /F /R /Y /I
 
 xcopy "$(ProjectDir)widgets\rectangle.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\label.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\timer.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
-xcopy "$(ProjectDir)widgets\group.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\button.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\toggle.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\combo.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
@@ -387,11 +387,11 @@ xcopy "$(ProjectDir)widgets\widget.h" "$(SolutionDir)..\include\liblec\$(Project
 xcopy "$(ProjectDir)containers\page.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\containers\" /F /R /Y /I
 xcopy "$(ProjectDir)containers\tab_pane.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\containers\" /F /R /Y /I
 xcopy "$(ProjectDir)containers\pane.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\containers\" /F /R /Y /I
+xcopy "$(ProjectDir)containers\group.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\containers\" /F /R /Y /I
 
 xcopy "$(ProjectDir)widgets\rectangle.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\label.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\timer.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
-xcopy "$(ProjectDir)widgets\group.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\button.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\toggle.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\combo.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I

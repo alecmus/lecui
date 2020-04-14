@@ -18,9 +18,7 @@
 namespace liblec {
 	namespace lecui {
 		namespace widgets {
-			namespace specs {
-				class close_button : public widget {};
-			}
+			class close_button_specs : public specs {};
 		}
 
 		namespace widgets_impl {
@@ -39,14 +37,14 @@ namespace liblec {
 				void on_click() override;
 
 				/// widget specific methods
-				widgets::specs::close_button& specs();
+				widgets::close_button_specs& specs();
 
 			private:
 				/// Prevent copying an object of this class.
 				close_button(const close_button&);
 				close_button& operator=(const close_button&);
 
-				widgets::specs::close_button specs_;
+				widgets::close_button_specs specs_;
 				ID2D1SolidColorBrush* p_brush_;
 				ID2D1SolidColorBrush* p_brush_hot_;
 				ID2D1SolidColorBrush* p_brush_disabled_;

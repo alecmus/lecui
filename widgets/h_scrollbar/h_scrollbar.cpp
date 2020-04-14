@@ -96,7 +96,7 @@ namespace liblec {
 					return false;
 			};
 
-			rect_ = position(specs_.rect, specs_.resize, change_in_size.width, change_in_size.height);
+			rect_ = position(specs_.rect, specs_.on_resize, change_in_size.width, change_in_size.height);
 			rect_.left -= offset.x;
 			rect_.right -= offset.x;
 			rect_.top -= offset.y;
@@ -147,7 +147,7 @@ namespace liblec {
 				specs_.on_click();
 		}
 
-		widgets::specs::h_scrollbar&
+		widgets::h_scrollbar_specs&
 			widgets_impl::h_scrollbar::specs() { return specs_; }
 
 		void widgets_impl::h_scrollbar::max_displacement(float& left,

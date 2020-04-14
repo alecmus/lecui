@@ -39,7 +39,7 @@ namespace liblec {
 				void on_selection_change(const bool& selected) override;
 
 				/// widget specific methods
-				widgets::specs::textbox& specs();
+				widgets::textbox_specs& specs();
 				void insert_character(const char& c);
 				void key_backspace();
 				void key_delete();
@@ -52,7 +52,7 @@ namespace liblec {
 				textbox& operator=(const textbox&);
 
 				/// Private variables
-				widgets::specs::textbox specs_, specs_old_;
+				widgets::textbox_specs specs_, specs_old_;
 				ID2D1SolidColorBrush* p_brush_;
 				ID2D1SolidColorBrush* p_brush_caret_;
 				ID2D1SolidColorBrush* p_brush_prompt_;

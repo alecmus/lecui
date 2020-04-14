@@ -26,25 +26,23 @@ namespace liblec {
 		}
 
 		namespace widgets {
-			namespace specs {
-				/// <summary>Image widget specifications.</summary>
-				class image : public widget {
-				public:
-					image() {
-						color_fill = { 222, 222, 222, 0 };
-						color_hot = { 0, 120, 170, 100 };
-						color_selected = { 0, 120, 170, 100 }; }
-					float border = .5f;
-					float corner_radius_x = .0f;
-					float corner_radius_y = .0f;
-					color color_border = { 150, 150, 150, 0 };
-					std::string file;
-					int png_resource = 0;
+			/// <summary>Image widget specifications.</summary>
+			class image_specs : public specs {
+			public:
+				image_specs() {
+					color_fill = { 222, 222, 222, 0 };
+					color_hot = { 0, 120, 170, 100 };
+					color_selected = { 0, 120, 170, 100 }; }
+				float border = .5f;
+				float corner_radius_x = .0f;
+				float corner_radius_y = .0f;
+				color color_border = { 150, 150, 150, 0 };
+				std::string file;
+				int png_resource = 0;
 
-					bool operator==(const image&);
-					bool operator!=(const image&);
-				};
-			}
+				bool operator==(const image_specs&);
+				bool operator!=(const image_specs&);
+			};
 
 			/// <summary>Image widget.</summary>
 			class lecui_api image {
@@ -56,8 +54,8 @@ namespace liblec {
 				/// <param name="alias">The in-page unique alias, e.g. "avatar".</param>
 				/// <returns>A reference to the image specifications.</returns>
 				/// <remarks>Throws on failure.</remarks>
-				[[nodiscard]] widgets::specs::image&
-					add(const std::string& alias);
+				[[nodiscard]]
+				image_specs& add(const std::string& alias);
 
 				/// <summary>Get the specifications of an existing image.</summary>
 				/// <param name="fm">The form containing the image.</param>
@@ -65,8 +63,8 @@ namespace liblec {
 				/// "sample_page/sample_tab_pane/tab_three/pane_two/avatar".</param>
 				/// <returns>A reference to the image specifications.</returns>
 				/// <remarks>Throws on failure.</remarks>
-				[[nodiscard]] static widgets::specs::image&
-					specs(form& fm, const std::string& path);
+				[[nodiscard]]
+				static image_specs& specs(form& fm, const std::string& path);
 
 			private:
 				class impl;

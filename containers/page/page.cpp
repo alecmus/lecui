@@ -63,8 +63,8 @@ namespace liblec {
 
 			// initialize the page's horizontal scroll bar
 			{
-				d_.fm_.d_.p_pages_.at(alias).d_page_.h_scrollbar().specs().resize.perc_width = 100;
-				d_.fm_.d_.p_pages_.at(alias).d_page_.h_scrollbar().specs().resize.perc_y = 100;
+				d_.fm_.d_.p_pages_.at(alias).d_page_.h_scrollbar().specs().on_resize.perc_width = 100;
+				d_.fm_.d_.p_pages_.at(alias).d_page_.h_scrollbar().specs().on_resize.perc_y = 100;
 
 				d_.fm_.d_.p_pages_.at(alias).d_page_.h_scrollbar().specs().rect.left =
 					margin + thickness - d_.fm_.d_.page_tolerance_;
@@ -81,8 +81,8 @@ namespace liblec {
 
 			// initialize the page's vertical scroll bar
 			{
-				d_.fm_.d_.p_pages_.at(alias).d_page_.v_scrollbar().specs().resize.perc_height = 100;
-				d_.fm_.d_.p_pages_.at(alias).d_page_.v_scrollbar().specs().resize.perc_x = 100;
+				d_.fm_.d_.p_pages_.at(alias).d_page_.v_scrollbar().specs().on_resize.perc_height = 100;
+				d_.fm_.d_.p_pages_.at(alias).d_page_.v_scrollbar().specs().on_resize.perc_x = 100;
 
 				d_.fm_.d_.p_pages_.at(alias).d_page_.v_scrollbar().specs().rect.top =
 					margin + thickness - d_.fm_.d_.page_tolerance_;
@@ -120,8 +120,8 @@ namespace liblec {
 			rectangle.corner_radius_x = 15.f;
 			rectangle.corner_radius_y = 15.f;
 
-			rectangle.resize.perc_width = 100;
-			rectangle.resize.perc_height = 100;
+			rectangle.on_resize.perc_width = 100;
+			rectangle.on_resize.perc_height = 100;
 
 			// return reference to page so caller can add widgets to it
 			return d_.fm_.d_.p_pages_.at(alias);

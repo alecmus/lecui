@@ -26,24 +26,22 @@ namespace liblec {
 		}
 
 		namespace widgets {
-			namespace specs {
-				/// <summary>Progress indicator widget specifications.</summary>
-				/// <remarks>Recommended size with defaults is 50x50px</remarks>
-				class progress_indicator : public widget {
-				public:
-					progress_indicator() {
-						color_text = { 0, 120, 170, 255 };
-					}
-					color color_empty = { 200, 200, 200, 255 };
-					float line_thickness_empty = .5f;
-					float line_thickness_fill = 1.5f;
-					float percentage = 0.f;
-					int precision = 0;
+			/// <summary>Progress indicator widget specifications.</summary>
+			/// <remarks>Recommended size with defaults is 50x50px</remarks>
+			class progress_indicator_specs : public specs {
+			public:
+				progress_indicator_specs() {
+					color_text = { 0, 120, 170, 255 };
+				}
+				color color_empty = { 200, 200, 200, 255 };
+				float line_thickness_empty = .5f;
+				float line_thickness_fill = 1.5f;
+				float percentage = 0.f;
+				int precision = 0;
 
-					bool operator==(const progress_indicator&);
-					bool operator!=(const progress_indicator&);
-				};
-			}
+				bool operator==(const progress_indicator_specs&);
+				bool operator!=(const progress_indicator_specs&);
+			};
 
 			/// <summary>Progress indicator widget.</summary>
 			class lecui_api progress_indicator {
@@ -55,8 +53,8 @@ namespace liblec {
 				/// <param name="alias">The in-page unique alias, e.g. "file_transfer".</param>
 				/// <returns>A reference to the progress indicator specifications.</returns>
 				/// <remarks>Throws on failure.</remarks>
-				[[nodiscard]] widgets::specs::progress_indicator&
-					add(const std::string& alias);
+				[[nodiscard]]
+				progress_indicator_specs& add(const std::string& alias);
 
 				/// <summary>Get the specifications of an existing progress indicator.</summary>
 				/// <param name="fm">The form containing the progress indicator.</param>
@@ -64,8 +62,8 @@ namespace liblec {
 				/// "sample_page/files/file_transfer".</param>
 				/// <returns>A reference to the progress indicator specifications.</returns>
 				/// <remarks>Throws on failure.</remarks>
-				[[nodiscard]] static widgets::specs::progress_indicator&
-					specs(form& fm, const std::string& path);
+				[[nodiscard]]
+				static progress_indicator_specs& specs(form& fm, const std::string& path);
 
 			private:
 				class impl;

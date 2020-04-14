@@ -41,9 +41,6 @@
     <Filter Include="lecui\widgets\custom">
       <UniqueIdentifier>{747332de-70a8-42bf-b4b6-3da42cc6bebb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="lecui\widgets\group">
-      <UniqueIdentifier>{b9dce77d-95db-4a6d-87fb-f87a798c9afd}</UniqueIdentifier>
-    </Filter>
     <Filter Include="lecui\widgets\h_scrollbar">
       <UniqueIdentifier>{be47350a-704d-4ac4-9111-6bbd13eb9a0b}</UniqueIdentifier>
     </Filter>
@@ -83,6 +80,9 @@
     <Filter Include="lecui\containers\tab_pane">
       <UniqueIdentifier>{f9f83e07-fde8-4f7c-be84-8594cc164f91}</UniqueIdentifier>
     </Filter>
+    <Filter Include="lecui\containers\group">
+      <UniqueIdentifier>{4dfa9feb-9195-4283-addb-a192e719cb60}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="error\win_error.h">
@@ -118,9 +118,6 @@
     <ClInclude Include="widgets\custom\custom_impl.h">
       <Filter>lecui\widgets\custom</Filter>
     </ClInclude>
-    <ClInclude Include="widgets\group\group_impl.h">
-      <Filter>lecui\widgets\group</Filter>
-    </ClInclude>
     <ClInclude Include="widgets\h_scrollbar\h_scrollbar.h">
       <Filter>lecui\widgets\h_scrollbar</Filter>
     </ClInclude>
@@ -152,9 +149,6 @@
       <Filter>lecui\widgets</Filter>
     </ClInclude>
     <ClInclude Include="widgets\custom.h">
-      <Filter>lecui\widgets</Filter>
-    </ClInclude>
-    <ClInclude Include="widgets\group.h">
       <Filter>lecui\widgets</Filter>
     </ClInclude>
     <ClInclude Include="widgets\label.h">
@@ -233,6 +227,12 @@
     <ClInclude Include="containers\tab_pane.h">
       <Filter>lecui\containers</Filter>
     </ClInclude>
+    <ClInclude Include="containers\group.h">
+      <Filter>lecui\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="containers\group\group_impl.h">
+      <Filter>lecui\containers\group</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="error\win_error.cpp">
@@ -267,9 +267,6 @@
     </ClCompile>
     <ClCompile Include="widgets\custom\custom_impl.cpp">
       <Filter>lecui\widgets\custom</Filter>
-    </ClCompile>
-    <ClCompile Include="widgets\group\group_impl.cpp">
-      <Filter>lecui\widgets\group</Filter>
     </ClCompile>
     <ClCompile Include="widgets\h_scrollbar\h_scrollbar.cpp">
       <Filter>lecui\widgets\h_scrollbar</Filter>
@@ -319,9 +316,6 @@
     </ClCompile>
     <ClCompile Include="widgets\custom\custom.cpp">
       <Filter>lecui\widgets\custom</Filter>
-    </ClCompile>
-    <ClCompile Include="widgets\group\group.cpp">
-      <Filter>lecui\widgets\group</Filter>
     </ClCompile>
     <ClCompile Include="widgets\image\image.cpp">
       <Filter>lecui\widgets\image</Filter>
@@ -376,6 +370,12 @@
     </ClCompile>
     <ClCompile Include="containers\tab_pane\tab_pane_impl.cpp">
       <Filter>lecui\containers\tab_pane</Filter>
+    </ClCompile>
+    <ClCompile Include="containers\group\group.cpp">
+      <Filter>lecui\containers\group</Filter>
+    </ClCompile>
+    <ClCompile Include="containers\group\group_impl.cpp">
+      <Filter>lecui\containers\group</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

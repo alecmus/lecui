@@ -1,5 +1,5 @@
 /*
-** group.cpp - group widget implementation
+** group.cpp - group container implementation
 **
 ** lecui user interface library
 ** Copyright (c) 2019 Alec T. Musasa (alecmus at live dot com)
@@ -16,38 +16,38 @@
 
 namespace liblec {
 	namespace lecui {
-		bool widgets::specs::group::operator==(const group& param) {
+		bool containers::group_specs::operator==(const group_specs& param) {
 			return
 				// generic specs
-				widget::operator==(param) &&
+				specs::operator==(param) &&
 
 				// widget specific specs
 				(color_border == param.color_border);
 		}
 
-		bool widgets::specs::group::operator!=(const group& param) {
+		bool containers::group_specs::operator!=(const group_specs& param) {
 			return !operator==(param);
 		}
 
-		class widgets::group::impl {
+		class containers::group::impl {
 		public:
 			impl(containers::page& page) :
 				page_(page) {}
 			containers::page& page_;
 		};
 
-		widgets::group::group(containers::page& page) :
+		containers::group::group(containers::page& page) :
 			d_(*(new impl(page))) {}
 
-		widgets::group::~group() { delete& d_; }
+		containers::group::~group() { delete& d_; }
 
-		widgets::specs::group&
-			widgets::group::add(const std::string& alias) {
+		containers::group_specs&
+			containers::group::add(const std::string& alias) {
 			return d_.page_.d_page_.add_group(alias);
 		}
 
-		widgets::specs::group&
-			widgets::group::specs(form& fm, const std::string& path) {
+		containers::group_specs&
+			containers::group::specs(form& fm, const std::string& path) {
 			const auto idx = path.find("/");
 
 			if (idx != std::string::npos) {

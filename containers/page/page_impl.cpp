@@ -73,7 +73,7 @@ namespace liblec {
 			return false;
 		}
 
-		containers::specs::tab_pane&
+		containers::tab_pane_specs&
 			containers::page::impl::add_tab_pane(const std::string& alias) {
 			tab_panes_.try_emplace(alias, alias_, alias, p_directwrite_factory_);
 			widgets_.emplace(alias, tab_panes_.at(alias));
@@ -81,7 +81,7 @@ namespace liblec {
 			return tab_panes_.at(alias).specs();
 		}
 
-		containers::specs::pane&
+		containers::pane_specs&
 			containers::page::impl::add_pane(const std::string& alias) {
 			panes_.try_emplace(alias, alias_, alias);
 			widgets_.emplace(alias, panes_.at(alias));
@@ -89,7 +89,7 @@ namespace liblec {
 			return panes_.at(alias).specs();
 		}
 
-		widgets::specs::rectangle&
+		widgets::rectangle_specs&
 			containers::page::impl::add_rectangle(const std::string& alias) {
 			rectangles_.try_emplace(alias, alias_, alias);
 			widgets_.emplace(alias, rectangles_.at(alias));
@@ -97,7 +97,7 @@ namespace liblec {
 			return rectangles_.at(alias).specs();
 		}
 
-		widgets::specs::label&
+		widgets::label_specs&
 			containers::page::impl::add_label(const std::string& alias) {
 			labels_.try_emplace(alias, alias_, alias, p_directwrite_factory_);
 			widgets_.emplace(alias, labels_.at(alias));
@@ -105,7 +105,7 @@ namespace liblec {
 			return labels_.at(alias).specs();
 		}
 
-		widgets::specs::group&
+		containers::group_specs&
 			containers::page::impl::add_group(const std::string& alias) {
 			groups_.try_emplace(alias, alias_, alias);
 			widgets_.emplace(alias, groups_.at(alias));
@@ -113,7 +113,7 @@ namespace liblec {
 			return groups_.at(alias).specs();
 		}
 
-		widgets::specs::button&
+		widgets::button_specs&
 			containers::page::impl::add_button(const std::string& alias) {
 			buttons_.try_emplace(alias, alias_, alias, p_directwrite_factory_);
 			widgets_.emplace(alias, buttons_.at(alias));
@@ -121,7 +121,7 @@ namespace liblec {
 			return buttons_.at(alias).specs();
 		}
 
-		widgets::specs::toggle&
+		widgets::toggle_specs&
 			containers::page::impl::add_toggle(const std::string& alias) {
 			toggles_.try_emplace(alias, alias_, alias, p_directwrite_factory_);
 			widgets_.emplace(alias, toggles_.at(alias));
@@ -129,7 +129,7 @@ namespace liblec {
 			return toggles_.at(alias).specs();
 		}
 
-		widgets::specs::combo&
+		widgets::combo_specs&
 			containers::page::impl::add_combo(const std::string& alias) {
 			combos_.try_emplace(alias, alias_, alias, p_directwrite_factory_);
 			widgets_.emplace(alias, combos_.at(alias));
@@ -137,7 +137,7 @@ namespace liblec {
 			return combos_.at(alias).specs();
 		}
 
-		widgets::specs::list&
+		widgets::list_specs&
 			containers::page::impl::add_list(const std::string& alias) {
 			lists_.try_emplace(alias, alias_, alias, p_directwrite_factory_);
 			widgets_.emplace(alias, lists_.at(alias));
@@ -145,7 +145,7 @@ namespace liblec {
 			return lists_.at(alias).specs();
 		}
 
-		widgets::specs::custom&
+		widgets::custom_specs&
 			containers::page::impl::add_custom(const std::string& alias) {
 			customs_.try_emplace(alias, alias_, alias, p_directwrite_factory_, p_iwic_factory_);
 			widgets_.emplace(alias, customs_.at(alias));
@@ -153,7 +153,7 @@ namespace liblec {
 			return customs_.at(alias).specs();
 		}
 
-		widgets::specs::image&
+		widgets::image_specs&
 			containers::page::impl::add_image(const std::string& alias) {
 			images_.try_emplace(alias, alias_, alias, p_iwic_factory_);
 			widgets_.emplace(alias, images_.at(alias));
@@ -161,7 +161,7 @@ namespace liblec {
 			return images_.at(alias).specs();
 		}
 
-		widgets::specs::progress_indicator&
+		widgets::progress_indicator_specs&
 			containers::page::impl::add_progress_indicator(const std::string& alias) {
 			progress_indicators_.try_emplace(alias, alias_, alias, p_direct2d_factory_, p_directwrite_factory_);
 			widgets_.emplace(alias, progress_indicators_.at(alias));
@@ -169,7 +169,7 @@ namespace liblec {
 			return progress_indicators_.at(alias).specs();
 		}
 
-		widgets::specs::progress_bar&
+		widgets::progress_bar_specs&
 			containers::page::impl::add_progress_bar(const std::string& alias) {
 			progress_bars_.try_emplace(alias, alias_, alias, p_direct2d_factory_, p_directwrite_factory_);
 			widgets_.emplace(alias, progress_bars_.at(alias));
@@ -177,7 +177,7 @@ namespace liblec {
 			return progress_bars_.at(alias).specs();
 		}
 
-		widgets::specs::checkbox&
+		widgets::checkbox_specs&
 			containers::page::impl::add_checkbox(const std::string& alias) {
 			checkboxes_.try_emplace(alias, alias_, alias, p_direct2d_factory_, p_directwrite_factory_);
 			widgets_.emplace(alias, checkboxes_.at(alias));
@@ -185,7 +185,7 @@ namespace liblec {
 			return checkboxes_.at(alias).specs();
 		}
 
-		widgets::specs::textbox&
+		widgets::textbox_specs&
 			containers::page::impl::add_textbox(const std::string& alias) {
 			textboxes_.try_emplace(alias, alias_, alias, fm_, p_directwrite_factory_);
 			widgets_.emplace(alias, textboxes_.at(alias));
@@ -193,7 +193,7 @@ namespace liblec {
 			return textboxes_.at(alias).specs();
 		}
 
-		widgets::specs::tree&
+		widgets::tree_specs&
 			containers::page::impl::add_tree(const std::string& alias) {
 			trees_.try_emplace(alias, alias_, alias, p_direct2d_factory_, p_directwrite_factory_);
 			widgets_.emplace(alias, trees_.at(alias));

@@ -16,16 +16,16 @@
 
 namespace liblec {
 	namespace lecui {
-		bool widgets::specs::button::operator==(const button& param) {
+		bool widgets::button_specs::operator==(const button_specs& param) {
 			return
 				// generic specs
-				widget::operator==(param) &&
+				specs::operator==(param) &&
 
 				// widget specific specs
 				(color_border == param.color_border);
 		}
 
-		bool widgets::specs::button::operator!=(const button& param) {
+		bool widgets::button_specs::operator!=(const button_specs& param) {
 			return !operator==(param);
 		}
 
@@ -41,12 +41,12 @@ namespace liblec {
 
 		widgets::button::~button() { delete& d_; }
 
-		widgets::specs::button&
+		widgets::button_specs&
 			widgets::button::add(const std::string& alias) {
 			return d_.page_.d_page_.add_button(alias);
 		}
 
-		widgets::specs::button&
+		widgets::button_specs&
 			widgets::button::specs(form& fm, const std::string& path) {
 			const auto idx = path.find("/");
 

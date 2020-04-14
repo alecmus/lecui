@@ -16,16 +16,16 @@
 
 namespace liblec {
 	namespace lecui {
-		bool widgets::specs::progress_indicator::operator==(const progress_indicator& param) {
+		bool widgets::progress_indicator_specs::operator==(const progress_indicator_specs& param) {
 			return
 				// generic specs
-				widget::operator==(param) &&
+				specs::operator==(param) &&
 
 				// widget specific specs
 				(color_empty == param.color_empty);
 		}
 
-		bool widgets::specs::progress_indicator::operator!=(const progress_indicator& param) {
+		bool widgets::progress_indicator_specs::operator!=(const progress_indicator_specs& param) {
 			return !operator==(param);
 		}
 
@@ -41,12 +41,12 @@ namespace liblec {
 
 		widgets::progress_indicator::~progress_indicator() { delete& d_; }
 
-		widgets::specs::progress_indicator&
+		widgets::progress_indicator_specs&
 			widgets::progress_indicator::add(const std::string& alias) {
 			return d_.page_.d_page_.add_progress_indicator(alias);
 		}
 
-		widgets::specs::progress_indicator&
+		widgets::progress_indicator_specs&
 			widgets::progress_indicator::specs(form& fm, const std::string& path) {
 			const auto idx = path.find("/");
 

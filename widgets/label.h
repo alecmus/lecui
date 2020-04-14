@@ -26,44 +26,42 @@ namespace liblec {
 		}
 
 		namespace widgets {
-			namespace specs {
-				/// This widget supports formatting.
-				/// 
-				/// Start and end of XML formatting is marked by the 'text' tag: <text></text>
-				/// 
-				/// The supported attributes of the text are:
-				/// 
-				/// font		The font name
-				/// size		The font size, in points
-				/// bold		'true' or 'false'
-				/// italic		'true' or 'false'
-				/// underline	'true' or 'false'
-				/// color		0xAABBCCDD where r = AA, g = BB, b=CC, a=DD
-				/// 
-				/// e.g. "This is <text size='16.5' italic='true' color='0x0000FFFF'>good</text>.";
-				/// 
-				/// The above will display a label with the sentence:
-				/// 
-				/// This is good.
-				/// 
-				/// The word 'good' will be of size 16.5, italic and blue, while the rest
-				/// of the text will use the widget specifications.
-				/// 
+			/// This widget supports formatting.
+			/// 
+			/// Start and end of XML formatting is marked by the 'text' tag: <text></text>
+			/// 
+			/// The supported attributes of the text are:
+			/// 
+			/// font		The font name
+			/// size		The font size, in points
+			/// bold		'true' or 'false'
+			/// italic		'true' or 'false'
+			/// underline	'true' or 'false'
+			/// color		0xAABBCCDD where r = AA, g = BB, b=CC, a=DD
+			/// 
+			/// e.g. "This is <text size='16.5' italic='true' color='0x0000FFFF'>good</text>.";
+			/// 
+			/// The above will display a label with the sentence:
+			/// 
+			/// This is good.
+			/// 
+			/// The word 'good' will be of size 16.5, italic and blue, while the rest
+			/// of the text will use the widget specifications.
+			/// 
 				
-				/// <summary>Label widget specifications.</summary>
-				/// <remarks>Recommended height with defaults is 20px.</remarks>
-				class label : public widget {
-				public:
-					label() { color_hot = { 0, 120, 170, 20 }; };
-					color color_hot_pressed = { 0, 120, 170, 40 };
-					bool multiline = false;
-					bool center_h = false;
-					bool center_v = false;
+			/// <summary>Label widget specifications.</summary>
+			/// <remarks>Recommended height with defaults is 20px.</remarks>
+			class label_specs : public specs {
+			public:
+				label_specs() { color_hot = { 0, 120, 170, 20 }; };
+				color color_hot_pressed = { 0, 120, 170, 40 };
+				bool multiline = false;
+				bool center_h = false;
+				bool center_v = false;
 
-					bool operator==(const label&);
-					bool operator!=(const label&);
-				};
-			}
+				bool operator==(const label_specs&);
+				bool operator!=(const label_specs&);
+			};
 
 			/// <summary>Label widget.</summary>
 			class lecui_api label {
@@ -75,8 +73,8 @@ namespace liblec {
 				/// <param name="alias">The in-page unique alias, e.g. "caption".</param>
 				/// <returns>A reference to the label specifications.</returns>
 				/// <remarks>Throws on failure.</remarks>
-				[[nodiscard]] widgets::specs::label&
-					add(const std::string& alias);
+				[[nodiscard]]
+				label_specs& add(const std::string& alias);
 
 				/// <summary>Get the specifications of an existing label.</summary>
 				/// <param name="fm">The form containing the label.</param>
@@ -84,8 +82,8 @@ namespace liblec {
 				/// "sample_page/sample_pane/caption".</param>
 				/// <returns>A reference to the label specifications.</returns>
 				/// <remarks>Throws on failure.</remarks>
-				[[nodiscard]] static widgets::specs::label&
-					specs(form& fm,const std::string& path);
+				[[nodiscard]]
+				static label_specs& specs(form& fm,const std::string& path);
 
 			private:
 				class impl;

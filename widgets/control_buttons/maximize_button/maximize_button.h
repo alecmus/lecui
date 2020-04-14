@@ -18,9 +18,7 @@
 namespace liblec {
 	namespace lecui {
 		namespace widgets {
-			namespace specs {
-				class maximize_button : public widget {};
-			}
+			class maximize_button_specs : public specs {};
 		}
 
 		namespace widgets_impl {
@@ -40,7 +38,7 @@ namespace liblec {
 
 				/// widget specific methods
 				void set_hwnd(HWND hWnd);
-				widgets::specs::maximize_button& specs();
+				widgets::maximize_button_specs& specs();
 
 			private:
 				/// Prevent copying an object of this class.
@@ -49,7 +47,7 @@ namespace liblec {
 
 				/// Private variables
 				HWND hWnd_;
-				widgets::specs::maximize_button specs_;
+				widgets::maximize_button_specs specs_;
 				ID2D1SolidColorBrush* p_brush_;
 				ID2D1SolidColorBrush* p_brush_hot_;
 				ID2D1SolidColorBrush* p_brush_disabled_;

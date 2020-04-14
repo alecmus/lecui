@@ -26,35 +26,33 @@ namespace liblec {
 		}
 
 		namespace widgets {
-			namespace specs {
-				/// <summary>Checkbox widget specifications.</summary>
-				/// <remarks>Recommended size with defaults is 20x20px.</remarks>
-				class checkbox : public widget {
-				public:
-					checkbox() {
-						color_fill = { 229, 229, 229, 255 };
-						color_hot = { 240, 240, 240, 255 };
-						color_selected = { 0, 120, 170, 100 };
-					}
-					std::string text_unchecked;
-					std::string text_indeterminate;
-					float border = .5f;
-					color color_check = { 0, 120, 170, 255 };
-					color color_border = { 150, 150, 150, 255 };
+			/// <summary>Checkbox widget specifications.</summary>
+			/// <remarks>Recommended size with defaults is 20x20px.</remarks>
+			class checkbox_specs : public specs {
+			public:
+				checkbox_specs() {
+					color_fill = { 229, 229, 229, 255 };
+					color_hot = { 240, 240, 240, 255 };
+					color_selected = { 0, 120, 170, 100 };
+				}
+				std::string text_unchecked;
+				std::string text_indeterminate;
+				float border = .5f;
+				color color_check = { 0, 120, 170, 255 };
+				color color_border = { 150, 150, 150, 255 };
 
-					enum class checkbox_status {
-						checked,
-						unchecked,
-						indeterminate,
-					} status = checkbox_status::indeterminate;
+				enum class checkbox_status {
+					checked,
+					unchecked,
+					indeterminate,
+				} status = checkbox_status::indeterminate;
 
-					/// <summary>Called when the checkbox is clicked.</summary>
-					std::function<void(checkbox_status checked)> on_check = nullptr;
+				/// <summary>Called when the checkbox is clicked.</summary>
+				std::function<void(checkbox_status checked)> on_check = nullptr;
 
-					bool operator==(const checkbox&);
-					bool operator!=(const checkbox&);
-				};
-			}
+				bool operator==(const checkbox_specs&);
+				bool operator!=(const checkbox_specs&);
+			};
 
 			/// <summary>Checkbox widget.</summary>
 			class lecui_api checkbox {
@@ -63,20 +61,20 @@ namespace liblec {
 				~checkbox();
 
 				/// <summary>Add a checkbox widget.</summary>
-				/// <param name="alias">The in-page unique alias, e.g. "marital_status".</param>
+				/// <param name="alias">The in-page unique alias, e.g. "employed".</param>
 				/// <returns>A reference to the checkbox specifications.</returns>
 				/// <remarks>Throws on failure.</remarks>
-				[[nodiscard]] widgets::specs::checkbox&
-					add(const std::string& alias);
+				[[nodiscard]]
+				checkbox_specs& add(const std::string& alias);
 
 				/// <summary>Get the specifications of an existing checkbox.</summary>
 				/// <param name="fm">The form containing the checkbox.</param>
 				/// <param name="path">The full path to the widget, e.g.
-				/// "sample_page/sample_tab_pane/tab_one/marital_status".</param>
+				/// "sample_page/sample_tab_pane/tab_one/employed".</param>
 				/// <returns>A reference to the checkbox specifications.</returns>
 				/// <remarks>Throws on failure.</remarks>
-				[[nodiscard]] static widgets::specs::checkbox&
-					specs(form& fm, const std::string& path);
+				[[nodiscard]]
+				static checkbox_specs& specs(form& fm, const std::string& path);
 
 			private:
 				class impl;

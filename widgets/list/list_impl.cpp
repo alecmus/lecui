@@ -65,7 +65,7 @@ namespace liblec {
 			page_alias_ = page_alias;
 			alias_ = alias_;
 
-			widgets::specs::scrollbar bar;
+			widgets::scrollbar_specs bar;
 
 			color_scrollbar_ = bar.color_fill;
 			color_scrollbar_hot_ = bar.color_hot;
@@ -219,7 +219,7 @@ namespace liblec {
 					return false;
 			};
 
-			rect_ = position(specs_.rect, specs_.resize, change_in_size.width, change_in_size.height);
+			rect_ = position(specs_.rect, specs_.on_resize, change_in_size.width, change_in_size.height);
 			rect_.left -= offset.x;
 			rect_.right -= offset.x;
 			rect_.top -= offset.y;
@@ -869,7 +869,7 @@ namespace liblec {
 			return true;
 		}
 
-		widgets::specs::list&
+		widgets::list_specs&
 			widgets_impl::list::specs() { return specs_; }
 
 		void widgets_impl::list::on_selection() {

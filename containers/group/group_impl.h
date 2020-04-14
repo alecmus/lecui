@@ -1,5 +1,5 @@
 /*
-** group.h - group_impl interface
+** group_impl.h - group_impl interface
 **
 ** lecui user interface library
 ** Copyright (c) 2019 Alec T. Musasa (alecmus at live dot com)
@@ -13,7 +13,7 @@
 
 #pragma once
 
-#include "../widget_impl.h"
+#include "../../widgets/widget_impl.h"
 #include "../group.h"
 
 namespace liblec {
@@ -36,7 +36,7 @@ namespace liblec {
 				void on_click() override;
 
 				/// widget specific methods
-				widgets::specs::group& specs();
+				containers::group_specs& specs();
 
 			private:
 				/// Prevent the use of the default constructor.
@@ -48,7 +48,7 @@ namespace liblec {
 				group& operator=(const group&);
 
 				/// Private variables
-				widgets::specs::group specs_, specs_old_;
+				containers::group_specs specs_, specs_old_;
 				ID2D1SolidColorBrush* p_brush_fill_;
 				ID2D1SolidColorBrush* p_brush_border_;
 				ID2D1SolidColorBrush* p_brush_hot_;

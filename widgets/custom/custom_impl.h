@@ -38,7 +38,7 @@ namespace liblec {
 				void on_click() override;
 
 				/// widget specific methods
-				widgets::specs::custom& specs();
+				widgets::custom_specs& specs();
 
 			private:
 				/// Prevent the use of the default constructor.
@@ -50,7 +50,7 @@ namespace liblec {
 				custom& operator=(const custom&);
 
 				/// Private variables
-				widgets::specs::custom specs_, specs_old_;
+				widgets::custom_specs specs_, specs_old_;
 
 				IDWriteFactory* p_directwrite_factory_;
 				IWICImagingFactory* p_iwic_factory_;

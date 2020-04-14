@@ -1,5 +1,5 @@
 /*
-** group.cpp - group_impl implementation
+** group_impl.cpp - group_impl implementation
 **
 ** lecui user interface library
 ** Copyright (c) 2019 Alec T. Musasa (alecmus at live dot com)
@@ -102,7 +102,7 @@ namespace liblec {
 				specs_.on_click();
 		}
 
-		widgets::specs::group&
+		containers::group_specs&
 			widgets_impl::group::specs() { return specs_; }
 	}
 }

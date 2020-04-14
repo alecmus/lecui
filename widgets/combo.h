@@ -26,43 +26,58 @@ namespace liblec {
 		}
 
 		namespace widgets {
-			namespace specs {
-				class combo : public widget {
-				public:
-					combo() {
-						color_fill = { 255, 255, 255, 0 };
-						color_hot = { 200, 200, 200, 50 }; }
-					color color_border = { 0, 120, 170, 255 };
-					color color_dropdown_hot = { 255, 255, 255, 255 };
-					color color_menu = { 255, 255, 255, 255 };
-					color color_menu_hot = { 200, 230, 255, 255 };
-					color color_menu_selected = { 0, 120, 170, 255 };
-					float border = .5f;
-					float corner_radius_x = 2.f;
-					float corner_radius_y = 2.f;
-					std::vector<std::string> items;
-					std::string selected;
-					std::function<void(const std::string&)> on_selection = nullptr;
+			/// <summary>Combo widget specifications.</summary>
+			class combo_specs : public specs {
+			public:
+				combo_specs() {
+					color_fill = { 255, 255, 255, 0 };
+					color_hot = { 200, 200, 200, 50 }; }
+				color color_border = { 0, 120, 170, 255 };
+				color color_dropdown_hot = { 255, 255, 255, 255 };
+				color color_menu = { 255, 255, 255, 255 };
+				color color_menu_hot = { 200, 230, 255, 255 };
+				color color_menu_selected = { 0, 120, 170, 255 };
+				float border = .5f;
+				float corner_radius_x = 2.f;
+				float corner_radius_y = 2.f;
+				std::vector<std::string> items;
+				std::string selected;
 
-					bool operator==(const combo&);
-					bool operator!=(const combo&);
-				};
-			}
+				/// <summary>Called when the selection changes. The parameter contains the
+				/// selected item.</summary>
+				std::function<void(const std::string&)> on_selection = nullptr;
 
+				bool operator==(const combo_specs&);
+				bool operator!=(const combo_specs&);
+			};
+
+			/// <summary>Combo widget.</summary>
 			class lecui_api combo {
 			public:
 				combo(containers::page& page);
 				~combo();
 
-				widgets::specs::combo&
-					add(const std::string& alias);
-				static widgets::specs::combo&
-					specs(form& fm, const std::string& path);
+				/// <summary>Add a combo widget.</summary>
+				/// <param name="alias">The in-page unique alias, e.g. "title".</param>
+				/// <returns>A reference to the combo specifications.</returns>
+				/// <remarks>Throws on failure.</remarks>
+				[[nodiscard]]
+				combo_specs& add(const std::string& alias);
+
+				/// <summary>Get the specifications of an existing combo.</summary>
+				/// <param name="fm">The form containing the combo.</param>
+				/// <param name="path">The full path to the widget, e.g.
+				/// "sample_page/sample_tab_pane/tab_one/employed".</param>
+				/// <returns>A reference to the combo specifications.</returns>
+				/// <remarks>Throws on failure.</remarks>
+				[[nodiscard]]
+				static combo_specs& specs(form& fm, const std::string& path);
 
 			private:
 				class combo_impl;
 				combo_impl& d_;
 
+				// Default constructor and copying an object of this class are not allowed
 				combo();
 				combo(const combo&);
 				combo& operator=(const combo&);

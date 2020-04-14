@@ -16,11 +16,11 @@
 #include "containers/page.h"
 #include "containers/tab_pane.h"
 #include "containers/pane.h"
+#include "containers/group.h"
 
 #include "widgets/rectangle.h"
 #include "widgets/label.h"
 #include "widgets/timer.h"
-#include "widgets/group.h"
 #include "widgets/button.h"
 #include "widgets/h_scrollbar/h_scrollbar.h"
 #include "widgets/v_scrollbar/v_scrollbar.h"
@@ -367,7 +367,7 @@ namespace liblec {
 			p_close_button_->specs().color_fill = clr_theme_;
 			p_close_button_->specs().color_hot = clr_theme_hot_;
 			p_close_button_->specs().color_disabled = clr_theme_disabled_;
-			p_close_button_->specs().resize.perc_x = 100;
+			p_close_button_->specs().on_resize.perc_x = 100;
 
 			p_close_button_->specs().rect.right = size_.width - control_button_margin_;
 			p_close_button_->specs().rect.top = control_button_margin_;
@@ -390,7 +390,7 @@ namespace liblec {
 			p_maximize_button_->specs().color_fill = clr_theme_;
 			p_maximize_button_->specs().color_hot = clr_theme_hot_;
 			p_maximize_button_->specs().color_disabled = clr_theme_disabled_;
-			p_maximize_button_->specs().resize.perc_x = 100;
+			p_maximize_button_->specs().on_resize.perc_x = 100;
 
 			const auto right_edge = p_close_button_->specs().rect.left;
 
@@ -413,7 +413,7 @@ namespace liblec {
 			p_minimize_button_->specs().color_fill = clr_theme_;
 			p_minimize_button_->specs().color_hot = clr_theme_hot_;
 			p_minimize_button_->specs().color_disabled = clr_theme_disabled_;
-			p_minimize_button_->specs().resize.perc_x = 100;
+			p_minimize_button_->specs().on_resize.perc_x = 100;
 
 			const auto right_edge = allow_resizing_ ?
 				p_maximize_button_->specs().rect.left :
@@ -476,7 +476,7 @@ namespace liblec {
 				std::string alias;
 
 				// important that it's not a reference because of deletion in a ranged for loop later
-				lecui::widgets::specs::tree tree;
+				lecui::widgets::tree_specs tree;
 				lecui::containers::page& source;
 				lecui::containers::page& destination;
 			};
@@ -508,7 +508,7 @@ namespace liblec {
 
 								// clone essential properties to pane
 								pane.specs().rect = tree_specs.rect;
-								pane.specs().resize = tree_specs.resize;
+								pane.specs().on_resize = tree_specs.on_resize;
 								pane.specs().color_fill = tree_specs.color_fill;
 								pane.specs().color_border = tree_specs.color_border;
 
@@ -553,7 +553,7 @@ namespace liblec {
 
 						// adjust specs
 						specs.rect = { 0, it.destination.size().width, 0, it.destination.size().height };
-						specs.resize = { 0, 0, 0, 0 };	// critical because tree will change size as tree is browsed or changed. the pane scroll bars will do the job.
+						specs.on_resize = { 0, 0, 0, 0 };	// critical because tree will change size as tree is browsed or changed. the pane scroll bars will do the job.
 						specs.color_fill.alpha = 0;
 						specs.color_border.alpha = 0;
 

@@ -16,10 +16,10 @@
 
 namespace liblec {
 	namespace lecui {
-		bool widgets::specs::combo::operator==(const combo& param) {
+		bool widgets::combo_specs::operator==(const combo_specs& param) {
 			return
 				// generic specs
-				widget::operator==(param) &&
+				specs::operator==(param) &&
 
 				// widget specific specs
 				(color_border == param.color_border) &&
@@ -29,7 +29,7 @@ namespace liblec {
 				(color_menu_selected == param.color_menu_selected);
 		}
 
-		bool widgets::specs::combo::operator!=(const combo& param) {
+		bool widgets::combo_specs::operator!=(const combo_specs& param) {
 			return !operator==(param);
 		}
 
@@ -45,12 +45,12 @@ namespace liblec {
 
 		widgets::combo::~combo() { delete& d_; }
 
-		widgets::specs::combo&
+		widgets::combo_specs&
 			widgets::combo::add(const std::string& alias) {
 			return d_.page_.d_page_.add_combo(alias);
 		}
 
-		widgets::specs::combo&
+		widgets::combo_specs&
 			widgets::combo::specs(form& fm, const std::string& path) {
 			const auto idx = path.find("/");
 

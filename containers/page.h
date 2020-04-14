@@ -24,7 +24,6 @@ namespace liblec {
 		namespace widgets {
 			class rectangle;
 			class label;
-			class group;
 			class button;
 			class toggle;
 			class combo;
@@ -42,6 +41,7 @@ namespace liblec {
 			class tab_pane;
 			class tab;
 			class pane;
+			class group;
 
 			/// <summary>Page container.</summary>
 			/// <remarks>This is the generic container type, and is the only one of the containers
@@ -85,10 +85,10 @@ namespace liblec {
 				friend containers::tab_pane;
 				friend containers::tab;
 				friend containers::pane;
+				friend containers::group;
 
 				friend widgets::rectangle;
 				friend widgets::label;
-				friend widgets::group;
 				friend widgets::button;
 				friend widgets::toggle;
 				friend widgets::combo;

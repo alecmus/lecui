@@ -41,7 +41,7 @@ namespace liblec {
 				bool hit(const bool& hit) override;
 
 				/// widget specific methods
-				widgets::specs::combo& specs();
+				widgets::combo_specs& specs();
 
 			private:
 				/// Prevent the use of the default constructor.
@@ -53,7 +53,7 @@ namespace liblec {
 				combo& operator=(const combo&);
 
 				/// Private variables
-				widgets::specs::combo specs_, specs_old_;
+				widgets::combo_specs specs_, specs_old_;
 				ID2D1SolidColorBrush* p_brush_;
 				ID2D1SolidColorBrush* p_brush_fill_;
 				ID2D1SolidColorBrush* p_brush_hot_;

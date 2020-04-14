@@ -117,7 +117,7 @@ namespace liblec {
 			if (!resources_created_)
 				create_resources(p_render_target);
 
-			rect_tab_pane_ = position(specs_.rect, specs_.resize, change_in_size.width, change_in_size.height);
+			rect_tab_pane_ = position(specs_.rect, specs_.on_resize, change_in_size.width, change_in_size.height);
 			rect_tab_pane_.left -= offset.x;
 			rect_tab_pane_.right -= offset.x;
 			rect_tab_pane_.top -= offset.y;
@@ -276,7 +276,7 @@ namespace liblec {
 			}
 		}
 
-		containers::specs::tab_pane&
+		containers::tab_pane_specs&
 			widgets_impl::tab_pane::specs() { return specs_; }
 
 		const D2D1_RECT_F& widgets_impl::tab_pane::client_area() {

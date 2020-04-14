@@ -26,26 +26,24 @@ namespace liblec {
 		}
 
 		namespace widgets {
-			namespace specs {
-				/// <summary>Button widget specifications.</summary>
-				/// <remarks>Recommended size with defaults is 80x25px.</remarks>
-				class button : public widget {
-				public:
-					button() {
-						color_text = { 0, 0, 0, 255 };
-						color_fill = { 229, 229, 229, 255 };
-						color_hot = { 240, 240, 240, 255 };
-						color_selected = { 0, 120, 170, 100 };
-					}
-					float border = .5f;
-					float corner_radius_x = 5.f;
-					float corner_radius_y = 5.f;
-					color color_border = { 150, 150, 150, 255 };
+			/// <summary>Button widget specifications.</summary>
+			/// <remarks>Recommended size with defaults is 80x25px.</remarks>
+			class button_specs : public specs {
+			public:
+				button_specs() {
+					color_text = { 0, 0, 0, 255 };
+					color_fill = { 229, 229, 229, 255 };
+					color_hot = { 240, 240, 240, 255 };
+					color_selected = { 0, 120, 170, 100 };
+				}
+				float border = .5f;
+				float corner_radius_x = 5.f;
+				float corner_radius_y = 5.f;
+				color color_border = { 150, 150, 150, 255 };
 
-					bool operator==(const button&);
-					bool operator!=(const button&);
-				};
-			}
+				bool operator==(const button_specs&);
+				bool operator!=(const button_specs&);
+			};
 
 			/// <summary>Button widget.</summary>
 			class lecui_api button {
@@ -57,8 +55,8 @@ namespace liblec {
 				/// <param name="alias">The in-page unique alias, e.g. "next_button".</param>
 				/// <returns>A reference to the button specifications.</returns>
 				/// <remarks>Throws on failure.</remarks>
-				[[nodiscard]] widgets::specs::button&
-					add(const std::string& alias);
+				[[nodiscard]]
+				button_specs& add(const std::string& alias);
 
 				/// <summary>Get the specifications of an existing button.</summary>
 				/// <param name="fm">The form containing the button.</param>
@@ -66,8 +64,8 @@ namespace liblec {
 				/// "sample_page/sample_pane/next_button".</param>
 				/// <returns>A reference to the button specifications.</returns>
 				/// <remarks>Throws on failure.</remarks>
-				[[nodiscard]] static widgets::specs::button&
-					specs(form& fm, const std::string& path);
+				[[nodiscard]]
+				static button_specs& specs(form& fm, const std::string& path);
 
 			private:
 				class impl;

@@ -16,16 +16,16 @@
 
 namespace liblec {
 	namespace lecui {
-		bool widgets::specs::tree::operator==(const tree& param) {
+		bool widgets::tree_specs::operator==(const tree_specs& param) {
 			return
 				// generic specs
-				widget::operator==(param) &&
+				specs::operator==(param) &&
 
 				// widget specific specs
 				(color_border == param.color_border);
 		}
 
-		bool widgets::specs::tree::operator!=(const tree& param) {
+		bool widgets::tree_specs::operator!=(const tree_specs& param) {
 			return !operator==(param);
 		}
 
@@ -42,7 +42,7 @@ namespace liblec {
 
 		widgets::tree::~tree() { delete& d_; }
 
-		widgets::specs::tree&
+		widgets::tree_specs&
 			widgets::tree::add(const std::string& alias) {
 			// note: this placement is only temporary. the next time page::show() is called
 			// this tree widget will be moved into a special pane
@@ -52,7 +52,7 @@ namespace liblec {
 			return d_.page_.d_page_.add_tree(alias);
 		}
 
-		widgets::specs::tree&
+		widgets::tree_specs&
 			widgets::tree::specs(form& fm, const std::string& path) {
 			const auto idx = path.find("/");
 

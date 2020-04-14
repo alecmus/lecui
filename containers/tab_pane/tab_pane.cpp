@@ -19,11 +19,11 @@ namespace liblec {
 		class containers::tab_pane::impl {
 		public:
 			impl(containers::page& page,
-				containers::specs::tab_pane& specs,
+				containers::tab_pane_specs& specs,
 				const std::string& alias) :
 				page_(page), specs_(specs), alias_(alias) {}
 			containers::page& page_;
-			containers::specs::tab_pane& specs_;
+			containers::tab_pane_specs& specs_;
 			std::string alias_;
 		};
 
@@ -33,11 +33,11 @@ namespace liblec {
 
 		containers::tab_pane::~tab_pane() { delete& d_; }
 
-		containers::specs::tab_pane& containers::tab_pane::specs() {
+		containers::tab_pane_specs& containers::tab_pane::specs() {
 			return d_.specs_;
 		}
 
-		containers::specs::tab_pane&
+		containers::tab_pane_specs&
 			containers::tab_pane::specs(form& fm,
 				const std::string& path) {
 			const auto idx = path.find("/");
@@ -103,8 +103,8 @@ namespace liblec {
 
 			// initialize the page's horizontal scroll bar
 			{
-				tab_pane_.p_tabs_.at(tab_name).d_page_.h_scrollbar().specs().resize.perc_width = 100.f;
-				tab_pane_.p_tabs_.at(tab_name).d_page_.h_scrollbar().specs().resize.perc_y = 100.f;
+				tab_pane_.p_tabs_.at(tab_name).d_page_.h_scrollbar().specs().on_resize.perc_width = 100.f;
+				tab_pane_.p_tabs_.at(tab_name).d_page_.h_scrollbar().specs().on_resize.perc_y = 100.f;
 
 				tab_pane_.p_tabs_.at(tab_name).d_page_.h_scrollbar().specs().rect.left = 0.f;
 				tab_pane_.p_tabs_.at(tab_name).d_page_.h_scrollbar().specs().rect.right =
@@ -120,8 +120,8 @@ namespace liblec {
 
 			// initialize the page's vertical scroll bar
 			{
-				tab_pane_.p_tabs_.at(tab_name).d_page_.v_scrollbar().specs().resize.perc_height = 100.f;
-				tab_pane_.p_tabs_.at(tab_name).d_page_.v_scrollbar().specs().resize.perc_x = 100.f;
+				tab_pane_.p_tabs_.at(tab_name).d_page_.v_scrollbar().specs().on_resize.perc_height = 100.f;
+				tab_pane_.p_tabs_.at(tab_name).d_page_.v_scrollbar().specs().on_resize.perc_x = 100.f;
 
 				tab_pane_.p_tabs_.at(tab_name).d_page_.v_scrollbar().specs().rect.top = 0.f;
 				tab_pane_.p_tabs_.at(tab_name).d_page_.v_scrollbar().specs().rect.bottom =
@@ -160,8 +160,8 @@ namespace liblec {
 			rectangle.corner_radius_x = 15.f;
 			rectangle.corner_radius_y = 15.f;
 
-			rectangle.resize.perc_width = 100.f;
-			rectangle.resize.perc_height = 100.f;
+			rectangle.on_resize.perc_width = 100.f;
+			rectangle.on_resize.perc_height = 100.f;
 
 			// return reference to page so caller can add widgets to it
 			return tab_pane_.p_tabs_.at(tab_name);

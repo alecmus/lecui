@@ -40,7 +40,7 @@ namespace liblec {
 				bool hit(const bool& hit) override;
 
 				/// widget specific methods
-				widgets::specs::list& specs();
+				widgets::list_specs& specs();
 
 			private:
 				/// Prevent the use of the default constructor.
@@ -52,7 +52,7 @@ namespace liblec {
 				list& operator=(const list&);
 
 				/// Private variables
-				widgets::specs::list specs_, specs_old_;
+				widgets::list_specs specs_, specs_old_;
 				ID2D1SolidColorBrush* p_brush_;
 				ID2D1SolidColorBrush* p_brush_fill_;
 				ID2D1SolidColorBrush* p_brush_scrollbar_border_;

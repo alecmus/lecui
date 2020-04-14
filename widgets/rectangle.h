@@ -26,23 +26,21 @@ namespace liblec {
 		}
 
 		namespace widgets {
-			namespace specs {
-				/// <summary>Rectangle widget specifications.</summary>
-				class rectangle : public widget {
-				public:
-					rectangle() {
-						color_fill = { 222, 222, 222, 255 };
-						color_hot = { 0, 120, 170, 100 };
-						color_selected = { 0, 120, 170, 100 }; }
-					float border = .5f;
-					float corner_radius_x = .0f;
-					float corner_radius_y = .0f;
-					color color_border = { 150, 150, 150, 255 };
+			/// <summary>Rectangle widget specifications.</summary>
+			class rectangle_specs : public specs {
+			public:
+				rectangle_specs() {
+					color_fill = { 222, 222, 222, 255 };
+					color_hot = { 0, 120, 170, 100 };
+					color_selected = { 0, 120, 170, 100 }; }
+				float border = .5f;
+				float corner_radius_x = .0f;
+				float corner_radius_y = .0f;
+				color color_border = { 150, 150, 150, 255 };
 
-					bool operator==(const rectangle&);
-					bool operator!=(const rectangle&);
-				};
-			}
+				bool operator==(const rectangle_specs&);
+				bool operator!=(const rectangle_specs&);
+			};
 
 			/// <summary>Rectangle widget.</summary>
 			class lecui_api rectangle {
@@ -54,8 +52,8 @@ namespace liblec {
 				/// <param name="alias">The in-page unique alias, e.g. "border_rect".</param>
 				/// <returns>A reference to the rectangle specifications.</returns>
 				/// <remarks>Throws on failure.</remarks>
-				[[nodiscard]] widgets::specs::rectangle&
-					add(const std::string& alias);
+				[[nodiscard]]
+				rectangle_specs& add(const std::string& alias);
 
 				/// <summary>Get the specifications of an existing rectangle.</summary>
 				/// <param name="fm">The form containing the rectangle.</param>
@@ -63,8 +61,8 @@ namespace liblec {
 				/// "sample_page/sample_tab_pane/tab_three/border_rect".</param>
 				/// <returns>A reference to the rectangle specifications.</returns>
 				/// <remarks>Throws on failure.</remarks>
-				[[nodiscard]] static widgets::specs::rectangle&
-					specs(form& fm, const std::string& path);
+				[[nodiscard]]
+				static rectangle_specs& specs(form& fm, const std::string& path);
 
 			private:
 				class impl;

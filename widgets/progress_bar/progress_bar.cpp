@@ -16,16 +16,16 @@
 
 namespace liblec {
 	namespace lecui {
-		bool widgets::specs::progress_bar::operator==(const progress_bar& param) {
+		bool widgets::progress_bar_specs::operator==(const progress_bar_specs& param) {
 			return
 				// generic specs
-				widget::operator==(param) &&
+				specs::operator==(param) &&
 
 				// widget specific specs
 				(color_border == param.color_border);
 		}
 
-		bool widgets::specs::progress_bar::operator!=(const progress_bar& param) {
+		bool widgets::progress_bar_specs::operator!=(const progress_bar_specs& param) {
 			return !operator==(param);
 		}
 
@@ -41,12 +41,12 @@ namespace liblec {
 
 		widgets::progress_bar::~progress_bar() { delete& d_; }
 
-		widgets::specs::progress_bar&
+		widgets::progress_bar_specs&
 			widgets::progress_bar::add(const std::string& alias) {
 			return d_.page_.d_page_.add_progress_bar(alias);
 		}
 
-		widgets::specs::progress_bar&
+		widgets::progress_bar_specs&
 			widgets::progress_bar::specs(form& fm, const std::string& path) {
 			const auto idx = path.find("/");
 

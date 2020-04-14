@@ -69,7 +69,7 @@ namespace liblec {
 			if (!is_static_ && is_enabled_ && hit_)
 				p_brush_current_ = p_brush_hot_;
 
-			rect_ = position(specs_.rect, specs_.resize, change_in_size.width, change_in_size.height);
+			rect_ = position(specs_.rect, specs_.on_resize, change_in_size.width, change_in_size.height);
 
 			if (!is_static_ && hit_)
 				p_render_target->DrawRectangle(&rect_, p_brush_, pressed_ ? .5f : .0f);
@@ -104,7 +104,7 @@ namespace liblec {
 				specs_.on_click();
 		}
 
-		widgets::specs::close_button&
+		widgets::close_button_specs&
 			widgets_impl::close_button::specs() { return specs_; }
 	}
 }

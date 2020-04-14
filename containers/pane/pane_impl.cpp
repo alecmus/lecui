@@ -75,7 +75,7 @@ namespace liblec {
 			if (!resources_created_)
 				create_resources(p_render_target);
 
-			rect_pane_ = position(specs_.rect, specs_.resize, change_in_size.width, change_in_size.height);
+			rect_pane_ = position(specs_.rect, specs_.on_resize, change_in_size.width, change_in_size.height);
 			rect_pane_.left -= offset.x;
 			rect_pane_.right -= offset.x;
 			rect_pane_.top -= offset.y;
@@ -105,7 +105,7 @@ namespace liblec {
 
 		void widgets_impl::pane::on_click() {}
 
-		containers::specs::pane&
+		containers::pane_specs&
 			widgets_impl::pane::specs() { return specs_; }
 
 		const D2D1_RECT_F& widgets_impl::pane::client_area() {

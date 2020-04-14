@@ -180,13 +180,13 @@ namespace liblec {
 			friend containers::tab_pane;
 			friend containers::tab;
 			friend containers::pane;
+			friend containers::group;
 			friend widgets::timer;
 			friend widgets::label;
 			friend widgets::image;
 			friend widgets::button;
 			friend widgets::combo;
 			friend widgets::custom;
-			friend widgets::group;
 			friend widgets::list;
 			friend widgets::rectangle;
 			friend widgets::toggle;

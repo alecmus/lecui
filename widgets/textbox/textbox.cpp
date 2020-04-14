@@ -16,10 +16,10 @@
 
 namespace liblec {
 	namespace lecui {
-		bool widgets::specs::textbox::operator==(const textbox& param) {
+		bool widgets::textbox_specs::operator==(const textbox_specs& param) {
 			return
 				// generic specs
-				widget::operator==(param) &&
+				specs::operator==(param) &&
 
 				// widget specific specs
 				(color_border == param.color_border) &&
@@ -27,7 +27,7 @@ namespace liblec {
 				(color_caret == param.color_caret);
 		}
 
-		bool widgets::specs::textbox::operator!=(const textbox& param) {
+		bool widgets::textbox_specs::operator!=(const textbox_specs& param) {
 			return !operator==(param);
 		}
 
@@ -43,12 +43,12 @@ namespace liblec {
 
 		widgets::textbox::~textbox() { delete& d_; }
 
-		widgets::specs::textbox&
+		widgets::textbox_specs&
 			widgets::textbox::add(const std::string& alias) {
 			return d_.page_.d_page_.add_textbox(alias);
 		}
 
-		widgets::specs::textbox&
+		widgets::textbox_specs&
 			widgets::textbox::specs(form& fm, const std::string& path) {
 			const auto idx = path.find("/");
 

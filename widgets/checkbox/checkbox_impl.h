@@ -38,7 +38,7 @@ namespace liblec {
 				void on_click() override;
 
 				/// widget specific methods
-				widgets::specs::checkbox& specs();
+				widgets::checkbox_specs& specs();
 
 			private:
 				/// Prevent the use of the default constructor.
@@ -50,7 +50,7 @@ namespace liblec {
 				checkbox& operator=(const checkbox&);
 
 				/// Private variables
-				widgets::specs::checkbox specs_, specs_old_;
+				widgets::checkbox_specs specs_, specs_old_;
 				ID2D1SolidColorBrush* p_brush_;
 				ID2D1SolidColorBrush* p_brush_check_;
 				ID2D1SolidColorBrush* p_brush_border_;

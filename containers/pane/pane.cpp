@@ -19,11 +19,11 @@ namespace liblec {
 		class containers::pane::impl {
 		public:
 			impl(containers::page& page,
-				containers::specs::pane& specs,
+				containers::pane_specs& specs,
 				const std::string& alias) :
 				page_(page), specs_(specs), alias_(alias) {}
 			containers::page& page_;
-			containers::specs::pane& specs_;
+			containers::pane_specs& specs_;
 			std::string alias_;
 		};
 
@@ -33,11 +33,11 @@ namespace liblec {
 
 		containers::pane::~pane() { delete& d_; }
 
-		containers::specs::pane& containers::pane::specs() {
+		containers::pane_specs& containers::pane::specs() {
 			return d_.specs_;
 		}
 
-		containers::specs::pane&
+		containers::pane_specs&
 			containers::pane::specs(form& fm, const std::string& path) {
 			const auto idx = path.find("/");
 
@@ -79,8 +79,8 @@ namespace liblec {
 
 			// initialize the page's horizontal scroll bar
 			{
-				pane_.p_panes_.at(pane_name).d_page_.h_scrollbar().specs().resize.perc_width = 100.f;
-				pane_.p_panes_.at(pane_name).d_page_.h_scrollbar().specs().resize.perc_y = 100.f;
+				pane_.p_panes_.at(pane_name).d_page_.h_scrollbar().specs().on_resize.perc_width = 100.f;
+				pane_.p_panes_.at(pane_name).d_page_.h_scrollbar().specs().on_resize.perc_y = 100.f;
 
 				pane_.p_panes_.at(pane_name).d_page_.h_scrollbar().specs().rect.left = 0.f;
 				pane_.p_panes_.at(pane_name).d_page_.h_scrollbar().specs().rect.right =
@@ -95,8 +95,8 @@ namespace liblec {
 
 			// initialize the page's vertical scroll bar
 			{
-				pane_.p_panes_.at(pane_name).d_page_.v_scrollbar().specs().resize.perc_height = 100.f;
-				pane_.p_panes_.at(pane_name).d_page_.v_scrollbar().specs().resize.perc_x = 100.f;
+				pane_.p_panes_.at(pane_name).d_page_.v_scrollbar().specs().on_resize.perc_height = 100.f;
+				pane_.p_panes_.at(pane_name).d_page_.v_scrollbar().specs().on_resize.perc_x = 100.f;
 
 				pane_.p_panes_.at(pane_name).d_page_.v_scrollbar().specs().rect.top = 0;
 				pane_.p_panes_.at(pane_name).d_page_.v_scrollbar().specs().rect.bottom =
@@ -133,8 +133,8 @@ namespace liblec {
 			rectangle.corner_radius_x = 15.f;
 			rectangle.corner_radius_y = 15.f;
 
-			rectangle.resize.perc_width = 100.f;
-			rectangle.resize.perc_height = 100.f;
+			rectangle.on_resize.perc_width = 100.f;
+			rectangle.on_resize.perc_height = 100.f;
 
 			// return reference to page so caller can add widgets to it
 			return pane_.p_panes_.at(pane_name);

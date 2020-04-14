@@ -16,17 +16,17 @@
 
 namespace liblec {
 	namespace lecui {
-		bool widgets::specs::toggle::operator==(const toggle& param) {
+		bool widgets::toggle_specs::operator==(const toggle_specs& param) {
 			return
 				// generic specs
-				widget::operator==(param) &&
+				specs::operator==(param) &&
 
 				// widget specific specs
 				(color_on == param.color_on) &&
 				(color_off == param.color_off);
 		}
 
-		bool widgets::specs::toggle::operator!=(const toggle& param) {
+		bool widgets::toggle_specs::operator!=(const toggle_specs& param) {
 			return !operator==(param);
 		}
 
@@ -42,12 +42,12 @@ namespace liblec {
 
 		widgets::toggle::~toggle() { delete& d_; }
 
-		widgets::specs::toggle&
+		widgets::toggle_specs&
 			widgets::toggle::add(const std::string& alias) {
 			return d_.page_.d_page_.add_toggle(alias);
 		}
 
-		widgets::specs::toggle&
+		widgets::toggle_specs&
 			widgets::toggle::specs(form& fm, const std::string& path) {
 			const auto idx = path.find("/");
 
