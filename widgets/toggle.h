@@ -63,7 +63,7 @@ namespace liblec {
 				/// <summary>Get the specifications of an existing toggle.</summary>
 				/// <param name="fm">The form containing the toggle.</param>
 				/// <param name="path">The full path to the widget, e.g.
-				/// "sample_page/tools_tab_control/options_tab/encryption".</param>
+				/// "sample_page/tools_tab_pane/options_tab/encryption".</param>
 				/// <returns>A reference to the toggle specifications.</returns>
 				/// <remarks>Throws on failure.</remarks>
 				[[nodiscard]] static widgets::specs::toggle&

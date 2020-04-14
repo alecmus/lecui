@@ -177,7 +177,7 @@ namespace liblec {
 			friend appearance;
 			friend controls;
 			friend page;
-			friend containers::tab_control;
+			friend containers::tab_pane;
 			friend containers::tab;
 			friend containers::pane;
 			friend widgets::timer;

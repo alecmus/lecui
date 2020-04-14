@@ -11,9 +11,6 @@
     <Filter Include="lecui\containers">
       <UniqueIdentifier>{a4655d8d-bf61-40d1-9aba-d66f04359123}</UniqueIdentifier>
     </Filter>
-    <Filter Include="lecui\containers\tab_control">
-      <UniqueIdentifier>{f9f83e07-fde8-4f7c-be84-8594cc164f91}</UniqueIdentifier>
-    </Filter>
     <Filter Include="lecui\containers\pane">
       <UniqueIdentifier>{a1a58d77-2c31-455d-86cd-f68b7a928abc}</UniqueIdentifier>
     </Filter>
@@ -83,6 +80,9 @@
     <Filter Include="lecui\widgets\tree">
       <UniqueIdentifier>{7a9514ff-02f0-4032-8db2-f4658a41cc01}</UniqueIdentifier>
     </Filter>
+    <Filter Include="lecui\containers\tab_pane">
+      <UniqueIdentifier>{f9f83e07-fde8-4f7c-be84-8594cc164f91}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="error\win_error.h">
@@ -90,9 +90,6 @@
     </ClInclude>
     <ClInclude Include="form_common.h">
       <Filter>lecui</Filter>
-    </ClInclude>
-    <ClInclude Include="containers\tab_control\tab_control_impl.h">
-      <Filter>lecui\containers\tab_control</Filter>
     </ClInclude>
     <ClInclude Include="containers\pane\pane_impl.h">
       <Filter>lecui\containers\pane</Filter>
@@ -146,9 +143,6 @@
       <Filter>lecui\containers</Filter>
     </ClInclude>
     <ClInclude Include="containers\pane.h">
-      <Filter>lecui\containers</Filter>
-    </ClInclude>
-    <ClInclude Include="containers\tab_control.h">
       <Filter>lecui\containers</Filter>
     </ClInclude>
     <ClInclude Include="widgets\button.h">
@@ -233,6 +227,12 @@
     <ClInclude Include="widgets\tree\tree_impl.h">
       <Filter>lecui\widgets\tree</Filter>
     </ClInclude>
+    <ClInclude Include="containers\tab_pane\tab_pane_impl.h">
+      <Filter>lecui\containers\tab_pane</Filter>
+    </ClInclude>
+    <ClInclude Include="containers\tab_pane.h">
+      <Filter>lecui\containers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="error\win_error.cpp">
@@ -240,9 +240,6 @@
     </ClCompile>
     <ClCompile Include="form.cpp">
       <Filter>lecui</Filter>
-    </ClCompile>
-    <ClCompile Include="containers\tab_control\tab_control_impl.cpp">
-      <Filter>lecui\containers\tab_control</Filter>
     </ClCompile>
     <ClCompile Include="containers\pane\pane_impl.cpp">
       <Filter>lecui\containers\pane</Filter>
@@ -314,9 +311,6 @@
     <ClCompile Include="containers\pane\pane.cpp">
       <Filter>lecui\containers\pane</Filter>
     </ClCompile>
-    <ClCompile Include="containers\tab_control\tab_control.cpp">
-      <Filter>lecui\containers\tab_control</Filter>
-    </ClCompile>
     <ClCompile Include="widgets\button\button.cpp">
       <Filter>lecui\widgets\button</Filter>
     </ClCompile>
@@ -376,6 +370,12 @@
     </ClCompile>
     <ClCompile Include="widgets\tree\tree.cpp">
       <Filter>lecui\widgets\tree</Filter>
+    </ClCompile>
+    <ClCompile Include="containers\tab_pane\tab_pane.cpp">
+      <Filter>lecui\containers\tab_pane</Filter>
+    </ClCompile>
+    <ClCompile Include="containers\tab_pane\tab_pane_impl.cpp">
+      <Filter>lecui\containers\tab_pane</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

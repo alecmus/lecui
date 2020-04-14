@@ -72,7 +72,7 @@ namespace liblec {
 				/// <summary>Get the specifications of an existing checkbox.</summary>
 				/// <param name="fm">The form containing the checkbox.</param>
 				/// <param name="path">The full path to the widget, e.g.
-				/// "sample_page/sample_tab_control/tab_one/marital_status".</param>
+				/// "sample_page/sample_tab_pane/tab_one/marital_status".</param>
 				/// <returns>A reference to the checkbox specifications.</returns>
 				/// <remarks>Throws on failure.</remarks>
 				[[nodiscard]] static widgets::specs::checkbox&

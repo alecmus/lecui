@@ -60,7 +60,7 @@ namespace liblec {
 				/// <summary>Get the specifications of an existing rectangle.</summary>
 				/// <param name="fm">The form containing the rectangle.</param>
 				/// <param name="path">The full path to the widget, e.g.
-				/// "sample_page/sample_tab_control/tab_three/border_rect".</param>
+				/// "sample_page/sample_tab_pane/tab_three/border_rect".</param>
 				/// <returns>A reference to the rectangle specifications.</returns>
 				/// <remarks>Throws on failure.</remarks>
 				[[nodiscard]] static widgets::specs::rectangle&

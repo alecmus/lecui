@@ -62,7 +62,7 @@ namespace liblec {
 				/// <summary>Get the specifications of an existing image.</summary>
 				/// <param name="fm">The form containing the image.</param>
 				/// <param name="path">The full path to the widget, e.g.
-				/// "sample_page/sample_tab_control/tab_three/pane_two/avatar".</param>
+				/// "sample_page/sample_tab_pane/tab_three/pane_two/avatar".</param>
 				/// <returns>A reference to the image specifications.</returns>
 				/// <remarks>Throws on failure.</remarks>
 				[[nodiscard]] static widgets::specs::image&

@@ -1,5 +1,5 @@
 /*
-** tab_control.h - tab control interface
+** tab_pane.h - tab pane interface
 **
 ** lecui user interface library
 ** Copyright (c) 2019 Alec T. Musasa (alecmus at live dot com)
@@ -24,10 +24,10 @@ namespace liblec {
 		namespace containers {
 			class page;
 			namespace specs {
-				/// <summary>Tab control specifications.</summary>
-				class tab_control : public widgets::specs::widget {
+				/// <summary>Tab pane specifications.</summary>
+				class tab_pane : public widgets::specs::widget {
 				public:
-					tab_control() { color_fill = { 100, 100, 100, 15 }; }
+					tab_pane() { color_fill = { 100, 100, 100, 15 }; }
 
 					bool is_filled = true;
 					color color_tabs = { 0, 120, 170, 15 };
@@ -41,39 +41,39 @@ namespace liblec {
 
 			class tab;
 
-			/// <summary>Tab control container.</summary>
+			/// <summary>Tab pane container.</summary>
 			/// <remarks>Only tab containers can be added to this container.</remarks>
-			class lecui_api tab_control {
+			class lecui_api tab_pane {
 			public:
-				/// <summary>Tab control constructor.</summary>
+				/// <summary>Tab pane constructor.</summary>
 				/// <param name="page">A reference to the container to place the
 				/// control in.</param>
-				/// <param name="alias">The in-page unique alias, e.g. "settings_tab_control".
+				/// <param name="alias">The in-page unique alias, e.g. "settings_tab_pane".
 				/// </param>
 				/// <remarks>Ensure that the alias is unique within the page. Reusing an alias
-				/// in a tab control leads to undefined behavior.</remarks>
-				tab_control(containers::page& page, const std::string& alias);
-				~tab_control();
+				/// in a tab pane leads to undefined behavior.</remarks>
+				tab_pane(containers::page& page, const std::string& alias);
+				~tab_pane();
 
-				/// <summary>Get the tab control specifications.</summary>
+				/// <summary>Get the tab pane specifications.</summary>
 				/// <returns>A reference to the control specifications.</returns>
-				[[nodiscard]] containers::specs::tab_control&
+				[[nodiscard]] containers::specs::tab_pane&
 					specs();
 
-				/// <summary>Get the specifications of an existing tab control.</summary>
+				/// <summary>Get the specifications of an existing tab pane.</summary>
 				/// <param name="fm">The form the control is in.</param>
 				/// <param name="path">The full path to the control, e.g.
-				/// "sample_page/settings_tab_control".</param>
+				/// "sample_page/settings_tab_pane".</param>
 				/// <returns>A reference to the control specifications.</returns>
 				/// <remarks>Throws on failure.</remarks>
-				[[nodiscard]] static containers::specs::tab_control&
+				[[nodiscard]] static containers::specs::tab_pane&
 					specs(form& fm, const std::string& path);
 
-				/// <summary>Select the visible tab in the tab control.</summary>
+				/// <summary>Select the visible tab in the tab pane.</summary>
 				/// <param name="tab_name">The in-control unique name of the tab, e.g. "Options".
 				/// </param>
 				/// <remarks>By default none of the tabs is selected if this method is
-				/// never called and the tab control will load empty. The first selection will
+				/// never called and the tab pane will load empty. The first selection will
 				/// happen when the user clicks a tab, at which point the contents of that tab
 				/// will be displayed.</remarks>
 				void select(const std::string& tab_name);
@@ -83,24 +83,24 @@ namespace liblec {
 				impl& d_;
 
 				// Default constructor and copying an object of this class are not allowed
-				tab_control();
-				tab_control(const tab_control&);
-				tab_control& operator=(const tab_control&);
+				tab_pane();
+				tab_pane(const tab_pane&);
+				tab_pane& operator=(const tab_pane&);
 
 				friend tab;
 			};
 
 			/// <summary>Tab container.</summary>
 			/// <remarks>Any widget can be added to this container. Consequently, recursion is
-			/// fully supported, allowing tab controls within tabs that are themselves in another
-			/// tab control, to virtually any depth level that the memory of the computer the app
+			/// fully supported, allowing tab panes within tabs that are themselves in another
+			/// tab pane, to virtually any depth level that the memory of the computer the app
 			/// is running on can permit.</remarks>
 			class lecui_api tab {
 			public:
-				tab(tab_control& tc);
+				tab(tab_pane& tc);
 				~tab();
 
-				/// <summary>Add a tab container to a tab control.</summary>
+				/// <summary>Add a tab container to a tab pane.</summary>
 				/// <param name="tab_name">The in-control unique name of the tab, e.g. "Options".
 				/// </param>
 				/// <returns>A reference to the tab container page.</returns>
@@ -114,7 +114,7 @@ namespace liblec {
 				/// <summary>Get the tab container page of an existing tab.</summary>
 				/// <param name="fm">The form the container is in.</param>
 				/// <param name="path">The full path to the tab, e.g.
-				/// "sample_page/settings_tab_control/Options".
+				/// "sample_page/settings_tab_pane/Options".
 				/// </param>
 				/// <returns>A reference to the tab container page.</returns>
 				[[nodiscard]] static containers::page&

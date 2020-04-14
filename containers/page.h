@@ -39,7 +39,7 @@ namespace liblec {
 		}
 
 		namespace containers {
-			class tab_control;
+			class tab_pane;
 			class tab;
 			class pane;
 
@@ -82,7 +82,7 @@ namespace liblec {
 				friend form;
 				friend lecui::page;
 
-				friend containers::tab_control;
+				friend containers::tab_pane;
 				friend containers::tab;
 				friend containers::pane;
 

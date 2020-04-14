@@ -73,12 +73,12 @@ namespace liblec {
 			return false;
 		}
 
-		containers::specs::tab_control&
-			containers::page::impl::add_tab_control(const std::string& alias) {
-			tab_controls_.try_emplace(alias, alias_, alias, p_directwrite_factory_);
-			widgets_.emplace(alias, tab_controls_.at(alias));
+		containers::specs::tab_pane&
+			containers::page::impl::add_tab_pane(const std::string& alias) {
+			tab_panes_.try_emplace(alias, alias_, alias, p_directwrite_factory_);
+			widgets_.emplace(alias, tab_panes_.at(alias));
 			widgets_order_.emplace_back(alias);
-			return tab_controls_.at(alias).specs();
+			return tab_panes_.at(alias).specs();
 		}
 
 		containers::specs::pane&
@@ -212,8 +212,8 @@ namespace liblec {
 		widgets_impl::v_scrollbar&
 			containers::page::impl::v_scrollbar() { return v_scrollbar_; }
 
-		widgets_impl::tab_control&
-			containers::page::impl::get_tab_control(const std::string& alias) { return tab_controls_.at(alias); }
+		widgets_impl::tab_pane&
+			containers::page::impl::get_tab_pane(const std::string& alias) { return tab_panes_.at(alias); }
 
 		widgets_impl::pane&
 			containers::page::impl::get_pane(const std::string& alias) { return panes_.at(alias); }
@@ -270,7 +270,7 @@ namespace liblec {
 				///
 				/// close widget by
 				/// 1. removing it from widgets_
-				/// 2. removing it from the page it's in, e.g. tab_controls_ for tab controls
+				/// 2. removing it from the page it's in, e.g. tab_panes_ for tab panes
 				/// 3. removing it from widgets_order_
 
 				// step 1
@@ -287,8 +287,8 @@ namespace liblec {
 				case widgets_impl::widget_type::group:
 					groups_.erase(alias);
 					break;
-				case widgets_impl::widget_type::tab_control:
-					tab_controls_.erase(alias);
+				case widgets_impl::widget_type::tab_pane:
+					tab_panes_.erase(alias);
 					break;
 				case widgets_impl::widget_type::button:
 					buttons_.erase(alias);

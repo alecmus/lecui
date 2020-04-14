@@ -17,7 +17,7 @@
 #include "../../widgets/h_scrollbar/h_scrollbar.h"
 #include "../../widgets/v_scrollbar/v_scrollbar.h"
 
-#include "../tab_control/tab_control_impl.h"
+#include "../tab_pane/tab_pane_impl.h"
 #include "../pane/pane_impl.h"
 
 #include "../../widgets/rectangle/rectangle_impl.h"
@@ -58,8 +58,8 @@ namespace liblec {
 			const float height();
 			bool contains(const D2D1_POINT_2F& point);
 
-			containers::specs::tab_control&
-				add_tab_control(const std::string& alias);
+			containers::specs::tab_pane&
+				add_tab_pane(const std::string& alias);
 			containers::specs::pane&
 				add_pane(const std::string& alias);
 
@@ -102,8 +102,8 @@ namespace liblec {
 			widgets_impl::v_scrollbar&
 				v_scrollbar();
 
-			widgets_impl::tab_control&
-				get_tab_control(const std::string& alias);
+			widgets_impl::tab_pane&
+				get_tab_pane(const std::string& alias);
 			widgets_impl::pane&
 				get_pane(const std::string& alias);
 
@@ -152,7 +152,7 @@ namespace liblec {
 			widgets_impl::h_scrollbar h_scrollbar_;
 			widgets_impl::v_scrollbar v_scrollbar_;
 
-			std::map<std::string, widgets_impl::tab_control> tab_controls_;
+			std::map<std::string, widgets_impl::tab_pane> tab_panes_;
 			std::map<std::string, widgets_impl::pane> panes_;
 
 			std::map<std::string, widgets_impl::rectangle> rectangles_;

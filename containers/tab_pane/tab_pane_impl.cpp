@@ -1,5 +1,5 @@
 /*
-** tab_control_impl.cpp - tab_control_impl implementation
+** tab_pane_impl.cpp - tab_pane_impl implementation
 **
 ** lecui user interface library
 ** Copyright (c) 2019 Alec T. Musasa (alecmus at live dot com)
@@ -11,12 +11,12 @@
 ** for full license details.
 */
 
-#include "tab_control_impl.h"
+#include "tab_pane_impl.h"
 #include "../../containers/page/page_impl.h"
 
 namespace liblec {
 	namespace lecui {
-		widgets_impl::tab_control::tab_control(const std::string& page_alias,
+		widgets_impl::tab_pane::tab_pane(const std::string& page_alias,
 			const std::string& alias,
 			IDWriteFactory* p_directwrite_factory) :
 			p_brush_(nullptr),
@@ -35,19 +35,19 @@ namespace liblec {
 			bar_height_(2.f),
 			rect_tabs_({ 0.f, 0.f, 0.f, 0.f }),
 			rect_client_area_({ 0.f, 0.f, 0.f, 0.f }),
-			rect_tab_control_({ 0.f, 0.f, 0.f, 0.f }) {
+			rect_tab_pane_({ 0.f, 0.f, 0.f, 0.f }) {
 			page_alias_ = page_alias;
 			alias_ = alias;
 		}
 
-		widgets_impl::tab_control::~tab_control() { discard_resources(); }
+		widgets_impl::tab_pane::~tab_pane() { discard_resources(); }
 
 		widgets_impl::widget_type
-			widgets_impl::tab_control::type() {
-			return lecui::widgets_impl::widget_type::tab_control;
+			widgets_impl::tab_pane::type() {
+			return lecui::widgets_impl::widget_type::tab_pane;
 		}
 
-		HRESULT widgets_impl::tab_control::create_resources(
+		HRESULT widgets_impl::tab_pane::create_resources(
 			ID2D1HwndRenderTarget* p_render_target) {
 			log("creating resources:   " + page_alias_ + ":" + alias_);
 			is_static_ = false;
@@ -98,7 +98,7 @@ namespace liblec {
 			return hr;
 		}
 
-		void widgets_impl::tab_control::discard_resources() {
+		void widgets_impl::tab_pane::discard_resources() {
 			log("discarding resources: " + page_alias_ + ":" + alias_);
 			resources_created_ = false;
 			safe_release(&p_brush_);
@@ -112,29 +112,29 @@ namespace liblec {
 		}
 
 		D2D1_RECT_F&
-			widgets_impl::tab_control::render(ID2D1HwndRenderTarget* p_render_target,
+			widgets_impl::tab_pane::render(ID2D1HwndRenderTarget* p_render_target,
 				const D2D1_SIZE_F& change_in_size, const D2D1_POINT_2F& offset, const bool& render) {
 			if (!resources_created_)
 				create_resources(p_render_target);
 
-			rect_tab_control_ = position(specs_.rect, specs_.resize, change_in_size.width, change_in_size.height);
-			rect_tab_control_.left -= offset.x;
-			rect_tab_control_.right -= offset.x;
-			rect_tab_control_.top -= offset.y;
-			rect_tab_control_.bottom -= offset.y;
+			rect_tab_pane_ = position(specs_.rect, specs_.resize, change_in_size.width, change_in_size.height);
+			rect_tab_pane_.left -= offset.x;
+			rect_tab_pane_.right -= offset.x;
+			rect_tab_pane_.top -= offset.y;
+			rect_tab_pane_.bottom -= offset.y;
 
-			rect_tabs_ = rect_tab_control_;
+			rect_tabs_ = rect_tab_pane_;
 			rect_tabs_.bottom = rect_tabs_.top + tab_height_ + bar_height_;
 
 			// only make the tab area respond to hit testing, even though for scroll bar at form level
-			// we need to return the entire region through rect_tab_control_
+			// we need to return the entire region through rect_tab_pane_
 			rect_ = rect_tabs_;
 
-			rect_client_area_ = rect_tab_control_;
+			rect_client_area_ = rect_tab_pane_;
 			rect_client_area_.top = rect_tabs_.bottom;
 
 			if (!render || !visible_)
-				return rect_tab_control_;
+				return rect_tab_pane_;
 
 			D2D1_ROUNDED_RECT rounded_rect{ rect_client_area_,
 				specs_.corner_radius_x, specs_.corner_radius_y };
@@ -195,7 +195,7 @@ namespace liblec {
 
 				D2D1_RECT_F rect_text_ = rect_current_tab_;
 
-				if (rect_text_.right > rect_tab_control_.right)
+				if (rect_text_.right > rect_tab_pane_.right)
 					break;
 
 				// capture current tab
@@ -249,7 +249,7 @@ namespace liblec {
 
 			// draw the selected tab bar
 			for (const auto& it : p_tab_rects_) {
-				if ((it.second.right + tab_gap_) > rect_tab_control_.right)
+				if ((it.second.right + tab_gap_) > rect_tab_pane_.right)
 					break;
 
 				if (it.first == current_tab_) {
@@ -262,10 +262,10 @@ namespace liblec {
 				}
 			}
 
-			return rect_tab_control_;
+			return rect_tab_pane_;
 		}
 
-		void widgets_impl::tab_control::on_click() {
+		void widgets_impl::tab_pane::on_click() {
 			for (auto& it : p_tab_rects_) {
 				D2D1_RECT_F rect = it.second;
 				scale_RECT(rect, dpi_scale_);
@@ -276,22 +276,22 @@ namespace liblec {
 			}
 		}
 
-		containers::specs::tab_control&
-			widgets_impl::tab_control::specs() { return specs_; }
+		containers::specs::tab_pane&
+			widgets_impl::tab_pane::specs() { return specs_; }
 
-		const D2D1_RECT_F& widgets_impl::tab_control::client_area() {
+		const D2D1_RECT_F& widgets_impl::tab_pane::client_area() {
 			return rect_client_area_;
 		}
 
-		const D2D1_RECT_F& widgets_impl::tab_control::tab_control_area() {
-			return rect_tab_control_;
+		const D2D1_RECT_F& widgets_impl::tab_pane::tab_pane_area() {
+			return rect_tab_pane_;
 		}
 
-		float widgets_impl::tab_control::caption_bar_height() {
+		float widgets_impl::tab_pane::caption_bar_height() {
 			return (tab_height_ + bar_height_);
 		}
 
-		bool widgets_impl::tab_control::contains() {
+		bool widgets_impl::tab_pane::contains() {
 			for (const auto& it : p_tab_rects_) {
 				D2D1_RECT_F rect = it.second;
 				scale_RECT(rect, dpi_scale_);

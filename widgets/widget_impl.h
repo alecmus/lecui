@@ -41,7 +41,7 @@ namespace liblec {
 				h_scrollbar,
 				v_scrollbar,
 
-				tab_control,
+				tab_pane,
 				pane,
 
 				rectangle,

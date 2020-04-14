@@ -14,7 +14,7 @@
 #include "form_impl.h"
 
 #include "containers/page.h"
-#include "containers/tab_control.h"
+#include "containers/tab_pane.h"
 #include "containers/pane.h"
 
 #include "widgets/rectangle.h"
@@ -260,12 +260,12 @@ namespace liblec {
 								HRESULT hr = widget.second.create_resources(p_render_target_);
 
 								if (widget.second.type() ==
-									widgets_impl::widget_type::tab_control) {
+									widgets_impl::widget_type::tab_pane) {
 									try {
-										// get this tab control
-										auto& tab_control = page.d_page_.get_tab_control(widget.first);
+										// get this tab pane
+										auto& tab_pane = page.d_page_.get_tab_pane(widget.first);
 
-										for (auto& tab : tab_control.p_tabs_)
+										for (auto& tab : tab_pane.p_tabs_)
 											create_resources(tab.second, p_render_target_);
 									}
 									catch (const std::exception&) {}
@@ -322,12 +322,12 @@ namespace liblec {
 						widget.second.discard_resources();
 
 						if (widget.second.type() ==
-							widgets_impl::widget_type::tab_control) {
+							widgets_impl::widget_type::tab_pane) {
 							try {
-								// get this tab control
-								const auto& tab_control = page.d_page_.get_tab_control(widget.first);
+								// get this tab pane
+								const auto& tab_pane = page.d_page_.get_tab_pane(widget.first);
 
-								for (const auto& tab : tab_control.p_tabs_)
+								for (const auto& tab : tab_pane.p_tabs_)
 									discard(tab.second, in_destructor);			// recursion
 							}
 							catch (const std::exception&) {}
@@ -518,12 +518,12 @@ namespace liblec {
 								break;
 							}
 
-							if (widget.second.type() == widgets_impl::widget_type::tab_control) {
-								// get this tab control
-								auto& tab_control = page.d_page_.get_tab_control(widget.first);
+							if (widget.second.type() == widgets_impl::widget_type::tab_pane) {
+								// get this tab pane
+								auto& tab_pane = page.d_page_.get_tab_pane(widget.first);
 
 								// initialize tabs
-								for (auto& tab : tab_control.p_tabs_)
+								for (auto& tab : tab_pane.p_tabs_)
 									find_trees_to_move(tab.second, trees);	// recursion
 							}
 							else
@@ -849,21 +849,21 @@ namespace liblec {
 									render);
 
 								if (widget.second.type() ==
-									widgets_impl::widget_type::tab_control) {
+									widgets_impl::widget_type::tab_pane) {
 									try {
-										// get this tab control
-										auto& tab_control = page.d_page_.get_tab_control(widget.first);
+										// get this tab pane
+										auto& tab_pane = page.d_page_.get_tab_pane(widget.first);
 
-										// get client area for this tab control
-										const auto& client_area = tab_control.client_area();
+										// get client area for this tab pane
+										const auto& client_area = tab_pane.client_area();
 
 										const D2D1_SIZE_F change_in_size =
-										{ (tab_control.tab_control_area().right - tab_control.tab_control_area().left) -
-											(tab_control.specs().rect.right - tab_control.specs().rect.left),
-											(tab_control.tab_control_area().bottom - tab_control.tab_control_area().top) -
-											(tab_control.specs().rect.bottom - tab_control.specs().rect.top) };
+										{ (tab_pane.tab_pane_area().right - tab_pane.tab_pane_area().left) -
+											(tab_pane.specs().rect.right - tab_pane.specs().rect.left),
+											(tab_pane.tab_pane_area().bottom - tab_pane.tab_pane_area().top) -
+											(tab_pane.specs().rect.bottom - tab_pane.specs().rect.top) };
 
-										for (auto& tab : tab_control.p_tabs_) {
+										for (auto& tab : tab_pane.p_tabs_) {
 											const float page_tolerance_ = 10.f;
 											D2D1_RECT_F rect_page = client_area;
 											rect_page.left += page_tolerance_;
@@ -871,7 +871,7 @@ namespace liblec {
 											rect_page.right -= page_tolerance_;
 											rect_page.bottom -= page_tolerance_;
 
-											render_page(render, tab.first, tab_control.current_tab_, tab.second,
+											render_page(render, tab.first, tab_pane.current_tab_, tab.second,
 												p_render_target_, rect_page, rect_page, change_in_size,
 												dpi_scale_, p_brush_theme_, p_brush_theme_hot_, lbutton_pressed);	// recursion
 										}
@@ -959,22 +959,22 @@ namespace liblec {
 							widget.second.on_menu(p_render_target_, client_area);
 
 							if (widget.second.type() ==
-								widgets_impl::widget_type::tab_control) {
+								widgets_impl::widget_type::tab_pane) {
 								try {
-									// get this tab control
-									auto& tab_control = page.d_page_.get_tab_control(widget.first);
+									// get this tab pane
+									auto& tab_pane = page.d_page_.get_tab_pane(widget.first);
 
-									// get client area for this tab control
-									const auto& client_area = tab_control.client_area();
+									// get client area for this tab pane
+									const auto& client_area = tab_pane.client_area();
 
 									const float change_in_width =
-										(tab_control.tab_control_area().right - tab_control.tab_control_area().left) -
-										(tab_control.specs().rect.right - tab_control.specs().rect.left);
+										(tab_pane.tab_pane_area().right - tab_pane.tab_pane_area().left) -
+										(tab_pane.specs().rect.right - tab_pane.specs().rect.left);
 									const float change_in_height =
-										(tab_control.tab_control_area().bottom - tab_control.tab_control_area().top) -
-										(tab_control.specs().rect.bottom - tab_control.specs().rect.top);
+										(tab_pane.tab_pane_area().bottom - tab_pane.tab_pane_area().top) -
+										(tab_pane.specs().rect.bottom - tab_pane.specs().rect.top);
 
-									for (auto& tab : tab_control.p_tabs_) {
+									for (auto& tab : tab_pane.p_tabs_) {
 										const float page_tolerance_ = 10.f;
 										D2D1_RECT_F rect_page = client_area;
 										rect_page.left += page_tolerance_;
@@ -983,7 +983,7 @@ namespace liblec {
 										rect_page.bottom -= page_tolerance_;
 
 										render_menu(p_render_target_, tab.first,
-											tab_control.current_tab_, tab.second, rect_page);
+											tab_pane.current_tab_, tab.second, rect_page);
 									}
 								}
 								catch (const std::exception&) {}
@@ -1418,12 +1418,12 @@ namespace liblec {
 					if (!change) {
 						for (auto& widget : page.d_page_.widgets()) {
 							if (widget.second.type() ==
-								widgets_impl::widget_type::tab_control) {
-								// get this tab control
-								auto& tab_control = page.d_page_.get_tab_control(widget.first);
+								widgets_impl::widget_type::tab_pane) {
+								// get this tab pane
+								auto& tab_pane = page.d_page_.get_tab_pane(widget.first);
 
-								for (auto& tab : tab_control.p_tabs_)
-									hittest_hscrollbar(tab.first, tab_control.current_tab_, tab.second,
+								for (auto& tab : tab_pane.p_tabs_)
+									hittest_hscrollbar(tab.first, tab_pane.current_tab_, tab.second,
 										point, point_before, contains, change);	// recursion
 							}
 							else
@@ -1460,12 +1460,12 @@ namespace liblec {
 					if (!change) {
 						for (auto& widget : page.d_page_.widgets()) {
 							if (widget.second.type() ==
-								widgets_impl::widget_type::tab_control) {
-								// get this tab control
-								auto& tab_control = page.d_page_.get_tab_control(widget.first);
+								widgets_impl::widget_type::tab_pane) {
+								// get this tab pane
+								auto& tab_pane = page.d_page_.get_tab_pane(widget.first);
 
-								for (auto& tab : tab_control.p_tabs_)
-									hittest_vscrollbar(tab.first, tab_control.current_tab_, tab.second,
+								for (auto& tab : tab_pane.p_tabs_)
+									hittest_vscrollbar(tab.first, tab_pane.current_tab_, tab.second,
 										point, point_before, contains, change);	// recursion
 							}
 							else
@@ -1506,13 +1506,13 @@ namespace liblec {
 						}
 
 						if (widget.second.type() ==
-							widgets_impl::widget_type::tab_control) {
-							// get this tab control
-							auto& tab_control = page.d_page_.get_tab_control(widget.first);
+							widgets_impl::widget_type::tab_pane) {
+							// get this tab pane
+							auto& tab_pane = page.d_page_.get_tab_pane(widget.first);
 
-							auto page_iterator = tab_control.p_tabs_.find(tab_control.current_tab_);
+							auto page_iterator = tab_pane.p_tabs_.find(tab_pane.current_tab_);
 
-							if (page_iterator != tab_control.p_tabs_.end())
+							if (page_iterator != tab_pane.p_tabs_.end())
 								helper::hittest_widgets(page_iterator->second, point, contains, change, lbutton_pressed, h_cursor);	// recursion
 						}
 						else
@@ -1620,7 +1620,7 @@ namespace liblec {
 							widget.second.press(pressed);
 
 							if (widget.second.type() !=
-								widgets_impl::widget_type::tab_control)
+								widgets_impl::widget_type::tab_pane)
 								widget.second.select(pressed);
 							else
 								if (widget.second.type() !=
@@ -1636,13 +1636,13 @@ namespace liblec {
 
 					for (auto& widget : page.d_page_.widgets()) {
 						if (widget.second.type() ==
-							widgets_impl::widget_type::tab_control) {
-							// get this tab control
-							auto& tab_control = page.d_page_.get_tab_control(widget.first);
+							widgets_impl::widget_type::tab_pane) {
+							// get this tab pane
+							auto& tab_pane = page.d_page_.get_tab_pane(widget.first);
 
-							auto page_iterator = tab_control.p_tabs_.find(tab_control.current_tab_);
+							auto page_iterator = tab_pane.p_tabs_.find(tab_pane.current_tab_);
 
-							if (page_iterator != tab_control.p_tabs_.end())
+							if (page_iterator != tab_pane.p_tabs_.end())
 								helper::check_widgets(page_iterator->second, point, dpi_scale, pressed,
 									update_anyway);
 						}
@@ -1752,13 +1752,13 @@ namespace liblec {
 						widget.second.press(false);
 
 						if (widget.second.type() ==
-							widgets_impl::widget_type::tab_control) {
-							// get this tab control
-							auto& tab_control = page.d_page_.get_tab_control(widget.first);
+							widgets_impl::widget_type::tab_pane) {
+							// get this tab pane
+							auto& tab_pane = page.d_page_.get_tab_pane(widget.first);
 
-							auto page_iterator = tab_control.p_tabs_.find(tab_control.current_tab_);
+							auto page_iterator = tab_pane.p_tabs_.find(tab_pane.current_tab_);
 
-							if (page_iterator != tab_control.p_tabs_.end())
+							if (page_iterator != tab_pane.p_tabs_.end())
 								check_widgets(page_iterator->second, point, clicked, update_anyway,
 									on_click_handler);
 						}
@@ -1824,13 +1824,13 @@ namespace liblec {
 
 					for (auto& widget : page.d_page_.widgets()) {
 						if (widget.second.type() ==
-							widgets_impl::widget_type::tab_control) {
-							// get this tab control
-							auto& tab_control = page.d_page_.get_tab_control(widget.first);
+							widgets_impl::widget_type::tab_pane) {
+							// get this tab pane
+							auto& tab_pane = page.d_page_.get_tab_pane(widget.first);
 
-							auto page_iterator = tab_control.p_tabs_.find(tab_control.current_tab_);
+							auto page_iterator = tab_pane.p_tabs_.find(tab_pane.current_tab_);
 
-							if (page_iterator != tab_control.p_tabs_.end())
+							if (page_iterator != tab_pane.p_tabs_.end())
 								helper::check_widgets(page_iterator->second, update);
 						}
 						else
@@ -1901,11 +1901,11 @@ namespace liblec {
 				// get the rest of the path
 				const auto path_left = path.substr(idx + 1);
 
-				// check if the container is a tab control
+				// check if the container is a tab pane
 				try {
-					auto& tab_control = container.d_page_.get_tab_control(container_alias);
+					auto& tab_pane = container.d_page_.get_tab_pane(container_alias);
 
-					// tab control confirmed ... get the tab
+					// tab pane confirmed ... get the tab
 					try {
 						idx = path_left.find("/");
 
@@ -1917,7 +1917,7 @@ namespace liblec {
 							const auto tab_path_left = path_left.substr(idx + 1);
 
 							// get the tab
-							auto& tab = tab_control.p_tabs_.at(tab_name);
+							auto& tab = tab_pane.p_tabs_.at(tab_name);
 
 							// tab confirmed ... recurse
 							return find_widget(tab, tab_path_left);	// recursion
@@ -1960,18 +1960,18 @@ namespace liblec {
 					// get the rest of the path
 					const auto path_left = path.substr(idx + 1);
 
-					// check if the container is a tab control
+					// check if the container is a tab pane
 					try {
-						auto& tab_control = container.d_page_.get_tab_control(container_alias);
+						auto& tab_pane = container.d_page_.get_tab_pane(container_alias);
 
-						// tab control confirmed ... get the tab
+						// tab pane confirmed ... get the tab
 						try {
 							idx = path_left.find("/");
 
 							if (idx == std::string::npos) {
 								// check if this is a tab
 								const auto tab_name = path_left;
-								return tab_control.p_tabs_.at(tab_name);
+								return tab_pane.p_tabs_.at(tab_name);
 							}
 							else {
 								// get the tab name
@@ -1981,7 +1981,7 @@ namespace liblec {
 								const auto tab_path_left = path_left.substr(idx + 1);
 
 								// get the tab
-								auto& tab = tab_control.p_tabs_.at(tab_name);
+								auto& tab = tab_pane.p_tabs_.at(tab_name);
 
 								// tab confirmed ... recurse
 								return find_page(tab, tab_path_left);	// recursion
@@ -2266,11 +2266,11 @@ namespace liblec {
 							// to-do: check actual change in width and height of tab/pane instead of inheriting from page
 
 							for (auto& widget : page.d_page_.widgets()) {
-								if (widget.second.type() == widgets_impl::widget_type::tab_control) {
-									// get this tab control
-									auto& tab_control = page.d_page_.get_tab_control(widget.first);
+								if (widget.second.type() == widgets_impl::widget_type::tab_pane) {
+									// get this tab pane
+									auto& tab_pane = page.d_page_.get_tab_pane(widget.first);
 
-									for (auto& tab : tab_control.p_tabs_)
+									for (auto& tab : tab_pane.p_tabs_)
 										helper::check_page(tab.second, change_in_width, change_in_height, system_resizing);	// recursion
 								}
 								else
@@ -2438,13 +2438,13 @@ namespace liblec {
 							}
 							else
 								if (widget.second.type() ==
-									widgets_impl::widget_type::tab_control) {
-									// get this tab control
-									auto& tab_control = page.d_page_.get_tab_control(widget.first);
+									widgets_impl::widget_type::tab_pane) {
+									// get this tab pane
+									auto& tab_pane = page.d_page_.get_tab_pane(widget.first);
 
-									auto page_iterator = tab_control.p_tabs_.find(tab_control.current_tab_);
+									auto page_iterator = tab_pane.p_tabs_.find(tab_pane.current_tab_);
 
-									if (page_iterator != tab_control.p_tabs_.end())
+									if (page_iterator != tab_pane.p_tabs_.end())
 										helper::check_widgets(page_iterator->second, c, change);	// recursion
 								}
 								else
@@ -2507,13 +2507,13 @@ namespace liblec {
 								}
 								else
 									if (widget.second.type() ==
-										widgets_impl::widget_type::tab_control) {
-										// get this tab control
-										auto& tab_control = page.d_page_.get_tab_control(widget.first);
+										widgets_impl::widget_type::tab_pane) {
+										// get this tab pane
+										auto& tab_pane = page.d_page_.get_tab_pane(widget.first);
 
-										auto page_iterator = tab_control.p_tabs_.find(tab_control.current_tab_);
+										auto page_iterator = tab_pane.p_tabs_.find(tab_pane.current_tab_);
 
-										if (page_iterator != tab_control.p_tabs_.end())
+										if (page_iterator != tab_pane.p_tabs_.end())
 											helper::check_widgets(page_iterator->second, wParam, change);	// recursion
 									}
 									else
@@ -2587,13 +2587,13 @@ namespace liblec {
 									widget.second.press(false);
 
 								if (widget.second.type() ==
-									widgets_impl::widget_type::tab_control) {
-									// get this tab control
-									auto& tab_control = page.d_page_.get_tab_control(widget.first);
+									widgets_impl::widget_type::tab_pane) {
+									// get this tab pane
+									auto& tab_pane = page.d_page_.get_tab_pane(widget.first);
 
-									auto page_iterator = tab_control.p_tabs_.find(tab_control.current_tab_);
+									auto page_iterator = tab_pane.p_tabs_.find(tab_pane.current_tab_);
 
-									if (page_iterator != tab_control.p_tabs_.end())
+									if (page_iterator != tab_pane.p_tabs_.end())
 										helper::check_widgets(page_iterator->second);
 								}
 								else
@@ -2663,13 +2663,13 @@ namespace liblec {
 								}
 								else
 									if (widget.second.type() ==
-										widgets_impl::widget_type::tab_control) {
-										// get this tab control
-										auto& tab_control = page.d_page_.get_tab_control(widget.first);
+										widgets_impl::widget_type::tab_pane) {
+										// get this tab pane
+										auto& tab_pane = page.d_page_.get_tab_pane(widget.first);
 
-										auto page_iterator = tab_control.p_tabs_.find(tab_control.current_tab_);
+										auto page_iterator = tab_pane.p_tabs_.find(tab_pane.current_tab_);
 
-										if (page_iterator != tab_control.p_tabs_.end())
+										if (page_iterator != tab_pane.p_tabs_.end())
 											helper::check_widgets(page_iterator->second, wParam, update, on_click_handler);
 									}
 									else
@@ -2741,13 +2741,13 @@ namespace liblec {
 									on_space = [&]() { widget.second.on_click(); };
 								else
 									if (widget.second.type() ==
-										widgets_impl::widget_type::tab_control) {
-										// get this tab control
-										auto& tab_control = page.d_page_.get_tab_control(widget.first);
+										widgets_impl::widget_type::tab_pane) {
+										// get this tab pane
+										auto& tab_pane = page.d_page_.get_tab_pane(widget.first);
 
-										auto page_iterator = tab_control.p_tabs_.find(tab_control.current_tab_);
+										auto page_iterator = tab_pane.p_tabs_.find(tab_pane.current_tab_);
 
-										if (page_iterator != tab_control.p_tabs_.end())
+										if (page_iterator != tab_pane.p_tabs_.end())
 											helper::check_widgets(page_iterator->second, on_space);
 									}
 									else
@@ -2808,13 +2808,13 @@ namespace liblec {
 										continue;
 
 									if (widget.type() ==
-										widgets_impl::widget_type::tab_control) {
-										// get this tab control
-										auto& tab_control = page.d_page_.get_tab_control(alias);
+										widgets_impl::widget_type::tab_pane) {
+										// get this tab pane
+										auto& tab_pane = page.d_page_.get_tab_pane(alias);
 
-										auto page_iterator = tab_control.p_tabs_.find(tab_control.current_tab_);
+										auto page_iterator = tab_pane.p_tabs_.find(tab_pane.current_tab_);
 
-										if (page_iterator != tab_control.p_tabs_.end())
+										if (page_iterator != tab_pane.p_tabs_.end())
 											helper::check_widgets(page_iterator->second, reverse_tab_navigation,
 												select_next, selected);
 									}
@@ -2951,13 +2951,13 @@ namespace liblec {
 							}
 							else
 								if (widget.second.type() ==
-									widgets_impl::widget_type::tab_control) {
-									// get this tab control
-									auto& tab_control = page.d_page_.get_tab_control(widget.first);
+									widgets_impl::widget_type::tab_pane) {
+									// get this tab pane
+									auto& tab_pane = page.d_page_.get_tab_pane(widget.first);
 
-									auto page_iterator = tab_control.p_tabs_.find(tab_control.current_tab_);
+									auto page_iterator = tab_pane.p_tabs_.find(tab_pane.current_tab_);
 
-									if (page_iterator != tab_control.p_tabs_.end())
+									if (page_iterator != tab_pane.p_tabs_.end())
 										helper::check_widgets(page_iterator->second, units, update);
 								}
 								else

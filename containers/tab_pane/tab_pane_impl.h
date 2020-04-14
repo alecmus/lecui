@@ -1,5 +1,5 @@
 /*
-** tab_control_impl.h - tab_control_impl interface
+** tab_pane_impl.h - tab_pane_impl interface
 **
 ** lecui user interface library
 ** Copyright (c) 2019 Alec T. Musasa (alecmus at live dot com)
@@ -14,22 +14,22 @@
 #pragma once
 
 #include "../../widgets/widget_impl.h"
-#include "../tab_control.h"
+#include "../tab_pane.h"
 
 namespace liblec {
 	namespace lecui {
 		namespace widgets_impl {
-			class tab_control : public widget {
+			class tab_pane : public widget {
 			public:
 				// pages <K = tab name, T>
 				std::map<std::string, containers::page> p_tabs_;
 				std::string current_tab_;
 
 				/// constructor and destructor
-				tab_control(const std::string& page_alias,
+				tab_pane(const std::string& page_alias,
 					const std::string& alias,
 					IDWriteFactory* p_directwrite_factory);
-				~tab_control();
+				~tab_pane();
 
 				/// virtual function overrides
 				widgets_impl::widget_type type() override;
@@ -41,22 +41,22 @@ namespace liblec {
 				void on_click() override;
 
 				/// widget specific methods
-				containers::specs::tab_control& specs();
+				containers::specs::tab_pane& specs();
 				const D2D1_RECT_F& client_area();
-				const D2D1_RECT_F& tab_control_area();
+				const D2D1_RECT_F& tab_pane_area();
 				float caption_bar_height();
 
 			private:
 				/// Prevent the use of the default constructor.
-				tab_control() :
-					tab_control(std::string(), std::string(), nullptr) {}
+				tab_pane() :
+					tab_pane(std::string(), std::string(), nullptr) {}
 
 				/// Prevent copying an object of this class.
-				tab_control(const tab_control&);
-				tab_control& operator=(const tab_control&);
+				tab_pane(const tab_pane&);
+				tab_pane& operator=(const tab_pane&);
 
 				/// Private variables
-				containers::specs::tab_control specs_;
+				containers::specs::tab_pane specs_;
 				ID2D1SolidColorBrush* p_brush_;
 				ID2D1SolidColorBrush* p_brush_fill_;
 				ID2D1SolidColorBrush* p_brush_border_;
@@ -74,12 +74,12 @@ namespace liblec {
 				const float bar_height_;
 				D2D1_RECT_F rect_tabs_;
 				D2D1_RECT_F rect_client_area_;
-				D2D1_RECT_F rect_tab_control_;
+				D2D1_RECT_F rect_tab_pane_;
 
 				// tab rectangles <K = tab name, T>
 				std::map<std::string, D2D1_RECT_F> p_tab_rects_;
 
-				/// Important override for tab control to work properly.
+				/// Important override for tab pane to work properly.
 				bool contains();
 			};
 		}

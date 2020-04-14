@@ -86,7 +86,7 @@ namespace liblec {
 				/// <summary>Get the specifications of an existing custom widget.</summary>
 				/// <param name="fm">The form containing the widget.</param>
 				/// <param name="path">The full path to the widget, e.g.
-				/// "sample_page/right_pane/tab_control/tab_two/diagram".</param>
+				/// "sample_page/right_pane/tab_pane/tab_two/diagram".</param>
 				/// <returns>A reference to the custom widget's specifications.</returns>
 				/// <remarks>Throws on failure.</remarks>
 				[[nodiscard]] static widgets::specs::custom&

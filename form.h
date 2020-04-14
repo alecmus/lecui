@@ -29,7 +29,7 @@ namespace liblec {
 		class controls;
 
 		namespace containers {
-			class tab_control;
+			class tab_pane;
 			class tab;
 			class pane;
 		}
@@ -253,7 +253,7 @@ namespace liblec {
 			friend dimensions;
 			friend appearance;
 			friend controls;
-			friend containers::tab_control;
+			friend containers::tab_pane;
 			friend containers::tab;
 			friend containers::pane;
 			friend widgets::timer;
