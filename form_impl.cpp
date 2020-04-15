@@ -108,6 +108,7 @@ namespace liblec {
 			shift_pressed_(false),
 			space_pressed_(false),
 			lbutton_pressed_(false),
+			on_caption_(nullptr),
 			on_drop_files_(nullptr),
 			h_widget_cursor_(nullptr) {
 			log("entering form_impl constructor");
@@ -427,7 +428,7 @@ namespace liblec {
 				(caption_bar_height_ - 2.f * control_button_margin_);
 		}
 
-		void form::impl::create_form_caption(std::function<void()> on_click) {
+		void form::impl::create_form_caption() {
 			p_caption_ =
 				std::unique_ptr<widgets_impl::label>(new
 					widgets_impl::label("", "form_caption",
@@ -459,7 +460,7 @@ namespace liblec {
 			// buttons since we've eliminated resizing caption rect; perhaps use clip???
 			p_caption_->specs().rect = convert_rect(rect);
 
-			p_caption_->specs().on_click = on_click;
+			p_caption_->specs().on_click = on_caption_;
 		}
 
 		void form::impl::update() { InvalidateRect(hWnd_, nullptr, FALSE); }

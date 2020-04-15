@@ -150,6 +150,7 @@ namespace liblec {
 			bool space_pressed_;
 			bool lbutton_pressed_;
 
+			std::function<void()> on_caption_;
 			std::function<void(const std::string& file)> on_drop_files_;
 
 			std::vector<std::string> scheduled_for_closure_;
@@ -205,7 +206,7 @@ namespace liblec {
 			void create_close_button(std::function<void()> on_click);
 			void create_maximize_button();
 			void create_minimize_button();
-			void create_form_caption(std::function<void()> on_click);
+			void create_form_caption();
 			void update();
 			void move_trees();
 			HRESULT on_render();

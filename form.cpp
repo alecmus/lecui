@@ -99,8 +99,8 @@ namespace liblec {
 			else
 				d_.resource_module_handle_ = GetModuleHandle(nullptr);
 
-			// call the layout virtual function
-			if (!layout(error))
+			// call the on_layout virtual function
+			if (!on_layout(error))
 				return false;
 
 			// create form controls
@@ -113,7 +113,7 @@ namespace liblec {
 			if (d_.allow_minimize_)
 				d_.create_minimize_button();
 
-			d_.create_form_caption([&]() { on_caption(); });
+			d_.create_form_caption();
 
 			// register window class
 			WNDCLASSEX wcex = { 0 };
@@ -220,9 +220,8 @@ namespace liblec {
 			}
 		}
 
-		bool form::layout(std::string& error) { return true; }
+		bool form::on_layout(std::string& error) { return true; }
 		void form::on_start() {}
-		void form::on_caption() {}
 		void form::on_close() { close(); }
 		void form::on_shutdown() {}
 
@@ -271,7 +270,7 @@ namespace liblec {
 						dim.size({ width, height });
 					}
 
-					bool layout(std::string& error) override {
+					bool on_layout(std::string& error) override {
 						page_management page_man(*this);
 						auto& home_page = page_man.add("home");
 
@@ -525,8 +524,12 @@ namespace liblec {
 		// this is an expensive call. only use if update() doesn't get the job done.
 		void form::reload() { d_.discard_device_resources(); d_.update(); }
 
+		void form::on_caption(std::function<void()> on_caption) {
+			d_.on_caption_ = on_caption;
+		}
+
 		void
-			form::dropped_files(std::function<void(const std::string& file)> on_drop_files) {
+			form::on_drop_files(std::function<void(const std::string& file)> on_drop_files) {
 			d_.on_drop_files_ = on_drop_files;
 			DragAcceptFiles(d_.hWnd_, on_drop_files == nullptr ? FALSE : TRUE);
 		}

@@ -133,15 +133,12 @@ namespace liblec {
 			/// they are created dynamically at runtime so that the app uses the least amount of
 			/// resources.
 			/// </remarks>
-			[[nodiscard]] virtual bool layout(std::string& error);
+			[[nodiscard]] virtual bool on_layout(std::string& error);
 
-			/// <summary>Called after layout() just before the form is displayed. This is a good
+			/// <summary>Called after on_layout() just before the form is displayed. This is a good
 			/// place to close the splash screen. The splash screen itself is best created in the
 			/// constructor of the class that inherits directly from this class.</summary>
 			virtual void on_start();
-
-			/// <summary>Called when the form's caption is clicked.</summary>
-			virtual void on_caption();
 
 			/// <summary>Called when either the close button on the top right is clicked, or when
 			/// Alt+F4 is pressed on the keyboard. This is a good place to ask the user if they
@@ -236,12 +233,19 @@ namespace liblec {
 			/// </remarks>
 			void reload();
 
+			/// <summary>Set the handler to be called when the form's caption is clicked.</summary>
+			/// <param name="on_caption">The handler.</param>
+			/// <remarks>The handler has to be set in on_layout() or before, else it will not
+			/// register. Setting the handler in on_start() is too late because the form caption
+			/// will have already been created by then.</remarks>
+			void on_caption(std::function<void()>on_caption);
+
 			/// <summary>Set the handler to be called when files are dropped on the form.</summary>
 			/// <param name="on_drop_files">The handler. When it is called, the parameter will
 			/// contain the full path to the dropped file, including the file's extension.</param>
 			/// <remarks>If this method is never called the form will not accept dropped files. To
 			/// stop accepting dropped files pass a nullptr to this method.</remarks>
-			void dropped_files(std::function<void(const std::string& file)>on_drop_files);
+			void on_drop_files(std::function<void(const std::string& file)>on_drop_files);
 
 		private:
 			class impl;
