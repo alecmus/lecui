@@ -22,7 +22,6 @@
 namespace liblec {
 	namespace lecui {
 		namespace containers {
-			class page;
 			class tab;
 
 			/// <summary>Tab pane specifications.</summary>
@@ -85,7 +84,7 @@ namespace liblec {
 				tab_pane(const tab_pane&);
 				tab_pane& operator=(const tab_pane&);
 
-				friend tab;
+				friend class tab;
 			};
 
 			/// <summary>Tab container.</summary>

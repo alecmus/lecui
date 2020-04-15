@@ -99,6 +99,10 @@ namespace liblec {
 			else
 				d_.resource_module_handle_ = GetModuleHandle(nullptr);
 
+			// call the layout virtual function
+			if (!layout(error))
+				return false;
+
 			// create form controls
 
 			d_.create_close_button([&]() { on_close(); });
@@ -110,10 +114,6 @@ namespace liblec {
 				d_.create_minimize_button();
 
 			d_.create_form_caption([&]() { on_caption(); });
-
-			// call the layout virtual function
-			if (!layout(error))
-				return false;
 
 			// register window class
 			WNDCLASSEX wcex = { 0 };
@@ -272,24 +272,24 @@ namespace liblec {
 					}
 
 					bool layout(std::string& error) override {
-						page home_page(*this);
-						auto& specs_home_page = home_page.add("home");
+						page_management page_man(*this);
+						auto& home_page = page_man.add("home");
 
-						auto& specs_lbl = widgets::label(specs_home_page).add("message");
+						auto& specs_lbl = widgets::label(home_page).add("message");
 						specs_lbl.text = message_;
 						specs_lbl.multiline = true;
-						specs_lbl.rect = { margin_, specs_home_page.size().width, margin_,
-							specs_home_page.size().height - margin_ - button_size_.height - margin_ };
+						specs_lbl.rect = { margin_, home_page.size().width, margin_,
+							home_page.size().height - margin_ - button_size_.height - margin_ };
 
-						auto& specs_btn = widgets::button(specs_home_page).add("button");
+						auto& specs_btn = widgets::button(home_page).add("button");
 						specs_btn.text = "Ok";
-						specs_btn.rect = { specs_home_page.size().width - margin_ - button_size_.width,
-							specs_home_page.size().width - margin_,
-							specs_home_page.size().height - margin_ - button_size_.height,
-							specs_home_page.size().height - margin_ };
+						specs_btn.rect = { home_page.size().width - margin_ - button_size_.width,
+							home_page.size().width - margin_,
+							home_page.size().height - margin_ - button_size_.height,
+							home_page.size().height - margin_ };
 						specs_btn.on_click = [&]() { close(); };
 
-						home_page.show("home");
+						page_man.show("home");
 						return true;
 					}
 				};

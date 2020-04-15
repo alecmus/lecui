@@ -23,10 +23,6 @@
 
 namespace liblec {
 	namespace lecui {
-		namespace containers {
-			class page;
-		}
-
 		namespace widgets {
 			/// <summary>Table widget specifications.</summary>
 			class table_specs : public specs {

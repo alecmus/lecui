@@ -172,29 +172,29 @@ namespace liblec {
 				WS_THICKFRAME | WS_SYSMENU | WS_MAXIMIZEBOX | WS_MINIMIZEBOX
 			};
 
-			friend form;
-			friend dimensions;
-			friend appearance;
-			friend controls;
-			friend page;
-			friend containers::tab_pane;
-			friend containers::tab;
-			friend containers::pane;
-			friend containers::group;
-			friend widgets::timer;
-			friend widgets::label;
-			friend widgets::image;
-			friend widgets::button;
-			friend widgets::combo;
-			friend widgets::custom;
-			friend widgets::table;
-			friend widgets::rectangle;
-			friend widgets::toggle;
-			friend widgets::progress_indicator;
-			friend widgets::progress_bar;
-			friend widgets::checkbox;
-			friend widgets::textbox;
-			friend widgets::tree;
+			friend class form;
+			friend class dimensions;
+			friend class appearance;
+			friend class controls;
+			friend class page_management;
+			friend class containers::tab_pane;
+			friend class containers::tab;
+			friend class containers::pane;
+			friend class containers::group;
+			friend class widgets::timer;
+			friend class widgets::label;
+			friend class widgets::image;
+			friend class widgets::button;
+			friend class widgets::combo;
+			friend class widgets::custom;
+			friend class widgets::table;
+			friend class widgets::rectangle;
+			friend class widgets::toggle;
+			friend class widgets::progress_indicator;
+			friend class widgets::progress_bar;
+			friend class widgets::checkbox;
+			friend class widgets::textbox;
+			friend class widgets::tree;
 
 		public:
 			impl(const std::string& caption_formatted);

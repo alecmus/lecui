@@ -21,10 +21,6 @@
 
 namespace liblec {
 	namespace lecui {
-		namespace containers {
-			class page;
-		}
-
 		namespace widgets {
 			/// <summary>Combo widget specifications.</summary>
 			class combo_specs : public specs {

@@ -23,13 +23,11 @@
 
 namespace liblec {
 	namespace lecui {
-		namespace containers {
-			class page;
-		}
-
+#if defined(LECUI_EXPORTS)
 		namespace widgets_impl {
 			class tree;
 		}
+#endif
 
 		namespace widgets {
 			/// <summary>Tree widget specifications.</summary>
@@ -69,7 +67,9 @@ namespace liblec {
 					lecui::rect rc = { 0.f, 0.f, 0.f, 0.f };
 					lecui::rect rc_expand = { 0.f, 0.f, 0.f, 0.f };
 
-					friend widgets_impl::tree;
+#if defined(LECUI_EXPORTS)
+					friend class widgets_impl::tree;
+#endif
 				};
 
 				/// <summary>Helper for inserting a node.</summary>

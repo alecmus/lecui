@@ -21,10 +21,6 @@
 
 namespace liblec {
 	namespace lecui {
-		namespace containers {
-			class page;
-		}
-
 		namespace widgets {
 			/// <summary>Progress indicator widget specifications.</summary>
 			/// <remarks>Recommended size with defaults is 50x50px</remarks>

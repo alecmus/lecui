@@ -23,12 +23,14 @@
 
 namespace liblec {
 	namespace lecui {
-		class page;
+#if defined(LECUI_EXPORTS)
+		class page_management;
 		class dimensions;
 		class appearance;
 		class controls;
 
 		namespace containers {
+			class page;
 			class tab_pane;
 			class tab;
 			class pane;
@@ -51,6 +53,7 @@ namespace liblec {
 			class textbox;
 			class tree;
 		}
+#endif
 
 		enum class form_position {
 			/// offset members use 10 pixels
@@ -249,28 +252,30 @@ namespace liblec {
 			form(const form&);
 			form& operator=(const form&);
 
-			friend page;
-			friend dimensions;
-			friend appearance;
-			friend controls;
-			friend containers::tab_pane;
-			friend containers::tab;
-			friend containers::pane;
-			friend containers::group;
-			friend widgets::timer;
-			friend widgets::label;
-			friend widgets::image;
-			friend widgets::button;
-			friend widgets::combo;
-			friend widgets::custom;
-			friend widgets::table;
-			friend widgets::rectangle;
-			friend widgets::toggle;
-			friend widgets::progress_indicator;
-			friend widgets::progress_bar;
-			friend widgets::checkbox;
-			friend widgets::textbox;
-			friend widgets::tree;
+#if defined(LECUI_EXPORTS)
+			friend class page_management;
+			friend class dimensions;
+			friend class appearance;
+			friend class controls;
+			friend class containers::tab_pane;
+			friend class containers::tab;
+			friend class containers::pane;
+			friend class containers::group;
+			friend class widgets::timer;
+			friend class widgets::label;
+			friend class widgets::image;
+			friend class widgets::button;
+			friend class widgets::combo;
+			friend class widgets::custom;
+			friend class widgets::table;
+			friend class widgets::rectangle;
+			friend class widgets::toggle;
+			friend class widgets::progress_indicator;
+			friend class widgets::progress_bar;
+			friend class widgets::checkbox;
+			friend class widgets::textbox;
+			friend class widgets::tree;
+#endif
 		};
 	}
 }

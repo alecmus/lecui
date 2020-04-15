@@ -22,8 +22,6 @@
 namespace liblec {
 	namespace lecui {
 		namespace containers {
-			class page;
-
 			/// <summary>Group container specifications.</summary>
 			/// <remarks>A group does not change the widget path, e.g. A widget located at
 			/// "home_page/tab_pane/tab three/pane_two/label" keeps that location even after

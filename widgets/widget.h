@@ -19,8 +19,6 @@
 	#include <liblec/lecui/form.h>
 #endif
 
-#include <functional>
-
 namespace liblec {
 	namespace lecui {
 		namespace widgets {

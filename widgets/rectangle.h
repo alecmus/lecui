@@ -21,10 +21,6 @@
 
 namespace liblec {
 	namespace lecui {
-		namespace containers {
-			class page;
-		}
-
 		namespace widgets {
 			/// <summary>Rectangle widget specifications.</summary>
 			class rectangle_specs : public specs {

@@ -21,10 +21,6 @@
 
 namespace liblec {
 	namespace lecui {
-		namespace containers {
-			class page;
-		}
-
 		namespace widgets {
 			/// <summary>Image widget specifications.</summary>
 			class image_specs : public specs {

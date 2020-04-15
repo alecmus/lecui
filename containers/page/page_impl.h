@@ -172,9 +172,9 @@ namespace liblec {
 
 			form& fm_;
 
-			friend form;
-			friend containers::tab;
-			friend containers::pane;
+			friend class form;
+			friend class containers::tab;
+			friend class containers::pane;
 		};
 	}
 }

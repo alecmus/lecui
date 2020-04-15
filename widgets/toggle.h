@@ -21,10 +21,6 @@
 
 namespace liblec {
 	namespace lecui {
-		namespace containers {
-			class page;
-		}
-
 		namespace widgets {
 			/// <summary>Toggle widget specifications.</summary>
 			/// <remarks>Recommended height with defaults is 20px. Recommended minimum

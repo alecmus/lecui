@@ -21,10 +21,6 @@
 
 namespace liblec {
 	namespace lecui {
-		namespace containers {
-			class page;
-		}
-
 		namespace widgets {
 			/// <summary>Button widget specifications.</summary>
 			/// <remarks>Recommended size with defaults is 80x25px.</remarks>

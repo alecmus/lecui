@@ -21,28 +21,7 @@
 
 namespace liblec {
 	namespace lecui {
-		namespace widgets {
-			class rectangle;
-			class label;
-			class button;
-			class toggle;
-			class combo;
-			class table;
-			class custom;
-			class image;
-			class progress_indicator;
-			class progress_bar;
-			class checkbox;
-			class textbox;
-			class tree;
-		}
-
 		namespace containers {
-			class tab_pane;
-			class tab;
-			class pane;
-			class group;
-
 			/// <summary>Page container.</summary>
 			/// <remarks>This is the generic container type, and is the only one of the containers
 			/// that can be added directly to a form. Any widget and any container can
@@ -79,35 +58,35 @@ namespace liblec {
 				page(const page&);
 				page& operator=(const page&);
 
-				friend form;
-				friend lecui::page;
-
-				friend containers::tab_pane;
-				friend containers::tab;
-				friend containers::pane;
-				friend containers::group;
-
-				friend widgets::rectangle;
-				friend widgets::label;
-				friend widgets::button;
-				friend widgets::toggle;
-				friend widgets::combo;
-				friend widgets::table;
-				friend widgets::custom;
-				friend widgets::image;
-				friend widgets::progress_indicator;
-				friend widgets::progress_bar;
-				friend widgets::checkbox;
-				friend widgets::textbox;
-				friend widgets::tree;
+#if defined(LECUI_EXPORTS)
+				friend class form;
+				friend class page_management;
+				friend class containers::tab_pane;
+				friend class containers::tab;
+				friend class containers::pane;
+				friend class containers::group;
+				friend class widgets::rectangle;
+				friend class widgets::label;
+				friend class widgets::button;
+				friend class widgets::toggle;
+				friend class widgets::combo;
+				friend class widgets::table;
+				friend class widgets::custom;
+				friend class widgets::image;
+				friend class widgets::progress_indicator;
+				friend class widgets::progress_bar;
+				friend class widgets::checkbox;
+				friend class widgets::textbox;
+				friend class widgets::tree;
+#endif
 			};
 		}
 
-		/// <summary>Page manipulation.</summary>
-		class lecui_api page {
+		/// <summary>Page management.</summary>
+		class lecui_api page_management {
 		public:
-			page(form& fm);
-			~page();
+			page_management(form& fm);
+			~page_management();
 
 			/// <summary>Check if a page exists.</summary>
 			/// <param name="alias">The in-form unique alias, e.g. "home_page".</param>
@@ -139,9 +118,9 @@ namespace liblec {
 			impl& d_;
 
 			// Default constructor and copying an object of this class are not allowed
-			page();
-			page(const page&);
-			page& operator=(const page&);
+			page_management();
+			page_management(const page_management&);
+			page_management& operator=(const page_management&);
 		};
 	}
 }

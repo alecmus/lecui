@@ -22,8 +22,6 @@
 namespace liblec {
 	namespace lecui {
 		namespace containers {
-			class page;
-
 			/// <summary>Pane container specifications.</summary>
 			class pane_specs : public widgets::specs {
 			public:

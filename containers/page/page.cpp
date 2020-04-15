@@ -23,21 +23,21 @@ namespace liblec {
 
 		inline size containers::page::size() { return d_page_.size(); }
 
-		class page::impl {
+		class page_management::impl {
 		public:
 			impl(form& fm) :
 				fm_(fm) {}
 			form& fm_;
 		};
 
-		page::page(form& fm) : d_(*(new impl(fm))) {}
-		page::~page() { delete& d_; }
+		page_management::page_management(form& fm) : d_(*(new impl(fm))) {}
+		page_management::~page_management() { delete& d_; }
 
-		bool page::exists(const std::string& alias) {
+		bool page_management::exists(const std::string& alias) {
 			return d_.fm_.d_.p_pages_.count(alias) != 0;
 		}
 
-		containers::page& page::add(const std::string& alias) {
+		containers::page& page_management::add(const std::string& alias) {
 			log("page::add");
 
 			if (d_.fm_.d_.p_pages_.count(alias)) {
@@ -128,11 +128,11 @@ namespace liblec {
 		}
 
 		containers::page&
-			page::get(form& fm, const std::string& alias) {
+			page_management::get(form& fm, const std::string& alias) {
 			return fm.d_.p_pages_.at(alias);
 		}
 
-		void page::show(const std::string& alias) {
+		void page_management::show(const std::string& alias) {
 			log("page::show");
 
 			d_.fm_.d_.current_page_ = alias;
