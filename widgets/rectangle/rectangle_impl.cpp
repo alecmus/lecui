@@ -171,5 +171,8 @@ namespace liblec {
 
 		widgets::rectangle::rectangle_specs&
 			widgets_impl::rectangle::specs() { return specs_; }
+
+		widgets::rectangle::rectangle_specs&
+			widgets_impl::rectangle::operator()() { return specs(); }
 	}
 }

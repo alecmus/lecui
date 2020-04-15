@@ -38,6 +38,7 @@ namespace liblec {
 
 				/// widget specific methods
 				widgets::image::image_specs& specs();
+				widgets::image::image_specs& operator()();
 
 			private:
 				/// Prevent the use of the default constructor.

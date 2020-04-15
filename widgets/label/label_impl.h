@@ -76,6 +76,7 @@ namespace liblec {
 
 				/// widget specific methods
 				widgets::label::label_specs& specs();
+				widgets::label::label_specs& operator()();
 
 			private:
 				/// Prevent the use of the default constructor.

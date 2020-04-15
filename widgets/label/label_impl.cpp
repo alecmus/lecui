@@ -429,5 +429,10 @@ namespace liblec {
 			widgets_impl::label::specs() {
 			return specs_;
 		}
+
+		widgets::label::label_specs&
+			widgets_impl::label::operator()() {
+			return specs();
+		}
 	}
 }

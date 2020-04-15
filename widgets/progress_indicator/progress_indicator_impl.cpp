@@ -225,5 +225,8 @@ namespace liblec {
 
 		widgets::progress_indicator::progress_indicator_specs&
 			widgets_impl::progress_indicator::specs() { return specs_; }
+
+		widgets::progress_indicator::progress_indicator_specs&
+			widgets_impl::progress_indicator::operator()() { return specs(); }
 	}
 }

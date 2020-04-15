@@ -62,6 +62,12 @@ namespace liblec {
 				[[nodiscard]]
 				combo_specs& specs();
 
+				/// <summary>Get the combo specifications.</summary>
+				/// <returns>A reference to the combo specifications.</returns>
+				/// <remarks>Alternative to specs() for more terse code.</remarks>
+				[[nodiscard]]
+				combo_specs& operator()();
+
 				/// <summary>Get the specifications of a combo.</summary>
 				/// <param name="fm">The form containing the combo.</param>
 				/// <param name="path">The full path to the widget, e.g.

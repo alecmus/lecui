@@ -38,6 +38,7 @@ namespace liblec {
 
 				/// widget specific methods
 				widgets::button::button_specs& specs();
+				widgets::button::button_specs& operator()();
 
 			private:
 				/// Prevent the use of the default constructor.

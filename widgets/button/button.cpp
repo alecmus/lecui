@@ -49,6 +49,11 @@ namespace liblec {
 		}
 
 		widgets::button::button_specs&
+			widgets::button::operator()() {
+			return specs();
+		}
+
+		widgets::button::button_specs&
 			widgets::button::specs(form& fm, const std::string& path) {
 			const auto idx = path.find("/");
 

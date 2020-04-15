@@ -53,6 +53,12 @@ namespace liblec {
 				[[nodiscard]]
 				rectangle_specs& specs();
 
+				/// <summary>Get the rectangle specifications.</summary>
+				/// <returns>A reference to the rectangle specifications.</returns>
+				/// <remarks>Alternative to specs() for more terse code.</remarks>
+				[[nodiscard]]
+				rectangle_specs& operator()();
+
 				/// <summary>Get the specifications of a rectangle.</summary>
 				/// <param name="fm">The form containing the rectangle.</param>
 				/// <param name="path">The full path to the widget, e.g.

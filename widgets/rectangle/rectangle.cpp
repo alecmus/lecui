@@ -49,6 +49,11 @@ namespace liblec {
 		}
 
 		widgets::rectangle::rectangle_specs&
+			widgets::rectangle::operator()() {
+			return specs();
+		}
+
+		widgets::rectangle::rectangle_specs&
 			widgets::rectangle::specs(form& fm, const std::string& path) {
 			const auto idx = path.find("/");
 

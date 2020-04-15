@@ -53,6 +53,12 @@ namespace liblec {
 				[[nodiscard]]
 				progress_indicator_specs& specs();
 
+				/// <summary>Get the progress indicator specifications.</summary>
+				/// <returns>A reference to the progress indicator specifications.</returns>
+				/// <remarks>Alternative to specs() for more terse code.</remarks>
+				[[nodiscard]]
+				progress_indicator_specs& operator()();
+
 				/// <summary>Get the specifications of a progress indicator.</summary>
 				/// <param name="fm">The form containing the progress indicator.</param>
 				/// <param name="path">The full path to the widget, e.g.

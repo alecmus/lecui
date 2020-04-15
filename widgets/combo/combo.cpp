@@ -53,6 +53,11 @@ namespace liblec {
 		}
 
 		widgets::combo::combo_specs&
+			widgets::combo::operator()() {
+			return specs();
+		}
+
+		widgets::combo::combo_specs&
 			widgets::combo::specs(form& fm, const std::string& path) {
 			const auto idx = path.find("/");
 

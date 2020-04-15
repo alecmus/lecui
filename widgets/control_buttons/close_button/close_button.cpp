@@ -106,5 +106,8 @@ namespace liblec {
 
 		widgets::close_button_specs&
 			widgets_impl::close_button::specs() { return specs_; }
+
+		widgets::close_button_specs&
+			widgets_impl::close_button::operator()() { return specs(); }
 	}
 }

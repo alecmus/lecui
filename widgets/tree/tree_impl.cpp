@@ -349,6 +349,9 @@ namespace liblec {
 		widgets::tree::tree_specs&
 			widgets_impl::tree::specs() { return specs_; }
 
+		widgets::tree::tree_specs&
+			widgets_impl::tree::operator()() { return specs(); }
+
 		void widgets_impl::tree::on_selection() {
 			class helper {
 			public:

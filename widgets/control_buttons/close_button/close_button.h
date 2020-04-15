@@ -38,6 +38,7 @@ namespace liblec {
 
 				/// widget specific methods
 				widgets::close_button_specs& specs();
+				widgets::close_button_specs& operator()();
 
 			private:
 				/// Prevent copying an object of this class.

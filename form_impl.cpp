@@ -363,7 +363,7 @@ namespace liblec {
 					widgets_impl::close_button());
 			widgets_.emplace(p_close_button_->alias(), *p_close_button_);
 			widgets_order_.emplace_back(p_close_button_->alias());
-
+			
 			p_close_button_->specs().color_fill = clr_theme_;
 			p_close_button_->specs().color_hot = clr_theme_hot_;
 			p_close_button_->specs().color_disabled = clr_theme_disabled_;
@@ -507,10 +507,10 @@ namespace liblec {
 								containers::pane pane(page, key + widget.first);
 
 								// clone essential properties to pane
-								pane.specs().rect = tree_specs.rect;
-								pane.specs().on_resize = tree_specs.on_resize;
-								pane.specs().color_fill = tree_specs.color_fill;
-								pane.specs().color_border = tree_specs.color_border;
+								pane().rect = tree_specs.rect;
+								pane().on_resize = tree_specs.on_resize;
+								pane().color_fill = tree_specs.color_fill;
+								pane().color_border = tree_specs.color_border;
 
 								// save move info so we can move the tree into the pane later
 								// we cannot do it here because we're iterating
@@ -549,13 +549,13 @@ namespace liblec {
 						// clone into destination
 						widgets::tree tree(it.destination, it.alias);
 						// copy specs
-						tree.specs() = it.tree;
+						tree() = it.tree;
 
 						// adjust specs
-						tree.specs().rect = { 0, it.destination.size().width, 0, it.destination.size().height };
-						tree.specs().on_resize = { 0, 0, 0, 0 };	// critical because tree will change size as tree is browsed or changed. the pane scroll bars will do the job.
-						tree.specs().color_fill.alpha = 0;
-						tree.specs().color_border.alpha = 0;
+						tree().rect = { 0, it.destination.size().width, 0, it.destination.size().height };
+						tree().on_resize = { 0, 0, 0, 0 };	// critical because tree will change size as tree is browsed or changed. the pane scroll bars will do the job.
+						tree().color_fill.alpha = 0;
+						tree().color_border.alpha = 0;
 
 						// close widget
 						std::string error;
@@ -859,9 +859,9 @@ namespace liblec {
 
 										const D2D1_SIZE_F change_in_size =
 										{ (tab_pane.tab_pane_area().right - tab_pane.tab_pane_area().left) -
-											(tab_pane.specs().rect.right - tab_pane.specs().rect.left),
+											(tab_pane().rect.right - tab_pane().rect.left),
 											(tab_pane.tab_pane_area().bottom - tab_pane.tab_pane_area().top) -
-											(tab_pane.specs().rect.bottom - tab_pane.specs().rect.top) };
+											(tab_pane().rect.bottom - tab_pane().rect.top) };
 
 										for (auto& tab : tab_pane.p_tabs_) {
 											const float page_tolerance_ = 10.f;
@@ -890,9 +890,9 @@ namespace liblec {
 
 											const D2D1_SIZE_F change_in_size =
 											{ (pane.pane_area().right - pane.pane_area().left) -
-												(pane.specs().rect.right - pane.specs().rect.left),
+												(pane().rect.right - pane().rect.left),
 												(pane.pane_area().bottom - pane.pane_area().top) -
-												(pane.specs().rect.bottom - pane.specs().rect.top) };
+												(pane().rect.bottom - pane().rect.top) };
 
 											for (auto& page : pane.p_panes_) {
 												const float page_tolerance_ = 10.f;
@@ -969,10 +969,10 @@ namespace liblec {
 
 									const float change_in_width =
 										(tab_pane.tab_pane_area().right - tab_pane.tab_pane_area().left) -
-										(tab_pane.specs().rect.right - tab_pane.specs().rect.left);
+										(tab_pane().rect.right - tab_pane().rect.left);
 									const float change_in_height =
 										(tab_pane.tab_pane_area().bottom - tab_pane.tab_pane_area().top) -
-										(tab_pane.specs().rect.bottom - tab_pane.specs().rect.top);
+										(tab_pane().rect.bottom - tab_pane().rect.top);
 
 									for (auto& tab : tab_pane.p_tabs_) {
 										const float page_tolerance_ = 10.f;
@@ -1000,10 +1000,10 @@ namespace liblec {
 
 										const float change_in_width =
 											(pane.pane_area().right - pane.pane_area().left) -
-											(pane.specs().rect.right - pane.specs().rect.left);
+											(pane().rect.right - pane().rect.left);
 										const float change_in_height =
 											(pane.pane_area().bottom - pane.pane_area().top) -
-											(pane.specs().rect.bottom - pane.specs().rect.top);
+											(pane().rect.bottom - pane().rect.top);
 
 										for (auto& page : pane.p_panes_) {
 											const float page_tolerance_ = 10.f;

@@ -49,6 +49,11 @@ namespace liblec {
 		}
 
 		containers::group::group_specs&
+			containers::group::operator()() {
+			return specs();
+		}
+
+		containers::group::group_specs&
 			containers::group::specs(form& fm, const std::string& path) {
 			const auto idx = path.find("/");
 

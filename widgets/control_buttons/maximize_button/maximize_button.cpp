@@ -137,6 +137,9 @@ namespace liblec {
 		widgets::maximize_button_specs&
 			widgets_impl::maximize_button::specs() { return specs_; }
 
+		widgets::maximize_button_specs&
+			widgets_impl::maximize_button::operator()() { return specs(); }
+
 		bool widgets_impl::maximize_button::maximized(HWND hwnd) {
 			WINDOWPLACEMENT placement;
 

@@ -614,5 +614,8 @@ namespace liblec {
 
 		widgets::combo::combo_specs&
 			widgets_impl::combo::specs() { return specs_; }
+
+		widgets::combo::combo_specs&
+			widgets_impl::combo::operator()() { return specs(); }
 	}
 }

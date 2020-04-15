@@ -46,6 +46,7 @@ namespace liblec {
 
 				/// widget specific methods
 				widgets::v_scrollbar_specs& specs();
+				widgets::v_scrollbar_specs& operator()();
 				void max_displacement(float& top, float& bottom);
 				bool translate_y_displacement(const float& y_displacement,
 					float& y_displacement_translated, bool force);

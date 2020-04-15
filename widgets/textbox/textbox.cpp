@@ -51,6 +51,11 @@ namespace liblec {
 		}
 
 		widgets::textbox::textbox_specs&
+			widgets::textbox::operator()() {
+			return specs();
+		}
+
+		widgets::textbox::textbox_specs&
 			widgets::textbox::specs(form& fm, const std::string& path) {
 			const auto idx = path.find("/");
 

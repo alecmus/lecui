@@ -41,6 +41,7 @@ namespace liblec {
 
 				/// widget specific methods
 				containers::pane::pane_specs& specs();
+				containers::pane::pane_specs& operator()();
 				const D2D1_RECT_F& client_area();
 				const D2D1_RECT_F& pane_area();
 

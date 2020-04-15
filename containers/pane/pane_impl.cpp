@@ -108,6 +108,9 @@ namespace liblec {
 		containers::pane::pane_specs&
 			widgets_impl::pane::specs() { return specs_; }
 
+		containers::pane::pane_specs&
+			widgets_impl::pane::operator()() { return specs(); }
+
 		const D2D1_RECT_F& widgets_impl::pane::client_area() {
 			return rect_client_area_;
 		}

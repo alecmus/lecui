@@ -39,6 +39,7 @@ namespace liblec {
 
 				/// widget specific methods
 				widgets::progress_bar::progress_bar_specs& specs();
+				widgets::progress_bar::progress_bar_specs& operator()();
 
 			private:
 				/// Prevent the use of the default constructor.

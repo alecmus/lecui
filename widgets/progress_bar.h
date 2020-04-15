@@ -48,6 +48,12 @@ namespace liblec {
 				[[nodiscard]]
 				progress_bar_specs& specs();
 
+				/// <summary>Get the progress bar specifications.</summary>
+				/// <returns>A reference to the progress bar specifications.</returns>
+				/// <remarks>Alternative to specs() for more terse code.</remarks>
+				[[nodiscard]]
+				progress_bar_specs& operator()();
+
 				/// <summary>Get the specifications of a progress bar.</summary>
 				/// <param name="fm">The form containing the progress bar.</param>
 				/// <param name="path">The full path to the widget, e.g.

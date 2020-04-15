@@ -37,6 +37,7 @@ namespace liblec {
 
 				/// widget specific methods
 				containers::group::group_specs& specs();
+				containers::group::group_specs& operator()();
 
 			private:
 				/// Prevent the use of the default constructor.

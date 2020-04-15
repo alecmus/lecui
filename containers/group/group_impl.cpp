@@ -104,5 +104,8 @@ namespace liblec {
 
 		containers::group::group_specs&
 			widgets_impl::group::specs() { return specs_; }
+
+		containers::group::group_specs&
+			widgets_impl::group::operator()() { return specs(); }
 	}
 }

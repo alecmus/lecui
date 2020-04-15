@@ -50,6 +50,11 @@ namespace liblec {
 		}
 
 		widgets::toggle::toggle_specs&
+			widgets::toggle::operator()() {
+			return specs();
+		}
+
+		widgets::toggle::toggle_specs&
 			widgets::toggle::specs(form& fm, const std::string& path) {
 			const auto idx = path.find("/");
 

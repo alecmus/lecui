@@ -108,6 +108,12 @@ namespace liblec {
 				[[nodiscard]]
 				tree_specs& specs();
 
+				/// <summary>Get the tree specifications.</summary>
+				/// <returns>A reference to the tree specifications.</returns>
+				/// <remarks>Alternative to specs() for more terse code.</remarks>
+				[[nodiscard]]
+				tree_specs& operator()();
+
 				/// <summary>Get the specifications of a tree.</summary>
 				/// <param name="fm">The form containing the tree.</param>
 				/// <param name="path">The full path to the widget, e.g.

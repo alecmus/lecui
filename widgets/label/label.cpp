@@ -52,6 +52,11 @@ namespace liblec {
 		}
 
 		widgets::label::label_specs&
+			widgets::label::operator()() {
+			return specs();
+		}
+
+		widgets::label::label_specs&
 			widgets::label::specs(form& fm,
 				const std::string& path) {
 			const auto idx = path.find("/");
@@ -61,7 +66,7 @@ namespace liblec {
 				const auto path_remaining = path.substr(idx + 1);
 				auto& page = fm.d_.p_pages_.at(page_alias);
 				auto results = fm.d_.find_widget(page, path_remaining);
-				return results.page.d_page_.get_label(results.widget.alias()).specs();
+				return results.page.d_page_.get_label(results.widget.alias())();
 			}
 
 			throw std::invalid_argument("Invalid path");

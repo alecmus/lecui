@@ -73,6 +73,12 @@ namespace liblec {
 				[[nodiscard]]
 				label_specs& specs();
 
+				/// <summary>Get the label specifications.</summary>
+				/// <returns>A reference to the label specifications.</returns>
+				/// <remarks>Alternative to specs() for more terse code.</remarks>
+				[[nodiscard]]
+				label_specs& operator()();
+
 				/// <summary>Get the specifications of a label.</summary>
 				/// <param name="fm">The form containing the label.</param>
 				/// <param name="path">The full path to the widget, e.g.

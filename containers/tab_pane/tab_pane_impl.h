@@ -42,6 +42,7 @@ namespace liblec {
 
 				/// widget specific methods
 				containers::tab_pane::tab_pane_specs& specs();
+				containers::tab_pane::tab_pane_specs& operator()();
 				const D2D1_RECT_F& client_area();
 				const D2D1_RECT_F& tab_pane_area();
 				float caption_bar_height();

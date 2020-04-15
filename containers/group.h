@@ -65,6 +65,12 @@ namespace liblec {
 				[[nodiscard]]
 				group_specs& specs();
 
+				/// <summary>Add a group container.</summary>
+				/// <returns>A reference to the group specifications.</returns>
+				/// <remarks>Alternative to specs() for more terse code.</remarks>
+				[[nodiscard]]
+				group_specs& operator()();
+
 				/// <summary>Get the specifications of a group.</summary>
 				/// <param name="fm">The form containing the group.</param>
 				/// <param name="path">The full path to the container, e.g.

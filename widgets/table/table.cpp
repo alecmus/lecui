@@ -57,6 +57,11 @@ namespace liblec {
 		}
 
 		widgets::table::table_specs&
+			widgets::table::operator()() {
+			return specs();
+		}
+
+		widgets::table::table_specs&
 			widgets::table::specs(form& fm, const std::string& path) {
 			const auto idx = path.find("/");
 

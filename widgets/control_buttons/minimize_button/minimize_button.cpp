@@ -105,5 +105,8 @@ namespace liblec {
 
 		widgets::minimize_button_specs&
 			widgets_impl::minimize_button::specs() { return specs_; }
+
+		widgets::minimize_button_specs&
+			widgets_impl::minimize_button::operator()() { return specs(); }
 	}
 }

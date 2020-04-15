@@ -49,6 +49,11 @@ namespace liblec {
 		}
 
 		widgets::progress_indicator::progress_indicator_specs&
+			widgets::progress_indicator::operator()() {
+			return specs();
+		}
+
+		widgets::progress_indicator::progress_indicator_specs&
 			widgets::progress_indicator::specs(form& fm, const std::string& path) {
 			const auto idx = path.find("/");
 

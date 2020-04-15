@@ -55,6 +55,12 @@ namespace liblec {
 				[[nodiscard]]
 				button_specs& specs();
 
+				/// <summary>Get the button specifications.</summary>
+				/// <returns>A reference to the button specifications.</returns>
+				/// <remarks>Alternative to specs() for more terse code.</remarks>
+				[[nodiscard]]
+				button_specs& operator()();
+
 				/// <summary>Get the specifications of a button.</summary>
 				/// <param name="fm">The form containing the button.</param>
 				/// <param name="path">The full path to the widget, e.g.

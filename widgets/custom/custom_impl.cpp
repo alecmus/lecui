@@ -91,5 +91,10 @@ namespace liblec {
 			widgets_impl::custom::specs() {
 			return specs_;
 		}
+
+		widgets::custom::custom_specs&
+			widgets_impl::custom::operator()() {
+			return specs();
+		}
 	}
 }

@@ -46,6 +46,7 @@ namespace liblec {
 
 				/// widget specific methods
 				widgets::rectangle::rectangle_specs& specs();
+				widgets::rectangle::rectangle_specs& operator()();
 
 			private:
 				/// Prevent the use of the default constructor.

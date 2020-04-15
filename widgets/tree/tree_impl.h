@@ -40,6 +40,7 @@ namespace liblec {
 
 				/// widget specific methods
 				widgets::tree::tree_specs& specs();
+				widgets::tree::tree_specs& operator()();
 
 			private:
 				/// Prevent the use of the default constructor.

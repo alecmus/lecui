@@ -51,6 +51,11 @@ namespace liblec {
 		}
 
 		widgets::image::image_specs&
+			widgets::image::operator()() {
+			return specs();
+		}
+
+		widgets::image::image_specs&
 			widgets::image::specs(form& fm, const std::string& path) {
 			const auto idx = path.find("/");
 

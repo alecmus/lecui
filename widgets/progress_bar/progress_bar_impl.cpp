@@ -163,5 +163,8 @@ namespace liblec {
 
 		widgets::progress_bar::progress_bar_specs&
 			widgets_impl::progress_bar::specs() { return specs_; }
+
+		widgets::progress_bar::progress_bar_specs&
+			widgets_impl::progress_bar::operator()() { return specs(); }
 	}
 }

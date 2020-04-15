@@ -40,6 +40,7 @@ namespace liblec {
 
 				/// widget specific methods
 				widgets::textbox::textbox_specs& specs();
+				widgets::textbox::textbox_specs& operator()();
 				void insert_character(const char& c);
 				void key_backspace();
 				void key_delete();

@@ -49,6 +49,11 @@ namespace liblec {
 		}
 
 		widgets::progress_bar::progress_bar_specs&
+			widgets::progress_bar::operator()() {
+			return specs();
+		}
+
+		widgets::progress_bar::progress_bar_specs&
 			widgets::progress_bar::specs(form& fm, const std::string& path) {
 			const auto idx = path.find("/");
 

@@ -53,6 +53,12 @@ namespace liblec {
 				[[nodiscard]]
 				pane_specs& specs();
 
+				/// <summary>Get the pane specifications.</summary>
+				/// <returns>A reference to the pane specifications.</returns>
+				/// <remarks>Alternative to specs() for more terse code.</remarks>
+				[[nodiscard]]
+				pane_specs& operator()();
+
 				/// <summary>Get the specifications of a pane.</summary>
 				/// <param name="fm">The form the container is in.</param>
 				/// <param name="path">The full path to the pane, e.g.

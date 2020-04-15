@@ -41,6 +41,7 @@ namespace liblec {
 
 				/// widget specific methods
 				widgets::table::table_specs& specs();
+				widgets::table::table_specs& operator()();
 
 			private:
 				/// Prevent the use of the default constructor.

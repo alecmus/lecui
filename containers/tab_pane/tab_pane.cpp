@@ -37,6 +37,10 @@ namespace liblec {
 			return d_.specs_;
 		}
 
+		containers::tab_pane::tab_pane_specs& containers::tab_pane::operator()() {
+			return specs();
+		}
+
 		containers::tab_pane::tab_pane_specs&
 			containers::tab_pane::specs(form& fm,
 				const std::string& path) {
@@ -95,40 +99,40 @@ namespace liblec {
 				const float margin = 10.f;
 				const float page_tolerance_ = 10.f;
 				const float caption_bar_height_ = tab_pane_.caption_bar_height();
-				rect rect_client_area = tab_pane_.specs().rect;
+				rect rect_client_area = tab_pane_().rect;
 
 				// initialize the page's horizontal scroll bar
 				{
-					tab_pane_.p_tabs_.at(tab_name).d_page_.h_scrollbar().specs().on_resize.perc_width = 100.f;
-					tab_pane_.p_tabs_.at(tab_name).d_page_.h_scrollbar().specs().on_resize.perc_y = 100.f;
+					tab_pane_.p_tabs_.at(tab_name).d_page_.h_scrollbar()().on_resize.perc_width = 100.f;
+					tab_pane_.p_tabs_.at(tab_name).d_page_.h_scrollbar()().on_resize.perc_y = 100.f;
 
-					tab_pane_.p_tabs_.at(tab_name).d_page_.h_scrollbar().specs().rect.left = 0.f;
-					tab_pane_.p_tabs_.at(tab_name).d_page_.h_scrollbar().specs().rect.right =
+					tab_pane_.p_tabs_.at(tab_name).d_page_.h_scrollbar()().rect.left = 0.f;
+					tab_pane_.p_tabs_.at(tab_name).d_page_.h_scrollbar()().rect.right =
 						(rect_client_area.right - rect_client_area.left) - (margin + thickness);
-					tab_pane_.p_tabs_.at(tab_name).d_page_.h_scrollbar().specs().rect.bottom =
+					tab_pane_.p_tabs_.at(tab_name).d_page_.h_scrollbar()().rect.bottom =
 						(rect_client_area.bottom - rect_client_area.top) -
 						(caption_bar_height_ + page_tolerance_);
-					tab_pane_.p_tabs_.at(tab_name).d_page_.h_scrollbar().specs().rect.top =
-						tab_pane_.p_tabs_.at(tab_name).d_page_.h_scrollbar().specs().rect.bottom - thickness;
+					tab_pane_.p_tabs_.at(tab_name).d_page_.h_scrollbar()().rect.top =
+						tab_pane_.p_tabs_.at(tab_name).d_page_.h_scrollbar()().rect.bottom - thickness;
 
-					tab_pane_.p_tabs_.at(tab_name).d_page_.h_scrollbar().specs().on_click = nullptr;
+					tab_pane_.p_tabs_.at(tab_name).d_page_.h_scrollbar()().on_click = nullptr;
 				}
 
 				// initialize the page's vertical scroll bar
 				{
-					tab_pane_.p_tabs_.at(tab_name).d_page_.v_scrollbar().specs().on_resize.perc_height = 100.f;
-					tab_pane_.p_tabs_.at(tab_name).d_page_.v_scrollbar().specs().on_resize.perc_x = 100.f;
+					tab_pane_.p_tabs_.at(tab_name).d_page_.v_scrollbar()().on_resize.perc_height = 100.f;
+					tab_pane_.p_tabs_.at(tab_name).d_page_.v_scrollbar()().on_resize.perc_x = 100.f;
 
-					tab_pane_.p_tabs_.at(tab_name).d_page_.v_scrollbar().specs().rect.top = 0.f;
-					tab_pane_.p_tabs_.at(tab_name).d_page_.v_scrollbar().specs().rect.bottom =
+					tab_pane_.p_tabs_.at(tab_name).d_page_.v_scrollbar()().rect.top = 0.f;
+					tab_pane_.p_tabs_.at(tab_name).d_page_.v_scrollbar()().rect.bottom =
 						(rect_client_area.bottom - rect_client_area.top) -
 						(margin + thickness) - caption_bar_height_;
-					tab_pane_.p_tabs_.at(tab_name).d_page_.v_scrollbar().specs().rect.right =
+					tab_pane_.p_tabs_.at(tab_name).d_page_.v_scrollbar()().rect.right =
 						(rect_client_area.right - rect_client_area.left) - margin;
-					tab_pane_.p_tabs_.at(tab_name).d_page_.v_scrollbar().specs().rect.left =
-						tab_pane_.p_tabs_.at(tab_name).d_page_.v_scrollbar().specs().rect.right - thickness;
+					tab_pane_.p_tabs_.at(tab_name).d_page_.v_scrollbar()().rect.left =
+						tab_pane_.p_tabs_.at(tab_name).d_page_.v_scrollbar()().rect.right - thickness;
 
-					tab_pane_.p_tabs_.at(tab_name).d_page_.v_scrollbar().specs().on_click = nullptr;
+					tab_pane_.p_tabs_.at(tab_name).d_page_.v_scrollbar()().on_click = nullptr;
 				}
 
 				// add an invisible rect to bound the page. This is essential for scroll bars

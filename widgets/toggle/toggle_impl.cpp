@@ -284,5 +284,8 @@ namespace liblec {
 
 		widgets::toggle::toggle_specs&
 			widgets_impl::toggle::specs() { return specs_; }
+
+		widgets::toggle::toggle_specs&
+			widgets_impl::toggle::operator()() { return specs(); }
 	}
 }

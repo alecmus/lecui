@@ -150,6 +150,9 @@ namespace liblec {
 		widgets::h_scrollbar_specs&
 			widgets_impl::h_scrollbar::specs() { return specs_; }
 
+		widgets::h_scrollbar_specs&
+			widgets_impl::h_scrollbar::operator()() { return specs(); }
+
 		void widgets_impl::h_scrollbar::max_displacement(float& left,
 			float& right) {
 			right = rectC_.right - rectD_.right;

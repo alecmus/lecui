@@ -41,6 +41,7 @@ namespace liblec {
 
 				/// widget specific methods
 				widgets::toggle::toggle_specs& specs();
+				widgets::toggle::toggle_specs& operator()();
 
 			private:
 				/// Prevent the use of the default constructor.

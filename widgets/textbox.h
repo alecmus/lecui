@@ -58,6 +58,12 @@ namespace liblec {
 				[[nodiscard]]
 				textbox_specs& specs();
 
+				/// <summary>Get the textbox specifications.</summary>
+				/// <returns>A reference to the textbox specifications.</returns>
+				/// <remarks>Alternative to specs() for more terse code.</remarks>
+				[[nodiscard]]
+				textbox_specs& operator()();
+
 				/// <summary>Get the specifications of a textbox.</summary>
 				/// <param name="fm">The form containing the textbox.</param>
 				/// <param name="path">The full path to the widget, e.g.

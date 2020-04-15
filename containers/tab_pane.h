@@ -57,6 +57,12 @@ namespace liblec {
 				[[nodiscard]]
 				tab_pane_specs& specs();
 
+				/// <summary>Get the tab pane specifications.</summary>
+				/// <returns>A reference to the control specifications.</returns>
+				/// <remarks>Alternative to specs() for more terse code.</remarks>
+				[[nodiscard]]
+				tab_pane_specs& operator()();
+
 				/// <summary>Get the specifications of a tab pane.</summary>
 				/// <param name="fm">The form the control is in.</param>
 				/// <param name="path">The full path to the control, e.g.

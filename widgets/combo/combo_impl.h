@@ -42,6 +42,7 @@ namespace liblec {
 
 				/// widget specific methods
 				widgets::combo::combo_specs& specs();
+				widgets::combo::combo_specs& operator()();
 
 			private:
 				/// Prevent the use of the default constructor.

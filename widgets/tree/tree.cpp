@@ -55,6 +55,11 @@ namespace liblec {
 		}
 
 		widgets::tree::tree_specs&
+			widgets::tree::operator()() {
+			return specs();
+		}
+
+		widgets::tree::tree_specs&
 			widgets::tree::specs(form& fm, const std::string& path) {
 			const auto idx = path.find("/");
 

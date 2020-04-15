@@ -259,5 +259,8 @@ namespace liblec {
 
 		widgets::checkbox::checkbox_specs&
 			widgets_impl::checkbox::specs() { return specs_; }
+
+		widgets::checkbox::checkbox_specs&
+			widgets_impl::checkbox::operator()() { return specs(); }
 	}
 }

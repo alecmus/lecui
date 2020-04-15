@@ -39,6 +39,7 @@ namespace liblec {
 
 				/// widget specific methods
 				widgets::custom::custom_specs& specs();
+				widgets::custom::custom_specs& operator()();
 
 			private:
 				/// Prevent the use of the default constructor.

@@ -49,6 +49,11 @@ namespace liblec {
 		}
 
 		widgets::custom::custom_specs&
+			widgets::custom::operator()() {
+			return specs();
+		}
+
+		widgets::custom::custom_specs&
 			widgets::custom::specs(form& fm, const std::string& path) {
 			const auto idx = path.find("/");
 

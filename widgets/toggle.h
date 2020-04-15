@@ -55,6 +55,12 @@ namespace liblec {
 				[[nodiscard]]
 				toggle_specs& specs();
 
+				/// <summary>Get the toggle specifications.</summary>
+				/// <returns>A reference to the toggle specifications.</returns>
+				/// <remarks>Alternative to specs() for more terse code.</remarks>
+				[[nodiscard]]
+				toggle_specs& operator()();
+
 				/// <summary>Get the specifications of a toggle.</summary>
 				/// <param name="fm">The form containing the toggle.</param>
 				/// <param name="path">The full path to the widget, e.g.

@@ -95,6 +95,12 @@ namespace liblec {
 				[[nodiscard]]
 				table_specs& specs();
 
+				/// <summary>Get the table specifications.</summary>
+				/// <returns>A reference to the table specifications.</returns>
+				/// <remarks>Alternative to specs() for more terse code.</remarks>
+				[[nodiscard]]
+				table_specs& operator()();
+
 				/// <summary>Get the specifications of a table.</summary>
 				/// <param name="fm">The form containing the table.</param>
 				/// <param name="path">The full path to the widget, e.g.

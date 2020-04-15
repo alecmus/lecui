@@ -50,6 +50,11 @@ namespace liblec {
 		}
 
 		widgets::checkbox::checkbox_specs&
+			widgets::checkbox::operator()() {
+			return specs();
+		}
+
+		widgets::checkbox::checkbox_specs&
 			widgets::checkbox::specs(form& fm, const std::string& path) {
 			const auto idx = path.find("/");
 

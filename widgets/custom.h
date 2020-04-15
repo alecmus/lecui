@@ -78,6 +78,12 @@ namespace liblec {
 				[[nodiscard]]
 				custom_specs& specs();
 
+				/// <summary>Get the custom widget specifications.</summary>
+				/// <returns>A reference to the custom widget's specifications.</returns>
+				/// <remarks>Alternative to specs() for more terse code.</remarks>
+				[[nodiscard]]
+				custom_specs& operator()();
+
 				/// <summary>Get the specifications of a custom widget.</summary>
 				/// <param name="fm">The form containing the widget.</param>
 				/// <param name="path">The full path to the widget, e.g.

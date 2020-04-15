@@ -64,6 +64,12 @@ namespace liblec {
 				[[nodiscard]]
 				checkbox_specs& specs();
 
+				/// <summary>Get the checkbox specifications.</summary>
+				/// <returns>A reference to the checkbox specifications.</returns>
+				/// <remarks>Alternative to specs() for more terse code.</remarks>
+				[[nodiscard]]
+				checkbox_specs& operator()();
+
 				/// <summary>Get the specifications of a checkbox.</summary>
 				/// <param name="fm">The form containing the checkbox.</param>
 				/// <param name="path">The full path to the widget, e.g.

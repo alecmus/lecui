@@ -39,6 +39,7 @@ namespace liblec {
 
 				/// widget specific methods
 				widgets::checkbox::checkbox_specs& specs();
+				widgets::checkbox::checkbox_specs& operator()();
 
 			private:
 				/// Prevent the use of the default constructor.

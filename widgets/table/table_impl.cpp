@@ -872,6 +872,9 @@ namespace liblec {
 		widgets::table::table_specs&
 			widgets_impl::table::specs() { return specs_; }
 
+		widgets::table::table_specs&
+			widgets_impl::table::operator()() { return specs(); }
+
 		void widgets_impl::table::on_selection() {
 			if (specs_.on_selection) {
 				std::vector<std::map<std::string, std::string>> var;

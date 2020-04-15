@@ -160,5 +160,8 @@ namespace liblec {
 
 		widgets::button::button_specs&
 			widgets_impl::button::specs() { return specs_; }
+
+		widgets::button::button_specs&
+			widgets_impl::button::operator()() { return specs(); }
 	}
 }

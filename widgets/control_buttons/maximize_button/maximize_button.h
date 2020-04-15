@@ -39,6 +39,7 @@ namespace liblec {
 				/// widget specific methods
 				void set_hwnd(HWND hWnd);
 				widgets::maximize_button_specs& specs();
+				widgets::maximize_button_specs& operator()();
 
 			private:
 				/// Prevent copying an object of this class.

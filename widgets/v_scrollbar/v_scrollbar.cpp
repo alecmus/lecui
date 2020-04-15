@@ -150,6 +150,9 @@ namespace liblec {
 		widgets::v_scrollbar_specs&
 			widgets_impl::v_scrollbar::specs() { return specs_; }
 
+		widgets::v_scrollbar_specs&
+			widgets_impl::v_scrollbar::operator()() { return specs(); }
+
 		void widgets_impl::v_scrollbar::max_displacement(float& top,
 			float& bottom) {
 			bottom = rectC_.bottom - rectD_.bottom;

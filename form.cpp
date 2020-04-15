@@ -276,18 +276,18 @@ namespace liblec {
 						auto& home_page = page_man.add("home");
 
 						widgets::label label(home_page, "message");
-						label.specs().text = message_;
-						label.specs().multiline = true;
-						label.specs().rect = { margin_, home_page.size().width, margin_,
+						label().text = message_;
+						label().multiline = true;
+						label().rect = { margin_, home_page.size().width, margin_,
 							home_page.size().height - margin_ - button_size_.height - margin_ };
 
 						widgets::button button(home_page, "button");
-						button.specs().text = "Ok";
-						button.specs().rect = { home_page.size().width - margin_ - button_size_.width,
+						button().text = "Ok";
+						button().rect = { home_page.size().width - margin_ - button_size_.width,
 							home_page.size().width - margin_,
 							home_page.size().height - margin_ - button_size_.height,
 							home_page.size().height - margin_ };
-						button.specs().on_click = [&]() { close(); };
+						button().on_click = [&]() { close(); };
 
 						page_man.show("home");
 						return true;

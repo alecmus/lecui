@@ -55,6 +55,12 @@ namespace liblec {
 				[[nodiscard]]
 				image_specs& specs();
 
+				/// <summary>Get the specifications of the image.</summary>
+				/// <returns>A reference to the image specifications.</returns>
+				/// <remarks>Alternative to specs() for more terse code.</remarks>
+				[[nodiscard]]
+				image_specs& operator()();
+
 				/// <summary>Get the specifications of an image.</summary>
 				/// <param name="fm">The form containing the image.</param>
 				/// <param name="path">The full path to the widget, e.g.
