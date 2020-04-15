@@ -476,7 +476,7 @@ namespace liblec {
 				std::string alias;
 
 				// important that it's not a reference because of deletion in a ranged for loop later
-				lecui::widgets::tree_specs tree;
+				lecui::widgets::tree::tree_specs tree;
 				lecui::containers::page& source;
 				lecui::containers::page& destination;
 			};
@@ -547,15 +547,15 @@ namespace liblec {
 
 					try {
 						// clone into destination
-						auto& specs = widgets::tree(it.destination).add(it.alias);
+						widgets::tree tree(it.destination, it.alias);
 						// copy specs
-						specs = it.tree;
+						tree.specs() = it.tree;
 
 						// adjust specs
-						specs.rect = { 0, it.destination.size().width, 0, it.destination.size().height };
-						specs.on_resize = { 0, 0, 0, 0 };	// critical because tree will change size as tree is browsed or changed. the pane scroll bars will do the job.
-						specs.color_fill.alpha = 0;
-						specs.color_border.alpha = 0;
+						tree.specs().rect = { 0, it.destination.size().width, 0, it.destination.size().height };
+						tree.specs().on_resize = { 0, 0, 0, 0 };	// critical because tree will change size as tree is browsed or changed. the pane scroll bars will do the job.
+						tree.specs().color_fill.alpha = 0;
+						tree.specs().color_border.alpha = 0;
 
 						// close widget
 						std::string error;

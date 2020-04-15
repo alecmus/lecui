@@ -58,38 +58,38 @@ namespace liblec {
 			const float height();
 			bool contains(const D2D1_POINT_2F& point);
 
-			containers::tab_pane_specs&
+			containers::tab_pane::tab_pane_specs&
 				add_tab_pane(const std::string& alias);
-			containers::pane_specs&
+			containers::pane::pane_specs&
 				add_pane(const std::string& alias);
 
-			widgets::rectangle_specs&
+			widgets::rectangle::rectangle_specs&
 				add_rectangle(const std::string& alias);
-			widgets::label_specs&
+			widgets::label::label_specs&
 				add_label(const std::string& alias);
-			containers::group_specs&
+			containers::group::group_specs&
 				add_group(const std::string& alias);
-			widgets::button_specs&
+			widgets::button::button_specs&
 				add_button(const std::string& alias);
-			widgets::toggle_specs&
+			widgets::toggle::toggle_specs&
 				add_toggle(const std::string& alias);
-			widgets::combo_specs&
+			widgets::combo::combo_specs&
 				add_combo(const std::string& alias);
-			widgets::table_specs&
+			widgets::table::table_specs&
 				add_table(const std::string& alias);
-			widgets::custom_specs&
+			widgets::custom::custom_specs&
 				add_custom(const std::string& alias);
-			widgets::image_specs&
+			widgets::image::image_specs&
 				add_image(const std::string& alias);
-			widgets::progress_indicator_specs&
+			widgets::progress_indicator::progress_indicator_specs&
 				add_progress_indicator(const std::string& alias);
-			widgets::progress_bar_specs&
+			widgets::progress_bar::progress_bar_specs&
 				add_progress_bar(const std::string& alias);
-			widgets::checkbox_specs&
+			widgets::checkbox::checkbox_specs&
 				add_checkbox(const std::string& alias);
-			widgets::textbox_specs&
+			widgets::textbox::textbox_specs&
 				add_textbox(const std::string& alias);
-			widgets::tree_specs&
+			widgets::tree::tree_specs&
 				add_tree(const std::string& alias);
 
 			std::map<std::string,

@@ -161,7 +161,7 @@ namespace liblec {
 				specs_.on_click();
 		}
 
-		widgets::progress_bar_specs&
+		widgets::progress_bar::progress_bar_specs&
 			widgets_impl::progress_bar::specs() { return specs_; }
 	}
 }

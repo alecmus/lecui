@@ -40,7 +40,7 @@ namespace liblec {
 				bool hit(const bool& hit) override;
 
 				/// widget specific methods
-				widgets::table_specs& specs();
+				widgets::table::table_specs& specs();
 
 			private:
 				/// Prevent the use of the default constructor.
@@ -52,7 +52,7 @@ namespace liblec {
 				table& operator=(const table&);
 
 				/// Private variables
-				widgets::table_specs specs_, specs_old_;
+				widgets::table::table_specs specs_, specs_old_;
 				ID2D1SolidColorBrush* p_brush_;
 				ID2D1SolidColorBrush* p_brush_fill_;
 				ID2D1SolidColorBrush* p_brush_scrollbar_border_;

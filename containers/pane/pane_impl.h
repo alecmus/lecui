@@ -40,7 +40,7 @@ namespace liblec {
 				void on_click() override;
 
 				/// widget specific methods
-				containers::pane_specs& specs();
+				containers::pane::pane_specs& specs();
 				const D2D1_RECT_F& client_area();
 				const D2D1_RECT_F& pane_area();
 
@@ -54,7 +54,7 @@ namespace liblec {
 				pane& operator=(const pane&);
 
 				/// Private variables
-				containers::pane_specs specs_;
+				containers::pane::pane_specs specs_;
 				ID2D1SolidColorBrush* p_brush_;
 				ID2D1SolidColorBrush* p_brush_fill_;
 				ID2D1SolidColorBrush* p_brush_border_;

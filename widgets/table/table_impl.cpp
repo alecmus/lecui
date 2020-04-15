@@ -869,7 +869,7 @@ namespace liblec {
 			return true;
 		}
 
-		widgets::table_specs&
+		widgets::table::table_specs&
 			widgets_impl::table::specs() { return specs_; }
 
 		void widgets_impl::table::on_selection() {

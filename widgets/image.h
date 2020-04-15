@@ -22,38 +22,40 @@
 namespace liblec {
 	namespace lecui {
 		namespace widgets {
-			/// <summary>Image widget specifications.</summary>
-			class image_specs : public specs {
-			public:
-				image_specs() {
-					color_fill = { 222, 222, 222, 0 };
-					color_hot = { 0, 120, 170, 100 };
-					color_selected = { 0, 120, 170, 100 }; }
-				float border = .5f;
-				float corner_radius_x = .0f;
-				float corner_radius_y = .0f;
-				color color_border = { 150, 150, 150, 0 };
-				std::string file;
-				int png_resource = 0;
-
-				bool operator==(const image_specs&);
-				bool operator!=(const image_specs&);
-			};
-
 			/// <summary>Image widget.</summary>
 			class lecui_api image {
 			public:
-				image(containers::page& page);
+				/// <summary>Image widget specifications.</summary>
+				class image_specs : public specs {
+				public:
+					image_specs() {
+						color_fill = { 222, 222, 222, 0 };
+						color_hot = { 0, 120, 170, 100 };
+						color_selected = { 0, 120, 170, 100 };
+					}
+					float border = .5f;
+					float corner_radius_x = .0f;
+					float corner_radius_y = .0f;
+					color color_border = { 150, 150, 150, 0 };
+					std::string file;
+					int png_resource = 0;
+
+					bool operator==(const image_specs&);
+					bool operator!=(const image_specs&);
+				};
+
+				/// <summary>Image constructor.</summary>
+				/// <param name="page">The container to place it in.</param>
+				/// <param name="alias">The in-page unique alias, e.g. "avatar".</param>
+				image(containers::page& page, const std::string& alias);
 				~image();
 
-				/// <summary>Add an image widget.</summary>
-				/// <param name="alias">The in-page unique alias, e.g. "avatar".</param>
+				/// <summary>Get the specifications of the image.</summary>
 				/// <returns>A reference to the image specifications.</returns>
-				/// <remarks>Throws on failure.</remarks>
 				[[nodiscard]]
-				image_specs& add(const std::string& alias);
+				image_specs& specs();
 
-				/// <summary>Get the specifications of an existing image.</summary>
+				/// <summary>Get the specifications of an image.</summary>
 				/// <param name="fm">The form containing the image.</param>
 				/// <param name="path">The full path to the widget, e.g.
 				/// "sample_page/sample_tab_pane/tab_three/pane_two/avatar".</param>

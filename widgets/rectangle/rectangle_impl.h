@@ -45,7 +45,7 @@ namespace liblec {
 				bool contains(const D2D1_POINT_2F& point) override;
 
 				/// widget specific methods
-				widgets::rectangle_specs& specs();
+				widgets::rectangle::rectangle_specs& specs();
 
 			private:
 				/// Prevent the use of the default constructor.
@@ -57,8 +57,7 @@ namespace liblec {
 				rectangle& operator=(const rectangle&);
 
 				/// Private variables
-				widgets::rectangle_specs specs_;
-				widgets::rectangle_specs specs_old_;
+				widgets::rectangle::rectangle_specs specs_, specs_old_;
 				ID2D1SolidColorBrush* p_brush_fill_;
 				ID2D1SolidColorBrush* p_brush_border_;
 				ID2D1SolidColorBrush* p_brush_hot_;

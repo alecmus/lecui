@@ -22,48 +22,50 @@
 namespace liblec {
 	namespace lecui {
 		namespace containers {
-			/// <summary>Group container specifications.</summary>
-			/// <remarks>A group does not change the widget path, e.g. A widget located at
-			/// "home_page/tab_pane/tab three/pane_two/label" keeps that location even after
-			/// being added to a group. Never add a group name to a path. Groups are strictly for
-			/// aesthetics and they don't "carry" the widgets that belong to them like other
-			/// containers.</remarks>
-			class group_specs : public widgets::specs {
-			public:
-				group_specs() {
-					// rect is ignored. The group dynamically surrounds the widgets associated
-					// with it as they change location and size.
-					rect = { 0.f, 0.f, 0.f, 0.f };
-					color_fill.alpha = 25; }
-
-				color color_border = { 0, 120, 170, 100 };
-				float border = .5f;
-				float margin = 5.f;
-				float corner_radius_x = 5.f;
-				float corner_radius_y = 5.f;
-
-				/// <summary>A list of the aliases for the widgets to be added to the group. e.g.
-				/// { "username_textbox", "password_textbox", "login_button" }.</summary>
-				std::vector<std::string> widgets;
-
-				bool operator==(const group_specs&);
-				bool operator!=(const group_specs&);
-			};
-
 			/// <summary>Group container.</summary>
 			class lecui_api group {
 			public:
-				group(containers::page& page);
+				/// <summary>Group container specifications.</summary>
+				/// <remarks>A group does not change the widget path, e.g. A widget located at
+				/// "home_page/tab_pane/tab three/pane_two/label" keeps that location even after
+				/// being added to a group. Never add a group name to a path. Groups are strictly for
+				/// aesthetics and they don't "carry" the widgets that belong to them like other
+				/// containers.</remarks>
+				class group_specs : public widgets::specs {
+				public:
+					group_specs() {
+						// rect is ignored. The group dynamically surrounds the widgets associated
+						// with it as they change location and size.
+						rect = { 0.f, 0.f, 0.f, 0.f };
+						color_fill.alpha = 25;
+					}
+
+					color color_border = { 0, 120, 170, 100 };
+					float border = .5f;
+					float margin = 5.f;
+					float corner_radius_x = 5.f;
+					float corner_radius_y = 5.f;
+
+					/// <summary>A list of the aliases for the widgets to be added to the group. e.g.
+					/// { "username_textbox", "password_textbox", "login_button" }.</summary>
+					std::vector<std::string> widgets;
+
+					bool operator==(const group_specs&);
+					bool operator!=(const group_specs&);
+				};
+
+				/// <summary>Group constructor.</summary>
+				/// <param name="page">The container to place it in.</param>
+				/// <param name="alias">The in-page unique alias, e.g. "left_group".</param>
+				group(containers::page& page, const std::string& alias);
 				~group();
 
 				/// <summary>Add a group container.</summary>
-				/// <param name="alias">The in-page unique alias, e.g. "left_group".</param>
 				/// <returns>A reference to the group specifications.</returns>
-				/// <remarks>Throws on failure.</remarks>
 				[[nodiscard]]
-				group_specs& add(const std::string& alias);
+				group_specs& specs();
 
-				/// <summary>Get the specifications of an existing group.</summary>
+				/// <summary>Get the specifications of a group.</summary>
 				/// <param name="fm">The form containing the group.</param>
 				/// <param name="path">The full path to the container, e.g.
 				/// "sample_page/left_group".</param>

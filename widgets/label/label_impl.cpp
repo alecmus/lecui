@@ -425,7 +425,7 @@ namespace liblec {
 				specs_.on_click();
 		}
 
-		widgets::label_specs&
+		widgets::label::label_specs&
 			widgets_impl::label::specs() {
 			return specs_;
 		}

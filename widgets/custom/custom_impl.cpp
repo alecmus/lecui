@@ -87,7 +87,7 @@ namespace liblec {
 				specs_.on_click();
 		}
 
-		widgets::custom_specs&
+		widgets::custom::custom_specs&
 			widgets_impl::custom::specs() {
 			return specs_;
 		}

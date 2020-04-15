@@ -22,32 +22,33 @@
 namespace liblec {
 	namespace lecui {
 		namespace widgets {
-			/// <summary>Progress bar widget specifications.</summary>
-			/// <remarks>Recommended height with defaults is 12px</remarks>
-			class progress_bar_specs : public specs {
-			public:
-				color color_border = { 200, 200, 200, 255 };
-				float border = 1.f;
-				float percentage = 0.f;
-
-				bool operator==(const progress_bar_specs&);
-				bool operator!=(const progress_bar_specs&);
-			};
-
 			/// <summary>Progress bar widget.</summary>
 			class lecui_api progress_bar {
 			public:
-				progress_bar(containers::page& page);
+				/// <summary>Progress bar widget specifications.</summary>
+				/// <remarks>Recommended height with defaults is 12px</remarks>
+				class progress_bar_specs : public specs {
+				public:
+					color color_border = { 200, 200, 200, 255 };
+					float border = 1.f;
+					float percentage = 0.f;
+
+					bool operator==(const progress_bar_specs&);
+					bool operator!=(const progress_bar_specs&);
+				};
+
+				/// <summary>Progress bar constructor.</summary>
+				/// <param name="page">The container to place it in.</param>
+				/// <param name="alias">The in-page unique alias, e.g. "encryption_status".</param>
+				progress_bar(containers::page& page, const std::string& alias);
 				~progress_bar();
 
-				/// <summary>Add a progress bar widget.</summary>
-				/// <param name="alias">The in-page unique alias, e.g. "encryption_status".</param>
+				/// <summary>Get the progress bar specifications.</summary>
 				/// <returns>A reference to the progress bar specifications.</returns>
-				/// <remarks>Throws on failure.</remarks>
 				[[nodiscard]]
-				progress_bar_specs& add(const std::string& alias);
+				progress_bar_specs& specs();
 
-				/// <summary>Get the specifications of an existing progress bar.</summary>
+				/// <summary>Get the specifications of a progress bar.</summary>
 				/// <param name="fm">The form containing the progress bar.</param>
 				/// <param name="path">The full path to the widget, e.g.
 				/// "sample_page/encryption_pane/encryption_status".</param>

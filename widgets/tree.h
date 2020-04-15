@@ -30,84 +30,85 @@ namespace liblec {
 #endif
 
 		namespace widgets {
-			/// <summary>Tree widget specifications.</summary>
-			class tree_specs : public specs {
-			public:
-				tree_specs() {
-					color_text = { 0, 0, 0, 255 };
-					color_fill = { 255, 255, 255, 255 };
-					color_hot = { 225, 242, 255, 255 };
-					color_selected = { 0, 120, 170, 100 };
-				}
-				float border = .5f;
-				float corner_radius_x = 5.f;
-				float corner_radius_y = 5.f;
-				color color_border = { 150, 150, 150, 255 };
-
-				/// <summary>Tree node.</summary>
-				class node {
-				public:
-					/// <summary>The name of the node.</summary>
-					std::string name;
-
-					/// <summary>Whether to show the node's children, if any.</summary>
-					bool expand = false;
-
-					/// <summary>The node's children.</summary>
-					std::map<std::string, node> children;
-
-					node(std::string name) :
-						name(name) {}
-
-				private:
-					// Default constructor not allowed
-					node() {}
-
-					bool selected = false;
-					lecui::rect rc = { 0.f, 0.f, 0.f, 0.f };
-					lecui::rect rc_expand = { 0.f, 0.f, 0.f, 0.f };
-
-#if defined(LECUI_EXPORTS)
-					friend class widgets_impl::tree;
-#endif
-				};
-
-				/// <summary>Helper for inserting a node.</summary>
-				/// <param name="parent">A reference to the root.</param>
-				/// <param name="name">The name of the node being added.</param>
-				/// <returns>A reference to the node that's been added.</returns>
-				/// <remarks>Throws on failure.</remarks>
-				static node& insert_node(std::map<std::string, node>& root,
-					std::string name) {
-					root.insert(std::make_pair(name, node(name)));
-					return root.at(name);
-				}
-
-				/// <summary>The entire tree is built recursively on this root.</summary>
-				std::map<std::string, node> root;
-
-				/// <summary>The handler to be called when the selection changes. The
-				/// parameter will contain a reference to the newly selected node.</summary>
-				std::function<void(node& n)> on_selection;
-
-				bool operator==(const tree_specs&);
-				bool operator!=(const tree_specs&);
-			};
-
 			/// <summary>Tree widget.</summary>
 			class lecui_api tree {
 			public:
-				tree(containers::page& page);
+				/// <summary>Tree widget specifications.</summary>
+				class tree_specs : public specs {
+				public:
+					tree_specs() {
+						color_text = { 0, 0, 0, 255 };
+						color_fill = { 255, 255, 255, 255 };
+						color_hot = { 225, 242, 255, 255 };
+						color_selected = { 0, 120, 170, 100 };
+					}
+					float border = .5f;
+					float corner_radius_x = 5.f;
+					float corner_radius_y = 5.f;
+					color color_border = { 150, 150, 150, 255 };
+
+					/// <summary>Tree node.</summary>
+					class node {
+					public:
+						/// <summary>The name of the node.</summary>
+						std::string name;
+
+						/// <summary>Whether to show the node's children, if any.</summary>
+						bool expand = false;
+
+						/// <summary>The node's children.</summary>
+						std::map<std::string, node> children;
+
+						node(std::string name) :
+							name(name) {}
+
+					private:
+						// Default constructor not allowed
+						node() {}
+
+						bool selected = false;
+						lecui::rect rc = { 0.f, 0.f, 0.f, 0.f };
+						lecui::rect rc_expand = { 0.f, 0.f, 0.f, 0.f };
+
+#if defined(LECUI_EXPORTS)
+						friend class widgets_impl::tree;
+#endif
+					};
+
+					/// <summary>Helper for inserting a node.</summary>
+					/// <param name="parent">A reference to the root.</param>
+					/// <param name="name">The name of the node being added.</param>
+					/// <returns>A reference to the node that's been added.</returns>
+					/// <remarks>Throws on failure.</remarks>
+					static node& insert_node(std::map<std::string, node>& root,
+						std::string name) {
+						root.insert(std::make_pair(name, node(name)));
+						return root.at(name);
+					}
+
+					/// <summary>The entire tree is built recursively on this root.</summary>
+					std::map<std::string, node> root;
+
+					/// <summary>The handler to be called when the selection changes. The
+					/// parameter will contain a reference to the newly selected node.</summary>
+					std::function<void(node& n)> on_selection;
+
+					bool operator==(const tree_specs&);
+					bool operator!=(const tree_specs&);
+				};
+
+				/// <summary>Tree constructor.</summary>
+				/// <param name="page">The container to place it in.</param>
+				/// <param name="alias">The in-page unique alias, e.g. "database_browser".</param>
+				tree(containers::page& page, const std::string& alias);
 				~tree();
 
-				/// <summary>Add a tree widget.</summary>
-				/// <param name="alias">The in-page unique alias, e.g. "database_browser".</param>
+				/// <summary>Get the tree specifications.</summary>
 				/// <returns>A reference to the tree specifications.</returns>
-				/// <remarks>Throws on failure.</remarks>
 				[[nodiscard]]
-				tree_specs& add(const std::string& alias);
+				tree_specs& specs();
 
-				/// <summary>Get the specifications of an existing tree.</summary>
+				/// <summary>Get the specifications of a tree.</summary>
 				/// <param name="fm">The form containing the tree.</param>
 				/// <param name="path">The full path to the widget, e.g.
 				/// "admin_page/system_pane/database_browser".</param>

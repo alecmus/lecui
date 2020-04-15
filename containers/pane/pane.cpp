@@ -19,11 +19,11 @@ namespace liblec {
 		class containers::pane::impl {
 		public:
 			impl(containers::page& page,
-				containers::pane_specs& specs,
+				containers::pane::pane_specs& specs,
 				const std::string& alias) :
 				page_(page), specs_(specs), alias_(alias) {}
 			containers::page& page_;
-			containers::pane_specs& specs_;
+			containers::pane::pane_specs& specs_;
 			std::string alias_;
 		};
 
@@ -33,11 +33,11 @@ namespace liblec {
 
 		containers::pane::~pane() { delete& d_; }
 
-		containers::pane_specs& containers::pane::specs() {
+		containers::pane::pane_specs& containers::pane::specs() {
 			return d_.specs_;
 		}
 
-		containers::pane_specs&
+		containers::pane::pane_specs&
 			containers::pane::specs(form& fm, const std::string& path) {
 			const auto idx = path.find("/");
 

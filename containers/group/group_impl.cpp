@@ -102,7 +102,7 @@ namespace liblec {
 				specs_.on_click();
 		}
 
-		containers::group_specs&
+		containers::group::group_specs&
 			widgets_impl::group::specs() { return specs_; }
 	}
 }

@@ -22,62 +22,63 @@
 namespace liblec {
 	namespace lecui {
 		namespace widgets {
-			/// <summary>Custom widget specifications.</summary>
-			class custom_specs : public specs {
-			public:
-				/// <summary>
-				/// Handler for resource creation. The pointers need to be cast back to their
-				/// Direct2D equivalents on the client side before they can be used. e.g.
-				/// ID2D1HwndRenderTarget_ can be cast using reinterpret_cast to a
-				/// ID2D1HwndRenderTarget. This will be called internally by the library when
-				/// device-specific resources associated with the Direct3D device need to be
-				/// (re)created.
-				/// </summary>
-				std::function<void(
-					void* ID2D1HwndRenderTarget_,
-					void* IDWriteFactory_,
-					void* IWICImagingFactory_)>
-					on_create_resources = nullptr;
-
-				/// <summary>
-				/// Handler for discarding resources. This handler will be called internally
-				/// by the library if the Direct3D device dissapears.
-				/// </summary>
-				std::function<void()> on_discard_resources = nullptr;
-
-				/// <summary>
-				/// Handler for rendering. All drawing should be done here. Information about
-				/// the widget status are provided through the parameters, e.g. selected_ is
-				/// true if the widget is currently selected in the user interface and
-				/// pressed_ is true if the left mouse button has not yet been released after
-				/// it was pressed down while the cursor was within the widget.
-				/// </summary>
-				std::function<void(
-					void* D2D1_RECT_F_,
-					bool enabled_,
-					bool hit_,
-					bool pressed_,
-					bool selected_)>
-					on_render = nullptr;
-
-				bool operator==(const custom_specs&);
-				bool operator!=(const custom_specs&);
-			};
-
 			/// <summary>Custom widget.</summary>
 			class lecui_api custom {
 			public:
-				custom(containers::page& page);
+				/// <summary>Custom widget specifications.</summary>
+				class custom_specs : public specs {
+				public:
+					/// <summary>
+					/// Handler for resource creation. The pointers need to be cast back to their
+					/// Direct2D equivalents on the client side before they can be used. e.g.
+					/// ID2D1HwndRenderTarget_ can be cast using reinterpret_cast to a
+					/// ID2D1HwndRenderTarget. This will be called internally by the library when
+					/// device-specific resources associated with the Direct3D device need to be
+					/// (re)created.
+					/// </summary>
+					std::function<void(
+						void* ID2D1HwndRenderTarget_,
+						void* IDWriteFactory_,
+						void* IWICImagingFactory_)>
+						on_create_resources = nullptr;
+
+					/// <summary>
+					/// Handler for discarding resources. This handler will be called internally
+					/// by the library if the Direct3D device dissapears.
+					/// </summary>
+					std::function<void()> on_discard_resources = nullptr;
+
+					/// <summary>
+					/// Handler for rendering. All drawing should be done here. Information about
+					/// the widget status are provided through the parameters, e.g. selected_ is
+					/// true if the widget is currently selected in the user interface and
+					/// pressed_ is true if the left mouse button has not yet been released after
+					/// it was pressed down while the cursor was within the widget.
+					/// </summary>
+					std::function<void(
+						void* D2D1_RECT_F_,
+						bool enabled_,
+						bool hit_,
+						bool pressed_,
+						bool selected_)>
+						on_render = nullptr;
+
+					bool operator==(const custom_specs&);
+					bool operator!=(const custom_specs&);
+				};
+
+				/// <summary>Custom widget constructor.</summary>
+				/// <param name="page">The container to place it in.</param>
+				/// <param name="alias">The in-page unique alias, e.g. "diagram".</param>
+				custom(containers::page& page, const std::string& alias);
 				~custom();
 
-				/// <summary>Add a custom widget.</summary>
-				/// <param name="alias">The in-page unique alias, e.g. "diagram".</param>
+				/// <summary>Get the custom widget specifications.</summary>
 				/// <returns>A reference to the custom widget's specifications.</returns>
-				/// <remarks>Throws on failure.</remarks>
 				[[nodiscard]]
-				custom_specs& add(const std::string& alias);
+				custom_specs& specs();
 
-				/// <summary>Get the specifications of an existing custom widget.</summary>
+				/// <summary>Get the specifications of a custom widget.</summary>
 				/// <param name="fm">The form containing the widget.</param>
 				/// <param name="path">The full path to the widget, e.g.
 				/// "sample_page/right_pane/tab_pane/tab_two/diagram".</param>

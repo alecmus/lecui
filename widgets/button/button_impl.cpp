@@ -158,7 +158,7 @@ namespace liblec {
 				specs_.on_click();
 		}
 
-		widgets::button_specs&
+		widgets::button::button_specs&
 			widgets_impl::button::specs() { return specs_; }
 	}
 }

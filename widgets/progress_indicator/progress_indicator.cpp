@@ -16,7 +16,7 @@
 
 namespace liblec {
 	namespace lecui {
-		bool widgets::progress_indicator_specs::operator==(const progress_indicator_specs& param) {
+		bool widgets::progress_indicator::progress_indicator_specs::operator==(const progress_indicator_specs& param) {
 			return
 				// generic specs
 				specs::operator==(param) &&
@@ -25,28 +25,30 @@ namespace liblec {
 				(color_empty == param.color_empty);
 		}
 
-		bool widgets::progress_indicator_specs::operator!=(const progress_indicator_specs& param) {
+		bool widgets::progress_indicator::progress_indicator_specs::operator!=(const progress_indicator_specs& param) {
 			return !operator==(param);
 		}
 
 		class widgets::progress_indicator::impl {
 		public:
-			impl(containers::page& page) :
-				page_(page) {}
+			impl(containers::page& page, const std::string& alias) :
+				page_(page),
+				specs_(page_.d_page_.add_progress_indicator(alias)) {}
 			containers::page& page_;
+			progress_indicator_specs& specs_;
 		};
 
-		widgets::progress_indicator::progress_indicator(containers::page& page) :
-			d_(*(new impl(page))) {}
+		widgets::progress_indicator::progress_indicator(containers::page& page, const std::string& alias) :
+			d_(*(new impl(page, alias))) {}
 
 		widgets::progress_indicator::~progress_indicator() { delete& d_; }
 
-		widgets::progress_indicator_specs&
-			widgets::progress_indicator::add(const std::string& alias) {
-			return d_.page_.d_page_.add_progress_indicator(alias);
+		widgets::progress_indicator::progress_indicator_specs&
+			widgets::progress_indicator::specs() {
+			return d_.specs_;
 		}
 
-		widgets::progress_indicator_specs&
+		widgets::progress_indicator::progress_indicator_specs&
 			widgets::progress_indicator::specs(form& fm, const std::string& path) {
 			const auto idx = path.find("/");
 

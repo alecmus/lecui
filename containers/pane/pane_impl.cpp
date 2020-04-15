@@ -105,7 +105,7 @@ namespace liblec {
 
 		void widgets_impl::pane::on_click() {}
 
-		containers::pane_specs&
+		containers::pane::pane_specs&
 			widgets_impl::pane::specs() { return specs_; }
 
 		const D2D1_RECT_F& widgets_impl::pane::client_area() {

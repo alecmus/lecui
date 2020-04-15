@@ -16,7 +16,7 @@
 
 namespace liblec {
 	namespace lecui {
-		bool widgets::tree_specs::operator==(const tree_specs& param) {
+		bool widgets::tree::tree_specs::operator==(const tree_specs& param) {
 			return
 				// generic specs
 				specs::operator==(param) &&
@@ -25,34 +25,36 @@ namespace liblec {
 				(color_border == param.color_border);
 		}
 
-		bool widgets::tree_specs::operator!=(const tree_specs& param) {
+		bool widgets::tree::tree_specs::operator!=(const tree_specs& param) {
 			return !operator==(param);
 		}
 
 
 		class widgets::tree::impl {
 		public:
-			impl(containers::page& page) :
-				page_(page) {}
-			containers::page& page_;
-		};
-
-		widgets::tree::tree(containers::page& page) :
-			d_(*(new impl(page))) {}
-
-		widgets::tree::~tree() { delete& d_; }
-
-		widgets::tree_specs&
-			widgets::tree::add(const std::string& alias) {
-			// note: this placement is only temporary. the next time page::show() is called
+			// note: this placement is only temporary. the next time WM_PAINT is called
 			// this tree widget will be moved into a special pane
 			// this is important so we don't have to manually handle scroll bar issues in tree_impl.
 			// all we need to do for scroll bars is dynamically change specs_.rect as the tree changes
 			// and the pane will do all the scrolling for us
-			return d_.page_.d_page_.add_tree(alias);
+			impl(containers::page& page, const std::string& alias) :
+				page_(page),
+				specs_(page_.d_page_.add_tree(alias)) {}
+			containers::page& page_;
+			tree_specs& specs_;
+		};
+
+		widgets::tree::tree(containers::page& page, const std::string& alias) :
+			d_(*(new impl(page, alias))) {}
+
+		widgets::tree::~tree() { delete& d_; }
+
+		widgets::tree::tree_specs&
+			widgets::tree::specs() {
+			return d_.specs_;
 		}
 
-		widgets::tree_specs&
+		widgets::tree::tree_specs&
 			widgets::tree::specs(form& fm, const std::string& path) {
 			const auto idx = path.find("/");
 

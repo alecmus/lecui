@@ -255,7 +255,7 @@ namespace liblec {
 						D2D1_RECT_F rect = D2D1::RectF(0.f, 0.f, max_size_.width, max_size_.height);
 
 						// measure the message
-						widgets::label_specs specs_lbl;
+						widgets::label::label_specs specs_lbl;
 						rect = widgets_impl::measure_label(d_.p_directwrite_factory_, message,
 							specs_lbl.font, specs_lbl.font_size, false, false, rect);
 
@@ -275,19 +275,19 @@ namespace liblec {
 						page_management page_man(*this);
 						auto& home_page = page_man.add("home");
 
-						auto& specs_lbl = widgets::label(home_page).add("message");
-						specs_lbl.text = message_;
-						specs_lbl.multiline = true;
-						specs_lbl.rect = { margin_, home_page.size().width, margin_,
+						widgets::label label(home_page, "message");
+						label.specs().text = message_;
+						label.specs().multiline = true;
+						label.specs().rect = { margin_, home_page.size().width, margin_,
 							home_page.size().height - margin_ - button_size_.height - margin_ };
 
-						auto& specs_btn = widgets::button(home_page).add("button");
-						specs_btn.text = "Ok";
-						specs_btn.rect = { home_page.size().width - margin_ - button_size_.width,
+						widgets::button button(home_page, "button");
+						button.specs().text = "Ok";
+						button.specs().rect = { home_page.size().width - margin_ - button_size_.width,
 							home_page.size().width - margin_,
 							home_page.size().height - margin_ - button_size_.height,
 							home_page.size().height - margin_ };
-						specs_btn.on_click = [&]() { close(); };
+						button.specs().on_click = [&]() { close(); };
 
 						page_man.show("home");
 						return true;

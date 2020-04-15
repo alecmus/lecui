@@ -36,7 +36,7 @@ namespace liblec {
 				void on_click() override;
 
 				/// widget specific methods
-				containers::group_specs& specs();
+				containers::group::group_specs& specs();
 
 			private:
 				/// Prevent the use of the default constructor.
@@ -48,7 +48,7 @@ namespace liblec {
 				group& operator=(const group&);
 
 				/// Private variables
-				containers::group_specs specs_, specs_old_;
+				containers::group::group_specs specs_, specs_old_;
 				ID2D1SolidColorBrush* p_brush_fill_;
 				ID2D1SolidColorBrush* p_brush_border_;
 				ID2D1SolidColorBrush* p_brush_hot_;

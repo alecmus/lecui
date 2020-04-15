@@ -169,7 +169,7 @@ namespace liblec {
 				return false;
 		}
 
-		widgets::rectangle_specs&
+		widgets::rectangle::rectangle_specs&
 			widgets_impl::rectangle::specs() { return specs_; }
 	}
 }

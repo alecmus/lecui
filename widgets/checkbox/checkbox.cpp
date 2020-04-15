@@ -16,7 +16,7 @@
 
 namespace liblec {
 	namespace lecui {
-		bool widgets::checkbox_specs::operator==(const checkbox_specs& param) {
+		bool widgets::checkbox::checkbox_specs::operator==(const checkbox_specs& param) {
 			return
 				// generic specs
 				specs::operator==(param) &&
@@ -26,28 +26,30 @@ namespace liblec {
 				(color_check == param.color_check);
 		}
 
-		bool widgets::checkbox_specs::operator!=(const checkbox_specs& param) {
+		bool widgets::checkbox::checkbox_specs::operator!=(const checkbox_specs& param) {
 			return !operator==(param);
 		}
 
 		class widgets::checkbox::impl {
 		public:
-			impl(containers::page& page) :
-				page_(page) {}
+			impl(containers::page& page, const std::string& alias) :
+				page_(page),
+				specs_(page_.d_page_.add_checkbox(alias)) {}
 			containers::page& page_;
+			checkbox_specs& specs_;
 		};
 
-		widgets::checkbox::checkbox(containers::page& page) :
-			d_(*(new impl(page))) {}
+		widgets::checkbox::checkbox(containers::page& page, const std::string& alias) :
+			d_(*(new impl(page, alias))) {}
 
 		widgets::checkbox::~checkbox() { delete& d_; }
 
-		widgets::checkbox_specs&
-			widgets::checkbox::add(const std::string& alias) {
-			return d_.page_.d_page_.add_checkbox(alias);
+		widgets::checkbox::checkbox_specs&
+			widgets::checkbox::specs() {
+			return d_.specs_;
 		}
 
-		widgets::checkbox_specs&
+		widgets::checkbox::checkbox_specs&
 			widgets::checkbox::specs(form& fm, const std::string& path) {
 			const auto idx = path.find("/");
 

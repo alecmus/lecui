@@ -16,7 +16,7 @@
 
 namespace liblec {
 	namespace lecui {
-		bool widgets::combo_specs::operator==(const combo_specs& param) {
+		bool widgets::combo::combo_specs::operator==(const combo_specs& param) {
 			return
 				// generic specs
 				specs::operator==(param) &&
@@ -29,28 +29,30 @@ namespace liblec {
 				(color_menu_selected == param.color_menu_selected);
 		}
 
-		bool widgets::combo_specs::operator!=(const combo_specs& param) {
+		bool widgets::combo::combo_specs::operator!=(const combo_specs& param) {
 			return !operator==(param);
 		}
 
 		class widgets::combo::combo_impl {
 		public:
-			combo_impl(containers::page& page) :
-				page_(page) {}
+			combo_impl(containers::page& page, const std::string& alias) :
+				page_(page),
+				specs_(page_.d_page_.add_combo(alias)) {}
 			containers::page& page_;
+			combo_specs& specs_;
 		};
 
-		widgets::combo::combo(containers::page& page) :
-			d_(*(new combo_impl(page))) {}
+		widgets::combo::combo(containers::page& page, const std::string& alias) :
+			d_(*(new combo_impl(page, alias))) {}
 
 		widgets::combo::~combo() { delete& d_; }
 
-		widgets::combo_specs&
-			widgets::combo::add(const std::string& alias) {
-			return d_.page_.d_page_.add_combo(alias);
+		widgets::combo::combo_specs&
+			widgets::combo::specs() {
+			return d_.specs_;
 		}
 
-		widgets::combo_specs&
+		widgets::combo::combo_specs&
 			widgets::combo::specs(form& fm, const std::string& path) {
 			const auto idx = path.find("/");
 

@@ -44,35 +44,36 @@ namespace liblec {
 			/// The word 'good' will be of size 16.5, italic and blue, while the rest
 			/// of the text will use the widget specifications.
 			/// 
-				
-			/// <summary>Label widget specifications.</summary>
-			/// <remarks>Recommended height with defaults is 20px.</remarks>
-			class label_specs : public specs {
-			public:
-				label_specs() { color_hot = { 0, 120, 170, 20 }; };
-				color color_hot_pressed = { 0, 120, 170, 40 };
-				bool multiline = false;
-				bool center_h = false;
-				bool center_v = false;
-
-				bool operator==(const label_specs&);
-				bool operator!=(const label_specs&);
-			};
 
 			/// <summary>Label widget.</summary>
 			class lecui_api label {
 			public:
-				label(containers::page& page);
+				/// <summary>Label widget specifications.</summary>
+				/// <remarks>Recommended height with defaults is 20px.</remarks>
+				class label_specs : public specs {
+				public:
+					label_specs() { color_hot = { 0, 120, 170, 20 }; };
+					color color_hot_pressed = { 0, 120, 170, 40 };
+					bool multiline = false;
+					bool center_h = false;
+					bool center_v = false;
+
+					bool operator==(const label_specs&);
+					bool operator!=(const label_specs&);
+				};
+
+				/// <summary>Label constructor.</summary>
+				/// <param name="page">The container to place it in.</param>
+				/// <param name="alias">The in-page unique alias, e.g. "caption".</param>
+				label(containers::page& page, const std::string& alias);
 				~label();
 
-				/// <summary>Add a label widget.</summary>
-				/// <param name="alias">The in-page unique alias, e.g. "caption".</param>
+				/// <summary>Get the label specifications.</summary>
 				/// <returns>A reference to the label specifications.</returns>
-				/// <remarks>Throws on failure.</remarks>
 				[[nodiscard]]
-				label_specs& add(const std::string& alias);
+				label_specs& specs();
 
-				/// <summary>Get the specifications of an existing label.</summary>
+				/// <summary>Get the specifications of a label.</summary>
 				/// <param name="fm">The form containing the label.</param>
 				/// <param name="path">The full path to the widget, e.g.
 				/// "sample_page/sample_pane/caption".</param>

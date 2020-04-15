@@ -612,7 +612,7 @@ namespace liblec {
 			return true;
 		}
 
-		widgets::combo_specs&
+		widgets::combo::combo_specs&
 			widgets_impl::combo::specs() { return specs_; }
 	}
 }

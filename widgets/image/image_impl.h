@@ -37,7 +37,7 @@ namespace liblec {
 				void on_click() override;
 
 				/// widget specific methods
-				widgets::image_specs& specs();
+				widgets::image::image_specs& specs();
 
 			private:
 				/// Prevent the use of the default constructor.
@@ -49,7 +49,7 @@ namespace liblec {
 				image& operator=(const image&);
 
 				/// Private variables
-				widgets::image_specs specs_, specs_old_;
+				widgets::image::image_specs specs_, specs_old_;
 				ID2D1SolidColorBrush* p_brush_fill_;
 				ID2D1SolidColorBrush* p_brush_border_;
 				ID2D1SolidColorBrush* p_brush_hot_;

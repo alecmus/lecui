@@ -16,7 +16,7 @@
 
 namespace liblec {
 	namespace lecui {
-		bool widgets::toggle_specs::operator==(const toggle_specs& param) {
+		bool widgets::toggle::toggle_specs::operator==(const toggle_specs& param) {
 			return
 				// generic specs
 				specs::operator==(param) &&
@@ -26,28 +26,30 @@ namespace liblec {
 				(color_off == param.color_off);
 		}
 
-		bool widgets::toggle_specs::operator!=(const toggle_specs& param) {
+		bool widgets::toggle::toggle_specs::operator!=(const toggle_specs& param) {
 			return !operator==(param);
 		}
 
 		class widgets::toggle::impl {
 		public:
-			impl(containers::page& page) :
-				page_(page) {}
+			impl(containers::page& page, const std::string& alias) :
+				page_(page),
+				specs_(page_.d_page_.add_toggle(alias)) {}
 			containers::page& page_;
+			toggle_specs& specs_;
 		};
 
-		widgets::toggle::toggle(containers::page& page) :
-			d_(*(new impl(page))) {}
+		widgets::toggle::toggle(containers::page& page, const std::string& alias) :
+			d_(*(new impl(page, alias))) {}
 
 		widgets::toggle::~toggle() { delete& d_; }
 
-		widgets::toggle_specs&
-			widgets::toggle::add(const std::string& alias) {
-			return d_.page_.d_page_.add_toggle(alias);
+		widgets::toggle::toggle_specs&
+			widgets::toggle::specs() {
+			return d_.specs_;
 		}
 
-		widgets::toggle_specs&
+		widgets::toggle::toggle_specs&
 			widgets::toggle::specs(form& fm, const std::string& path) {
 			const auto idx = path.find("/");
 

@@ -22,28 +22,27 @@
 namespace liblec {
 	namespace lecui {
 		namespace containers {
-			/// <summary>Pane container specifications.</summary>
-			class pane_specs : public widgets::specs {
-			public:
-				pane_specs() { color_fill = { 100, 100, 100, 15 }; }
-
-				bool is_filled = true;
-				color color_border = { 0, 120, 170, 50 };
-				float border = .5f;
-				float corner_radius_x = 5.f;
-				float corner_radius_y = 5.f;
-			};
-
 			/// <summary>Pane container.</summary>
 			/// <remarks>Any widget can be added to this container. Consequently, recursion is
 			/// fully supported, allowing panes within panes, to virtually any depth level that
 			/// the memory of the computer the app is running on can permit.</remarks>
 			class lecui_api pane {
 			public:
+				/// <summary>Pane container specifications.</summary>
+				class pane_specs : public widgets::specs {
+				public:
+					pane_specs() { color_fill = { 100, 100, 100, 15 }; }
+
+					bool is_filled = true;
+					color color_border = { 0, 120, 170, 50 };
+					float border = .5f;
+					float corner_radius_x = 5.f;
+					float corner_radius_y = 5.f;
+				};
+
 				/// <summary>Pane constructor.</summary>
 				/// <param name="page">A reference to the container to place the pane in.</param>
-				/// <param name="alias">The in-page unique alias, e.g. "settings_pane".
-				/// </param>
+				/// <param name="alias">The in-page unique alias, e.g. "settings_pane".</param>
 				/// <remarks>Ensure that the alias is unique within the page. Reusing an alias
 				/// in a pane leads to undefined behavior.</remarks>
 				pane(containers::page& page, const std::string& alias);
@@ -54,7 +53,7 @@ namespace liblec {
 				[[nodiscard]]
 				pane_specs& specs();
 
-				/// <summary>Get the specifications of an existing pane.</summary>
+				/// <summary>Get the specifications of a pane.</summary>
 				/// <param name="fm">The form the container is in.</param>
 				/// <param name="path">The full path to the pane, e.g.
 				/// "sample_page/settings_pane".</param>

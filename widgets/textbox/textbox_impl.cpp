@@ -324,7 +324,7 @@ namespace liblec {
 			}
 		}
 
-		widgets::textbox_specs&
+		widgets::textbox::textbox_specs&
 			widgets_impl::textbox::specs() { return specs_; }
 
 		void widgets_impl::textbox::insert_character(const char& c) {

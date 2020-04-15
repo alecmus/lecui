@@ -22,45 +22,47 @@
 namespace liblec {
 	namespace lecui {
 		namespace widgets {
-			/// <summary>Combo widget specifications.</summary>
-			class combo_specs : public specs {
-			public:
-				combo_specs() {
-					color_fill = { 255, 255, 255, 0 };
-					color_hot = { 200, 200, 200, 50 }; }
-				color color_border = { 0, 120, 170, 255 };
-				color color_dropdown_hot = { 255, 255, 255, 255 };
-				color color_menu = { 255, 255, 255, 255 };
-				color color_menu_hot = { 200, 230, 255, 255 };
-				color color_menu_selected = { 0, 120, 170, 255 };
-				float border = .5f;
-				float corner_radius_x = 2.f;
-				float corner_radius_y = 2.f;
-				std::vector<std::string> items;
-				std::string selected;
-
-				/// <summary>Called when the selection changes. The parameter contains the
-				/// selected item.</summary>
-				std::function<void(const std::string&)> on_selection = nullptr;
-
-				bool operator==(const combo_specs&);
-				bool operator!=(const combo_specs&);
-			};
-
 			/// <summary>Combo widget.</summary>
 			class lecui_api combo {
 			public:
-				combo(containers::page& page);
+				/// <summary>Combo widget specifications.</summary>
+				class combo_specs : public specs {
+				public:
+					combo_specs() {
+						color_fill = { 255, 255, 255, 0 };
+						color_hot = { 200, 200, 200, 50 };
+					}
+					color color_border = { 0, 120, 170, 255 };
+					color color_dropdown_hot = { 255, 255, 255, 255 };
+					color color_menu = { 255, 255, 255, 255 };
+					color color_menu_hot = { 200, 230, 255, 255 };
+					color color_menu_selected = { 0, 120, 170, 255 };
+					float border = .5f;
+					float corner_radius_x = 2.f;
+					float corner_radius_y = 2.f;
+					std::vector<std::string> items;
+					std::string selected;
+
+					/// <summary>Called when the selection changes. The parameter contains the
+					/// selected item.</summary>
+					std::function<void(const std::string&)> on_selection = nullptr;
+
+					bool operator==(const combo_specs&);
+					bool operator!=(const combo_specs&);
+				};
+
+				/// <summary>Combo constructor.</summary>
+				/// <param name="page">The container to place it in.</param>
+				/// <param name="alias">The in-page unique alias, e.g. "title".</param>
+				combo(containers::page& page, const std::string& alias);
 				~combo();
 
-				/// <summary>Add a combo widget.</summary>
-				/// <param name="alias">The in-page unique alias, e.g. "title".</param>
+				/// <summary>Get the combo specifications.</summary>
 				/// <returns>A reference to the combo specifications.</returns>
-				/// <remarks>Throws on failure.</remarks>
 				[[nodiscard]]
-				combo_specs& add(const std::string& alias);
+				combo_specs& specs();
 
-				/// <summary>Get the specifications of an existing combo.</summary>
+				/// <summary>Get the specifications of a combo.</summary>
 				/// <param name="fm">The form containing the combo.</param>
 				/// <param name="path">The full path to the widget, e.g.
 				/// "sample_page/sample_tab_pane/tab_one/employed".</param>

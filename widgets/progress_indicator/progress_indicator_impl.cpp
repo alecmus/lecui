@@ -223,7 +223,7 @@ namespace liblec {
 				specs_.on_click();
 		}
 
-		widgets::progress_indicator_specs&
+		widgets::progress_indicator::progress_indicator_specs&
 			widgets_impl::progress_indicator::specs() { return specs_; }
 	}
 }

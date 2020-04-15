@@ -16,7 +16,7 @@
 
 namespace liblec {
 	namespace lecui {
-		bool widgets::textbox_specs::operator==(const textbox_specs& param) {
+		bool widgets::textbox::textbox_specs::operator==(const textbox_specs& param) {
 			return
 				// generic specs
 				specs::operator==(param) &&
@@ -27,28 +27,30 @@ namespace liblec {
 				(color_caret == param.color_caret);
 		}
 
-		bool widgets::textbox_specs::operator!=(const textbox_specs& param) {
+		bool widgets::textbox::textbox_specs::operator!=(const textbox_specs& param) {
 			return !operator==(param);
 		}
 
 		class widgets::textbox::impl {
 		public:
-			impl(containers::page& page) :
-				page_(page) {}
+			impl(containers::page& page, const std::string& alias) :
+				page_(page),
+				specs_(page_.d_page_.add_textbox(alias)) {}
 			containers::page& page_;
+			textbox_specs& specs_;
 		};
 
-		widgets::textbox::textbox(containers::page& page) :
-			d_(*(new impl(page))) {}
+		widgets::textbox::textbox(containers::page& page, const std::string& alias) :
+			d_(*(new impl(page, alias))) {}
 
 		widgets::textbox::~textbox() { delete& d_; }
 
-		widgets::textbox_specs&
-			widgets::textbox::add(const std::string& alias) {
-			return d_.page_.d_page_.add_textbox(alias);
+		widgets::textbox::textbox_specs&
+			widgets::textbox::specs() {
+			return d_.specs_;
 		}
 
-		widgets::textbox_specs&
+		widgets::textbox::textbox_specs&
 			widgets::textbox::specs(form& fm, const std::string& path) {
 			const auto idx = path.find("/");
 

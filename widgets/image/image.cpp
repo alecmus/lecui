@@ -16,7 +16,7 @@
 
 namespace liblec {
 	namespace lecui {
-		bool widgets::image_specs::operator==(const image_specs& param) {
+		bool widgets::image::image_specs::operator==(const image_specs& param) {
 			return
 				// generic specs
 				specs::operator==(param) &&
@@ -27,28 +27,30 @@ namespace liblec {
 				(png_resource == param.png_resource);
 		}
 
-		bool widgets::image_specs::operator!=(const image_specs& param) {
+		bool widgets::image::image_specs::operator!=(const image_specs& param) {
 			return !operator==(param);
 		}
 
 		class widgets::image::impl {
 		public:
-			impl(containers::page& page) :
-				page_(page) {}
+			impl(containers::page& page, const std::string& alias) :
+				page_(page),
+				specs_(page_.d_page_.add_image(alias)) {}
 			containers::page& page_;
+			image_specs& specs_;
 		};
 
-		widgets::image::image(containers::page& page) :
-			d_(*(new impl(page))) {}
+		widgets::image::image(containers::page& page, const std::string& alias) :
+			d_(*(new impl(page, alias))) {}
 
 		widgets::image::~image() { delete& d_; }
 
-		widgets::image_specs&
-			widgets::image::add(const std::string& alias) {
-			return d_.page_.d_page_.add_image(alias);
+		widgets::image::image_specs&
+			widgets::image::specs() {
+			return d_.specs_;
 		}
 
-		widgets::image_specs&
+		widgets::image::image_specs&
 			widgets::image::specs(form& fm, const std::string& path) {
 			const auto idx = path.find("/");
 

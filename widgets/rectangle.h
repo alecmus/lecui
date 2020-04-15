@@ -22,36 +22,38 @@
 namespace liblec {
 	namespace lecui {
 		namespace widgets {
-			/// <summary>Rectangle widget specifications.</summary>
-			class rectangle_specs : public specs {
-			public:
-				rectangle_specs() {
-					color_fill = { 222, 222, 222, 255 };
-					color_hot = { 0, 120, 170, 100 };
-					color_selected = { 0, 120, 170, 100 }; }
-				float border = .5f;
-				float corner_radius_x = .0f;
-				float corner_radius_y = .0f;
-				color color_border = { 150, 150, 150, 255 };
-
-				bool operator==(const rectangle_specs&);
-				bool operator!=(const rectangle_specs&);
-			};
-
 			/// <summary>Rectangle widget.</summary>
 			class lecui_api rectangle {
 			public:
-				rectangle(containers::page& page);
+				/// <summary>Rectangle widget specifications.</summary>
+				class rectangle_specs : public specs {
+				public:
+					rectangle_specs() {
+						color_fill = { 222, 222, 222, 255 };
+						color_hot = { 0, 120, 170, 100 };
+						color_selected = { 0, 120, 170, 100 };
+					}
+					float border = .5f;
+					float corner_radius_x = .0f;
+					float corner_radius_y = .0f;
+					color color_border = { 150, 150, 150, 255 };
+
+					bool operator==(const rectangle_specs&);
+					bool operator!=(const rectangle_specs&);
+				};
+
+				/// <summary>Rectangle constructor.</summary>
+				/// <param name="page">The container to place it in.</param>
+				/// <param name="alias">The in-page unique alias, e.g. "border_rect".</param>
+				rectangle(containers::page& page, const std::string& alias);
 				~rectangle();
 
-				/// <summary>Add a rectangle widget.</summary>
-				/// <param name="alias">The in-page unique alias, e.g. "border_rect".</param>
+				/// <summary>Get the rectangle specifications.</summary>
 				/// <returns>A reference to the rectangle specifications.</returns>
-				/// <remarks>Throws on failure.</remarks>
 				[[nodiscard]]
-				rectangle_specs& add(const std::string& alias);
+				rectangle_specs& specs();
 
-				/// <summary>Get the specifications of an existing rectangle.</summary>
+				/// <summary>Get the specifications of a rectangle.</summary>
 				/// <param name="fm">The form containing the rectangle.</param>
 				/// <param name="path">The full path to the widget, e.g.
 				/// "sample_page/sample_tab_pane/tab_three/border_rect".</param>

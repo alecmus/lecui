@@ -135,7 +135,7 @@ namespace liblec {
 				specs_.on_click();
 		}
 
-		widgets::image_specs&
+		widgets::image::image_specs&
 			widgets_impl::image::specs() { return specs_; }
 	}
 }
