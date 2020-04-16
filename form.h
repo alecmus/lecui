@@ -25,6 +25,7 @@ namespace liblec {
 	namespace lecui {
 #if defined(LECUI_EXPORTS)
 		class page_management;
+		class widget_management;
 		class dimensions;
 		class appearance;
 		class controls;
@@ -184,30 +185,6 @@ namespace liblec {
 			[[nodiscard]] std::string save_file(const std::string& file,
 				const save_file_params& params);
 
-			/// <summary>Enable or disable a widget.</summary>
-			/// <param name="path">The full path to the widget, e.g. "home_page/username".</param>
-			/// <param name="enable">Set to true to enable the widget, and false to disable it.
-			/// </param>
-			void enable(const std::string& path, bool enable);
-
-			/// <summary>Show or hide a widget.</summary>
-			/// <param name="path">The full path to the widget, e.g. "home_page/username".</param>
-			/// <param name="show">Set to true to make the widget visible, and false to hide it.
-			/// </param>
-			void show(const std::string& path, bool show);
-
-			/// <summary>Close a widget.</summary>
-			/// <param name="path">The full path to the widget, e.g. "home_page/username".</param>
-			/// <remarks>Avoid closing a widget from within it's own handler to avoid access
-			/// violation errors. Also make sure to never keep 'dangling widget references'
-			/// because attempting to use those references after this method is called will
-			/// result in access violation errors as well. Make sure to employ proper logic. As a
-			/// failsafe, the widget is not closed immediately when this method is called. Rather
-			/// a special timer is scheduled internally to close the widget. After this, the widget
-			/// is closed as soon as possible, typically soon after the current handler exits.
-			/// </remarks>
-			void close(const std::string& path);
-
 			/// <summary>Update the form. A low resource refresh of the current page. Typically
 			/// necessary only after adding a new widget at runtime to the currently displayed
 			/// page to avoid a situation whereby the widget is only displayed the next time the
@@ -258,6 +235,7 @@ namespace liblec {
 
 #if defined(LECUI_EXPORTS)
 			friend class page_management;
+			friend class widget_management;
 			friend class dimensions;
 			friend class appearance;
 			friend class controls;

@@ -186,25 +186,49 @@ namespace liblec {
 								if (SUCCEEDED(hr)) {
 									p_sink->SetFillMode(D2D1_FILL_MODE_WINDING);
 
+									/// Marker shapes designed using a square of size 10x10
 									if (node.second.expand) {
+										///            (8,2)
+										///          / |
+										///        /   |
+										///      /     |
+										///    /       |
+										///   ---------
+										/// (2,8)      (8,8)
+										/// 
 										p_sink->BeginFigure(
+											/// (2,8)
 											D2D1::Point2F(rect_marker.left + (.2f * side), rect_marker.top + (.8f * side)),
 											D2D1_FIGURE_BEGIN_FILLED
 											);
 										D2D1_POINT_2F points[] = {
-										   D2D1::Point2F(rect_marker.left + (.8f * side), rect_marker.top + (.2f * side)),
-										   D2D1::Point2F(rect_marker.left + (.8f * side), rect_marker.top + (.8f * side)),
+											/// (8,2)
+											D2D1::Point2F(rect_marker.left + (.8f * side), rect_marker.top + (.2f * side)),
+											/// (8,8)
+											D2D1::Point2F(rect_marker.left + (.8f * side), rect_marker.top + (.8f * side)),
 										};
 										p_sink->AddLines(points, ARRAYSIZE(points));
 									}
 									else {
+										///  (3,1)
+										///  | \
+										///  |   \
+										///  |     \ (7,5)
+										///  |     /
+										///  |   /
+										///  | /
+										///  (3,9)
+										/// 
 										p_sink->BeginFigure(
+											/// (3,1)
 											D2D1::Point2F(rect_marker.left + (.3f * side), rect_marker.top + (.1f * side)),
 											D2D1_FIGURE_BEGIN_FILLED
 											);
 										D2D1_POINT_2F points[] = {
-										   D2D1::Point2F(rect_marker.left + (.7f * side), rect_marker.top + (.5f * side)),
-										   D2D1::Point2F(rect_marker.left + (.3f * side), rect_marker.top + (.9f * side)),
+											/// (7,5)
+											D2D1::Point2F(rect_marker.left + (.7f * side), rect_marker.top + (.5f * side)),
+											/// (3,9)
+											D2D1::Point2F(rect_marker.left + (.3f * side), rect_marker.top + (.9f * side)),
 										};
 										p_sink->AddLines(points, ARRAYSIZE(points));
 									}

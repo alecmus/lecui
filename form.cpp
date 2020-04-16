@@ -501,24 +501,6 @@ namespace liblec {
 			return fullpath;
 		}
 
-		void form::enable(const std::string& path, bool enable) { d_.enable(path, enable); }
-		void form::show(const std::string& path, bool show) { d_.show(path, show); }
-
-		void form::close(const std::string& path) {
-			// use timer in case a widget is closed from its own handler.
-			// this way the actual closing will be done (hopefully) outside the handler coz of async.
-			// the caller still has to exercise caution by avoiding such logical errors.
-			d_.scheduled_for_closure_.push_back(path);
-			lecui::widgets::timer(*this).add("close_widget_timer", 0,
-				[&]() {
-					lecui::widgets::timer(*this).stop("close_widget_timer");
-					for (const auto& it : d_.scheduled_for_closure_)
-						d_.close(it);
-
-					d_.scheduled_for_closure_.clear();
-				});
-		}
-
 		void form::update() { d_.update(); }
 
 		// this is an expensive call. only use if update() doesn't get the job done.

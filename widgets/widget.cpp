@@ -12,6 +12,8 @@
 */
 
 #include "widget.h"
+#include "../form_impl.h"
+#include "timer.h"
 
 namespace liblec {
 	namespace lecui {
@@ -50,6 +52,41 @@ namespace liblec {
 			bool specs::operator!=(const specs& param) {
 				return !operator==(param);
 			}
+		}
+
+		class widget_management::impl {
+		public:
+			impl(form& fm) :
+				fm_(fm) {}
+			form& fm_;
+		};
+
+		widget_management::widget_management(form& fm) :
+			d_(*new impl(fm)) {}
+		widget_management::~widget_management() {
+			delete& d_;
+		}
+
+		void widget_management::enable(const std::string& path, bool enable) {
+			d_.fm_.d_.enable(path, enable);
+		}
+
+		void widget_management::show(const std::string& path, bool show) {
+			d_.fm_.d_.show(path, show);
+		}
+		void widget_management::close(const std::string& path) {
+			// use timer in case a widget is closed from its own handler.
+			// this way the actual closing will be done (hopefully) outside the handler coz of async.
+			// the caller still has to exercise caution by avoiding such logical errors.
+			d_.fm_.d_.scheduled_for_closure_.push_back(path);
+			lecui::widgets::timer(d_.fm_).add("close_widget_timer", 0,
+				[&]() {
+					lecui::widgets::timer(d_.fm_).stop("close_widget_timer");
+					for (const auto& it : d_.fm_.d_.scheduled_for_closure_)
+						d_.fm_.d_.close(it);
+
+					d_.fm_.d_.scheduled_for_closure_.clear();
+				});
 		}
 	}
 }
