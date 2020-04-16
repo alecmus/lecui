@@ -726,8 +726,6 @@ namespace liblec {
 										const auto left = rectA.left - rectB.left;
 										const auto right = rectA.right - rectB.right;
 										const auto x_overflow = abs(left) < abs(right) ? left : right;
-										log(current_page + " correcting needless x_overflow of " +
-											std::to_string(x_overflow));
 
 										// translate the environment
 										page.d_page_.h_scrollbar().x_displacement_ += x_overflow;
@@ -741,8 +739,6 @@ namespace liblec {
 										const auto top = rectA.top - rectB.top;
 										const auto bottom = rectA.bottom - rectB.bottom;
 										const auto y_overflow = abs(top) < abs(bottom) ? top : bottom;
-										log(current_page + " correcting needless y_overflow of " +
-											std::to_string(y_overflow));
 
 										// translate the environment
 										page.d_page_.v_scrollbar().y_displacement_ += y_overflow;

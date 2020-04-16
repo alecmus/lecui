@@ -107,6 +107,14 @@ namespace liblec {
 			rectD_ = { 0.f, 0.f, 0.f, 0.f };
 			position_v_scrollbar(rectA_, rectB_, rectC_, rectD_);
 
+			// adjust y_displacement_ to match what the user is seeing. Ensures consistency.
+			auto const ui_displacement = dpi_scale_ * (rectD_.top - rectC_.top);
+
+			if (ui_displacement != y_displacement_) {
+				y_displacement_ = ui_displacement;
+				force_translate_ = true;
+			}
+
 			if (!render)
 				return rect_;
 
