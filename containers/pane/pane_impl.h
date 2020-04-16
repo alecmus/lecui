@@ -21,6 +21,11 @@ namespace liblec {
 		namespace widgets_impl {
 			class pane : public widget {
 			public:
+				/// <summary>Get the prefix of the special pane used to encase trees. This pane is
+				/// important for scrolling effects.</summary>
+				/// <returns>The special prefix. No other alias should have this prefix.</returns>
+				static std::string tree_pane_alias_prefix();
+
 				// pages <K = pane alias, T>
 				std::map<std::string, containers::page> p_panes_;
 				std::string current_pane_;

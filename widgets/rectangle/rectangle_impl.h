@@ -21,11 +21,9 @@ namespace liblec {
 		namespace widgets_impl {
 			class rectangle : public widget {
 			public:
-				/// <summary>
-				/// Get the alias of the special rectangle used with pages. This rectangle is
-				/// important as it keeps track of the page dimensions, and makes the scroll
-				/// bars work.
-				/// </summary>
+				/// <summary>Get the alias of the special rectangle used with pages. This
+				/// rectangle is important as it keeps track of the page dimensions, and makes 
+				/// the scroll bars work.</summary>
 				/// <returns>The special alias. No other widget should have this alias.</returns>
 				static std::string page_rect_alias();
 

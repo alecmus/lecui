@@ -469,7 +469,7 @@ namespace liblec {
 		/// already been moved it will be left where it is.
 		/// </summary>
 		void form::impl::move_trees() {
-			// check if this page has a lecui::containers::tree_pane
+			// check if this page has a tree pane
 			auto page_iterator = p_pages_.find(current_page_);
 
 			struct tree_info {
@@ -492,8 +492,7 @@ namespace liblec {
 						std::vector<tree_info>& trees) {
 						for (auto& widget : page.d_page_.widgets()) {
 							// check if this is a tree pane
-							const std::string key = "lecui::containers::tree_pane::";
-							if (widget.first.find(key) != std::string::npos)
+							if (widget.first.find(widgets_impl::pane::tree_pane_alias_prefix()) != std::string::npos)
 								continue;	// this is a tree pane (it has a tree inside. move was already done), continue to next widget
 
 							// check if this is a tree
@@ -503,8 +502,8 @@ namespace liblec {
 								// get the tree specs
 								auto& tree_specs = page.d_page_.get_tree(widget.first).specs();
 
-								// make pane named lecui::containers::tree_pane::treealias
-								containers::pane pane(page, key + widget.first);
+								// make pane whose alias is prefixed by the special string
+								containers::pane pane(page, widgets_impl::pane::tree_pane_alias_prefix() + widget.first);
 
 								// clone essential properties to pane
 								pane().rect = tree_specs.rect;
@@ -1886,7 +1885,7 @@ namespace liblec {
 				// check if widget is in special pane
 
 				// check special tree pane
-				auto& tree_pane_control = container.d_page_.get_pane("lecui::containers::tree_pane::" + path);
+				auto& tree_pane_control = container.d_page_.get_pane(widgets_impl::pane::tree_pane_alias_prefix() + path);
 
 				// tree pane control confirmed ... get the pane page
 				auto& tree_pane = tree_pane_control.p_panes_.at("pane");
