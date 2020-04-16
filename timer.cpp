@@ -11,24 +11,24 @@
 ** for full license details.
 */
 
-#include "widgets/timer.h"
+#include "timer.h"
 #include "form_impl.h"
 
 namespace liblec {
 	namespace lecui {
-		class widgets::timer::impl {
+		class timer_management::impl {
 		public:
 			impl(form& fm) :
 				fm_(fm) {}
 			form& fm_;
 		};
 
-		widgets::timer::timer(form& fm) :
+		timer_management::timer_management(form& fm) :
 			d_(*new impl(fm)) {}
 
-		widgets::timer::~timer() { delete& d_; }
+		timer_management::~timer_management() { delete& d_; }
 
-		void widgets::timer::add(const std::string& alias,
+		void timer_management::add(const std::string& alias,
 			const unsigned long& milliseconds, std::function<void()> on_timer) {
 			if (running(alias)) return;
 
@@ -49,12 +49,12 @@ namespace liblec {
 				d_.fm_.d_.timers_.at(alias).running = false;	// timer will be started on form creation
 		}
 
-		bool widgets::timer::running(const std::string& alias) {
+		bool timer_management::running(const std::string& alias) {
 			return (d_.fm_.d_.timers_.find(alias) == d_.fm_.d_.timers_.end()) ?
 				false : d_.fm_.d_.timers_.at(alias).running;
 		}
 
-		void widgets::timer::stop(const std::string& alias) {
+		void timer_management::stop(const std::string& alias) {
 			if (d_.fm_.d_.timers_.find(alias) != d_.fm_.d_.timers_.end()) {
 				log("stopping timer: " + alias);
 				KillTimer(d_.fm_.d_.hWnd_, (UINT_PTR)d_.fm_.d_.timers_.at(alias).unique_id);

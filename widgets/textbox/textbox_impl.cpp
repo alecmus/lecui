@@ -12,7 +12,7 @@
 */
 
 #include "textbox_impl.h"
-#include "../timer.h"
+#include "../../timer.h"
 #include "../label/label_impl.h"
 
 namespace liblec {
@@ -308,7 +308,7 @@ namespace liblec {
 			if (selected) {
 				// start blink timer
 				log("starting caret blink timer: " + alias_);
-				widgets::timer(fm_).add(caret_blink_timer_name_, 500,
+				timer_management(fm_).add(caret_blink_timer_name_, 500,
 					[&]() {
 						caret_visible_ = !caret_visible_;
 						fm_.update();
@@ -317,7 +317,7 @@ namespace liblec {
 			else {
 				// stop blink timer
 				log("stopping caret blink timer: " + alias_);
-				widgets::timer(fm_).stop(caret_blink_timer_name_);
+				timer_management(fm_).stop(caret_blink_timer_name_);
 
 				// stop selection
 				reset_selection();

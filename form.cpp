@@ -13,7 +13,7 @@
 
 #include "form.h"
 #include "controls.h"
-#include "widgets/timer.h"
+#include "timer.h"
 #include "form_impl.h"
 #include "error/win_error.h"
 
@@ -199,7 +199,7 @@ namespace liblec {
 				// stop all timers
 				for (auto& it : d_.timers_)
 				{
-					widgets::timer timer(*this);
+					timer_management timer(*this);
 					if (timer.running(it.first))
 						timer.stop(it.first);
 				}

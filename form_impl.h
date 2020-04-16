@@ -179,11 +179,11 @@ namespace liblec {
 			friend class controls;
 			friend class page_management;
 			friend class widget_management;
+			friend class timer_management;
 			friend class containers::tab_pane;
 			friend class containers::tab;
 			friend class containers::pane;
 			friend class containers::group;
-			friend class widgets::timer;
 			friend class widgets::label;
 			friend class widgets::image;
 			friend class widgets::button;

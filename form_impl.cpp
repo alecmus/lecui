@@ -20,7 +20,6 @@
 
 #include "widgets/rectangle.h"
 #include "widgets/label.h"
-#include "widgets/timer.h"
 #include "widgets/button.h"
 #include "widgets/h_scrollbar/h_scrollbar.h"
 #include "widgets/v_scrollbar/v_scrollbar.h"

@@ -154,9 +154,6 @@
     <ClInclude Include="widgets\rectangle.h">
       <Filter>lecui\widgets</Filter>
     </ClInclude>
-    <ClInclude Include="widgets\timer.h">
-      <Filter>lecui\widgets</Filter>
-    </ClInclude>
     <ClInclude Include="widgets\toggle.h">
       <Filter>lecui\widgets</Filter>
     </ClInclude>
@@ -232,6 +229,9 @@
     </ClInclude>
     <ClInclude Include="widgets\table\table_impl.h">
       <Filter>lecui\widgets\table</Filter>
+    </ClInclude>
+    <ClInclude Include="timer.h">
+      <Filter>lecui</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

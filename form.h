@@ -26,6 +26,7 @@ namespace liblec {
 #if defined(LECUI_EXPORTS)
 		class page_management;
 		class widget_management;
+		class timer_management;
 		class dimensions;
 		class appearance;
 		class controls;
@@ -39,7 +40,6 @@ namespace liblec {
 		}
 
 		namespace widgets {
-			class timer;
 			class label;
 			class image;
 			class button;
@@ -236,6 +236,7 @@ namespace liblec {
 #if defined(LECUI_EXPORTS)
 			friend class page_management;
 			friend class widget_management;
+			friend class timer_management;
 			friend class dimensions;
 			friend class appearance;
 			friend class controls;
@@ -243,7 +244,6 @@ namespace liblec {
 			friend class containers::tab;
 			friend class containers::pane;
 			friend class containers::group;
-			friend class widgets::timer;
 			friend class widgets::label;
 			friend class widgets::image;
 			friend class widgets::button;
