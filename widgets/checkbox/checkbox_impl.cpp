@@ -45,7 +45,7 @@ namespace liblec {
 			ID2D1HwndRenderTarget* p_render_target) {
 			log("creating resources:   " + page_alias_ + ":" + alias_);
 			specs_old_ = specs_;
-			is_static_ = (specs_.on_check == nullptr && specs_.on_click == nullptr);
+			is_static_ = (specs_.events().check == nullptr && specs_.events().click == nullptr);
 
 			HRESULT hr = S_OK;
 
@@ -250,11 +250,11 @@ namespace liblec {
 				break;
 			}
 
-			if (specs_.on_check)
-				specs_.on_check(specs_.status);
+			if (specs_.events().check)
+				specs_.events().check(specs_.status);
 
-			if (specs_.on_click)
-				specs_.on_click();
+			if (specs_.events().click)
+				specs_.events().click();
 		}
 
 		widgets::checkbox::checkbox_specs&

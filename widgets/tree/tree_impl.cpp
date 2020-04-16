@@ -350,12 +350,12 @@ namespace liblec {
 			helper::check(specs_.root, point_, dpi_scale_);
 
 			// handle on_selection
-			if (specs_.on_selection)
+			if (specs_.events().selection)
 				on_selection();
 
 			// handle on_click
-			if (specs_.on_click)
-				specs_.on_click();
+			if (specs_.events().click)
+				specs_.events().click();
 		}
 
 		bool widgets_impl::tree::hit(const bool& hit) {
@@ -380,19 +380,19 @@ namespace liblec {
 			class helper {
 			public:
 				static void check(std::map<std::string, widgets::tree::tree_specs::node>& level,
-					std::function<void(widgets::tree::tree_specs::node& n)> on_selection) {
+					std::function<void(widgets::tree::tree_specs::node& n)> selection) {
 					for (auto& node : level) {
 						if (node.second.selected) {
-							if (on_selection)
-								on_selection(node.second);
+							if (selection)
+								selection(node.second);
 						}
 						else
-							check(node.second.children, on_selection);	// recursion
+							check(node.second.children, selection);	// recursion
 					}
 				}
 			};
 
-			helper::check(specs_.root, specs_.on_selection);
+			helper::check(specs_.root, specs_.events().selection);
 		}
 	}
 }

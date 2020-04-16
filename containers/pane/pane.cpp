@@ -83,34 +83,30 @@ namespace liblec {
 
 			// initialize the page's horizontal scroll bar
 			{
-				pane_.p_panes_.at(pane_name).d_page_.h_scrollbar()().on_resize.perc_width = 100.f;
-				pane_.p_panes_.at(pane_name).d_page_.h_scrollbar()().on_resize.perc_y = 100.f;
+				pane_.p_panes_.at(pane_name).d_page_.h_scrollbar().specs().on_resize.perc_width = 100.f;
+				pane_.p_panes_.at(pane_name).d_page_.h_scrollbar().specs().on_resize.perc_y = 100.f;
 
-				pane_.p_panes_.at(pane_name).d_page_.h_scrollbar()().rect.left = 0.f;
-				pane_.p_panes_.at(pane_name).d_page_.h_scrollbar()().rect.right =
+				pane_.p_panes_.at(pane_name).d_page_.h_scrollbar().specs().rect.left = 0.f;
+				pane_.p_panes_.at(pane_name).d_page_.h_scrollbar().specs().rect.right =
 					(rect_client_area.right - rect_client_area.left) - (margin + thickness);
-				pane_.p_panes_.at(pane_name).d_page_.h_scrollbar()().rect.bottom =
+				pane_.p_panes_.at(pane_name).d_page_.h_scrollbar().specs().rect.bottom =
 					(rect_client_area.bottom - rect_client_area.top) - page_tolerance_;
-				pane_.p_panes_.at(pane_name).d_page_.h_scrollbar()().rect.top =
-					pane_.p_panes_.at(pane_name).d_page_.h_scrollbar()().rect.bottom - thickness;
-
-				pane_.p_panes_.at(pane_name).d_page_.h_scrollbar()().on_click = nullptr;
+				pane_.p_panes_.at(pane_name).d_page_.h_scrollbar().specs().rect.top =
+					pane_.p_panes_.at(pane_name).d_page_.h_scrollbar().specs().rect.bottom - thickness;
 			}
 
 			// initialize the page's vertical scroll bar
 			{
-				pane_.p_panes_.at(pane_name).d_page_.v_scrollbar()().on_resize.perc_height = 100.f;
-				pane_.p_panes_.at(pane_name).d_page_.v_scrollbar()().on_resize.perc_x = 100.f;
+				pane_.p_panes_.at(pane_name).d_page_.v_scrollbar().specs().on_resize.perc_height = 100.f;
+				pane_.p_panes_.at(pane_name).d_page_.v_scrollbar().specs().on_resize.perc_x = 100.f;
 
-				pane_.p_panes_.at(pane_name).d_page_.v_scrollbar()().rect.top = 0;
-				pane_.p_panes_.at(pane_name).d_page_.v_scrollbar()().rect.bottom =
+				pane_.p_panes_.at(pane_name).d_page_.v_scrollbar().specs().rect.top = 0;
+				pane_.p_panes_.at(pane_name).d_page_.v_scrollbar().specs().rect.bottom =
 					(rect_client_area.bottom - rect_client_area.top) - (margin + thickness);
-				pane_.p_panes_.at(pane_name).d_page_.v_scrollbar()().rect.right =
+				pane_.p_panes_.at(pane_name).d_page_.v_scrollbar().specs().rect.right =
 					(rect_client_area.right - rect_client_area.left) - margin;
-				pane_.p_panes_.at(pane_name).d_page_.v_scrollbar()().rect.left =
-					pane_.p_panes_.at(pane_name).d_page_.v_scrollbar()().rect.right - thickness;
-
-				pane_.p_panes_.at(pane_name).d_page_.v_scrollbar()().on_click = nullptr;
+				pane_.p_panes_.at(pane_name).d_page_.v_scrollbar().specs().rect.left =
+					pane_.p_panes_.at(pane_name).d_page_.v_scrollbar().specs().rect.right - thickness;
 			}
 
 			// add an invisible rect to bound the page. This is essential for scroll bars

@@ -75,8 +75,6 @@ namespace liblec {
 					d_.fm_.d_.caption_bar_height_ + d_.fm_.d_.page_tolerance_;
 				d_.fm_.d_.p_pages_.at(alias).d_page_.h_scrollbar().specs().rect.top =
 					d_.fm_.d_.p_pages_.at(alias).d_page_.h_scrollbar().specs().rect.bottom - thickness;
-
-				d_.fm_.d_.p_pages_.at(alias).d_page_.h_scrollbar().specs().on_click = nullptr;
 			}
 
 			// initialize the page's vertical scroll bar
@@ -93,8 +91,6 @@ namespace liblec {
 					d_.fm_.d_.size_.width - margin - d_.fm_.d_.page_tolerance_;
 				d_.fm_.d_.p_pages_.at(alias).d_page_.v_scrollbar().specs().rect.left =
 					d_.fm_.d_.p_pages_.at(alias).d_page_.v_scrollbar().specs().rect.right - thickness;
-
-				d_.fm_.d_.p_pages_.at(alias).d_page_.v_scrollbar().specs().on_click = nullptr;
 			}
 
 			// add an invisible rect to bound the page. This is essential for scroll bars to work

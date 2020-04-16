@@ -157,8 +157,8 @@ namespace liblec {
 		}
 
 		void widgets_impl::progress_bar::on_click() {
-			if (specs_.on_click)
-				specs_.on_click();
+			if (specs_.events().click)
+				specs_.events().click();
 		}
 
 		widgets::progress_bar::progress_bar_specs&

@@ -143,8 +143,8 @@ namespace liblec {
 		}
 
 		void widgets_impl::h_scrollbar::on_click() {
-			if (specs_.on_click)
-				specs_.on_click();
+			if (specs_.events().click)
+				specs_.events().click();
 		}
 
 		widgets::h_scrollbar_specs&

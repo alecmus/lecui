@@ -65,7 +65,7 @@ namespace liblec {
 			ID2D1HwndRenderTarget* p_render_target) {
 			log("creating resources:   " + page_alias_ + ":" + alias_);
 			specs_old_ = specs_;
-			is_static_ = (specs_.on_click == nullptr && specs_.on_selection == nullptr);
+			is_static_ = (specs_.events().click == nullptr && specs_.events().selection == nullptr);
 
 			HRESULT hr = S_OK;
 
@@ -307,11 +307,11 @@ namespace liblec {
 				reset_menu();
 
 				if (selected_previous != specs_.selected) {
-					if (specs_.on_selection)
-						specs_.on_selection(specs_.selected);
+					if (specs_.events().selection)
+						specs_.events().selection(specs_.selected);
 
-					if (specs_.on_click)
-						specs_.on_click();
+					if (specs_.events().click)
+						specs_.events().click();
 				}
 			}
 		}

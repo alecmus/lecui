@@ -376,7 +376,7 @@ namespace liblec {
 			p_close_button_->specs().rect.bottom = p_close_button_->specs().rect.top +
 				(caption_bar_height_ - 2.f * control_button_margin_);
 
-			p_close_button_->specs().on_click = on_click;
+			p_close_button_->specs().events().click = on_click;
 		}
 
 		// should be called after create_close_button()
@@ -459,7 +459,7 @@ namespace liblec {
 			// buttons since we've eliminated resizing caption rect; perhaps use clip???
 			p_caption_->specs().rect = convert_rect(rect);
 
-			p_caption_->specs().on_click = on_caption_;
+			p_caption_->specs().events().click = on_caption_;
 		}
 
 		void form::impl::update() { InvalidateRect(hWnd_, nullptr, FALSE); }

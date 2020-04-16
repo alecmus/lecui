@@ -100,8 +100,8 @@ namespace liblec {
 		}
 
 		void widgets_impl::close_button::on_click() {
-			if (specs_.on_click)
-				specs_.on_click();
+			if (specs_.events().click)
+				specs_.events().click();
 		}
 
 		widgets::close_button_specs&

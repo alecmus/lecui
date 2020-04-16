@@ -22,6 +22,7 @@ namespace liblec {
 				specs::operator==(param) &&
 
 				// widget specific specs
+				(text == param.text) &&
 				(color_hot_pressed == param.color_hot_pressed) &&
 				(multiline == param.multiline) &&
 				(center_h == param.center_h) &&

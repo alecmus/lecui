@@ -36,12 +36,21 @@ namespace liblec {
 					color color_off = { 150, 150, 150, 255 };
 					bool on = false;
 
-					/// <summary>Handler that's called when toggle is clicked or dragged. The
-					/// boolean parameter indicates the toggle's new state.</summary>
-					std::function<void(bool on)> on_toggle = nullptr;
+					struct toggle_events : basic_events {
+						/// <summary>Handler that's called when toggle is clicked or dragged. The
+						/// boolean parameter indicates the toggle's new state.</summary>
+						std::function<void(bool on)> toggle = nullptr;
+					};
+
+					toggle_events& events() {
+						return toggle_events_;
+					}
 
 					bool operator==(const toggle_specs&);
 					bool operator!=(const toggle_specs&);
+
+				private:
+					toggle_events toggle_events_;
 				};
 
 				/// <summary>Toggle constructor.</summary>

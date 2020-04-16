@@ -46,11 +46,20 @@ namespace liblec {
 						indeterminate,
 					} status = checkbox_status::indeterminate;
 
-					/// <summary>Called when the checkbox is clicked.</summary>
-					std::function<void(checkbox_status checked)> on_check = nullptr;
+					struct checkbox_events : basic_events {
+						/// <summary>Called when the checkbox is clicked.</summary>
+						std::function<void(checkbox_status checked)> check = nullptr;
+					};
+
+					checkbox_events& events() {
+						return checkbox_events_;
+					}
 
 					bool operator==(const checkbox_specs&);
 					bool operator!=(const checkbox_specs&);
+
+				private:
+					checkbox_events checkbox_events_;
 				};
 
 				/// <summary>Checkbox constructor.</summary>

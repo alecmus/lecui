@@ -89,12 +89,21 @@ namespace liblec {
 					/// <summary>The entire tree is built recursively on this root.</summary>
 					std::map<std::string, node> root;
 
-					/// <summary>The handler to be called when the selection changes. The
-					/// parameter will contain a reference to the newly selected node.</summary>
-					std::function<void(node& n)> on_selection;
+					struct tree_events : basic_events {
+						/// <summary>The handler to be called when the selection changes. The
+						/// parameter will contain a reference to the newly selected node.</summary>
+						std::function<void(node& n)> selection;
+					};
+
+					tree_events& events() {
+						return tree_events_;
+					}
 
 					bool operator==(const tree_specs&);
 					bool operator!=(const tree_specs&);
+
+				private:
+					tree_events tree_events_;
 				};
 
 				/// <summary>Tree constructor.</summary>

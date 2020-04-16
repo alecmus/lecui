@@ -43,12 +43,21 @@ namespace liblec {
 					std::vector<std::string> items;
 					std::string selected;
 
-					/// <summary>Called when the selection changes. The parameter contains the
-					/// selected item.</summary>
-					std::function<void(const std::string&)> on_selection = nullptr;
+					struct combo_events : basic_events {
+						/// <summary>Called when a selection is made. The parameter contains the
+						/// selected item.</summary>
+						std::function<void(const std::string&)> selection = nullptr;
+					};
+
+					combo_events& events() {
+						return combo_events_;
+					}
 
 					bool operator==(const combo_specs&);
 					bool operator!=(const combo_specs&);
+
+				private:
+					combo_events combo_events_;
 				};
 
 				/// <summary>Combo constructor.</summary>

@@ -70,6 +70,12 @@ namespace liblec {
 					bool operator!=(const resize_params&);
 				};
 
+				/// <summary>Events common to all widgets.</summary>
+				struct basic_events {
+					/// <summary>The handler to be called when the widget is clicked.</summary>
+					std::function<void()> click = nullptr;
+				};
+
 				/// Content
 				std::string text;
 
@@ -86,11 +92,17 @@ namespace liblec {
 				color color_selected = { 0, 120, 170, 30 };
 				color color_disabled = { 180, 180, 180, 255 };
 
-				/// Handlers
-				std::function<void()> on_click = nullptr;
+				/// <summary>Widgets with additional events need to override this method.</summary>
+				/// <returns>A reference to the widget's basic events.</returns>
+				basic_events& events() {
+					return events_;
+				}
 
 				bool operator==(const specs&);
 				bool operator!=(const specs&);
+
+			private:
+				basic_events events_;
 			};
 		}
 

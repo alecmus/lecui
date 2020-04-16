@@ -45,7 +45,7 @@ namespace liblec {
 			ID2D1HwndRenderTarget* p_render_target) {
 			log("creating resources:   " + page_alias_ + ":" + alias_);
 			specs_old_ = specs_;
-			is_static_ = (specs_.on_toggle == nullptr && specs_.on_click == nullptr);
+			is_static_ = (specs_.events().toggle == nullptr && specs_.events().click == nullptr);
 
 			HRESULT hr = S_OK;
 
@@ -240,11 +240,11 @@ namespace liblec {
 			else
 				specs_.on = perc_along_ >= 50.f;
 
-			if (specs_.on_toggle)
-				specs_.on_toggle(specs_.on);
+			if (specs_.events().toggle)
+				specs_.events().toggle(specs_.on);
 
-			if (specs_.on_click)
-				specs_.on_click();
+			if (specs_.events().click)
+				specs_.events().click();
 		}
 
 		bool widgets_impl::toggle::contains(const D2D1_POINT_2F& point) {

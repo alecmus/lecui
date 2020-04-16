@@ -39,7 +39,7 @@ namespace liblec {
 			ID2D1HwndRenderTarget* p_render_target) {
 			log("creating resources:   " + page_alias_ + ":" + alias_);
 			specs_old_ = specs_;
-			is_static_ = (specs_.on_click == nullptr);
+			is_static_ = (specs_.events().click == nullptr);
 
 			HRESULT hr = S_OK;
 
@@ -131,8 +131,8 @@ namespace liblec {
 		}
 
 		void widgets_impl::image::on_click() {
-			if (specs_.on_click)
-				specs_.on_click();
+			if (specs_.events().click)
+				specs_.events().click();
 		}
 
 		widgets::image::image_specs&

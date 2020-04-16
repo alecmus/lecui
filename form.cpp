@@ -286,7 +286,7 @@ namespace liblec {
 							home_page.size().width - margin_,
 							home_page.size().height - margin_ - button_size_.height,
 							home_page.size().height - margin_ };
-						button().on_click = [&]() { close(); };
+						button().events().click = [&]() { close(); };
 
 						page_man.show("home");
 						return true;

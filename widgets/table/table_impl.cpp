@@ -705,7 +705,7 @@ namespace liblec {
 		void widgets_impl::table::on_click() {
 			if (!h_scrollbar_pressed_ && !v_scrollbar_pressed_) {
 				if (book_on_selection_) {
-					if (specs_.on_selection)
+					if (specs_.events().selection)
 						on_selection();
 
 					book_on_selection_ = false;
@@ -781,11 +781,11 @@ namespace liblec {
 				if (selection_made) {
 					reset_menu();
 
-					if (specs_.on_selection)
+					if (specs_.events().selection)
 						on_selection();
 
-					if (specs_.on_click)
-						specs_.on_click();
+					if (specs_.events().click)
+						specs_.events().click();
 				}
 			}
 		}
@@ -876,14 +876,14 @@ namespace liblec {
 			widgets_impl::table::operator()() { return specs(); }
 
 		void widgets_impl::table::on_selection() {
-			if (specs_.on_selection) {
+			if (specs_.events().selection) {
 				std::vector<std::map<std::string, std::string>> var;
 				for (const auto& it : specs_.selected) {
 					try { var.push_back(specs_.data.at(it)); }
 					catch (const std::exception&) {}
 				}
 
-				specs_.on_selection(var);
+				specs_.events().selection(var);
 			}
 		}
 	}

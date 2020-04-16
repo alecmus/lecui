@@ -74,14 +74,23 @@ namespace liblec {
 					/// <summary>The rows to select by default.</summary>
 					std::vector<long> selected;
 
-					/// <summary>This handler is called when the selection changes. The selected
-					/// rows will be in the given 'rows' parameter.</summary>
-					std::function<void(
-						const std::vector<std::map<std::string, std::string>>& rows)>
-						on_selection = nullptr;
+					struct table_events : basic_events {
+						/// <summary>This handler is called when the selection changes. The selected
+						/// rows will be in the given 'rows' parameter.</summary>
+						std::function<void(
+							const std::vector<std::map<std::string, std::string>>& rows)>
+							selection = nullptr;
+					};
+
+					table_events& events() {
+						return table_events_;
+					}
 
 					bool operator==(const table_specs&);
 					bool operator!=(const table_specs&);
+
+				private:
+					table_events table_events_;
 				};
 
 				/// <summary>Table constructor.</summary>
