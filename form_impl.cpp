@@ -2651,33 +2651,34 @@ namespace liblec {
 							if (widget.second.is_static() || !widget.second.visible() || !widget.second.enabled())
 								continue;
 
-							if (widget.second.selected())
+							if (widget.second.selected()) {
 								if (widget.second.on_keydown(wParam)) {
 									update = true;
 									on_click_handler = [&]() { widget.second.on_click(); };
 								}
+							}
+							else
+								if (widget.second.type() ==
+									widgets_impl::widget_type::tab_pane) {
+									// get this tab pane
+									auto& tab_pane = page.d_page_.get_tab_pane(widget.first);
+
+									auto page_iterator = tab_pane.p_tabs_.find(tab_pane.current_tab_);
+
+									if (page_iterator != tab_pane.p_tabs_.end())
+										helper::check_widgets(page_iterator->second, wParam, update, on_click_handler);
+								}
 								else
 									if (widget.second.type() ==
-										widgets_impl::widget_type::tab_pane) {
-										// get this tab pane
-										auto& tab_pane = page.d_page_.get_tab_pane(widget.first);
+										widgets_impl::widget_type::pane) {
+										// get this pane
+										auto& pane = page.d_page_.get_pane(widget.first);
 
-										auto page_iterator = tab_pane.p_tabs_.find(tab_pane.current_tab_);
+										auto page_iterator = pane.p_panes_.find(pane.current_pane_);
 
-										if (page_iterator != tab_pane.p_tabs_.end())
+										if (page_iterator != pane.p_panes_.end())
 											helper::check_widgets(page_iterator->second, wParam, update, on_click_handler);
 									}
-									else
-										if (widget.second.type() ==
-											widgets_impl::widget_type::pane) {
-											// get this pane
-											auto& pane = page.d_page_.get_pane(widget.first);
-
-											auto page_iterator = pane.p_panes_.find(pane.current_pane_);
-
-											if (page_iterator != pane.p_panes_.end())
-												helper::check_widgets(page_iterator->second, wParam, update, on_click_handler);
-										}
 						}
 					}
 				};
