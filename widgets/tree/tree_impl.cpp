@@ -133,7 +133,7 @@ namespace liblec {
 					ID2D1SolidColorBrush* p_brush_selected, ID2D1SolidColorBrush* p_brush_hot_,
 					const std::string& font, const float& font_size, std::map<std::string,
 					widgets::tree::tree_specs::node>& level, const D2D1_RECT_F& rect,
-					float& right_, float& bottom_, bool hit_, D2D1_POINT_2F point_,
+					float& right_, float& bottom_, float& optimized_right_, float& optimized_bottom_, bool hit_, D2D1_POINT_2F point_,
 					float dpi_scale_) {
 					float bottom = rect.top;
 					float right = rect.right;
@@ -153,6 +153,10 @@ namespace liblec {
 
 						// capture node rectangle
 						node.second.rc = convert_rect(rect_node);
+
+						// capture optimized dimensions
+						optimized_right_ = largest(optimized_right_, rect_node.right);
+						optimized_bottom_ = largest(optimized_bottom_, rect_node.bottom);
 
 						right = largest(right, rect_node.right);
 						bottom = largest(bottom, rect_node.bottom);
@@ -293,8 +297,10 @@ namespace liblec {
 							rect_child.left += 10.f;
 							rect_child.right += 10.f;
 
-							draw_level(p_direct2d_factory, p_render_target, p_directwrite_factory, p_text_format_, p_brush, p_brush_selected, p_brush_hot_, font,
-								font_size, node.second.children, rect_child, right_, bottom_, hit_, point_, dpi_scale_);	// recursion
+							draw_level(p_direct2d_factory, p_render_target, p_directwrite_factory,
+								p_text_format_, p_brush, p_brush_selected, p_brush_hot_, font,
+								font_size, node.second.children, rect_child, right_, bottom_,
+								optimized_right_, optimized_bottom_, hit_, point_, dpi_scale_);	// recursion
 
 							right = largest(right, right_);
 							bottom = largest(bottom, bottom_);
@@ -307,11 +313,15 @@ namespace liblec {
 			// draw the tree
 			auto right_ = rect_.right;
 			auto bottom_ = rect_.top + 20;
-			helper::draw_level(p_direct2d_factory_, p_render_target, p_directwrite_factory_, p_text_format_,
-				p_brush_, p_brush_selected_, p_brush_hot_, specs_.font, specs_.font_size, specs_.root, rect_, right_, bottom_, hit_, point_, dpi_scale_);
+			auto optimized_right_ = 0.f;
+			auto optimized_bottom_ = 0.f;
+			helper::draw_level(p_direct2d_factory_, p_render_target, p_directwrite_factory_,
+				p_text_format_, p_brush_, p_brush_selected_, p_brush_hot_, specs_.font,
+				specs_.font_size, specs_.root, rect_, right_, bottom_, optimized_right_,
+				optimized_bottom_, hit_, point_, dpi_scale_);
 
-			const auto width = right_ - rect_.left;
-			const auto height = bottom_ - rect_.top;
+			const auto width = optimized_right_ - rect_.left;
+			const auto height = optimized_bottom_ - rect_.top;
 
 			// update widget rect
 			specs_.rect.width(width);
