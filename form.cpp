@@ -233,11 +233,86 @@ namespace liblec {
 		void form::on_shutdown() {}
 
 		bool form::prompt(const std::string& question) {
-			if (MessageBoxA(IsWindow(d_.hWnd_) ? d_.hWnd_ : GetForegroundWindow(),
-				question.c_str(), d_.caption_plain_.c_str(), MB_YESNO) == IDYES)
-				return true;
-			else
-				return false;
+			class prompt_form : public form {
+				const size min_size_ = { 220.f, 120.f };
+				const size max_size_ = { 420.f, 400.f };
+				const std::string question_;
+				const float margin_ = 10.f;
+				const size button_size_ = widgets::button::button_specs().rect.size();
+				bool& user_agreed_;
+
+			public:
+				prompt_form(const std::string& title, const std::string& question, form& parent, bool& user_agreed) :
+					form(title, parent),
+					question_(question),
+					user_agreed_(user_agreed) {
+					controls ctrls(*this);
+					ctrls.resize(false);
+					ctrls.minimize(false);
+
+					// impose maximums
+					D2D1_RECT_F rect = D2D1::RectF(0.f, 0.f, max_size_.width, max_size_.height);
+
+					// measure the question
+					widgets::label::label_specs specs_lbl;
+					rect = widgets_impl::measure_label(d_.p_directwrite_factory_, question,
+						specs_lbl.font, specs_lbl.font_size, false, false, rect);
+
+					auto width = (rect.right - rect.left) + 2 * margin_;
+					auto height = d_.caption_bar_height_ + margin_ + (rect.bottom - rect.top) +
+						margin_ + button_size_.height + margin_;
+
+					// impose minimums
+					width = largest(width, min_size_.width);
+					height = largest(height, min_size_.height);
+
+					dimensions dim(*this);
+					dim.size({ width, height });
+				}
+
+				bool on_layout(std::string& error) override {
+					page_management page_man(*this);
+					auto& home_page = page_man.add("home");
+
+					widgets::label label(home_page, "question");
+					label().text = question_;
+					label().multiline = true;
+					label().rect = { margin_, home_page.size().width, margin_,
+						home_page.size().height - margin_ - button_size_.height - margin_ };
+
+					// add yes and no buttons, in that order for tab navigation
+					widgets::button  button_yes(home_page, "button_yes");
+					widgets::button button_no(home_page, "button_no");
+
+					// position the no button on the bottom right
+					button_no().text = "No";
+					button_no().rect.place({ margin_, home_page.size().width - margin_,
+							margin_, home_page.size().height - margin_ }, 100.f, 100.f);
+					button_no().events().click = [&]() {
+						user_agreed_ = false;
+						close();
+					};
+
+					// snap the yes button to the no button
+					button_yes().text = "Yes";
+					button_yes().rect.snap_to(button_no().rect, lecui::rect::snap_type::left, margin_);
+					button_yes().events().click = [&]() {
+						user_agreed_ = true;
+						close();
+					};
+
+					page_man.show("home");
+					return true;
+				}
+			};
+
+			// prompt the user
+			std::string error;
+			bool user_agreed = false;
+			if (!prompt_form(d_.caption_formatted_, question, *this, user_agreed).show(error))
+				log(error);
+
+			return user_agreed;
 		}
 
 		void form::message(const std::string& message) {
@@ -247,7 +322,7 @@ namespace liblec {
 					const size max_size_ = { 420.f, 400.f };
 					const std::string message_;
 					const float margin_ = 10.f;
-					const size button_size_ = { 80.f, 25.f };
+					const size button_size_ = widgets::button::button_specs().rect.size();
 
 				public:
 					message_form(const std::string& title, const std::string& message, form& parent) :
@@ -287,12 +362,11 @@ namespace liblec {
 						label().rect = { margin_, home_page.size().width, margin_,
 							home_page.size().height - margin_ - button_size_.height - margin_ };
 
+						// add the ok button on the bottom right
 						widgets::button button(home_page, "button");
 						button().text = "Ok";
-						button().rect = { home_page.size().width - margin_ - button_size_.width,
-							home_page.size().width - margin_,
-							home_page.size().height - margin_ - button_size_.height,
-							home_page.size().height - margin_ };
+						button().rect.place({margin_, home_page.size().width - margin_,
+							margin_, home_page.size().height - margin_ }, 100.f, 100.f);
 						button().events().click = [&]() { close(); };
 
 						page_man.show("home");
