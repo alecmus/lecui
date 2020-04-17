@@ -35,12 +35,27 @@ namespace liblec {
 				d_.fm_.d_.borderless_shadow_ = enable;
 		}
 
+		void appearance::dark_theme(const bool& enable) {
+			d_.fm_.d_.dark_theme_ = enable;
+
+			if (enable) {
+				// change the background color
+				background(color{ 40, 45, 55 }, color{ 40, 45, 55 });
+
+				// change the theme colors
+				theme(color{ 60, 190, 175 }, color{ 255, 255, 255, 255 },
+					color{ 30, 30, 30, 255 }, color{ 155, 165, 180, 255 });
+			}
+		}
+
 		void appearance::theme(const lecui::color& color,
 			const lecui::color& color_hot,
-			const lecui::color& color_disabled) {
+			const lecui::color& color_disabled,
+			const lecui::color& color_text) {
 			d_.fm_.d_.clr_theme_ = color;
 			d_.fm_.d_.clr_theme_hot_ = color_hot;
 			d_.fm_.d_.clr_theme_disabled_ = color_disabled;
+			d_.fm_.d_.clr_theme_text_ = color_text;
 		}
 
 		void appearance::background(const lecui::color& color,

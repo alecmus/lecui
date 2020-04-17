@@ -31,6 +31,7 @@ namespace liblec {
 
 			void parse_formatted_text(const std::string& formatted_text,
 				std::string& plain_text_,
+				D2D1_COLOR_F default_color,
 				std::vector<text_range_properties>& formatting_);
 
 			void apply_formatting(const std::vector<text_range_properties>& formatting_,

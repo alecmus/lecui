@@ -83,9 +83,12 @@ namespace liblec {
 			// icons for use by the Windows OS
 			int idi_icon_, idi_icon_small_;
 
+			// default theme
+			bool dark_theme_;
+
 			// colors
 			color clr_background_, clr_titlebar_background_, clr_theme_, clr_theme_hot_,
-				clr_theme_disabled_;
+				clr_theme_disabled_, clr_theme_text_;
 
 			bool top_most_;
 			HWND hWnd_, hWnd_parent_;

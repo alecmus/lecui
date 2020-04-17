@@ -22,6 +22,7 @@ namespace liblec {
 		void widgets_impl::parse_formatted_text(
 			const std::string& formatted_text,
 			std::string& plain_text_,
+			D2D1_COLOR_F default_color,
 			std::vector<text_range_properties>& formatting_) {
 			try {
 				plain_text_.clear();
@@ -85,7 +86,7 @@ namespace liblec {
 					properties.underline = get_attribute("text.<xmlattr>.underline") == "true";
 
 					auto get_color = [&](const std::string& text) {
-						D2D1_COLOR_F color = { 0.f, 0.f, 0.f, 1.f };
+						D2D1_COLOR_F color = default_color;
 
 						try {
 							auto color_ = tree.get<std::string>("text.<xmlattr>.color");
@@ -167,9 +168,10 @@ namespace liblec {
 				bool center_h,
 				bool center_v,
 				const D2D1_RECT_F max_rect) {
+			// the default color doesn't matter here we're just measuring the text
 			std::string plain_text_;
 			std::vector<text_range_properties> formatting_;
-			parse_formatted_text(formatted_text, plain_text_, formatting_);
+			parse_formatted_text(formatted_text, plain_text_, D2D1::ColorF(D2D1::ColorF::Black), formatting_);
 
 			D2D1_RECT_F rect = max_rect;
 
@@ -224,9 +226,10 @@ namespace liblec {
 				bool allow_h_overflow,
 				bool allow_v_overflow,
 				const D2D1_RECT_F max_rect) {
+			// the default color doesn't matter here we're just measuring the text
 			std::string plain_text_;
 			std::vector<text_range_properties> formatting_;
-			parse_formatted_text(formatted_text, plain_text_, formatting_);
+			parse_formatted_text(formatted_text, plain_text_, D2D1::ColorF(D2D1::ColorF::Black), formatting_);
 
 			D2D1_RECT_F rect = max_rect;
 
@@ -310,7 +313,7 @@ namespace liblec {
 			is_static_ = (specs_.events().click == nullptr);
 			h_cursor_ = get_cursor(specs_.cursor);
 
-			parse_formatted_text(specs_.text, text_, formatting_);
+			parse_formatted_text(specs_.text, text_, convert_color(specs_.color_text), formatting_);
 
 			HRESULT hr = S_OK;
 

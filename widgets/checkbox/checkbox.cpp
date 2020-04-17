@@ -34,7 +34,14 @@ namespace liblec {
 		public:
 			impl(containers::page& page, const std::string& alias) :
 				page_(page),
-				specs_(page_.d_page_.add_checkbox(alias)) {}
+				specs_(page_.d_page_.add_checkbox(alias)) {
+				if (page_.d_page_.fm_.d_.dark_theme_) {
+					specs_.color_text = { 155, 165, 180, 255 };
+					specs_.color_fill = { 60, 65, 75, 255 };
+					specs_.color_hot = { 80, 85, 95, 255 };
+					specs_.color_selected = { 60, 190, 175, 150 };
+				}
+			}
 			containers::page& page_;
 			checkbox_specs& specs_;
 		};

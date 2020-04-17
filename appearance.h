@@ -32,13 +32,21 @@ namespace liblec {
 			/// <remarks>The shadow is enabled by default if this method is never called.</remarks>
 			void shadow(const bool& enable);
 
+			/// <summary>Whether to enable the dark theme.</summary>
+			/// <param name="enable">Set to true to enable the dark theme.</param>
+			/// <remarks>This option has to be set early in on_layout(), or in the
+			/// constructor. Changing this later is not yet supported.</remarks>
+			void dark_theme(const bool& enable);
+
 			/// <summary>Set the theme color.</summary>
 			/// <param name="color">The color of controls and the form border.</param>
 			/// <param name="color_hot">The color on-hovering over a control.</param>
 			/// <param name="color_disabled">The color when a control is disabled.</param>
+			/// <param name="color_text">The text color.</param>
 			void theme(const lecui::color& color,
 				const lecui::color& color_hot,
-				const lecui::color& color_disabled);
+				const lecui::color& color_disabled,
+				const lecui::color& color_text);
 
 			/// <summary>Set the form's background colors.</summary>
 			/// <param name="color">The background color of the entire form.</param>

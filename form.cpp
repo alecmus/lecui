@@ -12,6 +12,7 @@
 */
 
 #include "form.h"
+#include "appearance.h"
 #include "controls.h"
 #include "timer.h"
 #include "form_impl.h"
@@ -42,6 +43,10 @@ namespace liblec {
 				// capture parent
 				d_.p_parent_ = &parent;
 				d_.hWnd_parent_ = parent.d_.hWnd_;
+
+				// copy the parent's default theme setting
+				appearance aprnc(*this);
+				aprnc.dark_theme(d_.p_parent_->d_.dark_theme_);
 
 				// this is a child window. add it to the parent's map of children.
 				parent.d_.m_children_.insert(std::make_pair(this, this));

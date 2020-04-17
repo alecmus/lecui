@@ -173,8 +173,23 @@ namespace liblec {
 			form& fm_;
 
 			friend class form;
+			friend class containers::tab_pane;
 			friend class containers::tab;
 			friend class containers::pane;
+			friend class containers::group;
+			friend class widgets::rectangle;
+			friend class widgets::label;
+			friend class widgets::button;
+			friend class widgets::toggle;
+			friend class widgets::combo;
+			friend class widgets::table;
+			friend class widgets::custom;
+			friend class widgets::image;
+			friend class widgets::progress_indicator;
+			friend class widgets::progress_bar;
+			friend class widgets::checkbox;
+			friend class widgets::textbox;
+			friend class widgets::tree;
 		};
 	}
 }

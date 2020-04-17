@@ -34,7 +34,12 @@ namespace liblec {
 		public:
 			impl(containers::page& page, const std::string& alias) :
 				page_(page),
-				specs_(page_.d_page_.add_toggle(alias)) {}
+				specs_(page_.d_page_.add_toggle(alias)) {
+				if (page_.d_page_.fm_.d_.dark_theme_) {
+					specs_.color_text = { 155, 165, 180, 255 };
+					specs_.color_selected = { 60, 190, 175, 60 };
+				}
+			}
 			containers::page& page_;
 			toggle_specs& specs_;
 		};

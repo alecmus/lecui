@@ -41,7 +41,17 @@ namespace liblec {
 		public:
 			impl(containers::page& page, const std::string& alias) :
 				page_(page),
-				specs_(page_.d_page_.add_table(alias)) {}
+				specs_(page_.d_page_.add_table(alias)) {
+				if (page_.d_page_.fm_.d_.dark_theme_) {
+					specs_.color_text = { 155, 165, 180, 255 };
+					specs_.color_text_header = { 155, 165, 180, 255 };
+					specs_.color_fill_header = { 40, 45, 55, 255 };
+					specs_.color_fill = { 40, 45, 55, 255 };
+					specs_.color_grid = { 55, 60, 65, 255 };
+					specs_.color_fill_alternate = { 60, 190, 175, 15 };
+					specs_.color_row_hot = { 40, 160, 200, 100 };
+				}
+			}
 			containers::page& page_;
 			table_specs& specs_;
 		};

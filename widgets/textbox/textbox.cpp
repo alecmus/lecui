@@ -36,7 +36,15 @@ namespace liblec {
 		public:
 			impl(containers::page& page, const std::string& alias) :
 				page_(page),
-				specs_(page_.d_page_.add_textbox(alias)) {}
+				specs_(page_.d_page_.add_textbox(alias)) {
+				if (page_.d_page_.fm_.d_.dark_theme_) {
+					specs_.color_text = { 155, 165, 180, 255 };
+					specs_.color_prompt = { 70, 75, 80, 255 };
+					specs_.color_fill = { 40, 45, 50, 255 };
+					specs_.color_selected = { 60, 190, 175, 150 };
+					specs_.color_caret = { 60, 190, 175, 255 };
+				}
+			}
 			containers::page& page_;
 			textbox_specs& specs_;
 		};

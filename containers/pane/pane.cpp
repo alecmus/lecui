@@ -83,30 +83,44 @@ namespace liblec {
 
 			// initialize the page's horizontal scroll bar
 			{
-				pane_.p_panes_.at(pane_name).d_page_.h_scrollbar().specs().on_resize.perc_width = 100.f;
-				pane_.p_panes_.at(pane_name).d_page_.h_scrollbar().specs().on_resize.perc_y = 100.f;
+				auto& specs_ = pane_.p_panes_.at(pane_name).d_page_.h_scrollbar().specs();
+				specs_.on_resize.perc_width = 100.f;
+				specs_.on_resize.perc_y = 100.f;
 
-				pane_.p_panes_.at(pane_name).d_page_.h_scrollbar().specs().rect.left = 0.f;
-				pane_.p_panes_.at(pane_name).d_page_.h_scrollbar().specs().rect.right =
+				specs_.rect.left = 0.f;
+				specs_.rect.right =
 					(rect_client_area.right - rect_client_area.left) - (margin + thickness);
-				pane_.p_panes_.at(pane_name).d_page_.h_scrollbar().specs().rect.bottom =
+				specs_.rect.bottom =
 					(rect_client_area.bottom - rect_client_area.top) - page_tolerance_;
-				pane_.p_panes_.at(pane_name).d_page_.h_scrollbar().specs().rect.top =
-					pane_.p_panes_.at(pane_name).d_page_.h_scrollbar().specs().rect.bottom - thickness;
+				specs_.rect.top = specs_.rect.bottom - thickness;
+
+				if (d_.page_.d_page_.fm_.d_.dark_theme_) {
+					specs_.color_fill = { 60, 65, 75, 255 };
+					specs_.color_scrollbar_border = { 30, 35, 45, 255 };
+					specs_.color_hot = { 80, 85, 95, 255 };
+					specs_.color_hot_pressed = { 100, 105, 115, 255 };
+				}
 			}
 
 			// initialize the page's vertical scroll bar
 			{
-				pane_.p_panes_.at(pane_name).d_page_.v_scrollbar().specs().on_resize.perc_height = 100.f;
-				pane_.p_panes_.at(pane_name).d_page_.v_scrollbar().specs().on_resize.perc_x = 100.f;
+				auto& specs_ = pane_.p_panes_.at(pane_name).d_page_.v_scrollbar().specs();
+				specs_.on_resize.perc_height = 100.f;
+				specs_.on_resize.perc_x = 100.f;
 
-				pane_.p_panes_.at(pane_name).d_page_.v_scrollbar().specs().rect.top = 0;
-				pane_.p_panes_.at(pane_name).d_page_.v_scrollbar().specs().rect.bottom =
+				specs_.rect.top = 0;
+				specs_.rect.bottom =
 					(rect_client_area.bottom - rect_client_area.top) - (margin + thickness);
-				pane_.p_panes_.at(pane_name).d_page_.v_scrollbar().specs().rect.right =
+				specs_.rect.right =
 					(rect_client_area.right - rect_client_area.left) - margin;
-				pane_.p_panes_.at(pane_name).d_page_.v_scrollbar().specs().rect.left =
-					pane_.p_panes_.at(pane_name).d_page_.v_scrollbar().specs().rect.right - thickness;
+				specs_.rect.left = specs_.rect.right - thickness;
+
+				if (d_.page_.d_page_.fm_.d_.dark_theme_) {
+					specs_.color_fill = { 60, 65, 75, 255 };
+					specs_.color_scrollbar_border = { 30, 35, 45, 255 };
+					specs_.color_hot = { 80, 85, 95, 255 };
+					specs_.color_hot_pressed = { 100, 105, 115, 255 };
+				}
 			}
 
 			// add an invisible rect to bound the page. This is essential for scroll bars

@@ -68,11 +68,13 @@ namespace liblec {
 			resource_module_handle_(nullptr),
 			idi_icon_(0),
 			idi_icon_small_(0),
-			clr_background_(color{ 244, 244, 244 }),
+			dark_theme_(false),
+			clr_background_(dark_theme_ ? color{ 40, 45, 55 } : color{ 244, 244, 244 }),
 			clr_titlebar_background_(clr_background_),
-			clr_theme_(color{ 0, 120, 170, 255 }),
-			clr_theme_hot_(color{ 255, 180, 0, 255 }),
-			clr_theme_disabled_(color{ 225, 225, 225, 255 }),
+			clr_theme_(dark_theme_ ? color{ 60, 190, 175 } : color{ 0, 120, 170, 255 }),
+			clr_theme_hot_(dark_theme_ ? color{ 255, 255, 255, 255 } : color{ 255, 180, 0, 255 }),
+			clr_theme_disabled_(dark_theme_ ? color{ 30, 30, 30, 255 } : color{ 225, 225, 225, 255 }),
+			clr_theme_text_(dark_theme_ ? color{ 155, 165, 180, 255 } : color{ 0, 0, 0, 255 }),
 			top_most_(false),
 			hWnd_(nullptr),
 			hWnd_parent_(nullptr),
@@ -120,9 +122,10 @@ namespace liblec {
 			HeapSetInformation(NULL, HeapEnableTerminationOnCorruption, NULL, 0);
 
 			// parse the caption
+			// the default color doesn't matter here we're just getting the plain text
 			std::vector<widgets_impl::text_range_properties> formatting;
 			widgets_impl::parse_formatted_text(caption_formatted_, caption_plain_,
-				formatting);
+				D2D1::ColorF(D2D1::ColorF::Black), formatting);
 
 			if (instances_ == 1) {
 				// initialize COM
@@ -438,6 +441,7 @@ namespace liblec {
 			p_caption_->specs().text = caption_formatted_;
 			p_caption_->specs().center_v = true;
 			p_caption_->specs().multiline = false;
+			p_caption_->specs().color_text = clr_theme_text_;
 
 			// determine right-most edge based on available control buttons
 			const auto right_edge = allow_minimize_ ?
