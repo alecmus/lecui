@@ -42,11 +42,15 @@ namespace liblec {
 			/// represent equality in the sense of widgets having the same characteristics!
 			bool specs::operator==(const specs& param) {
 				return
+					/// Colors
 					(color_text == param.color_text) &&
 					(color_fill == param.color_fill) &&
 					(color_hot == param.color_hot) &&
 					(color_selected == param.color_selected) &&
-					(color_disabled == param.color_disabled);
+					(color_disabled == param.color_disabled) &&
+
+					/// Cursor
+					(cursor == param.cursor);
 			}
 
 			bool specs::operator!=(const specs& param) {

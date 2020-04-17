@@ -43,7 +43,6 @@ namespace liblec {
 			selection_info_({ 0, 0 }) {
 			page_alias_ = page_alias;
 			alias_ = alias;
-			h_cursor_ = LoadCursor(NULL, IDC_IBEAM);
 		}
 
 		widgets_impl::textbox::~textbox() { discard_resources(); }
@@ -58,6 +57,7 @@ namespace liblec {
 			log("creating resources:   " + page_alias_ + ":" + alias_);
 			specs_old_ = specs_;
 			is_static_ = false;
+			h_cursor_ = get_cursor(specs_.cursor);
 
 			HRESULT hr = S_OK;
 

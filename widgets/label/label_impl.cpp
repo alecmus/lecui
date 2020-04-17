@@ -308,6 +308,7 @@ namespace liblec {
 			log("creating resources:   " + page_alias_ + ":" + alias_);
 			specs_old_ = specs_;
 			is_static_ = (specs_.events().click == nullptr);
+			h_cursor_ = get_cursor(specs_.cursor);
 
 			parse_formatted_text(specs_.text, text_, formatting_);
 

@@ -31,6 +31,7 @@ namespace liblec {
 				class toggle_specs : public specs {
 				public:
 					toggle_specs() {
+						cursor = cursor_type::hand;
 						rect.size({ 200.f, 20.f });
 						text = "On";
 						color_fill = { 255, 255, 255, 200 };

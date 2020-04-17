@@ -46,6 +46,7 @@ namespace liblec {
 			ID2D1HwndRenderTarget* p_render_target) {
 			log("creating resources:   " + page_alias_ + ":" + alias_);
 			is_static_ = false;
+			h_cursor_ = get_cursor(specs_.cursor);
 
 			HRESULT hr = S_OK;
 

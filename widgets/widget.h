@@ -73,6 +73,12 @@ namespace liblec {
 					bool operator!=(const resize_params&);
 				};
 
+				enum class cursor_type {
+					arrow,
+					hand,
+					caret,
+				};
+
 				/// <summary>Events common to all widgets.</summary>
 				struct basic_events {
 					/// <summary>The handler to be called when the widget is clicked.</summary>
@@ -85,6 +91,9 @@ namespace liblec {
 				/// Dimensions
 				lecui::rect rect;
 				resize_params on_resize;
+
+				/// Cursor
+				cursor_type cursor = cursor_type::arrow;
 
 				/// Appearance
 				std::string font = "Segoe UI";

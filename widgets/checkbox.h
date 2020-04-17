@@ -30,6 +30,7 @@ namespace liblec {
 				class checkbox_specs : public specs {
 				public:
 					checkbox_specs() {
+						cursor = cursor_type::hand;
 						rect.size({ 20.f, 20.f });
 						color_fill = { 229, 229, 229, 255 };
 						color_hot = { 240, 240, 240, 255 };

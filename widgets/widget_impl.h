@@ -58,6 +58,23 @@ namespace liblec {
 				tree,
 			};
 
+			static HCURSOR get_cursor(widgets::specs::cursor_type type) {
+				switch (type) {
+				case liblec::lecui::widgets::specs::cursor_type::arrow:
+					return nullptr;
+					break;
+				case liblec::lecui::widgets::specs::cursor_type::hand:
+					return LoadCursor(nullptr, IDC_HAND);
+					break;
+				case liblec::lecui::widgets::specs::cursor_type::caret:
+					return LoadCursor(nullptr, IDC_IBEAM);
+					break;
+				default:
+					return nullptr;
+					break;
+				}
+			}
+
 			class widget {
 			public:
 				widget();
@@ -137,8 +154,8 @@ namespace liblec {
 
 				/// <summary>The cursor to be displayed when the mouse is over the widget. When
 				/// equal to a nullptr the default cursor is used. It is recommended to set within
-				/// the widget's constructor as in this example:
-				/// h_cursor_ = LoadCursor(NULL, IDC_IBEAM);</summary>
+				/// the widget's on_createresources() method as follows:
+				/// h_cursor_ = get_cursor(specs_.cursor);</summary>
 				HCURSOR h_cursor_;
 			};
 		}

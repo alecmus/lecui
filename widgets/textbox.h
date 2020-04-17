@@ -36,6 +36,7 @@ namespace liblec {
 				class textbox_specs : public specs {
 				public:
 					textbox_specs() {
+						cursor = cursor_type::caret;
 						rect.size({ 200.f, 25.f });
 						color_text = { 0, 0, 0, 255 };
 						color_fill = { 255, 255, 255, 255 };

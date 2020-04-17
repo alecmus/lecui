@@ -46,6 +46,7 @@ namespace liblec {
 			log("creating resources:   " + page_alias_ + ":" + alias_);
 			specs_old_ = specs_;
 			is_static_ = (specs_.events().check == nullptr && specs_.events().click == nullptr);
+			h_cursor_ = get_cursor(specs_.cursor);
 
 			HRESULT hr = S_OK;
 

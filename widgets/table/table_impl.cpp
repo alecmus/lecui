@@ -86,6 +86,7 @@ namespace liblec {
 			log("creating resources:   " + page_alias_ + ":" + alias_);
 			specs_old_ = specs_;
 			is_static_ = false;
+			h_cursor_ = get_cursor(specs_.cursor);
 
 			HRESULT hr = S_OK;
 

@@ -29,6 +29,7 @@ namespace liblec {
 				class image_specs : public specs {
 				public:
 					image_specs() {
+						cursor = cursor_type::hand;
 						rect.size({ 200.f, 200.f });
 						color_fill = { 222, 222, 222, 0 };
 						color_hot = { 0, 120, 170, 100 };
