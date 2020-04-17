@@ -38,12 +38,14 @@ namespace liblec {
 
 		form::form(const std::string& caption, form& parent) :
 			form::form(caption) {
-			// capture parent
-			d_.p_parent_ = &parent;
-			d_.hWnd_parent_ = parent.d_.hWnd_;
+			if (IsWindow(parent.d_.hWnd_)) {
+				// capture parent
+				d_.p_parent_ = &parent;
+				d_.hWnd_parent_ = parent.d_.hWnd_;
 
-			// this is a child window. add it to the parent's map of children.
-			parent.d_.m_children_.insert(std::make_pair(this, this));
+				// this is a child window. add it to the parent's map of children.
+				parent.d_.m_children_.insert(std::make_pair(this, this));
+			}
 		}
 
 		form::~form() {

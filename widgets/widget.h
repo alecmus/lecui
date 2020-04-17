@@ -25,6 +25,9 @@ namespace liblec {
 			/// <summary>Base class for all widget specifications.</summary>
 			class specs {
 			public:
+				specs() {};
+				virtual ~specs() {};
+
 				/// <summary>Resize parameters.</summary>
 				/// <remarks>Affects how the widget behaves when the immediate container's
 				/// dimensions change.</remarks>

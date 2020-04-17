@@ -46,9 +46,102 @@ namespace liblec {
 			return lecuiname + std::string(" ") + lecuiversion + std::string(" ") + lecuidate;
 		}
 
+		float rect::width() { return right - left; }
+		float rect::height() { return bottom - top; }
+		size rect::size() { return { width(), height() }; }
+		void rect::width(float width) { right = left + width; }
+		void rect::height(float height) { bottom = top + height; }
+		void rect::size(lecui::size size) { width(size.width); height(size.height); }
+		void rect::size(float width, float height) { right = left + width; bottom = top + height; }
+
+		void rect::set(float x, float y, float cx, float cy) {
+			left = x; top = y; right = left + cx; bottom = top + cy;
+		}
+
+		void rect::move(float x, float y) {
+			const auto cx = width();
+			const auto cy = height();
+			set(x, y, cx, cy);
+		}
+
 		void rect::place(const rect& rect_reference,
 			const float& perc_h, const float& perc_v) {
 			pos_rect(rect_reference, *this, perc_h, perc_v);
+		}
+
+		void rect::snap_to(const rect& rect_reference, snap_type type, const float& clearance) {
+			auto& rect = *this;
+			const auto width_reference = rect_reference.right - rect_reference.left;
+			const auto height_reference = rect_reference.bottom - rect_reference.top;
+
+			const auto width = rect.width();
+			const auto height = rect.height();
+
+			switch (type) {
+			case snap_type::bottom:
+				rect.top = rect_reference.bottom + clearance;
+				rect.left = rect_reference.left + (width_reference - width) / 2.f;
+				break;
+
+			case snap_type::bottom_right:
+				rect.top = rect_reference.bottom + clearance;
+				rect.left = rect_reference.right - width;
+				break;
+
+			case snap_type::top_left:
+				rect.top = rect_reference.top - (height + clearance);
+				rect.left = rect_reference.left;
+				break;
+
+			case snap_type::top:
+				rect.top = rect_reference.top - (height + clearance);
+				rect.left = rect_reference.left + (width_reference - width) / 2.f;
+				break;
+
+			case snap_type::top_right:
+				rect.top = rect_reference.top - (height + clearance);
+				rect.left = rect_reference.right - width;
+				break;
+
+			case snap_type::right_top:
+				rect.left = rect_reference.right + clearance;
+				rect.top = rect_reference.top;
+				break;
+
+			case snap_type::right:
+				rect.left = rect_reference.right + clearance;
+				rect.top = rect_reference.top + (height_reference - height) / 2.f;
+				break;
+
+			case snap_type::right_bottom:
+				rect.left = rect_reference.right + clearance;
+				rect.top = rect_reference.bottom - height;
+				break;
+
+			case snap_type::left_top:
+				rect.left = rect_reference.left - (width + clearance);
+				rect.top = rect_reference.top;
+				break;
+
+			case snap_type::left:
+				rect.left = rect_reference.left - (width + clearance);
+				rect.top = rect_reference.top + (height_reference - height) / 2.f;
+				break;
+
+			case snap_type::left_bottom:
+				rect.left = rect_reference.left - (width + clearance);
+				rect.top = rect_reference.bottom - height;
+				break;
+
+			case snap_type::bottom_left:
+			default:
+				rect.top = rect_reference.bottom + clearance;
+				rect.left = rect_reference.left;
+				break;
+			}
+
+			rect.width(width);
+			rect.height(height);
 		}
 
 		bool rect::operator==(const rect& param) {

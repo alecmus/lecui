@@ -66,19 +66,83 @@ namespace liblec {
 			float top = 0.f;
 			float bottom = 0.f;
 
-			float width() { return right - left; }
-			float height() { return bottom - top; }
-			void width(float width) { right = left + width; }
-			void height(float height) { bottom = top + height; }
-			void size(float width, float height) { right = left + width; bottom = top + height; }
-			void position(float x, float y) { left = x; top = y; }
-			void set(float x, float y, float cx, float cy) {
-				left = x; top = y; right = left + cx; bottom = top + cy;
-			}
+			/// <summary>Get the rectangle's width.</summary>
+			/// <returns>The width.</returns>
+			[[nodiscard]] float width();
 
-			/// <summary>place this rectangle on rect_reference, positioning it
-			/// perc_h% horizontally and perc_v% vertically</summary>
+			/// <summary>Get the rectangle's height.</summary>
+			/// <returns>The height.</returns>
+			[[nodiscard]] float height();
+
+			/// <summary>Get the rectangle's size.</summary>
+			/// <returns>The size.</returns>
+			[[nodiscard]] size size();
+
+			/// <summary>Set the rectangle's width.</summary>
+			/// <param name="width">The width to set it to.</param>
+			/// <remarks>The top left corner is used as an anchor.</remarks>
+			void width(float width);
+
+			/// <summary>Set the rectangle's height.</summary>
+			/// <param name="height">The height to set it to.</param>
+			/// <remarks>The top left corner is used as an anchor.</remarks>
+			void height(float height);
+
+			/// <summary>Set the rectangle's size (both width and height).</summary>
+			/// <param name="size">The size to set it to.</param>
+			/// <remarks>The top left corner is used as an anchor.</remarks>
+			void size(lecui::size size);
+
+			/// <summary>Set the rectangle's size (both width and height).</summary>
+			/// <param name="width">The width to set.</param>
+			/// <param name="height">The height to set.</param>
+			/// <remarks>The top left corner is used as an anchor.</remarks>
+			void size(float width, float height);
+
+			/// <summary>Set the rectangle dimensions and position.</summary>
+			/// <param name="x">The x-coordinate.</param>
+			/// <param name="y">The y-coordinate.</param>
+			/// <param name="cx">The width.</param>
+			/// <param name="cy">The height.</param>
+			void set(float x, float y, float cx, float cy);
+
+			/// <summary>Move the rectangle using it's top left corner.</summary>
+			/// <param name="x">The new x-coordinate of the top-left corner.</param>
+			/// <param name="y">The new y-coordinate of the top-left corner.</param>
+			/// <remarks>The size of the rectangle remains unchanged. The rectangle is
+			/// effectively translated to the new coodinates.</remarks>
+			void move(float x, float y);
+
+			/// <summary>Place this rectangle within or over another.</summary>
+			/// <param name="rect_reference">The rectangle to place it on or over.</param>
+			/// <param name="perc_h">How far along vertically to place it, as a percentage. 50%
+			/// means this rectangle will be centered vertically.</param>
+			/// <param name="perc_v">How far along horizontally to place it, as a percentage. 50%
+			/// means this rectangle will be centered horizontally.</param>
+			/// <remarks>This is a handy method for faster coding and easier maintenance.</remarks>
 			void place(const rect& rect_reference, const float& perc_h, const float& perc_v);
+
+			enum class snap_type {
+				bottom_left,
+				bottom,
+				bottom_right,
+				top_left,
+				top,
+				top_right,
+				right_top,
+				right,
+				right_bottom,
+				left_top,
+				left,
+				left_bottom,
+			};
+
+			/// <summary>Snap this rectangle to another, for quick positioning.</summary>
+			/// <param name="rect_reference">The rectangle to snap to.</param>
+			/// <param name="type">The snap type.</param>
+			/// <param name="clearance">The clearance to use in the snapping operation.</param>
+			/// <remarks>This is a handy method for faster coding and easier maintenance.</remarks>
+			void snap_to(const rect& rect_reference, snap_type type, const float& clearance);
 
 			bool operator==(const rect&);
 			bool operator!=(const rect&);
@@ -95,8 +159,8 @@ namespace liblec {
 		};
 
 		struct file_type {
-			std::string extension = "bmp";
-			std::string description = "Bitmap Files";
+			std::string extension = "png";
+			std::string description = "PNG Image";
 		};
 
 		struct open_file_params {

@@ -139,6 +139,9 @@ namespace liblec {
 			if (!render || !visible_)
 				return rect_;
 
+			// make sure caret is well positioned in case text has since been changed
+			caret_position_ = smallest(caret_position_, static_cast<UINT32>(specs_.text.length()));
+
 			D2D1_ROUNDED_RECT rounded_rect{ rect_,
 				specs_.corner_radius_x, specs_.corner_radius_y };
 
