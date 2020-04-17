@@ -26,9 +26,11 @@ namespace liblec {
 			class lecui_api combo {
 			public:
 				/// <summary>Combo widget specifications.</summary>
+				/// <remarks>Recommended height with defaults is 25px</remarks>
 				class combo_specs : public specs {
 				public:
 					combo_specs() {
+						rect.size({ 200.f, 25.f });
 						color_fill = { 255, 255, 255, 0 };
 						color_hot = { 200, 200, 200, 50 };
 					}

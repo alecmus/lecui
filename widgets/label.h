@@ -52,7 +52,10 @@ namespace liblec {
 				/// <remarks>Recommended height with defaults is 20px.</remarks>
 				class label_specs : public specs {
 				public:
-					label_specs() { color_hot = { 0, 120, 170, 20 }; };
+					label_specs() {
+						rect.size({ 200.f, 20.f });
+						color_hot = { 0, 120, 170, 20 };
+					};
 					color color_hot_pressed = { 0, 120, 170, 40 };
 					bool multiline = false;
 					bool center_h = false;

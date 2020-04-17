@@ -52,6 +52,7 @@
     <ClInclude Include="widgets\image\image_impl.h" />
     <ClInclude Include="widgets\label.h" />
     <ClInclude Include="widgets\label\label_impl.h" />
+    <ClInclude Include="widgets\passwordbox.h" />
     <ClInclude Include="widgets\table.h" />
     <ClInclude Include="widgets\progress_bar.h" />
     <ClInclude Include="widgets\progress_bar\progress_bar_impl.h" />
@@ -250,6 +251,7 @@ xcopy "$(ProjectDir)widgets\progress_indicator.h" "$(SolutionDir)..\include\libl
 xcopy "$(ProjectDir)widgets\progress_bar.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\checkbox.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\textbox.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+xcopy "$(ProjectDir)widgets\passwordbox.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\tree.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -298,6 +300,7 @@ xcopy "$(ProjectDir)widgets\progress_indicator.h" "$(SolutionDir)..\include\libl
 xcopy "$(ProjectDir)widgets\progress_bar.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\checkbox.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\textbox.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+xcopy "$(ProjectDir)widgets\passwordbox.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\tree.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -350,6 +353,7 @@ xcopy "$(ProjectDir)widgets\progress_indicator.h" "$(SolutionDir)..\include\libl
 xcopy "$(ProjectDir)widgets\progress_bar.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\checkbox.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\textbox.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+xcopy "$(ProjectDir)widgets\passwordbox.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\tree.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -402,6 +406,7 @@ xcopy "$(ProjectDir)widgets\progress_indicator.h" "$(SolutionDir)..\include\libl
 xcopy "$(ProjectDir)widgets\progress_bar.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\checkbox.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\textbox.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+xcopy "$(ProjectDir)widgets\passwordbox.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\tree.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>

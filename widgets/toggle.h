@@ -30,7 +30,11 @@ namespace liblec {
 				/// width with defaults is 100px.</remarks>
 				class toggle_specs : public specs {
 				public:
-					toggle_specs() { text = "On"; color_fill = { 255, 255, 255, 200 }; }
+					toggle_specs() {
+						rect.size({ 200.f, 20.f });
+						text = "On";
+						color_fill = { 255, 255, 255, 200 };
+					}
 					std::string text_off = "Off";
 					color color_on = { 0, 120, 170, 255 };
 					color color_off = { 150, 150, 150, 255 };

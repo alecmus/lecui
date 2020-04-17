@@ -12,6 +12,7 @@
 */
 
 #include "../textbox.h"
+#include "../passwordbox.h"
 #include "../../form_impl.h"
 
 namespace liblec {
@@ -69,5 +70,13 @@ namespace liblec {
 
 			throw std::invalid_argument("Invalid path");
 		}
+
+		widgets::passwordbox::passwordbox(containers::page& page, const std::string& alias) :
+			textbox(page, alias) {
+			d_.specs_.mask = '•';
+			d_.specs_.prompt = "Enter password here";
+		}
+
+		widgets::passwordbox::~passwordbox() {}
 	}
 }

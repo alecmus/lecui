@@ -21,6 +21,12 @@
 
 namespace liblec {
 	namespace lecui {
+#if defined(LECUI_EXPORTS)
+		namespace widgets_impl {
+			class textbox;
+		}
+#endif
+
 		namespace widgets {
 			/// <summary>Textbox widget.</summary>
 			class lecui_api textbox {
@@ -30,6 +36,7 @@ namespace liblec {
 				class textbox_specs : public specs {
 				public:
 					textbox_specs() {
+						rect.size({ 200.f, 25.f });
 						color_text = { 0, 0, 0, 255 };
 						color_fill = { 255, 255, 255, 255 };
 						color_selected = { 0, 120, 170, 100 };
@@ -45,13 +52,22 @@ namespace liblec {
 
 					bool operator==(const textbox_specs&);
 					bool operator!=(const textbox_specs&);
+
+				private:
+					/// <summary>The character to use for masking the text.</summary>
+					char mask = '\0';
+
+#if defined(LECUI_EXPORTS)
+					friend class passwordbox;
+					friend class lecui::widgets_impl::textbox;
+#endif
 				};
 
 				/// <summary>Textbox constructor.</summary>
 				/// <param name="page">The container to place it in.</param>
 				/// <param name="alias">The in-page unique alias, e.g. "username".</param>
 				textbox(containers::page& page, const std::string& alias);
-				~textbox();
+				virtual ~textbox();
 
 				/// <summary>Get the textbox specifications.</summary>
 				/// <returns>A reference to the textbox specifications.</returns>
@@ -73,9 +89,12 @@ namespace liblec {
 				[[nodiscard]]
 				static textbox_specs& specs(form& fm, const std::string& path);
 
-			private:
+			protected:
 				class impl;
 				impl& d_;
+
+				class passwordbox;
+				friend class passwordbox;
 
 				// Default constructor and copying an object of this class are not allowed
 				textbox();

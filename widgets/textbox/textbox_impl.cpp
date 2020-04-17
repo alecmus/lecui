@@ -158,6 +158,12 @@ namespace liblec {
 				specs_.text : selected_ ?
 				std::string() : specs_.prompt;
 
+			if (!specs_.text.empty() && specs_.mask != '\0') {
+				// mask the text
+				for (auto& c : text_)
+					c = specs_.mask;
+			}
+
 			auto rect_text_ = rect_;
 			rect_text_.left += margin_x_;
 			rect_text_.right -= margin_x_;

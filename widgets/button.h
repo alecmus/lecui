@@ -30,6 +30,7 @@ namespace liblec {
 				class button_specs : public specs {
 				public:
 					button_specs() {
+						rect.size({ 80.f, 25.f });
 						color_text = { 0, 0, 0, 255 };
 						color_fill = { 229, 229, 229, 255 };
 						color_hot = { 240, 240, 240, 255 };

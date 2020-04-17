@@ -29,6 +29,9 @@ namespace liblec {
 				/// <remarks>Recommended height with defaults is 12px</remarks>
 				class progress_bar_specs : public specs {
 				public:
+					progress_bar_specs() {
+						rect.size({ 200.f, 12.f });
+					}
 					color color_border = { 200, 200, 200, 255 };
 					float border = 1.f;
 					float percentage = 0.f;

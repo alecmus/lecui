@@ -52,6 +52,7 @@ namespace liblec {
 			class progress_bar;
 			class checkbox;
 			class textbox;
+			class passwordbox;
 			class tree;
 		}
 #endif

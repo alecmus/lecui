@@ -233,6 +233,9 @@
     <ClInclude Include="timer.h">
       <Filter>lecui</Filter>
     </ClInclude>
+    <ClInclude Include="widgets\passwordbox.h">
+      <Filter>lecui\widgets</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="error\win_error.cpp">

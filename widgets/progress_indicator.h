@@ -30,6 +30,7 @@ namespace liblec {
 				class progress_indicator_specs : public specs {
 				public:
 					progress_indicator_specs() {
+						rect.size({ 50.f, 50.f });
 						color_text = { 0, 120, 170, 255 };
 					}
 					color color_empty = { 200, 200, 200, 255 };
