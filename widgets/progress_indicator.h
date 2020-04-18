@@ -31,9 +31,8 @@ namespace liblec {
 				public:
 					progress_indicator_specs() {
 						rect.size({ 50.f, 50.f });
-						color_text = { 0, 120, 170, 255 };
 					}
-					color color_empty = { 200, 200, 200, 255 };
+					color color_empty;
 					float line_thickness_empty = .5f;
 					float line_thickness_fill = 1.5f;
 					float percentage = 0.f;

@@ -34,12 +34,11 @@ namespace liblec {
 			impl(containers::page& page, const std::string& alias) :
 				page_(page),
 				specs_(page_.d_page_.add_button(alias)) {
-				if (page_.d_page_.fm_.d_.dark_theme_) {
-					specs_.color_text = { 155, 165, 180, 255 };
-					specs_.color_fill = { 60, 65, 75, 255 };
-					specs_.color_hot = { 80, 85, 95, 255 };
-					specs_.color_selected = { 60, 190, 175, 150 };
-				}
+				specs_.color_text = defaults::color(page_.d_page_.fm_.d_.theme_, item::label);
+				specs_.color_fill = defaults::color(page_.d_page_.fm_.d_.theme_, item::button);
+				specs_.color_border = defaults::color(page_.d_page_.fm_.d_.theme_, item::button_border);
+				specs_.color_hot = defaults::color(page_.d_page_.fm_.d_.theme_, item::button_hover);
+				specs_.color_selected = defaults::color(page_.d_page_.fm_.d_.theme_, item::button_selected);
 			}
 			containers::page& page_;
 			button_specs& specs_;

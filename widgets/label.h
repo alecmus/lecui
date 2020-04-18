@@ -54,9 +54,8 @@ namespace liblec {
 				public:
 					label_specs() {
 						rect.size({ 200.f, 20.f });
-						color_hot = { 0, 120, 170, 20 };
 					};
-					color color_hot_pressed = { 0, 120, 170, 40 };
+					color color_hot_pressed;
 					bool multiline = false;
 					bool center_h = false;
 					bool center_v = false;

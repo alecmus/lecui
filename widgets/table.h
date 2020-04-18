@@ -30,19 +30,16 @@ namespace liblec {
 				/// <summary>Table widget specifications.</summary>
 				class table_specs : public specs {
 				public:
-					table_specs() {
-						color_fill = { 255, 255, 255, 255 };
-						color_hot = { 200, 200, 200, 50 };
-					}
-					color color_border = { 150, 150, 150, 255 };
+					table_specs() {}
+					color color_border;
 					color color_dropdown_hot = { 255, 255, 255, 255 };
 					color color_menu = { 255, 255, 255, 255 };
-					color color_grid = { 215, 215, 215, 255 };
-					color color_text_header = { 0, 0, 0, 255 };
-					color color_fill_header = { 222, 222, 222, 255 };
-					color color_fill_alternate = { 0, 120, 170, 15 };
-					color color_row_hot = { 225, 242, 255, 255 };
-					color color_row_selected = { 40, 160, 200, 255 };
+					color color_grid;
+					color color_text_header;
+					color color_fill_header;
+					color color_fill_alternate;
+					color color_row_hot;
+					color color_row_selected;
 					float border = .5f;
 					float corner_radius_x = 2.f;
 					float corner_radius_y = 2.f;

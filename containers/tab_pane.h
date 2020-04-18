@@ -31,12 +31,12 @@ namespace liblec {
 				/// <summary>Tab pane specifications.</summary>
 				class tab_pane_specs : public widgets::specs {
 				public:
-					tab_pane_specs() { color_fill = { 100, 100, 100, 15 }; }
+					tab_pane_specs() {}
 
 					bool is_filled = true;
-					color color_tabs = { 0, 120, 170, 15 };
-					color color_border = { 0, 120, 170, 50 };
-					color color_selected = { 0, 120, 170, 255 };
+					color color_tabs;
+					color color_border;
+					color color_selected;
 					float border = .5f;
 					float corner_radius_x = 5.f;
 					float corner_radius_y = 5.f;

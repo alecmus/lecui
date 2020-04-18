@@ -21,6 +21,105 @@
 
 namespace liblec {
 	namespace lecui {
+		/// <summary>Themes that are implemented within the library.</summary>
+		enum class themes {
+			/// <summary>The default theme. Best in bright environments.</summary>
+			light,
+
+			/// <summary>Easier on the eyes in darker environments.</summary>
+			dark,
+		};
+
+		/// <summary>The item to color.</summary>
+		enum class item {
+			form,
+			titlebar,
+			accent,
+			accent_hover,
+			disabled,
+
+			scrollbar,
+			scrollbar_border,
+			scrollbar_hover,
+			scrollbar_pressed,
+
+			label,
+			label_selected,
+			label_hover,
+			label_pressed,
+			label_disabled,
+
+			button,
+			button_border,
+			button_hover,
+			button_selected,
+
+			checkbox,
+			checkbox_border,
+			checkbox_tick,
+			checkbox_hover,
+			checkbox_selected,
+
+			progress_bar,
+			progress_bar_border,
+
+			progress_indicator,
+			progress_indicator_text,
+			progress_indicator_unfilled,
+
+			textbox,
+			textbox_border,
+			textbox_disabled,
+			textbox_prompt,
+			textbox_selected,
+			textbox_caret,
+
+			table,
+			table_border,
+			table_alternate,
+			table_row_hover,
+			table_row_selected,
+			table_text_header,
+			table_header,
+			table_grid,
+
+			toggle,
+			toggle_on,
+			toggle_off,
+			toggle_selected,
+
+			tree,
+			tree_border,
+			tree_hover,
+			tree_selected,
+
+			tab_pane,
+			tab_pane_border,
+			tab_bar,
+			tab_selected,
+
+			pane,
+			pane_border,
+
+			image,
+			image_border,
+			image_hover,
+			image_selected,
+
+			rectangle,
+			rectangle_border,
+			rectangle_hover,
+			rectangle_selected,
+
+			group,
+			group_border,
+		};
+
+		class lecui_api defaults {
+		public:
+			static lecui::color color(themes theme, item wc);
+		};
+
 		/// <summary>Manipulate the form's appearance.</summary>
 		class lecui_api appearance {
 		public:
@@ -32,11 +131,11 @@ namespace liblec {
 			/// <remarks>The shadow is enabled by default if this method is never called.</remarks>
 			void shadow(const bool& enable);
 
-			/// <summary>Whether to enable the dark theme.</summary>
-			/// <param name="enable">Set to true to enable the dark theme.</param>
-			/// <remarks>This option has to be set early in on_layout(), or in the
+			/// <summary>Set a preset theme.</summary>
+			/// <param name="theme">The theme to set.</param>
+			/// /// <remarks>This option has to be set early in on_layout(), or in the
 			/// constructor. Changing this later is not yet supported.</remarks>
-			void dark_theme(const bool& enable);
+			void theme(themes theme);
 
 			/// <summary>Set the theme color.</summary>
 			/// <param name="color">The color of controls and the form border.</param>

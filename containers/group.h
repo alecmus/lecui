@@ -37,10 +37,9 @@ namespace liblec {
 						// rect is ignored. The group dynamically surrounds the widgets associated
 						// with it as they change location and size.
 						rect = { 0.f, 0.f, 0.f, 0.f };
-						color_fill.alpha = 25;
 					}
 
-					color color_border = { 0, 120, 170, 100 };
+					color color_border;
 					float border = .5f;
 					float margin = 5.f;
 					float corner_radius_x = 5.f;

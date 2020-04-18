@@ -14,7 +14,7 @@
 #pragma once
 
 #include "form.h"
-
+#include "appearance.h"
 #include "containers/page/page_impl.h"
 
 #include "widgets/widget_impl.h"
@@ -83,8 +83,8 @@ namespace liblec {
 			// icons for use by the Windows OS
 			int idi_icon_, idi_icon_small_;
 
-			// default theme
-			bool dark_theme_;
+			// the theme
+			themes theme_;
 
 			// colors
 			color clr_background_, clr_titlebar_background_, clr_theme_, clr_theme_hot_,

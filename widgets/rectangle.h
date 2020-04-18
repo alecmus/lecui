@@ -28,15 +28,11 @@ namespace liblec {
 				/// <summary>Rectangle widget specifications.</summary>
 				class rectangle_specs : public specs {
 				public:
-					rectangle_specs() {
-						color_fill = { 222, 222, 222, 255 };
-						color_hot = { 0, 120, 170, 100 };
-						color_selected = { 0, 120, 170, 100 };
-					}
+					rectangle_specs() {}
 					float border = .5f;
 					float corner_radius_x = .0f;
 					float corner_radius_y = .0f;
-					color color_border = { 150, 150, 150, 255 };
+					color color_border;
 
 					bool operator==(const rectangle_specs&);
 					bool operator!=(const rectangle_specs&);

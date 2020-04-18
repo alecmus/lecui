@@ -33,7 +33,13 @@ namespace liblec {
 		public:
 			impl(containers::page& page, const std::string& alias) :
 				page_(page),
-				specs_(page_.d_page_.add_rectangle(alias)) {}
+				specs_(page_.d_page_.add_rectangle(alias)) {
+				specs_.color_fill = defaults::color(page_.d_page_.fm_.d_.theme_, item::rectangle);
+				specs_.color_border = defaults::color(page_.d_page_.fm_.d_.theme_, item::rectangle_border);
+				specs_.color_hot = defaults::color(page_.d_page_.fm_.d_.theme_, item::rectangle_hover);
+				specs_.color_selected = defaults::color(page_.d_page_.fm_.d_.theme_, item::rectangle_selected);
+
+			}
 			containers::page& page_;
 			rectangle_specs& specs_;
 		};

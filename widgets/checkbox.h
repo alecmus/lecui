@@ -32,15 +32,12 @@ namespace liblec {
 					checkbox_specs() {
 						cursor = cursor_type::hand;
 						rect.size({ 20.f, 20.f });
-						color_fill = { 229, 229, 229, 255 };
-						color_hot = { 240, 240, 240, 255 };
-						color_selected = { 0, 120, 170, 100 };
 					}
 					std::string text_unchecked;
 					std::string text_indeterminate;
 					float border = .5f;
-					color color_check = { 0, 120, 170, 255 };
-					color color_border = { 150, 150, 150, 255 };
+					color color_check;
+					color color_border;
 
 					enum class checkbox_status {
 						checked,

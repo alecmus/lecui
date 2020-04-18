@@ -40,11 +40,11 @@ namespace liblec {
 			impl(containers::page& page, const std::string& alias) :
 				page_(page),
 				specs_(page_.d_page_.add_tree(alias)) {
-				if (page_.d_page_.fm_.d_.dark_theme_) {
-					specs_.color_text = { 155, 165, 180, 255 };
-					specs_.color_fill = { 40, 45, 55, 255 };
-					specs_.color_hot = { 60, 65, 70, 255 };
-				}
+				specs_.color_text = defaults::color(page_.d_page_.fm_.d_.theme_, item::label);
+				specs_.color_fill = defaults::color(page_.d_page_.fm_.d_.theme_, item::tree);
+				specs_.color_border = defaults::color(page_.d_page_.fm_.d_.theme_, item::tree_border);
+				specs_.color_hot = defaults::color(page_.d_page_.fm_.d_.theme_, item::tree_hover);
+				specs_.color_selected = defaults::color(page_.d_page_.fm_.d_.theme_, item::tree_selected);
 			}
 			containers::page& page_;
 			tree_specs& specs_;

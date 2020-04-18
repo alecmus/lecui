@@ -34,9 +34,8 @@ namespace liblec {
 			impl(containers::page& page, const std::string& alias) :
 				page_(page),
 				specs_(page_.d_page_.add_progress_bar(alias)) {
-				if (page_.d_page_.fm_.d_.dark_theme_) {
-					specs_.color_border = { 85, 95, 100, 255 };
-				}
+				specs_.color_fill = defaults::color(page_.d_page_.fm_.d_.theme_, item::progress_bar);
+				specs_.color_border = defaults::color(page_.d_page_.fm_.d_.theme_, item::progress_bar_border);
 			}
 			containers::page& page_;
 			progress_bar_specs& specs_;

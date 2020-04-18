@@ -22,9 +22,11 @@ namespace liblec {
 				containers::tab_pane::tab_pane_specs& specs,
 				const std::string& alias) :
 				page_(page), specs_(specs), alias_(alias) {
-				if (page_.d_page_.fm_.d_.dark_theme_) {
-					specs_.color_text = { 155, 165, 180, 255 };
-				}
+				specs_.color_text = defaults::color(page_.d_page_.fm_.d_.theme_, item::label);
+				specs_.color_fill = defaults::color(page_.d_page_.fm_.d_.theme_, item::tab_pane);
+				specs_.color_border = defaults::color(page_.d_page_.fm_.d_.theme_, item::tab_pane_border);
+				specs_.color_tabs = defaults::color(page_.d_page_.fm_.d_.theme_, item::tab_bar);
+				specs_.color_selected = defaults::color(page_.d_page_.fm_.d_.theme_, item::tab_selected);
 			}
 			containers::page& page_;
 			containers::tab_pane::tab_pane_specs& specs_;
@@ -118,12 +120,10 @@ namespace liblec {
 						(caption_bar_height_ + page_tolerance_);
 					specs_.rect.top = specs_.rect.bottom - thickness;
 
-					if (tp.d_.page_.d_page_.fm_.d_.dark_theme_) {
-						specs_.color_fill = { 60, 65, 75, 255 };
-						specs_.color_scrollbar_border = { 30, 35, 45, 255 };
-						specs_.color_hot = { 80, 85, 95, 255 };
-						specs_.color_hot_pressed = { 100, 105, 115, 255 };
-					}
+					specs_.color_fill = defaults::color(tp.d_.page_.d_page_.fm_.d_.theme_, item::scrollbar);
+					specs_.color_scrollbar_border = defaults::color(tp.d_.page_.d_page_.fm_.d_.theme_, item::scrollbar_border);
+					specs_.color_hot = defaults::color(tp.d_.page_.d_page_.fm_.d_.theme_, item::scrollbar_hover);
+					specs_.color_hot_pressed = defaults::color(tp.d_.page_.d_page_.fm_.d_.theme_, item::scrollbar_pressed);
 				}
 
 				// initialize the page's vertical scroll bar
@@ -139,12 +139,10 @@ namespace liblec {
 						(rect_client_area.right - rect_client_area.left) - margin;
 					specs_.rect.left = specs_.rect.right - thickness;
 
-					if (tp.d_.page_.d_page_.fm_.d_.dark_theme_) {
-						specs_.color_fill = { 60, 65, 75, 255 };
-						specs_.color_scrollbar_border = { 30, 35, 45, 255 };
-						specs_.color_hot = { 80, 85, 95, 255 };
-						specs_.color_hot_pressed = { 100, 105, 115, 255 };
-					}
+					specs_.color_fill = defaults::color(tp.d_.page_.d_page_.fm_.d_.theme_, item::scrollbar);
+					specs_.color_scrollbar_border = defaults::color(tp.d_.page_.d_page_.fm_.d_.theme_, item::scrollbar_border);
+					specs_.color_hot = defaults::color(tp.d_.page_.d_page_.fm_.d_.theme_, item::scrollbar_hover);
+					specs_.color_hot_pressed = defaults::color(tp.d_.page_.d_page_.fm_.d_.theme_, item::scrollbar_pressed);
 				}
 
 				// add an invisible rect to bound the page. This is essential for scroll bars

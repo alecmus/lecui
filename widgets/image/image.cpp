@@ -35,7 +35,12 @@ namespace liblec {
 		public:
 			impl(containers::page& page, const std::string& alias) :
 				page_(page),
-				specs_(page_.d_page_.add_image(alias)) {}
+				specs_(page_.d_page_.add_image(alias)) {
+				specs_.color_fill = defaults::color(page_.d_page_.fm_.d_.theme_, item::image);
+				specs_.color_border = defaults::color(page_.d_page_.fm_.d_.theme_, item::image_border);
+				specs_.color_hot = defaults::color(page_.d_page_.fm_.d_.theme_, item::image_hover);
+				specs_.color_selected = defaults::color(page_.d_page_.fm_.d_.theme_, item::image_selected);
+			}
 			containers::page& page_;
 			image_specs& specs_;
 		};

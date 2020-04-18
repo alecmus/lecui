@@ -31,10 +31,10 @@ namespace liblec {
 				/// <summary>Pane container specifications.</summary>
 				class pane_specs : public widgets::specs {
 				public:
-					pane_specs() { color_fill = { 100, 100, 100, 15 }; }
+					pane_specs() {}
 
 					bool is_filled = true;
-					color color_border = { 0, 120, 170, 50 };
+					color color_border;
 					float border = .5f;
 					float corner_radius_x = 5.f;
 					float corner_radius_y = 5.f;

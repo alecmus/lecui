@@ -31,15 +31,11 @@ namespace liblec {
 				public:
 					button_specs() {
 						rect.size({ 80.f, 25.f });
-						color_text = { 0, 0, 0, 255 };
-						color_fill = { 229, 229, 229, 255 };
-						color_hot = { 240, 240, 240, 255 };
-						color_selected = { 0, 120, 170, 100 };
 					}
 					float border = .5f;
 					float corner_radius_x = 5.f;
 					float corner_radius_y = 5.f;
-					color color_border = { 150, 150, 150, 255 };
+					color color_border;
 
 					bool operator==(const button_specs&);
 					bool operator!=(const button_specs&);

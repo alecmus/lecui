@@ -31,14 +31,11 @@ namespace liblec {
 					image_specs() {
 						cursor = cursor_type::hand;
 						rect.size({ 200.f, 200.f });
-						color_fill = { 222, 222, 222, 0 };
-						color_hot = { 0, 120, 170, 100 };
-						color_selected = { 0, 120, 170, 100 };
 					}
 					float border = .5f;
 					float corner_radius_x = .0f;
 					float corner_radius_y = .0f;
-					color color_border = { 150, 150, 150, 0 };
+					color color_border;
 					std::string file;
 					int png_resource = 0;
 

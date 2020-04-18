@@ -16,6 +16,190 @@
 
 namespace liblec {
 	namespace lecui {
+		lecui::color defaults::color(themes theme, item wc) {
+			switch (theme) {
+				/// Light theme
+			case themes::light: {
+				switch (wc) {
+				case item::form: return { 244, 244, 244 };
+				case item::titlebar: return defaults::color(theme, item::form);
+				case item::accent: return { 0, 120, 170, 255 };
+				case item::accent_hover: return { 255, 180, 0, 255 };
+				case item::disabled: return { 225, 225, 225, 255 };
+
+				case item::scrollbar: return { 241, 241, 241, 255 };
+				case item::scrollbar_border: return { 180, 180, 180, 255 };
+				case item::scrollbar_hover: return { 231, 231, 231, 255 };
+				case item::scrollbar_pressed: return { 221, 221, 221, 255 };
+
+				case item::label: return { 0, 0, 0, 255 };
+				case item::label_selected: return { 0, 120, 170, 30 };
+				case item::label_hover: return { 0, 120, 170, 20 };
+				case item::label_pressed: return { 0, 120, 170, 40 };
+				case item::label_disabled: return { 180, 180, 180, 255 };
+
+				case item::button: return { 229, 229, 229, 255 };
+				case item::button_border: return { 150, 150, 150, 255 };
+				case item::button_hover: return { 240, 240, 240, 255 };
+				case item::button_selected: return { 0, 120, 170, 100 };
+
+				case item::checkbox: return { 229, 229, 229, 255 };
+				case item::checkbox_border: return { 150, 150, 150, 255 };
+				case item::checkbox_tick: return { 0, 120, 170, 255 };
+				case item::checkbox_hover: return { 240, 240, 240, 255 };
+				case item::checkbox_selected: return { 0, 120, 170, 100 };
+
+				case item::progress_bar: return { 0, 120, 170, 255 };
+				case item::progress_bar_border: return { 200, 200, 200, 255 };
+
+				case item::progress_indicator: return { 0, 120, 170, 255 };
+				case item::progress_indicator_text: return { 0, 120, 170, 255 };
+				case item::progress_indicator_unfilled: return { 200, 200, 200, 255 };
+
+				case item::textbox: return { 255, 255, 255, 255 };
+				case item::textbox_border: return { 150, 150, 150, 255 };
+				case item::textbox_disabled: return { 248, 248, 248, 255 };
+				case item::textbox_prompt: return { 180, 180, 180, 255 };
+				case item::textbox_selected: return { 0, 120, 170, 100 };
+				case item::textbox_caret: return { 50, 50, 50, 255 };
+
+				case item::table: return { 255, 255, 255, 255 };
+				case item::table_border: return { 150, 150, 150, 255 };
+				case item::table_alternate: return { 0, 120, 170, 15 };
+				case item::table_row_hover: return { 225, 242, 255, 255 };
+				case item::table_row_selected: return { 40, 160, 200, 255 };
+				case item::table_text_header: return { 0, 0, 0, 255 };
+				case item::table_header: return { 222, 222, 222, 255 };
+				case item::table_grid: return { 215, 215, 215, 255 };
+
+				case item::toggle: return { 255, 255, 255, 200 };
+				case item::toggle_on: return { 0, 120, 170, 255 };
+				case item::toggle_off: return { 150, 150, 150, 255 };
+				case item::toggle_selected: return { 0, 120, 170, 30 };
+
+				case item::tree: return { 255, 255, 255, 255 };
+				case item::tree_border: return { 150, 150, 150, 255 };
+				case item::tree_hover: return { 225, 242, 255, 255 };
+				case item::tree_selected: return { 0, 120, 170, 100 };
+
+				case item::tab_pane: return { 100, 100, 100, 15 };
+				case item::tab_pane_border: return { 0, 120, 170, 50 };
+				case item::tab_bar: return { 0, 120, 170, 15 };
+				case item::tab_selected: return { 0, 120, 170, 255 };
+
+				case item::pane: return { 100, 100, 100, 15 };
+				case item::pane_border: return { 0, 120, 170, 50 };
+
+				case item::image: return { 222, 222, 222, 0 };
+				case item::image_border: return { 150, 150, 150, 0 };
+				case item::image_hover: return { 0, 120, 170, 100 };
+				case item::image_selected: return { 0, 120, 170, 150 };
+
+				case item::rectangle: return { 222, 222, 222, 255 };
+				case item::rectangle_border: return { 150, 150, 150, 255 };
+				case item::rectangle_hover: return { 0, 120, 170, 100 };
+				case item::rectangle_selected: return { 0, 120, 170, 100 };
+
+				case item::group: return { 0, 120, 170, 25 };
+				case item::group_border: return { 0, 120, 170, 100 };
+				default: break;
+				}
+			} break;
+
+				/// Dark theme
+			case themes::dark: {
+				switch (wc) {
+				case item::form: return { 40, 45, 55 };
+				case item::titlebar: return defaults::color(theme, item::form);
+				case item::accent: return { 60, 190, 175, 255 };
+				case item::accent_hover: return { 255, 255, 255, 255 };
+				case item::disabled: return { 30, 30, 30, 255 };
+
+				case item::scrollbar: return { 60, 65, 75, 255 };
+				case item::scrollbar_border: return { 30, 35, 45, 255 };
+				case item::scrollbar_hover: return { 80, 85, 95, 255 };
+				case item::scrollbar_pressed: return { 100, 105, 115, 255 };
+
+				case item::label: return { 155, 165, 180, 255 };
+				case item::label_selected: return { 60, 190, 175, 40 };
+				case item::label_hover: return { 60, 190, 175, 20 };
+				case item::label_pressed: return { 60, 190, 175, 60 };
+				case item::label_disabled: return { 85, 95, 100, 255 };
+
+				case item::button: return { 60, 65, 75, 255 };
+				case item::button_border: return { 150, 150, 150, 255 };
+				case item::button_hover: return { 80, 85, 95, 255 };
+				case item::button_selected: return { 60, 190, 175, 150 };
+
+				case item::checkbox: return { 60, 65, 75, 255 };
+				case item::checkbox_border: return { 150, 150, 150, 255 };
+				case item::checkbox_tick: return { 60, 190, 175, 255 };
+				case item::checkbox_hover: return { 80, 85, 95, 255 };
+				case item::checkbox_selected: return { 60, 190, 175, 150 };
+
+				case item::progress_bar: return { 60, 190, 175, 255 };
+				case item::progress_bar_border: return { 85, 95, 100, 255 };
+
+				case item::progress_indicator: return { 60, 190, 175, 255 };
+				case item::progress_indicator_text: return { 60, 190, 175, 255 };
+				case item::progress_indicator_unfilled: return { 85, 95, 100, 255 };
+
+				case item::textbox: return { 40, 45, 50, 255 };
+				case item::textbox_border: return { 150, 150, 150, 255 };
+				case item::textbox_disabled: return { 30, 35, 40, 255 };
+				case item::textbox_prompt: return { 70, 75, 80, 255 };
+				case item::textbox_selected: return { 60, 190, 175, 150 };
+				case item::textbox_caret: return { 60, 190, 175, 255 };
+
+				case item::table: return { 40, 45, 55, 255 };
+				case item::table_border: return { 150, 150, 150, 255 };
+				case item::table_alternate: return { 60, 190, 175, 15 };
+				case item::table_row_hover: return { 40, 160, 200, 100 };
+				case item::table_row_selected: return { 40, 160, 200, 255 };
+				case item::table_text_header: return { 155, 165, 180, 255 };
+				case item::table_header: return { 40, 45, 55, 255 };
+				case item::table_grid: return { 55, 60, 65, 255 };
+
+				case item::toggle: return { 255, 255, 255, 200 };
+				case item::toggle_on: return { 0, 120, 170, 255 };
+				case item::toggle_off: return { 150, 150, 150, 255 };
+				case item::toggle_selected: return { 60, 190, 175, 60 };
+
+				case item::tree: return { 40, 45, 55, 255 };
+				case item::tree_border: return { 150, 150, 150, 255 };
+				case item::tree_hover: return { 60, 65, 70, 255 };
+				case item::tree_selected: return { 0, 120, 170, 100 };
+
+				case item::tab_pane: return { 100, 100, 100, 15 };
+				case item::tab_pane_border: return { 0, 120, 170, 50 };
+				case item::tab_bar: return { 0, 120, 170, 15 };
+				case item::tab_selected: return { 60, 190, 175, 255 };
+
+				case item::pane: return { 100, 100, 100, 15 };
+				case item::pane_border: return { 0, 120, 170, 50 };
+
+				case item::image: return { 222, 222, 222, 0 };
+				case item::image_border: return { 150, 150, 150, 0 };
+				case item::image_hover: return { 60, 190, 175, 100 };
+				case item::image_selected: return { 60, 190, 175, 150 };
+
+				case item::rectangle: return { 222, 222, 222, 255 };
+				case item::rectangle_border: return { 150, 150, 150, 255 };
+				case item::rectangle_hover: return { 60, 190, 175, 100 };
+				case item::rectangle_selected: return { 60, 190, 175, 100 };
+
+				case item::group: return { 60, 190, 175, 25 };
+				case item::group_border: return { 60, 190, 175, 100 };
+				default: break;
+				}
+			} break;
+
+			default: break;
+			}
+
+			return { 0, 0, 0, 255 };
+		}
+
 		class appearance::impl {
 		public:
 			impl(form& fm) :
@@ -35,17 +219,18 @@ namespace liblec {
 				d_.fm_.d_.borderless_shadow_ = enable;
 		}
 
-		void appearance::dark_theme(const bool& enable) {
-			d_.fm_.d_.dark_theme_ = enable;
+		void appearance::theme(themes theme) {
+			d_.fm_.d_.theme_ = theme;
 
-			if (enable) {
-				// change the background color
-				background(color{ 40, 45, 55 }, color{ 40, 45, 55 });
+			// change the background color
+			background(defaults::color(theme, item::form),
+				defaults::color(theme, item::titlebar));
 
-				// change the theme colors
-				theme(color{ 60, 190, 175 }, color{ 255, 255, 255, 255 },
-					color{ 30, 30, 30, 255 }, color{ 155, 165, 180, 255 });
-			}
+			// change the theme colors
+			appearance::theme(defaults::color(theme, item::accent),
+				defaults::color(theme, item::accent_hover),
+				defaults::color(theme, item::disabled),
+				defaults::color(theme, item::label));
 		}
 
 		void appearance::theme(const lecui::color& color,

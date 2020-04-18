@@ -42,15 +42,15 @@ namespace liblec {
 			impl(containers::page& page, const std::string& alias) :
 				page_(page),
 				specs_(page_.d_page_.add_table(alias)) {
-				if (page_.d_page_.fm_.d_.dark_theme_) {
-					specs_.color_text = { 155, 165, 180, 255 };
-					specs_.color_text_header = { 155, 165, 180, 255 };
-					specs_.color_fill_header = { 40, 45, 55, 255 };
-					specs_.color_fill = { 40, 45, 55, 255 };
-					specs_.color_grid = { 55, 60, 65, 255 };
-					specs_.color_fill_alternate = { 60, 190, 175, 15 };
-					specs_.color_row_hot = { 40, 160, 200, 100 };
-				}
+				specs_.color_text = defaults::color(page_.d_page_.fm_.d_.theme_, item::label);
+				specs_.color_fill = defaults::color(page_.d_page_.fm_.d_.theme_, item::table);
+				specs_.color_border = defaults::color(page_.d_page_.fm_.d_.theme_, item::table_border);
+				specs_.color_fill_alternate = defaults::color(page_.d_page_.fm_.d_.theme_, item::table_alternate);
+				specs_.color_row_hot = defaults::color(page_.d_page_.fm_.d_.theme_, item::table_row_hover);
+				specs_.color_row_selected = defaults::color(page_.d_page_.fm_.d_.theme_, item::table_row_selected);
+				specs_.color_text_header = defaults::color(page_.d_page_.fm_.d_.theme_, item::table_text_header);
+				specs_.color_fill_header = defaults::color(page_.d_page_.fm_.d_.theme_, item::table_header);
+				specs_.color_grid = defaults::color(page_.d_page_.fm_.d_.theme_, item::table_grid);
 			}
 			containers::page& page_;
 			table_specs& specs_;

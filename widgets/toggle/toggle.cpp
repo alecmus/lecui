@@ -35,10 +35,11 @@ namespace liblec {
 			impl(containers::page& page, const std::string& alias) :
 				page_(page),
 				specs_(page_.d_page_.add_toggle(alias)) {
-				if (page_.d_page_.fm_.d_.dark_theme_) {
-					specs_.color_text = { 155, 165, 180, 255 };
-					specs_.color_selected = { 60, 190, 175, 60 };
-				}
+				specs_.color_text = defaults::color(page_.d_page_.fm_.d_.theme_, item::label);
+				specs_.color_fill = defaults::color(page_.d_page_.fm_.d_.theme_, item::toggle);
+				specs_.color_on = defaults::color(page_.d_page_.fm_.d_.theme_, item::toggle_on);
+				specs_.color_off = defaults::color(page_.d_page_.fm_.d_.theme_, item::toggle_off);
+				specs_.color_selected = defaults::color(page_.d_page_.fm_.d_.theme_, item::toggle_selected);
 			}
 			containers::page& page_;
 			toggle_specs& specs_;

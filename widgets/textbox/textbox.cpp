@@ -37,13 +37,13 @@ namespace liblec {
 			impl(containers::page& page, const std::string& alias) :
 				page_(page),
 				specs_(page_.d_page_.add_textbox(alias)) {
-				if (page_.d_page_.fm_.d_.dark_theme_) {
-					specs_.color_text = { 155, 165, 180, 255 };
-					specs_.color_prompt = { 70, 75, 80, 255 };
-					specs_.color_fill = { 40, 45, 50, 255 };
-					specs_.color_selected = { 60, 190, 175, 150 };
-					specs_.color_caret = { 60, 190, 175, 255 };
-				}
+				specs_.color_text = defaults::color(page_.d_page_.fm_.d_.theme_, item::label);
+				specs_.color_prompt = defaults::color(page_.d_page_.fm_.d_.theme_, item::textbox_prompt);
+				specs_.color_fill = defaults::color(page_.d_page_.fm_.d_.theme_, item::textbox);
+				specs_.color_border = defaults::color(page_.d_page_.fm_.d_.theme_, item::textbox_border);
+				specs_.color_disabled = defaults::color(page_.d_page_.fm_.d_.theme_, item::textbox_disabled);
+				specs_.color_selected = defaults::color(page_.d_page_.fm_.d_.theme_, item::textbox_selected);
+				specs_.color_caret = defaults::color(page_.d_page_.fm_.d_.theme_, item::textbox_caret);
 			}
 			containers::page& page_;
 			textbox_specs& specs_;

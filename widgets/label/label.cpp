@@ -38,12 +38,11 @@ namespace liblec {
 			impl(containers::page& page, const std::string& alias) :
 				page_(page),
 				specs_(page_.d_page_.add_label(alias)) {
-				if (page_.d_page_.fm_.d_.dark_theme_) {
-					specs_.color_text = { 155, 165, 180, 255 };
-					specs_.color_selected = { 60, 190, 175, 40 };
-					specs_.color_hot_pressed = { 60, 190, 175, 60 };
-					specs_.color_disabled = { 85, 95, 100, 255 };
-				}
+				specs_.color_text = defaults::color(page_.d_page_.fm_.d_.theme_, item::label);
+				specs_.color_selected = defaults::color(page_.d_page_.fm_.d_.theme_, item::label_selected);
+				specs_.color_hot = defaults::color(page_.d_page_.fm_.d_.theme_, item::label_hover);
+				specs_.color_hot_pressed = defaults::color(page_.d_page_.fm_.d_.theme_, item::label_pressed);
+				specs_.color_disabled = defaults::color(page_.d_page_.fm_.d_.theme_, item::label_disabled);
 			}
 			containers::page& page_;
 			label_specs& specs_;

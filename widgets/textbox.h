@@ -38,18 +38,14 @@ namespace liblec {
 					textbox_specs() {
 						cursor = cursor_type::caret;
 						rect.size({ 200.f, 25.f });
-						color_text = { 0, 0, 0, 255 };
-						color_fill = { 255, 255, 255, 255 };
-						color_selected = { 0, 120, 170, 100 };
-						color_disabled = { 248, 248, 248, 255 };
 					}
 					std::string prompt = "Enter text here";
 					float border = .5f;
 					float corner_radius_x = 3.f;
 					float corner_radius_y = 3.f;
-					color color_border = { 150, 150, 150, 255 };
-					color color_prompt = { 180, 180, 180, 255 };
-					color color_caret = { 50, 50, 50, 255 };
+					color color_border;
+					color color_prompt;
+					color color_caret;
 
 					bool operator==(const textbox_specs&);
 					bool operator!=(const textbox_specs&);

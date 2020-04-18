@@ -36,16 +36,11 @@ namespace liblec {
 				/// <summary>Tree widget specifications.</summary>
 				class tree_specs : public specs {
 				public:
-					tree_specs() {
-						color_text = { 0, 0, 0, 255 };
-						color_fill = { 255, 255, 255, 255 };
-						color_hot = { 225, 242, 255, 255 };
-						color_selected = { 0, 120, 170, 100 };
-					}
+					tree_specs() {}
 					float border = .5f;
 					float corner_radius_x = 5.f;
 					float corner_radius_y = 5.f;
-					color color_border = { 150, 150, 150, 255 };
+					color color_border;
 
 					/// <summary>Tree node.</summary>
 					class node {
