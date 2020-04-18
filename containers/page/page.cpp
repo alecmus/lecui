@@ -48,22 +48,23 @@ namespace liblec {
 			}
 
 			d_.fm_.d_.p_pages_.try_emplace(alias, d_.fm_, alias);
+			auto& page_impl = d_.fm_.d_.p_pages_.at(alias).d_page_;
 
 			// specify direct2d factory (used internally for geometries and stuff)
-			d_.fm_.d_.p_pages_.at(alias).d_page_.direct2d_factory(d_.fm_.d_.p_direct2d_factory_);
+			page_impl.direct2d_factory(d_.fm_.d_.p_direct2d_factory_);
 
 			// specify directwrite factory (used internally for text rendering)
-			d_.fm_.d_.p_pages_.at(alias).d_page_.directwrite_factory(d_.fm_.d_.p_directwrite_factory_);
+			page_impl.directwrite_factory(d_.fm_.d_.p_directwrite_factory_);
 
 			// specify iwic imaging factory (used internally for image rendering)
-			d_.fm_.d_.p_pages_.at(alias).d_page_.iwic_factory(d_.fm_.d_.p_iwic_factory_);
+			page_impl.iwic_factory(d_.fm_.d_.p_iwic_factory_);
 
 			const float thickness = 10.f;
 			const float margin = d_.fm_.d_.page_tolerance_;
 
 			// initialize the page's horizontal scroll bar
 			{
-				auto& specs_ = d_.fm_.d_.p_pages_.at(alias).d_page_.h_scrollbar().specs();
+				auto& specs_ = page_impl.h_scrollbar().specs();
 				specs_.on_resize.perc_width = 100;
 				specs_.on_resize.perc_y = 100;
 
@@ -82,7 +83,7 @@ namespace liblec {
 
 			// initialize the page's vertical scroll bar
 			{
-				auto& specs_ = d_.fm_.d_.p_pages_.at(alias).d_page_.v_scrollbar().specs();
+				auto& specs_ = page_impl.v_scrollbar().specs();
 				specs_.on_resize.perc_height = 100;
 				specs_.on_resize.perc_x = 100;
 
@@ -98,29 +99,24 @@ namespace liblec {
 				specs_.color_hot_pressed = defaults::color(d_.fm_.d_.theme_, item::scrollbar_pressed);
 			}
 
+			// set page size
+			page_impl.size(d_.fm_.d_.size_);
+			page_impl.width(page_impl.width() - (2.f * d_.fm_.d_.page_tolerance_));
+			page_impl.height(page_impl.height() - (2.f * d_.fm_.d_.page_tolerance_ + d_.fm_.d_.caption_bar_height_));
+
 			// add an invisible rect to bound the page. This is essential for scroll bars to work
 			// appropriately when contents don't reach the page borders
-			auto& rectangle =
-				d_.fm_.d_.p_pages_.at(alias).d_page_.add_rectangle(widgets_impl::rectangle::page_rect_alias());
+			auto& rectangle = page_impl.add_rectangle(widgets_impl::rectangle::page_rect_alias());
 			rectangle.color_fill.alpha = 0;
 
 			// make it transparent
 			rectangle.color_border = { 255, 0, 0, 0 };
 			rectangle.color_hot = { 255, 0, 0, 0 };
 
-			d_.fm_.d_.p_pages_.at(alias).d_page_.size(d_.fm_.d_.size_);
-
-			d_.fm_.d_.p_pages_.at(alias).d_page_.width(d_.fm_.d_.p_pages_.at(alias).d_page_.width() -
-			(2.f * d_.fm_.d_.page_tolerance_));
-			d_.fm_.d_.p_pages_.at(alias).d_page_.height(d_.fm_.d_.p_pages_.at(alias).d_page_.height() -
-			(2.f * d_.fm_.d_.page_tolerance_ + d_.fm_.d_.caption_bar_height_));
-
-			rectangle.rect.set(0, 0, d_.fm_.d_.p_pages_.at(alias).d_page_.width(),
-				d_.fm_.d_.p_pages_.at(alias).d_page_.height());
-
+			// set its dimensions to exactly match the page
+			rectangle.rect.size(page_impl.size());
 			rectangle.corner_radius_x = 15.f;
 			rectangle.corner_radius_y = 15.f;
-
 			rectangle.on_resize.perc_width = 100;
 			rectangle.on_resize.perc_height = 100;
 
