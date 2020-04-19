@@ -264,6 +264,10 @@ namespace liblec {
 			containers::page::impl::close_widget(const std::string& alias,
 				widgets_impl::widget_type type,
 				std::string& error) {
+			// make a local copy since this reference may become invalid before we exit depending
+			// on how the closing is being done.
+			const std::string alias_(alias);
+
 			// to-do: prevent erasure from widgets_ only to throw later in the switch because the data
 			// was wrong to begin with!!!!!
 			try {
@@ -274,57 +278,57 @@ namespace liblec {
 				/// 3. removing it from widgets_order_
 
 				// step 1
-				widgets_.erase(alias);
+				widgets_.erase(alias_);
 
 				// step 2
 				switch (type) {
 				case widgets_impl::widget_type::rectangle:
-					rectangles_.erase(alias);
+					rectangles_.erase(alias_);
 					break;
 				case widgets_impl::widget_type::label:
-					labels_.erase(alias);
+					labels_.erase(alias_);
 					break;
 				case widgets_impl::widget_type::group:
-					groups_.erase(alias);
+					groups_.erase(alias_);
 					break;
 				case widgets_impl::widget_type::tab_pane:
-					tab_panes_.erase(alias);
+					tab_panes_.erase(alias_);
 					break;
 				case widgets_impl::widget_type::button:
-					buttons_.erase(alias);
+					buttons_.erase(alias_);
 					break;
 				case widgets_impl::widget_type::toggle:
-					toggles_.erase(alias);
+					toggles_.erase(alias_);
 					break;
 				case widgets_impl::widget_type::combo:
-					combos_.erase(alias);
+					combos_.erase(alias_);
 					break;
 				case widgets_impl::widget_type::table:
-					tables_.erase(alias);
+					tables_.erase(alias_);
 					break;
 				case widgets_impl::widget_type::custom:
-					customs_.erase(alias);
+					customs_.erase(alias_);
 					break;
 				case widgets_impl::widget_type::pane:
-					panes_.erase(alias);
+					panes_.erase(alias_);
 					break;
 				case widgets_impl::widget_type::image:
-					images_.erase(alias);
+					images_.erase(alias_);
 					break;
 				case widgets_impl::widget_type::progress_indicator:
-					progress_indicators_.erase(alias);
+					progress_indicators_.erase(alias_);
 					break;
 				case widgets_impl::widget_type::progress_bar:
-					progress_bars_.erase(alias);
+					progress_bars_.erase(alias_);
 					break;
 				case widgets_impl::widget_type::checkbox:
-					checkboxes_.erase(alias);
+					checkboxes_.erase(alias_);
 					break;
 				case widgets_impl::widget_type::textbox:
-					textboxes_.erase(alias);
+					textboxes_.erase(alias_);
 					break;
 				case widgets_impl::widget_type::tree:
-					trees_.erase(alias);
+					trees_.erase(alias_);
 					break;
 				case widgets_impl::widget_type::close_button:
 				case widgets_impl::widget_type::maximize_button:
@@ -338,7 +342,7 @@ namespace liblec {
 				// step 3
 				std::vector<std::string> widgets_order;
 				for (auto it : widgets_order_)
-					if (it != alias)
+					if (it != alias_)
 						widgets_order.push_back(it);
 				widgets_order_ = widgets_order;
 

@@ -16,6 +16,7 @@
 #include "form.h"
 #include "appearance.h"
 #include "containers/page/page_impl.h"
+#include "containers/status_pane.h"
 
 #include "widgets/widget_impl.h"
 #include "widgets/control_buttons/close_button/close_button.h"
@@ -121,6 +122,8 @@ namespace liblec {
 			ID2D1SolidColorBrush* p_brush_titlebar_;
 
 			// pages <K = page alias, T>
+			std::map<std::string, containers::page> p_status_panes_;
+			std::map<std::string, containers::status_pane::status_pane_specs> p_status_pane_specs_;
 			std::map<std::string, containers::page> p_pages_;
 			std::string current_page_;
 
@@ -183,6 +186,7 @@ namespace liblec {
 			friend class page_management;
 			friend class widget_management;
 			friend class timer_management;
+			friend class containers::status_pane;
 			friend class containers::tab_pane;
 			friend class containers::tab;
 			friend class containers::pane;
@@ -251,6 +255,8 @@ namespace liblec {
 			void close(const std::string& path);
 
 			static LRESULT CALLBACK window_procedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
+
+			lecui::size get_status_size(containers::status_pane::location type);
 		};
 	}
 }

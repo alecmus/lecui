@@ -33,6 +33,7 @@ namespace liblec {
 
 		namespace containers {
 			class page;
+			class status_pane;
 			class tab_pane;
 			class tab;
 			class pane;
@@ -241,6 +242,7 @@ namespace liblec {
 			friend class dimensions;
 			friend class appearance;
 			friend class controls;
+			friend class containers::status_pane;
 			friend class containers::tab_pane;
 			friend class containers::tab;
 			friend class containers::pane;

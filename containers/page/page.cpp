@@ -59,6 +59,23 @@ namespace liblec {
 			// specify iwic imaging factory (used internally for image rendering)
 			page_impl.iwic_factory(d_.fm_.d_.p_iwic_factory_);
 
+			// set page size
+			page_impl.size(d_.fm_.d_.size_);
+			page_impl.width(page_impl.width() - (2.f * d_.fm_.d_.page_tolerance_));
+			page_impl.height(page_impl.height() - (2.f * d_.fm_.d_.page_tolerance_ + d_.fm_.d_.caption_bar_height_));
+
+			// get status pane sizes
+			const auto rect_status_bottom = d_.fm_.d_.get_status_size(containers::status_pane::location::bottom);
+			const auto rect_status_top = d_.fm_.d_.get_status_size(containers::status_pane::location::top);
+			const auto rect_status_left = d_.fm_.d_.get_status_size(containers::status_pane::location::left);
+			const auto rect_status_right = d_.fm_.d_.get_status_size(containers::status_pane::location::right);
+
+			// adjust for status panes
+			page_impl.height(page_impl.height() - rect_status_bottom.height);
+			page_impl.height(page_impl.height() - rect_status_top.height);
+			page_impl.width(page_impl.width() - rect_status_left.width);
+			page_impl.width(page_impl.width() - rect_status_right.width);
+
 			const float thickness = 10.f;
 			const float margin = d_.fm_.d_.page_tolerance_;
 
@@ -69,10 +86,8 @@ namespace liblec {
 				specs_.on_resize.perc_y = 100;
 
 				specs_.rect.left = margin + thickness - d_.fm_.d_.page_tolerance_;
-				specs_.rect.right =
-					d_.fm_.d_.size_.width - (margin + thickness) - d_.fm_.d_.page_tolerance_;
-				specs_.rect.bottom = d_.fm_.d_.size_.height - margin -
-					d_.fm_.d_.caption_bar_height_ + d_.fm_.d_.page_tolerance_;
+				specs_.rect.right = page_impl.size().width - (margin + thickness) - d_.fm_.d_.page_tolerance_;
+				specs_.rect.bottom = page_impl.size().height - margin;
 				specs_.rect.top = specs_.rect.bottom - thickness;
 
 				specs_.color_fill = defaults::color(d_.fm_.d_.theme_, item::scrollbar);
@@ -88,9 +103,8 @@ namespace liblec {
 				specs_.on_resize.perc_x = 100;
 
 				specs_.rect.top = margin + thickness - d_.fm_.d_.page_tolerance_;
-				specs_.rect.bottom = d_.fm_.d_.size_.height - (margin + thickness) -
-					d_.fm_.d_.caption_bar_height_ + d_.fm_.d_.page_tolerance_;
-				specs_.rect.right = d_.fm_.d_.size_.width - margin - d_.fm_.d_.page_tolerance_;
+				specs_.rect.bottom = page_impl.size().height - (margin + thickness);
+				specs_.rect.right = page_impl.size().width - margin - d_.fm_.d_.page_tolerance_;
 				specs_.rect.left = specs_.rect.right - thickness;
 
 				specs_.color_fill = defaults::color(d_.fm_.d_.theme_, item::scrollbar);
@@ -98,11 +112,6 @@ namespace liblec {
 				specs_.color_hot = defaults::color(d_.fm_.d_.theme_, item::scrollbar_hover);
 				specs_.color_hot_pressed = defaults::color(d_.fm_.d_.theme_, item::scrollbar_pressed);
 			}
-
-			// set page size
-			page_impl.size(d_.fm_.d_.size_);
-			page_impl.width(page_impl.width() - (2.f * d_.fm_.d_.page_tolerance_));
-			page_impl.height(page_impl.height() - (2.f * d_.fm_.d_.page_tolerance_ + d_.fm_.d_.caption_bar_height_));
 
 			// add an invisible rect to bound the page. This is essential for scroll bars to work
 			// appropriately when contents don't reach the page borders
@@ -126,7 +135,18 @@ namespace liblec {
 
 		containers::page&
 			page_management::get(form& fm, const std::string& alias) {
-			return fm.d_.p_pages_.at(alias);
+			try {
+				// check form pages
+				return fm.d_.p_pages_.at(alias);
+			}
+			catch (const std::exception&) {}
+			try {
+				// check status panes
+				return fm.d_.p_status_panes_.at(alias);
+			}
+			catch (const std::exception&) {}
+
+			throw std::invalid_argument("Invalid path");
 		}
 
 		void page_management::show(const std::string& alias) {

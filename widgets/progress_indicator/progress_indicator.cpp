@@ -64,9 +64,20 @@ namespace liblec {
 			if (idx != std::string::npos) {
 				const auto page_alias = path.substr(0, idx);
 				const auto path_remaining = path.substr(idx + 1);
-				auto& page = fm.d_.p_pages_.at(page_alias);
-				auto results = fm.d_.find_widget(page, path_remaining);
-				return results.page.d_page_.get_progress_indicator(results.widget.alias()).specs();
+				try {
+					// check form pages
+					auto& page = fm.d_.p_pages_.at(page_alias);
+					auto results = fm.d_.find_widget(page, path_remaining);
+					return results.page.d_page_.get_progress_indicator(results.widget.alias()).specs();
+				}
+				catch (const std::exception&) {}
+				try {
+					// check status panes
+					auto& page = fm.d_.p_status_panes_.at(page_alias);
+					auto results = fm.d_.find_widget(page, path_remaining);
+					return results.page.d_page_.get_progress_indicator(results.widget.alias()).specs();
+				}
+				catch (const std::exception&) {}
 			}
 
 			throw std::invalid_argument("Invalid path");

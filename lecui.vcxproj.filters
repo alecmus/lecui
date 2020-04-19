@@ -83,6 +83,9 @@
     <Filter Include="lecui\widgets\table">
       <UniqueIdentifier>{cdb6740a-7a20-4782-85d5-ed23603da7ff}</UniqueIdentifier>
     </Filter>
+    <Filter Include="lecui\containers\status_pane">
+      <UniqueIdentifier>{01e6aa71-69f0-41b6-ba3a-bd01f8795a45}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="error\win_error.h">
@@ -236,6 +239,9 @@
     <ClInclude Include="widgets\passwordbox.h">
       <Filter>lecui\widgets</Filter>
     </ClInclude>
+    <ClInclude Include="containers\status_pane.h">
+      <Filter>lecui\containers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="error\win_error.cpp">
@@ -379,6 +385,9 @@
     </ClCompile>
     <ClCompile Include="widgets\table\table_impl.cpp">
       <Filter>lecui\widgets\table</Filter>
+    </ClCompile>
+    <ClCompile Include="containers\status_pane\status_pane.cpp">
+      <Filter>lecui\containers\status_pane</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

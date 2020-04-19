@@ -1022,18 +1022,83 @@ namespace liblec {
 					}
 				};
 
+				// get status pane sizes
+				const auto status_bottom = get_status_size(containers::status_pane::location::bottom);
+				const auto status_top = get_status_size(containers::status_pane::location::top);
+				const auto status_left = get_status_size(containers::status_pane::location::left);
+				const auto status_right = get_status_size(containers::status_pane::location::right);
+
 				const D2D1_SIZE_F change_in_size = { rtSize.width - size_.width, rtSize.height - size_.height };
 
 				for (auto& page : p_pages_) {
-					const D2D1_RECT_F rect_page = { page_tolerance_,
-						caption_bar_height_ + page_tolerance_,
-						rtSize.width - page_tolerance_, rtSize.height - page_tolerance_ };
+					const D2D1_RECT_F rect_page = { page_tolerance_ + status_left.width,
+						caption_bar_height_ + page_tolerance_ + status_top.height,
+						rtSize.width - page_tolerance_ - status_right.width, rtSize.height - page_tolerance_ - status_bottom.height };
 
 					const D2D1_RECT_F client_area = rect_page;
 
 					helper::render_page(true, page.first, current_page_, page.second, p_render_target_,
 						rect_page, client_area, change_in_size, dpi_scale_,
 						p_brush_theme_, p_brush_theme_hot_, lbutton_pressed_);
+				}
+
+				// render status panes
+				for (auto& page : p_status_panes_) {
+					if (page.first == "status::bottom") {
+						const auto left = page_tolerance_;
+						const auto bottom = rtSize.height - page_tolerance_;
+						const auto right = rtSize.width - page_tolerance_;
+						const auto top = bottom - page.second.size().height;
+
+						const D2D1_RECT_F rect_page = { left, top, right, bottom };
+						const D2D1_RECT_F client_area = rect_page;
+
+						helper::render_page(true, page.first, page.first, page.second, p_render_target_,
+							rect_page, client_area, change_in_size, dpi_scale_,
+							p_brush_theme_, p_brush_theme_hot_, lbutton_pressed_);
+					}
+
+					if (page.first == "status::top") {
+						const auto left = page_tolerance_;
+						const auto top = caption_bar_height_ + page_tolerance_;
+						const auto bottom = top + page.second.size().height;
+						const auto right = rtSize.width - page_tolerance_;
+
+						const D2D1_RECT_F rect_page = { left, top, right, bottom };
+						const D2D1_RECT_F client_area = rect_page;
+
+						helper::render_page(true, page.first, page.first, page.second, p_render_target_,
+							rect_page, client_area, change_in_size, dpi_scale_,
+							p_brush_theme_, p_brush_theme_hot_, lbutton_pressed_);
+					}
+
+					if (page.first == "status::left") {
+						const auto left = page_tolerance_;
+						const auto top = caption_bar_height_ + page_tolerance_;
+						const auto bottom = rtSize.height - page_tolerance_;
+						const auto right = left + page.second.size().width;
+
+						const D2D1_RECT_F rect_page = { left, top, right, bottom };
+						const D2D1_RECT_F client_area = rect_page;
+
+						helper::render_page(true, page.first, page.first, page.second, p_render_target_,
+							rect_page, client_area, change_in_size, dpi_scale_,
+							p_brush_theme_, p_brush_theme_hot_, lbutton_pressed_);
+					}
+
+					if (page.first == "status::right") {
+						const auto right = rtSize.width - page_tolerance_;
+						const auto left = right - page.second.size().width;
+						const auto top = caption_bar_height_ + page_tolerance_;
+						const auto bottom = rtSize.height - page_tolerance_;
+
+						const D2D1_RECT_F rect_page = { left, top, right, bottom };
+						const D2D1_RECT_F client_area = rect_page;
+
+						helper::render_page(true, page.first, page.first, page.second, p_render_target_,
+							rect_page, client_area, change_in_size, dpi_scale_,
+							p_brush_theme_, p_brush_theme_hot_, lbutton_pressed_);
+					}
 				}
 
 				// render form widgets
@@ -1541,6 +1606,11 @@ namespace liblec {
 						point, point_before_, contains, change);
 
 			if (!change) {
+				for (auto& it : p_status_panes_)
+					helper::hittest_widgets(it.second, point, contains, change, lbutton_pressed_, h_cursor);
+			}
+
+			if (!change) {
 				auto page_iterator = p_pages_.find(current_page_);
 
 				if (page_iterator != p_pages_.end())
@@ -1694,6 +1764,9 @@ namespace liblec {
 				}
 			};
 
+			for (auto& it : p_status_panes_)
+				helper::check_widgets(it.second, point, dpi_scale_, pressed, update_anyway);
+
 			auto page_iterator = p_pages_.find(current_page_);
 
 			if (page_iterator != p_pages_.end())
@@ -1777,6 +1850,10 @@ namespace liblec {
 				}
 			};
 
+			for (auto& it : p_status_panes_)
+				helper::check_widgets(it.second, point, clicked, update_anyway,
+					on_click_handler);
+
 			auto page_iterator = p_pages_.find(current_page_);
 
 			if (page_iterator != p_pages_.end())
@@ -1846,6 +1923,9 @@ namespace liblec {
 					}
 				}
 			};
+
+			for (auto& it : p_status_panes_)
+				helper::check_widgets(it.second, update);
 
 			auto page_iterator = p_pages_.find(current_page_);
 
@@ -2012,7 +2092,16 @@ namespace liblec {
 					const auto path_remaining = path.substr(idx + 1);
 
 					try {
+						// check form pages
 						auto result = find_widget(p_pages_.at(page_alias), path_remaining);
+						result.widget.enable(enable);
+						update();
+					}
+					catch (const std::exception&) {}
+
+					try {
+						// check status panes
+						auto result = find_widget(p_status_panes_.at(page_alias), path_remaining);
 						result.widget.enable(enable);
 						update();
 					}
@@ -2049,7 +2138,16 @@ namespace liblec {
 					const auto path_remaining = path.substr(idx + 1);
 
 					try {
+						// check form pages
 						auto result = find_widget(p_pages_.at(page_alias), path_remaining);
+						result.widget.show(show);
+						update();
+					}
+					catch (const std::exception&) {}
+
+					try {
+						// check status pages
+						auto result = find_widget(p_status_panes_.at(page_alias), path_remaining);
 						result.widget.show(show);
 						update();
 					}
@@ -2069,7 +2167,20 @@ namespace liblec {
 					const auto path_remaining = path.substr(idx + 1);
 
 					try {
+						// check form pages
 						auto result = find_widget(p_pages_.at(page_alias), path_remaining);
+
+						// close widget
+						std::string error;
+						result.page.d_page_.close_widget(result.widget.alias(), result.widget.type(), error);
+
+						update();
+					}
+					catch (const std::exception&) {}
+
+					try {
+						// check status pages
+						auto result = find_widget(p_status_panes_.at(page_alias), path_remaining);
 
 						// close widget
 						std::string error;
@@ -2461,6 +2572,9 @@ namespace liblec {
 					}
 				};
 
+				for (auto& it : form_.value().get().d_.p_status_panes_)
+					helper::check_widgets(it.second, c, change);
+
 				// get current page
 				auto page_iterator = form_.value().get().d_.p_pages_.find(form_.value().get().d_.current_page_);
 
@@ -2529,6 +2643,9 @@ namespace liblec {
 							}
 						}
 					};
+
+					for (auto& it : form_.value().get().d_.p_status_panes_)
+						helper::check_widgets(it.second, wParam, change);
 
 					// get current page
 					auto page_iterator = form_.value().get().d_.p_pages_.find(form_.value().get().d_.current_page_);
@@ -2610,6 +2727,9 @@ namespace liblec {
 						}
 					};
 
+					for (auto& it : form_.value().get().d_.p_status_panes_)
+						helper::check_widgets(it.second);
+
 					auto page_iterator =
 						form_.value().get().d_.p_pages_.find(form_.value().get().d_.current_page_);
 
@@ -2686,6 +2806,9 @@ namespace liblec {
 						}
 					}
 				};
+
+				for (auto& it : form_.value().get().d_.p_status_panes_)
+					helper::check_widgets(it.second, wParam, update, on_click_handler);
 
 				auto page_iterator =
 					form_.value().get().d_.p_pages_.find(form_.value().get().d_.current_page_);
@@ -2767,6 +2890,9 @@ namespace liblec {
 							}
 						}
 					};
+
+					for (auto& it : form_.value().get().d_.p_status_panes_)
+						helper::check_widgets(it.second, on_space);
 
 					auto page_iterator =
 						form_.value().get().d_.p_pages_.find(form_.value().get().d_.current_page_);
@@ -2884,11 +3010,41 @@ namespace liblec {
 							catch (const std::exception& e) { log(e.what()); }
 						}
 
-						auto page_iterator =
-							form_.value().get().d_.p_pages_.find(form_.value().get().d_.current_page_);
+						/// navigation order
+						/// 1. left status pane
+						/// 2. top status pane
+						/// 3. page
+						/// 4. right status pane
+						/// 5. bottom status pane
+						
+						/// 1. left status pane
+						auto it_status_bar_left = form_.value().get().d_.p_status_panes_.find("status::left");
+						if (it_status_bar_left != form_.value().get().d_.p_status_panes_.end())
+							helper::check_widgets(it_status_bar_left->second,
+								form_.value().get().d_.reverse_tab_navigation_, select_next, selected);
 
+						/// 2. top status pane
+						auto it_status_bar_top = form_.value().get().d_.p_status_panes_.find("status::top");
+						if (it_status_bar_top != form_.value().get().d_.p_status_panes_.end())
+							helper::check_widgets(it_status_bar_top->second,
+								form_.value().get().d_.reverse_tab_navigation_, select_next, selected);
+
+						/// 3. page
+						auto page_iterator = form_.value().get().d_.p_pages_.find(form_.value().get().d_.current_page_);
 						if (page_iterator != form_.value().get().d_.p_pages_.end())
 							helper::check_widgets(page_iterator->second,
+								form_.value().get().d_.reverse_tab_navigation_, select_next, selected);
+
+						/// 4. right status pane
+						auto it_status_bar_right = form_.value().get().d_.p_status_panes_.find("status::right");
+						if (it_status_bar_right != form_.value().get().d_.p_status_panes_.end())
+							helper::check_widgets(it_status_bar_right->second,
+								form_.value().get().d_.reverse_tab_navigation_, select_next, selected);
+
+						/// 5. bottom status pane
+						auto it_status_bar_bottom = form_.value().get().d_.p_status_panes_.find("status::bottom");
+						if (it_status_bar_bottom != form_.value().get().d_.p_status_panes_.end())
+							helper::check_widgets(it_status_bar_bottom->second,
 								form_.value().get().d_.reverse_tab_navigation_, select_next, selected);
 
 						if (select_next)
@@ -2975,6 +3131,9 @@ namespace liblec {
 					}
 				};
 
+				for (auto& it : form_.value().get().d_.p_status_panes_)
+					helper::check_widgets(it.second, units, update);
+
 				auto page_iterator =
 					form_.value().get().d_.p_pages_.find(form_.value().get().d_.current_page_);
 
@@ -3006,6 +3165,28 @@ namespace liblec {
 			}
 
 			return DefWindowProc(hWnd, msg, wParam, lParam);
+		}
+		lecui::size form::impl::get_status_size(containers::status_pane::location type) {
+			std::string alias;
+			switch (type) {
+			case containers::status_pane::location::top: alias = "status::top"; break;
+			case containers::status_pane::location::left: alias = "status::left"; break;
+			case containers::status_pane::location::right: alias = "status::right"; break;
+			case containers::status_pane::location::bottom:
+			default: alias = "status::bottom"; break;
+			}
+
+			lecui::size size;
+			auto it = p_status_panes_.find(alias);
+			if (it != p_status_panes_.end()) {
+				try {
+					if (!p_status_pane_specs_.at(it->first).floating)
+						size = it->second.size();
+				}
+				catch (const std::exception&) {}
+			}
+
+			return size;
 		}
 	}
 }
