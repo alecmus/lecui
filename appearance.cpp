@@ -109,7 +109,7 @@ namespace liblec {
 				/// Dark theme
 			case themes::dark: {
 				switch (wc) {
-				case item::form: return { 40, 45, 55 };
+				case item::form: return { 16, 29, 36 };
 				case item::titlebar: return defaults::color(theme, item::form);
 				case item::accent: return { 60, 190, 175, 255 };
 				case item::accent_hover: return { 255, 255, 255, 255 };
@@ -151,13 +151,13 @@ namespace liblec {
 				case item::textbox_selected: return { 60, 190, 175, 150 };
 				case item::textbox_caret: return { 60, 190, 175, 255 };
 
-				case item::table: return { 40, 45, 55, 255 };
+				case item::table: return { 16, 29, 36, 255 };
 				case item::table_border: return { 150, 150, 150, 255 };
 				case item::table_alternate: return { 60, 190, 175, 15 };
 				case item::table_row_hover: return { 40, 160, 200, 100 };
 				case item::table_row_selected: return { 40, 160, 200, 255 };
 				case item::table_text_header: return { 155, 165, 180, 255 };
-				case item::table_header: return { 40, 45, 55, 255 };
+				case item::table_header: return { 16, 29, 36, 255 };
 				case item::table_grid: return { 55, 60, 65, 255 };
 
 				case item::toggle: return { 255, 255, 255, 200 };
@@ -165,7 +165,7 @@ namespace liblec {
 				case item::toggle_off: return { 150, 150, 150, 255 };
 				case item::toggle_selected: return { 60, 190, 175, 60 };
 
-				case item::tree: return { 40, 45, 55, 255 };
+				case item::tree: return { 16, 29, 36, 255 };
 				case item::tree_border: return { 150, 150, 150, 255 };
 				case item::tree_hover: return { 60, 65, 70, 255 };
 				case item::tree_selected: return { 0, 120, 170, 100 };
