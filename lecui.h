@@ -49,6 +49,19 @@ namespace liblec {
 		/// "lecui 1.0.0 04 Jan 2019".</returns>
 		std::string lecui_api version();
 
+		/// <summary>Make a unique string.</summary>
+		/// <returns>A unique string, e.g. 705c03bb-992f-40f1-841d-621bacc13eee.</returns>
+		/// <remarks>The strings are guaranteed to be universally unique (universally unique
+		/// identifier, or uuid for short).</remarks>
+		std::string lecui_api unique_string();
+
+		/// <summary>Make a short unique string.</summary>
+		/// <returns>A short unique string, e.g. e5dc5cfb.</returns>
+		/// <remarks>The shortening is made possible through the truncation of an internally
+		/// generated universally unique string; as such, these strings are not guaranteed to be
+		/// universally unique. The probability of a clash, however, is infinitesimal.</remarks>
+		std::string lecui_api unique_string_short();
+
 		struct point {
 			float x = 0.f;
 			float y = 0.f;

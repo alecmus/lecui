@@ -389,6 +389,9 @@
     <ClCompile Include="containers\status_pane\status_pane.cpp">
       <Filter>lecui\containers\status_pane</Filter>
     </ClCompile>
+    <ClCompile Include="unique_string.cpp">
+      <Filter>lecui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="LICENSE.md">

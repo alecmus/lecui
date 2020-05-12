@@ -89,6 +89,7 @@
     <ClCompile Include="form_impl.cpp" />
     <ClCompile Include="lecui.cpp" />
     <ClCompile Include="timer.cpp" />
+    <ClCompile Include="unique_string.cpp" />
     <ClCompile Include="widgets\button\button.cpp" />
     <ClCompile Include="widgets\button\button_impl.cpp" />
     <ClCompile Include="widgets\checkbox\checkbox.cpp" />
