@@ -59,38 +59,38 @@ namespace liblec {
 			bool contains(const D2D1_POINT_2F& point);
 
 			containers::tab_pane::tab_pane_specs&
-				add_tab_pane(const std::string& alias);
+				add_tab_pane(std::string alias);
 			containers::pane::pane_specs&
-				add_pane(const std::string& alias);
+				add_pane(std::string alias);
 
 			widgets::rectangle::rectangle_specs&
-				add_rectangle(const std::string& alias);
+				add_rectangle(std::string alias);
 			widgets::label::label_specs&
-				add_label(const std::string& alias);
+				add_label(std::string alias);
 			containers::group::group_specs&
-				add_group(const std::string& alias);
+				add_group(std::string alias);
 			widgets::button::button_specs&
-				add_button(const std::string& alias);
+				add_button(std::string alias);
 			widgets::toggle::toggle_specs&
-				add_toggle(const std::string& alias);
+				add_toggle(std::string alias);
 			widgets::combo::combo_specs&
-				add_combo(const std::string& alias);
+				add_combo(std::string alias);
 			widgets::table::table_specs&
-				add_table(const std::string& alias);
+				add_table(std::string alias);
 			widgets::custom::custom_specs&
-				add_custom(const std::string& alias);
+				add_custom(std::string alias);
 			widgets::image::image_specs&
-				add_image(const std::string& alias);
+				add_image(std::string alias);
 			widgets::progress_indicator::progress_indicator_specs&
-				add_progress_indicator(const std::string& alias);
+				add_progress_indicator(std::string alias);
 			widgets::progress_bar::progress_bar_specs&
-				add_progress_bar(const std::string& alias);
+				add_progress_bar(std::string alias);
 			widgets::checkbox::checkbox_specs&
-				add_checkbox(const std::string& alias);
+				add_checkbox(std::string alias);
 			widgets::textbox::textbox_specs&
-				add_textbox(const std::string& alias);
+				add_textbox(std::string alias);
 			widgets::tree::tree_specs&
-				add_tree(const std::string& alias);
+				add_tree(std::string alias);
 
 			std::map<std::string,
 				widgets_impl::widget&>&
@@ -140,6 +140,8 @@ namespace liblec {
 				widgets_impl::widget_type type, std::string& error);
 
 		private:
+			void check_alias(std::string& alias);
+
 			ID2D1Factory* p_direct2d_factory_;
 			IDWriteFactory* p_directwrite_factory_;
 			IWICImagingFactory* p_iwic_factory_;
