@@ -39,14 +39,15 @@ namespace liblec {
 
 		form::form(const std::string& caption, form& parent) :
 			form::form(caption) {
+
+			// copy the parent's default theme setting
+			appearance aprnc(*this);
+			aprnc.theme(parent.d_.theme_);
+
 			if (IsWindow(parent.d_.hWnd_)) {
 				// capture parent
 				d_.p_parent_ = &parent;
 				d_.hWnd_parent_ = parent.d_.hWnd_;
-
-				// copy the parent's default theme setting
-				appearance aprnc(*this);
-				aprnc.theme(d_.p_parent_->d_.theme_);
 
 				// this is a child window. add it to the parent's map of children.
 				parent.d_.m_children_.insert(std::make_pair(this, this));
