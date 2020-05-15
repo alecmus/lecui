@@ -2935,6 +2935,12 @@ namespace liblec {
 
 									if (widget.type() ==
 										widgets_impl::widget_type::tab_pane) {
+
+										if (widget.selected()) {
+											widget.select(false);
+											select_next = true;
+										}
+
 										// get this tab pane
 										auto& tab_pane = page.d_page_.get_tab_pane(alias);
 
