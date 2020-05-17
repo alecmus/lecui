@@ -123,12 +123,30 @@ namespace liblec {
 					specs_.on_resize.perc_width = 100.f;
 					specs_.on_resize.perc_y = 100.f;
 
-					specs_.rect.left = 0.f;
-					specs_.rect.right =
-						(rect_client_area.right - rect_client_area.left) - (margin + thickness);
-					specs_.rect.bottom = (rect_client_area.bottom - rect_client_area.top) -
-						(caption_bar_height_ + page_tolerance_);
-					specs_.rect.top = specs_.rect.bottom - thickness;
+					switch (tp.d_.specs_.tab_side)
+					{
+					case tab_pane::side::left:
+					case tab_pane::side::right:
+						specs_.rect.left = 0.f;
+						specs_.rect.right =
+							(rect_client_area.right - rect_client_area.left) - (margin + thickness) -
+							caption_bar_height_;
+						specs_.rect.bottom = (rect_client_area.bottom - rect_client_area.top) -
+							page_tolerance_;
+						specs_.rect.top = specs_.rect.bottom - thickness;
+						break;
+
+					case tab_pane::side::top:
+					case tab_pane::side::bottom:
+					default:
+						specs_.rect.left = 0.f;
+						specs_.rect.right =
+							(rect_client_area.right - rect_client_area.left) - (margin + thickness);
+						specs_.rect.bottom = (rect_client_area.bottom - rect_client_area.top) -
+							(caption_bar_height_ + page_tolerance_);
+						specs_.rect.top = specs_.rect.bottom - thickness;
+						break;
+					}
 
 					specs_.color_fill = defaults::color(tp.d_.page_.d_page_.fm_.d_.theme_, item::scrollbar);
 					specs_.color_scrollbar_border = defaults::color(tp.d_.page_.d_page_.fm_.d_.theme_, item::scrollbar_border);
@@ -142,12 +160,29 @@ namespace liblec {
 					specs_.on_resize.perc_height = 100.f;
 					specs_.on_resize.perc_x = 100.f;
 
-					specs_.rect.top = 0.f;
-					specs_.rect.bottom = (rect_client_area.bottom - rect_client_area.top) -
-						(margin + thickness) - caption_bar_height_;
-					specs_.rect.right =
-						(rect_client_area.right - rect_client_area.left) - margin;
-					specs_.rect.left = specs_.rect.right - thickness;
+					switch (tp.d_.specs_.tab_side)
+					{
+					case tab_pane::side::left:
+					case tab_pane::side::right:
+						specs_.rect.top = 0.f;
+						specs_.rect.bottom = (rect_client_area.bottom - rect_client_area.top) -
+							(margin + thickness);
+						specs_.rect.right =
+							(rect_client_area.right - rect_client_area.left) - margin - caption_bar_height_;
+						specs_.rect.left = specs_.rect.right - thickness;
+						break;
+
+					case tab_pane::side::top:
+					case tab_pane::side::bottom:
+					default:
+						specs_.rect.top = 0.f;
+						specs_.rect.bottom = (rect_client_area.bottom - rect_client_area.top) -
+							(margin + thickness) - caption_bar_height_;
+						specs_.rect.right =
+							(rect_client_area.right - rect_client_area.left) - margin;
+						specs_.rect.left = specs_.rect.right - thickness;
+						break;
+					}
 
 					specs_.color_fill = defaults::color(tp.d_.page_.d_page_.fm_.d_.theme_, item::scrollbar);
 					specs_.color_scrollbar_border = defaults::color(tp.d_.page_.d_page_.fm_.d_.theme_, item::scrollbar_border);
@@ -157,8 +192,22 @@ namespace liblec {
 
 				// set page size
 				page_impl.size({ rect_client_area.width(), rect_client_area.height() });
-				page_impl.width(page_impl.width() - (2.f * page_tolerance_));
-				page_impl.height(page_impl.height() - (2.f * page_tolerance_ + caption_bar_height_));
+
+				switch (tp.d_.specs_.tab_side)
+				{
+				case tab_pane::side::left:
+				case tab_pane::side::right:
+					page_impl.width(page_impl.width() - (2.f * page_tolerance_ + caption_bar_height_));
+					page_impl.height(page_impl.height() - (2.f * page_tolerance_));
+					break;
+
+				case tab_pane::side::top:
+				case tab_pane::side::bottom:
+				default:
+					page_impl.width(page_impl.width() - (2.f * page_tolerance_));
+					page_impl.height(page_impl.height() - (2.f * page_tolerance_ + caption_bar_height_));
+					break;
+				}
 
 				// add an invisible rect to bound the page. This is essential for scroll bars
 				// to work appropriately when contents don't reach the page borders

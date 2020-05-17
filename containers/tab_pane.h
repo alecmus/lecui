@@ -28,11 +28,19 @@ namespace liblec {
 			/// <remarks>Only tab containers can be added to this container.</remarks>
 			class lecui_api tab_pane {
 			public:
+				enum class side {
+					left,
+					right,
+					top,
+					bottom,
+				};
+
 				/// <summary>Tab pane specifications.</summary>
 				class tab_pane_specs : public widgets::specs {
 				public:
 					tab_pane_specs() {}
 
+					side tab_side = side::top;
 					bool is_filled = true;
 					color color_tabs;
 					color color_border;
@@ -102,7 +110,7 @@ namespace liblec {
 			public:
 				/// <summary>Tab constructor.</summary>
 				/// <param name="tp">The tab pane to place it in.</param>
-				/// <param name="tab_name">The in-tab_pane unique name of the tab, 
+				/// <param name="tab_name">The in-tab_pane unique name of the tab,
 				/// e.g. "Options".</param>
 				tab(tab_pane& tp, const std::string& tab_name);
 				~tab();
