@@ -16,6 +16,9 @@
 #include "../widget_impl.h"
 #include "../rectangle.h"
 
+#include "../../widgets/h_scrollbar/h_scrollbar.h"
+#include "../../widgets/v_scrollbar/v_scrollbar.h"
+
 namespace liblec {
 	namespace lecui {
 		namespace widgets_impl {
@@ -29,7 +32,9 @@ namespace liblec {
 
 				/// constructor and destructor
 				rectangle(const std::string& page_alias,
-					const std::string& alias);
+					const std::string& alias,
+					widgets_impl::h_scrollbar& h_scrollbar,
+					widgets_impl::v_scrollbar& v_scrollbar);
 				~rectangle();
 
 				/// virtual function overrides
@@ -48,8 +53,7 @@ namespace liblec {
 
 			private:
 				/// Prevent the use of the default constructor.
-				rectangle() :
-					rectangle(std::string(), std::string()) {}
+				rectangle();
 
 				/// Prevent copying an object of this class.
 				rectangle(const rectangle&);
@@ -62,8 +66,10 @@ namespace liblec {
 				ID2D1SolidColorBrush* p_brush_hot_;
 				ID2D1SolidColorBrush* p_brush_disabled_;
 				ID2D1SolidColorBrush* p_brush_selected_;
-				D2D1_POINT_2F offset_, offset_og_;
-				bool og_offset_captured_;
+
+				/// page scroll bars
+				widgets_impl::h_scrollbar& h_scrollbar_;
+				widgets_impl::v_scrollbar& v_scrollbar_;
 			};
 		}
 	}

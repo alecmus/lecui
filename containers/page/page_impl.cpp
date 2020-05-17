@@ -96,7 +96,7 @@ namespace liblec {
 		widgets::rectangle::rectangle_specs&
 			containers::page::impl::add_rectangle(std::string alias) {
 			check_alias(alias);
-			if (rectangles_.try_emplace(alias, alias_, alias).second) {
+			if (rectangles_.try_emplace(alias, alias_, alias, h_scrollbar_, v_scrollbar_).second) {
 				widgets_.emplace(alias, rectangles_.at(alias));
 				widgets_order_.emplace_back(alias);
 			}

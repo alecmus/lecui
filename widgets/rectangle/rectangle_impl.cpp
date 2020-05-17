@@ -20,15 +20,16 @@ namespace liblec {
 		}
 
 		widgets_impl::rectangle::rectangle(const std::string& page_alias,
-			const std::string& alias) :
+			const std::string& alias,
+			widgets_impl::h_scrollbar& h_scrollbar,
+			widgets_impl::v_scrollbar& v_scrollbar) :
 			p_brush_fill_(nullptr),
 			p_brush_border_(nullptr),
 			p_brush_hot_(nullptr),
 			p_brush_disabled_(nullptr),
 			p_brush_selected_(nullptr),
-			offset_({ 0.f, 0.f }),
-			offset_og_({ 0.f, 0.f }),
-			og_offset_captured_(false) {
+			h_scrollbar_(h_scrollbar),
+			v_scrollbar_(v_scrollbar) {
 			page_alias_ = page_alias;
 			alias_ = alias;
 		}
@@ -97,19 +98,6 @@ namespace liblec {
 			rect_.top -= offset.y;
 			rect_.bottom -= offset.y;
 
-			if (alias_ == page_rect_alias()) {
-				// this is a special rectangle useful for the proper functioning of page
-				// scroll bars. Capture the initial offset so that changes made by the scrollbars can
-				// be ignored in the contains() virtual function override. If this is not done
-				// the page virtual "hit" area moves with the rectangles when the scrollbars are moved!
-				if (!og_offset_captured_) {
-					offset_og_ = offset;
-					og_offset_captured_ = true;
-				}
-
-				offset_ = offset;
-			}
-
 			if (!render || !visible_)
 				return rect_;
 
@@ -143,25 +131,22 @@ namespace liblec {
 			// capture the point
 			point_ = point;
 
+			if (point.x == 0.f && point.y == 0.f)
+				return false;
+
 			D2D1_RECT_F rect = rect_;
+			scale_RECT(rect, dpi_scale_);
 
 			if (alias_ == page_rect_alias()) {
 				// this is a special rectangle used to manage pages.
 				// scrollbar movements move everything, including the minimal page border rect.
 				// keep the page virtual hit area over the actual page by ignoring scrollbar movements.
-				const auto x_change = offset_.x - offset_og_.x;
-				const auto y_change = offset_.y - offset_og_.y;
 
-				rect.left += x_change;
-				rect.right += x_change;
-				rect.top += y_change;
-				rect.bottom += y_change;
+				rect.left += h_scrollbar_.x_off_set_;
+				rect.right += h_scrollbar_.x_off_set_;
+				rect.top += v_scrollbar_.y_off_set_;
+				rect.bottom += v_scrollbar_.y_off_set_;
 			}
-
-			if (point.x == 0.f && point.y == 0.f)
-				return false;
-
-			scale_RECT(rect, dpi_scale_);
 
 			if (point.x >= rect.left && point.x <= rect.right &&
 				point.y >= rect.top && point.y <= rect.bottom)
