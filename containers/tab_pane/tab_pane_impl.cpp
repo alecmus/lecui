@@ -30,8 +30,10 @@ namespace liblec {
 			p_directwrite_factory_(p_directwrite_factory),
 			p_text_layout_(nullptr),
 			margin_(12.f),
-			tab_gap_(margin_ / 1.25f),
+			padding_(5.f),	// used when caption orientation is perpendicular to the tab area
+			tab_gap_(10.f),
 			tab_height_(25.f),
+			tab_height_set_(false),
 			bar_height_(2.f),
 			rect_tabs_({ 0.f, 0.f, 0.f, 0.f }),
 			rect_client_area_({ 0.f, 0.f, 0.f, 0.f }),
@@ -260,7 +262,6 @@ namespace liblec {
 					min_size = measure_string(p_directwrite_factory_, p_text_format_,
 						p_text_layout_, page.first, rect_current_tab_.bottom - rect_current_tab_.top,
 						rect_current_tab_.right - rect_current_tab_.left);
-					swap(min_size.width, min_size.height);
 					break;
 
 				case containers::tab_pane::side::top:
@@ -284,19 +285,44 @@ namespace liblec {
 				{
 				case containers::tab_pane::side::left:
 				case containers::tab_pane::side::right:
-					rect_current_tab_.bottom = rect_current_tab_.top + min_size.height + 2.f * margin_;
-					rect_text_ = rect_current_tab_;
+					if (specs_.caption_orientation == containers::tab_pane::orientation::vertical) {
+						swap(min_size.width, min_size.height);
+						rect_current_tab_.bottom = rect_current_tab_.top + min_size.height + 2.f * tab_gap_;
+						rect_text_ = rect_current_tab_;
+					}
+					else {
+						rect_current_tab_.bottom = rect_current_tab_.top + 25.f + (2 * tab_gap_);
+						rect_text_ = rect_current_tab_;
+						rect_text_.left += padding_;
+						rect_text_.right = smallest(rect_text_.left + min_size.width, rect_current_tab_.right - 2 * padding_);
+					}
+
 					if (rect_text_.bottom > rect_tab_pane_.bottom)
 						excess = true;
+
+					rect_text_.top += tab_gap_;
+					rect_text_.bottom -= tab_gap_;
 					break;
 
 				case containers::tab_pane::side::top:
 				case containers::tab_pane::side::bottom:
 				default:
-					rect_current_tab_.right = rect_current_tab_.left + min_size.width + 2.f * margin_;
-					rect_text_ = rect_current_tab_;
+					if (specs_.caption_orientation == containers::tab_pane::orientation::horizontal) {
+						rect_current_tab_.right = rect_current_tab_.left + min_size.width + 2.f * tab_gap_;
+						rect_text_ = rect_current_tab_;
+					}
+					else {
+						rect_current_tab_.right = rect_current_tab_.left + 25.f + (2 * tab_gap_);
+						rect_text_ = rect_current_tab_;
+						rect_text_.bottom -= padding_;
+						rect_text_.top = largest(rect_text_.bottom - min_size.width, rect_current_tab_.top + 2 * padding_);
+					}
+
 					if (rect_text_.right > rect_tab_pane_.right)
 						excess = true;
+
+					rect_text_.left += tab_gap_;
+					rect_text_.right -= tab_gap_;
 					break;
 				}
 
@@ -361,20 +387,24 @@ namespace liblec {
 							switch (specs_.tab_side)
 							{
 							case containers::tab_pane::side::left:
-								rect_text_.right -= 2.5f;
+								rect_text_.right += 2.5f;
+								rect_text_.left += 2.5f;
 								break;
 
 							case containers::tab_pane::side::right:
 								rect_text_.left += 2.5f;
+								rect_text_.right += 2.5f;
 								break;
 
 							case containers::tab_pane::side::bottom:
 								rect_text_.top += 2.5f;
+								rect_text_.bottom += 2.5f;
 								break;
 
 							case containers::tab_pane::side::top:
 							default:
 								rect_text_.bottom -= 2.5f;
+								rect_text_.top -= 2.5f;
 								break;
 							}
 						}
@@ -385,58 +415,113 @@ namespace liblec {
 				{
 				case containers::tab_pane::side::left:
 				case containers::tab_pane::side::right: {
-					// rotate the text rectangle about its center
+					if (specs_.caption_orientation == containers::tab_pane::orientation::vertical) {
+						// rotate the text rectangle about its center
 
-					const D2D1_POINT_2F center =
-					{ rect_text_.left + (rect_text_.right - rect_text_.left) / 2.f,
-						rect_text_.top + (rect_text_.bottom - rect_text_.top) / 2.f };
+						const D2D1_POINT_2F center =
+						{ rect_text_.left + (rect_text_.right - rect_text_.left) / 2.f,
+							rect_text_.top + (rect_text_.bottom - rect_text_.top) / 2.f };
 
-					D2D1_SIZE_F size =
-					{ rect_text_.right - rect_text_.left ,
-						rect_text_.bottom - rect_text_.top };
-					swap(size.width, size.height);
+						D2D1_SIZE_F size =
+						{ rect_text_.right - rect_text_.left ,
+							rect_text_.bottom - rect_text_.top };
+						swap(size.width, size.height);
 
-					rect_text_.left = center.x - (size.width / 2.f);
-					rect_text_.right = rect_text_.left + size.width;
-					rect_text_.top = center.y - (size.height / 2.f);
-					rect_text_.bottom = rect_text_.top + size.height;
+						rect_text_.left = center.x - (size.width / 2.f);
+						rect_text_.right = rect_text_.left + size.width;
+						rect_text_.top = center.y - (size.height / 2.f);
+						rect_text_.bottom = rect_text_.top + size.height;
 
-					D2D1_MATRIX_3X2_F rotation = D2D1::Matrix3x2F::Rotation(90.f, center);
+						D2D1_MATRIX_3X2_F rotation = D2D1::Matrix3x2F::Rotation(90.f, center);
 
-					D2D1_MATRIX_3X2_F old_transform;
-					p_render_target->GetTransform(&old_transform);
+						D2D1_MATRIX_3X2_F old_transform;
+						p_render_target->GetTransform(&old_transform);
 
-					p_render_target->SetTransform(rotation);
+						p_render_target->SetTransform(rotation);
 
-					// create a text layout
-					HRESULT hr = p_directwrite_factory_->CreateTextLayout(convert_string(page.first).c_str(),
-						(UINT32)page.first.length(), p_text_format_, rect_text_.right - rect_text_.left,
-						rect_text_.bottom - rect_text_.top, &p_text_layout_);
+						// create a text layout
+						HRESULT hr = p_directwrite_factory_->CreateTextLayout(convert_string(page.first).c_str(),
+							(UINT32)page.first.length(), p_text_format_, rect_text_.right - rect_text_.left,
+							rect_text_.bottom - rect_text_.top, &p_text_layout_);
 
-					if (SUCCEEDED(hr)) {
-						// draw the text layout
-						p_render_target->DrawTextLayout(D2D1_POINT_2F{ rect_text_.left, rect_text_.top },
-							p_text_layout_, is_enabled_ ?
-							p_brush_ : p_brush_disabled_, D2D1_DRAW_TEXT_OPTIONS_CLIP);
+						if (SUCCEEDED(hr)) {
+							// draw the text layout
+							p_render_target->DrawTextLayout(D2D1_POINT_2F{ rect_text_.left, rect_text_.top },
+								p_text_layout_, is_enabled_ ?
+								p_brush_ : p_brush_disabled_, D2D1_DRAW_TEXT_OPTIONS_CLIP);
+						}
+
+						p_render_target->SetTransform(old_transform);
 					}
+					else {
+						// create a text layout
+						HRESULT hr = p_directwrite_factory_->CreateTextLayout(convert_string(page.first).c_str(),
+							(UINT32)page.first.length(), p_text_format_, rect_text_.right - rect_text_.left,
+							rect_text_.bottom - rect_text_.top, &p_text_layout_);
 
-					p_render_target->SetTransform(old_transform);
+						if (SUCCEEDED(hr)) {
+							// draw the text layout
+							p_render_target->DrawTextLayout(D2D1_POINT_2F{ rect_text_.left, rect_text_.top },
+								p_text_layout_, is_enabled_ ?
+								p_brush_ : p_brush_disabled_, D2D1_DRAW_TEXT_OPTIONS_CLIP);
+						}
+					}
 				}
 					break;
 
 				case containers::tab_pane::side::top:
 				case containers::tab_pane::side::bottom: {
 				default:
-					// create a text layout
-					HRESULT hr = p_directwrite_factory_->CreateTextLayout(convert_string(page.first).c_str(),
-						(UINT32)page.first.length(), p_text_format_, rect_text_.right - rect_text_.left,
-						rect_text_.bottom - rect_text_.top, &p_text_layout_);
+					if (specs_.caption_orientation == containers::tab_pane::orientation::horizontal) {
+						// create a text layout
+						HRESULT hr = p_directwrite_factory_->CreateTextLayout(convert_string(page.first).c_str(),
+							(UINT32)page.first.length(), p_text_format_, rect_text_.right - rect_text_.left,
+							rect_text_.bottom - rect_text_.top, &p_text_layout_);
 
-					if (SUCCEEDED(hr)) {
-						// draw the text layout
-						p_render_target->DrawTextLayout(D2D1_POINT_2F{ rect_text_.left, rect_text_.top },
-							p_text_layout_, is_enabled_ ?
-							p_brush_ : p_brush_disabled_, D2D1_DRAW_TEXT_OPTIONS_CLIP);
+						if (SUCCEEDED(hr)) {
+							// draw the text layout
+							p_render_target->DrawTextLayout(D2D1_POINT_2F{ rect_text_.left, rect_text_.top },
+								p_text_layout_, is_enabled_ ?
+								p_brush_ : p_brush_disabled_, D2D1_DRAW_TEXT_OPTIONS_CLIP);
+						}
+					}
+					else {
+						// rotate the text rectangle about its center
+
+						const D2D1_POINT_2F center =
+						{ rect_text_.left + (rect_text_.right - rect_text_.left) / 2.f,
+							rect_text_.top + (rect_text_.bottom - rect_text_.top) / 2.f };
+
+						D2D1_SIZE_F size =
+						{ rect_text_.right - rect_text_.left ,
+							rect_text_.bottom - rect_text_.top };
+						swap(size.width, size.height);
+
+						rect_text_.left = center.x - (size.width / 2.f);
+						rect_text_.right = rect_text_.left + size.width;
+						rect_text_.top = center.y - (size.height / 2.f);
+						rect_text_.bottom = rect_text_.top + size.height;
+
+						D2D1_MATRIX_3X2_F rotation = D2D1::Matrix3x2F::Rotation(-90.f, center);
+
+						D2D1_MATRIX_3X2_F old_transform;
+						p_render_target->GetTransform(&old_transform);
+
+						p_render_target->SetTransform(rotation);
+
+						// create a text layout
+						HRESULT hr = p_directwrite_factory_->CreateTextLayout(convert_string(page.first).c_str(),
+							(UINT32)page.first.length(), p_text_format_, rect_text_.right - rect_text_.left,
+							rect_text_.bottom - rect_text_.top, &p_text_layout_);
+
+						if (SUCCEEDED(hr)) {
+							// draw the text layout
+							p_render_target->DrawTextLayout(D2D1_POINT_2F{ rect_text_.left, rect_text_.top },
+								p_text_layout_, is_enabled_ ?
+								p_brush_ : p_brush_disabled_, D2D1_DRAW_TEXT_OPTIONS_CLIP);
+						}
+
+						p_render_target->SetTransform(old_transform);
 					}
 				}
 					break;
@@ -530,6 +615,31 @@ namespace liblec {
 
 		float widgets_impl::tab_pane::caption_bar_height() {
 			return (tab_height_ + bar_height_);
+		}
+
+		float widgets_impl::tab_pane::tab_height() {
+			return tab_height_;
+		}
+
+		float widgets_impl::tab_pane::bar_height() {
+			return bar_height_;
+		}
+
+		float widgets_impl::tab_pane::padding() {
+			return padding_;
+		}
+
+		float widgets_impl::tab_pane::margin() {
+			return margin_;
+		}
+
+		void widgets_impl::tab_pane::set_tab_height(const float height) {
+			tab_height_set_ = true;
+			tab_height_ = height;
+		}
+
+		bool widgets_impl::tab_pane::tab_height_set() {
+			return tab_height_set_;
 		}
 
 		bool widgets_impl::tab_pane::contains() {

@@ -46,6 +46,12 @@ namespace liblec {
 				const D2D1_RECT_F& client_area();
 				const D2D1_RECT_F& tab_pane_area();
 				float caption_bar_height();
+				float tab_height();
+				float bar_height();
+				float padding();
+				float margin();
+				void set_tab_height(const float height);
+				bool tab_height_set();
 
 			private:
 				/// Prevent the use of the default constructor.
@@ -69,9 +75,10 @@ namespace liblec {
 
 				IDWriteFactory* p_directwrite_factory_;
 				IDWriteTextLayout* p_text_layout_;
-				const float margin_;
+				const float margin_, padding_;
 				const float tab_gap_;
-				const float tab_height_;
+				float tab_height_;
+				bool tab_height_set_;
 				const float bar_height_;
 				D2D1_RECT_F rect_tabs_;
 				D2D1_RECT_F rect_client_area_;

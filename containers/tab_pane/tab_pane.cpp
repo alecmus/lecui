@@ -114,8 +114,52 @@ namespace liblec {
 				const float thickness = 10.f;
 				const float margin = 10.f;
 				const float page_tolerance_ = 10.f;
-				const float caption_bar_height_ = tab_pane_.caption_bar_height();
+				float tab_height_ = tab_pane_.tab_height();
 				rect rect_client_area = tab_pane_().rect;
+
+				bool tabs_perpendicular = false;
+
+				switch (tp.d_.specs_.tab_side) {
+				case tab_pane::side::left:
+				case tab_pane::side::right:
+					if (tp.d_.specs_.caption_orientation == tab_pane::orientation::horizontal)
+						tabs_perpendicular = true;
+					break;
+
+				case tab_pane::side::top:
+				case tab_pane::side::bottom:
+				default: 
+					if (tp.d_.specs_.caption_orientation == tab_pane::orientation::vertical)
+						tabs_perpendicular = true;
+					break;
+				}
+
+				if (tabs_perpendicular && !tab_pane_.tab_height_set()) {
+					if (!tab_pane_.specs().caption_reserve.empty()) {
+						log(tab_name + ": using caption reserve to compute dimensions");
+						// compute the longest tab caption in the reserve
+						for (const auto& alias : tab_pane_.specs().caption_reserve) {
+							D2D1_RECT_F max_rect = { 0.f, 0.f, tab_pane_.specs().rect.height(), tab_pane_.caption_bar_height() };
+							auto caption_rect = widgets_impl::measure_label(tp.d_.page_.d_page_.p_directwrite_factory_, alias, tab_pane_.specs().font,
+								tab_pane_.specs().font_size, false, true, max_rect);
+
+							tab_height_ = largest(tab_height_, caption_rect.right - caption_rect.left + 3.f * tab_pane_.padding());
+						}
+					}
+					else {
+						log(tab_name + ": WARNING - no caption reserve for perpendicular tab captions!");
+						// use current caption to set tab height
+						D2D1_RECT_F max_rect = { 0.f, 0.f, tab_pane_.specs().rect.height(), tab_pane_.caption_bar_height() };
+						auto caption_rect = widgets_impl::measure_label(tp.d_.page_.d_page_.p_directwrite_factory_, tab_name, tab_pane_.specs().font,
+							tab_pane_.specs().font_size, false, true, max_rect);
+
+						tab_height_ = largest(tab_height_, caption_rect.right - caption_rect.left + 3.f * tab_pane_.padding());
+					}
+
+					tab_pane_.set_tab_height(tab_height_);
+				}
+
+				const auto caption_bar_height_ = tab_pane_.caption_bar_height();
 
 				// initialize the page's horizontal scroll bar
 				{

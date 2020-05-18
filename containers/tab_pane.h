@@ -35,6 +35,11 @@ namespace liblec {
 					bottom,
 				};
 
+				enum class orientation {
+					horizontal,
+					vertical,
+				};
+
 				/// <summary>Tab pane specifications.</summary>
 				class tab_pane_specs : public widgets::specs {
 				public:
@@ -43,6 +48,21 @@ namespace liblec {
 					}
 
 					side tab_side = side::top;
+
+					/// <summary>Only affects tab captions whose orientation is perpendicular to
+					/// the tab area. Make a reservation for the captions of all the tabs that are
+					/// going to be added. If there is no way to know before-hand it is recommended
+					/// to insert at least one dummy caption that estimates the size of the longest
+					/// expected caption.</summary>
+					/// <remarks>This is not required if the tab caption orientation is parallel
+					/// to the tab area. If the tab caption orientation is perpendicular, it is
+					/// important to set this reservation before adding the first tab to the tab
+					/// pane. Failure to do this will result in the thickness of the tab area being
+					/// clipped to the size of the first tab's caption. This, however, won't be an
+					/// issue if the rest of the tab captions are shorter than the first.</remarks>
+					std::vector<std::string> caption_reserve;
+
+					orientation caption_orientation = orientation::horizontal;
 					color color_tabs;
 					color color_border;
 					color color_selected;
