@@ -51,6 +51,7 @@ namespace liblec {
 			ID2D1HwndRenderTarget* p_render_target) {
 			log("creating resources:   " + page_alias_ + ":" + alias_);
 			is_static_ = false;
+			h_cursor_ = get_cursor(specs_.cursor);
 
 			HRESULT hr = S_OK;
 
@@ -180,10 +181,8 @@ namespace liblec {
 			D2D1_ROUNDED_RECT rounded_rect{ rect_client_area_,
 				specs_.corner_radius_x, specs_.corner_radius_y };
 
-			if (specs_.is_filled)
-				p_render_target->FillRoundedRectangle(&rounded_rect, is_enabled_ ?
-					p_brush_fill_ : p_brush_disabled_);
-
+			p_render_target->FillRoundedRectangle(&rounded_rect, is_enabled_ ?
+				p_brush_fill_ : p_brush_disabled_);
 			p_render_target->DrawRoundedRectangle(&rounded_rect, is_enabled_ ?
 				p_brush_border_ : p_brush_disabled_, specs_.border);
 

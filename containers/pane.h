@@ -33,7 +33,6 @@ namespace liblec {
 				public:
 					pane_specs() {}
 
-					bool is_filled = true;
 					color color_border;
 					float border = .5f;
 					float corner_radius_x = 5.f;

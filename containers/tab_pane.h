@@ -38,10 +38,11 @@ namespace liblec {
 				/// <summary>Tab pane specifications.</summary>
 				class tab_pane_specs : public widgets::specs {
 				public:
-					tab_pane_specs() {}
+					tab_pane_specs() {
+						cursor = cursor_type::hand;
+					}
 
 					side tab_side = side::top;
-					bool is_filled = true;
 					color color_tabs;
 					color color_border;
 					color color_selected;
