@@ -246,7 +246,7 @@ namespace liblec {
 				break;
 			}
 
-			for (const auto& page : p_tabs_) {
+			for (const auto& tab_name : tab_order_) {
 
 				D2D1_SIZE_F min_size = { 0.f, 0.f };
 
@@ -260,7 +260,7 @@ namespace liblec {
 
 					// calculate minimum size (we will rotate the text, so we're factoring this into this computation)
 					min_size = measure_string(p_directwrite_factory_, p_text_format_,
-						p_text_layout_, page.first, rect_current_tab_.bottom - rect_current_tab_.top,
+						p_text_layout_, tab_name, rect_current_tab_.bottom - rect_current_tab_.top,
 						rect_current_tab_.right - rect_current_tab_.left);
 					break;
 
@@ -273,7 +273,7 @@ namespace liblec {
 
 					// calculate minimum size
 					min_size = measure_string(p_directwrite_factory_, p_text_format_,
-						p_text_layout_, page.first, rect_current_tab_.right - rect_current_tab_.left,
+						p_text_layout_, tab_name, rect_current_tab_.right - rect_current_tab_.left,
 						rect_current_tab_.bottom - rect_current_tab_.top);
 					break;
 				}
@@ -330,7 +330,7 @@ namespace liblec {
 					break;
 
 				// capture current tab
-				p_tab_rects_[page.first];	// add if it doesn't yet exist
+				p_tab_rects_[tab_name];	// add if it doesn't yet exist
 
 				{
 					D2D1_RECT_F rect = rect_current_tab_;
@@ -353,7 +353,7 @@ namespace liblec {
 						break;
 					}
 
-					p_tab_rects_.at(page.first) = rect;
+					p_tab_rects_.at(tab_name) = rect;
 				}
 
 				if (!is_static_ && is_enabled_ && hit_) {
@@ -381,7 +381,7 @@ namespace liblec {
 						point_.y >= rect.top && point_.y <= rect.bottom) {
 						if (!is_static_ && is_enabled_ && hit_) {
 							if (pressed_)
-								current_tab_ = page.first;	// it's a tab, don't wait for a click!
+								current_tab_ = tab_name;	// it's a tab, don't wait for a click!
 
 							// move text a little (visual effect)
 							switch (specs_.tab_side)
@@ -440,8 +440,8 @@ namespace liblec {
 						p_render_target->SetTransform(rotation);
 
 						// create a text layout
-						HRESULT hr = p_directwrite_factory_->CreateTextLayout(convert_string(page.first).c_str(),
-							(UINT32)page.first.length(), p_text_format_, rect_text_.right - rect_text_.left,
+						HRESULT hr = p_directwrite_factory_->CreateTextLayout(convert_string(tab_name).c_str(),
+							(UINT32)tab_name.length(), p_text_format_, rect_text_.right - rect_text_.left,
 							rect_text_.bottom - rect_text_.top, &p_text_layout_);
 
 						if (SUCCEEDED(hr)) {
@@ -455,8 +455,8 @@ namespace liblec {
 					}
 					else {
 						// create a text layout
-						HRESULT hr = p_directwrite_factory_->CreateTextLayout(convert_string(page.first).c_str(),
-							(UINT32)page.first.length(), p_text_format_, rect_text_.right - rect_text_.left,
+						HRESULT hr = p_directwrite_factory_->CreateTextLayout(convert_string(tab_name).c_str(),
+							(UINT32)tab_name.length(), p_text_format_, rect_text_.right - rect_text_.left,
 							rect_text_.bottom - rect_text_.top, &p_text_layout_);
 
 						if (SUCCEEDED(hr)) {
@@ -474,8 +474,8 @@ namespace liblec {
 				default:
 					if (specs_.caption_orientation == containers::tab_pane::orientation::horizontal) {
 						// create a text layout
-						HRESULT hr = p_directwrite_factory_->CreateTextLayout(convert_string(page.first).c_str(),
-							(UINT32)page.first.length(), p_text_format_, rect_text_.right - rect_text_.left,
+						HRESULT hr = p_directwrite_factory_->CreateTextLayout(convert_string(tab_name).c_str(),
+							(UINT32)tab_name.length(), p_text_format_, rect_text_.right - rect_text_.left,
 							rect_text_.bottom - rect_text_.top, &p_text_layout_);
 
 						if (SUCCEEDED(hr)) {
@@ -510,8 +510,8 @@ namespace liblec {
 						p_render_target->SetTransform(rotation);
 
 						// create a text layout
-						HRESULT hr = p_directwrite_factory_->CreateTextLayout(convert_string(page.first).c_str(),
-							(UINT32)page.first.length(), p_text_format_, rect_text_.right - rect_text_.left,
+						HRESULT hr = p_directwrite_factory_->CreateTextLayout(convert_string(tab_name).c_str(),
+							(UINT32)tab_name.length(), p_text_format_, rect_text_.right - rect_text_.left,
 							rect_text_.bottom - rect_text_.top, &p_text_layout_);
 
 						if (SUCCEEDED(hr)) {

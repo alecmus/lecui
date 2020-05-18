@@ -23,6 +23,7 @@ namespace liblec {
 			public:
 				// pages <K = tab name, T>
 				std::map<std::string, containers::page> p_tabs_;
+				std::vector<std::string> tab_order_;
 				std::string current_tab_;
 
 				/// constructor and destructor

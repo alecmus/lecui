@@ -100,6 +100,7 @@ namespace liblec {
 				}
 
 				tab_pane_.p_tabs_.try_emplace(tab_name, tp.d_.page_.d_page_.fm_, tab_name);
+				tab_pane_.tab_order_.push_back(tab_name);
 				auto& page_impl = tab_pane_.p_tabs_.at(tab_name).d_page_;
 
 				// specify direct2d factory (used internally for geometries and stuff)
