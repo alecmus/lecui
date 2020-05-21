@@ -233,6 +233,16 @@ namespace liblec {
 			return trees_.at(alias).specs();
 		}
 
+		widgets::slider::slider_specs&
+			containers::page::impl::add_slider(std::string alias) {
+			check_alias(alias);
+			if (sliders_.try_emplace(alias, alias_, alias, p_directwrite_factory_).second) {
+				widgets_.emplace(alias, sliders_.at(alias));
+				widgets_order_.emplace_back(alias);
+			}
+			return sliders_.at(alias).specs();
+		}
+
 		std::map<std::string, widgets_impl::widget&>&
 			containers::page::impl::widgets() { return widgets_; }
 
@@ -291,6 +301,9 @@ namespace liblec {
 
 		widgets_impl::tree&
 			containers::page::impl::get_tree(const std::string& alias) { return trees_.at(alias); }
+
+		widgets_impl::slider&
+			containers::page::impl::get_slider(const std::string& alias) { return sliders_.at(alias); }
 
 		bool
 			containers::page::impl::close_widget(const std::string& alias,
@@ -361,6 +374,9 @@ namespace liblec {
 					break;
 				case widgets_impl::widget_type::tree:
 					trees_.erase(alias_);
+					break;
+				case widgets_impl::widget_type::slider:
+					sliders_.erase(alias_);
 					break;
 				case widgets_impl::widget_type::close_button:
 				case widgets_impl::widget_type::maximize_button:

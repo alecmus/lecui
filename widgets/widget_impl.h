@@ -56,6 +56,7 @@ namespace liblec {
 				checkbox,
 				textbox,
 				tree,
+				slider,
 			};
 
 			static HCURSOR get_cursor(widgets::specs::cursor_type type) {

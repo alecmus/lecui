@@ -86,6 +86,9 @@
     <Filter Include="lecui\containers\status_pane">
       <UniqueIdentifier>{01e6aa71-69f0-41b6-ba3a-bd01f8795a45}</UniqueIdentifier>
     </Filter>
+    <Filter Include="lecui\widgets\slider">
+      <UniqueIdentifier>{fe83eacb-7dc7-4267-a871-00d9275993cf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="error\win_error.h">
@@ -242,6 +245,12 @@
     <ClInclude Include="containers\status_pane.h">
       <Filter>lecui\containers</Filter>
     </ClInclude>
+    <ClInclude Include="widgets\slider.h">
+      <Filter>lecui\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="widgets\slider\slider_impl.h">
+      <Filter>lecui\widgets\slider</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="error\win_error.cpp">
@@ -391,6 +400,12 @@
     </ClCompile>
     <ClCompile Include="unique_string.cpp">
       <Filter>lecui</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\slider\slider.cpp">
+      <Filter>lecui\widgets\slider</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\slider\slider_impl.cpp">
+      <Filter>lecui\widgets\slider</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -34,6 +34,7 @@
 #include "../../widgets/checkbox/checkbox_impl.h"
 #include "../../widgets/textbox/textbox_impl.h"
 #include "../../widgets/tree/tree_impl.h"
+#include "../../widgets/slider/slider_impl.h"
 
 namespace liblec {
 	namespace lecui {
@@ -91,6 +92,8 @@ namespace liblec {
 				add_textbox(std::string alias);
 			widgets::tree::tree_specs&
 				add_tree(std::string alias);
+			widgets::slider::slider_specs&
+				add_slider(std::string alias);
 
 			std::map<std::string,
 				widgets_impl::widget&>&
@@ -135,6 +138,8 @@ namespace liblec {
 				get_textbox(const std::string& alias);
 			widgets_impl::tree&
 				get_tree(const std::string& alias);
+			widgets_impl::slider&
+				get_slider(const std::string& alias);
 
 			bool close_widget(const std::string& alias,
 				widgets_impl::widget_type type, std::string& error);
@@ -171,6 +176,7 @@ namespace liblec {
 			std::map<std::string, widgets_impl::checkbox> checkboxes_;
 			std::map<std::string, widgets_impl::textbox> textboxes_;
 			std::map<std::string, widgets_impl::tree> trees_;
+			std::map<std::string, widgets_impl::slider> sliders_;
 
 			form& fm_;
 
@@ -192,6 +198,7 @@ namespace liblec {
 			friend class widgets::checkbox;
 			friend class widgets::textbox;
 			friend class widgets::tree;
+			friend class widgets::slider;
 		};
 	}
 }

@@ -79,6 +79,7 @@ namespace liblec {
 				friend class widgets::checkbox;
 				friend class widgets::textbox;
 				friend class widgets::tree;
+				friend class widgets::slider;
 #endif
 			};
 		}

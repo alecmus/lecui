@@ -102,6 +102,14 @@ namespace liblec {
 
 				case item::group: return { 0, 120, 170, 25 };
 				case item::group_border: return { 0, 120, 170, 100 };
+
+				case item::slider: return { 234, 234, 234, 255 };
+				case item::slider_border: return { 200, 200, 200, 255 };
+				case item::slider_knob: return { 215, 215, 225, 255 };
+				case item::slider_knob_hot: return { 225, 225, 235, 255 };
+				case item::slider_knob_border: return { 0, 120, 170, 50 };
+				case item::slider_tick: return { 120, 120, 120, 255 };
+				case item::slider_selected: return { 0, 120, 170, 150 };
 				default: break;
 				}
 			} break;
@@ -190,6 +198,14 @@ namespace liblec {
 
 				case item::group: return { 60, 190, 175, 25 };
 				case item::group_border: return { 60, 190, 175, 100 };
+
+				case item::slider: return { 26, 39, 46, 255 };
+				case item::slider_border: return { 70, 70, 70, 255 };
+				case item::slider_knob: return { 60, 65, 75, 255 };
+				case item::slider_knob_hot: return { 80, 85, 95, 255 };
+				case item::slider_knob_border: return { 90, 90, 90, 255 };
+				case item::slider_tick: return { 85, 95, 100, 255 };
+				case item::slider_selected: return { 60, 190, 175, 150 };
 				default: break;
 				}
 			} break;

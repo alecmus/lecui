@@ -55,6 +55,7 @@ namespace liblec {
 			class textbox;
 			class passwordbox;
 			class tree;
+			class slider;
 		}
 #endif
 
@@ -260,6 +261,7 @@ namespace liblec {
 			friend class widgets::checkbox;
 			friend class widgets::textbox;
 			friend class widgets::tree;
+			friend class widgets::slider;
 #endif
 		};
 	}

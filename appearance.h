@@ -113,6 +113,14 @@ namespace liblec {
 
 			group,
 			group_border,
+
+			slider,
+			slider_border,
+			slider_knob,
+			slider_knob_hot,
+			slider_knob_border,
+			slider_tick,
+			slider_selected,
 		};
 
 		class lecui_api defaults {
