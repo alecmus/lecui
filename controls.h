@@ -56,6 +56,18 @@ namespace liblec {
 			dimensions(form& fm);
 			~dimensions();
 
+			/// <summary>Measure how much space a label will take.</summary>
+			/// <param name="formatted_text">The formatted text.</param>
+			/// <param name="font">The font, e.g. Segoe UI.</param>
+			/// <param name="font_size">The font size, in points, e.g. 9.0f.</param>
+			/// <param name="center_h">Whether to center the text horizontally within the area.</param>
+			/// <param name="center_v">Whether to center the text vertically within the area.</param>
+			/// <param name="max_rect">The area which the text should not exceed.</param>
+			/// <returns>The rectangle that defines the optimal rectangle for the text.</returns>
+			lecui::rect measure_label(const std::string& formatted_text,
+				const std::string& font, const float font_size,
+				bool center_h, bool center_v, const lecui::rect max_rect);
+
 			/// <summary>Set the form's size.</summary>
 			/// <param name="size">The size, in pixels.</param>
 			/// <remarks>This manipulation should be done in the form's layout method.</remarks>

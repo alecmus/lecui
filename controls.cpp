@@ -45,6 +45,15 @@ namespace liblec {
 
 		dimensions::~dimensions() { delete& d_; }
 
+		lecui::rect dimensions::measure_label(const std::string& formatted_text,
+			const std::string& font, const float font_size,
+			bool center_h, bool center_v, const lecui::rect max_rect) {
+			auto rect = convert_rect(max_rect);
+			rect = widgets_impl::measure_label(d_.fm_.d_.p_directwrite_factory_, formatted_text,
+				font, font_size, center_h, center_v, rect);
+			return convert_rect(rect);
+		}
+
 		void dimensions::size(const lecui::size& size) {
 			if (size.width) {
 				d_.fm_.d_.size_.width = size.width;
