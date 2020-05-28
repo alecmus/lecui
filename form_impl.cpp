@@ -58,9 +58,10 @@ namespace liblec {
 
 		form::impl::impl(const std::string& caption_formatted) :
 			p_parent_(nullptr),
+			menu_form_(caption_formatted == form::menu_form_caption()),
 			parent_closing_(false),
 			show_called_(false),
-			caption_bar_height_(30.f),
+			caption_bar_height_(menu_form_ ? 0.f : 30.f),
 			form_border_thickness_(1.f),
 			page_tolerance_(form_border_thickness_ / 2.f),
 			control_button_margin_(2.f),
@@ -1456,6 +1457,13 @@ namespace liblec {
 		}
 
 		void form::impl::client_hittest(const D2D1_POINT_2F& point) {
+			for (auto& [key, child] : m_children_) {
+				if (child && IsWindow(child->d_.hWnd_) && child->d_.menu_form_) {
+					// ignore mouse movement on parent, there is a menu form open
+					return;
+				}
+			}
+
 			bool contains = false;
 			bool change = false;
 			HCURSOR h_cursor = nullptr;
@@ -1655,6 +1663,13 @@ namespace liblec {
 		}
 
 		void form::impl::on_lbuttondown(const D2D1_POINT_2F& point) {
+			for (auto& [key, child] : m_children_) {
+				if (child && IsWindow(child->d_.hWnd_) && child->d_.menu_form_) {
+					// close child menu forms
+					child->close();
+				}
+			}
+
 			point_before_ = point;
 
 			bool pressed = false;
@@ -2514,6 +2529,22 @@ namespace liblec {
 				return NULL;
 
 			case WM_KILLFOCUS:
+				// check if it's the parent that now has focus
+				if (form_.value().get().d_.menu_form_) {
+					if (IsWindow(form_.value().get().d_.hWnd_parent_)) {
+						if (GetForegroundWindow() != form_.value().get().d_.hWnd_parent_) {
+							// focus lost, but not to parent
+							form_.value().get().close();
+						}
+						else {
+							// let parent decide whether to close child in WM_LBUTTONDOWN
+						}
+					}
+					else {
+						// focus lost, and there is no parent
+						form_.value().get().close();
+					}
+				}
 				return NULL;
 
 			case WM_PAINT:

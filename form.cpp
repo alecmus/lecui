@@ -65,6 +65,10 @@ namespace liblec {
 			log("exiting form destructor");
 		}
 
+		std::string form::menu_form_caption() {
+			return std::string("lecui::form::menu");
+		}
+
 		void form::move(const point& point) {
 			d_.user_pos_ = true;
 			d_.preset_pos_ = false;
@@ -111,17 +115,25 @@ namespace liblec {
 			if (!on_layout(error))
 				return false;
 
+			// handle menu form
+			if (d_.menu_form_) {
+				d_.allow_resizing_ = false;
+				d_.allow_minimize_ = false;
+				d_.activate_ = false;
+			}
+
 			// create form controls
+			if (!d_.menu_form_) {
+				d_.create_close_button([&]() { on_close(); });
 
-			d_.create_close_button([&]() { on_close(); });
+				if (d_.allow_resizing_)
+					d_.create_maximize_button();
 
-			if (d_.allow_resizing_)
-				d_.create_maximize_button();
+				if (d_.allow_minimize_)
+					d_.create_minimize_button();
 
-			if (d_.allow_minimize_)
-				d_.create_minimize_button();
-
-			d_.create_form_caption();
+				d_.create_form_caption();
+			}
 
 			// register window class
 			WNDCLASSEX wcex = { 0 };
@@ -184,8 +196,11 @@ namespace liblec {
 			if (d_.activate_)
 				SetForegroundWindow(d_.hWnd_);
 
-			// disable parent
-			if (IsWindow(d_.hWnd_parent_) && IsWindowEnabled(d_.hWnd_parent_))
+			// Disable parent if this is not a menu form.
+			// If this is a menu form, do not disable parent because we will need to be
+			// able to click the parent. The parent, is responsible for ignoring mouse movements
+			// and such things when it detects that a child menu form is open
+			if (!d_.menu_form_ && IsWindow(d_.hWnd_parent_) && IsWindowEnabled(d_.hWnd_parent_))
 				EnableWindow(d_.hWnd_parent_, FALSE);
 
 			MSG msg = {};
@@ -220,8 +235,10 @@ namespace liblec {
 					}
 				}
 
-				// enable parent
-				if (IsWindow(d_.hWnd_parent_) && !IsWindowEnabled(d_.hWnd_parent_))
+				// Enable parent if this is not a menu form.
+				// If this is a menu form, do not enable parent because the menu form is not
+				// responsible for disabling the parent (if it is disabled)
+				if (!d_.menu_form_ && IsWindow(d_.hWnd_parent_) && !IsWindowEnabled(d_.hWnd_parent_))
 					EnableWindow(d_.hWnd_parent_, TRUE);
 
 				DestroyWindow(d_.hWnd_);

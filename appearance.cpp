@@ -249,6 +249,10 @@ namespace liblec {
 				defaults::color(theme, item::label));
 		}
 
+		themes appearance::theme() {
+			return d_.fm_.d_.theme_;
+		}
+
 		void appearance::theme(const lecui::color& color,
 			const lecui::color& color_hot,
 			const lecui::color& color_disabled,

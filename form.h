@@ -104,6 +104,11 @@ namespace liblec {
 			form(const std::string& caption, form& parent);
 			~form();
 
+			/// <summary>A special caption used to make a menu form.</summary>
+			/// <returns>The internally reserved caption for menu forms.</returns>
+			[[nodiscard]]
+			static std::string menu_form_caption();
+
 			/// <summary>Move the form.</summary>
 			/// <param name="point">The coordinates of the top left corner of the form, in pixels.
 			/// </param>

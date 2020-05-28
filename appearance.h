@@ -145,6 +145,11 @@ namespace liblec {
 			/// constructor. Changing this later is not yet supported.</remarks>
 			void theme(themes theme);
 
+			/// <summary>Get the preset theme.</summary>
+			/// <returns>The theme.</returns>
+			[[nodiscard]]
+			themes theme();
+
 			/// <summary>Set the theme color.</summary>
 			/// <param name="color">The color of controls and the form border.</param>
 			/// <param name="color_hot">The color on-hovering over a control.</param>

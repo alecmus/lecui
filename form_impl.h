@@ -67,6 +67,7 @@ namespace liblec {
 			static IWICImagingFactory* p_iwic_factory_;
 
 			form* p_parent_;
+			bool menu_form_;	// for use as a menu; not resizable & has neither a caption nor control buttons
 			bool parent_closing_;
 			std::map<form*, form*> m_children_;
 			bool show_called_;
