@@ -2679,7 +2679,15 @@ namespace liblec {
 				}
 				break;
 
+			case WM_NCRBUTTONDOWN:
 			case WM_NCLBUTTONDOWN:
+				for (auto& [key, child] : form_.value().get().d_.m_children_) {
+					if (child && IsWindow(child->d_.hWnd_) && child->d_.menu_form_) {
+						// close child menu forms
+						child->close();
+					}
+				}
+
 				if (form_.value().get().d_.destroy_menus())
 					form_.value().get().d_.update();
 				break;
