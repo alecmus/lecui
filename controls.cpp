@@ -54,6 +54,26 @@ namespace liblec {
 			return convert_rect(rect);
 		}
 
+		lecui::rect dimensions::working_area() {
+			const auto rect = d_.fm_.d_.get_working_area(GetDesktopWindow());
+			return lecui::rect{ static_cast<float>(rect.left), static_cast<float>(rect.right),
+				static_cast<float>(rect.top), static_cast<float>(rect.bottom) };
+		}
+
+		lecui::rect dimensions::cursor_rect() {
+			const auto point = d_.fm_.d_.get_cursor_position();
+			const auto size = d_.fm_.d_.get_cursor_size();
+			const auto dpi_scale_ = d_.fm_.d_.dpi_scale_;
+
+			lecui::rect rect;
+			rect.left = (point.x / dpi_scale_);
+			rect.top = (point.y / dpi_scale_);
+			rect.width(size.width / dpi_scale_);
+			rect.height(size.height / dpi_scale_);
+
+			return rect;
+		}
+
 		void dimensions::size(const lecui::size& size) {
 			if (size.width) {
 				d_.fm_.d_.size_.width = size.width;

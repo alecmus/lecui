@@ -223,6 +223,7 @@ namespace liblec {
 			void on_resize(UINT width, UINT height);
 			RECT get_working_area(HWND hWnd);
 			D2D1_POINT_2F get_cursor_position();
+			D2D1_SIZE_F get_cursor_size();
 			void set_position(const float& ix, const float& iy,
 				const float& icx, const float& icy);
 			void set_position(const form_position& wndPos,

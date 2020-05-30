@@ -68,6 +68,17 @@ namespace liblec {
 				const std::string& font, const float font_size,
 				bool center_h, bool center_v, const lecui::rect max_rect);
 
+			/// <summary>Get the working area of the screen. This is the part of the screen that
+			/// excludes the operating system's task bar.</summary>
+			/// <returns>The working area rectangle.</returns>
+			/// <remarks>As with all lecui methods, this method is also DPI aware.</remarks>
+			[[nodiscard]] lecui::rect working_area();
+
+			/// <summary>Get the position of the mouse cursor.</summary>
+			/// <returns>The rectangle bounding the cursor.</returns>
+			/// <remarks>This method is DPI aware.</remarks>
+			[[nodiscard]] lecui::rect cursor_rect();
+
 			/// <summary>Set the form's size.</summary>
 			/// <param name="size">The size, in pixels.</param>
 			/// <remarks>This manipulation should be done in the form's layout method.</remarks>
