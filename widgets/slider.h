@@ -31,6 +31,11 @@ namespace liblec {
 				};
 
 				/// <summary>Slider widget specifications.</summary>
+				/// <remarks>The slider's orientation is computed automatically based on the its
+				/// size. If the width is greater than the height it's oriented horizontally, else
+				/// vertically. With the defaults, the recommended minimum height for horizontal
+				/// orientation is 35px and the recommended minimum with for vertical orientation
+				/// is 40px.</remarks>
 				class slider_specs : public specs {
 				public:
 					slider_specs() {
