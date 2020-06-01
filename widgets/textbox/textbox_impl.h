@@ -73,6 +73,7 @@ namespace liblec {
 				const std::string caret_blink_timer_name_;
 				UINT32 caret_position_;
 				bool caret_visible_;
+				bool skip_blink_;
 				float text_off_set_;
 				bool is_selecting_;
 				bool is_selected_;
