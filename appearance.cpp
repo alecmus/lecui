@@ -97,6 +97,7 @@ namespace liblec {
 
 				case item::rectangle: return { 222, 222, 222, 255 };
 				case item::rectangle_border: return { 150, 150, 150, 255 };
+				case item::rectangle_border_hot: return { 0, 120, 170, 50 };
 				case item::rectangle_hover: return { 0, 120, 170, 100 };
 				case item::rectangle_selected: return { 0, 120, 170, 100 };
 
@@ -193,6 +194,7 @@ namespace liblec {
 
 				case item::rectangle: return { 222, 222, 222, 255 };
 				case item::rectangle_border: return { 150, 150, 150, 255 };
+				case item::rectangle_border_hot: return { 60, 190, 175, 50 };
 				case item::rectangle_hover: return { 60, 190, 175, 100 };
 				case item::rectangle_selected: return { 60, 190, 175, 100 };
 

@@ -33,6 +33,7 @@ namespace liblec {
 					float corner_radius_x = .0f;
 					float corner_radius_y = .0f;
 					color color_border;
+					color color_border_hot;
 
 					bool operator==(const rectangle_specs&);
 					bool operator!=(const rectangle_specs&);

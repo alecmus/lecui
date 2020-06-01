@@ -63,6 +63,7 @@ namespace liblec {
 				widgets::rectangle::rectangle_specs specs_, specs_old_;
 				ID2D1SolidColorBrush* p_brush_fill_;
 				ID2D1SolidColorBrush* p_brush_border_;
+				ID2D1SolidColorBrush* p_brush_border_hot_;
 				ID2D1SolidColorBrush* p_brush_hot_;
 				ID2D1SolidColorBrush* p_brush_disabled_;
 				ID2D1SolidColorBrush* p_brush_selected_;

@@ -25,6 +25,7 @@ namespace liblec {
 			widgets_impl::v_scrollbar& v_scrollbar) :
 			p_brush_fill_(nullptr),
 			p_brush_border_(nullptr),
+			p_brush_border_hot_(nullptr),
 			p_brush_hot_(nullptr),
 			p_brush_disabled_(nullptr),
 			p_brush_selected_(nullptr),
@@ -57,6 +58,9 @@ namespace liblec {
 				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_border),
 					&p_brush_border_);
 			if (SUCCEEDED(hr))
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_border_hot),
+					&p_brush_border_hot_);
+			if (SUCCEEDED(hr))
 				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_hot),
 					&p_brush_hot_);
 			if (SUCCEEDED(hr))
@@ -75,6 +79,7 @@ namespace liblec {
 			resources_created_ = false;
 			safe_release(&p_brush_fill_);
 			safe_release(&p_brush_border_);
+			safe_release(&p_brush_border_hot_);
 			safe_release(&p_brush_hot_);
 			safe_release(&p_brush_disabled_);
 			safe_release(&p_brush_selected_);
@@ -105,14 +110,13 @@ namespace liblec {
 				specs_.corner_radius_x, specs_.corner_radius_y };
 
 			p_render_target->FillRoundedRectangle(&rounded_rect, is_enabled_ ?
-				p_brush_fill_ : p_brush_disabled_);
+				(hit_ ? p_brush_hot_ : p_brush_fill_) : p_brush_disabled_);
 			p_render_target->DrawRoundedRectangle(&rounded_rect, is_enabled_ ?
-				p_brush_border_ : p_brush_disabled_, specs_.border);
+				(hit_ ? p_brush_border_hot_ : p_brush_border_) : p_brush_disabled_, specs_.border);
 
 			if (!is_static_ && is_enabled_) {
-				if (hit_ || pressed_)
-					p_render_target->DrawRoundedRectangle(&rounded_rect, p_brush_hot_, pressed_ ?
-						1.75f : 1.f);
+				if (pressed_)
+					p_render_target->DrawRoundedRectangle(&rounded_rect, p_brush_hot_, 1.f);
 
 				if (selected_)
 					p_render_target->DrawRoundedRectangle(&rounded_rect, p_brush_selected_, pressed_ ?

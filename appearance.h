@@ -108,6 +108,7 @@ namespace liblec {
 
 			rectangle,
 			rectangle_border,
+			rectangle_border_hot,
 			rectangle_hover,
 			rectangle_selected,
 
