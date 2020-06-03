@@ -113,8 +113,6 @@ namespace liblec {
 			on_caption_(nullptr),
 			on_drop_files_(nullptr),
 			h_widget_cursor_(nullptr) {
-			log("entering form_impl constructor");
-
 			++instances_;	// increment instances count
 
 			/// Use HeapSetInformation to specify that the process should terminate if the heap manager
@@ -2112,7 +2110,6 @@ namespace liblec {
 
 		void form::impl::start_timer(const std::string& alias) {
 			if (timers_.find(alias) != timers_.end()) {
-				log("starting timer: " + alias);
 				SetTimer(hWnd_, (UINT_PTR)timers_.at(alias).unique_id,
 					(UINT)timers_.at(alias).milliseconds, NULL);
 				timers_.at(alias).running = true;

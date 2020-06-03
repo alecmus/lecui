@@ -69,8 +69,6 @@ namespace liblec {
 		}
 
 		containers::page& containers::status_pane::get() {
-			log("page::add_status_bar");
-
 			if (d_.fm_.d_.p_status_panes_.count(d_.alias_)) {
 				log("library usage error page::add_status_bar");
 

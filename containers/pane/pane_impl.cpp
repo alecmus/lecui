@@ -42,7 +42,6 @@ namespace liblec {
 
 		HRESULT widgets_impl::pane::create_resources(
 			ID2D1HwndRenderTarget* p_render_target) {
-			log("creating resources:   " + page_alias_ + ":" + alias_);
 			is_static_ = false;
 
 			HRESULT hr = S_OK;
@@ -65,7 +64,6 @@ namespace liblec {
 		}
 
 		void widgets_impl::pane::discard_resources() {
-			log("discarding resources: " + page_alias_ + ":" + alias_);
 			resources_created_ = false;
 			safe_release(&p_brush_);
 			safe_release(&p_brush_fill_);

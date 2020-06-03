@@ -23,6 +23,11 @@ namespace liblec {
 	namespace lecui {
 		namespace widgets_impl {
 			class rectangle : public widget {
+				/// private virtual function overrides
+				widgets::specs& generic_specs() override {
+					return specs_;
+				}
+
 			public:
 				/// <summary>Get the alias of the special rectangle used with pages. This
 				/// rectangle is important as it keeps track of the page dimensions, and makes 

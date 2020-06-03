@@ -66,6 +66,16 @@ namespace liblec {
 				return false;	// Don't refresh ui. Either widget is static or hit status hasn't changed.
 
 			hit_ = hit;
+
+			if (hit_) {
+				if (generic_specs().events().mouse_enter)
+					generic_specs().events().mouse_enter();
+			}
+			else {
+				if (generic_specs().events().mouse_leave)
+					generic_specs().events().mouse_leave();
+			}
+
 			return true;
 		}
 

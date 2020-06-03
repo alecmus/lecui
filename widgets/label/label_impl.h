@@ -59,6 +59,11 @@ namespace liblec {
 				const D2D1_RECT_F max_rect);
 
 			class label : public widget {
+				/// private virtual function overrides
+				widgets::specs& generic_specs() override {
+					return specs_;
+				}
+
 			public:
 				/// constructor and destructor
 				label(const std::string& page_alias,

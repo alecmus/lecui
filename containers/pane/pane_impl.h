@@ -20,6 +20,11 @@ namespace liblec {
 	namespace lecui {
 		namespace widgets_impl {
 			class pane : public widget {
+				/// private virtual function overrides
+				widgets::specs& generic_specs() override {
+					return specs_;
+				}
+
 			public:
 				/// <summary>Get the prefix of the special pane used to encase trees. This pane is
 				/// important for scrolling effects.</summary>

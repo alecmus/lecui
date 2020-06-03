@@ -23,6 +23,11 @@ namespace liblec {
 
 		namespace widgets_impl {
 			class minimize_button : public widget {
+				/// private virtual function overrides
+				widgets::specs& generic_specs() override {
+					return specs_;
+				}
+
 			public:
 				minimize_button();
 				~minimize_button();

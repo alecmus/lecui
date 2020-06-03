@@ -77,6 +77,8 @@ namespace liblec {
 			}
 
 			class widget {
+				virtual widgets::specs& generic_specs() = 0;
+
 			public:
 				widget();
 				virtual ~widget();

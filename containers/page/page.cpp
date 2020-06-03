@@ -38,8 +38,6 @@ namespace liblec {
 		}
 
 		containers::page& page_management::add(const std::string& alias) {
-			log("page::add");
-
 			if (d_.fm_.d_.p_pages_.count(alias)) {
 				log("library usage error page::add");
 

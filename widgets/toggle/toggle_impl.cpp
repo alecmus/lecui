@@ -43,7 +43,6 @@ namespace liblec {
 
 		HRESULT widgets_impl::toggle::create_resources(
 			ID2D1HwndRenderTarget* p_render_target) {
-			log("creating resources:   " + page_alias_ + ":" + alias_);
 			specs_old_ = specs_;
 			is_static_ = (specs_.events().toggle == nullptr && specs_.events().click == nullptr);
 			h_cursor_ = get_cursor(specs_.cursor);
@@ -98,7 +97,6 @@ namespace liblec {
 		}
 
 		void widgets_impl::toggle::discard_resources() {
-			log("discarding resources: " + page_alias_ + ":" + alias_);
 			resources_created_ = false;
 			safe_release(&p_brush_);
 			safe_release(&p_brush_fill_);

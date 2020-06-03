@@ -22,7 +22,6 @@ namespace liblec {
 			p_iwic_factory_(p_iwic_factory) {
 			page_alias_ = page_alias;
 			alias_ = alias;
-			log("constructor: " + page_alias_ + ":" + alias_);
 		}
 
 		widgets_impl::custom::~custom() {
@@ -31,7 +30,6 @@ namespace liblec {
 			// Trying to discard resources here will result in an access violation
 			// if the custom widget is not a static object, and we certainly do
 			// not want any widget to be a static object!
-			log("destructor: " + page_alias_ + ":" + alias_);
 		}
 
 		widgets_impl::widget_type
@@ -41,7 +39,6 @@ namespace liblec {
 
 		HRESULT widgets_impl::custom::create_resources(
 			ID2D1HwndRenderTarget* p_render_target) {
-			log("creating resources:   " + page_alias_ + ":" + alias_);
 			specs_old_ = specs_;
 			is_static_ = (specs_.events().click == nullptr);
 			h_cursor_ = get_cursor(specs_.cursor);
@@ -54,7 +51,6 @@ namespace liblec {
 		}
 
 		void widgets_impl::custom::discard_resources() {
-			log("discarding resources: " + page_alias_ + ":" + alias_);
 			resources_created_ = false;
 			if (specs_.on_discard_resources != nullptr)
 				specs_.on_discard_resources();

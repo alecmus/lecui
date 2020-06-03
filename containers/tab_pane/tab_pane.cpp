@@ -90,8 +90,6 @@ namespace liblec {
 			static containers::page& add(tab_pane& tp, const std::string& tab_name) {
 				auto& tab_pane_ = tp.d_.page_.d_page_.get_tab_pane(tp.d_.alias_);
 
-				log("containers::tab::impl::add");
-
 				if (tab_pane_.p_tabs_.count(tab_name)) {
 					log("library usage error containers::tab::impl::add");
 

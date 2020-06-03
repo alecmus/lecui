@@ -30,9 +30,7 @@ namespace liblec {
 	namespace lecui {
 		// this is the constructor that all the others below call
 		form::form(const std::string& caption) :
-			d_(*new impl(caption)) {
-			log("entering form constructor");
-		}
+			d_(*new impl(caption)) {}
 
 		form::form() :
 			form::form("form") {}
@@ -62,7 +60,6 @@ namespace liblec {
 			}
 
 			delete& d_;
-			log("exiting form destructor");
 		}
 
 		std::string form::menu_form_caption() {
@@ -82,8 +79,6 @@ namespace liblec {
 		}
 
 		bool form::show(std::string& error) {
-			log("form::show");
-
 			if (d_.show_called_) {
 				error = "Library usage error: form::show";
 				return false;

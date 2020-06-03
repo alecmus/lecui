@@ -20,6 +20,11 @@ namespace liblec {
 	namespace lecui {
 		namespace widgets_impl {
 			class tab_pane : public widget {
+				/// private virtual function overrides
+				widgets::specs& generic_specs() override {
+					return specs_;
+				}
+
 			public:
 				// pages <K = tab name, T>
 				std::map<std::string, containers::page> p_tabs_;

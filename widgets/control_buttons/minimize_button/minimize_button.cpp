@@ -33,7 +33,6 @@ namespace liblec {
 
 		HRESULT widgets_impl::minimize_button::create_resources(
 			ID2D1HwndRenderTarget* p_render_target) {
-			log("creating resources:   " + page_alias_ + ":" + alias_);
 			is_static_ = false;
 			h_cursor_ = get_cursor(specs_.cursor);
 
@@ -54,7 +53,6 @@ namespace liblec {
 		}
 
 		void widgets_impl::minimize_button::discard_resources() {
-			log("discarding resources: " + page_alias_ + ":" + alias_);
 			resources_created_ = false;
 			safe_release(&p_brush_);
 			safe_release(&p_brush_hot_);

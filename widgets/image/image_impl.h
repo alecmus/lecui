@@ -20,6 +20,11 @@ namespace liblec {
 	namespace lecui {
 		namespace widgets_impl {
 			class image : public widget {
+				/// private virtual function overrides
+				widgets::specs& generic_specs() override {
+					return specs_;
+				}
+
 			public:
 				/// constructor and destructor
 				image(const std::string& page_alias,

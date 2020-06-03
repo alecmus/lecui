@@ -23,6 +23,11 @@ namespace liblec {
 
 		namespace widgets_impl {
 			class maximize_button : public widget {
+				/// private virtual function overrides
+				widgets::specs& generic_specs() override {
+					return specs_;
+				}
+
 			public:
 				maximize_button();
 				~maximize_button();

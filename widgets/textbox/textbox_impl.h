@@ -20,6 +20,11 @@ namespace liblec {
 	namespace lecui {
 		namespace widgets_impl {
 			class textbox : public widget {
+				/// private virtual function overrides
+				widgets::specs& generic_specs() override {
+					return specs_;
+				}
+
 			public:
 				/// constructor and destructor
 				textbox(const std::string& page_alias,
@@ -113,7 +118,6 @@ namespace liblec {
 
 				static D2D1_RECT_F get_caret_rect(IDWriteTextLayout* p_text_layout,
 					const D2D1_RECT_F& rect_text, const UINT32& caret_position);
-
 			};
 		}
 	}

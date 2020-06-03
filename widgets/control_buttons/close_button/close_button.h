@@ -23,6 +23,11 @@ namespace liblec {
 
 		namespace widgets_impl {
 			class close_button : public widget {
+				/// private virtual function overrides
+				widgets::specs& generic_specs() override {
+					return specs_;
+				}
+
 			public:
 				close_button();
 				~close_button();
