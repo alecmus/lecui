@@ -275,7 +275,10 @@ namespace liblec {
 				else
 					rect.right = smallest(rect.left + textMetrics.width, rect.right);
 
-				rect.bottom = smallest(rect.top + textMetrics.height, rect.bottom);
+				if (allow_v_overflow)
+					rect.bottom = rect.top + textMetrics.height;
+				else
+					rect.bottom = smallest(rect.top + textMetrics.height, rect.bottom);
 			}
 
 			// release the text layout
