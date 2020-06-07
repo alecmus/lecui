@@ -12,9 +12,8 @@
 */
 
 #include "label_impl.h"
+#include "../../xml_parser/xml_parser.h"
 
-#include <boost/property_tree/ptree.hpp>
-#include <boost/property_tree/xml_parser.hpp>
 #include <boost/lexical_cast.hpp>
 
 namespace liblec {
@@ -29,95 +28,57 @@ namespace liblec {
 				formatting_.clear();
 				std::string text = formatted_text;
 
-				do {
-					const std::string start_marker = "<text";
-					const std::string end_marker = "</text>";
+				// parse the text
+				auto xml = xml_parser().read(formatted_text);
 
-					auto start_pos = text.find(start_marker);
-					auto end_pos = text.find(end_marker);
-
-					if (start_pos == std::string::npos || end_pos == std::string::npos)
-						break;
-
-					// get the xml
-					std::string xml = text.substr(start_pos, end_pos + end_marker.length() - start_pos);
-
-					// create an empty property tree object
-					boost::property_tree::ptree tree;
-
-					// parse the xml into the property tree
-					std::stringstream ss;
-					ss << xml;
-					boost::property_tree::read_xml(ss, tree);
-
-					// get the value of the text
-					std::string value = tree.get<std::string>("text");
-
-					// erase the xml from the text
-					text.erase(start_pos, end_pos + end_marker.length() - start_pos);
-
-					// insert the value
-					text.insert(start_pos, value);
-
-					// capture text properties
-					text_range_properties properties;
-
-					// capture text range
-					properties.text_range = { static_cast<UINT32>(start_pos),
-						static_cast<UINT32>(value.length()) };
-
-					auto get_attribute = [&](const std::string& attribute) {
-						try { return tree.get<std::string>(attribute); }
-						catch (const std::exception&) {}
-						return std::string();
-					};
-
-					// capture font name, size
-					properties.font = get_attribute("text.<xmlattr>.font");
+				auto get_color = [&](const std::string& text) {
+					D2D1_COLOR_F color = default_color;
 
 					try {
-						properties.size = boost::lexical_cast<float>(get_attribute("text.<xmlattr>.size"));
+						std::stringstream ss;
+						ss << text;
+
+						unsigned long hex = 0;
+						ss >> std::hex >> hex;
+
+						color = convert_color(lecui::color{
+								boost::lexical_cast<unsigned short>((hex >> 24) & 0xff),
+								boost::lexical_cast<unsigned short>((hex >> 16) & 0xff),
+								boost::lexical_cast<unsigned short>((hex >> 8) & 0xff),
+								boost::lexical_cast<unsigned short>((hex >> 0) & 0xff)
+							});
 					}
 					catch (const std::exception&) {}
 
-					// capture bold, italic, underline properties
-					properties.bold = get_attribute("text.<xmlattr>.bold") == "true";
-					properties.italic = get_attribute("text.<xmlattr>.italic") == "true";
-					properties.underline = get_attribute("text.<xmlattr>.underline") == "true";
+					return color;
+				};
 
-					auto get_color = [&](const std::string& text) {
-						D2D1_COLOR_F color = default_color;
+				for (auto& tag : xml.tags) {
+					if (tag.name == "text") {
+						text_range_properties props;
+						props.text_range.startPosition = tag.start_position;
+						props.text_range.length = tag.length;
 
-						try {
-							auto color_ = tree.get<std::string>("text.<xmlattr>.color");
-
-							std::stringstream ss;
-							ss << color_;
-
-							unsigned long hex = 0;
-							ss >> std::hex >> hex;
-
-							color = convert_color(lecui::color{
-									boost::lexical_cast<unsigned short>((hex >> 24) & 0xff),
-									boost::lexical_cast<unsigned short>((hex >> 16) & 0xff),
-									boost::lexical_cast<unsigned short>((hex >> 8) & 0xff),
-									boost::lexical_cast<unsigned short>((hex >> 0) & 0xff)
-								});
+						for (const auto& [key, value] : tag.attributes) {
+							if (key == "bold")
+								props.bold = value == "true";
+							if (key == "italic")
+								props.italic = value == "true";
+							if (key == "underline")
+								props.underline = value == "true";
+							if (key == "font")
+								props.font = value;
+							if (key == "size")
+								try { props.size = boost::lexical_cast<float>(value); } catch(const std::exception&) {}
+							if (key == "color")
+								props.color = get_color(value);
 						}
-						catch (const std::exception&) {}
 
-						return color;
-					};
+						formatting_.push_back(props);
+					}
+				}
 
-					// capture color
-					properties.color = get_color(text);
-
-					// add to formatting vector
-					formatting_.push_back(properties);
-				} while (true);
-
-				// capture the text
-				plain_text_ = text;
+				plain_text_ = xml.plain_text;
 			}
 			catch (const std::exception& e) { log(e.what()); }
 		}
