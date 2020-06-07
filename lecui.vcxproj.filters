@@ -92,6 +92,9 @@
     <Filter Include="lecui\xml_parser">
       <UniqueIdentifier>{8bcf147a-a898-4ab0-8615-ec0e401f6934}</UniqueIdentifier>
     </Filter>
+    <Filter Include="lecui\css_parser">
+      <UniqueIdentifier>{65e4cc79-c4e6-4230-8baf-e2dbf8624cd1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="error\win_error.h">
@@ -257,6 +260,9 @@
     <ClInclude Include="xml_parser\xml_parser.h">
       <Filter>lecui\xml_parser</Filter>
     </ClInclude>
+    <ClInclude Include="css_parser\css_parser.h">
+      <Filter>lecui\css_parser</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="error\win_error.cpp">
@@ -418,6 +424,9 @@
     </ClCompile>
     <ClCompile Include="xml_parser\xml_writer.cpp">
       <Filter>lecui\xml_parser</Filter>
+    </ClCompile>
+    <ClCompile Include="css_parser\css_parser.cpp">
+      <Filter>lecui\css_parser</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

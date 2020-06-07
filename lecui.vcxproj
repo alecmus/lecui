@@ -30,6 +30,7 @@
     <ClInclude Include="containers\tab_pane.h" />
     <ClInclude Include="containers\tab_pane\tab_pane_impl.h" />
     <ClInclude Include="controls.h" />
+    <ClInclude Include="css_parser\css_parser.h" />
     <ClInclude Include="error\win_error.h" />
     <ClInclude Include="form.h" />
     <ClInclude Include="form_common.h" />
@@ -87,6 +88,7 @@
     <ClCompile Include="containers\tab_pane\tab_pane.cpp" />
     <ClCompile Include="containers\tab_pane\tab_pane_impl.cpp" />
     <ClCompile Include="controls.cpp" />
+    <ClCompile Include="css_parser\css_parser.cpp" />
     <ClCompile Include="error\win_error.cpp" />
     <ClCompile Include="form.cpp" />
     <ClCompile Include="form_impl.cpp" />
