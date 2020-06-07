@@ -122,7 +122,7 @@ namespace liblec {
 
 			// parse the caption
 			// the default color doesn't matter here we're just getting the plain text
-			std::vector<widgets_impl::text_range_properties> formatting;
+			std::vector<formatted_text_parser::text_range_properties> formatting;
 			widgets_impl::parse_formatted_text(caption_formatted_, caption_plain_,
 				D2D1::ColorF(D2D1::ColorF::Black), formatting);
 

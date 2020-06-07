@@ -12,7 +12,6 @@
 */
 
 #include "label_impl.h"
-#include "../../xml_parser/xml_parser.h"
 
 #include <boost/lexical_cast.hpp>
 
@@ -22,79 +21,14 @@ namespace liblec {
 			const std::string& formatted_text,
 			std::string& plain_text_,
 			D2D1_COLOR_F default_color,
-			std::vector<text_range_properties>& formatting_) {
-			try {
-				plain_text_.clear();
-				formatting_.clear();
-				std::string text = formatted_text;
-
-				// parse the text
-				auto xml = xml_parser().read(formatted_text);
-
-				auto get_color = [&](const std::string& text) {
-					D2D1_COLOR_F color = default_color;
-
-					try {
-						std::stringstream ss;
-						ss << text;
-
-						unsigned long hex = 0;
-						ss >> std::hex >> hex;
-
-						color = convert_color(lecui::color{
-								boost::lexical_cast<unsigned short>((hex >> 24) & 0xff),
-								boost::lexical_cast<unsigned short>((hex >> 16) & 0xff),
-								boost::lexical_cast<unsigned short>((hex >> 8) & 0xff),
-								boost::lexical_cast<unsigned short>((hex >> 0) & 0xff)
-							});
-					}
-					catch (const std::exception&) {}
-
-					return color;
-				};
-
-				for (auto& tag : xml.tags) {
-					if (tag.name == "text") {
-						text_range_properties props;
-						props.text_range.startPosition = tag.start_position;
-						props.text_range.length = tag.length;
-
-						for (const auto& [key, value] : tag.attributes) {
-							if (key == "bold")
-								props.bold = value == "true";
-							else
-								if (key == "italic")
-									props.italic = value == "true";
-								else
-									if (key == "underline")
-										props.underline = value == "true";
-									else
-										if (key == "strikethrough")
-											props.strikethrough = value == "true";
-										else
-											if (key == "font")
-												props.font = value;
-											else
-												if (key == "size") {
-													try { props.size = boost::lexical_cast<float>(value); }
-													catch (const std::exception&) {}
-												}
-												else
-													if (key == "color")
-														props.color = get_color(value);
-						}
-
-						formatting_.push_back(props);
-					}
-				}
-
-				plain_text_ = xml.plain_text;
-			}
-			catch (const std::exception& e) { log(e.what()); }
+			std::vector<formatted_text_parser::text_range_properties>& formatting_) {
+			const auto props = formatted_text_parser().read(formatted_text, default_color);
+			plain_text_ = props.xml.plain_text;
+			formatting_ = props.dwrite;
 		}
 
 		void widgets_impl::apply_formatting(
-			const std::vector<text_range_properties>& formatting_,
+			const std::vector<formatted_text_parser::text_range_properties>& formatting_,
 			ID2D1HwndRenderTarget* p_render_target,
 			IDWriteTextLayout* p_text_layout_,
 			bool is_enabled,
@@ -143,7 +77,7 @@ namespace liblec {
 				const D2D1_RECT_F max_rect) {
 			// the default color doesn't matter here we're just measuring the text
 			std::string plain_text_;
-			std::vector<text_range_properties> formatting_;
+			std::vector<formatted_text_parser::text_range_properties> formatting_;
 			parse_formatted_text(formatted_text, plain_text_, D2D1::ColorF(D2D1::ColorF::Black), formatting_);
 
 			D2D1_RECT_F rect = max_rect;
@@ -201,7 +135,7 @@ namespace liblec {
 				const D2D1_RECT_F max_rect) {
 			// the default color doesn't matter here we're just measuring the text
 			std::string plain_text_;
-			std::vector<text_range_properties> formatting_;
+			std::vector<formatted_text_parser::text_range_properties> formatting_;
 			parse_formatted_text(formatted_text, plain_text_, D2D1::ColorF(D2D1::ColorF::Black), formatting_);
 
 			D2D1_RECT_F rect = max_rect;

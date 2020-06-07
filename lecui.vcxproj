@@ -33,6 +33,7 @@
     <ClInclude Include="css_parser\css_parser.h" />
     <ClInclude Include="error\win_error.h" />
     <ClInclude Include="form.h" />
+    <ClInclude Include="formatted_text_parser\formatted_text_parser.h" />
     <ClInclude Include="form_common.h" />
     <ClInclude Include="form_impl.h" />
     <ClInclude Include="lecui.h" />
@@ -91,6 +92,7 @@
     <ClCompile Include="css_parser\css_parser.cpp" />
     <ClCompile Include="error\win_error.cpp" />
     <ClCompile Include="form.cpp" />
+    <ClCompile Include="formatted_text_parser\formatted_text_parser.cpp" />
     <ClCompile Include="form_impl.cpp" />
     <ClCompile Include="lecui.cpp" />
     <ClCompile Include="timer.cpp" />

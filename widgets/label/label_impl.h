@@ -15,27 +15,17 @@
 
 #include "../widget_impl.h"
 #include "../label.h"
+#include "../../formatted_text_parser/formatted_text_parser.h"
 
 namespace liblec {
 	namespace lecui {
 		namespace widgets_impl {
-			struct text_range_properties {
-				DWRITE_TEXT_RANGE text_range = { 0, 0 };
-				std::string font;
-				float size = .0f;
-				bool bold = false;
-				bool italic = false;
-				bool underline = false;
-				bool strikethrough = false;
-				D2D1_COLOR_F color = { 0.f, 0.f, 0.f, 1.f };
-			};
-
 			void parse_formatted_text(const std::string& formatted_text,
 				std::string& plain_text_,
 				D2D1_COLOR_F default_color,
-				std::vector<text_range_properties>& formatting_);
+				std::vector<formatted_text_parser::text_range_properties>& formatting_);
 
-			void apply_formatting(const std::vector<text_range_properties>& formatting_,
+			void apply_formatting(const std::vector<formatted_text_parser::text_range_properties>& formatting_,
 				ID2D1HwndRenderTarget* p_render_target,
 				IDWriteTextLayout* p_text_layout_,
 				bool is_enabled,
@@ -107,7 +97,7 @@ namespace liblec {
 				IDWriteTextLayout* p_text_layout_;
 
 				std::string text_;
-				std::vector<text_range_properties> formatting_;
+				std::vector<formatted_text_parser::text_range_properties> formatting_;
 			};
 		}
 	}
