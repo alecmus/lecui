@@ -27,25 +27,28 @@ formatted_text_parser::read(std::string formatted_text,
 	auto parse_css_font_size = [](const std::string& text) {
 		float font_size = 0.f;
 
-		if (text.find("pt") != std::string::npos) {
-			// font size is described in points
-			std::stringstream ss;
-			ss << text;
-			ss >> font_size;
-		}
-		else
-			if (text.find("px") != std::string::npos) {
-				float pixels = 0.f;
-				// font size is described in pixels
+		try {
+			if (text.find("pt") != std::string::npos) {
+				// font size is described in points
 				std::stringstream ss;
 				ss << text;
-				ss >> pixels;
+				ss >> font_size;
+			}
+			else
+				if (text.find("px") != std::string::npos) {
+					float pixels = 0.f;
+					// font size is described in pixels
+					std::stringstream ss;
+					ss << text;
+					ss >> pixels;
 
-				// to-do: convert from pixels to points
-			}
-			else {
-				// to-do: handle sizes that are described in neither points nor pixels
-			}
+					// to-do: convert from pixels to points
+				}
+				else {
+					// to-do: handle sizes that are described in neither points nor pixels
+				}
+		}
+		catch (const std::exception&) {}
 
 		return font_size;
 	};
@@ -216,7 +219,7 @@ formatted_text_parser::read(std::string formatted_text,
 						}
 
 						if (css_property.property == "font-size") {
-							props.size = parse_css_font_size(css_property.value);
+							props.font_size = parse_css_font_size(css_property.value);
 							continue;
 						}
 
@@ -272,7 +275,7 @@ formatted_text_parser::read(std::string formatted_text,
 									props.font = value;
 								else
 									if (key == "size") {
-										try { props.size = boost::lexical_cast<float>(value); }
+										try { props.font_size = boost::lexical_cast<float>(value); }
 										catch (const std::exception&) {}
 									}
 									else

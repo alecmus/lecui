@@ -41,8 +41,8 @@ namespace liblec {
 						properties.text_range);
 
 				// apply font size
-				if (properties.size)
-					p_text_layout_->SetFontSize(convert_fontsize_to_dip(properties.size),
+				if (properties.font_size)
+					p_text_layout_->SetFontSize(convert_fontsize_to_dip(properties.font_size),
 						properties.text_range);
 
 				// apply bold, italic, underline
