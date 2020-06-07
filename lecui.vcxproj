@@ -73,6 +73,7 @@
     <ClInclude Include="widgets\v_scrollbar\v_scrollbar.h" />
     <ClInclude Include="widgets\widget.h" />
     <ClInclude Include="widgets\widget_impl.h" />
+    <ClInclude Include="xml_parser\xml_parser.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="appearance.cpp" />
@@ -127,6 +128,8 @@
     <ClCompile Include="widgets\v_scrollbar\v_scrollbar.cpp" />
     <ClCompile Include="widgets\widget.cpp" />
     <ClCompile Include="widgets\widget_impl.cpp" />
+    <ClCompile Include="xml_parser\xml_reader.cpp" />
+    <ClCompile Include="xml_parser\xml_writer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="LICENSE.md" />
