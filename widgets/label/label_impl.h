@@ -26,6 +26,7 @@ namespace liblec {
 				bool bold = false;
 				bool italic = false;
 				bool underline = false;
+				bool strikethrough = false;
 				D2D1_COLOR_F color = { 0.f, 0.f, 0.f, 1.f };
 			};
 

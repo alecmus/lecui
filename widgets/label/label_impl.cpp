@@ -62,16 +62,26 @@ namespace liblec {
 						for (const auto& [key, value] : tag.attributes) {
 							if (key == "bold")
 								props.bold = value == "true";
-							if (key == "italic")
-								props.italic = value == "true";
-							if (key == "underline")
-								props.underline = value == "true";
-							if (key == "font")
-								props.font = value;
-							if (key == "size")
-								try { props.size = boost::lexical_cast<float>(value); } catch(const std::exception&) {}
-							if (key == "color")
-								props.color = get_color(value);
+							else
+								if (key == "italic")
+									props.italic = value == "true";
+								else
+									if (key == "underline")
+										props.underline = value == "true";
+									else
+										if (key == "strikethrough")
+											props.strikethrough = value == "true";
+										else
+											if (key == "font")
+												props.font = value;
+											else
+												if (key == "size") {
+													try { props.size = boost::lexical_cast<float>(value); }
+													catch (const std::exception&) {}
+												}
+												else
+													if (key == "color")
+														props.color = get_color(value);
 						}
 
 						formatting_.push_back(props);
@@ -108,6 +118,8 @@ namespace liblec {
 					p_text_layout_->SetFontStyle(DWRITE_FONT_STYLE_ITALIC, properties.text_range);
 				if (properties.underline)
 					p_text_layout_->SetUnderline(TRUE, properties.text_range);
+				if (properties.strikethrough)
+					p_text_layout_->SetStrikethrough(TRUE, properties.text_range);
 
 				// apply color
 				if (p_render_target) {

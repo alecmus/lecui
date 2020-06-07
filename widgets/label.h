@@ -28,12 +28,13 @@ namespace liblec {
 			/// 
 			/// The supported attributes of the text are:
 			/// 
-			/// font		The font name
-			/// size		The font size, in points
-			/// bold		'true' or 'false'
-			/// italic		'true' or 'false'
-			/// underline	'true' or 'false'
-			/// color		0xAABBCCDD where r = AA, g = BB, b=CC, a=DD
+			/// font			The font name
+			/// size			The font size, in points
+			/// bold			'true' or 'false'
+			/// italic			'true' or 'false'
+			/// underline		'true' or 'false'
+			/// strikethrough	'true' or 'false'
+			/// color			0xAABBCCDD where r = AA, g = BB, b=CC, a=DD
 			/// 
 			/// e.g. "This is <text size='16.5' italic='true' color='0x0000FFFF'>good</text>.";
 			/// 
