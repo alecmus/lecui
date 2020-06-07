@@ -42,16 +42,16 @@ std::vector<xml_element> do_build(std::string plain,
 	std::vector<xml_element> elements;
 
 	for (auto& tag : tags) {
-		if (!(tag.start >= position && tag.end <= end && tag.level == level))
+		if (!(tag.start_position >= position && (tag.start_position + tag.length) <= end && tag.level == level))
 			continue;
 
-		const auto tag_id = tag.name + std::to_string(tag.start) + std::to_string(tag.end);
+		const auto tag_id = tag.name + std::to_string(tag.start_position) + std::to_string(tag.start_position + tag.length);
 
 		if (!handled_tags.insert(tag_id).second)
 			continue;
 
-		std::string before = plain.substr(0, tag.start - position);
-		std::string after = plain.substr(tag.end - position);
+		std::string before = plain.substr(0, tag.start_position - position);
+		std::string after = plain.substr(tag.start_position + tag.length - position);
 
 		// insert tags to original plain text
 		auto start_tag = tag.name;
@@ -70,13 +70,13 @@ std::vector<xml_element> do_build(std::string plain,
 		auto end_tag = "</" + tag.name + ">";
 
 		for (auto sub_tag : tags) {
-			if (sub_tag.start >= tag.start && sub_tag.end <= tag.end && sub_tag.level == tag.level + 1) {
+			if (sub_tag.start_position >= tag.start_position && (sub_tag.start_position + sub_tag.length) <= (tag.start_position + tag.length) && sub_tag.level == tag.level + 1) {
 				// this is a direct sub tag, get it's subelements
-				auto sub_elements = do_build(tag.text, tag.start, tag.end, sub_tag.level, tags, handled_tags);	// recursion
+				auto sub_elements = do_build(tag.text, tag.start_position, (tag.start_position + tag.length), sub_tag.level, tags, handled_tags);	// recursion
 
 				for (auto& element : sub_elements) {
-					element.start -= tag.start;
-					element.end -= tag.start;
+					element.start -= tag.start_position;
+					element.end -= tag.start_position;
 				}
 
 				auto sub_xml = consolidate(tag.text, sub_elements);
@@ -90,8 +90,8 @@ std::vector<xml_element> do_build(std::string plain,
 
 		xml_element element;
 		element.xml = start_tag + tag.text + end_tag;
-		element.start = tag.start;
-		element.end = tag.end;
+		element.start = tag.start_position;
+		element.end = tag.start_position + tag.length;
 		elements.push_back(element);
 	}
 

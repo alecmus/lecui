@@ -43,10 +43,10 @@ public:
 		std::string text;
 
 		/// <summary>The position within the plaintext canvas at which the tag begins.</summary>
-		size_t start = 0;
+		unsigned long start_position = 0;
 
-		/// <summary>The position within the plaintext canvas at which the tag ends.</summary>
-		size_t end = 0;
+		/// <summary>The number of text positions within the tag.</summary>
+		unsigned long length = 0;
 
 		/// <summary>The tag's attributes</summary>
 		std::vector<tag_attribute> attributes;

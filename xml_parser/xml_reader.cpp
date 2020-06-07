@@ -141,7 +141,7 @@ std::string do_parse(const std::string xml_text, size_t position, long level, st
 				end_pos = start_pos + sub_plain.length() - 1;
 
 				// capture tag info
-				tags.push_back({ level, start_tag.substr(1, start_tag.length() - 2), sub_plain, position + start_pos, position + end_pos + 1, attributes });
+				tags.push_back({ level, start_tag.substr(1, start_tag.length() - 2), sub_plain, static_cast<unsigned long>(position + start_pos), static_cast<unsigned long>(end_pos + 1 - start_pos), attributes });
 
 				// parse the rest of the string (same level)
 				do_parse(xml_text.substr(idx + end_tag.length()), position + end_pos + 1, level, tags);
