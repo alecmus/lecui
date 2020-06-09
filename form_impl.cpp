@@ -440,7 +440,13 @@ namespace liblec {
 			p_caption_->specs().text = caption_formatted_;
 			p_caption_->specs().center_v = true;
 			p_caption_->specs().multiline = false;
-			p_caption_->specs().color_text = clr_theme_text_;
+
+			// load label settings
+			p_caption_->specs().color_text = defaults::color(theme_, item::label);
+			p_caption_->specs().color_selected = defaults::color(theme_, item::label_selected);
+			p_caption_->specs().color_hot = defaults::color(theme_, item::label_hover);
+			p_caption_->specs().color_hot_pressed = defaults::color(theme_, item::label_pressed);
+			p_caption_->specs().color_disabled = defaults::color(theme_, item::label_disabled);
 
 			// determine right-most edge based on available control buttons
 			const auto right_edge = allow_minimize_ ?
