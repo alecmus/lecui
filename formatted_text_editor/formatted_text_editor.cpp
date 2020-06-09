@@ -165,17 +165,18 @@ void formatted_text_editor::cleanup(std::string& xml_text) {
 		if (start != std::string::npos && close != std::string::npos) {
 			// check if this is indeed between two tags
 
-			const auto len_open = pos + 1 - start;	// length of <tag>
-			const auto len_close = close - pos;		// length of </tag>
+			auto len_open = pos + 1 - start - 2;	// length of <tag ...>
+			auto len_close = close - pos - 3;		// length of </tag>
 
-			// trivial case
-			if (len_open + 1 != len_close) {
-				mem = close;	// don't search before this position again else stuck in loop
-				continue;
+			// check if tag has attributes
+			auto space_idx = xml_text.find(" ", start + 1);
+			if (space_idx != std::string::npos && space_idx < close) {
+				// there are attributes ... factor them in
+				len_open = space_idx - (start + 1);
 			}
 
-			const auto open_tag = xml_text.substr(start + 1, len_open - 2);	// tag
-			const auto close_tag = xml_text.substr(pos + 3, len_close - 3);	// tag
+			const auto open_tag = xml_text.substr(start + 1, len_open);	// tag
+			const auto close_tag = xml_text.substr(pos + 3, len_close);	// tag
 
 			if (open_tag != close_tag) {
 				mem = close;	// don't search before this position again else stuck in loop
