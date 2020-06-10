@@ -20,6 +20,14 @@ namespace liblec {
 			return std::string("lecui::containers::tree_pane::");
 		}
 
+		std::string widgets_impl::pane::html_pane_alias_prefix() {
+			return std::string("lecui::containers::html_pane::");
+		}
+
+		std::string widgets_impl::pane::html_controls_pane_alias_prefix() {
+			return std::string("lecui::containers::html_controls_pane::");
+		}
+
 		widgets_impl::pane::pane(const std::string& page_alias,
 			const std::string& alias) :
 			p_brush_(nullptr),

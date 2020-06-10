@@ -57,6 +57,7 @@ namespace liblec {
 				textbox,
 				tree,
 				slider,
+				html_editor,
 			};
 
 			static HCURSOR get_cursor(widgets::specs::cursor_type type) {

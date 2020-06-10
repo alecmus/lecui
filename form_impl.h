@@ -206,6 +206,7 @@ namespace liblec {
 			friend class widgets::textbox;
 			friend class widgets::tree;
 			friend class widgets::slider;
+			friend class widgets::html_editor;
 
 		public:
 			impl(const std::string& caption_formatted);
@@ -219,6 +220,7 @@ namespace liblec {
 			void create_form_caption();
 			void update();
 			void move_trees();
+			void move_html_editors();
 			HRESULT on_render();
 			void on_resize(UINT width, UINT height);
 			RECT get_working_area(HWND hWnd);

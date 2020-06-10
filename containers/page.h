@@ -80,6 +80,7 @@ namespace liblec {
 				friend class widgets::textbox;
 				friend class widgets::tree;
 				friend class widgets::slider;
+				friend class widgets::html_editor;
 #endif
 			};
 		}

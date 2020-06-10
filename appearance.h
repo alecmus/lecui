@@ -122,6 +122,12 @@ namespace liblec {
 			slider_knob_border,
 			slider_tick,
 			slider_selected,
+
+			html_editor,
+			html_editor_border,
+			html_editor_disabled,
+			html_editor_selected,
+			html_editor_caret,
 		};
 
 		class lecui_api defaults {

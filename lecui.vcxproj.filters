@@ -89,6 +89,9 @@
     <Filter Include="lecui\widgets\slider">
       <UniqueIdentifier>{fe83eacb-7dc7-4267-a871-00d9275993cf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="lecui\widgets\html_editor">
+      <UniqueIdentifier>{39a2bbdb-9f5b-46e0-b7a7-e874ddf1e028}</UniqueIdentifier>
+    </Filter>
     <Filter Include="lecui\xml_parser">
       <UniqueIdentifier>{8bcf147a-a898-4ab0-8615-ec0e401f6934}</UniqueIdentifier>
     </Filter>
@@ -263,6 +266,12 @@
     <ClInclude Include="widgets\slider\slider_impl.h">
       <Filter>lecui\widgets\slider</Filter>
     </ClInclude>
+    <ClInclude Include="widgets\html_editor.h">
+      <Filter>lecui\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="widgets\html_editor\html_editor_impl.h">
+      <Filter>lecui\widgets\html_editor</Filter>
+    </ClInclude>
     <ClInclude Include="xml_parser\xml_parser.h">
       <Filter>lecui\xml_parser</Filter>
     </ClInclude>
@@ -430,6 +439,12 @@
     </ClCompile>
     <ClCompile Include="widgets\slider\slider_impl.cpp">
       <Filter>lecui\widgets\slider</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\html_editor\html_editor_impl.cpp">
+      <Filter>lecui\widgets\html_editor</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\html_editor\html_editor.cpp">
+      <Filter>lecui\widgets\html_editor</Filter>
     </ClCompile>
     <ClCompile Include="xml_parser\xml_reader.cpp">
       <Filter>lecui\xml_parser</Filter>

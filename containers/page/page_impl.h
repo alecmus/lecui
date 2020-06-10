@@ -35,6 +35,7 @@
 #include "../../widgets/textbox/textbox_impl.h"
 #include "../../widgets/tree/tree_impl.h"
 #include "../../widgets/slider/slider_impl.h"
+#include "../../widgets/html_editor/html_editor_impl.h"
 
 namespace liblec {
 	namespace lecui {
@@ -94,6 +95,8 @@ namespace liblec {
 				add_tree(std::string alias);
 			widgets::slider::slider_specs&
 				add_slider(std::string alias);
+			widgets::html_editor::html_editor_specs&
+				add_html_editor(std::string alias);
 
 			std::map<std::string,
 				widgets_impl::widget&>&
@@ -140,6 +143,8 @@ namespace liblec {
 				get_tree(const std::string& alias);
 			widgets_impl::slider&
 				get_slider(const std::string& alias);
+			widgets_impl::html_editor&
+				get_html_editor(const std::string& alias);
 
 			bool close_widget(const std::string& alias,
 				widgets_impl::widget_type type, std::string& error);
@@ -177,6 +182,7 @@ namespace liblec {
 			std::map<std::string, widgets_impl::textbox> textboxes_;
 			std::map<std::string, widgets_impl::tree> trees_;
 			std::map<std::string, widgets_impl::slider> sliders_;
+			std::map<std::string, widgets_impl::html_editor> html_editors_;
 
 			form& fm_;
 
@@ -199,6 +205,7 @@ namespace liblec {
 			friend class widgets::textbox;
 			friend class widgets::tree;
 			friend class widgets::slider;
+			friend class widgets::html_editor;
 		};
 	}
 }

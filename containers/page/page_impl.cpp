@@ -243,6 +243,16 @@ namespace liblec {
 			return sliders_.at(alias).specs();
 		}
 
+		widgets::html_editor::html_editor_specs&
+			containers::page::impl::add_html_editor(std::string alias) {
+			check_alias(alias);
+			if (html_editors_.try_emplace(alias, alias_, alias, fm_, p_directwrite_factory_).second) {
+				widgets_.emplace(alias, html_editors_.at(alias));
+				widgets_order_.emplace_back(alias);
+			}
+			return html_editors_.at(alias).specs();
+		}
+
 		std::map<std::string, widgets_impl::widget&>&
 			containers::page::impl::widgets() { return widgets_; }
 
@@ -304,6 +314,9 @@ namespace liblec {
 
 		widgets_impl::slider&
 			containers::page::impl::get_slider(const std::string& alias) { return sliders_.at(alias); }
+
+		widgets_impl::html_editor&
+			containers::page::impl::get_html_editor(const std::string& alias) { return html_editors_.at(alias); }
 
 		bool
 			containers::page::impl::close_widget(const std::string& alias,
@@ -377,6 +390,9 @@ namespace liblec {
 					break;
 				case widgets_impl::widget_type::slider:
 					sliders_.erase(alias_);
+					break;
+				case widgets_impl::widget_type::html_editor:
+					html_editors_.erase(alias_);
 					break;
 				case widgets_impl::widget_type::close_button:
 				case widgets_impl::widget_type::maximize_button:

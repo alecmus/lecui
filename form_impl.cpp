@@ -575,6 +575,115 @@ namespace liblec {
 			}
 		}
 
+		void form::impl::move_html_editors() {
+			// check if this page has an html widget
+			auto page_iterator = p_pages_.find(current_page_);
+
+			struct html_editor_info {
+				std::string alias;
+
+				// important that it's not a reference because of deletion in a ranged for loop later
+				lecui::widgets::html_editor::html_editor_specs html_editor;
+				lecui::containers::page& source;
+				lecui::containers::page& destination;
+			};
+
+			std::vector<html_editor_info> html_editors;
+
+			if (page_iterator != p_pages_.end()) {
+				auto& page = page_iterator->second;
+
+				class helper {
+				public:
+					static void find_html_editors_to_move(lecui::containers::page& page,
+						std::vector<html_editor_info>& trees) {
+						for (auto& widget : page.d_page_.widgets()) {
+							// check if this is an html pane
+							if (widget.first.find(widgets_impl::pane::html_pane_alias_prefix()) != std::string::npos)
+								continue;	// this is a tree pane (it has a tree inside. move was already done), continue to next widget
+
+							// check if this is an html editor
+							if (widget.second.type() == widgets_impl::widget_type::html_editor) {
+								// this is an html editor, we need to "move" it into a special pane
+
+								// get the html editor specs
+								auto& html_editor_specs = page.d_page_.get_html_editor(widget.first).specs();
+
+								// make controls pane in source (predefined, fixed height)
+								containers::pane controls_pane(page, widgets_impl::pane::html_controls_pane_alias_prefix() + widget.first);
+								controls_pane().rect = html_editor_specs.rect;
+								controls_pane().rect.height(40.f);
+								controls_pane().on_resize = html_editor_specs.on_resize;
+								controls_pane().on_resize.perc_height = 0.f;
+								controls_pane().on_resize.min_height = 0.f;
+
+								// make pane whose alias is prefixed by the special string
+								containers::pane pane(page, widgets_impl::pane::html_pane_alias_prefix() + widget.first);
+
+								// clone essential properties to pane
+								pane().rect = html_editor_specs.rect;
+								pane().rect.top = controls_pane().rect.bottom;
+								pane().on_resize = html_editor_specs.on_resize;
+								if (pane().on_resize.min_height)
+									pane().on_resize.min_height = largest(pane().on_resize.min_height - controls_pane().rect.height(), 0.f);
+								pane().color_fill = html_editor_specs.color_fill;
+								pane().color_border = html_editor_specs.color_border;
+
+								// save move info so we can move the tree into the pane later
+								// we cannot do it here because we're iterating
+								trees.push_back({ widget.first, html_editor_specs, page, pane.get() });
+								break;
+							}
+
+							if (widget.second.type() == widgets_impl::widget_type::tab_pane) {
+								// get this tab pane
+								auto& tab_pane = page.d_page_.get_tab_pane(widget.first);
+
+								// initialize tabs
+								for (auto& tab : tab_pane.p_tabs_)
+									find_html_editors_to_move(tab.second, trees);	// recursion
+							}
+							else
+								if (widget.second.type() == widgets_impl::widget_type::pane) {
+									// get this pane
+									auto& pane = page.d_page_.get_pane(widget.first);
+
+									// initialize panes
+									for (auto& page : pane.p_panes_)
+										find_html_editors_to_move(page.second, trees);	// recursion
+								}
+						}
+					}
+				};
+
+				helper::find_html_editors_to_move(page, html_editors);
+
+				// move the html editors
+				for (auto& it : html_editors) {
+					log("moving html_editor: " + it.alias + " from " + it.source.d_page_.alias() + " to " + it.destination.d_page_.alias());
+
+					try {
+						// clone into destination
+						widgets::html_editor html_editor(it.destination, it.alias);
+						// copy specs
+						html_editor() = it.html_editor;
+
+						// adjust specs
+						html_editor().rect = { 0, it.destination.size().width, 0, it.destination.size().height };
+						html_editor().on_resize = { 0.f, 0.f, 100.f, 0.f };	// critical because html_editor will change height as user types or contents are changed. the pane scroll bars will do the job.
+						html_editor().color_fill.alpha = 0;
+						html_editor().color_border.alpha = 0;
+
+						// close the widget
+						std::string error;
+						it.source.d_page_.close_widget(it.alias, widgets_impl::widget_type::html_editor, error);
+						log("moving " + it.alias + " successful!");
+					}
+					catch (const std::exception& e) { log("moving " + it.alias + " failed: " + e.what()); }
+				}
+			}
+		}
+
 		/// This method discards device-specific resources if the Direct3D device dissapears during
 		/// execution and recreates the resources the next time it's invoked
 		HRESULT form::impl::on_render() {
@@ -2632,6 +2741,7 @@ namespace liblec {
 
 			case WM_PAINT:
 				form_.value().get().d_.move_trees();
+				form_.value().get().d_.move_html_editors();
 				form_.value().get().d_.on_render();
 				ValidateRect(hWnd, nullptr);
 				return NULL;
@@ -2745,26 +2855,44 @@ namespace liblec {
 							}
 							else
 								if (widget.second.type() ==
-									widgets_impl::widget_type::tab_pane) {
-									// get this tab pane
-									auto& tab_pane = page.d_page_.get_tab_pane(widget.first);
+									widgets_impl::widget_type::html_editor && widget.second.selected()) {
+									change = true;
+									try {
+										// ignore backspace, tab and return
+										if (c == '\b' ||
+											c == '\t' ||
+											c == '\r')
+											break;
 
-									auto page_iterator = tab_pane.p_tabs_.find(tab_pane.current_tab_);
-
-									if (page_iterator != tab_pane.p_tabs_.end())
-										helper::check_widgets(page_iterator->second, c, change);	// recursion
+										// insert character
+										auto& html_editor = page.d_page_.get_html_editor(widget.first);
+										html_editor.insert_character(c);
+									}
+									catch (const std::exception& e) { log(e.what()); }
+									break;
 								}
 								else
 									if (widget.second.type() ==
-										widgets_impl::widget_type::pane) {
-										// get this pane
-										auto& pane = page.d_page_.get_pane(widget.first);
+										widgets_impl::widget_type::tab_pane) {
+										// get this tab pane
+										auto& tab_pane = page.d_page_.get_tab_pane(widget.first);
 
-										auto page_iterator = pane.p_panes_.find(pane.current_pane_);
+										auto page_iterator = tab_pane.p_tabs_.find(tab_pane.current_tab_);
 
-										if (page_iterator != pane.p_panes_.end())
+										if (page_iterator != tab_pane.p_tabs_.end())
 											helper::check_widgets(page_iterator->second, c, change);	// recursion
 									}
+									else
+										if (widget.second.type() ==
+											widgets_impl::widget_type::pane) {
+											// get this pane
+											auto& pane = page.d_page_.get_pane(widget.first);
+
+											auto page_iterator = pane.p_panes_.find(pane.current_pane_);
+
+											if (page_iterator != pane.p_panes_.end())
+												helper::check_widgets(page_iterator->second, c, change);	// recursion
+										}
 						}
 					}
 				};
@@ -2817,26 +2945,45 @@ namespace liblec {
 								}
 								else
 									if (widget.second.type() ==
-										widgets_impl::widget_type::tab_pane) {
-										// get this tab pane
-										auto& tab_pane = page.d_page_.get_tab_pane(widget.first);
+										widgets_impl::widget_type::html_editor && widget.second.selected()) {
+										change = true;
+										try {
+											auto& html_editor = page.d_page_.get_html_editor(widget.first);
 
-										auto page_iterator = tab_pane.p_tabs_.find(tab_pane.current_tab_);
-
-										if (page_iterator != tab_pane.p_tabs_.end())
-											helper::check_widgets(page_iterator->second, wParam, change);	// recursion
+											switch (wParam) {
+											case VK_LEFT: html_editor.key_left(); break;
+											case VK_RIGHT: html_editor.key_right(); break;
+											case VK_BACK: html_editor.key_backspace(); break;
+											case VK_DELETE: html_editor.key_delete(); break;
+											default:
+												break;
+											}
+										}
+										catch (const std::exception& e) { log(e.what()); }
+										break;
 									}
 									else
 										if (widget.second.type() ==
-											widgets_impl::widget_type::pane) {
-											// get this pane
-											auto& pane = page.d_page_.get_pane(widget.first);
+											widgets_impl::widget_type::tab_pane) {
+											// get this tab pane
+											auto& tab_pane = page.d_page_.get_tab_pane(widget.first);
 
-											auto page_iterator = pane.p_panes_.find(pane.current_pane_);
+											auto page_iterator = tab_pane.p_tabs_.find(tab_pane.current_tab_);
 
-											if (page_iterator != pane.p_panes_.end())
+											if (page_iterator != tab_pane.p_tabs_.end())
 												helper::check_widgets(page_iterator->second, wParam, change);	// recursion
 										}
+										else
+											if (widget.second.type() ==
+												widgets_impl::widget_type::pane) {
+												// get this pane
+												auto& pane = page.d_page_.get_pane(widget.first);
+
+												auto page_iterator = pane.p_panes_.find(pane.current_pane_);
+
+												if (page_iterator != pane.p_panes_.end())
+													helper::check_widgets(page_iterator->second, wParam, change);	// recursion
+											}
 							}
 						}
 					};
@@ -2894,7 +3041,8 @@ namespace liblec {
 									continue;
 
 								if (widget.second.selected() &&
-									widget.second.type() != widgets_impl::widget_type::textbox)	// exclude text box from space bar presses
+									widget.second.type() != widgets_impl::widget_type::textbox &&	// exclude text box from space bar presses
+									widget.second.type() != widgets_impl::widget_type::html_editor)	// exclude html editor from space bar presses
 									widget.second.press(true);
 								else
 									widget.second.press(false);

@@ -111,6 +111,12 @@ namespace liblec {
 				case item::slider_knob_border: return { 0, 120, 170, 50 };
 				case item::slider_tick: return { 120, 120, 120, 255 };
 				case item::slider_selected: return { 0, 120, 170, 150 };
+
+				case item::html_editor: return { 255, 255, 255, 255 };
+				case item::html_editor_border: return { 150, 150, 150, 255 };
+				case item::html_editor_disabled: return { 248, 248, 248, 255 };
+				case item::html_editor_selected: return { 0, 120, 170, 100 };
+				case item::html_editor_caret: return { 50, 50, 50, 255 };
 				default: break;
 				}
 			} break;
@@ -208,6 +214,12 @@ namespace liblec {
 				case item::slider_knob_border: return { 90, 90, 90, 255 };
 				case item::slider_tick: return { 85, 95, 100, 255 };
 				case item::slider_selected: return { 60, 190, 175, 150 };
+
+				case item::html_editor: return { 40, 45, 50, 255 };
+				case item::html_editor_border: return { 150, 150, 150, 255 };
+				case item::html_editor_disabled: return { 30, 35, 40, 255 };
+				case item::html_editor_selected: return { 60, 190, 175, 150 };
+				case item::html_editor_caret: return { 60, 190, 175, 255 };
 				default: break;
 				}
 			} break;
