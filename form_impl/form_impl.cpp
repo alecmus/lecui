@@ -1284,86 +1284,87 @@ namespace liblec {
 					std::optional<std::reference_wrapper<form>>{ *p_form };
 			};
 
-			auto form_ = get_form();
+			auto form_optional = get_form();
 
-			if (!form_.has_value())
+			if (!form_optional.has_value())
 				return DefWindowProc(hWnd, msg, wParam, lParam);
+
+			auto& form_ = form_optional.value().get();
 
 			switch (msg) {
 			case WM_CREATE:
-				form_.value().get().d_.hWnd_ = hWnd;
+				form_.d_.hWnd_ = hWnd;
 
-				if (form_.value().get().d_.p_maximize_button_)
-					form_.value().get().d_.p_maximize_button_->set_hwnd(hWnd);
+				if (form_.d_.p_maximize_button_)
+					form_.d_.p_maximize_button_->set_hwnd(hWnd);
 
-				if (form_.value().get().d_.p_minimize_button_)
-					form_.value().get().d_.p_minimize_button_->set_hwnd(hWnd);
+				if (form_.d_.p_minimize_button_)
+					form_.d_.p_minimize_button_->set_hwnd(hWnd);
 
-				form_.value().get().d_.set_borderless(hWnd, form_.value().get().d_.borderless_);
-				form_.value().get().d_.set_borderless_shadow(hWnd,
-					form_.value().get().d_.borderless_shadow_);
+				form_.d_.set_borderless(hWnd, form_.d_.borderless_);
+				form_.d_.set_borderless_shadow(hWnd, form_.d_.borderless_shadow_);
 
-				if (!form_.value().get().d_.allow_resizing_)
+				if (!form_.d_.allow_resizing_)
 					SetWindowLong(hWnd, GWL_STYLE,
 						GetWindowLong(hWnd, GWL_STYLE) & ~(WS_SIZEBOX | WS_MAXIMIZEBOX));
 
-				form_.value().get().on_start();
+				form_.on_start();
 
-				for (auto& it : form_.value().get().d_.timers_)
+				for (auto& it : form_.d_.timers_)
 					if (!it.second.running)
-						form_.value().get().d_.start_timer(it.first);
+						form_.d_.start_timer(it.first);
 
 				return TRUE;
 
 			case WM_LBUTTONDOWN:
-				form_.value().get().d_.lbutton_pressed_ = true;
+				form_.d_.lbutton_pressed_ = true;
 				// capture the mouse
 				SetCapture(hWnd);
-				form_.value().get().d_.on_lbuttondown(form_.value().get().d_.get_cursor_position());
+				form_.d_.on_lbuttondown(form_.d_.get_cursor_position());
 				return NULL;
 
 			case WM_LBUTTONUP:
 				// release the mouse capture
 				ReleaseCapture();
-				form_.value().get().d_.on_lbuttonup(form_.value().get().d_.get_cursor_position());
-				form_.value().get().d_.lbutton_pressed_ = false;
+				form_.d_.on_lbuttonup(form_.d_.get_cursor_position());
+				form_.d_.lbutton_pressed_ = false;
 				return NULL;
 
 			case WM_SIZING:
-				form_.value().get().d_.user_sizing_ = true;
+				form_.d_.user_sizing_ = true;
 				break;
 
 			case WM_EXITSIZEMOVE:
-				form_.value().get().d_.user_sizing_ = false;
+				form_.d_.user_sizing_ = false;
 				break;
 
 			case WM_WINDOWPOSCHANGING:
-				form_.value().get().d_.on_form_pos_changing(lParam);
+				form_.d_.on_form_pos_changing(lParam);
 				break;
 
 			case WM_SIZE:
-				form_.value().get().d_.destroy_menus();
-				form_.value().get().d_.on_resize(LOWORD(lParam), HIWORD(lParam));
+				form_.d_.destroy_menus();
+				form_.d_.on_resize(LOWORD(lParam), HIWORD(lParam));
 				return NULL;
 
 			case WM_MOUSEMOVE:
-				form_.value().get().d_.mouse_track_.on_mouse_move(hWnd);
-				form_.value().get().d_.client_hittest(form_.value().get().d_.get_cursor_position());
+				form_.d_.mouse_track_.on_mouse_move(hWnd);
+				form_.d_.client_hittest(form_.d_.get_cursor_position());
 				return NULL;
 
 			case WM_MOUSELEAVE:
-				// form_.value().get().d_.get_cursor_position() doesn't work here
-				form_.value().get().d_.client_hittest({ (float)LOWORD(lParam), (float)HIWORD(lParam) });
-				form_.value().get().d_.mouse_track_.reset(hWnd);
+				// form_.d_.get_cursor_position() doesn't work here
+				form_.d_.client_hittest({ (float)LOWORD(lParam), (float)HIWORD(lParam) });
+				form_.d_.mouse_track_.reset(hWnd);
 				return NULL;
 
 			case WM_MOUSEHOVER:
-				form_.value().get().d_.mouse_track_.reset(hWnd);
+				form_.d_.mouse_track_.reset(hWnd);
 				return NULL;
 
 			case WM_SETCURSOR:
 				if (LOWORD(lParam) == HTCLIENT) {
-					HCURSOR h_cursor = form_.value().get().d_.h_widget_cursor_;
+					HCURSOR h_cursor = form_.d_.h_widget_cursor_;
 					if (h_cursor) {
 						SetCursor(h_cursor);
 						return TRUE;
@@ -1372,7 +1373,7 @@ namespace liblec {
 				break;
 
 			case WM_DISPLAYCHANGE:
-				form_.value().get().d_.update();
+				form_.d_.update();
 				return NULL;
 
 			case WM_SETFOCUS:
@@ -1380,11 +1381,11 @@ namespace liblec {
 
 			case WM_KILLFOCUS:
 				// check if it's the parent that now has focus
-				if (form_.value().get().d_.menu_form_) {
-					if (IsWindow(form_.value().get().d_.hWnd_parent_)) {
-						if (GetForegroundWindow() != form_.value().get().d_.hWnd_parent_) {
+				if (form_.d_.menu_form_) {
+					if (IsWindow(form_.d_.hWnd_parent_)) {
+						if (GetForegroundWindow() != form_.d_.hWnd_parent_) {
 							// focus lost, but not to parent
-							form_.value().get().close();
+							form_.close();
 						}
 						else {
 							// let parent decide whether to close child in WM_LBUTTONDOWN
@@ -1392,53 +1393,53 @@ namespace liblec {
 					}
 					else {
 						// focus lost, and there is no parent
-						form_.value().get().close();
+						form_.close();
 					}
 				}
 				return NULL;
 
 			case WM_PAINT:
-				form_.value().get().d_.move_trees();
-				form_.value().get().d_.move_html_editors();
-				form_.value().get().d_.on_render();
+				form_.d_.move_trees();
+				form_.d_.move_html_editors();
+				form_.d_.on_render();
 				ValidateRect(hWnd, nullptr);
 				return NULL;
 
 			case WM_CLOSE:
 				try {
-					if (!form_.value().get().d_.widgets_.at("close_button").enabled())
+					if (!form_.d_.widgets_.at("close_button").enabled())
 						return NULL;
 				}
 				catch (const std::exception&) {}
-				form_.value().get().on_close();
+				form_.on_close();
 				return NULL;
 
 			case WM_DESTROY:
-				form_.value().get().on_shutdown();
+				form_.on_shutdown();
 				PostQuitMessage(0);
 				return NULL;
 
 			case WM_NCCALCSIZE:
-				if (wParam == TRUE && form_.value().get().d_.borderless_) {
+				if (wParam == TRUE && form_.d_.borderless_) {
 					auto& params = *reinterpret_cast<NCCALCSIZE_PARAMS*>(lParam);
 					adjust_maximized_client_rect(hWnd, params.rgrc[0]);
 
 					if (maximized(hWnd)) {
-						form_.value().get().d_.shadow_setting_before_maximize_ =
-							form_.value().get().d_.borderless_shadow_;
-						form_.value().get().d_.set_borderless_shadow(hWnd, false, false);
+						form_.d_.shadow_setting_before_maximize_ =
+							form_.d_.borderless_shadow_;
+						form_.d_.set_borderless_shadow(hWnd, false, false);
 					}
 					else
-						form_.value().get().d_.set_borderless_shadow(hWnd,
-							form_.value().get().d_.shadow_setting_before_maximize_, false);
+						form_.d_.set_borderless_shadow(hWnd,
+							form_.d_.shadow_setting_before_maximize_, false);
 
 					return NULL;
 				}
 				break;
 
 			case WM_NCHITTEST:
-				if (form_.value().get().d_.borderless_)
-					return form_.value().get().d_.non_client_hittest(
+				if (form_.d_.borderless_)
+					return form_.d_.non_client_hittest(
 						POINT{ (int)(short)LOWORD(lParam), (int)(short)HIWORD(lParam) });
 				break;
 
@@ -1452,31 +1453,30 @@ namespace liblec {
 
 			case WM_NCRBUTTONDOWN:
 			case WM_NCLBUTTONDOWN:
-				for (auto& [key, child] : form_.value().get().d_.m_children_) {
+				for (auto& [key, child] : form_.d_.m_children_) {
 					if (child && IsWindow(child->d_.hWnd_) && child->d_.menu_form_) {
 						// close child menu forms
 						child->close();
 					}
 				}
 
-				if (form_.value().get().d_.destroy_menus())
-					form_.value().get().d_.update();
+				if (form_.d_.destroy_menus())
+					form_.d_.update();
 				break;
 
 			case WM_GETMINMAXINFO: {
 				// set lower limits to window size
 				MINMAXINFO* p_minmaxinfo = (MINMAXINFO*)lParam;
 				p_minmaxinfo->ptMinTrackSize.x = static_cast<LONG>(.5f +
-					form_.value().get().d_.min_size_.width * form_.value().get().d_.dpi_scale_);
+					form_.d_.min_size_.width * form_.d_.dpi_scale_);
 				p_minmaxinfo->ptMinTrackSize.y = static_cast<LONG>(.5f +
-					form_.value().get().d_.min_size_.height * form_.value().get().d_.dpi_scale_);
-			}
-								 break;
+					form_.d_.min_size_.height * form_.d_.dpi_scale_);
+			} break;
 
 			case WM_TIMER: {
 				int unique_id = (int)wParam;
 
-				for (auto& it : form_.value().get().d_.timers_)
+				for (auto& it : form_.d_.timers_)
 					if (it.second.unique_id == unique_id) {
 						if (it.second.on_timer)
 							it.second.on_timer();
@@ -1486,30 +1486,30 @@ namespace liblec {
 			} break;
 
 			case WM_CHAR:
-				form_.value().get().d_.on_char(wParam);
+				form_.d_.on_char(wParam);
 				break;
 
 			case WM_GETDLGCODE:
 				return DLGC_WANTALLKEYS;	// for VK_UP, VK_DOWN to be received in WM_KEYDOWN
 
 			case WM_KEYDOWN:
-				form_.value().get().d_.on_keydown(wParam);
+				form_.d_.on_keydown(wParam);
 				break;
 
 			case WM_KEYUP:
-				form_.value().get().d_.on_keyup(wParam);
+				form_.d_.on_keyup(wParam);
 				break;
 
 			case WM_MOUSEWHEEL:
-				form_.value().get().d_.on_wheel(wParam);
+				form_.d_.on_wheel(wParam);
 				break;
 
 			case WM_MOUSEHWHEEL:
-				form_.value().get().d_.on_hwheel(wParam);
+				form_.d_.on_hwheel(wParam);
 				break;
 
 			case WM_DROPFILES:
-				form_.value().get().d_.on_dropfiles(wParam);
+				form_.d_.on_dropfiles(wParam);
 				break;
 
 			default:
