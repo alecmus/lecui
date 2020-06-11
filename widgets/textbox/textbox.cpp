@@ -13,7 +13,7 @@
 
 #include "../textbox.h"
 #include "../passwordbox.h"
-#include "../../form_impl.h"
+#include "../../form_impl/form_impl.h"
 
 namespace liblec {
 	namespace lecui {

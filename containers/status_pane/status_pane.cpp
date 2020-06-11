@@ -11,8 +11,8 @@
 ** for full license details.
 */
 
-#include "..\status_pane.h"
-#include "..\..\form_impl.h"
+#include "../status_pane.h"
+#include "../../form_impl/form_impl.h"
 
 namespace liblec {
 	namespace lecui {

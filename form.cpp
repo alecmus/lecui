@@ -15,7 +15,7 @@
 #include "appearance.h"
 #include "controls.h"
 #include "timer.h"
-#include "form_impl.h"
+#include "form_impl/form_impl.h"
 #include "error/win_error.h"
 
 // Windows headers

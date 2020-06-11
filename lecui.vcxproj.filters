@@ -104,6 +104,24 @@
     <Filter Include="lecui\formatted_text_editor">
       <UniqueIdentifier>{4910dc84-8276-4552-a36a-6b1c0065611a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="lecui\form_impl">
+      <UniqueIdentifier>{122e640e-67ad-4bc9-b1d4-a537f648e516}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lecui\form_impl\mouse">
+      <UniqueIdentifier>{3cd4f5f6-7fd3-416f-ac67-0c958146eec3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lecui\form_impl\cursor">
+      <UniqueIdentifier>{fcabc999-59c6-4961-a322-ba743e761acf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lecui\form_impl\paint">
+      <UniqueIdentifier>{698afe13-7d98-41d4-9408-317dfaa67c97}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lecui\form_impl\keyboard">
+      <UniqueIdentifier>{8677cfd6-00e5-47c7-8a25-4eb5a98808b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lecui\form_impl\size">
+      <UniqueIdentifier>{2decee4a-9062-4f02-b87b-e0a681c15068}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="error\win_error.h">
@@ -200,9 +218,6 @@
     <ClInclude Include="widgets\image\image_impl.h">
       <Filter>lecui\widgets\image</Filter>
     </ClInclude>
-    <ClInclude Include="form_impl.h">
-      <Filter>lecui</Filter>
-    </ClInclude>
     <ClInclude Include="widgets\progress_indicator.h">
       <Filter>lecui\widgets</Filter>
     </ClInclude>
@@ -284,6 +299,9 @@
     <ClInclude Include="formatted_text_editor\formatted_text_editor.h">
       <Filter>lecui\formatted_text_editor</Filter>
     </ClInclude>
+    <ClInclude Include="form_impl\form_impl.h">
+      <Filter>lecui\form_impl</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="error\win_error.cpp">
@@ -337,9 +355,6 @@
     <ClCompile Include="lecui.cpp" />
     <ClCompile Include="widgets\image\image_impl.cpp">
       <Filter>lecui\widgets\image</Filter>
-    </ClCompile>
-    <ClCompile Include="form_impl.cpp">
-      <Filter>lecui</Filter>
     </ClCompile>
     <ClCompile Include="appearance.cpp">
       <Filter>lecui</Filter>
@@ -460,6 +475,42 @@
     </ClCompile>
     <ClCompile Include="formatted_text_editor\formatted_text_editor.cpp">
       <Filter>lecui\formatted_text_editor</Filter>
+    </ClCompile>
+    <ClCompile Include="form_impl\form_impl.cpp">
+      <Filter>lecui\form_impl</Filter>
+    </ClCompile>
+    <ClCompile Include="form_impl\mouse\client_hittest.cpp">
+      <Filter>lecui\form_impl\mouse</Filter>
+    </ClCompile>
+    <ClCompile Include="form_impl\mouse\non_client_hittest.cpp">
+      <Filter>lecui\form_impl\mouse</Filter>
+    </ClCompile>
+    <ClCompile Include="form_impl\mouse\left_button.cpp">
+      <Filter>lecui\form_impl\mouse</Filter>
+    </ClCompile>
+    <ClCompile Include="form_impl\cursor\cursor.cpp">
+      <Filter>lecui\form_impl\cursor</Filter>
+    </ClCompile>
+    <ClCompile Include="form_impl\paint\on_render.cpp">
+      <Filter>lecui\form_impl\paint</Filter>
+    </ClCompile>
+    <ClCompile Include="form_impl\mouse\wheel.cpp">
+      <Filter>lecui\form_impl\mouse</Filter>
+    </ClCompile>
+    <ClCompile Include="form_impl\keyboard\on_keyup.cpp">
+      <Filter>lecui\form_impl\keyboard</Filter>
+    </ClCompile>
+    <ClCompile Include="form_impl\keyboard\on_keydown.cpp">
+      <Filter>lecui\form_impl\keyboard</Filter>
+    </ClCompile>
+    <ClCompile Include="form_impl\keyboard\on_char.cpp">
+      <Filter>lecui\form_impl\keyboard</Filter>
+    </ClCompile>
+    <ClCompile Include="form_impl\mouse\on_dropfiles.cpp">
+      <Filter>lecui\form_impl\mouse</Filter>
+    </ClCompile>
+    <ClCompile Include="form_impl\size\on_form_pos_changing.cpp">
+      <Filter>lecui\form_impl\size</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

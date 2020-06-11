@@ -12,7 +12,7 @@
 */
 
 #include "../html_editor.h"
-#include "../../form_impl.h"
+#include "../../form_impl/form_impl.h"
 
 namespace liblec {
 	namespace lecui {

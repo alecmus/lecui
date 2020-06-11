@@ -12,7 +12,7 @@
 */
 
 #include "widget.h"
-#include "../form_impl.h"
+#include "../form_impl/form_impl.h"
 #include "../timer.h"
 
 namespace liblec {

@@ -13,15 +13,15 @@
 
 #pragma once
 
-#include "form.h"
-#include "appearance.h"
-#include "containers/page/page_impl.h"
-#include "containers/status_pane.h"
+#include "../form.h"
+#include "../appearance.h"
+#include "../containers/page/page_impl.h"
+#include "../containers/status_pane.h"
 
-#include "widgets/widget_impl.h"
-#include "widgets/control_buttons/close_button/close_button.h"
-#include "widgets/control_buttons/maximize_button/maximize_button.h"
-#include "widgets/control_buttons/minimize_button/minimize_button.h"
+#include "../widgets/widget_impl.h"
+#include "../widgets/control_buttons/close_button/close_button.h"
+#include "../widgets/control_buttons/maximize_button/maximize_button.h"
+#include "../widgets/control_buttons/minimize_button/minimize_button.h"
 
 // Windows headers
 #include <Windows.h>
@@ -224,8 +224,7 @@ namespace liblec {
 			HRESULT on_render();
 			void on_resize(UINT width, UINT height);
 			RECT get_working_area(HWND hWnd);
-			D2D1_POINT_2F get_cursor_position();
-			D2D1_SIZE_F get_cursor_size();
+			
 			void set_position(const float& ix, const float& iy,
 				const float& icx, const float& icy);
 			void set_position(const form_position& wndPos,
@@ -239,10 +238,27 @@ namespace liblec {
 			static bool maximized(HWND hwnd);
 			static void adjust_maximized_client_rect(HWND window, RECT& rect);
 
-			LRESULT hit_test(const POINT& cursor);
-			void client_hittest(const D2D1_POINT_2F& point);
+			/// cursor
+			D2D1_POINT_2F get_cursor_position();
+			D2D1_SIZE_F get_cursor_size();
+
+			/// mouse
 			void on_lbuttondown(const D2D1_POINT_2F& point);
 			void on_lbuttonup(const D2D1_POINT_2F& point);
+			void client_hittest(const D2D1_POINT_2F& point);
+			LRESULT non_client_hittest(const POINT& cursor);
+			void on_wheel(WPARAM wParam);
+			void on_hwheel(WPARAM wParam);
+			void on_dropfiles(WPARAM wParam);
+
+			/// keyboard
+			void on_keydown(WPARAM wParam);
+			void on_keyup(WPARAM wParam);
+			void on_char(WPARAM wParam);
+
+			/// size
+			void on_form_pos_changing(LPARAM lParam);
+
 			bool destroy_menus();
 			int make_unique_id();
 			void start_timer(const std::string& alias);
@@ -259,9 +275,9 @@ namespace liblec {
 			void show(const std::string& path, bool show);
 			void close(const std::string& path);
 
-			static LRESULT CALLBACK window_procedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
-
 			lecui::size get_status_size(containers::status_pane::location type);
+
+			static LRESULT CALLBACK window_procedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 		};
 	}
 }
