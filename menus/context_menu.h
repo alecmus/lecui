@@ -29,6 +29,9 @@ namespace liblec {
 			/// <summary>The image to use for the menu item (placed on the right).</summary>
             std::string image_file;
 
+			/// <summary>The font to use.</summary>
+			std::string font = "Segoe UI";
+
 			/// <summary>The children of the menu item (used to make a tree).</summary>
             std::vector<menu_item> children;
         };

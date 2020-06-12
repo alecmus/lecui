@@ -251,6 +251,7 @@ namespace liblec {
                     // label
                     lecui::widgets::label label(home_page, "");
                     label().text = item.label;
+                    label().font = item.font;
                     label().rect = rects_[index];
                     label().rect.left = left_most;
                     label().center_v = true;
