@@ -122,6 +122,12 @@
     <Filter Include="lecui\form_impl\size">
       <UniqueIdentifier>{2decee4a-9062-4f02-b87b-e0a681c15068}</UniqueIdentifier>
     </Filter>
+    <Filter Include="lecui\menus">
+      <UniqueIdentifier>{78cec923-3068-4fc1-a849-28b22805d069}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lecui\menus\context_menu">
+      <UniqueIdentifier>{423ab013-7b2f-4b19-bca4-16de56d8f366}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="error\win_error.h">
@@ -301,6 +307,9 @@
     </ClInclude>
     <ClInclude Include="form_impl\form_impl.h">
       <Filter>lecui\form_impl</Filter>
+    </ClInclude>
+    <ClInclude Include="menus\context_menu.h">
+      <Filter>lecui\menus</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -511,6 +520,9 @@
     </ClCompile>
     <ClCompile Include="form_impl\size\on_form_pos_changing.cpp">
       <Filter>lecui\form_impl\size</Filter>
+    </ClCompile>
+    <ClCompile Include="menus\context_menu\context_menu.cpp">
+      <Filter>lecui\menus\context_menu</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

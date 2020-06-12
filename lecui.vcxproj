@@ -38,6 +38,7 @@
     <ClInclude Include="form_common.h" />
     <ClInclude Include="form_impl\form_impl.h" />
     <ClInclude Include="lecui.h" />
+    <ClInclude Include="menus\context_menu.h" />
     <ClInclude Include="timer.h" />
     <ClInclude Include="versioninfo.h" />
     <ClInclude Include="widgets\button.h" />
@@ -110,6 +111,7 @@
     <ClCompile Include="form_impl\paint\on_render.cpp" />
     <ClCompile Include="form_impl\size\on_form_pos_changing.cpp" />
     <ClCompile Include="lecui.cpp" />
+    <ClCompile Include="menus\context_menu\context_menu.cpp" />
     <ClCompile Include="timer.cpp" />
     <ClCompile Include="unique_string.cpp" />
     <ClCompile Include="widgets\button\button.cpp" />
@@ -287,6 +289,8 @@ xcopy "$(ProjectDir)widgets\passwordbox.h" "$(SolutionDir)..\include\liblec\$(Pr
 xcopy "$(ProjectDir)widgets\tree.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\slider.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\html_editor.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I</Command>
+
+xcopy "$(ProjectDir)menus\context_menu.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\menus\" /F /R /Y /I</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -339,6 +343,8 @@ xcopy "$(ProjectDir)widgets\passwordbox.h" "$(SolutionDir)..\include\liblec\$(Pr
 xcopy "$(ProjectDir)widgets\tree.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\slider.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\html_editor.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I</Command>
+
+xcopy "$(ProjectDir)menus\context_menu.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\menus\" /F /R /Y /I</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -395,6 +401,8 @@ xcopy "$(ProjectDir)widgets\passwordbox.h" "$(SolutionDir)..\include\liblec\$(Pr
 xcopy "$(ProjectDir)widgets\tree.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\slider.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\html_editor.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I</Command>
+
+xcopy "$(ProjectDir)menus\context_menu.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\menus\" /F /R /Y /I</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -451,6 +459,8 @@ xcopy "$(ProjectDir)widgets\passwordbox.h" "$(SolutionDir)..\include\liblec\$(Pr
 xcopy "$(ProjectDir)widgets\tree.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\slider.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\html_editor.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I</Command>
+
+xcopy "$(ProjectDir)menus\context_menu.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\menus\" /F /R /Y /I</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
