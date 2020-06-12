@@ -22,7 +22,9 @@ namespace liblec {
 			form& fm,
 			IDWriteFactory* p_directwrite_factory) :
 			p_brush_(nullptr),
+			p_brush_caret_(nullptr),
 			p_brush_fill_(nullptr),
+			p_brush_fill_editable_(nullptr),
 			p_brush_hot_(nullptr),
 			p_brush_disabled_(nullptr),
 			p_brush_selected_(nullptr),
@@ -33,6 +35,8 @@ namespace liblec {
 			p_brush_dropdown_arrow_hot_(nullptr),
 			p_text_format_(nullptr),
 			fm_(fm),
+			h_cursor_edit_(get_cursor(widgets::specs::cursor_type::caret)),
+			h_cursor_dropdown_(get_cursor(widgets::specs::cursor_type::arrow)),
 			p_directwrite_factory_(p_directwrite_factory),
 			rect_dropdown_({ 0.f, 0.f, 0.f, 0.f }),
 			rect_text_({ 0.f, 0.f, 0.f, 0.f }),
@@ -60,6 +64,9 @@ namespace liblec {
 				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_fill),
 					&p_brush_fill_);
 			if (SUCCEEDED(hr))
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_fill_editable),
+					&p_brush_fill_editable_);
+			if (SUCCEEDED(hr))
 				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_hot),
 					&p_brush_hot_);
 			if (SUCCEEDED(hr))
@@ -71,6 +78,9 @@ namespace liblec {
 			if (SUCCEEDED(hr))
 				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_text),
 					&p_brush_);
+			if (SUCCEEDED(hr))
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_caret),
+					&p_brush_caret_);
 			if (SUCCEEDED(hr))
 				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_border),
 					&p_brush_border_);
@@ -113,7 +123,9 @@ namespace liblec {
 		void widgets_impl::combobox::discard_resources() {
 			resources_created_ = false;
 			safe_release(&p_brush_);
+			safe_release(&p_brush_caret_);
 			safe_release(&p_brush_fill_);
+			safe_release(&p_brush_fill_editable_);
 			safe_release(&p_brush_hot_);
 			safe_release(&p_brush_disabled_);
 			safe_release(&p_brush_selected_);
@@ -158,6 +170,7 @@ namespace liblec {
 			// draw background
 			if (render && visible_)
 				p_render_target->FillRoundedRectangle(&rounded_rect, !is_enabled_ ? p_brush_disabled_ :
+					specs_.editable ? p_brush_fill_editable_ :
 					hit_ ? p_brush_hot_ : p_brush_fill_);
 
 			// draw dropdown rect
@@ -227,25 +240,51 @@ namespace liblec {
 		}
 
 		void widgets_impl::combobox::on_click() {
-			// check if any of the items have been clicked
-			std::string selected_previous = specs_.selected;
+			bool drop_down = true;
 
-			auto selected_new = dropdown(rect_);
+			if (!is_static_ && specs_.editable) {
+				D2D1_RECT_F rect = rect_dropdown_;
+				scale_RECT(rect, dpi_scale_);
 
-			if (!selected_new.empty()) {
-				specs_.selected = selected_new;
+				if (point_.x >= rect.left && point_.x <= rect.right &&
+					point_.y >= rect.top && point_.y <= rect.bottom)
+					drop_down = true;
+				else
+					drop_down = false;
+			}
 
-				if (selected_previous != specs_.selected) {
-					if (specs_.events().selection)
-						specs_.events().selection(specs_.selected);
+			if (drop_down) {
+				// check if any of the items have been clicked
+				std::string selected_previous = specs_.selected;
 
-					if (specs_.events().click)
-						specs_.events().click();
+				auto selected_new = dropdown(rect_);
+
+				if (!selected_new.empty()) {
+					specs_.selected = selected_new;
+
+					if (selected_previous != specs_.selected) {
+						if (specs_.events().selection)
+							specs_.events().selection(specs_.selected);
+
+						if (specs_.events().click)
+							specs_.events().click();
+					}
 				}
 			}
 		}
 
 		bool widgets_impl::combobox::hit(const bool& hit) {
+			if (!is_static_ && specs_.editable) {
+				D2D1_RECT_F rect = rect_dropdown_;
+				scale_RECT(rect, dpi_scale_);
+
+				if (point_.x >= rect.left && point_.x <= rect.right &&
+					point_.y >= rect.top && point_.y <= rect.bottom)
+					h_cursor_ = h_cursor_dropdown_;
+				else
+					h_cursor_ = h_cursor_edit_;
+			}
+
 			if (is_static_ || hit == hit_) {
 				if (hit || pressed_)
 					return true;

@@ -22,7 +22,10 @@ namespace liblec {
 				specs::operator==(param) &&
 
 				// widget specific specs
+				(editable == param.editable) &&
 				(color_border == param.color_border) &&
+				(color_fill_editable == param.color_fill_editable) &&
+				(color_caret == param.color_caret) &&
 				(color_dropdown == param.color_dropdown) &&
 				(color_dropdown_hot == param.color_dropdown_hot) &&
 				(color_dropdown_arrow == param.color_dropdown_arrow) &&
@@ -40,6 +43,8 @@ namespace liblec {
 				specs_(page_.d_page_.add_combobox(alias)) {
 				specs_.color_text = defaults::color(page_.d_page_.fm_.d_.theme_, item::label);
 				specs_.color_fill = defaults::color(page_.d_page_.fm_.d_.theme_, item::combobox);
+				specs_.color_fill_editable = defaults::color(page_.d_page_.fm_.d_.theme_, item::combobox_editable);
+				specs_.color_caret = defaults::color(page_.d_page_.fm_.d_.theme_, item::combobox_caret);
 				specs_.color_border = defaults::color(page_.d_page_.fm_.d_.theme_, item::combobox_border);
 				specs_.color_hot = defaults::color(page_.d_page_.fm_.d_.theme_, item::combobox_hover);
 				specs_.color_selected = defaults::color(page_.d_page_.fm_.d_.theme_, item::combobox_selected);

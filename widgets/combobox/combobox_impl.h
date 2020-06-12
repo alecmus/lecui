@@ -58,7 +58,9 @@ namespace liblec {
 				/// Private variables
 				widgets::combobox::combobox_specs specs_, specs_old_;
 				ID2D1SolidColorBrush* p_brush_;
+				ID2D1SolidColorBrush* p_brush_caret_;
 				ID2D1SolidColorBrush* p_brush_fill_;
+				ID2D1SolidColorBrush* p_brush_fill_editable_;
 				ID2D1SolidColorBrush* p_brush_hot_;
 				ID2D1SolidColorBrush* p_brush_disabled_;
 				ID2D1SolidColorBrush* p_brush_selected_;
@@ -75,6 +77,7 @@ namespace liblec {
 				D2D1_RECT_F rect_dropdown_, rect_text_, rect_combobox_;
 
 				form& fm_;
+				HCURSOR h_cursor_edit_, h_cursor_dropdown_;
 
 				std::string dropdown(D2D1_RECT_F rect);
 			};

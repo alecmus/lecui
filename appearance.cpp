@@ -119,6 +119,8 @@ namespace liblec {
 				case item::html_editor_caret: return { 50, 50, 50, 255 };
 
 				case item::combobox: return { 219, 219, 219, 255 };
+				case item::combobox_editable: return { 255, 255, 255, 255 };
+				case item::combobox_caret: return { 50, 50, 50, 255 };
 				case item::combobox_border: return { 200, 200, 200, 255 };
 				case item::combobox_hover: return { 240, 240, 240, 255 };
 				case item::combobox_selected: return { 0, 120, 170, 100 };
@@ -231,6 +233,8 @@ namespace liblec {
 				case item::html_editor_caret: return { 60, 190, 175, 255 };
 
 				case item::combobox: return { 60, 65, 75, 255 };
+				case item::combobox_editable: return { 40, 45, 50, 255 };
+				case item::combobox_caret: return { 60, 190, 175, 255 };
 				case item::combobox_border: return { 70, 70, 70, 255 };
 				case item::combobox_hover: return { 80, 85, 95, 255 };
 				case item::combobox_selected: return { 60, 190, 175, 150 };

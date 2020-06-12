@@ -32,11 +32,13 @@ namespace liblec {
 					combobox_specs() {
 						rect.size({ 200.f, 25.f });
 					}
-					color color_border = { 200, 200, 200, 255 };
-					color color_dropdown = { 219, 219, 219, 255 };
-					color color_dropdown_hot = { 0, 120, 170, 255 };
-					color color_dropdown_arrow = { 150, 150, 150, 255 };
-					color color_dropdown_arrow_hot = { 244, 244, 244, 255 };
+					color color_fill_editable;
+					color color_caret;
+					color color_border;
+					color color_dropdown;
+					color color_dropdown_hot;
+					color color_dropdown_arrow;
+					color color_dropdown_arrow_hot;
 					bool editable = false;
 					float border = .5f;
 					float corner_radius_x = 2.f;
