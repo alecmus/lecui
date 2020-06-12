@@ -42,10 +42,17 @@ namespace liblec {
 					const bool& render) override;
 				void on_click() override;
 				bool hit(const bool& hit) override;
+				void on_selection_change(const bool& selected) override;
 
 				/// widget specific methods
 				widgets::combobox::combobox_specs& specs();
 				widgets::combobox::combobox_specs& operator()();
+				void insert_character(const char& c);
+				void key_backspace();
+				void key_delete();
+				void key_left();
+				void key_right();
+				void key_return();
 
 			private:
 				/// Prevent the use of the default constructor.
@@ -78,6 +85,51 @@ namespace liblec {
 
 				form& fm_;
 				HCURSOR h_cursor_edit_, h_cursor_dropdown_;
+
+				const float margin_x_;
+				const float margin_y_;
+
+				const std::string caret_blink_timer_name_;
+				UINT32 caret_position_;
+				bool caret_visible_;
+				bool skip_blink_;
+				float text_off_set_;
+				bool is_selecting_;
+				bool is_selected_;
+
+				struct selection_info {
+					UINT32 start = 0;
+					UINT32 end = 0;
+				} selection_info_;
+
+				/// Private methods.
+				void reset_selection() {
+					selection_info_ = { 0, 0 };
+					is_selected_ = false;
+				}
+
+				void set_selection(const UINT start, const UINT end) {
+					selection_info_.start = start;
+					selection_info_.end = end;
+					is_selected_ = true;
+				}
+
+				static UINT32 count_characters(IDWriteTextLayout* p_text_layout,
+					const std::string& text, const D2D1_RECT_F& rect_text,
+					const D2D1_POINT_2F& point, const float& dpi_scale);
+
+				static UINT32 get_caret_position(IDWriteTextLayout* p_text_layout,
+					const std::string& text, const D2D1_RECT_F& rect_text,
+					const D2D1_POINT_2F& point, const float& dpi_scale);
+
+				static D2D1_RECT_F get_selection_rect(IDWriteTextLayout* p_text_layout,
+					const D2D1_RECT_F& rect_text, const UINT32& selection_start,
+					const UINT32& selection_end);
+
+				static float get_caret_width();
+
+				static D2D1_RECT_F get_caret_rect(IDWriteTextLayout* p_text_layout,
+					const D2D1_RECT_F& rect_text, const UINT32& caret_position);
 
 				std::string dropdown(D2D1_RECT_F rect);
 			};

@@ -60,26 +60,52 @@ namespace liblec {
 							}
 							else
 								if (widget.second.type() ==
-									widgets_impl::widget_type::tab_pane) {
-									// get this tab pane
-									auto& tab_pane = page.d_page_.get_tab_pane(widget.first);
+									widgets_impl::widget_type::combobox && widget.second.selected()) {
+									change = true;
+									try {
+										auto& combobox = page.d_page_.get_combobox(widget.first);
 
-									auto page_iterator = tab_pane.p_tabs_.find(tab_pane.current_tab_);
+										// ignore backspace, tab and return
+										if (c == '\b' ||
+											c == '\t' ||
+											c == '\r') {
 
-									if (page_iterator != tab_pane.p_tabs_.end())
-										helper::check_widgets(page_iterator->second, c, change);	// recursion
+											if (c == '\r' && combobox().editable)
+												combobox.key_return();
+
+											break;
+										}
+
+										// insert character
+
+										if (combobox().editable)
+											combobox.insert_character(c);
+									}
+									catch (const std::exception& e) { log(e.what()); }
+									break;
 								}
 								else
 									if (widget.second.type() ==
-										widgets_impl::widget_type::pane) {
-										// get this pane
-										auto& pane = page.d_page_.get_pane(widget.first);
+										widgets_impl::widget_type::tab_pane) {
+										// get this tab pane
+										auto& tab_pane = page.d_page_.get_tab_pane(widget.first);
 
-										auto page_iterator = pane.p_panes_.find(pane.current_pane_);
+										auto page_iterator = tab_pane.p_tabs_.find(tab_pane.current_tab_);
 
-										if (page_iterator != pane.p_panes_.end())
+										if (page_iterator != tab_pane.p_tabs_.end())
 											helper::check_widgets(page_iterator->second, c, change);	// recursion
 									}
+									else
+										if (widget.second.type() ==
+											widgets_impl::widget_type::pane) {
+											// get this pane
+											auto& pane = page.d_page_.get_pane(widget.first);
+
+											auto page_iterator = pane.p_panes_.find(pane.current_pane_);
+
+											if (page_iterator != pane.p_panes_.end())
+												helper::check_widgets(page_iterator->second, c, change);	// recursion
+										}
 					}
 				}
 			};
