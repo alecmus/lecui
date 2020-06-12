@@ -143,16 +143,6 @@ namespace liblec {
 			return toggles_.at(alias).specs();
 		}
 
-		widgets::combo::combo_specs&
-			containers::page::impl::add_combo(std::string alias) {
-			check_alias(alias);
-			if (combos_.try_emplace(alias, alias_, alias, p_directwrite_factory_).second) {
-				widgets_.emplace(alias, combos_.at(alias));
-				widgets_order_.emplace_back(alias);
-			}
-			return combos_.at(alias).specs();
-		}
-
 		widgets::table::table_specs&
 			containers::page::impl::add_table(std::string alias) {
 			check_alias(alias);
@@ -253,6 +243,16 @@ namespace liblec {
 			return html_editors_.at(alias).specs();
 		}
 
+		widgets::combobox::combobox_specs&
+			containers::page::impl::add_combobox(std::string alias) {
+			check_alias(alias);
+			if (comboboxes_.try_emplace(alias, alias_, alias, fm_, p_directwrite_factory_).second) {
+				widgets_.emplace(alias, comboboxes_.at(alias));
+				widgets_order_.emplace_back(alias);
+			}
+			return comboboxes_.at(alias).specs();
+		}
+
 		std::map<std::string, widgets_impl::widget&>&
 			containers::page::impl::widgets() { return widgets_; }
 
@@ -285,9 +285,6 @@ namespace liblec {
 		widgets_impl::toggle&
 			containers::page::impl::get_toggle(const std::string& alias) { return toggles_.at(alias); }
 
-		widgets_impl::combo&
-			containers::page::impl::get_combo(const std::string& alias) { return combos_.at(alias); }
-
 		widgets_impl::table&
 			containers::page::impl::get_table(const std::string& alias) { return tables_.at(alias); }
 
@@ -317,6 +314,9 @@ namespace liblec {
 
 		widgets_impl::html_editor&
 			containers::page::impl::get_html_editor(const std::string& alias) { return html_editors_.at(alias); }
+
+		widgets_impl::combobox&
+			containers::page::impl::get_combobox(const std::string& alias) { return comboboxes_.at(alias); }
 
 		bool
 			containers::page::impl::close_widget(const std::string& alias,
@@ -358,9 +358,6 @@ namespace liblec {
 				case widgets_impl::widget_type::toggle:
 					toggles_.erase(alias_);
 					break;
-				case widgets_impl::widget_type::combo:
-					combos_.erase(alias_);
-					break;
 				case widgets_impl::widget_type::table:
 					tables_.erase(alias_);
 					break;
@@ -393,6 +390,9 @@ namespace liblec {
 					break;
 				case widgets_impl::widget_type::html_editor:
 					html_editors_.erase(alias_);
+					break;
+				case widgets_impl::widget_type::combobox:
+					comboboxes_.erase(alias_);
 					break;
 				case widgets_impl::widget_type::close_button:
 				case widgets_impl::widget_type::maximize_button:

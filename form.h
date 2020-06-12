@@ -44,7 +44,6 @@ namespace liblec {
 			class label;
 			class image;
 			class button;
-			class combo;
 			class custom;
 			class table;
 			class rectangle;
@@ -57,6 +56,11 @@ namespace liblec {
 			class tree;
 			class slider;
 			class html_editor;
+			class combobox;
+		}
+
+		namespace widgets_impl {
+			class combobox;
 		}
 #endif
 
@@ -257,7 +261,6 @@ namespace liblec {
 			friend class widgets::label;
 			friend class widgets::image;
 			friend class widgets::button;
-			friend class widgets::combo;
 			friend class widgets::custom;
 			friend class widgets::table;
 			friend class widgets::rectangle;
@@ -269,6 +272,8 @@ namespace liblec {
 			friend class widgets::tree;
 			friend class widgets::slider;
 			friend class widgets::html_editor;
+			friend class widgets::combobox;
+			friend class widgets_impl::combobox;
 #endif
 		};
 	}

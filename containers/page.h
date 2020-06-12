@@ -70,7 +70,6 @@ namespace liblec {
 				friend class widgets::label;
 				friend class widgets::button;
 				friend class widgets::toggle;
-				friend class widgets::combo;
 				friend class widgets::table;
 				friend class widgets::custom;
 				friend class widgets::image;
@@ -81,6 +80,7 @@ namespace liblec {
 				friend class widgets::tree;
 				friend class widgets::slider;
 				friend class widgets::html_editor;
+				friend class widgets::combobox;
 #endif
 			};
 		}

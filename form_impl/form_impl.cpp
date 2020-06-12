@@ -920,72 +920,6 @@ namespace liblec {
 			rect = monitor_info.rcWork;
 		}
 
-		bool form::impl::destroy_menus() {
-			bool update = false;
-
-			// check form widgets
-			for (auto& widget : widgets_) {
-				if (widget.second.is_static() || !widget.second.visible() || !widget.second.enabled())
-					continue;
-
-				if (widget.second.menu_visible()) {
-					update = true;
-					widget.second.reset_menu();
-				}
-			}
-
-			class helper {
-			public:
-				static void check_widgets(containers::page& page,
-					bool& update) {
-					// check widgets
-					for (auto& widget : page.d_page_.widgets()) {
-						if (widget.second.is_static() || !widget.second.visible() || !widget.second.enabled())
-							continue;
-
-						if (widget.second.menu_visible()) {
-							update = true;
-							widget.second.reset_menu();
-						}
-					}
-
-					for (auto& widget : page.d_page_.widgets()) {
-						if (widget.second.type() ==
-							widgets_impl::widget_type::tab_pane) {
-							// get this tab pane
-							auto& tab_pane = page.d_page_.get_tab_pane(widget.first);
-
-							auto page_iterator = tab_pane.p_tabs_.find(tab_pane.current_tab_);
-
-							if (page_iterator != tab_pane.p_tabs_.end())
-								helper::check_widgets(page_iterator->second, update);
-						}
-						else
-							if (widget.second.type() ==
-								widgets_impl::widget_type::pane) {
-								// get this pane
-								auto& pane = page.d_page_.get_pane(widget.first);
-
-								auto page_iterator = pane.p_panes_.find(pane.current_pane_);
-
-								if (page_iterator != pane.p_panes_.end())
-									helper::check_widgets(page_iterator->second, update);
-							}
-					}
-				}
-			};
-
-			for (auto& it : p_status_panes_)
-				helper::check_widgets(it.second, update);
-
-			auto page_iterator = p_pages_.find(current_page_);
-
-			if (page_iterator != p_pages_.end())
-				helper::check_widgets(page_iterator->second, update);
-
-			return update;
-		}
-
 		int form::impl::make_unique_id() {
 			++unique_id_;
 			return unique_id_;
@@ -1343,7 +1277,6 @@ namespace liblec {
 				break;
 
 			case WM_SIZE:
-				form_.d_.destroy_menus();
 				form_.d_.on_resize(LOWORD(lParam), HIWORD(lParam));
 				return NULL;
 
@@ -1459,9 +1392,6 @@ namespace liblec {
 						child->close();
 					}
 				}
-
-				if (form_.d_.destroy_menus())
-					form_.d_.update();
 				break;
 
 			case WM_GETMINMAXINFO: {

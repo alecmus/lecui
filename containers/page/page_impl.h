@@ -25,7 +25,6 @@
 #include "../../widgets/label/label_impl.h"
 #include "../../widgets/button/button_impl.h"
 #include "../../widgets/toggle/toggle_impl.h"
-#include "../../widgets/combo/combo_impl.h"
 #include "../../widgets/table/table_impl.h"
 #include "../../widgets/custom/custom_impl.h"
 #include "../../widgets/image/image_impl.h"
@@ -36,6 +35,7 @@
 #include "../../widgets/tree/tree_impl.h"
 #include "../../widgets/slider/slider_impl.h"
 #include "../../widgets/html_editor/html_editor_impl.h"
+#include "../../widgets/combobox/combobox_impl.h"
 
 namespace liblec {
 	namespace lecui {
@@ -75,8 +75,6 @@ namespace liblec {
 				add_button(std::string alias);
 			widgets::toggle::toggle_specs&
 				add_toggle(std::string alias);
-			widgets::combo::combo_specs&
-				add_combo(std::string alias);
 			widgets::table::table_specs&
 				add_table(std::string alias);
 			widgets::custom::custom_specs&
@@ -97,6 +95,8 @@ namespace liblec {
 				add_slider(std::string alias);
 			widgets::html_editor::html_editor_specs&
 				add_html_editor(std::string alias);
+			widgets::combobox::combobox_specs&
+				add_combobox(std::string alias);
 
 			std::map<std::string,
 				widgets_impl::widget&>&
@@ -123,8 +123,6 @@ namespace liblec {
 				get_group(const std::string& alias);
 			widgets_impl::toggle&
 				get_toggle(const std::string& alias);
-			widgets_impl::combo&
-				get_combo(const std::string& alias);
 			widgets_impl::table&
 				get_table(const std::string& alias);
 			widgets_impl::custom&
@@ -145,6 +143,8 @@ namespace liblec {
 				get_slider(const std::string& alias);
 			widgets_impl::html_editor&
 				get_html_editor(const std::string& alias);
+			widgets_impl::combobox&
+				get_combobox(const std::string& alias);
 
 			bool close_widget(const std::string& alias,
 				widgets_impl::widget_type type, std::string& error);
@@ -172,7 +172,6 @@ namespace liblec {
 			std::map<std::string, widgets_impl::group> groups_;
 			std::map<std::string, widgets_impl::button> buttons_;
 			std::map<std::string, widgets_impl::toggle> toggles_;
-			std::map<std::string, widgets_impl::combo> combos_;
 			std::map<std::string, widgets_impl::table> tables_;
 			std::map<std::string, widgets_impl::custom> customs_;
 			std::map<std::string, widgets_impl::image> images_;
@@ -183,6 +182,7 @@ namespace liblec {
 			std::map<std::string, widgets_impl::tree> trees_;
 			std::map<std::string, widgets_impl::slider> sliders_;
 			std::map<std::string, widgets_impl::html_editor> html_editors_;
+			std::map<std::string, widgets_impl::combobox> comboboxes_;
 
 			form& fm_;
 
@@ -195,7 +195,6 @@ namespace liblec {
 			friend class widgets::label;
 			friend class widgets::button;
 			friend class widgets::toggle;
-			friend class widgets::combo;
 			friend class widgets::table;
 			friend class widgets::custom;
 			friend class widgets::image;
@@ -206,6 +205,7 @@ namespace liblec {
 			friend class widgets::tree;
 			friend class widgets::slider;
 			friend class widgets::html_editor;
+			friend class widgets::combobox;
 		};
 	}
 }

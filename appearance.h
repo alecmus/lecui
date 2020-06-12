@@ -128,6 +128,15 @@ namespace liblec {
 			html_editor_disabled,
 			html_editor_selected,
 			html_editor_caret,
+
+			combobox,
+			combobox_border,
+			combobox_hover,
+				combobox_selected,
+				combobox_dropdown,
+				combobox_dropdown_hot,
+				combobox_dropdown_arrow,
+				combobox_dropdown_arrow_hot,
 		};
 
 		class lecui_api defaults {

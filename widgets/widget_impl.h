@@ -47,7 +47,6 @@ namespace liblec {
 				group,
 				button,
 				toggle,
-				combo,
 				table,
 				custom,
 				image,
@@ -58,6 +57,7 @@ namespace liblec {
 				tree,
 				slider,
 				html_editor,
+				combobox,
 			};
 
 			static HCURSOR get_cursor(widgets::specs::cursor_type type) {
@@ -96,7 +96,6 @@ namespace liblec {
 				const D2D1_RECT_F& get_rect();
 				void select(const bool& selected);
 				bool selected();
-				bool menu_visible();
 				bool hit();
 				HCURSOR cursor();
 
@@ -121,9 +120,6 @@ namespace liblec {
 					const D2D1_SIZE_F& change_in_size, const D2D1_POINT_2F& offset,
 					const bool& render) = 0;
 				virtual void on_click() = 0;
-				virtual bool on_menu(ID2D1HwndRenderTarget* p_render_target,
-					const D2D1_RECT_F& client_area);
-				virtual void reset_menu();
 				virtual bool on_mousewheel(float units);
 				virtual bool on_keydown(WPARAM wParam);
 				virtual void on_selection_change(const bool& selected);
@@ -149,7 +145,6 @@ namespace liblec {
 				D2D1_POINT_2F point_;
 				bool selected_;
 				D2D1_POINT_2F point_on_press_, point_on_release_;
-				bool draw_menu_;
 
 				/// <summary>Flag to track the status of widget resources. Enables the creation of
 				/// widget resources on-the-fly and on-demand for best performance rather than

@@ -23,9 +23,6 @@
     <Filter Include="lecui\widgets\button">
       <UniqueIdentifier>{1fe37189-20fd-4633-9049-2afa4ec47123}</UniqueIdentifier>
     </Filter>
-    <Filter Include="lecui\widgets\combo">
-      <UniqueIdentifier>{6f76e302-2a6c-4734-aaf8-c0c0d476c934}</UniqueIdentifier>
-    </Filter>
     <Filter Include="lecui\widgets\control_buttons">
       <UniqueIdentifier>{c2717374-6c0d-44ba-9082-2e929eb61bb2}</UniqueIdentifier>
     </Filter>
@@ -122,6 +119,9 @@
     <Filter Include="lecui\form_impl\size">
       <UniqueIdentifier>{2decee4a-9062-4f02-b87b-e0a681c15068}</UniqueIdentifier>
     </Filter>
+    <Filter Include="lecui\widgets\combobox">
+      <UniqueIdentifier>{ab0155a8-6273-4e48-a692-2ca043864e73}</UniqueIdentifier>
+    </Filter>
     <Filter Include="lecui\menus">
       <UniqueIdentifier>{78cec923-3068-4fc1-a849-28b22805d069}</UniqueIdentifier>
     </Filter>
@@ -147,9 +147,6 @@
     </ClInclude>
     <ClInclude Include="widgets\button\button_impl.h">
       <Filter>lecui\widgets\button</Filter>
-    </ClInclude>
-    <ClInclude Include="widgets\combo\combo_impl.h">
-      <Filter>lecui\widgets\combo</Filter>
     </ClInclude>
     <ClInclude Include="widgets\control_buttons\close_button\close_button.h">
       <Filter>lecui\widgets\control_buttons\close_button</Filter>
@@ -185,9 +182,6 @@
       <Filter>lecui\containers</Filter>
     </ClInclude>
     <ClInclude Include="widgets\button.h">
-      <Filter>lecui\widgets</Filter>
-    </ClInclude>
-    <ClInclude Include="widgets\combo.h">
       <Filter>lecui\widgets</Filter>
     </ClInclude>
     <ClInclude Include="widgets\custom.h">
@@ -308,6 +302,12 @@
     <ClInclude Include="form_impl\form_impl.h">
       <Filter>lecui\form_impl</Filter>
     </ClInclude>
+    <ClInclude Include="widgets\combobox.h">
+      <Filter>lecui\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="widgets\combobox\combobox_impl.h">
+      <Filter>lecui\widgets\combobox</Filter>
+    </ClInclude>
     <ClInclude Include="menus\context_menu.h">
       <Filter>lecui\menus</Filter>
     </ClInclude>
@@ -330,9 +330,6 @@
     </ClCompile>
     <ClCompile Include="widgets\button\button_impl.cpp">
       <Filter>lecui\widgets\button</Filter>
-    </ClCompile>
-    <ClCompile Include="widgets\combo\combo_impl.cpp">
-      <Filter>lecui\widgets\combo</Filter>
     </ClCompile>
     <ClCompile Include="widgets\control_buttons\close_button\close_button.cpp">
       <Filter>lecui\widgets\control_buttons\close_button</Filter>
@@ -382,9 +379,6 @@
     </ClCompile>
     <ClCompile Include="widgets\button\button.cpp">
       <Filter>lecui\widgets\button</Filter>
-    </ClCompile>
-    <ClCompile Include="widgets\combo\combo.cpp">
-      <Filter>lecui\widgets\combo</Filter>
     </ClCompile>
     <ClCompile Include="widgets\custom\custom.cpp">
       <Filter>lecui\widgets\custom</Filter>
@@ -520,6 +514,12 @@
     </ClCompile>
     <ClCompile Include="form_impl\size\on_form_pos_changing.cpp">
       <Filter>lecui\form_impl\size</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\combobox\combobox.cpp">
+      <Filter>lecui\widgets\combobox</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\combobox\combobox_impl.cpp">
+      <Filter>lecui\widgets\combobox</Filter>
     </ClCompile>
     <ClCompile Include="menus\context_menu\context_menu.cpp">
       <Filter>lecui\menus\context_menu</Filter>

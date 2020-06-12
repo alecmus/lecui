@@ -29,7 +29,6 @@ namespace liblec {
 			selected_(false),
 			point_on_press_({ 0.f,0.f }),
 			point_on_release_({ 0.f,0.f }),
-			draw_menu_(false),
 			resources_created_(false),
 			h_cursor_(nullptr) {
 			// to-do: this seems really wasteful. Find a way of optimizing this and not repeating it for
@@ -102,14 +101,8 @@ namespace liblec {
 		bool widgets_impl::widget::enabled() { return is_enabled_; }
 		const D2D1_RECT_F& widgets_impl::widget::get_rect() { return rect_; }
 		bool widgets_impl::widget::selected() { return selected_; }
-		bool widgets_impl::widget::menu_visible() { return draw_menu_; }
 		bool widgets_impl::widget::hit() { return hit_; }
 		HCURSOR widgets_impl::widget::cursor() { return h_cursor_; }
-		bool widgets_impl::widget::on_menu(
-			ID2D1HwndRenderTarget* p_render_target, const D2D1_RECT_F& client_area) {
-			return false;
-		}
-		void widgets_impl::widget::reset_menu() { draw_menu_ = false; }
 		bool widgets_impl::widget::on_mousewheel(float units) { return false; }
 		bool widgets_impl::widget::on_keydown(WPARAM wParam) { return false; }
 		void widgets_impl::widget::on_selection_change(const bool& selected) {}
@@ -119,10 +112,8 @@ namespace liblec {
 			bool change = selected_ != selected;
 			selected_ = selected;
 
-			if (change) {
-				if (!selected_) reset_menu();
+			if (change)
 				on_selection_change(selected_);
-			}
 		}
 
 		D2D1_RECT_F

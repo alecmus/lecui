@@ -117,6 +117,15 @@ namespace liblec {
 				case item::html_editor_disabled: return { 248, 248, 248, 255 };
 				case item::html_editor_selected: return { 0, 120, 170, 100 };
 				case item::html_editor_caret: return { 50, 50, 50, 255 };
+
+				case item::combobox: return { 219, 219, 219, 255 };
+				case item::combobox_border: return { 200, 200, 200, 255 };
+				case item::combobox_hover: return { 240, 240, 240, 255 };
+				case item::combobox_selected: return { 0, 120, 170, 100 };
+				case item::combobox_dropdown: return { 219, 219, 219, 255 };
+				case item::combobox_dropdown_hot: return { 0, 120, 170, 255 };
+				case item::combobox_dropdown_arrow: return { 150, 150, 150, 255 };
+				case item::combobox_dropdown_arrow_hot: return { 244, 244, 244, 255 };
 				default: break;
 				}
 			} break;
@@ -220,6 +229,15 @@ namespace liblec {
 				case item::html_editor_disabled: return { 30, 35, 40, 255 };
 				case item::html_editor_selected: return { 60, 190, 175, 150 };
 				case item::html_editor_caret: return { 60, 190, 175, 255 };
+
+				case item::combobox: return { 60, 65, 75, 255 };
+				case item::combobox_border: return { 70, 70, 70, 255 };
+				case item::combobox_hover: return { 80, 85, 95, 255 };
+				case item::combobox_selected: return { 60, 190, 175, 150 };
+				case item::combobox_dropdown: return { 60, 65, 75, 255 };
+				case item::combobox_dropdown_hot: return { 60, 190, 175, 255 };
+				case item::combobox_dropdown_arrow: return { 150, 150, 150, 255 };
+				case item::combobox_dropdown_arrow_hot: return { 16, 29, 36, 255 };
 				default: break;
 				}
 			} break;

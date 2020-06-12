@@ -378,95 +378,6 @@ namespace liblec {
 							change_in_size, { 0.f - client_area.left,
 							0.f - client_area.top }, render);
 					}
-
-					static void render_menu(ID2D1HwndRenderTarget* p_render_target_,
-						const std::string& page_alias,
-						const std::string& current_page,
-						containers::page& page,
-						const D2D1_RECT_F& client_area) {
-						bool render = page_alias == current_page;
-
-						if (!render)
-							return;
-
-						// clip
-						auto_clip clip(render, p_render_target_, client_area, 1.f);
-
-						// render widgets
-						for (auto& widget : page.d_page_.widgets()) {
-							if (widget.second.type() ==
-								widgets_impl::widget_type::h_scrollbar ||
-								widget.second.type() ==
-								widgets_impl::widget_type::v_scrollbar ||
-								widget.second.type() ==
-								widgets_impl::widget_type::group)
-								continue;
-
-							widget.second.on_menu(p_render_target_, client_area);
-
-							if (widget.second.type() ==
-								widgets_impl::widget_type::tab_pane) {
-								try {
-									// get this tab pane
-									auto& tab_pane = page.d_page_.get_tab_pane(widget.first);
-
-									// get client area for this tab pane
-									const auto& client_area = tab_pane.client_area();
-
-									const float change_in_width =
-										(tab_pane.tab_pane_area().right - tab_pane.tab_pane_area().left) -
-										(tab_pane().rect.right - tab_pane().rect.left);
-									const float change_in_height =
-										(tab_pane.tab_pane_area().bottom - tab_pane.tab_pane_area().top) -
-										(tab_pane().rect.bottom - tab_pane().rect.top);
-
-									for (auto& tab : tab_pane.p_tabs_) {
-										const float page_tolerance_ = 10.f;
-										D2D1_RECT_F rect_page = client_area;
-										rect_page.left += page_tolerance_;
-										rect_page.top += page_tolerance_;
-										rect_page.right -= page_tolerance_;
-										rect_page.bottom -= page_tolerance_;
-
-										render_menu(p_render_target_, tab.first,
-											tab_pane.current_tab_, tab.second, rect_page);
-									}
-								}
-								catch (const std::exception&) {}
-							}
-							else
-								if (widget.second.type() ==
-									widgets_impl::widget_type::pane) {
-									try {
-										// get this pane
-										auto& pane = page.d_page_.get_pane(widget.first);
-
-										// get client area for this pane
-										const auto& client_area = pane.client_area();
-
-										const float change_in_width =
-											(pane.pane_area().right - pane.pane_area().left) -
-											(pane().rect.right - pane().rect.left);
-										const float change_in_height =
-											(pane.pane_area().bottom - pane.pane_area().top) -
-											(pane().rect.bottom - pane().rect.top);
-
-										for (auto& page : pane.p_panes_) {
-											const float page_tolerance_ = 10.f;
-											D2D1_RECT_F rect_page = client_area;
-											rect_page.left += page_tolerance_;
-											rect_page.top += page_tolerance_;
-											rect_page.right -= page_tolerance_;
-											rect_page.bottom -= page_tolerance_;
-
-											render_menu(p_render_target_, page.first,
-												pane.current_pane_, page.second, rect_page);
-										}
-									}
-									catch (const std::exception&) {}
-								}
-						}
-					}
 				};
 
 				// get status pane sizes
@@ -477,6 +388,7 @@ namespace liblec {
 
 				const D2D1_SIZE_F change_in_size = { rtSize.width - size_.width, rtSize.height - size_.height };
 
+				// render page
 				for (auto& page : p_pages_) {
 					const D2D1_RECT_F rect_page = { page_tolerance_ + status_left.width,
 						caption_bar_height_ + page_tolerance_ + status_top.height,
@@ -552,18 +464,6 @@ namespace liblec {
 				for (auto& widget : widgets_)
 					widget.second.render(p_render_target_,
 						change_in_size, { 0.f, 0.f }, true);
-
-				// render menu
-				for (auto& page : p_pages_) {
-					const D2D1_RECT_F rect_page = { page_tolerance_,
-						caption_bar_height_ + page_tolerance_,
-						rtSize.width - page_tolerance_, rtSize.height - page_tolerance_ };
-
-					const D2D1_RECT_F client_area = rect_page;
-
-					helper::render_menu(p_render_target_, page.first, current_page_,
-						page.second, client_area);
-				}
 
 				// render form border
 				if (!maximized(hWnd_)) {

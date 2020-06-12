@@ -308,19 +308,6 @@ namespace liblec {
 			right = temp;
 		}
 
-		static inline void show_selected(ID2D1HwndRenderTarget* p_render_target,
-			ID2D1SolidColorBrush* p_brush_selected,
-			const D2D1_RECT_F& rect,
-			const bool& pressed) {
-			const float margin = pressed ? -1.f : -.5f;
-			D2D1_RECT_F rect_selection_ = rect;
-			rect_selection_.left -= margin;
-			rect_selection_.top -= margin;
-			rect_selection_.right += margin;
-			rect_selection_.bottom += margin;
-			p_render_target->DrawRectangle(rect_selection_, p_brush_selected, 0.f - margin);
-		}
-
 		static inline color lighten_color(const color& clr_in,
 			unsigned short percentage) {
 			color color = clr_in;

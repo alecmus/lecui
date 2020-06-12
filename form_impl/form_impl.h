@@ -195,7 +195,6 @@ namespace liblec {
 			friend class widgets::label;
 			friend class widgets::image;
 			friend class widgets::button;
-			friend class widgets::combo;
 			friend class widgets::custom;
 			friend class widgets::table;
 			friend class widgets::rectangle;
@@ -207,6 +206,8 @@ namespace liblec {
 			friend class widgets::tree;
 			friend class widgets::slider;
 			friend class widgets::html_editor;
+			friend class widgets::combobox;
+			friend class widgets_impl::combobox;
 
 		public:
 			impl(const std::string& caption_formatted);
@@ -259,7 +260,6 @@ namespace liblec {
 			/// size
 			void on_form_pos_changing(LPARAM lParam);
 
-			bool destroy_menus();
 			int make_unique_id();
 			void start_timer(const std::string& alias);
 

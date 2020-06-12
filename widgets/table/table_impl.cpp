@@ -778,8 +778,6 @@ namespace liblec {
 				}
 
 				if (selection_made) {
-					reset_menu();
-
 					if (specs_.events().selection)
 						on_selection();
 
