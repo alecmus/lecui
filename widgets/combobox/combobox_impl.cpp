@@ -16,6 +16,8 @@
 #include "../../menus/context_menu.h"
 #include "../../form_impl/form_impl.h"
 
+#include <algorithm>
+
 namespace liblec {
 	namespace lecui {
 		widgets_impl::combobox::combobox(const std::string& page_alias,
@@ -68,7 +70,15 @@ namespace liblec {
 			specs_old_ = specs_;
 			is_static_ = (specs_.events().click == nullptr && specs_.events().selection == nullptr);
 			h_cursor_ = get_cursor(specs_.cursor);
-			specs_.text = specs_.selected;
+			
+			for (auto& item : specs_.items) {
+				if (item == specs_.selected) {
+					specs_.text = item;
+					break;
+				}
+			}
+
+			sort_items();
 
 			HRESULT hr = S_OK;
 
@@ -592,6 +602,7 @@ namespace liblec {
 					specs_.items.push_back(specs_.text);
 
 				specs_.selected = specs_.text;
+				sort_items();
 			}
 		}
 
@@ -684,6 +695,43 @@ namespace liblec {
 				rect_text.top + hit_metrics.top,
 				rect_text.left + hit_metrics.left + half_caret_width,
 				rect_text.top + hit_metrics.top + hit_metrics.height);
+		}
+
+		bool widgets_impl::combobox::is_alpha(const std::string& s) {
+			for (const auto& c : s)
+				if (!isalpha(c))
+					return false;
+
+			return true;
+		}
+
+		void widgets_impl::combobox::sort_items() {
+			auto sort_ascending = [](std::string a, std::string b) {
+				if (is_alpha(a) && is_alpha(b))
+					return a < b;
+				else
+					return atof(a.c_str()) < atof(b.c_str());
+			};
+
+			auto sort_descending = [](std::string a, std::string b) {
+				if (is_alpha(a) && is_alpha(b))
+					return a > b;
+				else
+					return atof(a.c_str()) > atof(b.c_str());
+			};
+
+			// sort the items
+			switch (specs_.sort) {
+			case sort_options::ascending:
+				std::sort(specs_.items.begin(), specs_.items.end(), sort_ascending);
+				break;
+			case sort_options::descending:
+				std::sort(specs_.items.begin(), specs_.items.end(), sort_descending);
+				break;
+			case sort_options::none:
+			default:
+				break;
+			}
 		}
 
 		widgets::combobox::combobox_specs&

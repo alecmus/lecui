@@ -171,6 +171,12 @@ namespace liblec {
 			bool operator!=(const color&);
 		};
 
+		enum class sort_options {
+			ascending,
+			descending,
+			none,
+		};
+
 		struct file_type {
 			std::string extension = "png";
 			std::string description = "PNG Image";

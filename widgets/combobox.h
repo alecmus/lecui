@@ -43,7 +43,19 @@ namespace liblec {
 					float border = .5f;
 					float corner_radius_x = 2.f;
 					float corner_radius_y = 2.f;
+
+					/// <summary>The list of items available in the dropdown.</summary>
 					std::vector<std::string> items;
+
+					/// <summary>How to sort the items.</summary>
+					sort_options sort = sort_options::ascending;
+
+					/// <summary>An item from the list in the dropdown that was last selected.
+					/// </summary>
+					/// <remarks>Note that this is not always the same as the .text variable in an
+					/// editable combobox. The .text in an editable combobox only becomes part of
+					/// the list of items when the user pressed the enter key. Only then can it be
+					/// considered as a "selected" item.</remarks>
 					std::string selected;
 
 					struct combobox_events : basic_events {
