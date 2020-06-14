@@ -321,7 +321,6 @@ namespace liblec {
 		void widgets_impl::textbox::on_selection_change(const bool& selected) {
 			if (selected) {
 				// start blink timer
-				log("starting caret blink timer: " + alias_);
 				timer_management(fm_).add(caret_blink_timer_name_, 500,
 					[&]() {
 						if (skip_blink_)
@@ -334,7 +333,6 @@ namespace liblec {
 			}
 			else {
 				// stop blink timer
-				log("stopping caret blink timer: " + alias_);
 				timer_management(fm_).stop(caret_blink_timer_name_);
 
 				// stop selection

@@ -33,7 +33,7 @@ public:
 		bool italic = false;
 		bool underline = false;
 		bool strikethrough = false;
-		D2D1_COLOR_F color = { 0.f, 0.f, 0.f, 1.f };
+		D2D1_COLOR_F color = { 0.f, 0.f, 0.f, -1.f };	// alpha of -1.f indicates color hasn't been set
 	};
 
 	/// <summary>Formatted text properties.</summary>

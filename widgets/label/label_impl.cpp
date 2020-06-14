@@ -55,8 +55,8 @@ namespace liblec {
 				if (properties.strikethrough)
 					p_text_layout_->SetStrikethrough(TRUE, properties.text_range);
 
-				// apply color
-				if (p_render_target) {
+				// apply color (-1.f for alpha indicates color has't been set)
+				if (p_render_target && properties.color.a != -1.f) {
 					ID2D1SolidColorBrush* p_brush;
 					HRESULT hr = p_render_target->CreateSolidColorBrush(properties.color, &p_brush);
 					if (SUCCEEDED(hr))

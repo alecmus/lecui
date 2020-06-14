@@ -261,7 +261,6 @@ namespace liblec {
 		void widgets_impl::html_editor::on_selection_change(const bool& selected) {
 			if (selected) {
 				// start blink timer
-				log("starting caret blink timer: " + alias_);
 				timer_management(fm_).add(caret_blink_timer_name_, 500,
 					[&]() {
 						if (skip_blink_)
@@ -274,7 +273,6 @@ namespace liblec {
 			}
 			else {
 				// stop blink timer
-				log("stopping caret blink timer: " + alias_);
 				timer_management(fm_).stop(caret_blink_timer_name_);
 
 				// stop selection
@@ -307,8 +305,6 @@ namespace liblec {
 				skip_blink_ = true;
 			}
 			catch (const std::exception& e) { log(e.what()); }
-
-			log(specs_.text);
 		}
 
 		// to-do: backspace mechanics for formatted text
@@ -331,8 +327,6 @@ namespace liblec {
 				}
 			}
 			catch (const std::exception& e) { log(e.what()); }
-
-			log(specs_.text);
 		}
 
 		// to-do: deletion mechanics for formatted text
@@ -354,8 +348,6 @@ namespace liblec {
 				}
 			}
 			catch (const std::exception& e) { log(e.what()); }
-
-			log(specs_.text);
 		}
 
 		void widgets_impl::html_editor::key_left() {
