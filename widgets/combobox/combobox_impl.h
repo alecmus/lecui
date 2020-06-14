@@ -34,6 +34,7 @@ namespace liblec {
 				~combobox();
 
 				/// virtual function overrides
+				void press(const bool& pressed) override;
 				widgets_impl::widget_type type() override;
 				HRESULT create_resources(ID2D1HwndRenderTarget* p_render_target) override;
 				void discard_resources();
@@ -96,6 +97,8 @@ namespace liblec {
 				float text_off_set_;
 				bool is_selecting_;
 				bool is_selected_;
+				bool dropdown_activated_;
+				bool skip_nextdropdown_;
 
 				struct selection_info {
 					UINT32 start = 0;

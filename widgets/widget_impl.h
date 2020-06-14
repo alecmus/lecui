@@ -86,7 +86,6 @@ namespace liblec {
 
 				const std::string& page_alias();
 				const std::string& alias();
-				void press(const bool& pressed);
 				bool pressed();
 				bool is_static();
 				void show(const bool& show);
@@ -98,6 +97,8 @@ namespace liblec {
 				bool selected();
 				bool hit();
 				HCURSOR cursor();
+
+				virtual void press(const bool& pressed);
 
 				/// <summary>Check whether a point is within the widget.</summary>
 				/// <param name="point">The point, in pixels.</param>

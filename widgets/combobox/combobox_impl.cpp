@@ -53,12 +53,29 @@ namespace liblec {
 			text_off_set_(0.f),
 			is_selecting_(false),
 			is_selected_(false),
+			dropdown_activated_(false),
+			skip_nextdropdown_(false),
 			selection_info_({ 0, 0 }) {
 			page_alias_ = page_alias;
 			alias_ = alias;
 		}
 
 		widgets_impl::combobox::~combobox() { discard_resources(); }
+
+		void widgets_impl::combobox::press(const bool& pressed) {
+			D2D1_RECT_F rect = rect_dropdown_;
+			scale_RECT(rect, dpi_scale_);
+
+			if (point_.x >= rect.left && point_.x <= rect.right &&
+				point_.y >= rect.top && point_.y <= rect.bottom) {
+				if (dropdown_activated_)
+					skip_nextdropdown_ = true;
+			}
+			else
+				skip_nextdropdown_ = false;
+
+			return widgets_impl::widget::press(pressed);
+		}
 
 		widgets_impl::widget_type
 			widgets_impl::combobox::type() {
@@ -413,8 +430,14 @@ namespace liblec {
 				scale_RECT(rect, dpi_scale_);
 
 				if (point_.x >= rect.left && point_.x <= rect.right &&
-					point_.y >= rect.top && point_.y <= rect.bottom)
-					drop_down = true;
+					point_.y >= rect.top && point_.y <= rect.bottom) {
+					if (skip_nextdropdown_) {
+						skip_nextdropdown_ = false;
+						drop_down = false;
+					}
+					else
+						drop_down = true;
+				}
 				else
 					drop_down = false;
 			}
@@ -426,6 +449,8 @@ namespace liblec {
 				if (specs_.editable)
 					selected_previous = specs_.text;
 
+				dropdown_activated_ = true;
+
 				auto selected_new = dropdown(rect_);
 
 				if (!selected_new.empty()) {
@@ -435,6 +460,9 @@ namespace liblec {
 						specs_.text = specs_.selected;
 
 					if (selected_previous != specs_.selected) {
+						// move caret to the end
+						caret_position_ = static_cast<UINT32>(specs_.selected.length());
+
 						if (specs_.events().selection)
 							specs_.events().selection(specs_.selected);
 
@@ -442,6 +470,8 @@ namespace liblec {
 							specs_.events().click();
 					}
 				}
+
+				dropdown_activated_ = false;
 			}
 		}
 
