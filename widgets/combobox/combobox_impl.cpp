@@ -89,8 +89,8 @@ namespace liblec {
 			h_cursor_ = get_cursor(specs_.cursor);
 			
 			for (auto& item : specs_.items) {
-				if (item == specs_.selected) {
-					specs_.text = item;
+				if (item.label == specs_.selected) {
+					specs_.text = item.label;
 					break;
 				}
 			}
@@ -201,8 +201,8 @@ namespace liblec {
 				specs_.text.clear();
 
 				for (auto& item : specs_.items) {
-					if (item == specs_.selected) {
-						specs_.text = item;
+					if (item.label == specs_.selected) {
+						specs_.text = item.label;
 						break;
 					}
 				}
@@ -627,9 +627,21 @@ namespace liblec {
 
 		void widgets_impl::combobox::key_return() {
 			if (specs_.editable) {
-				// add text to items list
-				if (std::find(specs_.items.begin(), specs_.items.end(), specs_.text) == specs_.items.end())
-					specs_.items.push_back(specs_.text);
+				bool already_in_list = false;
+
+				for (const auto& item : specs_.items) {
+					if (item.label == specs_.text) {
+						already_in_list = true;
+						break;
+					}
+				}
+
+				if (!already_in_list) {
+					// add text to items list
+					widgets::combobox::combobox_item item;
+					item.label = specs_.text;
+					specs_.items.push_back(item);
+				}
 
 				specs_.selected = specs_.text;
 				sort_items();
@@ -727,36 +739,64 @@ namespace liblec {
 				rect_text.top + hit_metrics.top + hit_metrics.height);
 		}
 
-		bool widgets_impl::combobox::is_alpha(const std::string& s) {
-			for (const auto& c : s)
-				if (!isalpha(c))
-					return false;
+		bool widgets_impl::combobox::is_numeric(const std::string& text) {
+			bool numeric = true;
 
-			return true;
+			for (const auto& c : text) {
+				if (isalpha(c))
+					numeric = false;
+
+				if (!numeric)
+					break;
+			}
+
+			return numeric;
+		}
+
+		bool widgets_impl::combobox::is_numeric(const std::vector<widgets::combobox::combobox_item>& items) {
+			bool numeric = true;
+
+			for (auto& item : items) {
+				if (!is_numeric(item.label))
+					numeric = false;
+
+				if (!numeric)
+					break;
+			}
+
+			return numeric;
 		}
 
 		void widgets_impl::combobox::sort_items() {
-			auto sort_ascending = [](std::string a, std::string b) {
-				if (is_alpha(a) && is_alpha(b))
-					return a < b;
-				else
-					return atof(a.c_str()) < atof(b.c_str());
+			auto sort_ascending = [](widgets::combobox::combobox_item& a, widgets::combobox::combobox_item& b) {
+				return a.label < b.label;
 			};
 
-			auto sort_descending = [](std::string a, std::string b) {
-				if (is_alpha(a) && is_alpha(b))
-					return a > b;
-				else
-					return atof(a.c_str()) > atof(b.c_str());
+			auto sort_descending = [](widgets::combobox::combobox_item& a, widgets::combobox::combobox_item& b) {
+				return a.label > b.label;
+			};
+
+			auto sort_ascending_numeric = [](widgets::combobox::combobox_item& a, widgets::combobox::combobox_item& b) {
+				return atof(a.label.c_str()) < atof(b.label.c_str());
+			};
+
+			auto sort_descending_numeric = [](widgets::combobox::combobox_item& a, widgets::combobox::combobox_item& b) {
+				return atof(a.label.c_str()) > atof(b.label.c_str());
 			};
 
 			// sort the items
 			switch (specs_.sort) {
 			case sort_options::ascending:
-				std::sort(specs_.items.begin(), specs_.items.end(), sort_ascending);
+				if (is_numeric(specs_.items))
+					std::sort(specs_.items.begin(), specs_.items.end(), sort_ascending_numeric);
+				else
+					std::sort(specs_.items.begin(), specs_.items.end(), sort_ascending);
 				break;
 			case sort_options::descending:
-				std::sort(specs_.items.begin(), specs_.items.end(), sort_descending);
+				if (is_numeric(specs_.items))
+					std::sort(specs_.items.begin(), specs_.items.end(), sort_descending_numeric);
+				else
+					std::sort(specs_.items.begin(), specs_.items.end(), sort_descending);
 				break;
 			case sort_options::none:
 			default:
@@ -769,8 +809,12 @@ namespace liblec {
 		std::string widgets_impl::combobox::dropdown(D2D1_RECT_F rect) {
 			context_menu::specs menu_specs;
 
-			for (const auto& item : specs_.items)
-				menu_specs.items.push_back({ item });
+			for (const auto& item : specs_.items) {
+				menu_item mi;
+				mi.label = item.label;
+				mi.font = item.font;
+				menu_specs.items.push_back(mi);
+			}
 
 			menu_specs.pin = convert_rect(rect_combobox_);
 

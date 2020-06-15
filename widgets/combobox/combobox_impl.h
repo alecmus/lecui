@@ -134,7 +134,8 @@ namespace liblec {
 				static D2D1_RECT_F get_caret_rect(IDWriteTextLayout* p_text_layout,
 					const D2D1_RECT_F& rect_text, const UINT32& caret_position);
 
-				static bool is_alpha(const std::string& s);
+				static bool is_numeric(const std::string& text);
+				static bool is_numeric(const std::vector<widgets::combobox::combobox_item>& items);
 				void sort_items();
 
 				std::string dropdown(D2D1_RECT_F rect);

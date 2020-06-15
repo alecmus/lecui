@@ -25,6 +25,11 @@ namespace liblec {
 			/// <summary>Combobox widget.</summary>
 			class lecui_api combobox {
 			public:
+				struct combobox_item {
+					std::string label;
+					std::string font = "Segoe UI";
+				};
+
 				/// <summary>Combobox widget specifications.</summary>
 				/// <remarks>Recommended height with defaults is 25px</remarks>
 				class combobox_specs : public specs {
@@ -45,7 +50,7 @@ namespace liblec {
 					float corner_radius_y = 2.f;
 
 					/// <summary>The list of items available in the dropdown.</summary>
-					std::vector<std::string> items;
+					std::vector<combobox_item> items;
 
 					/// <summary>How to sort the items.</summary>
 					sort_options sort = sort_options::ascending;
