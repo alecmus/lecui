@@ -128,6 +128,9 @@
     <Filter Include="lecui\menus\context_menu">
       <UniqueIdentifier>{423ab013-7b2f-4b19-bca4-16de56d8f366}</UniqueIdentifier>
     </Filter>
+    <Filter Include="lecui\font">
+      <UniqueIdentifier>{b4bc5023-334d-434b-b943-cd3bc7293bd0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="error\win_error.h">
@@ -310,6 +313,9 @@
     </ClInclude>
     <ClInclude Include="menus\context_menu.h">
       <Filter>lecui\menus</Filter>
+    </ClInclude>
+    <ClInclude Include="font\font.h">
+      <Filter>lecui\font</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -523,6 +529,9 @@
     </ClCompile>
     <ClCompile Include="menus\context_menu\context_menu.cpp">
       <Filter>lecui\menus\context_menu</Filter>
+    </ClCompile>
+    <ClCompile Include="font\font.cpp">
+      <Filter>lecui\font</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

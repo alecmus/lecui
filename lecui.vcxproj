@@ -32,6 +32,7 @@
     <ClInclude Include="controls.h" />
     <ClInclude Include="css_parser\css_parser.h" />
     <ClInclude Include="error\win_error.h" />
+    <ClInclude Include="font\font.h" />
     <ClInclude Include="form.h" />
     <ClInclude Include="formatted_text_editor\formatted_text_editor.h" />
     <ClInclude Include="formatted_text_parser\formatted_text_parser.h" />
@@ -95,6 +96,7 @@
     <ClCompile Include="controls.cpp" />
     <ClCompile Include="css_parser\css_parser.cpp" />
     <ClCompile Include="error\win_error.cpp" />
+    <ClCompile Include="font\font.cpp" />
     <ClCompile Include="form.cpp" />
     <ClCompile Include="formatted_text_editor\formatted_text_editor.cpp" />
     <ClCompile Include="formatted_text_parser\formatted_text_parser.cpp" />
