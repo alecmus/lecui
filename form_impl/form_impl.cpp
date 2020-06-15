@@ -591,14 +591,14 @@ namespace liblec {
 			if (page_iterator != p_pages_.end()) {
 				auto& page = page_iterator->second;
 
-				class helper {
+				class move_helper {
 				public:
 					static void find_html_editors_to_move(lecui::containers::page& page,
 						std::vector<html_editor_info>& trees) {
 						for (auto& widget : page.d_page_.widgets()) {
 							// check if this is an html pane
 							if (widget.first.find(widgets_impl::pane::html_pane_alias_prefix()) != std::string::npos)
-								continue;	// this is a tree pane (it has a tree inside. move was already done), continue to next widget
+								continue;	// this is an html pane (it has an html widget inside. move was already done), continue to next widget
 
 							// check if this is an html editor
 							if (widget.second.type() == widgets_impl::widget_type::html_editor) {
@@ -614,6 +614,9 @@ namespace liblec {
 								controls_pane().on_resize = html_editor_specs.on_resize;
 								controls_pane().on_resize.perc_height = 0.f;
 								controls_pane().on_resize.min_height = 0.f;
+
+								// cause controls pane to be initialized by calling get()
+								auto& controls_pane_page = controls_pane.get();
 
 								// make pane whose alias is prefixed by the special string
 								containers::pane pane(page, widgets_impl::pane::html_pane_alias_prefix() + widget.first);
@@ -654,7 +657,7 @@ namespace liblec {
 					}
 				};
 
-				helper::find_html_editors_to_move(page, html_editors);
+				move_helper::find_html_editors_to_move(page, html_editors);
 
 				// move the html editors
 				for (auto& it : html_editors) {
@@ -679,6 +682,80 @@ namespace liblec {
 					}
 					catch (const std::exception& e) { log("moving " + it.alias + " failed: " + e.what()); }
 				}
+
+				class controls_helper {
+				public:
+					static void add_html_controls(lecui::containers::page& page) {
+						for (auto& widget : page.d_page_.widgets()) {
+							if (widget.first.find(widgets_impl::pane::html_controls_pane_alias_prefix()) != std::string::npos) {
+								try {
+									// get alias of associated html editor widget
+									const auto idx = widget.first.rfind("::");
+
+									if (idx != std::string::npos) {
+										auto widget_alias = widget.first.substr(idx + 2);
+
+										// get the pages
+										auto& html_controls_page = page.d_page_.get_pane(widgets_impl::pane::html_controls_pane_alias_prefix() + widget_alias).p_panes_.at("pane");
+										auto& html_page = page.d_page_.get_pane(widgets_impl::pane::html_pane_alias_prefix() + widget_alias).p_panes_.at("pane");
+
+										// get the html editor and controls
+										auto& html_editor = html_page.d_page_.get_html_editor(widget_alias);
+
+										if (!html_editor.controls_initialized()) {
+											/// add controls to controls pane
+											
+											/// add bold control
+											widgets::rectangle bold(html_controls_page, "bold");
+											bold().rect = { 0.f, 20.f, 0.f, 20.f };
+											bold().color_fill.alpha = 0;
+											bold().color_border.alpha = 0;
+
+											bold().events().click = [&]() {
+												try {
+													// send html editor message
+													html_editor.selection_bold();
+												}
+												catch (const std::exception& e) { log(e.what()); }
+											};
+
+											widgets::label bold_label(html_controls_page, "");
+											bold_label().rect = bold().rect;
+											bold_label().text = "<strong>B</strong>";
+											bold_label().font = "Segoe UI";
+											bold_label().font_size = 11.f;
+											bold_label().center_h = true;
+											bold_label().center_v = true;
+
+											html_editor.initialize_controls(true);
+										}
+									}
+								}
+								catch (const std::exception& e) { log(e.what()); }
+							}
+							else
+								if (widget.second.type() == widgets_impl::widget_type::tab_pane) {
+									// get this tab pane
+									auto& tab_pane = page.d_page_.get_tab_pane(widget.first);
+
+									// initialize tabs
+									for (auto& tab : tab_pane.p_tabs_)
+										add_html_controls(tab.second);	// recursion
+								}
+								else
+									if (widget.second.type() == widgets_impl::widget_type::pane) {
+										// get this pane
+										auto& pane = page.d_page_.get_pane(widget.first);
+
+										// initialize panes
+										for (auto& page : pane.p_panes_)
+											add_html_controls(page.second);	// recursion
+									}
+						}
+					}
+				};
+
+				controls_helper::add_html_controls(page);
 			}
 		}
 

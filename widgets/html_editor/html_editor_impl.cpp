@@ -25,6 +25,7 @@ namespace liblec {
 			const std::string& alias,
 			form& fm,
 			IDWriteFactory* p_directwrite_factory) :
+			controls_initialized_(false),
 			p_brush_(nullptr),
 			p_brush_caret_(nullptr),
 			p_brush_border_(nullptr),
@@ -49,6 +50,14 @@ namespace liblec {
 		}
 
 		widgets_impl::html_editor::~html_editor() { discard_resources(); }
+
+		bool widgets_impl::html_editor::controls_initialized() {
+			return controls_initialized_;
+		}
+
+		void widgets_impl::html_editor::initialize_controls(bool init) {
+			controls_initialized_ = init;
+		}
 
 		widgets_impl::widget_type
 			widgets_impl::html_editor::type() {
@@ -386,6 +395,10 @@ namespace liblec {
 				skip_blink_ = true;
 			}
 			catch (const std::exception& e) { log(e.what()); }
+		}
+
+		void widgets_impl::html_editor::selection_bold() {
+			log("selection_bold");
 		}
 
 		UINT32

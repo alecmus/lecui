@@ -35,6 +35,9 @@ namespace liblec {
 					IDWriteFactory* p_directwrite_factory);
 				~html_editor();
 
+				bool controls_initialized();
+				void initialize_controls(bool init);
+
 				/// virtual function overrides
 				widgets_impl::widget_type type() override;
 				HRESULT create_resources(ID2D1HwndRenderTarget* p_render_target) override;
@@ -54,12 +57,16 @@ namespace liblec {
 				void key_left();
 				void key_right();
 
+				/// methods for editing the content
+				void selection_bold();
+
 			private:
 				/// Prevent copying an object of this class.
 				html_editor(const html_editor&);
 				html_editor& operator=(const html_editor&);
 
 				/// Private variables
+				bool controls_initialized_;
 				widgets::html_editor::html_editor_specs specs_, specs_old_;
 				ID2D1SolidColorBrush* p_brush_;
 				ID2D1SolidColorBrush* p_brush_caret_;
