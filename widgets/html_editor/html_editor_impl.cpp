@@ -307,9 +307,6 @@ namespace liblec {
 			else {
 				// stop blink timer
 				timer_management(fm_).stop(caret_blink_timer_name_);
-
-				// stop selection
-				reset_selection();
 			}
 		}
 

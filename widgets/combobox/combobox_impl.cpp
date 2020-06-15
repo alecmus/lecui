@@ -517,9 +517,6 @@ namespace liblec {
 					// stop blink timer
 					log("stopping caret blink timer: " + alias_);
 					timer_management(fm_).stop(caret_blink_timer_name_);
-
-					// stop selection
-					reset_selection();
 				}
 			}
 		}
