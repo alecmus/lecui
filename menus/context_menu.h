@@ -32,6 +32,9 @@ namespace liblec {
 			/// <summary>The font to use.</summary>
 			std::string font = "Segoe UI";
 
+			/// <summary>The font size.</summary>
+			float font_size = 9.f;
+
 			/// <summary>The children of the menu item (used to make a tree).</summary>
             std::vector<menu_item> children;
         };

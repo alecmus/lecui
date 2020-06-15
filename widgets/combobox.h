@@ -28,6 +28,7 @@ namespace liblec {
 				struct combobox_item {
 					std::string label;
 					std::string font = "Segoe UI";
+					float font_size = 9.f;
 				};
 
 				/// <summary>Combobox widget specifications.</summary>
@@ -54,6 +55,14 @@ namespace liblec {
 
 					/// <summary>How to sort the items.</summary>
 					sort_options sort = sort_options::ascending;
+
+					/// <summary>Forces numerical sorting.</summary>
+					/// <remarks>When only numbers are in the items list numerical sorting is
+					/// used. The presence of at least one non-numeric character causes string
+					/// sorting to be used instead. In those instances where you need numerical
+					/// sorting to be used regardless of the presence of non-numeric characters
+					/// this is the way to do it.</remarks>
+					bool force_numerical_sort = false;
 
 					/// <summary>An item from the list in the dropdown that was last selected.
 					/// </summary>

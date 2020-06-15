@@ -787,13 +787,13 @@ namespace liblec {
 			// sort the items
 			switch (specs_.sort) {
 			case sort_options::ascending:
-				if (is_numeric(specs_.items))
+				if (specs_.force_numerical_sort || is_numeric(specs_.items))
 					std::sort(specs_.items.begin(), specs_.items.end(), sort_ascending_numeric);
 				else
 					std::sort(specs_.items.begin(), specs_.items.end(), sort_ascending);
 				break;
 			case sort_options::descending:
-				if (is_numeric(specs_.items))
+				if (specs_.force_numerical_sort || is_numeric(specs_.items))
 					std::sort(specs_.items.begin(), specs_.items.end(), sort_descending_numeric);
 				else
 					std::sort(specs_.items.begin(), specs_.items.end(), sort_descending);
@@ -813,6 +813,7 @@ namespace liblec {
 				menu_item mi;
 				mi.label = item.label;
 				mi.font = item.font;
+				mi.font_size = item.font_size;
 				menu_specs.items.push_back(mi);
 			}
 

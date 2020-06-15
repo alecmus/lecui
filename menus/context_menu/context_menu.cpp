@@ -29,6 +29,8 @@ namespace liblec {
         class context_menu::impl : public lecui::form {
             const float margin_ = 5.f;
             const lecui::size min_size_ = { 135.f, 20.f };
+            const float min_font_size_ = 6.f;
+            const float max_font_size_ = 72.f;
             lecui::size max_size_ = { 4200.f, 10000.f };
             const std::string al_page_home_ = "home_page";
             lecui::appearance apprnc_{ *this };
@@ -71,8 +73,6 @@ namespace liblec {
 
                 const auto cursor_rect = dim.cursor_rect();
 
-                lecui::widgets::label::label_specs specs_lbl;
-
                 // impose maximums
                 const lecui::rect max_rect = { margin_, max_size_.width, margin_, max_size_.height };
                 float bottom_ = 0.f;
@@ -86,7 +86,12 @@ namespace liblec {
                     if (!rects_.empty())
                         rect.move(rect.left, bottom_ + margin_);
 
-                    rect = dim.measure_label(item.label, specs_lbl.font, specs_lbl.font_size, false, false, rect);
+                    // enforce limits on font size
+                    auto font_size = item.font_size;
+                    font_size = largest(font_size, min_font_size_);
+                    font_size = smallest(font_size, max_font_size_);
+
+                    rect = dim.measure_label(item.label, item.font, font_size, false, false, rect);
                     rect.bottom += (2 * margin_);   // padding
 
                     if (images_) {
@@ -216,7 +221,7 @@ namespace liblec {
 
                 // add labels
                 int index = 0;
-                for (auto& item : menu_specs_.items) {
+                for (const auto& item : menu_specs_.items) {
                     // background
                     lecui::widgets::rectangle rect(home_page, "");
                     rect().rect = rects_[index];
@@ -252,6 +257,12 @@ namespace liblec {
                     lecui::widgets::label label(home_page, "");
                     label().text = item.label;
                     label().font = item.font;
+                    label().font_size = item.font_size;
+
+                    // enforce font size limits
+                    label().font_size = largest(label().font_size, min_font_size_);
+                    label().font_size = smallest(label().font_size, max_font_size_);
+
                     label().rect = rects_[index];
                     label().rect.left = left_most;
                     label().center_v = true;
