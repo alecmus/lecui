@@ -28,6 +28,13 @@ namespace liblec {
 				}
 
 			public:
+				static std::string alias_font();
+				static std::string alias_font_size();
+				static std::string alias_bold();
+				static std::string alias_italic();
+				static std::string alias_underline();
+				static std::string alias_strikethrough();
+
 				/// constructor and destructor
 				html_editor(const std::string& page_alias,
 					const std::string& alias,
@@ -58,7 +65,12 @@ namespace liblec {
 				void key_right();
 
 				/// methods for editing the content
+				void selection_font(const std::string& font_name);
+				void selection_font_size(const float& font_size);
 				void selection_bold();
+				void selection_italic();
+				void selection_underline();
+				void selection_strikethrough();
 
 			private:
 				/// Prevent copying an object of this class.

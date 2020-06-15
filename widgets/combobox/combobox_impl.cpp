@@ -640,6 +640,22 @@ namespace liblec {
 					// add text to items list
 					widgets::combobox::combobox_item item;
 					item.label = specs_.text;
+
+					if (alias() == html_editor::alias_font_size()) {
+						// special treatment for font size combobox
+
+						// make font size match the label
+						std::stringstream ss;
+						ss << specs_.text;
+						ss >> item.font_size;
+
+						// don't allow a font size less than 1 or greater than 180
+						if (item.font_size < 1.f || item.font_size > 180.f) {
+							specs_.text = specs_.selected;
+							return;
+						}
+					}
+
 					specs_.items.push_back(item);
 				}
 

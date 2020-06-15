@@ -21,6 +21,30 @@ namespace liblec {
 	namespace lecui {
 		constexpr UINT32 max_line_count = 16384;	// 2^14
 
+		std::string widgets_impl::html_editor::alias_font() {
+			return std::string("lecui::font");
+		}
+
+		std::string widgets_impl::html_editor::alias_font_size() {
+			return std::string("lecui::font_size");
+		}
+
+		std::string widgets_impl::html_editor::alias_bold() {
+			return std::string("lecui::bold");
+		}
+
+		std::string widgets_impl::html_editor::alias_italic() {
+			return std::string("lecui::italic");
+		}
+
+		std::string widgets_impl::html_editor::alias_underline() {
+			return std::string("lecui::underline");
+		}
+
+		std::string widgets_impl::html_editor::alias_strikethrough() {
+			return std::string("lecui::strikethrough");
+		}
+
 		widgets_impl::html_editor::html_editor(const std::string& page_alias,
 			const std::string& alias,
 			form& fm,
@@ -397,8 +421,28 @@ namespace liblec {
 			catch (const std::exception& e) { log(e.what()); }
 		}
 
+		void widgets_impl::html_editor::selection_font(const std::string& font_name) {
+			log("selection_font: " + font_name);
+		}
+
+		void widgets_impl::html_editor::selection_font_size(const float& font_size) {
+			log("selection_font_size: " + std::to_string(font_size));
+		}
+
 		void widgets_impl::html_editor::selection_bold() {
 			log("selection_bold");
+		}
+
+		void widgets_impl::html_editor::selection_italic() {
+			log("selection_italic");
+		}
+
+		void widgets_impl::html_editor::selection_underline() {
+			log("selection_underline");
+		}
+
+		void widgets_impl::html_editor::selection_strikethrough() {
+			log("selection_strikethrough");
 		}
 
 		UINT32

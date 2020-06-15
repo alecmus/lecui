@@ -13,6 +13,8 @@
 
 #include "form_impl.h"
 
+#include "../font/font.h"
+
 #include "../containers/page.h"
 #include "../containers/tab_pane.h"
 #include "../containers/pane.h"
@@ -610,10 +612,15 @@ namespace liblec {
 								// make controls pane in source (predefined, fixed height)
 								containers::pane controls_pane(page, widgets_impl::pane::html_controls_pane_alias_prefix() + widget.first);
 								controls_pane().rect = html_editor_specs.rect;
-								controls_pane().rect.height(40.f);
+								controls_pane().rect.height(
+									(10.f * 2) +	// top and bottom margin
+									25.f +			// first row (font name, font size ...)
+									5.f + 20.f		// seond row (bold, italic ...)
+									);
 								controls_pane().on_resize = html_editor_specs.on_resize;
 								controls_pane().on_resize.perc_height = 0.f;
 								controls_pane().on_resize.min_height = 0.f;
+								controls_pane().color_fill.alpha /= 2;	// aesthetics
 
 								// cause controls pane to be initialized by calling get()
 								auto& controls_pane_page = controls_pane.get();
@@ -705,27 +712,123 @@ namespace liblec {
 										if (!html_editor.controls_initialized()) {
 											/// add controls to controls pane
 											
+											/// add first row
+											
+											/// add font selection combobox
+											widgets::combobox font(html_controls_page, html_editor.alias_font());
+											font().rect = { 0.f, 150.f, 0.f, 25.f };
+											font().editable = false;
+
+											// get list of fonts
+											const auto& font_list = font::available_fonts();
+
+											for (const auto& font_name : font_list) {
+												widgets::combobox::combobox_item item;
+												item.label = font_name;
+												item.font = font_name;	// essential for preview
+												font().items.push_back(item);
+											}
+
+											font().selected = "Calibri";
+											font().events().selection = [&](const std::string& font_name) {
+												html_editor.selection_font(font_name);
+											};
+
+											/// add font size combobox
+											widgets::combobox font_size(html_controls_page, html_editor.alias_font_size());
+											font_size().rect.size(70.f, 25.f);
+											font_size().rect.snap_to(font().rect, rect::snap_type::right, 5.f);
+											font_size().editable = true;
+											font_size().force_numerical_sort = true;
+											font_size().items = {
+												{"8", "Segoe UI", 8 },
+												{"9", "Segoe UI", 9},
+												{"10", "Segoe UI", 10},
+												{"11", "Segoe UI", 11},
+												{"12", "Segoe UI", 12},
+												{"13", "Segoe UI", 13},
+												{"14", "Segoe UI", 14},
+												{"18", "Segoe UI", 18},
+												{"24", "Segoe UI", 24},
+												{"36", "Segoe UI", 36} };
+											font_size().selected = "11";
+											font_size().events().selection = [&](const std::string& font_size) {
+												float font_size_ = 0.f;
+												std::stringstream ss;
+												ss << font_size;
+												ss >> font_size_;
+												html_editor.selection_font_size(font_size_);
+											};
+
+											/// add second row
+											
 											/// add bold control
-											widgets::rectangle bold(html_controls_page, "bold");
-											bold().rect = { 0.f, 20.f, 0.f, 20.f };
+											widgets::rectangle bold(html_controls_page, html_editor.alias_bold());
+											bold().rect.size(20.f, 20.f);
+											bold().rect.snap_to(font().rect, rect::snap_type::bottom_left, 5.f);
 											bold().color_fill.alpha = 0;
 											bold().color_border.alpha = 0;
-
 											bold().events().click = [&]() {
-												try {
-													// send html editor message
-													html_editor.selection_bold();
-												}
-												catch (const std::exception& e) { log(e.what()); }
+												html_editor.selection_bold();
 											};
 
 											widgets::label bold_label(html_controls_page, "");
 											bold_label().rect = bold().rect;
 											bold_label().text = "<strong>B</strong>";
-											bold_label().font = "Segoe UI";
 											bold_label().font_size = 11.f;
 											bold_label().center_h = true;
 											bold_label().center_v = true;
+
+											/// add italic control
+											widgets::rectangle italic(html_controls_page, html_editor.alias_italic());
+											italic().rect.size(20.f, 20.f);
+											italic().rect.snap_to(bold().rect, rect::snap_type::right, 5.f);
+											italic().color_fill.alpha = 0;
+											italic().color_border.alpha = 0;
+											italic().events().click = [&]() {
+												html_editor.selection_italic();
+											};
+
+											widgets::label italic_label(html_controls_page, "");
+											italic_label().rect = italic().rect;
+											italic_label().text = "<em><strong>I</strong></em>";
+											italic_label().font_size = 11.f;
+											italic_label().center_h = true;
+											italic_label().center_v = true;
+
+											/// add underline control
+											widgets::rectangle underline(html_controls_page, html_editor.alias_underline());
+											underline().rect.size(20.f, 20.f);
+											underline().rect.snap_to(italic_label().rect, rect::snap_type::right, 5.f);
+											underline().color_fill.alpha = 0;
+											underline().color_border.alpha = 0;
+											underline().events().click = [&]() {
+												html_editor.selection_underline();
+											};
+
+											widgets::label underline_label(html_controls_page, "");
+											underline_label().rect = underline().rect;
+											underline_label().text = "<u>U</u>";
+											underline_label().font_size = 11.f;
+											underline_label().center_h = true;
+											underline_label().center_v = true;
+
+											/// add strikethrough control
+											widgets::rectangle strikethrough(html_controls_page, html_editor.alias_strikethrough());
+											strikethrough().rect.size(30.f, 20.f);
+											strikethrough().rect.snap_to(underline_label().rect, rect::snap_type::right, 5.f);
+											strikethrough().color_fill.alpha = 0;
+											strikethrough().color_border.alpha = 0;
+											strikethrough().events().click = [&]() {
+												html_editor.selection_strikethrough();
+											};
+
+											widgets::label strikethrough_label(html_controls_page, "");
+											strikethrough_label().rect = strikethrough().rect;
+											strikethrough_label().text = "<s>abc</s>";
+											strikethrough_label().font_size = 11.f;
+											strikethrough_label().center_h = true;
+											strikethrough_label().center_v = true;
 
 											html_editor.initialize_controls(true);
 										}
