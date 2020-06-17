@@ -35,8 +35,8 @@ namespace liblec {
 			impl(containers::page& page, const std::string& alias) :
 				page_(page),
 				specs_(page_.d_page_.add_html_editor(alias)) {
-				specs_.font = "Times New Roman";
-				specs_.font_size = 11;
+				specs_.font = "Calibri";
+				specs_.font_size = 11.f;
 				specs_.color_text = defaults::color(page_.d_page_.fm_.d_.theme_, item::label);
 				specs_.color_fill = defaults::color(page_.d_page_.fm_.d_.theme_, item::html_editor);
 				specs_.color_border = defaults::color(page_.d_page_.fm_.d_.theme_, item::html_editor_border);

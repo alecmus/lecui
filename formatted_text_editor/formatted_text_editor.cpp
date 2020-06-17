@@ -205,6 +205,56 @@ void formatted_text_editor::toggle_tag(std::string& xml_text, const std::string&
 		// parse the xml text
 		auto xml = xml_parser().read(xml_text);
 
+		// do some tag switches
+		for (auto& tag : xml.tags) {
+			if (tag.name == "strong") {
+				xml_parser::tag_attribute tag_attribute;
+				tag_attribute.name = "style";
+				tag_attribute.value = "font-weight: bold;";
+
+				// change to a CSS style
+				tag.name = "span";
+				tag.attributes.clear();
+				tag.attributes.push_back(tag_attribute);
+				continue;
+			}
+			if (tag.name == "em") {
+				xml_parser::tag_attribute tag_attribute;
+				tag_attribute.name = "style";
+				tag_attribute.value = "font-style: italic;";
+
+				// change to a CSS style
+				tag.name = "span";
+				tag.attributes.clear();
+				tag.attributes.push_back(tag_attribute);
+				continue;
+			}
+			if (tag.name == "u") {
+				// to-do: make it possible for this to work together with text-decoration: line-through
+				continue;
+				xml_parser::tag_attribute tag_attribute;
+				tag_attribute.name = "style";
+				tag_attribute.value = "text-decoration: underline;";
+
+				// change to a CSS style
+				tag.name = "span";
+				tag.attributes.clear();
+				tag.attributes.push_back(tag_attribute);
+				continue;
+			}
+			if (tag.name == "s") {
+				xml_parser::tag_attribute tag_attribute;
+				tag_attribute.name = "style";
+				tag_attribute.value = "text-decoration: line-through;";
+
+				// change to a CSS style
+				tag.name = "span";
+				tag.attributes.clear();
+				tag.attributes.push_back(tag_attribute);
+				continue;
+			}
+		}
+
 		std::vector<unsigned long> tag_positions;
 
 		// check if any part of this selection is within another tag
@@ -294,6 +344,21 @@ void formatted_text_editor::toggle_tag(std::string& xml_text, const std::string&
 				const auto b = a + tag.length;
 				const bool equal_to_selection = a == portion.begin && b == portion.end;
 
+				// check if any tag at lower levels is scheduled for elimination. If yes
+				// lower the tag number
+				auto check_to_lower_tag_number = [&]() {
+					for (const auto& it : eliminate) {
+						const auto x = it.start_position;
+						const auto y = x + it.length;
+
+						if (a >= x && b <= y) {
+							// lower tag number
+							liblec::lecui::log("Within a tag scheduled for elimination. Lower tag number.");
+							tag.level--;
+						}
+					}
+				};
+
 				if (a >= portion.begin && b <= portion.end) {
 					// if this tag is the same, eliminate it
 					// if this tag is different, lower it's tag number
@@ -315,8 +380,6 @@ void formatted_text_editor::toggle_tag(std::string& xml_text, const std::string&
 							eliminate.push_back(tag);
 						}
 						else {
-							// add to skip list ... the portion will not be tagged
-
 							for (const auto& incoming_attribute : tag_attributes) {
 								// check if incoming attribute exists in the existing tag attributes
 								bool exists = false;
@@ -443,6 +506,8 @@ void formatted_text_editor::toggle_tag(std::string& xml_text, const std::string&
 								}
 							}
 
+							check_to_lower_tag_number();
+
 							// cleanup tag
 							long count = 0;
 							for (auto& attribute : tag.attributes) {
@@ -455,23 +520,10 @@ void formatted_text_editor::toggle_tag(std::string& xml_text, const std::string&
 								liblec::lecui::log("Schedule tag for elimination");
 								eliminate.push_back(tag);
 							}
-
 						}
 					}
-					else {
-						// check if any tag at lower levels is scheduled for elimination. If yes
-						// lower the tag number
-						for (const auto& it : eliminate) {
-							const auto x = it.start_position;
-							const auto y = x + it.length;
-
-							if (a >= x && b <= y) {
-								// lower tag number
-								liblec::lecui::log("Within a tag scheduled for elimination. Lower tag number.");
-								tag.level--;
-							}
-						}
-					}
+					else
+						check_to_lower_tag_number();
 				}
 			}
 
