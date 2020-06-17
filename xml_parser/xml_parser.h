@@ -50,6 +50,21 @@ public:
 
 		/// <summary>The tag's attributes</summary>
 		std::vector<tag_attribute> attributes;
+
+		bool operator== (tag& t) {
+			if (level == t.level &&
+				name == t.name &&
+				text == t.text &&
+				start_position == t.start_position &&
+				length == t.length)
+				return true;
+			else
+				return false;
+		};
+
+		bool operator!= (tag& t) {
+			return !operator==(t);
+		}
 	};
 
 	/// <summary>A structure that describes XML using positions of tags within a plaintext

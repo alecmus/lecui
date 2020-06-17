@@ -318,6 +318,7 @@ namespace liblec {
 
 		// to-do: insertion mechanics for formatted text
 		void widgets_impl::html_editor::insert_character(const char& c) {
+			log("before: " + specs_.text);
 			try {
 				unsigned long tag_number = 0;
 				if (is_selected_) {
@@ -335,6 +336,7 @@ namespace liblec {
 				skip_blink_ = true;
 			}
 			catch (const std::exception& e) { log(e.what()); }
+			log("after : " + specs_.text);
 		}
 
 		// to-do: backspace mechanics for formatted text
@@ -420,26 +422,67 @@ namespace liblec {
 
 		void widgets_impl::html_editor::selection_font(const std::string& font_name) {
 			log("selection_font: " + font_name);
+			std::vector<xml_parser::tag_attribute> tag_attributes;
+			xml_parser::tag_attribute tag_attribute;
+			tag_attribute.name = "style";
+			tag_attribute.value = "font-family: " + font_name + ";";
+			tag_attributes.push_back(tag_attribute);
+			formatted_text_editor().toggle_tag(specs_.text, "span", tag_attributes, selection_info_.start, selection_info_.end);
 		}
 
 		void widgets_impl::html_editor::selection_font_size(const float& font_size) {
 			log("selection_font_size: " + std::to_string(font_size));
+			std::vector<xml_parser::tag_attribute> tag_attributes;
+			xml_parser::tag_attribute tag_attribute;
+			tag_attribute.name = "style";
+			tag_attribute.value = "font-size: " + std::to_string(font_size) + "pt;";
+			tag_attributes.push_back(tag_attribute);
+			formatted_text_editor().toggle_tag(specs_.text, "span", tag_attributes, selection_info_.start, selection_info_.end);
 		}
 
 		void widgets_impl::html_editor::selection_bold() {
 			log("selection_bold");
+			std::vector<xml_parser::tag_attribute> tag_attributes;
+			xml_parser::tag_attribute tag_attribute;
+			tag_attribute.name = "style";
+			tag_attribute.value = "font-weight: bold;";
+			tag_attributes.push_back(tag_attribute);
+			formatted_text_editor().toggle_tag(specs_.text, "span", tag_attributes, selection_info_.start, selection_info_.end);
 		}
 
 		void widgets_impl::html_editor::selection_italic() {
 			log("selection_italic");
+			std::vector<xml_parser::tag_attribute> tag_attributes;
+			xml_parser::tag_attribute tag_attribute;
+			tag_attribute.name = "style";
+			tag_attribute.value = "font-style: italic;";
+			tag_attributes.push_back(tag_attribute);
+			formatted_text_editor().toggle_tag(specs_.text, "span", tag_attributes, selection_info_.start, selection_info_.end);
 		}
 
 		void widgets_impl::html_editor::selection_underline() {
 			log("selection_underline");
+			if (false) {
+				// to-do: make it possible for this to work together with text-decoration: line-through
+				std::vector<xml_parser::tag_attribute> tag_attributes;
+				xml_parser::tag_attribute tag_attribute;
+				tag_attribute.name = "style";
+				tag_attribute.value = "text-decoration: underline;";
+				tag_attributes.push_back(tag_attribute);
+				formatted_text_editor().toggle_tag(specs_.text, "span", tag_attributes, selection_info_.start, selection_info_.end);
+			}
+			else
+				formatted_text_editor().toggle_tag(specs_.text, "u", selection_info_.start, selection_info_.end);
 		}
 
 		void widgets_impl::html_editor::selection_strikethrough() {
 			log("selection_strikethrough");
+			std::vector<xml_parser::tag_attribute> tag_attributes;
+			xml_parser::tag_attribute tag_attribute;
+			tag_attribute.name = "style";
+			tag_attribute.value = "text-decoration: line-through;";
+			tag_attributes.push_back(tag_attribute);
+			formatted_text_editor().toggle_tag(specs_.text, "span", tag_attributes, selection_info_.start, selection_info_.end);
 		}
 
 		UINT32

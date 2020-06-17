@@ -35,7 +35,7 @@ public:
 	std::vector<css_property> read(const std::string style_string);
 
 	/// <summary>Write CSS properties to a CSS style string.</summary>
-	/// <param name="css_properties">The CSS properties</param>
+	/// <param name="css_properties">The CSS properties.</param>
 	/// <returns>The CSS style string.</returns>
 	std::string write(const std::vector<css_property>& css_properties);
 };

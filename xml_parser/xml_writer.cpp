@@ -60,8 +60,10 @@ std::vector<xml_element> do_build(std::string plain,
 			// add attribute string
 			std::string attribute_string;
 
-			for (const auto& attribute : tag.attributes)
-				attribute_string += " " + attribute.name + "=\"" + attribute.value + "\"";
+			for (const auto& attribute : tag.attributes) {
+				if (!attribute.value.empty())
+					attribute_string += " " + attribute.name + "='" + attribute.value + "'";
+			}
 
 			start_tag += attribute_string;
 		}

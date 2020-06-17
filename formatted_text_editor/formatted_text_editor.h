@@ -14,6 +14,8 @@
 #pragma once
 
 #include <string>
+#include "../css_parser/css_parser.h"
+#include "../xml_parser/xml_parser.h"
 
 /// <summary>Class editing formatted text using position references in the plaintext.</summary>
 class formatted_text_editor {
@@ -42,4 +44,22 @@ public:
 	/// typically left behind after erasure that spans entire tags.</summary>
 	/// <param name="xml_text">The XML formatted text. Modification are written back.</param>
 	void cleanup(std::string& xml_text);
+
+	/// <summary>For toggling tags, e.g. 'strong', 'em'.</summary>
+	/// <param name="xml_text">The XML formatted text.</param>
+	/// <param name="tag_name">The tag name, e.g. "span".</param>
+	/// <param name="tag_attributes">The tag attributes.</param>
+	/// <param name="start">The start position within the plain text.</param>
+	/// <param name="end">The end position within the plain text.</param>
+	void toggle_tag(std::string& xml_text, const std::string& tag_name,
+		const std::vector<xml_parser::tag_attribute>& tag_attributes,
+		unsigned long start, unsigned long end);
+
+	/// <summary>For toggling basic tags, e.g. 'strong', 'em'.</summary>
+	/// <param name="xml_text">The XML formatted text.</param>
+	/// <param name="tag_name">The tag name, e.g. "strong".</param>
+	/// <param name="start">The start position within the plain text.</param>
+	/// <param name="end">The end position within the plain text.</param>
+	void toggle_tag(std::string& xml_text, const std::string& tag_name,
+		unsigned long start, unsigned long end);
 };
