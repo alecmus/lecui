@@ -31,6 +31,7 @@ namespace liblec {
 		class appearance;
 		class controls;
 		class filesystem;
+		class color_picker;
 
 		namespace containers {
 			class page;
@@ -236,6 +237,7 @@ namespace liblec {
 			friend class appearance;
 			friend class controls;
 			friend class filesystem;
+			friend class color_picker;
 			friend class containers::status_pane;
 			friend class containers::tab_pane;
 			friend class containers::tab;
