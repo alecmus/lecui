@@ -195,6 +195,9 @@ void formatted_text_editor::cleanup(std::string& xml_text) {
 void formatted_text_editor::toggle_tag(std::string& xml_text, const std::string& tag_name,
 	const std::vector<xml_parser::tag_attribute>& tag_attributes,
 	unsigned long start, unsigned long end) {
+	if (start == end)
+		return;	// do nothing
+
 	if (start > end) {
 		auto temp = start;
 		start = end;
@@ -649,6 +652,9 @@ void formatted_text_editor::toggle_tag(std::string& xml_text, const std::string&
 
 void formatted_text_editor::toggle_tag(std::string& xml_text, const std::string& tag_name,
 	unsigned long start, unsigned long end) {
+	if (start == end)
+		return;	// do nothing
+
 	std::vector<xml_parser::tag_attribute> tag_attributes;	// basic tags have no attributes
 	toggle_tag(xml_text, tag_name, tag_attributes, start, end);
 }
