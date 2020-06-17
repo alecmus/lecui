@@ -34,6 +34,8 @@ namespace liblec {
 				static std::string alias_italic();
 				static std::string alias_underline();
 				static std::string alias_strikethrough();
+				static std::string alias_font_color();
+				static std::string alias_font_color_bar();
 
 				/// constructor and destructor
 				html_editor(const std::string& page_alias,
@@ -71,6 +73,10 @@ namespace liblec {
 				void selection_italic();
 				void selection_underline();
 				void selection_strikethrough();
+				void selection_color();
+				void selection_color(const color& font_color);
+
+				color get_last_color();
 
 			private:
 				/// Prevent copying an object of this class.
@@ -106,6 +112,8 @@ namespace liblec {
 					UINT32 start = 0;
 					UINT32 end = 0;
 				} selection_info_;
+
+				color last_color_;
 
 				form& fm_;
 

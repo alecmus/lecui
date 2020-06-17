@@ -26,6 +26,8 @@
 #include "../widgets/h_scrollbar/h_scrollbar.h"
 #include "../widgets/v_scrollbar/v_scrollbar.h"
 
+#include "../utilities/color_picker.h"
+
 // Windows headers
 #include <ShlObj.h>		// for SHGetFolderPath
 #include <dwmapi.h>		// for DwmExtendFrameIntoClientArea
@@ -829,6 +831,70 @@ namespace liblec {
 											strikethrough_label().font_size = 11.f;
 											strikethrough_label().center_h = true;
 											strikethrough_label().center_v = true;
+
+											/// add color control
+											widgets::rectangle font_color(html_controls_page, html_editor.alias_font_color());
+											font_color().rect.size(20.f, 20.f);
+											font_color().rect.snap_to(strikethrough().rect, rect::snap_type::right, 5.f);
+											font_color().color_fill.alpha = 0;
+											font_color().color_border.alpha = 0;
+											font_color().events().click = [&]() {
+												html_editor.selection_color();
+											};
+
+											widgets::label font_color_label(html_controls_page, "");
+											font_color_label().rect = font_color().rect;
+											font_color_label().rect.bottom -= 5.f;
+											font_color_label().text = "<strong>A</strong>";
+											font_color_label().font_size = 9.5f;
+											font_color_label().center_h = true;
+											font_color_label().center_v = true;
+
+											widgets::rectangle font_color_bar(html_controls_page, html_editor.alias_font_color_bar());
+											font_color_bar().rect = font_color().rect;
+											font_color_bar().rect.top = font_color_label().rect.bottom;
+											font_color_bar().rect.bottom -= 1.f;
+											font_color_bar().rect.left += 2.f;
+											font_color_bar().rect.right -= 2.f;
+											font_color_bar().color_fill = html_editor.get_last_color();
+											font_color_bar().border = .2f;
+
+											widgets::rectangle font_color_menu(html_controls_page, "");
+											font_color_menu().rect.size(7.f, 20.f);
+											font_color_menu().rect.snap_to(font_color().rect, rect::snap_type::right, 2.f);
+											font_color_menu().color_fill.alpha = 0;
+											font_color_menu().color_border.alpha = 0;
+											font_color_menu().events().click = [&]() {
+												color font_color;
+												if (color_picker(page.d_page_.fm_).pick(font_color)) {
+													html_editor.selection_color(font_color);
+
+													// to-do: set color on font_bar and memorize it
+												}
+											};
+
+											const size dot_size = { 1.5f, 1.5f };
+
+											widgets::rectangle font_color_menu_dot_1(html_controls_page, "");
+											font_color_menu_dot_1().rect.size(dot_size);
+											font_color_menu_dot_1().rect.place(font_color_menu().rect, 50.f, 25.f);
+											font_color_menu_dot_1().corner_radius_x = 0.f;
+											font_color_menu_dot_1().corner_radius_y = 0.f;
+											font_color_menu_dot_1().color_border.alpha = 0;
+
+											widgets::rectangle font_color_menu_dot_2(html_controls_page, "");
+											font_color_menu_dot_2().rect.size(dot_size);
+											font_color_menu_dot_2().rect.place(font_color_menu().rect, 50.f, 50.f);
+											font_color_menu_dot_2().corner_radius_x = 0.f;
+											font_color_menu_dot_2().corner_radius_y = 0.f;
+											font_color_menu_dot_2().color_border.alpha = 0;
+
+											widgets::rectangle font_color_menu_dot_3(html_controls_page, "");
+											font_color_menu_dot_3().rect.size(dot_size);
+											font_color_menu_dot_3().rect.place(font_color_menu().rect, 50.f, 75.f);
+											font_color_menu_dot_3().corner_radius_x = 0.f;
+											font_color_menu_dot_3().corner_radius_y = 0.f;
+											font_color_menu_dot_3().color_border.alpha = 0;
 
 											html_editor.initialize_controls(true);
 										}

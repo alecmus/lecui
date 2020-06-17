@@ -22,27 +22,35 @@ namespace liblec {
 		constexpr UINT32 max_line_count = 16384;	// 2^14
 
 		std::string widgets_impl::html_editor::alias_font() {
-			return std::string("lecui::font");
+			return std::string("lecui::html_editor::font");
 		}
 
 		std::string widgets_impl::html_editor::alias_font_size() {
-			return std::string("lecui::font_size");
+			return std::string("lecui::html_editor::font_size");
 		}
 
 		std::string widgets_impl::html_editor::alias_bold() {
-			return std::string("lecui::bold");
+			return std::string("lecui::html_editor::bold");
 		}
 
 		std::string widgets_impl::html_editor::alias_italic() {
-			return std::string("lecui::italic");
+			return std::string("lecui::html_editor::italic");
 		}
 
 		std::string widgets_impl::html_editor::alias_underline() {
-			return std::string("lecui::underline");
+			return std::string("lecui::html_editor::underline");
 		}
 
 		std::string widgets_impl::html_editor::alias_strikethrough() {
-			return std::string("lecui::strikethrough");
+			return std::string("lecui::html_editor::strikethrough");
+		}
+
+		std::string widgets_impl::html_editor::alias_font_color() {
+			return std::string("lecui::html_editor::font_color");
+		}
+
+		std::string widgets_impl::html_editor::alias_font_color_bar() {
+			return std::string("lecui::html_editor::font_color_bar");
 		}
 
 		widgets_impl::html_editor::html_editor(const std::string& page_alias,
@@ -68,7 +76,8 @@ namespace liblec {
 			skip_blink_(false),
 			is_selecting_(false),
 			is_selected_(false),
-			selection_info_({ 0, 0 }) {
+			selection_info_({ 0, 0 }),
+			last_color_({ 255, 0, 0, 255 }) {
 			page_alias_ = page_alias;
 			alias_ = alias;
 		}
@@ -483,6 +492,30 @@ namespace liblec {
 			tag_attribute.value = "text-decoration: line-through;";
 			tag_attributes.push_back(tag_attribute);
 			formatted_text_editor().toggle_tag(specs_.text, "span", tag_attributes, selection_info_.start, selection_info_.end);
+		}
+
+		void widgets_impl::html_editor::selection_color() {
+			selection_color(last_color_);
+		}
+
+		void widgets_impl::html_editor::selection_color(const color& font_color) {
+			last_color_ = font_color;
+
+			std::string color_string = "rgb(" +
+				std::to_string(font_color.red) + ", "
+				+ std::to_string(font_color.green) + ", "
+				+ std::to_string(font_color.blue) + ")";
+			log("selection_color: " + color_string);
+			std::vector<xml_parser::tag_attribute> tag_attributes;
+			xml_parser::tag_attribute tag_attribute;
+			tag_attribute.name = "style";
+			tag_attribute.value = "color: " + color_string + ";";
+			tag_attributes.push_back(tag_attribute);
+			formatted_text_editor().toggle_tag(specs_.text, "span", tag_attributes, selection_info_.start, selection_info_.end);
+		}
+
+		color widgets_impl::html_editor::get_last_color() {
+			return last_color_;
 		}
 
 		UINT32
