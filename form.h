@@ -30,6 +30,7 @@ namespace liblec {
 		class dimensions;
 		class appearance;
 		class controls;
+		class filesystem;
 
 		namespace containers {
 			class page;
@@ -179,25 +180,6 @@ namespace liblec {
 			/// <remarks>Is centered to the form, and inherits the caption from the form.</remarks>
 			void message(const std::string& message);
 
-			/// <summary>Display a 'select folder' modal dialog.</summary>
-			/// <param name="title">The title of the dialog.</param>
-			/// <returns>The full path to the selected folder. Empty if none is selected.</returns>
-			[[nodiscard]] std::string select_folder(const std::string& title);
-
-			/// <summary>Display an 'open file' modal dialog.</summary>
-			/// <param name="params">The parameters of the dialog.</param>
-			/// <returns>The full path to the selected file, including it's extension.</returns>
-			[[nodiscard]] std::string open_file(const open_file_params& params);
-
-			/// <summary>Display a 'save file' modal dialog so the user can select its properties
-			/// and location.</summary>
-			/// <param name="file">The suggested name of the file.</param>
-			/// <param name="params">The parameters of the dialog.</param>
-			/// <returns>The full path the user desires, including the filename and extension.
-			/// </returns>
-			[[nodiscard]] std::string save_file(const std::string& file,
-				const save_file_params& params);
-
 			/// <summary>Update the form. A low resource refresh of the current page. Typically
 			/// necessary only after adding a new widget at runtime to the currently displayed
 			/// page to avoid a situation whereby the widget is only displayed the next time the
@@ -253,6 +235,7 @@ namespace liblec {
 			friend class dimensions;
 			friend class appearance;
 			friend class controls;
+			friend class filesystem;
 			friend class containers::status_pane;
 			friend class containers::tab_pane;
 			friend class containers::tab;

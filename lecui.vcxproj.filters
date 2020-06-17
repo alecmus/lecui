@@ -131,6 +131,12 @@
     <Filter Include="lecui\font">
       <UniqueIdentifier>{b4bc5023-334d-434b-b943-cd3bc7293bd0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="lecui\utilities">
+      <UniqueIdentifier>{c637766e-da7d-4450-bf0e-d926f42fa37c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lecui\utilities\filesystem">
+      <UniqueIdentifier>{91fe9043-b614-48e3-bc33-b598cb15dfe9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="error\win_error.h">
@@ -316,6 +322,9 @@
     </ClInclude>
     <ClInclude Include="font\font.h">
       <Filter>lecui\font</Filter>
+    </ClInclude>
+    <ClInclude Include="utilities\filesystem.h">
+      <Filter>lecui\utilities</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -532,6 +541,9 @@
     </ClCompile>
     <ClCompile Include="font\font.cpp">
       <Filter>lecui\font</Filter>
+    </ClCompile>
+    <ClCompile Include="utilities\filesystem\filesystem.cpp">
+      <Filter>lecui\utilities\filesystem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

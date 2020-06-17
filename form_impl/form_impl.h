@@ -187,6 +187,7 @@ namespace liblec {
 			friend class page_management;
 			friend class widget_management;
 			friend class timer_management;
+			friend class filesystem;
 			friend class containers::status_pane;
 			friend class containers::tab_pane;
 			friend class containers::tab;
