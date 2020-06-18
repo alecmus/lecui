@@ -23,6 +23,7 @@
 #include "../widgets/rectangle.h"
 #include "../widgets/label.h"
 #include "../widgets/button.h"
+#include "../widgets/line.h"
 #include "../widgets/h_scrollbar/h_scrollbar.h"
 #include "../widgets/v_scrollbar/v_scrollbar.h"
 
@@ -860,7 +861,7 @@ namespace liblec {
 											font_color_bar().border = .2f;
 
 											widgets::rectangle font_color_menu(html_controls_page, "");
-											font_color_menu().rect.size(7.f, 20.f);
+											font_color_menu().rect.size(10.f, 20.f);
 											font_color_menu().rect.snap_to(font_color().rect, rect::snap_type::right, 2.f);
 											font_color_menu().color_fill.alpha = 0;
 											font_color_menu().color_border.alpha = 0;
@@ -880,28 +881,12 @@ namespace liblec {
 												}
 											};
 
-											const size dot_size = { 1.5f, 1.5f };
-
-											widgets::rectangle font_color_menu_dot_1(html_controls_page, "");
-											font_color_menu_dot_1().rect.size(dot_size);
-											font_color_menu_dot_1().rect.place(font_color_menu().rect, 50.f, 25.f);
-											font_color_menu_dot_1().corner_radius_x = 0.f;
-											font_color_menu_dot_1().corner_radius_y = 0.f;
-											font_color_menu_dot_1().color_border.alpha = 0;
-
-											widgets::rectangle font_color_menu_dot_2(html_controls_page, "");
-											font_color_menu_dot_2().rect.size(dot_size);
-											font_color_menu_dot_2().rect.place(font_color_menu().rect, 50.f, 50.f);
-											font_color_menu_dot_2().corner_radius_x = 0.f;
-											font_color_menu_dot_2().corner_radius_y = 0.f;
-											font_color_menu_dot_2().color_border.alpha = 0;
-
-											widgets::rectangle font_color_menu_dot_3(html_controls_page, "");
-											font_color_menu_dot_3().rect.size(dot_size);
-											font_color_menu_dot_3().rect.place(font_color_menu().rect, 50.f, 75.f);
-											font_color_menu_dot_3().corner_radius_x = 0.f;
-											font_color_menu_dot_3().corner_radius_y = 0.f;
-											font_color_menu_dot_3().color_border.alpha = 0;
+											widgets::line font_color_menu_dropdown(html_controls_page, "");
+											font_color_menu_dropdown().rect.size(font_color_menu().rect.width(), font_color_menu().rect.width());	// important for it to be a square
+											font_color_menu_dropdown().rect.place(font_color_menu().rect, 50.f, 50.f);
+											font_color_menu_dropdown().points.push_back({ .1f * font_color_menu_dropdown().rect.width(), .3f * font_color_menu_dropdown().rect.height() });
+											font_color_menu_dropdown().points.push_back({ .5f * font_color_menu_dropdown().rect.width(), .7f * font_color_menu_dropdown().rect.height() });
+											font_color_menu_dropdown().points.push_back({ .9f * font_color_menu_dropdown().rect.width(), .3f * font_color_menu_dropdown().rect.height() });
 
 											html_editor.initialize_controls(true);
 										}
