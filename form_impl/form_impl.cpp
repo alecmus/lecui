@@ -869,7 +869,14 @@ namespace liblec {
 												if (color_picker(page.d_page_.fm_).pick(font_color)) {
 													html_editor.selection_color(font_color);
 
-													// to-do: set color on font_bar and memorize it
+													try {
+														// update font color bar
+														auto& font_color_bar_impl = html_controls_page.d_page_.get_rectangle(html_editor.alias_font_color_bar());
+														font_color_bar_impl.specs().color_fill = font_color;
+													}
+													catch (const std::exception&) {}
+
+													page.d_page_.fm_.update();
 												}
 											};
 
