@@ -128,6 +128,10 @@ namespace liblec {
 				case item::combobox_dropdown_hot: return { 0, 120, 170, 255 };
 				case item::combobox_dropdown_arrow: return { 150, 150, 150, 255 };
 				case item::combobox_dropdown_arrow_hot: return { 244, 244, 244, 255 };
+
+				case item::line: return { 150, 150, 150, 255 };
+				case item::line_hover: return { 0, 120, 170, 50 };
+				case item::line_selected: return { 0, 120, 170, 100 };
 				default: break;
 				}
 			} break;
@@ -242,6 +246,10 @@ namespace liblec {
 				case item::combobox_dropdown_hot: return { 60, 190, 175, 255 };
 				case item::combobox_dropdown_arrow: return { 150, 150, 150, 255 };
 				case item::combobox_dropdown_arrow_hot: return { 16, 29, 36, 255 };
+
+				case item::line: return { 150, 150, 150, 255 };
+				case item::line_hover: return { 60, 190, 175, 50 };
+				case item::line_selected: return { 60, 190, 175, 100 };
 				default: break;
 				}
 			} break;

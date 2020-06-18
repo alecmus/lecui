@@ -139,6 +139,10 @@ namespace liblec {
 			combobox_dropdown_hot,
 			combobox_dropdown_arrow,
 			combobox_dropdown_arrow_hot,
+			
+			line,
+			line_hover,
+			line_selected,
 		};
 
 		class lecui_api defaults {

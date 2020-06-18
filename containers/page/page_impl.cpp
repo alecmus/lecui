@@ -253,6 +253,16 @@ namespace liblec {
 			return comboboxes_.at(alias).specs();
 		}
 
+		widgets::line::line_specs&
+			containers::page::impl::add_line(std::string alias) {
+			check_alias(alias);
+			if (lines_.try_emplace(alias, alias_, alias).second) {
+				widgets_.emplace(alias, lines_.at(alias));
+				widgets_order_.emplace_back(alias);
+			}
+			return lines_.at(alias).specs();
+		}
+
 		std::map<std::string, widgets_impl::widget&>&
 			containers::page::impl::widgets() { return widgets_; }
 
@@ -317,6 +327,9 @@ namespace liblec {
 
 		widgets_impl::combobox&
 			containers::page::impl::get_combobox(const std::string& alias) { return comboboxes_.at(alias); }
+
+		widgets_impl::line&
+			containers::page::impl::get_line(const std::string& alias) { return lines_.at(alias); }
 
 		bool
 			containers::page::impl::close_widget(const std::string& alias,
@@ -393,6 +406,9 @@ namespace liblec {
 					break;
 				case widgets_impl::widget_type::combobox:
 					comboboxes_.erase(alias_);
+					break;
+				case widgets_impl::widget_type::line:
+					lines_.erase(alias_);
 					break;
 				case widgets_impl::widget_type::close_button:
 				case widgets_impl::widget_type::maximize_button:

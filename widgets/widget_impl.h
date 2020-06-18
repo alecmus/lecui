@@ -58,6 +58,7 @@ namespace liblec {
 				slider,
 				html_editor,
 				combobox,
+				line,
 			};
 
 			static HCURSOR get_cursor(widgets::specs::cursor_type type) {

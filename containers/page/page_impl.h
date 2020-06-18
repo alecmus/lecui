@@ -36,6 +36,7 @@
 #include "../../widgets/slider/slider_impl.h"
 #include "../../widgets/html_editor/html_editor_impl.h"
 #include "../../widgets/combobox/combobox_impl.h"
+#include "../../widgets/line/line_impl.h"
 
 namespace liblec {
 	namespace lecui {
@@ -97,6 +98,8 @@ namespace liblec {
 				add_html_editor(std::string alias);
 			widgets::combobox::combobox_specs&
 				add_combobox(std::string alias);
+			widgets::line::line_specs&
+				add_line(std::string alias);
 
 			std::map<std::string,
 				widgets_impl::widget&>&
@@ -145,6 +148,8 @@ namespace liblec {
 				get_html_editor(const std::string& alias);
 			widgets_impl::combobox&
 				get_combobox(const std::string& alias);
+			widgets_impl::line&
+				get_line(const std::string& alias);
 
 			bool close_widget(const std::string& alias,
 				widgets_impl::widget_type type, std::string& error);
@@ -183,6 +188,7 @@ namespace liblec {
 			std::map<std::string, widgets_impl::slider> sliders_;
 			std::map<std::string, widgets_impl::html_editor> html_editors_;
 			std::map<std::string, widgets_impl::combobox> comboboxes_;
+			std::map<std::string, widgets_impl::line> lines_;
 
 			form& fm_;
 
@@ -206,6 +212,7 @@ namespace liblec {
 			friend class widgets::slider;
 			friend class widgets::html_editor;
 			friend class widgets::combobox;
+			friend class widgets::line;
 		};
 	}
 }

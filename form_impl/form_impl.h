@@ -210,6 +210,7 @@ namespace liblec {
 			friend class widgets::html_editor;
 			friend class widgets::combobox;
 			friend class widgets_impl::combobox;
+			friend class widgets::line;
 
 		public:
 			impl(const std::string& caption_formatted);

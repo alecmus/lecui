@@ -140,6 +140,9 @@
     <Filter Include="lecui\utilities\color_picker">
       <UniqueIdentifier>{51f41bcc-0f4e-4642-9099-d578e9794f1c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="lecui\widgets\line">
+      <UniqueIdentifier>{59fc5a7a-540d-4fee-aab6-8f4bd1cac9d9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="error\win_error.h">
@@ -331,6 +334,12 @@
     </ClInclude>
     <ClInclude Include="utilities\color_picker.h">
       <Filter>lecui\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="widgets\line.h">
+      <Filter>lecui\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="widgets\line\line_impl.h">
+      <Filter>lecui\widgets\line</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -553,6 +562,12 @@
     </ClCompile>
     <ClCompile Include="utilities\color_picker\color_picker.cpp">
       <Filter>lecui\utilities\color_picker</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\line\line.cpp">
+      <Filter>lecui\widgets\line</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\line\line_impl.cpp">
+      <Filter>lecui\widgets\line</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
