@@ -187,6 +187,13 @@ namespace liblec {
 			ShowWindow(d_.hWnd_, SW_SHOW);
 			UpdateWindow(d_.hWnd_);
 
+			// Update the user interface. This is important for widgets that are moved into
+			// special panes. If this is not done the widgets will not be drawn fully. One
+			// typical symptom of this is that before the mouse is moved at least once over an
+			// active widget the drawing will be incomplete, e.g. the selected text in comboboxes
+			// won't initially be displayed.
+			update();
+
 			if (d_.activate_)
 				SetForegroundWindow(d_.hWnd_);
 
