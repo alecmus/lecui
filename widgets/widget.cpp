@@ -49,6 +49,10 @@ namespace liblec {
 					(color_selected == param.color_selected) &&
 					(color_disabled == param.color_disabled) &&
 
+					/// Font
+					(font == param.font) &&
+					(font_size == param.font_size) &&
+
 					/// Cursor
 					(cursor == param.cursor);
 			}
