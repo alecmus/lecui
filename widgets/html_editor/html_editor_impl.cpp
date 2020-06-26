@@ -610,7 +610,7 @@ namespace liblec {
 					position_count += m.length;
 					auto line_end = position_count;
 
-					if (selection_start <= line_end)
+					if (selection_start < line_end)
 						within = true;
 
 					bool is_last_line = selection_end <= line_end;
