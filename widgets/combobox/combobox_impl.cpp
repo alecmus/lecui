@@ -63,7 +63,7 @@ namespace liblec {
 		widgets_impl::combobox::~combobox() { discard_resources(); }
 
 		void widgets_impl::combobox::press(const bool& pressed) {
-			D2D1_RECT_F rect = rect_dropdown_;
+			D2D1_RECT_F rect = specs_.editable ? rect_dropdown_ : rect_combobox_;
 			scale_RECT(rect, dpi_scale_);
 
 			if (point_.x >= rect.left && point_.x <= rect.right &&
@@ -425,8 +425,8 @@ namespace liblec {
 		void widgets_impl::combobox::on_click() {
 			bool drop_down = true;
 
-			if (!is_static_ && specs_.editable) {
-				D2D1_RECT_F rect = rect_dropdown_;
+			if (!is_static_) {
+				D2D1_RECT_F rect = specs_.editable ? rect_dropdown_ : rect_combobox_;
 				scale_RECT(rect, dpi_scale_);
 
 				if (point_.x >= rect.left && point_.x <= rect.right &&
