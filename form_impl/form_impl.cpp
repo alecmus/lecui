@@ -715,7 +715,7 @@ namespace liblec {
 										if (!html_editor.controls_initialized()) {
 											/// add controls to controls pane
 											
-											/// add first row
+											/// add basic font formatting
 											
 											/// add font selection combobox
 											widgets::combobox font(html_controls_page, html_editor.alias_font());
@@ -736,34 +736,6 @@ namespace liblec {
 											font().events().selection = [&](const std::string& font_name) {
 												html_editor.selection_font(font_name);
 											};
-
-											/// add font size combobox
-											widgets::combobox font_size(html_controls_page, html_editor.alias_font_size());
-											font_size().rect.size(70.f, 25.f);
-											font_size().rect.snap_to(font().rect, rect::snap_type::right, 5.f);
-											font_size().editable = true;
-											font_size().force_numerical_sort = true;
-											font_size().items = {
-												{"8", "Segoe UI", 8 },
-												{"9", "Segoe UI", 9},
-												{"10", "Segoe UI", 10},
-												{"11", "Segoe UI", 11},
-												{"12", "Segoe UI", 12},
-												{"13", "Segoe UI", 13},
-												{"14", "Segoe UI", 14},
-												{"18", "Segoe UI", 18},
-												{"24", "Segoe UI", 24},
-												{"36", "Segoe UI", 36} };
-											font_size().selected = "11";
-											font_size().events().selection = [&](const std::string& font_size) {
-												float font_size_ = 0.f;
-												std::stringstream ss;
-												ss << font_size;
-												ss >> font_size_;
-												html_editor.selection_font_size(font_size_);
-											};
-
-											/// add second row
 											
 											/// add bold control
 											widgets::rectangle bold(html_controls_page, html_editor.alias_bold());
@@ -887,6 +859,34 @@ namespace liblec {
 											font_color_menu_dropdown().points.push_back({ .1f * font_color_menu_dropdown().rect.width(), .3f * font_color_menu_dropdown().rect.height() });
 											font_color_menu_dropdown().points.push_back({ .5f * font_color_menu_dropdown().rect.width(), .7f * font_color_menu_dropdown().rect.height() });
 											font_color_menu_dropdown().points.push_back({ .9f * font_color_menu_dropdown().rect.width(), .3f * font_color_menu_dropdown().rect.height() });
+
+											/// add font size combobox
+											widgets::combobox font_size(html_controls_page, html_editor.alias_font_size());
+											font_size().rect.size(70.f, 25.f);
+											font_size().rect.snap_to(font().rect, rect::snap_type::right, 10.f);
+											font_size().editable = true;
+											font_size().force_numerical_sort = true;
+											font_size().items = {
+												{"8", "Segoe UI", 8 },
+												{"9", "Segoe UI", 9},
+												{"10", "Segoe UI", 10},
+												{"11", "Segoe UI", 11},
+												{"12", "Segoe UI", 12},
+												{"13", "Segoe UI", 13},
+												{"14", "Segoe UI", 14},
+												{"18", "Segoe UI", 18},
+												{"24", "Segoe UI", 24},
+												{"36", "Segoe UI", 36} };
+											font_size().selected = "11";
+											font_size().events().selection = [&](const std::string& font_size) {
+												float font_size_ = 0.f;
+												std::stringstream ss;
+												ss << font_size;
+												ss >> font_size_;
+												html_editor.selection_font_size(font_size_);
+											};
+
+											/// increase font size control
 
 											html_editor.initialize_controls(true);
 										}
