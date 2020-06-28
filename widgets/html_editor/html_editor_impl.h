@@ -65,6 +65,8 @@ namespace liblec {
 				void key_delete();
 				void key_left();
 				void key_right();
+				void key_up();
+				void key_down();
 
 				/// methods for editing the content
 				void selection_font(const std::string& font_name);

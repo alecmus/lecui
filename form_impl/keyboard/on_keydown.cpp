@@ -18,7 +18,9 @@ namespace liblec {
 		void form::impl::on_keydown(WPARAM wParam) {
 			switch (wParam) {
 			case VK_LEFT:
+			case VK_UP:
 			case VK_RIGHT:
+			case VK_DOWN:
 			case VK_BACK:
 			case VK_DELETE: {
 				bool change = false;
@@ -54,7 +56,9 @@ namespace liblec {
 
 										switch (wParam) {
 										case VK_LEFT: html_editor.key_left(); break;
+										case VK_UP:	html_editor.key_up(); break;
 										case VK_RIGHT: html_editor.key_right(); break;
+										case VK_DOWN: html_editor.key_down(); break;
 										case VK_BACK: html_editor.key_backspace(); break;
 										case VK_DELETE: html_editor.key_delete(); break;
 										default:

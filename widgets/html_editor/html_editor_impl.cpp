@@ -429,6 +429,14 @@ namespace liblec {
 			catch (const std::exception& e) { log(e.what()); }
 		}
 
+		void widgets_impl::html_editor::key_up() {
+			log("key up");
+		}
+
+		void widgets_impl::html_editor::key_down() {
+			log("key down");
+		}
+
 		void widgets_impl::html_editor::selection_font(const std::string& font_name) {
 			log("selection_font: " + font_name);
 			std::vector<xml_parser::tag_attribute> tag_attributes;
