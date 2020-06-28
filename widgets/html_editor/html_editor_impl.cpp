@@ -526,6 +526,17 @@ namespace liblec {
 			return last_color_;
 		}
 
+		void widgets_impl::html_editor::reset_selection() {
+			selection_info_ = { 0, 0 };
+			is_selected_ = false;
+		}
+
+		void widgets_impl::html_editor::set_selection(const UINT start, const UINT end) {
+			selection_info_.start = start;
+			selection_info_.end = end;
+			is_selected_ = true;
+		}
+
 		UINT32
 			widgets_impl::html_editor::count_characters(IDWriteTextLayout* p_text_layout, const std::string& text,
 				const D2D1_RECT_F& rect_text, const D2D1_POINT_2F& point,
