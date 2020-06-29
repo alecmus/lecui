@@ -51,6 +51,7 @@ namespace liblec {
 					const bool& render) override;
 				void on_click() override;
 				bool contains(const D2D1_POINT_2F& point) override;
+				D2D1_POINT_2F get_scrollbar_offset();
 
 				/// widget specific methods
 				widgets::rectangle::rectangle_specs& specs();

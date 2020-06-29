@@ -157,6 +157,10 @@ namespace liblec {
 				return false;
 		}
 
+		D2D1_POINT_2F widgets_impl::rectangle::get_scrollbar_offset() {
+			return { h_scrollbar_.x_off_set_, v_scrollbar_.y_off_set_ };
+		}
+
 		widgets::rectangle::rectangle_specs&
 			widgets_impl::rectangle::specs() { return specs_; }
 
