@@ -511,10 +511,16 @@ namespace liblec {
 
 		void widgets_impl::html_editor::key_up() {
 			key_up_scheduled_ = true;
+
+			caret_visible_ = true;
+			skip_blink_ = true;
 		}
 
 		void widgets_impl::html_editor::key_down() {
 			key_down_scheduled_ = true;
+
+			caret_visible_ = true;
+			skip_blink_ = true;
 		}
 
 		void widgets_impl::html_editor::selection_font(const std::string& font_name) {
