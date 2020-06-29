@@ -76,6 +76,8 @@ namespace liblec {
 			skip_blink_(false),
 			is_selecting_(false),
 			is_selected_(false),
+			key_up_scheduled_(false),
+			key_down_scheduled_(false),
 			selection_info_({ 0, 0 }),
 			last_color_({ 255, 0, 0, 255 }) {
 			page_alias_ = page_alias;
@@ -188,9 +190,6 @@ namespace liblec {
 
 			p_render_target->DrawRoundedRectangle(&rounded_rect, p_brush_border_, .5f);
 
-			//if (!is_static_ && is_enabled_ && selected_)
-			//	p_render_target->DrawRoundedRectangle(&rounded_rect, p_brush_selected_, 1.75f);
-
 			// create a text layout
 			std::string text_ = specs_.text;
 
@@ -213,8 +212,6 @@ namespace liblec {
 			DWRITE_TEXT_METRICS textMetrics;
 
 			if (SUCCEEDED(hr)) {
-				
-
 				// apply formatting
 				apply_formatting(formatting_, p_render_target, p_text_layout_, is_enabled_,
 					p_brush_disabled_);
@@ -239,35 +236,118 @@ namespace liblec {
 
 			const auto optimized_bottom_ = rect_optimal.bottom + margin_y_;
 
-
 			if (!is_static_ && is_enabled_ && selected_) {
-				if (hit_ && pressed_) {
-					reset_selection();
+				if (key_up_scheduled_ || key_down_scheduled_) {
+					// get selection rects of entire text area
+					const UINT32 start = 0;
+					const UINT32 end = static_cast<UINT32>(text_.length());
 
-					caret_position_ = get_caret_position(p_text_layout_, specs_.text, rect_text_, point_, dpi_scale_);
-					caret_visible_ = true;
+					auto full_text_selection_rects = get_selection_rects(p_text_layout_,
+						rect_text_, start, end);
 
-					if (point_.x != point_on_press_.x || point_.y != point_on_press_.y) {
-						// user is making a selection
-						is_selecting_ = true;
+					// get actual selection rects
+					std::vector<D2D1_RECT_F> selection_rects;
 
-						auto selection_start_ = get_caret_position(p_text_layout_, specs_.text, rect_text_, point_on_press_, dpi_scale_);
-						auto selection_end_ = caret_position_;
+					bool end_special_case = false;	// for handling end special case on key_up
 
-						auto selection_rects = get_selection_rects(p_text_layout_, rect_text_, selection_start_, selection_end_);
-						for (auto selection_rect : selection_rects)
-							p_render_target->FillRectangle(selection_rect, p_brush_selected_);
+					if (is_selected_) {
+						selection_rects = get_selection_rects(p_text_layout_,
+							rect_text_, selection_info_.start, selection_info_.end);
 					}
+					else {
+						selection_info sel_info;
+
+						end_special_case = caret_position_ == text_.length();
+						
+						if (key_up_scheduled_) {
+							auto pos = caret_position_;
+							if (pos == text_.length())
+								pos--;
+							sel_info.start = pos;
+							sel_info.end = sel_info.start + 1;
+						}
+						else {
+							// to-do: fix accordingly
+							auto pos = caret_position_;
+							if (pos > 0)
+								pos--;
+							sel_info.start = pos;
+							sel_info.end = sel_info.start + 1;
+						}
+
+						selection_rects = get_selection_rects(p_text_layout_,
+							rect_text_, sel_info.start, sel_info.end);
+					}
+
+					if (key_up_scheduled_) {
+						// move one line above
+						D2D1_RECT_F rect_above = full_text_selection_rects[0];
+
+						for (auto& rect : full_text_selection_rects) {
+							if (rect.top == selection_rects[0].top)
+								break;
+
+							rect_above = rect;
+						}
+
+						// find corresponding point within this line for caret
+						D2D1_POINT_2F pt = { (end_special_case ? selection_rects[0].right : selection_rects[0].left) * dpi_scale_, (rect_above.top + ((rect_above.bottom - rect_above.top) / 2.f)) * dpi_scale_ };
+						caret_position_ = get_caret_position(p_text_layout_, text_, rect_text_,
+							pt, dpi_scale_);
+
+						reset_selection();
+					}
+					else {
+						// move one line below
+						D2D1_RECT_F rect_below = full_text_selection_rects[full_text_selection_rects.size() - 1];
+
+						for (auto& rect : full_text_selection_rects) {
+							rect_below = rect;
+
+							if (rect.bottom > selection_rects[selection_rects.size() - 1].bottom)
+								break;
+						}
+
+						// find corresponding point within this line for caret
+						D2D1_POINT_2F pt = { selection_rects[selection_rects.size() - 1].right * dpi_scale_, (rect_below.top + ((rect_below.bottom - rect_below.top) / 2.f)) * dpi_scale_ };
+						caret_position_ = get_caret_position(p_text_layout_, text_, rect_text_,
+							pt, dpi_scale_);
+
+						reset_selection();
+					}
+
+					key_up_scheduled_ = false;
+					key_down_scheduled_ = false;
 				}
-				else
-					if (!pressed_ && is_selecting_) {
-						// user is done with the selection
-						is_selecting_ = false;
+				else {
+					if (hit_ && pressed_) {
+						reset_selection();
 
-						set_selection(
-							get_caret_position(p_text_layout_, specs_.text, rect_text_, point_on_press_, dpi_scale_),
-							get_caret_position(p_text_layout_, specs_.text, rect_text_, point_on_release_, dpi_scale_));
+						caret_position_ = get_caret_position(p_text_layout_, specs_.text, rect_text_, point_, dpi_scale_);
+						caret_visible_ = true;
+
+						if (point_.x != point_on_press_.x || point_.y != point_on_press_.y) {
+							// user is making a selection
+							is_selecting_ = true;
+
+							auto selection_start_ = get_caret_position(p_text_layout_, specs_.text, rect_text_, point_on_press_, dpi_scale_);
+							auto selection_end_ = caret_position_;
+
+							auto selection_rects = get_selection_rects(p_text_layout_, rect_text_, selection_start_, selection_end_);
+							for (auto selection_rect : selection_rects)
+								p_render_target->FillRectangle(selection_rect, p_brush_selected_);
+						}
 					}
+					else
+						if (!pressed_ && is_selecting_) {
+							// user is done with the selection
+							is_selecting_ = false;
+
+							set_selection(
+								get_caret_position(p_text_layout_, specs_.text, rect_text_, point_on_press_, dpi_scale_),
+								get_caret_position(p_text_layout_, specs_.text, rect_text_, point_on_release_, dpi_scale_));
+						}
+				}
 			}
 
 			// draw selection rectangles
@@ -430,11 +510,11 @@ namespace liblec {
 		}
 
 		void widgets_impl::html_editor::key_up() {
-			log("key up");
+			key_up_scheduled_ = true;
 		}
 
 		void widgets_impl::html_editor::key_down() {
-			log("key down");
+			key_down_scheduled_ = true;
 		}
 
 		void widgets_impl::html_editor::selection_font(const std::string& font_name) {

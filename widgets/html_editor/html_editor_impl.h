@@ -110,6 +110,9 @@ namespace liblec {
 				bool is_selecting_;
 				bool is_selected_;
 
+				bool key_up_scheduled_;
+				bool key_down_scheduled_;
+
 				struct selection_info {
 					UINT32 start = 0;
 					UINT32 end = 0;
