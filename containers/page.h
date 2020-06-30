@@ -82,6 +82,8 @@ namespace liblec {
 				friend class widgets::html_editor;
 				friend class widgets::combobox;
 				friend class widgets::line;
+
+				friend class widgets_impl::html_editor;
 #endif
 			};
 		}

@@ -15,8 +15,9 @@
 
 namespace liblec {
 	namespace lecui {
-		containers::page::impl::impl(form& fm, const std::string& alias) :
+		containers::page::impl::impl(form& fm, containers::page& pg, const std::string& alias) :
 			fm_(fm),
+			pg_(pg),
 			p_direct2d_factory_(nullptr),
 			p_directwrite_factory_(nullptr),
 			p_iwic_factory_(nullptr),
@@ -236,7 +237,7 @@ namespace liblec {
 		widgets::html_editor::html_editor_specs&
 			containers::page::impl::add_html_editor(std::string alias) {
 			check_alias(alias);
-			if (html_editors_.try_emplace(alias, alias_, alias, fm_, p_directwrite_factory_).second) {
+			if (html_editors_.try_emplace(alias, alias_, alias, fm_, pg_, p_directwrite_factory_).second) {
 				widgets_.emplace(alias, html_editors_.at(alias));
 				widgets_order_.emplace_back(alias);
 			}
@@ -433,6 +434,26 @@ namespace liblec {
 				return false;
 			}
 		}
+
+			D2D1_RECT_F containers::page::impl::get_rect() {
+				auto rect_pg = D2D1_RECT_F();
+				try {
+					// check if minimal page border rect contains the point
+					auto& rect = rectangles_.at(widgets_impl::rectangle::page_rect_alias());
+					rect_pg = rect.get_rect();
+					scale_RECT(rect_pg, rect.get_dpi_scale());
+
+					auto scroll_bar_offset = rect.get_scrollbar_offset();
+					rect_pg.left += scroll_bar_offset.x;
+					rect_pg.right += scroll_bar_offset.x;
+					rect_pg.top += scroll_bar_offset.y;
+					rect_pg.bottom += scroll_bar_offset.y;
+
+					unscale_RECT(rect_pg, rect.get_dpi_scale());
+				}
+				catch (const std::exception&) {}
+				return rect_pg;
+			}
 
 		void containers::page::impl::check_alias(std::string& alias) {
 			// prevent empty alias

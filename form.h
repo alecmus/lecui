@@ -64,6 +64,7 @@ namespace liblec {
 
 		namespace widgets_impl {
 			class combobox;
+			class html_editor;
 		}
 #endif
 

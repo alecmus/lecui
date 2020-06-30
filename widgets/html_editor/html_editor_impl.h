@@ -16,6 +16,8 @@
 #include "../widget_impl.h"
 #include "../html_editor.h"
 #include "../../formatted_text_parser/formatted_text_parser.h"
+#include "../../containers/page.h"
+#include "../../containers/page/page_impl.h"
 
 namespace liblec {
 	namespace lecui {
@@ -41,6 +43,7 @@ namespace liblec {
 				html_editor(const std::string& page_alias,
 					const std::string& alias,
 					form& fm,
+					containers::page& pg,
 					IDWriteFactory* p_directwrite_factory);
 				~html_editor();
 
@@ -121,6 +124,7 @@ namespace liblec {
 				color last_color_;
 
 				form& fm_;
+				containers::page& pg_;
 
 				std::vector<formatted_text_parser::text_range_properties> formatting_;
 

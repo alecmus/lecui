@@ -42,7 +42,7 @@ namespace liblec {
 	namespace lecui {
 		class containers::page::impl {
 		public:
-			impl(form& fm, const std::string& alias);
+			impl(form& fm, containers::page& pg, const std::string& alias);
 			~impl();
 
 			const std::string& alias();
@@ -154,6 +154,8 @@ namespace liblec {
 			bool close_widget(const std::string& alias,
 				widgets_impl::widget_type type, std::string& error);
 
+			D2D1_RECT_F get_rect();
+
 		private:
 			void check_alias(std::string& alias);
 
@@ -191,6 +193,7 @@ namespace liblec {
 			std::map<std::string, widgets_impl::line> lines_;
 
 			form& fm_;
+			containers::page& pg_;
 
 			friend class form;
 			friend class containers::tab_pane;
@@ -213,6 +216,8 @@ namespace liblec {
 			friend class widgets::html_editor;
 			friend class widgets::combobox;
 			friend class widgets::line;
+
+			friend class widgets_impl::html_editor;
 		};
 	}
 }

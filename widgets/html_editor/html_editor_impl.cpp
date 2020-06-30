@@ -56,6 +56,7 @@ namespace liblec {
 		widgets_impl::html_editor::html_editor(const std::string& page_alias,
 			const std::string& alias,
 			form& fm,
+			containers::page& pg,
 			IDWriteFactory* p_directwrite_factory) :
 			controls_initialized_(false),
 			p_brush_(nullptr),
@@ -66,6 +67,7 @@ namespace liblec {
 			p_brush_selected_(nullptr),
 			p_text_format_(nullptr),
 			fm_(fm),
+			pg_(pg),
 			p_directwrite_factory_(p_directwrite_factory),
 			p_text_layout_(nullptr),
 			margin_x_(7.5f),
@@ -357,10 +359,43 @@ namespace liblec {
 					p_render_target->FillRectangle(selection_rect, p_brush_selected_);
 			}
 
+			float move_v = 0.f;
+
 			// draw caret
 			if (!is_static_ && is_enabled_ && selected_ && caret_visible_) {
 				const auto caret_rect = get_caret_rect(p_text_layout_, rect_text_, caret_position_);
 				p_render_target->FillRectangle(&caret_rect, p_brush_caret_);
+
+				// figure out if caret is within visible area
+				const auto pg_rect = pg_.d_page_.get_rect();
+
+				if (!(pg_rect.left <= caret_rect.right &&
+					pg_rect.top <= caret_rect.top &&
+					pg_rect.right >= caret_rect.left &&
+					pg_rect.bottom >= caret_rect.bottom)) {
+					log("caret hidden");
+
+					// handle vertical hiding
+					if (!(pg_rect.top <= caret_rect.top &&
+						pg_rect.bottom >= caret_rect.bottom)) {
+						if (!(pg_rect.top <= caret_rect.top)) {
+							// caret hidden at the top
+
+							// compute how much to move downwards
+							float move_downwards = pg_rect.top - caret_rect.top;
+							log("top: " + std::to_string(move_downwards));
+							move_v = move_downwards;
+						}
+						else {
+							// caret hidden at the bottom
+
+							// compute how much to move upwards
+							float move_updwards = caret_rect.bottom - pg_rect.bottom;
+							log("bottom: " + std::to_string(move_updwards));
+							move_v = 0.f - move_updwards;
+						}
+					}
+				}
 			}
 
 			// release the text layout
@@ -371,6 +406,10 @@ namespace liblec {
 
 			// update widget rect
 			specs_.rect.height(height);
+
+			// move rect to ensure caret visibility
+			if (move_v)
+				log("move_v: " + std::to_string(move_v));
 
 			return rect_;
 		}

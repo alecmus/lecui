@@ -17,7 +17,7 @@
 namespace liblec {
 	namespace lecui {
 		containers::page::page(form& fm, const std::string& alias) :
-			d_page_(*new impl(fm, alias)) {}
+			d_page_(*new impl(fm, *this, alias)) {}
 
 		containers::page::~page() { delete& d_page_; }
 
