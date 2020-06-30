@@ -156,6 +156,9 @@ namespace liblec {
 
 			D2D1_RECT_F get_rect();
 
+			bool hit();
+			bool on_mousewheel(float units);
+
 		private:
 			void check_alias(std::string& alias);
 
@@ -164,6 +167,7 @@ namespace liblec {
 			IWICImagingFactory* p_iwic_factory_;
 			std::string alias_;
 			lecui::size size_;
+			bool hit_;
 
 			std::map<std::string, widgets_impl::widget&> widgets_;
 			std::vector<std::string> widgets_order_;

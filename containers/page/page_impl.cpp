@@ -22,6 +22,7 @@ namespace liblec {
 			p_directwrite_factory_(nullptr),
 			p_iwic_factory_(nullptr),
 			alias_(alias),
+			hit_(false),
 			h_scrollbar_(alias),
 			v_scrollbar_(alias) {
 			widgets_.emplace(h_scrollbar_.alias(), h_scrollbar_);
@@ -65,13 +66,18 @@ namespace liblec {
 		const float containers::page::impl::height() { return size_.height; }
 
 		bool containers::page::impl::contains(const D2D1_POINT_2F& point) {
+			bool contains_ = false;
+
 			try {
 				// check if minimal page border rect contains the point
 				auto& rect = rectangles_.at(widgets_impl::rectangle::page_rect_alias());
-				return rect.contains(point);
+				contains_ = rect.contains(point);
 			}
 			catch (const std::exception&) {}
-			return false;
+
+			hit_ = contains_;
+
+			return contains_;
 		}
 
 		containers::tab_pane::tab_pane_specs&
@@ -453,6 +459,18 @@ namespace liblec {
 				}
 				catch (const std::exception&) {}
 				return rect_pg;
+			}
+
+			bool containers::page::impl::hit() { return hit_; }
+
+			bool containers::page::impl::on_mousewheel(float units) {
+
+				if (hit_ && v_scrollbar_.visible()) {
+					log(alias_ + ": mousewheel");
+					return true;
+				}
+				else
+					return false;
 			}
 
 		void containers::page::impl::check_alias(std::string& alias) {

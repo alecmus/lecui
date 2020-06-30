@@ -59,8 +59,13 @@ namespace liblec {
 
 								auto page_iterator = tab_pane.p_tabs_.find(tab_pane.current_tab_);
 
-								if (page_iterator != tab_pane.p_tabs_.end())
+								if (page_iterator != tab_pane.p_tabs_.end()) {
 									helper::check_widgets(page_iterator->second, units, update);
+
+									if (!update && page_iterator->second.d_page_.hit())
+										if (page_iterator->second.d_page_.on_mousewheel(units))
+											update = true;
+								}
 							}
 							else
 								if (widget.second.type() ==
@@ -70,20 +75,39 @@ namespace liblec {
 
 									auto page_iterator = pane.p_panes_.find(pane.current_pane_);
 
-									if (page_iterator != pane.p_panes_.end())
+									if (page_iterator != pane.p_panes_.end()) {
 										helper::check_widgets(page_iterator->second, units, update);
+
+										if (!update && page_iterator->second.d_page_.hit())
+											if (page_iterator->second.d_page_.on_mousewheel(units))
+												update = true;
+									}
 								}
 					}
 				}
 			};
 
-			for (auto& it : p_status_panes_)
+			/// Check all the widgets in a page
+			/// If none of the widgets handled the mousewheel check the page itself
+			/// Checking is recursive, reaching all widgets in all containers
+
+			for (auto& it : p_status_panes_) {
 				helper::check_widgets(it.second, units, update);
+
+				if (!update && it.second.d_page_.hit())
+					if (it.second.d_page_.on_mousewheel(units))
+						update = true;
+			}
 
 			auto page_iterator = p_pages_.find(current_page_);
 
-			if (page_iterator != p_pages_.end())
+			if (page_iterator != p_pages_.end()) {
 				helper::check_widgets(page_iterator->second, units, update);
+
+				if (!update && page_iterator->second.d_page_.hit())
+					if (page_iterator->second.d_page_.on_mousewheel(units))
+						update = true;
+			}
 
 			if (update)
 				(*this).update();
