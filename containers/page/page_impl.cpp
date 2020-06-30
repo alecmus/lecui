@@ -449,56 +449,61 @@ namespace liblec {
 			}
 		}
 
-			D2D1_RECT_F containers::page::impl::get_rect() {
-				auto rect_pg = D2D1_RECT_F();
-				try {
-					// check if minimal page border rect contains the point
-					auto& rect = rectangles_.at(widgets_impl::rectangle::page_rect_alias());
-					rect_pg = rect.get_rect();
-					scale_RECT(rect_pg, rect.get_dpi_scale());
+		D2D1_RECT_F containers::page::impl::get_rect() {
+			auto rect_pg = D2D1_RECT_F();
+			try {
+				// check if minimal page border rect contains the point
+				auto& rect = rectangles_.at(widgets_impl::rectangle::page_rect_alias());
+				rect_pg = rect.get_rect();
+				scale_RECT(rect_pg, rect.get_dpi_scale());
 
-					auto scroll_bar_offset = rect.get_scrollbar_offset();
-					rect_pg.left += scroll_bar_offset.x;
-					rect_pg.right += scroll_bar_offset.x;
-					rect_pg.top += scroll_bar_offset.y;
-					rect_pg.bottom += scroll_bar_offset.y;
+				auto scroll_bar_offset = rect.get_scrollbar_offset();
+				rect_pg.left += scroll_bar_offset.x;
+				rect_pg.right += scroll_bar_offset.x;
+				rect_pg.top += scroll_bar_offset.y;
+				rect_pg.bottom += scroll_bar_offset.y;
 
-					unscale_RECT(rect_pg, rect.get_dpi_scale());
-				}
-				catch (const std::exception&) {}
-				return rect_pg;
+				unscale_RECT(rect_pg, rect.get_dpi_scale());
 			}
+			catch (const std::exception&) {}
+			return rect_pg;
+		}
 
-			bool containers::page::impl::hit() { return hit_; }
+		bool containers::page::impl::hit() { return hit_; }
 
-			bool containers::page::impl::on_mousewheel(float units) {
-
-				if (hit_ && v_scrollbar_.visible()) {
-					if (!scroll_bar_set_) {
-						// check scroll bar
-						v_scrollbar_.max_displacement(
-							v_scrollbar_.max_displacement_top_,
-							v_scrollbar_.max_displacement_bottom_);
-						v_scrollbar_.max_displacement_top_ *= dpi_scale_;
-						v_scrollbar_.max_displacement_bottom_ *= dpi_scale_;
-
-						v_scrollbar_.max_displacement_top_ += v_scrollbar_.y_displacement_;
-						v_scrollbar_.max_displacement_bottom_ += v_scrollbar_.y_displacement_;
-
-						scroll_bar_set_ = true;
-					}
-
-					float row_height_ = 10.f;
-					float adjustment = units * row_height_;
-
-					v_scrollbar_.y_displacement_ -= adjustment;
-					v_scrollbar_.y_displacement_previous_ -= adjustment;
-
-					return true;
-				}
-				else
-					return false;
+		bool containers::page::impl::on_mousewheel(float units) {
+			if (hit_ && v_scrollbar_.visible()) {
+				float row_height_ = 10.f;
+				float adjustment = units * row_height_;
+				scroll(adjustment);
+				return true;
 			}
+			else
+				return false;
+		}
+
+		void containers::page::impl::scroll(float pixels) {
+			if (v_scrollbar_.visible()) {
+				if (!scroll_bar_set_) {
+					// check scroll bar
+					v_scrollbar_.max_displacement(
+						v_scrollbar_.max_displacement_top_,
+						v_scrollbar_.max_displacement_bottom_);
+					v_scrollbar_.max_displacement_top_ *= dpi_scale_;
+					v_scrollbar_.max_displacement_bottom_ *= dpi_scale_;
+
+					v_scrollbar_.max_displacement_top_ += v_scrollbar_.y_displacement_;
+					v_scrollbar_.max_displacement_bottom_ += v_scrollbar_.y_displacement_;
+
+					scroll_bar_set_ = true;
+				}
+
+				float adjustment = pixels * dpi_scale_;
+
+				v_scrollbar_.y_displacement_ -= adjustment;
+				v_scrollbar_.y_displacement_previous_ -= adjustment;
+			}
+		}
 
 		void containers::page::impl::check_alias(std::string& alias) {
 			// prevent empty alias

@@ -158,6 +158,7 @@ namespace liblec {
 
 			bool hit();
 			bool on_mousewheel(float units);
+			void scroll(float pixels);
 
 		private:
 			void check_alias(std::string& alias);
