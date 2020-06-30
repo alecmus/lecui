@@ -20,8 +20,6 @@ namespace liblec {
 			const float units = static_cast<float>(delta) / 120.f;
 			bool update = false;
 
-			log("units: " + std::to_string(units));
-
 			// check form widgets
 			for (auto& widget : widgets_) {
 				if (widget.second.is_static() || !widget.second.visible() || !widget.second.enabled())

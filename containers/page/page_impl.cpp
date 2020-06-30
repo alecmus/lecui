@@ -23,8 +23,13 @@ namespace liblec {
 			p_iwic_factory_(nullptr),
 			alias_(alias),
 			hit_(false),
+			scroll_bar_set_(false),
 			h_scrollbar_(alias),
 			v_scrollbar_(alias) {
+			HDC hdc_screen = GetDC(NULL);
+			dpi_scale_ = (float)GetDeviceCaps(hdc_screen, LOGPIXELSY) / 96.0f;
+			ReleaseDC(NULL, hdc_screen);
+
 			widgets_.emplace(h_scrollbar_.alias(), h_scrollbar_);
 			widgets_.emplace(v_scrollbar_.alias(), v_scrollbar_);
 		}
@@ -76,6 +81,9 @@ namespace liblec {
 			catch (const std::exception&) {}
 
 			hit_ = contains_;
+
+			if (!contains_)
+				scroll_bar_set_ = false;
 
 			return contains_;
 		}
@@ -466,7 +474,26 @@ namespace liblec {
 			bool containers::page::impl::on_mousewheel(float units) {
 
 				if (hit_ && v_scrollbar_.visible()) {
-					log(alias_ + ": mousewheel");
+					if (!scroll_bar_set_) {
+						// check scroll bar
+						v_scrollbar_.max_displacement(
+							v_scrollbar_.max_displacement_top_,
+							v_scrollbar_.max_displacement_bottom_);
+						v_scrollbar_.max_displacement_top_ *= dpi_scale_;
+						v_scrollbar_.max_displacement_bottom_ *= dpi_scale_;
+
+						v_scrollbar_.max_displacement_top_ += v_scrollbar_.y_displacement_;
+						v_scrollbar_.max_displacement_bottom_ += v_scrollbar_.y_displacement_;
+
+						scroll_bar_set_ = true;
+					}
+
+					float row_height_ = 10.f;
+					float adjustment = units * row_height_;
+
+					v_scrollbar_.y_displacement_ -= adjustment;
+					v_scrollbar_.y_displacement_previous_ -= adjustment;
+
 					return true;
 				}
 				else

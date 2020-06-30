@@ -168,6 +168,8 @@ namespace liblec {
 			std::string alias_;
 			lecui::size size_;
 			bool hit_;
+			float dpi_scale_;
+			bool scroll_bar_set_;
 
 			std::map<std::string, widgets_impl::widget&> widgets_;
 			std::vector<std::string> widgets_order_;
