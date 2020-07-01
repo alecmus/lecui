@@ -498,7 +498,7 @@ namespace liblec {
 					scroll_bar_set_ = true;
 				}
 
-				float adjustment = pixels * dpi_scale_;
+				float adjustment = pixels;
 
 				v_scrollbar_.y_displacement_ -= adjustment;
 				v_scrollbar_.y_displacement_previous_ -= adjustment;
