@@ -383,14 +383,14 @@ namespace liblec {
 
 							// compute how much to move downwards
 							float move_downwards = pg_rect.top - caret_rect.top;
-							move_v = move_downwards;
+							move_v = move_downwards + 1.f;
 						}
 						else {
 							// caret hidden at the bottom
 
 							// compute how much to move upwards
 							float move_updwards = caret_rect.bottom - pg_rect.bottom;
-							move_v = 0.f - move_updwards;
+							move_v = 0.f - move_updwards - 1.f;
 						}
 					}
 				}
