@@ -68,6 +68,7 @@ namespace liblec {
 			p_text_format_(nullptr),
 			fm_(fm),
 			pg_(pg),
+			scroll_amount_(0.f),
 			p_directwrite_factory_(p_directwrite_factory),
 			p_text_layout_(nullptr),
 			margin_x_(7.5f),
@@ -373,7 +374,6 @@ namespace liblec {
 					pg_rect.top <= caret_rect.top &&
 					pg_rect.right >= caret_rect.left &&
 					pg_rect.bottom >= caret_rect.bottom)) {
-					log("caret hidden");
 
 					// handle vertical hiding
 					if (!(pg_rect.top <= caret_rect.top &&
@@ -383,7 +383,6 @@ namespace liblec {
 
 							// compute how much to move downwards
 							float move_downwards = pg_rect.top - caret_rect.top;
-							log("top: " + std::to_string(move_downwards));
 							move_v = move_downwards;
 						}
 						else {
@@ -391,7 +390,6 @@ namespace liblec {
 
 							// compute how much to move upwards
 							float move_updwards = caret_rect.bottom - pg_rect.bottom;
-							log("bottom: " + std::to_string(move_updwards));
 							move_v = 0.f - move_updwards;
 						}
 					}
@@ -408,8 +406,19 @@ namespace liblec {
 			specs_.rect.height(height);
 
 			// move rect to ensure caret visibility
-			if (move_v)
+			if (move_v && !timer_management(fm_).running("ensure_caret_visible")) {
 				log("move_v: " + std::to_string(move_v));
+				scroll_amount_ = move_v;
+
+				timer_management(fm_).add("ensure_caret_visible", 0,
+					[&]() {
+						timer_management(fm_).stop("ensure_caret_visible");
+
+						// scroll page to ensure caret visibility
+						pg_.d_page_.scroll(scroll_amount_);
+						fm_.update();
+					});
+			}
 
 			return rect_;
 		}

@@ -125,6 +125,7 @@ namespace liblec {
 
 				form& fm_;
 				containers::page& pg_;
+				float scroll_amount_;
 
 				std::vector<formatted_text_parser::text_range_properties> formatting_;
 
