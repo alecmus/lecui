@@ -22,7 +22,6 @@ namespace liblec {
 	namespace lecui {
 		widgets_impl::combobox::combobox(containers::page& page,
 			const std::string& alias,
-			form& fm,
 			IDWriteFactory* p_directwrite_factory) :
 			widget(page, alias),
 			p_brush_(nullptr),
@@ -38,7 +37,6 @@ namespace liblec {
 			p_brush_dropdown_arrow_(nullptr),
 			p_brush_dropdown_arrow_hot_(nullptr),
 			p_text_format_(nullptr),
-			fm_(fm),
 			h_cursor_edit_(get_cursor(widgets::specs::cursor_type::caret)),
 			h_cursor_dropdown_(get_cursor(widgets::specs::cursor_type::arrow)),
 			p_directwrite_factory_(p_directwrite_factory),
@@ -501,20 +499,20 @@ namespace liblec {
 				if (selected) {
 					// start blink timer
 					log("starting caret blink timer: " + alias_);
-					timer_management(fm_).add(caret_blink_timer_name_, 500,
+					timer_management(get_form()).add(caret_blink_timer_name_, 500,
 						[&]() {
 							if (skip_blink_)
 								skip_blink_ = false;
 							else {
 								caret_visible_ = !caret_visible_;
-								fm_.update();
+								get_form().update();
 							}
 						});
 				}
 				else {
 					// stop blink timer
 					log("stopping caret blink timer: " + alias_);
-					timer_management(fm_).stop(caret_blink_timer_name_);
+					timer_management(get_form()).stop(caret_blink_timer_name_);
 				}
 			}
 		}
@@ -831,14 +829,14 @@ namespace liblec {
 			menu_specs.pin = convert_rect(rect_combobox_);
 
 			POINT pt = { 0, 0 };
-			ClientToScreen(fm_.d_.hWnd_, &pt);
+			ClientToScreen(get_form().d_.hWnd_, &pt);
 
 			menu_specs.pin.left += (pt.x / get_dpi_scale());
 			menu_specs.pin.right += (pt.x / get_dpi_scale());
 			menu_specs.pin.top += (pt.y / get_dpi_scale());
 			menu_specs.pin.bottom += (pt.y / get_dpi_scale());
 
-			return context_menu()(fm_, menu_specs);
+			return context_menu()(get_form(), menu_specs);
 		}
 	}
 }

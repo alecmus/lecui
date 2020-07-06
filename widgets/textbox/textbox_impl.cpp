@@ -19,7 +19,6 @@ namespace liblec {
 	namespace lecui {
 		widgets_impl::textbox::textbox(containers::page& page,
 			const std::string& alias,
-			form& fm,
 			IDWriteFactory* p_directwrite_factory) :
 			widget(page, alias),
 			p_brush_(nullptr),
@@ -30,7 +29,6 @@ namespace liblec {
 			p_brush_disabled_(nullptr),
 			p_brush_selected_(nullptr),
 			p_text_format_(nullptr),
-			fm_(fm),
 			p_directwrite_factory_(p_directwrite_factory),
 			p_text_layout_(nullptr),
 			margin_x_(7.5f),
@@ -319,19 +317,19 @@ namespace liblec {
 		void widgets_impl::textbox::on_selection_change(const bool& selected) {
 			if (selected) {
 				// start blink timer
-				timer_management(fm_).add(caret_blink_timer_name_, 500,
+				timer_management(get_form()).add(caret_blink_timer_name_, 500,
 					[&]() {
 						if (skip_blink_)
 							skip_blink_ = false;
 						else {
 							caret_visible_ = !caret_visible_;
-							fm_.update();
+							get_form().update();
 						}
 					});
 			}
 			else {
 				// stop blink timer
-				timer_management(fm_).stop(caret_blink_timer_name_);
+				timer_management(get_form()).stop(caret_blink_timer_name_);
 			}
 		}
 

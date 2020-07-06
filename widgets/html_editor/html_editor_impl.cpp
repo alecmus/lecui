@@ -55,8 +55,6 @@ namespace liblec {
 
 		widgets_impl::html_editor::html_editor(containers::page& page,
 			const std::string& alias,
-			form& fm,
-			containers::page& pg,
 			IDWriteFactory* p_directwrite_factory) :
 			widget(page, alias),
 			controls_initialized_(false),
@@ -67,8 +65,6 @@ namespace liblec {
 			p_brush_disabled_(nullptr),
 			p_brush_selected_(nullptr),
 			p_text_format_(nullptr),
-			fm_(fm),
-			pg_(pg),
 			scroll_amount_(0.f),
 			p_directwrite_factory_(p_directwrite_factory),
 			p_text_layout_(nullptr),
@@ -367,7 +363,7 @@ namespace liblec {
 				p_render_target->FillRectangle(&caret_rect, p_brush_caret_);
 
 				// figure out if caret is within visible area
-				const auto pg_rect = pg_.d_page_.get_rect();
+				const auto pg_rect = page_.d_page_.get_rect();
 
 				if (!(pg_rect.left <= caret_rect.right &&
 					pg_rect.top <= caret_rect.top &&
@@ -405,18 +401,18 @@ namespace liblec {
 			specs_.rect.height(height);
 
 			// move rect to ensure caret visibility
-			if (move_v && !timer_management(fm_).running(autoscroll_timer_name_)) {
+			if (move_v && !timer_management(get_form()).running(autoscroll_timer_name_)) {
 				log("move_v: " + std::to_string(move_v));
 				scroll_amount_ = move_v;
 
-				timer_management(fm_).add(autoscroll_timer_name_, 0,
+				timer_management(get_form()).add(autoscroll_timer_name_, 0,
 					[&]() {
 						// scroll page to ensure caret visibility
-						pg_.d_page_.scroll(scroll_amount_);
-						fm_.update();
+						page_.d_page_.scroll(scroll_amount_);
+						get_form().update();
 
 						// stop timer
-						timer_management(fm_).stop(autoscroll_timer_name_);
+						timer_management(get_form()).stop(autoscroll_timer_name_);
 					});
 			}
 
@@ -431,19 +427,19 @@ namespace liblec {
 		void widgets_impl::html_editor::on_selection_change(const bool& selected) {
 			if (selected) {
 				// start blink timer
-				timer_management(fm_).add(caret_blink_timer_name_, 500,
+				timer_management(get_form()).add(caret_blink_timer_name_, 500,
 					[&]() {
 						if (skip_blink_)
 							skip_blink_ = false;
 						else {
 							caret_visible_ = !caret_visible_;
-							fm_.update();
+							get_form().update();
 						}
 					});
 			}
 			else {
 				// stop blink timer
-				timer_management(fm_).stop(caret_blink_timer_name_);
+				timer_management(get_form()).stop(caret_blink_timer_name_);
 			}
 		}
 
@@ -474,7 +470,7 @@ namespace liblec {
 			catch (const std::exception& e) { log(e.what()); }
 
 			// force scroll bar to set, in case caret is now hidden
-			pg_.d_page_.force_scrollbar_set();
+			page_.d_page_.force_scrollbar_set();
 		}
 
 		// to-do: backspace mechanics for formatted text

@@ -226,7 +226,7 @@ namespace liblec {
 		widgets::textbox::textbox_specs&
 			containers::page::impl::add_textbox(std::string alias) {
 			check_alias(alias);
-			if (textboxes_.try_emplace(alias, pg_, alias, fm_, p_directwrite_factory_).second) {
+			if (textboxes_.try_emplace(alias, pg_, alias, p_directwrite_factory_).second) {
 				widgets_.emplace(alias, textboxes_.at(alias));
 				widgets_order_.emplace_back(alias);
 			}
@@ -256,7 +256,7 @@ namespace liblec {
 		widgets::html_editor::html_editor_specs&
 			containers::page::impl::add_html_editor(std::string alias) {
 			check_alias(alias);
-			if (html_editors_.try_emplace(alias, pg_, alias, fm_, pg_, p_directwrite_factory_).second) {
+			if (html_editors_.try_emplace(alias, pg_, alias, p_directwrite_factory_).second) {
 				widgets_.emplace(alias, html_editors_.at(alias));
 				widgets_order_.emplace_back(alias);
 			}
@@ -266,7 +266,7 @@ namespace liblec {
 		widgets::combobox::combobox_specs&
 			containers::page::impl::add_combobox(std::string alias) {
 			check_alias(alias);
-			if (comboboxes_.try_emplace(alias, pg_, alias, fm_, p_directwrite_factory_).second) {
+			if (comboboxes_.try_emplace(alias, pg_, alias, p_directwrite_factory_).second) {
 				widgets_.emplace(alias, comboboxes_.at(alias));
 				widgets_order_.emplace_back(alias);
 			}

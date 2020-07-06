@@ -100,6 +100,7 @@ namespace liblec {
 				bool hit();
 				HCURSOR cursor();
 				float get_dpi_scale();
+				form& get_form();
 
 				virtual void press(const bool& pressed);
 

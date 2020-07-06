@@ -32,7 +32,6 @@ namespace liblec {
 				/// constructor and destructor
 				textbox(containers::page& page,
 					const std::string& alias,
-					form& fm,
 					IDWriteFactory* p_directwrite_factory);
 				~textbox();
 
@@ -90,8 +89,6 @@ namespace liblec {
 					UINT32 start = 0;
 					UINT32 end = 0;
 				} selection_info_;
-
-				form& fm_;
 
 				/// Private methods.
 				void reset_selection() {

@@ -45,8 +45,6 @@ namespace liblec {
 				/// constructor and destructor
 				html_editor(containers::page& page,
 					const std::string& alias,
-					form& fm,
-					containers::page& pg,
 					IDWriteFactory* p_directwrite_factory);
 				~html_editor();
 
@@ -127,8 +125,6 @@ namespace liblec {
 
 				color last_color_;
 
-				form& fm_;
-				containers::page& pg_;
 				float scroll_amount_;
 
 				std::vector<formatted_text_parser::text_range_properties> formatting_;

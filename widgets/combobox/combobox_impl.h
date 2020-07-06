@@ -32,7 +32,6 @@ namespace liblec {
 				/// constructor and destructor
 				combobox(containers::page& page,
 					const std::string& alias,
-					form& fm,
 					IDWriteFactory* p_directwrite_factory);
 				~combobox();
 
@@ -84,7 +83,6 @@ namespace liblec {
 
 				D2D1_RECT_F rect_dropdown_, rect_text_, rect_combobox_;
 
-				form& fm_;
 				HCURSOR h_cursor_edit_, h_cursor_dropdown_;
 
 				const float margin_x_;
