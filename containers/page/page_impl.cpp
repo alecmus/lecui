@@ -23,7 +23,7 @@ namespace liblec {
 			p_iwic_factory_(nullptr),
 			alias_(alias),
 			hit_(false),
-			scroll_bar_set_(false),
+			scrollbar_set_(false),
 			h_scrollbar_(alias),
 			v_scrollbar_(alias) {
 			HDC hdc_screen = GetDC(NULL);
@@ -83,7 +83,7 @@ namespace liblec {
 			hit_ = contains_;
 
 			if (!contains_)
-				scroll_bar_set_ = false;
+				scrollbar_set_ = false;
 
 			return contains_;
 		}
@@ -484,7 +484,7 @@ namespace liblec {
 
 		void containers::page::impl::scroll(float pixels) {
 			if (v_scrollbar_.visible()) {
-				if (!scroll_bar_set_) {
+				if (!scrollbar_set_) {
 					// check scroll bar
 					v_scrollbar_.max_displacement(
 						v_scrollbar_.max_displacement_top_,
@@ -495,7 +495,7 @@ namespace liblec {
 					v_scrollbar_.max_displacement_top_ += v_scrollbar_.y_displacement_;
 					v_scrollbar_.max_displacement_bottom_ += v_scrollbar_.y_displacement_;
 
-					scroll_bar_set_ = true;
+					scrollbar_set_ = true;
 				}
 
 				float adjustment = pixels;
@@ -504,6 +504,8 @@ namespace liblec {
 				v_scrollbar_.y_displacement_previous_ -= adjustment;
 			}
 		}
+
+		void containers::page::impl::force_scrollbar_set() { scrollbar_set_ = false; }
 
 		void containers::page::impl::check_alias(std::string& alias) {
 			// prevent empty alias

@@ -457,7 +457,6 @@ namespace liblec {
 
 		// to-do: insertion mechanics for formatted text
 		void widgets_impl::html_editor::insert_character(const char& c) {
-			log("before: " + specs_.text);
 			try {
 				unsigned long tag_number = 0;
 				if (is_selected_) {
@@ -475,7 +474,9 @@ namespace liblec {
 				skip_blink_ = true;
 			}
 			catch (const std::exception& e) { log(e.what()); }
-			log("after : " + specs_.text);
+
+			// force scroll bar to set, in case caret is now hidden
+			pg_.d_page_.force_scrollbar_set();
 		}
 
 		// to-do: backspace mechanics for formatted text

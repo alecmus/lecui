@@ -159,6 +159,7 @@ namespace liblec {
 			bool hit();
 			bool on_mousewheel(float units);
 			void scroll(float pixels);
+			void force_scrollbar_set();
 
 		private:
 			void check_alias(std::string& alias);
@@ -170,7 +171,7 @@ namespace liblec {
 			lecui::size size_;
 			bool hit_;
 			float dpi_scale_;
-			bool scroll_bar_set_;
+			bool scrollbar_set_;
 
 			std::map<std::string, widgets_impl::widget&> widgets_;
 			std::vector<std::string> widgets_order_;
