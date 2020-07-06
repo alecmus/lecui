@@ -15,14 +15,12 @@
 
 namespace liblec {
 	namespace lecui {
-		widgets_impl::maximize_button::maximize_button() :
+		widgets_impl::maximize_button::maximize_button(containers::page& page) :
+			widget(page, "maximize_button"),
 			hWnd_(nullptr),
 			p_brush_(nullptr),
 			p_brush_hot_(nullptr),
-			p_brush_disabled_(nullptr) {
-			page_alias_ = "";
-			alias_ = "maximize_button";
-		}
+			p_brush_disabled_(nullptr) {}
 
 		widgets_impl::maximize_button::~maximize_button() { discard_resources(); }
 

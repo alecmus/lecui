@@ -66,6 +66,7 @@ namespace liblec {
 			static IDWriteFactory* p_directwrite_factory_;
 			static IWICImagingFactory* p_iwic_factory_;
 
+			form& fm_;
 			form* p_parent_;
 			bool menu_form_;	// for use as a menu; not resizable & has neither a caption nor control buttons
 			bool parent_closing_;
@@ -133,6 +134,7 @@ namespace liblec {
 			// form widgets <K = widget alias, T>
 			std::map<std::string, widgets_impl::widget&> widgets_;
 			std::vector<std::string> widgets_order_;
+			containers::page controls_page_;
 			std::unique_ptr<widgets_impl::close_button> p_close_button_;
 			std::unique_ptr<widgets_impl::maximize_button> p_maximize_button_;
 			std::unique_ptr<widgets_impl::minimize_button> p_minimize_button_;
@@ -213,7 +215,7 @@ namespace liblec {
 			friend class widgets::line;
 
 		public:
-			impl(const std::string& caption_formatted);
+			impl(form& fm, const std::string& caption_formatted);
 			~impl();
 
 			HRESULT create_device_resources();
@@ -228,6 +230,7 @@ namespace liblec {
 			HRESULT on_render();
 			void on_resize(UINT width, UINT height);
 			RECT get_working_area(HWND hWnd);
+			float get_dpi_scale();
 			
 			void set_position(const float& ix, const float& iy,
 				const float& icx, const float& icy);

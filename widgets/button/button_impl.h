@@ -26,8 +26,11 @@ namespace liblec {
 				}
 
 			public:
+				/// Prevent the use of the default constructor.
+				button() = delete;
+
 				/// constructor and destructor
-				button(const std::string& page_alias,
+				button(containers::page& page,
 					const std::string& alias,
 					IDWriteFactory* p_directwrite_factory);
 				~button();
@@ -46,10 +49,6 @@ namespace liblec {
 				widgets::button::button_specs& operator()();
 
 			private:
-				/// Prevent the use of the default constructor.
-				button() :
-					button(std::string(), std::string(), nullptr) {}
-
 				/// Prevent copying an object of this class.
 				button(const button&);
 				button& operator=(const button&);

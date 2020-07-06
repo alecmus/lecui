@@ -53,6 +53,9 @@ namespace liblec {
 			void iwic_factory(IWICImagingFactory* p_iwic_factory);
 			IWICImagingFactory* iwic_factory();
 
+			float get_dpi_scale();
+			form& get_form();
+
 			void size(const lecui::size& size);
 			const lecui::size& size();
 			void width(const float& width);
@@ -170,7 +173,6 @@ namespace liblec {
 			std::string alias_;
 			lecui::size size_;
 			bool hit_;
-			float dpi_scale_;
 			bool scrollbar_set_;
 
 			std::map<std::string, widgets_impl::widget&> widgets_;

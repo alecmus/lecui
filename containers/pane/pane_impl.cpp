@@ -28,18 +28,16 @@ namespace liblec {
 			return std::string("lecui::containers::html_controls_pane::");
 		}
 
-		widgets_impl::pane::pane(const std::string& page_alias,
+		widgets_impl::pane::pane(containers::page& page,
 			const std::string& alias) :
+			widget(page, alias),
 			p_brush_(nullptr),
 			p_brush_fill_(nullptr),
 			p_brush_border_(nullptr),
 			p_brush_disabled_(nullptr),
 			margin_(12.f),
 			rect_client_area_({ 0.f, 0.f, 0.f, 0.f }),
-			rect_pane_({ 0.f, 0.f, 0.f, 0.f }) {
-			page_alias_ = page_alias;
-			alias_ = alias;
-		}
+			rect_pane_({ 0.f, 0.f, 0.f, 0.f }) {}
 
 		widgets_impl::pane::~pane() { discard_resources(); }
 

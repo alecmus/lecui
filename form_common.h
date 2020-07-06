@@ -538,5 +538,20 @@ namespace liblec {
 			rect.right = rect.left + width;
 			rect.bottom = rect.top + height;
 		}
+
+		static inline float get_process_dpi() {
+			// make the process DPI aware, if it isn't already
+			if (!IsProcessDPIAware()) {
+				if (!SetProcessDPIAware())
+					log("This program is not DPI aware. As a result, UI elements may not be clear.");
+			}
+
+			// capture current DPI scale
+			HDC hdc_screen = GetDC(NULL);
+			auto dpi_scale_ = (float)GetDeviceCaps(hdc_screen, LOGPIXELSY) / 96.0f;
+			ReleaseDC(NULL, hdc_screen);
+
+			return dpi_scale_;
+		}
 	}
 }

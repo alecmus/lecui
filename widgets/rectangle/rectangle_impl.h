@@ -35,8 +35,11 @@ namespace liblec {
 				/// <returns>The special alias. No other widget should have this alias.</returns>
 				static std::string page_rect_alias();
 
+				/// Prevent the use of the default constructor.
+				rectangle() = delete;
+
 				/// constructor and destructor
-				rectangle(const std::string& page_alias,
+				rectangle(containers::page& page,
 					const std::string& alias,
 					widgets_impl::h_scrollbar& h_scrollbar,
 					widgets_impl::v_scrollbar& v_scrollbar);
@@ -58,9 +61,6 @@ namespace liblec {
 				widgets::rectangle::rectangle_specs& operator()();
 
 			private:
-				/// Prevent the use of the default constructor.
-				rectangle();
-
 				/// Prevent copying an object of this class.
 				rectangle(const rectangle&);
 				rectangle& operator=(const rectangle&);

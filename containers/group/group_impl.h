@@ -26,8 +26,11 @@ namespace liblec {
 				}
 
 			public:
+				/// Prevent the use of the default constructor.
+				group() = delete;
+
 				/// constructor and destructor
-				group(const std::string& page_alias,
+				group(containers::page& page,
 					const std::string& alias);
 				~group();
 
@@ -45,10 +48,6 @@ namespace liblec {
 				containers::group::group_specs& operator()();
 
 			private:
-				/// Prevent the use of the default constructor.
-				group() :
-					group(std::string(), std::string()) {}
-
 				/// Prevent copying an object of this class.
 				group(const group&);
 				group& operator=(const group&);

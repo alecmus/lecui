@@ -15,14 +15,12 @@
 
 namespace liblec {
 	namespace lecui {
-		widgets_impl::minimize_button::minimize_button() :
+		widgets_impl::minimize_button::minimize_button(containers::page& page) :
+			widget(page, "minimize_button"),
 			hWnd_(nullptr),
 			p_brush_(nullptr),
 			p_brush_hot_(nullptr),
-			p_brush_disabled_(nullptr) {
-			page_alias_ = "";
-			alias_ = "minimize_button";
-		}
+			p_brush_disabled_(nullptr) {}
 
 		widgets_impl::minimize_button::~minimize_button() { discard_resources(); }
 

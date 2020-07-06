@@ -15,18 +15,16 @@
 
 namespace liblec {
 	namespace lecui {
-		widgets_impl::image::image(const std::string& page_alias,
+		widgets_impl::image::image(containers::page& page,
 			const std::string& alias, IWICImagingFactory* p_IWICFactory) :
+			widget(page, alias),
 			p_brush_fill_(nullptr),
 			p_brush_border_(nullptr),
 			p_brush_hot_(nullptr),
 			p_brush_disabled_(nullptr),
 			p_brush_selected_(nullptr),
 			p_bitmap_(nullptr),
-			p_IWICFactory_(p_IWICFactory) {
-			page_alias_ = page_alias;
-			alias_ = alias;
-		}
+			p_IWICFactory_(p_IWICFactory) {}
 
 		widgets_impl::image::~image() { discard_resources(); }
 

@@ -29,8 +29,11 @@ namespace liblec {
 				}
 
 			public:
+				/// Prevent the use of the default constructor.
+				line() = delete;
+
 				/// constructor and destructor
-				line(const std::string& page_alias,
+				line(containers::page& page,
 					const std::string& alias);
 				~line();
 
@@ -48,9 +51,6 @@ namespace liblec {
 				widgets::line::line_specs& operator()();
 
 			private:
-				/// Prevent the use of the default constructor.
-				line();
-
 				/// Prevent copying an object of this class.
 				line(const line&);
 				line& operator=(const line&);

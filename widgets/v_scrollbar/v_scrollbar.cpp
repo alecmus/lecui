@@ -15,7 +15,8 @@
 
 namespace liblec {
 	namespace lecui {
-		widgets_impl::v_scrollbar::v_scrollbar(const std::string& page_alias) :
+		widgets_impl::v_scrollbar::v_scrollbar(containers::page& page) :
+			widget(page, "v_scrollbar"),
 			p_brush_(nullptr),
 			p_brush_border_(nullptr),
 			p_brush_hot_(nullptr),
@@ -30,10 +31,7 @@ namespace liblec {
 			y_off_set_(0.f),
 			max_displacement_top_(0.f),
 			max_displacement_bottom_(0.f),
-			force_translate_(false) {
-			page_alias_ = page_alias;
-			alias_ = "v_scrollbar";
-		}
+			force_translate_(false) {}
 
 		widgets_impl::v_scrollbar::~v_scrollbar() { discard_resources(); }
 
@@ -107,7 +105,7 @@ namespace liblec {
 			position_v_scrollbar(rectA_, rectB_, rectC_, rectD_);
 
 			// adjust y_displacement_ to match what the user is seeing. Ensures consistency.
-			auto const ui_displacement = dpi_scale_ * (rectD_.top - rectC_.top);
+			auto const ui_displacement = get_dpi_scale() * (rectD_.top - rectC_.top);
 
 			if (ui_displacement != y_displacement_) {
 				y_displacement_ = ui_displacement;

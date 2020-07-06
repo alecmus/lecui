@@ -26,8 +26,11 @@ namespace liblec {
 				}
 
 			public:
+				/// Prevent the use of the default constructor.
+				textbox() = delete;
+
 				/// constructor and destructor
-				textbox(const std::string& page_alias,
+				textbox(containers::page& page,
 					const std::string& alias,
 					form& fm,
 					IDWriteFactory* p_directwrite_factory);

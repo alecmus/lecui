@@ -59,7 +59,8 @@ namespace liblec {
 		IDWriteFactory* form::impl::p_directwrite_factory_ = nullptr;
 		IWICImagingFactory* form::impl::p_iwic_factory_ = nullptr;
 
-		form::impl::impl(const std::string& caption_formatted) :
+		form::impl::impl(form& fm, const std::string& caption_formatted) :
+			fm_(fm),
 			p_parent_(nullptr),
 			menu_form_(caption_formatted == form::menu_form_caption()),
 			parent_closing_(false),
@@ -92,7 +93,7 @@ namespace liblec {
 			user_pos_(false),
 			preset_pos_(false),
 			form_position_(form_position::center_to_working_area),
-			dpi_scale_(1.f),
+			dpi_scale_(get_process_dpi()),
 			borderless_(true),
 			borderless_shadow_(true),
 			shadow_setting_before_maximize_(borderless_shadow_),
@@ -102,6 +103,7 @@ namespace liblec {
 			p_brush_theme_disabled_(nullptr),
 			p_brush_titlebar_(nullptr),
 			current_page_(std::string()),
+			controls_page_(fm, ""),
 			p_caption_(nullptr),
 			p_close_button_(nullptr),
 			p_maximize_button_(nullptr),
@@ -164,18 +166,6 @@ namespace liblec {
 				// set initialized flag to true (only here)
 				initialized_ = true;
 			}
-
-			if (!IsProcessDPIAware()) {
-				if (!SetProcessDPIAware())
-					MessageBox(nullptr,
-						L"This program is not DPI aware. As a result, UI elements may not be clear.",
-						L"form", MB_ICONWARNING);
-			}
-
-			// capture current DPI scale
-			HDC hdc_screen = GetDC(NULL);
-			dpi_scale_ = (float)GetDeviceCaps(hdc_screen, LOGPIXELSY) / 96.0f;
-			ReleaseDC(NULL, hdc_screen);
 
 			// ...
 		}
@@ -365,7 +355,7 @@ namespace liblec {
 		void form::impl::create_close_button(std::function<void()> on_click) {
 			p_close_button_ =
 				std::unique_ptr<widgets_impl::close_button>(new
-					widgets_impl::close_button());
+					widgets_impl::close_button(controls_page_));
 			widgets_.emplace(p_close_button_->alias(), *p_close_button_);
 			widgets_order_.emplace_back(p_close_button_->alias());
 			
@@ -388,7 +378,7 @@ namespace liblec {
 		void form::impl::create_maximize_button() {
 			p_maximize_button_ =
 				std::unique_ptr<widgets_impl::maximize_button>(new
-					widgets_impl::maximize_button());
+					widgets_impl::maximize_button(controls_page_));
 			widgets_.emplace(p_maximize_button_->alias(), *p_maximize_button_);
 			widgets_order_.emplace_back(p_maximize_button_->alias());
 
@@ -411,7 +401,7 @@ namespace liblec {
 		void form::impl::create_minimize_button() {
 			p_minimize_button_ =
 				std::unique_ptr<widgets_impl::minimize_button>(new
-					widgets_impl::minimize_button());
+					widgets_impl::minimize_button(controls_page_));
 			widgets_.emplace(p_minimize_button_->alias(), *p_minimize_button_);
 			widgets_order_.emplace_back(p_minimize_button_->alias());
 
@@ -435,7 +425,7 @@ namespace liblec {
 		void form::impl::create_form_caption() {
 			p_caption_ =
 				std::unique_ptr<widgets_impl::label>(new
-					widgets_impl::label("", "form_caption",
+					widgets_impl::label(controls_page_, "form_caption",
 						p_directwrite_factory_));
 			widgets_.emplace(p_caption_->alias(), *p_caption_);
 			widgets_order_.emplace_back(p_caption_->alias());
@@ -938,6 +928,10 @@ namespace liblec {
 
 			unscale_RECT(monitorinfo.rcWork, dpi_scale_);
 			return monitorinfo.rcWork;
+		}
+
+		float form::impl::get_dpi_scale() {
+			return dpi_scale_;
 		}
 
 		void form::impl::set_position(const float& ix, const float& iy,

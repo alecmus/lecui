@@ -19,10 +19,11 @@ namespace liblec {
 			return std::string("lecui::minimal_page_border_rect");
 		}
 
-		widgets_impl::rectangle::rectangle(const std::string& page_alias,
+		widgets_impl::rectangle::rectangle(containers::page& page,
 			const std::string& alias,
 			widgets_impl::h_scrollbar& h_scrollbar,
 			widgets_impl::v_scrollbar& v_scrollbar) :
+			widget(page, alias),
 			p_brush_fill_(nullptr),
 			p_brush_border_(nullptr),
 			p_brush_border_hot_(nullptr),
@@ -30,10 +31,7 @@ namespace liblec {
 			p_brush_disabled_(nullptr),
 			p_brush_selected_(nullptr),
 			h_scrollbar_(h_scrollbar),
-			v_scrollbar_(v_scrollbar) {
-			page_alias_ = page_alias;
-			alias_ = alias;
-		}
+			v_scrollbar_(v_scrollbar) {}
 
 		widgets_impl::rectangle::~rectangle() { discard_resources(); }
 
@@ -137,7 +135,7 @@ namespace liblec {
 				return false;
 
 			D2D1_RECT_F rect = rect_;
-			scale_RECT(rect, dpi_scale_);
+			scale_RECT(rect, get_dpi_scale());
 
 			if (alias_ == page_rect_alias()) {
 				// this is a special rectangle used to manage pages.

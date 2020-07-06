@@ -36,8 +36,11 @@ namespace liblec {
 				float max_displacement_bottom_;
 				bool force_translate_;
 
+				/// Prevent the use of the default constructor.
+				v_scrollbar() = delete;
+
 				/// constructor and destructor
-				v_scrollbar(const std::string& page_alias);
+				v_scrollbar(containers::page& page);
 				~v_scrollbar();
 
 				/// virtual function overrides
@@ -58,10 +61,6 @@ namespace liblec {
 				void setup(const D2D1_RECT_F& rectA, const D2D1_RECT_F& rectB);
 
 			private:
-				/// Prevent the use of the default constructor.
-				v_scrollbar() :
-					v_scrollbar(std::string()) {}
-
 				/// Prevent copying an object of this class.
 				v_scrollbar(const v_scrollbar&);
 				v_scrollbar& operator=(const v_scrollbar&);

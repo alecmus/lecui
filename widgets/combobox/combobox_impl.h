@@ -26,8 +26,11 @@ namespace liblec {
 				}
 
 			public:
+				/// Prevent the use of the default constructor.
+				combobox() = delete;
+
 				/// constructor and destructor
-				combobox(const std::string& page_alias,
+				combobox(containers::page& page,
 					const std::string& alias,
 					form& fm,
 					IDWriteFactory* p_directwrite_factory);
@@ -56,9 +59,6 @@ namespace liblec {
 				void key_return();
 
 			private:
-				/// Prevent the use of the default constructor.
-				combobox();
-
 				/// Prevent copying an object of this class.
 				combobox(const combobox&);
 				combobox& operator=(const combobox&);

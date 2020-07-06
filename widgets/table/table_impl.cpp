@@ -15,9 +15,10 @@
 
 namespace liblec {
 	namespace lecui {
-		widgets_impl::table::table(const std::string& page_alias,
+		widgets_impl::table::table(containers::page& page,
 			const std::string& alias,
 			IDWriteFactory* p_directwrite_factory) :
+			widget(page, alias),
 			p_brush_(nullptr),
 			p_brush_fill_(nullptr),
 			p_brush_scrollbar_border_(nullptr),
@@ -62,9 +63,6 @@ namespace liblec {
 			change_in_width_previous_(0.f),
 			last_selected_(0UL),
 			book_on_selection_(false) {
-			page_alias_ = page_alias;
-			alias_ = alias_;
-
 			widgets::scrollbar_specs bar;
 
 			color_scrollbar_ = bar.color_fill;
@@ -302,7 +300,7 @@ namespace liblec {
 			// step7a: handle vertical scroll bar
 			if (v_scrollbar_visible_) {
 				auto rect = rectC_v_;
-				scale_RECT(rect, dpi_scale_);
+				scale_RECT(rect, get_dpi_scale());
 
 				// handle hit status
 				if (point_.x >= rect.left && point_.x <= rect.right &&
@@ -333,7 +331,7 @@ namespace liblec {
 
 				if (v_scrollbar_pressed_) {
 					// compute the displacement according the the mouse movement
-					v_displacement_ = -scale_factor * (point_.y - point_on_press_.y) / dpi_scale_;
+					v_displacement_ = -scale_factor * (point_.y - point_on_press_.y) / get_dpi_scale();
 					v_displacement_ += v_displacement_previous_;
 				}
 			}
@@ -341,7 +339,7 @@ namespace liblec {
 			// step7b: handle horizontal scroll bar
 			if (h_scrollbar_visible_) {
 				auto rect = rectC_h_;
-				scale_RECT(rect, dpi_scale_);
+				scale_RECT(rect, get_dpi_scale());
 
 				// handle hit status
 				if (point_.x >= rect.left && point_.x <= rect.right &&
@@ -372,7 +370,7 @@ namespace liblec {
 
 				if (h_scrollbar_pressed_) {
 					// compute the displacement according the the mouse movement
-					h_displacement_ = -scale_factor * (point_.x - point_on_press_.x) / dpi_scale_;
+					h_displacement_ = -scale_factor * (point_.x - point_on_press_.x) / get_dpi_scale();
 					h_displacement_ += h_displacement_previous_;
 				}
 			}
@@ -475,7 +473,7 @@ namespace liblec {
 								!v_scrollbar_pressed_)
 								hot_spots_[row_number] = rect;
 
-							scale_RECT(rect, dpi_scale_);
+							scale_RECT(rect, get_dpi_scale());
 
 							// handle hit status
 							if (!h_scrollbar_hit_ &&
@@ -721,7 +719,7 @@ namespace liblec {
 
 				for (auto& it : hot_spots_) {
 					auto rect = it.second;
-					scale_RECT(rect, dpi_scale_);
+					scale_RECT(rect, get_dpi_scale());
 
 					if (point_.x >= rect.left && point_.x <= rect.right &&
 						point_.y >= rect.top && point_.y <= rect.bottom) {

@@ -29,7 +29,7 @@ namespace liblec {
 	namespace lecui {
 		// this is the constructor that all the others below call
 		form::form(const std::string& caption) :
-			d_(*new impl(caption)) {}
+			d_(*new impl(*this, caption)) {}
 
 		form::form() :
 			form::form("form") {}

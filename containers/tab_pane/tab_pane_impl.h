@@ -31,8 +31,11 @@ namespace liblec {
 				std::vector<std::string> tab_order_;
 				std::string current_tab_;
 
+				/// Prevent the use of the default constructor.
+				tab_pane() = delete;
+
 				/// constructor and destructor
-				tab_pane(const std::string& page_alias,
+				tab_pane(containers::page& page,
 					const std::string& alias,
 					IDWriteFactory* p_directwrite_factory);
 				~tab_pane();
@@ -60,10 +63,6 @@ namespace liblec {
 				bool tab_height_set();
 
 			private:
-				/// Prevent the use of the default constructor.
-				tab_pane() :
-					tab_pane(std::string(), std::string(), nullptr) {}
-
 				/// Prevent copying an object of this class.
 				tab_pane(const tab_pane&);
 				tab_pane& operator=(const tab_pane&);

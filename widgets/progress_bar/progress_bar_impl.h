@@ -26,8 +26,11 @@ namespace liblec {
 				}
 
 			public:
+				/// Prevent the use of the default constructor.
+				progress_bar() = delete;
+
 				/// constructor and destructor
-				progress_bar(const std::string& page_alias,
+				progress_bar(containers::page& page,
 					const std::string& alias,
 					ID2D1Factory* p_direct2d_factory,
 					IDWriteFactory* p_directwrite_factory);
@@ -47,10 +50,6 @@ namespace liblec {
 				widgets::progress_bar::progress_bar_specs& operator()();
 
 			private:
-				/// Prevent the use of the default constructor.
-				progress_bar() :
-					progress_bar(std::string(), std::string(), nullptr, nullptr) {}
-
 				/// Prevent copying an object of this class.
 				progress_bar(const progress_bar&);
 				progress_bar& operator=(const progress_bar&);

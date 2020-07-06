@@ -12,13 +12,13 @@
 */
 
 #include "widget_impl.h"
+#include "../containers/page/page_impl.h"
 
 namespace liblec {
 	namespace lecui {
-		widgets_impl::widget::widget() :
-			page_alias_(std::string()),
-			alias_(std::string()),
-			dpi_scale_(1.f),
+		widgets_impl::widget::widget(containers::page& page, const std::string& alias) :
+			page_(page),
+			alias_(alias),
 			is_static_(true),
 			hit_(false),
 			pressed_(false),
@@ -30,17 +30,10 @@ namespace liblec {
 			point_on_press_({ 0.f,0.f }),
 			point_on_release_({ 0.f,0.f }),
 			resources_created_(false),
-			h_cursor_(nullptr) {
-			// to-do: this seems really wasteful. Find a way of optimizing this and not repeating it for
-			// every single widget, without making it static. Perhaps implement at page-level.
-			HDC hdc_screen = GetDC(NULL);
-			dpi_scale_ = (float)GetDeviceCaps(hdc_screen, LOGPIXELSY) / 96.0f;
-			ReleaseDC(NULL, hdc_screen);
-		}
+			h_cursor_(nullptr) {}
 
 		widgets_impl::widget::~widget() {}
 
-		const std::string& widgets_impl::widget::page_alias() { return page_alias_; }
 		const std::string& widgets_impl::widget::alias() { return alias_; }
 
 		bool widgets_impl::widget::contains(const D2D1_POINT_2F& point) {
@@ -51,7 +44,7 @@ namespace liblec {
 				return false;
 
 			D2D1_RECT_F rect = rect_;
-			scale_RECT(rect, dpi_scale_);
+			scale_RECT(rect, page_.d_page_.get_dpi_scale());
 
 			if (point.x >= rect.left && point.x <= rect.right &&
 				point.y >= rect.top && point.y <= rect.bottom)
@@ -103,7 +96,7 @@ namespace liblec {
 		bool widgets_impl::widget::selected() { return selected_; }
 		bool widgets_impl::widget::hit() { return hit_; }
 		HCURSOR widgets_impl::widget::cursor() { return h_cursor_; }
-		float widgets_impl::widget::get_dpi_scale() { return dpi_scale_; }
+		float widgets_impl::widget::get_dpi_scale() { return page_.d_page_.get_dpi_scale(); }
 		bool widgets_impl::widget::on_mousewheel(float units) { return false; }
 		bool widgets_impl::widget::on_keydown(WPARAM wParam) { return false; }
 		void widgets_impl::widget::on_selection_change(const bool& selected) {}

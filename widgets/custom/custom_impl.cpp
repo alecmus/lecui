@@ -15,14 +15,12 @@
 
 namespace liblec {
 	namespace lecui {
-		widgets_impl::custom::custom(const std::string& page_alias,
+		widgets_impl::custom::custom(containers::page& page,
 			const std::string& alias,
 			IDWriteFactory* p_directwrite_factory, IWICImagingFactory* p_iwic_factory) :
+			widget(page, alias),
 			p_directwrite_factory_(p_directwrite_factory),
-			p_iwic_factory_(p_iwic_factory) {
-			page_alias_ = page_alias;
-			alias_ = alias;
-		}
+			p_iwic_factory_(p_iwic_factory) {}
 
 		widgets_impl::custom::~custom() {
 			// DO NOT call discard_resources() here. Let the client do that

@@ -26,8 +26,11 @@ namespace liblec {
 				}
 
 			public:
+				/// Prevent the use of the default constructor.
+				custom() = delete;
+
 				/// constructor and destructor
-				custom(const std::string& page_alias,
+				custom(containers::page& page,
 					const std::string& alias,
 					IDWriteFactory* p_directwrite_factory,
 					IWICImagingFactory* p_iwic_factory);
@@ -47,10 +50,6 @@ namespace liblec {
 				widgets::custom::custom_specs& operator()();
 
 			private:
-				/// Prevent the use of the default constructor.
-				custom() :
-					custom(std::string(), std::string(), nullptr, nullptr) {}
-
 				/// Prevent copying an object of this class.
 				custom(const custom&);
 				custom& operator=(const custom&);

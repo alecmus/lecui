@@ -26,8 +26,11 @@ namespace liblec {
 				}
 
 			public:
+				/// Prevent the use of the default constructor.
+				slider() = delete;
+
 				/// constructor and destructor
-				slider(const std::string& page_alias,
+				slider(containers::page& page,
 					const std::string& alias,
 					IDWriteFactory* p_directwrite_factory);
 				~slider();
@@ -49,10 +52,6 @@ namespace liblec {
 				widgets::slider::slider_specs& operator()();
 
 			private:
-				/// Prevent the use of the default constructor.
-				slider() :
-					slider(std::string(), std::string(), nullptr) {}
-
 				/// Prevent copying an object of this class.
 				slider(const slider&);
 				slider& operator=(const slider&);

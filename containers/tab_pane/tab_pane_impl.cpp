@@ -16,9 +16,10 @@
 
 namespace liblec {
 	namespace lecui {
-		widgets_impl::tab_pane::tab_pane(const std::string& page_alias,
+		widgets_impl::tab_pane::tab_pane(containers::page& page,
 			const std::string& alias,
 			IDWriteFactory* p_directwrite_factory) :
+			widget(page, alias),
 			p_brush_(nullptr),
 			p_brush_fill_(nullptr),
 			p_brush_border_(nullptr),
@@ -37,10 +38,7 @@ namespace liblec {
 			bar_height_(2.f),
 			rect_tabs_({ 0.f, 0.f, 0.f, 0.f }),
 			rect_client_area_({ 0.f, 0.f, 0.f, 0.f }),
-			rect_tab_pane_({ 0.f, 0.f, 0.f, 0.f }) {
-			page_alias_ = page_alias;
-			alias_ = alias;
-		}
+			rect_tab_pane_({ 0.f, 0.f, 0.f, 0.f }) {}
 
 		widgets_impl::tab_pane::~tab_pane() { discard_resources(); }
 
@@ -373,7 +371,7 @@ namespace liblec {
 						break;
 					}
 
-					scale_RECT(rect, dpi_scale_);
+					scale_RECT(rect, get_dpi_scale());
 
 					if (point_.x >= rect.left && point_.x <= rect.right &&
 						point_.y >= rect.top && point_.y <= rect.bottom) {
@@ -589,7 +587,7 @@ namespace liblec {
 		void widgets_impl::tab_pane::on_click() {
 			for (auto& it : p_tab_rects_) {
 				D2D1_RECT_F rect = it.second;
-				scale_RECT(rect, dpi_scale_);
+				scale_RECT(rect, get_dpi_scale());
 
 				if (point_.x >= rect.left && point_.x <= rect.right &&
 					point_.y >= rect.top && point_.y <= rect.bottom)
@@ -643,7 +641,7 @@ namespace liblec {
 		bool widgets_impl::tab_pane::contains() {
 			for (const auto& it : p_tab_rects_) {
 				D2D1_RECT_F rect = it.second;
-				scale_RECT(rect, dpi_scale_);
+				scale_RECT(rect, get_dpi_scale());
 
 				if (point_.x >= rect.left && point_.x <= rect.right &&
 					point_.y >= rect.top && point_.y <= rect.bottom)

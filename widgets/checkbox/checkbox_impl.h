@@ -26,8 +26,11 @@ namespace liblec {
 				}
 
 			public:
+				/// Prevent the use of the default constructor.
+				checkbox() = delete;
+
 				/// constructor and destructor
-				checkbox(const std::string& page_alias,
+				checkbox(containers::page& page,
 					const std::string& alias,
 					ID2D1Factory* p_direct2d_factory,
 					IDWriteFactory* p_directwrite_factory);
@@ -47,10 +50,6 @@ namespace liblec {
 				widgets::checkbox::checkbox_specs& operator()();
 
 			private:
-				/// Prevent the use of the default constructor.
-				checkbox() :
-					checkbox(std::string(), std::string(), nullptr, nullptr) {}
-
 				/// Prevent copying an object of this class.
 				checkbox(const checkbox&);
 				checkbox& operator=(const checkbox&);

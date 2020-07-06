@@ -26,8 +26,11 @@ namespace liblec {
 				}
 
 			public:
+				/// Prevent the use of the default constructor.
+				progress_indicator() = delete;
+
 				/// constructor and destructor
-				progress_indicator(const std::string& page_alias,
+				progress_indicator(containers::page& page,
 					const std::string& alias,
 					ID2D1Factory* p_direct2d_factory,
 					IDWriteFactory* p_directwrite_factory);
@@ -47,10 +50,6 @@ namespace liblec {
 				widgets::progress_indicator::progress_indicator_specs& operator()();
 
 			private:
-				/// Prevent the use of the default constructor.
-				progress_indicator() :
-					progress_indicator(std::string(), std::string(), nullptr, nullptr) {}
-
 				/// Prevent copying an object of this class.
 				progress_indicator(const progress_indicator&);
 				progress_indicator& operator=(const progress_indicator&);

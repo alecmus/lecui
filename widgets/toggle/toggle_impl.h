@@ -26,8 +26,11 @@ namespace liblec {
 				}
 
 			public:
+				/// Prevent the use of the default constructor.
+				toggle() = delete;
+
 				/// constructor and destructor
-				toggle(const std::string& page_alias,
+				toggle(containers::page& page,
 					const std::string& alias,
 					IDWriteFactory* p_directwrite_factory);
 				~toggle();
@@ -49,10 +52,6 @@ namespace liblec {
 				widgets::toggle::toggle_specs& operator()();
 
 			private:
-				/// Prevent the use of the default constructor.
-				toggle() :
-					toggle(std::string(), std::string(), nullptr) {}
-
 				/// Prevent copying an object of this class.
 				toggle(const toggle&);
 				toggle& operator=(const toggle&);

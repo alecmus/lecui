@@ -15,9 +15,10 @@
 
 namespace liblec {
 	namespace lecui {
-		widgets_impl::toggle::toggle(const std::string& page_alias,
+		widgets_impl::toggle::toggle(containers::page& page,
 			const std::string& alias,
 			IDWriteFactory* p_directwrite_factory) :
+			widget(page, alias),
 			p_brush_(nullptr),
 			p_brush_fill_(nullptr),
 			p_brush_on_(nullptr),
@@ -29,10 +30,7 @@ namespace liblec {
 			p_text_format_(nullptr),
 			p_directwrite_factory_(p_directwrite_factory),
 			p_text_layout_(nullptr),
-			perc_along_(0.f) {
-			page_alias_ = page_alias;
-			alias_ = alias;
-		}
+			perc_along_(0.f) {}
 
 		widgets_impl::toggle::~toggle() { discard_resources(); }
 
@@ -154,7 +152,7 @@ namespace liblec {
 				rect.left += ((toggle_foreground_.right - toggle_foreground_.left) / 2.f);
 				rect.right -= ((toggle_foreground_.right - toggle_foreground_.left) / 2.f);
 
-				scale_RECT(rect, dpi_scale_);
+				scale_RECT(rect, get_dpi_scale());
 
 				const float mid_point_x = rect.left + ((rect.right - rect.left) / 2.f);
 
@@ -254,7 +252,7 @@ namespace liblec {
 				return false;
 
 			D2D1_RECT_F rect = rect_;
-			scale_RECT(rect, dpi_scale_);
+			scale_RECT(rect, get_dpi_scale());
 
 			if (point.x >= rect.left && point.x <= rect.right &&
 				point.y >= rect.top && point.y <= rect.bottom)

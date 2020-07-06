@@ -12,6 +12,7 @@
 */
 
 #include "page_impl.h"
+#include "../../form_impl/form_impl.h"
 
 namespace liblec {
 	namespace lecui {
@@ -24,12 +25,8 @@ namespace liblec {
 			alias_(alias),
 			hit_(false),
 			scrollbar_set_(false),
-			h_scrollbar_(alias),
-			v_scrollbar_(alias) {
-			HDC hdc_screen = GetDC(NULL);
-			dpi_scale_ = (float)GetDeviceCaps(hdc_screen, LOGPIXELSY) / 96.0f;
-			ReleaseDC(NULL, hdc_screen);
-
+			h_scrollbar_(pg),
+			v_scrollbar_(pg) {
 			widgets_.emplace(h_scrollbar_.alias(), h_scrollbar_);
 			widgets_.emplace(v_scrollbar_.alias(), v_scrollbar_);
 		}
@@ -63,6 +60,14 @@ namespace liblec {
 			return p_iwic_factory_;
 		}
 
+		float containers::page::impl::get_dpi_scale() {
+			return fm_.d_.get_dpi_scale();
+		}
+
+		form& containers::page::impl::get_form() {
+			return fm_;
+		}
+
 		void containers::page::impl::size(const lecui::size& size) { size_ = size; }
 		const size& containers::page::impl::size() { return size_; }
 		void containers::page::impl::width(const float& width) { size_.width = width; }
@@ -91,7 +96,7 @@ namespace liblec {
 		containers::tab_pane::tab_pane_specs&
 			containers::page::impl::add_tab_pane(std::string alias) {
 			check_alias(alias);
-			if (tab_panes_.try_emplace(alias, alias_, alias, p_directwrite_factory_).second) {
+			if (tab_panes_.try_emplace(alias, pg_, alias, p_directwrite_factory_).second) {
 				widgets_.emplace(alias, tab_panes_.at(alias));
 				widgets_order_.emplace_back(alias);
 			}
@@ -101,7 +106,7 @@ namespace liblec {
 		containers::pane::pane_specs&
 			containers::page::impl::add_pane(std::string alias) {
 			check_alias(alias);
-			if (panes_.try_emplace(alias, alias_, alias).second) {
+			if (panes_.try_emplace(alias, pg_, alias).second) {
 				widgets_.emplace(alias, panes_.at(alias));
 				widgets_order_.emplace_back(alias);
 			}
@@ -111,7 +116,7 @@ namespace liblec {
 		widgets::rectangle::rectangle_specs&
 			containers::page::impl::add_rectangle(std::string alias) {
 			check_alias(alias);
-			if (rectangles_.try_emplace(alias, alias_, alias, h_scrollbar_, v_scrollbar_).second) {
+			if (rectangles_.try_emplace(alias, pg_, alias, h_scrollbar_, v_scrollbar_).second) {
 				widgets_.emplace(alias, rectangles_.at(alias));
 				widgets_order_.emplace_back(alias);
 			}
@@ -121,7 +126,7 @@ namespace liblec {
 		widgets::label::label_specs&
 			containers::page::impl::add_label(std::string alias) {
 			check_alias(alias);
-			if (labels_.try_emplace(alias, alias_, alias, p_directwrite_factory_).second) {
+			if (labels_.try_emplace(alias, pg_, alias, p_directwrite_factory_).second) {
 				widgets_.emplace(alias, labels_.at(alias));
 				widgets_order_.emplace_back(alias);
 			}
@@ -131,7 +136,7 @@ namespace liblec {
 		containers::group::group_specs&
 			containers::page::impl::add_group(std::string alias) {
 			check_alias(alias);
-			if (groups_.try_emplace(alias, alias_, alias).second) {
+			if (groups_.try_emplace(alias, pg_, alias).second) {
 				widgets_.emplace(alias, groups_.at(alias));
 				widgets_order_.emplace_back(alias);
 			}
@@ -141,7 +146,7 @@ namespace liblec {
 		widgets::button::button_specs&
 			containers::page::impl::add_button(std::string alias) {
 			check_alias(alias);
-			if (buttons_.try_emplace(alias, alias_, alias, p_directwrite_factory_).second) {
+			if (buttons_.try_emplace(alias, pg_, alias, p_directwrite_factory_).second) {
 				widgets_.emplace(alias, buttons_.at(alias));
 				widgets_order_.emplace_back(alias);
 			}
@@ -151,7 +156,7 @@ namespace liblec {
 		widgets::toggle::toggle_specs&
 			containers::page::impl::add_toggle(std::string alias) {
 			check_alias(alias);
-			if (toggles_.try_emplace(alias, alias_, alias, p_directwrite_factory_).second) {
+			if (toggles_.try_emplace(alias, pg_, alias, p_directwrite_factory_).second) {
 				widgets_.emplace(alias, toggles_.at(alias));
 				widgets_order_.emplace_back(alias);
 			}
@@ -161,7 +166,7 @@ namespace liblec {
 		widgets::table::table_specs&
 			containers::page::impl::add_table(std::string alias) {
 			check_alias(alias);
-			if (tables_.try_emplace(alias, alias_, alias, p_directwrite_factory_).second) {
+			if (tables_.try_emplace(alias, pg_, alias, p_directwrite_factory_).second) {
 				widgets_.emplace(alias, tables_.at(alias));
 				widgets_order_.emplace_back(alias);
 			}
@@ -171,7 +176,7 @@ namespace liblec {
 		widgets::custom::custom_specs&
 			containers::page::impl::add_custom(std::string alias) {
 			check_alias(alias);
-			if (customs_.try_emplace(alias, alias_, alias, p_directwrite_factory_, p_iwic_factory_).second) {
+			if (customs_.try_emplace(alias, pg_, alias, p_directwrite_factory_, p_iwic_factory_).second) {
 				widgets_.emplace(alias, customs_.at(alias));
 				widgets_order_.emplace_back(alias);
 			}
@@ -181,7 +186,7 @@ namespace liblec {
 		widgets::image::image_specs&
 			containers::page::impl::add_image(std::string alias) {
 			check_alias(alias);
-			if (images_.try_emplace(alias, alias_, alias, p_iwic_factory_).second) {
+			if (images_.try_emplace(alias, pg_, alias, p_iwic_factory_).second) {
 				widgets_.emplace(alias, images_.at(alias));
 				widgets_order_.emplace_back(alias);
 			}
@@ -191,7 +196,7 @@ namespace liblec {
 		widgets::progress_indicator::progress_indicator_specs&
 			containers::page::impl::add_progress_indicator(std::string alias) {
 			check_alias(alias);
-			if (progress_indicators_.try_emplace(alias, alias_, alias, p_direct2d_factory_, p_directwrite_factory_).second) {
+			if (progress_indicators_.try_emplace(alias, pg_, alias, p_direct2d_factory_, p_directwrite_factory_).second) {
 				widgets_.emplace(alias, progress_indicators_.at(alias));
 				widgets_order_.emplace_back(alias);
 			}
@@ -201,7 +206,7 @@ namespace liblec {
 		widgets::progress_bar::progress_bar_specs&
 			containers::page::impl::add_progress_bar(std::string alias) {
 			check_alias(alias);
-			if (progress_bars_.try_emplace(alias, alias_, alias, p_direct2d_factory_, p_directwrite_factory_).second) {
+			if (progress_bars_.try_emplace(alias, pg_, alias, p_direct2d_factory_, p_directwrite_factory_).second) {
 				widgets_.emplace(alias, progress_bars_.at(alias));
 				widgets_order_.emplace_back(alias);
 			}
@@ -211,7 +216,7 @@ namespace liblec {
 		widgets::checkbox::checkbox_specs&
 			containers::page::impl::add_checkbox(std::string alias) {
 			check_alias(alias);
-			if (checkboxes_.try_emplace(alias, alias_, alias, p_direct2d_factory_, p_directwrite_factory_).second) {
+			if (checkboxes_.try_emplace(alias, pg_, alias, p_direct2d_factory_, p_directwrite_factory_).second) {
 				widgets_.emplace(alias, checkboxes_.at(alias));
 				widgets_order_.emplace_back(alias);
 			}
@@ -221,7 +226,7 @@ namespace liblec {
 		widgets::textbox::textbox_specs&
 			containers::page::impl::add_textbox(std::string alias) {
 			check_alias(alias);
-			if (textboxes_.try_emplace(alias, alias_, alias, fm_, p_directwrite_factory_).second) {
+			if (textboxes_.try_emplace(alias, pg_, alias, fm_, p_directwrite_factory_).second) {
 				widgets_.emplace(alias, textboxes_.at(alias));
 				widgets_order_.emplace_back(alias);
 			}
@@ -231,7 +236,7 @@ namespace liblec {
 		widgets::tree::tree_specs&
 			containers::page::impl::add_tree(std::string alias) {
 			check_alias(alias);
-			if (trees_.try_emplace(alias, alias_, alias, p_direct2d_factory_, p_directwrite_factory_).second) {
+			if (trees_.try_emplace(alias, pg_, alias, p_direct2d_factory_, p_directwrite_factory_).second) {
 				widgets_.emplace(alias, trees_.at(alias));
 				widgets_order_.emplace_back(alias);
 			}
@@ -241,7 +246,7 @@ namespace liblec {
 		widgets::slider::slider_specs&
 			containers::page::impl::add_slider(std::string alias) {
 			check_alias(alias);
-			if (sliders_.try_emplace(alias, alias_, alias, p_directwrite_factory_).second) {
+			if (sliders_.try_emplace(alias, pg_, alias, p_directwrite_factory_).second) {
 				widgets_.emplace(alias, sliders_.at(alias));
 				widgets_order_.emplace_back(alias);
 			}
@@ -251,7 +256,7 @@ namespace liblec {
 		widgets::html_editor::html_editor_specs&
 			containers::page::impl::add_html_editor(std::string alias) {
 			check_alias(alias);
-			if (html_editors_.try_emplace(alias, alias_, alias, fm_, pg_, p_directwrite_factory_).second) {
+			if (html_editors_.try_emplace(alias, pg_, alias, fm_, pg_, p_directwrite_factory_).second) {
 				widgets_.emplace(alias, html_editors_.at(alias));
 				widgets_order_.emplace_back(alias);
 			}
@@ -261,7 +266,7 @@ namespace liblec {
 		widgets::combobox::combobox_specs&
 			containers::page::impl::add_combobox(std::string alias) {
 			check_alias(alias);
-			if (comboboxes_.try_emplace(alias, alias_, alias, fm_, p_directwrite_factory_).second) {
+			if (comboboxes_.try_emplace(alias, pg_, alias, fm_, p_directwrite_factory_).second) {
 				widgets_.emplace(alias, comboboxes_.at(alias));
 				widgets_order_.emplace_back(alias);
 			}
@@ -271,7 +276,7 @@ namespace liblec {
 		widgets::line::line_specs&
 			containers::page::impl::add_line(std::string alias) {
 			check_alias(alias);
-			if (lines_.try_emplace(alias, alias_, alias).second) {
+			if (lines_.try_emplace(alias, pg_, alias).second) {
 				widgets_.emplace(alias, lines_.at(alias));
 				widgets_order_.emplace_back(alias);
 			}
@@ -455,7 +460,7 @@ namespace liblec {
 				// check if minimal page border rect contains the point
 				auto& rect = rectangles_.at(widgets_impl::rectangle::page_rect_alias());
 				rect_pg = rect.get_rect();
-				scale_RECT(rect_pg, rect.get_dpi_scale());
+				scale_RECT(rect_pg, get_dpi_scale());
 
 				auto scroll_bar_offset = rect.get_scrollbar_offset();
 				rect_pg.left += scroll_bar_offset.x;
@@ -463,7 +468,7 @@ namespace liblec {
 				rect_pg.top += scroll_bar_offset.y;
 				rect_pg.bottom += scroll_bar_offset.y;
 
-				unscale_RECT(rect_pg, rect.get_dpi_scale());
+				unscale_RECT(rect_pg, get_dpi_scale());
 			}
 			catch (const std::exception&) {}
 			return rect_pg;
@@ -489,8 +494,8 @@ namespace liblec {
 					v_scrollbar_.max_displacement(
 						v_scrollbar_.max_displacement_top_,
 						v_scrollbar_.max_displacement_bottom_);
-					v_scrollbar_.max_displacement_top_ *= dpi_scale_;
-					v_scrollbar_.max_displacement_bottom_ *= dpi_scale_;
+					v_scrollbar_.max_displacement_top_ *= get_dpi_scale();
+					v_scrollbar_.max_displacement_bottom_ *= get_dpi_scale();
 
 					v_scrollbar_.max_displacement_top_ += v_scrollbar_.y_displacement_;
 					v_scrollbar_.max_displacement_bottom_ += v_scrollbar_.y_displacement_;

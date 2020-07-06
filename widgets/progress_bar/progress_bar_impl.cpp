@@ -15,10 +15,11 @@
 
 namespace liblec {
 	namespace lecui {
-		widgets_impl::progress_bar::progress_bar(const std::string& page_alias,
+		widgets_impl::progress_bar::progress_bar(containers::page& page,
 			const std::string& alias,
 			ID2D1Factory* p_direct2d_factory,
 			IDWriteFactory* p_directwrite_factory) :
+			widget(page, alias),
 			p_brush_(nullptr),
 			p_brush_border_(nullptr),
 			p_brush_fill_(nullptr),
@@ -28,10 +29,7 @@ namespace liblec {
 			p_text_format_(nullptr),
 			p_direct2d_factory_(p_direct2d_factory),
 			p_directwrite_factory_(p_directwrite_factory),
-			p_text_layout_(nullptr) {
-			page_alias_ = page_alias;
-			alias_ = alias;
-		}
+			p_text_layout_(nullptr) {}
 
 		widgets_impl::progress_bar::~progress_bar() { discard_resources(); }
 

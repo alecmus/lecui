@@ -53,11 +53,12 @@ namespace liblec {
 			return std::string("lecui::html_editor::font_color_bar");
 		}
 
-		widgets_impl::html_editor::html_editor(const std::string& page_alias,
+		widgets_impl::html_editor::html_editor(containers::page& page,
 			const std::string& alias,
 			form& fm,
 			containers::page& pg,
 			IDWriteFactory* p_directwrite_factory) :
+			widget(page, alias),
 			controls_initialized_(false),
 			p_brush_(nullptr),
 			p_brush_caret_(nullptr),
@@ -83,10 +84,7 @@ namespace liblec {
 			key_up_scheduled_(false),
 			key_down_scheduled_(false),
 			selection_info_({ 0, 0 }),
-			last_color_({ 255, 0, 0, 255 }) {
-			page_alias_ = page_alias;
-			alias_ = alias;
-		}
+			last_color_({ 255, 0, 0, 255 }) {}
 
 		widgets_impl::html_editor::~html_editor() { discard_resources(); }
 
@@ -295,9 +293,9 @@ namespace liblec {
 						}
 
 						// find corresponding point within this line for caret
-						D2D1_POINT_2F pt = { (end_special_case ? selection_rects[0].right : selection_rects[0].left) * dpi_scale_, (rect_above.top + ((rect_above.bottom - rect_above.top) / 2.f)) * dpi_scale_ };
+						D2D1_POINT_2F pt = { (end_special_case ? selection_rects[0].right : selection_rects[0].left) * get_dpi_scale(), (rect_above.top + ((rect_above.bottom - rect_above.top) / 2.f)) * get_dpi_scale() };
 						caret_position_ = get_caret_position(p_text_layout_, text_, rect_text_,
-							pt, dpi_scale_);
+							pt, get_dpi_scale());
 
 						reset_selection();
 					}
@@ -313,9 +311,9 @@ namespace liblec {
 						}
 
 						// find corresponding point within this line for caret
-						D2D1_POINT_2F pt = { selection_rects[selection_rects.size() - 1].right * dpi_scale_, (rect_below.top + ((rect_below.bottom - rect_below.top) / 2.f)) * dpi_scale_ };
+						D2D1_POINT_2F pt = { selection_rects[selection_rects.size() - 1].right * get_dpi_scale(), (rect_below.top + ((rect_below.bottom - rect_below.top) / 2.f)) * get_dpi_scale() };
 						caret_position_ = get_caret_position(p_text_layout_, text_, rect_text_,
-							pt, dpi_scale_);
+							pt, get_dpi_scale());
 
 						reset_selection();
 					}
@@ -327,14 +325,14 @@ namespace liblec {
 					if (hit_ && pressed_) {
 						reset_selection();
 
-						caret_position_ = get_caret_position(p_text_layout_, specs_.text, rect_text_, point_, dpi_scale_);
+						caret_position_ = get_caret_position(p_text_layout_, specs_.text, rect_text_, point_, get_dpi_scale());
 						caret_visible_ = true;
 
 						if (point_.x != point_on_press_.x || point_.y != point_on_press_.y) {
 							// user is making a selection
 							is_selecting_ = true;
 
-							auto selection_start_ = get_caret_position(p_text_layout_, specs_.text, rect_text_, point_on_press_, dpi_scale_);
+							auto selection_start_ = get_caret_position(p_text_layout_, specs_.text, rect_text_, point_on_press_, get_dpi_scale());
 							auto selection_end_ = caret_position_;
 
 							auto selection_rects = get_selection_rects(p_text_layout_, rect_text_, selection_start_, selection_end_);
@@ -348,8 +346,8 @@ namespace liblec {
 							is_selecting_ = false;
 
 							set_selection(
-								get_caret_position(p_text_layout_, specs_.text, rect_text_, point_on_press_, dpi_scale_),
-								get_caret_position(p_text_layout_, specs_.text, rect_text_, point_on_release_, dpi_scale_));
+								get_caret_position(p_text_layout_, specs_.text, rect_text_, point_on_press_, get_dpi_scale()),
+								get_caret_position(p_text_layout_, specs_.text, rect_text_, point_on_release_, get_dpi_scale()));
 						}
 				}
 			}

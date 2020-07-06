@@ -29,7 +29,7 @@ namespace liblec {
 				}
 
 			public:
-				minimize_button();
+				minimize_button(containers::page& page);
 				~minimize_button();
 
 				/// virtual function overrides

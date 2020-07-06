@@ -15,15 +15,13 @@
 
 namespace liblec {
 	namespace lecui {
-		widgets_impl::group::group(const std::string& page_alias,
+		widgets_impl::group::group(containers::page& page,
 			const std::string& alias) :
+			widget(page, alias),
 			p_brush_fill_(nullptr),
 			p_brush_border_(nullptr),
 			p_brush_hot_(nullptr),
-			p_brush_disabled_(nullptr) {
-			page_alias_ = page_alias;
-			alias_ = alias;
-		}
+			p_brush_disabled_(nullptr) {}
 
 		widgets_impl::group::~group() { discard_resources(); }
 

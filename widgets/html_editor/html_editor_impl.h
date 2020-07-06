@@ -39,8 +39,11 @@ namespace liblec {
 				static std::string alias_font_color();
 				static std::string alias_font_color_bar();
 
+				/// Prevent the use of the default constructor.
+				html_editor() = delete;
+
 				/// constructor and destructor
-				html_editor(const std::string& page_alias,
+				html_editor(containers::page& page,
 					const std::string& alias,
 					form& fm,
 					containers::page& pg,

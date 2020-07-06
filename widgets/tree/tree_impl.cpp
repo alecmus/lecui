@@ -16,10 +16,11 @@
 
 namespace liblec {
 	namespace lecui {
-		widgets_impl::tree::tree(const std::string& page_alias,
+		widgets_impl::tree::tree(containers::page& page,
 			const std::string& alias,
 			ID2D1Factory* p_direct2d_factory,
 			IDWriteFactory* p_directwrite_factory) :
+			widget(page, alias),
 			p_brush_(nullptr),
 			p_brush_border_(nullptr),
 			p_brush_fill_(nullptr),
@@ -31,10 +32,7 @@ namespace liblec {
 			p_directwrite_factory_(p_directwrite_factory),
 			p_text_layout_(nullptr),
 			margin_(0.f)	// the tree will be moved into a special tree pane. The pane will have a margin!
-		{
-			page_alias_ = page_alias;
-			alias_ = alias;
-		}
+		{}
 
 		widgets_impl::tree::~tree() { discard_resources(); }
 
@@ -317,7 +315,7 @@ namespace liblec {
 			helper::draw_level(p_direct2d_factory_, p_render_target, p_directwrite_factory_,
 				p_text_format_, p_brush_, p_brush_selected_, p_brush_hot_, specs_.font,
 				specs_.font_size, specs_.root, rect_, right_, bottom_, optimized_right_,
-				optimized_bottom_, hit_, point_, dpi_scale_);
+				optimized_bottom_, hit_, point_, get_dpi_scale());
 
 			const auto width = optimized_right_ - rect_.left;
 			const auto height = optimized_bottom_ - rect_.top;
@@ -356,7 +354,7 @@ namespace liblec {
 			};
 
 			// mark selected
-			helper::check(specs_.root, point_, dpi_scale_);
+			helper::check(specs_.root, point_, get_dpi_scale());
 
 			// handle on_selection
 			if (specs_.events().selection)

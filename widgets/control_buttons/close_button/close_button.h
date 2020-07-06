@@ -29,7 +29,7 @@ namespace liblec {
 				}
 
 			public:
-				close_button();
+				close_button(containers::page& page);
 				~close_button();
 
 				/// virtual function overrides

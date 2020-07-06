@@ -45,8 +45,11 @@ namespace liblec {
 				std::map<std::string, containers::page> p_panes_;
 				std::string current_pane_;
 
+				/// Prevent the use of the default constructor.
+				pane() = delete;
+
 				/// constructor and destructor
-				pane(const std::string& page_alias,
+				pane(containers::page& page,
 					const std::string& alias);
 				~pane();
 
@@ -66,10 +69,6 @@ namespace liblec {
 				const D2D1_RECT_F& pane_area();
 
 			private:
-				/// Prevent the use of the default constructor.
-				pane() :
-					pane(std::string(), std::string()) {}
-
 				/// Prevent copying an object of this class.
 				pane(const pane&);
 				pane& operator=(const pane&);

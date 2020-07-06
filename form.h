@@ -63,6 +63,7 @@ namespace liblec {
 		}
 
 		namespace widgets_impl {
+			class widget;
 			class combobox;
 			class html_editor;
 		}
@@ -240,6 +241,7 @@ namespace liblec {
 			friend class controls;
 			friend class filesystem;
 			friend class color_picker;
+			friend class containers::page;
 			friend class containers::status_pane;
 			friend class containers::tab_pane;
 			friend class containers::tab;

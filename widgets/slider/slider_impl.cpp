@@ -16,9 +16,10 @@
 
 namespace liblec {
 	namespace lecui {
-		widgets_impl::slider::slider(const std::string& page_alias,
+		widgets_impl::slider::slider(containers::page& page,
 			const std::string& alias,
 			IDWriteFactory* p_directwrite_factory) :
+			widget(page, alias),
 			p_brush_(nullptr),
 			p_brush_fill_(nullptr),
 			p_brush_border_(nullptr),
@@ -31,10 +32,7 @@ namespace liblec {
 			p_text_format_(nullptr),
 			p_directwrite_factory_(p_directwrite_factory),
 			p_text_layout_(nullptr),
-			perc_along_(0.f) {
-			page_alias_ = page_alias;
-			alias_ = alias;
-		}
+			perc_along_(0.f) {}
 
 		widgets_impl::slider::~slider() { discard_resources(); }
 
@@ -193,7 +191,7 @@ namespace liblec {
 					rect.left = start.x;
 					rect.right = end.x;
 
-					scale_RECT(rect, dpi_scale_);
+					scale_RECT(rect, get_dpi_scale());
 
 					perc_along_ = 100.f * (point_.x - rect.left) / (rect.right - rect.left);
 					perc_along_ = largest(perc_along_, 0.f);
@@ -314,7 +312,7 @@ namespace liblec {
 					rect.bottom = start.y;
 					rect.top = end.y;
 
-					scale_RECT(rect, dpi_scale_);
+					scale_RECT(rect, get_dpi_scale());
 
 					perc_along_ = 100.f * (rect.bottom - point_.y) / (rect.bottom - rect.top);
 					perc_along_ = largest(perc_along_, 0.f);
@@ -434,7 +432,7 @@ namespace liblec {
 				return false;
 
 			D2D1_RECT_F rect = rect_;
-			scale_RECT(rect, dpi_scale_);
+			scale_RECT(rect, get_dpi_scale());
 
 			if (point.x >= rect.left && point.x <= rect.right &&
 				point.y >= rect.top && point.y <= rect.bottom)

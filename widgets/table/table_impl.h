@@ -26,8 +26,11 @@ namespace liblec {
 				}
 
 			public:
+				/// Prevent the use of the default constructor.
+				table() = delete;
+
 				/// constructor and destructor
-				table(const std::string& page_alias,
+				table(containers::page& page,
 					const std::string& alias,
 					IDWriteFactory* p_directwrite_factory);
 				~table();
@@ -49,10 +52,6 @@ namespace liblec {
 				widgets::table::table_specs& operator()();
 
 			private:
-				/// Prevent the use of the default constructor.
-				table() :
-					table(std::string(), std::string(), nullptr) {}
-
 				/// Prevent copying an object of this class.
 				table(const table&);
 				table& operator=(const table&);

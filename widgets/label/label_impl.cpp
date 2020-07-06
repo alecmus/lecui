@@ -194,9 +194,10 @@ namespace liblec {
 			return rect;
 		}
 
-		widgets_impl::label::label(const std::string& page_alias,
+		widgets_impl::label::label(containers::page& page,
 			const std::string& alias,
 			IDWriteFactory* p_directwrite_factory) :
+			widget(page, alias),
 			p_brush_(nullptr),
 			p_brush_hot_(nullptr),
 			p_brush_hot_pressed_(nullptr),
@@ -204,10 +205,7 @@ namespace liblec {
 			p_brush_selected_(nullptr),
 			p_text_format_(nullptr),
 			p_directwrite_factory_(p_directwrite_factory),
-			p_text_layout_(nullptr) {
-			page_alias_ = page_alias;
-			alias_ = alias;
-		}
+			p_text_layout_(nullptr) {}
 
 		widgets_impl::label::~label() { discard_resources(); }
 

@@ -26,8 +26,11 @@ namespace liblec {
 				}
 
 			public:
+				/// Prevent the use of the default constructor.
+				image() = delete;
+
 				/// constructor and destructor
-				image(const std::string& page_alias,
+				image(containers::page& page,
 					const std::string& alias,
 					IWICImagingFactory* p_IWICFactory);
 				~image();
@@ -46,10 +49,6 @@ namespace liblec {
 				widgets::image::image_specs& operator()();
 
 			private:
-				/// Prevent the use of the default constructor.
-				image() :
-					image(std::string(), std::string(), nullptr) {}
-
 				/// Prevent copying an object of this class.
 				image(const image&);
 				image& operator=(const image&);

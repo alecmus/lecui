@@ -15,15 +15,13 @@
 
 namespace liblec {
 	namespace lecui {
-		widgets_impl::line::line(const std::string& page_alias,
+		widgets_impl::line::line(containers::page& page,
 			const std::string& alias) :
+			widget(page, alias),
 			p_brush_fill_(nullptr),
 			p_brush_hot_(nullptr),
 			p_brush_disabled_(nullptr),
-			p_brush_selected_(nullptr) {
-			page_alias_ = page_alias;
-			alias_ = alias;
-		}
+			p_brush_selected_(nullptr) {}
 
 		widgets_impl::line::~line() { discard_resources(); }
 

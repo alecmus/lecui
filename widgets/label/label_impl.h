@@ -56,8 +56,11 @@ namespace liblec {
 				}
 
 			public:
+				/// Prevent the use of the default constructor.
+				label() = delete;
+
 				/// constructor and destructor
-				label(const std::string& page_alias,
+				label(containers::page& page,
 					const std::string& alias,
 					IDWriteFactory* p_directwrite_factory);
 				~label();
@@ -76,10 +79,6 @@ namespace liblec {
 				widgets::label::label_specs& operator()();
 
 			private:
-				/// Prevent the use of the default constructor.
-				label() :
-					label(std::string(), std::string(), nullptr) {}
-
 				/// Prevent copying an object of this class.
 				label(const label&);
 				label& operator=(const label&);

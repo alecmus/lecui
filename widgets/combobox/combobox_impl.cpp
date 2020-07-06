@@ -20,10 +20,11 @@
 
 namespace liblec {
 	namespace lecui {
-		widgets_impl::combobox::combobox(const std::string& page_alias,
+		widgets_impl::combobox::combobox(containers::page& page,
 			const std::string& alias,
 			form& fm,
 			IDWriteFactory* p_directwrite_factory) :
+			widget(page, alias),
 			p_brush_(nullptr),
 			p_brush_caret_(nullptr),
 			p_brush_fill_(nullptr),
@@ -55,16 +56,13 @@ namespace liblec {
 			is_selected_(false),
 			dropdown_activated_(false),
 			skip_nextdropdown_(false),
-			selection_info_({ 0, 0 }) {
-			page_alias_ = page_alias;
-			alias_ = alias;
-		}
+			selection_info_({ 0, 0 }) {}
 
 		widgets_impl::combobox::~combobox() { discard_resources(); }
 
 		void widgets_impl::combobox::press(const bool& pressed) {
 			D2D1_RECT_F rect = specs_.editable ? rect_dropdown_ : rect_combobox_;
-			scale_RECT(rect, dpi_scale_);
+			scale_RECT(rect, get_dpi_scale());
 
 			if (point_.x >= rect.left && point_.x <= rect.right &&
 				point_.y >= rect.top && point_.y <= rect.bottom) {
@@ -307,12 +305,12 @@ namespace liblec {
 
 						// characters hidden to the left of text box
 						const D2D1_POINT_2F pt_left = D2D1::Point2F(rect_text_.left - text_off_set_, rect_text_.top + (rect_text_.bottom - rect_text_.top) / 2.f);
-						hidden_left = count_characters(p_text_layout_, text_, rect_text_, pt_left, dpi_scale_);
+						hidden_left = count_characters(p_text_layout_, text_, rect_text_, pt_left, get_dpi_scale());
 
 						// characters hidden to the right of text box
 
 						const D2D1_POINT_2F pt_right = D2D1::Point2F(rect_text_box_.left + off_set_right, rect_text_.top + (rect_text_.bottom - rect_text_.top) / 2.f);
-						hidden_right = count_characters(p_text_layout_, text_, rect_text_, pt_right, dpi_scale_);
+						hidden_right = count_characters(p_text_layout_, text_, rect_text_, pt_right, get_dpi_scale());
 
 						safe_release(&p_text_layout_);
 					}
@@ -377,14 +375,14 @@ namespace liblec {
 					if (hit_ && pressed_) {
 						reset_selection();
 
-						caret_position_ = get_caret_position(p_text_layout_, specs_.text, rect_text_, point_, dpi_scale_);
+						caret_position_ = get_caret_position(p_text_layout_, specs_.text, rect_text_, point_, get_dpi_scale());
 						caret_visible_ = true;
 
 						if (point_.x != point_on_press_.x || point_.y != point_on_press_.y) {
 							// user is making a selection
 							is_selecting_ = true;
 
-							auto selection_start_ = get_caret_position(p_text_layout_, specs_.text, rect_text_, point_on_press_, dpi_scale_);
+							auto selection_start_ = get_caret_position(p_text_layout_, specs_.text, rect_text_, point_on_press_, get_dpi_scale());
 							auto selection_end_ = caret_position_;
 
 							auto rect_selection = get_selection_rect(p_text_layout_, rect_text_, selection_start_, selection_end_);
@@ -397,8 +395,8 @@ namespace liblec {
 							is_selecting_ = false;
 
 							set_selection(
-								get_caret_position(p_text_layout_, specs_.text, rect_text_, point_on_press_, dpi_scale_),
-								get_caret_position(p_text_layout_, specs_.text, rect_text_, point_on_release_, dpi_scale_));
+								get_caret_position(p_text_layout_, specs_.text, rect_text_, point_on_press_, get_dpi_scale()),
+								get_caret_position(p_text_layout_, specs_.text, rect_text_, point_on_release_, get_dpi_scale()));
 						}
 				}
 
@@ -427,7 +425,7 @@ namespace liblec {
 
 			if (!is_static_) {
 				D2D1_RECT_F rect = specs_.editable ? rect_dropdown_ : rect_combobox_;
-				scale_RECT(rect, dpi_scale_);
+				scale_RECT(rect, get_dpi_scale());
 
 				if (point_.x >= rect.left && point_.x <= rect.right &&
 					point_.y >= rect.top && point_.y <= rect.bottom) {
@@ -478,7 +476,7 @@ namespace liblec {
 		bool widgets_impl::combobox::hit(const bool& hit) {
 			if (!is_static_ && specs_.editable) {
 				D2D1_RECT_F rect = rect_dropdown_;
-				scale_RECT(rect, dpi_scale_);
+				scale_RECT(rect, get_dpi_scale());
 
 				if (point_.x >= rect.left && point_.x <= rect.right &&
 					point_.y >= rect.top && point_.y <= rect.bottom)
@@ -835,10 +833,10 @@ namespace liblec {
 			POINT pt = { 0, 0 };
 			ClientToScreen(fm_.d_.hWnd_, &pt);
 
-			menu_specs.pin.left += (pt.x / dpi_scale_);
-			menu_specs.pin.right += (pt.x / dpi_scale_);
-			menu_specs.pin.top += (pt.y / dpi_scale_);
-			menu_specs.pin.bottom += (pt.y / dpi_scale_);
+			menu_specs.pin.left += (pt.x / get_dpi_scale());
+			menu_specs.pin.right += (pt.x / get_dpi_scale());
+			menu_specs.pin.top += (pt.y / get_dpi_scale());
+			menu_specs.pin.bottom += (pt.y / get_dpi_scale());
 
 			return context_menu()(fm_, menu_specs);
 		}

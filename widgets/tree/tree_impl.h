@@ -26,8 +26,11 @@ namespace liblec {
 				}
 
 			public:
+				/// Prevent the use of the default constructor.
+				tree() = delete;
+
 				/// constructor and destructor
-				tree(const std::string& page_alias,
+				tree(containers::page& page,
 					const std::string& alias,
 					ID2D1Factory* p_direct2d_factory,
 					IDWriteFactory* p_directwrite_factory);
@@ -48,10 +51,6 @@ namespace liblec {
 				widgets::tree::tree_specs& operator()();
 
 			private:
-				/// Prevent the use of the default constructor.
-				tree() :
-					tree(std::string(), std::string(), nullptr, nullptr) {}
-
 				/// Prevent copying an object of this class.
 				tree(const tree&);
 				tree& operator=(const tree&);

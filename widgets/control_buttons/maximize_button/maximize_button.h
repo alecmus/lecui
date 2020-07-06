@@ -29,7 +29,7 @@ namespace liblec {
 				}
 
 			public:
-				maximize_button();
+				maximize_button(containers::page& page);
 				~maximize_button();
 
 				/// virtual function overrides

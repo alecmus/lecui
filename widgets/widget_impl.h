@@ -15,6 +15,7 @@
 
 #include "../form_common.h"
 #include "widget.h"
+#include "../containers/page.h"
 
 namespace liblec {
 	namespace lecui {
@@ -82,10 +83,10 @@ namespace liblec {
 				virtual widgets::specs& generic_specs() = 0;
 
 			public:
-				widget();
+				widget() = delete;
+				widget(containers::page& page, const std::string& alias);
 				virtual ~widget();
 
-				const std::string& page_alias();
 				const std::string& alias();
 				bool pressed();
 				bool is_static();
@@ -140,8 +141,7 @@ namespace liblec {
 				/// <remarks>Useful for complex widgets with multiple hit points.</remarks>
 				virtual bool contains();
 
-				std::string page_alias_, alias_;
-				float dpi_scale_;
+				std::string alias_;
 				bool is_static_, hit_, pressed_;
 				D2D1_RECT_F rect_;
 				bool visible_, is_enabled_;
@@ -159,6 +159,8 @@ namespace liblec {
 				/// the widget's on_createresources() method as follows:
 				/// h_cursor_ = get_cursor(specs_.cursor);</summary>
 				HCURSOR h_cursor_;
+
+				containers::page& page_;
 			};
 		}
 	}

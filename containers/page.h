@@ -33,6 +33,9 @@ namespace liblec {
 			/// panes, but then they cannot be added directly to a form.</remarks>
 			class lecui_api page {
 			public:
+				/// Prevent the use of the default constructor.
+				page() = delete;
+
 				/// <summary>Page constructor.</summary>
 				/// <param name="fm">The form to add the page to.</param>
 				/// <param name="alias">The in-form unique alias, e.g. "home_page".</param>
@@ -83,6 +86,7 @@ namespace liblec {
 				friend class widgets::combobox;
 				friend class widgets::line;
 
+				friend class widgets_impl::widget;
 				friend class widgets_impl::html_editor;
 #endif
 			};
