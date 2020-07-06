@@ -74,6 +74,7 @@ namespace liblec {
 			margin_x_(7.5f),
 			margin_y_(2.5f),
 			caret_blink_timer_name_("caret_blink_timer::html_editor"),
+			autoscroll_timer_name_("autoscroll_timer::html_editor"),
 			caret_position_(0),
 			caret_visible_(true),
 			skip_blink_(false),
@@ -406,17 +407,18 @@ namespace liblec {
 			specs_.rect.height(height);
 
 			// move rect to ensure caret visibility
-			if (move_v && !timer_management(fm_).running("ensure_caret_visible")) {
+			if (move_v && !timer_management(fm_).running(autoscroll_timer_name_)) {
 				log("move_v: " + std::to_string(move_v));
 				scroll_amount_ = move_v;
 
-				timer_management(fm_).add("ensure_caret_visible", 0,
+				timer_management(fm_).add(autoscroll_timer_name_, 0,
 					[&]() {
-						timer_management(fm_).stop("ensure_caret_visible");
-
 						// scroll page to ensure caret visibility
 						pg_.d_page_.scroll(scroll_amount_);
 						fm_.update();
+
+						// stop timer
+						timer_management(fm_).stop(autoscroll_timer_name_);
 					});
 			}
 
@@ -748,7 +750,7 @@ namespace liblec {
 			if (SUCCEEDED(hr)) {
 				// figure out which lines are covered by the selection
 				struct line_info {
-					DWRITE_LINE_METRICS metrics;
+					DWRITE_LINE_METRICS metrics = { 0 };
 					UINT32 line_start_position = 0;
 					UINT32 line_end_position = 0;
 				};

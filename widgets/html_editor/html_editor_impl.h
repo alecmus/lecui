@@ -107,6 +107,7 @@ namespace liblec {
 				const float margin_y_;
 				
 				const std::string caret_blink_timer_name_;
+				const std::string autoscroll_timer_name_;
 				UINT32 caret_position_;
 				bool caret_visible_;
 				bool skip_blink_;
