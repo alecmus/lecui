@@ -1,5 +1,5 @@
 /*
-** v_scrollbar.h - vertical scroll bar widget interface
+** maximize_button_impl.h - maximize button widget interface
 **
 ** lecui user interface library
 ** Copyright (c) 2019 Alec T. Musasa (alecmus at live dot com)
@@ -13,35 +13,25 @@
 
 #pragma once
 
-#include "../widget_impl.h"
+#include "../../widget_impl.h"
 
 namespace liblec {
 	namespace lecui {
 		namespace widgets {
-			class v_scrollbar_specs : public scrollbar_specs {};
+			class maximize_button_specs : public specs {};
 		}
 
 		namespace widgets_impl {
-			class v_scrollbar : public widget {
+			class maximize_button_impl : public widget_impl {
 				/// private virtual function overrides
 				widgets::specs& generic_specs() override {
 					return specs_;
 				}
 
 			public:
-				float y_displacement_previous_;
-				float y_displacement_;
-				float y_off_set_;
-				float max_displacement_top_;
-				float max_displacement_bottom_;
-				bool force_translate_;
-
-				/// Prevent the use of the default constructor.
-				v_scrollbar() = delete;
-
-				/// constructor and destructor
-				v_scrollbar(containers::page& page);
-				~v_scrollbar();
+				maximize_button_impl() = delete;
+				maximize_button_impl(containers::page& page);
+				~maximize_button_impl();
 
 				/// virtual function overrides
 				widgets_impl::widget_type type() override;
@@ -53,26 +43,24 @@ namespace liblec {
 				void on_click() override;
 
 				/// widget specific methods
-				widgets::v_scrollbar_specs& specs();
-				widgets::v_scrollbar_specs& operator()();
-				void max_displacement(float& top, float& bottom);
-				bool translate_y_displacement(const float& y_displacement,
-					float& y_displacement_translated, bool force);
-				void setup(const D2D1_RECT_F& rectA, const D2D1_RECT_F& rectB);
+				void set_hwnd(HWND hWnd);
+				widgets::maximize_button_specs& specs();
+				widgets::maximize_button_specs& operator()();
 
 			private:
 				/// Prevent copying an object of this class.
-				v_scrollbar(const v_scrollbar&);
-				v_scrollbar& operator=(const v_scrollbar&);
+				maximize_button_impl(const maximize_button_impl&);
+				maximize_button_impl& operator=(const maximize_button_impl&);
 
 				/// Private variables
-				widgets::v_scrollbar_specs specs_;
+				HWND hWnd_;
+				widgets::maximize_button_specs specs_;
 				ID2D1SolidColorBrush* p_brush_;
-				ID2D1SolidColorBrush* p_brush_border_;
 				ID2D1SolidColorBrush* p_brush_hot_;
-				ID2D1SolidColorBrush* p_brush_hot_pressed_;
-				ID2D1SolidColorBrush* p_brush_background_;
-				D2D1_RECT_F rectA_, rectB_, rectC_, rectD_;
+				ID2D1SolidColorBrush* p_brush_disabled_;
+
+				/// Private methods
+				bool maximized(HWND hwnd);
 			};
 		}
 	}

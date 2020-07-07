@@ -63,9 +63,9 @@ namespace liblec {
 		}
 
 		namespace widgets_impl {
-			class widget;
-			class combobox;
-			class html_editor;
+			class widget_impl;
+			class combobox_impl;
+			class html_editor_impl;
 		}
 #endif
 
@@ -262,7 +262,7 @@ namespace liblec {
 			friend class widgets::slider;
 			friend class widgets::html_editor;
 			friend class widgets::combobox;
-			friend class widgets_impl::combobox;
+			friend class widgets_impl::combobox_impl;
 			friend class widgets::line;
 #endif
 		};

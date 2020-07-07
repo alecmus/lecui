@@ -16,13 +16,13 @@
 #include "../widget_impl.h"
 #include "../rectangle.h"
 
-#include "../../widgets/h_scrollbar/h_scrollbar.h"
-#include "../../widgets/v_scrollbar/v_scrollbar.h"
+#include "../../widgets/h_scrollbar/h_scrollbar_impl.h"
+#include "../../widgets/v_scrollbar/v_scrollbar_impl.h"
 
 namespace liblec {
 	namespace lecui {
 		namespace widgets_impl {
-			class rectangle : public widget {
+			class rectangle_impl : public widget_impl {
 				/// private virtual function overrides
 				widgets::specs& generic_specs() override {
 					return specs_;
@@ -36,14 +36,14 @@ namespace liblec {
 				static std::string page_rect_alias();
 
 				/// Prevent the use of the default constructor.
-				rectangle() = delete;
+				rectangle_impl() = delete;
 
 				/// constructor and destructor
-				rectangle(containers::page& page,
+				rectangle_impl(containers::page& page,
 					const std::string& alias,
-					widgets_impl::h_scrollbar& h_scrollbar,
-					widgets_impl::v_scrollbar& v_scrollbar);
-				~rectangle();
+					widgets_impl::h_scrollbar_impl& h_scrollbar,
+					widgets_impl::v_scrollbar_impl& v_scrollbar);
+				~rectangle_impl();
 
 				/// virtual function overrides
 				widgets_impl::widget_type type() override;
@@ -62,8 +62,8 @@ namespace liblec {
 
 			private:
 				/// Prevent copying an object of this class.
-				rectangle(const rectangle&);
-				rectangle& operator=(const rectangle&);
+				rectangle_impl(const rectangle_impl&);
+				rectangle_impl& operator=(const rectangle_impl&);
 
 				/// Private variables
 				widgets::rectangle::rectangle_specs specs_, specs_old_;
@@ -75,8 +75,8 @@ namespace liblec {
 				ID2D1SolidColorBrush* p_brush_selected_;
 
 				/// page scroll bars
-				widgets_impl::h_scrollbar& h_scrollbar_;
-				widgets_impl::v_scrollbar& v_scrollbar_;
+				widgets_impl::h_scrollbar_impl& h_scrollbar_;
+				widgets_impl::v_scrollbar_impl& v_scrollbar_;
 			};
 		}
 	}

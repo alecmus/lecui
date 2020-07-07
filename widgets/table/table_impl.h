@@ -19,7 +19,7 @@
 namespace liblec {
 	namespace lecui {
 		namespace widgets_impl {
-			class table : public widget {
+			class table_impl : public widget_impl {
 				/// private virtual function overrides
 				widgets::specs& generic_specs() override {
 					return specs_;
@@ -27,13 +27,13 @@ namespace liblec {
 
 			public:
 				/// Prevent the use of the default constructor.
-				table() = delete;
+				table_impl() = delete;
 
 				/// constructor and destructor
-				table(containers::page& page,
+				table_impl(containers::page& page,
 					const std::string& alias,
 					IDWriteFactory* p_directwrite_factory);
-				~table();
+				~table_impl();
 
 				/// virtual function overrides
 				widgets_impl::widget_type type() override;
@@ -53,8 +53,8 @@ namespace liblec {
 
 			private:
 				/// Prevent copying an object of this class.
-				table(const table&);
-				table& operator=(const table&);
+				table_impl(const table_impl&);
+				table_impl& operator=(const table_impl&);
 
 				/// Private variables
 				widgets::table::table_specs specs_, specs_old_;

@@ -1,5 +1,5 @@
 /*
-** h_scrollbar.h - horizontal scroll bar widget interface
+** v_scrollbar_impl.h - vertical scroll bar widget interface
 **
 ** lecui user interface library
 ** Copyright (c) 2019 Alec T. Musasa (alecmus at live dot com)
@@ -18,30 +18,30 @@
 namespace liblec {
 	namespace lecui {
 		namespace widgets {
-			class h_scrollbar_specs : public scrollbar_specs {};
+			class v_scrollbar_specs : public scrollbar_specs {};
 		}
 
 		namespace widgets_impl {
-			class h_scrollbar : public widget {
+			class v_scrollbar_impl : public widget_impl {
 				/// private virtual function overrides
 				widgets::specs& generic_specs() override {
 					return specs_;
 				}
 
 			public:
-				float x_displacement_previous_;
-				float x_displacement_;
-				float x_off_set_;
-				float max_displacement_left_;
-				float max_displacement_right_;
+				float y_displacement_previous_;
+				float y_displacement_;
+				float y_off_set_;
+				float max_displacement_top_;
+				float max_displacement_bottom_;
 				bool force_translate_;
 
 				/// Prevent the use of the default constructor.
-				h_scrollbar() = delete;
+				v_scrollbar_impl() = delete;
 
 				/// constructor and destructor
-				h_scrollbar(containers::page& page);
-				~h_scrollbar();
+				v_scrollbar_impl(containers::page& page);
+				~v_scrollbar_impl();
 
 				/// virtual function overrides
 				widgets_impl::widget_type type() override;
@@ -53,20 +53,20 @@ namespace liblec {
 				void on_click() override;
 
 				/// widget specific methods
-				widgets::h_scrollbar_specs& specs();
-				widgets::h_scrollbar_specs& operator()();
-				void max_displacement(float& left, float& right);
-				bool translate_x_displacement(const float& x_displacement,
-					float& x_displacement_translated, bool force);
+				widgets::v_scrollbar_specs& specs();
+				widgets::v_scrollbar_specs& operator()();
+				void max_displacement(float& top, float& bottom);
+				bool translate_y_displacement(const float& y_displacement,
+					float& y_displacement_translated, bool force);
 				void setup(const D2D1_RECT_F& rectA, const D2D1_RECT_F& rectB);
 
 			private:
 				/// Prevent copying an object of this class.
-				h_scrollbar(const h_scrollbar&);
-				h_scrollbar& operator=(const h_scrollbar&);
+				v_scrollbar_impl(const v_scrollbar_impl&);
+				v_scrollbar_impl& operator=(const v_scrollbar_impl&);
 
 				/// Private variables
-				widgets::h_scrollbar_specs specs_;
+				widgets::v_scrollbar_specs specs_;
 				ID2D1SolidColorBrush* p_brush_;
 				ID2D1SolidColorBrush* p_brush_border_;
 				ID2D1SolidColorBrush* p_brush_hot_;

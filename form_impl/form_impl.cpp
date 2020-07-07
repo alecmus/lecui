@@ -24,8 +24,8 @@
 #include "../widgets/label.h"
 #include "../widgets/button.h"
 #include "../widgets/line.h"
-#include "../widgets/h_scrollbar/h_scrollbar.h"
-#include "../widgets/v_scrollbar/v_scrollbar.h"
+#include "../widgets/h_scrollbar/h_scrollbar_impl.h"
+#include "../widgets/v_scrollbar/v_scrollbar_impl.h"
 
 #include "../utilities/color_picker.h"
 
@@ -354,8 +354,8 @@ namespace liblec {
 
 		void form::impl::create_close_button(std::function<void()> on_click) {
 			p_close_button_ =
-				std::unique_ptr<widgets_impl::close_button>(new
-					widgets_impl::close_button(controls_page_));
+				std::unique_ptr<widgets_impl::close_button_impl>(new
+					widgets_impl::close_button_impl(controls_page_));
 			widgets_.emplace(p_close_button_->alias(), *p_close_button_);
 			widgets_order_.emplace_back(p_close_button_->alias());
 			
@@ -377,8 +377,8 @@ namespace liblec {
 		// should be called after create_close_button()
 		void form::impl::create_maximize_button() {
 			p_maximize_button_ =
-				std::unique_ptr<widgets_impl::maximize_button>(new
-					widgets_impl::maximize_button(controls_page_));
+				std::unique_ptr<widgets_impl::maximize_button_impl>(new
+					widgets_impl::maximize_button_impl(controls_page_));
 			widgets_.emplace(p_maximize_button_->alias(), *p_maximize_button_);
 			widgets_order_.emplace_back(p_maximize_button_->alias());
 
@@ -400,8 +400,8 @@ namespace liblec {
 		// should be called after create_close_button() and create_maximize_button()
 		void form::impl::create_minimize_button() {
 			p_minimize_button_ =
-				std::unique_ptr<widgets_impl::minimize_button>(new
-					widgets_impl::minimize_button(controls_page_));
+				std::unique_ptr<widgets_impl::minimize_button_impl>(new
+					widgets_impl::minimize_button_impl(controls_page_));
 			widgets_.emplace(p_minimize_button_->alias(), *p_minimize_button_);
 			widgets_order_.emplace_back(p_minimize_button_->alias());
 
@@ -424,8 +424,8 @@ namespace liblec {
 
 		void form::impl::create_form_caption() {
 			p_caption_ =
-				std::unique_ptr<widgets_impl::label>(new
-					widgets_impl::label(controls_page_, "form_caption",
+				std::unique_ptr<widgets_impl::label_impl>(new
+					widgets_impl::label_impl(controls_page_, "form_caption",
 						p_directwrite_factory_));
 			widgets_.emplace(p_caption_->alias(), *p_caption_);
 			widgets_order_.emplace_back(p_caption_->alias());
@@ -494,7 +494,7 @@ namespace liblec {
 						std::vector<tree_info>& trees) {
 						for (auto& widget : page.d_page_.widgets()) {
 							// check if this is a tree pane
-							if (widget.first.find(widgets_impl::pane::tree_pane_alias_prefix()) != std::string::npos)
+							if (widget.first.find(widgets_impl::pane_impl::tree_pane_alias_prefix()) != std::string::npos)
 								continue;	// this is a tree pane (it has a tree inside. move was already done), continue to next widget
 
 							// check if this is a tree
@@ -505,7 +505,7 @@ namespace liblec {
 								auto& tree_specs = page.d_page_.get_tree(widget.first).specs();
 
 								// make pane whose alias is prefixed by the special string
-								containers::pane pane(page, widgets_impl::pane::tree_pane_alias_prefix() + widget.first);
+								containers::pane pane(page, widgets_impl::pane_impl::tree_pane_alias_prefix() + widget.first);
 
 								// clone essential properties to pane
 								pane().rect = tree_specs.rect;
@@ -592,7 +592,7 @@ namespace liblec {
 						std::vector<html_editor_info>& trees) {
 						for (auto& widget : page.d_page_.widgets()) {
 							// check if this is an html pane
-							if (widget.first.find(widgets_impl::pane::html_pane_alias_prefix()) != std::string::npos)
+							if (widget.first.find(widgets_impl::pane_impl::html_pane_alias_prefix()) != std::string::npos)
 								continue;	// this is an html pane (it has an html widget inside. move was already done), continue to next widget
 
 							// check if this is an html editor
@@ -603,7 +603,7 @@ namespace liblec {
 								auto& html_editor_specs = page.d_page_.get_html_editor(widget.first).specs();
 
 								// make controls pane in source (predefined, fixed height)
-								containers::pane controls_pane(page, widgets_impl::pane::html_controls_pane_alias_prefix() + widget.first);
+								containers::pane controls_pane(page, widgets_impl::pane_impl::html_controls_pane_alias_prefix() + widget.first);
 								controls_pane().rect = html_editor_specs.rect;
 								controls_pane().rect.height(
 									(10.f * 2) +	// top and bottom margin
@@ -619,7 +619,7 @@ namespace liblec {
 								auto& controls_pane_page = controls_pane.get();
 
 								// make pane whose alias is prefixed by the special string
-								containers::pane pane(page, widgets_impl::pane::html_pane_alias_prefix() + widget.first);
+								containers::pane pane(page, widgets_impl::pane_impl::html_pane_alias_prefix() + widget.first);
 
 								// clone essential properties to pane
 								pane().rect = html_editor_specs.rect;
@@ -687,7 +687,7 @@ namespace liblec {
 				public:
 					static void add_html_controls(lecui::containers::page& page) {
 						for (auto& widget : page.d_page_.widgets()) {
-							if (widget.first.find(widgets_impl::pane::html_controls_pane_alias_prefix()) != std::string::npos) {
+							if (widget.first.find(widgets_impl::pane_impl::html_controls_pane_alias_prefix()) != std::string::npos) {
 								try {
 									// get alias of associated html editor widget
 									const auto idx = widget.first.rfind("::");
@@ -696,8 +696,8 @@ namespace liblec {
 										auto widget_alias = widget.first.substr(idx + 2);
 
 										// get the pages
-										auto& html_controls_page = page.d_page_.get_pane(widgets_impl::pane::html_controls_pane_alias_prefix() + widget_alias).p_panes_.at("pane");
-										auto& html_page = page.d_page_.get_pane(widgets_impl::pane::html_pane_alias_prefix() + widget_alias).p_panes_.at("pane");
+										auto& html_controls_page = page.d_page_.get_pane(widgets_impl::pane_impl::html_controls_pane_alias_prefix() + widget_alias).p_panes_.at("pane");
+										auto& html_page = page.d_page_.get_pane(widgets_impl::pane_impl::html_pane_alias_prefix() + widget_alias).p_panes_.at("pane");
 
 										// get the html editor and controls
 										auto& html_editor = html_page.d_page_.get_html_editor(widget_alias);
@@ -1181,7 +1181,7 @@ namespace liblec {
 				// check if widget is in special pane
 
 				// check special tree pane
-				auto& tree_pane_control = container.d_page_.get_pane(widgets_impl::pane::tree_pane_alias_prefix() + path);
+				auto& tree_pane_control = container.d_page_.get_pane(widgets_impl::pane_impl::tree_pane_alias_prefix() + path);
 
 				// tree pane control confirmed ... get the pane page
 				auto& tree_pane = tree_pane_control.p_panes_.at("pane");

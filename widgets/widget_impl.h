@@ -79,13 +79,13 @@ namespace liblec {
 				}
 			}
 
-			class widget {
+			class widget_impl {
 				virtual widgets::specs& generic_specs() = 0;
 
 			public:
-				widget() = delete;
-				widget(containers::page& page, const std::string& alias);
-				virtual ~widget();
+				widget_impl() = delete;
+				widget_impl(containers::page& page, const std::string& alias);
+				virtual ~widget_impl();
 
 				const std::string& alias();
 				bool pressed();

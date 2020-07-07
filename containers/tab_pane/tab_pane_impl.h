@@ -19,7 +19,7 @@
 namespace liblec {
 	namespace lecui {
 		namespace widgets_impl {
-			class tab_pane : public widget {
+			class tab_pane_impl : public widget_impl {
 				/// private virtual function overrides
 				widgets::specs& generic_specs() override {
 					return specs_;
@@ -32,13 +32,13 @@ namespace liblec {
 				std::string current_tab_;
 
 				/// Prevent the use of the default constructor.
-				tab_pane() = delete;
+				tab_pane_impl() = delete;
 
 				/// constructor and destructor
-				tab_pane(containers::page& page,
+				tab_pane_impl(containers::page& page,
 					const std::string& alias,
 					IDWriteFactory* p_directwrite_factory);
-				~tab_pane();
+				~tab_pane_impl();
 
 				/// virtual function overrides
 				widgets_impl::widget_type type() override;
@@ -64,8 +64,8 @@ namespace liblec {
 
 			private:
 				/// Prevent copying an object of this class.
-				tab_pane(const tab_pane&);
-				tab_pane& operator=(const tab_pane&);
+				tab_pane_impl(const tab_pane_impl&);
+				tab_pane_impl& operator=(const tab_pane_impl&);
 
 				/// Private variables
 				containers::tab_pane::tab_pane_specs specs_;

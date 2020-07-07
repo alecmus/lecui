@@ -80,7 +80,7 @@ namespace liblec {
 
 			try {
 				// check if minimal page border rect contains the point
-				auto& rect = rectangles_.at(widgets_impl::rectangle::page_rect_alias());
+				auto& rect = rectangles_.at(widgets_impl::rectangle_impl::page_rect_alias());
 				contains_ = rect.contains(point);
 			}
 			catch (const std::exception&) {}
@@ -283,72 +283,72 @@ namespace liblec {
 			return lines_.at(alias).specs();
 		}
 
-		std::map<std::string, widgets_impl::widget&>&
+		std::map<std::string, widgets_impl::widget_impl&>&
 			containers::page::impl::widgets() { return widgets_; }
 
 		const std::vector<std::string>&
 			containers::page::impl::widgets_order() { return widgets_order_; }
 
-		widgets_impl::h_scrollbar&
+		widgets_impl::h_scrollbar_impl&
 			containers::page::impl::h_scrollbar() { return h_scrollbar_; }
-		widgets_impl::v_scrollbar&
+		widgets_impl::v_scrollbar_impl&
 			containers::page::impl::v_scrollbar() { return v_scrollbar_; }
 
-		widgets_impl::tab_pane&
+		widgets_impl::tab_pane_impl&
 			containers::page::impl::get_tab_pane(const std::string& alias) { return tab_panes_.at(alias); }
 
-		widgets_impl::pane&
+		widgets_impl::pane_impl&
 			containers::page::impl::get_pane(const std::string& alias) { return panes_.at(alias); }
 
-		widgets_impl::rectangle&
+		widgets_impl::rectangle_impl&
 			containers::page::impl::get_rectangle(const std::string& alias) { return rectangles_.at(alias); }
 
-		widgets_impl::button&
+		widgets_impl::button_impl&
 			containers::page::impl::get_button(const std::string& alias) { return buttons_.at(alias); }
 
-		widgets_impl::label&
+		widgets_impl::label_impl&
 			containers::page::impl::get_label(const std::string& alias) { return labels_.at(alias); }
 
-		widgets_impl::group&
+		widgets_impl::group_impl&
 			containers::page::impl::get_group(const std::string& alias) { return groups_.at(alias); }
 
-		widgets_impl::toggle&
+		widgets_impl::toggle_impl&
 			containers::page::impl::get_toggle(const std::string& alias) { return toggles_.at(alias); }
 
-		widgets_impl::table&
+		widgets_impl::table_impl&
 			containers::page::impl::get_table(const std::string& alias) { return tables_.at(alias); }
 
-		widgets_impl::custom&
+		widgets_impl::custom_impl&
 			containers::page::impl::get_custom(const std::string& alias) { return customs_.at(alias); }
 
-		widgets_impl::image&
+		widgets_impl::image_impl&
 			containers::page::impl::get_image(const std::string& alias) { return images_.at(alias); }
 
-		widgets_impl::progress_indicator&
+		widgets_impl::progress_indicator_impl&
 			containers::page::impl::get_progress_indicator(const std::string& alias) { return progress_indicators_.at(alias); }
 
-		widgets_impl::progress_bar&
+		widgets_impl::progress_bar_impl&
 			containers::page::impl::get_progress_bar(const std::string& alias) { return progress_bars_.at(alias); }
 
-		widgets_impl::checkbox&
+		widgets_impl::checkbox_impl&
 			containers::page::impl::get_checkbox(const std::string& alias) { return checkboxes_.at(alias); }
 
-		widgets_impl::textbox&
+		widgets_impl::textbox_impl&
 			containers::page::impl::get_textbox(const std::string& alias) { return textboxes_.at(alias); }
 
-		widgets_impl::tree&
+		widgets_impl::tree_impl&
 			containers::page::impl::get_tree(const std::string& alias) { return trees_.at(alias); }
 
-		widgets_impl::slider&
+		widgets_impl::slider_impl&
 			containers::page::impl::get_slider(const std::string& alias) { return sliders_.at(alias); }
 
-		widgets_impl::html_editor&
+		widgets_impl::html_editor_impl&
 			containers::page::impl::get_html_editor(const std::string& alias) { return html_editors_.at(alias); }
 
-		widgets_impl::combobox&
+		widgets_impl::combobox_impl&
 			containers::page::impl::get_combobox(const std::string& alias) { return comboboxes_.at(alias); }
 
-		widgets_impl::line&
+		widgets_impl::line_impl&
 			containers::page::impl::get_line(const std::string& alias) { return lines_.at(alias); }
 
 		bool
@@ -458,7 +458,7 @@ namespace liblec {
 			auto rect_pg = D2D1_RECT_F();
 			try {
 				// check if minimal page border rect contains the point
-				auto& rect = rectangles_.at(widgets_impl::rectangle::page_rect_alias());
+				auto& rect = rectangles_.at(widgets_impl::rectangle_impl::page_rect_alias());
 				rect_pg = rect.get_rect();
 				scale_RECT(rect_pg, get_dpi_scale());
 

@@ -16,7 +16,7 @@
 
 namespace liblec {
 	namespace lecui {
-		widgets_impl::widget::widget(containers::page& page, const std::string& alias) :
+		widgets_impl::widget_impl::widget_impl(containers::page& page, const std::string& alias) :
 			page_(page),
 			alias_(alias),
 			is_static_(true),
@@ -32,11 +32,11 @@ namespace liblec {
 			resources_created_(false),
 			h_cursor_(nullptr) {}
 
-		widgets_impl::widget::~widget() {}
+		widgets_impl::widget_impl::~widget_impl() {}
 
-		const std::string& widgets_impl::widget::alias() { return alias_; }
+		const std::string& widgets_impl::widget_impl::alias() { return alias_; }
 
-		bool widgets_impl::widget::contains(const D2D1_POINT_2F& point) {
+		bool widgets_impl::widget_impl::contains(const D2D1_POINT_2F& point) {
 			// capture the point
 			point_ = point;
 
@@ -53,7 +53,7 @@ namespace liblec {
 				return false;
 		}
 
-		bool widgets_impl::widget::hit(const bool& hit) {
+		bool widgets_impl::widget_impl::hit(const bool& hit) {
 			if (is_static_ || hit == hit_)
 				return false;	// Don't refresh ui. Either widget is static or hit status hasn't changed.
 
@@ -71,7 +71,7 @@ namespace liblec {
 			return true;
 		}
 
-		void widgets_impl::widget::press(const bool& pressed) {
+		void widgets_impl::widget_impl::press(const bool& pressed) {
 			bool change = pressed_ != pressed;
 
 			pressed_ = pressed;
@@ -84,26 +84,26 @@ namespace liblec {
 			}
 		}
 
-		bool widgets_impl::widget::pressed() { return pressed_; }
-		bool widgets_impl::widget::is_static() { return is_static_; }
-		void widgets_impl::widget::show(const bool& show) { visible_ = show; }
-		bool widgets_impl::widget::visible() { return visible_; }
-		void widgets_impl::widget::enable(const bool& enable) {
+		bool widgets_impl::widget_impl::pressed() { return pressed_; }
+		bool widgets_impl::widget_impl::is_static() { return is_static_; }
+		void widgets_impl::widget_impl::show(const bool& show) { visible_ = show; }
+		bool widgets_impl::widget_impl::visible() { return visible_; }
+		void widgets_impl::widget_impl::enable(const bool& enable) {
 			is_enabled_ = enable;
 		}
-		bool widgets_impl::widget::enabled() { return is_enabled_; }
-		const D2D1_RECT_F& widgets_impl::widget::get_rect() { return rect_; }
-		bool widgets_impl::widget::selected() { return selected_; }
-		bool widgets_impl::widget::hit() { return hit_; }
-		HCURSOR widgets_impl::widget::cursor() { return h_cursor_; }
-		float widgets_impl::widget::get_dpi_scale() { return page_.d_page_.get_dpi_scale(); }
-		form& widgets_impl::widget::get_form() { return page_.d_page_.get_form(); }
-		bool widgets_impl::widget::on_mousewheel(float units) { return false; }
-		bool widgets_impl::widget::on_keydown(WPARAM wParam) { return false; }
-		void widgets_impl::widget::on_selection_change(const bool& selected) {}
-		bool widgets_impl::widget::contains() { return true; }
+		bool widgets_impl::widget_impl::enabled() { return is_enabled_; }
+		const D2D1_RECT_F& widgets_impl::widget_impl::get_rect() { return rect_; }
+		bool widgets_impl::widget_impl::selected() { return selected_; }
+		bool widgets_impl::widget_impl::hit() { return hit_; }
+		HCURSOR widgets_impl::widget_impl::cursor() { return h_cursor_; }
+		float widgets_impl::widget_impl::get_dpi_scale() { return page_.d_page_.get_dpi_scale(); }
+		form& widgets_impl::widget_impl::get_form() { return page_.d_page_.get_form(); }
+		bool widgets_impl::widget_impl::on_mousewheel(float units) { return false; }
+		bool widgets_impl::widget_impl::on_keydown(WPARAM wParam) { return false; }
+		void widgets_impl::widget_impl::on_selection_change(const bool& selected) {}
+		bool widgets_impl::widget_impl::contains() { return true; }
 
-		void widgets_impl::widget::select(const bool& selected) {
+		void widgets_impl::widget_impl::select(const bool& selected) {
 			bool change = selected_ != selected;
 			selected_ = selected;
 
@@ -112,7 +112,7 @@ namespace liblec {
 		}
 
 		D2D1_RECT_F
-			widgets_impl::widget::position(const rect& rect,
+			widgets_impl::widget_impl::position(const rect& rect,
 				const widgets::specs::resize_params& on_resize,
 				const float& change_in_width, const float& change_in_height) {
 			auto x_change = change_in_width * on_resize.perc_x / 100.f;

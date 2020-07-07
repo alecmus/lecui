@@ -1,5 +1,5 @@
 /*
-** close_button.h - close button widget interface
+** minimize_button_impl.h - minimize button widget interface
 **
 ** lecui user interface library
 ** Copyright (c) 2019 Alec T. Musasa (alecmus at live dot com)
@@ -18,19 +18,20 @@
 namespace liblec {
 	namespace lecui {
 		namespace widgets {
-			class close_button_specs : public specs {};
+			class minimize_button_specs : public specs {};
 		}
 
 		namespace widgets_impl {
-			class close_button : public widget {
+			class minimize_button_impl : public widget_impl {
 				/// private virtual function overrides
 				widgets::specs& generic_specs() override {
 					return specs_;
 				}
 
 			public:
-				close_button(containers::page& page);
-				~close_button();
+				minimize_button_impl() = delete;
+				minimize_button_impl(containers::page& page);
+				~minimize_button_impl();
 
 				/// virtual function overrides
 				widgets_impl::widget_type type() override;
@@ -42,15 +43,18 @@ namespace liblec {
 				void on_click() override;
 
 				/// widget specific methods
-				widgets::close_button_specs& specs();
-				widgets::close_button_specs& operator()();
+				void set_hwnd(HWND hWnd);
+				widgets::minimize_button_specs& specs();
+				widgets::minimize_button_specs& operator()();
 
 			private:
 				/// Prevent copying an object of this class.
-				close_button(const close_button&);
-				close_button& operator=(const close_button&);
+				minimize_button_impl(const minimize_button_impl&);
+				minimize_button_impl& operator=(const minimize_button_impl&);
 
-				widgets::close_button_specs specs_;
+				/// Private variables
+				HWND hWnd_;
+				widgets::minimize_button_specs specs_;
 				ID2D1SolidColorBrush* p_brush_;
 				ID2D1SolidColorBrush* p_brush_hot_;
 				ID2D1SolidColorBrush* p_brush_disabled_;

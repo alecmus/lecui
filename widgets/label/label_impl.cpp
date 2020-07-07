@@ -194,10 +194,10 @@ namespace liblec {
 			return rect;
 		}
 
-		widgets_impl::label::label(containers::page& page,
+		widgets_impl::label_impl::label_impl(containers::page& page,
 			const std::string& alias,
 			IDWriteFactory* p_directwrite_factory) :
-			widget(page, alias),
+			widget_impl(page, alias),
 			p_brush_(nullptr),
 			p_brush_hot_(nullptr),
 			p_brush_hot_pressed_(nullptr),
@@ -207,14 +207,14 @@ namespace liblec {
 			p_directwrite_factory_(p_directwrite_factory),
 			p_text_layout_(nullptr) {}
 
-		widgets_impl::label::~label() { discard_resources(); }
+		widgets_impl::label_impl::~label_impl() { discard_resources(); }
 
 		widgets_impl::widget_type
-			widgets_impl::label::type() {
+			widgets_impl::label_impl::type() {
 			return lecui::widgets_impl::widget_type::label;
 		}
 
-		HRESULT widgets_impl::label::create_resources(
+		HRESULT widgets_impl::label_impl::create_resources(
 			ID2D1HwndRenderTarget* p_render_target) {
 			specs_old_ = specs_;
 			is_static_ = (specs_.events().click == nullptr);
@@ -260,7 +260,7 @@ namespace liblec {
 			return hr;
 		}
 
-		void widgets_impl::label::discard_resources() {
+		void widgets_impl::label_impl::discard_resources() {
 			resources_created_ = false;
 			safe_release(&p_brush_);
 			safe_release(&p_brush_hot_);
@@ -271,7 +271,7 @@ namespace liblec {
 		}
 
 		D2D1_RECT_F&
-			widgets_impl::label::render(ID2D1HwndRenderTarget* p_render_target,
+			widgets_impl::label_impl::render(ID2D1HwndRenderTarget* p_render_target,
 				const D2D1_SIZE_F& change_in_size, const D2D1_POINT_2F& offset, const bool& render) {
 			if (specs_old_ != specs_) {
 				log("specs changed: " + alias_);
@@ -330,18 +330,18 @@ namespace liblec {
 			return rect_;
 		}
 
-		void widgets_impl::label::on_click() {
+		void widgets_impl::label_impl::on_click() {
 			if (specs_.events().click)
 				specs_.events().click();
 		}
 
 		widgets::label::label_specs&
-			widgets_impl::label::specs() {
+			widgets_impl::label_impl::specs() {
 			return specs_;
 		}
 
 		widgets::label::label_specs&
-			widgets_impl::label::operator()() {
+			widgets_impl::label_impl::operator()() {
 			return specs();
 		}
 	}

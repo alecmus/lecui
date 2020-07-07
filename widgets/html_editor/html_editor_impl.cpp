@@ -21,42 +21,42 @@ namespace liblec {
 	namespace lecui {
 		constexpr UINT32 max_line_count = 16384;	// 2^14
 
-		std::string widgets_impl::html_editor::alias_font() {
+		std::string widgets_impl::html_editor_impl::alias_font() {
 			return std::string("lecui::html_editor::font");
 		}
 
-		std::string widgets_impl::html_editor::alias_font_size() {
+		std::string widgets_impl::html_editor_impl::alias_font_size() {
 			return std::string("lecui::html_editor::font_size");
 		}
 
-		std::string widgets_impl::html_editor::alias_bold() {
+		std::string widgets_impl::html_editor_impl::alias_bold() {
 			return std::string("lecui::html_editor::bold");
 		}
 
-		std::string widgets_impl::html_editor::alias_italic() {
+		std::string widgets_impl::html_editor_impl::alias_italic() {
 			return std::string("lecui::html_editor::italic");
 		}
 
-		std::string widgets_impl::html_editor::alias_underline() {
+		std::string widgets_impl::html_editor_impl::alias_underline() {
 			return std::string("lecui::html_editor::underline");
 		}
 
-		std::string widgets_impl::html_editor::alias_strikethrough() {
+		std::string widgets_impl::html_editor_impl::alias_strikethrough() {
 			return std::string("lecui::html_editor::strikethrough");
 		}
 
-		std::string widgets_impl::html_editor::alias_font_color() {
+		std::string widgets_impl::html_editor_impl::alias_font_color() {
 			return std::string("lecui::html_editor::font_color");
 		}
 
-		std::string widgets_impl::html_editor::alias_font_color_bar() {
+		std::string widgets_impl::html_editor_impl::alias_font_color_bar() {
 			return std::string("lecui::html_editor::font_color_bar");
 		}
 
-		widgets_impl::html_editor::html_editor(containers::page& page,
+		widgets_impl::html_editor_impl::html_editor_impl(containers::page& page,
 			const std::string& alias,
 			IDWriteFactory* p_directwrite_factory) :
-			widget(page, alias),
+			widget_impl(page, alias),
 			controls_initialized_(false),
 			p_brush_(nullptr),
 			p_brush_caret_(nullptr),
@@ -82,22 +82,22 @@ namespace liblec {
 			selection_info_({ 0, 0 }),
 			last_color_({ 255, 0, 0, 255 }) {}
 
-		widgets_impl::html_editor::~html_editor() { discard_resources(); }
+		widgets_impl::html_editor_impl::~html_editor_impl() { discard_resources(); }
 
-		bool widgets_impl::html_editor::controls_initialized() {
+		bool widgets_impl::html_editor_impl::controls_initialized() {
 			return controls_initialized_;
 		}
 
-		void widgets_impl::html_editor::initialize_controls(bool init) {
+		void widgets_impl::html_editor_impl::initialize_controls(bool init) {
 			controls_initialized_ = init;
 		}
 
 		widgets_impl::widget_type
-			widgets_impl::html_editor::type() {
+			widgets_impl::html_editor_impl::type() {
 			return lecui::widgets_impl::widget_type::html_editor;
 		}
 
-		HRESULT widgets_impl::html_editor::create_resources(
+		HRESULT widgets_impl::html_editor_impl::create_resources(
 			ID2D1HwndRenderTarget* p_render_target) {
 			specs_old_ = specs_;
 			is_static_ = false;
@@ -145,7 +145,7 @@ namespace liblec {
 			return hr;
 		}
 
-		void widgets_impl::html_editor::discard_resources() {
+		void widgets_impl::html_editor_impl::discard_resources() {
 			resources_created_ = false;
 			safe_release(&p_brush_);
 			safe_release(&p_brush_caret_);
@@ -157,7 +157,7 @@ namespace liblec {
 		}
 
 		D2D1_RECT_F&
-			widgets_impl::html_editor::render(ID2D1HwndRenderTarget* p_render_target,
+			widgets_impl::html_editor_impl::render(ID2D1HwndRenderTarget* p_render_target,
 				const D2D1_SIZE_F& change_in_size, const D2D1_POINT_2F& offset, const bool& render) {
 			if (specs_old_ != specs_) {
 				log("specs changed: " + alias_);
@@ -419,12 +419,12 @@ namespace liblec {
 			return rect_;
 		}
 
-		void widgets_impl::html_editor::on_click() {
+		void widgets_impl::html_editor_impl::on_click() {
 			if (specs_.events().click)
 				specs_.events().click();
 		}
 
-		void widgets_impl::html_editor::on_selection_change(const bool& selected) {
+		void widgets_impl::html_editor_impl::on_selection_change(const bool& selected) {
 			if (selected) {
 				// start blink timer
 				timer_management(get_form()).add(caret_blink_timer_name_, 500,
@@ -444,13 +444,13 @@ namespace liblec {
 		}
 
 		widgets::html_editor::html_editor_specs&
-			widgets_impl::html_editor::specs() { return specs_; }
+			widgets_impl::html_editor_impl::specs() { return specs_; }
 
 		widgets::html_editor::html_editor_specs&
-			widgets_impl::html_editor::operator()() { return specs(); }
+			widgets_impl::html_editor_impl::operator()() { return specs(); }
 
 		// to-do: insertion mechanics for formatted text
-		void widgets_impl::html_editor::insert_character(const char& c) {
+		void widgets_impl::html_editor_impl::insert_character(const char& c) {
 			try {
 				unsigned long tag_number = 0;
 				if (is_selected_) {
@@ -474,7 +474,7 @@ namespace liblec {
 		}
 
 		// to-do: backspace mechanics for formatted text
-		void widgets_impl::html_editor::key_backspace() {
+		void widgets_impl::html_editor_impl::key_backspace() {
 			try {
 				unsigned long tag_number = 0;
 				if (is_selected_) {
@@ -496,7 +496,7 @@ namespace liblec {
 		}
 
 		// to-do: deletion mechanics for formatted text
-		void widgets_impl::html_editor::key_delete() {
+		void widgets_impl::html_editor_impl::key_delete() {
 			try {
 				unsigned long tag_number = 0;
 				if (is_selected_) {
@@ -516,7 +516,7 @@ namespace liblec {
 			catch (const std::exception& e) { log(e.what()); }
 		}
 
-		void widgets_impl::html_editor::key_left() {
+		void widgets_impl::html_editor_impl::key_left() {
 			try {
 				if (is_selected_) {
 					if (selection_info_.start > selection_info_.end)
@@ -535,7 +535,7 @@ namespace liblec {
 			catch (const std::exception& e) { log(e.what()); }
 		}
 
-		void widgets_impl::html_editor::key_right() {
+		void widgets_impl::html_editor_impl::key_right() {
 			try {
 				if (is_selected_) {
 					if (selection_info_.start > selection_info_.end)
@@ -554,21 +554,21 @@ namespace liblec {
 			catch (const std::exception& e) { log(e.what()); }
 		}
 
-		void widgets_impl::html_editor::key_up() {
+		void widgets_impl::html_editor_impl::key_up() {
 			key_up_scheduled_ = true;
 
 			caret_visible_ = true;
 			skip_blink_ = true;
 		}
 
-		void widgets_impl::html_editor::key_down() {
+		void widgets_impl::html_editor_impl::key_down() {
 			key_down_scheduled_ = true;
 
 			caret_visible_ = true;
 			skip_blink_ = true;
 		}
 
-		void widgets_impl::html_editor::selection_font(const std::string& font_name) {
+		void widgets_impl::html_editor_impl::selection_font(const std::string& font_name) {
 			log("selection_font: " + font_name);
 			std::vector<xml_parser::tag_attribute> tag_attributes;
 			xml_parser::tag_attribute tag_attribute;
@@ -578,7 +578,7 @@ namespace liblec {
 			formatted_text_editor().toggle_tag(specs_.text, "span", tag_attributes, selection_info_.start, selection_info_.end);
 		}
 
-		void widgets_impl::html_editor::selection_font_size(const float& font_size) {
+		void widgets_impl::html_editor_impl::selection_font_size(const float& font_size) {
 			log("selection_font_size: " + std::to_string(font_size));
 			std::vector<xml_parser::tag_attribute> tag_attributes;
 			xml_parser::tag_attribute tag_attribute;
@@ -588,7 +588,7 @@ namespace liblec {
 			formatted_text_editor().toggle_tag(specs_.text, "span", tag_attributes, selection_info_.start, selection_info_.end);
 		}
 
-		void widgets_impl::html_editor::selection_bold() {
+		void widgets_impl::html_editor_impl::selection_bold() {
 			log("selection_bold");
 			std::vector<xml_parser::tag_attribute> tag_attributes;
 			xml_parser::tag_attribute tag_attribute;
@@ -598,7 +598,7 @@ namespace liblec {
 			formatted_text_editor().toggle_tag(specs_.text, "span", tag_attributes, selection_info_.start, selection_info_.end);
 		}
 
-		void widgets_impl::html_editor::selection_italic() {
+		void widgets_impl::html_editor_impl::selection_italic() {
 			log("selection_italic");
 			std::vector<xml_parser::tag_attribute> tag_attributes;
 			xml_parser::tag_attribute tag_attribute;
@@ -608,7 +608,7 @@ namespace liblec {
 			formatted_text_editor().toggle_tag(specs_.text, "span", tag_attributes, selection_info_.start, selection_info_.end);
 		}
 
-		void widgets_impl::html_editor::selection_underline() {
+		void widgets_impl::html_editor_impl::selection_underline() {
 			log("selection_underline");
 			if (false) {
 				// to-do: make it possible for this to work together with text-decoration: line-through
@@ -623,7 +623,7 @@ namespace liblec {
 				formatted_text_editor().toggle_tag(specs_.text, "u", selection_info_.start, selection_info_.end);
 		}
 
-		void widgets_impl::html_editor::selection_strikethrough() {
+		void widgets_impl::html_editor_impl::selection_strikethrough() {
 			log("selection_strikethrough");
 			std::vector<xml_parser::tag_attribute> tag_attributes;
 			xml_parser::tag_attribute tag_attribute;
@@ -633,11 +633,11 @@ namespace liblec {
 			formatted_text_editor().toggle_tag(specs_.text, "span", tag_attributes, selection_info_.start, selection_info_.end);
 		}
 
-		void widgets_impl::html_editor::selection_color() {
+		void widgets_impl::html_editor_impl::selection_color() {
 			selection_color(last_color_);
 		}
 
-		void widgets_impl::html_editor::selection_color(const color& font_color) {
+		void widgets_impl::html_editor_impl::selection_color(const color& font_color) {
 			last_color_ = font_color;
 
 			std::string color_string = "rgb(" +
@@ -653,23 +653,23 @@ namespace liblec {
 			formatted_text_editor().toggle_tag(specs_.text, "span", tag_attributes, selection_info_.start, selection_info_.end);
 		}
 
-		color widgets_impl::html_editor::get_last_color() {
+		color widgets_impl::html_editor_impl::get_last_color() {
 			return last_color_;
 		}
 
-		void widgets_impl::html_editor::reset_selection() {
+		void widgets_impl::html_editor_impl::reset_selection() {
 			selection_info_ = { 0, 0 };
 			is_selected_ = false;
 		}
 
-		void widgets_impl::html_editor::set_selection(const UINT start, const UINT end) {
+		void widgets_impl::html_editor_impl::set_selection(const UINT start, const UINT end) {
 			selection_info_.start = start;
 			selection_info_.end = end;
 			is_selected_ = true;
 		}
 
 		UINT32
-			widgets_impl::html_editor::count_characters(IDWriteTextLayout* p_text_layout, const std::string& text,
+			widgets_impl::html_editor_impl::count_characters(IDWriteTextLayout* p_text_layout, const std::string& text,
 				const D2D1_RECT_F& rect_text, const D2D1_POINT_2F& point,
 				const float& dpi_scale) {
 			BOOL is_trailing;
@@ -686,7 +686,7 @@ namespace liblec {
 		}
 
 		UINT32
-			widgets_impl::html_editor::get_caret_position(IDWriteTextLayout* p_text_layout, const std::string& text,
+			widgets_impl::html_editor_impl::get_caret_position(IDWriteTextLayout* p_text_layout, const std::string& text,
 				const D2D1_RECT_F& rect_text, const D2D1_POINT_2F& point,
 				const float& dpi_scale) {
 			auto rect_hit = rect_text;
@@ -717,7 +717,7 @@ namespace liblec {
 		}
 
 		std::vector<D2D1_RECT_F>
-			widgets_impl::html_editor::get_selection_rects(
+			widgets_impl::html_editor_impl::get_selection_rects(
 				IDWriteTextLayout* p_text_layout, const D2D1_RECT_F& rect_text,
 				const UINT32& selection_start_, const UINT32& selection_end_) {
 			std::vector<D2D1_RECT_F> selection_rects;
@@ -803,7 +803,7 @@ namespace liblec {
 			return selection_rects;
 		}
 
-		float widgets_impl::html_editor::get_caret_width() {
+		float widgets_impl::html_editor_impl::get_caret_width() {
 			// respect user settings
 			DWORD caret_width = 1;
 			SystemParametersInfo(SPI_GETCARETWIDTH, 0, &caret_width, 0);
@@ -811,7 +811,7 @@ namespace liblec {
 		}
 
 		D2D1_RECT_F
-			widgets_impl::html_editor::get_caret_rect(IDWriteTextLayout* p_text_layout,
+			widgets_impl::html_editor_impl::get_caret_rect(IDWriteTextLayout* p_text_layout,
 				const D2D1_RECT_F& rect_text, const UINT32& caret_position) {
 			DWRITE_HIT_TEST_METRICS hit_metrics;
 			float p_x, p_y;

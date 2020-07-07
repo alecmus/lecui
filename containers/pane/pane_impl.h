@@ -19,7 +19,7 @@
 namespace liblec {
 	namespace lecui {
 		namespace widgets_impl {
-			class pane : public widget {
+			class pane_impl : public widget_impl {
 				/// private virtual function overrides
 				widgets::specs& generic_specs() override {
 					return specs_;
@@ -46,12 +46,12 @@ namespace liblec {
 				std::string current_pane_;
 
 				/// Prevent the use of the default constructor.
-				pane() = delete;
+				pane_impl() = delete;
 
 				/// constructor and destructor
-				pane(containers::page& page,
+				pane_impl(containers::page& page,
 					const std::string& alias);
-				~pane();
+				~pane_impl();
 
 				/// virtual function override
 				widgets_impl::widget_type type() override;
@@ -70,8 +70,8 @@ namespace liblec {
 
 			private:
 				/// Prevent copying an object of this class.
-				pane(const pane&);
-				pane& operator=(const pane&);
+				pane_impl(const pane_impl&);
+				pane_impl& operator=(const pane_impl&);
 
 				/// Private variables
 				containers::pane::pane_specs specs_;

@@ -19,7 +19,7 @@
 namespace liblec {
 	namespace lecui {
 		namespace widgets_impl {
-			class custom : public widget {
+			class custom_impl : public widget_impl {
 				/// private virtual function overrides
 				widgets::specs& generic_specs() override {
 					return specs_;
@@ -27,14 +27,14 @@ namespace liblec {
 
 			public:
 				/// Prevent the use of the default constructor.
-				custom() = delete;
+				custom_impl() = delete;
 
 				/// constructor and destructor
-				custom(containers::page& page,
+				custom_impl(containers::page& page,
 					const std::string& alias,
 					IDWriteFactory* p_directwrite_factory,
 					IWICImagingFactory* p_iwic_factory);
-				~custom();
+				~custom_impl();
 
 				/// virtual function overrides
 				widgets_impl::widget_type type() override;
@@ -51,8 +51,8 @@ namespace liblec {
 
 			private:
 				/// Prevent copying an object of this class.
-				custom(const custom&);
-				custom& operator=(const custom&);
+				custom_impl(const custom_impl&);
+				custom_impl& operator=(const custom_impl&);
 
 				/// Private variables
 				widgets::custom::custom_specs specs_, specs_old_;

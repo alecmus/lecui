@@ -16,11 +16,11 @@
 
 namespace liblec {
 	namespace lecui {
-		widgets_impl::tree::tree(containers::page& page,
+		widgets_impl::tree_impl::tree_impl(containers::page& page,
 			const std::string& alias,
 			ID2D1Factory* p_direct2d_factory,
 			IDWriteFactory* p_directwrite_factory) :
-			widget(page, alias),
+			widget_impl(page, alias),
 			p_brush_(nullptr),
 			p_brush_border_(nullptr),
 			p_brush_fill_(nullptr),
@@ -34,14 +34,14 @@ namespace liblec {
 			margin_(0.f)	// the tree will be moved into a special tree pane. The pane will have a margin!
 		{}
 
-		widgets_impl::tree::~tree() { discard_resources(); }
+		widgets_impl::tree_impl::~tree_impl() { discard_resources(); }
 
 		widgets_impl::widget_type
-			widgets_impl::tree::type() {
+			widgets_impl::tree_impl::type() {
 			return lecui::widgets_impl::widget_type::tree;
 		}
 
-		HRESULT widgets_impl::tree::create_resources(
+		HRESULT widgets_impl::tree_impl::create_resources(
 			ID2D1HwndRenderTarget* p_render_target) {
 			specs_old_ = specs_;
 			is_static_ = false;
@@ -90,7 +90,7 @@ namespace liblec {
 			return hr;
 		}
 
-		void widgets_impl::tree::discard_resources() {
+		void widgets_impl::tree_impl::discard_resources() {
 			resources_created_ = false;
 			safe_release(&p_brush_);
 			safe_release(&p_brush_border_);
@@ -102,7 +102,7 @@ namespace liblec {
 		}
 
 		D2D1_RECT_F&
-			widgets_impl::tree::render(ID2D1HwndRenderTarget* p_render_target,
+			widgets_impl::tree_impl::render(ID2D1HwndRenderTarget* p_render_target,
 				const D2D1_SIZE_F& change_in_size, const D2D1_POINT_2F& offset, const bool& render) {
 			if (specs_old_ != specs_) {
 				log("specs changed: " + alias_);
@@ -327,7 +327,7 @@ namespace liblec {
 			return rect_;
 		}
 
-		void widgets_impl::tree::on_click() {
+		void widgets_impl::tree_impl::on_click() {
 			class helper {
 			public:
 				static void check(std::map<std::string, widgets::tree::tree_specs::node>& level, D2D1_POINT_2F point_, float dpi_scale_) {
@@ -365,7 +365,7 @@ namespace liblec {
 				specs_.events().click();
 		}
 
-		bool widgets_impl::tree::hit(const bool& hit) {
+		bool widgets_impl::tree_impl::hit(const bool& hit) {
 			if (is_static_ || hit == hit_) {
 				if (hit || pressed_)
 					return true;
@@ -378,12 +378,12 @@ namespace liblec {
 		}
 
 		widgets::tree::tree_specs&
-			widgets_impl::tree::specs() { return specs_; }
+			widgets_impl::tree_impl::specs() { return specs_; }
 
 		widgets::tree::tree_specs&
-			widgets_impl::tree::operator()() { return specs(); }
+			widgets_impl::tree_impl::operator()() { return specs(); }
 
-		void widgets_impl::tree::on_selection() {
+		void widgets_impl::tree_impl::on_selection() {
 			class helper {
 			public:
 				static void check(std::map<std::string, widgets::tree::tree_specs::node>& level,

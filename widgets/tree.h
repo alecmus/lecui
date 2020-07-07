@@ -25,7 +25,7 @@ namespace liblec {
 	namespace lecui {
 #if defined(LECUI_EXPORTS)
 		namespace widgets_impl {
-			class tree;
+			class tree_impl;
 		}
 #endif
 
@@ -66,7 +66,7 @@ namespace liblec {
 						lecui::rect rc_expand = { 0.f, 0.f, 0.f, 0.f };
 
 #if defined(LECUI_EXPORTS)
-						friend class widgets_impl::tree;
+						friend class widgets_impl::tree_impl;
 #endif
 					};
 

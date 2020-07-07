@@ -15,11 +15,11 @@
 
 namespace liblec {
 	namespace lecui {
-		widgets_impl::checkbox::checkbox(containers::page& page,
+		widgets_impl::checkbox_impl::checkbox_impl(containers::page& page,
 			const std::string& alias,
 			ID2D1Factory* p_direct2d_factory,
 			IDWriteFactory* p_directwrite_factory) :
-			widget(page, alias),
+			widget_impl(page, alias),
 			p_brush_(nullptr),
 			p_brush_check_(nullptr),
 			p_brush_border_(nullptr),
@@ -32,14 +32,14 @@ namespace liblec {
 			p_directwrite_factory_(p_directwrite_factory),
 			p_text_layout_(nullptr) {}
 
-		widgets_impl::checkbox::~checkbox() { discard_resources(); }
+		widgets_impl::checkbox_impl::~checkbox_impl() { discard_resources(); }
 
 		widgets_impl::widget_type
-			widgets_impl::checkbox::type() {
+			widgets_impl::checkbox_impl::type() {
 			return lecui::widgets_impl::widget_type::checkbox;
 		}
 
-		HRESULT widgets_impl::checkbox::create_resources(
+		HRESULT widgets_impl::checkbox_impl::create_resources(
 			ID2D1HwndRenderTarget* p_render_target) {
 			specs_old_ = specs_;
 			is_static_ = (specs_.events().check == nullptr && specs_.events().click == nullptr);
@@ -91,7 +91,7 @@ namespace liblec {
 			return hr;
 		}
 
-		void widgets_impl::checkbox::discard_resources() {
+		void widgets_impl::checkbox_impl::discard_resources() {
 			resources_created_ = false;
 			safe_release(&p_brush_);
 			safe_release(&p_brush_check_);
@@ -104,7 +104,7 @@ namespace liblec {
 		}
 
 		D2D1_RECT_F&
-			widgets_impl::checkbox::render(ID2D1HwndRenderTarget* p_render_target,
+			widgets_impl::checkbox_impl::render(ID2D1HwndRenderTarget* p_render_target,
 				const D2D1_SIZE_F& change_in_size, const D2D1_POINT_2F& offset, const bool& render) {
 			if (specs_old_ != specs_) {
 				log("specs changed: " + alias_);
@@ -235,7 +235,7 @@ namespace liblec {
 			return rect_;
 		}
 
-		void widgets_impl::checkbox::on_click() {
+		void widgets_impl::checkbox_impl::on_click() {
 			switch (specs_.status) {
 			case widgets::checkbox::checkbox_specs::checkbox_status::unchecked:
 				specs_.status = widgets::checkbox::checkbox_specs::checkbox_status::checked;
@@ -255,9 +255,9 @@ namespace liblec {
 		}
 
 		widgets::checkbox::checkbox_specs&
-			widgets_impl::checkbox::specs() { return specs_; }
+			widgets_impl::checkbox_impl::specs() { return specs_; }
 
 		widgets::checkbox::checkbox_specs&
-			widgets_impl::checkbox::operator()() { return specs(); }
+			widgets_impl::checkbox_impl::operator()() { return specs(); }
 	}
 }

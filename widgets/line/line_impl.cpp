@@ -15,22 +15,22 @@
 
 namespace liblec {
 	namespace lecui {
-		widgets_impl::line::line(containers::page& page,
+		widgets_impl::line_impl::line_impl(containers::page& page,
 			const std::string& alias) :
-			widget(page, alias),
+			widget_impl(page, alias),
 			p_brush_fill_(nullptr),
 			p_brush_hot_(nullptr),
 			p_brush_disabled_(nullptr),
 			p_brush_selected_(nullptr) {}
 
-		widgets_impl::line::~line() { discard_resources(); }
+		widgets_impl::line_impl::~line_impl() { discard_resources(); }
 
 		widgets_impl::widget_type
-			widgets_impl::line::type() {
+			widgets_impl::line_impl::type() {
 			return lecui::widgets_impl::widget_type::line;
 		}
 
-		HRESULT widgets_impl::line::create_resources(
+		HRESULT widgets_impl::line_impl::create_resources(
 			ID2D1HwndRenderTarget* p_render_target) {
 			specs_old_ = specs_;
 			is_static_ = (specs_.events().click == nullptr);
@@ -55,7 +55,7 @@ namespace liblec {
 			return hr;
 		}
 
-		void widgets_impl::line::discard_resources() {
+		void widgets_impl::line_impl::discard_resources() {
 			resources_created_ = false;
 			safe_release(&p_brush_fill_);
 			safe_release(&p_brush_hot_);
@@ -64,7 +64,7 @@ namespace liblec {
 		}
 
 		D2D1_RECT_F&
-			widgets_impl::line::render(ID2D1HwndRenderTarget* p_render_target,
+			widgets_impl::line_impl::render(ID2D1HwndRenderTarget* p_render_target,
 				const D2D1_SIZE_F& change_in_size, const D2D1_POINT_2F& offset, const bool& render) {
 			if (specs_old_ != specs_) {
 				log("specs changed: " + alias_);
@@ -100,15 +100,15 @@ namespace liblec {
 			return rect_;
 		}
 
-		void widgets_impl::line::on_click() {
+		void widgets_impl::line_impl::on_click() {
 			if (specs_.events().click)
 				specs_.events().click();
 		}
 
 		widgets::line::line_specs&
-			widgets_impl::line::specs() { return specs_; }
+			widgets_impl::line_impl::specs() { return specs_; }
 
 		widgets::line::line_specs&
-			widgets_impl::line::operator()() { return specs(); }
+			widgets_impl::line_impl::operator()() { return specs(); }
 	}
 }

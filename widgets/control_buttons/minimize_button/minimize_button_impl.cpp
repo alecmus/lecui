@@ -1,5 +1,5 @@
 /*
-** minimize_button.cpp - minimize button widget implementation
+** minimize_button_impl.cpp - minimize button widget implementation
 **
 ** lecui user interface library
 ** Copyright (c) 2019 Alec T. Musasa (alecmus at live dot com)
@@ -11,25 +11,25 @@
 ** for full license details.
 */
 
-#include "minimize_button.h"
+#include "minimize_button_impl.h"
 
 namespace liblec {
 	namespace lecui {
-		widgets_impl::minimize_button::minimize_button(containers::page& page) :
-			widget(page, "minimize_button"),
+		widgets_impl::minimize_button_impl::minimize_button_impl(containers::page& page) :
+			widget_impl(page, "minimize_button"),
 			hWnd_(nullptr),
 			p_brush_(nullptr),
 			p_brush_hot_(nullptr),
 			p_brush_disabled_(nullptr) {}
 
-		widgets_impl::minimize_button::~minimize_button() { discard_resources(); }
+		widgets_impl::minimize_button_impl::~minimize_button_impl() { discard_resources(); }
 
 		widgets_impl::widget_type
-			widgets_impl::minimize_button::type() {
+			widgets_impl::minimize_button_impl::type() {
 			return lecui::widgets_impl::widget_type::minimize_button;
 		}
 
-		HRESULT widgets_impl::minimize_button::create_resources(
+		HRESULT widgets_impl::minimize_button_impl::create_resources(
 			ID2D1HwndRenderTarget* p_render_target) {
 			is_static_ = false;
 			h_cursor_ = get_cursor(specs_.cursor);
@@ -50,14 +50,14 @@ namespace liblec {
 			return hr;
 		}
 
-		void widgets_impl::minimize_button::discard_resources() {
+		void widgets_impl::minimize_button_impl::discard_resources() {
 			resources_created_ = false;
 			safe_release(&p_brush_);
 			safe_release(&p_brush_hot_);
 			safe_release(&p_brush_disabled_);
 		}
 
-		D2D1_RECT_F& widgets_impl::minimize_button::render(ID2D1HwndRenderTarget* p_render_target,
+		D2D1_RECT_F& widgets_impl::minimize_button_impl::render(ID2D1HwndRenderTarget* p_render_target,
 			const D2D1_SIZE_F& change_in_size, const D2D1_POINT_2F& offset, const bool& render) {
 			if (!resources_created_)
 				create_resources(p_render_target);
@@ -93,17 +93,17 @@ namespace liblec {
 			return rect_;
 		}
 
-		void widgets_impl::minimize_button::on_click() {
+		void widgets_impl::minimize_button_impl::on_click() {
 			if (IsWindow(hWnd_))
 				ShowWindow(hWnd_, SW_MINIMIZE);
 		}
 
-		void widgets_impl::minimize_button::set_hwnd(HWND hWnd) { hWnd_ = hWnd; }
+		void widgets_impl::minimize_button_impl::set_hwnd(HWND hWnd) { hWnd_ = hWnd; }
 
 		widgets::minimize_button_specs&
-			widgets_impl::minimize_button::specs() { return specs_; }
+			widgets_impl::minimize_button_impl::specs() { return specs_; }
 
 		widgets::minimize_button_specs&
-			widgets_impl::minimize_button::operator()() { return specs(); }
+			widgets_impl::minimize_button_impl::operator()() { return specs(); }
 	}
 }

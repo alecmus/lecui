@@ -19,7 +19,7 @@
 namespace liblec {
 	namespace lecui {
 		namespace widgets_impl {
-			class tree : public widget {
+			class tree_impl : public widget_impl {
 				/// private virtual function overrides
 				widgets::specs& generic_specs() override {
 					return specs_;
@@ -27,14 +27,14 @@ namespace liblec {
 
 			public:
 				/// Prevent the use of the default constructor.
-				tree() = delete;
+				tree_impl() = delete;
 
 				/// constructor and destructor
-				tree(containers::page& page,
+				tree_impl(containers::page& page,
 					const std::string& alias,
 					ID2D1Factory* p_direct2d_factory,
 					IDWriteFactory* p_directwrite_factory);
-				~tree();
+				~tree_impl();
 
 				/// virtual function overrides
 				widgets_impl::widget_type type() override;
@@ -52,8 +52,8 @@ namespace liblec {
 
 			private:
 				/// Prevent copying an object of this class.
-				tree(const tree&);
-				tree& operator=(const tree&);
+				tree_impl(const tree_impl&);
+				tree_impl& operator=(const tree_impl&);
 
 				/// Private variables
 				widgets::tree::tree_specs specs_, specs_old_;

@@ -19,7 +19,7 @@
 namespace liblec {
 	namespace lecui {
 		namespace widgets_impl {
-			class button : public widget {
+			class button_impl : public widget_impl {
 				/// private virtual function overrides
 				widgets::specs& generic_specs() override {
 					return specs_;
@@ -27,13 +27,13 @@ namespace liblec {
 
 			public:
 				/// Prevent the use of the default constructor.
-				button() = delete;
+				button_impl() = delete;
 
 				/// constructor and destructor
-				button(containers::page& page,
+				button_impl(containers::page& page,
 					const std::string& alias,
 					IDWriteFactory* p_directwrite_factory);
-				~button();
+				~button_impl();
 
 				/// virtual function overrides
 				widgets_impl::widget_type type() override;
@@ -50,8 +50,8 @@ namespace liblec {
 
 			private:
 				/// Prevent copying an object of this class.
-				button(const button&);
-				button& operator=(const button&);
+				button_impl(const button_impl&);
+				button_impl& operator=(const button_impl&);
 
 				/// Private variables
 				widgets::button::button_specs specs_, specs_old_;

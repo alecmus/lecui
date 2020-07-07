@@ -1,5 +1,5 @@
 /*
-** close_button.cpp - close button widget implementation
+** close_button_impl.cpp - close button widget implementation
 **
 ** lecui user interface library
 ** Copyright (c) 2019 Alec T. Musasa (alecmus at live dot com)
@@ -11,24 +11,24 @@
 ** for full license details.
 */
 
-#include "close_button.h"
+#include "close_button_impl.h"
 
 namespace liblec {
 	namespace lecui {
-		widgets_impl::close_button::close_button(containers::page& page) :
-			widget(page, "close_button"),
+		widgets_impl::close_button_impl::close_button_impl(containers::page& page) :
+			widget_impl(page, "close_button"),
 			p_brush_(nullptr),
 			p_brush_hot_(nullptr),
 			p_brush_disabled_(nullptr) {}
 
-		widgets_impl::close_button::~close_button() { discard_resources(); }
+		widgets_impl::close_button_impl::~close_button_impl() { discard_resources(); }
 
 		widgets_impl::widget_type
-			widgets_impl::close_button::type() {
+			widgets_impl::close_button_impl::type() {
 			return lecui::widgets_impl::widget_type::close_button;
 		}
 
-		HRESULT widgets_impl::close_button::create_resources(
+		HRESULT widgets_impl::close_button_impl::create_resources(
 			ID2D1HwndRenderTarget* p_render_target) {
 			is_static_ = false;
 			h_cursor_ = get_cursor(specs_.cursor);
@@ -49,14 +49,14 @@ namespace liblec {
 			return hr;
 		}
 
-		void widgets_impl::close_button::discard_resources() {
+		void widgets_impl::close_button_impl::discard_resources() {
 			resources_created_ = false;
 			safe_release(&p_brush_);
 			safe_release(&p_brush_hot_);
 			safe_release(&p_brush_disabled_);
 		}
 
-		D2D1_RECT_F& widgets_impl::close_button::render(ID2D1HwndRenderTarget* p_render_target,
+		D2D1_RECT_F& widgets_impl::close_button_impl::render(ID2D1HwndRenderTarget* p_render_target,
 			const D2D1_SIZE_F& change_in_size, const D2D1_POINT_2F& offset, const bool& render) {
 			if (!resources_created_)
 				create_resources(p_render_target);
@@ -96,15 +96,15 @@ namespace liblec {
 			return rect_;
 		}
 
-		void widgets_impl::close_button::on_click() {
+		void widgets_impl::close_button_impl::on_click() {
 			if (specs_.events().click)
 				specs_.events().click();
 		}
 
 		widgets::close_button_specs&
-			widgets_impl::close_button::specs() { return specs_; }
+			widgets_impl::close_button_impl::specs() { return specs_; }
 
 		widgets::close_button_specs&
-			widgets_impl::close_button::operator()() { return specs(); }
+			widgets_impl::close_button_impl::operator()() { return specs(); }
 	}
 }

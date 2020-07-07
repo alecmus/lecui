@@ -19,7 +19,7 @@
 namespace liblec {
 	namespace lecui {
 		namespace widgets_impl {
-			class checkbox : public widget {
+			class checkbox_impl : public widget_impl {
 				/// private virtual function overrides
 				widgets::specs& generic_specs() override {
 					return specs_;
@@ -27,14 +27,14 @@ namespace liblec {
 
 			public:
 				/// Prevent the use of the default constructor.
-				checkbox() = delete;
+				checkbox_impl() = delete;
 
 				/// constructor and destructor
-				checkbox(containers::page& page,
+				checkbox_impl(containers::page& page,
 					const std::string& alias,
 					ID2D1Factory* p_direct2d_factory,
 					IDWriteFactory* p_directwrite_factory);
-				~checkbox();
+				~checkbox_impl();
 
 				/// virtual function overrides
 				widgets_impl::widget_type type() override;
@@ -51,8 +51,8 @@ namespace liblec {
 
 			private:
 				/// Prevent copying an object of this class.
-				checkbox(const checkbox&);
-				checkbox& operator=(const checkbox&);
+				checkbox_impl(const checkbox_impl&);
+				checkbox_impl& operator=(const checkbox_impl&);
 
 				/// Private variables
 				widgets::checkbox::checkbox_specs specs_, specs_old_;

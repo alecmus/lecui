@@ -23,7 +23,7 @@ namespace liblec {
 	namespace lecui {
 		namespace widgets_impl {
 
-			class html_editor : public widget {
+			class html_editor_impl : public widget_impl {
 				/// private virtual function overrides
 				widgets::specs& generic_specs() override {
 					return specs_;
@@ -40,13 +40,13 @@ namespace liblec {
 				static std::string alias_font_color_bar();
 
 				/// Prevent the use of the default constructor.
-				html_editor() = delete;
+				html_editor_impl() = delete;
 
 				/// constructor and destructor
-				html_editor(containers::page& page,
+				html_editor_impl(containers::page& page,
 					const std::string& alias,
 					IDWriteFactory* p_directwrite_factory);
-				~html_editor();
+				~html_editor_impl();
 
 				bool controls_initialized();
 				void initialize_controls(bool init);
@@ -86,8 +86,8 @@ namespace liblec {
 
 			private:
 				/// Prevent copying an object of this class.
-				html_editor(const html_editor&);
-				html_editor& operator=(const html_editor&);
+				html_editor_impl(const html_editor_impl&);
+				html_editor_impl& operator=(const html_editor_impl&);
 
 				/// Private variables
 				bool controls_initialized_;

@@ -19,7 +19,7 @@
 namespace liblec {
 	namespace lecui {
 		namespace widgets_impl {
-			class progress_bar : public widget {
+			class progress_bar_impl : public widget_impl {
 				/// private virtual function overrides
 				widgets::specs& generic_specs() override {
 					return specs_;
@@ -27,14 +27,14 @@ namespace liblec {
 
 			public:
 				/// Prevent the use of the default constructor.
-				progress_bar() = delete;
+				progress_bar_impl() = delete;
 
 				/// constructor and destructor
-				progress_bar(containers::page& page,
+				progress_bar_impl(containers::page& page,
 					const std::string& alias,
 					ID2D1Factory* p_direct2d_factory,
 					IDWriteFactory* p_directwrite_factory);
-				~progress_bar();
+				~progress_bar_impl();
 
 				/// virtual function overrides
 				widgets_impl::widget_type type() override;
@@ -51,8 +51,8 @@ namespace liblec {
 
 			private:
 				/// Prevent copying an object of this class.
-				progress_bar(const progress_bar&);
-				progress_bar& operator=(const progress_bar&);
+				progress_bar_impl(const progress_bar_impl&);
+				progress_bar_impl& operator=(const progress_bar_impl&);
 
 				/// Private variables
 				widgets::progress_bar::progress_bar_specs specs_, specs_old_;

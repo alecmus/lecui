@@ -163,20 +163,8 @@
     <ClInclude Include="widgets\button\button_impl.h">
       <Filter>lecui\widgets\button</Filter>
     </ClInclude>
-    <ClInclude Include="widgets\control_buttons\close_button\close_button.h">
-      <Filter>lecui\widgets\control_buttons\close_button</Filter>
-    </ClInclude>
-    <ClInclude Include="widgets\control_buttons\maximize_button\maximize_button.h">
-      <Filter>lecui\widgets\control_buttons\maximize_button</Filter>
-    </ClInclude>
-    <ClInclude Include="widgets\control_buttons\minimize_button\minimize_button.h">
-      <Filter>lecui\widgets\control_buttons\minimize_button</Filter>
-    </ClInclude>
     <ClInclude Include="widgets\custom\custom_impl.h">
       <Filter>lecui\widgets\custom</Filter>
-    </ClInclude>
-    <ClInclude Include="widgets\h_scrollbar\h_scrollbar.h">
-      <Filter>lecui\widgets\h_scrollbar</Filter>
     </ClInclude>
     <ClInclude Include="widgets\label\label_impl.h">
       <Filter>lecui\widgets\label</Filter>
@@ -186,9 +174,6 @@
     </ClInclude>
     <ClInclude Include="widgets\toggle\toggle_impl.h">
       <Filter>lecui\widgets\toggle</Filter>
-    </ClInclude>
-    <ClInclude Include="widgets\v_scrollbar\v_scrollbar.h">
-      <Filter>lecui\widgets\v_scrollbar</Filter>
     </ClInclude>
     <ClInclude Include="containers\page.h">
       <Filter>lecui\containers</Filter>
@@ -341,6 +326,21 @@
     <ClInclude Include="widgets\line\line_impl.h">
       <Filter>lecui\widgets\line</Filter>
     </ClInclude>
+    <ClInclude Include="widgets\control_buttons\close_button\close_button_impl.h">
+      <Filter>lecui\widgets\control_buttons\close_button</Filter>
+    </ClInclude>
+    <ClInclude Include="widgets\control_buttons\maximize_button\maximize_button_impl.h">
+      <Filter>lecui\widgets\control_buttons\maximize_button</Filter>
+    </ClInclude>
+    <ClInclude Include="widgets\control_buttons\minimize_button\minimize_button_impl.h">
+      <Filter>lecui\widgets\control_buttons\minimize_button</Filter>
+    </ClInclude>
+    <ClInclude Include="widgets\h_scrollbar\h_scrollbar_impl.h">
+      <Filter>lecui\widgets\h_scrollbar</Filter>
+    </ClInclude>
+    <ClInclude Include="widgets\v_scrollbar\v_scrollbar_impl.h">
+      <Filter>lecui\widgets\v_scrollbar</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="error\win_error.cpp">
@@ -361,20 +361,8 @@
     <ClCompile Include="widgets\button\button_impl.cpp">
       <Filter>lecui\widgets\button</Filter>
     </ClCompile>
-    <ClCompile Include="widgets\control_buttons\close_button\close_button.cpp">
-      <Filter>lecui\widgets\control_buttons\close_button</Filter>
-    </ClCompile>
-    <ClCompile Include="widgets\control_buttons\maximize_button\maximize_button.cpp">
-      <Filter>lecui\widgets\control_buttons\maximize_button</Filter>
-    </ClCompile>
-    <ClCompile Include="widgets\control_buttons\minimize_button\minimize_button.cpp">
-      <Filter>lecui\widgets\control_buttons\minimize_button</Filter>
-    </ClCompile>
     <ClCompile Include="widgets\custom\custom_impl.cpp">
       <Filter>lecui\widgets\custom</Filter>
-    </ClCompile>
-    <ClCompile Include="widgets\h_scrollbar\h_scrollbar.cpp">
-      <Filter>lecui\widgets\h_scrollbar</Filter>
     </ClCompile>
     <ClCompile Include="widgets\label\label_impl.cpp">
       <Filter>lecui\widgets\label</Filter>
@@ -384,9 +372,6 @@
     </ClCompile>
     <ClCompile Include="widgets\toggle\toggle_impl.cpp">
       <Filter>lecui\widgets\toggle</Filter>
-    </ClCompile>
-    <ClCompile Include="widgets\v_scrollbar\v_scrollbar.cpp">
-      <Filter>lecui\widgets\v_scrollbar</Filter>
     </ClCompile>
     <ClCompile Include="lecui.cpp" />
     <ClCompile Include="widgets\image\image_impl.cpp">
@@ -568,6 +553,21 @@
     </ClCompile>
     <ClCompile Include="widgets\line\line_impl.cpp">
       <Filter>lecui\widgets\line</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\control_buttons\close_button\close_button_impl.cpp">
+      <Filter>lecui\widgets\control_buttons\close_button</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\control_buttons\maximize_button\maximize_button_impl.cpp">
+      <Filter>lecui\widgets\control_buttons\maximize_button</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\control_buttons\minimize_button\minimize_button_impl.cpp">
+      <Filter>lecui\widgets\control_buttons\minimize_button</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\h_scrollbar\h_scrollbar_impl.cpp">
+      <Filter>lecui\widgets\h_scrollbar</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\v_scrollbar\v_scrollbar_impl.cpp">
+      <Filter>lecui\widgets\v_scrollbar</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

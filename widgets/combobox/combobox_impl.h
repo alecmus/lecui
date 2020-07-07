@@ -19,7 +19,7 @@
 namespace liblec {
 	namespace lecui {
 		namespace widgets_impl {
-			class combobox : public widget {
+			class combobox_impl : public widget_impl {
 				/// private virtual function overrides
 				widgets::specs& generic_specs() override {
 					return specs_;
@@ -27,13 +27,13 @@ namespace liblec {
 
 			public:
 				/// Prevent the use of the default constructor.
-				combobox() = delete;
+				combobox_impl() = delete;
 
 				/// constructor and destructor
-				combobox(containers::page& page,
+				combobox_impl(containers::page& page,
 					const std::string& alias,
 					IDWriteFactory* p_directwrite_factory);
-				~combobox();
+				~combobox_impl();
 
 				/// virtual function overrides
 				void press(const bool& pressed) override;
@@ -59,8 +59,8 @@ namespace liblec {
 
 			private:
 				/// Prevent copying an object of this class.
-				combobox(const combobox&);
-				combobox& operator=(const combobox&);
+				combobox_impl(const combobox_impl&);
+				combobox_impl& operator=(const combobox_impl&);
 
 				/// Private variables
 				widgets::combobox::combobox_specs specs_, specs_old_;

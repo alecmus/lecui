@@ -1,5 +1,5 @@
 /*
-** minimize_button.h - minimize button widget interface
+** h_scrollbar_impl.h - horizontal scroll bar widget interface
 **
 ** lecui user interface library
 ** Copyright (c) 2019 Alec T. Musasa (alecmus at live dot com)
@@ -13,24 +13,35 @@
 
 #pragma once
 
-#include "../../widget_impl.h"
+#include "../widget_impl.h"
 
 namespace liblec {
 	namespace lecui {
 		namespace widgets {
-			class minimize_button_specs : public specs {};
+			class h_scrollbar_specs : public scrollbar_specs {};
 		}
 
 		namespace widgets_impl {
-			class minimize_button : public widget {
+			class h_scrollbar_impl : public widget_impl {
 				/// private virtual function overrides
 				widgets::specs& generic_specs() override {
 					return specs_;
 				}
 
 			public:
-				minimize_button(containers::page& page);
-				~minimize_button();
+				float x_displacement_previous_;
+				float x_displacement_;
+				float x_off_set_;
+				float max_displacement_left_;
+				float max_displacement_right_;
+				bool force_translate_;
+
+				/// Prevent the use of the default constructor.
+				h_scrollbar_impl() = delete;
+
+				/// constructor and destructor
+				h_scrollbar_impl(containers::page& page);
+				~h_scrollbar_impl();
 
 				/// virtual function overrides
 				widgets_impl::widget_type type() override;
@@ -42,21 +53,26 @@ namespace liblec {
 				void on_click() override;
 
 				/// widget specific methods
-				void set_hwnd(HWND hWnd);
-				widgets::minimize_button_specs& specs();
-				widgets::minimize_button_specs& operator()();
+				widgets::h_scrollbar_specs& specs();
+				widgets::h_scrollbar_specs& operator()();
+				void max_displacement(float& left, float& right);
+				bool translate_x_displacement(const float& x_displacement,
+					float& x_displacement_translated, bool force);
+				void setup(const D2D1_RECT_F& rectA, const D2D1_RECT_F& rectB);
 
 			private:
 				/// Prevent copying an object of this class.
-				minimize_button(const minimize_button&);
-				minimize_button& operator=(const minimize_button&);
+				h_scrollbar_impl(const h_scrollbar_impl&);
+				h_scrollbar_impl& operator=(const h_scrollbar_impl&);
 
 				/// Private variables
-				HWND hWnd_;
-				widgets::minimize_button_specs specs_;
+				widgets::h_scrollbar_specs specs_;
 				ID2D1SolidColorBrush* p_brush_;
+				ID2D1SolidColorBrush* p_brush_border_;
 				ID2D1SolidColorBrush* p_brush_hot_;
-				ID2D1SolidColorBrush* p_brush_disabled_;
+				ID2D1SolidColorBrush* p_brush_hot_pressed_;
+				ID2D1SolidColorBrush* p_brush_background_;
+				D2D1_RECT_F rectA_, rectB_, rectC_, rectD_;
 			};
 		}
 	}

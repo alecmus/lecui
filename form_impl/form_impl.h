@@ -19,9 +19,9 @@
 #include "../containers/status_pane.h"
 
 #include "../widgets/widget_impl.h"
-#include "../widgets/control_buttons/close_button/close_button.h"
-#include "../widgets/control_buttons/maximize_button/maximize_button.h"
-#include "../widgets/control_buttons/minimize_button/minimize_button.h"
+#include "../widgets/control_buttons/close_button/close_button_impl.h"
+#include "../widgets/control_buttons/maximize_button/maximize_button_impl.h"
+#include "../widgets/control_buttons/minimize_button/minimize_button_impl.h"
 
 // Windows headers
 #include <Windows.h>
@@ -132,13 +132,13 @@ namespace liblec {
 			mouse_track mouse_track_;
 
 			// form widgets <K = widget alias, T>
-			std::map<std::string, widgets_impl::widget&> widgets_;
+			std::map<std::string, widgets_impl::widget_impl&> widgets_;
 			std::vector<std::string> widgets_order_;
 			containers::page controls_page_;
-			std::unique_ptr<widgets_impl::close_button> p_close_button_;
-			std::unique_ptr<widgets_impl::maximize_button> p_maximize_button_;
-			std::unique_ptr<widgets_impl::minimize_button> p_minimize_button_;
-			std::unique_ptr<widgets_impl::label> p_caption_;
+			std::unique_ptr<widgets_impl::close_button_impl> p_close_button_;
+			std::unique_ptr<widgets_impl::maximize_button_impl> p_maximize_button_;
+			std::unique_ptr<widgets_impl::minimize_button_impl> p_minimize_button_;
+			std::unique_ptr<widgets_impl::label_impl> p_caption_;
 
 			D2D1_POINT_2F point_before_;
 			bool user_sizing_;
@@ -211,7 +211,7 @@ namespace liblec {
 			friend class widgets::slider;
 			friend class widgets::html_editor;
 			friend class widgets::combobox;
-			friend class widgets_impl::combobox;
+			friend class widgets_impl::combobox_impl;
 			friend class widgets::line;
 
 		public:
@@ -270,7 +270,7 @@ namespace liblec {
 			void start_timer(const std::string& alias);
 
 			struct widget_search_results {
-				widgets_impl::widget& widget;
+				widgets_impl::widget_impl& widget;
 				containers::page& page;
 			};
 

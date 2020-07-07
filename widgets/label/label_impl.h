@@ -49,7 +49,7 @@ namespace liblec {
 				bool allow_v_overflow,
 				const D2D1_RECT_F max_rect);
 
-			class label : public widget {
+			class label_impl : public widget_impl {
 				/// private virtual function overrides
 				widgets::specs& generic_specs() override {
 					return specs_;
@@ -57,13 +57,13 @@ namespace liblec {
 
 			public:
 				/// Prevent the use of the default constructor.
-				label() = delete;
+				label_impl() = delete;
 
 				/// constructor and destructor
-				label(containers::page& page,
+				label_impl(containers::page& page,
 					const std::string& alias,
 					IDWriteFactory* p_directwrite_factory);
-				~label();
+				~label_impl();
 
 				/// virtual function overrides
 				widgets_impl::widget_type type() override;
@@ -80,8 +80,8 @@ namespace liblec {
 
 			private:
 				/// Prevent copying an object of this class.
-				label(const label&);
-				label& operator=(const label&);
+				label_impl(const label_impl&);
+				label_impl& operator=(const label_impl&);
 
 				/// Private variables
 				widgets::label::label_specs specs_, specs_old_;

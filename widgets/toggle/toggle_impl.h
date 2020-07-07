@@ -19,7 +19,7 @@
 namespace liblec {
 	namespace lecui {
 		namespace widgets_impl {
-			class toggle : public widget {
+			class toggle_impl : public widget_impl {
 				/// private virtual function overrides
 				widgets::specs& generic_specs() override {
 					return specs_;
@@ -27,13 +27,13 @@ namespace liblec {
 
 			public:
 				/// Prevent the use of the default constructor.
-				toggle() = delete;
+				toggle_impl() = delete;
 
 				/// constructor and destructor
-				toggle(containers::page& page,
+				toggle_impl(containers::page& page,
 					const std::string& alias,
 					IDWriteFactory* p_directwrite_factory);
-				~toggle();
+				~toggle_impl();
 
 				/// virtual function overrides
 				widgets_impl::widget_type type() override;
@@ -53,8 +53,8 @@ namespace liblec {
 
 			private:
 				/// Prevent copying an object of this class.
-				toggle(const toggle&);
-				toggle& operator=(const toggle&);
+				toggle_impl(const toggle_impl&);
+				toggle_impl& operator=(const toggle_impl&);
 
 				/// Private variables
 				widgets::toggle::toggle_specs specs_, specs_old_;

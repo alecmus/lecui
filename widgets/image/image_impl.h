@@ -19,7 +19,7 @@
 namespace liblec {
 	namespace lecui {
 		namespace widgets_impl {
-			class image : public widget {
+			class image_impl : public widget_impl {
 				/// private virtual function overrides
 				widgets::specs& generic_specs() override {
 					return specs_;
@@ -27,13 +27,13 @@ namespace liblec {
 
 			public:
 				/// Prevent the use of the default constructor.
-				image() = delete;
+				image_impl() = delete;
 
 				/// constructor and destructor
-				image(containers::page& page,
+				image_impl(containers::page& page,
 					const std::string& alias,
 					IWICImagingFactory* p_IWICFactory);
-				~image();
+				~image_impl();
 
 				/// virtual function overrides
 				widgets_impl::widget_type type() override;
@@ -50,8 +50,8 @@ namespace liblec {
 
 			private:
 				/// Prevent copying an object of this class.
-				image(const image&);
-				image& operator=(const image&);
+				image_impl(const image_impl&);
+				image_impl& operator=(const image_impl&);
 
 				/// Private variables
 				widgets::image::image_specs specs_, specs_old_;

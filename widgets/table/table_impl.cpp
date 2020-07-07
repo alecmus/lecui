@@ -15,10 +15,10 @@
 
 namespace liblec {
 	namespace lecui {
-		widgets_impl::table::table(containers::page& page,
+		widgets_impl::table_impl::table_impl(containers::page& page,
 			const std::string& alias,
 			IDWriteFactory* p_directwrite_factory) :
-			widget(page, alias),
+			widget_impl(page, alias),
 			p_brush_(nullptr),
 			p_brush_fill_(nullptr),
 			p_brush_scrollbar_border_(nullptr),
@@ -72,14 +72,14 @@ namespace liblec {
 			color_scrollbar_border_ = bar.color_scrollbar_border;
 		}
 
-		widgets_impl::table::~table() { discard_resources(); }
+		widgets_impl::table_impl::~table_impl() { discard_resources(); }
 
 		widgets_impl::widget_type
-			widgets_impl::table::type() {
+			widgets_impl::table_impl::type() {
 			return lecui::widgets_impl::widget_type::table;
 		}
 
-		HRESULT widgets_impl::table::create_resources(
+		HRESULT widgets_impl::table_impl::create_resources(
 			ID2D1HwndRenderTarget* p_render_target) {
 			specs_old_ = specs_;
 			is_static_ = false;
@@ -169,7 +169,7 @@ namespace liblec {
 			return hr;
 		}
 
-		void widgets_impl::table::discard_resources() {
+		void widgets_impl::table_impl::discard_resources() {
 			resources_created_ = false;
 			safe_release(&p_brush_);
 			safe_release(&p_brush_fill_);
@@ -194,7 +194,7 @@ namespace liblec {
 		}
 
 		D2D1_RECT_F&
-			widgets_impl::table::render(ID2D1HwndRenderTarget* p_render_target,
+			widgets_impl::table_impl::render(ID2D1HwndRenderTarget* p_render_target,
 				const D2D1_SIZE_F& change_in_size, const D2D1_POINT_2F& offset, const bool& render) {
 			if (specs_old_ != specs_) {
 				log("specs changed: " + alias_);
@@ -699,7 +699,7 @@ namespace liblec {
 			return rect_;
 		}
 
-		void widgets_impl::table::on_click() {
+		void widgets_impl::table_impl::on_click() {
 			if (!h_scrollbar_pressed_ && !v_scrollbar_pressed_) {
 				if (book_on_selection_) {
 					if (specs_.events().selection)
@@ -785,7 +785,7 @@ namespace liblec {
 			}
 		}
 
-		bool widgets_impl::table::on_mousewheel(float units) {
+		bool widgets_impl::table_impl::on_mousewheel(float units) {
 			float adjustment = units * row_height_;
 
 			v_displacement_ += adjustment;
@@ -793,7 +793,7 @@ namespace liblec {
 			return true;
 		}
 
-		bool widgets_impl::table::on_keydown(WPARAM wParam) {
+		bool widgets_impl::table_impl::on_keydown(WPARAM wParam) {
 			float adjustment = 0.f;
 
 			switch (wParam) {
@@ -852,7 +852,7 @@ namespace liblec {
 				return false;
 		}
 
-		bool widgets_impl::table::hit(const bool& hit) {
+		bool widgets_impl::table_impl::hit(const bool& hit) {
 			if (is_static_ || hit == hit_) {
 				if (hit || pressed_)
 					return true;
@@ -865,12 +865,12 @@ namespace liblec {
 		}
 
 		widgets::table::table_specs&
-			widgets_impl::table::specs() { return specs_; }
+			widgets_impl::table_impl::specs() { return specs_; }
 
 		widgets::table::table_specs&
-			widgets_impl::table::operator()() { return specs(); }
+			widgets_impl::table_impl::operator()() { return specs(); }
 
-		void widgets_impl::table::on_selection() {
+		void widgets_impl::table_impl::on_selection() {
 			if (specs_.events().selection) {
 				std::vector<std::map<std::string, std::string>> var;
 				for (const auto& it : specs_.selected) {

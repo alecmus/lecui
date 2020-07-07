@@ -15,15 +15,15 @@
 
 namespace liblec {
 	namespace lecui {
-		std::string widgets_impl::rectangle::page_rect_alias() {
+		std::string widgets_impl::rectangle_impl::page_rect_alias() {
 			return std::string("lecui::minimal_page_border_rect");
 		}
 
-		widgets_impl::rectangle::rectangle(containers::page& page,
+		widgets_impl::rectangle_impl::rectangle_impl(containers::page& page,
 			const std::string& alias,
-			widgets_impl::h_scrollbar& h_scrollbar,
-			widgets_impl::v_scrollbar& v_scrollbar) :
-			widget(page, alias),
+			widgets_impl::h_scrollbar_impl& h_scrollbar,
+			widgets_impl::v_scrollbar_impl& v_scrollbar) :
+			widget_impl(page, alias),
 			p_brush_fill_(nullptr),
 			p_brush_border_(nullptr),
 			p_brush_border_hot_(nullptr),
@@ -33,14 +33,14 @@ namespace liblec {
 			h_scrollbar_(h_scrollbar),
 			v_scrollbar_(v_scrollbar) {}
 
-		widgets_impl::rectangle::~rectangle() { discard_resources(); }
+		widgets_impl::rectangle_impl::~rectangle_impl() { discard_resources(); }
 
 		widgets_impl::widget_type
-			widgets_impl::rectangle::type() {
+			widgets_impl::rectangle_impl::type() {
 			return lecui::widgets_impl::widget_type::rectangle;
 		}
 
-		HRESULT widgets_impl::rectangle::create_resources(
+		HRESULT widgets_impl::rectangle_impl::create_resources(
 			ID2D1HwndRenderTarget* p_render_target) {
 			specs_old_ = specs_;
 			is_static_ = (specs_.events().click == nullptr);
@@ -71,7 +71,7 @@ namespace liblec {
 			return hr;
 		}
 
-		void widgets_impl::rectangle::discard_resources() {
+		void widgets_impl::rectangle_impl::discard_resources() {
 			resources_created_ = false;
 			safe_release(&p_brush_fill_);
 			safe_release(&p_brush_border_);
@@ -82,7 +82,7 @@ namespace liblec {
 		}
 
 		D2D1_RECT_F&
-			widgets_impl::rectangle::render(ID2D1HwndRenderTarget* p_render_target,
+			widgets_impl::rectangle_impl::render(ID2D1HwndRenderTarget* p_render_target,
 				const D2D1_SIZE_F& change_in_size, const D2D1_POINT_2F& offset, const bool& render) {
 			if (specs_old_ != specs_) {
 				log("specs changed: " + alias_);
@@ -122,12 +122,12 @@ namespace liblec {
 			return rect_;
 		}
 
-		void widgets_impl::rectangle::on_click() {
+		void widgets_impl::rectangle_impl::on_click() {
 			if (specs_.events().click)
 				specs_.events().click();
 		}
 
-		bool widgets_impl::rectangle::contains(const D2D1_POINT_2F& point) {
+		bool widgets_impl::rectangle_impl::contains(const D2D1_POINT_2F& point) {
 			// capture the point
 			point_ = point;
 
@@ -155,14 +155,14 @@ namespace liblec {
 				return false;
 		}
 
-		D2D1_POINT_2F widgets_impl::rectangle::get_scrollbar_offset() {
+		D2D1_POINT_2F widgets_impl::rectangle_impl::get_scrollbar_offset() {
 			return { h_scrollbar_.x_off_set_, v_scrollbar_.y_off_set_ };
 		}
 
 		widgets::rectangle::rectangle_specs&
-			widgets_impl::rectangle::specs() { return specs_; }
+			widgets_impl::rectangle_impl::specs() { return specs_; }
 
 		widgets::rectangle::rectangle_specs&
-			widgets_impl::rectangle::operator()() { return specs(); }
+			widgets_impl::rectangle_impl::operator()() { return specs(); }
 	}
 }

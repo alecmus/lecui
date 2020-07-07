@@ -19,7 +19,7 @@
 namespace liblec {
 	namespace lecui {
 		namespace widgets_impl {
-			class group : public widget {
+			class group_impl : public widget_impl {
 				/// private virtual function overrides
 				widgets::specs& generic_specs() override {
 					return specs_;
@@ -27,12 +27,12 @@ namespace liblec {
 
 			public:
 				/// Prevent the use of the default constructor.
-				group() = delete;
+				group_impl() = delete;
 
 				/// constructor and destructor
-				group(containers::page& page,
+				group_impl(containers::page& page,
 					const std::string& alias);
-				~group();
+				~group_impl();
 
 				/// virtual function overrides
 				widgets_impl::widget_type type() override;
@@ -49,8 +49,8 @@ namespace liblec {
 
 			private:
 				/// Prevent copying an object of this class.
-				group(const group&);
-				group& operator=(const group&);
+				group_impl(const group_impl&);
+				group_impl& operator=(const group_impl&);
 
 				/// Private variables
 				containers::group::group_specs specs_, specs_old_;

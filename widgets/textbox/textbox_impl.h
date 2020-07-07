@@ -19,7 +19,7 @@
 namespace liblec {
 	namespace lecui {
 		namespace widgets_impl {
-			class textbox : public widget {
+			class textbox_impl : public widget_impl {
 				/// private virtual function overrides
 				widgets::specs& generic_specs() override {
 					return specs_;
@@ -27,13 +27,13 @@ namespace liblec {
 
 			public:
 				/// Prevent the use of the default constructor.
-				textbox() = delete;
+				textbox_impl() = delete;
 
 				/// constructor and destructor
-				textbox(containers::page& page,
+				textbox_impl(containers::page& page,
 					const std::string& alias,
 					IDWriteFactory* p_directwrite_factory);
-				~textbox();
+				~textbox_impl();
 
 				/// virtual function overrides
 				widgets_impl::widget_type type() override;
@@ -56,8 +56,8 @@ namespace liblec {
 
 			private:
 				/// Prevent copying an object of this class.
-				textbox(const textbox&);
-				textbox& operator=(const textbox&);
+				textbox_impl(const textbox_impl&);
+				textbox_impl& operator=(const textbox_impl&);
 
 				/// Private variables
 				widgets::textbox::textbox_specs specs_, specs_old_;

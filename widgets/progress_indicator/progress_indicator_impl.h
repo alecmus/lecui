@@ -19,7 +19,7 @@
 namespace liblec {
 	namespace lecui {
 		namespace widgets_impl {
-			class progress_indicator : public widget {
+			class progress_indicator_impl : public widget_impl {
 				/// private virtual function overrides
 				widgets::specs& generic_specs() override {
 					return specs_;
@@ -27,14 +27,14 @@ namespace liblec {
 
 			public:
 				/// Prevent the use of the default constructor.
-				progress_indicator() = delete;
+				progress_indicator_impl() = delete;
 
 				/// constructor and destructor
-				progress_indicator(containers::page& page,
+				progress_indicator_impl(containers::page& page,
 					const std::string& alias,
 					ID2D1Factory* p_direct2d_factory,
 					IDWriteFactory* p_directwrite_factory);
-				~progress_indicator();
+				~progress_indicator_impl();
 
 				/// virtual function overrides
 				widgets_impl::widget_type type() override;
@@ -51,8 +51,8 @@ namespace liblec {
 
 			private:
 				/// Prevent copying an object of this class.
-				progress_indicator(const progress_indicator&);
-				progress_indicator& operator=(const progress_indicator&);
+				progress_indicator_impl(const progress_indicator_impl&);
+				progress_indicator_impl& operator=(const progress_indicator_impl&);
 
 				/// Private variables
 				widgets::progress_indicator::progress_indicator_specs specs_, specs_old_;

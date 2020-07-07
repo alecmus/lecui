@@ -16,13 +16,13 @@
 #include "../widget_impl.h"
 #include "../line.h"
 
-#include "../../widgets/h_scrollbar/h_scrollbar.h"
-#include "../../widgets/v_scrollbar/v_scrollbar.h"
+#include "../../widgets/h_scrollbar/h_scrollbar_impl.h"
+#include "../../widgets/v_scrollbar/v_scrollbar_impl.h"
 
 namespace liblec {
 	namespace lecui {
 		namespace widgets_impl {
-			class line : public widget {
+			class line_impl : public widget_impl {
 				/// private virtual function overrides
 				widgets::specs& generic_specs() override {
 					return specs_;
@@ -30,12 +30,12 @@ namespace liblec {
 
 			public:
 				/// Prevent the use of the default constructor.
-				line() = delete;
+				line_impl() = delete;
 
 				/// constructor and destructor
-				line(containers::page& page,
+				line_impl(containers::page& page,
 					const std::string& alias);
-				~line();
+				~line_impl();
 
 				/// virtual function overrides
 				widgets_impl::widget_type type() override;
@@ -52,8 +52,8 @@ namespace liblec {
 
 			private:
 				/// Prevent copying an object of this class.
-				line(const line&);
-				line& operator=(const line&);
+				line_impl(const line_impl&);
+				line_impl& operator=(const line_impl&);
 
 				/// Private variables
 				widgets::line::line_specs specs_, specs_old_;
