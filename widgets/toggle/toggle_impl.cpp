@@ -15,7 +15,7 @@
 
 namespace liblec {
 	namespace lecui {
-		widgets_impl::toggle_impl::toggle_impl(containers::page& page,
+		widgets::toggle_impl::toggle_impl(containers::page& page,
 			const std::string& alias,
 			IDWriteFactory* p_directwrite_factory) :
 			widget_impl(page, alias),
@@ -32,14 +32,14 @@ namespace liblec {
 			p_text_layout_(nullptr),
 			perc_along_(0.f) {}
 
-		widgets_impl::toggle_impl::~toggle_impl() { discard_resources(); }
+		widgets::toggle_impl::~toggle_impl() { discard_resources(); }
 
-		widgets_impl::widget_type
-			widgets_impl::toggle_impl::type() {
-			return lecui::widgets_impl::widget_type::toggle;
+		widgets::widget_type
+			widgets::toggle_impl::type() {
+			return lecui::widgets::widget_type::toggle;
 		}
 
-		HRESULT widgets_impl::toggle_impl::create_resources(
+		HRESULT widgets::toggle_impl::create_resources(
 			ID2D1HwndRenderTarget* p_render_target) {
 			specs_old_ = specs_;
 			is_static_ = (specs_.events().toggle == nullptr && specs_.events().click == nullptr);
@@ -94,7 +94,7 @@ namespace liblec {
 			return hr;
 		}
 
-		void widgets_impl::toggle_impl::discard_resources() {
+		void widgets::toggle_impl::discard_resources() {
 			resources_created_ = false;
 			safe_release(&p_brush_);
 			safe_release(&p_brush_fill_);
@@ -108,7 +108,7 @@ namespace liblec {
 		}
 
 		D2D1_RECT_F&
-			widgets_impl::toggle_impl::render(ID2D1HwndRenderTarget* p_render_target,
+			widgets::toggle_impl::render(ID2D1HwndRenderTarget* p_render_target,
 				const D2D1_SIZE_F& change_in_size, const D2D1_POINT_2F& offset, const bool& render) {
 			if (specs_old_ != specs_) {
 				log("specs changed: " + alias_);
@@ -224,7 +224,7 @@ namespace liblec {
 			return rect_;
 		}
 
-		void widgets_impl::toggle_impl::on_click() {
+		void widgets::toggle_impl::on_click() {
 			// to-do: how to know if this is a keyboard and not care about either x_change or y_change
 
 			bool x_change = (point_.x != point_on_press_.x);
@@ -244,7 +244,7 @@ namespace liblec {
 				specs_.events().click();
 		}
 
-		bool widgets_impl::toggle_impl::contains(const D2D1_POINT_2F& point) {
+		bool widgets::toggle_impl::contains(const D2D1_POINT_2F& point) {
 			// capture the point
 			point_ = point;
 
@@ -265,9 +265,9 @@ namespace liblec {
 			}
 		}
 
-		bool widgets_impl::toggle_impl::contains() { return true; }
+		bool widgets::toggle_impl::contains() { return true; }
 
-		bool widgets_impl::toggle_impl::hit(const bool& hit) {
+		bool widgets::toggle_impl::hit(const bool& hit) {
 			if (is_static_ || hit == hit_) {
 				if (pressed_)
 					return true;
@@ -280,9 +280,9 @@ namespace liblec {
 		}
 
 		widgets::toggle::toggle_specs&
-			widgets_impl::toggle_impl::specs() { return specs_; }
+			widgets::toggle_impl::specs() { return specs_; }
 
 		widgets::toggle::toggle_specs&
-			widgets_impl::toggle_impl::operator()() { return specs(); }
+			widgets::toggle_impl::operator()() { return specs(); }
 	}
 }

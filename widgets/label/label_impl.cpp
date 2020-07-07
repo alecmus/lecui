@@ -17,7 +17,7 @@
 
 namespace liblec {
 	namespace lecui {
-		void widgets_impl::parse_formatted_text(
+		void widgets::parse_formatted_text(
 			const std::string& formatted_text,
 			std::string& plain_text_,
 			D2D1_COLOR_F default_color,
@@ -27,7 +27,7 @@ namespace liblec {
 			formatting_ = props.dwrite;
 		}
 
-		void widgets_impl::apply_formatting(
+		void widgets::apply_formatting(
 			const std::vector<formatted_text_parser::text_range_properties>& formatting_,
 			ID2D1HwndRenderTarget* p_render_target,
 			IDWriteTextLayout* p_text_layout_,
@@ -68,7 +68,7 @@ namespace liblec {
 		}
 
 		D2D1_RECT_F
-			widgets_impl::measure_label(IDWriteFactory* p_directwrite_factory,
+			widgets::measure_label(IDWriteFactory* p_directwrite_factory,
 				const std::string& formatted_text,
 				const std::string& font,
 				const float font_size,
@@ -124,7 +124,7 @@ namespace liblec {
 		}
 
 		D2D1_RECT_F
-			widgets_impl::measure_text(IDWriteFactory* p_directwrite_factory,
+			widgets::measure_text(IDWriteFactory* p_directwrite_factory,
 				const std::string& formatted_text,
 				const std::string& font,
 				const float font_size,
@@ -194,7 +194,7 @@ namespace liblec {
 			return rect;
 		}
 
-		widgets_impl::label_impl::label_impl(containers::page& page,
+		widgets::label_impl::label_impl(containers::page& page,
 			const std::string& alias,
 			IDWriteFactory* p_directwrite_factory) :
 			widget_impl(page, alias),
@@ -207,14 +207,14 @@ namespace liblec {
 			p_directwrite_factory_(p_directwrite_factory),
 			p_text_layout_(nullptr) {}
 
-		widgets_impl::label_impl::~label_impl() { discard_resources(); }
+		widgets::label_impl::~label_impl() { discard_resources(); }
 
-		widgets_impl::widget_type
-			widgets_impl::label_impl::type() {
-			return lecui::widgets_impl::widget_type::label;
+		widgets::widget_type
+			widgets::label_impl::type() {
+			return lecui::widgets::widget_type::label;
 		}
 
-		HRESULT widgets_impl::label_impl::create_resources(
+		HRESULT widgets::label_impl::create_resources(
 			ID2D1HwndRenderTarget* p_render_target) {
 			specs_old_ = specs_;
 			is_static_ = (specs_.events().click == nullptr);
@@ -260,7 +260,7 @@ namespace liblec {
 			return hr;
 		}
 
-		void widgets_impl::label_impl::discard_resources() {
+		void widgets::label_impl::discard_resources() {
 			resources_created_ = false;
 			safe_release(&p_brush_);
 			safe_release(&p_brush_hot_);
@@ -271,7 +271,7 @@ namespace liblec {
 		}
 
 		D2D1_RECT_F&
-			widgets_impl::label_impl::render(ID2D1HwndRenderTarget* p_render_target,
+			widgets::label_impl::render(ID2D1HwndRenderTarget* p_render_target,
 				const D2D1_SIZE_F& change_in_size, const D2D1_POINT_2F& offset, const bool& render) {
 			if (specs_old_ != specs_) {
 				log("specs changed: " + alias_);
@@ -330,18 +330,18 @@ namespace liblec {
 			return rect_;
 		}
 
-		void widgets_impl::label_impl::on_click() {
+		void widgets::label_impl::on_click() {
 			if (specs_.events().click)
 				specs_.events().click();
 		}
 
 		widgets::label::label_specs&
-			widgets_impl::label_impl::specs() {
+			widgets::label_impl::specs() {
 			return specs_;
 		}
 
 		widgets::label::label_specs&
-			widgets_impl::label_impl::operator()() {
+			widgets::label_impl::operator()() {
 			return specs();
 		}
 	}

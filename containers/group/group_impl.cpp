@@ -15,7 +15,7 @@
 
 namespace liblec {
 	namespace lecui {
-		widgets_impl::group_impl::group_impl(containers::page& page,
+		widgets::group_impl::group_impl(containers::page& page,
 			const std::string& alias) :
 			widget_impl(page, alias),
 			p_brush_fill_(nullptr),
@@ -23,14 +23,14 @@ namespace liblec {
 			p_brush_hot_(nullptr),
 			p_brush_disabled_(nullptr) {}
 
-		widgets_impl::group_impl::~group_impl() { discard_resources(); }
+		widgets::group_impl::~group_impl() { discard_resources(); }
 
-		widgets_impl::widget_type
-			widgets_impl::group_impl::type() {
-			return lecui::widgets_impl::widget_type::group;
+		widgets::widget_type
+			widgets::group_impl::type() {
+			return lecui::widgets::widget_type::group;
 		}
 
-		HRESULT widgets_impl::group_impl::create_resources(
+		HRESULT widgets::group_impl::create_resources(
 			ID2D1HwndRenderTarget* p_render_target) {
 			specs_old_ = specs_;
 			is_static_ = true;
@@ -54,7 +54,7 @@ namespace liblec {
 			return hr;
 		}
 
-		void widgets_impl::group_impl::discard_resources() {
+		void widgets::group_impl::discard_resources() {
 			resources_created_ = false;
 			safe_release(&p_brush_fill_);
 			safe_release(&p_brush_border_);
@@ -62,7 +62,7 @@ namespace liblec {
 			safe_release(&p_brush_disabled_);
 		}
 
-		D2D1_RECT_F& widgets_impl::group_impl::render(ID2D1HwndRenderTarget* p_render_target,
+		D2D1_RECT_F& widgets::group_impl::render(ID2D1HwndRenderTarget* p_render_target,
 			const D2D1_SIZE_F& change_in_size, const D2D1_POINT_2F& offset, const bool& render) {
 			if (specs_old_ != specs_) {
 				log("specs changed: " + alias_);
@@ -93,15 +93,15 @@ namespace liblec {
 			return rect_;
 		}
 
-		void widgets_impl::group_impl::on_click() {
+		void widgets::group_impl::on_click() {
 			if (specs_.events().click)
 				specs_.events().click();
 		}
 
 		containers::group::group_specs&
-			widgets_impl::group_impl::specs() { return specs_; }
+			widgets::group_impl::specs() { return specs_; }
 
 		containers::group::group_specs&
-			widgets_impl::group_impl::operator()() { return specs(); }
+			widgets::group_impl::operator()() { return specs(); }
 	}
 }

@@ -21,7 +21,7 @@
 
 namespace liblec {
 	namespace lecui {
-		namespace widgets_impl {
+		namespace widgets {
 
 			class html_editor_impl : public widget_impl {
 				/// private virtual function overrides
@@ -52,7 +52,7 @@ namespace liblec {
 				void initialize_controls(bool init);
 
 				/// virtual function overrides
-				widgets_impl::widget_type type() override;
+				widget_type type() override;
 				HRESULT create_resources(ID2D1HwndRenderTarget* p_render_target) override;
 				void discard_resources() override;
 				D2D1_RECT_F& render(ID2D1HwndRenderTarget* p_render_target,

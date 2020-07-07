@@ -127,7 +127,7 @@ namespace liblec {
 						// to-do: check actual change in width and height of tab/pane instead of inheriting from page
 
 						for (auto& widget : page.d_page_.widgets()) {
-							if (widget.second.type() == widgets_impl::widget_type::tab_pane) {
+							if (widget.second.type() == widgets::widget_type::tab_pane) {
 								// get this tab pane
 								auto& tab_pane = page.d_page_.get_tab_pane(widget.first);
 
@@ -135,7 +135,7 @@ namespace liblec {
 									helper::check_page(tab.second, change_in_width, change_in_height, system_resizing);	// recursion
 							}
 							else
-								if (widget.second.type() == widgets_impl::widget_type::pane) {
+								if (widget.second.type() == widgets::widget_type::pane) {
 									// get this pane
 									auto& pane = page.d_page_.get_pane(widget.first);
 

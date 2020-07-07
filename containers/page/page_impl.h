@@ -105,57 +105,57 @@ namespace liblec {
 				add_line(std::string alias);
 
 			std::map<std::string,
-				widgets_impl::widget_impl&>&
+				widgets::widget_impl&>&
 				widgets();
 			const std::vector<std::string>&
 				widgets_order();
-			widgets_impl::h_scrollbar_impl&
+			widgets::h_scrollbar_impl&
 				h_scrollbar();
-			widgets_impl::v_scrollbar_impl&
+			widgets::v_scrollbar_impl&
 				v_scrollbar();
 
-			widgets_impl::tab_pane_impl&
+			widgets::tab_pane_impl&
 				get_tab_pane(const std::string& alias);
-			widgets_impl::pane_impl&
+			widgets::pane_impl&
 				get_pane(const std::string& alias);
 
-			widgets_impl::rectangle_impl&
+			widgets::rectangle_impl&
 				get_rectangle(const std::string& alias);
-			widgets_impl::button_impl&
+			widgets::button_impl&
 				get_button(const std::string& alias);
-			widgets_impl::label_impl&
+			widgets::label_impl&
 				get_label(const std::string& alias);
-			widgets_impl::group_impl&
+			widgets::group_impl&
 				get_group(const std::string& alias);
-			widgets_impl::toggle_impl&
+			widgets::toggle_impl&
 				get_toggle(const std::string& alias);
-			widgets_impl::table_impl&
+			widgets::table_impl&
 				get_table(const std::string& alias);
-			widgets_impl::custom_impl&
+			widgets::custom_impl&
 				get_custom(const std::string& alias);
-			widgets_impl::image_impl&
+			widgets::image_impl&
 				get_image(const std::string& alias);
-			widgets_impl::progress_indicator_impl&
+			widgets::progress_indicator_impl&
 				get_progress_indicator(const std::string& alias);
-			widgets_impl::progress_bar_impl&
+			widgets::progress_bar_impl&
 				get_progress_bar(const std::string& alias);
-			widgets_impl::checkbox_impl&
+			widgets::checkbox_impl&
 				get_checkbox(const std::string& alias);
-			widgets_impl::textbox_impl&
+			widgets::textbox_impl&
 				get_textbox(const std::string& alias);
-			widgets_impl::tree_impl&
+			widgets::tree_impl&
 				get_tree(const std::string& alias);
-			widgets_impl::slider_impl&
+			widgets::slider_impl&
 				get_slider(const std::string& alias);
-			widgets_impl::html_editor_impl&
+			widgets::html_editor_impl&
 				get_html_editor(const std::string& alias);
-			widgets_impl::combobox_impl&
+			widgets::combobox_impl&
 				get_combobox(const std::string& alias);
-			widgets_impl::line_impl&
+			widgets::line_impl&
 				get_line(const std::string& alias);
 
 			bool close_widget(const std::string& alias,
-				widgets_impl::widget_type type, std::string& error);
+				widgets::widget_type type, std::string& error);
 
 			D2D1_RECT_F get_rect();
 
@@ -175,32 +175,32 @@ namespace liblec {
 			bool hit_;
 			bool scrollbar_set_;
 
-			std::map<std::string, widgets_impl::widget_impl&> widgets_;
+			std::map<std::string, widgets::widget_impl&> widgets_;
 			std::vector<std::string> widgets_order_;
 
-			widgets_impl::h_scrollbar_impl h_scrollbar_;
-			widgets_impl::v_scrollbar_impl v_scrollbar_;
+			widgets::h_scrollbar_impl h_scrollbar_;
+			widgets::v_scrollbar_impl v_scrollbar_;
 
-			std::map<std::string, widgets_impl::tab_pane_impl> tab_panes_;
-			std::map<std::string, widgets_impl::pane_impl> panes_;
+			std::map<std::string, widgets::tab_pane_impl> tab_panes_;
+			std::map<std::string, widgets::pane_impl> panes_;
 
-			std::map<std::string, widgets_impl::rectangle_impl> rectangles_;
-			std::map<std::string, widgets_impl::label_impl> labels_;
-			std::map<std::string, widgets_impl::group_impl> groups_;
-			std::map<std::string, widgets_impl::button_impl> buttons_;
-			std::map<std::string, widgets_impl::toggle_impl> toggles_;
-			std::map<std::string, widgets_impl::table_impl> tables_;
-			std::map<std::string, widgets_impl::custom_impl> customs_;
-			std::map<std::string, widgets_impl::image_impl> images_;
-			std::map<std::string, widgets_impl::progress_indicator_impl> progress_indicators_;
-			std::map<std::string, widgets_impl::progress_bar_impl> progress_bars_;
-			std::map<std::string, widgets_impl::checkbox_impl> checkboxes_;
-			std::map<std::string, widgets_impl::textbox_impl> textboxes_;
-			std::map<std::string, widgets_impl::tree_impl> trees_;
-			std::map<std::string, widgets_impl::slider_impl> sliders_;
-			std::map<std::string, widgets_impl::html_editor_impl> html_editors_;
-			std::map<std::string, widgets_impl::combobox_impl> comboboxes_;
-			std::map<std::string, widgets_impl::line_impl> lines_;
+			std::map<std::string, widgets::rectangle_impl> rectangles_;
+			std::map<std::string, widgets::label_impl> labels_;
+			std::map<std::string, widgets::group_impl> groups_;
+			std::map<std::string, widgets::button_impl> buttons_;
+			std::map<std::string, widgets::toggle_impl> toggles_;
+			std::map<std::string, widgets::table_impl> tables_;
+			std::map<std::string, widgets::custom_impl> customs_;
+			std::map<std::string, widgets::image_impl> images_;
+			std::map<std::string, widgets::progress_indicator_impl> progress_indicators_;
+			std::map<std::string, widgets::progress_bar_impl> progress_bars_;
+			std::map<std::string, widgets::checkbox_impl> checkboxes_;
+			std::map<std::string, widgets::textbox_impl> textboxes_;
+			std::map<std::string, widgets::tree_impl> trees_;
+			std::map<std::string, widgets::slider_impl> sliders_;
+			std::map<std::string, widgets::html_editor_impl> html_editors_;
+			std::map<std::string, widgets::combobox_impl> comboboxes_;
+			std::map<std::string, widgets::line_impl> lines_;
 
 			form& fm_;
 			containers::page& pg_;
@@ -227,7 +227,7 @@ namespace liblec {
 			friend class widgets::combobox;
 			friend class widgets::line;
 
-			friend class widgets_impl::html_editor_impl;
+			friend class widgets::html_editor_impl;
 		};
 	}
 }

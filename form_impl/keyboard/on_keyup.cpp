@@ -29,11 +29,11 @@ namespace liblec {
 
 					if (widget.second.selected() &&
 						widget.second.type() !=
-						widgets_impl::widget_type::close_button &&
+						widgets::widget_type::close_button &&
 						widget.second.type() !=
-						widgets_impl::widget_type::maximize_button &&
+						widgets::widget_type::maximize_button &&
 						widget.second.type() !=
-						widgets_impl::widget_type::minimize_button)
+						widgets::widget_type::minimize_button)
 						on_space = [&]() { widget.second.on_click(); };
 
 					// reset pressed status
@@ -53,7 +53,7 @@ namespace liblec {
 								on_space = [&]() { widget.second.on_click(); };
 							else
 								if (widget.second.type() ==
-									widgets_impl::widget_type::tab_pane) {
+									widgets::widget_type::tab_pane) {
 									// get this tab pane
 									auto& tab_pane = page.d_page_.get_tab_pane(widget.first);
 
@@ -64,7 +64,7 @@ namespace liblec {
 								}
 								else
 									if (widget.second.type() ==
-										widgets_impl::widget_type::pane) {
+										widgets::widget_type::pane) {
 										// get this pane
 										auto& pane = page.d_page_.get_pane(widget.first);
 
@@ -122,7 +122,7 @@ namespace liblec {
 									continue;
 
 								if (widget.type() ==
-									widgets_impl::widget_type::tab_pane) {
+									widgets::widget_type::tab_pane) {
 
 									if (widget.selected()) {
 										widget.select(false);
@@ -140,7 +140,7 @@ namespace liblec {
 								}
 								else
 									if (widget.type() ==
-										widgets_impl::widget_type::pane) {
+										widgets::widget_type::pane) {
 										// get this pane
 										auto& pane = page.d_page_.get_pane(alias);
 
@@ -185,11 +185,11 @@ namespace liblec {
 								continue;
 
 							if (widget.type() !=
-								widgets_impl::widget_type::close_button &&
+								widgets::widget_type::close_button &&
 								widget.type() !=
-								widgets_impl::widget_type::maximize_button &&
+								widgets::widget_type::maximize_button &&
 								widget.type() !=
-								widgets_impl::widget_type::minimize_button) {
+								widgets::widget_type::minimize_button) {
 								if (widget.selected()) {
 									widget.select(false);
 									select_next = true;

@@ -17,7 +17,7 @@
 
 namespace liblec {
 	namespace lecui {
-		widgets_impl::textbox_impl::textbox_impl(containers::page& page,
+		widgets::textbox_impl::textbox_impl(containers::page& page,
 			const std::string& alias,
 			IDWriteFactory* p_directwrite_factory) :
 			widget_impl(page, alias),
@@ -42,14 +42,14 @@ namespace liblec {
 			is_selected_(false),
 			selection_info_({ 0, 0 }) {}
 
-		widgets_impl::textbox_impl::~textbox_impl() { discard_resources(); }
+		widgets::textbox_impl::~textbox_impl() { discard_resources(); }
 
-		widgets_impl::widget_type
-			widgets_impl::textbox_impl::type() {
-			return lecui::widgets_impl::widget_type::textbox;
+		widgets::widget_type
+			widgets::textbox_impl::type() {
+			return lecui::widgets::widget_type::textbox;
 		}
 
-		HRESULT widgets_impl::textbox_impl::create_resources(
+		HRESULT widgets::textbox_impl::create_resources(
 			ID2D1HwndRenderTarget* p_render_target) {
 			specs_old_ = specs_;
 			is_static_ = false;
@@ -101,7 +101,7 @@ namespace liblec {
 			return hr;
 		}
 
-		void widgets_impl::textbox_impl::discard_resources() {
+		void widgets::textbox_impl::discard_resources() {
 			resources_created_ = false;
 			safe_release(&p_brush_);
 			safe_release(&p_brush_caret_);
@@ -114,7 +114,7 @@ namespace liblec {
 		}
 
 		D2D1_RECT_F&
-			widgets_impl::textbox_impl::render(ID2D1HwndRenderTarget* p_render_target,
+			widgets::textbox_impl::render(ID2D1HwndRenderTarget* p_render_target,
 				const D2D1_SIZE_F& change_in_size, const D2D1_POINT_2F& offset, const bool& render) {
 			if (specs_old_ != specs_) {
 				log("specs changed: " + alias_);
@@ -309,12 +309,12 @@ namespace liblec {
 			return rect_;
 		}
 
-		void widgets_impl::textbox_impl::on_click() {
+		void widgets::textbox_impl::on_click() {
 			if (specs_.events().click)
 				specs_.events().click();
 		}
 
-		void widgets_impl::textbox_impl::on_selection_change(const bool& selected) {
+		void widgets::textbox_impl::on_selection_change(const bool& selected) {
 			if (selected) {
 				// start blink timer
 				timer_management(get_form()).add(caret_blink_timer_name_, 500,
@@ -334,12 +334,12 @@ namespace liblec {
 		}
 
 		widgets::textbox::textbox_specs&
-			widgets_impl::textbox_impl::specs() { return specs_; }
+			widgets::textbox_impl::specs() { return specs_; }
 
 		widgets::textbox::textbox_specs&
-			widgets_impl::textbox_impl::operator()() { return specs(); }
+			widgets::textbox_impl::operator()() { return specs(); }
 
-		void widgets_impl::textbox_impl::insert_character(const char& c) {
+		void widgets::textbox_impl::insert_character(const char& c) {
 			try {
 				if (is_selected_) {
 					if (selection_info_.start > selection_info_.end)
@@ -360,7 +360,7 @@ namespace liblec {
 			catch (const std::exception& e) { log(e.what()); }
 		}
 
-		void widgets_impl::textbox_impl::key_backspace() {
+		void widgets::textbox_impl::key_backspace() {
 			try {
 				if (is_selected_) {
 					if (selection_info_.start > selection_info_.end)
@@ -380,7 +380,7 @@ namespace liblec {
 			catch (const std::exception& e) { log(e.what()); }
 		}
 
-		void widgets_impl::textbox_impl::key_delete() {
+		void widgets::textbox_impl::key_delete() {
 			try {
 				if (is_selected_) {
 					if (selection_info_.start > selection_info_.end)
@@ -399,7 +399,7 @@ namespace liblec {
 			catch (const std::exception& e) { log(e.what()); }
 		}
 
-		void widgets_impl::textbox_impl::key_left() {
+		void widgets::textbox_impl::key_left() {
 			try {
 				if (is_selected_) {
 					if (selection_info_.start > selection_info_.end)
@@ -418,7 +418,7 @@ namespace liblec {
 			catch (const std::exception& e) { log(e.what()); }
 		}
 
-		void widgets_impl::textbox_impl::key_right() {
+		void widgets::textbox_impl::key_right() {
 			try {
 				if (is_selected_) {
 					if (selection_info_.start > selection_info_.end)
@@ -438,7 +438,7 @@ namespace liblec {
 		}
 
 		UINT32
-			widgets_impl::textbox_impl::count_characters(IDWriteTextLayout* p_text_layout, const std::string& text,
+			widgets::textbox_impl::count_characters(IDWriteTextLayout* p_text_layout, const std::string& text,
 				const D2D1_RECT_F& rect_text, const D2D1_POINT_2F& point,
 				const float& dpi_scale) {
 			BOOL is_trailing;
@@ -455,7 +455,7 @@ namespace liblec {
 		}
 
 		UINT32
-			widgets_impl::textbox_impl::get_caret_position(IDWriteTextLayout* p_text_layout, const std::string& text,
+			widgets::textbox_impl::get_caret_position(IDWriteTextLayout* p_text_layout, const std::string& text,
 				const D2D1_RECT_F& rect_text, const D2D1_POINT_2F& point,
 				const float& dpi_scale) {
 			auto rect_hit = rect_text;
@@ -486,7 +486,7 @@ namespace liblec {
 		}
 
 		D2D1_RECT_F
-			widgets_impl::textbox_impl::get_selection_rect(
+			widgets::textbox_impl::get_selection_rect(
 				IDWriteTextLayout* p_text_layout, const D2D1_RECT_F& rect_text,
 				const UINT32& selection_start, const UINT32& selection_end) {
 			DWRITE_HIT_TEST_METRICS hit_metrics_start, hit_metrics_end;
@@ -503,7 +503,7 @@ namespace liblec {
 				rect_text.top, rect_text.left + hit_metrics_end.left, rect_text.bottom);
 		}
 
-		float widgets_impl::textbox_impl::get_caret_width() {
+		float widgets::textbox_impl::get_caret_width() {
 			// respect user settings
 			DWORD caret_width = 1;
 			SystemParametersInfo(SPI_GETCARETWIDTH, 0, &caret_width, 0);
@@ -511,7 +511,7 @@ namespace liblec {
 		}
 
 		D2D1_RECT_F
-			widgets_impl::textbox_impl::get_caret_rect(IDWriteTextLayout* p_text_layout,
+			widgets::textbox_impl::get_caret_rect(IDWriteTextLayout* p_text_layout,
 				const D2D1_RECT_F& rect_text, const UINT32& caret_position) {
 			DWRITE_HIT_TEST_METRICS hit_metrics;
 			float p_x, p_y;

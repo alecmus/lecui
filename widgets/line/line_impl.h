@@ -21,7 +21,7 @@
 
 namespace liblec {
 	namespace lecui {
-		namespace widgets_impl {
+		namespace widgets {
 			class line_impl : public widget_impl {
 				/// private virtual function overrides
 				widgets::specs& generic_specs() override {
@@ -38,7 +38,7 @@ namespace liblec {
 				~line_impl();
 
 				/// virtual function overrides
-				widgets_impl::widget_type type() override;
+				widget_type type() override;
 				HRESULT create_resources(ID2D1HwndRenderTarget* p_render_target) override;
 				void discard_resources() override;
 				D2D1_RECT_F& render(ID2D1HwndRenderTarget* p_render_target,

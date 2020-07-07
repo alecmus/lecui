@@ -16,7 +16,7 @@
 
 namespace liblec {
 	namespace lecui {
-		widgets_impl::tree_impl::tree_impl(containers::page& page,
+		widgets::tree_impl::tree_impl(containers::page& page,
 			const std::string& alias,
 			ID2D1Factory* p_direct2d_factory,
 			IDWriteFactory* p_directwrite_factory) :
@@ -34,14 +34,14 @@ namespace liblec {
 			margin_(0.f)	// the tree will be moved into a special tree pane. The pane will have a margin!
 		{}
 
-		widgets_impl::tree_impl::~tree_impl() { discard_resources(); }
+		widgets::tree_impl::~tree_impl() { discard_resources(); }
 
-		widgets_impl::widget_type
-			widgets_impl::tree_impl::type() {
-			return lecui::widgets_impl::widget_type::tree;
+		widgets::widget_type
+			widgets::tree_impl::type() {
+			return lecui::widgets::widget_type::tree;
 		}
 
-		HRESULT widgets_impl::tree_impl::create_resources(
+		HRESULT widgets::tree_impl::create_resources(
 			ID2D1HwndRenderTarget* p_render_target) {
 			specs_old_ = specs_;
 			is_static_ = false;
@@ -90,7 +90,7 @@ namespace liblec {
 			return hr;
 		}
 
-		void widgets_impl::tree_impl::discard_resources() {
+		void widgets::tree_impl::discard_resources() {
 			resources_created_ = false;
 			safe_release(&p_brush_);
 			safe_release(&p_brush_border_);
@@ -102,7 +102,7 @@ namespace liblec {
 		}
 
 		D2D1_RECT_F&
-			widgets_impl::tree_impl::render(ID2D1HwndRenderTarget* p_render_target,
+			widgets::tree_impl::render(ID2D1HwndRenderTarget* p_render_target,
 				const D2D1_SIZE_F& change_in_size, const D2D1_POINT_2F& offset, const bool& render) {
 			if (specs_old_ != specs_) {
 				log("specs changed: " + alias_);
@@ -144,7 +144,7 @@ namespace liblec {
 
 						rect_node.top = bottom;
 						rect_node.bottom = rect_node.top + 20.f;
-						rect_node = widgets_impl::measure_text(p_directwrite_factory, node.first,
+						rect_node = widgets::measure_text(p_directwrite_factory, node.first,
 							font, font_size, false, true, true, false, rect_node);
 						rect_node.right += 1.f;	// failsafe to prevent occasional ellipses when scrolling horizontally
 
@@ -327,7 +327,7 @@ namespace liblec {
 			return rect_;
 		}
 
-		void widgets_impl::tree_impl::on_click() {
+		void widgets::tree_impl::on_click() {
 			class helper {
 			public:
 				static void check(std::map<std::string, widgets::tree::tree_specs::node>& level, D2D1_POINT_2F point_, float dpi_scale_) {
@@ -365,7 +365,7 @@ namespace liblec {
 				specs_.events().click();
 		}
 
-		bool widgets_impl::tree_impl::hit(const bool& hit) {
+		bool widgets::tree_impl::hit(const bool& hit) {
 			if (is_static_ || hit == hit_) {
 				if (hit || pressed_)
 					return true;
@@ -378,12 +378,12 @@ namespace liblec {
 		}
 
 		widgets::tree::tree_specs&
-			widgets_impl::tree_impl::specs() { return specs_; }
+			widgets::tree_impl::specs() { return specs_; }
 
 		widgets::tree::tree_specs&
-			widgets_impl::tree_impl::operator()() { return specs(); }
+			widgets::tree_impl::operator()() { return specs(); }
 
-		void widgets_impl::tree_impl::on_selection() {
+		void widgets::tree_impl::on_selection() {
 			class helper {
 			public:
 				static void check(std::map<std::string, widgets::tree::tree_specs::node>& level,

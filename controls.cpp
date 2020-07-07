@@ -49,7 +49,7 @@ namespace liblec {
 			const std::string& font, const float font_size,
 			bool center_h, bool center_v, const lecui::rect max_rect) {
 			auto rect = convert_rect(max_rect);
-			rect = widgets_impl::measure_label(d_.fm_.d_.p_directwrite_factory_, formatted_text,
+			rect = widgets::measure_label(d_.fm_.d_.p_directwrite_factory_, formatted_text,
 				font, font_size, center_h, center_v, rect);
 			return convert_rect(rect);
 		}

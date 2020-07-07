@@ -30,9 +30,7 @@ namespace liblec {
 				color color_hot_pressed = { 221, 221, 221, 255 };
 				color color_background = { 0, 0, 0, 0 };
 			};
-		}
 
-		namespace widgets_impl {
 			enum class widget_type {
 				close_button,
 				maximize_button,
@@ -118,7 +116,7 @@ namespace liblec {
 				/// <returns>True if the hit status has changed, false otherwise.</returns>
 				/// <remarks>When true is returned the UI is refreshed.</remarks>
 				virtual bool hit(const bool& hit);
-				virtual widgets_impl::widget_type type() = 0;
+				virtual widget_type type() = 0;
 				virtual HRESULT create_resources(ID2D1HwndRenderTarget* p_render_target) = 0;
 				virtual void discard_resources() = 0;
 				virtual D2D1_RECT_F& render(ID2D1HwndRenderTarget* p_render_target,

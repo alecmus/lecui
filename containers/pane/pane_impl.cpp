@@ -16,19 +16,19 @@
 
 namespace liblec {
 	namespace lecui {
-		std::string widgets_impl::pane_impl::tree_pane_alias_prefix() {
+		std::string widgets::pane_impl::tree_pane_alias_prefix() {
 			return std::string("lecui::containers::tree_pane::");
 		}
 
-		std::string widgets_impl::pane_impl::html_pane_alias_prefix() {
+		std::string widgets::pane_impl::html_pane_alias_prefix() {
 			return std::string("lecui::containers::html_pane::");
 		}
 
-		std::string widgets_impl::pane_impl::html_controls_pane_alias_prefix() {
+		std::string widgets::pane_impl::html_controls_pane_alias_prefix() {
 			return std::string("lecui::containers::html_controls_pane::");
 		}
 
-		widgets_impl::pane_impl::pane_impl(containers::page& page,
+		widgets::pane_impl::pane_impl(containers::page& page,
 			const std::string& alias) :
 			widget_impl(page, alias),
 			p_brush_(nullptr),
@@ -39,14 +39,14 @@ namespace liblec {
 			rect_client_area_({ 0.f, 0.f, 0.f, 0.f }),
 			rect_pane_({ 0.f, 0.f, 0.f, 0.f }) {}
 
-		widgets_impl::pane_impl::~pane_impl() { discard_resources(); }
+		widgets::pane_impl::~pane_impl() { discard_resources(); }
 
-		widgets_impl::widget_type
-			widgets_impl::pane_impl::type() {
-			return lecui::widgets_impl::widget_type::pane;
+		widgets::widget_type
+			widgets::pane_impl::type() {
+			return lecui::widgets::widget_type::pane;
 		}
 
-		HRESULT widgets_impl::pane_impl::create_resources(
+		HRESULT widgets::pane_impl::create_resources(
 			ID2D1HwndRenderTarget* p_render_target) {
 			is_static_ = false;
 
@@ -69,7 +69,7 @@ namespace liblec {
 			return hr;
 		}
 
-		void widgets_impl::pane_impl::discard_resources() {
+		void widgets::pane_impl::discard_resources() {
 			resources_created_ = false;
 			safe_release(&p_brush_);
 			safe_release(&p_brush_fill_);
@@ -78,7 +78,7 @@ namespace liblec {
 		}
 
 		D2D1_RECT_F&
-			widgets_impl::pane_impl::render(ID2D1HwndRenderTarget* p_render_target,
+			widgets::pane_impl::render(ID2D1HwndRenderTarget* p_render_target,
 				const D2D1_SIZE_F& change_in_size, const D2D1_POINT_2F& offset, const bool& render) {
 			if (!resources_created_)
 				create_resources(p_render_target);
@@ -109,22 +109,22 @@ namespace liblec {
 			return rect_pane_;
 		}
 
-		void widgets_impl::pane_impl::on_click() {}
+		void widgets::pane_impl::on_click() {}
 
 		containers::pane::pane_specs&
-			widgets_impl::pane_impl::specs() { return specs_; }
+			widgets::pane_impl::specs() { return specs_; }
 
 		containers::pane::pane_specs&
-			widgets_impl::pane_impl::operator()() { return specs(); }
+			widgets::pane_impl::operator()() { return specs(); }
 
-		const D2D1_RECT_F& widgets_impl::pane_impl::client_area() {
+		const D2D1_RECT_F& widgets::pane_impl::client_area() {
 			return rect_client_area_;
 		}
 
-		const D2D1_RECT_F& widgets_impl::pane_impl::pane_area() {
+		const D2D1_RECT_F& widgets::pane_impl::pane_area() {
 			return rect_pane_;
 		}
 
-		bool widgets_impl::pane_impl::contains() { return false; }
+		bool widgets::pane_impl::contains() { return false; }
 	}
 }

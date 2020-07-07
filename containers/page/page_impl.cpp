@@ -80,7 +80,7 @@ namespace liblec {
 
 			try {
 				// check if minimal page border rect contains the point
-				auto& rect = rectangles_.at(widgets_impl::rectangle_impl::page_rect_alias());
+				auto& rect = rectangles_.at(widgets::rectangle_impl::page_rect_alias());
 				contains_ = rect.contains(point);
 			}
 			catch (const std::exception&) {}
@@ -283,77 +283,77 @@ namespace liblec {
 			return lines_.at(alias).specs();
 		}
 
-		std::map<std::string, widgets_impl::widget_impl&>&
+		std::map<std::string, widgets::widget_impl&>&
 			containers::page::impl::widgets() { return widgets_; }
 
 		const std::vector<std::string>&
 			containers::page::impl::widgets_order() { return widgets_order_; }
 
-		widgets_impl::h_scrollbar_impl&
+		widgets::h_scrollbar_impl&
 			containers::page::impl::h_scrollbar() { return h_scrollbar_; }
-		widgets_impl::v_scrollbar_impl&
+		widgets::v_scrollbar_impl&
 			containers::page::impl::v_scrollbar() { return v_scrollbar_; }
 
-		widgets_impl::tab_pane_impl&
+		widgets::tab_pane_impl&
 			containers::page::impl::get_tab_pane(const std::string& alias) { return tab_panes_.at(alias); }
 
-		widgets_impl::pane_impl&
+		widgets::pane_impl&
 			containers::page::impl::get_pane(const std::string& alias) { return panes_.at(alias); }
 
-		widgets_impl::rectangle_impl&
+		widgets::rectangle_impl&
 			containers::page::impl::get_rectangle(const std::string& alias) { return rectangles_.at(alias); }
 
-		widgets_impl::button_impl&
+		widgets::button_impl&
 			containers::page::impl::get_button(const std::string& alias) { return buttons_.at(alias); }
 
-		widgets_impl::label_impl&
+		widgets::label_impl&
 			containers::page::impl::get_label(const std::string& alias) { return labels_.at(alias); }
 
-		widgets_impl::group_impl&
+		widgets::group_impl&
 			containers::page::impl::get_group(const std::string& alias) { return groups_.at(alias); }
 
-		widgets_impl::toggle_impl&
+		widgets::toggle_impl&
 			containers::page::impl::get_toggle(const std::string& alias) { return toggles_.at(alias); }
 
-		widgets_impl::table_impl&
+		widgets::table_impl&
 			containers::page::impl::get_table(const std::string& alias) { return tables_.at(alias); }
 
-		widgets_impl::custom_impl&
+		widgets::custom_impl&
 			containers::page::impl::get_custom(const std::string& alias) { return customs_.at(alias); }
 
-		widgets_impl::image_impl&
+		widgets::image_impl&
 			containers::page::impl::get_image(const std::string& alias) { return images_.at(alias); }
 
-		widgets_impl::progress_indicator_impl&
+		widgets::progress_indicator_impl&
 			containers::page::impl::get_progress_indicator(const std::string& alias) { return progress_indicators_.at(alias); }
 
-		widgets_impl::progress_bar_impl&
+		widgets::progress_bar_impl&
 			containers::page::impl::get_progress_bar(const std::string& alias) { return progress_bars_.at(alias); }
 
-		widgets_impl::checkbox_impl&
+		widgets::checkbox_impl&
 			containers::page::impl::get_checkbox(const std::string& alias) { return checkboxes_.at(alias); }
 
-		widgets_impl::textbox_impl&
+		widgets::textbox_impl&
 			containers::page::impl::get_textbox(const std::string& alias) { return textboxes_.at(alias); }
 
-		widgets_impl::tree_impl&
+		widgets::tree_impl&
 			containers::page::impl::get_tree(const std::string& alias) { return trees_.at(alias); }
 
-		widgets_impl::slider_impl&
+		widgets::slider_impl&
 			containers::page::impl::get_slider(const std::string& alias) { return sliders_.at(alias); }
 
-		widgets_impl::html_editor_impl&
+		widgets::html_editor_impl&
 			containers::page::impl::get_html_editor(const std::string& alias) { return html_editors_.at(alias); }
 
-		widgets_impl::combobox_impl&
+		widgets::combobox_impl&
 			containers::page::impl::get_combobox(const std::string& alias) { return comboboxes_.at(alias); }
 
-		widgets_impl::line_impl&
+		widgets::line_impl&
 			containers::page::impl::get_line(const std::string& alias) { return lines_.at(alias); }
 
 		bool
 			containers::page::impl::close_widget(const std::string& alias,
-				widgets_impl::widget_type type,
+				widgets::widget_type type,
 				std::string& error) {
 			// make a local copy since this reference may become invalid before we exit depending
 			// on how the closing is being done.
@@ -373,68 +373,68 @@ namespace liblec {
 
 				// step 2
 				switch (type) {
-				case widgets_impl::widget_type::rectangle:
+				case widgets::widget_type::rectangle:
 					rectangles_.erase(alias_);
 					break;
-				case widgets_impl::widget_type::label:
+				case widgets::widget_type::label:
 					labels_.erase(alias_);
 					break;
-				case widgets_impl::widget_type::group:
+				case widgets::widget_type::group:
 					groups_.erase(alias_);
 					break;
-				case widgets_impl::widget_type::tab_pane:
+				case widgets::widget_type::tab_pane:
 					tab_panes_.erase(alias_);
 					break;
-				case widgets_impl::widget_type::button:
+				case widgets::widget_type::button:
 					buttons_.erase(alias_);
 					break;
-				case widgets_impl::widget_type::toggle:
+				case widgets::widget_type::toggle:
 					toggles_.erase(alias_);
 					break;
-				case widgets_impl::widget_type::table:
+				case widgets::widget_type::table:
 					tables_.erase(alias_);
 					break;
-				case widgets_impl::widget_type::custom:
+				case widgets::widget_type::custom:
 					customs_.erase(alias_);
 					break;
-				case widgets_impl::widget_type::pane:
+				case widgets::widget_type::pane:
 					panes_.erase(alias_);
 					break;
-				case widgets_impl::widget_type::image:
+				case widgets::widget_type::image:
 					images_.erase(alias_);
 					break;
-				case widgets_impl::widget_type::progress_indicator:
+				case widgets::widget_type::progress_indicator:
 					progress_indicators_.erase(alias_);
 					break;
-				case widgets_impl::widget_type::progress_bar:
+				case widgets::widget_type::progress_bar:
 					progress_bars_.erase(alias_);
 					break;
-				case widgets_impl::widget_type::checkbox:
+				case widgets::widget_type::checkbox:
 					checkboxes_.erase(alias_);
 					break;
-				case widgets_impl::widget_type::textbox:
+				case widgets::widget_type::textbox:
 					textboxes_.erase(alias_);
 					break;
-				case widgets_impl::widget_type::tree:
+				case widgets::widget_type::tree:
 					trees_.erase(alias_);
 					break;
-				case widgets_impl::widget_type::slider:
+				case widgets::widget_type::slider:
 					sliders_.erase(alias_);
 					break;
-				case widgets_impl::widget_type::html_editor:
+				case widgets::widget_type::html_editor:
 					html_editors_.erase(alias_);
 					break;
-				case widgets_impl::widget_type::combobox:
+				case widgets::widget_type::combobox:
 					comboboxes_.erase(alias_);
 					break;
-				case widgets_impl::widget_type::line:
+				case widgets::widget_type::line:
 					lines_.erase(alias_);
 					break;
-				case widgets_impl::widget_type::close_button:
-				case widgets_impl::widget_type::maximize_button:
-				case widgets_impl::widget_type::minimize_button:
-				case widgets_impl::widget_type::h_scrollbar:
-				case widgets_impl::widget_type::v_scrollbar:
+				case widgets::widget_type::close_button:
+				case widgets::widget_type::maximize_button:
+				case widgets::widget_type::minimize_button:
+				case widgets::widget_type::h_scrollbar:
+				case widgets::widget_type::v_scrollbar:
 				default:
 					break;
 				}
@@ -458,7 +458,7 @@ namespace liblec {
 			auto rect_pg = D2D1_RECT_F();
 			try {
 				// check if minimal page border rect contains the point
-				auto& rect = rectangles_.at(widgets_impl::rectangle_impl::page_rect_alias());
+				auto& rect = rectangles_.at(widgets::rectangle_impl::page_rect_alias());
 				rect_pg = rect.get_rect();
 				scale_RECT(rect_pg, get_dpi_scale());
 

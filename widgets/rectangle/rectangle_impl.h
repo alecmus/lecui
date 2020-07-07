@@ -21,7 +21,7 @@
 
 namespace liblec {
 	namespace lecui {
-		namespace widgets_impl {
+		namespace widgets {
 			class rectangle_impl : public widget_impl {
 				/// private virtual function overrides
 				widgets::specs& generic_specs() override {
@@ -41,12 +41,12 @@ namespace liblec {
 				/// constructor and destructor
 				rectangle_impl(containers::page& page,
 					const std::string& alias,
-					widgets_impl::h_scrollbar_impl& h_scrollbar,
-					widgets_impl::v_scrollbar_impl& v_scrollbar);
+					widgets::h_scrollbar_impl& h_scrollbar,
+					widgets::v_scrollbar_impl& v_scrollbar);
 				~rectangle_impl();
 
 				/// virtual function overrides
-				widgets_impl::widget_type type() override;
+				widget_type type() override;
 				HRESULT create_resources(ID2D1HwndRenderTarget* p_render_target) override;
 				void discard_resources() override;
 				D2D1_RECT_F& render(ID2D1HwndRenderTarget* p_render_target,
@@ -75,8 +75,8 @@ namespace liblec {
 				ID2D1SolidColorBrush* p_brush_selected_;
 
 				/// page scroll bars
-				widgets_impl::h_scrollbar_impl& h_scrollbar_;
-				widgets_impl::v_scrollbar_impl& v_scrollbar_;
+				widgets::h_scrollbar_impl& h_scrollbar_;
+				widgets::v_scrollbar_impl& v_scrollbar_;
 			};
 		}
 	}

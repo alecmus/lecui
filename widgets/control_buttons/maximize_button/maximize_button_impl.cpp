@@ -15,21 +15,21 @@
 
 namespace liblec {
 	namespace lecui {
-		widgets_impl::maximize_button_impl::maximize_button_impl(containers::page& page) :
+		widgets::maximize_button_impl::maximize_button_impl(containers::page& page) :
 			widget_impl(page, "maximize_button"),
 			hWnd_(nullptr),
 			p_brush_(nullptr),
 			p_brush_hot_(nullptr),
 			p_brush_disabled_(nullptr) {}
 
-		widgets_impl::maximize_button_impl::~maximize_button_impl() { discard_resources(); }
+		widgets::maximize_button_impl::~maximize_button_impl() { discard_resources(); }
 
-		widgets_impl::widget_type
-			widgets_impl::maximize_button_impl::type() {
-			return lecui::widgets_impl::widget_type::maximize_button;
+		widgets::widget_type
+			widgets::maximize_button_impl::type() {
+			return lecui::widgets::widget_type::maximize_button;
 		}
 
-		HRESULT widgets_impl::maximize_button_impl::create_resources(
+		HRESULT widgets::maximize_button_impl::create_resources(
 			ID2D1HwndRenderTarget* p_render_target) {
 			is_static_ = false;
 			h_cursor_ = get_cursor(specs_.cursor);
@@ -50,14 +50,14 @@ namespace liblec {
 			return hr;
 		}
 
-		void widgets_impl::maximize_button_impl::discard_resources() {
+		void widgets::maximize_button_impl::discard_resources() {
 			resources_created_ = false;
 			safe_release(&p_brush_);
 			safe_release(&p_brush_hot_);
 			safe_release(&p_brush_disabled_);
 		}
 
-		D2D1_RECT_F& widgets_impl::maximize_button_impl::render(ID2D1HwndRenderTarget* p_render_target,
+		D2D1_RECT_F& widgets::maximize_button_impl::render(ID2D1HwndRenderTarget* p_render_target,
 			const D2D1_SIZE_F& change_in_size, const D2D1_POINT_2F& offset, const bool& render) {
 			if (!resources_created_)
 				create_resources(p_render_target);
@@ -120,7 +120,7 @@ namespace liblec {
 			return rect_;
 		}
 
-		void widgets_impl::maximize_button_impl::on_click() {
+		void widgets::maximize_button_impl::on_click() {
 			if (IsWindow(hWnd_)) {
 				if (maximized(hWnd_))
 					ShowWindow(hWnd_, SW_RESTORE);
@@ -129,15 +129,15 @@ namespace liblec {
 			}
 		}
 
-		void widgets_impl::maximize_button_impl::set_hwnd(HWND hWnd) { hWnd_ = hWnd; }
+		void widgets::maximize_button_impl::set_hwnd(HWND hWnd) { hWnd_ = hWnd; }
 
 		widgets::maximize_button_specs&
-			widgets_impl::maximize_button_impl::specs() { return specs_; }
+			widgets::maximize_button_impl::specs() { return specs_; }
 
 		widgets::maximize_button_specs&
-			widgets_impl::maximize_button_impl::operator()() { return specs(); }
+			widgets::maximize_button_impl::operator()() { return specs(); }
 
-		bool widgets_impl::maximize_button_impl::maximized(HWND hwnd) {
+		bool widgets::maximize_button_impl::maximized(HWND hwnd) {
 			WINDOWPLACEMENT placement;
 
 			if (!::GetWindowPlacement(hwnd, &placement))

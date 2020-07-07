@@ -15,7 +15,7 @@
 
 namespace liblec {
 	namespace lecui {
-		widgets_impl::v_scrollbar_impl::v_scrollbar_impl(containers::page& page) :
+		widgets::v_scrollbar_impl::v_scrollbar_impl(containers::page& page) :
 			widget_impl(page, "v_scrollbar"),
 			p_brush_(nullptr),
 			p_brush_border_(nullptr),
@@ -33,14 +33,14 @@ namespace liblec {
 			max_displacement_bottom_(0.f),
 			force_translate_(false) {}
 
-		widgets_impl::v_scrollbar_impl::~v_scrollbar_impl() { discard_resources(); }
+		widgets::v_scrollbar_impl::~v_scrollbar_impl() { discard_resources(); }
 
-		widgets_impl::widget_type
-			widgets_impl::v_scrollbar_impl::type() {
-			return lecui::widgets_impl::widget_type::v_scrollbar;
+		widgets::widget_type
+			widgets::v_scrollbar_impl::type() {
+			return lecui::widgets::widget_type::v_scrollbar;
 		}
 
-		HRESULT widgets_impl::v_scrollbar_impl::create_resources(
+		HRESULT widgets::v_scrollbar_impl::create_resources(
 			ID2D1HwndRenderTarget* p_render_target) {
 			is_static_ = false;
 			h_cursor_ = get_cursor(specs_.cursor);
@@ -67,7 +67,7 @@ namespace liblec {
 			return hr;
 		}
 
-		void widgets_impl::v_scrollbar_impl::discard_resources() {
+		void widgets::v_scrollbar_impl::discard_resources() {
 			resources_created_ = false;
 			safe_release(&p_brush_);
 			safe_release(&p_brush_border_);
@@ -77,7 +77,7 @@ namespace liblec {
 		}
 
 		D2D1_RECT_F&
-			widgets_impl::v_scrollbar_impl::render(ID2D1HwndRenderTarget* p_render_target,
+			widgets::v_scrollbar_impl::render(ID2D1HwndRenderTarget* p_render_target,
 				const D2D1_SIZE_F& change_in_size, const D2D1_POINT_2F& offset, const bool& render) {
 			if (!resources_created_)
 				create_resources(p_render_target);
@@ -147,24 +147,24 @@ namespace liblec {
 			return rect_;
 		}
 
-		void widgets_impl::v_scrollbar_impl::on_click() {
+		void widgets::v_scrollbar_impl::on_click() {
 			if (specs_.events().click)
 				specs_.events().click();
 		}
 
 		widgets::v_scrollbar_specs&
-			widgets_impl::v_scrollbar_impl::specs() { return specs_; }
+			widgets::v_scrollbar_impl::specs() { return specs_; }
 
 		widgets::v_scrollbar_specs&
-			widgets_impl::v_scrollbar_impl::operator()() { return specs(); }
+			widgets::v_scrollbar_impl::operator()() { return specs(); }
 
-		void widgets_impl::v_scrollbar_impl::max_displacement(float& top,
+		void widgets::v_scrollbar_impl::max_displacement(float& top,
 			float& bottom) {
 			bottom = rectC_.bottom - rectD_.bottom;
 			top = rectC_.top - rectD_.top;
 		}
 
-		bool widgets_impl::v_scrollbar_impl::translate_y_displacement(
+		bool widgets::v_scrollbar_impl::translate_y_displacement(
 			const float& displacement, float& y_displacement_translated, bool force) {
 			if (pressed_ || force) {
 				// calculate the scale factor for amplifying the movement of the scroll bar
@@ -179,7 +179,7 @@ namespace liblec {
 			return false;
 		}
 
-		void widgets_impl::v_scrollbar_impl::setup(const D2D1_RECT_F& rectA,
+		void widgets::v_scrollbar_impl::setup(const D2D1_RECT_F& rectA,
 			const D2D1_RECT_F& rectB) {
 			rectA_ = rectA;
 			rectB_ = rectB;

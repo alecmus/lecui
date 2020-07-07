@@ -60,9 +60,9 @@ namespace liblec {
 					// check widgets
 					for (auto& widget : page.d_page_.widgets()) {
 						bool is_scroll_bar = (widget.second.type() ==
-							widgets_impl::widget_type::h_scrollbar) ||
+							widgets::widget_type::h_scrollbar) ||
 							(widget.second.type() ==
-								widgets_impl::widget_type::v_scrollbar);
+								widgets::widget_type::v_scrollbar);
 
 						if (widget.second.is_static() || !widget.second.visible() || !widget.second.enabled())
 							continue;
@@ -73,7 +73,7 @@ namespace liblec {
 
 					for (auto& widget : page.d_page_.widgets()) {
 						if (widget.second.type() ==
-							widgets_impl::widget_type::tab_pane) {
+							widgets::widget_type::tab_pane) {
 							// get this tab pane
 							auto& tab_pane = page.d_page_.get_tab_pane(widget.first);
 
@@ -84,7 +84,7 @@ namespace liblec {
 						}
 						else
 							if (widget.second.type() ==
-								widgets_impl::widget_type::pane) {
+								widgets::widget_type::pane) {
 								// get this pane
 								auto& pane = page.d_page_.get_pane(widget.first);
 
@@ -104,9 +104,9 @@ namespace liblec {
 					// check widgets
 					for (auto& widget : page.d_page_.widgets()) {
 						bool is_scroll_bar = (widget.second.type() ==
-							widgets_impl::widget_type::h_scrollbar) ||
+							widgets::widget_type::h_scrollbar) ||
 							(widget.second.type() ==
-								widgets_impl::widget_type::v_scrollbar);
+								widgets::widget_type::v_scrollbar);
 
 						if (widget.second.is_static() || !widget.second.visible() || !widget.second.enabled())
 							continue;
@@ -126,11 +126,11 @@ namespace liblec {
 							widget.second.press(pressed);
 
 							if (widget.second.type() !=
-								widgets_impl::widget_type::tab_pane)
+								widgets::widget_type::tab_pane)
 								widget.second.select(pressed);
 							else
 								if (widget.second.type() !=
-									widgets_impl::widget_type::pane)
+									widgets::widget_type::pane)
 									widget.second.select(pressed);
 						}
 						else {
@@ -142,7 +142,7 @@ namespace liblec {
 
 					for (auto& widget : page.d_page_.widgets()) {
 						if (widget.second.type() ==
-							widgets_impl::widget_type::tab_pane) {
+							widgets::widget_type::tab_pane) {
 							// get this tab pane
 							auto& tab_pane = page.d_page_.get_tab_pane(widget.first);
 
@@ -154,7 +154,7 @@ namespace liblec {
 						}
 						else
 							if (widget.second.type() ==
-								widgets_impl::widget_type::pane) {
+								widgets::widget_type::pane) {
 								// get this pane
 								auto& pane = page.d_page_.get_pane(widget.first);
 
@@ -267,7 +267,7 @@ namespace liblec {
 						widget.second.press(false);
 
 						if (widget.second.type() ==
-							widgets_impl::widget_type::tab_pane) {
+							widgets::widget_type::tab_pane) {
 							// get this tab pane
 							auto& tab_pane = page.d_page_.get_tab_pane(widget.first);
 
@@ -279,7 +279,7 @@ namespace liblec {
 						}
 						else
 							if (widget.second.type() ==
-								widgets_impl::widget_type::pane) {
+								widgets::widget_type::pane) {
 								// get this pane
 								auto& pane = page.d_page_.get_pane(widget.first);
 

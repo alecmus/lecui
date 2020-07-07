@@ -24,7 +24,7 @@ namespace liblec {
 				static void check_widgets(containers::page& page, const char& c, bool& change) {
 					for (auto& widget : page.d_page_.widgets()) {
 						if (widget.second.type() ==
-							widgets_impl::widget_type::textbox && widget.second.selected()) {
+							widgets::widget_type::textbox && widget.second.selected()) {
 							change = true;
 							try {
 								// ignore backspace, tab and return
@@ -42,7 +42,7 @@ namespace liblec {
 						}
 						else
 							if (widget.second.type() ==
-								widgets_impl::widget_type::html_editor && widget.second.selected()) {
+								widgets::widget_type::html_editor && widget.second.selected()) {
 								change = true;
 								try {
 									// ignore backspace, tab and return
@@ -60,7 +60,7 @@ namespace liblec {
 							}
 							else
 								if (widget.second.type() ==
-									widgets_impl::widget_type::combobox && widget.second.selected()) {
+									widgets::widget_type::combobox && widget.second.selected()) {
 									change = true;
 									try {
 										auto& combobox = page.d_page_.get_combobox(widget.first);
@@ -86,7 +86,7 @@ namespace liblec {
 								}
 								else
 									if (widget.second.type() ==
-										widgets_impl::widget_type::tab_pane) {
+										widgets::widget_type::tab_pane) {
 										// get this tab pane
 										auto& tab_pane = page.d_page_.get_tab_pane(widget.first);
 
@@ -97,7 +97,7 @@ namespace liblec {
 									}
 									else
 										if (widget.second.type() ==
-											widgets_impl::widget_type::pane) {
+											widgets::widget_type::pane) {
 											// get this pane
 											auto& pane = page.d_page_.get_pane(widget.first);
 

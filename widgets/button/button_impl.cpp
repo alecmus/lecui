@@ -15,7 +15,7 @@
 
 namespace liblec {
 	namespace lecui {
-		widgets_impl::button_impl::button_impl(containers::page& page,
+		widgets::button_impl::button_impl(containers::page& page,
 			const std::string& alias,
 			IDWriteFactory* p_directwrite_factory) :
 			widget_impl(page, alias),
@@ -29,14 +29,14 @@ namespace liblec {
 			p_directwrite_factory_(p_directwrite_factory),
 			p_text_layout_(nullptr) {}
 
-		widgets_impl::button_impl::~button_impl() { discard_resources(); }
+		widgets::button_impl::~button_impl() { discard_resources(); }
 
-		widgets_impl::widget_type
-			widgets_impl::button_impl::type() {
-			return lecui::widgets_impl::widget_type::button;
+		widgets::widget_type
+			widgets::button_impl::type() {
+			return lecui::widgets::widget_type::button;
 		}
 
-		HRESULT widgets_impl::button_impl::create_resources(
+		HRESULT widgets::button_impl::create_resources(
 			ID2D1HwndRenderTarget* p_render_target) {
 			specs_old_ = specs_;
 			is_static_ = (specs_.events().click == nullptr);
@@ -85,7 +85,7 @@ namespace liblec {
 			return hr;
 		}
 
-		void widgets_impl::button_impl::discard_resources() {
+		void widgets::button_impl::discard_resources() {
 			resources_created_ = false;
 			safe_release(&p_brush_);
 			safe_release(&p_brush_border_);
@@ -97,7 +97,7 @@ namespace liblec {
 		}
 
 		D2D1_RECT_F&
-			widgets_impl::button_impl::render(ID2D1HwndRenderTarget* p_render_target,
+			widgets::button_impl::render(ID2D1HwndRenderTarget* p_render_target,
 				const D2D1_SIZE_F& change_in_size, const D2D1_POINT_2F& offset, const bool& render) {
 			if (specs_old_ != specs_) {
 				log("specs changed: " + alias_);
@@ -150,15 +150,15 @@ namespace liblec {
 			return rect_;
 		}
 
-		void widgets_impl::button_impl::on_click() {
+		void widgets::button_impl::on_click() {
 			if (specs_.events().click)
 				specs_.events().click();
 		}
 
 		widgets::button::button_specs&
-			widgets_impl::button_impl::specs() { return specs_; }
+			widgets::button_impl::specs() { return specs_; }
 
 		widgets::button::button_specs&
-			widgets_impl::button_impl::operator()() { return specs(); }
+			widgets::button_impl::operator()() { return specs(); }
 	}
 }

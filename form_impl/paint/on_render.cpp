@@ -141,11 +141,11 @@ namespace liblec {
 								D2D1_RECT_F rect_widgets_ = { 0.f, 0.f, 0.f, 0.f };
 								for (auto& widget : page.d_page_.widgets()) {
 									if (widget.second.type() ==
-										widgets_impl::widget_type::h_scrollbar ||
+										widgets::widget_type::h_scrollbar ||
 										widget.second.type() ==
-										widgets_impl::widget_type::v_scrollbar ||
+										widgets::widget_type::v_scrollbar ||
 										widget.second.type() ==
-										widgets_impl::widget_type::group)
+										widgets::widget_type::group)
 										continue;
 
 									rect_widgets_ = widget.second.render(p_render_target_,
@@ -207,7 +207,7 @@ namespace liblec {
 							// resize groupboxes
 							for (auto& widget : page.d_page_.widgets()) {
 								if (widget.second.type() !=
-									widgets_impl::widget_type::group)
+									widgets::widget_type::group)
 									continue;
 
 								try {
@@ -258,7 +258,7 @@ namespace liblec {
 							// render groupboxes
 							for (auto& widget : page.d_page_.widgets()) {
 								if (widget.second.type() !=
-									widgets_impl::widget_type::group)
+									widgets::widget_type::group)
 									continue;
 
 								try {
@@ -281,11 +281,11 @@ namespace liblec {
 							// render widgets
 							for (auto& widget : page.d_page_.widgets()) {
 								if (widget.second.type() ==
-									widgets_impl::widget_type::h_scrollbar ||
+									widgets::widget_type::h_scrollbar ||
 									widget.second.type() ==
-									widgets_impl::widget_type::v_scrollbar ||
+									widgets::widget_type::v_scrollbar ||
 									widget.second.type() ==
-									widgets_impl::widget_type::group)
+									widgets::widget_type::group)
 									continue;
 
 								widget.second.render(p_render_target_,
@@ -295,7 +295,7 @@ namespace liblec {
 									render);
 
 								if (widget.second.type() ==
-									widgets_impl::widget_type::tab_pane) {
+									widgets::widget_type::tab_pane) {
 									try {
 										// get this tab pane
 										auto& tab_pane = page.d_page_.get_tab_pane(widget.first);
@@ -326,7 +326,7 @@ namespace liblec {
 								}
 								else
 									if (widget.second.type() ==
-										widgets_impl::widget_type::pane) {
+										widgets::widget_type::pane) {
 										try {
 											// get this pane
 											auto& pane = page.d_page_.get_pane(widget.first);

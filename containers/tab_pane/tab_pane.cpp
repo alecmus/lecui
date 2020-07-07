@@ -139,7 +139,7 @@ namespace liblec {
 						// compute the longest tab caption in the reserve
 						for (const auto& alias : tab_pane_.specs().caption_reserve) {
 							D2D1_RECT_F max_rect = { 0.f, 0.f, tab_pane_.specs().rect.height(), tab_pane_.caption_bar_height() };
-							auto caption_rect = widgets_impl::measure_label(tp.d_.page_.d_page_.p_directwrite_factory_, alias, tab_pane_.specs().font,
+							auto caption_rect = widgets::measure_label(tp.d_.page_.d_page_.p_directwrite_factory_, alias, tab_pane_.specs().font,
 								tab_pane_.specs().font_size, false, true, max_rect);
 
 							tab_height_ = largest(tab_height_, caption_rect.right - caption_rect.left + 3.f * tab_pane_.padding());
@@ -149,7 +149,7 @@ namespace liblec {
 						log(tab_name + ": WARNING - no caption reserve for perpendicular tab captions!");
 						// use current caption to set tab height
 						D2D1_RECT_F max_rect = { 0.f, 0.f, tab_pane_.specs().rect.height(), tab_pane_.caption_bar_height() };
-						auto caption_rect = widgets_impl::measure_label(tp.d_.page_.d_page_.p_directwrite_factory_, tab_name, tab_pane_.specs().font,
+						auto caption_rect = widgets::measure_label(tp.d_.page_.d_page_.p_directwrite_factory_, tab_name, tab_pane_.specs().font,
 							tab_pane_.specs().font_size, false, true, max_rect);
 
 						tab_height_ = largest(tab_height_, caption_rect.right - caption_rect.left + 3.f * tab_pane_.padding());
@@ -254,7 +254,7 @@ namespace liblec {
 
 				// add an invisible rect to bound the page. This is essential for scroll bars
 				// to work appropriately when contents don't reach the page borders
-				auto& rectangle = page_impl.add_rectangle(widgets_impl::rectangle_impl::page_rect_alias());
+				auto& rectangle = page_impl.add_rectangle(widgets::rectangle_impl::page_rect_alias());
 				rectangle.color_fill.alpha = 0;
 
 				// make it transparent

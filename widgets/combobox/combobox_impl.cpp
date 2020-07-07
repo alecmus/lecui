@@ -20,7 +20,7 @@
 
 namespace liblec {
 	namespace lecui {
-		widgets_impl::combobox_impl::combobox_impl(containers::page& page,
+		widgets::combobox_impl::combobox_impl(containers::page& page,
 			const std::string& alias,
 			IDWriteFactory* p_directwrite_factory) :
 			widget_impl(page, alias),
@@ -56,9 +56,9 @@ namespace liblec {
 			skip_nextdropdown_(false),
 			selection_info_({ 0, 0 }) {}
 
-		widgets_impl::combobox_impl::~combobox_impl() { discard_resources(); }
+		widgets::combobox_impl::~combobox_impl() { discard_resources(); }
 
-		void widgets_impl::combobox_impl::press(const bool& pressed) {
+		void widgets::combobox_impl::press(const bool& pressed) {
 			D2D1_RECT_F rect = specs_.editable ? rect_dropdown_ : rect_combobox_;
 			scale_RECT(rect, get_dpi_scale());
 
@@ -70,15 +70,15 @@ namespace liblec {
 			else
 				skip_nextdropdown_ = false;
 
-			return widgets_impl::widget_impl::press(pressed);
+			return widgets::widget_impl::press(pressed);
 		}
 
-		widgets_impl::widget_type
-			widgets_impl::combobox_impl::type() {
-			return lecui::widgets_impl::widget_type::combobox;
+		widgets::widget_type
+			widgets::combobox_impl::type() {
+			return lecui::widgets::widget_type::combobox;
 		}
 
-		HRESULT widgets_impl::combobox_impl::create_resources(
+		HRESULT widgets::combobox_impl::create_resources(
 			ID2D1HwndRenderTarget* p_render_target) {
 			specs_old_ = specs_;
 			is_static_ = (specs_.events().click == nullptr && specs_.events().selection == nullptr);
@@ -155,7 +155,7 @@ namespace liblec {
 			return hr;
 		}
 
-		void widgets_impl::combobox_impl::discard_resources() {
+		void widgets::combobox_impl::discard_resources() {
 			resources_created_ = false;
 			safe_release(&p_brush_);
 			safe_release(&p_brush_caret_);
@@ -173,7 +173,7 @@ namespace liblec {
 		}
 
 		D2D1_RECT_F&
-			widgets_impl::combobox_impl::render(ID2D1HwndRenderTarget* p_render_target,
+			widgets::combobox_impl::render(ID2D1HwndRenderTarget* p_render_target,
 				const D2D1_SIZE_F& change_in_size, const D2D1_POINT_2F& offset, const bool& render) {
 			if (specs_old_ != specs_) {
 				log("specs changed: " + alias_);
@@ -418,7 +418,7 @@ namespace liblec {
 			return rect_;
 		}
 
-		void widgets_impl::combobox_impl::on_click() {
+		void widgets::combobox_impl::on_click() {
 			bool drop_down = true;
 
 			if (!is_static_) {
@@ -471,7 +471,7 @@ namespace liblec {
 			}
 		}
 
-		bool widgets_impl::combobox_impl::hit(const bool& hit) {
+		bool widgets::combobox_impl::hit(const bool& hit) {
 			if (!is_static_ && specs_.editable) {
 				D2D1_RECT_F rect = rect_dropdown_;
 				scale_RECT(rect, get_dpi_scale());
@@ -494,7 +494,7 @@ namespace liblec {
 			return true;
 		}
 
-		void widgets_impl::combobox_impl::on_selection_change(const bool& selected) {
+		void widgets::combobox_impl::on_selection_change(const bool& selected) {
 			if (specs_.editable) {
 				if (selected) {
 					// start blink timer
@@ -518,9 +518,9 @@ namespace liblec {
 		}
 
 		widgets::combobox::combobox_specs&
-			widgets_impl::combobox_impl::specs() { return specs_; }
+			widgets::combobox_impl::specs() { return specs_; }
 
-		void widgets_impl::combobox_impl::insert_character(const char& c) {
+		void widgets::combobox_impl::insert_character(const char& c) {
 			try {
 				if (is_selected_) {
 					if (selection_info_.start > selection_info_.end)
@@ -541,7 +541,7 @@ namespace liblec {
 			catch (const std::exception& e) { log(e.what()); }
 		}
 
-		void widgets_impl::combobox_impl::key_backspace() {
+		void widgets::combobox_impl::key_backspace() {
 			try {
 				if (is_selected_) {
 					if (selection_info_.start > selection_info_.end)
@@ -561,7 +561,7 @@ namespace liblec {
 			catch (const std::exception& e) { log(e.what()); }
 		}
 
-		void widgets_impl::combobox_impl::key_delete() {
+		void widgets::combobox_impl::key_delete() {
 			try {
 				if (is_selected_) {
 					if (selection_info_.start > selection_info_.end)
@@ -580,7 +580,7 @@ namespace liblec {
 			catch (const std::exception& e) { log(e.what()); }
 		}
 
-		void widgets_impl::combobox_impl::key_left() {
+		void widgets::combobox_impl::key_left() {
 			try {
 				if (is_selected_) {
 					if (selection_info_.start > selection_info_.end)
@@ -599,7 +599,7 @@ namespace liblec {
 			catch (const std::exception& e) { log(e.what()); }
 		}
 
-		void widgets_impl::combobox_impl::key_right() {
+		void widgets::combobox_impl::key_right() {
 			try {
 				if (is_selected_) {
 					if (selection_info_.start > selection_info_.end)
@@ -618,7 +618,7 @@ namespace liblec {
 			catch (const std::exception& e) { log(e.what()); }
 		}
 
-		void widgets_impl::combobox_impl::key_return() {
+		void widgets::combobox_impl::key_return() {
 			if (specs_.editable) {
 				bool already_in_list = false;
 
@@ -658,7 +658,7 @@ namespace liblec {
 		}
 
 		UINT32
-			widgets_impl::combobox_impl::count_characters(IDWriteTextLayout* p_text_layout, const std::string& text,
+			widgets::combobox_impl::count_characters(IDWriteTextLayout* p_text_layout, const std::string& text,
 				const D2D1_RECT_F& rect_text, const D2D1_POINT_2F& point,
 				const float& dpi_scale) {
 			BOOL is_trailing;
@@ -675,7 +675,7 @@ namespace liblec {
 		}
 
 		UINT32
-			widgets_impl::combobox_impl::get_caret_position(IDWriteTextLayout* p_text_layout, const std::string& text,
+			widgets::combobox_impl::get_caret_position(IDWriteTextLayout* p_text_layout, const std::string& text,
 				const D2D1_RECT_F& rect_text, const D2D1_POINT_2F& point,
 				const float& dpi_scale) {
 			auto rect_hit = rect_text;
@@ -706,7 +706,7 @@ namespace liblec {
 		}
 
 		D2D1_RECT_F
-			widgets_impl::combobox_impl::get_selection_rect(
+			widgets::combobox_impl::get_selection_rect(
 				IDWriteTextLayout* p_text_layout, const D2D1_RECT_F& rect_text,
 				const UINT32& selection_start, const UINT32& selection_end) {
 			DWRITE_HIT_TEST_METRICS hit_metrics_start, hit_metrics_end;
@@ -723,7 +723,7 @@ namespace liblec {
 				rect_text.top, rect_text.left + hit_metrics_end.left, rect_text.bottom);
 		}
 
-		float widgets_impl::combobox_impl::get_caret_width() {
+		float widgets::combobox_impl::get_caret_width() {
 			// respect user settings
 			DWORD caret_width = 1;
 			SystemParametersInfo(SPI_GETCARETWIDTH, 0, &caret_width, 0);
@@ -731,7 +731,7 @@ namespace liblec {
 		}
 
 		D2D1_RECT_F
-			widgets_impl::combobox_impl::get_caret_rect(IDWriteTextLayout* p_text_layout,
+			widgets::combobox_impl::get_caret_rect(IDWriteTextLayout* p_text_layout,
 				const D2D1_RECT_F& rect_text, const UINT32& caret_position) {
 			DWRITE_HIT_TEST_METRICS hit_metrics;
 			float p_x, p_y;
@@ -748,7 +748,7 @@ namespace liblec {
 				rect_text.top + hit_metrics.top + hit_metrics.height);
 		}
 
-		bool widgets_impl::combobox_impl::is_numeric(const std::string& text) {
+		bool widgets::combobox_impl::is_numeric(const std::string& text) {
 			bool numeric = true;
 
 			for (const auto& c : text) {
@@ -762,7 +762,7 @@ namespace liblec {
 			return numeric;
 		}
 
-		bool widgets_impl::combobox_impl::is_numeric(const std::vector<widgets::combobox::combobox_item>& items) {
+		bool widgets::combobox_impl::is_numeric(const std::vector<widgets::combobox::combobox_item>& items) {
 			bool numeric = true;
 
 			for (auto& item : items) {
@@ -776,7 +776,7 @@ namespace liblec {
 			return numeric;
 		}
 
-		void widgets_impl::combobox_impl::sort_items() {
+		void widgets::combobox_impl::sort_items() {
 			auto sort_ascending = [](widgets::combobox::combobox_item& a, widgets::combobox::combobox_item& b) {
 				return a.label < b.label;
 			};
@@ -814,8 +814,8 @@ namespace liblec {
 		}
 
 		widgets::combobox::combobox_specs&
-			widgets_impl::combobox_impl::operator()() { return specs(); }
-		std::string widgets_impl::combobox_impl::dropdown(D2D1_RECT_F rect) {
+			widgets::combobox_impl::operator()() { return specs(); }
+		std::string widgets::combobox_impl::dropdown(D2D1_RECT_F rect) {
 			context_menu::specs menu_specs;
 
 			for (const auto& item : specs_.items) {

@@ -128,7 +128,7 @@ namespace liblec {
 			// parse the caption
 			// the default color doesn't matter here we're just getting the plain text
 			std::vector<formatted_text_parser::text_range_properties> formatting;
-			widgets_impl::parse_formatted_text(caption_formatted_, caption_plain_,
+			widgets::parse_formatted_text(caption_formatted_, caption_plain_,
 				D2D1::ColorF(D2D1::ColorF::Black), formatting);
 
 			if (instances_ == 1) {
@@ -209,7 +209,7 @@ namespace liblec {
 		/// This function will only create widget resources for those pages that have been
 		/// added in layout(). The resources for pages added later will be created
 		/// on-the-fly through the use of the
-		/// widgets_impl::widget::resources_created_ flag (this flag is
+		/// widgets::widget::resources_created_ flag (this flag is
 		/// used internally by each widget's implementation to check if resources have been created
 		/// and to create them if not).
 		HRESULT form::impl::create_device_resources() {
@@ -255,7 +255,7 @@ namespace liblec {
 								HRESULT hr = widget.second.create_resources(p_render_target_);
 
 								if (widget.second.type() ==
-									widgets_impl::widget_type::tab_pane) {
+									widgets::widget_type::tab_pane) {
 									try {
 										// get this tab pane
 										auto& tab_pane = page.d_page_.get_tab_pane(widget.first);
@@ -267,7 +267,7 @@ namespace liblec {
 								}
 								else
 									if (widget.second.type() ==
-										widgets_impl::widget_type::pane) {
+										widgets::widget_type::pane) {
 										try {
 											// get this pane
 											auto& pane = page.d_page_.get_pane(widget.first);
@@ -309,7 +309,7 @@ namespace liblec {
 					for (const auto& widget : page.d_page_.widgets()) {
 						if (in_destructor &&
 							widget.second.type() ==
-							widgets_impl::widget_type::custom) {
+							widgets::widget_type::custom) {
 							log("Skipping custom widget discard resources because by now custom widget will have long been destroyed so don't discard resources");
 							continue;
 						}
@@ -317,7 +317,7 @@ namespace liblec {
 						widget.second.discard_resources();
 
 						if (widget.second.type() ==
-							widgets_impl::widget_type::tab_pane) {
+							widgets::widget_type::tab_pane) {
 							try {
 								// get this tab pane
 								const auto& tab_pane = page.d_page_.get_tab_pane(widget.first);
@@ -329,7 +329,7 @@ namespace liblec {
 						}
 						else
 							if (widget.second.type() ==
-								widgets_impl::widget_type::pane) {
+								widgets::widget_type::pane) {
 								try {
 									// get this pane
 									const auto& pane = page.d_page_.get_pane(widget.first);
@@ -354,8 +354,8 @@ namespace liblec {
 
 		void form::impl::create_close_button(std::function<void()> on_click) {
 			p_close_button_ =
-				std::unique_ptr<widgets_impl::close_button_impl>(new
-					widgets_impl::close_button_impl(controls_page_));
+				std::unique_ptr<widgets::close_button_impl>(new
+					widgets::close_button_impl(controls_page_));
 			widgets_.emplace(p_close_button_->alias(), *p_close_button_);
 			widgets_order_.emplace_back(p_close_button_->alias());
 			
@@ -377,8 +377,8 @@ namespace liblec {
 		// should be called after create_close_button()
 		void form::impl::create_maximize_button() {
 			p_maximize_button_ =
-				std::unique_ptr<widgets_impl::maximize_button_impl>(new
-					widgets_impl::maximize_button_impl(controls_page_));
+				std::unique_ptr<widgets::maximize_button_impl>(new
+					widgets::maximize_button_impl(controls_page_));
 			widgets_.emplace(p_maximize_button_->alias(), *p_maximize_button_);
 			widgets_order_.emplace_back(p_maximize_button_->alias());
 
@@ -400,8 +400,8 @@ namespace liblec {
 		// should be called after create_close_button() and create_maximize_button()
 		void form::impl::create_minimize_button() {
 			p_minimize_button_ =
-				std::unique_ptr<widgets_impl::minimize_button_impl>(new
-					widgets_impl::minimize_button_impl(controls_page_));
+				std::unique_ptr<widgets::minimize_button_impl>(new
+					widgets::minimize_button_impl(controls_page_));
 			widgets_.emplace(p_minimize_button_->alias(), *p_minimize_button_);
 			widgets_order_.emplace_back(p_minimize_button_->alias());
 
@@ -424,8 +424,8 @@ namespace liblec {
 
 		void form::impl::create_form_caption() {
 			p_caption_ =
-				std::unique_ptr<widgets_impl::label_impl>(new
-					widgets_impl::label_impl(controls_page_, "form_caption",
+				std::unique_ptr<widgets::label_impl>(new
+					widgets::label_impl(controls_page_, "form_caption",
 						p_directwrite_factory_));
 			widgets_.emplace(p_caption_->alias(), *p_caption_);
 			widgets_order_.emplace_back(p_caption_->alias());
@@ -453,7 +453,7 @@ namespace liblec {
 				right_edge - control_button_margin_, caption_bar_height_ - control_button_margin_);
 
 			// determine the optimal rect for the caption
-			const auto rect = widgets_impl::measure_label(p_directwrite_factory_,
+			const auto rect = widgets::measure_label(p_directwrite_factory_,
 				p_caption_->specs().text, p_caption_->specs().font, p_caption_->specs().font_size,
 				p_caption_->specs().center_h, p_caption_->specs().center_v, max_rect);
 
@@ -494,18 +494,18 @@ namespace liblec {
 						std::vector<tree_info>& trees) {
 						for (auto& widget : page.d_page_.widgets()) {
 							// check if this is a tree pane
-							if (widget.first.find(widgets_impl::pane_impl::tree_pane_alias_prefix()) != std::string::npos)
+							if (widget.first.find(widgets::pane_impl::tree_pane_alias_prefix()) != std::string::npos)
 								continue;	// this is a tree pane (it has a tree inside. move was already done), continue to next widget
 
 							// check if this is a tree
-							if (widget.second.type() == widgets_impl::widget_type::tree) {
+							if (widget.second.type() == widgets::widget_type::tree) {
 								// this is a tree, we need to "move" it into a special pane
 
 								// get the tree specs
 								auto& tree_specs = page.d_page_.get_tree(widget.first).specs();
 
 								// make pane whose alias is prefixed by the special string
-								containers::pane pane(page, widgets_impl::pane_impl::tree_pane_alias_prefix() + widget.first);
+								containers::pane pane(page, widgets::pane_impl::tree_pane_alias_prefix() + widget.first);
 
 								// clone essential properties to pane
 								pane().rect = tree_specs.rect;
@@ -519,7 +519,7 @@ namespace liblec {
 								break;
 							}
 
-							if (widget.second.type() == widgets_impl::widget_type::tab_pane) {
+							if (widget.second.type() == widgets::widget_type::tab_pane) {
 								// get this tab pane
 								auto& tab_pane = page.d_page_.get_tab_pane(widget.first);
 
@@ -528,7 +528,7 @@ namespace liblec {
 									find_trees_to_move(tab.second, trees);	// recursion
 							}
 							else
-								if (widget.second.type() == widgets_impl::widget_type::pane) {
+								if (widget.second.type() == widgets::widget_type::pane) {
 									// get this pane
 									auto& pane = page.d_page_.get_pane(widget.first);
 
@@ -560,7 +560,7 @@ namespace liblec {
 
 						// close widget
 						std::string error;
-						it.source.d_page_.close_widget(it.alias, widgets_impl::widget_type::tree, error);
+						it.source.d_page_.close_widget(it.alias, widgets::widget_type::tree, error);
 						log("moving " + it.alias + " successful!");
 					}
 					catch (const std::exception& e) { log("moving " + it.alias + " failed: " + e.what()); }
@@ -592,18 +592,18 @@ namespace liblec {
 						std::vector<html_editor_info>& trees) {
 						for (auto& widget : page.d_page_.widgets()) {
 							// check if this is an html pane
-							if (widget.first.find(widgets_impl::pane_impl::html_pane_alias_prefix()) != std::string::npos)
+							if (widget.first.find(widgets::pane_impl::html_pane_alias_prefix()) != std::string::npos)
 								continue;	// this is an html pane (it has an html widget inside. move was already done), continue to next widget
 
 							// check if this is an html editor
-							if (widget.second.type() == widgets_impl::widget_type::html_editor) {
+							if (widget.second.type() == widgets::widget_type::html_editor) {
 								// this is an html editor, we need to "move" it into a special pane
 
 								// get the html editor specs
 								auto& html_editor_specs = page.d_page_.get_html_editor(widget.first).specs();
 
 								// make controls pane in source (predefined, fixed height)
-								containers::pane controls_pane(page, widgets_impl::pane_impl::html_controls_pane_alias_prefix() + widget.first);
+								containers::pane controls_pane(page, widgets::pane_impl::html_controls_pane_alias_prefix() + widget.first);
 								controls_pane().rect = html_editor_specs.rect;
 								controls_pane().rect.height(
 									(10.f * 2) +	// top and bottom margin
@@ -619,7 +619,7 @@ namespace liblec {
 								auto& controls_pane_page = controls_pane.get();
 
 								// make pane whose alias is prefixed by the special string
-								containers::pane pane(page, widgets_impl::pane_impl::html_pane_alias_prefix() + widget.first);
+								containers::pane pane(page, widgets::pane_impl::html_pane_alias_prefix() + widget.first);
 
 								// clone essential properties to pane
 								pane().rect = html_editor_specs.rect;
@@ -636,7 +636,7 @@ namespace liblec {
 								break;
 							}
 
-							if (widget.second.type() == widgets_impl::widget_type::tab_pane) {
+							if (widget.second.type() == widgets::widget_type::tab_pane) {
 								// get this tab pane
 								auto& tab_pane = page.d_page_.get_tab_pane(widget.first);
 
@@ -645,7 +645,7 @@ namespace liblec {
 									find_html_editors_to_move(tab.second, trees);	// recursion
 							}
 							else
-								if (widget.second.type() == widgets_impl::widget_type::pane) {
+								if (widget.second.type() == widgets::widget_type::pane) {
 									// get this pane
 									auto& pane = page.d_page_.get_pane(widget.first);
 
@@ -677,7 +677,7 @@ namespace liblec {
 
 						// close the widget
 						std::string error;
-						it.source.d_page_.close_widget(it.alias, widgets_impl::widget_type::html_editor, error);
+						it.source.d_page_.close_widget(it.alias, widgets::widget_type::html_editor, error);
 						log("moving " + it.alias + " successful!");
 					}
 					catch (const std::exception& e) { log("moving " + it.alias + " failed: " + e.what()); }
@@ -687,7 +687,7 @@ namespace liblec {
 				public:
 					static void add_html_controls(lecui::containers::page& page) {
 						for (auto& widget : page.d_page_.widgets()) {
-							if (widget.first.find(widgets_impl::pane_impl::html_controls_pane_alias_prefix()) != std::string::npos) {
+							if (widget.first.find(widgets::pane_impl::html_controls_pane_alias_prefix()) != std::string::npos) {
 								try {
 									// get alias of associated html editor widget
 									const auto idx = widget.first.rfind("::");
@@ -696,8 +696,8 @@ namespace liblec {
 										auto widget_alias = widget.first.substr(idx + 2);
 
 										// get the pages
-										auto& html_controls_page = page.d_page_.get_pane(widgets_impl::pane_impl::html_controls_pane_alias_prefix() + widget_alias).p_panes_.at("pane");
-										auto& html_page = page.d_page_.get_pane(widgets_impl::pane_impl::html_pane_alias_prefix() + widget_alias).p_panes_.at("pane");
+										auto& html_controls_page = page.d_page_.get_pane(widgets::pane_impl::html_controls_pane_alias_prefix() + widget_alias).p_panes_.at("pane");
+										auto& html_page = page.d_page_.get_pane(widgets::pane_impl::html_pane_alias_prefix() + widget_alias).p_panes_.at("pane");
 
 										// get the html editor and controls
 										auto& html_editor = html_page.d_page_.get_html_editor(widget_alias);
@@ -885,7 +885,7 @@ namespace liblec {
 								catch (const std::exception& e) { log(e.what()); }
 							}
 							else
-								if (widget.second.type() == widgets_impl::widget_type::tab_pane) {
+								if (widget.second.type() == widgets::widget_type::tab_pane) {
 									// get this tab pane
 									auto& tab_pane = page.d_page_.get_tab_pane(widget.first);
 
@@ -894,7 +894,7 @@ namespace liblec {
 										add_html_controls(tab.second);	// recursion
 								}
 								else
-									if (widget.second.type() == widgets_impl::widget_type::pane) {
+									if (widget.second.type() == widgets::widget_type::pane) {
 										// get this pane
 										auto& pane = page.d_page_.get_pane(widget.first);
 
@@ -1181,7 +1181,7 @@ namespace liblec {
 				// check if widget is in special pane
 
 				// check special tree pane
-				auto& tree_pane_control = container.d_page_.get_pane(widgets_impl::pane_impl::tree_pane_alias_prefix() + path);
+				auto& tree_pane_control = container.d_page_.get_pane(widgets::pane_impl::tree_pane_alias_prefix() + path);
 
 				// tree pane control confirmed ... get the pane page
 				auto& tree_pane = tree_pane_control.p_panes_.at("pane");

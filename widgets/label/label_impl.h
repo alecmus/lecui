@@ -19,7 +19,7 @@
 
 namespace liblec {
 	namespace lecui {
-		namespace widgets_impl {
+		namespace widgets {
 			void parse_formatted_text(const std::string& formatted_text,
 				std::string& plain_text_,
 				D2D1_COLOR_F default_color,
@@ -66,7 +66,7 @@ namespace liblec {
 				~label_impl();
 
 				/// virtual function overrides
-				widgets_impl::widget_type type() override;
+				widget_type type() override;
 				HRESULT create_resources(ID2D1HwndRenderTarget* p_render_target) override;
 				void discard_resources() override;
 				D2D1_RECT_F& render(ID2D1HwndRenderTarget* p_render_target,

@@ -30,7 +30,7 @@ namespace liblec {
 					static void check_widgets(containers::page& page, WPARAM wParam, bool& change) {
 						for (auto& widget : page.d_page_.widgets()) {
 							if (widget.second.type() ==
-								widgets_impl::widget_type::textbox && widget.second.selected()) {
+								widgets::widget_type::textbox && widget.second.selected()) {
 								change = true;
 								try {
 									auto& textbox = page.d_page_.get_textbox(widget.first);
@@ -49,7 +49,7 @@ namespace liblec {
 							}
 							else
 								if (widget.second.type() ==
-									widgets_impl::widget_type::html_editor && widget.second.selected()) {
+									widgets::widget_type::html_editor && widget.second.selected()) {
 									change = true;
 									try {
 										auto& html_editor = page.d_page_.get_html_editor(widget.first);
@@ -70,7 +70,7 @@ namespace liblec {
 								}
 								else
 									if (widget.second.type() ==
-										widgets_impl::widget_type::combobox && widget.second.selected()) {
+										widgets::widget_type::combobox && widget.second.selected()) {
 										change = true;
 										try {
 											auto& combobox = page.d_page_.get_combobox(widget.first);
@@ -91,7 +91,7 @@ namespace liblec {
 									}
 									else
 										if (widget.second.type() ==
-											widgets_impl::widget_type::tab_pane) {
+											widgets::widget_type::tab_pane) {
 											// get this tab pane
 											auto& tab_pane = page.d_page_.get_tab_pane(widget.first);
 
@@ -102,7 +102,7 @@ namespace liblec {
 										}
 										else
 											if (widget.second.type() ==
-												widgets_impl::widget_type::pane) {
+												widgets::widget_type::pane) {
 												// get this pane
 												auto& pane = page.d_page_.get_pane(widget.first);
 
@@ -149,11 +149,11 @@ namespace liblec {
 
 					if (widget.second.selected() &&
 						widget.second.type() !=
-						widgets_impl::widget_type::close_button &&
+						widgets::widget_type::close_button &&
 						widget.second.type() !=
-						widgets_impl::widget_type::maximize_button &&
+						widgets::widget_type::maximize_button &&
 						widget.second.type() !=
-						widgets_impl::widget_type::minimize_button)
+						widgets::widget_type::minimize_button)
 						widget.second.press(true);
 					else
 						widget.second.press(false);
@@ -168,14 +168,14 @@ namespace liblec {
 								continue;
 
 							if (widget.second.selected() &&
-								widget.second.type() != widgets_impl::widget_type::textbox &&	// exclude text box from space bar presses
-								widget.second.type() != widgets_impl::widget_type::html_editor)	// exclude html editor from space bar presses
+								widget.second.type() != widgets::widget_type::textbox &&	// exclude text box from space bar presses
+								widget.second.type() != widgets::widget_type::html_editor)	// exclude html editor from space bar presses
 								widget.second.press(true);
 							else
 								widget.second.press(false);
 
 							if (widget.second.type() ==
-								widgets_impl::widget_type::tab_pane) {
+								widgets::widget_type::tab_pane) {
 								// get this tab pane
 								auto& tab_pane = page.d_page_.get_tab_pane(widget.first);
 
@@ -186,7 +186,7 @@ namespace liblec {
 							}
 							else
 								if (widget.second.type() ==
-									widgets_impl::widget_type::pane) {
+									widgets::widget_type::pane) {
 									// get this pane
 									auto& pane = page.d_page_.get_pane(widget.first);
 
@@ -226,11 +226,11 @@ namespace liblec {
 
 				if (widget.second.selected() &&
 					widget.second.type() !=
-					widgets_impl::widget_type::close_button &&
+					widgets::widget_type::close_button &&
 					widget.second.type() !=
-					widgets_impl::widget_type::maximize_button &&
+					widgets::widget_type::maximize_button &&
 					widget.second.type() !=
-					widgets_impl::widget_type::minimize_button)
+					widgets::widget_type::minimize_button)
 					if (widget.second.on_keydown(wParam)) {
 						update = true;
 						on_click_handler = [&]() { widget.second.on_click(); };
@@ -254,7 +254,7 @@ namespace liblec {
 						}
 						else
 							if (widget.second.type() ==
-								widgets_impl::widget_type::tab_pane) {
+								widgets::widget_type::tab_pane) {
 								// get this tab pane
 								auto& tab_pane = page.d_page_.get_tab_pane(widget.first);
 
@@ -265,7 +265,7 @@ namespace liblec {
 							}
 							else
 								if (widget.second.type() ==
-									widgets_impl::widget_type::pane) {
+									widgets::widget_type::pane) {
 									// get this pane
 									auto& pane = page.d_page_.get_pane(widget.first);
 

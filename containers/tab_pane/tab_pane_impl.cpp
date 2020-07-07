@@ -16,7 +16,7 @@
 
 namespace liblec {
 	namespace lecui {
-		widgets_impl::tab_pane_impl::tab_pane_impl(containers::page& page,
+		widgets::tab_pane_impl::tab_pane_impl(containers::page& page,
 			const std::string& alias,
 			IDWriteFactory* p_directwrite_factory) :
 			widget_impl(page, alias),
@@ -40,14 +40,14 @@ namespace liblec {
 			rect_client_area_({ 0.f, 0.f, 0.f, 0.f }),
 			rect_tab_pane_({ 0.f, 0.f, 0.f, 0.f }) {}
 
-		widgets_impl::tab_pane_impl::~tab_pane_impl() { discard_resources(); }
+		widgets::tab_pane_impl::~tab_pane_impl() { discard_resources(); }
 
-		widgets_impl::widget_type
-			widgets_impl::tab_pane_impl::type() {
-			return lecui::widgets_impl::widget_type::tab_pane;
+		widgets::widget_type
+			widgets::tab_pane_impl::type() {
+			return lecui::widgets::widget_type::tab_pane;
 		}
 
-		HRESULT widgets_impl::tab_pane_impl::create_resources(
+		HRESULT widgets::tab_pane_impl::create_resources(
 			ID2D1HwndRenderTarget* p_render_target) {
 			is_static_ = false;
 			h_cursor_ = get_cursor(specs_.cursor);
@@ -98,7 +98,7 @@ namespace liblec {
 			return hr;
 		}
 
-		void widgets_impl::tab_pane_impl::discard_resources() {
+		void widgets::tab_pane_impl::discard_resources() {
 			resources_created_ = false;
 			safe_release(&p_brush_);
 			safe_release(&p_brush_fill_);
@@ -111,7 +111,7 @@ namespace liblec {
 		}
 
 		D2D1_RECT_F&
-			widgets_impl::tab_pane_impl::render(ID2D1HwndRenderTarget* p_render_target,
+			widgets::tab_pane_impl::render(ID2D1HwndRenderTarget* p_render_target,
 				const D2D1_SIZE_F& change_in_size, const D2D1_POINT_2F& offset, const bool& render) {
 			if (!resources_created_)
 				create_resources(p_render_target);
@@ -584,7 +584,7 @@ namespace liblec {
 			return rect_tab_pane_;
 		}
 
-		void widgets_impl::tab_pane_impl::on_click() {
+		void widgets::tab_pane_impl::on_click() {
 			for (auto& it : p_tab_rects_) {
 				D2D1_RECT_F rect = it.second;
 				scale_RECT(rect, get_dpi_scale());
@@ -596,49 +596,49 @@ namespace liblec {
 		}
 
 		containers::tab_pane::tab_pane_specs&
-			widgets_impl::tab_pane_impl::specs() { return specs_; }
+			widgets::tab_pane_impl::specs() { return specs_; }
 
 		containers::tab_pane::tab_pane_specs&
-			widgets_impl::tab_pane_impl::operator()() { return specs(); }
+			widgets::tab_pane_impl::operator()() { return specs(); }
 
-		const D2D1_RECT_F& widgets_impl::tab_pane_impl::client_area() {
+		const D2D1_RECT_F& widgets::tab_pane_impl::client_area() {
 			return rect_client_area_;
 		}
 
-		const D2D1_RECT_F& widgets_impl::tab_pane_impl::tab_pane_area() {
+		const D2D1_RECT_F& widgets::tab_pane_impl::tab_pane_area() {
 			return rect_tab_pane_;
 		}
 
-		float widgets_impl::tab_pane_impl::caption_bar_height() {
+		float widgets::tab_pane_impl::caption_bar_height() {
 			return (tab_height_ + bar_height_);
 		}
 
-		float widgets_impl::tab_pane_impl::tab_height() {
+		float widgets::tab_pane_impl::tab_height() {
 			return tab_height_;
 		}
 
-		float widgets_impl::tab_pane_impl::bar_height() {
+		float widgets::tab_pane_impl::bar_height() {
 			return bar_height_;
 		}
 
-		float widgets_impl::tab_pane_impl::padding() {
+		float widgets::tab_pane_impl::padding() {
 			return padding_;
 		}
 
-		float widgets_impl::tab_pane_impl::margin() {
+		float widgets::tab_pane_impl::margin() {
 			return margin_;
 		}
 
-		void widgets_impl::tab_pane_impl::set_tab_height(const float height) {
+		void widgets::tab_pane_impl::set_tab_height(const float height) {
 			tab_height_set_ = true;
 			tab_height_ = height;
 		}
 
-		bool widgets_impl::tab_pane_impl::tab_height_set() {
+		bool widgets::tab_pane_impl::tab_height_set() {
 			return tab_height_set_;
 		}
 
-		bool widgets_impl::tab_pane_impl::contains() {
+		bool widgets::tab_pane_impl::contains() {
 			for (const auto& it : p_tab_rects_) {
 				D2D1_RECT_F rect = it.second;
 				scale_RECT(rect, get_dpi_scale());

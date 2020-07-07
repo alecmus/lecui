@@ -16,7 +16,7 @@
 
 namespace liblec {
 	namespace lecui {
-		widgets_impl::slider_impl::slider_impl(containers::page& page,
+		widgets::slider_impl::slider_impl(containers::page& page,
 			const std::string& alias,
 			IDWriteFactory* p_directwrite_factory) :
 			widget_impl(page, alias),
@@ -34,14 +34,14 @@ namespace liblec {
 			p_text_layout_(nullptr),
 			perc_along_(0.f) {}
 
-		widgets_impl::slider_impl::~slider_impl() { discard_resources(); }
+		widgets::slider_impl::~slider_impl() { discard_resources(); }
 
-		widgets_impl::widget_type
-			widgets_impl::slider_impl::type() {
-			return lecui::widgets_impl::widget_type::slider;
+		widgets::widget_type
+			widgets::slider_impl::type() {
+			return lecui::widgets::widget_type::slider;
 		}
 
-		HRESULT widgets_impl::slider_impl::create_resources(
+		HRESULT widgets::slider_impl::create_resources(
 			ID2D1HwndRenderTarget* p_render_target) {
 			specs_old_ = specs_;
 			is_static_ = (specs_.events().slider == nullptr && specs_.events().click == nullptr);
@@ -99,7 +99,7 @@ namespace liblec {
 			return hr;
 		}
 
-		void widgets_impl::slider_impl::discard_resources() {
+		void widgets::slider_impl::discard_resources() {
 			resources_created_ = false;
 			safe_release(&p_brush_);
 			safe_release(&p_brush_fill_);
@@ -114,7 +114,7 @@ namespace liblec {
 		}
 
 		D2D1_RECT_F&
-			widgets_impl::slider_impl::render(ID2D1HwndRenderTarget* p_render_target,
+			widgets::slider_impl::render(ID2D1HwndRenderTarget* p_render_target,
 				const D2D1_SIZE_F& change_in_size, const D2D1_POINT_2F& offset, const bool& render) {
 			if (specs_old_ != specs_) {
 				log("specs changed: " + alias_);
@@ -243,7 +243,7 @@ namespace liblec {
 						const auto label = roundoff::tostr<char>(value, 0);
 						value += specs_.major_tick_unit;
 
-						auto label_rect = widgets_impl::measure_label(p_directwrite_factory_, label,
+						auto label_rect = widgets::measure_label(p_directwrite_factory_, label,
 							specs_.font, specs_.font_size, true, true, max_rect);
 
 						D2D1_RECT_F optimal_rect = {
@@ -364,7 +364,7 @@ namespace liblec {
 						const auto label = roundoff::tostr<char>(value, 0);
 						value += specs_.major_tick_unit;
 
-						auto label_rect = widgets_impl::measure_label(p_directwrite_factory_, label,
+						auto label_rect = widgets::measure_label(p_directwrite_factory_, label,
 							specs_.font, specs_.font_size, true, true, max_rect);
 
 						D2D1_RECT_F optimal_rect = {
@@ -411,7 +411,7 @@ namespace liblec {
 			return rect_;
 		}
 
-		void widgets_impl::slider_impl::on_click() {
+		void widgets::slider_impl::on_click() {
 			// to-do: how to know if this is a keyboard and not care about either x_change or y_change
 
 			bool x_change = (point_.x != point_on_press_.x);
@@ -424,7 +424,7 @@ namespace liblec {
 				specs_.events().click();
 		}
 
-		bool widgets_impl::slider_impl::contains(const D2D1_POINT_2F& point) {
+		bool widgets::slider_impl::contains(const D2D1_POINT_2F& point) {
 			// capture the point
 			point_ = point;
 
@@ -445,9 +445,9 @@ namespace liblec {
 			}
 		}
 
-		bool widgets_impl::slider_impl::contains() { return true; }
+		bool widgets::slider_impl::contains() { return true; }
 
-		bool widgets_impl::slider_impl::hit(const bool& hit) {
+		bool widgets::slider_impl::hit(const bool& hit) {
 			if (is_static_ || hit == hit_) {
 				if (pressed_)
 					return true;
@@ -460,9 +460,9 @@ namespace liblec {
 		}
 
 		widgets::slider::slider_specs&
-			widgets_impl::slider_impl::specs() { return specs_; }
+			widgets::slider_impl::specs() { return specs_; }
 
 		widgets::slider::slider_specs&
-			widgets_impl::slider_impl::operator()() { return specs(); }
+			widgets::slider_impl::operator()() { return specs(); }
 	}
 }

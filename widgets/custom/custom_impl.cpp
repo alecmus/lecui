@@ -15,14 +15,14 @@
 
 namespace liblec {
 	namespace lecui {
-		widgets_impl::custom_impl::custom_impl(containers::page& page,
+		widgets::custom_impl::custom_impl(containers::page& page,
 			const std::string& alias,
 			IDWriteFactory* p_directwrite_factory, IWICImagingFactory* p_iwic_factory) :
 			widget_impl(page, alias),
 			p_directwrite_factory_(p_directwrite_factory),
 			p_iwic_factory_(p_iwic_factory) {}
 
-		widgets_impl::custom_impl::~custom_impl() {
+		widgets::custom_impl::~custom_impl() {
 			// DO NOT call discard_resources() here. Let the client do that
 			// in their own destructor (which will be called far before this one).
 			// Trying to discard resources here will result in an access violation
@@ -30,12 +30,12 @@ namespace liblec {
 			// not want any widget to be a static object!
 		}
 
-		widgets_impl::widget_type
-			widgets_impl::custom_impl::type() {
-			return lecui::widgets_impl::widget_type::custom;
+		widgets::widget_type
+			widgets::custom_impl::type() {
+			return lecui::widgets::widget_type::custom;
 		}
 
-		HRESULT widgets_impl::custom_impl::create_resources(
+		HRESULT widgets::custom_impl::create_resources(
 			ID2D1HwndRenderTarget* p_render_target) {
 			specs_old_ = specs_;
 			is_static_ = (specs_.events().click == nullptr);
@@ -48,13 +48,13 @@ namespace liblec {
 			return S_OK;
 		}
 
-		void widgets_impl::custom_impl::discard_resources() {
+		void widgets::custom_impl::discard_resources() {
 			resources_created_ = false;
 			if (specs_.on_discard_resources != nullptr)
 				specs_.on_discard_resources();
 		}
 
-		D2D1_RECT_F& widgets_impl::custom_impl::render(ID2D1HwndRenderTarget* p_render_target,
+		D2D1_RECT_F& widgets::custom_impl::render(ID2D1HwndRenderTarget* p_render_target,
 			const D2D1_SIZE_F& change_in_size, const D2D1_POINT_2F& offset, const bool& render) {
 			if (specs_old_ != specs_) {
 				log("specs changed: " + alias_);
@@ -77,18 +77,18 @@ namespace liblec {
 			return rect_;
 		}
 
-		void widgets_impl::custom_impl::on_click() {
+		void widgets::custom_impl::on_click() {
 			if (specs_.events().click)
 				specs_.events().click();
 		}
 
 		widgets::custom::custom_specs&
-			widgets_impl::custom_impl::specs() {
+			widgets::custom_impl::specs() {
 			return specs_;
 		}
 
 		widgets::custom::custom_specs&
-			widgets_impl::custom_impl::operator()() {
+			widgets::custom_impl::operator()() {
 			return specs();
 		}
 	}
