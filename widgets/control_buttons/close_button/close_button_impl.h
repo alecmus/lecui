@@ -19,9 +19,7 @@ namespace liblec {
 	namespace lecui {
 		namespace widgets {
 			class close_button_specs : public specs {};
-		}
 
-		namespace widgets {
 			class close_button_impl : public widget_impl {
 				/// private virtual function overrides
 				widgets::specs& generic_specs() override {

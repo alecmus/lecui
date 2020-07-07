@@ -23,12 +23,6 @@
 
 namespace liblec {
 	namespace lecui {
-#if defined(LECUI_EXPORTS)
-		namespace widgets {
-			class tree_impl;
-		}
-#endif
-
 		namespace widgets {
 			/// <summary>Tree widget.</summary>
 			class lecui_api tree {

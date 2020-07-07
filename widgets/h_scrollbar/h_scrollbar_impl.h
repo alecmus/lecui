@@ -19,9 +19,7 @@ namespace liblec {
 	namespace lecui {
 		namespace widgets {
 			class h_scrollbar_specs : public scrollbar_specs {};
-		}
 
-		namespace widgets {
 			class h_scrollbar_impl : public widget_impl {
 				/// private virtual function overrides
 				widgets::specs& generic_specs() override {

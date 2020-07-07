@@ -14,9 +14,9 @@
 #pragma once
 
 #if defined(LECUI_EXPORTS)
-	#include "lecui.h"
+#include "lecui.h"
 #else
-	#include <liblec/lecui.h>
+#include <liblec/lecui.h>
 #endif
 
 #include <functional>
@@ -60,12 +60,12 @@ namespace liblec {
 			class html_editor;
 			class combobox;
 			class line;
-		}
 
-		namespace widgets {
 			class widget_impl;
 			class combobox_impl;
 			class html_editor_impl;
+			class textbox_impl;
+			class tree_impl;
 		}
 #endif
 

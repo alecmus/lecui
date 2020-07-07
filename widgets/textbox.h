@@ -21,12 +21,6 @@
 
 namespace liblec {
 	namespace lecui {
-#if defined(LECUI_EXPORTS)
-		namespace widgets {
-			class textbox_impl;
-		}
-#endif
-
 		namespace widgets {
 			/// <summary>Textbox widget.</summary>
 			class lecui_api textbox {
@@ -56,7 +50,7 @@ namespace liblec {
 
 #if defined(LECUI_EXPORTS)
 					friend class passwordbox;
-					friend class lecui::widgets::textbox_impl;
+					friend class textbox_impl;
 #endif
 				};
 

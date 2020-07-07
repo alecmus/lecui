@@ -14,9 +14,9 @@
 #pragma once
 
 #if defined(LECUI_EXPORTS)
-	#include "widget.h"
+#include "widget.h"
 #else
-	#include <liblec/lecui/widgets/widget.h>
+#include <liblec/lecui/widgets/widget.h>
 #endif
 
 #include <map>
