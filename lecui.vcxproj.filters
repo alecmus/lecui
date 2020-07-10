@@ -146,6 +146,9 @@
     <Filter Include="lecui\image_converter">
       <UniqueIdentifier>{37a296ed-432e-444c-bbcf-4941af5e0e77}</UniqueIdentifier>
     </Filter>
+    <Filter Include="lecui\utilities\splash">
+      <UniqueIdentifier>{c3b0f451-5754-407b-a265-6c07cf6ce049}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="error\win_error.h">
@@ -346,6 +349,9 @@
     </ClInclude>
     <ClInclude Include="image_converter\image_converter.h">
       <Filter>lecui\image_converter</Filter>
+    </ClInclude>
+    <ClInclude Include="utilities\splash.h">
+      <Filter>lecui\utilities</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -577,6 +583,9 @@
     </ClCompile>
     <ClCompile Include="image_converter\image_converter.cpp">
       <Filter>lecui\image_converter</Filter>
+    </ClCompile>
+    <ClCompile Include="utilities\splash\splash.cpp">
+      <Filter>lecui\utilities\splash</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

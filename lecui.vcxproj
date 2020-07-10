@@ -44,6 +44,7 @@
     <ClInclude Include="timer.h" />
     <ClInclude Include="utilities\color_picker.h" />
     <ClInclude Include="utilities\filesystem.h" />
+    <ClInclude Include="utilities\splash.h" />
     <ClInclude Include="versioninfo.h" />
     <ClInclude Include="widgets\button.h" />
     <ClInclude Include="widgets\button\button_impl.h" />
@@ -124,6 +125,7 @@
     <ClCompile Include="unique_string.cpp" />
     <ClCompile Include="utilities\color_picker\color_picker.cpp" />
     <ClCompile Include="utilities\filesystem\filesystem.cpp" />
+    <ClCompile Include="utilities\splash\splash.cpp" />
     <ClCompile Include="widgets\button\button.cpp" />
     <ClCompile Include="widgets\button\button_impl.cpp" />
     <ClCompile Include="widgets\checkbox\checkbox.cpp" />
@@ -306,7 +308,8 @@ xcopy "$(ProjectDir)widgets\line.h" "$(SolutionDir)..\include\liblec\$(ProjectNa
 xcopy "$(ProjectDir)menus\context_menu.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\menus\" /F /R /Y /I
 
 xcopy "$(ProjectDir)utilities\filesystem.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\utilities\" /F /R /Y /I
-xcopy "$(ProjectDir)utilities\color_picker.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\utilities\" /F /R /Y /I</Command>
+xcopy "$(ProjectDir)utilities\color_picker.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\utilities\" /F /R /Y /I
+xcopy "$(ProjectDir)utilities\splash.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\utilities\" /F /R /Y /I</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -364,7 +367,8 @@ xcopy "$(ProjectDir)widgets\line.h" "$(SolutionDir)..\include\liblec\$(ProjectNa
 xcopy "$(ProjectDir)menus\context_menu.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\menus\" /F /R /Y /I
 
 xcopy "$(ProjectDir)utilities\filesystem.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\utilities\" /F /R /Y /I
-xcopy "$(ProjectDir)utilities\color_picker.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\utilities\" /F /R /Y /I</Command>
+xcopy "$(ProjectDir)utilities\color_picker.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\utilities\" /F /R /Y /I
+xcopy "$(ProjectDir)utilities\splash.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\utilities\" /F /R /Y /I</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -426,7 +430,8 @@ xcopy "$(ProjectDir)widgets\line.h" "$(SolutionDir)..\include\liblec\$(ProjectNa
 xcopy "$(ProjectDir)menus\context_menu.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\menus\" /F /R /Y /I
 
 xcopy "$(ProjectDir)utilities\filesystem.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\utilities\" /F /R /Y /I
-xcopy "$(ProjectDir)utilities\color_picker.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\utilities\" /F /R /Y /I</Command>
+xcopy "$(ProjectDir)utilities\color_picker.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\utilities\" /F /R /Y /I
+xcopy "$(ProjectDir)utilities\splash.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\utilities\" /F /R /Y /I</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -488,7 +493,8 @@ xcopy "$(ProjectDir)widgets\line.h" "$(SolutionDir)..\include\liblec\$(ProjectNa
 xcopy "$(ProjectDir)menus\context_menu.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\menus\" /F /R /Y /I
 
 xcopy "$(ProjectDir)utilities\filesystem.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\utilities\" /F /R /Y /I
-xcopy "$(ProjectDir)utilities\color_picker.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\utilities\" /F /R /Y /I</Command>
+xcopy "$(ProjectDir)utilities\color_picker.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\utilities\" /F /R /Y /I
+xcopy "$(ProjectDir)utilities\splash.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\utilities\" /F /R /Y /I</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
