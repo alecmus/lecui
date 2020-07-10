@@ -38,6 +38,7 @@
     <ClInclude Include="formatted_text_parser\formatted_text_parser.h" />
     <ClInclude Include="form_common.h" />
     <ClInclude Include="form_impl\form_impl.h" />
+    <ClInclude Include="image_converter\image_converter.h" />
     <ClInclude Include="lecui.h" />
     <ClInclude Include="menus\context_menu.h" />
     <ClInclude Include="timer.h" />
@@ -116,6 +117,7 @@
     <ClCompile Include="form_impl\mouse\wheel.cpp" />
     <ClCompile Include="form_impl\paint\on_render.cpp" />
     <ClCompile Include="form_impl\size\on_form_pos_changing.cpp" />
+    <ClCompile Include="image_converter\image_converter.cpp" />
     <ClCompile Include="lecui.cpp" />
     <ClCompile Include="menus\context_menu\context_menu.cpp" />
     <ClCompile Include="timer.cpp" />

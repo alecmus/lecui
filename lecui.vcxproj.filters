@@ -143,6 +143,9 @@
     <Filter Include="lecui\widgets\line">
       <UniqueIdentifier>{59fc5a7a-540d-4fee-aab6-8f4bd1cac9d9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="lecui\image_converter">
+      <UniqueIdentifier>{37a296ed-432e-444c-bbcf-4941af5e0e77}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="error\win_error.h">
@@ -340,6 +343,9 @@
     </ClInclude>
     <ClInclude Include="widgets\v_scrollbar\v_scrollbar_impl.h">
       <Filter>lecui\widgets\v_scrollbar</Filter>
+    </ClInclude>
+    <ClInclude Include="image_converter\image_converter.h">
+      <Filter>lecui\image_converter</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -568,6 +574,9 @@
     </ClCompile>
     <ClCompile Include="widgets\v_scrollbar\v_scrollbar_impl.cpp">
       <Filter>lecui\widgets\v_scrollbar</Filter>
+    </ClCompile>
+    <ClCompile Include="image_converter\image_converter.cpp">
+      <Filter>lecui\image_converter</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
