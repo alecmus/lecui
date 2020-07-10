@@ -79,6 +79,8 @@
     <ClInclude Include="widgets\table\table_impl.h" />
     <ClInclude Include="widgets\textbox.h" />
     <ClInclude Include="widgets\textbox\textbox_impl.h" />
+    <ClInclude Include="widgets\time.h" />
+    <ClInclude Include="widgets\time\time_impl.h" />
     <ClInclude Include="widgets\toggle.h" />
     <ClInclude Include="widgets\toggle\toggle_impl.h" />
     <ClInclude Include="widgets\tree.h" />
@@ -158,6 +160,8 @@
     <ClCompile Include="widgets\table\table_impl.cpp" />
     <ClCompile Include="widgets\textbox\textbox.cpp" />
     <ClCompile Include="widgets\textbox\textbox_impl.cpp" />
+    <ClCompile Include="widgets\time\time.cpp" />
+    <ClCompile Include="widgets\time\time_impl.cpp" />
     <ClCompile Include="widgets\toggle\toggle.cpp" />
     <ClCompile Include="widgets\toggle\toggle_impl.cpp" />
     <ClCompile Include="widgets\tree\tree.cpp" />
@@ -304,6 +308,7 @@ xcopy "$(ProjectDir)widgets\slider.h" "$(SolutionDir)..\include\liblec\$(Project
 xcopy "$(ProjectDir)widgets\html_editor.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\combobox.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\line.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+xcopy "$(ProjectDir)widgets\time.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 
 xcopy "$(ProjectDir)menus\context_menu.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\menus\" /F /R /Y /I
 
@@ -363,6 +368,7 @@ xcopy "$(ProjectDir)widgets\slider.h" "$(SolutionDir)..\include\liblec\$(Project
 xcopy "$(ProjectDir)widgets\html_editor.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\combobox.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\line.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+xcopy "$(ProjectDir)widgets\time.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 
 xcopy "$(ProjectDir)menus\context_menu.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\menus\" /F /R /Y /I
 
@@ -426,6 +432,7 @@ xcopy "$(ProjectDir)widgets\slider.h" "$(SolutionDir)..\include\liblec\$(Project
 xcopy "$(ProjectDir)widgets\html_editor.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\combobox.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\line.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+xcopy "$(ProjectDir)widgets\time.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 
 xcopy "$(ProjectDir)menus\context_menu.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\menus\" /F /R /Y /I
 
@@ -489,6 +496,7 @@ xcopy "$(ProjectDir)widgets\slider.h" "$(SolutionDir)..\include\liblec\$(Project
 xcopy "$(ProjectDir)widgets\html_editor.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\combobox.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\line.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+xcopy "$(ProjectDir)widgets\time.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 
 xcopy "$(ProjectDir)menus\context_menu.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\menus\" /F /R /Y /I
 

@@ -29,6 +29,8 @@
 
 #include "../utilities/color_picker.h"
 
+#include "../menus/context_menu.h"
+
 // Windows headers
 #include <ShlObj.h>		// for SHGetFolderPath
 #include <dwmapi.h>		// for DwmExtendFrameIntoClientArea
@@ -910,6 +912,206 @@ namespace liblec {
 			}
 		}
 
+		void form::impl::move_times() {
+			// check if this page has a time widget
+			auto page_iterator = p_pages_.find(current_page_);
+
+			struct time_info {
+				std::string alias;
+
+				// important that it's not a reference because of deletion in a ranged for loop later
+				lecui::widgets::time::time_specs time;
+				lecui::containers::page& source;
+				lecui::containers::page& destination;
+			};
+
+			std::vector<time_info> times;
+
+			if (page_iterator != p_pages_.end()) {
+				auto& page = page_iterator->second;
+
+				class helper {
+				public:
+					static void find_times_to_move(lecui::containers::page& page,
+						std::vector<time_info>& times) {
+						for (auto& widget : page.d_page_.widgets()) {
+							// check if this is a time pane
+							if (widget.first.find(widgets::pane_impl::time_pane_alias_prefix()) != std::string::npos)
+								continue;	// this is a time pane (it has a time widget inside. move was already done), continue to next widget
+
+							// check if this is a time widget
+							if (widget.second.type() == widgets::widget_type::time) {
+								// this is a time widget, we need to "move" it into a special pane
+
+								// get the time specs
+								auto& time_specs = page.d_page_.get_time(widget.first).specs();
+
+								// make pane whose alias is prefixed by the special string
+								containers::pane pane(page, widgets::pane_impl::time_pane_alias_prefix() + widget.first);
+
+								// clone essential properties to pane
+								pane().rect = time_specs.rect;
+								pane().on_resize = time_specs.on_resize;
+								pane().color_fill.alpha = 0;
+								//pane().color_border.alpha = 0;
+
+								// save move info so we can move the tree into the pane later
+								// we cannot do it here because we're iterating
+								times.push_back({ widget.first, time_specs, page, pane.get() });
+								break;
+							}
+
+							if (widget.second.type() == widgets::widget_type::tab_pane) {
+								// get this tab pane
+								auto& tab_pane = page.d_page_.get_tab_pane(widget.first);
+
+								// initialize tabs
+								for (auto& tab : tab_pane.p_tabs_)
+									find_times_to_move(tab.second, times);	// recursion
+							}
+							else
+								if (widget.second.type() == widgets::widget_type::pane) {
+									// get this pane
+									auto& pane = page.d_page_.get_pane(widget.first);
+
+									// initialize panes
+									for (auto& page : pane.p_panes_)
+										find_times_to_move(page.second, times);	// recursion
+								}
+						}
+					}
+				};
+
+				helper::find_times_to_move(page, times);
+
+				// move times
+				for (auto& it : times) {
+					log("moving time: " + it.alias + " from " + it.source.d_page_.alias() + " to " + it.destination.d_page_.alias());
+
+					try {
+						// add hour label to destination
+						widgets::label hour(it.destination, "hour");
+						hour().rect = { 0, 15, 0, 20 };
+						hour().center_h = true;
+						hour().center_v = true;
+						hour().on_resize = { 0, 0, 0, 0 };
+						hour().text = "00";
+
+						// add seperator to destination
+						widgets::label seperator(it.destination, "seperator");
+						seperator().rect = { 0, 5, 0, 20 };
+						seperator().rect.snap_to(hour().rect, rect::snap_type::right, 0.f);
+						seperator().on_resize = { 0, 0, 0, 0 };
+						seperator().text = ":";
+						seperator().center_h = true;
+						seperator().center_v = true;
+
+						// add minute label to destination
+						widgets::label minute(it.destination, "minute");
+						minute().rect = { 0, 15, 0, 20 };
+						minute().rect.snap_to(seperator().rect, rect::snap_type::right, 0.f);
+						minute().center_h = true;
+						minute().center_v = true;
+						minute().text = "00";
+
+						// close widget
+						std::string error;
+						it.source.d_page_.close_widget(it.alias, widgets::widget_type::time, error);
+						log("moving " + it.alias + " successful!");
+					}
+					catch (const std::exception& e) { log("moving " + it.alias + " failed: " + e.what()); }
+				}
+
+				class controls_helper {
+				public:
+					static void add_times(lecui::containers::page& page) {
+						for (auto& widget : page.d_page_.widgets()) {
+							if (widget.first.find(widgets::pane_impl::time_pane_alias_prefix()) != std::string::npos) {
+								try {
+									// get alias of associated html editor widget
+									const auto idx = widget.first.rfind("::");
+
+									if (idx != std::string::npos) {
+										auto widget_alias = widget.first.substr(idx + 2);
+
+										// get time pane
+										auto& time_page = page.d_page_.get_pane(widgets::pane_impl::time_pane_alias_prefix() + widget_alias).p_panes_.at("pane");
+
+										// get hour label
+										auto& hour = time_page.d_page_.get_label("hour");
+
+										if (hour().events().click == nullptr) {
+											hour().events().click = [&]() {
+												context_menu::specs menu_specs;
+												menu_specs.type = context_menu::pin_type::bottom;
+												//menu_specs.pin = ;
+
+												for (int i = 0; i < 24; i++) {
+													std::string hr = std::to_string(i);
+													if (i < 10)
+														hr = "0" + hr;
+													menu_specs.items.push_back({ hr });
+												}
+
+												auto selected = context_menu()(time_page.d_page_.get_form(), menu_specs);
+
+												if (!selected.empty())
+													hour().text = selected;
+											};
+										}
+
+										// get minute label
+										auto& minute = time_page.d_page_.get_label("minute");
+
+										if (minute().events().click == nullptr) {
+											minute().events().click = [&]() {
+												context_menu::specs menu_specs;
+												menu_specs.type = context_menu::pin_type::bottom;
+												//menu_specs.pin = ;
+
+												for (int i = 0; i < 60; i++) {
+													std::string mn = std::to_string(i);
+													if (i < 10)
+														mn = "0" + mn;
+													menu_specs.items.push_back({ mn });
+												}
+
+												auto selected = context_menu()(time_page.d_page_.get_form(), menu_specs);
+
+												if (!selected.empty())
+													minute().text = selected;
+											};
+										}
+									}
+								}
+								catch (const std::exception& e) { log(e.what()); }
+							}
+							else
+								if (widget.second.type() == widgets::widget_type::tab_pane) {
+									// get this tab pane
+									auto& tab_pane = page.d_page_.get_tab_pane(widget.first);
+
+									// initialize tabs
+									for (auto& tab : tab_pane.p_tabs_)
+										add_times(tab.second);	// recursion
+								}
+								else
+									if (widget.second.type() == widgets::widget_type::pane) {
+										// get this pane
+										auto& pane = page.d_page_.get_pane(widget.first);
+
+										// initialize panes
+										for (auto& page : pane.p_panes_)
+											add_times(page.second);	// recursion
+									}
+						}
+					}
+				};
+
+				controls_helper::add_times(page);
+			}
+		}
+
 		/// If the application receives a WM_SIZE message, this method resizes the render target
 		/// appropriately
 		void form::impl::on_resize(UINT width, UINT height) {
@@ -1566,6 +1768,7 @@ namespace liblec {
 			case WM_PAINT:
 				form_.d_.move_trees();
 				form_.d_.move_html_editors();
+				form_.d_.move_times();
 				form_.d_.on_render();
 				ValidateRect(hWnd, nullptr);
 				return NULL;

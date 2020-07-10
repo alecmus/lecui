@@ -58,6 +58,7 @@ namespace liblec {
 				html_editor,
 				combobox,
 				line,
+				time,
 			};
 
 			static HCURSOR get_cursor(widgets::specs::cursor_type type) {

@@ -149,6 +149,9 @@
     <Filter Include="lecui\utilities\splash">
       <UniqueIdentifier>{c3b0f451-5754-407b-a265-6c07cf6ce049}</UniqueIdentifier>
     </Filter>
+    <Filter Include="lecui\widgets\time">
+      <UniqueIdentifier>{a1890fcd-9154-4d5f-843f-8dd55a2b4c03}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="error\win_error.h">
@@ -352,6 +355,12 @@
     </ClInclude>
     <ClInclude Include="utilities\splash.h">
       <Filter>lecui\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="widgets\time.h">
+      <Filter>lecui\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="widgets\time\time_impl.h">
+      <Filter>lecui\widgets\time</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -586,6 +595,12 @@
     </ClCompile>
     <ClCompile Include="utilities\splash\splash.cpp">
       <Filter>lecui\utilities\splash</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\time\time.cpp">
+      <Filter>lecui\widgets\time</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\time\time_impl.cpp">
+      <Filter>lecui\widgets\time</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

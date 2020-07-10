@@ -28,6 +28,10 @@ namespace liblec {
 			return std::string("lecui::containers::html_controls_pane::");
 		}
 
+		std::string widgets::pane_impl::time_pane_alias_prefix() {
+			return std::string("lecui::containers::time_pane::");
+		}
+
 		widgets::pane_impl::pane_impl(containers::page& page,
 			const std::string& alias) :
 			widget_impl(page, alias),
