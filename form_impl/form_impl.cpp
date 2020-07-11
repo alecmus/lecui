@@ -1219,6 +1219,315 @@ namespace liblec {
 			}
 		}
 
+		void form::impl::move_dates() {
+			// check if this page has a date widget
+			auto page_iterator = p_pages_.find(current_page_);
+
+			struct date_info {
+				std::string alias;
+
+				// important that it's not a reference because of deletion in a ranged for loop later
+				lecui::widgets::date::date_specs date;
+				lecui::containers::page& source;
+				lecui::containers::page& destination;
+			};
+
+			std::vector<date_info> dates;
+
+			if (page_iterator != p_pages_.end()) {
+				auto& page = page_iterator->second;
+
+				class helper {
+				public:
+					static void find_dates_to_move(lecui::containers::page& page,
+						std::vector<date_info>& dates) {
+						for (auto& widget : page.d_page_.widgets()) {
+							// check if this is a date pane
+							if (widget.first.find(widgets::pane_impl::date_pane_alias_prefix()) != std::string::npos)
+								continue;	// this is a date pane (it has a date widget inside. move was already done), continue to next widget
+
+							// check if this is a date widget
+							if (widget.second.type() == widgets::widget_type::date) {
+								// this is a date widget, we need to "move" it into a special pane
+
+								// get the date specs
+								auto& date_specs = page.d_page_.get_date(widget.first).specs();
+
+								// make pane whose alias is prefixed by the special string
+								containers::pane pane(page, widgets::pane_impl::date_pane_alias_prefix() + widget.first);
+
+								// clone essential properties to pane
+								pane().rect = date_specs.rect;
+								pane().on_resize = date_specs.on_resize;
+								pane().color_fill.alpha = 0;
+								pane().color_border.alpha = 0;
+
+								// save move info so we can move the tree into the pane later
+								// we cannot do it here because we're iterating
+								dates.push_back({ widget.first, date_specs, page, pane.get() });
+								break;
+							}
+
+							if (widget.second.type() == widgets::widget_type::tab_pane) {
+								// get this tab pane
+								auto& tab_pane = page.d_page_.get_tab_pane(widget.first);
+
+								// initialize tabs
+								for (auto& tab : tab_pane.p_tabs_)
+									find_dates_to_move(tab.second, dates);	// recursion
+							}
+							else
+								if (widget.second.type() == widgets::widget_type::pane) {
+									// get this pane
+									auto& pane = page.d_page_.get_pane(widget.first);
+
+									// initialize panes
+									for (auto& page : pane.p_panes_)
+										find_dates_to_move(page.second, dates);	// recursion
+								}
+						}
+					}
+				};
+
+				helper::find_dates_to_move(page, dates);
+
+				// move dates
+				for (auto& it : dates) {
+					log("moving date: " + it.alias + " from " + it.source.d_page_.alias() + " to " + it.destination.d_page_.alias());
+
+					try {
+						// clone into destination
+						widgets::date date(it.destination, it.alias);
+						// copy specs
+						date() = it.date;
+
+						// adjust specs
+						date().rect = { 0, it.destination.size().width, 0, it.destination.size().height };
+						date().on_resize = { 0, 0, 0, 0 };	// critical because tree will change size as tree is browsed or changed. the pane scroll bars will do the job.
+						date().color_fill.alpha = 0;
+
+						// add day destination
+						widgets::rectangle day(it.destination, "day");
+						day().rect = { 0, 18, 0, 20 };
+						day().on_resize = { 0, 0, 0, 0 };
+						day().corner_radius_x = 2.f;
+						day().corner_radius_y = 2.f;
+						day().color_fill = defaults::color(theme_, item::textbox);
+						day().color_border = defaults::color(theme_, item::textbox_border);
+						day().color_disabled = defaults::color(theme_, item::textbox_disabled);
+						day().color_selected = defaults::color(theme_, item::textbox_selected);
+
+						widgets::label day_label(it.destination, "day_lbl");
+						day_label().rect = day().rect;
+						day_label().center_h = true;
+						day_label().center_v = true;
+						day_label().on_resize = { 0, 0, 0, 0 };
+						day_label().text = date().date_value.day < 10 ? "0" + std::to_string(date().date_value.day) :
+							std::to_string(date().date_value.day);
+
+						// add seperator to destination
+						widgets::label seperator_1(it.destination, "");
+						seperator_1().rect = { 0, 8, 0, 20 };
+						seperator_1().rect.snap_to(day().rect, rect::snap_type::right, 0.f);
+						seperator_1().on_resize = { 0, 0, 0, 0 };
+						seperator_1().text = "-";
+						seperator_1().center_h = true;
+						seperator_1().center_v = true;
+
+						// add month to destination
+						widgets::rectangle month(it.destination, "month");
+						month().rect = { 0, 25, 0, 20 };
+						month().rect.snap_to(seperator_1().rect, rect::snap_type::right, 0.f);
+						month().corner_radius_x = 2.f;
+						month().corner_radius_y = 2.f;
+						month().color_fill = defaults::color(theme_, item::textbox);
+						month().color_border = defaults::color(theme_, item::textbox_border);
+						month().color_disabled = defaults::color(theme_, item::textbox_disabled);
+						month().color_selected = defaults::color(theme_, item::textbox_selected);
+
+						widgets::label month_label(it.destination, "month_lbl");
+						month_label().rect = month().rect;
+						month_label().center_h = true;
+						month_label().center_v = true;
+						month_label().on_resize = { 0, 0, 0, 0 };
+						month_label().text = date::month_to_string(date().date_value.month);
+
+						// add seperator to destination
+						widgets::label seperator_2(it.destination, "");
+						seperator_2().rect = { 0, 8, 0, 20 };
+						seperator_2().rect.snap_to(month().rect, rect::snap_type::right, 0.f);
+						seperator_2().on_resize = { 0, 0, 0, 0 };
+						seperator_2().text = "-";
+						seperator_2().center_h = true;
+						seperator_2().center_v = true;
+
+						// add year to destination
+						widgets::rectangle year(it.destination, "year");
+						year().rect = { 0, 31, 0, 20 };
+						year().rect.snap_to(seperator_2().rect, rect::snap_type::right, 0.f);
+						year().corner_radius_x = 2.f;
+						year().corner_radius_y = 2.f;
+						year().color_fill = defaults::color(theme_, item::textbox);
+						year().color_border = defaults::color(theme_, item::textbox_border);
+						year().color_disabled = defaults::color(theme_, item::textbox_disabled);
+						year().color_selected = defaults::color(theme_, item::textbox_selected);
+
+						widgets::label year_label(it.destination, "year_lbl");
+						year_label().rect = year().rect;
+						year_label().center_h = true;
+						year_label().center_v = true;
+						year_label().on_resize = { 0, 0, 0, 0 };
+						year_label().text = std::to_string(date().date_value.year);
+
+						// close widget
+						std::string error;
+						it.source.d_page_.close_widget(it.alias, widgets::widget_type::date, error);
+						log("moving " + it.alias + " successful!");
+					}
+					catch (const std::exception& e) { log("moving " + it.alias + " failed: " + e.what()); }
+				}
+
+				class controls_helper {
+				public:
+					static void add_dates(lecui::containers::page& page) {
+						for (auto& widget : page.d_page_.widgets()) {
+							if (widget.first.find(widgets::pane_impl::date_pane_alias_prefix()) != std::string::npos) {
+								try {
+									// get alias of associated date widget
+									const auto idx = widget.first.rfind("::");
+
+									if (idx != std::string::npos) {
+										auto widget_alias = widget.first.substr(idx + 2);
+
+										// get date pane
+										auto& date_page = page.d_page_.get_pane(widgets::pane_impl::date_pane_alias_prefix() + widget_alias).p_panes_.at("pane");
+
+										// get date widget specs
+										auto& specs = date_page.d_page_.get_date(widget_alias).specs();
+
+										// get day
+										auto& day = date_page.d_page_.get_rectangle("day");
+										auto& day_lbl = date_page.d_page_.get_label("day_lbl");
+
+										if (day().events().click == nullptr) {
+											day().events().click = [&]() {
+												context_menu::specs menu_specs;
+												menu_specs.type = context_menu::pin_type::right;
+
+												for (int i = 1; i < 32; i++) {
+													std::string dy = std::to_string(i);
+													if (i < 10)
+														dy = "0" + dy;
+													menu_specs.items.push_back({ dy });
+												}
+
+												auto selected = context_menu()(date_page.d_page_.get_form(), menu_specs);
+
+												if (!selected.empty()) {
+													day_lbl().text = selected;
+													std::stringstream ss;
+													ss << selected;
+													ss >> specs.date_value.day;
+
+													if (specs.events().change)
+														specs.events().change(specs.date_value);
+												}
+											};
+										}
+
+										// get month label
+										auto& month = date_page.d_page_.get_rectangle("month");
+										auto& month_lbl = date_page.d_page_.get_label("month_lbl");
+
+										if (month().events().click == nullptr) {
+											month().events().click = [&]() {
+												context_menu::specs menu_specs;
+												menu_specs.type = context_menu::pin_type::right;
+
+												menu_specs.items = {
+													{ "Jan" },
+													{ "Feb" },
+													{ "Mar" },
+													{ "Apr" },
+													{ "May" },
+													{ "Jun" },
+													{ "Jul" },
+													{ "Aug" },
+													{ "Sep" },
+													{ "Oct" },
+													{ "Nov" },
+													{ "Dec" }
+												};
+
+												auto selected = context_menu()(date_page.d_page_.get_form(), menu_specs);
+
+												if (!selected.empty()) {
+													month_lbl().text = selected;
+													specs.date_value.month = lecui::date().month_from_string(selected);
+
+													if (specs.events().change)
+														specs.events().change(specs.date_value);
+												}
+											};
+										}
+
+										// get year label
+										auto& year = date_page.d_page_.get_rectangle("year");
+										auto& year_lbl = date_page.d_page_.get_label("year_lbl");
+
+										if (year().events().click == nullptr) {
+											year().events().click = [&]() {
+												context_menu::specs menu_specs;
+												menu_specs.type = context_menu::pin_type::right;
+
+												for (int i = 1900; i < 2100; i++) {
+													std::string yr = std::to_string(i);
+													menu_specs.items.push_back({ yr });
+												}
+
+												auto selected = context_menu()(date_page.d_page_.get_form(), menu_specs);
+
+												if (!selected.empty()) {
+													year_lbl().text = selected;
+													std::stringstream ss;
+													ss << selected;
+													ss >> specs.date_value.year;
+
+													if (specs.events().change)
+														specs.events().change(specs.date_value);
+												}
+											};
+										}
+									}
+								}
+								catch (const std::exception& e) { log(e.what()); }
+							}
+							else
+								if (widget.second.type() == widgets::widget_type::tab_pane) {
+									// get this tab pane
+									auto& tab_pane = page.d_page_.get_tab_pane(widget.first);
+
+									// initialize tabs
+									for (auto& tab : tab_pane.p_tabs_)
+										add_dates(tab.second);	// recursion
+								}
+								else
+									if (widget.second.type() == widgets::widget_type::pane) {
+										// get this pane
+										auto& pane = page.d_page_.get_pane(widget.first);
+
+										// initialize panes
+										for (auto& page : pane.p_panes_)
+											add_dates(page.second);	// recursion
+									}
+						}
+					}
+				};
+
+				controls_helper::add_dates(page);
+			}
+		}
+
 		/// If the application receives a WM_SIZE message, this method resizes the render target
 		/// appropriately
 		void form::impl::on_resize(UINT width, UINT height) {
@@ -1876,6 +2185,7 @@ namespace liblec {
 				form_.d_.move_trees();
 				form_.d_.move_html_editors();
 				form_.d_.move_times();
+				form_.d_.move_dates();
 				form_.d_.on_render();
 				ValidateRect(hWnd, nullptr);
 				return NULL;

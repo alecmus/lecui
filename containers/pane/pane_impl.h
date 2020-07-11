@@ -45,6 +45,10 @@ namespace liblec {
 				/// <returns>The special prefix. No other alias should have this prefix.</returns>
 				static std::string time_pane_alias_prefix();
 
+				/// <summary>Get the prefix of the special pane used to encase date.</summary>
+				/// <returns>The special prefix. No other alias should have this prefix.</returns>
+				static std::string date_pane_alias_prefix();
+
 				// pages <K = pane alias, T>
 				std::map<std::string, containers::page> p_panes_;
 				std::string current_pane_;

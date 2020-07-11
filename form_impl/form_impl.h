@@ -215,6 +215,7 @@ namespace liblec {
 			friend class widgets::combobox_impl;
 			friend class widgets::line;
 			friend class widgets::time;
+			friend class widgets::date;
 
 		public:
 			impl(form& fm, const std::string& caption_formatted);
@@ -230,6 +231,7 @@ namespace liblec {
 			void move_trees();
 			void move_html_editors();
 			void move_times();
+			void move_dates();
 			HRESULT on_render();
 			void on_resize(UINT width, UINT height);
 			RECT get_working_area(HWND hWnd);

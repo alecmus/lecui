@@ -293,6 +293,16 @@ namespace liblec {
 			return times_.at(alias).specs();
 		}
 
+		widgets::date::date_specs&
+			containers::page::impl::add_date(std::string alias) {
+			check_alias(alias);
+			if (dates_.try_emplace(alias, pg_, alias).second) {
+				widgets_.emplace(alias, dates_.at(alias));
+				widgets_order_.emplace_back(alias);
+			}
+			return dates_.at(alias).specs();
+		}
+
 		std::map<std::string, widgets::widget_impl&>&
 			containers::page::impl::widgets() { return widgets_; }
 
@@ -363,6 +373,9 @@ namespace liblec {
 
 		widgets::time_impl&
 			containers::page::impl::get_time(const std::string& alias) { return times_.at(alias); }
+
+		widgets::date_impl&
+			containers::page::impl::get_date(const std::string& alias) { return dates_.at(alias); }
 
 		bool
 			containers::page::impl::close_widget(const std::string& alias,
@@ -445,6 +458,9 @@ namespace liblec {
 					break;
 				case widgets::widget_type::time:
 					times_.erase(alias_);
+					break;
+				case widgets::widget_type::date:
+					dates_.erase(alias_);
 					break;
 				case widgets::widget_type::close_button:
 				case widgets::widget_type::maximize_button:

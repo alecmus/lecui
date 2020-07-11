@@ -59,6 +59,7 @@ namespace liblec {
 				combobox,
 				line,
 				time,
+				date,
 			};
 
 			static HCURSOR get_cursor(widgets::specs::cursor_type type) {
