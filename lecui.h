@@ -201,5 +201,25 @@ namespace liblec {
 			bool operator==(const table_column&);
 			bool operator!=(const table_column&);
 		};
+
+		class lecui_api time {
+		public:
+			unsigned short hour = 0;
+			unsigned short minute = 0;
+			unsigned short second = 0;
+
+			/// <summary>Constructor.</summary>
+			/// <param name="s">Sets time using the current local time.</param>
+			time();
+
+			/// <summary>Constructor.</summary>
+			/// <param name="s">Time string, in the form "HH:mm:ss". Leave empty to set using
+			/// the current local time.</param>
+			time(const std::string s);
+
+			/// <summary>Get time in the form of a string.</summary>
+			/// <returns>Returns the time in the form "HH:mm:ss"</returns>
+			std::string to_string();
+		};
 	}
 }

@@ -16,6 +16,7 @@
 #include "form_common.h"
 
 #include <Windows.h>
+#include <ctime>
 
 // DllMain function
 BOOL APIENTRY DllMain(HMODULE hModule,
@@ -176,6 +177,47 @@ namespace liblec {
 
 		bool table_column::operator!=(const table_column& param) {
 			return !operator==(param);
+		}
+
+		time::time() :
+			time("") {}
+
+		time::time(const std::string s) {
+			if (s.empty()) {
+				// get current local time
+				std::time_t time_temp = ::time(0);
+				std::tm time_out = { };
+				localtime_s(&time_out, &time_temp);
+
+				hour = (unsigned short)time_out.tm_hour;
+				minute = (unsigned short)time_out.tm_min;
+				second = (unsigned short)time_out.tm_sec;
+			}
+			else {
+				try {
+					std::stringstream ss;
+					ss << s.substr(0, 2);	// parse hour
+					ss >> hour;				// write hour
+					ss.clear();
+					ss << s.substr(3, 2);	// parse minute
+					ss >> minute;			// write minute
+					ss.clear();
+					ss << s.substr(6, 2);	// parse second
+					ss >> second;			// write second
+				}
+				catch (const std::exception& e) { log(e.what()); }
+			}
+
+			// impose limits
+			hour = smallest(hour, (unsigned short)23);
+			minute = smallest(minute, (unsigned short)59);
+			second = smallest(second, (unsigned short)59);
+		}
+
+		std::string time::to_string() {
+			return (hour < 10 ? "0" + std::to_string(hour) : std::to_string(hour)) + ":" +
+				(minute < 10 ? "0" + std::to_string(minute) : std::to_string(minute)) + ":" +
+				(second < 10 ? "0" + std::to_string(second) : std::to_string(second));
 		}
 	}
 }
