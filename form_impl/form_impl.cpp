@@ -989,6 +989,16 @@ namespace liblec {
 					log("moving time: " + it.alias + " from " + it.source.d_page_.alias() + " to " + it.destination.d_page_.alias());
 
 					try {
+						// clone into destination
+						widgets::time time(it.destination, it.alias);
+						// copy specs
+						time() = it.time;
+
+						// adjust specs
+						time().rect = { 0, it.destination.size().width, 0, it.destination.size().height };
+						time().on_resize = { 0, 0, 0, 0 };	// critical because tree will change size as tree is browsed or changed. the pane scroll bars will do the job.
+						time().color_fill.alpha = 0;
+
 						// add hour destination
 						widgets::rectangle hour(it.destination, "hour");
 						hour().rect = { 0, 18, 0, 20 };
@@ -1005,7 +1015,8 @@ namespace liblec {
 						hour_label().center_h = true;
 						hour_label().center_v = true;
 						hour_label().on_resize = { 0, 0, 0, 0 };
-						hour_label().text = "00";
+						hour_label().text = time().time_value.hour < 10 ? "0" + std::to_string(time().time_value.hour) :
+							std::to_string(time().time_value.hour);
 
 						// add seperator to destination
 						widgets::label seperator_1(it.destination, "");
@@ -1032,7 +1043,8 @@ namespace liblec {
 						minute_label().center_h = true;
 						minute_label().center_v = true;
 						minute_label().on_resize = { 0, 0, 0, 0 };
-						minute_label().text = "00";
+						minute_label().text = time().time_value.minute < 10 ? "0" + std::to_string(time().time_value.minute) :
+							std::to_string(time().time_value.minute);
 
 						// add seperator to destination
 						widgets::label seperator_2(it.destination, "");
@@ -1059,7 +1071,8 @@ namespace liblec {
 						second_label().center_h = true;
 						second_label().center_v = true;
 						second_label().on_resize = { 0, 0, 0, 0 };
-						second_label().text = "00";
+						second_label().text = time().time_value.second < 10 ? "0" + std::to_string(time().time_value.second) :
+							std::to_string(time().time_value.second);
 
 						// close widget
 						std::string error;
@@ -1075,7 +1088,7 @@ namespace liblec {
 						for (auto& widget : page.d_page_.widgets()) {
 							if (widget.first.find(widgets::pane_impl::time_pane_alias_prefix()) != std::string::npos) {
 								try {
-									// get alias of associated html editor widget
+									// get alias of associated time widget
 									const auto idx = widget.first.rfind("::");
 
 									if (idx != std::string::npos) {
@@ -1083,6 +1096,9 @@ namespace liblec {
 
 										// get time pane
 										auto& time_page = page.d_page_.get_pane(widgets::pane_impl::time_pane_alias_prefix() + widget_alias).p_panes_.at("pane");
+
+										// get time widget specs
+										auto& specs = time_page.d_page_.get_time(widget_alias).specs();
 
 										// get hour
 										auto& hour = time_page.d_page_.get_rectangle("hour");
@@ -1102,8 +1118,15 @@ namespace liblec {
 
 												auto selected = context_menu()(time_page.d_page_.get_form(), menu_specs);
 
-												if (!selected.empty())
+												if (!selected.empty()) {
 													hour_lbl().text = selected;
+													std::stringstream ss;
+													ss << selected;
+													ss >> specs.time_value.hour;
+
+													if (specs.events().change)
+														specs.events().change(specs.time_value);
+												}
 											};
 										}
 
@@ -1125,8 +1148,15 @@ namespace liblec {
 
 												auto selected = context_menu()(time_page.d_page_.get_form(), menu_specs);
 
-												if (!selected.empty())
+												if (!selected.empty()) {
 													minute_lbl().text = selected;
+													std::stringstream ss;
+													ss << selected;
+													ss >> specs.time_value.minute;
+
+													if (specs.events().change)
+														specs.events().change(specs.time_value);
+												}
 											};
 										}
 
@@ -1148,8 +1178,15 @@ namespace liblec {
 
 												auto selected = context_menu()(time_page.d_page_.get_form(), menu_specs);
 
-												if (!selected.empty())
+												if (!selected.empty()) {
 													second_lbl().text = selected;
+													std::stringstream ss;
+													ss << selected;
+													ss >> specs.time_value.second;
+
+													if (specs.events().change)
+														specs.events().change(specs.time_value);
+												}
 											};
 										}
 									}

@@ -33,8 +33,23 @@ namespace liblec {
 						rect.size({ 90.f, 40.f });
 					};
 
+					lecui::time time_value{};
+
+					struct time_events : basic_events {
+						/// <summary>Called when the time is changed. The parameter contains the
+						/// new time.</summary>
+						std::function<void(lecui::time)> change = nullptr;
+					};
+
+					time_events& events() {
+						return time_events_;
+					}
+
 					bool operator==(const time_specs&);
 					bool operator!=(const time_specs&);
+
+				private:
+					time_events time_events_;
 				};
 
 				/// <summary>Time constructor.</summary>
