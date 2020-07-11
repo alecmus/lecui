@@ -26,11 +26,11 @@ namespace liblec {
 			class lecui_api time {
 			public:
 				/// <summary>Time widget specifications.</summary>
-				/// <remarks>Recommended height with defaults is 20px.</remarks>
+				/// <remarks>Recommended size with defaults is 90x40px.</remarks>
 				class time_specs : public specs {
 				public:
 					time_specs() {
-						rect.size({ 200.f, 20.f });
+						rect.size({ 90.f, 40.f });
 					};
 
 					bool operator==(const time_specs&);

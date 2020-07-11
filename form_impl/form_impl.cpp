@@ -953,7 +953,7 @@ namespace liblec {
 								pane().rect = time_specs.rect;
 								pane().on_resize = time_specs.on_resize;
 								pane().color_fill.alpha = 0;
-								//pane().color_border.alpha = 0;
+								pane().color_border.alpha = 0;
 
 								// save move info so we can move the tree into the pane later
 								// we cannot do it here because we're iterating
@@ -989,30 +989,77 @@ namespace liblec {
 					log("moving time: " + it.alias + " from " + it.source.d_page_.alias() + " to " + it.destination.d_page_.alias());
 
 					try {
-						// add hour label to destination
-						widgets::label hour(it.destination, "hour");
-						hour().rect = { 0, 15, 0, 20 };
-						hour().center_h = true;
-						hour().center_v = true;
+						// add hour destination
+						widgets::rectangle hour(it.destination, "hour");
+						hour().rect = { 0, 18, 0, 20 };
 						hour().on_resize = { 0, 0, 0, 0 };
-						hour().text = "00";
+						hour().corner_radius_x = 2.f;
+						hour().corner_radius_y = 2.f;
+						hour().color_fill = defaults::color(theme_, item::textbox);
+						hour().color_border = defaults::color(theme_, item::textbox_border);
+						hour().color_disabled = defaults::color(theme_, item::textbox_disabled);
+						hour().color_selected = defaults::color(theme_, item::textbox_selected);
+
+						widgets::label hour_label(it.destination, "hour_lbl");
+						hour_label().rect = hour().rect;
+						hour_label().center_h = true;
+						hour_label().center_v = true;
+						hour_label().on_resize = { 0, 0, 0, 0 };
+						hour_label().text = "00";
 
 						// add seperator to destination
-						widgets::label seperator(it.destination, "seperator");
-						seperator().rect = { 0, 5, 0, 20 };
-						seperator().rect.snap_to(hour().rect, rect::snap_type::right, 0.f);
-						seperator().on_resize = { 0, 0, 0, 0 };
-						seperator().text = ":";
-						seperator().center_h = true;
-						seperator().center_v = true;
+						widgets::label seperator_1(it.destination, "");
+						seperator_1().rect = { 0, 8, 0, 20 };
+						seperator_1().rect.snap_to(hour().rect, rect::snap_type::right, 0.f);
+						seperator_1().on_resize = { 0, 0, 0, 0 };
+						seperator_1().text = ":";
+						seperator_1().center_h = true;
+						seperator_1().center_v = true;
 
-						// add minute label to destination
-						widgets::label minute(it.destination, "minute");
-						minute().rect = { 0, 15, 0, 20 };
-						minute().rect.snap_to(seperator().rect, rect::snap_type::right, 0.f);
-						minute().center_h = true;
-						minute().center_v = true;
-						minute().text = "00";
+						// add minute to destination
+						widgets::rectangle minute(it.destination, "minute");
+						minute().rect = { 0, 18, 0, 20 };
+						minute().rect.snap_to(seperator_1().rect, rect::snap_type::right, 0.f);
+						minute().corner_radius_x = 2.f;
+						minute().corner_radius_y = 2.f;
+						minute().color_fill = defaults::color(theme_, item::textbox);
+						minute().color_border = defaults::color(theme_, item::textbox_border);
+						minute().color_disabled = defaults::color(theme_, item::textbox_disabled);
+						minute().color_selected = defaults::color(theme_, item::textbox_selected);
+
+						widgets::label minute_label(it.destination, "minute_lbl");
+						minute_label().rect = minute().rect;
+						minute_label().center_h = true;
+						minute_label().center_v = true;
+						minute_label().on_resize = { 0, 0, 0, 0 };
+						minute_label().text = "00";
+
+						// add seperator to destination
+						widgets::label seperator_2(it.destination, "");
+						seperator_2().rect = { 0, 8, 0, 20 };
+						seperator_2().rect.snap_to(minute().rect, rect::snap_type::right, 0.f);
+						seperator_2().on_resize = { 0, 0, 0, 0 };
+						seperator_2().text = ":";
+						seperator_2().center_h = true;
+						seperator_2().center_v = true;
+
+						// add second to destination
+						widgets::rectangle second(it.destination, "second");
+						second().rect = { 0, 18, 0, 20 };
+						second().rect.snap_to(seperator_2().rect, rect::snap_type::right, 0.f);
+						second().corner_radius_x = 2.f;
+						second().corner_radius_y = 2.f;
+						second().color_fill = defaults::color(theme_, item::textbox);
+						second().color_border = defaults::color(theme_, item::textbox_border);
+						second().color_disabled = defaults::color(theme_, item::textbox_disabled);
+						second().color_selected = defaults::color(theme_, item::textbox_selected);
+
+						widgets::label second_label(it.destination, "second_lbl");
+						second_label().rect = second().rect;
+						second_label().center_h = true;
+						second_label().center_v = true;
+						second_label().on_resize = { 0, 0, 0, 0 };
+						second_label().text = "00";
 
 						// close widget
 						std::string error;
@@ -1037,14 +1084,14 @@ namespace liblec {
 										// get time pane
 										auto& time_page = page.d_page_.get_pane(widgets::pane_impl::time_pane_alias_prefix() + widget_alias).p_panes_.at("pane");
 
-										// get hour label
-										auto& hour = time_page.d_page_.get_label("hour");
+										// get hour
+										auto& hour = time_page.d_page_.get_rectangle("hour");
+										auto& hour_lbl = time_page.d_page_.get_label("hour_lbl");
 
 										if (hour().events().click == nullptr) {
 											hour().events().click = [&]() {
 												context_menu::specs menu_specs;
-												menu_specs.type = context_menu::pin_type::bottom;
-												//menu_specs.pin = ;
+												menu_specs.type = context_menu::pin_type::right;
 
 												for (int i = 0; i < 24; i++) {
 													std::string hr = std::to_string(i);
@@ -1056,18 +1103,18 @@ namespace liblec {
 												auto selected = context_menu()(time_page.d_page_.get_form(), menu_specs);
 
 												if (!selected.empty())
-													hour().text = selected;
+													hour_lbl().text = selected;
 											};
 										}
 
 										// get minute label
-										auto& minute = time_page.d_page_.get_label("minute");
+										auto& minute = time_page.d_page_.get_rectangle("minute");
+										auto& minute_lbl = time_page.d_page_.get_label("minute_lbl");
 
 										if (minute().events().click == nullptr) {
 											minute().events().click = [&]() {
 												context_menu::specs menu_specs;
-												menu_specs.type = context_menu::pin_type::bottom;
-												//menu_specs.pin = ;
+												menu_specs.type = context_menu::pin_type::right;
 
 												for (int i = 0; i < 60; i++) {
 													std::string mn = std::to_string(i);
@@ -1079,7 +1126,30 @@ namespace liblec {
 												auto selected = context_menu()(time_page.d_page_.get_form(), menu_specs);
 
 												if (!selected.empty())
-													minute().text = selected;
+													minute_lbl().text = selected;
+											};
+										}
+
+										// get second label
+										auto& second = time_page.d_page_.get_rectangle("second");
+										auto& second_lbl = time_page.d_page_.get_label("second_lbl");
+
+										if (second().events().click == nullptr) {
+											second().events().click = [&]() {
+												context_menu::specs menu_specs;
+												menu_specs.type = context_menu::pin_type::right;
+
+												for (int i = 0; i < 60; i++) {
+													std::string mn = std::to_string(i);
+													if (i < 10)
+														mn = "0" + mn;
+													menu_specs.items.push_back({ mn });
+												}
+
+												auto selected = context_menu()(time_page.d_page_.get_form(), menu_specs);
+
+												if (!selected.empty())
+													second_lbl().text = selected;
 											};
 										}
 									}
