@@ -222,34 +222,10 @@ namespace liblec {
 			std::string to_string();
 		};
 
-		class lecui_api date {
-		public:
+		struct date {
 			unsigned short day = 1;
 			unsigned short month = 1;
 			unsigned short year = 2020;
-
-			/// <summary>Constructor.</summary>
-			/// <remarks>Sets date using the current local date.</remarks>
-			date();
-
-			/// <summary>Constructor.</summary>
-			/// <param name="s">Date string, in the form "01-Jan-2020". Leave empty to set using
-			/// the current local date.</param>
-			date(const std::string s);
-
-			/// <summary>Get date in the form of a string.</summary>
-			/// <returns>Returns the date in the form "01-Jan-2020".</returns>
-			std::string to_string();
-
-			/// <summary>Get month in the form of a string.</summary>
-			/// <param name="m">The month number, from 1 to 12 inclusive.</param>
-			/// <returns>Returns the month in the form "Jan".</returns>
-			static std::string month_to_string(unsigned short m);
-
-			/// <summary>Get month from string.</summary>
-			/// <param name="s">The month string, in the form "Jan".</param>
-			/// <returns>Returns the month as a number from 1 to 12 inclusive.</returns>
-			static unsigned short month_from_string(std::string s);
 		};
 	}
 }

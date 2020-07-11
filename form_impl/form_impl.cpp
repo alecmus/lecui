@@ -28,7 +28,7 @@
 #include "../widgets/v_scrollbar/v_scrollbar_impl.h"
 
 #include "../utilities/color_picker.h"
-
+#include "../utilities/date_time.h"
 #include "../menus/context_menu.h"
 
 // Windows headers
@@ -1301,6 +1301,9 @@ namespace liblec {
 						// copy specs
 						date() = it.date;
 
+						// impose limits
+						date().date_value.year = largest(date().date_value.year, (unsigned short)1970);
+
 						// adjust specs
 						date().rect = { 0, it.destination.size().width, 0, it.destination.size().height };
 						date().on_resize = { 0, 0, 0, 0 };	// critical because tree will change size as tree is browsed or changed. the pane scroll bars will do the job.
@@ -1350,7 +1353,7 @@ namespace liblec {
 						month_label().center_h = true;
 						month_label().center_v = true;
 						month_label().on_resize = { 0, 0, 0, 0 };
-						month_label().text = date::month_to_string(date().date_value.month);
+						month_label().text = date_time::month_to_string(date().date_value.month);
 
 						// add seperator to destination
 						widgets::label seperator_2(it.destination, "");
@@ -1414,7 +1417,7 @@ namespace liblec {
 												context_menu::specs menu_specs;
 												menu_specs.type = context_menu::pin_type::right;
 
-												for (int i = 1; i < 32; i++) {
+												for (int i = 1; i < date_time::last_day_of_month(specs.date_value).day + 1; i++) {
 													std::string dy = std::to_string(i);
 													if (i < 10)
 														dy = "0" + dy;
@@ -1434,6 +1437,14 @@ namespace liblec {
 												}
 											};
 										}
+
+										auto check_day = [&]() {
+											// ensure day is within range
+											specs.date_value.day = smallest(specs.date_value.day,
+												date_time::last_day_of_month({ 1, specs.date_value.month, specs.date_value.year }).day);
+											day_lbl().text = std::to_string(specs.date_value.day);
+											for (size_t i = day_lbl().text.length(); i < 2; i++) day_lbl().text = "0" + day_lbl().text;
+										};
 
 										// get month label
 										auto& month = date_page.d_page_.get_rectangle("month");
@@ -1463,7 +1474,10 @@ namespace liblec {
 
 												if (!selected.empty()) {
 													month_lbl().text = selected;
-													specs.date_value.month = lecui::date().month_from_string(selected);
+													specs.date_value.month = date_time::month_from_string(selected);
+
+													// ensure day is within range
+													check_day();
 
 													if (specs.events().change)
 														specs.events().change(specs.date_value);
@@ -1480,7 +1494,8 @@ namespace liblec {
 												context_menu::specs menu_specs;
 												menu_specs.type = context_menu::pin_type::right;
 
-												for (int i = 1900; i < 2100; i++) {
+												// to-do: make possible to use year prior to 1970 (mktime issue)
+												for (int i = 1970; i < 2100; i++) {
 													std::string yr = std::to_string(i);
 													menu_specs.items.push_back({ yr });
 												}
@@ -1492,6 +1507,9 @@ namespace liblec {
 													std::stringstream ss;
 													ss << selected;
 													ss >> specs.date_value.year;
+
+													// ensure day is within range
+													check_day();
 
 													if (specs.events().change)
 														specs.events().change(specs.date_value);

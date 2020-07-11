@@ -33,12 +33,12 @@ namespace liblec {
 						rect.size({ 110.f, 40.f });
 					};
 
-					lecui::date date_value{};
+					lecui::date date_value;
 
 					struct date_events : basic_events {
 						/// <summary>Called when the date is changed. The parameter contains the
 						/// new date.</summary>
-						std::function<void(lecui::date)> change = nullptr;
+						std::function<void(const lecui::date&)> change = nullptr;
 					};
 
 					date_events& events() {

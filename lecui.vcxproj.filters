@@ -155,6 +155,9 @@
     <Filter Include="lecui\widgets\date">
       <UniqueIdentifier>{c587b4d2-68e1-4877-8c29-355c9b6d963b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="lecui\utilities\date_time">
+      <UniqueIdentifier>{047ed930-af8e-45f7-a62c-127adaf08d48}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="error\win_error.h">
@@ -370,6 +373,9 @@
     </ClInclude>
     <ClInclude Include="widgets\date\date_impl.h">
       <Filter>lecui\widgets\date</Filter>
+    </ClInclude>
+    <ClInclude Include="utilities\date_time.h">
+      <Filter>lecui\utilities</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -616,6 +622,9 @@
     </ClCompile>
     <ClCompile Include="widgets\date\date_impl.cpp">
       <Filter>lecui\widgets\date</Filter>
+    </ClCompile>
+    <ClCompile Include="utilities\date_time\date_time.cpp">
+      <Filter>lecui\utilities\date_time</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

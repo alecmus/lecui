@@ -13,6 +13,7 @@
 
 #include "../date.h"
 #include "../../form_impl/form_impl.h"
+#include "../../utilities/date_time.h"
 
 namespace liblec {
 	namespace lecui {
@@ -34,6 +35,7 @@ namespace liblec {
 			impl(containers::page& page, const std::string& alias) :
 				page_(page),
 				specs_(page_.d_page_.add_date(alias)) {
+				specs_.date_value = date_time::today();
 			}
 			containers::page& page_;
 			date_specs& specs_;
