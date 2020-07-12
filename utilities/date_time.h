@@ -29,6 +29,11 @@ namespace liblec {
 			/// </summary>
 			static std::string time_stamp();
 
+			/// <summary>Get week day in the form of a string.</summary>
+			/// <param name="d">The day of the week, 1 to 7 inclusive.</param>
+			/// <returns>The week day in the form "Tuesday".</returns>
+			static std::string weekday_to_string(unsigned short d);
+
 			/// <summary>Get month in the form of a string.</summary>
 			/// <param name="m">The month number, from 1 to 12 inclusive.</param>
 			/// <returns>Returns the month in the form "Jan".</returns>

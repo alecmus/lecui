@@ -39,6 +39,21 @@ namespace liblec {
 			return std::string(year + month + day + " " + hour + ":" + minute + ":" + second);
 		}
 
+		std::string date_time::weekday_to_string(unsigned short d) {
+			std::string weekday;
+			switch (d) {
+			case 1: weekday = "Sunday"; break;
+			case 2: weekday = "Monday"; break;
+			case 3: weekday = "Tuesday"; break;
+			case 4: weekday = "Wednesday"; break;
+			case 5: weekday = "Thursday"; break;
+			case 6: weekday = "Friday"; break;
+			case 7: weekday = "Saturday"; break;
+			default: break;
+			}
+			return weekday;
+		}
+
 		std::string date_time::month_to_string(unsigned short m) {
 			std::string month_string;
 			switch (m) {
