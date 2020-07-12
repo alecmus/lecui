@@ -461,9 +461,6 @@ namespace liblec {
 
 						if (specs_.events().selection)
 							specs_.events().selection(specs_.selected);
-
-						if (specs_.events().click)
-							specs_.events().click();
 					}
 				}
 

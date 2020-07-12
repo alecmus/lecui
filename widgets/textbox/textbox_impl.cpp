@@ -310,8 +310,6 @@ namespace liblec {
 		}
 
 		void widgets::textbox_impl::on_click() {
-			if (specs_.events().click)
-				specs_.events().click();
 		}
 
 		void widgets::textbox_impl::on_selection_change(const bool& selected) {
