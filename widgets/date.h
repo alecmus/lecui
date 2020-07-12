@@ -26,11 +26,11 @@ namespace liblec {
 			class lecui_api date {
 			public:
 				/// <summary>Date widget specifications.</summary>
-				/// <remarks>Recommended size with defaults is 110x40px.</remarks>
+				/// <remarks>Recommended size with defaults is 110x60px.</remarks>
 				class date_specs : public specs {
 				public:
 					date_specs() {
-						rect.size({ 110.f, 40.f });
+						rect.size({ 110.f, 60.f });
 					};
 
 					lecui::date date_value;

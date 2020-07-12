@@ -39,6 +39,14 @@ namespace liblec {
 			return std::string("lecui::widgets::date::year_lbl");
 		}
 
+		std::string widgets::date_impl::alias_weekday() {
+			return std::string("lecui::widgets::date::weekday");
+		}
+
+		std::string widgets::date_impl::alias_weekday_label() {
+			return std::string("lecui::widgets::date::weekday_lbl");
+		}
+
 		widgets::date_impl::date_impl(containers::page& page,
 			const std::string& alias) :
 			widget_impl(page, alias),

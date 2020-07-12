@@ -1309,9 +1309,16 @@ namespace liblec {
 						date().on_resize = { 0, 0, 0, 0 };
 						date().color_fill.alpha = 0;
 
+						// add week day to destination
+						widgets::label weekday_label(it.destination, widgets::date_impl::alias_weekday_label());
+						weekday_label().rect = { 0, 90, 0, 20 };
+						weekday_label().on_resize = { 0, 0, 0, 0 };
+						weekday_label().text = date_time::weekday_to_string(date_time::day_of_week(date().date_value));
+						weekday_label().font_size = 8.5f;
+
 						// add day to destination
 						widgets::rectangle day(it.destination, widgets::date_impl::alias_day());
-						day().rect = { 0, 18, 0, 20 };
+						day().rect = { 0, 18, 20, 20 + 20 };
 						day().on_resize = { 0, 0, 0, 0 };
 						day().corner_radius_x = 2.f;
 						day().corner_radius_y = 2.f;
@@ -1408,6 +1415,9 @@ namespace liblec {
 										// get date widget specs
 										auto& specs = date_page.d_page_.get_date(widget_alias).specs();
 
+										// get weekday label
+										auto& weekday_lbl = date_page.d_page_.get_label(widgets::date_impl::alias_weekday_label());
+
 										// get day
 										auto& day = date_page.d_page_.get_rectangle(widgets::date_impl::alias_day());
 										auto& day_lbl = date_page.d_page_.get_label(widgets::date_impl::alias_day_label());
@@ -1431,6 +1441,9 @@ namespace liblec {
 													std::stringstream ss;
 													ss << selected;
 													ss >> specs.date_value.day;
+
+													// update weekday
+													weekday_lbl().text = date_time::weekday_to_string(date_time::day_of_week(specs.date_value));
 
 													if (specs.events().change)
 														specs.events().change(specs.date_value);
@@ -1474,6 +1487,9 @@ namespace liblec {
 													day_lbl().text = std::to_string(specs.date_value.day);
 													for (size_t i = day_lbl().text.length(); i < 2; i++) day_lbl().text = "0" + day_lbl().text;
 
+													// update weekday
+													weekday_lbl().text = date_time::weekday_to_string(date_time::day_of_week(specs.date_value));
+
 													if (specs.events().change)
 														specs.events().change(specs.date_value);
 												}
@@ -1508,6 +1524,9 @@ namespace liblec {
 														date_time::last_day_of_month({ 1, specs.date_value.month, specs.date_value.year }).day);
 													day_lbl().text = std::to_string(specs.date_value.day);
 													for (size_t i = day_lbl().text.length(); i < 2; i++) day_lbl().text = "0" + day_lbl().text;
+
+													// update weekday
+													weekday_lbl().text = date_time::weekday_to_string(date_time::day_of_week(specs.date_value));
 
 													if (specs.events().change)
 														specs.events().change(specs.date_value);
