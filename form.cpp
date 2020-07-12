@@ -321,6 +321,8 @@ namespace liblec {
 					};
 
 					page_man.show("home");
+					widget_management widget_man(*this);
+					widget_man.select("home/button_yes");
 					return true;
 				}
 			};
@@ -382,13 +384,15 @@ namespace liblec {
 							home_page.size().height - margin_ - button_size_.height - margin_ };
 
 						// add the ok button on the bottom right
-						widgets::button button(home_page, "button");
+						widgets::button button(home_page, "button_ok");
 						button().text = "Ok";
 						button().rect.place({margin_, home_page.size().width - margin_,
 							margin_, home_page.size().height - margin_ }, 100.f, 100.f);
 						button().events().click = [&]() { close(); };
 
 						page_man.show("home");
+						widget_management widget_man(*this);
+						widget_man.select("home/button_ok");
 						return true;
 					}
 				};
