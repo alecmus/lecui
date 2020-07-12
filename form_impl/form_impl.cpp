@@ -996,7 +996,7 @@ namespace liblec {
 
 						// adjust specs
 						time().rect = { 0, it.destination.size().width, 0, it.destination.size().height };
-						time().on_resize = { 0, 0, 0, 0 };	// critical because tree will change size as tree is browsed or changed. the pane scroll bars will do the job.
+						time().on_resize = { 0, 0, 0, 0 };
 						time().color_fill.alpha = 0;
 
 						// add hour destination
@@ -1306,10 +1306,10 @@ namespace liblec {
 
 						// adjust specs
 						date().rect = { 0, it.destination.size().width, 0, it.destination.size().height };
-						date().on_resize = { 0, 0, 0, 0 };	// critical because tree will change size as tree is browsed or changed. the pane scroll bars will do the job.
+						date().on_resize = { 0, 0, 0, 0 };
 						date().color_fill.alpha = 0;
 
-						// add day destination
+						// add day to destination
 						widgets::rectangle day(it.destination, "day");
 						day().rect = { 0, 18, 0, 20 };
 						day().on_resize = { 0, 0, 0, 0 };
