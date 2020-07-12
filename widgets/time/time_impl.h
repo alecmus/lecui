@@ -16,9 +16,6 @@
 #include "../widget_impl.h"
 #include "../time.h"
 
-#include "../../widgets/h_scrollbar/h_scrollbar_impl.h"
-#include "../../widgets/v_scrollbar/v_scrollbar_impl.h"
-
 namespace liblec {
 	namespace lecui {
 		namespace widgets {
