@@ -495,7 +495,6 @@ namespace liblec {
 			if (specs_.editable) {
 				if (selected) {
 					// start blink timer
-					log("starting caret blink timer: " + alias_);
 					timer_management(get_form()).add(caret_blink_timer_name_, 500,
 						[&]() {
 							if (skip_blink_)
@@ -508,7 +507,6 @@ namespace liblec {
 				}
 				else {
 					// stop blink timer
-					log("stopping caret blink timer: " + alias_);
 					timer_management(get_form()).stop(caret_blink_timer_name_);
 				}
 			}

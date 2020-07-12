@@ -56,7 +56,6 @@ namespace liblec {
 
 		void timer_management::stop(const std::string& alias) {
 			if (d_.fm_.d_.timers_.find(alias) != d_.fm_.d_.timers_.end()) {
-				log("stopping timer: " + alias);
 				KillTimer(d_.fm_.d_.hWnd_, (UINT_PTR)d_.fm_.d_.timers_.at(alias).unique_id);
 				d_.fm_.d_.timers_.at(alias).running = false;
 			}
