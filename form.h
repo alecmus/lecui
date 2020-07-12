@@ -63,6 +63,7 @@ namespace liblec {
 			class line;
 			class time;
 			class date;
+			class icon;
 
 			class widget_impl;
 			class combobox_impl;
@@ -270,6 +271,7 @@ namespace liblec {
 			friend class widgets::line;
 			friend class widgets::time;
 			friend class widgets::date;
+			friend class widgets::icon;
 #endif
 		};
 	}

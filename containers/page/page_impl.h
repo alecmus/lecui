@@ -39,6 +39,7 @@
 #include "../../widgets/line/line_impl.h"
 #include "../../widgets/time/time_impl.h"
 #include "../../widgets/date/date_impl.h"
+#include "../../widgets/icon/icon_impl.h"
 
 namespace liblec {
 	namespace lecui {
@@ -109,6 +110,8 @@ namespace liblec {
 				add_time(std::string alias);
 			widgets::date::date_specs&
 				add_date(std::string alias);
+			widgets::icon::icon_specs&
+				add_icon(std::string alias);
 
 			std::map<std::string,
 				widgets::widget_impl&>&
@@ -163,6 +166,8 @@ namespace liblec {
 				get_time(const std::string& alias);
 			widgets::date_impl&
 				get_date(const std::string& alias);
+			widgets::icon_impl&
+				get_icon(const std::string& alias);
 
 			bool close_widget(const std::string& alias,
 				widgets::widget_type type, std::string& error);
@@ -213,6 +218,7 @@ namespace liblec {
 			std::map<std::string, widgets::line_impl> lines_;
 			std::map<std::string, widgets::time_impl> times_;
 			std::map<std::string, widgets::date_impl> dates_;
+			std::map<std::string, widgets::icon_impl> icons_;
 
 			form& fm_;
 			containers::page& pg_;
@@ -240,6 +246,7 @@ namespace liblec {
 			friend class widgets::line;
 			friend class widgets::time;
 			friend class widgets::date;
+			friend class widgets::icon;
 
 			friend class widgets::html_editor_impl;
 		};

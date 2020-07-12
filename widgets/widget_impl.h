@@ -60,6 +60,7 @@ namespace liblec {
 				line,
 				time,
 				date,
+				icon,
 			};
 
 			static HCURSOR get_cursor(widgets::specs::cursor_type type) {
