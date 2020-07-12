@@ -1544,6 +1544,142 @@ namespace liblec {
 			}
 		}
 
+		void form::impl::move_icons() {
+			// check if this page has a icon widget
+			auto page_iterator = p_pages_.find(current_page_);
+
+			struct icon_info {
+				std::string alias;
+
+				// important that it's not a reference because of deletion in a ranged for loop later
+				lecui::widgets::icon::icon_specs icon;
+				lecui::containers::page& source;
+				lecui::containers::page& destination;
+			};
+
+			std::vector<icon_info> icons;
+
+			if (page_iterator != p_pages_.end()) {
+				auto& page = page_iterator->second;
+
+				class helper {
+				public:
+					static void find_icons_to_move(lecui::containers::page& page,
+						std::vector<icon_info>& icons) {
+						for (auto& widget : page.d_page_.widgets()) {
+							// check if this is a icon pane
+							if (widget.first.find(widgets::pane_impl::icon_pane_alias_prefix()) != std::string::npos)
+								continue;	// this is a icon pane (it has a icon widget inside. move was already done), continue to next widget
+
+							// check if this is a icon widget
+							if (widget.second.type() == widgets::widget_type::icon) {
+								// this is a icon widget, we need to "move" it into a special pane
+
+								// get the icon specs
+								auto& icon_specs = page.d_page_.get_icon(widget.first).specs();
+
+								// make pane whose alias is prefixed by the special string
+								containers::pane pane(page, widgets::pane_impl::icon_pane_alias_prefix() + widget.first);
+
+								// clone essential properties to pane
+								pane().rect = icon_specs.rect;
+								pane().on_resize = icon_specs.on_resize;
+								pane().color_fill.alpha = 0;
+								pane().color_border.alpha = 0;
+
+								// save move info so we can move the tree into the pane later
+								// we cannot do it here because we're iterating
+								icons.push_back({ widget.first, icon_specs, page, pane.get() });
+								break;
+							}
+
+							if (widget.second.type() == widgets::widget_type::tab_pane) {
+								// get this tab pane
+								auto& tab_pane = page.d_page_.get_tab_pane(widget.first);
+
+								// initialize tabs
+								for (auto& tab : tab_pane.p_tabs_)
+									find_icons_to_move(tab.second, icons);	// recursion
+							}
+							else
+								if (widget.second.type() == widgets::widget_type::pane) {
+									// get this pane
+									auto& pane = page.d_page_.get_pane(widget.first);
+
+									// initialize panes
+									for (auto& page : pane.p_panes_)
+										find_icons_to_move(page.second, icons);	// recursion
+								}
+						}
+					}
+				};
+
+				helper::find_icons_to_move(page, icons);
+
+				// move icons
+				for (auto& it : icons) {
+					log("moving icon: " + it.alias + " from " + it.source.d_page_.alias() + " to " + it.destination.d_page_.alias());
+
+					try {
+						// clone into destination
+						widgets::icon icon(it.destination, it.alias);
+						// copy specs
+						icon() = it.icon;
+
+						// adjust specs
+						icon().rect = { 0, it.destination.size().width, 0, it.destination.size().height };
+						icon().on_resize = { 0, 0, 0, 0 };
+						icon().color_fill.alpha = 0;
+
+						const float gap_ = 10.f;
+						const float padding_ = 5.f;
+
+						// add rectangle to destination (for hit-testing)
+						widgets::rectangle icn(it.destination, "icon");
+						icn().rect.size(it.destination.size().width, it.destination.size().height);
+						icn().corner_radius_x = 3.f;
+						icn().corner_radius_y = 3.f;
+						icn().color_fill.alpha = 0;
+						icn().color_border.alpha = 0;
+						icn().cursor = widgets::specs::cursor_type::hand;
+
+						// move the click handler from the icon to the rectangle
+						icn().events().click = icon().events().click;
+						icon().events().click = nullptr;
+
+						// add image to destination
+						widgets::image image(it.destination, "image");
+						image().rect = { 0, 48, 0, 48 };
+						image().rect.place({ padding_, it.destination.size().width, padding_, it.destination.size().height },
+							0.f, 0.f);
+						image().file = icon().file;
+						image().png_resource = icon().png_resource;
+
+						// add text to destination
+						widgets::label text(it.destination, "text");
+						text().text = icon().text;
+						text().font_size = 11.f;
+						text().rect = { 0, it.destination.size().width - (48 + gap_) - padding_, 0, 18 };
+						text().rect.snap_to(image().rect, rect::snap_type::right_top, gap_);
+
+						// add description to destination
+						widgets::label description(it.destination, "description");
+						description().text = icon().description;
+						description().font_size = 8.5f;
+						description().multiline = true;
+						description().rect = { 0, text().rect.width(), 0, it.destination.size().height - text().rect.height() };
+						description().rect.snap_to(text().rect, rect::snap_type::bottom_left, 0.f);
+
+						// close widget
+						std::string error;
+						it.source.d_page_.close_widget(it.alias, widgets::widget_type::icon, error);
+						log("moving " + it.alias + " successful!");
+					}
+					catch (const std::exception& e) { log("moving " + it.alias + " failed: " + e.what()); }
+				}
+			}
+		}
+
 		/// If the application receives a WM_SIZE message, this method resizes the render target
 		/// appropriately
 		void form::impl::on_resize(UINT width, UINT height) {
@@ -2202,6 +2338,7 @@ namespace liblec {
 				form_.d_.move_html_editors();
 				form_.d_.move_times();
 				form_.d_.move_dates();
+				form_.d_.move_icons();
 				form_.d_.on_render();
 				ValidateRect(hWnd, nullptr);
 				return NULL;

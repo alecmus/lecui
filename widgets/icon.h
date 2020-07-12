@@ -26,11 +26,11 @@ namespace liblec {
 			class lecui_api icon {
 			public:
 				/// <summary>Icon widget specifications.</summary>
-				/// <remarks>Recommended size with defaults is 110x48px.</remarks>
+				/// <remarks>Recommended size with defaults is 180x68px.</remarks>
 				class icon_specs : public specs {
 				public:
 					icon_specs() {
-						rect.size({ 110.f, 48.f });
+						rect.size({ 180.f, 78.f });
 					};
 
 					enum class icon_text_position {

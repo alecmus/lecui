@@ -106,6 +106,8 @@ namespace liblec {
 				auto rect_image = D2D1::RectF(0, 0, size.width, size.height);
 				fit_rect(rect_, rect_image, false, false, true);
 
+				// to-do: find a way of adjusting drawing quality to high
+
 				// draw the bitmap
 				p_render_target->DrawBitmap(p_bitmap_, rect_image);
 			}

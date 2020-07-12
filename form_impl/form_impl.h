@@ -233,6 +233,7 @@ namespace liblec {
 			void move_html_editors();
 			void move_times();
 			void move_dates();
+			void move_icons();
 			HRESULT on_render();
 			void on_resize(UINT width, UINT height);
 			RECT get_working_area(HWND hWnd);
