@@ -1438,14 +1438,6 @@ namespace liblec {
 											};
 										}
 
-										auto check_day = [&]() {
-											// ensure day is within range
-											specs.date_value.day = smallest(specs.date_value.day,
-												date_time::last_day_of_month({ 1, specs.date_value.month, specs.date_value.year }).day);
-											day_lbl().text = std::to_string(specs.date_value.day);
-											for (size_t i = day_lbl().text.length(); i < 2; i++) day_lbl().text = "0" + day_lbl().text;
-										};
-
 										// get month label
 										auto& month = date_page.d_page_.get_rectangle("month");
 										auto& month_lbl = date_page.d_page_.get_label("month_lbl");
@@ -1477,7 +1469,10 @@ namespace liblec {
 													specs.date_value.month = date_time::month_from_string(selected);
 
 													// ensure day is within range
-													check_day();
+													specs.date_value.day = smallest(specs.date_value.day,
+														date_time::last_day_of_month({ 1, specs.date_value.month, specs.date_value.year }).day);
+													day_lbl().text = std::to_string(specs.date_value.day);
+													for (size_t i = day_lbl().text.length(); i < 2; i++) day_lbl().text = "0" + day_lbl().text;
 
 													if (specs.events().change)
 														specs.events().change(specs.date_value);
@@ -1509,7 +1504,10 @@ namespace liblec {
 													ss >> specs.date_value.year;
 
 													// ensure day is within range
-													check_day();
+													specs.date_value.day = smallest(specs.date_value.day,
+														date_time::last_day_of_month({ 1, specs.date_value.month, specs.date_value.year }).day);
+													day_lbl().text = std::to_string(specs.date_value.day);
+													for (size_t i = day_lbl().text.length(); i < 2; i++) day_lbl().text = "0" + day_lbl().text;
 
 													if (specs.events().change)
 														specs.events().change(specs.date_value);
