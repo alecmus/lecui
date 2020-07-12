@@ -2199,6 +2199,66 @@ namespace liblec {
 			catch (const std::exception&) {}
 		}
 
+		void form::impl::clear_selection(containers::page& container) {
+			for (auto& widget : container.d_page_.widgets()) {
+				widget.second.select(false);
+
+				if (widget.second.type() ==
+					widgets::widget_type::tab_pane) {
+					// get this tab pane
+					auto& tab_pane = container.d_page_.get_tab_pane(widget.first);
+
+					auto page_iterator = tab_pane.p_tabs_.find(tab_pane.current_tab_);
+
+					if (page_iterator != tab_pane.p_tabs_.end())
+						clear_selection(page_iterator->second);	// recursion
+				}
+				else
+					if (widget.second.type() ==
+						widgets::widget_type::pane) {
+						// get this pane
+						auto& pane = container.d_page_.get_pane(widget.first);
+
+						auto page_iterator = pane.p_panes_.find(pane.current_pane_);
+
+						if (page_iterator != pane.p_panes_.end())
+							clear_selection(page_iterator->second);	// recursion
+					}
+			}
+		}
+
+		void form::impl::select(const std::string& path) {
+			try {
+				// get the page alias
+				const auto idx = path.find("/");
+
+				if (idx != std::string::npos) {
+					const auto page_alias = path.substr(0, idx);
+					const auto path_remaining = path.substr(idx + 1);
+
+					// clear selection in given page
+					clear_selection(p_pages_.at(page_alias));
+
+					try {
+						// check form pages
+						auto result = find_widget(p_pages_.at(page_alias), path_remaining);
+						result.widget.select(true);
+						update();
+					}
+					catch (const std::exception&) {}
+
+					try {
+						// check status pages
+						auto result = find_widget(p_status_panes_.at(page_alias), path_remaining);
+						result.widget.select(true);
+						update();
+					}
+					catch (const std::exception&) {}
+				}
+			}
+			catch (const std::exception&) {}
+		}
+
 		lecui::size form::impl::get_status_size(containers::status_pane::location type) {
 			std::string alias;
 			switch (type) {

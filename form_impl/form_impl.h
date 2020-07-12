@@ -287,6 +287,8 @@ namespace liblec {
 			void enable(const std::string& path, bool enable);
 			void show(const std::string& path, bool show);
 			void close(const std::string& path);
+			void clear_selection(containers::page& container);
+			void select(const std::string& path);
 
 			lecui::size get_status_size(containers::status_pane::location type);
 

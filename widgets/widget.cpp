@@ -96,5 +96,9 @@ namespace liblec {
 					d_.fm_.d_.scheduled_for_closure_.clear();
 				});
 		}
+
+		void widget_management::select(const std::string& path) {
+			d_.fm_.d_.select(path);
+		}
 	}
 }

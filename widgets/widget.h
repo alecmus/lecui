@@ -154,6 +154,11 @@ namespace liblec {
 			/// </remarks>
 			void close(const std::string& path);
 
+			/// <summary>Select a widget.</summary>
+			/// <param name="path">The full path to the widget, e.g. "home_page/username".</param>
+			/// <remarks>Any previous selection within the page is removed.</remarks>
+			void select(const std::string& path);
+
 		private:
 			class impl;
 			impl& d_;
