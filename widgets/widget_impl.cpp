@@ -98,6 +98,10 @@ namespace liblec {
 		HCURSOR widgets::widget_impl::cursor() { return h_cursor_; }
 		float widgets::widget_impl::get_dpi_scale() { return page_.d_page_.get_dpi_scale(); }
 		form& widgets::widget_impl::get_form() { return page_.d_page_.get_form(); }
+		void widgets::widget_impl::on_action() {
+			if (generic_specs().events().action)
+				generic_specs().events().action();
+		}
 		bool widgets::widget_impl::on_mousewheel(float units) { return false; }
 		bool widgets::widget_impl::on_keydown(WPARAM wParam) { return false; }
 		void widgets::widget_impl::on_selection_change(const bool& selected) {}

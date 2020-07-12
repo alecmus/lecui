@@ -132,7 +132,6 @@ namespace liblec {
 				if (shift_pressed_)
 					break;
 				shift_pressed_ = true;
-				log("shift pressed");
 				reverse_tab_navigation_ = true;
 				break;
 
@@ -140,7 +139,6 @@ namespace liblec {
 				if (space_pressed_)
 					break;
 				space_pressed_ = true;
-				log("space pressed");
 
 				// check form widgets
 				for (auto& widget : widgets_) {
@@ -207,17 +205,101 @@ namespace liblec {
 				if (page_iterator != p_pages_.end())
 					helper::check_widgets(page_iterator->second);
 
-				log("update");
 				update();
 			}
 						 break;
+
+			case VK_RETURN: {
+				bool update = false;
+				std::function<void()> on_action_handler = nullptr;
+
+				// check form widgets
+				for (auto& widget : widgets_) {
+					if (widget.second.is_static() || !widget.second.visible() || !widget.second.enabled())
+						continue;
+
+					if (widget.second.selected() &&
+						widget.second.type() !=
+						widgets::widget_type::close_button &&
+						widget.second.type() !=
+						widgets::widget_type::maximize_button &&
+						widget.second.type() !=
+						widgets::widget_type::minimize_button)
+						on_action_handler = [&]() {
+						widget.second.on_action();
+						widget.second.on_click();
+					};
+				}
+
+				class helper {
+				public:
+					static void check_widgets(containers::page& page,
+						WPARAM wParam, bool& update, std::function<void()>& on_action_handler) {
+						// check widgets
+						for (auto& widget : page.d_page_.widgets()) {
+							if (widget.second.is_static() || !widget.second.visible() || !widget.second.enabled())
+								continue;
+
+							if (widget.second.type() == widgets::widget_type::html_editor)
+								continue;	// this widget uses the enter key for paragraphs
+
+							if (widget.second.selected()) {
+								update = true;
+								on_action_handler = [&]() {
+									widget.second.on_action();
+									widget.second.on_click(); 
+								};
+							}
+							else
+								if (widget.second.type() ==
+									widgets::widget_type::tab_pane) {
+									// get this tab pane
+									auto& tab_pane = page.d_page_.get_tab_pane(widget.first);
+
+									auto page_iterator = tab_pane.p_tabs_.find(tab_pane.current_tab_);
+
+									if (page_iterator != tab_pane.p_tabs_.end())
+										helper::check_widgets(page_iterator->second, wParam, update, on_action_handler);
+								}
+								else
+									if (widget.second.type() ==
+										widgets::widget_type::pane) {
+										// get this pane
+										auto& pane = page.d_page_.get_pane(widget.first);
+
+										auto page_iterator = pane.p_panes_.find(pane.current_pane_);
+
+										if (page_iterator != pane.p_panes_.end())
+											helper::check_widgets(page_iterator->second, wParam, update, on_action_handler);
+									}
+						}
+					}
+				};
+
+				for (auto& it : p_status_panes_)
+					helper::check_widgets(it.second, wParam, update, on_action_handler);
+
+				auto page_iterator = p_pages_.find(current_page_);
+
+				if (page_iterator != p_pages_.end())
+					helper::check_widgets(page_iterator->second, wParam, update, on_action_handler);
+
+				if (update) {
+					(*this).update();
+
+					if (on_action_handler) {
+						on_action_handler();
+					}
+				}
+			}
+				break;
 
 			default:
 				break;
 			}
 
 			bool update = false;
-			std::function<void()> on_click_handler = nullptr;
+			std::function<void()> on_click_handler = nullptr; // to-do: what is this doing here? is it because of the broken table widget that's pending a revamp? Eliminate in time!!!!
 
 			// check form widgets
 			for (auto& widget : widgets_) {

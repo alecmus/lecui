@@ -81,6 +81,10 @@ namespace liblec {
 
 				/// <summary>Events common to all widgets.</summary>
 				struct basic_events {
+					/// <summary>The handler to be called when either the space bar or enter key
+					/// is pressed, or if the widget is clicked.</summary>
+					std::function<void()> action = nullptr;
+
 					/// <summary>The handler to be called when the widget is clicked.</summary>
 					std::function<void()> click = nullptr;
 

@@ -18,8 +18,6 @@ namespace liblec {
 		void form::impl::on_keyup(WPARAM wParam) {
 			switch (wParam) {
 			case VK_SPACE: {
-				log("space released");
-
 				std::function<void()> on_space = nullptr;
 
 				// check form widgets
@@ -33,8 +31,12 @@ namespace liblec {
 						widget.second.type() !=
 						widgets::widget_type::maximize_button &&
 						widget.second.type() !=
-						widgets::widget_type::minimize_button)
-						on_space = [&]() { widget.second.on_click(); };
+						widgets::widget_type::minimize_button) {
+						on_space = [&]() {
+							widget.second.on_action();
+							widget.second.on_click();
+						};
+					}
 
 					// reset pressed status
 					widget.second.press(false);
@@ -49,8 +51,17 @@ namespace liblec {
 							if (widget.second.is_static() || !widget.second.visible() || !widget.second.enabled())
 								continue;
 
-							if (widget.second.selected())
-								on_space = [&]() { widget.second.on_click(); };
+							if (widget.second.type() == widgets::widget_type::textbox ||
+								widget.second.type() == widgets::widget_type::html_editor ||
+								widget.second.type() == widgets::widget_type::combobox)
+								continue;	// these widgets use the space key
+
+							if (widget.second.selected()) {
+								on_space = [&]() {
+									widget.second.on_action();
+									widget.second.on_click();
+								};
+							}
 							else
 								if (widget.second.type() ==
 									widgets::widget_type::tab_pane) {
@@ -103,8 +114,6 @@ namespace liblec {
 				break;
 
 			case VK_TAB: {
-				log("tab pressed");
-
 				class helper {
 				public:
 					static void check_widgets(containers::page& page,
