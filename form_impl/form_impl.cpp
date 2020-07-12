@@ -1000,7 +1000,7 @@ namespace liblec {
 						time().color_fill.alpha = 0;
 
 						// add hour destination
-						widgets::rectangle hour(it.destination, "hour");
+						widgets::rectangle hour(it.destination, widgets::time_impl::alias_hour());
 						hour().rect = { 0, 18, 0, 20 };
 						hour().on_resize = { 0, 0, 0, 0 };
 						hour().corner_radius_x = 2.f;
@@ -1010,7 +1010,7 @@ namespace liblec {
 						hour().color_disabled = defaults::color(theme_, item::textbox_disabled);
 						hour().color_selected = defaults::color(theme_, item::textbox_selected);
 
-						widgets::label hour_label(it.destination, "hour_lbl");
+						widgets::label hour_label(it.destination, widgets::time_impl::alias_hour_label());
 						hour_label().rect = hour().rect;
 						hour_label().center_h = true;
 						hour_label().center_v = true;
@@ -1028,7 +1028,7 @@ namespace liblec {
 						seperator_1().center_v = true;
 
 						// add minute to destination
-						widgets::rectangle minute(it.destination, "minute");
+						widgets::rectangle minute(it.destination, widgets::time_impl::alias_minute());
 						minute().rect = { 0, 18, 0, 20 };
 						minute().rect.snap_to(seperator_1().rect, rect::snap_type::right, 0.f);
 						minute().corner_radius_x = 2.f;
@@ -1038,7 +1038,7 @@ namespace liblec {
 						minute().color_disabled = defaults::color(theme_, item::textbox_disabled);
 						minute().color_selected = defaults::color(theme_, item::textbox_selected);
 
-						widgets::label minute_label(it.destination, "minute_lbl");
+						widgets::label minute_label(it.destination, widgets::time_impl::alias_minute_label());
 						minute_label().rect = minute().rect;
 						minute_label().center_h = true;
 						minute_label().center_v = true;
@@ -1056,7 +1056,7 @@ namespace liblec {
 						seperator_2().center_v = true;
 
 						// add second to destination
-						widgets::rectangle second(it.destination, "second");
+						widgets::rectangle second(it.destination, widgets::time_impl::alias_second());
 						second().rect = { 0, 18, 0, 20 };
 						second().rect.snap_to(seperator_2().rect, rect::snap_type::right, 0.f);
 						second().corner_radius_x = 2.f;
@@ -1066,7 +1066,7 @@ namespace liblec {
 						second().color_disabled = defaults::color(theme_, item::textbox_disabled);
 						second().color_selected = defaults::color(theme_, item::textbox_selected);
 
-						widgets::label second_label(it.destination, "second_lbl");
+						widgets::label second_label(it.destination, widgets::time_impl::alias_second_label());
 						second_label().rect = second().rect;
 						second_label().center_h = true;
 						second_label().center_v = true;
@@ -1101,8 +1101,8 @@ namespace liblec {
 										auto& specs = time_page.d_page_.get_time(widget_alias).specs();
 
 										// get hour
-										auto& hour = time_page.d_page_.get_rectangle("hour");
-										auto& hour_lbl = time_page.d_page_.get_label("hour_lbl");
+										auto& hour = time_page.d_page_.get_rectangle(widgets::time_impl::alias_hour());
+										auto& hour_lbl = time_page.d_page_.get_label(widgets::time_impl::alias_hour_label());
 
 										if (hour().events().click == nullptr) {
 											hour().events().click = [&]() {
@@ -1131,8 +1131,8 @@ namespace liblec {
 										}
 
 										// get minute label
-										auto& minute = time_page.d_page_.get_rectangle("minute");
-										auto& minute_lbl = time_page.d_page_.get_label("minute_lbl");
+										auto& minute = time_page.d_page_.get_rectangle(widgets::time_impl::alias_minute());
+										auto& minute_lbl = time_page.d_page_.get_label(widgets::time_impl::alias_minute_label());
 
 										if (minute().events().click == nullptr) {
 											minute().events().click = [&]() {
@@ -1161,8 +1161,8 @@ namespace liblec {
 										}
 
 										// get second label
-										auto& second = time_page.d_page_.get_rectangle("second");
-										auto& second_lbl = time_page.d_page_.get_label("second_lbl");
+										auto& second = time_page.d_page_.get_rectangle(widgets::time_impl::alias_second());
+										auto& second_lbl = time_page.d_page_.get_label(widgets::time_impl::alias_second_label());
 
 										if (second().events().click == nullptr) {
 											second().events().click = [&]() {
@@ -1310,7 +1310,7 @@ namespace liblec {
 						date().color_fill.alpha = 0;
 
 						// add day to destination
-						widgets::rectangle day(it.destination, "day");
+						widgets::rectangle day(it.destination, widgets::date_impl::alias_day());
 						day().rect = { 0, 18, 0, 20 };
 						day().on_resize = { 0, 0, 0, 0 };
 						day().corner_radius_x = 2.f;
@@ -1320,7 +1320,7 @@ namespace liblec {
 						day().color_disabled = defaults::color(theme_, item::textbox_disabled);
 						day().color_selected = defaults::color(theme_, item::textbox_selected);
 
-						widgets::label day_label(it.destination, "day_lbl");
+						widgets::label day_label(it.destination, widgets::date_impl::alias_day_label());
 						day_label().rect = day().rect;
 						day_label().center_h = true;
 						day_label().center_v = true;
@@ -1338,7 +1338,7 @@ namespace liblec {
 						seperator_1().center_v = true;
 
 						// add month to destination
-						widgets::rectangle month(it.destination, "month");
+						widgets::rectangle month(it.destination, widgets::date_impl::alias_month());
 						month().rect = { 0, 25, 0, 20 };
 						month().rect.snap_to(seperator_1().rect, rect::snap_type::right, 0.f);
 						month().corner_radius_x = 2.f;
@@ -1348,7 +1348,7 @@ namespace liblec {
 						month().color_disabled = defaults::color(theme_, item::textbox_disabled);
 						month().color_selected = defaults::color(theme_, item::textbox_selected);
 
-						widgets::label month_label(it.destination, "month_lbl");
+						widgets::label month_label(it.destination, widgets::date_impl::alias_month_label());
 						month_label().rect = month().rect;
 						month_label().center_h = true;
 						month_label().center_v = true;
@@ -1365,7 +1365,7 @@ namespace liblec {
 						seperator_2().center_v = true;
 
 						// add year to destination
-						widgets::rectangle year(it.destination, "year");
+						widgets::rectangle year(it.destination, widgets::date_impl::alias_year());
 						year().rect = { 0, 31, 0, 20 };
 						year().rect.snap_to(seperator_2().rect, rect::snap_type::right, 0.f);
 						year().corner_radius_x = 2.f;
@@ -1375,7 +1375,7 @@ namespace liblec {
 						year().color_disabled = defaults::color(theme_, item::textbox_disabled);
 						year().color_selected = defaults::color(theme_, item::textbox_selected);
 
-						widgets::label year_label(it.destination, "year_lbl");
+						widgets::label year_label(it.destination, widgets::date_impl::alias_year_label());
 						year_label().rect = year().rect;
 						year_label().center_h = true;
 						year_label().center_v = true;
@@ -1409,8 +1409,8 @@ namespace liblec {
 										auto& specs = date_page.d_page_.get_date(widget_alias).specs();
 
 										// get day
-										auto& day = date_page.d_page_.get_rectangle("day");
-										auto& day_lbl = date_page.d_page_.get_label("day_lbl");
+										auto& day = date_page.d_page_.get_rectangle(widgets::date_impl::alias_day());
+										auto& day_lbl = date_page.d_page_.get_label(widgets::date_impl::alias_day_label());
 
 										if (day().events().click == nullptr) {
 											day().events().click = [&]() {
@@ -1439,8 +1439,8 @@ namespace liblec {
 										}
 
 										// get month label
-										auto& month = date_page.d_page_.get_rectangle("month");
-										auto& month_lbl = date_page.d_page_.get_label("month_lbl");
+										auto& month = date_page.d_page_.get_rectangle(widgets::date_impl::alias_month());
+										auto& month_lbl = date_page.d_page_.get_label(widgets::date_impl::alias_month_label());
 
 										if (month().events().click == nullptr) {
 											month().events().click = [&]() {
@@ -1481,8 +1481,8 @@ namespace liblec {
 										}
 
 										// get year label
-										auto& year = date_page.d_page_.get_rectangle("year");
-										auto& year_lbl = date_page.d_page_.get_label("year_lbl");
+										auto& year = date_page.d_page_.get_rectangle(widgets::date_impl::alias_year());
+										auto& year_lbl = date_page.d_page_.get_label(widgets::date_impl::alias_year_label());
 
 										if (year().events().click == nullptr) {
 											year().events().click = [&]() {
@@ -1635,7 +1635,7 @@ namespace liblec {
 						const float padding_ = 5.f;
 
 						// add rectangle to destination (for hit-testing)
-						widgets::rectangle icn(it.destination, "icon");
+						widgets::rectangle icn(it.destination, widgets::icon_impl::alias_icon());
 						icn().rect.size(it.destination.size().width, it.destination.size().height);
 						icn().corner_radius_x = 3.f;
 						icn().corner_radius_y = 3.f;
@@ -1648,7 +1648,7 @@ namespace liblec {
 						icon().events().click = nullptr;
 
 						// add image to destination
-						widgets::image image(it.destination, "image");
+						widgets::image image(it.destination, widgets::icon_impl::alias_image());
 						image().rect = { 0, 48, 0, 48 };
 						image().rect.place({ padding_, it.destination.size().width, padding_, it.destination.size().height },
 							0.f, 0.f);
@@ -1656,14 +1656,14 @@ namespace liblec {
 						image().png_resource = icon().png_resource;
 
 						// add text to destination
-						widgets::label text(it.destination, "text");
+						widgets::label text(it.destination, widgets::icon_impl::alias_text());
 						text().text = icon().text;
 						text().font_size = 11.f;
 						text().rect = { 0, it.destination.size().width - (48 + gap_) - padding_, 0, 18 };
 						text().rect.snap_to(image().rect, rect::snap_type::right_top, gap_);
 
 						// add description to destination
-						widgets::label description(it.destination, "description");
+						widgets::label description(it.destination, widgets::icon_impl::alias_description());
 						description().text = icon().description;
 						description().font_size = 8.5f;
 						description().multiline = true;

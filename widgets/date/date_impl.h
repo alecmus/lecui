@@ -26,6 +26,13 @@ namespace liblec {
 				}
 
 			public:
+				static std::string alias_day();
+				static std::string alias_day_label();
+				static std::string alias_month();
+				static std::string alias_month_label();
+				static std::string alias_year();
+				static std::string alias_year_label();
+
 				/// Prevent the use of the default constructor.
 				date_impl() = delete;
 

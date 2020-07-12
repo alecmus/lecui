@@ -15,6 +15,22 @@
 
 namespace liblec {
 	namespace lecui {
+		std::string widgets::icon_impl::alias_icon() {
+			return std::string("lecui::widgets::icon::icon");
+		}
+
+		std::string widgets::icon_impl::alias_image() {
+			return std::string("lecui::widgets::icon::image");
+		}
+
+		std::string widgets::icon_impl::alias_text() {
+			return std::string("lecui::widgets::icon::text");
+		}
+
+		std::string widgets::icon_impl::alias_description() {
+			return std::string("lecui::widgets::icon::description");
+		}
+
 		widgets::icon_impl::icon_impl(containers::page& page,
 			const std::string& alias) :
 			widget_impl(page, alias),

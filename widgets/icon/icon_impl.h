@@ -26,6 +26,11 @@ namespace liblec {
 				}
 
 			public:
+				static std::string alias_icon();
+				static std::string alias_image();
+				static std::string alias_text();
+				static std::string alias_description();
+
 				/// Prevent the use of the default constructor.
 				icon_impl() = delete;
 

@@ -15,6 +15,30 @@
 
 namespace liblec {
 	namespace lecui {
+		std::string widgets::date_impl::alias_day() {
+			return std::string("lecui::widgets::date::day");
+		}
+
+		std::string widgets::date_impl::alias_day_label() {
+			return std::string("lecui::widgets::date::day_lbl");
+		}
+
+		std::string widgets::date_impl::alias_month() {
+			return std::string("lecui::widgets::date::month");
+		}
+
+		std::string widgets::date_impl::alias_month_label() {
+			return std::string("lecui::widgets::date::month_lbl");
+		}
+
+		std::string widgets::date_impl::alias_year() {
+			return std::string("lecui::widgets::date::year");
+		}
+
+		std::string widgets::date_impl::alias_year_label() {
+			return std::string("lecui::widgets::date::year_lbl");
+		}
+
 		widgets::date_impl::date_impl(containers::page& page,
 			const std::string& alias) :
 			widget_impl(page, alias),

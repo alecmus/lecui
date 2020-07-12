@@ -15,6 +15,30 @@
 
 namespace liblec {
 	namespace lecui {
+		std::string widgets::time_impl::alias_hour() {
+			return std::string("lecui::widgets::time::hour");
+		}
+
+		std::string widgets::time_impl::alias_hour_label() {
+			return std::string("lecui::widgets::time::hour_lbl");
+		}
+
+		std::string widgets::time_impl::alias_minute() {
+			return std::string("lecui::widgets::time::minute");
+		}
+
+		std::string widgets::time_impl::alias_minute_label() {
+			return std::string("lecui::widgets::time::minute_lbl");
+		}
+
+		std::string widgets::time_impl::alias_second() {
+			return std::string("lecui::widgets::time::second");
+		}
+
+		std::string widgets::time_impl::alias_second_label() {
+			return std::string("lecui::widgets::time::second_lbl");
+		}
+
 		widgets::time_impl::time_impl(containers::page& page,
 			const std::string& alias) :
 			widget_impl(page, alias),

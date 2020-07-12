@@ -26,6 +26,13 @@ namespace liblec {
 				}
 
 			public:
+				static std::string alias_hour();
+				static std::string alias_hour_label();
+				static std::string alias_minute();
+				static std::string alias_minute_label();
+				static std::string alias_second();
+				static std::string alias_second_label();
+
 				/// Prevent the use of the default constructor.
 				time_impl() = delete;
 
