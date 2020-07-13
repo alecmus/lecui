@@ -93,11 +93,6 @@ namespace liblec {
 			return rect_;
 		}
 
-		void widgets::group_impl::on_click() {
-			if (specs_.events().click)
-				specs_.events().click();
-		}
-
 		containers::group::group_specs&
 			widgets::group_impl::specs() { return specs_; }
 

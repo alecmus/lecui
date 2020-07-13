@@ -307,7 +307,7 @@ namespace liblec {
 					button_no().text = "No";
 					button_no().rect.place({ margin_, home_page.size().width - margin_,
 							margin_, home_page.size().height - margin_ }, 100.f, 100.f);
-					button_no().events().click = [&]() {
+					button_no().events().action = [&]() {
 						user_agreed_ = false;
 						close();
 					};
@@ -315,7 +315,7 @@ namespace liblec {
 					// snap the yes button to the no button
 					button_yes().text = "Yes";
 					button_yes().rect.snap_to(button_no().rect, lecui::rect::snap_type::left, margin_);
-					button_yes().events().click = [&]() {
+					button_yes().events().action = [&]() {
 						user_agreed_ = true;
 						close();
 					};
@@ -388,7 +388,7 @@ namespace liblec {
 						button().text = "Ok";
 						button().rect.place({margin_, home_page.size().width - margin_,
 							margin_, home_page.size().height - margin_ }, 100.f, 100.f);
-						button().events().click = [&]() { close(); };
+						button().events().action = [&]() { close(); };
 
 						page_man.show("home");
 						widget_management widget_man(*this);

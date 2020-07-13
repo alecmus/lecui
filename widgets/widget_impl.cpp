@@ -98,6 +98,17 @@ namespace liblec {
 		HCURSOR widgets::widget_impl::cursor() { return h_cursor_; }
 		float widgets::widget_impl::get_dpi_scale() { return page_.d_page_.get_dpi_scale(); }
 		form& widgets::widget_impl::get_form() { return page_.d_page_.get_form(); }
+		void widgets::widget_impl::on_click() {
+			if (generic_specs().events().click)
+				generic_specs().events().click();
+
+			if (type() != widgets::widget_type::html_editor &&
+				type() != widgets::widget_type::textbox &&
+				type() != widgets::widget_type::combobox) {
+				if (generic_specs().events().action)
+					generic_specs().events().action();
+			}
+		}
 		void widgets::widget_impl::on_action() {
 			if (generic_specs().events().action)
 				generic_specs().events().action();

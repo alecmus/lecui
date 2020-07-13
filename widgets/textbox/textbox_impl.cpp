@@ -309,9 +309,6 @@ namespace liblec {
 			return rect_;
 		}
 
-		void widgets::textbox_impl::on_click() {
-		}
-
 		void widgets::textbox_impl::on_selection_change(const bool& selected) {
 			if (selected) {
 				// start blink timer

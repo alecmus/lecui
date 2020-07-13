@@ -96,6 +96,9 @@ namespace liblec {
 		void widgets::minimize_button_impl::on_click() {
 			if (IsWindow(hWnd_))
 				ShowWindow(hWnd_, SW_MINIMIZE);
+
+			if (specs_.events().action)
+				specs_.events().action();
 		}
 
 		void widgets::minimize_button_impl::set_hwnd(HWND hWnd) { hWnd_ = hWnd; }

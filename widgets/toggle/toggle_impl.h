@@ -43,6 +43,7 @@ namespace liblec {
 					const D2D1_SIZE_F& change_in_size, const D2D1_POINT_2F& offset,
 					const bool& render) override;
 				void on_click() override;
+				void on_action() override;
 				bool contains(const D2D1_POINT_2F& point) override;
 				bool contains() override;
 				bool hit(const bool& hit) override;

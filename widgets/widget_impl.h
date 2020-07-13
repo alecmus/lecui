@@ -102,7 +102,6 @@ namespace liblec {
 				HCURSOR cursor();
 				float get_dpi_scale();
 				form& get_form();
-				void on_action();
 
 				virtual void press(const bool& pressed);
 
@@ -126,7 +125,8 @@ namespace liblec {
 				virtual D2D1_RECT_F& render(ID2D1HwndRenderTarget* p_render_target,
 					const D2D1_SIZE_F& change_in_size, const D2D1_POINT_2F& offset,
 					const bool& render) = 0;
-				virtual void on_click() = 0;
+				virtual void on_click();
+				virtual void on_action();
 				virtual bool on_mousewheel(float units);
 				virtual bool on_keydown(WPARAM wParam);
 				virtual void on_selection_change(const bool& selected);

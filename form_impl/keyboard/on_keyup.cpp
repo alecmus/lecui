@@ -32,10 +32,7 @@ namespace liblec {
 						widgets::widget_type::maximize_button &&
 						widget.second.type() !=
 						widgets::widget_type::minimize_button) {
-						on_space = [&]() {
-							widget.second.on_action();
-							widget.second.on_click();
-						};
+						on_space = [&]() { widget.second.on_action(); };
 					}
 
 					// reset pressed status
@@ -57,10 +54,7 @@ namespace liblec {
 								continue;	// these widgets use the space key
 
 							if (widget.second.selected()) {
-								on_space = [&]() {
-									widget.second.on_action();
-									widget.second.on_click();
-								};
+								on_space = [&]() { widget.second.on_action(); };
 							}
 							else
 								if (widget.second.type() ==

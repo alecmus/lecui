@@ -81,7 +81,7 @@ namespace liblec {
 		HRESULT widgets::combobox_impl::create_resources(
 			ID2D1HwndRenderTarget* p_render_target) {
 			specs_old_ = specs_;
-			is_static_ = (specs_.events().click == nullptr && specs_.events().selection == nullptr);
+			is_static_ = (specs_.events().click == nullptr && specs_.events().selection == nullptr && specs_.events().action == nullptr);
 			h_cursor_ = get_cursor(specs_.cursor);
 			
 			for (auto& item : specs_.items) {

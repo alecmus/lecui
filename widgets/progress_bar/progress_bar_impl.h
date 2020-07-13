@@ -43,7 +43,6 @@ namespace liblec {
 				D2D1_RECT_F& render(ID2D1HwndRenderTarget* p_render_target,
 					const D2D1_SIZE_F& change_in_size, const D2D1_POINT_2F& offset,
 					const bool& render) override;
-				void on_click() override;
 
 				/// widget specific methods
 				widgets::progress_bar::progress_bar_specs& specs();

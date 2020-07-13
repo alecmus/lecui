@@ -42,7 +42,7 @@ namespace liblec {
 		HRESULT widgets::toggle_impl::create_resources(
 			ID2D1HwndRenderTarget* p_render_target) {
 			specs_old_ = specs_;
-			is_static_ = (specs_.events().toggle == nullptr && specs_.events().click == nullptr);
+			is_static_ = (specs_.events().toggle == nullptr && specs_.events().click == nullptr && specs_.events().action == nullptr);
 			h_cursor_ = get_cursor(specs_.cursor);
 
 			HRESULT hr = S_OK;
@@ -225,8 +225,6 @@ namespace liblec {
 		}
 
 		void widgets::toggle_impl::on_click() {
-			// to-do: how to know if this is a keyboard and not care about either x_change or y_change
-
 			bool x_change = (point_.x != point_on_press_.x);
 			bool y_change = (point_.y != point_on_press_.y);
 
@@ -242,6 +240,16 @@ namespace liblec {
 
 			if (specs_.events().click)
 				specs_.events().click();
+		}
+
+		void widgets::toggle_impl::on_action() {
+			specs_.on = !specs_.on;	// Toggle.
+
+			if (specs_.events().toggle)
+				specs_.events().toggle(specs_.on);
+
+			if (specs_.events().action)
+				specs_.events().action();
 		}
 
 		bool widgets::toggle_impl::contains(const D2D1_POINT_2F& point) {

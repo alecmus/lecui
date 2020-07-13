@@ -735,7 +735,7 @@ namespace liblec {
 											bold().rect.snap_to(font().rect, rect::snap_type::bottom_left, 5.f);
 											bold().color_fill.alpha = 0;
 											bold().color_border.alpha = 0;
-											bold().events().click = [&]() {
+											bold().events().action = [&]() {
 												html_editor.selection_bold();
 											};
 
@@ -752,7 +752,7 @@ namespace liblec {
 											italic().rect.snap_to(bold().rect, rect::snap_type::right, 5.f);
 											italic().color_fill.alpha = 0;
 											italic().color_border.alpha = 0;
-											italic().events().click = [&]() {
+											italic().events().action = [&]() {
 												html_editor.selection_italic();
 											};
 
@@ -769,7 +769,7 @@ namespace liblec {
 											underline().rect.snap_to(italic_label().rect, rect::snap_type::right, 5.f);
 											underline().color_fill.alpha = 0;
 											underline().color_border.alpha = 0;
-											underline().events().click = [&]() {
+											underline().events().action = [&]() {
 												html_editor.selection_underline();
 											};
 
@@ -786,7 +786,7 @@ namespace liblec {
 											strikethrough().rect.snap_to(underline_label().rect, rect::snap_type::right, 5.f);
 											strikethrough().color_fill.alpha = 0;
 											strikethrough().color_border.alpha = 0;
-											strikethrough().events().click = [&]() {
+											strikethrough().events().action = [&]() {
 												html_editor.selection_strikethrough();
 											};
 
@@ -803,7 +803,7 @@ namespace liblec {
 											font_color().rect.snap_to(strikethrough().rect, rect::snap_type::right, 5.f);
 											font_color().color_fill.alpha = 0;
 											font_color().color_border.alpha = 0;
-											font_color().events().click = [&]() {
+											font_color().events().action = [&]() {
 												html_editor.selection_color();
 											};
 
@@ -829,7 +829,7 @@ namespace liblec {
 											font_color_menu().rect.snap_to(font_color().rect, rect::snap_type::right, 2.f);
 											font_color_menu().color_fill.alpha = 0;
 											font_color_menu().color_border.alpha = 0;
-											font_color_menu().events().click = [&]() {
+											font_color_menu().events().action = [&]() {
 												color font_color;
 												if (color_picker(page.d_page_.fm_).pick(font_color)) {
 													html_editor.selection_color(font_color);
@@ -1104,8 +1104,8 @@ namespace liblec {
 										auto& hour = time_page.d_page_.get_rectangle(widgets::time_impl::alias_hour());
 										auto& hour_lbl = time_page.d_page_.get_label(widgets::time_impl::alias_hour_label());
 
-										if (hour().events().click == nullptr) {
-											hour().events().click = [&]() {
+										if (hour().events().action == nullptr) {
+											hour().events().action = [&]() {
 												context_menu::specs menu_specs;
 												menu_specs.type = context_menu::pin_type::right;
 
@@ -1134,8 +1134,8 @@ namespace liblec {
 										auto& minute = time_page.d_page_.get_rectangle(widgets::time_impl::alias_minute());
 										auto& minute_lbl = time_page.d_page_.get_label(widgets::time_impl::alias_minute_label());
 
-										if (minute().events().click == nullptr) {
-											minute().events().click = [&]() {
+										if (minute().events().action == nullptr) {
+											minute().events().action = [&]() {
 												context_menu::specs menu_specs;
 												menu_specs.type = context_menu::pin_type::right;
 
@@ -1164,8 +1164,8 @@ namespace liblec {
 										auto& second = time_page.d_page_.get_rectangle(widgets::time_impl::alias_second());
 										auto& second_lbl = time_page.d_page_.get_label(widgets::time_impl::alias_second_label());
 
-										if (second().events().click == nullptr) {
-											second().events().click = [&]() {
+										if (second().events().action == nullptr) {
+											second().events().action = [&]() {
 												context_menu::specs menu_specs;
 												menu_specs.type = context_menu::pin_type::right;
 
@@ -1422,8 +1422,8 @@ namespace liblec {
 										auto& day = date_page.d_page_.get_rectangle(widgets::date_impl::alias_day());
 										auto& day_lbl = date_page.d_page_.get_label(widgets::date_impl::alias_day_label());
 
-										if (day().events().click == nullptr) {
-											day().events().click = [&]() {
+										if (day().events().action == nullptr) {
+											day().events().action = [&]() {
 												context_menu::specs menu_specs;
 												menu_specs.type = context_menu::pin_type::right;
 
@@ -1455,8 +1455,8 @@ namespace liblec {
 										auto& month = date_page.d_page_.get_rectangle(widgets::date_impl::alias_month());
 										auto& month_lbl = date_page.d_page_.get_label(widgets::date_impl::alias_month_label());
 
-										if (month().events().click == nullptr) {
-											month().events().click = [&]() {
+										if (month().events().action == nullptr) {
+											month().events().action = [&]() {
 												context_menu::specs menu_specs;
 												menu_specs.type = context_menu::pin_type::right;
 
@@ -1500,8 +1500,8 @@ namespace liblec {
 										auto& year = date_page.d_page_.get_rectangle(widgets::date_impl::alias_year());
 										auto& year_lbl = date_page.d_page_.get_label(widgets::date_impl::alias_year_label());
 
-										if (year().events().click == nullptr) {
-											year().events().click = [&]() {
+										if (year().events().action == nullptr) {
+											year().events().action = [&]() {
 												context_menu::specs menu_specs;
 												menu_specs.type = context_menu::pin_type::right;
 
@@ -1662,8 +1662,10 @@ namespace liblec {
 						icn().color_border.alpha = 0;
 						icn().cursor = widgets::specs::cursor_type::hand;
 
-						// move the click handler from the icon to the rectangle
+						// move the click and action handler from the icon to the rectangle
+						icn().events().action = icon().events().action;
 						icn().events().click = icon().events().click;
+						icon().events().action = nullptr;
 						icon().events().click = nullptr;
 
 						// add image to destination

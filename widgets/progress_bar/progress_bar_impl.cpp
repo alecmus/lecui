@@ -153,11 +153,6 @@ namespace liblec {
 			return rect_;
 		}
 
-		void widgets::progress_bar_impl::on_click() {
-			if (specs_.events().click)
-				specs_.events().click();
-		}
-
 		widgets::progress_bar::progress_bar_specs&
 			widgets::progress_bar_impl::specs() { return specs_; }
 

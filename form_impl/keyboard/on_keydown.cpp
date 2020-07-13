@@ -225,10 +225,7 @@ namespace liblec {
 						widgets::widget_type::maximize_button &&
 						widget.second.type() !=
 						widgets::widget_type::minimize_button)
-						on_action_handler = [&]() {
-						widget.second.on_action();
-						widget.second.on_click();
-					};
+						on_action_handler = [&]() { widget.second.on_action(); };
 				}
 
 				class helper {
@@ -245,10 +242,7 @@ namespace liblec {
 
 							if (widget.second.selected()) {
 								update = true;
-								on_action_handler = [&]() {
-									widget.second.on_action();
-									widget.second.on_click(); 
-								};
+								on_action_handler = [&]() { widget.second.on_action(); };
 							}
 							else
 								if (widget.second.type() ==
@@ -287,9 +281,8 @@ namespace liblec {
 				if (update) {
 					(*this).update();
 
-					if (on_action_handler) {
+					if (on_action_handler)
 						on_action_handler();
-					}
 				}
 			}
 				break;

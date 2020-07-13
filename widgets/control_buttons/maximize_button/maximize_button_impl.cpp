@@ -127,6 +127,9 @@ namespace liblec {
 				else
 					ShowWindow(hWnd_, SW_MAXIMIZE);
 			}
+
+			if (specs_.events().action)
+				specs_.events().action();
 		}
 
 		void widgets::maximize_button_impl::set_hwnd(HWND hWnd) { hWnd_ = hWnd; }

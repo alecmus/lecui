@@ -217,7 +217,7 @@ namespace liblec {
 		HRESULT widgets::label_impl::create_resources(
 			ID2D1HwndRenderTarget* p_render_target) {
 			specs_old_ = specs_;
-			is_static_ = (specs_.events().click == nullptr);
+			is_static_ = (specs_.events().click == nullptr && specs_.events().action == nullptr);
 			h_cursor_ = get_cursor(specs_.cursor);
 
 			parse_formatted_text(specs_.text, text_, convert_color(specs_.color_text), formatting_);
@@ -328,11 +328,6 @@ namespace liblec {
 			safe_release(&p_text_layout_);
 
 			return rect_;
-		}
-
-		void widgets::label_impl::on_click() {
-			if (specs_.events().click)
-				specs_.events().click();
 		}
 
 		widgets::label::label_specs&

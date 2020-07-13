@@ -38,7 +38,7 @@ namespace liblec {
 		HRESULT widgets::custom_impl::create_resources(
 			ID2D1HwndRenderTarget* p_render_target) {
 			specs_old_ = specs_;
-			is_static_ = (specs_.events().click == nullptr);
+			is_static_ = (specs_.events().click == nullptr && specs_.events().action == nullptr);
 			h_cursor_ = get_cursor(specs_.cursor);
 
 			if (specs_.on_create_resources != nullptr)
@@ -75,11 +75,6 @@ namespace liblec {
 				specs_.on_render(&rect_, is_enabled_, hit_, pressed_, selected_);
 
 			return rect_;
-		}
-
-		void widgets::custom_impl::on_click() {
-			if (specs_.events().click)
-				specs_.events().click();
 		}
 
 		widgets::custom::custom_specs&

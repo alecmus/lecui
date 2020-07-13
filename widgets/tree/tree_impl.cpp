@@ -363,6 +363,9 @@ namespace liblec {
 			// handle on_click
 			if (specs_.events().click)
 				specs_.events().click();
+
+			if (specs_.events().action)
+				specs_.events().action();
 		}
 
 		bool widgets::tree_impl::hit(const bool& hit) {

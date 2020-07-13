@@ -781,6 +781,9 @@ namespace liblec {
 
 					if (specs_.events().click)
 						specs_.events().click();
+
+					if (specs_.events().action)
+						specs_.events().action();
 				}
 			}
 		}

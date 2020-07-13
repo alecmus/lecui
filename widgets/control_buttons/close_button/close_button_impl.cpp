@@ -96,11 +96,6 @@ namespace liblec {
 			return rect_;
 		}
 
-		void widgets::close_button_impl::on_click() {
-			if (specs_.events().click)
-				specs_.events().click();
-		}
-
 		widgets::close_button_specs&
 			widgets::close_button_impl::specs() { return specs_; }
 

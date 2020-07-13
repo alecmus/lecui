@@ -121,8 +121,6 @@ namespace liblec {
 			return rect_pane_;
 		}
 
-		void widgets::pane_impl::on_click() {}
-
 		containers::pane::pane_specs&
 			widgets::pane_impl::specs() { return specs_; }
 

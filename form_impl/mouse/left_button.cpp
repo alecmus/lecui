@@ -233,10 +233,7 @@ namespace liblec {
 					widget.second.pressed() &&
 					widget.second.contains(point)) {
 					clicked = true;
-					on_click_handler = [&]() {
-						widget.second.on_action();
-						widget.second.on_click();
-					};
+					on_click_handler = [&]() { widget.second.on_click(); };
 				}
 
 				if (widget.second.pressed())
@@ -260,10 +257,7 @@ namespace liblec {
 							widget.second.pressed() &&
 							widget.second.contains(point)) {
 							clicked = true;
-							on_click_handler = [&]() {
-								widget.second.on_action();
-								widget.second.on_click(); 
-							};
+							on_click_handler = [&]() { widget.second.on_click(); };
 						}
 
 						if (widget.second.pressed())

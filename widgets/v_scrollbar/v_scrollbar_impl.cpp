@@ -147,11 +147,6 @@ namespace liblec {
 			return rect_;
 		}
 
-		void widgets::v_scrollbar_impl::on_click() {
-			if (specs_.events().click)
-				specs_.events().click();
-		}
-
 		widgets::v_scrollbar_specs&
 			widgets::v_scrollbar_impl::specs() { return specs_; }
 

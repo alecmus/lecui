@@ -42,7 +42,7 @@ namespace liblec {
 		HRESULT widgets::checkbox_impl::create_resources(
 			ID2D1HwndRenderTarget* p_render_target) {
 			specs_old_ = specs_;
-			is_static_ = (specs_.events().check == nullptr && specs_.events().click == nullptr);
+			is_static_ = (specs_.events().check == nullptr && specs_.events().click == nullptr && specs_.events().action == nullptr);
 			h_cursor_ = get_cursor(specs_.cursor);
 
 			HRESULT hr = S_OK;
@@ -252,6 +252,28 @@ namespace liblec {
 
 			if (specs_.events().click)
 				specs_.events().click();
+
+			if (specs_.events().action)
+				specs_.events().action();
+		}
+
+		void widgets::checkbox_impl::on_action() {
+			switch (specs_.status) {
+			case widgets::checkbox::checkbox_specs::checkbox_status::unchecked:
+				specs_.status = widgets::checkbox::checkbox_specs::checkbox_status::checked;
+				break;
+			case widgets::checkbox::checkbox_specs::checkbox_status::checked:
+			case widgets::checkbox::checkbox_specs::checkbox_status::indeterminate:
+			default:
+				specs_.status = widgets::checkbox::checkbox_specs::checkbox_status::unchecked;
+				break;
+			}
+
+			if (specs_.events().check)
+				specs_.events().check(specs_.status);
+
+			if (specs_.events().action)
+				specs_.events().action();
 		}
 
 		widgets::checkbox::checkbox_specs&
