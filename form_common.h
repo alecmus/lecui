@@ -353,8 +353,8 @@ namespace liblec {
 		};
 
 		static inline HRESULT load_bitmap_resource(ID2D1RenderTarget* pRenderTarget,
-			IWICImagingFactory* pIWICFactory, HINSTANCE hInst, PCWSTR resourceName,
-			PCWSTR resourceType, ID2D1Bitmap** ppBitmap) {
+			IWICImagingFactory* pIWICFactory, HINSTANCE hInst, int id_image,
+			std::string resource_type, ID2D1Bitmap** ppBitmap) {
 			IWICBitmapDecoder* pDecoder = NULL;
 			IWICBitmapFrameDecode* pSource = NULL;
 			IWICStream* pStream = NULL;
@@ -366,7 +366,7 @@ namespace liblec {
 			DWORD imageFileSize = 0;
 
 			// Locate the resource.
-			imageResHandle = FindResourceW(hInst, resourceName, resourceType);
+			imageResHandle = FindResourceA(hInst, MAKEINTRESOURCEA(id_image), resource_type.c_str());
 			HRESULT hr = imageResHandle ? S_OK : E_FAIL;
 			if (SUCCEEDED(hr)) {
 				// Load the resource.
