@@ -67,12 +67,12 @@ namespace liblec {
 			progress_indicator_text,
 			progress_indicator_unfilled,
 
-			textbox,
-			textbox_border,
-			textbox_disabled,
-			textbox_prompt,
-			textbox_selected,
-			textbox_caret,
+			text_field,
+			text_field_border,
+			text_field_disabled,
+			text_field_prompt,
+			text_field_selected,
+			text_field_caret,
 
 			table,
 			table_border,

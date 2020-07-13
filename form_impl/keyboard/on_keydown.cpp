@@ -30,16 +30,16 @@ namespace liblec {
 					static void check_widgets(containers::page& page, WPARAM wParam, bool& change) {
 						for (auto& widget : page.d_page_.widgets()) {
 							if (widget.second.type() ==
-								widgets::widget_type::textbox && widget.second.selected()) {
+								widgets::widget_type::text_field && widget.second.selected()) {
 								change = true;
 								try {
-									auto& textbox = page.d_page_.get_textbox(widget.first);
+									auto& text_field = page.d_page_.get_text_field(widget.first);
 
 									switch (wParam) {
-									case VK_LEFT: textbox.key_left(); break;
-									case VK_RIGHT: textbox.key_right(); break;
-									case VK_BACK: textbox.key_backspace(); break;
-									case VK_DELETE: textbox.key_delete(); break;
+									case VK_LEFT: text_field.key_left(); break;
+									case VK_RIGHT: text_field.key_right(); break;
+									case VK_BACK: text_field.key_backspace(); break;
+									case VK_DELETE: text_field.key_delete(); break;
 									default:
 										break;
 									}
@@ -166,7 +166,7 @@ namespace liblec {
 								continue;
 
 							if (widget.second.selected() &&
-								widget.second.type() != widgets::widget_type::textbox &&	// exclude text box from space bar presses
+								widget.second.type() != widgets::widget_type::text_field &&	// exclude text box from space bar presses
 								widget.second.type() != widgets::widget_type::html_editor)	// exclude html editor from space bar presses
 								widget.second.press(true);
 							else

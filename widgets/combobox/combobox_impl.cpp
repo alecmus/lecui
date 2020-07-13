@@ -313,16 +313,16 @@ namespace liblec {
 						safe_release(&p_text_layout_);
 					}
 
-					const auto textbox_width = rect_text_box_.right - rect_text_box_.left;
+					const auto text_field_width = rect_text_box_.right - rect_text_box_.left;
 					const auto distance_to_caret = rect_up_to_caret_.right - rect_up_to_caret_.left;
-					const auto off_set_left = textbox_width - distance_to_caret;
+					const auto off_set_left = text_field_width - distance_to_caret;
 
 					if (off_set_left < text_off_set_ || hidden_left == 0) {
 						// Either
 						// 1. caret has reached far right and text is being added
-						// 2. text hasn't filled textbox
+						// 2. text hasn't filled text_field
 						//
-						// keep caret to the rightmost but within textbox (pin to the right if end is reached,
+						// keep caret to the rightmost but within text_field (pin to the right if end is reached,
 						// pushing text to the left).
 						text_off_set_ = off_set_left;
 					}

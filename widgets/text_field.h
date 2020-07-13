@@ -1,5 +1,5 @@
 /*
-** textbox.h - textbox widget interface
+** text_field.h - text_field widget interface
 **
 ** lecui user interface library
 ** Copyright (c) 2019 Alec T. Musasa (alecmus at live dot com)
@@ -22,14 +22,14 @@
 namespace liblec {
 	namespace lecui {
 		namespace widgets {
-			/// <summary>Textbox widget.</summary>
-			class lecui_api textbox {
+			/// <summary>Text field widget.</summary>
+			class lecui_api text_field {
 			public:
-				/// <summary>Textbox widget specifications.</summary>
+				/// <summary>Text field widget specifications.</summary>
 				/// <remarks>Recommended height with defaults is 25px</remarks>
-				class textbox_specs : public specs {
+				class text_field_specs : public specs {
 				public:
-					textbox_specs() {
+					text_field_specs() {
 						cursor = cursor_type::caret;
 						rect.size({ 200.f, 25.f });
 					}
@@ -41,56 +41,56 @@ namespace liblec {
 					color color_prompt;
 					color color_caret;
 
-					bool operator==(const textbox_specs&);
-					bool operator!=(const textbox_specs&);
+					bool operator==(const text_field_specs&);
+					bool operator!=(const text_field_specs&);
 
 				private:
 					/// <summary>The character to use for masking the text.</summary>
 					char mask = '\0';
 
 #if defined(LECUI_EXPORTS)
-					friend class passwordbox;
-					friend class textbox_impl;
+					friend class password_field;
+					friend class text_field_impl;
 #endif
 				};
 
-				/// <summary>Textbox constructor.</summary>
+				/// <summary>Text field constructor.</summary>
 				/// <param name="page">The container to place it in.</param>
 				/// <param name="alias">The in-page unique alias, e.g. "username".</param>
-				textbox(containers::page& page, const std::string& alias);
-				virtual ~textbox();
+				text_field(containers::page& page, const std::string& alias);
+				virtual ~text_field();
 
-				/// <summary>Get the textbox specifications.</summary>
-				/// <returns>A reference to the textbox specifications.</returns>
+				/// <summary>Get the text_field specifications.</summary>
+				/// <returns>A reference to the text_field specifications.</returns>
 				[[nodiscard]]
-				textbox_specs& specs();
+				text_field_specs& specs();
 
-				/// <summary>Get the textbox specifications.</summary>
-				/// <returns>A reference to the textbox specifications.</returns>
+				/// <summary>Get the text_field specifications.</summary>
+				/// <returns>A reference to the text_field specifications.</returns>
 				/// <remarks>Alternative to specs() for more terse code.</remarks>
 				[[nodiscard]]
-				textbox_specs& operator()();
+				text_field_specs& operator()();
 
-				/// <summary>Get the specifications of a textbox.</summary>
-				/// <param name="fm">The form containing the textbox.</param>
+				/// <summary>Get the specifications of a text_field.</summary>
+				/// <param name="fm">The form containing the text_field.</param>
 				/// <param name="path">The full path to the widget, e.g.
 				/// "login_page/credentials_pane/username".</param>
-				/// <returns>A reference to the textbox specifications.</returns>
+				/// <returns>A reference to the text_field specifications.</returns>
 				/// <remarks>Throws on failure.</remarks>
 				[[nodiscard]]
-				static textbox_specs& specs(form& fm, const std::string& path);
+				static text_field_specs& specs(form& fm, const std::string& path);
 
 			protected:
 				class impl;
 				impl& d_;
 
-				class passwordbox;
-				friend class passwordbox;
+				class password_field;
+				friend class password_field;
 
 				// Default constructor and copying an object of this class are not allowed
-				textbox();
-				textbox(const textbox&);
-				textbox& operator=(const textbox&);
+				text_field();
+				text_field(const text_field&);
+				text_field& operator=(const text_field&);
 			};
 		}
 	}

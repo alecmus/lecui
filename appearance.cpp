@@ -56,12 +56,12 @@ namespace liblec {
 				case item::progress_indicator_text: return { 0, 120, 170, 255 };
 				case item::progress_indicator_unfilled: return { 200, 200, 200, 255 };
 
-				case item::textbox: return { 255, 255, 255, 255 };
-				case item::textbox_border: return { 150, 150, 150, 255 };
-				case item::textbox_disabled: return { 248, 248, 248, 255 };
-				case item::textbox_prompt: return { 180, 180, 180, 255 };
-				case item::textbox_selected: return { 0, 120, 170, 100 };
-				case item::textbox_caret: return { 50, 50, 50, 255 };
+				case item::text_field: return { 255, 255, 255, 255 };
+				case item::text_field_border: return { 150, 150, 150, 255 };
+				case item::text_field_disabled: return { 248, 248, 248, 255 };
+				case item::text_field_prompt: return { 180, 180, 180, 255 };
+				case item::text_field_selected: return { 0, 120, 170, 100 };
+				case item::text_field_caret: return { 50, 50, 50, 255 };
 
 				case item::table: return { 255, 255, 255, 255 };
 				case item::table_border: return { 150, 150, 150, 255 };
@@ -174,12 +174,12 @@ namespace liblec {
 				case item::progress_indicator_text: return { 60, 190, 175, 255 };
 				case item::progress_indicator_unfilled: return { 85, 95, 100, 255 };
 
-				case item::textbox: return { 40, 45, 50, 255 };
-				case item::textbox_border: return { 150, 150, 150, 255 };
-				case item::textbox_disabled: return { 30, 35, 40, 255 };
-				case item::textbox_prompt: return { 70, 75, 80, 255 };
-				case item::textbox_selected: return { 60, 190, 175, 150 };
-				case item::textbox_caret: return { 60, 190, 175, 255 };
+				case item::text_field: return { 40, 45, 50, 255 };
+				case item::text_field_border: return { 150, 150, 150, 255 };
+				case item::text_field_disabled: return { 30, 35, 40, 255 };
+				case item::text_field_prompt: return { 70, 75, 80, 255 };
+				case item::text_field_selected: return { 60, 190, 175, 150 };
+				case item::text_field_caret: return { 60, 190, 175, 255 };
 
 				case item::table: return { 16, 29, 36, 255 };
 				case item::table_border: return { 150, 150, 150, 255 };

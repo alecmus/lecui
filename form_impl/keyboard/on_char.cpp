@@ -24,7 +24,7 @@ namespace liblec {
 				static void check_widgets(containers::page& page, const char& c, bool& change) {
 					for (auto& widget : page.d_page_.widgets()) {
 						if (widget.second.type() ==
-							widgets::widget_type::textbox && widget.second.selected()) {
+							widgets::widget_type::text_field && widget.second.selected()) {
 							change = true;
 							try {
 								// ignore backspace, tab and return
@@ -34,8 +34,8 @@ namespace liblec {
 									break;
 
 								// insert character
-								auto& textbox = page.d_page_.get_textbox(widget.first);
-								textbox.insert_character(c);
+								auto& text_field = page.d_page_.get_text_field(widget.first);
+								text_field.insert_character(c);
 							}
 							catch (const std::exception& e) { log(e.what()); }
 							break;

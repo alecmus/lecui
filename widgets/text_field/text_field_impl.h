@@ -1,5 +1,5 @@
 /*
-** textbox_impl.h - textbox_impl interface
+** text_field_impl.h - text_field_impl interface
 **
 ** lecui user interface library
 ** Copyright (c) 2019 Alec T. Musasa (alecmus at live dot com)
@@ -14,12 +14,12 @@
 #pragma once
 
 #include "../widget_impl.h"
-#include "../textbox.h"
+#include "../text_field.h"
 
 namespace liblec {
 	namespace lecui {
 		namespace widgets {
-			class textbox_impl : public widget_impl {
+			class text_field_impl : public widget_impl {
 				/// private virtual function overrides
 				widgets::specs& generic_specs() override {
 					return specs_;
@@ -27,13 +27,13 @@ namespace liblec {
 
 			public:
 				/// Prevent the use of the default constructor.
-				textbox_impl() = delete;
+				text_field_impl() = delete;
 
 				/// constructor and destructor
-				textbox_impl(containers::page& page,
+				text_field_impl(containers::page& page,
 					const std::string& alias,
 					IDWriteFactory* p_directwrite_factory);
-				~textbox_impl();
+				~text_field_impl();
 
 				/// virtual function overrides
 				widget_type type() override;
@@ -45,8 +45,8 @@ namespace liblec {
 				void on_selection_change(const bool& selected) override;
 
 				/// widget specific methods
-				widgets::textbox::textbox_specs& specs();
-				widgets::textbox::textbox_specs& operator()();
+				widgets::text_field::text_field_specs& specs();
+				widgets::text_field::text_field_specs& operator()();
 				void insert_character(const char& c);
 				void key_backspace();
 				void key_delete();
@@ -55,11 +55,11 @@ namespace liblec {
 
 			private:
 				/// Prevent copying an object of this class.
-				textbox_impl(const textbox_impl&);
-				textbox_impl& operator=(const textbox_impl&);
+				text_field_impl(const text_field_impl&);
+				text_field_impl& operator=(const text_field_impl&);
 
 				/// Private variables
-				widgets::textbox::textbox_specs specs_, specs_old_;
+				widgets::text_field::text_field_specs specs_, specs_old_;
 				ID2D1SolidColorBrush* p_brush_;
 				ID2D1SolidColorBrush* p_brush_caret_;
 				ID2D1SolidColorBrush* p_brush_prompt_;

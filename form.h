@@ -54,8 +54,8 @@ namespace liblec {
 			class progress_indicator;
 			class progress_bar;
 			class checkbox;
-			class textbox;
-			class passwordbox;
+			class text_field;
+			class password_field;
 			class tree;
 			class slider;
 			class html_editor;
@@ -68,7 +68,7 @@ namespace liblec {
 			class widget_impl;
 			class combobox_impl;
 			class html_editor_impl;
-			class textbox_impl;
+			class text_field_impl;
 			class tree_impl;
 			class image_impl;
 		}
@@ -263,7 +263,7 @@ namespace liblec {
 			friend class widgets::progress_indicator;
 			friend class widgets::progress_bar;
 			friend class widgets::checkbox;
-			friend class widgets::textbox;
+			friend class widgets::text_field;
 			friend class widgets::tree;
 			friend class widgets::slider;
 			friend class widgets::html_editor;

@@ -65,9 +65,6 @@
     <Filter Include="lecui\widgets\checkbox">
       <UniqueIdentifier>{5843202b-d0a5-46a8-9c3e-a00ae8353c31}</UniqueIdentifier>
     </Filter>
-    <Filter Include="lecui\widgets\textbox">
-      <UniqueIdentifier>{7839b613-5c57-4acf-bfda-0c4461eeaf90}</UniqueIdentifier>
-    </Filter>
     <Filter Include="lecui\widgets\tree">
       <UniqueIdentifier>{7a9514ff-02f0-4032-8db2-f4658a41cc01}</UniqueIdentifier>
     </Filter>
@@ -160,6 +157,9 @@
     </Filter>
     <Filter Include="lecui\widgets\icon">
       <UniqueIdentifier>{f12d1cc5-a742-415e-8283-1c16e62c47a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lecui\widgets\text_field">
+      <UniqueIdentifier>{7839b613-5c57-4acf-bfda-0c4461eeaf90}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -254,12 +254,6 @@
     <ClInclude Include="widgets\checkbox\checkbox_impl.h">
       <Filter>lecui\widgets\checkbox</Filter>
     </ClInclude>
-    <ClInclude Include="widgets\textbox.h">
-      <Filter>lecui\widgets</Filter>
-    </ClInclude>
-    <ClInclude Include="widgets\textbox\textbox_impl.h">
-      <Filter>lecui\widgets\textbox</Filter>
-    </ClInclude>
     <ClInclude Include="widgets\tree.h">
       <Filter>lecui\widgets</Filter>
     </ClInclude>
@@ -286,9 +280,6 @@
     </ClInclude>
     <ClInclude Include="timer.h">
       <Filter>lecui</Filter>
-    </ClInclude>
-    <ClInclude Include="widgets\passwordbox.h">
-      <Filter>lecui\widgets</Filter>
     </ClInclude>
     <ClInclude Include="containers\status_pane.h">
       <Filter>lecui\containers</Filter>
@@ -386,6 +377,15 @@
     <ClInclude Include="widgets\icon\icon_impl.h">
       <Filter>lecui\widgets\icon</Filter>
     </ClInclude>
+    <ClInclude Include="widgets\text_field.h">
+      <Filter>lecui\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="widgets\text_field\text_field_impl.h">
+      <Filter>lecui\widgets\text_field</Filter>
+    </ClInclude>
+    <ClInclude Include="widgets\password_field.h">
+      <Filter>lecui\widgets</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="error\win_error.cpp">
@@ -475,12 +475,6 @@
     </ClCompile>
     <ClCompile Include="widgets\checkbox\checkbox_impl.cpp">
       <Filter>lecui\widgets\checkbox</Filter>
-    </ClCompile>
-    <ClCompile Include="widgets\textbox\textbox.cpp">
-      <Filter>lecui\widgets\textbox</Filter>
-    </ClCompile>
-    <ClCompile Include="widgets\textbox\textbox_impl.cpp">
-      <Filter>lecui\widgets\textbox</Filter>
     </ClCompile>
     <ClCompile Include="widgets\tree\tree_impl.cpp">
       <Filter>lecui\widgets\tree</Filter>
@@ -640,6 +634,12 @@
     </ClCompile>
     <ClCompile Include="widgets\icon\icon_impl.cpp">
       <Filter>lecui\widgets\icon</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\text_field\text_field.cpp">
+      <Filter>lecui\widgets\text_field</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\text_field\text_field_impl.cpp">
+      <Filter>lecui\widgets\text_field</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

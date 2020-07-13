@@ -22,7 +22,7 @@
 namespace liblec {
 	namespace lecui {
 		namespace widgets {
-			/// <summary>Textbox widget.</summary>
+			/// <summary>HTML editor widget.</summary>
 			class lecui_api html_editor {
 			public:
 				/// <summary>HTML editor widget specifications.</summary>

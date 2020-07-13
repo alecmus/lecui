@@ -1005,10 +1005,10 @@ namespace liblec {
 						hour().on_resize = { 0, 0, 0, 0 };
 						hour().corner_radius_x = 2.f;
 						hour().corner_radius_y = 2.f;
-						hour().color_fill = defaults::color(theme_, item::textbox);
-						hour().color_border = defaults::color(theme_, item::textbox_border);
-						hour().color_disabled = defaults::color(theme_, item::textbox_disabled);
-						hour().color_selected = defaults::color(theme_, item::textbox_selected);
+						hour().color_fill = defaults::color(theme_, item::text_field);
+						hour().color_border = defaults::color(theme_, item::text_field_border);
+						hour().color_disabled = defaults::color(theme_, item::text_field_disabled);
+						hour().color_selected = defaults::color(theme_, item::text_field_selected);
 
 						widgets::label hour_label(it.destination, widgets::time_impl::alias_hour_label());
 						hour_label().rect = hour().rect;
@@ -1033,10 +1033,10 @@ namespace liblec {
 						minute().rect.snap_to(seperator_1().rect, rect::snap_type::right, 0.f);
 						minute().corner_radius_x = 2.f;
 						minute().corner_radius_y = 2.f;
-						minute().color_fill = defaults::color(theme_, item::textbox);
-						minute().color_border = defaults::color(theme_, item::textbox_border);
-						minute().color_disabled = defaults::color(theme_, item::textbox_disabled);
-						minute().color_selected = defaults::color(theme_, item::textbox_selected);
+						minute().color_fill = defaults::color(theme_, item::text_field);
+						minute().color_border = defaults::color(theme_, item::text_field_border);
+						minute().color_disabled = defaults::color(theme_, item::text_field_disabled);
+						minute().color_selected = defaults::color(theme_, item::text_field_selected);
 
 						widgets::label minute_label(it.destination, widgets::time_impl::alias_minute_label());
 						minute_label().rect = minute().rect;
@@ -1061,10 +1061,10 @@ namespace liblec {
 						second().rect.snap_to(seperator_2().rect, rect::snap_type::right, 0.f);
 						second().corner_radius_x = 2.f;
 						second().corner_radius_y = 2.f;
-						second().color_fill = defaults::color(theme_, item::textbox);
-						second().color_border = defaults::color(theme_, item::textbox_border);
-						second().color_disabled = defaults::color(theme_, item::textbox_disabled);
-						second().color_selected = defaults::color(theme_, item::textbox_selected);
+						second().color_fill = defaults::color(theme_, item::text_field);
+						second().color_border = defaults::color(theme_, item::text_field_border);
+						second().color_disabled = defaults::color(theme_, item::text_field_disabled);
+						second().color_selected = defaults::color(theme_, item::text_field_selected);
 
 						widgets::label second_label(it.destination, widgets::time_impl::alias_second_label());
 						second_label().rect = second().rect;
@@ -1322,10 +1322,10 @@ namespace liblec {
 						day().on_resize = { 0, 0, 0, 0 };
 						day().corner_radius_x = 2.f;
 						day().corner_radius_y = 2.f;
-						day().color_fill = defaults::color(theme_, item::textbox);
-						day().color_border = defaults::color(theme_, item::textbox_border);
-						day().color_disabled = defaults::color(theme_, item::textbox_disabled);
-						day().color_selected = defaults::color(theme_, item::textbox_selected);
+						day().color_fill = defaults::color(theme_, item::text_field);
+						day().color_border = defaults::color(theme_, item::text_field_border);
+						day().color_disabled = defaults::color(theme_, item::text_field_disabled);
+						day().color_selected = defaults::color(theme_, item::text_field_selected);
 
 						widgets::label day_label(it.destination, widgets::date_impl::alias_day_label());
 						day_label().rect = day().rect;
@@ -1350,10 +1350,10 @@ namespace liblec {
 						month().rect.snap_to(seperator_1().rect, rect::snap_type::right, 0.f);
 						month().corner_radius_x = 2.f;
 						month().corner_radius_y = 2.f;
-						month().color_fill = defaults::color(theme_, item::textbox);
-						month().color_border = defaults::color(theme_, item::textbox_border);
-						month().color_disabled = defaults::color(theme_, item::textbox_disabled);
-						month().color_selected = defaults::color(theme_, item::textbox_selected);
+						month().color_fill = defaults::color(theme_, item::text_field);
+						month().color_border = defaults::color(theme_, item::text_field_border);
+						month().color_disabled = defaults::color(theme_, item::text_field_disabled);
+						month().color_selected = defaults::color(theme_, item::text_field_selected);
 
 						widgets::label month_label(it.destination, widgets::date_impl::alias_month_label());
 						month_label().rect = month().rect;
@@ -1377,10 +1377,10 @@ namespace liblec {
 						year().rect.snap_to(seperator_2().rect, rect::snap_type::right, 0.f);
 						year().corner_radius_x = 2.f;
 						year().corner_radius_y = 2.f;
-						year().color_fill = defaults::color(theme_, item::textbox);
-						year().color_border = defaults::color(theme_, item::textbox_border);
-						year().color_disabled = defaults::color(theme_, item::textbox_disabled);
-						year().color_selected = defaults::color(theme_, item::textbox_selected);
+						year().color_fill = defaults::color(theme_, item::text_field);
+						year().color_border = defaults::color(theme_, item::text_field_border);
+						year().color_disabled = defaults::color(theme_, item::text_field_disabled);
+						year().color_selected = defaults::color(theme_, item::text_field_selected);
 
 						widgets::label year_label(it.destination, widgets::date_impl::alias_year_label());
 						year_label().rect = year().rect;

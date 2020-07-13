@@ -1,5 +1,5 @@
 /*
-** textbox.cpp - textbox widget implementation
+** text_field.cpp - text_field widget implementation
 **
 ** lecui user interface library
 ** Copyright (c) 2019 Alec T. Musasa (alecmus at live dot com)
@@ -11,13 +11,13 @@
 ** for full license details.
 */
 
-#include "../textbox.h"
-#include "../passwordbox.h"
+#include "../text_field.h"
+#include "../password_field.h"
 #include "../../form_impl/form_impl.h"
 
 namespace liblec {
 	namespace lecui {
-		bool widgets::textbox::textbox_specs::operator==(const textbox_specs& param) {
+		bool widgets::text_field::text_field_specs::operator==(const text_field_specs& param) {
 			return
 				// generic specs
 				specs::operator==(param) &&
@@ -28,44 +28,44 @@ namespace liblec {
 				(color_caret == param.color_caret);
 		}
 
-		bool widgets::textbox::textbox_specs::operator!=(const textbox_specs& param) {
+		bool widgets::text_field::text_field_specs::operator!=(const text_field_specs& param) {
 			return !operator==(param);
 		}
 
-		class widgets::textbox::impl {
+		class widgets::text_field::impl {
 		public:
 			impl(containers::page& page, const std::string& alias) :
 				page_(page),
-				specs_(page_.d_page_.add_textbox(alias)) {
+				specs_(page_.d_page_.add_text_field(alias)) {
 				specs_.color_text = defaults::color(page_.d_page_.fm_.d_.theme_, item::label);
-				specs_.color_prompt = defaults::color(page_.d_page_.fm_.d_.theme_, item::textbox_prompt);
-				specs_.color_fill = defaults::color(page_.d_page_.fm_.d_.theme_, item::textbox);
-				specs_.color_border = defaults::color(page_.d_page_.fm_.d_.theme_, item::textbox_border);
-				specs_.color_disabled = defaults::color(page_.d_page_.fm_.d_.theme_, item::textbox_disabled);
-				specs_.color_selected = defaults::color(page_.d_page_.fm_.d_.theme_, item::textbox_selected);
-				specs_.color_caret = defaults::color(page_.d_page_.fm_.d_.theme_, item::textbox_caret);
+				specs_.color_prompt = defaults::color(page_.d_page_.fm_.d_.theme_, item::text_field_prompt);
+				specs_.color_fill = defaults::color(page_.d_page_.fm_.d_.theme_, item::text_field);
+				specs_.color_border = defaults::color(page_.d_page_.fm_.d_.theme_, item::text_field_border);
+				specs_.color_disabled = defaults::color(page_.d_page_.fm_.d_.theme_, item::text_field_disabled);
+				specs_.color_selected = defaults::color(page_.d_page_.fm_.d_.theme_, item::text_field_selected);
+				specs_.color_caret = defaults::color(page_.d_page_.fm_.d_.theme_, item::text_field_caret);
 			}
 			containers::page& page_;
-			textbox_specs& specs_;
+			text_field_specs& specs_;
 		};
 
-		widgets::textbox::textbox(containers::page& page, const std::string& alias) :
+		widgets::text_field::text_field(containers::page& page, const std::string& alias) :
 			d_(*(new impl(page, alias))) {}
 
-		widgets::textbox::~textbox() { delete& d_; }
+		widgets::text_field::~text_field() { delete& d_; }
 
-		widgets::textbox::textbox_specs&
-			widgets::textbox::specs() {
+		widgets::text_field::text_field_specs&
+			widgets::text_field::specs() {
 			return d_.specs_;
 		}
 
-		widgets::textbox::textbox_specs&
-			widgets::textbox::operator()() {
+		widgets::text_field::text_field_specs&
+			widgets::text_field::operator()() {
 			return specs();
 		}
 
-		widgets::textbox::textbox_specs&
-			widgets::textbox::specs(form& fm, const std::string& path) {
+		widgets::text_field::text_field_specs&
+			widgets::text_field::specs(form& fm, const std::string& path) {
 			const auto idx = path.find("/");
 
 			if (idx != std::string::npos) {
@@ -75,14 +75,14 @@ namespace liblec {
 					// check form pages
 					auto& page = fm.d_.p_pages_.at(page_alias);
 					auto results = fm.d_.find_widget(page, path_remaining);
-					return results.page.d_page_.get_textbox(results.widget.alias()).specs();
+					return results.page.d_page_.get_text_field(results.widget.alias()).specs();
 				}
 				catch (const std::exception&) {}
 				try {
 					// check status panes
 					auto& page = fm.d_.p_status_panes_.at(page_alias);
 					auto results = fm.d_.find_widget(page, path_remaining);
-					return results.page.d_page_.get_textbox(results.widget.alias()).specs();
+					return results.page.d_page_.get_text_field(results.widget.alias()).specs();
 				}
 				catch (const std::exception&) {}
 			}
@@ -90,12 +90,12 @@ namespace liblec {
 			throw std::invalid_argument("Invalid path");
 		}
 
-		widgets::passwordbox::passwordbox(containers::page& page, const std::string& alias) :
-			textbox(page, alias) {
+		widgets::password_field::password_field(containers::page& page, const std::string& alias) :
+			text_field(page, alias) {
 			d_.specs_.mask = '•';
 			d_.specs_.prompt = "Enter password here";
 		}
 
-		widgets::passwordbox::~passwordbox() {}
+		widgets::password_field::~password_field() {}
 	}
 }

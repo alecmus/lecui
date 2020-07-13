@@ -52,7 +52,7 @@ namespace liblec {
 				progress_indicator,
 				progress_bar,
 				checkbox,
-				textbox,
+				text_field,
 				tree,
 				slider,
 				html_editor,

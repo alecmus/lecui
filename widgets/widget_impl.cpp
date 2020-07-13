@@ -103,7 +103,7 @@ namespace liblec {
 				generic_specs().events().click();
 
 			if (type() != widgets::widget_type::html_editor &&
-				type() != widgets::widget_type::textbox &&
+				type() != widgets::widget_type::text_field &&
 				type() != widgets::widget_type::combobox) {
 				if (generic_specs().events().action)
 					generic_specs().events().action();

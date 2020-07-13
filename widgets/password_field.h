@@ -1,5 +1,5 @@
 /*
-** passwordbox.h - passwordbox widget interface
+** password_field.h - password_field widget interface
 **
 ** lecui user interface library
 ** Copyright (c) 2019 Alec T. Musasa (alecmus at live dot com)
@@ -14,28 +14,28 @@
 #pragma once
 
 #if defined(LECUI_EXPORTS)
-#include "textbox.h"
+#include "text_field.h"
 #else
-#include <liblec/lecui/widgets/textbox.h>
+#include <liblec/lecui/widgets/text_field.h>
 #endif
 
 namespace liblec {
 	namespace lecui {
 		namespace widgets {
-			/// <summary>Passwordbox widget.</summary>
-			class lecui_api passwordbox : public textbox {
+			/// <summary>Password field widget.</summary>
+			class lecui_api password_field : public text_field {
 			public:
-				/// <summary>Passwordbox constructor.</summary>
+				/// <summary>Password field constructor.</summary>
 				/// <param name="page">The container to place it in.</param>
 				/// <param name="alias">The in-page unique alias, e.g. "password".</param>
-				passwordbox(containers::page& page, const std::string& alias);
-				~passwordbox();
+				password_field(containers::page& page, const std::string& alias);
+				~password_field();
 
 			private:
 				// Default constructor and copying an object of this class are not allowed
-				passwordbox();
-				passwordbox(const passwordbox&);
-				passwordbox& operator=(const passwordbox&);
+				password_field();
+				password_field(const password_field&);
+				password_field& operator=(const password_field&);
 			};
 		}
 	}

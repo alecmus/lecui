@@ -79,7 +79,7 @@ namespace liblec {
 				friend class widgets::progress_indicator;
 				friend class widgets::progress_bar;
 				friend class widgets::checkbox;
-				friend class widgets::textbox;
+				friend class widgets::text_field;
 				friend class widgets::tree;
 				friend class widgets::slider;
 				friend class widgets::html_editor;

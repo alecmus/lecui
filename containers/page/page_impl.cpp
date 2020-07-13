@@ -223,14 +223,14 @@ namespace liblec {
 			return checkboxes_.at(alias).specs();
 		}
 
-		widgets::textbox::textbox_specs&
-			containers::page::impl::add_textbox(std::string alias) {
+		widgets::text_field::text_field_specs&
+			containers::page::impl::add_text_field(std::string alias) {
 			check_alias(alias);
-			if (textboxes_.try_emplace(alias, pg_, alias, p_directwrite_factory_).second) {
-				widgets_.emplace(alias, textboxes_.at(alias));
+			if (text_fields_.try_emplace(alias, pg_, alias, p_directwrite_factory_).second) {
+				widgets_.emplace(alias, text_fields_.at(alias));
 				widgets_order_.emplace_back(alias);
 			}
-			return textboxes_.at(alias).specs();
+			return text_fields_.at(alias).specs();
 		}
 
 		widgets::tree::tree_specs&
@@ -363,8 +363,8 @@ namespace liblec {
 		widgets::checkbox_impl&
 			containers::page::impl::get_checkbox(const std::string& alias) { return checkboxes_.at(alias); }
 
-		widgets::textbox_impl&
-			containers::page::impl::get_textbox(const std::string& alias) { return textboxes_.at(alias); }
+		widgets::text_field_impl&
+			containers::page::impl::get_text_field(const std::string& alias) { return text_fields_.at(alias); }
 
 		widgets::tree_impl&
 			containers::page::impl::get_tree(const std::string& alias) { return trees_.at(alias); }
@@ -451,8 +451,8 @@ namespace liblec {
 				case widgets::widget_type::checkbox:
 					checkboxes_.erase(alias_);
 					break;
-				case widgets::widget_type::textbox:
-					textboxes_.erase(alias_);
+				case widgets::widget_type::text_field:
+					text_fields_.erase(alias_);
 					break;
 				case widgets::widget_type::tree:
 					trees_.erase(alias_);

@@ -46,7 +46,7 @@ namespace liblec {
 					float corner_radius_y = 5.f;
 
 					/// <summary>A list of the aliases for the widgets to be added to the group. e.g.
-					/// { "username_textbox", "password_textbox", "login_button" }.</summary>
+					/// { "username_text_field", "password_text_field", "login_button" }.</summary>
 					std::vector<std::string> widgets;
 
 					bool operator==(const group_specs&);

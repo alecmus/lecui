@@ -31,7 +31,7 @@
 #include "../../widgets/progress_indicator/progress_indicator_impl.h"
 #include "../../widgets/progress_bar/progress_bar_impl.h"
 #include "../../widgets/checkbox/checkbox_impl.h"
-#include "../../widgets/textbox/textbox_impl.h"
+#include "../../widgets/text_field/text_field_impl.h"
 #include "../../widgets/tree/tree_impl.h"
 #include "../../widgets/slider/slider_impl.h"
 #include "../../widgets/html_editor/html_editor_impl.h"
@@ -94,8 +94,8 @@ namespace liblec {
 				add_progress_bar(std::string alias);
 			widgets::checkbox::checkbox_specs&
 				add_checkbox(std::string alias);
-			widgets::textbox::textbox_specs&
-				add_textbox(std::string alias);
+			widgets::text_field::text_field_specs&
+				add_text_field(std::string alias);
 			widgets::tree::tree_specs&
 				add_tree(std::string alias);
 			widgets::slider::slider_specs&
@@ -150,8 +150,8 @@ namespace liblec {
 				get_progress_bar(const std::string& alias);
 			widgets::checkbox_impl&
 				get_checkbox(const std::string& alias);
-			widgets::textbox_impl&
-				get_textbox(const std::string& alias);
+			widgets::text_field_impl&
+				get_text_field(const std::string& alias);
 			widgets::tree_impl&
 				get_tree(const std::string& alias);
 			widgets::slider_impl&
@@ -210,7 +210,7 @@ namespace liblec {
 			std::map<std::string, widgets::progress_indicator_impl> progress_indicators_;
 			std::map<std::string, widgets::progress_bar_impl> progress_bars_;
 			std::map<std::string, widgets::checkbox_impl> checkboxes_;
-			std::map<std::string, widgets::textbox_impl> textboxes_;
+			std::map<std::string, widgets::text_field_impl> text_fields_;
 			std::map<std::string, widgets::tree_impl> trees_;
 			std::map<std::string, widgets::slider_impl> sliders_;
 			std::map<std::string, widgets::html_editor_impl> html_editors_;
@@ -238,7 +238,7 @@ namespace liblec {
 			friend class widgets::progress_indicator;
 			friend class widgets::progress_bar;
 			friend class widgets::checkbox;
-			friend class widgets::textbox;
+			friend class widgets::text_field;
 			friend class widgets::tree;
 			friend class widgets::slider;
 			friend class widgets::html_editor;

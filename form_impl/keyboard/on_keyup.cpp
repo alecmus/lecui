@@ -48,7 +48,7 @@ namespace liblec {
 							if (widget.second.is_static() || !widget.second.visible() || !widget.second.enabled())
 								continue;
 
-							if (widget.second.type() == widgets::widget_type::textbox ||
+							if (widget.second.type() == widgets::widget_type::text_field ||
 								widget.second.type() == widgets::widget_type::html_editor ||
 								widget.second.type() == widgets::widget_type::combobox)
 								continue;	// these widgets use the space key
