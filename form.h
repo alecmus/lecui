@@ -70,6 +70,7 @@ namespace liblec {
 			class html_editor_impl;
 			class textbox_impl;
 			class tree_impl;
+			class image_impl;
 		}
 #endif
 
@@ -272,6 +273,7 @@ namespace liblec {
 			friend class widgets::time;
 			friend class widgets::date;
 			friend class widgets::icon;
+			friend class widgets::image_impl;
 #endif
 		};
 	}

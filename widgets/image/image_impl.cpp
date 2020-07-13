@@ -12,6 +12,8 @@
 */
 
 #include "image_impl.h"
+#include "../../containers/page/page_impl.h"
+#include "../../form_impl/form_impl.h"
 
 namespace liblec {
 	namespace lecui {
@@ -56,7 +58,11 @@ namespace liblec {
 			if (SUCCEEDED(hr))
 				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_selected),
 					&p_brush_selected_);
-			if (SUCCEEDED(hr) && !specs_.file.empty())
+			if (SUCCEEDED(hr) && specs_.png_resource)	// png resource takes precedence
+				load_bitmap_resource(p_render_target, p_IWICFactory_,
+					page_.d_page_.get_form().d_.resource_module_handle_, specs_.png_resource, "PNG",
+					&p_bitmap_);
+			if (SUCCEEDED(hr) && !specs_.file.empty() && !p_bitmap_)
 				load_bitmap_file(p_render_target, p_IWICFactory_, convert_string(specs_.file).c_str(),
 					&p_bitmap_);
 
