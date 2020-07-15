@@ -1970,15 +1970,26 @@ namespace liblec {
 				catch (const std::exception&) {}
 
 				// check if widget is in special pane
+				try {
+					// check special tree pane
+					auto& tree_pane_control = container.d_page_.get_pane(widgets::pane_impl::tree_pane_alias_prefix() + path);
 
-				// check special tree pane
-				auto& tree_pane_control = container.d_page_.get_pane(widgets::pane_impl::tree_pane_alias_prefix() + path);
+					// tree pane control confirmed ... get the pane page
+					auto& tree_pane = tree_pane_control.p_panes_.at("pane");
 
-				// tree pane control confirmed ... get the pane page
-				auto& tree_pane = tree_pane_control.p_panes_.at("pane");
+					// pane confirmed ... recurse
+					return find_widget(tree_pane, path);
+				}
+				catch (const std::exception&) {}
+
+				// check special html pane
+				auto& html_pane_control = container.d_page_.get_pane(widgets::pane_impl::html_pane_alias_prefix() + path);
+
+				// html pane control confirmed ... get the pane page
+				auto& html_pane = html_pane_control.p_panes_.at("pane");
 
 				// pane confirmed ... recurse
-				return find_widget(tree_pane, path);
+				return find_widget(html_pane, path);
 			}
 			else {
 				// get the container's alias
@@ -2176,11 +2187,22 @@ namespace liblec {
 
 					if (idx != std::string::npos) {
 						const auto pane_path = path.substr(0, idx + 1);
+						// close pane (this will automatically close all the contents, including the widget in question)
 						close_container(pane_path + widgets::pane_impl::tree_pane_alias_prefix() + result.widget.alias());
 					}
 				} break;
-				case liblec::lecui::widgets::widget_type::html_editor:
-					break;
+				case liblec::lecui::widgets::widget_type::html_editor: {
+					// get the special pane's path
+					const auto idx = path.rfind("/");
+
+					if (idx != std::string::npos) {
+						const auto pane_path = path.substr(0, idx + 1);
+						// close html controls pane
+						close_container(pane_path + widgets::pane_impl::html_controls_pane_alias_prefix() + result.widget.alias());
+						// close html pane (this will automatically close all the contents, including the widget in question)
+						close_container(pane_path + widgets::pane_impl::html_pane_alias_prefix() + result.widget.alias());
+					}
+				} break;
 				case liblec::lecui::widgets::widget_type::time:
 					break;
 				case liblec::lecui::widgets::widget_type::date:
