@@ -2266,15 +2266,41 @@ namespace liblec {
 						do_close(result);
 						update();
 					}
-					catch (const std::exception&) {}
+					catch (const std::exception&) {
+						try {
+							// check status pages
+							auto result = find_widget(p_status_panes_.at(page_alias), path_remaining);
+							do_close(result);
+							update();
+						}
+						catch (const std::exception&) {
+							// check tab controls
+							const auto tab_name = find_page(p_pages_.at(page_alias), path_remaining).d_page_.alias();
 
-					try {
-						// check status pages
-						auto result = find_widget(p_status_panes_.at(page_alias), path_remaining);
-						do_close(result);
-						update();
+							// tab control confirmed ... get the tab control's container and the tab control's implementation
+							auto idx = path_remaining.rfind("/");
+
+							if (idx != std::string::npos) {
+								auto tab_control_container_path_remaining = path_remaining.substr(0, idx);
+								idx = tab_control_container_path_remaining.rfind("/");
+
+								if (idx != std::string::npos) {
+									const auto alias = tab_control_container_path_remaining.substr(idx + 1);
+									tab_control_container_path_remaining = tab_control_container_path_remaining.substr(0, idx);
+
+									// get tab control's container
+									auto& page = find_page(p_pages_.at(page_alias), tab_control_container_path_remaining);
+
+									// get the tab control implementation
+									auto& tab_pane_impl = page.d_page_.get_tab_pane(alias);
+
+									// close tab
+									tab_pane_impl.close_tab(tab_name);
+									update();
+								}
+							}
+						}
 					}
-					catch (const std::exception&) {}
 				}
 			}
 			catch (const std::exception&) {}
