@@ -48,6 +48,9 @@ namespace liblec {
 			label_specs& specs_;
 		};
 
+		widgets::label::label(containers::page& page) :
+			label(page, "") {}
+
 		widgets::label::label(containers::page& page, const std::string& alias) :
 			d_(*(new impl(page, alias))) {}
 

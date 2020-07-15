@@ -46,6 +46,9 @@ namespace liblec {
 			checkbox_specs& specs_;
 		};
 
+		widgets::checkbox::checkbox(containers::page& page) :
+			checkbox(page, "") {}
+
 		widgets::checkbox::checkbox(containers::page& page, const std::string& alias) :
 			d_(*(new impl(page, alias))) {}
 

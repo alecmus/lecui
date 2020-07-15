@@ -39,6 +39,9 @@ namespace liblec {
 			time_specs& specs_;
 		};
 
+		widgets::time::time(containers::page& page) :
+			time(page, "") {}
+
 		widgets::time::time(containers::page& page, const std::string& alias) :
 			d_(*(new impl(page, alias))) {}
 

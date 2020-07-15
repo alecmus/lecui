@@ -38,6 +38,9 @@ namespace liblec {
 			custom_specs& specs_;
 		};
 
+		widgets::custom::custom(containers::page& page) :
+			custom(page, "") {}
+
 		widgets::custom::custom(containers::page& page, const std::string& alias) :
 			d_(*(new impl(page, alias))) {}
 

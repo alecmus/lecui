@@ -33,6 +33,9 @@ namespace liblec {
 			std::string alias_;
 		};
 
+		containers::tab_pane::tab_pane(containers::page& page) :
+			tab_pane(page, "") {}
+
 		containers::tab_pane::tab_pane(containers::page& page,
 			const std::string& alias) :
 			d_(*(new impl(page, page.d_page_.add_tab_pane(alias), alias))) {}

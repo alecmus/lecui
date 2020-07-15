@@ -54,6 +54,12 @@ namespace liblec {
 
 				/// <summary>Date constructor.</summary>
 				/// <param name="page">The container to place it in.</param>
+				/// <remarks>This constructs the widget with an internally generated random
+				/// alias.</remarks>
+				date(containers::page& page);
+
+				/// <summary>Date constructor.</summary>
+				/// <param name="page">The container to place it in.</param>
 				/// <param name="alias">The in-page unique alias, e.g. "caption".</param>
 				date(containers::page& page, const std::string& alias);
 				~date();

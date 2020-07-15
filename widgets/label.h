@@ -67,6 +67,12 @@ namespace liblec {
 
 				/// <summary>Label constructor.</summary>
 				/// <param name="page">The container to place it in.</param>
+				/// <remarks>This constructs the widget with an internally generated random
+				/// alias.</remarks>
+				label(containers::page& page);
+
+				/// <summary>Label constructor.</summary>
+				/// <param name="page">The container to place it in.</param>
 				/// <param name="alias">The in-page unique alias, e.g. "caption".</param>
 				label(containers::page& page, const std::string& alias);
 				~label();

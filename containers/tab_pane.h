@@ -72,8 +72,13 @@ namespace liblec {
 				};
 
 				/// <summary>Tab pane constructor.</summary>
-				/// <param name="page">A reference to the container to place the
-				/// control in.</param>
+				/// <param name="page">A reference to the container to place the control in.</param>
+				/// <remarks>This constructs the container with an internally generated random
+				/// alias.</remarks>
+				tab_pane(containers::page& page);
+
+				/// <summary>Tab pane constructor.</summary>
+				/// <param name="page">A reference to the container to place the control in.</param>
 				/// <param name="alias">The in-page unique alias, e.g. "settings_tab_pane".
 				/// </param>
 				/// <remarks>Ensure that the alias is unique within the page. Reusing an alias

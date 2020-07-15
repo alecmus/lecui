@@ -44,6 +44,12 @@ namespace liblec {
 
 				/// <summary>Progress indicator constructor.</summary>
 				/// <param name="page">The container to place it in.</param>
+				/// <remarks>This constructs the widget with an internally generated random
+				/// alias.</remarks>
+				progress_indicator(containers::page& page);
+
+				/// <summary>Progress indicator constructor.</summary>
+				/// <param name="page">The container to place it in.</param>
 				/// <param name="alias">The in-page unique alias, e.g. "file_transfer".</param>
 				progress_indicator(containers::page& page, const std::string& alias);
 				~progress_indicator();

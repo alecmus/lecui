@@ -52,6 +52,9 @@ namespace liblec {
 			slider_specs& specs_;
 		};
 
+		widgets::slider::slider(containers::page& page) :
+			slider(page, "") {}
+
 		widgets::slider::slider(containers::page& page, const std::string& alias) :
 			d_(*(new impl(page, alias))) {}
 

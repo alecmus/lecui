@@ -45,6 +45,9 @@ namespace liblec {
 			toggle_specs& specs_;
 		};
 
+		widgets::toggle::toggle(containers::page& page) :
+			toggle(page, "") {}
+
 		widgets::toggle::toggle(containers::page& page, const std::string& alias) :
 			d_(*(new impl(page, alias))) {}
 

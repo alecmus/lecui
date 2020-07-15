@@ -57,6 +57,9 @@ namespace liblec {
 			combobox_specs& specs_;
 		};
 
+		widgets::combobox::combobox(containers::page& page) :
+			combobox(page, "") {}
+
 		widgets::combobox::combobox(containers::page& page, const std::string& alias) :
 			d_(*(new combobox_impl(page, alias))) {}
 

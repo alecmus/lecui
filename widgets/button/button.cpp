@@ -44,6 +44,9 @@ namespace liblec {
 			button_specs& specs_;
 		};
 
+		widgets::button::button(containers::page& page) :
+			button(page, "") {}
+
 		widgets::button::button(containers::page& page, const std::string& alias) :
 			d_(*(new impl(page, alias))) {}
 

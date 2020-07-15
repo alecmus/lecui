@@ -44,6 +44,12 @@ namespace liblec {
 
 				/// <summary>HTML editor constructor.</summary>
 				/// <param name="page">The container to place it in.</param>
+				/// <remarks>This constructs the widget with an internally generated random
+				/// alias.</remarks>
+				html_editor(containers::page& page);
+
+				/// <summary>HTML editor constructor.</summary>
+				/// <param name="page">The container to place it in.</param>
 				/// <param name="alias">The in-page unique alias, e.g. "username".</param>
 				html_editor(containers::page& page, const std::string& alias);
 				virtual ~html_editor();

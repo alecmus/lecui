@@ -41,6 +41,9 @@ namespace liblec {
 			group_specs& specs_;
 		};
 
+		containers::group::group(containers::page& page) :
+			group(page, "") {}
+
 		containers::group::group(containers::page& page, const std::string& alias) :
 			d_(*(new impl(page, alias))) {}
 

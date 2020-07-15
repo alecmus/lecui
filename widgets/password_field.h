@@ -27,6 +27,12 @@ namespace liblec {
 			public:
 				/// <summary>Password field constructor.</summary>
 				/// <param name="page">The container to place it in.</param>
+				/// <remarks>This constructs the widget with an internally generated random
+				/// alias.</remarks>
+				password_field(containers::page& page);
+
+				/// <summary>Password field constructor.</summary>
+				/// <param name="page">The container to place it in.</param>
 				/// <param name="alias">The in-page unique alias, e.g. "password".</param>
 				password_field(containers::page& page, const std::string& alias);
 				~password_field();

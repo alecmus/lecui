@@ -50,6 +50,9 @@ namespace liblec {
 			tree_specs& specs_;
 		};
 
+		widgets::tree::tree(containers::page& page) :
+			tree(page, "") {}
+
 		widgets::tree::tree(containers::page& page, const std::string& alias) :
 			d_(*(new impl(page, alias))) {}
 

@@ -91,6 +91,12 @@ namespace liblec {
 
 				/// <summary>Combobox constructor.</summary>
 				/// <param name="page">The container to place it in.</param>
+				/// <remarks>This constructs the widget with an internally generated random
+				/// alias.</remarks>
+				combobox(containers::page& page);
+
+				/// <summary>Combobox constructor.</summary>
+				/// <param name="page">The container to place it in.</param>
 				/// <param name="alias">The in-page unique alias, e.g. "title".</param>
 				combobox(containers::page& page, const std::string& alias);
 				~combobox();

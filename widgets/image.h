@@ -45,6 +45,12 @@ namespace liblec {
 
 				/// <summary>Image constructor.</summary>
 				/// <param name="page">The container to place it in.</param>
+				/// <remarks>This constructs the widget with an internally generated random
+				/// alias.</remarks>
+				image(containers::page& page);
+
+				/// <summary>Image constructor.</summary>
+				/// <param name="page">The container to place it in.</param>
 				/// <param name="alias">The in-page unique alias, e.g. "avatar".</param>
 				image(containers::page& page, const std::string& alias);
 				~image();

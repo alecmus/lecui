@@ -46,6 +46,9 @@ namespace liblec {
 			rectangle_specs& specs_;
 		};
 
+		widgets::rectangle::rectangle(containers::page& page) :
+			rectangle(page, "") {}
+
 		widgets::rectangle::rectangle(containers::page& page, const std::string& alias) :
 			d_(*(new impl(page, alias))) {}
 

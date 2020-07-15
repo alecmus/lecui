@@ -14,6 +14,7 @@
 #include "../text_field.h"
 #include "../password_field.h"
 #include "../../form_impl/form_impl.h"
+#include "..\password_field.h"
 
 namespace liblec {
 	namespace lecui {
@@ -48,6 +49,9 @@ namespace liblec {
 			containers::page& page_;
 			text_field_specs& specs_;
 		};
+
+		widgets::text_field::text_field(containers::page& page) :
+			text_field(page, "") {}
 
 		widgets::text_field::text_field(containers::page& page, const std::string& alias) :
 			d_(*(new impl(page, alias))) {}
@@ -89,6 +93,9 @@ namespace liblec {
 
 			throw std::invalid_argument("Invalid path");
 		}
+
+		widgets::password_field::password_field(containers::page& page) :
+			password_field(page, "") {}
 
 		widgets::password_field::password_field(containers::page& page, const std::string& alias) :
 			text_field(page, alias) {

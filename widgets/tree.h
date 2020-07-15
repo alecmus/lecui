@@ -97,6 +97,12 @@ namespace liblec {
 
 				/// <summary>Tree constructor.</summary>
 				/// <param name="page">The container to place it in.</param>
+				/// <remarks>This constructs the widget with an internally generated random
+				/// alias.</remarks>
+				tree(containers::page& page);
+
+				/// <summary>Tree constructor.</summary>
+				/// <param name="page">The container to place it in.</param>
 				/// <param name="alias">The in-page unique alias, e.g. "database_browser".</param>
 				tree(containers::page& page, const std::string& alias);
 				~tree();

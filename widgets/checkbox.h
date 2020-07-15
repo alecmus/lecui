@@ -63,6 +63,12 @@ namespace liblec {
 
 				/// <summary>Checkbox constructor.</summary>
 				/// <param name="page">The container to place it in.</param>
+				/// <remarks>This constructs the widget with an internally generated random
+				/// alias.</remarks>
+				checkbox(containers::page& page);
+
+				/// <summary>Checkbox constructor.</summary>
+				/// <param name="page">The container to place it in.</param>
 				/// <param name="alias">The in-page unique alias, e.g. "employed".</param>
 				checkbox(containers::page& page, const std::string& alias);
 				~checkbox();

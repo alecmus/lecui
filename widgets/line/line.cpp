@@ -40,6 +40,9 @@ namespace liblec {
 			line_specs& specs_;
 		};
 
+		widgets::line::line(containers::page& page) :
+			line(page, "") {}
+
 		widgets::line::line(containers::page& page, const std::string& alias) :
 			d_(*(new impl(page, alias))) {}
 

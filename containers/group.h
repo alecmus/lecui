@@ -55,6 +55,12 @@ namespace liblec {
 
 				/// <summary>Group constructor.</summary>
 				/// <param name="page">The container to place it in.</param>
+				/// <remarks>This constructs the widget with an internally generated random
+				/// alias.</remarks>
+				group(containers::page& page);
+
+				/// <summary>Group constructor.</summary>
+				/// <param name="page">The container to place it in.</param>
 				/// <param name="alias">The in-page unique alias, e.g. "left_group".</param>
 				group(containers::page& page, const std::string& alias);
 				~group();

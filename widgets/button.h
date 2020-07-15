@@ -43,6 +43,12 @@ namespace liblec {
 
 				/// <summary>Button constructor.</summary>
 				/// <param name="page">The container to place it in.</param>
+				/// <remarks>This constructs the widget with an internally generated random
+				/// alias.</remarks>
+				button(containers::page& page);
+
+				/// <summary>Button constructor.</summary>
+				/// <param name="page">The container to place it in.</param>
 				/// <param name="alias">The in-page unique alias, e.g. "next_button".</param>
 				button(containers::page& page, const std::string& alias);
 				~button();

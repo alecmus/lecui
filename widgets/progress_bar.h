@@ -42,6 +42,12 @@ namespace liblec {
 
 				/// <summary>Progress bar constructor.</summary>
 				/// <param name="page">The container to place it in.</param>
+				/// <remarks>This constructs the widget with an internally generated random
+				/// alias.</remarks>
+				progress_bar(containers::page& page);
+
+				/// <summary>Progress bar constructor.</summary>
+				/// <param name="page">The container to place it in.</param>
 				/// <param name="alias">The in-page unique alias, e.g. "encryption_status".</param>
 				progress_bar(containers::page& page, const std::string& alias);
 				~progress_bar();

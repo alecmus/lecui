@@ -42,6 +42,12 @@ namespace liblec {
 
 				/// <summary>Line constructor.</summary>
 				/// <param name="page">The container to place it in.</param>
+				/// <remarks>This constructs the widget with an internally generated random
+				/// alias.</remarks>
+				line(containers::page& page);
+
+				/// <summary>Line constructor.</summary>
+				/// <param name="page">The container to place it in.</param>
 				/// <param name="alias">The in-page unique alias, e.g. "border_line".</param>
 				line(containers::page& page, const std::string& alias);
 				~line();

@@ -54,6 +54,12 @@ namespace liblec {
 
 				/// <summary>Time constructor.</summary>
 				/// <param name="page">The container to place it in.</param>
+				/// <remarks>This constructs the widget with an internally generated random
+				/// alias.</remarks>
+				time(containers::page& page);
+
+				/// <summary>Time constructor.</summary>
+				/// <param name="page">The container to place it in.</param>
 				/// <param name="alias">The in-page unique alias, e.g. "caption".</param>
 				time(containers::page& page, const std::string& alias);
 				~time();

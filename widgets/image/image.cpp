@@ -45,6 +45,9 @@ namespace liblec {
 			image_specs& specs_;
 		};
 
+		widgets::image::image(containers::page& page) :
+			image(page, "") {}
+
 		widgets::image::image(containers::page& page, const std::string& alias) :
 			d_(*(new impl(page, alias))) {}
 

@@ -41,6 +41,9 @@ namespace liblec {
 			date_specs& specs_;
 		};
 
+		widgets::date::date(containers::page& page) :
+			date(page, "") {}
+
 		widgets::date::date(containers::page& page, const std::string& alias) :
 			d_(*(new impl(page, alias))) {}
 

@@ -41,6 +41,12 @@ namespace liblec {
 
 				/// <summary>Rectangle constructor.</summary>
 				/// <param name="page">The container to place it in.</param>
+				/// <remarks>This constructs the widget with an internally generated random
+				/// alias.</remarks>
+				rectangle(containers::page& page);
+
+				/// <summary>Rectangle constructor.</summary>
+				/// <param name="page">The container to place it in.</param>
 				/// <param name="alias">The in-page unique alias, e.g. "border_rect".</param>
 				rectangle(containers::page& page, const std::string& alias);
 				~rectangle();

@@ -42,6 +42,9 @@ namespace liblec {
 			progress_indicator_specs& specs_;
 		};
 
+		widgets::progress_indicator::progress_indicator(containers::page& page) :
+			progress_indicator(page, "") {}
+
 		widgets::progress_indicator::progress_indicator(containers::page& page, const std::string& alias) :
 			d_(*(new impl(page, alias))) {}
 

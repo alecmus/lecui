@@ -41,6 +41,9 @@ namespace liblec {
 			progress_bar_specs& specs_;
 		};
 
+		widgets::progress_bar::progress_bar(containers::page& page) :
+			progress_bar(page, "") {}
+
 		widgets::progress_bar::progress_bar(containers::page& page, const std::string& alias) :
 			d_(*(new impl(page, alias))) {}
 

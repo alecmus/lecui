@@ -48,6 +48,9 @@ namespace liblec {
 			html_editor_specs& specs_;
 		};
 
+		widgets::html_editor::html_editor(containers::page& page) :
+			html_editor(page, "") {}
+
 		widgets::html_editor::html_editor(containers::page& page, const std::string& alias) :
 			d_(*(new impl(page, alias))) {}
 

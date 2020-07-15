@@ -56,6 +56,9 @@ namespace liblec {
 			table_specs& specs_;
 		};
 
+		widgets::table::table(containers::page& page) :
+			table(page, "") {}
+
 		widgets::table::table(containers::page& page, const std::string& alias) :
 			d_(*(new impl(page, alias))) {}
 

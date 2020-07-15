@@ -39,6 +39,9 @@ namespace liblec {
 			icon_specs& specs_;
 		};
 
+		widgets::icon::icon(containers::page& page) :
+			icon(page, "") {}
+
 		widgets::icon::icon(containers::page& page, const std::string& alias) :
 			d_(*(new impl(page, alias))) {}
 

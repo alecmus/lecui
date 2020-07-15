@@ -55,6 +55,12 @@ namespace liblec {
 
 				/// <summary>Icon constructor.</summary>
 				/// <param name="page">The container to place it in.</param>
+				/// <remarks>This constructs the widget with an internally generated random
+				/// alias.</remarks>
+				icon(containers::page& page);
+
+				/// <summary>Icon constructor.</summary>
+				/// <param name="page">The container to place it in.</param>
 				/// <param name="alias">The in-page unique alias, e.g. "caption".</param>
 				icon(containers::page& page, const std::string& alias);
 				~icon();

@@ -56,6 +56,12 @@ namespace liblec {
 
 				/// <summary>Text field constructor.</summary>
 				/// <param name="page">The container to place it in.</param>
+				/// <remarks>This constructs the widget with an internally generated random
+				/// alias.</remarks>
+				text_field(containers::page& page);
+
+				/// <summary>Text field constructor.</summary>
+				/// <param name="page">The container to place it in.</param>
 				/// <param name="alias">The in-page unique alias, e.g. "username".</param>
 				text_field(containers::page& page, const std::string& alias);
 				virtual ~text_field();
