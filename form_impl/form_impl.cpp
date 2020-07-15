@@ -2285,11 +2285,26 @@ namespace liblec {
 								idx = tab_control_container_path_remaining.rfind("/");
 
 								if (idx != std::string::npos) {
+									// this tab control is not directly in a top level container
 									const auto alias = tab_control_container_path_remaining.substr(idx + 1);
 									tab_control_container_path_remaining = tab_control_container_path_remaining.substr(0, idx);
 
 									// get tab control's container
 									auto& page = find_page(p_pages_.at(page_alias), tab_control_container_path_remaining);
+
+									// get the tab control implementation
+									auto& tab_pane_impl = page.d_page_.get_tab_pane(alias);
+
+									// close tab
+									tab_pane_impl.close_tab(tab_name);
+									update();
+								}
+								else {
+									// this tab control is in a top level container
+									const auto alias = tab_control_container_path_remaining;
+									
+									// get tab control's container
+									auto& page = p_pages_.at(page_alias);
 
 									// get the tab control implementation
 									auto& tab_pane_impl = page.d_page_.get_tab_pane(alias);
