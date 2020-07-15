@@ -739,7 +739,7 @@ namespace liblec {
 												html_editor.selection_bold();
 											};
 
-											widgets::label bold_label(html_controls_page, "");
+											widgets::label bold_label(html_controls_page);
 											bold_label().rect = bold().rect;
 											bold_label().text = "<strong>B</strong>";
 											bold_label().font_size = 11.f;
@@ -756,7 +756,7 @@ namespace liblec {
 												html_editor.selection_italic();
 											};
 
-											widgets::label italic_label(html_controls_page, "");
+											widgets::label italic_label(html_controls_page);
 											italic_label().rect = italic().rect;
 											italic_label().text = "<em><strong>I</strong></em>";
 											italic_label().font_size = 11.f;
@@ -773,7 +773,7 @@ namespace liblec {
 												html_editor.selection_underline();
 											};
 
-											widgets::label underline_label(html_controls_page, "");
+											widgets::label underline_label(html_controls_page);
 											underline_label().rect = underline().rect;
 											underline_label().text = "<u>U</u>";
 											underline_label().font_size = 11.f;
@@ -790,7 +790,7 @@ namespace liblec {
 												html_editor.selection_strikethrough();
 											};
 
-											widgets::label strikethrough_label(html_controls_page, "");
+											widgets::label strikethrough_label(html_controls_page);
 											strikethrough_label().rect = strikethrough().rect;
 											strikethrough_label().text = "<s>abc</s>";
 											strikethrough_label().font_size = 11.f;
@@ -807,7 +807,7 @@ namespace liblec {
 												html_editor.selection_color();
 											};
 
-											widgets::label font_color_label(html_controls_page, "");
+											widgets::label font_color_label(html_controls_page);
 											font_color_label().rect = font_color().rect;
 											font_color_label().rect.bottom -= 5.f;
 											font_color_label().text = "<strong>A</strong>";
@@ -824,7 +824,7 @@ namespace liblec {
 											font_color_bar().color_fill = html_editor.get_last_color();
 											font_color_bar().border = .2f;
 
-											widgets::rectangle font_color_menu(html_controls_page, "");
+											widgets::rectangle font_color_menu(html_controls_page);
 											font_color_menu().rect.size(10.f, 20.f);
 											font_color_menu().rect.snap_to(font_color().rect, rect::snap_type::right, 2.f);
 											font_color_menu().color_fill.alpha = 0;
@@ -845,7 +845,7 @@ namespace liblec {
 												}
 											};
 
-											widgets::line font_color_menu_dropdown(html_controls_page, "");
+											widgets::line font_color_menu_dropdown(html_controls_page);
 											font_color_menu_dropdown().rect.size(font_color_menu().rect.width(), font_color_menu().rect.width());	// important for it to be a square
 											font_color_menu_dropdown().rect.place(font_color_menu().rect, 50.f, 50.f);
 											font_color_menu_dropdown().points.push_back({ .1f * font_color_menu_dropdown().rect.width(), .3f * font_color_menu_dropdown().rect.height() });
@@ -1019,7 +1019,7 @@ namespace liblec {
 							std::to_string(time().time_value.hour);
 
 						// add seperator to destination
-						widgets::label seperator_1(it.destination, "");
+						widgets::label seperator_1(it.destination);
 						seperator_1().rect = { 0, 8, 0, 20 };
 						seperator_1().rect.snap_to(hour().rect, rect::snap_type::right, 0.f);
 						seperator_1().on_resize = { 0, 0, 0, 0 };
@@ -1047,7 +1047,7 @@ namespace liblec {
 							std::to_string(time().time_value.minute);
 
 						// add seperator to destination
-						widgets::label seperator_2(it.destination, "");
+						widgets::label seperator_2(it.destination);
 						seperator_2().rect = { 0, 8, 0, 20 };
 						seperator_2().rect.snap_to(minute().rect, rect::snap_type::right, 0.f);
 						seperator_2().on_resize = { 0, 0, 0, 0 };
@@ -1336,7 +1336,7 @@ namespace liblec {
 							std::to_string(date().date_value.day);
 
 						// add seperator to destination
-						widgets::label seperator_1(it.destination, "");
+						widgets::label seperator_1(it.destination);
 						seperator_1().rect = { 0, 8, 0, 20 };
 						seperator_1().rect.snap_to(day().rect, rect::snap_type::right, 0.f);
 						seperator_1().on_resize = { 0, 0, 0, 0 };
@@ -1363,7 +1363,7 @@ namespace liblec {
 						month_label().text = date_time::month_to_string(date().date_value.month);
 
 						// add seperator to destination
-						widgets::label seperator_2(it.destination, "");
+						widgets::label seperator_2(it.destination);
 						seperator_2().rect = { 0, 8, 0, 20 };
 						seperator_2().rect.snap_to(month().rect, rect::snap_type::right, 0.f);
 						seperator_2().on_resize = { 0, 0, 0, 0 };

@@ -293,7 +293,7 @@ namespace liblec {
 					page_management page_man(*this);
 					auto& home_page = page_man.add("home");
 
-					widgets::label label(home_page, "question");
+					widgets::label label(home_page);
 					label().text = question_;
 					label().multiline = true;
 					label().rect = { margin_, home_page.size().width, margin_,
@@ -377,7 +377,7 @@ namespace liblec {
 						page_management page_man(*this);
 						auto& home_page = page_man.add("home");
 
-						widgets::label label(home_page, "message");
+						widgets::label label(home_page);
 						label().text = message_;
 						label().multiline = true;
 						label().rect = { margin_, home_page.size().width, margin_,
