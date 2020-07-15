@@ -2165,6 +2165,12 @@ namespace liblec {
 		}
 
 		void form::impl::close(const std::string& path) {
+			auto do_close = [&](widget_search_results result) {
+				// close widget
+				std::string error;
+				result.page.d_page_.close_widget(result.widget.alias(), result.widget.type(), error);
+			};
+
 			try {
 				// get the page alias
 				const auto idx = path.find("/");
@@ -2176,11 +2182,7 @@ namespace liblec {
 					try {
 						// check form pages
 						auto result = find_widget(p_pages_.at(page_alias), path_remaining);
-
-						// close widget
-						std::string error;
-						result.page.d_page_.close_widget(result.widget.alias(), result.widget.type(), error);
-
+						do_close(result);
 						update();
 					}
 					catch (const std::exception&) {}
@@ -2188,11 +2190,7 @@ namespace liblec {
 					try {
 						// check status pages
 						auto result = find_widget(p_status_panes_.at(page_alias), path_remaining);
-
-						// close widget
-						std::string error;
-						result.page.d_page_.close_widget(result.widget.alias(), result.widget.type(), error);
-
+						do_close(result);
 						update();
 					}
 					catch (const std::exception&) {}
