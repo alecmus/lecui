@@ -2168,7 +2168,53 @@ namespace liblec {
 			auto do_close = [&](widget_search_results result) {
 				// close widget
 				std::string error;
-				result.page.d_page_.close_widget(result.widget.alias(), result.widget.type(), error);
+				switch (result.widget.type()) {
+					/// widgets in special panes need special treatment
+				case liblec::lecui::widgets::widget_type::tree: {
+					// get the special pane's path
+					const auto idx = path.rfind("/");
+
+					if (idx != std::string::npos) {
+						const auto pane_path = path.substr(0, idx + 1);
+						close_container(pane_path + widgets::pane_impl::tree_pane_alias_prefix() + result.widget.alias());
+					}
+				} break;
+				case liblec::lecui::widgets::widget_type::html_editor:
+					break;
+				case liblec::lecui::widgets::widget_type::time:
+					break;
+				case liblec::lecui::widgets::widget_type::date:
+					break;
+				case liblec::lecui::widgets::widget_type::icon:
+					break;
+
+					/// plain widgets can be closed directly
+				case liblec::lecui::widgets::widget_type::close_button:
+				case liblec::lecui::widgets::widget_type::maximize_button:
+				case liblec::lecui::widgets::widget_type::minimize_button:
+				case liblec::lecui::widgets::widget_type::h_scrollbar:
+				case liblec::lecui::widgets::widget_type::v_scrollbar:
+				case liblec::lecui::widgets::widget_type::tab_pane:
+				case liblec::lecui::widgets::widget_type::pane:
+				case liblec::lecui::widgets::widget_type::rectangle:
+				case liblec::lecui::widgets::widget_type::label:
+				case liblec::lecui::widgets::widget_type::group:
+				case liblec::lecui::widgets::widget_type::button:
+				case liblec::lecui::widgets::widget_type::toggle:
+				case liblec::lecui::widgets::widget_type::table:
+				case liblec::lecui::widgets::widget_type::custom:
+				case liblec::lecui::widgets::widget_type::image:
+				case liblec::lecui::widgets::widget_type::progress_indicator:
+				case liblec::lecui::widgets::widget_type::progress_bar:
+				case liblec::lecui::widgets::widget_type::checkbox:
+				case liblec::lecui::widgets::widget_type::text_field:
+				case liblec::lecui::widgets::widget_type::slider:
+				case liblec::lecui::widgets::widget_type::combobox:
+				case liblec::lecui::widgets::widget_type::line:
+				default:
+					result.page.d_page_.close_widget(result.widget.alias(), result.widget.type(), error);
+					break;
+				}
 			};
 
 			try {
