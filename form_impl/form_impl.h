@@ -288,6 +288,7 @@ namespace liblec {
 			void enable(const std::string& path, bool enable);
 			void show(const std::string& path, bool show);
 			void close(const std::string& path);
+			void close_container(const std::string& path);
 			void clear_selection(containers::page& container);
 			void select(const std::string& path);
 

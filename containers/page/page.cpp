@@ -148,12 +148,14 @@ namespace liblec {
 		}
 
 		void page_management::show(const std::string& alias) {
-			log("page::show");
-
 			d_.fm_.d_.current_page_ = alias;
 
 			if (IsWindow(d_.fm_.d_.hWnd_))
 				d_.fm_.d_.update();
+		}
+
+		void page_management::close(const std::string& path) {
+			d_.fm_.d_.close_container(path);
 		}
 	}
 }

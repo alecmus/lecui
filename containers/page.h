@@ -127,6 +127,10 @@ namespace liblec {
 			/// <param name="alias">The in-form unique alias, e.g. "home_page".</param>
 			void show(const std::string& alias);
 
+			/// <summary>Close a container.</summary>
+			/// <param name="path">The full path to the container, e.g. "home_page/task_pane".</param>
+			void close(const std::string& path);
+
 		private:
 			class impl;
 			impl& d_;

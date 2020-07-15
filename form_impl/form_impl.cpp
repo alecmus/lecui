@@ -2201,6 +2201,10 @@ namespace liblec {
 			catch (const std::exception&) {}
 		}
 
+		void form::impl::close_container(const std::string& path) {
+			close(path);	// to-do: enable closing of top level containers
+		}
+
 		void form::impl::clear_selection(containers::page& container) {
 			for (auto& widget : container.d_page_.widgets()) {
 				widget.second.select(false);
