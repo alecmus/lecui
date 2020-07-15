@@ -1994,14 +1994,38 @@ namespace liblec {
 				}
 				catch (const std::exception&) {}
 
-				// check special time pane
-				auto& time_pane_control = container.d_page_.get_pane(widgets::pane_impl::time_pane_alias_prefix() + path);
+				try {
+					// check special time pane
+					auto& time_pane_control = container.d_page_.get_pane(widgets::pane_impl::time_pane_alias_prefix() + path);
 
-				// time pane control confirmed ... get the pane page
-				auto& time_pane = time_pane_control.p_panes_.at("pane");
+					// time pane control confirmed ... get the pane page
+					auto& time_pane = time_pane_control.p_panes_.at("pane");
+
+					// pane confirmed ... recurse
+					return find_widget(time_pane, path);
+				}
+				catch (const std::exception&) {}
+
+				try {
+					// check special date pane
+					auto& date_pane_control = container.d_page_.get_pane(widgets::pane_impl::date_pane_alias_prefix() + path);
+
+					// date pane control confirmed ... get the pane page
+					auto& date_pane = date_pane_control.p_panes_.at("pane");
+
+					// pane confirmed ... recurse
+					return find_widget(date_pane, path);
+				}
+				catch (const std::exception&) {}
+
+				// check special icon pane
+				auto& icon_pane_control = container.d_page_.get_pane(widgets::pane_impl::icon_pane_alias_prefix() + path);
+
+				// icon pane control confirmed ... get the pane page
+				auto& icon_pane = icon_pane_control.p_panes_.at("pane");
 
 				// pane confirmed ... recurse
-				return find_widget(time_pane, path);
+				return find_widget(icon_pane, path);
 			}
 			else {
 				// get the container's alias
@@ -2225,10 +2249,26 @@ namespace liblec {
 						close_container(pane_path + widgets::pane_impl::time_pane_alias_prefix() + result.widget.alias());
 					}
 				} break;
-				case liblec::lecui::widgets::widget_type::date:
-					break;
-				case liblec::lecui::widgets::widget_type::icon:
-					break;
+				case liblec::lecui::widgets::widget_type::date: {
+					// get the special pane's path
+					const auto idx = path.rfind("/");
+
+					if (idx != std::string::npos) {
+						const auto pane_path = path.substr(0, idx + 1);
+						// close date pane (this will automatically close all the contents, including the widget in question)
+						close_container(pane_path + widgets::pane_impl::date_pane_alias_prefix() + result.widget.alias());
+					}
+				} break;
+				case liblec::lecui::widgets::widget_type::icon: {
+					// get the special pane's path
+					const auto idx = path.rfind("/");
+
+					if (idx != std::string::npos) {
+						const auto icon_path = path.substr(0, idx + 1);
+						// close icon pane (this will automatically close all the contents, including the widget in question)
+						close_container(icon_path + widgets::pane_impl::icon_pane_alias_prefix() + result.widget.alias());
+					}
+				} break;
 
 					/// plain widgets can be closed directly
 				case liblec::lecui::widgets::widget_type::close_button:
