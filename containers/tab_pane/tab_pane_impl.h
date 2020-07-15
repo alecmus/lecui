@@ -61,6 +61,7 @@ namespace liblec {
 				float margin();
 				void set_tab_height(const float height);
 				bool tab_height_set();
+				void close_tab(const std::string& tab_name);
 
 			private:
 				/// Prevent copying an object of this class.

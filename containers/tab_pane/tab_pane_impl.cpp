@@ -638,6 +638,25 @@ namespace liblec {
 			return tab_height_set_;
 		}
 
+		void widgets::tab_pane_impl::close_tab(const std::string& tab_name) {
+			try {
+				// erase from tabs (all widgets within this tab are deleted immediately)
+				p_tabs_.erase(tab_name);
+
+				// erase from tab rects
+				p_tab_rects_.erase(tab_name);
+
+				// skip in tabs order
+				std::vector<std::string> temp_tab_order;
+				for (auto& tab : tab_order_) {
+					if (tab != tab_name)
+						temp_tab_order.push_back(tab);
+				}
+				tab_order_ = temp_tab_order;
+			}
+			catch (const std::exception&) {}
+		}
+
 		bool widgets::tab_pane_impl::contains() {
 			for (const auto& it : p_tab_rects_) {
 				D2D1_RECT_F rect = it.second;
