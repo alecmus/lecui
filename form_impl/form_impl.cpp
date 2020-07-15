@@ -2212,87 +2212,40 @@ namespace liblec {
 		}
 
 		void form::impl::close(const std::string& path) {
+			auto do_close_special = [&](const std::string& special_pane_alias_prefix,
+				const std::string& alias) {
+				// get the special pane's path
+				const auto idx = path.rfind("/");
+
+				if (idx != std::string::npos) {
+					const auto pane_path = path.substr(0, idx + 1);
+					// close pane (this will automatically close all the contents, including the widget in question)
+					close_container(pane_path + special_pane_alias_prefix + alias);
+				}
+			};
+
 			auto do_close = [&](widget_search_results result) {
-				// close widget
 				std::string error;
 				switch (result.widget.type()) {
 					/// widgets in special panes need special treatment
-				case liblec::lecui::widgets::widget_type::tree: {
-					// get the special pane's path
-					const auto idx = path.rfind("/");
-
-					if (idx != std::string::npos) {
-						const auto pane_path = path.substr(0, idx + 1);
-						// close pane (this will automatically close all the contents, including the widget in question)
-						close_container(pane_path + widgets::pane_impl::tree_pane_alias_prefix() + result.widget.alias());
-					}
-				} break;
-				case liblec::lecui::widgets::widget_type::html_editor: {
-					// get the special pane's path
-					const auto idx = path.rfind("/");
-
-					if (idx != std::string::npos) {
-						const auto pane_path = path.substr(0, idx + 1);
-						// close html controls pane
-						close_container(pane_path + widgets::pane_impl::html_controls_pane_alias_prefix() + result.widget.alias());
-						// close html pane (this will automatically close all the contents, including the widget in question)
-						close_container(pane_path + widgets::pane_impl::html_pane_alias_prefix() + result.widget.alias());
-					}
-				} break;
-				case liblec::lecui::widgets::widget_type::time: {
-					// get the special pane's path
-					const auto idx = path.rfind("/");
-
-					if (idx != std::string::npos) {
-						const auto pane_path = path.substr(0, idx + 1);
-						// close time pane (this will automatically close all the contents, including the widget in question)
-						close_container(pane_path + widgets::pane_impl::time_pane_alias_prefix() + result.widget.alias());
-					}
-				} break;
-				case liblec::lecui::widgets::widget_type::date: {
-					// get the special pane's path
-					const auto idx = path.rfind("/");
-
-					if (idx != std::string::npos) {
-						const auto pane_path = path.substr(0, idx + 1);
-						// close date pane (this will automatically close all the contents, including the widget in question)
-						close_container(pane_path + widgets::pane_impl::date_pane_alias_prefix() + result.widget.alias());
-					}
-				} break;
-				case liblec::lecui::widgets::widget_type::icon: {
-					// get the special pane's path
-					const auto idx = path.rfind("/");
-
-					if (idx != std::string::npos) {
-						const auto icon_path = path.substr(0, idx + 1);
-						// close icon pane (this will automatically close all the contents, including the widget in question)
-						close_container(icon_path + widgets::pane_impl::icon_pane_alias_prefix() + result.widget.alias());
-					}
-				} break;
+				case liblec::lecui::widgets::widget_type::tree:
+					do_close_special(widgets::pane_impl::tree_pane_alias_prefix(), result.widget.alias());
+					break;
+				case liblec::lecui::widgets::widget_type::html_editor:
+					do_close_special(widgets::pane_impl::html_controls_pane_alias_prefix(), result.widget.alias());
+					do_close_special(widgets::pane_impl::html_pane_alias_prefix(), result.widget.alias());
+					break;
+				case liblec::lecui::widgets::widget_type::time:
+					do_close_special(widgets::pane_impl::time_pane_alias_prefix(), result.widget.alias());
+					break;
+				case liblec::lecui::widgets::widget_type::date:
+					do_close_special(widgets::pane_impl::date_pane_alias_prefix(), result.widget.alias());
+					break;
+				case liblec::lecui::widgets::widget_type::icon:
+					do_close_special(widgets::pane_impl::icon_pane_alias_prefix(), result.widget.alias());
+					break;
 
 					/// plain widgets can be closed directly
-				case liblec::lecui::widgets::widget_type::close_button:
-				case liblec::lecui::widgets::widget_type::maximize_button:
-				case liblec::lecui::widgets::widget_type::minimize_button:
-				case liblec::lecui::widgets::widget_type::h_scrollbar:
-				case liblec::lecui::widgets::widget_type::v_scrollbar:
-				case liblec::lecui::widgets::widget_type::tab_pane:
-				case liblec::lecui::widgets::widget_type::pane:
-				case liblec::lecui::widgets::widget_type::rectangle:
-				case liblec::lecui::widgets::widget_type::label:
-				case liblec::lecui::widgets::widget_type::group:
-				case liblec::lecui::widgets::widget_type::button:
-				case liblec::lecui::widgets::widget_type::toggle:
-				case liblec::lecui::widgets::widget_type::table:
-				case liblec::lecui::widgets::widget_type::custom:
-				case liblec::lecui::widgets::widget_type::image:
-				case liblec::lecui::widgets::widget_type::progress_indicator:
-				case liblec::lecui::widgets::widget_type::progress_bar:
-				case liblec::lecui::widgets::widget_type::checkbox:
-				case liblec::lecui::widgets::widget_type::text_field:
-				case liblec::lecui::widgets::widget_type::slider:
-				case liblec::lecui::widgets::widget_type::combobox:
-				case liblec::lecui::widgets::widget_type::line:
 				default:
 					result.page.d_page_.close_widget(result.widget.alias(), result.widget.type(), error);
 					break;
