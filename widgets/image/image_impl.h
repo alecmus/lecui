@@ -61,6 +61,8 @@ namespace liblec {
 				ID2D1SolidColorBrush* p_brush_selected_;
 				ID2D1Bitmap* p_bitmap_;
 				IWICImagingFactory* p_IWICFactory_;
+
+				size old_size_;
 			};
 		}
 	}

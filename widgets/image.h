@@ -38,6 +38,7 @@ namespace liblec {
 					color color_border;
 					std::string file;
 					int png_resource = 0;
+					image_quality quality = image_quality::medium;
 
 					bool operator==(const image_specs&);
 					bool operator!=(const image_specs&);

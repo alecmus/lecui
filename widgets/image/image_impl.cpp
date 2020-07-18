@@ -26,7 +26,8 @@ namespace liblec {
 			p_brush_disabled_(nullptr),
 			p_brush_selected_(nullptr),
 			p_bitmap_(nullptr),
-			p_IWICFactory_(p_IWICFactory) {}
+			p_IWICFactory_(p_IWICFactory),
+			old_size_({ 0.f, 0.f })	{}
 
 		widgets::image_impl::~image_impl() { discard_resources(); }
 
@@ -58,13 +59,6 @@ namespace liblec {
 			if (SUCCEEDED(hr))
 				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_selected),
 					&p_brush_selected_);
-			if (SUCCEEDED(hr) && specs_.png_resource)	// png resource takes precedence
-				load_bitmap_resource(p_render_target, p_IWICFactory_,
-					page_.d_page_.get_form().d_.resource_module_handle_, specs_.png_resource, "PNG",
-					&p_bitmap_);
-			if (SUCCEEDED(hr) && !specs_.file.empty() && !p_bitmap_)
-				load_bitmap_file(p_render_target, p_IWICFactory_, convert_string(specs_.file).c_str(),
-					&p_bitmap_);
 
 			resources_created_ = true;
 			return hr;
@@ -106,6 +100,22 @@ namespace liblec {
 
 			p_render_target->FillRoundedRectangle(&rounded_rect, p_brush_fill_);
 
+			const size current_size = { rect_.right - rect_.left, rect_.bottom - rect_.top };
+
+			if ((current_size.width != old_size_.width) ||
+				current_size.height != old_size_.height)
+				safe_release(&p_bitmap_);
+
+			if (!p_bitmap_) {
+				if (specs_.png_resource)	// png resource takes precedence
+					load_bitmap_resource(p_render_target, p_IWICFactory_,
+						page_.d_page_.get_form().d_.resource_module_handle_, specs_.png_resource, "PNG",
+						&p_bitmap_, current_size, false);
+				if (!specs_.file.empty() && !p_bitmap_)
+					load_bitmap_file(p_render_target, p_IWICFactory_, convert_string(specs_.file).c_str(),
+						&p_bitmap_, current_size, false);
+			}
+
 			if (p_bitmap_) {
 				// retrieve the size of the bitmap and define suitably sized rectangle for the image
 				const auto size = p_bitmap_->GetSize();
@@ -129,6 +139,8 @@ namespace liblec {
 					p_render_target->DrawRoundedRectangle(&rounded_rect, p_brush_selected_, pressed_ ?
 						1.75f : 1.f);
 			}
+
+			old_size_ = current_size;
 
 			return rect_;
 		}
