@@ -24,7 +24,8 @@ namespace liblec {
 				// widget specific specs
 				(color_border == param.color_border) &&
 				(file == param.file) &&
-				(png_resource == param.png_resource);
+				(png_resource == param.png_resource) &&
+				(quality == param.quality);
 		}
 
 		bool widgets::image::image_specs::operator!=(const image_specs& param) {

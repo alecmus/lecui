@@ -110,10 +110,10 @@ namespace liblec {
 				if (specs_.png_resource)	// png resource takes precedence
 					load_bitmap_resource(p_render_target, p_IWICFactory_,
 						page_.d_page_.get_form().d_.resource_module_handle_, specs_.png_resource, "PNG",
-						&p_bitmap_, current_size, false);
+						&p_bitmap_, current_size, false, specs_.quality);
 				if (!specs_.file.empty() && !p_bitmap_)
 					load_bitmap_file(p_render_target, p_IWICFactory_, convert_string(specs_.file).c_str(),
-						&p_bitmap_, current_size, false);
+						&p_bitmap_, current_size, false, specs_.quality);
 			}
 
 			if (p_bitmap_) {

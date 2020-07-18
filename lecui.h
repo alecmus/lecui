@@ -227,5 +227,12 @@ namespace liblec {
 			unsigned short month = 1;
 			unsigned short year = 2020;
 		};
+
+		/// <summary>Image render quality. Used when resampling images.</summary>
+		enum class image_quality {
+			low,
+			medium,
+			high,
+		};
 	}
 }
