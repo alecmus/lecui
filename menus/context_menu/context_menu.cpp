@@ -244,6 +244,7 @@ namespace liblec {
                         image().rect = rects_[index];
                         image().rect.width(image().rect.height());    // make into a square
                         image().file = item.image_file;
+                        image().quality = menu_specs_.quality;
                         left_most = image().rect.right + (margin_ / 2.f);
 
                         // padding

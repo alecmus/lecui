@@ -69,6 +69,11 @@ namespace liblec {
 				/// <summary>The pin type to use, if the pin rectangle is used (i.e. if it's
 				/// non-zero size).</summary>
 				pin_type type = pin_type::bottom;
+
+				/// <summary>
+				/// The quality of the images.
+				/// </summary>
+				image_quality quality = image_quality::high;
 			};
 
 			/// <summary>Context menu constructor.</summary>
