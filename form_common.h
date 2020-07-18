@@ -354,12 +354,12 @@ namespace liblec {
 
 		/// <summary>Fit a rectangle within another.</summary>
 		/// <param name="rect_container">The container rectangle.</param>
-		/// <param name="stretch">Whether to stretch the bitmap to the supplied dimensions.</param>
 		/// <param name="enlarge_if_smaller">Enlarge if it's smaller than the container.</param>
+		/// <param name="keep_aspect_ratio">Whether to keep the source image's aspect ratio.</param>
 		/// <param name="center">Whether to center the rectangle in the container.</param>
 		/// <param name="rect"></param>
 		static inline void fit_rect(const D2D1_RECT_F rect_container, D2D1_RECT_F& rect,
-			bool stretch, bool enlarge_if_smaller, bool center) {
+			bool enlarge_if_smaller, bool keep_aspect_ratio, bool center) {
 			auto width = rect_container.right - rect_container.left;
 			auto height = rect_container.bottom - rect_container.top;
 
@@ -381,7 +381,7 @@ namespace liblec {
 			const auto control_h = height;
 
 			if (ratio == 1) {
-				if (!stretch) {
+				if (keep_aspect_ratio) {
 					if (width > height)
 						width = height;	// landscape
 					else
@@ -389,7 +389,7 @@ namespace liblec {
 				}
 			}
 			else {
-				if (!stretch) {
+				if (keep_aspect_ratio) {
 					// adjust either new width or height to keep aspect ratio
 					if (old_width > old_height) {
 						// old width is greater than old height
@@ -457,7 +457,7 @@ namespace liblec {
 					D2D1_RECT_F rect = { 0, 0, 0, 0 };
 					rect.right = rect.left + static_cast<float>(original_width);
 					rect.bottom = rect.top + static_cast<float>(original_height);
-					fit_rect(rect_container, rect, !keep_aspect_ratio, enlarge_if_smaller, false);
+					fit_rect(rect_container, rect, enlarge_if_smaller, keep_aspect_ratio, false);
 					auto new_width = static_cast<UINT>(rect.right - rect.left);
 					auto new_height = static_cast<UINT>(rect.bottom - rect.top);
 

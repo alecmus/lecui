@@ -120,7 +120,7 @@ namespace liblec {
 				// retrieve the size of the bitmap and define suitably sized rectangle for the image
 				const auto size = p_bitmap_->GetSize();
 				auto rect_image = D2D1::RectF(0, 0, size.width, size.height);
-				fit_rect(rect_, rect_image, false, false, true);
+				fit_rect(rect_, rect_image, false, true, true);
 
 				// draw the bitmap
 				p_render_target->DrawBitmap(p_bitmap_, rect_image);
