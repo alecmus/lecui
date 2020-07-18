@@ -46,6 +46,7 @@ namespace liblec {
 
 					std::string file;
 					int png_resource = 0;
+					image_quality quality = image_quality::high;
 					std::string description;
 					icon_text_position text_position = icon_text_position::right_top;
 

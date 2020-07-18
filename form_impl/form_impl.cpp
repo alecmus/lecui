@@ -1675,6 +1675,7 @@ namespace liblec {
 							0.f, 0.f);
 						image().file = icon().file;
 						image().png_resource = icon().png_resource;
+						image().quality = icon().quality;
 
 						// add text to destination
 						widgets::label text(it.destination, widgets::icon_impl::alias_text());
