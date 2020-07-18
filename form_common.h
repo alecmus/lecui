@@ -434,7 +434,7 @@ namespace liblec {
 			IWICImagingFactory* pIWICFactory, IWICBitmapDecoder* pDecoder,
 			IWICBitmapFrameDecode* pSource, IWICFormatConverter* pConverter,
 			ID2D1Bitmap** ppBitmap, size target_size,
-			bool enlarge_if_smaller, image_quality quality) {
+			bool enlarge_if_smaller, bool keep_aspect_ratio, image_quality quality) {
 			IWICBitmapScaler* pScaler = NULL;
 
 			// Create the initial frame.
@@ -457,7 +457,7 @@ namespace liblec {
 					D2D1_RECT_F rect = { 0, 0, 0, 0 };
 					rect.right = rect.left + static_cast<float>(original_width);
 					rect.bottom = rect.top + static_cast<float>(original_height);
-					fit_rect(rect_container, rect, false, enlarge_if_smaller, false);
+					fit_rect(rect_container, rect, !keep_aspect_ratio, enlarge_if_smaller, false);
 					auto new_width = static_cast<UINT>(rect.right - rect.left);
 					auto new_height = static_cast<UINT>(rect.bottom - rect.top);
 
@@ -505,7 +505,7 @@ namespace liblec {
 		static inline HRESULT load_bitmap_resource(ID2D1RenderTarget* pRenderTarget,
 			IWICImagingFactory* pIWICFactory, HINSTANCE hInst, int id_image,
 			std::string resource_type, ID2D1Bitmap** ppBitmap,
-			size target_size, bool enlarge_if_smaller, image_quality quality) {
+			size target_size, bool enlarge_if_smaller, bool keep_aspect_ratio, image_quality quality) {
 			IWICBitmapDecoder* pDecoder = NULL;
 			IWICBitmapFrameDecode* pSource = NULL;
 			IWICStream* pStream = NULL;
@@ -552,7 +552,7 @@ namespace liblec {
 
 			if (SUCCEEDED(hr))
 				create_bitmap(pRenderTarget, pIWICFactory, pDecoder, pSource, pConverter,
-					ppBitmap, target_size, enlarge_if_smaller, quality);
+					ppBitmap, target_size, enlarge_if_smaller, keep_aspect_ratio, quality);
 
 			safe_release(&pDecoder);
 			safe_release(&pSource);
@@ -563,7 +563,7 @@ namespace liblec {
 
 		static inline HRESULT load_bitmap_file(ID2D1RenderTarget* pRenderTarget,
 			IWICImagingFactory* pIWICFactory, PCWSTR uri, ID2D1Bitmap** ppBitmap,
-			size target_size, bool enlarge_if_smaller, image_quality quality) {
+			size target_size, bool enlarge_if_smaller, bool keep_aspect_ratio, image_quality quality) {
 			IWICBitmapDecoder* pDecoder = NULL;
 			IWICBitmapFrameDecode* pSource = NULL;
 			IWICFormatConverter* pConverter = NULL;
@@ -574,7 +574,7 @@ namespace liblec {
 
 			if (SUCCEEDED(hr))
 				create_bitmap(pRenderTarget, pIWICFactory, pDecoder, pSource, pConverter,
-					ppBitmap, target_size, enlarge_if_smaller, quality);
+					ppBitmap, target_size, enlarge_if_smaller, keep_aspect_ratio, quality);
 
 			safe_release(&pDecoder);
 			safe_release(&pSource);

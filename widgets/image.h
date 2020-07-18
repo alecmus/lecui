@@ -40,6 +40,7 @@ namespace liblec {
 					int png_resource = 0;
 					image_quality quality = image_quality::medium;
 					bool enlarge_if_smaller = false;
+					bool keep_aspect_ratio = true;
 
 					bool operator==(const image_specs&);
 					bool operator!=(const image_specs&);
