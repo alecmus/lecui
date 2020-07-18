@@ -39,6 +39,7 @@ namespace liblec {
 					std::string file;
 					int png_resource = 0;
 					image_quality quality = image_quality::medium;
+					bool enlarge_if_smaller = false;
 
 					bool operator==(const image_specs&);
 					bool operator!=(const image_specs&);

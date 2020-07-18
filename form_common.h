@@ -352,9 +352,7 @@ namespace liblec {
 			D2D1_RECT_F rect_;
 		};
 
-		/// <summary>
-		/// Fit a rectangle within another.
-		/// </summary>
+		/// <summary>Fit a rectangle within another.</summary>
 		/// <param name="rect_container">The container rectangle.</param>
 		/// <param name="stretch">Whether to stretch the bitmap to the supplied dimensions.</param>
 		/// <param name="enlarge_if_smaller">Enlarge if it's smaller than the container.</param>

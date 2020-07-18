@@ -110,10 +110,10 @@ namespace liblec {
 				if (specs_.png_resource)	// png resource takes precedence
 					load_bitmap_resource(p_render_target, p_IWICFactory_,
 						page_.d_page_.get_form().d_.resource_module_handle_, specs_.png_resource, "PNG",
-						&p_bitmap_, current_size, false, specs_.quality);
+						&p_bitmap_, current_size, specs_.enlarge_if_smaller, specs_.quality);
 				if (!specs_.file.empty() && !p_bitmap_)
 					load_bitmap_file(p_render_target, p_IWICFactory_, convert_string(specs_.file).c_str(),
-						&p_bitmap_, current_size, false, specs_.quality);
+						&p_bitmap_, current_size, specs_.enlarge_if_smaller, specs_.quality);
 			}
 
 			if (p_bitmap_) {
@@ -121,8 +121,6 @@ namespace liblec {
 				const auto size = p_bitmap_->GetSize();
 				auto rect_image = D2D1::RectF(0, 0, size.width, size.height);
 				fit_rect(rect_, rect_image, false, false, true);
-
-				// to-do: find a way of adjusting drawing quality to high
 
 				// draw the bitmap
 				p_render_target->DrawBitmap(p_bitmap_, rect_image);
