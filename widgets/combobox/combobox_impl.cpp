@@ -812,6 +812,7 @@ namespace liblec {
 			widgets::combobox_impl::operator()() { return specs(); }
 		std::string widgets::combobox_impl::dropdown(D2D1_RECT_F rect) {
 			context_menu::specs menu_specs;
+			menu_specs.quality = specs_.quality;
 
 			for (const auto& item : specs_.items) {
 				menu_item mi;

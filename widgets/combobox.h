@@ -53,6 +53,9 @@ namespace liblec {
 					/// <summary>The list of items available in the dropdown.</summary>
 					std::vector<combobox_item> items;
 
+					/// <summary>The quality of the combo item images.</summary>
+					image_quality quality = image_quality::high;
+
 					/// <summary>How to sort the items.</summary>
 					sort_options sort = sort_options::ascending;
 
