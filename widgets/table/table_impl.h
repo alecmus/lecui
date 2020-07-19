@@ -43,7 +43,6 @@ namespace liblec {
 					const D2D1_SIZE_F& change_in_size, const D2D1_POINT_2F& offset,
 					const bool& render) override;
 				void on_click() override;
-				bool on_mousewheel(float units) override;
 				bool on_keydown(WPARAM wParam) override;
 				bool hit(const bool& hit) override;
 
@@ -78,37 +77,10 @@ namespace liblec {
 				IDWriteFactory* p_directwrite_factory_;
 				IDWriteTextLayout* p_text_layout_;
 
-				unsigned long scrollbar_thickness_;
-
-				color color_scrollbar_;
-				color color_scrollbar_border_;
-				color color_scrollbar_hot_;
-				color color_scrollbar_hot_pressed_;
-				color color_scrollbar_background_;
-
-				ID2D1SolidColorBrush* p_brush_scrollbar_;
-				ID2D1SolidColorBrush* p_brush_scrollbar_hot_;
-				ID2D1SolidColorBrush* p_brush_scrollbar_hot_pressed_;
-				ID2D1SolidColorBrush* p_brush_scrollbar_background_;
-
-				bool v_scrollbar_hit_;
-				bool h_scrollbar_hit_;
-				bool v_scrollbar_pressed_;
-				bool h_scrollbar_pressed_;
-				float v_displacement_;	// should never be greater than zero
-				float h_displacement_;	// should never be greater than zero
-				float v_displacement_previous_;
-				float h_displacement_previous_;
-
+				D2D1_RECT_F rectA_, rectB_;
 				float row_height_;
 				float margin_;
 				D2D1_RECT_F rect_header_;
-				D2D1_RECT_F rectA_;
-				D2D1_RECT_F rectB_;
-				bool v_scrollbar_visible_;
-				bool h_scrollbar_visible_;
-				float change_in_height_previous_;
-				float change_in_width_previous_;
 				std::map<unsigned long, D2D1_RECT_F> hot_spots_;
 				unsigned long last_selected_;
 

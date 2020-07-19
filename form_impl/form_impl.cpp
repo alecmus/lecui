@@ -1702,6 +1702,104 @@ namespace liblec {
 			}
 		}
 
+		void form::impl::move_tables() {
+			// check if this page has a table pane
+			auto page_iterator = p_pages_.find(current_page_);
+
+			struct table_info {
+				std::string alias;
+
+				// important that it's not a reference because of deletion in a ranged for loop later
+				lecui::widgets::table::table_specs table;
+				lecui::containers::page& source;
+				lecui::containers::page& destination;
+			};
+
+			std::vector<table_info> tables;
+
+			if (page_iterator != p_pages_.end()) {
+				auto& page = page_iterator->second;
+
+				class helper {
+				public:
+					static void find_tables_to_move(lecui::containers::page& page,
+						std::vector<table_info>& tables) {
+						for (auto& widget : page.d_page_.widgets()) {
+							// check if this is a table pane
+							if (widget.first.find(widgets::pane_impl::table_pane_alias_prefix()) != std::string::npos)
+								continue;	// this is a table pane (it has a table inside. move was already done), continue to next widget
+
+							// check if this is a table
+							if (widget.second.type() == widgets::widget_type::table) {
+								// this is a table, we need to "move" it into a special pane
+
+								// get the table specs
+								auto& table_specs = page.d_page_.get_table(widget.first).specs();
+
+								// make pane whose alias is prefixed by the special string
+								containers::pane pane(page, widgets::pane_impl::table_pane_alias_prefix() + widget.first);
+
+								// clone essential properties to pane
+								pane().rect = table_specs.rect;
+								pane().on_resize = table_specs.on_resize;
+								pane().color_fill = table_specs.color_fill;
+								pane().color_border = table_specs.color_border;
+
+								// save move info so we can move the table into the pane later
+								// we cannot do it here because we're iterating
+								tables.push_back({ widget.first, table_specs, page, pane.get() });
+								break;
+							}
+
+							if (widget.second.type() == widgets::widget_type::tab_pane) {
+								// get this tab pane
+								auto& tab_pane = page.d_page_.get_tab_pane(widget.first);
+
+								// initialize tabs
+								for (auto& tab : tab_pane.p_tabs_)
+									find_tables_to_move(tab.second, tables);	// recursion
+							}
+							else
+								if (widget.second.type() == widgets::widget_type::pane) {
+									// get this pane
+									auto& pane = page.d_page_.get_pane(widget.first);
+
+									// initialize panes
+									for (auto& page : pane.p_panes_)
+										find_tables_to_move(page.second, tables);	// recursion
+								}
+						}
+					}
+				};
+
+				helper::find_tables_to_move(page, tables);
+
+				// move the tables
+				for (auto& it : tables) {
+					log("moving table: " + it.alias + " from " + it.source.d_page_.alias() + " to " + it.destination.d_page_.alias());
+
+					try {
+						// clone into destination
+						widgets::table table(it.destination, it.alias);
+						// copy specs
+						table() = it.table;
+
+						// adjust specs
+						table().rect = { 0, it.destination.size().width, 0, it.destination.size().height };
+						table().on_resize = { 0, 0, 0, 0 };	// critical because table will change size as table is browsed or changed. the pane scroll bars will do the job.
+						table().color_fill.alpha = 0;
+						table().color_border.alpha = 0;
+
+						// close widget
+						std::string error;
+						it.source.d_page_.close_widget(it.alias, widgets::widget_type::table, error);
+						log("moving " + it.alias + " successful!");
+					}
+					catch (const std::exception& e) { log("moving " + it.alias + " failed: " + e.what()); }
+				}
+			}
+		}
+
 		/// If the application receives a WM_SIZE message, this method resizes the render target
 		/// appropriately
 		void form::impl::on_resize(UINT width, UINT height) {
@@ -2545,6 +2643,7 @@ namespace liblec {
 				form_.d_.move_times();
 				form_.d_.move_dates();
 				form_.d_.move_icons();
+				form_.d_.move_tables();
 				form_.d_.on_render();
 				ValidateRect(hWnd, nullptr);
 				return NULL;

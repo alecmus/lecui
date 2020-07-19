@@ -235,6 +235,7 @@ namespace liblec {
 			void move_times();
 			void move_dates();
 			void move_icons();
+			void move_tables();
 			HRESULT on_render();
 			void on_resize(UINT width, UINT height);
 			RECT get_working_area(HWND hWnd);

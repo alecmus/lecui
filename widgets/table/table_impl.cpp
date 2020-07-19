@@ -12,6 +12,7 @@
 */
 
 #include "table_impl.h"
+#include "../../containers/page/page_impl.h"
 
 namespace liblec {
 	namespace lecui {
@@ -37,40 +38,13 @@ namespace liblec {
 			p_text_format_(nullptr),
 			p_directwrite_factory_(p_directwrite_factory),
 			p_text_layout_(nullptr),
-			scrollbar_thickness_(10),
-
-			p_brush_scrollbar_(nullptr),
-			p_brush_scrollbar_hot_(nullptr),
-			p_brush_scrollbar_hot_pressed_(nullptr),
-			p_brush_scrollbar_background_(nullptr),
-
-			v_scrollbar_hit_(false),
-			h_scrollbar_hit_(false),
-			v_scrollbar_pressed_(false),
-			h_scrollbar_pressed_(false),
-			v_displacement_(0.f),
-			h_displacement_(0.f),
-			v_displacement_previous_(0.f),
-			h_displacement_previous_(0.f),
+			rectA_({ 0, 0, 0, 0 }),
+			rectB_({ 0, 0, 0, 0 }),
 			row_height_(20.f),
 			margin_(row_height_ / 4.f),
 			rect_header_({ 0.f, 0.f, 0.f, 0.f }),
-			rectA_({ 0.f, 0.f, 0.f, 0.f }),
-			rectB_({ 0.f, 0.f, 0.f, 0.f }),
-			v_scrollbar_visible_(false),
-			h_scrollbar_visible_(false),
-			change_in_height_previous_(0.f),
-			change_in_width_previous_(0.f),
 			last_selected_(0UL),
-			book_on_selection_(false) {
-			widgets::scrollbar_specs bar;
-
-			color_scrollbar_ = bar.color_fill;
-			color_scrollbar_hot_ = bar.color_hot;
-			color_scrollbar_hot_pressed_ = bar.color_hot_pressed;
-			color_scrollbar_background_ = bar.color_background;
-			color_scrollbar_border_ = bar.color_scrollbar_border;
-		}
+			book_on_selection_(false) {}
 
 		widgets::table_impl::~table_impl() { discard_resources(); }
 
@@ -90,9 +64,6 @@ namespace liblec {
 			if (SUCCEEDED(hr))
 				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_fill),
 					&p_brush_fill_);
-			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(color_scrollbar_border_),
-					&p_brush_scrollbar_border_);
 			if (SUCCEEDED(hr))
 				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_text_header),
 					&p_brush_text_header_);
@@ -133,19 +104,6 @@ namespace liblec {
 				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_row_selected),
 					&p_brush_row_selected_);
 
-			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(color_scrollbar_),
-					&p_brush_scrollbar_);
-			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(color_scrollbar_hot_),
-					&p_brush_scrollbar_hot_);
-			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(color_scrollbar_hot_pressed_),
-					&p_brush_scrollbar_hot_pressed_);
-			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(color_scrollbar_background_),
-					&p_brush_scrollbar_background_);
-
 			if (SUCCEEDED(hr)) {
 				// Create a DirectWrite text format object.
 				hr = p_directwrite_factory_->CreateTextFormat(
@@ -185,12 +143,6 @@ namespace liblec {
 			safe_release(&p_brush_menu_);
 			safe_release(&p_brush_grid_);
 			safe_release(&p_text_format_);
-
-			safe_release(&p_brush_scrollbar_);
-			safe_release(&p_brush_scrollbar_hot_);
-			safe_release(&p_brush_scrollbar_hot_pressed_);
-			safe_release(&p_brush_scrollbar_background_);
-
 		}
 
 		D2D1_RECT_F&
@@ -222,35 +174,7 @@ namespace liblec {
 			rect_.top -= offset.y;
 			rect_.bottom -= offset.y;
 
-			// step1: clip widget area
-			auto_clip clip(render, p_render_target, rect_, 1.f);
-
-			// step2: detecting changes in dimensions and adjust the displacement accordingly
-			{
-				// calculate change in dimensions
-				const float change_in_width_ = (rect_.right - rect_.left) -
-					static_cast<float>(specs_.rect.right - specs_.rect.left);
-				const float change_in_height_ = (rect_.bottom - rect_.top) -
-					static_cast<float>(specs_.rect.bottom - specs_.rect.top);
-
-				// calculate adjustments to make to displacement
-				const float height_adjustment = change_in_height_ - change_in_height_previous_;
-				change_in_height_previous_ = change_in_height_;
-				const float width_adjustment = change_in_width_ - change_in_width_previous_;
-				change_in_width_previous_ = change_in_width_;
-
-				// apply height adjustment
-				if (v_displacement_ != 0.f) {
-					v_displacement_ += height_adjustment;
-					v_displacement_previous_ += height_adjustment;
-				}
-
-				// apply width adjustment
-				if (h_displacement_ != 0.f) {
-					h_displacement_ += width_adjustment;
-					h_displacement_previous_ += width_adjustment;
-				}
-			}
+			const auto rect_page = page_.d_page_.get_rect();
 
 			// step3: draw widget background
 			{
@@ -265,6 +189,7 @@ namespace liblec {
 			// step4: draw header background
 			{
 				rect_header_ = rect_;
+				rect_header_.top = rect_page.top;
 				rect_header_.bottom = rect_header_.top + row_height_;
 
 				D2D1_ROUNDED_RECT rounded_rect{ rect_header_,
@@ -274,131 +199,24 @@ namespace liblec {
 					p_render_target->FillRoundedRectangle(&rounded_rect, p_brush_fill_header_);
 			}
 
+			rectA_ = { rect_.left, rect_.top + row_height_, rect_.right, rect_.bottom };
+
 			// step5: define rectB_ (the table area)
-			rectB_ = { rect_.left, rect_header_.bottom, rect_.right, rect_.bottom };
+			rectB_ = { rect_.left, rect_.top + row_height_, rect_.right, rect_.bottom };
+
+			// for table rows to fill up horizontally (aesthetics)
+			rectA_.right = largest(rectA_.right, rect_page.right);
+			rectB_.right = largest(rectB_.right, rect_page.right);
+
+			// for table rows to fill up vertically (aesthetics)
+			rectA_.bottom = largest(rectA_.bottom, rect_page.bottom);
+			rectB_.bottom = largest(rectB_.bottom, rect_page.bottom);
 
 			float table_width = 0.f;
 			for (const auto& it : specs_.columns) table_width += static_cast<float>(it.width);
 			float table_height = row_height_ * specs_.data.size();
 
-			// step6: define rectC_ for scroll bars
-
-			// step6a: define rectC_v_
-			auto rectC_v_ = rectB_;
-			rectC_v_.left = rectC_v_.right - scrollbar_thickness_;
-			rectC_v_.top += scrollbar_thickness_;
-			rectC_v_.bottom -= scrollbar_thickness_;
-
-			// step6b: define rectC_h_
-			auto rectC_h_ = rectB_;
-			rectC_h_.top = rectC_h_.bottom - scrollbar_thickness_;
-			rectC_h_.left += scrollbar_thickness_;
-			rectC_h_.right -= scrollbar_thickness_;
-
-			// step7: handle scroll bars
-
-			// step7a: handle vertical scroll bar
-			if (v_scrollbar_visible_) {
-				auto rect = rectC_v_;
-				scale_RECT(rect, get_dpi_scale());
-
-				// handle hit status
-				if (point_.x >= rect.left && point_.x <= rect.right &&
-					point_.y >= rect.top && point_.y <= rect.bottom)
-					v_scrollbar_hit_ = true;
-				else
-					v_scrollbar_hit_ = false;
-
-				// handle pressed status
-				const auto before = v_scrollbar_pressed_;
-
-				if (pressed_ &&
-					point_on_press_.x >= rect.left && point_on_press_.x <= rect.right &&
-					point_on_press_.y >= rect.top && point_on_press_.y <= rect.bottom)
-					v_scrollbar_pressed_ = true;
-				else
-					v_scrollbar_pressed_ = false;
-
-				const auto after = v_scrollbar_pressed_;
-
-				if (before != after && !v_scrollbar_pressed_)	// scroll bar released just now
-					v_displacement_previous_ = v_displacement_;
-
-				// calculate the scale factor for amplifying the movement of the scroll bar
-				const float height_A = table_height;
-				const float height_C = rectC_v_.bottom - rectC_v_.top;
-				const float scale_factor = height_C != 0.f ? height_A / height_C : 1.f;
-
-				if (v_scrollbar_pressed_) {
-					// compute the displacement according the the mouse movement
-					v_displacement_ = -scale_factor * (point_.y - point_on_press_.y) / get_dpi_scale();
-					v_displacement_ += v_displacement_previous_;
-				}
-			}
-
-			// step7b: handle horizontal scroll bar
-			if (h_scrollbar_visible_) {
-				auto rect = rectC_h_;
-				scale_RECT(rect, get_dpi_scale());
-
-				// handle hit status
-				if (point_.x >= rect.left && point_.x <= rect.right &&
-					point_.y >= rect.top && point_.y <= rect.bottom)
-					h_scrollbar_hit_ = true;
-				else
-					h_scrollbar_hit_ = false;
-
-				// handle pressed status
-				const auto before = h_scrollbar_pressed_;
-
-				if (pressed_ &&
-					point_on_press_.x >= rect.left && point_on_press_.x <= rect.right &&
-					point_on_press_.y >= rect.top && point_on_press_.y <= rect.bottom)
-					h_scrollbar_pressed_ = true;
-				else
-					h_scrollbar_pressed_ = false;
-
-				const auto after = h_scrollbar_pressed_;
-
-				if (before != after && !h_scrollbar_pressed_)	// scroll bar released
-					h_displacement_previous_ = h_displacement_;
-
-				// calculate the scale factor for amplifying the movement of the scroll bar
-				const float width_A = table_width;
-				const float width_C = rectC_h_.right - rectC_h_.left;
-				const float scale_factor = width_C != 0.f ? width_A / width_C : 1.f;
-
-				if (h_scrollbar_pressed_) {
-					// compute the displacement according the the mouse movement
-					h_displacement_ = -scale_factor * (point_.x - point_on_press_.x) / get_dpi_scale();
-					h_displacement_ += h_displacement_previous_;
-				}
-			}
-
-			// step8: adjust h_displacement_ and v_displacement_, if necessary
-
-			/// Algorithm:
-			/// 
-			/// rectA_.left is not allowed to get greater than rectB_.left
-			/// rectA_.top is not allowed to get greater than rectB_.top
-			/// rectA_.right is only allowed to get smaller than rectB_.right
-			/// if rectA_.left is equal to rectB_.left
-			/// rectA_.bottom is only allowed to get smaller than rectB_.bottom
-			/// if rectA_.top is equal to rectB_.top
-			h_displacement_ = smallest(0.f,
-				largest(h_displacement_, (rectB_.right - rectB_.left) - table_width));
-			v_displacement_ = smallest(0.f,
-				largest(v_displacement_, (rectB_.bottom - rectB_.top) - table_height));
-
 			// step9: define rectA_ (the area containing all the table contents)
-
-			// if the table cannot fit in rectB_ this area can be navigated using the scroll bars
-
-			rectA_ = rectB_;
-			rectA_.left = rectB_.left + h_displacement_;
-			rectA_.top = rectB_.top + v_displacement_;
-			rectA_.right = rectA_.left + table_width;
-			rectA_.bottom = rectA_.top + table_height;
 
 			// step10: draw header
 			{
@@ -439,7 +257,9 @@ namespace liblec {
 				hot_spots_.clear();
 
 				// step11a: clip to table area
-				auto_clip clip(render, p_render_target, rectB_, 0.f);
+				auto rect_clip = rectB_;
+				rect_clip.top = rect_header_.bottom;
+				auto_clip clip(render, p_render_target, rect_clip, 0.f);
 
 				// step11b: figure out which rows are hidden from view and exclude them from the rendering
 				// this gives a major performance boost when dealing with very large tables
@@ -467,20 +287,12 @@ namespace liblec {
 							rect.left = rectB_.left;
 							rect.right = rectB_.right;
 
-							if (!h_scrollbar_hit_ &&
-								!v_scrollbar_hit_ &&
-								!h_scrollbar_pressed_ &&
-								!v_scrollbar_pressed_)
-								hot_spots_[row_number] = rect;
+							hot_spots_[row_number] = rect;
 
 							scale_RECT(rect, get_dpi_scale());
 
 							// handle hit status
-							if (!h_scrollbar_hit_ &&
-								!v_scrollbar_hit_ &&
-								!h_scrollbar_pressed_ &&
-								!v_scrollbar_pressed_ &&
-								point_.x >= rect.left && point_.x <= rect.right &&
+							if (point_.x >= rect.left && point_.x <= rect.right &&
 								point_.y >= rect.top && point_.y <= rect.bottom)
 								hot = true;
 							else
@@ -601,92 +413,6 @@ namespace liblec {
 				}
 			}
 
-			// step13: draw scroll bars
-
-			// step13a: draw vertical scroll bar
-			{
-				D2D1_RECT_F rectD_ = { 0.f, 0.f, 0.f, 0.f };
-				position_v_scrollbar(rectA_, rectB_, rectC_v_, rectD_);
-
-				if (!equal(rectC_v_, rectD_) &&
-					!(roundoff::tof((rectD_.bottom - rectD_.top), precision) >=
-						roundoff::tof((rectC_v_.bottom - rectC_v_.top), precision))) {
-					auto corner_radius = smallest((rectD_.right - rectD_.left) / 3.f,
-						(rectD_.bottom - rectD_.top) / 3.f);
-
-					// scroll area
-					D2D1_ROUNDED_RECT rounded_rectC{ rectC_v_, corner_radius, corner_radius };
-
-					if (render && visible_)
-						p_render_target->FillRoundedRectangle(&rounded_rectC,
-							p_brush_scrollbar_background_);
-
-					// scroll bar
-					auto rect_scroll_bar = rectD_;
-					const float scroll_bar_margin = 2.f;
-					rect_scroll_bar.left += scroll_bar_margin;
-					rect_scroll_bar.top += scroll_bar_margin;
-					rect_scroll_bar.right -= scroll_bar_margin;
-					rect_scroll_bar.bottom -= scroll_bar_margin;
-					corner_radius = smallest((rect_scroll_bar.bottom - rect_scroll_bar.top) / 3.f,
-						(rect_scroll_bar.right - rect_scroll_bar.left) / 3.f);
-					D2D1_ROUNDED_RECT rounded_rectD{ rect_scroll_bar, corner_radius, corner_radius };
-
-					if (render && visible_) {
-						p_render_target->FillRoundedRectangle(&rounded_rectD,
-							v_scrollbar_pressed_ ? p_brush_scrollbar_hot_pressed_ : (v_scrollbar_hit_ ?
-								p_brush_scrollbar_hot_ : p_brush_scrollbar_));
-						p_render_target->DrawRoundedRectangle(&rounded_rectD, p_brush_scrollbar_border_);
-					}
-
-					v_scrollbar_visible_ = true;
-				}
-				else
-					v_scrollbar_visible_ = false;
-			}
-
-			// step13b: draw horizontal scroll bar
-			{
-				D2D1_RECT_F rectD_ = { 0.f, 0.f, 0.f, 0.f };
-				position_h_scrollbar(rectA_, rectB_, rectC_h_, rectD_);
-
-				if (!equal(rectC_h_, rectD_) &&
-					!(roundoff::tof((rectD_.right - rectD_.left), precision) >=
-						roundoff::tof((rectC_h_.right - rectC_h_.left), precision))) {
-					auto corner_radius = smallest((rectD_.bottom - rectD_.top) / 3.f,
-						(rectD_.right - rectD_.left) / 3.f);
-
-					// scroll area
-					D2D1_ROUNDED_RECT rounded_rectC{ rectC_h_, corner_radius, corner_radius };
-
-					if (render && visible_)
-						p_render_target->FillRoundedRectangle(&rounded_rectC,
-							p_brush_scrollbar_background_);
-
-					// scroll bar
-					auto rect_scroll_bar = rectD_;
-					const float scroll_bar_margin = 2.f;
-					rect_scroll_bar.left += scroll_bar_margin;
-					rect_scroll_bar.top += scroll_bar_margin;
-					rect_scroll_bar.right -= scroll_bar_margin;
-					rect_scroll_bar.bottom -= scroll_bar_margin;
-					corner_radius = smallest((rect_scroll_bar.bottom - rect_scroll_bar.top) / 3.f,
-						(rect_scroll_bar.right - rect_scroll_bar.left) / 3.f);
-					D2D1_ROUNDED_RECT rounded_rectD{ rect_scroll_bar, corner_radius, corner_radius };
-
-					if (render && visible_) {
-						p_render_target->FillRoundedRectangle(&rounded_rectD,
-							h_scrollbar_pressed_ ? p_brush_scrollbar_hot_pressed_ : (h_scrollbar_hit_ ?
-								p_brush_scrollbar_hot_ : p_brush_scrollbar_));
-						p_render_target->DrawRoundedRectangle(&rounded_rectD, p_brush_scrollbar_border_);
-					}
-
-					h_scrollbar_visible_ = true;
-				}
-				else
-					h_scrollbar_visible_ = false;
-			}
-
 			// draw border
 			if (render && visible_) {
 				D2D1_ROUNDED_RECT rounded_rect{ rect_,
@@ -700,7 +426,7 @@ namespace liblec {
 		}
 
 		void widgets::table_impl::on_click() {
-			if (!h_scrollbar_pressed_ && !v_scrollbar_pressed_) {
+			if (true) {
 				if (book_on_selection_) {
 					if (specs_.events().selection)
 						on_selection();
@@ -788,14 +514,6 @@ namespace liblec {
 			}
 		}
 
-		bool widgets::table_impl::on_mousewheel(float units) {
-			float adjustment = units * row_height_;
-
-			v_displacement_ += adjustment;
-			v_displacement_previous_ += adjustment;
-			return true;
-		}
-
 		bool widgets::table_impl::on_keydown(WPARAM wParam) {
 			float adjustment = 0.f;
 
@@ -813,8 +531,6 @@ namespace liblec {
 			if (adjustment != 0.f) {
 				if (specs_.selected.empty()) {
 					// simple scrolling
-					v_displacement_ += adjustment;
-					v_displacement_previous_ += adjustment;
 				}
 				else {
 					// move last selection one unit (unless it's at the beginning or the end)
@@ -841,8 +557,6 @@ namespace liblec {
 
 					if (diff != 0.f) {
 						// move the displacement to ensure visibility of new selection
-						v_displacement_ += diff;
-						v_displacement_previous_ += diff;
 					}
 
 					book_on_selection_ = true;

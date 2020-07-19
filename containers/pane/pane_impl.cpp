@@ -40,6 +40,10 @@ namespace liblec {
 			return std::string("lecui::containers::icon_pane::");
 		}
 
+		std::string widgets::pane_impl::table_pane_alias_prefix() {
+			return std::string("lecui::containers::table_pane::");
+		}
+
 		widgets::pane_impl::pane_impl(containers::page& page,
 			const std::string& alias) :
 			widget_impl(page, alias),

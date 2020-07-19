@@ -92,6 +92,7 @@ namespace liblec {
 				friend class widgets::widget_impl;
 				friend class widgets::html_editor_impl;
 				friend class widgets::image_impl;
+				friend class widgets::table_impl;
 #endif
 			};
 		}

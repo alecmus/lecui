@@ -71,6 +71,7 @@ namespace liblec {
 			class text_field_impl;
 			class tree_impl;
 			class image_impl;
+			class table_impl;
 		}
 #endif
 
