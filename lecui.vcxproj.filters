@@ -71,9 +71,6 @@
     <Filter Include="lecui\containers\group">
       <UniqueIdentifier>{4dfa9feb-9195-4283-addb-a192e719cb60}</UniqueIdentifier>
     </Filter>
-    <Filter Include="lecui\widgets\table">
-      <UniqueIdentifier>{cdb6740a-7a20-4782-85d5-ed23603da7ff}</UniqueIdentifier>
-    </Filter>
     <Filter Include="lecui\containers\status_pane">
       <UniqueIdentifier>{01e6aa71-69f0-41b6-ba3a-bd01f8795a45}</UniqueIdentifier>
     </Filter>
@@ -160,6 +157,9 @@
     </Filter>
     <Filter Include="lecui\widgets\image_view">
       <UniqueIdentifier>{5b4c8621-0198-4500-8d24-7cd7214ff67c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lecui\widgets\table_view">
+      <UniqueIdentifier>{cdb6740a-7a20-4782-85d5-ed23603da7ff}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -265,12 +265,6 @@
     </ClInclude>
     <ClInclude Include="containers\group\group_impl.h">
       <Filter>lecui\containers\group</Filter>
-    </ClInclude>
-    <ClInclude Include="widgets\table.h">
-      <Filter>lecui\widgets</Filter>
-    </ClInclude>
-    <ClInclude Include="widgets\table\table_impl.h">
-      <Filter>lecui\widgets\table</Filter>
     </ClInclude>
     <ClInclude Include="timer.h">
       <Filter>lecui</Filter>
@@ -386,6 +380,12 @@
     <ClInclude Include="widgets\image_view.h">
       <Filter>lecui\widgets</Filter>
     </ClInclude>
+    <ClInclude Include="widgets\table_view.h">
+      <Filter>lecui\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="widgets\table_view\table_view_impl.h">
+      <Filter>lecui\widgets\table_view</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="error\win_error.cpp">
@@ -487,12 +487,6 @@
     </ClCompile>
     <ClCompile Include="containers\group\group_impl.cpp">
       <Filter>lecui\containers\group</Filter>
-    </ClCompile>
-    <ClCompile Include="widgets\table\table.cpp">
-      <Filter>lecui\widgets\table</Filter>
-    </ClCompile>
-    <ClCompile Include="widgets\table\table_impl.cpp">
-      <Filter>lecui\widgets\table</Filter>
     </ClCompile>
     <ClCompile Include="containers\status_pane\status_pane.cpp">
       <Filter>lecui\containers\status_pane</Filter>
@@ -640,6 +634,12 @@
     </ClCompile>
     <ClCompile Include="widgets\image_view\image_view_impl.cpp">
       <Filter>lecui\widgets\image_view</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\table_view\table_view.cpp">
+      <Filter>lecui\widgets\table_view</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\table_view\table_view_impl.cpp">
+      <Filter>lecui\widgets\table_view</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

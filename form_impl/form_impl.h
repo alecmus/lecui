@@ -201,7 +201,7 @@ namespace liblec {
 			friend class widgets::image_view;
 			friend class widgets::button;
 			friend class widgets::custom;
-			friend class widgets::table;
+			friend class widgets::table_view;
 			friend class widgets::rectangle;
 			friend class widgets::toggle;
 			friend class widgets::progress_indicator;

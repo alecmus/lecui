@@ -48,7 +48,7 @@ namespace liblec {
 			class image_view;
 			class button;
 			class custom;
-			class table;
+			class table_view;
 			class rectangle;
 			class toggle;
 			class progress_indicator;
@@ -71,7 +71,7 @@ namespace liblec {
 			class text_field_impl;
 			class tree_impl;
 			class image_view_impl;
-			class table_impl;
+			class table_view_impl;
 		}
 #endif
 
@@ -258,7 +258,7 @@ namespace liblec {
 			friend class widgets::image_view;
 			friend class widgets::button;
 			friend class widgets::custom;
-			friend class widgets::table;
+			friend class widgets::table_view;
 			friend class widgets::rectangle;
 			friend class widgets::toggle;
 			friend class widgets::progress_indicator;

@@ -73,7 +73,7 @@ namespace liblec {
 				friend class widgets::label;
 				friend class widgets::button;
 				friend class widgets::toggle;
-				friend class widgets::table;
+				friend class widgets::table_view;
 				friend class widgets::custom;
 				friend class widgets::image_view;
 				friend class widgets::progress_indicator;
@@ -92,7 +92,7 @@ namespace liblec {
 				friend class widgets::widget_impl;
 				friend class widgets::html_editor_impl;
 				friend class widgets::image_view_impl;
-				friend class widgets::table_impl;
+				friend class widgets::table_view_impl;
 #endif
 			};
 		}

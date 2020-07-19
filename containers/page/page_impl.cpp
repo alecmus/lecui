@@ -163,14 +163,14 @@ namespace liblec {
 			return toggles_.at(alias).specs();
 		}
 
-		widgets::table::table_specs&
-			containers::page::impl::add_table(std::string alias) {
+		widgets::table_view::table_view_specs&
+			containers::page::impl::add_table_view(std::string alias) {
 			check_alias(alias);
-			if (tables_.try_emplace(alias, pg_, alias, p_directwrite_factory_).second) {
-				widgets_.emplace(alias, tables_.at(alias));
+			if (table_views_.try_emplace(alias, pg_, alias, p_directwrite_factory_).second) {
+				widgets_.emplace(alias, table_views_.at(alias));
 				widgets_order_.emplace_back(alias);
 			}
-			return tables_.at(alias).specs();
+			return table_views_.at(alias).specs();
 		}
 
 		widgets::custom::custom_specs&
@@ -345,8 +345,8 @@ namespace liblec {
 		widgets::toggle_impl&
 			containers::page::impl::get_toggle(const std::string& alias) { return toggles_.at(alias); }
 
-		widgets::table_impl&
-			containers::page::impl::get_table(const std::string& alias) { return tables_.at(alias); }
+		widgets::table_view_impl&
+			containers::page::impl::get_table_view(const std::string& alias) { return table_views_.at(alias); }
 
 		widgets::custom_impl&
 			containers::page::impl::get_custom(const std::string& alias) { return customs_.at(alias); }
@@ -430,8 +430,8 @@ namespace liblec {
 				case widgets::widget_type::toggle:
 					toggles_.erase(alias_);
 					break;
-				case widgets::widget_type::table:
-					tables_.erase(alias_);
+				case widgets::widget_type::table_view:
+					table_views_.erase(alias_);
 					break;
 				case widgets::widget_type::custom:
 					customs_.erase(alias_);

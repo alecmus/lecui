@@ -1,5 +1,5 @@
 /*
-** table_impl.h - table_impl interface
+** table_view_impl.h - table_view_impl interface
 **
 ** lecui user interface library
 ** Copyright (c) 2019 Alec T. Musasa (alecmus at live dot com)
@@ -14,12 +14,12 @@
 #pragma once
 
 #include "../widget_impl.h"
-#include "../table.h"
+#include "../table_view.h"
 
 namespace liblec {
 	namespace lecui {
 		namespace widgets {
-			class table_impl : public widget_impl {
+			class table_view_impl : public widget_impl {
 				/// private virtual function overrides
 				widgets::specs& generic_specs() override {
 					return specs_;
@@ -27,13 +27,13 @@ namespace liblec {
 
 			public:
 				/// Prevent the use of the default constructor.
-				table_impl() = delete;
+				table_view_impl() = delete;
 
 				/// constructor and destructor
-				table_impl(containers::page& page,
+				table_view_impl(containers::page& page,
 					const std::string& alias,
 					IDWriteFactory* p_directwrite_factory);
-				~table_impl();
+				~table_view_impl();
 
 				/// virtual function overrides
 				widget_type type() override;
@@ -47,16 +47,16 @@ namespace liblec {
 				bool hit(const bool& hit) override;
 
 				/// widget specific methods
-				widgets::table::table_specs& specs();
-				widgets::table::table_specs& operator()();
+				widgets::table_view::table_view_specs& specs();
+				widgets::table_view::table_view_specs& operator()();
 
 			private:
 				/// Prevent copying an object of this class.
-				table_impl(const table_impl&);
-				table_impl& operator=(const table_impl&);
+				table_view_impl(const table_view_impl&);
+				table_view_impl& operator=(const table_view_impl&);
 
 				/// Private variables
-				widgets::table::table_specs specs_, specs_old_;
+				widgets::table_view::table_view_specs specs_, specs_old_;
 				ID2D1SolidColorBrush* p_brush_;
 				ID2D1SolidColorBrush* p_brush_fill_;
 				ID2D1SolidColorBrush* p_brush_scrollbar_border_;

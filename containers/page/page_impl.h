@@ -25,7 +25,7 @@
 #include "../../widgets/label/label_impl.h"
 #include "../../widgets/button/button_impl.h"
 #include "../../widgets/toggle/toggle_impl.h"
-#include "../../widgets/table/table_impl.h"
+#include "../../widgets/table_view/table_view_impl.h"
 #include "../../widgets/custom/custom_impl.h"
 #include "../../widgets/image_view/image_view_impl.h"
 #include "../../widgets/progress_indicator/progress_indicator_impl.h"
@@ -82,8 +82,8 @@ namespace liblec {
 				add_button(std::string alias);
 			widgets::toggle::toggle_specs&
 				add_toggle(std::string alias);
-			widgets::table::table_specs&
-				add_table(std::string alias);
+			widgets::table_view::table_view_specs&
+				add_table_view(std::string alias);
 			widgets::custom::custom_specs&
 				add_custom(std::string alias);
 			widgets::image_view::image_view_specs&
@@ -138,8 +138,8 @@ namespace liblec {
 				get_group(const std::string& alias);
 			widgets::toggle_impl&
 				get_toggle(const std::string& alias);
-			widgets::table_impl&
-				get_table(const std::string& alias);
+			widgets::table_view_impl&
+				get_table_view(const std::string& alias);
 			widgets::custom_impl&
 				get_custom(const std::string& alias);
 			widgets::image_view_impl&
@@ -204,7 +204,7 @@ namespace liblec {
 			std::map<std::string, widgets::group_impl> groups_;
 			std::map<std::string, widgets::button_impl> buttons_;
 			std::map<std::string, widgets::toggle_impl> toggles_;
-			std::map<std::string, widgets::table_impl> tables_;
+			std::map<std::string, widgets::table_view_impl> table_views_;
 			std::map<std::string, widgets::custom_impl> customs_;
 			std::map<std::string, widgets::image_view_impl> image_views_;
 			std::map<std::string, widgets::progress_indicator_impl> progress_indicators_;
@@ -232,7 +232,7 @@ namespace liblec {
 			friend class widgets::label;
 			friend class widgets::button;
 			friend class widgets::toggle;
-			friend class widgets::table;
+			friend class widgets::table_view;
 			friend class widgets::custom;
 			friend class widgets::image_view;
 			friend class widgets::progress_indicator;

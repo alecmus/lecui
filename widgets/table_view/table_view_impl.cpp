@@ -1,5 +1,5 @@
 /*
-** table_impl.cpp - table_impl implementation
+** table_view_impl.cpp - table_view_impl implementation
 **
 ** lecui user interface library
 ** Copyright (c) 2019 Alec T. Musasa (alecmus at live dot com)
@@ -11,12 +11,12 @@
 ** for full license details.
 */
 
-#include "table_impl.h"
+#include "table_view_impl.h"
 #include "../../containers/page/page_impl.h"
 
 namespace liblec {
 	namespace lecui {
-		widgets::table_impl::table_impl(containers::page& page,
+		widgets::table_view_impl::table_view_impl(containers::page& page,
 			const std::string& alias,
 			IDWriteFactory* p_directwrite_factory) :
 			widget_impl(page, alias),
@@ -46,14 +46,14 @@ namespace liblec {
 			last_selected_(0UL),
 			book_on_selection_(false) {}
 
-		widgets::table_impl::~table_impl() { discard_resources(); }
+		widgets::table_view_impl::~table_view_impl() { discard_resources(); }
 
 		widgets::widget_type
-			widgets::table_impl::type() {
-			return lecui::widgets::widget_type::table;
+			widgets::table_view_impl::type() {
+			return lecui::widgets::widget_type::table_view;
 		}
 
-		HRESULT widgets::table_impl::create_resources(
+		HRESULT widgets::table_view_impl::create_resources(
 			ID2D1HwndRenderTarget* p_render_target) {
 			specs_old_ = specs_;
 			is_static_ = false;
@@ -127,7 +127,7 @@ namespace liblec {
 			return hr;
 		}
 
-		void widgets::table_impl::discard_resources() {
+		void widgets::table_view_impl::discard_resources() {
 			resources_created_ = false;
 			safe_release(&p_brush_);
 			safe_release(&p_brush_fill_);
@@ -146,7 +146,7 @@ namespace liblec {
 		}
 
 		D2D1_RECT_F&
-			widgets::table_impl::render(ID2D1HwndRenderTarget* p_render_target,
+			widgets::table_view_impl::render(ID2D1HwndRenderTarget* p_render_target,
 				const D2D1_SIZE_F& change_in_size, const D2D1_POINT_2F& offset, const bool& render) {
 			if (specs_old_ != specs_) {
 				log("specs changed: " + alias_);
@@ -421,7 +421,7 @@ namespace liblec {
 			return rect_;
 		}
 
-		void widgets::table_impl::on_click() {
+		void widgets::table_view_impl::on_click() {
 			if (true) {
 				if (book_on_selection_) {
 					if (specs_.events().selection)
@@ -510,7 +510,7 @@ namespace liblec {
 			}
 		}
 
-		bool widgets::table_impl::on_keydown(WPARAM wParam) {
+		bool widgets::table_view_impl::on_keydown(WPARAM wParam) {
 			float adjustment = 0.f;
 
 			switch (wParam) {
@@ -565,7 +565,7 @@ namespace liblec {
 				return false;
 		}
 
-		bool widgets::table_impl::hit(const bool& hit) {
+		bool widgets::table_view_impl::hit(const bool& hit) {
 			if (is_static_ || hit == hit_) {
 				if (hit || pressed_)
 					return true;
@@ -577,13 +577,13 @@ namespace liblec {
 			return true;
 		}
 
-		widgets::table::table_specs&
-			widgets::table_impl::specs() { return specs_; }
+		widgets::table_view::table_view_specs&
+			widgets::table_view_impl::specs() { return specs_; }
 
-		widgets::table::table_specs&
-			widgets::table_impl::operator()() { return specs(); }
+		widgets::table_view::table_view_specs&
+			widgets::table_view_impl::operator()() { return specs(); }
 
-		void widgets::table_impl::on_selection() {
+		void widgets::table_view_impl::on_selection() {
 			if (specs_.events().selection) {
 				std::vector<std::map<std::string, std::string>> var;
 				for (const auto& it : specs_.selected) {

@@ -1,5 +1,5 @@
 /*
-** table.cpp - table widget implementation
+** table_view.cpp - table view widget implementation
 **
 ** lecui user interface library
 ** Copyright (c) 2019 Alec T. Musasa (alecmus at live dot com)
@@ -11,12 +11,12 @@
 ** for full license details.
 */
 
-#include "../table.h"
+#include "../table_view.h"
 #include "../../form_impl/form_impl.h"
 
 namespace liblec {
 	namespace lecui {
-		bool widgets::table::table_specs::operator==(const table_specs& param) {
+		bool widgets::table_view::table_view_specs::operator==(const table_view_specs& param) {
 			return
 				// generic specs
 				specs::operator==(param) &&
@@ -33,15 +33,15 @@ namespace liblec {
 				(color_row_selected == param.color_row_selected);
 		}
 
-		bool widgets::table::table_specs::operator!=(const table_specs& param) {
+		bool widgets::table_view::table_view_specs::operator!=(const table_view_specs& param) {
 			return !operator==(param);
 		}
 
-		class widgets::table::impl {
+		class widgets::table_view::impl {
 		public:
 			impl(containers::page& page, const std::string& alias) :
 				page_(page),
-				specs_(page_.d_page_.add_table(alias)) {
+				specs_(page_.d_page_.add_table_view(alias)) {
 				specs_.color_text = defaults::color(page_.d_page_.fm_.d_.theme_, item::label);
 				specs_.color_fill = defaults::color(page_.d_page_.fm_.d_.theme_, item::table);
 				specs_.color_border = defaults::color(page_.d_page_.fm_.d_.theme_, item::table_border);
@@ -53,29 +53,29 @@ namespace liblec {
 				specs_.color_grid = defaults::color(page_.d_page_.fm_.d_.theme_, item::table_grid);
 			}
 			containers::page& page_;
-			table_specs& specs_;
+			table_view_specs& specs_;
 		};
 
-		widgets::table::table(containers::page& page) :
-			table(page, "") {}
+		widgets::table_view::table_view(containers::page& page) :
+			table_view(page, "") {}
 
-		widgets::table::table(containers::page& page, const std::string& alias) :
+		widgets::table_view::table_view(containers::page& page, const std::string& alias) :
 			d_(*(new impl(page, alias))) {}
 
-		widgets::table::~table() { delete& d_; }
+		widgets::table_view::~table_view() { delete& d_; }
 
-		widgets::table::table_specs&
-			widgets::table::specs() {
+		widgets::table_view::table_view_specs&
+			widgets::table_view::specs() {
 			return d_.specs_;
 		}
 
-		widgets::table::table_specs&
-			widgets::table::operator()() {
+		widgets::table_view::table_view_specs&
+			widgets::table_view::operator()() {
 			return specs();
 		}
 
-		widgets::table::table_specs&
-			widgets::table::specs(form& fm, const std::string& path) {
+		widgets::table_view::table_view_specs&
+			widgets::table_view::specs(form& fm, const std::string& path) {
 			const auto idx = path.find("/");
 
 			if (idx != std::string::npos) {
@@ -85,14 +85,14 @@ namespace liblec {
 					// check form pages
 					auto& page = fm.d_.p_pages_.at(page_alias);
 					auto results = fm.d_.find_widget(page, path_remaining);
-					return results.page.d_page_.get_table(results.widget.alias()).specs();
+					return results.page.d_page_.get_table_view(results.widget.alias()).specs();
 				}
 				catch (const std::exception&) {}
 				try {
 					// check status panes
 					auto& page = fm.d_.p_status_panes_.at(page_alias);
 					auto results = fm.d_.find_widget(page, path_remaining);
-					return results.page.d_page_.get_table(results.widget.alias()).specs();
+					return results.page.d_page_.get_table_view(results.widget.alias()).specs();
 				}
 				catch (const std::exception&) {}
 			}

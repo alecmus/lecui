@@ -1710,7 +1710,7 @@ namespace liblec {
 				std::string alias;
 
 				// important that it's not a reference because of deletion in a ranged for loop later
-				lecui::widgets::table::table_specs table;
+				lecui::widgets::table_view::table_view_specs table;
 				lecui::containers::page& source;
 				lecui::containers::page& destination;
 			};
@@ -1730,11 +1730,11 @@ namespace liblec {
 								continue;	// this is a table pane (it has a table inside. move was already done), continue to next widget
 
 							// check if this is a table
-							if (widget.second.type() == widgets::widget_type::table) {
+							if (widget.second.type() == widgets::widget_type::table_view) {
 								// this is a table, we need to "move" it into a special pane
 
 								// get the table specs
-								auto& table_specs = page.d_page_.get_table(widget.first).specs();
+								auto& table_specs = page.d_page_.get_table_view(widget.first).specs();
 
 								// make pane whose alias is prefixed by the special string
 								containers::pane pane(page, widgets::pane_impl::table_pane_alias_prefix() + widget.first);
@@ -1780,7 +1780,7 @@ namespace liblec {
 
 					try {
 						// clone into destination
-						widgets::table table(it.destination, it.alias);
+						widgets::table_view table(it.destination, it.alias);
 						// copy specs
 						table() = it.table;
 
@@ -1792,7 +1792,7 @@ namespace liblec {
 
 						// close widget
 						std::string error;
-						it.source.d_page_.close_widget(it.alias, widgets::widget_type::table, error);
+						it.source.d_page_.close_widget(it.alias, widgets::widget_type::table_view, error);
 						log("moving " + it.alias + " successful!");
 					}
 					catch (const std::exception& e) { log("moving " + it.alias + " failed: " + e.what()); }
