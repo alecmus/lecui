@@ -90,10 +90,10 @@ namespace liblec {
 				case item::pane: return { 100, 100, 100, 15 };
 				case item::pane_border: return { 0, 120, 170, 50 };
 
-				case item::image: return { 222, 222, 222, 0 };
-				case item::image_border: return { 150, 150, 150, 0 };
-				case item::image_hover: return { 0, 120, 170, 100 };
-				case item::image_selected: return { 0, 120, 170, 150 };
+				case item::image_view: return { 222, 222, 222, 0 };
+				case item::image_view_border: return { 150, 150, 150, 0 };
+				case item::image_view_hover: return { 0, 120, 170, 100 };
+				case item::image_view_selected: return { 0, 120, 170, 150 };
 
 				case item::rectangle: return { 222, 222, 222, 255 };
 				case item::rectangle_border: return { 150, 150, 150, 255 };
@@ -208,10 +208,10 @@ namespace liblec {
 				case item::pane: return { 100, 100, 100, 15 };
 				case item::pane_border: return { 0, 120, 170, 50 };
 
-				case item::image: return { 222, 222, 222, 0 };
-				case item::image_border: return { 150, 150, 150, 0 };
-				case item::image_hover: return { 60, 190, 175, 100 };
-				case item::image_selected: return { 60, 190, 175, 150 };
+				case item::image_view: return { 222, 222, 222, 0 };
+				case item::image_view_border: return { 150, 150, 150, 0 };
+				case item::image_view_hover: return { 60, 190, 175, 100 };
+				case item::image_view_selected: return { 60, 190, 175, 150 };
 
 				case item::rectangle: return { 222, 222, 222, 255 };
 				case item::rectangle_border: return { 150, 150, 150, 255 };

@@ -198,7 +198,7 @@ namespace liblec {
 			friend class containers::pane;
 			friend class containers::group;
 			friend class widgets::label;
-			friend class widgets::image;
+			friend class widgets::image_view;
 			friend class widgets::button;
 			friend class widgets::custom;
 			friend class widgets::table;
@@ -217,7 +217,7 @@ namespace liblec {
 			friend class widgets::time;
 			friend class widgets::date;
 			friend class widgets::icon;
-			friend class widgets::image_impl;
+			friend class widgets::image_view_impl;
 
 		public:
 			impl(form& fm, const std::string& caption_formatted);

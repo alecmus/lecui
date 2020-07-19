@@ -53,9 +53,6 @@
     <Filter Include="lecui\widgets\v_scrollbar">
       <UniqueIdentifier>{a5a36564-a316-4ee2-9738-c9f5dcc00668}</UniqueIdentifier>
     </Filter>
-    <Filter Include="lecui\widgets\image">
-      <UniqueIdentifier>{5b4c8621-0198-4500-8d24-7cd7214ff67c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="lecui\widgets\progress_indicator">
       <UniqueIdentifier>{acf762c3-c9fc-4196-b814-7703a654a871}</UniqueIdentifier>
     </Filter>
@@ -161,6 +158,9 @@
     <Filter Include="lecui\widgets\text_field">
       <UniqueIdentifier>{7839b613-5c57-4acf-bfda-0c4461eeaf90}</UniqueIdentifier>
     </Filter>
+    <Filter Include="lecui\widgets\image_view">
+      <UniqueIdentifier>{5b4c8621-0198-4500-8d24-7cd7214ff67c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="error\win_error.h">
@@ -230,12 +230,6 @@
       <Filter>lecui</Filter>
     </ClInclude>
     <ClInclude Include="lecui.h" />
-    <ClInclude Include="widgets\image.h">
-      <Filter>lecui\widgets</Filter>
-    </ClInclude>
-    <ClInclude Include="widgets\image\image_impl.h">
-      <Filter>lecui\widgets\image</Filter>
-    </ClInclude>
     <ClInclude Include="widgets\progress_indicator.h">
       <Filter>lecui\widgets</Filter>
     </ClInclude>
@@ -386,6 +380,12 @@
     <ClInclude Include="widgets\password_field.h">
       <Filter>lecui\widgets</Filter>
     </ClInclude>
+    <ClInclude Include="widgets\image_view\image_view_impl.h">
+      <Filter>lecui\widgets\image_view</Filter>
+    </ClInclude>
+    <ClInclude Include="widgets\image_view.h">
+      <Filter>lecui\widgets</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="error\win_error.cpp">
@@ -419,9 +419,6 @@
       <Filter>lecui\widgets\toggle</Filter>
     </ClCompile>
     <ClCompile Include="lecui.cpp" />
-    <ClCompile Include="widgets\image\image_impl.cpp">
-      <Filter>lecui\widgets\image</Filter>
-    </ClCompile>
     <ClCompile Include="appearance.cpp">
       <Filter>lecui</Filter>
     </ClCompile>
@@ -442,9 +439,6 @@
     </ClCompile>
     <ClCompile Include="widgets\custom\custom.cpp">
       <Filter>lecui\widgets\custom</Filter>
-    </ClCompile>
-    <ClCompile Include="widgets\image\image.cpp">
-      <Filter>lecui\widgets\image</Filter>
     </ClCompile>
     <ClCompile Include="widgets\label\label.cpp">
       <Filter>lecui\widgets\label</Filter>
@@ -640,6 +634,12 @@
     </ClCompile>
     <ClCompile Include="widgets\text_field\text_field_impl.cpp">
       <Filter>lecui\widgets\text_field</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\image_view\image_view.cpp">
+      <Filter>lecui\widgets\image_view</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\image_view\image_view_impl.cpp">
+      <Filter>lecui\widgets\image_view</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

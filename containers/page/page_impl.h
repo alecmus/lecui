@@ -27,7 +27,7 @@
 #include "../../widgets/toggle/toggle_impl.h"
 #include "../../widgets/table/table_impl.h"
 #include "../../widgets/custom/custom_impl.h"
-#include "../../widgets/image/image_impl.h"
+#include "../../widgets/image_view/image_view_impl.h"
 #include "../../widgets/progress_indicator/progress_indicator_impl.h"
 #include "../../widgets/progress_bar/progress_bar_impl.h"
 #include "../../widgets/checkbox/checkbox_impl.h"
@@ -86,8 +86,8 @@ namespace liblec {
 				add_table(std::string alias);
 			widgets::custom::custom_specs&
 				add_custom(std::string alias);
-			widgets::image::image_specs&
-				add_image(std::string alias);
+			widgets::image_view::image_view_specs&
+				add_image_view(std::string alias);
 			widgets::progress_indicator::progress_indicator_specs&
 				add_progress_indicator(std::string alias);
 			widgets::progress_bar::progress_bar_specs&
@@ -142,8 +142,8 @@ namespace liblec {
 				get_table(const std::string& alias);
 			widgets::custom_impl&
 				get_custom(const std::string& alias);
-			widgets::image_impl&
-				get_image(const std::string& alias);
+			widgets::image_view_impl&
+				get_image_view(const std::string& alias);
 			widgets::progress_indicator_impl&
 				get_progress_indicator(const std::string& alias);
 			widgets::progress_bar_impl&
@@ -206,7 +206,7 @@ namespace liblec {
 			std::map<std::string, widgets::toggle_impl> toggles_;
 			std::map<std::string, widgets::table_impl> tables_;
 			std::map<std::string, widgets::custom_impl> customs_;
-			std::map<std::string, widgets::image_impl> images_;
+			std::map<std::string, widgets::image_view_impl> image_views_;
 			std::map<std::string, widgets::progress_indicator_impl> progress_indicators_;
 			std::map<std::string, widgets::progress_bar_impl> progress_bars_;
 			std::map<std::string, widgets::checkbox_impl> checkboxes_;
@@ -234,7 +234,7 @@ namespace liblec {
 			friend class widgets::toggle;
 			friend class widgets::table;
 			friend class widgets::custom;
-			friend class widgets::image;
+			friend class widgets::image_view;
 			friend class widgets::progress_indicator;
 			friend class widgets::progress_bar;
 			friend class widgets::checkbox;

@@ -183,14 +183,14 @@ namespace liblec {
 			return customs_.at(alias).specs();
 		}
 
-		widgets::image::image_specs&
-			containers::page::impl::add_image(std::string alias) {
+		widgets::image_view::image_view_specs&
+			containers::page::impl::add_image_view(std::string alias) {
 			check_alias(alias);
-			if (images_.try_emplace(alias, pg_, alias, p_iwic_factory_).second) {
-				widgets_.emplace(alias, images_.at(alias));
+			if (image_views_.try_emplace(alias, pg_, alias, p_iwic_factory_).second) {
+				widgets_.emplace(alias, image_views_.at(alias));
 				widgets_order_.emplace_back(alias);
 			}
-			return images_.at(alias).specs();
+			return image_views_.at(alias).specs();
 		}
 
 		widgets::progress_indicator::progress_indicator_specs&
@@ -351,8 +351,8 @@ namespace liblec {
 		widgets::custom_impl&
 			containers::page::impl::get_custom(const std::string& alias) { return customs_.at(alias); }
 
-		widgets::image_impl&
-			containers::page::impl::get_image(const std::string& alias) { return images_.at(alias); }
+		widgets::image_view_impl&
+			containers::page::impl::get_image_view(const std::string& alias) { return image_views_.at(alias); }
 
 		widgets::progress_indicator_impl&
 			containers::page::impl::get_progress_indicator(const std::string& alias) { return progress_indicators_.at(alias); }
@@ -439,8 +439,8 @@ namespace liblec {
 				case widgets::widget_type::pane:
 					panes_.erase(alias_);
 					break;
-				case widgets::widget_type::image:
-					images_.erase(alias_);
+				case widgets::widget_type::image_view:
+					image_views_.erase(alias_);
 					break;
 				case widgets::widget_type::progress_indicator:
 					progress_indicators_.erase(alias_);

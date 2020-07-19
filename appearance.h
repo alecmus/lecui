@@ -101,10 +101,10 @@ namespace liblec {
 			pane,
 			pane_border,
 
-			image,
-			image_border,
-			image_hover,
-			image_selected,
+			image_view,
+			image_view_border,
+			image_view_hover,
+			image_view_selected,
 
 			rectangle,
 			rectangle_border,

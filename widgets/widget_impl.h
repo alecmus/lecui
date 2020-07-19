@@ -48,7 +48,7 @@ namespace liblec {
 				toggle,
 				table,
 				custom,
-				image,
+				image_view,
 				progress_indicator,
 				progress_bar,
 				checkbox,

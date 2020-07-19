@@ -1669,7 +1669,7 @@ namespace liblec {
 						icon().events().click = nullptr;
 
 						// add image to destination
-						widgets::image image(it.destination, widgets::icon_impl::alias_image());
+						widgets::image_view image(it.destination, widgets::icon_impl::alias_image());
 						image().rect = { 0, 48, 0, 48 };
 						image().rect.place({ padding_, it.destination.size().width, padding_, it.destination.size().height },
 							0.f, 0.f);

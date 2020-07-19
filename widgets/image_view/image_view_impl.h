@@ -1,5 +1,5 @@
 /*
-** image_impl.h - image_impl interface
+** image_view_impl.h - image_view_impl interface
 **
 ** lecui user interface library
 ** Copyright (c) 2019 Alec T. Musasa (alecmus at live dot com)
@@ -14,12 +14,12 @@
 #pragma once
 
 #include "../widget_impl.h"
-#include "../image.h"
+#include "../image_view.h"
 
 namespace liblec {
 	namespace lecui {
 		namespace widgets {
-			class image_impl : public widget_impl {
+			class image_view_impl : public widget_impl {
 				/// private virtual function overrides
 				widgets::specs& generic_specs() override {
 					return specs_;
@@ -27,13 +27,13 @@ namespace liblec {
 
 			public:
 				/// Prevent the use of the default constructor.
-				image_impl() = delete;
+				image_view_impl() = delete;
 
 				/// constructor and destructor
-				image_impl(containers::page& page,
+				image_view_impl(containers::page& page,
 					const std::string& alias,
 					IWICImagingFactory* p_IWICFactory);
-				~image_impl();
+				~image_view_impl();
 
 				/// virtual function overrides
 				widget_type type() override;
@@ -44,16 +44,16 @@ namespace liblec {
 					const bool& render) override;
 
 				/// widget specific methods
-				widgets::image::image_specs& specs();
-				widgets::image::image_specs& operator()();
+				widgets::image_view::image_view_specs& specs();
+				widgets::image_view::image_view_specs& operator()();
 
 			private:
 				/// Prevent copying an object of this class.
-				image_impl(const image_impl&);
-				image_impl& operator=(const image_impl&);
+				image_view_impl(const image_view_impl&);
+				image_view_impl& operator=(const image_view_impl&);
 
 				/// Private variables
-				widgets::image::image_specs specs_, specs_old_;
+				widgets::image_view::image_view_specs specs_, specs_old_;
 				ID2D1SolidColorBrush* p_brush_fill_;
 				ID2D1SolidColorBrush* p_brush_border_;
 				ID2D1SolidColorBrush* p_brush_hot_;

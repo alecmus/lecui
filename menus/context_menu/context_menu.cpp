@@ -17,7 +17,7 @@
 #include "../../containers/page.h"
 #include "../../widgets/label.h"
 #include "../../widgets/rectangle.h"
-#include "../../widgets/image.h"
+#include "../../widgets/image_view.h"
 #include "../../form_common.h"
 
 #if defined(min)
@@ -240,7 +240,7 @@ namespace liblec {
 
                     if (images_) {
                         // image
-                        lecui::widgets::image image(home_page, "");
+                        lecui::widgets::image_view image(home_page, "");
                         image().rect = rects_[index];
                         image().rect.width(image().rect.height());    // make into a square
                         image().file = item.image_file;
@@ -270,7 +270,7 @@ namespace liblec {
 
                     if (!item.children.empty()) {
                         // draw expansion arrow
-                        lecui::widgets::image image(home_page, "");
+                        lecui::widgets::image_view image(home_page, "");
                         image().rect = rects_[index];
                         image().rect.right = home_page.size().width;
                         image().rect.left = image().rect.right - (next_arrow_width_);

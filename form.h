@@ -45,7 +45,7 @@ namespace liblec {
 
 		namespace widgets {
 			class label;
-			class image;
+			class image_view;
 			class button;
 			class custom;
 			class table;
@@ -70,7 +70,7 @@ namespace liblec {
 			class html_editor_impl;
 			class text_field_impl;
 			class tree_impl;
-			class image_impl;
+			class image_view_impl;
 			class table_impl;
 		}
 #endif
@@ -255,7 +255,7 @@ namespace liblec {
 			friend class containers::pane;
 			friend class containers::group;
 			friend class widgets::label;
-			friend class widgets::image;
+			friend class widgets::image_view;
 			friend class widgets::button;
 			friend class widgets::custom;
 			friend class widgets::table;
@@ -274,7 +274,7 @@ namespace liblec {
 			friend class widgets::time;
 			friend class widgets::date;
 			friend class widgets::icon;
-			friend class widgets::image_impl;
+			friend class widgets::image_view_impl;
 #endif
 		};
 	}

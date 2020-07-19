@@ -1,5 +1,5 @@
 /*
-** image_impl.cpp - image_impl implementation
+** image_impl.cpp - image_view_impl implementation
 **
 ** lecui user interface library
 ** Copyright (c) 2019 Alec T. Musasa (alecmus at live dot com)
@@ -11,13 +11,13 @@
 ** for full license details.
 */
 
-#include "image_impl.h"
+#include "image_view_impl.h"
 #include "../../containers/page/page_impl.h"
 #include "../../form_impl/form_impl.h"
 
 namespace liblec {
 	namespace lecui {
-		widgets::image_impl::image_impl(containers::page& page,
+		widgets::image_view_impl::image_view_impl(containers::page& page,
 			const std::string& alias, IWICImagingFactory* p_IWICFactory) :
 			widget_impl(page, alias),
 			p_brush_fill_(nullptr),
@@ -29,14 +29,14 @@ namespace liblec {
 			p_IWICFactory_(p_IWICFactory),
 			old_size_({ 0.f, 0.f })	{}
 
-		widgets::image_impl::~image_impl() { discard_resources(); }
+		widgets::image_view_impl::~image_view_impl() { discard_resources(); }
 
 		widgets::widget_type
-			widgets::image_impl::type() {
-			return lecui::widgets::widget_type::image;
+			widgets::image_view_impl::type() {
+			return lecui::widgets::widget_type::image_view;
 		}
 
-		HRESULT widgets::image_impl::create_resources(
+		HRESULT widgets::image_view_impl::create_resources(
 			ID2D1HwndRenderTarget* p_render_target) {
 			specs_old_ = specs_;
 			is_static_ = (specs_.events().click == nullptr && specs_.events().action == nullptr);
@@ -64,7 +64,7 @@ namespace liblec {
 			return hr;
 		}
 
-		void widgets::image_impl::discard_resources() {
+		void widgets::image_view_impl::discard_resources() {
 			resources_created_ = false;
 			safe_release(&p_brush_fill_);
 			safe_release(&p_brush_border_);
@@ -75,7 +75,7 @@ namespace liblec {
 		}
 
 		D2D1_RECT_F&
-			widgets::image_impl::render(ID2D1HwndRenderTarget* p_render_target,
+			widgets::image_view_impl::render(ID2D1HwndRenderTarget* p_render_target,
 				const D2D1_SIZE_F& change_in_size, const D2D1_POINT_2F& offset, const bool& render) {
 			if (specs_old_ != specs_) {
 				log("specs changed: " + alias_);
@@ -143,10 +143,10 @@ namespace liblec {
 			return rect_;
 		}
 
-		widgets::image::image_specs&
-			widgets::image_impl::specs() { return specs_; }
+		widgets::image_view::image_view_specs&
+			widgets::image_view_impl::specs() { return specs_; }
 
-		widgets::image::image_specs&
-			widgets::image_impl::operator()() { return specs(); }
+		widgets::image_view::image_view_specs&
+			widgets::image_view_impl::operator()() { return specs(); }
 	}
 }
