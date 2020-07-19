@@ -292,7 +292,8 @@ namespace liblec {
 							scale_RECT(rect, get_dpi_scale());
 
 							// handle hit status
-							if (point_.x >= rect.left && point_.x <= rect.right &&
+							if (hit_ &&
+								point_.x >= rect.left && point_.x <= rect.right &&
 								point_.y >= rect.top && point_.y <= rect.bottom)
 								hot = true;
 							else
