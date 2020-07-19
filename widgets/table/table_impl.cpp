@@ -216,6 +216,10 @@ namespace liblec {
 			for (const auto& it : specs_.columns) table_width += static_cast<float>(it.width);
 			float table_height = row_height_ * specs_.data.size();
 
+			// adjust rect_ (what will be written back) to match the table's used area
+			rect_.bottom = rectA_.top + table_height;
+			rect_.right = rectA_.left + table_width;
+
 			// step9: define rectA_ (the area containing all the table contents)
 
 			// step10: draw header
@@ -412,15 +416,6 @@ namespace liblec {
 						}
 					}
 				}
-			}
-
-			// draw border
-			if (render && visible_) {
-				D2D1_ROUNDED_RECT rounded_rect{ rect_,
-				specs_.corner_radius_x, specs_.corner_radius_y };
-
-				p_render_target->DrawRoundedRectangle(&rounded_rect, !is_enabled_ ? p_brush_disabled_ :
-					p_brush_border_, .5f);
 			}
 
 			return rect_;
