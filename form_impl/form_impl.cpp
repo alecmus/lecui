@@ -480,7 +480,7 @@ namespace liblec {
 				std::string alias;
 
 				// important that it's not a reference because of deletion in a ranged for loop later
-				lecui::widgets::tree::tree_specs tree;
+				lecui::widgets::tree_view::tree_view_specs tree;
 				lecui::containers::page& source;
 				lecui::containers::page& destination;
 			};
@@ -500,7 +500,7 @@ namespace liblec {
 								continue;	// this is a tree pane (it has a tree inside. move was already done), continue to next widget
 
 							// check if this is a tree
-							if (widget.second.type() == widgets::widget_type::tree) {
+							if (widget.second.type() == widgets::widget_type::tree_view) {
 								// this is a tree, we need to "move" it into a special pane
 
 								// get the tree specs
@@ -550,7 +550,7 @@ namespace liblec {
 
 					try {
 						// clone into destination
-						widgets::tree tree(it.destination, it.alias);
+						widgets::tree_view tree(it.destination, it.alias);
 						// copy specs
 						tree() = it.tree;
 
@@ -562,7 +562,7 @@ namespace liblec {
 
 						// close widget
 						std::string error;
-						it.source.d_page_.close_widget(it.alias, widgets::widget_type::tree, error);
+						it.source.d_page_.close_widget(it.alias, widgets::widget_type::tree_view, error);
 						log("moving " + it.alias + " successful!");
 					}
 					catch (const std::exception& e) { log("moving " + it.alias + " failed: " + e.what()); }
@@ -2327,7 +2327,7 @@ namespace liblec {
 				std::string error;
 				switch (result.widget.type()) {
 					/// widgets in special panes need special treatment
-				case liblec::lecui::widgets::widget_type::tree:
+				case liblec::lecui::widgets::widget_type::tree_view:
 					do_close_special(widgets::pane_impl::tree_pane_alias_prefix(), result.widget.alias());
 					break;
 				case liblec::lecui::widgets::widget_type::html_editor:

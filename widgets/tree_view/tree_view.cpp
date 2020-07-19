@@ -11,12 +11,12 @@
 ** for full license details.
 */
 
-#include "../tree.h"
+#include "../tree_view.h"
 #include "../../form_impl/form_impl.h"
 
 namespace liblec {
 	namespace lecui {
-		bool widgets::tree::tree_specs::operator==(const tree_specs& param) {
+		bool widgets::tree_view::tree_view_specs::operator==(const tree_view_specs& param) {
 			return
 				// generic specs
 				specs::operator==(param) &&
@@ -25,51 +25,51 @@ namespace liblec {
 				(color_border == param.color_border);
 		}
 
-		bool widgets::tree::tree_specs::operator!=(const tree_specs& param) {
+		bool widgets::tree_view::tree_view_specs::operator!=(const tree_view_specs& param) {
 			return !operator==(param);
 		}
 
 
-		class widgets::tree::impl {
+		class widgets::tree_view::impl {
 		public:
 			// note: this placement is only temporary. the next time WM_PAINT is called
 			// this tree widget will be moved into a special pane
-			// this is important so we don't have to manually handle scroll bar issues in tree_impl.
+			// this is important so we don't have to manually handle scroll bar issues in tree_view_impl.
 			// all we need to do for scroll bars is dynamically change specs_.rect as the tree changes
 			// and the pane will do all the scrolling for us
 			impl(containers::page& page, const std::string& alias) :
 				page_(page),
 				specs_(page_.d_page_.add_tree(alias)) {
 				specs_.color_text = defaults::color(page_.d_page_.fm_.d_.theme_, item::label);
-				specs_.color_fill = defaults::color(page_.d_page_.fm_.d_.theme_, item::tree);
-				specs_.color_border = defaults::color(page_.d_page_.fm_.d_.theme_, item::tree_border);
-				specs_.color_hot = defaults::color(page_.d_page_.fm_.d_.theme_, item::tree_hover);
-				specs_.color_selected = defaults::color(page_.d_page_.fm_.d_.theme_, item::tree_selected);
+				specs_.color_fill = defaults::color(page_.d_page_.fm_.d_.theme_, item::tree_view);
+				specs_.color_border = defaults::color(page_.d_page_.fm_.d_.theme_, item::tree_view_border);
+				specs_.color_hot = defaults::color(page_.d_page_.fm_.d_.theme_, item::tree_view_hover);
+				specs_.color_selected = defaults::color(page_.d_page_.fm_.d_.theme_, item::tree_view_selected);
 			}
 			containers::page& page_;
-			tree_specs& specs_;
+			tree_view_specs& specs_;
 		};
 
-		widgets::tree::tree(containers::page& page) :
-			tree(page, "") {}
+		widgets::tree_view::tree_view(containers::page& page) :
+			tree_view(page, "") {}
 
-		widgets::tree::tree(containers::page& page, const std::string& alias) :
+		widgets::tree_view::tree_view(containers::page& page, const std::string& alias) :
 			d_(*(new impl(page, alias))) {}
 
-		widgets::tree::~tree() { delete& d_; }
+		widgets::tree_view::~tree_view() { delete& d_; }
 
-		widgets::tree::tree_specs&
-			widgets::tree::specs() {
+		widgets::tree_view::tree_view_specs&
+			widgets::tree_view::specs() {
 			return d_.specs_;
 		}
 
-		widgets::tree::tree_specs&
-			widgets::tree::operator()() {
+		widgets::tree_view::tree_view_specs&
+			widgets::tree_view::operator()() {
 			return specs();
 		}
 
-		widgets::tree::tree_specs&
-			widgets::tree::specs(form& fm, const std::string& path) {
+		widgets::tree_view::tree_view_specs&
+			widgets::tree_view::specs(form& fm, const std::string& path) {
 			const auto idx = path.find("/");
 
 			if (idx != std::string::npos) {

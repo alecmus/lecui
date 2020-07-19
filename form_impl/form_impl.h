@@ -208,7 +208,7 @@ namespace liblec {
 			friend class widgets::progress_bar;
 			friend class widgets::checkbox;
 			friend class widgets::text_field;
-			friend class widgets::tree;
+			friend class widgets::tree_view;
 			friend class widgets::slider;
 			friend class widgets::html_editor;
 			friend class widgets::combobox;

@@ -1,5 +1,5 @@
 /*
-** tree_impl.cpp - tree_impl implementation
+** tree_view_impl.cpp - tree_view_impl implementation
 **
 ** lecui user interface library
 ** Copyright (c) 2019 Alec T. Musasa (alecmus at live dot com)
@@ -11,12 +11,12 @@
 ** for full license details.
 */
 
-#include "tree_impl.h"
+#include "tree_view_impl.h"
 #include "../label/label_impl.h"
 
 namespace liblec {
 	namespace lecui {
-		widgets::tree_impl::tree_impl(containers::page& page,
+		widgets::tree_view_impl::tree_view_impl(containers::page& page,
 			const std::string& alias,
 			ID2D1Factory* p_direct2d_factory,
 			IDWriteFactory* p_directwrite_factory) :
@@ -34,14 +34,14 @@ namespace liblec {
 			margin_(0.f)	// the tree will be moved into a special tree pane. The pane will have a margin!
 		{}
 
-		widgets::tree_impl::~tree_impl() { discard_resources(); }
+		widgets::tree_view_impl::~tree_view_impl() { discard_resources(); }
 
 		widgets::widget_type
-			widgets::tree_impl::type() {
-			return lecui::widgets::widget_type::tree;
+			widgets::tree_view_impl::type() {
+			return lecui::widgets::widget_type::tree_view;
 		}
 
-		HRESULT widgets::tree_impl::create_resources(
+		HRESULT widgets::tree_view_impl::create_resources(
 			ID2D1HwndRenderTarget* p_render_target) {
 			specs_old_ = specs_;
 			is_static_ = false;
@@ -90,7 +90,7 @@ namespace liblec {
 			return hr;
 		}
 
-		void widgets::tree_impl::discard_resources() {
+		void widgets::tree_view_impl::discard_resources() {
 			resources_created_ = false;
 			safe_release(&p_brush_);
 			safe_release(&p_brush_border_);
@@ -102,7 +102,7 @@ namespace liblec {
 		}
 
 		D2D1_RECT_F&
-			widgets::tree_impl::render(ID2D1HwndRenderTarget* p_render_target,
+			widgets::tree_view_impl::render(ID2D1HwndRenderTarget* p_render_target,
 				const D2D1_SIZE_F& change_in_size, const D2D1_POINT_2F& offset, const bool& render) {
 			if (specs_old_ != specs_) {
 				log("specs changed: " + alias_);
@@ -129,7 +129,7 @@ namespace liblec {
 					IDWriteTextFormat* p_text_format_, ID2D1SolidColorBrush* p_brush,
 					ID2D1SolidColorBrush* p_brush_selected, ID2D1SolidColorBrush* p_brush_hot_,
 					const std::string& font, const float& font_size, std::map<std::string,
-					widgets::tree::tree_specs::node>& level, const D2D1_RECT_F& rect,
+					widgets::tree_view::tree_view_specs::node>& level, const D2D1_RECT_F& rect,
 					float& right_, float& bottom_, float& optimized_right_, float& optimized_bottom_, bool hit_, D2D1_POINT_2F point_,
 					float dpi_scale_) {
 					float bottom = rect.top;
@@ -327,10 +327,10 @@ namespace liblec {
 			return rect_;
 		}
 
-		void widgets::tree_impl::on_click() {
+		void widgets::tree_view_impl::on_click() {
 			class helper {
 			public:
-				static void check(std::map<std::string, widgets::tree::tree_specs::node>& level, D2D1_POINT_2F point_, float dpi_scale_) {
+				static void check(std::map<std::string, widgets::tree_view::tree_view_specs::node>& level, D2D1_POINT_2F point_, float dpi_scale_) {
 					for (auto& node : level) {
 						// check if marker has been clicked
 						auto rect_marker = convert_rect(node.second.rc_expand);
@@ -368,7 +368,7 @@ namespace liblec {
 				specs_.events().action();
 		}
 
-		bool widgets::tree_impl::hit(const bool& hit) {
+		bool widgets::tree_view_impl::hit(const bool& hit) {
 			if (is_static_ || hit == hit_) {
 				if (hit || pressed_)
 					return true;
@@ -380,17 +380,17 @@ namespace liblec {
 			return true;
 		}
 
-		widgets::tree::tree_specs&
-			widgets::tree_impl::specs() { return specs_; }
+		widgets::tree_view::tree_view_specs&
+			widgets::tree_view_impl::specs() { return specs_; }
 
-		widgets::tree::tree_specs&
-			widgets::tree_impl::operator()() { return specs(); }
+		widgets::tree_view::tree_view_specs&
+			widgets::tree_view_impl::operator()() { return specs(); }
 
-		void widgets::tree_impl::on_selection() {
+		void widgets::tree_view_impl::on_selection() {
 			class helper {
 			public:
-				static void check(std::map<std::string, widgets::tree::tree_specs::node>& level,
-					std::function<void(widgets::tree::tree_specs::node& n)> selection) {
+				static void check(std::map<std::string, widgets::tree_view::tree_view_specs::node>& level,
+					std::function<void(widgets::tree_view::tree_view_specs::node& n)> selection) {
 					for (auto& node : level) {
 						if (node.second.selected) {
 							if (selection)

@@ -1,5 +1,5 @@
 /*
-** tree_impl.h - tree_impl interface
+** tree_view_impl.h - tree_view_impl interface
 **
 ** lecui user interface library
 ** Copyright (c) 2019 Alec T. Musasa (alecmus at live dot com)
@@ -14,12 +14,12 @@
 #pragma once
 
 #include "../widget_impl.h"
-#include "../tree.h"
+#include "../tree_view.h"
 
 namespace liblec {
 	namespace lecui {
 		namespace widgets {
-			class tree_impl : public widget_impl {
+			class tree_view_impl : public widget_impl {
 				/// private virtual function overrides
 				widgets::specs& generic_specs() override {
 					return specs_;
@@ -27,14 +27,14 @@ namespace liblec {
 
 			public:
 				/// Prevent the use of the default constructor.
-				tree_impl() = delete;
+				tree_view_impl() = delete;
 
 				/// constructor and destructor
-				tree_impl(containers::page& page,
+				tree_view_impl(containers::page& page,
 					const std::string& alias,
 					ID2D1Factory* p_direct2d_factory,
 					IDWriteFactory* p_directwrite_factory);
-				~tree_impl();
+				~tree_view_impl();
 
 				/// virtual function overrides
 				widget_type type() override;
@@ -47,16 +47,16 @@ namespace liblec {
 				bool hit(const bool& hit) override;
 
 				/// widget specific methods
-				widgets::tree::tree_specs& specs();
-				widgets::tree::tree_specs& operator()();
+				widgets::tree_view::tree_view_specs& specs();
+				widgets::tree_view::tree_view_specs& operator()();
 
 			private:
 				/// Prevent copying an object of this class.
-				tree_impl(const tree_impl&);
-				tree_impl& operator=(const tree_impl&);
+				tree_view_impl(const tree_view_impl&);
+				tree_view_impl& operator=(const tree_view_impl&);
 
 				/// Private variables
-				widgets::tree::tree_specs specs_, specs_old_;
+				widgets::tree_view::tree_view_specs specs_, specs_old_;
 				ID2D1SolidColorBrush* p_brush_;
 				ID2D1SolidColorBrush* p_brush_border_;
 				ID2D1SolidColorBrush* p_brush_fill_;

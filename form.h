@@ -56,7 +56,7 @@ namespace liblec {
 			class checkbox;
 			class text_field;
 			class password_field;
-			class tree;
+			class tree_view;
 			class slider;
 			class html_editor;
 			class combobox;
@@ -69,7 +69,7 @@ namespace liblec {
 			class combobox_impl;
 			class html_editor_impl;
 			class text_field_impl;
-			class tree_impl;
+			class tree_view_impl;
 			class image_view_impl;
 			class table_view_impl;
 		}
@@ -265,7 +265,7 @@ namespace liblec {
 			friend class widgets::progress_bar;
 			friend class widgets::checkbox;
 			friend class widgets::text_field;
-			friend class widgets::tree;
+			friend class widgets::tree_view;
 			friend class widgets::slider;
 			friend class widgets::html_editor;
 			friend class widgets::combobox;

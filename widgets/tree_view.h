@@ -1,5 +1,5 @@
 /*
-** tree.h - tree widget interface
+** tree_view.h - tree view widget interface
 **
 ** lecui user interface library
 ** Copyright (c) 2019 Alec T. Musasa (alecmus at live dot com)
@@ -24,13 +24,13 @@
 namespace liblec {
 	namespace lecui {
 		namespace widgets {
-			/// <summary>Tree widget.</summary>
-			class lecui_api tree {
+			/// <summary>Tree view widget.</summary>
+			class lecui_api tree_view {
 			public:
-				/// <summary>Tree widget specifications.</summary>
-				class tree_specs : public specs {
+				/// <summary>Tree view widget specifications.</summary>
+				class tree_view_specs : public specs {
 				public:
-					tree_specs() {}
+					tree_view_specs() {}
 					float border = .5f;
 					float corner_radius_x = 5.f;
 					float corner_radius_y = 5.f;
@@ -60,7 +60,7 @@ namespace liblec {
 						lecui::rect rc_expand = { 0.f, 0.f, 0.f, 0.f };
 
 #if defined(LECUI_EXPORTS)
-						friend class widgets::tree_impl;
+						friend class widgets::tree_view_impl;
 #endif
 					};
 
@@ -78,63 +78,63 @@ namespace liblec {
 					/// <summary>The entire tree is built recursively on this root.</summary>
 					std::map<std::string, node> root;
 
-					struct tree_events : basic_events {
+					struct tree_view_events : basic_events {
 						/// <summary>The handler to be called when the selection changes. The
 						/// parameter will contain a reference to the newly selected node.</summary>
 						std::function<void(node& n)> selection;
 					};
 
-					tree_events& events() {
+					tree_view_events& events() {
 						return tree_events_;
 					}
 
-					bool operator==(const tree_specs&);
-					bool operator!=(const tree_specs&);
+					bool operator==(const tree_view_specs&);
+					bool operator!=(const tree_view_specs&);
 
 				private:
-					tree_events tree_events_;
+					tree_view_events tree_events_;
 				};
 
-				/// <summary>Tree constructor.</summary>
+				/// <summary>Tree view constructor.</summary>
 				/// <param name="page">The container to place it in.</param>
 				/// <remarks>This constructs the widget with an internally generated random
 				/// alias.</remarks>
-				tree(containers::page& page);
+				tree_view(containers::page& page);
 
-				/// <summary>Tree constructor.</summary>
+				/// <summary>Tree view constructor.</summary>
 				/// <param name="page">The container to place it in.</param>
 				/// <param name="alias">The in-page unique alias, e.g. "database_browser".</param>
-				tree(containers::page& page, const std::string& alias);
-				~tree();
+				tree_view(containers::page& page, const std::string& alias);
+				~tree_view();
 
-				/// <summary>Get the tree specifications.</summary>
-				/// <returns>A reference to the tree specifications.</returns>
+				/// <summary>Get the tree view specifications.</summary>
+				/// <returns>A reference to the tree view specifications.</returns>
 				[[nodiscard]]
-				tree_specs& specs();
+				tree_view_specs& specs();
 
-				/// <summary>Get the tree specifications.</summary>
-				/// <returns>A reference to the tree specifications.</returns>
+				/// <summary>Get the tree view specifications.</summary>
+				/// <returns>A reference to the tree view specifications.</returns>
 				/// <remarks>Alternative to specs() for more terse code.</remarks>
 				[[nodiscard]]
-				tree_specs& operator()();
+				tree_view_specs& operator()();
 
-				/// <summary>Get the specifications of a tree.</summary>
-				/// <param name="fm">The form containing the tree.</param>
+				/// <summary>Get the specifications of a tree view.</summary>
+				/// <param name="fm">The form containing the tree view.</param>
 				/// <param name="path">The full path to the widget, e.g.
 				/// "admin_page/system_pane/database_browser".</param>
 				/// <returns>A reference to the tree specifications.</returns>
 				/// <remarks>Throws on failure.</remarks>
 				[[nodiscard]]
-				static tree_specs& specs(form& fm, const std::string& path);
+				static tree_view_specs& specs(form& fm, const std::string& path);
 
 			private:
 				class impl;
 				impl& d_;
 
 				// Default constructor and copying an object of this class are not allowed
-				tree();
-				tree(const tree&);
-				tree& operator=(const tree&);
+				tree_view();
+				tree_view(const tree_view&);
+				tree_view& operator=(const tree_view&);
 			};
 		}
 	}

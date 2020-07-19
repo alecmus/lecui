@@ -233,7 +233,7 @@ namespace liblec {
 			return text_fields_.at(alias).specs();
 		}
 
-		widgets::tree::tree_specs&
+		widgets::tree_view::tree_view_specs&
 			containers::page::impl::add_tree(std::string alias) {
 			check_alias(alias);
 			if (trees_.try_emplace(alias, pg_, alias, p_direct2d_factory_, p_directwrite_factory_).second) {
@@ -366,7 +366,7 @@ namespace liblec {
 		widgets::text_field_impl&
 			containers::page::impl::get_text_field(const std::string& alias) { return text_fields_.at(alias); }
 
-		widgets::tree_impl&
+		widgets::tree_view_impl&
 			containers::page::impl::get_tree(const std::string& alias) { return trees_.at(alias); }
 
 		widgets::slider_impl&
@@ -454,7 +454,7 @@ namespace liblec {
 				case widgets::widget_type::text_field:
 					text_fields_.erase(alias_);
 					break;
-				case widgets::widget_type::tree:
+				case widgets::widget_type::tree_view:
 					trees_.erase(alias_);
 					break;
 				case widgets::widget_type::slider:

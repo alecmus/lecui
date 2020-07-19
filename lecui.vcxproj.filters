@@ -62,9 +62,6 @@
     <Filter Include="lecui\widgets\checkbox">
       <UniqueIdentifier>{5843202b-d0a5-46a8-9c3e-a00ae8353c31}</UniqueIdentifier>
     </Filter>
-    <Filter Include="lecui\widgets\tree">
-      <UniqueIdentifier>{7a9514ff-02f0-4032-8db2-f4658a41cc01}</UniqueIdentifier>
-    </Filter>
     <Filter Include="lecui\containers\tab_pane">
       <UniqueIdentifier>{f9f83e07-fde8-4f7c-be84-8594cc164f91}</UniqueIdentifier>
     </Filter>
@@ -161,6 +158,9 @@
     <Filter Include="lecui\widgets\table_view">
       <UniqueIdentifier>{cdb6740a-7a20-4782-85d5-ed23603da7ff}</UniqueIdentifier>
     </Filter>
+    <Filter Include="lecui\widgets\tree_view">
+      <UniqueIdentifier>{7a9514ff-02f0-4032-8db2-f4658a41cc01}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="error\win_error.h">
@@ -247,12 +247,6 @@
     </ClInclude>
     <ClInclude Include="widgets\checkbox\checkbox_impl.h">
       <Filter>lecui\widgets\checkbox</Filter>
-    </ClInclude>
-    <ClInclude Include="widgets\tree.h">
-      <Filter>lecui\widgets</Filter>
-    </ClInclude>
-    <ClInclude Include="widgets\tree\tree_impl.h">
-      <Filter>lecui\widgets\tree</Filter>
     </ClInclude>
     <ClInclude Include="containers\tab_pane\tab_pane_impl.h">
       <Filter>lecui\containers\tab_pane</Filter>
@@ -386,6 +380,12 @@
     <ClInclude Include="widgets\table_view\table_view_impl.h">
       <Filter>lecui\widgets\table_view</Filter>
     </ClInclude>
+    <ClInclude Include="widgets\tree_view.h">
+      <Filter>lecui\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="widgets\tree_view\tree_view_impl.h">
+      <Filter>lecui\widgets\tree_view</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="error\win_error.cpp">
@@ -469,12 +469,6 @@
     </ClCompile>
     <ClCompile Include="widgets\checkbox\checkbox_impl.cpp">
       <Filter>lecui\widgets\checkbox</Filter>
-    </ClCompile>
-    <ClCompile Include="widgets\tree\tree_impl.cpp">
-      <Filter>lecui\widgets\tree</Filter>
-    </ClCompile>
-    <ClCompile Include="widgets\tree\tree.cpp">
-      <Filter>lecui\widgets\tree</Filter>
     </ClCompile>
     <ClCompile Include="containers\tab_pane\tab_pane.cpp">
       <Filter>lecui\containers\tab_pane</Filter>
@@ -640,6 +634,12 @@
     </ClCompile>
     <ClCompile Include="widgets\table_view\table_view_impl.cpp">
       <Filter>lecui\widgets\table_view</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\tree_view\tree_view.cpp">
+      <Filter>lecui\widgets\tree_view</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\tree_view\tree_view_impl.cpp">
+      <Filter>lecui\widgets\tree_view</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

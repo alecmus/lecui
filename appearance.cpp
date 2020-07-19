@@ -63,24 +63,24 @@ namespace liblec {
 				case item::text_field_selected: return { 0, 120, 170, 100 };
 				case item::text_field_caret: return { 50, 50, 50, 255 };
 
-				case item::table: return { 255, 255, 255, 255 };
-				case item::table_border: return { 150, 150, 150, 255 };
-				case item::table_alternate: return { 0, 120, 170, 15 };
-				case item::table_row_hover: return { 225, 242, 255, 255 };
-				case item::table_row_selected: return { 40, 160, 200, 255 };
-				case item::table_text_header: return { 0, 0, 0, 255 };
-				case item::table_header: return { 222, 222, 222, 255 };
-				case item::table_grid: return { 215, 215, 215, 255 };
+				case item::table_view: return { 255, 255, 255, 255 };
+				case item::table_view_border: return { 150, 150, 150, 255 };
+				case item::table_view_alternate: return { 0, 120, 170, 15 };
+				case item::table_view_row_hover: return { 225, 242, 255, 255 };
+				case item::table_view_row_selected: return { 40, 160, 200, 255 };
+				case item::table_view_text_header: return { 0, 0, 0, 255 };
+				case item::table_view_header: return { 222, 222, 222, 255 };
+				case item::table_view_grid: return { 215, 215, 215, 255 };
 
 				case item::toggle: return { 255, 255, 255, 200 };
 				case item::toggle_on: return { 0, 120, 170, 255 };
 				case item::toggle_off: return { 150, 150, 150, 255 };
 				case item::toggle_selected: return { 0, 120, 170, 30 };
 
-				case item::tree: return { 255, 255, 255, 255 };
-				case item::tree_border: return { 150, 150, 150, 255 };
-				case item::tree_hover: return { 225, 242, 255, 255 };
-				case item::tree_selected: return { 0, 120, 170, 100 };
+				case item::tree_view: return { 255, 255, 255, 255 };
+				case item::tree_view_border: return { 150, 150, 150, 255 };
+				case item::tree_view_hover: return { 225, 242, 255, 255 };
+				case item::tree_view_selected: return { 0, 120, 170, 100 };
 
 				case item::tab_pane: return { 100, 100, 100, 15 };
 				case item::tab_pane_border: return { 0, 120, 170, 50 };
@@ -181,24 +181,24 @@ namespace liblec {
 				case item::text_field_selected: return { 60, 190, 175, 150 };
 				case item::text_field_caret: return { 60, 190, 175, 255 };
 
-				case item::table: return { 16, 29, 36, 255 };
-				case item::table_border: return { 150, 150, 150, 255 };
-				case item::table_alternate: return { 60, 190, 175, 15 };
-				case item::table_row_hover: return { 40, 160, 200, 100 };
-				case item::table_row_selected: return { 40, 160, 200, 255 };
-				case item::table_text_header: return { 155, 165, 180, 255 };
-				case item::table_header: return { 16, 29, 36, 255 };
-				case item::table_grid: return { 55, 60, 65, 255 };
+				case item::table_view: return { 16, 29, 36, 255 };
+				case item::table_view_border: return { 150, 150, 150, 255 };
+				case item::table_view_alternate: return { 60, 190, 175, 15 };
+				case item::table_view_row_hover: return { 40, 160, 200, 100 };
+				case item::table_view_row_selected: return { 40, 160, 200, 255 };
+				case item::table_view_text_header: return { 155, 165, 180, 255 };
+				case item::table_view_header: return { 16, 29, 36, 255 };
+				case item::table_view_grid: return { 55, 60, 65, 255 };
 
 				case item::toggle: return { 255, 255, 255, 200 };
 				case item::toggle_on: return { 0, 120, 170, 255 };
 				case item::toggle_off: return { 150, 150, 150, 255 };
 				case item::toggle_selected: return { 60, 190, 175, 60 };
 
-				case item::tree: return { 16, 29, 36, 255 };
-				case item::tree_border: return { 150, 150, 150, 255 };
-				case item::tree_hover: return { 60, 65, 70, 255 };
-				case item::tree_selected: return { 0, 120, 170, 100 };
+				case item::tree_view: return { 16, 29, 36, 255 };
+				case item::tree_view_border: return { 150, 150, 150, 255 };
+				case item::tree_view_hover: return { 60, 65, 70, 255 };
+				case item::tree_view_selected: return { 0, 120, 170, 100 };
 
 				case item::tab_pane: return { 100, 100, 100, 15 };
 				case item::tab_pane_border: return { 0, 120, 170, 50 };

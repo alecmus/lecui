@@ -88,8 +88,8 @@
     <ClInclude Include="widgets\time\time_impl.h" />
     <ClInclude Include="widgets\toggle.h" />
     <ClInclude Include="widgets\toggle\toggle_impl.h" />
-    <ClInclude Include="widgets\tree.h" />
-    <ClInclude Include="widgets\tree\tree_impl.h" />
+    <ClInclude Include="widgets\tree_view.h" />
+    <ClInclude Include="widgets\tree_view\tree_view_impl.h" />
     <ClInclude Include="widgets\v_scrollbar\v_scrollbar_impl.h" />
     <ClInclude Include="widgets\widget.h" />
     <ClInclude Include="widgets\widget_impl.h" />
@@ -174,8 +174,8 @@
     <ClCompile Include="widgets\time\time_impl.cpp" />
     <ClCompile Include="widgets\toggle\toggle.cpp" />
     <ClCompile Include="widgets\toggle\toggle_impl.cpp" />
-    <ClCompile Include="widgets\tree\tree.cpp" />
-    <ClCompile Include="widgets\tree\tree_impl.cpp" />
+    <ClCompile Include="widgets\tree_view\tree_view.cpp" />
+    <ClCompile Include="widgets\tree_view\tree_view_impl.cpp" />
     <ClCompile Include="widgets\v_scrollbar\v_scrollbar_impl.cpp" />
     <ClCompile Include="widgets\widget.cpp" />
     <ClCompile Include="widgets\widget_impl.cpp" />
@@ -313,7 +313,7 @@ xcopy "$(ProjectDir)widgets\progress_bar.h" "$(SolutionDir)..\include\liblec\$(P
 xcopy "$(ProjectDir)widgets\checkbox.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\text_field.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\password_field.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
-xcopy "$(ProjectDir)widgets\tree.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+xcopy "$(ProjectDir)widgets\tree_view.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\slider.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\html_editor.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\combobox.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
@@ -376,7 +376,7 @@ xcopy "$(ProjectDir)widgets\progress_bar.h" "$(SolutionDir)..\include\liblec\$(P
 xcopy "$(ProjectDir)widgets\checkbox.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\text_field.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\password_field.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
-xcopy "$(ProjectDir)widgets\tree.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+xcopy "$(ProjectDir)widgets\tree_view.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\slider.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\html_editor.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\combobox.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
@@ -443,7 +443,7 @@ xcopy "$(ProjectDir)widgets\progress_bar.h" "$(SolutionDir)..\include\liblec\$(P
 xcopy "$(ProjectDir)widgets\checkbox.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\text_field.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\password_field.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
-xcopy "$(ProjectDir)widgets\tree.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+xcopy "$(ProjectDir)widgets\tree_view.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\slider.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\html_editor.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\combobox.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
@@ -510,7 +510,7 @@ xcopy "$(ProjectDir)widgets\progress_bar.h" "$(SolutionDir)..\include\liblec\$(P
 xcopy "$(ProjectDir)widgets\checkbox.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\text_field.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\password_field.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
-xcopy "$(ProjectDir)widgets\tree.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+xcopy "$(ProjectDir)widgets\tree_view.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\slider.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\html_editor.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\combobox.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
