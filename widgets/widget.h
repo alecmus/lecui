@@ -96,26 +96,46 @@ namespace liblec {
 					std::function<void()> mouse_leave = nullptr;
 				};
 
-				/// Content
+				/// <summary>The widget text.</summary>
+				/// <remarks>The use of the text varies from widget to widget. Some widgets don't
+				/// use this field.</remarks>
 				std::string text;
 
-				/// Dimensions
+				/// <summary>The position and dimensions of the widget.</summary>
 				lecui::rect rect;
-				resize_params on_resize;
 
-				/// Widget cursor
+				/// <summary>The behaviour of the widget when its container is resized.</summary>
+				resize_params on_resize = { 0.f, 0.f, 0.f, 0.f };
+
+				/// <summary>The cursor to be used when the mouse is over the widget.</summary>
+				/// <remarks>This is only used if the widget is non-static.</remarks>
 				cursor_type cursor = cursor_type::arrow;
 
-				/// Appearance
+				/// <summary>The font to use for the widget text.</summary>
 				std::string font = "Segoe UI";
+
+				/// <summary>The size of the font, in points.</summary>
 				float font_size = 9.f;
+
+				/// <summary>The color of the widget text.</summary>
 				color color_text = { 0, 0, 0, 255 };
+
+				/// <summary>The fill color of the widget.</summary>
+				/// <remarks>The use of the fill color varies from widget to widget. Refer to the
+				/// specific widget's documentation for details.</remarks>
 				color color_fill = { 0, 120, 170, 255 };
+
+				/// <summary>The hit color when the mouse is over the widget.</summary>
 				color color_hot = { 0, 120, 170, 255 };
+
+				/// <summary>The color to be used to mark the widget as selected.</summary>
 				color color_selected = { 0, 120, 170, 30 };
+
+				/// <summary>The color of the widget when it is disabled.</summary>
 				color color_disabled = { 180, 180, 180, 255 };
 
-				/// <summary>Widgets with additional events need to override this method.</summary>
+				/// <summary>Widget events.</summary>
+				/// <remarks>Widgets with additional events need to override this method.</remarks>
 				/// <returns>A reference to the widget's basic events.</returns>
 				basic_events& events() {
 					return events_;

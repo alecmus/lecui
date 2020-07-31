@@ -38,16 +38,38 @@ namespace liblec {
 					combobox_specs() {
 						rect.size({ 200.f, 25.f });
 					}
-					color color_fill_editable;
-					color color_caret;
-					color color_border;
-					color color_dropdown;
-					color color_dropdown_hot;
-					color color_dropdown_arrow;
-					color color_dropdown_arrow_hot;
+
+					/// <summary>Whether the combobox is editable.</summary>
 					bool editable = false;
+
+					/// <summary>The background color is it's editable.</summary>
+					color color_fill_editable;
+
+					/// <summary>The color of the caret.</summary>
+					color color_caret;
+
+					/// <summary>The color of the border.</summary>
+					color color_border;
+
+					/// <summary>The color of the dropdown.</summary>
+					color color_dropdown;
+
+					/// <summary>The color of the dropdown when the mouse is over it.</summary>
+					color color_dropdown_hot;
+
+					/// <summary>The color of the dropdown arrow.</summary>
+					color color_dropdown_arrow;
+
+					/// <summary>The color of the dropdown arrow when the mouse is over it.</summary>
+					color color_dropdown_arrow_hot;
+
+					/// <summary>The thickness of the border.</summary>
 					float border = .5f;
+
+					/// <summary>The horizontal radius of the corners.</summary>
 					float corner_radius_x = 2.f;
+
+					/// <summary>The vertical radius of the corners.</summary>
 					float corner_radius_y = 2.f;
 
 					/// <summary>The list of items available in the dropdown.</summary>
@@ -75,9 +97,10 @@ namespace liblec {
 					/// considered as a "selected" item.</remarks>
 					std::string selected;
 
+					/// <summary>Events specific to this widget.</summary>
 					struct combobox_events : basic_events {
-						/// <summary>Called when a selection is made. The parameter contains the
-						/// selected item.</summary>
+						/// <summary>Called when a selection is made.</summary>
+						/// <remarks>The parameter contains the selected item.</remarks>
 						std::function<void(const std::string&)> selection = nullptr;
 					};
 
@@ -118,7 +141,7 @@ namespace liblec {
 				/// <summary>Get the specifications of a combobox.</summary>
 				/// <param name="fm">The form containing the combobox.</param>
 				/// <param name="path">The full path to the widget, e.g.
-				/// "sample_page/sample_tab_pane/tab_one/employed".</param>
+				/// "sample_page/sample_tab_pane/tab_one/title".</param>
 				/// <returns>A reference to the combobox specifications.</returns>
 				/// <remarks>Throws on failure.</remarks>
 				[[nodiscard]]
@@ -129,7 +152,7 @@ namespace liblec {
 				combobox_impl& d_;
 
 				// Default constructor and copying an object of this class are not allowed
-				combobox();
+				combobox() = delete;
 				combobox(const combobox&);
 				combobox& operator=(const combobox&);
 			};
