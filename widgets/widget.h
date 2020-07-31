@@ -34,7 +34,7 @@ namespace liblec {
 				struct resize_params {
 					/// <summary>The percentage rate for following the container's right border.
 					/// 0 = doesn't move horizontally, 100 = moves same number of pixels
-					/// horizontally that the containers's right border has moved.
+					/// horizontally that the container's right border has moved.
 					/// </summary>
 					float perc_x = 0.f;
 
@@ -73,6 +73,7 @@ namespace liblec {
 					bool operator!=(const resize_params&);
 				};
 
+				/// <summary>Mouse cursor type.</summary>
 				enum class cursor_type {
 					arrow,
 					hand,
@@ -102,12 +103,12 @@ namespace liblec {
 				lecui::rect rect;
 				resize_params on_resize;
 
-				/// Cursor
+				/// Widget cursor
 				cursor_type cursor = cursor_type::arrow;
 
 				/// Appearance
 				std::string font = "Segoe UI";
-				float font_size = 9.0f;
+				float font_size = 9.f;
 				color color_text = { 0, 0, 0, 255 };
 				color color_fill = { 0, 120, 170, 255 };
 				color color_hot = { 0, 120, 170, 255 };
@@ -148,7 +149,7 @@ namespace liblec {
 
 			/// <summary>Close a widget.</summary>
 			/// <param name="path">The full path to the widget, e.g. "home_page/username".</param>
-			/// <remarks>Avoid closing a widget from within it's own handler to avoid access
+			/// <remarks>Avoid closing a widget from within its own handler to avoid access
 			/// violation errors. Also make sure to never keep 'dangling widget references'
 			/// because attempting to use those references after this method is called will
 			/// result in access violation errors as well. Make sure to employ proper logic. As a
