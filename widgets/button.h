@@ -32,10 +32,18 @@ namespace liblec {
 					button_specs() {
 						rect.size({ 80.f, 25.f });
 					}
+
+					/// <summary>The thickness of the border.</summary>
 					float border = .5f;
-					float corner_radius_x = 5.f;
-					float corner_radius_y = 5.f;
+
+					/// <summary>The color of the border.</summary>
 					color color_border;
+
+					/// <summary>The horizontal radius of the corners.</summary>
+					float corner_radius_x = 5.f;
+
+					/// <summary>The vertical radius of the corners.</summary>
+					float corner_radius_y = 5.f;
 
 					bool operator==(const button_specs&);
 					bool operator!=(const button_specs&);
@@ -78,7 +86,7 @@ namespace liblec {
 				impl& d_;
 
 				// Default constructor and copying an object of this class are not allowed
-				button();
+				button() = delete;
 				button(const button&);
 				button& operator=(const button&);
 			};
