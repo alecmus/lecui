@@ -104,7 +104,7 @@ namespace liblec {
 				impl& d_;
 
 				// Default constructor and copying an object of this class are not allowed
-				custom();
+				custom() = delete;
 				custom(const custom&);
 				custom& operator=(const custom&);
 			};

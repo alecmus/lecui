@@ -26,16 +26,26 @@ namespace liblec {
 			class lecui_api html_editor {
 			public:
 				/// <summary>HTML editor widget specifications.</summary>
+				/// <remarks>Recommended size with defaults is a minimum of 320x215px.</remarks>
 				class html_editor_specs : public specs {
 				public:
 					html_editor_specs() {
 						cursor = cursor_type::caret;
-						rect.size({ 200.f, 25.f });
+						rect.size({ 320.f, 215.f });
 					}
+					/// <summary>The color of the border.</summary>
 					float border = .5f;
+
+					/// <summary>The horizontal radius of the corners.</summary>
 					float corner_radius_x = 3.f;
+
+					/// <summary>The vertical radius of the corners.</summary>
 					float corner_radius_y = 3.f;
+
+					/// <summary>The color of the border.</summary>
 					color color_border;
+
+					/// <summary>The color of the caret.</summary>
 					color color_caret;
 
 					bool operator==(const html_editor_specs&);
@@ -50,7 +60,7 @@ namespace liblec {
 
 				/// <summary>HTML editor constructor.</summary>
 				/// <param name="page">The container to place it in.</param>
-				/// <param name="alias">The in-page unique alias, e.g. "username".</param>
+				/// <param name="alias">The in-page unique alias, e.g. "email_text".</param>
 				html_editor(containers::page& page, const std::string& alias);
 				virtual ~html_editor();
 
@@ -68,7 +78,7 @@ namespace liblec {
 				/// <summary>Get the specifications of a html editor.</summary>
 				/// <param name="fm">The form containing the html editor.</param>
 				/// <param name="path">The full path to the widget, e.g.
-				/// "login_page/credentials_pane/username".</param>
+				/// "login_page/credentials_pane/email_text".</param>
 				/// <returns>A reference to the html editor specifications.</returns>
 				/// <remarks>Throws on failure.</remarks>
 				[[nodiscard]]
@@ -79,7 +89,7 @@ namespace liblec {
 				impl& d_;
 
 				// Default constructor and copying an object of this class are not allowed
-				html_editor();
+				html_editor() = delete;
 				html_editor(const html_editor&);
 				html_editor& operator=(const html_editor&);
 			};

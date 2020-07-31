@@ -33,11 +33,13 @@ namespace liblec {
 						rect.size({ 110.f, 60.f });
 					};
 
+					/// <summary>The date to display.</summary>
 					lecui::date date_value;
 
+					/// <summary>Events specific to this widget.</summary>
 					struct date_events : basic_events {
-						/// <summary>Called when the date is changed. The parameter contains the
-						/// new date.</summary>
+						/// <summary>Called when the date is changed.</summary>
+						/// <remarks>The parameter contains the new date.</remarks>
 						std::function<void(const lecui::date&)> change = nullptr;
 					};
 
@@ -60,7 +62,7 @@ namespace liblec {
 
 				/// <summary>Date constructor.</summary>
 				/// <param name="page">The container to place it in.</param>
-				/// <param name="alias">The in-page unique alias, e.g. "caption".</param>
+				/// <param name="alias">The in-page unique alias, e.g. "last_saved".</param>
 				date(containers::page& page, const std::string& alias);
 				~date();
 
@@ -78,7 +80,7 @@ namespace liblec {
 				/// <summary>Get the specifications of a date.</summary>
 				/// <param name="fm">The form containing the date.</param>
 				/// <param name="path">The full path to the widget, e.g.
-				/// "sample_page/sample_pane/caption".</param>
+				/// "sample_page/sample_pane/last_saved".</param>
 				/// <returns>A reference to the date specifications.</returns>
 				/// <remarks>Throws on failure.</remarks>
 				[[nodiscard]]
@@ -89,7 +91,7 @@ namespace liblec {
 				impl& d_;
 
 				// Default constructor and copying an object of this class are not allowed
-				date();
+				date() = delete;
 				date(const date&);
 				date& operator=(const date&);
 			};
