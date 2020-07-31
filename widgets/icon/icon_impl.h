@@ -31,9 +31,6 @@ namespace liblec {
 				static std::string alias_text();
 				static std::string alias_description();
 
-				/// Prevent the use of the default constructor.
-				icon_impl() = delete;
-
 				/// constructor and destructor
 				icon_impl(containers::page& page,
 					const std::string& alias);
@@ -52,9 +49,10 @@ namespace liblec {
 				widgets::icon::icon_specs& operator()();
 
 			private:
-				/// Prevent copying an object of this class.
-				icon_impl(const icon_impl&);
-				icon_impl& operator=(const icon_impl&);
+				// Default constructor and copying an object of this class are not allowed
+				icon_impl() = delete;
+				icon_impl(const icon_impl&) = delete;
+				icon_impl& operator=(const icon_impl&) = delete;
 
 				/// Private variables
 				widgets::icon::icon_specs specs_, specs_old_;

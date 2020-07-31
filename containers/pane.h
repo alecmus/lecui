@@ -94,9 +94,9 @@ namespace liblec {
 				impl& d_;
 
 				// Default constructor and copying an object of this class are not allowed
-				pane();
-				pane(const pane&);
-				pane& operator=(const pane&);
+				pane() = delete;
+				pane(const pane&) = delete;
+				pane& operator=(const pane&) = delete;
 			};
 		}
 	}

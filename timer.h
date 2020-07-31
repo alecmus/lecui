@@ -51,9 +51,9 @@ namespace liblec {
 			impl& d_;
 
 			// Default constructor and copying an object of this class are not allowed
-			timer_management();
-			timer_management(const timer_management&);
-			timer_management& operator=(const timer_management&);
+			timer_management() = delete;
+			timer_management(const timer_management&) = delete;
+			timer_management& operator=(const timer_management&) = delete;
 		};
 	}
 }

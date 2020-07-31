@@ -127,9 +127,9 @@ namespace liblec {
 				impl& d_;
 
 				// Default constructor and copying an object of this class are not allowed
-				table_view();
-				table_view(const table_view&);
-				table_view& operator=(const table_view&);
+				table_view() = delete;
+				table_view(const table_view&) = delete;
+				table_view& operator=(const table_view&) = delete;
 			};
 		}
 	}

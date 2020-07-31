@@ -94,9 +94,9 @@ namespace liblec {
 				friend class password_field;
 
 				// Default constructor and copying an object of this class are not allowed
-				text_field();
-				text_field(const text_field&);
-				text_field& operator=(const text_field&);
+				text_field() = delete;
+				text_field(const text_field&) = delete;
+				text_field& operator=(const text_field&) = delete;
 			};
 		}
 	}

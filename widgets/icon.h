@@ -91,9 +91,9 @@ namespace liblec {
 				impl& d_;
 
 				// Default constructor and copying an object of this class are not allowed
-				icon();
-				icon(const icon&);
-				icon& operator=(const icon&);
+				icon() = delete;
+				icon(const icon&) = delete;
+				icon& operator=(const icon&) = delete;
 			};
 		}
 	}

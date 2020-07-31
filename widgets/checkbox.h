@@ -117,8 +117,8 @@ namespace liblec {
 
 				// Default constructor and copying an object of this class are not allowed
 				checkbox() = delete;
-				checkbox(const checkbox&);
-				checkbox& operator=(const checkbox&);
+				checkbox(const checkbox&) = delete;
+				checkbox& operator=(const checkbox&) = delete;
 			};
 		}
 	}

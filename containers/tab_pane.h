@@ -120,9 +120,9 @@ namespace liblec {
 				impl& d_;
 
 				// Default constructor and copying an object of this class are not allowed
-				tab_pane();
-				tab_pane(const tab_pane&);
-				tab_pane& operator=(const tab_pane&);
+				tab_pane() = delete;
+				tab_pane(const tab_pane&) = delete;
+				tab_pane& operator=(const tab_pane&) = delete;
 
 				friend class tab;
 			};
@@ -164,9 +164,9 @@ namespace liblec {
 				impl& d_;
 
 				// Default constructor and copying an object of this class are not allowed
-				tab();
-				tab(const tab&);
-				tab& operator=(const tab&);
+				tab() = delete;
+				tab(const tab&) = delete;
+				tab& operator=(const tab&) = delete;
 			};
 		}
 	}

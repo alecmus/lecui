@@ -92,8 +92,8 @@ namespace liblec {
 
 				// Default constructor and copying an object of this class are not allowed
 				date() = delete;
-				date(const date&);
-				date& operator=(const date&);
+				date(const date&) = delete;
+				date& operator=(const date&) = delete;
 			};
 		}
 	}

@@ -33,9 +33,6 @@ namespace liblec {
 			/// panes, but then they cannot be added directly to a form.</remarks>
 			class lecui_api page {
 			public:
-				/// Prevent the use of the default constructor.
-				page() = delete;
-
 				/// <summary>Page constructor.</summary>
 				/// <param name="fm">The form to add the page to.</param>
 				/// <param name="alias">The in-form unique alias, e.g. "home_page".</param>
@@ -58,8 +55,9 @@ namespace liblec {
 				impl& d_page_;
 
 				// Default constructor and copying an object of this class are not allowed
-				page(const page&);
-				page& operator=(const page&);
+				page() = delete;
+				page(const page&) = delete;
+				page& operator=(const page&) = delete;
 
 #if defined(LECUI_EXPORTS)
 				friend class form;
@@ -137,9 +135,9 @@ namespace liblec {
 			impl& d_;
 
 			// Default constructor and copying an object of this class are not allowed
-			page_management();
-			page_management(const page_management&);
-			page_management& operator=(const page_management&);
+			page_management() = delete;
+			page_management(const page_management&) = delete;
+			page_management& operator=(const page_management&) = delete;
 		};
 	}
 }

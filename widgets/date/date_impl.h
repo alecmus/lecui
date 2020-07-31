@@ -35,9 +35,6 @@ namespace liblec {
 				static std::string alias_weekday();
 				static std::string alias_weekday_label();
 
-				/// Prevent the use of the default constructor.
-				date_impl() = delete;
-
 				/// constructor and destructor
 				date_impl(containers::page& page,
 					const std::string& alias);
@@ -56,9 +53,10 @@ namespace liblec {
 				widgets::date::date_specs& operator()();
 
 			private:
-				/// Prevent copying an object of this class.
-				date_impl(const date_impl&);
-				date_impl& operator=(const date_impl&);
+				// Default constructor and copying an object of this class are not allowed
+				date_impl() = delete;
+				date_impl(const date_impl&) = delete;
+				date_impl& operator=(const date_impl&) = delete;
 
 				/// Private variables
 				widgets::date::date_specs specs_, specs_old_;

@@ -153,8 +153,8 @@ namespace liblec {
 
 				// Default constructor and copying an object of this class are not allowed
 				combobox() = delete;
-				combobox(const combobox&);
-				combobox& operator=(const combobox&);
+				combobox(const combobox&) = delete;
+				combobox& operator=(const combobox&) = delete;
 			};
 		}
 	}

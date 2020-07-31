@@ -90,9 +90,9 @@ namespace liblec {
 				impl& d_;
 
 				// Default constructor and copying an object of this class are not allowed
-				group();
-				group(const group&);
-				group& operator=(const group&);
+				group() = delete;
+				group(const group&) = delete;
+				group& operator=(const group&) = delete;
 			};
 		}
 	}

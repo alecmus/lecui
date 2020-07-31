@@ -87,8 +87,8 @@ namespace liblec {
 
 				// Default constructor and copying an object of this class are not allowed
 				button() = delete;
-				button(const button&);
-				button& operator=(const button&);
+				button(const button&) = delete;
+				button& operator=(const button&) = delete;
 			};
 		}
 	}

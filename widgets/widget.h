@@ -189,9 +189,9 @@ namespace liblec {
 			impl& d_;
 
 			// Default constructor and copying an object of this class are not allowed
-			widget_management();
-			widget_management(const widget_management&);
-			widget_management& operator=(const widget_management&);
+			widget_management() = delete;
+			widget_management(const widget_management&) = delete;
+			widget_management& operator=(const widget_management&) = delete;
 		};
 	}
 }

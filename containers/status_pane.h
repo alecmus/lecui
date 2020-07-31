@@ -108,9 +108,9 @@ namespace liblec {
 				impl& d_;
 
 				// Default constructor and copying an object of this class are not allowed
-				status_pane();
-				status_pane(const status_pane&);
-				status_pane& operator=(const status_pane&);
+				status_pane() = delete;
+				status_pane(const status_pane&) = delete;
+				status_pane& operator=(const status_pane&) = delete;
 			};
 		}
 	}

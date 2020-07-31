@@ -94,9 +94,9 @@ namespace liblec {
 				impl& d_;
 
 				// Default constructor and copying an object of this class are not allowed
-				toggle();
-				toggle(const toggle&);
-				toggle& operator=(const toggle&);
+				toggle() = delete;
+				toggle(const toggle&) = delete;
+				toggle& operator=(const toggle&) = delete;
 			};
 		}
 	}

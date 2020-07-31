@@ -45,9 +45,9 @@ namespace liblec {
 			impl& d_;
 
 			// Default constructor and copying an object of this class are not allowed
-			controls();
-			controls(const controls&);
-			controls& operator=(const controls&);
+			controls() = delete;
+			controls(const controls&) = delete;
+			controls& operator=(const controls&) = delete;
 		};
 
 		/// <summary>Manipulate a form's dimensions.</summary>
@@ -108,9 +108,9 @@ namespace liblec {
 			impl& d_;
 
 			// Default constructor and copying an object of this class are not allowed
-			dimensions();
-			dimensions(const dimensions&);
-			dimensions& operator=(const dimensions&);
+			dimensions() = delete;
+			dimensions(const dimensions&) = delete;
+			dimensions& operator=(const dimensions&) = delete;
 		};
 	}
 }

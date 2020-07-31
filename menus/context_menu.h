@@ -90,8 +90,8 @@ namespace liblec {
 			class impl;
 
 			// Copying an object of this class are not allowed
-			context_menu(const context_menu&);
-			context_menu& operator=(const context_menu&);
+			context_menu(const context_menu&) = delete;
+			context_menu& operator=(const context_menu&) = delete;
 		};
 	}
 }

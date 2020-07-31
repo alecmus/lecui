@@ -26,9 +26,6 @@ namespace liblec {
 				}
 
 			public:
-				/// Prevent the use of the default constructor.
-				image_view_impl() = delete;
-
 				/// constructor and destructor
 				image_view_impl(containers::page& page,
 					const std::string& alias,
@@ -48,9 +45,10 @@ namespace liblec {
 				widgets::image_view::image_view_specs& operator()();
 
 			private:
-				/// Prevent copying an object of this class.
-				image_view_impl(const image_view_impl&);
-				image_view_impl& operator=(const image_view_impl&);
+				// Default constructor and copying an object of this class are not allowed
+				image_view_impl() = delete;
+				image_view_impl(const image_view_impl&) = delete;
+				image_view_impl& operator=(const image_view_impl&) = delete;
 
 				/// Private variables
 				widgets::image_view::image_view_specs specs_, specs_old_;

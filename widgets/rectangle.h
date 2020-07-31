@@ -76,9 +76,9 @@ namespace liblec {
 				impl& d_;
 
 				// Default constructor and copying an object of this class are not allowed
-				rectangle();
-				rectangle(const rectangle&);
-				rectangle& operator=(const rectangle&);
+				rectangle() = delete;
+				rectangle(const rectangle&) = delete;
+				rectangle& operator=(const rectangle&) = delete;
 			};
 		}
 	}

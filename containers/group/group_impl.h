@@ -26,9 +26,6 @@ namespace liblec {
 				}
 
 			public:
-				/// Prevent the use of the default constructor.
-				group_impl() = delete;
-
 				/// constructor and destructor
 				group_impl(containers::page& page,
 					const std::string& alias);
@@ -47,9 +44,10 @@ namespace liblec {
 				containers::group::group_specs& operator()();
 
 			private:
-				/// Prevent copying an object of this class.
-				group_impl(const group_impl&);
-				group_impl& operator=(const group_impl&);
+				// Default constructor and copying an object of this class are not allowed
+				group_impl() = delete;
+				group_impl(const group_impl&) = delete;
+				group_impl& operator=(const group_impl&) = delete;
 
 				/// Private variables
 				containers::group::group_specs specs_, specs_old_;

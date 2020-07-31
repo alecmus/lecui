@@ -33,9 +33,6 @@ namespace liblec {
 				static std::string alias_second();
 				static std::string alias_second_label();
 
-				/// Prevent the use of the default constructor.
-				time_impl() = delete;
-
 				/// constructor and destructor
 				time_impl(containers::page& page,
 					const std::string& alias);
@@ -55,9 +52,10 @@ namespace liblec {
 				widgets::time::time_specs& operator()();
 
 			private:
-				/// Prevent copying an object of this class.
-				time_impl(const time_impl&);
-				time_impl& operator=(const time_impl&);
+				// Default constructor and copying an object of this class are not allowed
+				time_impl() = delete;
+				time_impl(const time_impl&) = delete;
+				time_impl& operator=(const time_impl&) = delete;
 
 				/// Private variables
 				widgets::time::time_specs specs_, specs_old_;

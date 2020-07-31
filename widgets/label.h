@@ -102,9 +102,9 @@ namespace liblec {
 				impl& d_;
 
 				// Default constructor and copying an object of this class are not allowed
-				label();
-				label(const label&);
-				label& operator=(const label&);
+				label() = delete;
+				label(const label&) = delete;
+				label& operator=(const label&) = delete;
 			};
 		}
 	}

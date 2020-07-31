@@ -39,9 +39,9 @@ namespace liblec {
 
 			private:
 				// Default constructor and copying an object of this class are not allowed
-				password_field();
-				password_field(const password_field&);
-				password_field& operator=(const password_field&);
+				password_field() = delete;
+				password_field(const password_field&) = delete;
+				password_field& operator=(const password_field&) = delete;
 			};
 		}
 	}

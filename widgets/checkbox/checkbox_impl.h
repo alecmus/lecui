@@ -26,9 +26,6 @@ namespace liblec {
 				}
 
 			public:
-				/// Prevent the use of the default constructor.
-				checkbox_impl() = delete;
-
 				/// constructor and destructor
 				checkbox_impl(containers::page& page,
 					const std::string& alias,
@@ -51,9 +48,10 @@ namespace liblec {
 				widgets::checkbox::checkbox_specs& operator()();
 
 			private:
-				/// Prevent copying an object of this class.
-				checkbox_impl(const checkbox_impl&);
-				checkbox_impl& operator=(const checkbox_impl&);
+				// Default constructor and copying an object of this class are not allowed
+				checkbox_impl() = delete;
+				checkbox_impl(const checkbox_impl&) = delete;
+				checkbox_impl& operator=(const checkbox_impl&) = delete;
 
 				/// Private variables
 				widgets::checkbox::checkbox_specs specs_, specs_old_;

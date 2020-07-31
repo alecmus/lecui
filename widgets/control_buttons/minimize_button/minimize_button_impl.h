@@ -27,7 +27,6 @@ namespace liblec {
 				}
 
 			public:
-				minimize_button_impl() = delete;
 				minimize_button_impl(containers::page& page);
 				~minimize_button_impl();
 
@@ -46,9 +45,10 @@ namespace liblec {
 				widgets::minimize_button_specs& operator()();
 
 			private:
-				/// Prevent copying an object of this class.
-				minimize_button_impl(const minimize_button_impl&);
-				minimize_button_impl& operator=(const minimize_button_impl&);
+				// Default constructor and copying an object of this class are not allowed
+				minimize_button_impl() = delete;
+				minimize_button_impl(const minimize_button_impl&) = delete;
+				minimize_button_impl& operator=(const minimize_button_impl&) = delete;
 
 				/// Private variables
 				HWND hWnd_;

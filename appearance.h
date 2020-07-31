@@ -193,9 +193,9 @@ namespace liblec {
 			impl& d_;
 
 			// Default constructor and copying an object of this class are not allowed
-			appearance();
-			appearance(const appearance&);
-			appearance& operator=(const appearance&);
+			appearance() = delete;
+			appearance(const appearance&) = delete;
+			appearance& operator=(const appearance&) = delete;
 		};
 	}
 }

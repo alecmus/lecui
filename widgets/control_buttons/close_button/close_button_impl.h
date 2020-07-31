@@ -27,7 +27,6 @@ namespace liblec {
 				}
 
 			public:
-				close_button_impl() = delete;
 				close_button_impl(containers::page& page);
 				~close_button_impl();
 
@@ -44,9 +43,10 @@ namespace liblec {
 				widgets::close_button_specs& operator()();
 
 			private:
-				/// Prevent copying an object of this class.
-				close_button_impl(const close_button_impl&);
-				close_button_impl& operator=(const close_button_impl&);
+				// Default constructor and copying an object of this class are not allowed
+				close_button_impl() = delete;
+				close_button_impl(const close_button_impl&) = delete;
+				close_button_impl& operator=(const close_button_impl&) = delete;
 
 				widgets::close_button_specs specs_;
 				ID2D1SolidColorBrush* p_brush_;

@@ -26,9 +26,6 @@ namespace liblec {
 				}
 
 			public:
-				/// Prevent the use of the default constructor.
-				toggle_impl() = delete;
-
 				/// constructor and destructor
 				toggle_impl(containers::page& page,
 					const std::string& alias,
@@ -53,9 +50,10 @@ namespace liblec {
 				widgets::toggle::toggle_specs& operator()();
 
 			private:
-				/// Prevent copying an object of this class.
-				toggle_impl(const toggle_impl&);
-				toggle_impl& operator=(const toggle_impl&);
+				// Default constructor and copying an object of this class are not allowed
+				toggle_impl() = delete;
+				toggle_impl(const toggle_impl&) = delete;
+				toggle_impl& operator=(const toggle_impl&) = delete;
 
 				/// Private variables
 				widgets::toggle::toggle_specs specs_, specs_old_;

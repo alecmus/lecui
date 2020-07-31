@@ -56,9 +56,6 @@ namespace liblec {
 				}
 
 			public:
-				/// Prevent the use of the default constructor.
-				label_impl() = delete;
-
 				/// constructor and destructor
 				label_impl(containers::page& page,
 					const std::string& alias,
@@ -78,9 +75,10 @@ namespace liblec {
 				widgets::label::label_specs& operator()();
 
 			private:
-				/// Prevent copying an object of this class.
-				label_impl(const label_impl&);
-				label_impl& operator=(const label_impl&);
+				// Default constructor and copying an object of this class are not allowed
+				label_impl() = delete;
+				label_impl(const label_impl&) = delete;
+				label_impl& operator=(const label_impl&) = delete;
 
 				/// Private variables
 				widgets::label::label_specs specs_, specs_old_;

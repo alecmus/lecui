@@ -26,9 +26,6 @@ namespace liblec {
 				}
 
 			public:
-				/// Prevent the use of the default constructor.
-				tree_view_impl() = delete;
-
 				/// constructor and destructor
 				tree_view_impl(containers::page& page,
 					const std::string& alias,
@@ -51,9 +48,10 @@ namespace liblec {
 				widgets::tree_view::tree_view_specs& operator()();
 
 			private:
-				/// Prevent copying an object of this class.
-				tree_view_impl(const tree_view_impl&);
-				tree_view_impl& operator=(const tree_view_impl&);
+				// Default constructor and copying an object of this class are not allowed
+				tree_view_impl() = delete;
+				tree_view_impl(const tree_view_impl&) = delete;
+				tree_view_impl& operator=(const tree_view_impl&) = delete;
 
 				/// Private variables
 				widgets::tree_view::tree_view_specs specs_, specs_old_;

@@ -26,9 +26,6 @@ namespace liblec {
 				}
 
 			public:
-				/// Prevent the use of the default constructor.
-				table_view_impl() = delete;
-
 				/// constructor and destructor
 				table_view_impl(containers::page& page,
 					const std::string& alias,
@@ -51,9 +48,10 @@ namespace liblec {
 				widgets::table_view::table_view_specs& operator()();
 
 			private:
-				/// Prevent copying an object of this class.
-				table_view_impl(const table_view_impl&);
-				table_view_impl& operator=(const table_view_impl&);
+				// Default constructor and copying an object of this class are not allowed
+				table_view_impl() = delete;
+				table_view_impl(const table_view_impl&) = delete;
+				table_view_impl& operator=(const table_view_impl&) = delete;
 
 				/// Private variables
 				widgets::table_view::table_view_specs specs_, specs_old_;

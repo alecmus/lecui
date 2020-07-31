@@ -26,9 +26,6 @@ namespace liblec {
 				}
 
 			public:
-				/// Prevent the use of the default constructor.
-				text_field_impl() = delete;
-
 				/// constructor and destructor
 				text_field_impl(containers::page& page,
 					const std::string& alias,
@@ -54,9 +51,10 @@ namespace liblec {
 				void key_right();
 
 			private:
-				/// Prevent copying an object of this class.
-				text_field_impl(const text_field_impl&);
-				text_field_impl& operator=(const text_field_impl&);
+				// Default constructor and copying an object of this class are not allowed
+				text_field_impl() = delete;
+				text_field_impl(const text_field_impl&) = delete;
+				text_field_impl& operator=(const text_field_impl&) = delete;
 
 				/// Private variables
 				widgets::text_field::text_field_specs specs_, specs_old_;

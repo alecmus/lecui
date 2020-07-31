@@ -26,9 +26,6 @@ namespace liblec {
 				}
 
 			public:
-				/// Prevent the use of the default constructor.
-				button_impl() = delete;
-
 				/// constructor and destructor
 				button_impl(containers::page& page,
 					const std::string& alias,
@@ -49,9 +46,10 @@ namespace liblec {
 				widgets::button::button_specs& operator()();
 
 			private:
-				/// Prevent copying an object of this class.
-				button_impl(const button_impl&);
-				button_impl& operator=(const button_impl&);
+				// Default constructor and copying an object of this class are not allowed
+				button_impl() = delete;
+				button_impl(const button_impl&) = delete;
+				button_impl& operator=(const button_impl&) = delete;
 
 				/// Private variables
 				widgets::button::button_specs specs_, specs_old_;

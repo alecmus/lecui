@@ -234,9 +234,9 @@ namespace liblec {
 			impl& d_;
 
 			// Default constructor and copying an object of this class are not allowed
-			form();
-			form(const form&);
-			form& operator=(const form&);
+			form() = delete;
+			form(const form&) = delete;
+			form& operator=(const form&) = delete;
 
 #if defined(LECUI_EXPORTS)
 			friend class page_management;

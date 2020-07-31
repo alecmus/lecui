@@ -31,9 +31,6 @@ namespace liblec {
 				std::vector<std::string> tab_order_;
 				std::string current_tab_;
 
-				/// Prevent the use of the default constructor.
-				tab_pane_impl() = delete;
-
 				/// constructor and destructor
 				tab_pane_impl(containers::page& page,
 					const std::string& alias,
@@ -64,9 +61,10 @@ namespace liblec {
 				void close_tab(const std::string& tab_name);
 
 			private:
-				/// Prevent copying an object of this class.
-				tab_pane_impl(const tab_pane_impl&);
-				tab_pane_impl& operator=(const tab_pane_impl&);
+				// Default constructor and copying an object of this class are not allowed
+				tab_pane_impl() = delete;
+				tab_pane_impl(const tab_pane_impl&) = delete;
+				tab_pane_impl& operator=(const tab_pane_impl&) = delete;
 
 				/// Private variables
 				containers::tab_pane::tab_pane_specs specs_;

@@ -26,9 +26,6 @@ namespace liblec {
 				}
 
 			public:
-				/// Prevent the use of the default constructor.
-				custom_impl() = delete;
-
 				/// constructor and destructor
 				custom_impl(containers::page& page,
 					const std::string& alias,
@@ -49,9 +46,10 @@ namespace liblec {
 				widgets::custom::custom_specs& operator()();
 
 			private:
-				/// Prevent copying an object of this class.
-				custom_impl(const custom_impl&);
-				custom_impl& operator=(const custom_impl&);
+				// Default constructor and copying an object of this class are not allowed
+				custom_impl() = delete;
+				custom_impl(const custom_impl&) = delete;
+				custom_impl& operator=(const custom_impl&) = delete;
 
 				/// Private variables
 				widgets::custom::custom_specs specs_, specs_old_;

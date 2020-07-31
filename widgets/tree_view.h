@@ -132,9 +132,9 @@ namespace liblec {
 				impl& d_;
 
 				// Default constructor and copying an object of this class are not allowed
-				tree_view();
-				tree_view(const tree_view&);
-				tree_view& operator=(const tree_view&);
+				tree_view() = delete;
+				tree_view(const tree_view&) = delete;
+				tree_view& operator=(const tree_view&) = delete;
 			};
 		}
 	}

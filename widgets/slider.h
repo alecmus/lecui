@@ -112,9 +112,9 @@ namespace liblec {
 				impl& d_;
 
 				// Default constructor and copying an object of this class are not allowed
-				slider();
-				slider(const slider&);
-				slider& operator=(const slider&);
+				slider() = delete;
+				slider(const slider&) = delete;
+				slider& operator=(const slider&) = delete;
 			};
 		}
 	}

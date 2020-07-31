@@ -39,9 +39,6 @@ namespace liblec {
 				static std::string alias_font_color();
 				static std::string alias_font_color_bar();
 
-				/// Prevent the use of the default constructor.
-				html_editor_impl() = delete;
-
 				/// constructor and destructor
 				html_editor_impl(containers::page& page,
 					const std::string& alias,
@@ -84,9 +81,10 @@ namespace liblec {
 				color get_last_color();
 
 			private:
-				/// Prevent copying an object of this class.
-				html_editor_impl(const html_editor_impl&);
-				html_editor_impl& operator=(const html_editor_impl&);
+				// Default constructor and copying an object of this class are not allowed
+				html_editor_impl() = delete;
+				html_editor_impl(const html_editor_impl&) = delete;
+				html_editor_impl& operator=(const html_editor_impl&) = delete;
 
 				/// Private variables
 				bool controls_initialized_;

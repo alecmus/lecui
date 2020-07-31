@@ -27,7 +27,6 @@ namespace liblec {
 				}
 
 			public:
-				maximize_button_impl() = delete;
 				maximize_button_impl(containers::page& page);
 				~maximize_button_impl();
 
@@ -46,9 +45,10 @@ namespace liblec {
 				widgets::maximize_button_specs& operator()();
 
 			private:
-				/// Prevent copying an object of this class.
-				maximize_button_impl(const maximize_button_impl&);
-				maximize_button_impl& operator=(const maximize_button_impl&);
+				// Default constructor and copying an object of this class are not allowed
+				maximize_button_impl() = delete;
+				maximize_button_impl(const maximize_button_impl&) = delete;
+				maximize_button_impl& operator=(const maximize_button_impl&) = delete;
 
 				/// Private variables
 				HWND hWnd_;

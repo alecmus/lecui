@@ -31,9 +31,6 @@ namespace liblec {
 		form::form(const std::string& caption) :
 			d_(*new impl(*this, caption)) {}
 
-		form::form() :
-			form::form("form") {}
-
 		form::form(const std::string& caption, form& parent) :
 			form::form(caption) {
 

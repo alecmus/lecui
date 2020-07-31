@@ -34,9 +34,6 @@ namespace liblec {
 				float max_displacement_bottom_;
 				bool force_translate_;
 
-				/// Prevent the use of the default constructor.
-				v_scrollbar_impl() = delete;
-
 				/// constructor and destructor
 				v_scrollbar_impl(containers::page& page);
 				~v_scrollbar_impl();
@@ -58,9 +55,10 @@ namespace liblec {
 				void setup(const D2D1_RECT_F& rectA, const D2D1_RECT_F& rectB);
 
 			private:
-				/// Prevent copying an object of this class.
-				v_scrollbar_impl(const v_scrollbar_impl&);
-				v_scrollbar_impl& operator=(const v_scrollbar_impl&);
+				// Default constructor and copying an object of this class are not allowed
+				v_scrollbar_impl() = delete;
+				v_scrollbar_impl(const v_scrollbar_impl&) = delete;
+				v_scrollbar_impl& operator=(const v_scrollbar_impl&) = delete;
 
 				/// Private variables
 				widgets::v_scrollbar_specs specs_;

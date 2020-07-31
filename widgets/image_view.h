@@ -83,9 +83,9 @@ namespace liblec {
 				impl& d_;
 
 				// Default constructor and copying an object of this class are not allowed
-				image_view();
-				image_view(const image_view&);
-				image_view& operator=(const image_view&);
+				image_view() = delete;
+				image_view(const image_view&) = delete;
+				image_view& operator=(const image_view&) = delete;
 			};
 		}
 	}

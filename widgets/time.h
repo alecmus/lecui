@@ -89,9 +89,9 @@ namespace liblec {
 				impl& d_;
 
 				// Default constructor and copying an object of this class are not allowed
-				time();
-				time(const time&);
-				time& operator=(const time&);
+				time() = delete;
+				time(const time&) = delete;
+				time& operator=(const time&) = delete;
 			};
 		}
 	}

@@ -26,9 +26,6 @@ namespace liblec {
 				}
 
 			public:
-				/// Prevent the use of the default constructor.
-				progress_bar_impl() = delete;
-
 				/// constructor and destructor
 				progress_bar_impl(containers::page& page,
 					const std::string& alias,
@@ -49,9 +46,10 @@ namespace liblec {
 				widgets::progress_bar::progress_bar_specs& operator()();
 
 			private:
-				/// Prevent copying an object of this class.
-				progress_bar_impl(const progress_bar_impl&);
-				progress_bar_impl& operator=(const progress_bar_impl&);
+				// Default constructor and copying an object of this class are not allowed
+				progress_bar_impl() = delete;
+				progress_bar_impl(const progress_bar_impl&) = delete;
+				progress_bar_impl& operator=(const progress_bar_impl&) = delete;
 
 				/// Private variables
 				widgets::progress_bar::progress_bar_specs specs_, specs_old_;

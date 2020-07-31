@@ -77,9 +77,9 @@ namespace liblec {
 				impl& d_;
 
 				// Default constructor and copying an object of this class are not allowed
-				line();
-				line(const line&);
-				line& operator=(const line&);
+				line() = delete;
+				line(const line&) = delete;
+				line& operator=(const line&) = delete;
 			};
 		}
 	}

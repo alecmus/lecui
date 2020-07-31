@@ -77,9 +77,9 @@ namespace liblec {
 				impl& d_;
 
 				// Default constructor and copying an object of this class are not allowed
-				progress_bar();
-				progress_bar(const progress_bar&);
-				progress_bar& operator=(const progress_bar&);
+				progress_bar() = delete;
+				progress_bar(const progress_bar&) = delete;
+				progress_bar& operator=(const progress_bar&) = delete;
 			};
 		}
 	}

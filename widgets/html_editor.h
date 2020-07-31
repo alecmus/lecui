@@ -90,8 +90,8 @@ namespace liblec {
 
 				// Default constructor and copying an object of this class are not allowed
 				html_editor() = delete;
-				html_editor(const html_editor&);
-				html_editor& operator=(const html_editor&);
+				html_editor(const html_editor&) = delete;
+				html_editor& operator=(const html_editor&) = delete;
 			};
 		}
 	}

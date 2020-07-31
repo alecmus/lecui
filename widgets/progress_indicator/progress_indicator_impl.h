@@ -26,9 +26,6 @@ namespace liblec {
 				}
 
 			public:
-				/// Prevent the use of the default constructor.
-				progress_indicator_impl() = delete;
-
 				/// constructor and destructor
 				progress_indicator_impl(containers::page& page,
 					const std::string& alias,
@@ -49,9 +46,10 @@ namespace liblec {
 				widgets::progress_indicator::progress_indicator_specs& operator()();
 
 			private:
-				/// Prevent copying an object of this class.
-				progress_indicator_impl(const progress_indicator_impl&);
-				progress_indicator_impl& operator=(const progress_indicator_impl&);
+				// Default constructor and copying an object of this class are not allowed
+				progress_indicator_impl() = delete;
+				progress_indicator_impl(const progress_indicator_impl&) = delete;
+				progress_indicator_impl& operator=(const progress_indicator_impl&) = delete;
 
 				/// Private variables
 				widgets::progress_indicator::progress_indicator_specs specs_, specs_old_;
