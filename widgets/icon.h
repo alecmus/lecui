@@ -33,6 +33,7 @@ namespace liblec {
 						rect.size({ 180.f, 78.f });
 					};
 
+					/// <summary>Text position in icon.</summary>
 					enum class icon_text_position {
 						bottom,
 						top,
@@ -44,10 +45,21 @@ namespace liblec {
 						left_bottom,
 					};
 
-					std::string file;
+					/// <summary>ID of PNG resource containing the image.</summary>
+					/// <remarks>PNG resource takes precedence over image file.</remarks>
 					int png_resource = 0;
+
+					/// <summary>Full path to image file.</summary>
+					/// <remarks>PNG resource takes precedence over image file.</remarks>
+					std::string file;
+
+					/// <summary>The quality of the image in the icon.</summary>
 					image_quality quality = image_quality::high;
+
+					/// <summary>Descriptive text placed under the icon text.</summary>
 					std::string description;
+
+					/// <summary>The position of the text.</summary>
 					icon_text_position text_position = icon_text_position::right_top;
 
 					bool operator==(const icon_specs&);
@@ -62,7 +74,7 @@ namespace liblec {
 
 				/// <summary>Icon constructor.</summary>
 				/// <param name="page">The container to place it in.</param>
-				/// <param name="alias">The in-page unique alias, e.g. "caption".</param>
+				/// <param name="alias">The in-page unique alias, e.g. "users".</param>
 				icon(containers::page& page, const std::string& alias);
 				~icon();
 
@@ -80,7 +92,7 @@ namespace liblec {
 				/// <summary>Get the specifications of a icon.</summary>
 				/// <param name="fm">The form containing the icon.</param>
 				/// <param name="path">The full path to the widget, e.g.
-				/// "sample_page/sample_pane/caption".</param>
+				/// "sample_page/sample_pane/users".</param>
 				/// <returns>A reference to the icon specifications.</returns>
 				/// <remarks>Throws on failure.</remarks>
 				[[nodiscard]]
