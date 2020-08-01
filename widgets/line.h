@@ -29,6 +29,8 @@ namespace liblec {
 				class line_specs : public specs {
 				public:
 					line_specs() {}
+
+					/// <summary>The thickness of the line.</summary>
 					float thickness = 1.f;
 
 					/// <summary>The points, in order, for the line line to go through. These

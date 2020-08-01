@@ -57,16 +57,14 @@ namespace liblec {
 				widgets::table_view::table_view_specs specs_, specs_old_;
 				ID2D1SolidColorBrush* p_brush_;
 				ID2D1SolidColorBrush* p_brush_fill_;
-				ID2D1SolidColorBrush* p_brush_scrollbar_border_;
 				ID2D1SolidColorBrush* p_brush_text_header_;
+				ID2D1SolidColorBrush* p_brush_text_selected_;
 				ID2D1SolidColorBrush* p_brush_fill_header_;
 				ID2D1SolidColorBrush* p_brush_fill_alternate_;
 				ID2D1SolidColorBrush* p_brush_hot_;
 				ID2D1SolidColorBrush* p_brush_disabled_;
 				ID2D1SolidColorBrush* p_brush_selected_;
 				ID2D1SolidColorBrush* p_brush_border_;
-				ID2D1SolidColorBrush* p_brush_dropdown_hot_;
-				ID2D1SolidColorBrush* p_brush_menu_;
 				ID2D1SolidColorBrush* p_brush_grid_;
 				ID2D1SolidColorBrush* p_brush_row_hot_;
 				ID2D1SolidColorBrush* p_brush_row_selected_;

@@ -28,20 +28,45 @@ namespace liblec {
 			class lecui_api table_view {
 			public:
 				/// <summary>Table view widget specifications.</summary>
+				/// <remarks>Default size is 200x200px.</remarks>
 				class table_view_specs : public specs {
 				public:
-					table_view_specs() {}
+					table_view_specs() {
+						rect.size({ 200.f, 200.f });
+					}
+
+					/// <summary>The color of the text in a selected row.</summary>
+					color color_text_selected;
+
+					/// <summary>The color of the border.</summary>
 					color color_border;
-					color color_dropdown_hot = { 255, 255, 255, 255 };
-					color color_menu = { 255, 255, 255, 255 };
+
+					/// <summary>The color of the grid lines.</summary>
 					color color_grid;
+
+					/// <summary>The color of the header text.</summary>
 					color color_text_header;
+
+					/// <summary>The table header's fill color.</summary>
 					color color_fill_header;
+
+					/// <summary>The table's alternate row color (used for the background of
+					/// even rows).</summary>
 					color color_fill_alternate;
+					
+					/// <summary>The background color of a row when the mouse is over it.</summary>
 					color color_row_hot;
+
+					/// <summary>The background color of a selected row.</summary>
 					color color_row_selected;
+
+					/// <summary>The thickness of the border.</summary>
 					float border = .5f;
+
+					/// <summary>The horizontal radius of the corners.</summary>
 					float corner_radius_x = 2.f;
+
+					/// <summary>The vertical radius of the corners.</summary>
 					float corner_radius_y = 2.f;
 
 					/// <summary>The table view columns.</summary>
@@ -68,12 +93,13 @@ namespace liblec {
 					/// </example>
 					std::vector<std::map<std::string, std::string>> data;
 
-					/// <summary>The rows to select by default.</summary>
+					/// <summary>The rows to select by default, numbered from 0.</summary>
 					std::vector<long> selected;
 
+					/// <summary>Events specific to this widget.</summary>
 					struct table_view_events : basic_events {
-						/// <summary>This handler is called when the selection changes. The selected
-						/// rows will be in the given 'rows' parameter.</summary>
+						/// <summary>This handler is called when the selection changes.</summary>
+						/// <remarks>The parameter contains the selected rows.</remarks>
 						std::function<void(
 							const std::vector<std::map<std::string, std::string>>& rows)>
 							selection = nullptr;

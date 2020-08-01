@@ -26,14 +26,20 @@ namespace liblec {
 			class lecui_api progress_bar {
 			public:
 				/// <summary>Progress bar widget specifications.</summary>
-				/// <remarks>Recommended height with defaults is 12px</remarks>
+				/// <remarks>Recommended size with defaults is 200x12px</remarks>
 				class progress_bar_specs : public specs {
 				public:
 					progress_bar_specs() {
 						rect.size({ 200.f, 12.f });
 					}
+
+					/// <summary>The color of the border.</summary>
 					color color_border;
+
+					/// <summary>The thickness of the border.</summary>
 					float border = 1.f;
+
+					/// <summary>The percentage of the progress bar (0.f - 100.f).</summary>
 					float percentage = 0.f;
 
 					bool operator==(const progress_bar_specs&);

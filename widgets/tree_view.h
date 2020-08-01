@@ -28,9 +28,13 @@ namespace liblec {
 			class lecui_api tree_view {
 			public:
 				/// <summary>Tree view widget specifications.</summary>
+				/// <remarks>Default size is 200x200px.</remarks>
 				class tree_view_specs : public specs {
 				public:
-					tree_view_specs() {}
+					tree_view_specs() {
+						rect.size({ 200.f, 200.f });
+					}
+
 					float border = .5f;
 					float corner_radius_x = 5.f;
 					float corner_radius_y = 5.f;

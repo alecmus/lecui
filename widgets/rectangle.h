@@ -26,14 +26,27 @@ namespace liblec {
 			class lecui_api rectangle {
 			public:
 				/// <summary>Rectangle widget specifications.</summary>
+				/// <remarks>Default size is 200x200px.</remarks>
 				class rectangle_specs : public specs {
 				public:
-					rectangle_specs() {}
+					rectangle_specs() {
+						rect.size({ 200.f, 200.f });
+					}
+
+					/// <summary>The thickness of the border.</summary>
 					float border = .5f;
-					float corner_radius_x = .0f;
-					float corner_radius_y = .0f;
+
+					/// <summary>The color of the border.</summary>
 					color color_border;
+
+					/// <summary>The color of the border when the mouse is over the widget.</summary>
 					color color_border_hot;
+
+					/// <summary>The horizontal radius of the corners.</summary>
+					float corner_radius_x = .0f;
+
+					/// <summary>The vertical radius of the corners.</summary>
+					float corner_radius_y = .0f;
 
 					bool operator==(const rectangle_specs&);
 					bool operator!=(const rectangle_specs&);

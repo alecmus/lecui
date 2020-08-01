@@ -32,10 +32,20 @@ namespace liblec {
 					progress_indicator_specs() {
 						rect.size({ 50.f, 50.f });
 					}
+
+					/// <summary>The color when empty.</summary>
 					color color_empty;
+
+					/// <summary>The thickness of the empty line.</summary>
 					float line_thickness_empty = .5f;
+
+					/// <summary>The thickness of the filled line.</summary>
 					float line_thickness_fill = 1.5f;
+
+					/// <summary>The percentage of the progress indicator (0.f - 100.f).</summary>
 					float percentage = 0.f;
+
+					/// <summary>The precision to use for displaying the percentage.</summary>
 					int precision = 0;
 
 					bool operator==(const progress_indicator_specs&);

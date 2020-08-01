@@ -22,7 +22,32 @@
 namespace liblec {
 	namespace lecui {
 		namespace widgets {
-			/// This widget supports formatting.
+			/// This widget supports two kinds of formatting:
+			/// 
+			/// 1. HTML formatting with CSS style tags
+			/// 
+			/// e.g. "<html>This is <span style='font-size: 16.5pt; font-style: italic; color: 0x0000FFFF;'>good</span>.</html>";
+			/// 
+			/// The supported tags are as follows:
+			/// 
+			/// strong			Bold text
+			/// em				Italic text
+			/// u				Underline text
+			/// s				Strikethrough text
+			/// span			Use CSS style tags
+			/// 
+			/// The span tag supports the style attribute and the following properties:
+			/// 
+			/// font-family		The font name
+			/// font-size		The font size, either in pt or in px
+			/// font-weight		The font weight, either 'none' or 'bold'
+			/// font-style		The font style, either 'none' or 'italic'
+			/// text-decoration	The text decoration, either 'none' or 'underline' or 'line-through'
+			/// color			The text color, either in the form rgb(255, 0, 0) or 0xFF0000FF or #FF0000FF
+			/// 
+			/// Note: the strong, em and u html tags are automatically converted to CSS style tags internally.
+			/// 
+			/// 2. Custom formatting
 			/// 
 			/// Start and end of XML formatting is marked by the 'text' tag: <text></text>
 			/// 
@@ -38,7 +63,7 @@ namespace liblec {
 			/// 
 			/// e.g. "This is <text size='16.5' italic='true' color='0x0000FFFF'>good</text>.";
 			/// 
-			/// The above will display a label with the sentence:
+			/// Both of the above two methods of formatting will display a label with the sentence:
 			/// 
 			/// This is good.
 			/// 
@@ -50,15 +75,24 @@ namespace liblec {
 			class lecui_api label {
 			public:
 				/// <summary>Label widget specifications.</summary>
-				/// <remarks>Recommended height with defaults is 20px.</remarks>
+				/// <remarks>Recommended size with defaults is 200x20px.</remarks>
 				class label_specs : public specs {
 				public:
 					label_specs() {
 						rect.size({ 200.f, 20.f });
 					};
+
+					/// <summary>The color when the label is pressed and the mouse is over it.
+					/// </summary>
 					color color_hot_pressed;
+
+					/// <summary>Whether to allow multiple lines.</summary>
 					bool multiline = false;
+
+					/// <summary>Whether to center the text horizontally.</summary>
 					bool center_h = false;
+
+					/// <summary>Whether to center the text vertically.</summary>
 					bool center_v = false;
 
 					bool operator==(const label_specs&);

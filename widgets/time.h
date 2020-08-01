@@ -33,11 +33,13 @@ namespace liblec {
 						rect.size({ 90.f, 40.f });
 					};
 
+					/// <summary>The time to display.</summary>
 					lecui::time time_value{};
 
+					/// <summary>Events specific to this widget.</summary>
 					struct time_events : basic_events {
-						/// <summary>Called when the time is changed. The parameter contains the
-						/// new time.</summary>
+						/// <summary>Called when the time is changed.</summary>
+						/// <remarks>The parameter contains the new time.</remarks>
 						std::function<void(lecui::time)> change = nullptr;
 					};
 
@@ -60,7 +62,7 @@ namespace liblec {
 
 				/// <summary>Time constructor.</summary>
 				/// <param name="page">The container to place it in.</param>
-				/// <param name="alias">The in-page unique alias, e.g. "caption".</param>
+				/// <param name="alias">The in-page unique alias, e.g. "end_time".</param>
 				time(containers::page& page, const std::string& alias);
 				~time();
 
@@ -78,7 +80,7 @@ namespace liblec {
 				/// <summary>Get the specifications of a time.</summary>
 				/// <param name="fm">The form containing the time.</param>
 				/// <param name="path">The full path to the widget, e.g.
-				/// "sample_page/sample_pane/caption".</param>
+				/// "sample_page/sample_pane/end_time".</param>
 				/// <returns>A reference to the time specifications.</returns>
 				/// <remarks>Throws on failure.</remarks>
 				[[nodiscard]]

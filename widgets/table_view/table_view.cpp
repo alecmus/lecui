@@ -23,8 +23,6 @@ namespace liblec {
 
 				// widget specific specs
 				(color_border == param.color_border) &&
-				(color_dropdown_hot == param.color_dropdown_hot) &&
-				(color_menu == param.color_menu) &&
 				(color_grid == param.color_grid) &&
 				(color_text_header == param.color_text_header) &&
 				(color_fill_header == param.color_fill_header) &&
@@ -43,6 +41,7 @@ namespace liblec {
 				page_(page),
 				specs_(page_.d_page_.add_table_view(alias)) {
 				specs_.color_text = defaults::color(page_.d_page_.fm_.d_.theme_, item::label);
+				specs_.color_text_selected = defaults::color(page_.d_page_.fm_.d_.theme_, item::table_view_text_selected);
 				specs_.color_fill = defaults::color(page_.d_page_.fm_.d_.theme_, item::table_view);
 				specs_.color_border = defaults::color(page_.d_page_.fm_.d_.theme_, item::table_view_border);
 				specs_.color_fill_alternate = defaults::color(page_.d_page_.fm_.d_.theme_, item::table_view_alternate);

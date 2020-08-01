@@ -23,6 +23,7 @@ namespace liblec {
 	namespace lecui {
 		namespace widgets {
 			/// <summary>Password field widget.</summary>
+			/// <remarks>Recommended default size is the same as the text_field widget.</remarks>
 			class lecui_api password_field : public text_field {
 			public:
 				/// <summary>Password field constructor.</summary>

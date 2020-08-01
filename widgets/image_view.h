@@ -26,20 +26,43 @@ namespace liblec {
 			class lecui_api image_view {
 			public:
 				/// <summary>Image view widget specifications.</summary>
+				/// <remarks>Default size is 200x200px.</remarks>
 				class image_view_specs : public specs {
 				public:
 					image_view_specs() {
 						cursor = cursor_type::hand;
 						rect.size({ 200.f, 200.f });
 					}
+
+					/// <summary>The thickness of the border.</summary>
 					float border = .5f;
-					float corner_radius_x = .0f;
-					float corner_radius_y = .0f;
+
+					/// <summary>The color of the border.</summary>
 					color color_border;
-					std::string file;
+
+					/// <summary>The horizontal radius of the corners.</summary>
+					float corner_radius_x = .0f;
+
+					/// <summary>The vertical radius of the corners.</summary>
+					float corner_radius_y = .0f;
+
+					/// <summary>ID of PNG resource containing the image.</summary>
+					/// <remarks>PNG resource takes precedence over image file.</remarks>
 					int png_resource = 0;
+
+					/// <summary>Full path to image file.</summary>
+					/// <remarks>PNG resource takes precedence over image file.</remarks>
+					std::string file;
+
+					/// <summary>The quality of the image.</summary>
+					/// <remarks>Lower quality means greater performance and vice-versa.</remarks>
 					image_quality quality = image_quality::medium;
+
+					/// <summary>Whether to enlarge the image to fill up the rect if the image
+					/// is smaller than the rectangle.</summary>
 					bool enlarge_if_smaller = false;
+
+					/// <summary>Whether to keep the image aspect ratio.</summary>
 					bool keep_aspect_ratio = true;
 
 					bool operator==(const image_view_specs&);

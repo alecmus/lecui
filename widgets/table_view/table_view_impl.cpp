@@ -22,16 +22,14 @@ namespace liblec {
 			widget_impl(page, alias),
 			p_brush_(nullptr),
 			p_brush_fill_(nullptr),
-			p_brush_scrollbar_border_(nullptr),
 			p_brush_text_header_(nullptr),
+			p_brush_text_selected_(nullptr),
 			p_brush_fill_header_(nullptr),
 			p_brush_fill_alternate_(nullptr),
 			p_brush_hot_(nullptr),
 			p_brush_disabled_(nullptr),
 			p_brush_selected_(nullptr),
 			p_brush_border_(nullptr),
-			p_brush_dropdown_hot_(nullptr),
-			p_brush_menu_(nullptr),
 			p_brush_grid_(nullptr),
 			p_brush_row_hot_(nullptr),
 			p_brush_row_selected_(nullptr),
@@ -68,6 +66,9 @@ namespace liblec {
 				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_text_header),
 					&p_brush_text_header_);
 			if (SUCCEEDED(hr))
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_text_selected),
+					&p_brush_text_selected_);
+			if (SUCCEEDED(hr))
 				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_fill_header),
 					&p_brush_fill_header_);
 			if (SUCCEEDED(hr))
@@ -88,12 +89,6 @@ namespace liblec {
 			if (SUCCEEDED(hr))
 				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_border),
 					&p_brush_border_);
-			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_dropdown_hot),
-					&p_brush_dropdown_hot_);
-			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_menu),
-					&p_brush_menu_);
 			if (SUCCEEDED(hr))
 				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_grid),
 					&p_brush_grid_);
@@ -131,16 +126,14 @@ namespace liblec {
 			resources_created_ = false;
 			safe_release(&p_brush_);
 			safe_release(&p_brush_fill_);
-			safe_release(&p_brush_scrollbar_border_);
 			safe_release(&p_brush_text_header_);
+			safe_release(&p_brush_text_selected_);
 			safe_release(&p_brush_fill_header_);
 			safe_release(&p_brush_fill_alternate_);
 			safe_release(&p_brush_hot_);
 			safe_release(&p_brush_disabled_);
 			safe_release(&p_brush_selected_);
 			safe_release(&p_brush_border_);
-			safe_release(&p_brush_dropdown_hot_);
-			safe_release(&p_brush_menu_);
 			safe_release(&p_brush_grid_);
 			safe_release(&p_text_format_);
 		}
@@ -372,8 +365,9 @@ namespace liblec {
 									// draw the text layout
 									p_render_target->DrawTextLayout(
 										D2D1_POINT_2F{ rect_text.left, rect_text.top },
-										p_text_layout_, selected ?
-										p_brush_menu_ : p_brush_, D2D1_DRAW_TEXT_OPTIONS_CLIP);
+										p_text_layout_,
+										selected ? p_brush_text_selected_ : p_brush_,
+										D2D1_DRAW_TEXT_OPTIONS_CLIP);
 								}
 
 								// release the text layout

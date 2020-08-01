@@ -80,6 +80,7 @@ namespace liblec {
 			table_view_row_hover,
 			table_view_row_selected,
 			table_view_text_header,
+			table_view_text_selected,
 			table_view_header,
 			table_view_grid,
 

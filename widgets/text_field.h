@@ -26,19 +26,33 @@ namespace liblec {
 			class lecui_api text_field {
 			public:
 				/// <summary>Text field widget specifications.</summary>
-				/// <remarks>Recommended height with defaults is 25px</remarks>
+				/// <remarks>Recommended size with defaults is 200x25px</remarks>
 				class text_field_specs : public specs {
 				public:
 					text_field_specs() {
 						cursor = cursor_type::caret;
 						rect.size({ 200.f, 25.f });
 					}
+
+					/// <summary>The prompt text, displayed when the widget is empty.</summary>
 					std::string prompt = "Enter text here";
+
+					/// <summary>The thickness of the border.</summary>
 					float border = .5f;
+
+					/// <summary>The horizontal radius of the corners.</summary>
 					float corner_radius_x = 3.f;
+
+					/// <summary>The vertical radius of the corners.</summary>
 					float corner_radius_y = 3.f;
+
+					/// <summary>The color of the border.</summary>
 					color color_border;
+
+					/// <summary>The color of the prompt text.</summary>
 					color color_prompt;
+
+					/// <summary>The color of the caret.</summary>
 					color color_caret;
 
 					bool operator==(const text_field_specs&);
