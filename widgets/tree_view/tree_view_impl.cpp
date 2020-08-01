@@ -13,6 +13,8 @@
 
 #include "tree_view_impl.h"
 #include "../label/label_impl.h"
+#include "../../form_impl/form_impl.h"
+#include "../../containers/page/page_impl.h"
 
 namespace liblec {
 	namespace lecui {
@@ -22,8 +24,6 @@ namespace liblec {
 			IDWriteFactory* p_directwrite_factory) :
 			widget_impl(page, alias),
 			p_brush_(nullptr),
-			p_brush_border_(nullptr),
-			p_brush_fill_(nullptr),
 			p_brush_hot_(nullptr),
 			p_brush_disabled_(nullptr),
 			p_brush_selected_(nullptr),
@@ -49,12 +49,6 @@ namespace liblec {
 
 			HRESULT hr = S_OK;
 
-			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_fill),
-					&p_brush_fill_);
-			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_border),
-					&p_brush_border_);
 			if (SUCCEEDED(hr))
 				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_hot),
 					&p_brush_hot_);
@@ -93,8 +87,6 @@ namespace liblec {
 		void widgets::tree_view_impl::discard_resources() {
 			resources_created_ = false;
 			safe_release(&p_brush_);
-			safe_release(&p_brush_border_);
-			safe_release(&p_brush_fill_);
 			safe_release(&p_brush_hot_);
 			safe_release(&p_brush_disabled_);
 			safe_release(&p_brush_selected_);
@@ -107,6 +99,27 @@ namespace liblec {
 			if (specs_old_ != specs_) {
 				log("specs changed: " + alias_);
 				specs_old_ = specs_;
+
+				// copy border and fill colors to special pane
+				try {
+					if (page_.d_page_.parent_.has_value()) {
+						// get the parent
+						auto& parent_ = page_.d_page_.parent_.value().get();
+
+						// get special tree pane specs
+						auto& tree_pane_specs_ =
+							parent_.d_page_.get_pane(widgets::pane_impl::tree_pane_alias_prefix() + alias_).specs();
+
+						// update the pane specs
+						tree_pane_specs_.color_fill = specs_.color_fill;
+						tree_pane_specs_.color_border = specs_.color_border;
+
+						// schedule a refresh
+						page_.d_page_.get_form().d_.schedule_refresh_ = true;
+					}
+				}
+				catch (const std::exception& e) { log(e.what()); }
+
 				discard_resources();
 			}
 

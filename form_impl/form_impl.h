@@ -224,12 +224,14 @@ namespace liblec {
 			friend class widgets::slider;
 			friend class widgets::html_editor;
 			friend class widgets::combobox;
-			friend class widgets::combobox_impl;
 			friend class widgets::line;
 			friend class widgets::time;
 			friend class widgets::date;
 			friend class widgets::icon;
+
+			friend class widgets::combobox_impl;
 			friend class widgets::image_view_impl;
+			friend class widgets::tree_view_impl;
 
 		public:
 			impl(form& fm, const std::string& caption_formatted);

@@ -255,6 +255,7 @@ namespace liblec {
 			friend class filesystem;
 			friend class color_picker;
 			friend class splash;
+
 			friend class containers::page;
 			friend class containers::status_pane;
 			friend class containers::tab_pane;
@@ -276,12 +277,14 @@ namespace liblec {
 			friend class widgets::slider;
 			friend class widgets::html_editor;
 			friend class widgets::combobox;
-			friend class widgets::combobox_impl;
 			friend class widgets::line;
 			friend class widgets::time;
 			friend class widgets::date;
 			friend class widgets::icon;
+
+			friend class widgets::combobox_impl;
 			friend class widgets::image_view_impl;
+			friend class widgets::tree_view_impl;
 #endif
 		};
 	}

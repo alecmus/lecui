@@ -558,8 +558,6 @@ namespace liblec {
 						// adjust specs
 						tree().rect = { 0, it.destination.size().width, 0, it.destination.size().height };
 						tree().on_resize = { 0, 0, 0, 0 };	// critical because tree will change size as tree is browsed or changed. the pane scroll bars will do the job.
-						tree().color_fill.alpha = 0;
-						tree().color_border.alpha = 0;
 
 						// close widget
 						std::string error;

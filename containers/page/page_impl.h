@@ -253,6 +253,7 @@ namespace liblec {
 			friend class widgets::icon;
 
 			friend class widgets::html_editor_impl;
+			friend class widgets::tree_view_impl;
 		};
 	}
 }
