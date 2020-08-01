@@ -21,10 +21,6 @@
 // Windows headers
 #include <Windows.h>
 
-#if defined(min)
-#undef min	// to circumvent conflict with dimensions::min
-#endif
-
 namespace liblec {
 	namespace lecui {
 		// this is the constructor that all the others below call

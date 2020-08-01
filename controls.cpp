@@ -14,10 +14,6 @@
 #include "controls.h"
 #include "form_impl/form_impl.h"
 
-#if defined(min)
-#undef min	// to circumvent conflict with dimensions::min
-#endif
-
 namespace liblec {
 	namespace lecui {
 		class controls::impl {
@@ -94,7 +90,7 @@ namespace liblec {
 			return d_.fm_.d_.size_;
 		}
 
-		void dimensions::min(const lecui::size& size) {
+		void dimensions::minimum(const lecui::size& size) {
 			if (size.width)		// do not allow minimum width to be greater than current window width
 				d_.fm_.d_.min_size_.width = smallest(size.width, d_.fm_.d_.size_.width);
 
@@ -102,7 +98,7 @@ namespace liblec {
 				d_.fm_.d_.min_size_.height = smallest(size.height, d_.fm_.d_.size_.height);
 		}
 
-		const size& dimensions::min() {
+		const size& dimensions::minimum() {
 			return d_.fm_.d_.min_size_;
 		}
 	}

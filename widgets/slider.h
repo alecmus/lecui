@@ -28,10 +28,10 @@ namespace liblec {
 				/// <summary>Slider range.</summary>
 				struct slider_range {
 					/// <summary>The minimum value of the slider.</summary>
-					float min = 0.f;
+					float minimum = 0.f;
 
 					/// <summary>The maximum value of the slider.</summary>
-					float max = 100.f;
+					float maximum = 100.f;
 				};
 
 				/// <summary>Slider widget specifications.</summary>

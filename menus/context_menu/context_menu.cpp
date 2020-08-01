@@ -20,10 +20,6 @@
 #include "../../widgets/image_view.h"
 #include "../../form_common.h"
 
-#if defined(min)
-#undef min	// to circumvent conflict with dimensions::min
-#endif
-
 namespace liblec {
 	namespace lecui {
         class context_menu::impl : public lecui::form {
@@ -130,7 +126,7 @@ namespace liblec {
 
                 auto set_size = [&]() {
                     dim.size({ width, height });
-                    dim.min({ width, height });
+                    dim.minimum({ width, height });
                 };
 
                 // default to top left corner of cursor rect

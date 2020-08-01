@@ -139,16 +139,16 @@ namespace liblec {
 				std::vector<float> snap_to;
 				const float major_div = specs_.major_tick_unit;
 				const float minor_div = specs_.major_tick_unit / (specs_.minor_tick_count + 1);
-				for (float p = specs_.range.min; p <= specs_.range.max; p += specs_.major_tick_unit) {
+				for (float p = specs_.range.minimum; p <= specs_.range.maximum; p += specs_.major_tick_unit) {
 					// add major div to snap vector
 					snap_to.push_back(p);
 
 					// add minor divs to snap vector
-					for (float v = p + minor_div; v < smallest(p + major_div, specs_.range.max); v += minor_div)
+					for (float v = p + minor_div; v < smallest(p + major_div, specs_.range.maximum); v += minor_div)
 						snap_to.push_back(v);
 				}
 
-				float snap_value = specs_.range.min;
+				float snap_value = specs_.range.minimum;
 
 				for (const auto& v : snap_to) {
 					auto lower = v;
@@ -162,8 +162,8 @@ namespace liblec {
 				}
 
 				value = snap_value;
-				value = largest(value, specs_.range.min);
-				value = smallest(value, specs_.range.max);
+				value = largest(value, specs_.range.minimum);
+				value = smallest(value, specs_.range.maximum);
 			};
 
 			if (abs(rect_.right - rect_.left) > abs(rect_.bottom - rect_.top)) {
@@ -198,7 +198,7 @@ namespace liblec {
 					perc_along_ = smallest(perc_along_, 100.f);
 
 					// calculate value
-					specs_.value = (specs_.range.max - specs_.range.min) * perc_along_ / 100.f;
+					specs_.value = (specs_.range.maximum - specs_.range.minimum) * perc_along_ / 100.f;
 				}
 
 				// snap the value to ticks
@@ -209,11 +209,11 @@ namespace liblec {
 				const float y = slide_rect.bottom + 5.f;
 				const float y_major_tick = y + 6.f;
 				const float y_minor_tick = y + 2.5f;
-				const float major_div = (specs_.major_tick_unit / (specs_.range.max - specs_.range.min)) * (end.x - start.x);
+				const float major_div = (specs_.major_tick_unit / (specs_.range.maximum - specs_.range.minimum)) * (end.x - start.x);
 				const float minor_div = major_div / (specs_.minor_tick_count + 1);
 
 				auto value = 0.f;
-				const long major_ticks = static_cast<long>(floor((specs_.range.max - specs_.range.min) / specs_.major_tick_unit));
+				const long major_ticks = static_cast<long>(floor((specs_.range.maximum - specs_.range.minimum) / specs_.major_tick_unit));
 				const long minor_ticks = major_ticks * specs_.minor_tick_count;
 
 				long minor_tick_count = 0;
@@ -272,7 +272,7 @@ namespace liblec {
 
 				// draw knob
 				const D2D1_POINT_2F position = {
-					start.x + (specs_.value / (specs_.range.max - specs_.range.min)) * (end.x - start.x),
+					start.x + (specs_.value / (specs_.range.maximum - specs_.range.minimum)) * (end.x - start.x),
 					start.y };
 
 				const D2D1_RECT_F knob_rect = {
@@ -319,7 +319,7 @@ namespace liblec {
 					perc_along_ = smallest(perc_along_, 100.f);
 
 					// calculate value
-					specs_.value = (specs_.range.max - specs_.range.min) * perc_along_ / 100.f;
+					specs_.value = (specs_.range.maximum - specs_.range.minimum) * perc_along_ / 100.f;
 				}
 
 				// snap the value to ticks
@@ -330,11 +330,11 @@ namespace liblec {
 				const float x = slide_rect.right + 5.f;
 				const float x_major_tick = x + 6.f;
 				const float x_minor_tick = x + 2.5f;
-				const float major_div = (specs_.major_tick_unit / (specs_.range.max - specs_.range.min)) * (start.y - end.y);
+				const float major_div = (specs_.major_tick_unit / (specs_.range.maximum - specs_.range.minimum)) * (start.y - end.y);
 				const float minor_div = major_div / (specs_.minor_tick_count + 1);
 
 				auto value = 0.f;
-				const long major_ticks = static_cast<long>(floor((specs_.range.max - specs_.range.min) / specs_.major_tick_unit));
+				const long major_ticks = static_cast<long>(floor((specs_.range.maximum - specs_.range.minimum) / specs_.major_tick_unit));
 				const long minor_ticks = major_ticks * specs_.minor_tick_count;
 
 				long minor_tick_count = 0;
@@ -393,7 +393,7 @@ namespace liblec {
 
 				// draw knob
 				const D2D1_POINT_2F position = { start.x,
-					start.y - (specs_.value / (specs_.range.max - specs_.range.min)) * (start.y - end.y)};
+					start.y - (specs_.value / (specs_.range.maximum - specs_.range.minimum)) * (start.y - end.y)};
 
 				const D2D1_RECT_F knob_rect = {
 					position.x - specs_.knob_radius,
