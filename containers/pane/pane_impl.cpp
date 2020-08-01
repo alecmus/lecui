@@ -64,6 +64,7 @@ namespace liblec {
 
 		HRESULT widgets::pane_impl::create_resources(
 			ID2D1HwndRenderTarget* p_render_target) {
+			specs_old_ = specs_;
 			is_static_ = false;
 
 			HRESULT hr = S_OK;
@@ -96,6 +97,12 @@ namespace liblec {
 		D2D1_RECT_F&
 			widgets::pane_impl::render(ID2D1HwndRenderTarget* p_render_target,
 				const D2D1_SIZE_F& change_in_size, const D2D1_POINT_2F& offset, const bool& render) {
+			if (specs_old_ != specs_) {
+				log("specs changed: " + alias_);
+				specs_old_ = specs_;
+				discard_resources();
+			}
+
 			if (!resources_created_)
 				create_resources(p_render_target);
 

@@ -67,7 +67,7 @@ namespace liblec {
 				tab_pane_impl& operator=(const tab_pane_impl&) = delete;
 
 				/// Private variables
-				containers::tab_pane::tab_pane_specs specs_;
+				containers::tab_pane::tab_pane_specs specs_, specs_old_;
 				ID2D1SolidColorBrush* p_brush_;
 				ID2D1SolidColorBrush* p_brush_fill_;
 				ID2D1SolidColorBrush* p_brush_border_;
