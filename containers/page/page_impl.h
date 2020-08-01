@@ -13,6 +13,8 @@
 
 #pragma once
 
+#include <optional>
+
 #include "../page.h"
 #include "../../widgets/h_scrollbar/h_scrollbar_impl.h"
 #include "../../widgets/v_scrollbar/v_scrollbar_impl.h"
@@ -45,6 +47,8 @@ namespace liblec {
 	namespace lecui {
 		class containers::page::impl {
 		public:
+			std::optional<std::reference_wrapper<containers::page>> parent_;
+
 			impl(form& fm, containers::page& pg, const std::string& alias);
 			~impl();
 

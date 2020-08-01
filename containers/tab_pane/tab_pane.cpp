@@ -113,6 +113,9 @@ namespace liblec {
 				// specify iwic imaging factory (used internally for image rendering)
 				page_impl.iwic_factory(tp.d_.page_.d_page_.iwic_factory());
 
+				// specify parent
+				page_impl.parent_ = tp.d_.page_;
+
 				const float thickness = 10.f;
 				const float margin = 10.f;
 				const float page_tolerance_ = 10.f;
