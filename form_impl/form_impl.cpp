@@ -119,7 +119,8 @@ namespace liblec {
 			lbutton_pressed_(false),
 			on_caption_(nullptr),
 			on_drop_files_(nullptr),
-			h_widget_cursor_(nullptr) {
+			h_widget_cursor_(nullptr),
+			schedule_refresh_(false) {
 			++instances_;	// increment instances count
 
 			/// Use HeapSetInformation to specify that the process should terminate if the heap manager
@@ -2645,7 +2646,12 @@ namespace liblec {
 				form_.d_.move_icons();
 				form_.d_.move_tables();
 				form_.d_.on_render();
-				ValidateRect(hWnd, nullptr);
+
+				if (form_.d_.schedule_refresh_)
+					form_.d_.schedule_refresh_ = false;
+				else
+					ValidateRect(hWnd, nullptr);
+
 				return NULL;
 
 			case WM_CLOSE:

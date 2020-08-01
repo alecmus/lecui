@@ -166,6 +166,18 @@ namespace liblec {
 
 			HCURSOR h_widget_cursor_;
 
+			/// <summary>Flag for scheduling a refresh. Important when the specs of a widget are
+			/// changed during the rendering of another widget.</summary>
+			/// <remarks>When the specs of a widget are changed the widget's render method has
+			/// to be called at least once for the changes to take effect. For the render method to
+			/// be called the form's on_render method has to be called. Therefore, if a widget's
+			/// specs are changed during the render of another widget the changes can only be
+			/// effected in the next form render unless the widget whose specs are changed is
+			/// later in the render queue (which is not always the case, obviously). To ensure
+			/// consistency, it is important to set this flag to true when changing the specs of a
+			/// widget from within the render method of another widget.</remarks>
+			bool schedule_refresh_;
+
 			/// we cannot just use WS_POPUP style
 			/// WS_THICKFRAME: without this the window cannot be resized and so aero snap, de-maximizing
 			///  and minimizing won't work
