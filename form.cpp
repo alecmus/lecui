@@ -415,5 +415,22 @@ namespace liblec {
 			d_.on_drop_files_ = on_drop_files;
 			DragAcceptFiles(d_.hWnd_, on_drop_files == nullptr ? FALSE : TRUE);
 		}
+
+		bool form::keep_alive() {
+			MSG msg = {};
+
+			if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE)) {
+				if (msg.message == WM_QUIT) {
+					PostQuitMessage(0);
+					return false;
+				}
+				else {
+					TranslateMessage(&msg);
+					DispatchMessage(&msg);
+				}
+			}
+
+			return true;
+		}
 	}
 }

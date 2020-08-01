@@ -229,6 +229,13 @@ namespace liblec {
 			/// stop accepting dropped files pass a nullptr to this method.</remarks>
 			void on_drop_files(std::function<void(const std::string& file)>on_drop_files);
 
+			/// <summary>Keep UI responsive during lengthy calls.</summary>
+			/// <returns>Returns true to continue operation, and false to quit immediately.</returns>
+			/// <remarks>In lengthy operations it is useful to call this method between successive
+			/// steps in order to keep the UI responsive.</remarks>
+			[[nodiscard]]
+			static bool keep_alive();
+
 		private:
 			class impl;
 			impl& d_;
