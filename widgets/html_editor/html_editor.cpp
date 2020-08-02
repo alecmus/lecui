@@ -23,7 +23,9 @@ namespace liblec {
 
 				// widget specific specs
 				(color_border == param.color_border) &&
-				(color_caret == param.color_caret);
+				(color_caret == param.color_caret) &&
+				(color_control_border == param.color_control_border) &&
+				(color_control_fill == param.color_control_fill);
 		}
 
 		bool widgets::html_editor::html_editor_specs::operator!=(const html_editor_specs& param) {
@@ -43,6 +45,8 @@ namespace liblec {
 				specs_.color_disabled = defaults::color(page_.d_page_.fm_.d_.theme_, item::html_editor_disabled);
 				specs_.color_selected = defaults::color(page_.d_page_.fm_.d_.theme_, item::html_editor_selected);
 				specs_.color_caret = defaults::color(page_.d_page_.fm_.d_.theme_, item::html_editor_caret);
+				specs_.color_control_fill = defaults::color(page_.d_page_.fm_.d_.theme_, item::html_control);
+				specs_.color_control_border = defaults::color(page_.d_page_.fm_.d_.theme_, item::html_control_border);
 			}
 			containers::page& page_;
 			html_editor_specs& specs_;

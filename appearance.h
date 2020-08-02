@@ -129,6 +129,8 @@ namespace liblec {
 			html_editor_disabled,
 			html_editor_selected,
 			html_editor_caret,
+			html_control,
+			html_control_border,
 
 			combobox,
 			combobox_editable,

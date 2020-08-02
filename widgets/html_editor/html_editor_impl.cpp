@@ -15,6 +15,8 @@
 #include "../../timer.h"
 #include "../label/label_impl.h"
 #include "../../formatted_text_editor/formatted_text_editor.h"
+#include "../../form_impl/form_impl.h"
+#include "../../containers/page/page_impl.h"
 #include <memory>
 
 namespace liblec {
@@ -162,6 +164,25 @@ namespace liblec {
 			if (specs_old_ != specs_) {
 				log("specs changed: " + alias_);
 				specs_old_ = specs_;
+
+				try {
+					if (html_pane_specs_.has_value()) {
+						// update the special pane specs
+						html_pane_specs_.value().get().color_fill = specs_.color_fill;
+						html_pane_specs_.value().get().color_border = specs_.color_border;
+					}
+
+					if (html_control_pane_specs_.has_value()) {
+						// update the special pane specs
+						html_control_pane_specs_.value().get().color_fill = specs_.color_control_fill;
+						html_control_pane_specs_.value().get().color_border = specs_.color_control_border;
+					}
+
+					// schedule a refresh
+					page_.d_page_.get_form().d_.schedule_refresh_ = true;
+				}
+				catch (const std::exception& e) { log(e.what()); }
+
 				discard_resources();
 			}
 
@@ -182,11 +203,6 @@ namespace liblec {
 
 			D2D1_ROUNDED_RECT rounded_rect{ rect_,
 				specs_.corner_radius_x, specs_.corner_radius_y };
-
-			p_render_target->FillRoundedRectangle(&rounded_rect, is_enabled_ ? p_brush_fill_ :
-				p_brush_disabled_);
-
-			p_render_target->DrawRoundedRectangle(&rounded_rect, p_brush_border_, .5f);
 
 			// create a text layout
 			std::string text_ = specs_.text;
@@ -443,6 +459,12 @@ namespace liblec {
 
 		widgets::html_editor::html_editor_specs&
 			widgets::html_editor_impl::operator()() { return specs(); }
+
+		void widgets::html_editor_impl::set_pane_specs(containers::pane::pane_specs& html_control,
+			containers::pane::pane_specs& html) {
+			html_control_pane_specs_ = html_control;
+			html_pane_specs_ = html;
+		}
 
 		// to-do: insertion mechanics for formatted text
 		void widgets::html_editor_impl::insert_character(const char& c) {

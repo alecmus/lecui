@@ -48,6 +48,12 @@ namespace liblec {
 					/// <summary>The color of the caret.</summary>
 					color color_caret;
 
+					/// <summary>The color of the html control pane border.</summary>
+					color color_control_border;
+
+					/// <summary>The color of the html control pane background.</summary>
+					color color_control_fill;
+
 					bool operator==(const html_editor_specs&);
 					bool operator!=(const html_editor_specs&);
 				};

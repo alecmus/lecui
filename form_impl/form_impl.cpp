@@ -584,6 +584,8 @@ namespace liblec {
 				lecui::widgets::html_editor::html_editor_specs html_editor;
 				lecui::containers::page& source;
 				lecui::containers::page& destination;
+				containers::pane::pane_specs& html_control_pane_specs;
+				containers::pane::pane_specs& html_pane_specs;
 			};
 
 			std::vector<html_editor_info> html_editors;
@@ -618,7 +620,8 @@ namespace liblec {
 								controls_pane().on_resize = html_editor_specs.on_resize;
 								controls_pane().on_resize.perc_height = 0.f;
 								controls_pane().on_resize.min_height = 0.f;
-								controls_pane().color_fill.alpha /= 2;	// aesthetics
+								controls_pane().color_fill = html_editor_specs.color_control_fill;
+								controls_pane().color_border = html_editor_specs.color_control_border;
 
 								// cause controls pane to be initialized by calling get()
 								auto& controls_pane_page = controls_pane.get();
@@ -637,7 +640,7 @@ namespace liblec {
 
 								// save move info so we can move the tree into the pane later
 								// we cannot do it here because we're iterating
-								trees.push_back({ widget.first, html_editor_specs, page, pane.get() });
+								trees.push_back({ widget.first, html_editor_specs, page, pane.get(), controls_pane(), pane() });
 								break;
 							}
 
@@ -677,8 +680,9 @@ namespace liblec {
 						// adjust specs
 						html_editor().rect = { 0, it.destination.size().width, 0, it.destination.size().height };
 						html_editor().on_resize = { 0.f, 0.f, 100.f, 0.f };	// critical because html_editor will change height as user types or contents are changed. the pane scroll bars will do the job.
-						html_editor().color_fill.alpha = 0;
-						html_editor().color_border.alpha = 0;
+
+						// capture html pane specs
+						it.destination.d_page_.get_html_editor(it.alias).set_pane_specs(it.html_control_pane_specs, it.html_pane_specs);
 
 						// close the widget
 						std::string error;

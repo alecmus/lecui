@@ -13,11 +13,13 @@
 
 #pragma once
 
+#include <optional>
 #include "../widget_impl.h"
 #include "../html_editor.h"
 #include "../../formatted_text_parser/formatted_text_parser.h"
 #include "../../containers/page.h"
 #include "../../containers/page/page_impl.h"
+#include "../../containers/pane/pane_impl.h"
 
 namespace liblec {
 	namespace lecui {
@@ -60,6 +62,8 @@ namespace liblec {
 				/// widget specific methods
 				widgets::html_editor::html_editor_specs& specs();
 				widgets::html_editor::html_editor_specs& operator()();
+				void set_pane_specs(containers::pane::pane_specs& html_control,
+					containers::pane::pane_specs& html);
 				void insert_character(const char& c);
 				void key_backspace();
 				void key_delete();
@@ -125,6 +129,10 @@ namespace liblec {
 				float scroll_amount_;
 
 				std::vector<formatted_text_parser::text_range_properties> formatting_;
+
+				std::optional<std::reference_wrapper<containers::pane::pane_specs>>
+					html_control_pane_specs_,
+					html_pane_specs_;
 
 				/// Private methods.
 				void reset_selection();
