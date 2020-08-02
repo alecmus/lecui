@@ -47,8 +47,6 @@ namespace liblec {
 	namespace lecui {
 		class containers::page::impl {
 		public:
-			std::optional<std::reference_wrapper<containers::page>> parent_;
-
 			impl(form& fm, containers::page& pg, const std::string& alias);
 			~impl();
 
@@ -59,6 +57,8 @@ namespace liblec {
 			IDWriteFactory* directwrite_factory();
 			void iwic_factory(IWICImagingFactory* p_iwic_factory);
 			IWICImagingFactory* iwic_factory();
+			void parent(containers::page& p);
+			std::optional<std::reference_wrapper<containers::page>> parent();
 
 			float get_dpi_scale();
 			form& get_form();
@@ -226,6 +226,7 @@ namespace liblec {
 
 			form& fm_;
 			containers::page& pg_;
+			std::optional<std::reference_wrapper<containers::page>> parent_;
 
 			friend class form;
 			friend class containers::tab_pane;

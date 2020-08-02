@@ -60,6 +60,15 @@ namespace liblec {
 			return p_iwic_factory_;
 		}
 
+		void containers::page::impl::parent(containers::page& p) {
+			parent_ = p;
+		}
+
+		std::optional<std::reference_wrapper<containers::page>>
+			containers::page::impl::parent() {
+			return parent_;
+		}
+
 		float containers::page::impl::get_dpi_scale() {
 			return fm_.d_.get_dpi_scale();
 		}

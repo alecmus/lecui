@@ -13,8 +13,10 @@
 
 #pragma once
 
+#include <optional>
 #include "../widget_impl.h"
 #include "../tree_view.h"
+#include "../../containers/pane/pane_impl.h"
 
 namespace liblec {
 	namespace lecui {
@@ -46,6 +48,7 @@ namespace liblec {
 				/// widget specific methods
 				widgets::tree_view::tree_view_specs& specs();
 				widgets::tree_view::tree_view_specs& operator()();
+				void set_tree_pane_specs(containers::pane::pane_specs& specs);
 
 			private:
 				// Default constructor and copying an object of this class are not allowed
@@ -66,6 +69,8 @@ namespace liblec {
 				IDWriteTextLayout* p_text_layout_;
 
 				const float margin_;
+
+				std::optional<std::reference_wrapper<containers::pane::pane_specs>> tree_pane_specs_;
 
 				/// Private methods.
 				void on_selection();

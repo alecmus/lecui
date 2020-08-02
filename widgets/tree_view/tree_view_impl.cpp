@@ -100,19 +100,11 @@ namespace liblec {
 				log("specs changed: " + alias_);
 				specs_old_ = specs_;
 
-				// copy border and fill colors to special pane
 				try {
-					if (page_.d_page_.parent_.has_value()) {
-						// get the parent
-						auto& parent_ = page_.d_page_.parent_.value().get();
-
-						// get special tree pane specs
-						auto& tree_pane_specs_ =
-							parent_.d_page_.get_pane(widgets::pane_impl::tree_pane_alias_prefix() + alias_).specs();
-
-						// update the pane specs
-						tree_pane_specs_.color_fill = specs_.color_fill;
-						tree_pane_specs_.color_border = specs_.color_border;
+					if (tree_pane_specs_.has_value()) {
+						// update the special pane specs
+						tree_pane_specs_.value().get().color_fill = specs_.color_fill;
+						tree_pane_specs_.value().get().color_border = specs_.color_border;
 
 						// schedule a refresh
 						page_.d_page_.get_form().d_.schedule_refresh_ = true;
@@ -398,6 +390,10 @@ namespace liblec {
 
 		widgets::tree_view::tree_view_specs&
 			widgets::tree_view_impl::operator()() { return specs(); }
+
+		void widgets::tree_view_impl::set_tree_pane_specs(containers::pane::pane_specs& specs) {
+			tree_pane_specs_ = specs;
+		}
 
 		void widgets::tree_view_impl::on_selection() {
 			class helper {
