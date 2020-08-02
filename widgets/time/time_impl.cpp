@@ -12,6 +12,7 @@
 */
 
 #include "time_impl.h"
+#include "../../form_impl/form_impl.h"
 
 namespace liblec {
 	namespace lecui {
@@ -93,6 +94,30 @@ namespace liblec {
 			if (specs_old_ != specs_) {
 				log("specs changed: " + alias_);
 				specs_old_ = specs_;
+
+				try {
+					if (hour_label_specs_.has_value()) {
+						// update label specs
+						hour_label_specs_.value().get().color_text = specs_.color_text;
+						minute_label_specs_.value().get().color_text = specs_.color_text;
+						second_label_specs_.value().get().color_text = specs_.color_text;
+
+						// update border specs
+						hour_specs_.value().get().color_border = specs_.color_border;
+						minute_specs_.value().get().color_border = specs_.color_border;
+						second_specs_.value().get().color_border = specs_.color_border;
+
+						// update background specs
+						hour_specs_.value().get().color_fill = specs_.color_fill;
+						minute_specs_.value().get().color_fill = specs_.color_fill;
+						second_specs_.value().get().color_fill = specs_.color_fill;
+
+						// schedule a refresh
+						page_.d_page_.get_form().d_.schedule_refresh_ = true;
+					}
+				}
+				catch (const std::exception& e) { log(e.what()); }
+
 				discard_resources();
 			}
 
@@ -121,5 +146,21 @@ namespace liblec {
 
 		widgets::time::time_specs&
 			widgets::time_impl::operator()() { return specs(); }
+
+		void widgets::time_impl::set_time_label_specs(widgets::label::label_specs& hour,
+			widgets::label::label_specs& minute,
+			widgets::label::label_specs& second) {
+			hour_label_specs_ = hour;
+			minute_label_specs_ = minute;
+			second_label_specs_ = second;
+		}
+
+		void widgets::time_impl::set_time_specs(widgets::rectangle::rectangle_specs& hour,
+			widgets::rectangle::rectangle_specs& minute,
+			widgets::rectangle::rectangle_specs& second) {
+			hour_specs_ = hour;
+			minute_specs_ = minute;
+			second_specs_ = second;
+		}
 	}
 }

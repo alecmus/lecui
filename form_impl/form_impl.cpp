@@ -915,6 +915,14 @@ namespace liblec {
 			}
 		}
 
+		/// The time widget is constructed as follows:
+		/// 1. A special pane is made
+		/// 2. Three rectangles are added to the pane, these are for the backgrounds and borders
+		/// of the hour, minute and second
+		/// 3. Three labels are added one above each rectangle. These are for displaying the
+		/// digits
+		/// 4. The rectangles are used for hit testing, and each has a handler that brings up a
+		/// context menu for editing the corresponding time component
 		void form::impl::move_times() {
 			// check if this page has a time widget
 			auto page_iterator = p_pages_.find(current_page_);
@@ -1000,24 +1008,25 @@ namespace liblec {
 						// adjust specs
 						time().rect = { 0, it.destination.size().width, 0, it.destination.size().height };
 						time().on_resize = { 0, 0, 0, 0 };
-						time().color_fill.alpha = 0;
 
 						// add hour destination
 						widgets::rectangle hour(it.destination, widgets::time_impl::alias_hour());
 						hour().rect = { 0, 18, 0, 20 };
 						hour().on_resize = { 0, 0, 0, 0 };
-						hour().corner_radius_x = 2.f;
-						hour().corner_radius_y = 2.f;
-						hour().color_fill = defaults::color(theme_, item::text_field);
-						hour().color_border = defaults::color(theme_, item::text_field_border);
-						hour().color_disabled = defaults::color(theme_, item::text_field_disabled);
-						hour().color_selected = defaults::color(theme_, item::text_field_selected);
+						hour().corner_radius_x = time().corner_radius_x;
+						hour().corner_radius_y = time().corner_radius_y;
+						hour().border = time().border;
+						hour().color_fill = time().color_fill;
+						hour().color_border = time().color_border;
+						hour().color_disabled = time().color_disabled;
+						hour().color_selected = time().color_selected;
 
 						widgets::label hour_label(it.destination, widgets::time_impl::alias_hour_label());
 						hour_label().rect = hour().rect;
 						hour_label().center_h = true;
 						hour_label().center_v = true;
 						hour_label().on_resize = { 0, 0, 0, 0 };
+						hour_label().color_text = time().color_text;
 						hour_label().text = time().time_value.hour < 10 ? "0" + std::to_string(time().time_value.hour) :
 							std::to_string(time().time_value.hour);
 
@@ -1034,18 +1043,20 @@ namespace liblec {
 						widgets::rectangle minute(it.destination, widgets::time_impl::alias_minute());
 						minute().rect = { 0, 18, 0, 20 };
 						minute().rect.snap_to(seperator_1().rect, rect::snap_type::right, 0.f);
-						minute().corner_radius_x = 2.f;
-						minute().corner_radius_y = 2.f;
-						minute().color_fill = defaults::color(theme_, item::text_field);
-						minute().color_border = defaults::color(theme_, item::text_field_border);
-						minute().color_disabled = defaults::color(theme_, item::text_field_disabled);
-						minute().color_selected = defaults::color(theme_, item::text_field_selected);
+						minute().corner_radius_x = time().corner_radius_x;
+						minute().corner_radius_y = time().corner_radius_y;
+						minute().border = time().border;
+						minute().color_fill = time().color_fill;
+						minute().color_border = time().color_border;
+						minute().color_disabled = time().color_disabled;
+						minute().color_selected = time().color_selected;
 
 						widgets::label minute_label(it.destination, widgets::time_impl::alias_minute_label());
 						minute_label().rect = minute().rect;
 						minute_label().center_h = true;
 						minute_label().center_v = true;
 						minute_label().on_resize = { 0, 0, 0, 0 };
+						minute_label().color_text = time().color_text;
 						minute_label().text = time().time_value.minute < 10 ? "0" + std::to_string(time().time_value.minute) :
 							std::to_string(time().time_value.minute);
 
@@ -1062,20 +1073,30 @@ namespace liblec {
 						widgets::rectangle second(it.destination, widgets::time_impl::alias_second());
 						second().rect = { 0, 18, 0, 20 };
 						second().rect.snap_to(seperator_2().rect, rect::snap_type::right, 0.f);
-						second().corner_radius_x = 2.f;
-						second().corner_radius_y = 2.f;
-						second().color_fill = defaults::color(theme_, item::text_field);
-						second().color_border = defaults::color(theme_, item::text_field_border);
-						second().color_disabled = defaults::color(theme_, item::text_field_disabled);
-						second().color_selected = defaults::color(theme_, item::text_field_selected);
+						second().corner_radius_x = time().corner_radius_x;
+						second().corner_radius_y = time().corner_radius_y;
+						second().border = time().border;
+						second().color_fill = time().color_fill;
+						second().color_border = time().color_border;
+						second().color_disabled = time().color_disabled;
+						second().color_selected = time().color_selected;
 
 						widgets::label second_label(it.destination, widgets::time_impl::alias_second_label());
 						second_label().rect = second().rect;
 						second_label().center_h = true;
 						second_label().center_v = true;
 						second_label().on_resize = { 0, 0, 0, 0 };
+						second_label().color_text = time().color_text;
 						second_label().text = time().time_value.second < 10 ? "0" + std::to_string(time().time_value.second) :
 							std::to_string(time().time_value.second);
+
+						// capture time label specs
+						it.destination.d_page_.get_time(it.alias).set_time_label_specs(
+							hour_label(), minute_label(), second_label());
+
+						// capture rectangle specs
+						it.destination.d_page_.get_time(it.alias).set_time_specs(
+							hour(), minute(), second());
 
 						// close widget
 						std::string error;

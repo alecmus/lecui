@@ -13,8 +13,11 @@
 
 #pragma once
 
+#include <optional>
 #include "../widget_impl.h"
 #include "../time.h"
+#include "../label/label_impl.h"
+#include "../rectangle/rectangle_impl.h"
 
 namespace liblec {
 	namespace lecui {
@@ -50,6 +53,12 @@ namespace liblec {
 				/// widget specific methods
 				widgets::time::time_specs& specs();
 				widgets::time::time_specs& operator()();
+				void set_time_label_specs(widgets::label::label_specs& hour,
+					widgets::label::label_specs& minute,
+					widgets::label::label_specs& second);
+				void set_time_specs(widgets::rectangle::rectangle_specs& hour,
+					widgets::rectangle::rectangle_specs& minute,
+					widgets::rectangle::rectangle_specs& second);
 
 			private:
 				// Default constructor and copying an object of this class are not allowed
@@ -63,6 +72,11 @@ namespace liblec {
 				ID2D1SolidColorBrush* p_brush_hot_;
 				ID2D1SolidColorBrush* p_brush_disabled_;
 				ID2D1SolidColorBrush* p_brush_selected_;
+
+				std::optional<std::reference_wrapper<widgets::label::label_specs>>
+					hour_label_specs_, minute_label_specs_, second_label_specs_;
+				std::optional<std::reference_wrapper<widgets::rectangle::rectangle_specs>>
+					hour_specs_, minute_specs_, second_specs_;
 			};
 		}
 	}
