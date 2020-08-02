@@ -12,6 +12,7 @@
 */
 
 #include "date_impl.h"
+#include "../../form_impl/form_impl.h"
 
 namespace liblec {
 	namespace lecui {
@@ -101,6 +102,48 @@ namespace liblec {
 			if (specs_old_ != specs_) {
 				log("specs changed: " + alias_);
 				specs_old_ = specs_;
+
+				try {
+					// update label specs
+					if (weekday_label_specs_.has_value())
+						weekday_label_specs_.value().get().color_text = specs_.color_text;
+
+					if (seperator_1_specs_.has_value())
+						seperator_1_specs_.value().get().color_text = specs_.color_text;
+
+					if (day_label_specs_.has_value())
+						day_label_specs_.value().get().color_text = specs_.color_text;
+
+					if (month_label_specs_.has_value())
+						month_label_specs_.value().get().color_text = specs_.color_text;
+
+					if (seperator_2_specs_.has_value())
+						seperator_2_specs_.value().get().color_text = specs_.color_text;
+
+					if (year_label_specs_.has_value())
+						year_label_specs_.value().get().color_text = specs_.color_text;
+
+					// update border specs and background specs
+					if (day_specs_.has_value()) {
+						day_specs_.value().get().color_border = specs_.color_border;
+						day_specs_.value().get().color_fill = specs_.color_fill;
+					}
+
+					if (month_specs_.has_value()) {
+						month_specs_.value().get().color_border = specs_.color_border;
+						month_specs_.value().get().color_fill = specs_.color_fill;
+					}
+
+					if (year_specs_.has_value()) {
+						year_specs_.value().get().color_border = specs_.color_border;
+						year_specs_.value().get().color_fill = specs_.color_fill;
+					}
+
+					// schedule a refresh
+					page_.d_page_.get_form().d_.schedule_refresh_ = true;
+				}
+				catch (const std::exception& e) { log(e.what()); }
+
 				discard_resources();
 			}
 
@@ -124,5 +167,26 @@ namespace liblec {
 
 		widgets::date::date_specs&
 			widgets::date_impl::operator()() { return specs(); }
+
+		void widgets::date_impl::set_date_label_specs(widgets::label::label_specs& weekday,
+			widgets::label::label_specs& seperator_1,
+			widgets::label::label_specs& day,
+			widgets::label::label_specs& month,
+			widgets::label::label_specs& seperator_2,
+			widgets::label::label_specs& year) {
+			weekday_label_specs_ = weekday;
+			day_label_specs_ = day;
+			seperator_1_specs_ = seperator_1;
+			month_label_specs_ = month;
+			seperator_2_specs_ = seperator_2;
+			year_label_specs_ = year;
+		}
+
+		void widgets::date_impl::set_date_specs(widgets::rectangle::rectangle_specs& day,
+			widgets::rectangle::rectangle_specs& month, widgets::rectangle::rectangle_specs& year) {
+			day_specs_ = day;
+			month_specs_ = month;
+			year_specs_ = year;
+		}
 	}
 }

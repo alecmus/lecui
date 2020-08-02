@@ -54,7 +54,9 @@ namespace liblec {
 				widgets::time::time_specs& specs();
 				widgets::time::time_specs& operator()();
 				void set_time_label_specs(widgets::label::label_specs& hour,
+					widgets::label::label_specs& seperator_1,
 					widgets::label::label_specs& minute,
+					widgets::label::label_specs& seperator_2,
 					widgets::label::label_specs& second);
 				void set_time_specs(widgets::rectangle::rectangle_specs& hour,
 					widgets::rectangle::rectangle_specs& minute,
@@ -74,7 +76,8 @@ namespace liblec {
 				ID2D1SolidColorBrush* p_brush_selected_;
 
 				std::optional<std::reference_wrapper<widgets::label::label_specs>>
-					hour_label_specs_, minute_label_specs_, second_label_specs_;
+					hour_label_specs_, seperator_1_specs_, minute_label_specs_,
+					seperator_2_specs_, second_label_specs_;
 				std::optional<std::reference_wrapper<widgets::rectangle::rectangle_specs>>
 					hour_specs_, minute_specs_, second_specs_;
 			};

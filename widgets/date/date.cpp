@@ -23,7 +23,7 @@ namespace liblec {
 				specs::operator==(param) &&
 
 				// widget specific specs
-				true;
+				(color_border == param.color_border);
 		}
 
 		bool widgets::date::date_specs::operator!=(const date_specs& param) {
@@ -36,6 +36,11 @@ namespace liblec {
 				page_(page),
 				specs_(page_.d_page_.add_date(alias)) {
 				specs_.date_value = date_time::today();
+				specs_.color_text = defaults::color(page_.d_page_.fm_.d_.theme_, item::label);
+				specs_.color_fill = defaults::color(page_.d_page_.fm_.d_.theme_, item::text_field);
+				specs_.color_border = defaults::color(page_.d_page_.fm_.d_.theme_, item::text_field_border);
+				specs_.color_disabled = defaults::color(page_.d_page_.fm_.d_.theme_, item::text_field_disabled);
+				specs_.color_selected = defaults::color(page_.d_page_.fm_.d_.theme_, item::text_field_selected);
 			}
 			containers::page& page_;
 			date_specs& specs_;

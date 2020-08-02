@@ -93,6 +93,7 @@ namespace liblec {
 				friend class widgets::table_view_impl;
 				friend class widgets::tree_view_impl;
 				friend class widgets::time_impl;
+				friend class widgets::date_impl;
 #endif
 			};
 		}

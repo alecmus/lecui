@@ -33,6 +33,18 @@ namespace liblec {
 						rect.size({ 110.f, 60.f });
 					};
 
+					/// <summary>The thickness of the border.</summary>
+					float border = .5f;
+
+					/// <summary>The color of the border.</summary>
+					color color_border;
+
+					/// <summary>The horizontal radius of the corners.</summary>
+					float corner_radius_x = 2.f;
+
+					/// <summary>The vertical radius of the corners.</summary>
+					float corner_radius_y = 2.f;
+
 					/// <summary>The date to display.</summary>
 					lecui::date date_value;
 

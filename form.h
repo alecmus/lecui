@@ -73,6 +73,7 @@ namespace liblec {
 			class image_view_impl;
 			class table_view_impl;
 			class time_impl;
+			class date_impl;
 		}
 #endif
 
@@ -287,6 +288,7 @@ namespace liblec {
 			friend class widgets::image_view_impl;
 			friend class widgets::tree_view_impl;
 			friend class widgets::time_impl;
+			friend class widgets::date_impl;
 #endif
 		};
 	}

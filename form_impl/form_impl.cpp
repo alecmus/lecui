@@ -1036,6 +1036,7 @@ namespace liblec {
 						seperator_1().rect.snap_to(hour().rect, rect::snap_type::right, 0.f);
 						seperator_1().on_resize = { 0, 0, 0, 0 };
 						seperator_1().text = ":";
+						seperator_1().color_text = time().color_text;
 						seperator_1().center_h = true;
 						seperator_1().center_v = true;
 
@@ -1066,6 +1067,7 @@ namespace liblec {
 						seperator_2().rect.snap_to(minute().rect, rect::snap_type::right, 0.f);
 						seperator_2().on_resize = { 0, 0, 0, 0 };
 						seperator_2().text = ":";
+						seperator_2().color_text = time().color_text;
 						seperator_2().center_h = true;
 						seperator_2().center_v = true;
 
@@ -1092,7 +1094,7 @@ namespace liblec {
 
 						// capture time label specs
 						it.destination.d_page_.get_time(it.alias).set_time_label_specs(
-							hour_label(), minute_label(), second_label());
+							hour_label(), seperator_1(), minute_label(), seperator_2(), second_label());
 
 						// capture rectangle specs
 						it.destination.d_page_.get_time(it.alias).set_time_specs(
@@ -1337,25 +1339,28 @@ namespace liblec {
 						widgets::label weekday_label(it.destination, widgets::date_impl::alias_weekday_label());
 						weekday_label().rect = { 0, 90, 0, 20 };
 						weekday_label().on_resize = { 0, 0, 0, 0 };
+						weekday_label().color_text = date().color_text;
 						weekday_label().text = date_time::weekday_to_string(date_time::day_of_week(date().date_value));
-						weekday_label().font_size = 8.5f;
+						weekday_label().font_size = 8.5f;	// to-do: eliminate magic number
 
 						// add day to destination
 						widgets::rectangle day(it.destination, widgets::date_impl::alias_day());
 						day().rect = { 0, 18, 20, 20 + 20 };
 						day().on_resize = { 0, 0, 0, 0 };
-						day().corner_radius_x = 2.f;
-						day().corner_radius_y = 2.f;
-						day().color_fill = defaults::color(theme_, item::text_field);
-						day().color_border = defaults::color(theme_, item::text_field_border);
-						day().color_disabled = defaults::color(theme_, item::text_field_disabled);
-						day().color_selected = defaults::color(theme_, item::text_field_selected);
+						day().corner_radius_x = date().corner_radius_x;
+						day().corner_radius_y = date().corner_radius_y;
+						day().border = date().border;
+						day().color_fill = date().color_fill;
+						day().color_border = date().color_border;
+						day().color_disabled = date().color_disabled;
+						day().color_selected = date().color_selected;
 
 						widgets::label day_label(it.destination, widgets::date_impl::alias_day_label());
 						day_label().rect = day().rect;
 						day_label().center_h = true;
 						day_label().center_v = true;
 						day_label().on_resize = { 0, 0, 0, 0 };
+						day_label().color_text = date().color_text;
 						day_label().text = date().date_value.day < 10 ? "0" + std::to_string(date().date_value.day) :
 							std::to_string(date().date_value.day);
 
@@ -1365,6 +1370,7 @@ namespace liblec {
 						seperator_1().rect.snap_to(day().rect, rect::snap_type::right, 0.f);
 						seperator_1().on_resize = { 0, 0, 0, 0 };
 						seperator_1().text = "-";
+						seperator_1().color_text = date().color_text;
 						seperator_1().center_h = true;
 						seperator_1().center_v = true;
 
@@ -1372,18 +1378,20 @@ namespace liblec {
 						widgets::rectangle month(it.destination, widgets::date_impl::alias_month());
 						month().rect = { 0, 25, 0, 20 };
 						month().rect.snap_to(seperator_1().rect, rect::snap_type::right, 0.f);
-						month().corner_radius_x = 2.f;
-						month().corner_radius_y = 2.f;
-						month().color_fill = defaults::color(theme_, item::text_field);
-						month().color_border = defaults::color(theme_, item::text_field_border);
-						month().color_disabled = defaults::color(theme_, item::text_field_disabled);
-						month().color_selected = defaults::color(theme_, item::text_field_selected);
+						month().corner_radius_x = date().corner_radius_x;
+						month().corner_radius_y = date().corner_radius_y;
+						month().border = date().border;
+						month().color_fill = date().color_fill;
+						month().color_border = date().color_border;
+						month().color_disabled = date().color_disabled;
+						month().color_selected = date().color_selected;
 
 						widgets::label month_label(it.destination, widgets::date_impl::alias_month_label());
 						month_label().rect = month().rect;
 						month_label().center_h = true;
 						month_label().center_v = true;
 						month_label().on_resize = { 0, 0, 0, 0 };
+						month_label().color_text = date().color_text;
 						month_label().text = date_time::month_to_string(date().date_value.month);
 
 						// add seperator to destination
@@ -1392,6 +1400,7 @@ namespace liblec {
 						seperator_2().rect.snap_to(month().rect, rect::snap_type::right, 0.f);
 						seperator_2().on_resize = { 0, 0, 0, 0 };
 						seperator_2().text = "-";
+						seperator_2().color_text = date().color_text;
 						seperator_2().center_h = true;
 						seperator_2().center_v = true;
 
@@ -1399,19 +1408,29 @@ namespace liblec {
 						widgets::rectangle year(it.destination, widgets::date_impl::alias_year());
 						year().rect = { 0, 31, 0, 20 };
 						year().rect.snap_to(seperator_2().rect, rect::snap_type::right, 0.f);
-						year().corner_radius_x = 2.f;
-						year().corner_radius_y = 2.f;
-						year().color_fill = defaults::color(theme_, item::text_field);
-						year().color_border = defaults::color(theme_, item::text_field_border);
-						year().color_disabled = defaults::color(theme_, item::text_field_disabled);
-						year().color_selected = defaults::color(theme_, item::text_field_selected);
+						year().corner_radius_x = date().corner_radius_x;
+						year().corner_radius_y = date().corner_radius_y;
+						year().border = date().border;
+						year().color_fill = date().color_fill;
+						year().color_border = date().color_border;
+						year().color_disabled = date().color_disabled;
+						year().color_selected = date().color_selected;
 
 						widgets::label year_label(it.destination, widgets::date_impl::alias_year_label());
 						year_label().rect = year().rect;
 						year_label().center_h = true;
 						year_label().center_v = true;
 						year_label().on_resize = { 0, 0, 0, 0 };
+						year_label().color_text = date().color_text;
 						year_label().text = std::to_string(date().date_value.year);
+
+						// capture date label specs
+						it.destination.d_page_.get_date(it.alias).set_date_label_specs(
+							weekday_label(), day_label(), seperator_1(), month_label(), seperator_2(), year_label());
+
+						// capture rectangle specs
+						it.destination.d_page_.get_date(it.alias).set_date_specs(
+							day(), month(), year());
 
 						// close widget
 						std::string error;
