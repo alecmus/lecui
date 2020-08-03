@@ -135,6 +135,10 @@ namespace liblec {
 				case item::line: return { 150, 150, 150, 255 };
 				case item::line_hover: return { 0, 120, 170, 50 };
 				case item::line_selected: return { 0, 120, 170, 100 };
+
+				case item::icon: return { 100, 100, 100, 0 };
+				case item::icon_border: return { 0, 120, 170, 0 };
+				case item::icon_hot: return { 0, 120, 170, 100 };
 				default: break;
 				}
 			} break;
@@ -256,6 +260,10 @@ namespace liblec {
 				case item::line: return { 150, 150, 150, 255 };
 				case item::line_hover: return { 60, 190, 175, 50 };
 				case item::line_selected: return { 60, 190, 175, 100 };
+
+				case item::icon: return { 100, 100, 100, 0 };
+				case item::icon_border: return { 0, 120, 170, 0 };
+				case item::icon_hot: return { 60, 190, 175, 100 };
 				default: break;
 				}
 			} break;

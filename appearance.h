@@ -146,6 +146,10 @@ namespace liblec {
 			line,
 			line_hover,
 			line_selected,
+
+			icon,
+			icon_border,
+			icon_hot,
 		};
 
 		class lecui_api defaults {

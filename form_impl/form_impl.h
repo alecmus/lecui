@@ -235,6 +235,7 @@ namespace liblec {
 			friend class widgets::time_impl;
 			friend class widgets::date_impl;
 			friend class widgets::html_editor_impl;
+			friend class widgets::icon_impl;
 
 		public:
 			impl(form& fm, const std::string& caption_formatted);

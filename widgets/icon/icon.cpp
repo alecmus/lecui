@@ -22,7 +22,9 @@ namespace liblec {
 				specs::operator==(param) &&
 
 				// widget specific specs
-				true;
+				(png_resource == param.png_resource) &&
+				(file == param.file) &&
+				(color_border == param.color_border);
 		}
 
 		bool widgets::icon::icon_specs::operator!=(const icon_specs& param) {
@@ -34,6 +36,9 @@ namespace liblec {
 			impl(containers::page& page, const std::string& alias) :
 				page_(page),
 				specs_(page_.d_page_.add_icon(alias)) {
+				specs_.color_fill = defaults::color(page_.d_page_.fm_.d_.theme_, item::icon);
+				specs_.color_border = defaults::color(page_.d_page_.fm_.d_.theme_, item::icon_border);
+				specs_.color_hot = defaults::color(page_.d_page_.fm_.d_.theme_, item::icon_hot);
 			}
 			containers::page& page_;
 			icon_specs& specs_;

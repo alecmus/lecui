@@ -469,10 +469,9 @@ namespace liblec {
 
 		void form::impl::update() { InvalidateRect(hWnd_, nullptr, FALSE); }
 
-		/// <summary>
-		/// Move all the trees in a page into a special tree pane. If a tree has
-		/// already been moved it will be left where it is.
-		/// </summary>
+		/// The tree view widget is constructed as follows:
+		/// 1. A special pane is made for carrying the tree view
+		/// 2. The tree view widget is moved into the container
 		void form::impl::move_trees() {
 			// check if this page has a tree pane
 			auto page_iterator = p_pages_.find(current_page_);
@@ -573,6 +572,11 @@ namespace liblec {
 			}
 		}
 
+		/// The html editor widget is constructed as follows:
+		/// 1. A special pane is made for carrying the html controls
+		/// 2. A special pane is made for carrying the html text
+		/// 3. The html widget is moved into the html container
+		/// 4. Control widgets are added to the control pane
 		void form::impl::move_html_editors() {
 			// check if this page has an html widget
 			auto page_iterator = p_pages_.find(current_page_);
@@ -925,7 +929,8 @@ namespace liblec {
 		/// of the hour, minute and second
 		/// 3. Three labels are added one above each rectangle. These are for displaying the
 		/// digits
-		/// 4. The rectangles are used for hit testing, and each has a handler that brings up a
+		/// 4. A label with a colon is placed between each rectangle for use as seperators
+		/// 5. The rectangles are used for hit testing, and each has a handler that brings up a
 		/// context menu for editing the corresponding time component
 		void form::impl::move_times() {
 			// check if this page has a time widget
@@ -1249,6 +1254,16 @@ namespace liblec {
 			}
 		}
 
+		/// The date widget is constructed as follows:
+		/// 1. A special pane is made
+		/// 2. A label is added to the pane, for displaying the week day
+		/// 3. Three rectangles are added to the pane, these are for the backgrounds and borders
+		/// of the day, month and year
+		/// 4. Three labels are added one above each rectangle. These are for displaying the
+		/// day, month and year
+		/// 5. A label with a dash is placed between each rectangle for use as seperators
+		/// 6. The rectangles are used for hit testing, and each has a handler that brings up a
+		/// context menu for editing the corresponding date component
 		void form::impl::move_dates() {
 			// check if this page has a date widget
 			auto page_iterator = p_pages_.find(current_page_);
@@ -1610,6 +1625,12 @@ namespace liblec {
 			}
 		}
 
+		/// The icon widget is constructed as follows:
+		/// 1. A special pane is made
+		/// 2. A rectangle is placed into the pane, this is for hit testing
+		/// 3. An image view is added above the rectangle
+		/// 4. Two labels are added beside the image view, one is the icon text and the other is
+		/// the descriptive text
 		void form::impl::move_icons() {
 			// check if this page has a icon widget
 			auto page_iterator = p_pages_.find(current_page_);
@@ -1695,7 +1716,6 @@ namespace liblec {
 						// adjust specs
 						icon().rect = { 0, it.destination.size().width, 0, it.destination.size().height };
 						icon().on_resize = { 0, 0, 0, 0 };
-						icon().color_fill.alpha = 0;
 
 						const float gap_ = 10.f;
 						const float padding_ = 5.f;
@@ -1703,10 +1723,12 @@ namespace liblec {
 						// add rectangle to destination (for hit-testing)
 						widgets::rectangle icn(it.destination, widgets::icon_impl::alias_icon());
 						icn().rect.size(it.destination.size().width, it.destination.size().height);
-						icn().corner_radius_x = 3.f;
-						icn().corner_radius_y = 3.f;
-						icn().color_fill.alpha = 0;
-						icn().color_border.alpha = 0;
+						icn().corner_radius_x = icon().corner_radius_x;
+						icn().corner_radius_y = icon().corner_radius_y;
+						icn().border = icon().border;
+						icn().color_fill = icon().color_fill;
+						icn().color_border = icon().color_border;
+						icn().color_hot = icon().color_hot;
 						icn().cursor = widgets::specs::cursor_type::hand;
 
 						// move the click and action handler from the icon to the rectangle
@@ -1739,6 +1761,10 @@ namespace liblec {
 						description().rect = { 0, text().rect.width(), 0, it.destination.size().height - text().rect.height() };
 						description().rect.snap_to(text().rect, rect::snap_type::bottom_left, 0.f);
 
+						// capture image view specs
+						it.destination.d_page_.get_icon(it.alias).set_icon_specs(
+							icn(), image(), text(), description());
+
 						// close widget
 						std::string error;
 						it.source.d_page_.close_widget(it.alias, widgets::widget_type::icon, error);
@@ -1749,6 +1775,9 @@ namespace liblec {
 			}
 		}
 
+		/// The table view widget is constructed as follows:
+		/// 1. A special pane is made
+		/// 2. The table view is moved into the pane
 		void form::impl::move_tables() {
 			// check if this page has a table pane
 			auto page_iterator = p_pages_.find(current_page_);
@@ -1834,8 +1863,6 @@ namespace liblec {
 						// adjust specs
 						table().rect = { 0, it.destination.size().width, 0, it.destination.size().height };
 						table().on_resize = { 0, 0, 0, 0 };	// critical because table will change size as table is browsed or changed. the pane scroll bars will do the job.
-						table().color_fill.alpha = 0;
-						table().color_border.alpha = 0;
 
 						// close widget
 						std::string error;

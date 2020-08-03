@@ -12,6 +12,8 @@
 */
 
 #include "icon_impl.h"
+#include "../../form_impl/form_impl.h"
+#include "../../containers/page/page_impl.h"
 
 namespace liblec {
 	namespace lecui {
@@ -85,6 +87,39 @@ namespace liblec {
 			if (specs_old_ != specs_) {
 				log("specs changed: " + alias_);
 				specs_old_ = specs_;
+
+				try {
+					if (rectangle_specs_.has_value()) {
+						// update rectangle specs
+						rectangle_specs_.value().get().corner_radius_x = specs_.corner_radius_x;
+						rectangle_specs_.value().get().corner_radius_y = specs_.corner_radius_y;
+						rectangle_specs_.value().get().border = specs_.border;
+						rectangle_specs_.value().get().color_fill = specs_.color_fill;
+						rectangle_specs_.value().get().color_border = specs_.color_border;
+						rectangle_specs_.value().get().color_hot = specs_.color_hot;
+					}
+
+					if (image_view_specs_.has_value()) {
+						// update image view specs
+						image_view_specs_.value().get().png_resource = specs_.png_resource;
+						image_view_specs_.value().get().file = specs_.file;
+					}
+
+					if (label_specs_.has_value()) {
+						// update text specs
+						label_specs_.value().get().text = specs_.text;
+					}
+
+					if (description_specs_.has_value()) {
+						// update description specs
+						description_specs_.value().get().text = specs_.description;
+					}
+
+					// schedule a refresh
+					page_.d_page_.get_form().d_.schedule_refresh_ = true;
+				}
+				catch (const std::exception& e) { log(e.what()); }
+
 				discard_resources();
 			}
 
@@ -108,5 +143,14 @@ namespace liblec {
 
 		widgets::icon::icon_specs&
 			widgets::icon_impl::operator()() { return specs(); }
+
+		void widgets::icon_impl::set_icon_specs(rectangle::rectangle_specs& rectangle,
+			image_view::image_view_specs& image_view,
+			label::label_specs& label, label::label_specs& description) {
+			rectangle_specs_ = rectangle;
+			image_view_specs_ = image_view;
+			label_specs_ = label;
+			description_specs_ = description;
+		}
 	}
 }

@@ -13,8 +13,12 @@
 
 #pragma once
 
+#include <optional>
 #include "../widget_impl.h"
 #include "../icon.h"
+#include "../rectangle/rectangle_impl.h"
+#include "../image_view/image_view_impl.h"
+#include "../label/label_impl.h"
 
 namespace liblec {
 	namespace lecui {
@@ -47,6 +51,9 @@ namespace liblec {
 				/// widget specific methods
 				widgets::icon::icon_specs& specs();
 				widgets::icon::icon_specs& operator()();
+				void set_icon_specs(rectangle::rectangle_specs& rectangle,
+					image_view::image_view_specs& image_view,
+					label::label_specs& label, label::label_specs& description);
 
 			private:
 				// Default constructor and copying an object of this class are not allowed
@@ -60,6 +67,10 @@ namespace liblec {
 				ID2D1SolidColorBrush* p_brush_hot_;
 				ID2D1SolidColorBrush* p_brush_disabled_;
 				ID2D1SolidColorBrush* p_brush_selected_;
+
+				std::optional<std::reference_wrapper<rectangle::rectangle_specs>> rectangle_specs_;
+				std::optional<std::reference_wrapper<image_view::image_view_specs>> image_view_specs_;
+				std::optional<std::reference_wrapper<label::label_specs>> label_specs_, description_specs_;
 			};
 		}
 	}

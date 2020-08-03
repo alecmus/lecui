@@ -45,6 +45,18 @@ namespace liblec {
 						left_bottom,
 					};
 
+					/// <summary>The thickness of the border.</summary>
+					float border = .5f;
+
+					/// <summary>The color of the border.</summary>
+					color color_border;
+
+					/// <summary>The horizontal radius of the corners.</summary>
+					float corner_radius_x = 3.f;
+
+					/// <summary>The vertical radius of the corners.</summary>
+					float corner_radius_y = 3.f;
+
 					/// <summary>ID of PNG resource containing the image.</summary>
 					/// <remarks>PNG resource takes precedence over image file.</remarks>
 					int png_resource = 0;
