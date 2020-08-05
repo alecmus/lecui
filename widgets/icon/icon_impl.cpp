@@ -108,11 +108,13 @@ namespace liblec {
 					if (label_specs_.has_value()) {
 						// update text specs
 						label_specs_.value().get().text = specs_.text;
+						label_specs_.value().get().color_text = specs_.color_text;
 					}
 
 					if (description_specs_.has_value()) {
 						// update description specs
 						description_specs_.value().get().text = specs_.description;
+						description_specs_.value().get().color_text = specs_.color_description_text;
 					}
 
 					// schedule a refresh

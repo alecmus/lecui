@@ -35,21 +35,24 @@ namespace liblec {
 
 					/// <summary>Text position in icon.</summary>
 					enum class icon_text_position {
-						bottom,
-						top,
 						right,
-						right_top,
-						right_bottom,
 						left,
-						left_top,
-						left_bottom,
+						top,
+						bottom,
 					};
+
+					/// <summary>The maximum size of the image square's side.</summary>
+					/// <remarks>Set to 0.f for unlimited image size.</remarks>
+					float max_image_size = 48.f;
 
 					/// <summary>The thickness of the border.</summary>
 					float border = .5f;
 
 					/// <summary>The color of the border.</summary>
 					color color_border;
+
+					/// <summary>The color of the descriptive text.</summary>
+					color color_description_text;
 
 					/// <summary>The horizontal radius of the corners.</summary>
 					float corner_radius_x = 3.f;
@@ -72,7 +75,7 @@ namespace liblec {
 					std::string description;
 
 					/// <summary>The position of the text.</summary>
-					icon_text_position text_position = icon_text_position::right_top;
+					icon_text_position text_position = icon_text_position::right;
 
 					bool operator==(const icon_specs&);
 					bool operator!=(const icon_specs&);
