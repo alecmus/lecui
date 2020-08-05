@@ -31,6 +31,7 @@ namespace liblec {
 				public:
 					icon_specs() {
 						rect.size({ 180.f, 78.f });
+						font_size = 11.f;
 					};
 
 					/// <summary>Text position in icon.</summary>
@@ -52,7 +53,10 @@ namespace liblec {
 					color color_border;
 
 					/// <summary>The color of the descriptive text.</summary>
-					color color_description_text;
+					color color_text_description;
+
+					/// <summary>The size of the descriptive text.</summary>
+					float font_size_description = 8.5f;
 
 					/// <summary>The horizontal radius of the corners.</summary>
 					float corner_radius_x = 3.f;

@@ -1775,7 +1775,7 @@ namespace liblec {
 						widgets::label text(it.destination, widgets::icon_impl::alias_text());
 						text().text = icon().text;
 						text().color_text = icon().color_text;
-						text().font_size = 11.f;
+						text().font_size = icon().font_size;
 
 						switch (icon().text_position) {
 						case widgets::icon::icon_specs::icon_text_position::right: {
@@ -1818,8 +1818,8 @@ namespace liblec {
 						// add description to destination
 						widgets::label description(it.destination, widgets::icon_impl::alias_description());
 						description().text = icon().description;
-						description().color_text = icon().color_description_text;
-						description().font_size = 8.5f;
+						description().color_text = icon().color_text_description;
+						description().font_size = icon().font_size_description;
 						description().multiline = true;
 
 						switch (icon().text_position) {

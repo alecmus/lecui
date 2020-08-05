@@ -109,12 +109,16 @@ namespace liblec {
 						// update text specs
 						label_specs_.value().get().text = specs_.text;
 						label_specs_.value().get().color_text = specs_.color_text;
+						label_specs_.value().get().font = specs_.font;
+						label_specs_.value().get().font_size = specs_.font_size;
 					}
 
 					if (description_specs_.has_value()) {
 						// update description specs
 						description_specs_.value().get().text = specs_.description;
-						description_specs_.value().get().color_text = specs_.color_description_text;
+						description_specs_.value().get().color_text = specs_.color_text_description;
+						description_specs_.value().get().font = specs_.font;
+						description_specs_.value().get().font_size = specs_.font_size_description;
 					}
 
 					// schedule a refresh
