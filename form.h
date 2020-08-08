@@ -33,6 +33,7 @@ namespace liblec {
 		class filesystem;
 		class color_picker;
 		class splash;
+		class instance_management;
 
 		namespace containers {
 			class page;
@@ -232,6 +233,11 @@ namespace liblec {
 			/// stop accepting dropped files pass a nullptr to this method.</remarks>
 			void on_drop_files(std::function<void(const std::string& file)>on_drop_files);
 
+			/// <summary>Set the handler to be called when data is received from another instance.</summary>
+			/// <param name="on_receive_data">The handler. When it is called, the parameter will
+			/// contain the received data.</param>
+			void on_receive_data(std::function<void(const std::string& data)>on_receive_data);
+
 			/// <summary>Keep UI responsive during lengthy calls.</summary>
 			/// <returns>Returns true to continue operation, and false to quit immediately.</returns>
 			/// <remarks>In lengthy operations it is useful to call this method between successive
@@ -258,6 +264,7 @@ namespace liblec {
 			friend class filesystem;
 			friend class color_picker;
 			friend class splash;
+			friend class instance_management;
 
 			friend class containers::page;
 			friend class containers::status_pane;

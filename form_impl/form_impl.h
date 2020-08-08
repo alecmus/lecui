@@ -15,6 +15,7 @@
 
 #include "../form.h"
 #include "../appearance.h"
+#include "../limit_single_instance/limit_single_instance.h"
 #include "../containers/page/page_impl.h"
 #include "../containers/status_pane.h"
 
@@ -65,6 +66,7 @@ namespace liblec {
 			static ID2D1Factory* p_direct2d_factory_;
 			static IDWriteFactory* p_directwrite_factory_;
 			static IWICImagingFactory* p_iwic_factory_;
+			static limit_single_instance* p_instance_;
 
 			form& fm_;
 			form* p_parent_;
@@ -72,6 +74,8 @@ namespace liblec {
 			bool parent_closing_;
 			std::map<form*, form*> m_children_;
 			bool show_called_;
+			std::string guid_;
+			UINT reg_id_;
 
 			// constant members
 			const float caption_bar_height_;
@@ -161,6 +165,7 @@ namespace liblec {
 
 			std::function<void()> on_caption_;
 			std::function<void(const std::string& file)> on_drop_files_;
+			std::function<void(const std::string& data)> on_receive_data_;
 
 			std::vector<std::string> scheduled_for_closure_;
 
@@ -204,6 +209,7 @@ namespace liblec {
 			friend class filesystem;
 			friend class color_picker;
 			friend class splash;
+			friend class instance_management;
 			friend class containers::status_pane;
 			friend class containers::tab_pane;
 			friend class containers::tab;
@@ -312,6 +318,7 @@ namespace liblec {
 			void select(const std::string& path);
 
 			lecui::size get_status_size(containers::status_pane::location type);
+			void open_existing_instance();
 
 			static LRESULT CALLBACK window_procedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 		};

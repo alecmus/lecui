@@ -31,7 +31,10 @@
 #include "../utilities/date_time.h"
 #include "../menus/context_menu.h"
 
+#include "../command_line_parser.h"
+
 // Windows headers
+#include <windowsx.h>
 #include <ShlObj.h>		// for SHGetFolderPath
 #include <dwmapi.h>		// for DwmExtendFrameIntoClientArea
 #pragma comment(lib, "Dwmapi.lib")
@@ -60,6 +63,7 @@ namespace liblec {
 		ID2D1Factory* form::impl::p_direct2d_factory_ = nullptr;
 		IDWriteFactory* form::impl::p_directwrite_factory_ = nullptr;
 		IWICImagingFactory* form::impl::p_iwic_factory_ = nullptr;
+		limit_single_instance* form::impl::p_instance_ = nullptr;
 
 		form::impl::impl(form& fm, const std::string& caption_formatted) :
 			fm_(fm),
@@ -67,6 +71,7 @@ namespace liblec {
 			menu_form_(caption_formatted == form::menu_form_caption()),
 			parent_closing_(false),
 			show_called_(false),
+			reg_id_(0),
 			caption_bar_height_(menu_form_ ? 0.f : 30.f),
 			form_border_thickness_(1.f),
 			page_tolerance_(form_border_thickness_ / 2.f),
@@ -196,6 +201,11 @@ namespace liblec {
 
 				// Uninitialize COM
 				CoUninitialize();
+
+				if (p_instance_) {
+					delete p_instance_;
+					p_instance_ = nullptr;
+				}
 
 				// set initialized flag to false (only here)
 				initialized_ = false;
@@ -2669,6 +2679,108 @@ namespace liblec {
 			return size;
 		}
 
+		void form::impl::open_existing_instance() {
+			struct searcher_struct {
+				/// <summary>The window's unique registration ID.</summary>
+				UINT unique_reg_id = 0;
+
+				/// <summary>The window handle.</summary>
+				HWND hWnd = nullptr;
+			};
+
+			class helper {
+			public:
+				/// <summary>Search for an existing instance of such a registered window.</summary>
+				/// <param name="hWnd">The handle of the window.</param>
+				/// <param name="lParam">Pointer to data struct.</param>
+				/// <returns>return TRUE if the window is not found, and FALSE if it is found.</returns>
+				static BOOL CALLBACK searcher(HWND hWnd, LPARAM lParam) {
+					searcher_struct* p = (searcher_struct*)lParam;
+
+					if (p) {
+						UINT UWM_ARE_YOU_ME = p->unique_reg_id;
+
+						DWORD_PTR result = 0;
+						LRESULT ok = ::SendMessageTimeout(hWnd,
+							UWM_ARE_YOU_ME,	// message
+							0,				// WPARAM
+							0,
+							SMTO_BLOCK |
+							SMTO_ABORTIFHUNG,
+							200,
+							&result);
+
+						if (ok == 0)
+							return TRUE; // ignore this and continue
+
+						if (result == UWM_ARE_YOU_ME) {
+							// found it
+							p->hWnd = hWnd;
+							return FALSE; // stop search
+						}
+					}
+
+					return TRUE; // continue search
+				}
+			};
+
+			if (!guid_.empty()) {
+				searcher_struct search_info;
+				search_info.unique_reg_id = RegisterWindowMessageA(guid_.c_str());
+				EnumWindows(helper::searcher, (LPARAM)&search_info);
+
+				if (search_info.hWnd != nullptr) {
+					log("opening existing instance");
+
+					SetForegroundWindow(search_info.hWnd);	// pop
+
+					if (IsMinimized(search_info.hWnd))
+						ShowWindow(search_info.hWnd, SW_RESTORE);	// restore
+					else
+						if (!IsWindowVisible(search_info.hWnd))
+							ShowWindow(search_info.hWnd, SW_SHOW);	// show
+
+					// check if there is data in the commandline
+					command_line_parser args;
+
+					std::string arg_string;
+
+					if (args.size() > 1) {
+						log("Passing data in command line to existing instance");
+
+						for (size_t i = 1; i < args.size(); i++) {
+							std::string arg = args[i];
+
+							if (arg.find(" ") != std::string::npos)
+								arg = "\"" + arg + "\"";
+
+							if (arg_string.empty())
+								arg_string = arg;
+							else
+								arg_string += " " + arg;
+						}
+
+						// pass the commandline to the existing instance
+						LPSTR szCmdLine = (LPSTR)arg_string.c_str();
+
+						COPYDATASTRUCT cds;
+						cds.cbData = static_cast<DWORD>(strlen(szCmdLine) + 1);
+						cds.lpData = szCmdLine;
+
+						DWORD_PTR result = 0;
+						LRESULT ok = ::SendMessageTimeout(search_info.hWnd,
+							WM_COPYDATA,	// message
+							0,				// WPARAM
+							(LPARAM)&cds,	// LPARAM
+							SMTO_BLOCK |
+							SMTO_ABORTIFHUNG,
+							500,			// a bit more generaous since we know our window
+							&result);
+					}
+				}
+			}
+		}
+
 		LRESULT CALLBACK form::impl::window_procedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
 			auto get_form = [&]() {
 				form* p_form = nullptr;
@@ -2915,11 +3027,26 @@ namespace liblec {
 				form_.d_.on_hwheel(wParam);
 				break;
 
+			case WM_COPYDATA: {
+				COPYDATASTRUCT* p_copy_data = (COPYDATASTRUCT*)lParam;
+
+				if (p_copy_data && form_.d_.on_receive_data_) {
+					const std::string data((LPSTR)p_copy_data->lpData, p_copy_data->cbData);
+
+					// forward data to the receive data handler
+					if (!data.empty())
+						form_.d_.on_receive_data_(data);
+				}
+			} break;
+
 			case WM_DROPFILES:
 				form_.d_.on_dropfiles(wParam);
 				break;
 
 			default:
+				// check if caller is checking this form's unique registration id
+				if (form_.d_.reg_id_ && msg == form_.d_.reg_id_)
+					return form_.d_.reg_id_;	// another instance is checking if it should proceed
 				break;
 			}
 

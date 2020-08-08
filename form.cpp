@@ -84,6 +84,14 @@ namespace liblec {
 				}
 			}
 
+			if (d_.p_instance_) {
+				if (d_.p_instance_->another_instance_running()) {
+					log("another instance running");
+					d_.open_existing_instance();
+					return true;
+				}
+			}
+
 			// get resource module handle
 			if (!d_.resource_dll_filename_.empty()) {
 				d_.resource_module_handle_ =
@@ -163,6 +171,10 @@ namespace liblec {
 					d_.set_position(form_position::center_to_working_area,
 						d_.size_.width, d_.size_.height);
 			}
+
+			// Register this instance so other instances can find this form and open it
+			if (!d_.guid_.empty() && !IsWindow(d_.hWnd_parent_))
+				d_.reg_id_ = RegisterWindowMessageA(d_.guid_.c_str());
 
 			// perform initialization (d_.hWnd_ will be captured in WM_CREATE)
 			if (!CreateWindowEx(d_.top_most_ == true ? WS_EX_TOPMOST : NULL, wcex.lpszClassName,
@@ -410,6 +422,10 @@ namespace liblec {
 			form::on_drop_files(std::function<void(const std::string& file)> on_drop_files) {
 			d_.on_drop_files_ = on_drop_files;
 			DragAcceptFiles(d_.hWnd_, on_drop_files == nullptr ? FALSE : TRUE);
+		}
+
+		void form::on_receive_data(std::function<void(const std::string& data)> on_receive_data) {
+			d_.on_receive_data_ = on_receive_data;
 		}
 
 		bool form::keep_alive() {

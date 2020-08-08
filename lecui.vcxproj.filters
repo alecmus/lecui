@@ -161,6 +161,9 @@
     <Filter Include="lecui\widgets\tree_view">
       <UniqueIdentifier>{7a9514ff-02f0-4032-8db2-f4658a41cc01}</UniqueIdentifier>
     </Filter>
+    <Filter Include="lecui\limit_single_instance">
+      <UniqueIdentifier>{afb917aa-1826-40ff-9630-196f3ef3e6f2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="error\win_error.h">
@@ -385,6 +388,15 @@
     </ClInclude>
     <ClInclude Include="widgets\tree_view\tree_view_impl.h">
       <Filter>lecui\widgets\tree_view</Filter>
+    </ClInclude>
+    <ClInclude Include="instance.h">
+      <Filter>lecui</Filter>
+    </ClInclude>
+    <ClInclude Include="limit_single_instance\limit_single_instance.h">
+      <Filter>lecui\limit_single_instance</Filter>
+    </ClInclude>
+    <ClInclude Include="command_line_parser.h">
+      <Filter>lecui</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -640,6 +652,12 @@
     </ClCompile>
     <ClCompile Include="widgets\tree_view\tree_view_impl.cpp">
       <Filter>lecui\widgets\tree_view</Filter>
+    </ClCompile>
+    <ClCompile Include="instance.cpp">
+      <Filter>lecui</Filter>
+    </ClCompile>
+    <ClCompile Include="limit_single_instance\limit_single_instance.cpp">
+      <Filter>lecui\limit_single_instance</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
