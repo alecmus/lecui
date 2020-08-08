@@ -83,12 +83,14 @@ namespace liblec {
 			std::string guid_;
 			UINT reg_id_;
 			bool receiving_;	// for preventing multiple concurrent receiving operations
+			std::string data_received_;
 
 			// constant members
 			const float caption_bar_height_;
 			const float form_border_thickness_;
 			const float page_tolerance_;
 			const float control_button_margin_;
+			const std::string receive_data_timer_alias_;
 
 			// name of dll containing resources like PNGs etc
 			std::string resource_dll_filename_;

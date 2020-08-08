@@ -15,6 +15,8 @@
 
 #include "../font/font.h"
 
+#include "../timer.h"
+
 #include "../containers/page.h"
 #include "../containers/tab_pane.h"
 #include "../containers/pane.h"
@@ -73,10 +75,12 @@ namespace liblec {
 			show_called_(false),
 			reg_id_(0),
 			receiving_(false),
+			data_received_(std::string()),
 			caption_bar_height_(menu_form_ ? 0.f : 30.f),
 			form_border_thickness_(1.f),
 			page_tolerance_(form_border_thickness_ / 2.f),
 			control_button_margin_(2.f),
+			receive_data_timer_alias_("liblec::lecui::receive_data_timer"),
 			resource_dll_filename_(std::string()),
 			resource_module_handle_(nullptr),
 			idi_icon_(0),
@@ -3043,16 +3047,20 @@ namespace liblec {
 				/// 3. Handled
 				LRESULT result = 0;
 				if (!form_.d_.receiving_) {
-					form_.d_.receiving_ = true;
-
 					COPYDATASTRUCT* p_copy_data = (COPYDATASTRUCT*)lParam;
 
 					if (p_copy_data && form_.d_.on_receive_data_) {
-						const std::string data((LPSTR)p_copy_data->lpData, p_copy_data->cbData);
+						form_.d_.data_received_ = std::string((LPSTR)p_copy_data->lpData, p_copy_data->cbData);
 
-						// forward data to the receive data handler
-						if (!data.empty())
-							form_.d_.on_receive_data_(data);
+						// forward data to the receive data handler through a timer set to 0
+						if (!form_.d_.data_received_.empty()) {
+							form_.d_.receiving_ = true;
+							timer_management(form_).add(form_.d_.receive_data_timer_alias_, 0, [&]() {
+								timer_management(form_).stop(form_.d_.receive_data_timer_alias_);
+								form_.d_.on_receive_data_(form_.d_.data_received_);
+								form_.d_.receiving_ = false;
+								});
+						}
 
 						result = instance_messages::handled;
 					}
@@ -3060,8 +3068,6 @@ namespace liblec {
 						if (!form_.d_.on_receive_data_)
 							result = instance_messages::no_handler;
 					}
-
-					form_.d_.receiving_ = false;
 				}
 				else
 					result = instance_messages::busy;
