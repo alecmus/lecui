@@ -68,6 +68,12 @@ namespace liblec {
 			static IWICImagingFactory* p_iwic_factory_;
 			static limit_single_instance* p_instance_;
 
+			enum instance_messages {
+				busy = 1,
+				no_handler,
+				handled,
+			};
+
 			form& fm_;
 			form* p_parent_;
 			bool menu_form_;	// for use as a menu; not resizable & has neither a caption nor control buttons

@@ -56,21 +56,32 @@ namespace liblec {
 				cds.lpData = szData;
 
 				DWORD_PTR result = 0;
-				LRESULT ok = ::SendMessageTimeout(hWnd,
+				if (SendMessageTimeout(hWnd,
 					WM_COPYDATA,	// message
 					0,				// WPARAM
 					(LPARAM)&cds,	// LPARAM
 					SMTO_BLOCK |
 					SMTO_ABORTIFHUNG,
 					static_cast<UINT>(timeout_milliseconds),
-					&result);
-
-				if (ok != 0) {
-					error = get_last_error();
+					&result) == 0) {
+					error = "Timeout while sending data";
 					return false;
 				}
-				else
-					return true;
+				else {
+					switch (result) {
+					case form::impl::instance_messages::busy:
+						error = "Previously sent data is still being processed by the target instance";
+						return false;
+					case form::impl::instance_messages::no_handler:
+						error = "Target instance has no handler for the sent data";
+						return false;
+					case form::impl::instance_messages::handled:
+					default:
+						break;
+					}
+				}
+
+				return true;
 			}
 		}
 	}

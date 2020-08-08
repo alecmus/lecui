@@ -2712,7 +2712,7 @@ namespace liblec {
 							&result);
 
 						if (ok == 0)
-							return TRUE; // ignore this and continue
+							return TRUE; // ignore this and continue ... could be it, but hung
 
 						if (result == UWM_ARE_YOU_ME) {
 							// found it
@@ -3038,7 +3038,10 @@ namespace liblec {
 				break;
 
 			case WM_COPYDATA: {
-				// Sender receives "Access is denied" if another receiving operation is in progress.
+				/// 1. Busy
+				/// 2. No handler
+				/// 3. Handled
+				LRESULT result = 0;
 				if (!form_.d_.receiving_) {
 					form_.d_.receiving_ = true;
 
@@ -3050,10 +3053,21 @@ namespace liblec {
 						// forward data to the receive data handler
 						if (!data.empty())
 							form_.d_.on_receive_data_(data);
+
+						result = instance_messages::handled;
+					}
+					else {
+						if (!form_.d_.on_receive_data_)
+							result = instance_messages::no_handler;
 					}
 
 					form_.d_.receiving_ = false;
 				}
+				else
+					result = instance_messages::busy;
+
+				if (result)
+					return result;
 			} break;
 
 			case WM_DROPFILES:
