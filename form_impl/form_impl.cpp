@@ -3038,6 +3038,7 @@ namespace liblec {
 				break;
 
 			case WM_COPYDATA: {
+				// Sender receives "Access is denied" if another receiving operation is in progress.
 				if (!form_.d_.receiving_) {
 					form_.d_.receiving_ = true;
 

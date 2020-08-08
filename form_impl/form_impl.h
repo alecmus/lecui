@@ -76,7 +76,7 @@ namespace liblec {
 			bool show_called_;
 			std::string guid_;
 			UINT reg_id_;
-			bool receiving_;
+			bool receiving_;	// for preventing multiple concurrent receiving operations
 
 			// constant members
 			const float caption_bar_height_;
