@@ -34,6 +34,10 @@ namespace liblec {
 			/// (2) Pass it's command line arguments as data to the existing instance. The latter
 			/// is received in the existing instance through the form's on_receive_data handler.
 			/// </param>
+			/// <remarks>It is highly recommended that top level forms within the same app use
+			/// the same guid. This way, when a new instance is attempted, the latest form to be
+			/// created will be brought to the foreground. GUIDs only apply to top level forms.
+			/// </remarks>
 			instance_management(form& fm, const std::string& guid);
 			~instance_management();
 
