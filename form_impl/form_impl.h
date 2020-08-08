@@ -76,6 +76,7 @@ namespace liblec {
 			bool show_called_;
 			std::string guid_;
 			UINT reg_id_;
+			bool receiving_;
 
 			// constant members
 			const float caption_bar_height_;
@@ -318,6 +319,7 @@ namespace liblec {
 			void select(const std::string& path);
 
 			lecui::size get_status_size(containers::status_pane::location type);
+			HWND find_native_handle(const std::string& guid);
 			void open_existing_instance();
 
 			static LRESULT CALLBACK window_procedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);

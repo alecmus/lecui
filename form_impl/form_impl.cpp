@@ -72,6 +72,7 @@ namespace liblec {
 			parent_closing_(false),
 			show_called_(false),
 			reg_id_(0),
+			receiving_(false),
 			caption_bar_height_(menu_form_ ? 0.f : 30.f),
 			form_border_thickness_(1.f),
 			page_tolerance_(form_border_thickness_ / 2.f),
@@ -2679,7 +2680,7 @@ namespace liblec {
 			return size;
 		}
 
-		void form::impl::open_existing_instance() {
+		HWND form::impl::find_native_handle(const std::string& guid) {
 			struct searcher_struct {
 				/// <summary>The window's unique registration ID.</summary>
 				UINT unique_reg_id = 0;
@@ -2724,21 +2725,30 @@ namespace liblec {
 				}
 			};
 
-			if (!guid_.empty()) {
+			if (!guid.empty()) {
 				searcher_struct search_info;
-				search_info.unique_reg_id = RegisterWindowMessageA(guid_.c_str());
+				search_info.unique_reg_id = RegisterWindowMessageA(guid.c_str());
 				EnumWindows(helper::searcher, (LPARAM)&search_info);
+				return search_info.hWnd;
+			}
 
-				if (search_info.hWnd != nullptr) {
+			return nullptr;
+		}
+
+		void form::impl::open_existing_instance() {
+			if (!guid_.empty()) {
+				auto hWnd = find_native_handle(guid_);
+
+				if (hWnd != nullptr) {
 					log("opening existing instance");
 
-					SetForegroundWindow(search_info.hWnd);	// pop
+					SetForegroundWindow(hWnd);	// pop
 
-					if (IsMinimized(search_info.hWnd))
-						ShowWindow(search_info.hWnd, SW_RESTORE);	// restore
+					if (IsMinimized(hWnd))
+						ShowWindow(hWnd, SW_RESTORE);	// restore
 					else
-						if (!IsWindowVisible(search_info.hWnd))
-							ShowWindow(search_info.hWnd, SW_SHOW);	// show
+						if (!IsWindowVisible(hWnd))
+							ShowWindow(hWnd, SW_SHOW);	// show
 
 					// check if there is data in the commandline
 					command_line_parser args;
@@ -2768,7 +2778,7 @@ namespace liblec {
 						cds.lpData = szCmdLine;
 
 						DWORD_PTR result = 0;
-						LRESULT ok = ::SendMessageTimeout(search_info.hWnd,
+						LRESULT ok = ::SendMessageTimeout(hWnd,
 							WM_COPYDATA,	// message
 							0,				// WPARAM
 							(LPARAM)&cds,	// LPARAM
@@ -3028,14 +3038,20 @@ namespace liblec {
 				break;
 
 			case WM_COPYDATA: {
-				COPYDATASTRUCT* p_copy_data = (COPYDATASTRUCT*)lParam;
+				if (!form_.d_.receiving_) {
+					form_.d_.receiving_ = true;
 
-				if (p_copy_data && form_.d_.on_receive_data_) {
-					const std::string data((LPSTR)p_copy_data->lpData, p_copy_data->cbData);
+					COPYDATASTRUCT* p_copy_data = (COPYDATASTRUCT*)lParam;
 
-					// forward data to the receive data handler
-					if (!data.empty())
-						form_.d_.on_receive_data_(data);
+					if (p_copy_data && form_.d_.on_receive_data_) {
+						const std::string data((LPSTR)p_copy_data->lpData, p_copy_data->cbData);
+
+						// forward data to the receive data handler
+						if (!data.empty())
+							form_.d_.on_receive_data_(data);
+					}
+
+					form_.d_.receiving_ = false;
 				}
 			} break;
 

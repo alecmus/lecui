@@ -41,6 +41,16 @@ namespace liblec {
 			instance_management(form& fm, const std::string& guid);
 			~instance_management();
 
+			/// <summary>Send data to another application instance.</summary>
+			/// <param name="guid">The unique guid of the target application.</param>
+			/// <param name="data">The data to send.</param>
+			/// <param name="timeout_milliseconds">The timeout of the send operation, in
+			/// milliseconds.</param>
+			/// <param name="error">Error information.</param>
+			/// <returns>Returns true if the operation is successful, else false.</returns>
+			bool send_data(const std::string& guid, const std::string& data,
+				const long& timeout_milliseconds, std::string& error);
+
 		private:
 			class impl;
 			impl& d_;

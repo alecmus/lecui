@@ -13,6 +13,7 @@
 
 #include "instance.h"
 #include "form_impl/form_impl.h"
+#include "error/win_error.h"
 
 namespace liblec {
 	namespace lecui {
@@ -35,5 +36,42 @@ namespace liblec {
 
 		instance_management::instance_management(form& fm, const std::string& guid) : d_(*(new impl(fm, guid))) {}
 		instance_management::~instance_management() { delete& d_; }
+
+		bool instance_management::send_data(const std::string& guid, const std::string& data,
+			const long& timeout_milliseconds, std::string& error) {
+			
+			// find the form's native handle
+			auto hWnd = d_.fm_.d_.find_native_handle(guid);
+
+			if (hWnd == nullptr) {
+				error = "Instance not found";
+				return false;
+			}
+			else {
+				// pass the commandline to the existing instance
+				LPSTR szData = (LPSTR)data.c_str();
+
+				COPYDATASTRUCT cds;
+				cds.cbData = static_cast<DWORD>(strlen(szData) + 1);
+				cds.lpData = szData;
+
+				DWORD_PTR result = 0;
+				LRESULT ok = ::SendMessageTimeout(hWnd,
+					WM_COPYDATA,	// message
+					0,				// WPARAM
+					(LPARAM)&cds,	// LPARAM
+					SMTO_BLOCK |
+					SMTO_ABORTIFHUNG,
+					static_cast<UINT>(timeout_milliseconds),
+					&result);
+
+				if (ok != 0) {
+					error = get_last_error();
+					return false;
+				}
+				else
+					return true;
+			}
+		}
 	}
 }
