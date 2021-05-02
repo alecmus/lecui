@@ -34,7 +34,7 @@ BEGIN
             VALUE "FileVersion", lecuiversion
             VALUE "InternalName", lecuiname
             VALUE "LegalCopyright", lecuicopyright
-            VALUE "OriginalFilename", "lecui.dll"
+            VALUE "OriginalFilename", lecuifilename
             VALUE "ProductName", lecuiname
             VALUE "ProductVersion", lecuiversion
 			VALUE "Comments", lecuicomments
