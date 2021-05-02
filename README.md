@@ -31,9 +31,16 @@ Various useful usage examples are available in the
 [lecui demo](https://github.com/alecmus/lecui_demo) repository. These range from minimalist hello world
 examples all the way up to advanced multi-page and multi-layer apps.
 
+Various screenshots are available in the following places:
+
+Summary Description | Location
+------------------- | ------------------------------------
+lecui_show          | https://github.com/alecmus/files/tree/master/liblec/lecui/screenshots/lecui_show
+lecui_minimal       | https://github.com/alecmus/files/tree/master/liblec/lecui/screenshots/lecui_minimal
+
 ## Prebuilt Binaries
 Prebuilt binaries of the library can be found under
-[releases](https://github.com/alecmus/lecui/releases].
+[releases](https://github.com/alecmus/lecui/releases).
 
 ## Compile-time Dependencies
 The library has the following compile-time dependencies:
