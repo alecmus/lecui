@@ -6,12 +6,14 @@ The lecui user interface library is designed for the rapid development of modern
 easy to maintain C++ applications with a graphical user interface (gui). It is part of the
 [liblec libraries](https://github.com/alecmus/liblec).
 
-## Successor to the [cui framework](https://github.com/alecmus/cui)
+## Successor to the cui framework
 The lecui user interface library is designed to be a successor to the older
-[cui framework](https://github.com/alecmus/cui). But why?
+[cui framework](https://github.com/alecmus/cui). But why? It features newer technologies,
+greater flexibility and a more robust architecture. Below are some of the most important
+differences between the two:
 
 1. Accelerated graphics - while the former uses raw winapi, lecui uses accelerated graphics.
-2. Transparency effects - while all the widgets of the former are inherently opaque, lecui
+2. Transparency channels - while all the widgets of the former are inherently opaque, lecui
 supports transparent widgets due to the more modern technologies that it harnesses.
 3. Containers - the former only has a single type of container (page) while the latter
 features a myriad of containers for a much more flexible design (pages, panes, tab panes, etc.).
