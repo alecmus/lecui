@@ -19,7 +19,7 @@
 #define lecuicopyright		"(c) 2019 Alec T. Musasa"
 #define lecuifilename		"lecui.dll"
 
-#define lecuiversion		"1.0.0 alpha"
+#define lecuiversion		"1.0.0 alpha 1"
 #define lecuimajor			1
 #define lecuiminor			0
 #define lecuirevision		0
