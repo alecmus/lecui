@@ -2,7 +2,7 @@
 lecui user interface library
 
 <p>
-  Release Info
+  <em>Release Info</em>
   <br>
   <img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/alecmus/lecui">
   <img alt="GitHub Release Date" src="https://img.shields.io/github/release-date/alecmus/lecui">
@@ -10,7 +10,7 @@ lecui user interface library
 </p>
 
 <p>
-  Commit Info
+  <em>Commit Info</em>
   <br>
   <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/alecmus/lecui">
   <img alt="GitHub commit activity" src="https://img.shields.io/github/commit-activity/y/alecmus/lecui">
