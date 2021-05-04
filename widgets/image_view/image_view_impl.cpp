@@ -2,7 +2,7 @@
 ** image_impl.cpp - image_view_impl implementation
 **
 ** lecui user interface library
-** Copyright (c) 2019 Alec T. Musasa (alecmus at live dot com)
+** Copyright (c) 2019 Alec Musasa (alecmus at live dot com)
 **
 *******************************************************************************
 ** This file is part of the liblec library which is released under the Creative

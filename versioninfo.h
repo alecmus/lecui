@@ -2,7 +2,7 @@
 ** versioninfo.h - version information header file
 **
 ** lecui user interface library
-** Copyright (c) 2019 Alec T. Musasa (alecmus at live dot com)
+** Copyright (c) 2019 Alec Musasa (alecmus at live dot com)
 **
 *******************************************************************************
 ** This file is part of the liblec library which is released under the Creative
@@ -16,7 +16,7 @@
 #define lecuiname			"lecui"
 #define lecuidescription	"lecui user interface library"
 #define lecuicomments		"This file is part of the liblec library"
-#define lecuicopyright		"(c) 2019 Alec T. Musasa"
+#define lecuicopyright		"(c) 2019 Alec Musasa"
 #define lecuifilename		"lecui.dll"
 
 #define lecuiversion		"1.0.0 alpha 1"

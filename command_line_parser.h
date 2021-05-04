@@ -2,7 +2,7 @@
 ** command_line_parser.h - win32 commandline parser
 **
 ** lecui user interface library
-** Copyright (c) 2019 Alec T. Musasa (alecmus at live dot com)
+** Copyright (c) 2019 Alec Musasa (alecmus at live dot com)
 **
 *******************************************************************************
 ** This file is part of the liblec library which is released under the Creative
@@ -36,7 +36,7 @@ public:
 		m_cmdline = new char[strlen(cmdline) + 1];
 		if (m_cmdline) {
 			/*
-			** customization by Alec T. Musasa on 26 Feb 2014
+			** customization by Alec Musasa on 26 Feb 2014
 			**
 			** replace strcpy with strcpy_s
 			*/
@@ -52,7 +52,7 @@ public:
 		m_cmdline = new char[strlen(cmdline) + 1];
 		if (m_cmdline) {
 			/*
-			** customization by Alec T. Musasa on 26 Feb 2014
+			** customization by Alec Musasa on 26 Feb 2014
 			**
 			** replace strcpy with strcpy_s
 			*/
