@@ -1,0 +1,94 @@
+\hypertarget{classliblec_1_1lecui_1_1roundoff}{}\doxysection{liblec\+::lecui\+::roundoff Class Reference}
+\label{classliblec_1_1lecui_1_1roundoff}\index{liblec::lecui::roundoff@{liblec::lecui::roundoff}}
+
+
+Rounding off class.  
+
+
+
+
+{\ttfamily \#include $<$form\+\_\+common.\+h$>$}
+
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename T $>$ }\\static std\+::basic\+\_\+string$<$ T $>$ \mbox{\hyperlink{classliblec_1_1lecui_1_1roundoff_aacf825ea30aab2a9649216e6f78efd82}{tostr}} (const double \&d, int precision)
+\begin{DoxyCompactList}\small\item\em Round-\/off a double to a string. \end{DoxyCompactList}\item 
+static double \mbox{\hyperlink{classliblec_1_1lecui_1_1roundoff_aaf122df958986ad483ca255f161fa8c8}{tod}} (const double \&d, int precision)
+\begin{DoxyCompactList}\small\item\em Round-\/off a double to another double. \end{DoxyCompactList}\item 
+static float \mbox{\hyperlink{classliblec_1_1lecui_1_1roundoff_a4b5142ed8c94786f0756ef435de72775}{tof}} (const float \&f, int precision)
+\begin{DoxyCompactList}\small\item\em Round-\/off a float to another float. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Rounding off class. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1roundoff_aaf122df958986ad483ca255f161fa8c8}\label{classliblec_1_1lecui_1_1roundoff_aaf122df958986ad483ca255f161fa8c8}} 
+\index{liblec::lecui::roundoff@{liblec::lecui::roundoff}!tod@{tod}}
+\index{tod@{tod}!liblec::lecui::roundoff@{liblec::lecui::roundoff}}
+\doxysubsubsection{\texorpdfstring{tod()}{tod()}}
+{\footnotesize\ttfamily static double liblec\+::lecui\+::roundoff\+::tod (\begin{DoxyParamCaption}\item[{const double \&}]{d,  }\item[{int}]{precision }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Round-\/off a double to another double. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em d} & The double to round-\/off.\\
+\hline
+{\em precision} & The number of decimal places to round it off to.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The rounded-\/off value.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1roundoff_a4b5142ed8c94786f0756ef435de72775}\label{classliblec_1_1lecui_1_1roundoff_a4b5142ed8c94786f0756ef435de72775}} 
+\index{liblec::lecui::roundoff@{liblec::lecui::roundoff}!tof@{tof}}
+\index{tof@{tof}!liblec::lecui::roundoff@{liblec::lecui::roundoff}}
+\doxysubsubsection{\texorpdfstring{tof()}{tof()}}
+{\footnotesize\ttfamily static float liblec\+::lecui\+::roundoff\+::tof (\begin{DoxyParamCaption}\item[{const float \&}]{f,  }\item[{int}]{precision }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Round-\/off a float to another float. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em d} & The float to round-\/off.\\
+\hline
+{\em precision} & The number of decimal places to round it off to.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The rounded-\/off value.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1roundoff_aacf825ea30aab2a9649216e6f78efd82}\label{classliblec_1_1lecui_1_1roundoff_aacf825ea30aab2a9649216e6f78efd82}} 
+\index{liblec::lecui::roundoff@{liblec::lecui::roundoff}!tostr@{tostr}}
+\index{tostr@{tostr}!liblec::lecui::roundoff@{liblec::lecui::roundoff}}
+\doxysubsubsection{\texorpdfstring{tostr()}{tostr()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+static std\+::basic\+\_\+string$<$T$>$ liblec\+::lecui\+::roundoff\+::tostr (\begin{DoxyParamCaption}\item[{const double \&}]{d,  }\item[{int}]{precision }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Round-\/off a double to a string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em d} & The double to round-\/off.\\
+\hline
+{\em precision} & The number of decimal places to round it off to.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The rounded-\/off value, as a string.
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+form\+\_\+common.\+h\end{DoxyCompactItemize}

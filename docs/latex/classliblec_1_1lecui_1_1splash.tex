@@ -1,0 +1,70 @@
+\hypertarget{classliblec_1_1lecui_1_1splash}{}\doxysection{liblec\+::lecui\+::splash Class Reference}
+\label{classliblec_1_1lecui_1_1splash}\index{liblec::lecui::splash@{liblec::lecui::splash}}
+
+
+Splash screen class. Useful for displaying graphics while app is loading.  
+
+
+
+
+{\ttfamily \#include $<$splash.\+h$>$}
+
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classliblec_1_1lecui_1_1splash_1_1impl}{impl}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1splash_a5eca5d283116750fc8a1dc173c0b4202}\label{classliblec_1_1lecui_1_1splash_a5eca5d283116750fc8a1dc173c0b4202}} 
+{\bfseries splash} (\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}} \&fm)
+\item 
+bool \mbox{\hyperlink{classliblec_1_1lecui_1_1splash_a117bae549ae107420034cc8a33913780}{display}} (int png\+\_\+resource, std\+::string \&error)
+\begin{DoxyCompactList}\small\item\em Display splash screen image. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classliblec_1_1lecui_1_1splash_aa97d29ad159e313a7baa214b3a234c48}{remove}} ()
+\begin{DoxyCompactList}\small\item\em Remove splash screen image. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Splash screen class. Useful for displaying graphics while app is loading. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1splash_a117bae549ae107420034cc8a33913780}\label{classliblec_1_1lecui_1_1splash_a117bae549ae107420034cc8a33913780}} 
+\index{liblec::lecui::splash@{liblec::lecui::splash}!display@{display}}
+\index{display@{display}!liblec::lecui::splash@{liblec::lecui::splash}}
+\doxysubsubsection{\texorpdfstring{display()}{display()}}
+{\footnotesize\ttfamily bool liblec\+::lecui\+::splash\+::display (\begin{DoxyParamCaption}\item[{int}]{png\+\_\+resource,  }\item[{std\+::string \&}]{error }\end{DoxyParamCaption})}
+
+
+
+Display splash screen image. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em png\+\_\+resource} & The ID of the PNG resource containing the image.\\
+\hline
+{\em error} & Error information.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if successful, else false (in which case error information if written to the \char`\"{}error\char`\"{} parameter.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1splash_aa97d29ad159e313a7baa214b3a234c48}\label{classliblec_1_1lecui_1_1splash_aa97d29ad159e313a7baa214b3a234c48}} 
+\index{liblec::lecui::splash@{liblec::lecui::splash}!remove@{remove}}
+\index{remove@{remove}!liblec::lecui::splash@{liblec::lecui::splash}}
+\doxysubsubsection{\texorpdfstring{remove()}{remove()}}
+{\footnotesize\ttfamily void liblec\+::lecui\+::splash\+::remove (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Remove splash screen image. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+utilities/splash.\+h\item 
+utilities/splash/splash.\+cpp\end{DoxyCompactItemize}

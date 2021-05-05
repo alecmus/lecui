@@ -1,0 +1,142 @@
+\hypertarget{classformatted__text__editor}{}\doxysection{formatted\+\_\+text\+\_\+editor Class Reference}
+\label{classformatted__text__editor}\index{formatted\_text\_editor@{formatted\_text\_editor}}
+
+
+Class editing formatted text using position references in the plaintext.  
+
+
+
+
+{\ttfamily \#include $<$formatted\+\_\+text\+\_\+editor.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classformatted__text__editor_a049f42c0905a552c23df80b75e322669}{insert\+\_\+character}} (const char c, unsigned long position, unsigned long tag\+\_\+number, std\+::string \&xml\+\_\+text)
+\begin{DoxyCompactList}\small\item\em Insert a character at a given position. \end{DoxyCompactList}\item 
+unsigned long \mbox{\hyperlink{classformatted__text__editor_a2ab6592e8526ec45ee255ab4a92e78d7}{erase}} (unsigned long start, unsigned long end, std\+::string \&xml\+\_\+text)
+\begin{DoxyCompactList}\small\item\em Erase some characters from a formatted string. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classformatted__text__editor_ae3e299acdb758fb23eb1b48596662501}{cleanup}} (std\+::string \&xml\+\_\+text)
+\begin{DoxyCompactList}\small\item\em Cleanup an XML formatted string (removed any dangling empty tags that are typically left behind after erasure that spans entire tags. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classformatted__text__editor_abba7202aad96852a9d7fa4cb07d4b8f6}{toggle\+\_\+tag}} (std\+::string \&xml\+\_\+text, const std\+::string \&tag\+\_\+name, const std\+::vector$<$ \mbox{\hyperlink{structxml__parser_1_1tag__attribute}{xml\+\_\+parser\+::tag\+\_\+attribute}} $>$ \&tag\+\_\+attributes, unsigned long start, unsigned long end)
+\begin{DoxyCompactList}\small\item\em For toggling tags, e.\+g. \textquotesingle{}strong\textquotesingle{}, \textquotesingle{}em\textquotesingle{}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classformatted__text__editor_aa122ec44f48418980f7fd770fa565e2e}{toggle\+\_\+tag}} (std\+::string \&xml\+\_\+text, const std\+::string \&tag\+\_\+name, unsigned long start, unsigned long end)
+\begin{DoxyCompactList}\small\item\em For toggling basic tags, e.\+g. \textquotesingle{}strong\textquotesingle{}, \textquotesingle{}em\textquotesingle{}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class editing formatted text using position references in the plaintext. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classformatted__text__editor_ae3e299acdb758fb23eb1b48596662501}\label{classformatted__text__editor_ae3e299acdb758fb23eb1b48596662501}} 
+\index{formatted\_text\_editor@{formatted\_text\_editor}!cleanup@{cleanup}}
+\index{cleanup@{cleanup}!formatted\_text\_editor@{formatted\_text\_editor}}
+\doxysubsubsection{\texorpdfstring{cleanup()}{cleanup()}}
+{\footnotesize\ttfamily void formatted\+\_\+text\+\_\+editor\+::cleanup (\begin{DoxyParamCaption}\item[{std\+::string \&}]{xml\+\_\+text }\end{DoxyParamCaption})}
+
+
+
+Cleanup an XML formatted string (removed any dangling empty tags that are typically left behind after erasure that spans entire tags. 
+
+assumes there is no whitespace in empty tags
+
+
+\begin{DoxyParams}{Parameters}
+{\em xml\+\_\+text} & The XML formatted text. Modification are written back.\\
+\hline
+\end{DoxyParams}
+this identifier indicates the presence of an empty tag. This same identifier though can be found between two consecutive closing tags, e.\+g. {\bfseries{Just before next \textquotesingle{}a\textquotesingle{}.}}\mbox{\Hypertarget{classformatted__text__editor_a2ab6592e8526ec45ee255ab4a92e78d7}\label{classformatted__text__editor_a2ab6592e8526ec45ee255ab4a92e78d7}} 
+\index{formatted\_text\_editor@{formatted\_text\_editor}!erase@{erase}}
+\index{erase@{erase}!formatted\_text\_editor@{formatted\_text\_editor}}
+\doxysubsubsection{\texorpdfstring{erase()}{erase()}}
+{\footnotesize\ttfamily unsigned long formatted\+\_\+text\+\_\+editor\+::erase (\begin{DoxyParamCaption}\item[{unsigned long}]{start,  }\item[{unsigned long}]{end,  }\item[{std\+::string \&}]{xml\+\_\+text }\end{DoxyParamCaption})}
+
+
+
+Erase some characters from a formatted string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em start} & The start position, with reference to the plaintext.\\
+\hline
+{\em end} & The end position, with reference to the plaintext. This marks the position of \textquotesingle{}start\textquotesingle{} after the erasure. This is useful for immediate insertion of text in a way that the user expects, continuing with the formatting of the left-\/most position. \\
+\hline
+{\em xml\+\_\+text} & The XML formatted text. The modifications are written back.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The tag number after which any new text can immediately be inserted after the erasure.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classformatted__text__editor_a049f42c0905a552c23df80b75e322669}\label{classformatted__text__editor_a049f42c0905a552c23df80b75e322669}} 
+\index{formatted\_text\_editor@{formatted\_text\_editor}!insert\_character@{insert\_character}}
+\index{insert\_character@{insert\_character}!formatted\_text\_editor@{formatted\_text\_editor}}
+\doxysubsubsection{\texorpdfstring{insert\_character()}{insert\_character()}}
+{\footnotesize\ttfamily void formatted\+\_\+text\+\_\+editor\+::insert\+\_\+character (\begin{DoxyParamCaption}\item[{const char}]{c,  }\item[{unsigned long}]{position,  }\item[{unsigned long}]{tag\+\_\+number,  }\item[{std\+::string \&}]{xml\+\_\+text }\end{DoxyParamCaption})}
+
+
+
+Insert a character at a given position. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em c} & The character to insert.\\
+\hline
+{\em position} & The position to insert the character (in reference to the plaintext version).\\
+\hline
+{\em tag\+\_\+number} & The tag number after which to do the insertion.\\
+\hline
+{\em xml\+\_\+text} & The XML formatted text. The modifications are written back.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classformatted__text__editor_abba7202aad96852a9d7fa4cb07d4b8f6}\label{classformatted__text__editor_abba7202aad96852a9d7fa4cb07d4b8f6}} 
+\index{formatted\_text\_editor@{formatted\_text\_editor}!toggle\_tag@{toggle\_tag}}
+\index{toggle\_tag@{toggle\_tag}!formatted\_text\_editor@{formatted\_text\_editor}}
+\doxysubsubsection{\texorpdfstring{toggle\_tag()}{toggle\_tag()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void formatted\+\_\+text\+\_\+editor\+::toggle\+\_\+tag (\begin{DoxyParamCaption}\item[{std\+::string \&}]{xml\+\_\+text,  }\item[{const std\+::string \&}]{tag\+\_\+name,  }\item[{const std\+::vector$<$ \mbox{\hyperlink{structxml__parser_1_1tag__attribute}{xml\+\_\+parser\+::tag\+\_\+attribute}} $>$ \&}]{tag\+\_\+attributes,  }\item[{unsigned long}]{start,  }\item[{unsigned long}]{end }\end{DoxyParamCaption})}
+
+
+
+For toggling tags, e.\+g. \textquotesingle{}strong\textquotesingle{}, \textquotesingle{}em\textquotesingle{}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em xml\+\_\+text} & The XML formatted text.\\
+\hline
+{\em tag\+\_\+name} & The tag name, e.\+g. \char`\"{}span\char`\"{}.\\
+\hline
+{\em tag\+\_\+attributes} & The tag attributes.\\
+\hline
+{\em start} & The start position within the plain text.\\
+\hline
+{\em end} & The end position within the plain text.\\
+\hline
+\end{DoxyParams}
+modify the property\mbox{\Hypertarget{classformatted__text__editor_aa122ec44f48418980f7fd770fa565e2e}\label{classformatted__text__editor_aa122ec44f48418980f7fd770fa565e2e}} 
+\index{formatted\_text\_editor@{formatted\_text\_editor}!toggle\_tag@{toggle\_tag}}
+\index{toggle\_tag@{toggle\_tag}!formatted\_text\_editor@{formatted\_text\_editor}}
+\doxysubsubsection{\texorpdfstring{toggle\_tag()}{toggle\_tag()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void formatted\+\_\+text\+\_\+editor\+::toggle\+\_\+tag (\begin{DoxyParamCaption}\item[{std\+::string \&}]{xml\+\_\+text,  }\item[{const std\+::string \&}]{tag\+\_\+name,  }\item[{unsigned long}]{start,  }\item[{unsigned long}]{end }\end{DoxyParamCaption})}
+
+
+
+For toggling basic tags, e.\+g. \textquotesingle{}strong\textquotesingle{}, \textquotesingle{}em\textquotesingle{}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em xml\+\_\+text} & The XML formatted text.\\
+\hline
+{\em tag\+\_\+name} & The tag name, e.\+g. \char`\"{}strong\char`\"{}.\\
+\hline
+{\em start} & The start position within the plain text.\\
+\hline
+{\em end} & The end position within the plain text.\\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+formatted\+\_\+text\+\_\+editor/formatted\+\_\+text\+\_\+editor.\+h\item 
+formatted\+\_\+text\+\_\+editor/formatted\+\_\+text\+\_\+editor.\+cpp\end{DoxyCompactItemize}

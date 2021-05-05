@@ -1,0 +1,372 @@
+\hypertarget{classliblec_1_1lecui_1_1form}{}\doxysection{liblec\+::lecui\+::form Class Reference}
+\label{classliblec_1_1lecui_1_1form}\index{liblec::lecui::form@{liblec::lecui::form}}
+
+
+Form base class. The user must inherit from this class and call one of the two constructors from its own constructor.  
+
+
+
+
+{\ttfamily \#include $<$form.\+h$>$}
+
+Inheritance diagram for liblec\+::lecui\+::form\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classliblec_1_1lecui_1_1form}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classliblec_1_1lecui_1_1form_1_1impl}{impl}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1form_a5e8d85dd0feab388c6a5de92e54b4539}{form}} (const std\+::string \&caption)
+\begin{DoxyCompactList}\small\item\em Make a form with no parent. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1form_ab37322096b8c365efa7427c7229b6c12}{form}} (const std\+::string \&caption, \mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}} \&parent)
+\begin{DoxyCompactList}\small\item\em Make a modal form. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classliblec_1_1lecui_1_1form_abf87c84254489bf207145dbcb8d9dc03}{move}} (const \mbox{\hyperlink{structliblec_1_1lecui_1_1point}{point}} \&\mbox{\hyperlink{structliblec_1_1lecui_1_1point}{point}})
+\begin{DoxyCompactList}\small\item\em Move the form. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a8dcfa7376585537c1439cb79992e4c78}{move}} (const form\+\_\+position \&form\+\_\+position)
+\begin{DoxyCompactList}\small\item\em Move the form. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a65f0164f46c8bd3d61f8733bd0a45271}{show}} (std\+::string \&error)
+\begin{DoxyCompactList}\small\item\em Show the form. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classliblec_1_1lecui_1_1form_ab2331a6e572e672d4e875302da594666}{close}} ()
+\begin{DoxyCompactList}\small\item\em Close the form. When this is called all activity is stopped and the form is closed. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a2f7b5c3433fe4b347c8082b777b06731}{on\+\_\+layout}} (std\+::string \&error)
+\begin{DoxyCompactList}\small\item\em For defining the form\textquotesingle{}s layout. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a8622be8d1616b5b0ff254d514f9a66cb}{on\+\_\+start}} ()
+\begin{DoxyCompactList}\small\item\em Called after \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a2f7b5c3433fe4b347c8082b777b06731}{on\+\_\+layout()}} just before the form is displayed. This is a good place to close the splash screen. The splash screen itself is best created in the constructor of the class that inherits directly from this class. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a5f09417b21bcf56b829fcd06d6e06843}{on\+\_\+close}} ()
+\begin{DoxyCompactList}\small\item\em Called when either the close button on the top right is clicked, or when Alt+\+F4 is pressed on the keyboard. This is a good place to ask the user if they really wish to close the form, and then call \mbox{\hyperlink{classliblec_1_1lecui_1_1form_ab2331a6e572e672d4e875302da594666}{close()}} if they confirm. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classliblec_1_1lecui_1_1form_ada006716743659a1bf2443db07b8d120}{on\+\_\+shutdown}} ()
+\begin{DoxyCompactList}\small\item\em Called after closing is confirmed, before the form\textquotesingle{}s destructor is called. This is a good place to save user settings. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a3477fae3ae3d391f62c1d0e04cf0e1af}{prompt}} (const std\+::string \&question)
+\begin{DoxyCompactList}\small\item\em Prompt the user for confirmation of an action. Displays a small modal message box with yes-\/no buttons. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classliblec_1_1lecui_1_1form_ae4b44163b6dc7684f0192343d203c7fe}{message}} (const std\+::string \&message)
+\begin{DoxyCompactList}\small\item\em Display a message to the user in the form of a small modal message box with an ok button. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a144e42ae28a7c24d470d5b9b147efebd}{update}} ()
+\begin{DoxyCompactList}\small\item\em Update the form. A low resource refresh of the current page. Typically necessary only after adding a new widget at runtime to the currently displayed page to avoid a situation whereby the widget is only displayed the next time the mouse moves or the next time the tab key is pressed. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classliblec_1_1lecui_1_1form_ae2a0525beb9d780abd15a9baa54ac3f7}{reload}} ()
+\begin{DoxyCompactList}\small\item\em Reload the form and all its widgets. A high resource reload of the entire form\textquotesingle{}s graphic resources. The following things happen when this method is called\+: \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a1aea644ddea7acdc7a4d8b9a62a508d5}{on\+\_\+caption}} (std\+::function$<$ void()$>$on\+\_\+caption)
+\begin{DoxyCompactList}\small\item\em Set the handler to be called when the form\textquotesingle{}s caption is clicked. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a4e99b2e92968755f60f112bdf2a86650}{on\+\_\+drop\+\_\+files}} (std\+::function$<$ void(const std\+::string \&file)$>$on\+\_\+drop\+\_\+files)
+\begin{DoxyCompactList}\small\item\em Set the handler to be called when files are dropped on the form. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classliblec_1_1lecui_1_1form_aca1171d5db45597a569f7ec7e592eb37}{on\+\_\+receive\+\_\+data}} (std\+::function$<$ void(const std\+::string \&data)$>$on\+\_\+receive\+\_\+data)
+\begin{DoxyCompactList}\small\item\em Set the handler to be called when data is received from another instance. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::string \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a584db2a8621227633d2cd3a1658536a0}{menu\+\_\+form\+\_\+caption}} ()
+\begin{DoxyCompactList}\small\item\em A special caption used to make a menu form. \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a7b654f7048c08f06be84542ddef767e5}{keep\+\_\+alive}} ()
+\begin{DoxyCompactList}\small\item\em Keep UI responsive during lengthy calls. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Form base class. The user must inherit from this class and call one of the two constructors from its own constructor. 
+
+Fully DPI aware, but needs to be recreated if the system DPI changes while already open to rescale properly.
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1form_a5e8d85dd0feab388c6a5de92e54b4539}\label{classliblec_1_1lecui_1_1form_a5e8d85dd0feab388c6a5de92e54b4539}} 
+\index{liblec::lecui::form@{liblec::lecui::form}!form@{form}}
+\index{form@{form}!liblec::lecui::form@{liblec::lecui::form}}
+\doxysubsubsection{\texorpdfstring{form()}{form()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily liblec\+::lecui\+::form\+::form (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{caption }\end{DoxyParamCaption})}
+
+
+
+Make a form with no parent. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em caption} & The form caption, displayed on the top left. Supports formatting like any other label widget. Care has to be taken that the formatting does not result in text of excessive height since the title bar\textquotesingle{}s size is fixed. Default font size is 9px when none is specified in the formatting and it is not recommended to set a size greater than this for the above mentioned reason.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1form_ab37322096b8c365efa7427c7229b6c12}\label{classliblec_1_1lecui_1_1form_ab37322096b8c365efa7427c7229b6c12}} 
+\index{liblec::lecui::form@{liblec::lecui::form}!form@{form}}
+\index{form@{form}!liblec::lecui::form@{liblec::lecui::form}}
+\doxysubsubsection{\texorpdfstring{form()}{form()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily liblec\+::lecui\+::form\+::form (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{caption,  }\item[{\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}} \&}]{parent }\end{DoxyParamCaption})}
+
+
+
+Make a modal form. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em caption} & The form caption, displayed on the top left. Supports formatting like any other label widget. Care has to be taken that the formatting does not result in text of excessive height since the title bar\textquotesingle{}s size is fixed. Default font size is 9px when none is specified in the formatting and it is not recommended to set a size greater than this for the above mentioned reason.\\
+\hline
+{\em parent} & The parent form. The user cannot click the parent form until the child form is closed. Useful for making input forms.\\
+\hline
+\end{DoxyParams}
+
+
+The parent form remains active in the background, with all timers running. If it so happens that the parent is closed from one of these timers, all it\textquotesingle{}s children will be forcibly closed first. A child is not allowed to continue if the parent is closing.
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1form_ab2331a6e572e672d4e875302da594666}\label{classliblec_1_1lecui_1_1form_ab2331a6e572e672d4e875302da594666}} 
+\index{liblec::lecui::form@{liblec::lecui::form}!close@{close}}
+\index{close@{close}!liblec::lecui::form@{liblec::lecui::form}}
+\doxysubsubsection{\texorpdfstring{close()}{close()}}
+{\footnotesize\ttfamily void liblec\+::lecui\+::form\+::close (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Close the form. When this is called all activity is stopped and the form is closed. 
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1form_a7b654f7048c08f06be84542ddef767e5}\label{classliblec_1_1lecui_1_1form_a7b654f7048c08f06be84542ddef767e5}} 
+\index{liblec::lecui::form@{liblec::lecui::form}!keep\_alive@{keep\_alive}}
+\index{keep\_alive@{keep\_alive}!liblec::lecui::form@{liblec::lecui::form}}
+\doxysubsubsection{\texorpdfstring{keep\_alive()}{keep\_alive()}}
+{\footnotesize\ttfamily bool liblec\+::lecui\+::form\+::keep\+\_\+alive (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Keep UI responsive during lengthy calls. 
+
+\begin{DoxyReturn}{Returns}
+Returns true to continue operation, and false to quit immediately.
+\end{DoxyReturn}
+
+
+In lengthy operations it is useful to call this method between successive steps in order to keep the UI responsive.\mbox{\Hypertarget{classliblec_1_1lecui_1_1form_a584db2a8621227633d2cd3a1658536a0}\label{classliblec_1_1lecui_1_1form_a584db2a8621227633d2cd3a1658536a0}} 
+\index{liblec::lecui::form@{liblec::lecui::form}!menu\_form\_caption@{menu\_form\_caption}}
+\index{menu\_form\_caption@{menu\_form\_caption}!liblec::lecui::form@{liblec::lecui::form}}
+\doxysubsubsection{\texorpdfstring{menu\_form\_caption()}{menu\_form\_caption()}}
+{\footnotesize\ttfamily std\+::string liblec\+::lecui\+::form\+::menu\+\_\+form\+\_\+caption (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+A special caption used to make a menu form. 
+
+\begin{DoxyReturn}{Returns}
+The internally reserved caption for menu forms.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1form_ae4b44163b6dc7684f0192343d203c7fe}\label{classliblec_1_1lecui_1_1form_ae4b44163b6dc7684f0192343d203c7fe}} 
+\index{liblec::lecui::form@{liblec::lecui::form}!message@{message}}
+\index{message@{message}!liblec::lecui::form@{liblec::lecui::form}}
+\doxysubsubsection{\texorpdfstring{message()}{message()}}
+{\footnotesize\ttfamily void liblec\+::lecui\+::form\+::message (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{message }\end{DoxyParamCaption})}
+
+
+
+Display a message to the user in the form of a small modal message box with an ok button. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & The message to display.\\
+\hline
+\end{DoxyParams}
+
+
+Is centered to the form, and inherits the caption from the form.\mbox{\Hypertarget{classliblec_1_1lecui_1_1form_a8dcfa7376585537c1439cb79992e4c78}\label{classliblec_1_1lecui_1_1form_a8dcfa7376585537c1439cb79992e4c78}} 
+\index{liblec::lecui::form@{liblec::lecui::form}!move@{move}}
+\index{move@{move}!liblec::lecui::form@{liblec::lecui::form}}
+\doxysubsubsection{\texorpdfstring{move()}{move()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void liblec\+::lecui\+::form\+::move (\begin{DoxyParamCaption}\item[{const form\+\_\+position \&}]{form\+\_\+position }\end{DoxyParamCaption})}
+
+
+
+Move the form. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em form\+\_\+position} & The predefined form position.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1form_abf87c84254489bf207145dbcb8d9dc03}\label{classliblec_1_1lecui_1_1form_abf87c84254489bf207145dbcb8d9dc03}} 
+\index{liblec::lecui::form@{liblec::lecui::form}!move@{move}}
+\index{move@{move}!liblec::lecui::form@{liblec::lecui::form}}
+\doxysubsubsection{\texorpdfstring{move()}{move()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void liblec\+::lecui\+::form\+::move (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structliblec_1_1lecui_1_1point}{point}} \&}]{point }\end{DoxyParamCaption})}
+
+
+
+Move the form. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em point} & The coordinates of the top left corner of the form, in pixels. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1form_a1aea644ddea7acdc7a4d8b9a62a508d5}\label{classliblec_1_1lecui_1_1form_a1aea644ddea7acdc7a4d8b9a62a508d5}} 
+\index{liblec::lecui::form@{liblec::lecui::form}!on\_caption@{on\_caption}}
+\index{on\_caption@{on\_caption}!liblec::lecui::form@{liblec::lecui::form}}
+\doxysubsubsection{\texorpdfstring{on\_caption()}{on\_caption()}}
+{\footnotesize\ttfamily void liblec\+::lecui\+::form\+::on\+\_\+caption (\begin{DoxyParamCaption}\item[{std\+::function$<$ void()$>$}]{on\+\_\+caption }\end{DoxyParamCaption})}
+
+
+
+Set the handler to be called when the form\textquotesingle{}s caption is clicked. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em on\+\_\+caption} & The handler.\\
+\hline
+\end{DoxyParams}
+
+
+The handler has to be set in \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a2f7b5c3433fe4b347c8082b777b06731}{on\+\_\+layout()}} or before, else it will not register. Setting the handler in \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a8622be8d1616b5b0ff254d514f9a66cb}{on\+\_\+start()}} is too late because the form caption will have already been created by then.\mbox{\Hypertarget{classliblec_1_1lecui_1_1form_a5f09417b21bcf56b829fcd06d6e06843}\label{classliblec_1_1lecui_1_1form_a5f09417b21bcf56b829fcd06d6e06843}} 
+\index{liblec::lecui::form@{liblec::lecui::form}!on\_close@{on\_close}}
+\index{on\_close@{on\_close}!liblec::lecui::form@{liblec::lecui::form}}
+\doxysubsubsection{\texorpdfstring{on\_close()}{on\_close()}}
+{\footnotesize\ttfamily void liblec\+::lecui\+::form\+::on\+\_\+close (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Called when either the close button on the top right is clicked, or when Alt+\+F4 is pressed on the keyboard. This is a good place to ask the user if they really wish to close the form, and then call \mbox{\hyperlink{classliblec_1_1lecui_1_1form_ab2331a6e572e672d4e875302da594666}{close()}} if they confirm. 
+
+\mbox{\hyperlink{classliblec_1_1lecui_1_1form_ab2331a6e572e672d4e875302da594666}{close()}} is called internally if this virtual method is never overriden. \mbox{\Hypertarget{classliblec_1_1lecui_1_1form_a4e99b2e92968755f60f112bdf2a86650}\label{classliblec_1_1lecui_1_1form_a4e99b2e92968755f60f112bdf2a86650}} 
+\index{liblec::lecui::form@{liblec::lecui::form}!on\_drop\_files@{on\_drop\_files}}
+\index{on\_drop\_files@{on\_drop\_files}!liblec::lecui::form@{liblec::lecui::form}}
+\doxysubsubsection{\texorpdfstring{on\_drop\_files()}{on\_drop\_files()}}
+{\footnotesize\ttfamily void liblec\+::lecui\+::form\+::on\+\_\+drop\+\_\+files (\begin{DoxyParamCaption}\item[{std\+::function$<$ void(const std\+::string \&file)$>$}]{on\+\_\+drop\+\_\+files }\end{DoxyParamCaption})}
+
+
+
+Set the handler to be called when files are dropped on the form. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em on\+\_\+drop\+\_\+files} & The handler. When it is called, the parameter will contain the full path to the dropped file, including the file\textquotesingle{}s extension.\\
+\hline
+\end{DoxyParams}
+
+
+If this method is never called the form will not accept dropped files. To stop accepting dropped files pass a nullptr to this method.\mbox{\Hypertarget{classliblec_1_1lecui_1_1form_a2f7b5c3433fe4b347c8082b777b06731}\label{classliblec_1_1lecui_1_1form_a2f7b5c3433fe4b347c8082b777b06731}} 
+\index{liblec::lecui::form@{liblec::lecui::form}!on\_layout@{on\_layout}}
+\index{on\_layout@{on\_layout}!liblec::lecui::form@{liblec::lecui::form}}
+\doxysubsubsection{\texorpdfstring{on\_layout()}{on\_layout()}}
+{\footnotesize\ttfamily bool liblec\+::lecui\+::form\+::on\+\_\+layout (\begin{DoxyParamCaption}\item[{std\+::string \&}]{error }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+For defining the form\textquotesingle{}s layout. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em error} & If there\textquotesingle{}s an error in the layout function\textquotesingle{}s implementation write that error information to this reference, and return false. This information will be internally passed to the blocking \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a65f0164f46c8bd3d61f8733bd0a45271}{show()}} method.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Return true if the layout is successful, else false.
+\end{DoxyReturn}
+
+
+It is recommended to add at least one page container to the form in this method and show it before returning from this method. This becomes the home page. All the form\textquotesingle{}s pages can be made in this method but this is not recommended. It is recommended to create other pages in the handlers that attempt to open them so that they are created dynamically at runtime so that the app uses the least amount of resources. 
+
+Reimplemented in \mbox{\hyperlink{classliblec_1_1lecui_1_1context__menu_1_1impl_a968e2950bbaaf588032f357d1cd70b35}{liblec\+::lecui\+::context\+\_\+menu\+::impl}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1form_aca1171d5db45597a569f7ec7e592eb37}\label{classliblec_1_1lecui_1_1form_aca1171d5db45597a569f7ec7e592eb37}} 
+\index{liblec::lecui::form@{liblec::lecui::form}!on\_receive\_data@{on\_receive\_data}}
+\index{on\_receive\_data@{on\_receive\_data}!liblec::lecui::form@{liblec::lecui::form}}
+\doxysubsubsection{\texorpdfstring{on\_receive\_data()}{on\_receive\_data()}}
+{\footnotesize\ttfamily void liblec\+::lecui\+::form\+::on\+\_\+receive\+\_\+data (\begin{DoxyParamCaption}\item[{std\+::function$<$ void(const std\+::string \&data)$>$}]{on\+\_\+receive\+\_\+data }\end{DoxyParamCaption})}
+
+
+
+Set the handler to be called when data is received from another instance. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em on\+\_\+receive\+\_\+data} & The handler. When it is called, the parameter will contain the received data.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1form_ada006716743659a1bf2443db07b8d120}\label{classliblec_1_1lecui_1_1form_ada006716743659a1bf2443db07b8d120}} 
+\index{liblec::lecui::form@{liblec::lecui::form}!on\_shutdown@{on\_shutdown}}
+\index{on\_shutdown@{on\_shutdown}!liblec::lecui::form@{liblec::lecui::form}}
+\doxysubsubsection{\texorpdfstring{on\_shutdown()}{on\_shutdown()}}
+{\footnotesize\ttfamily void liblec\+::lecui\+::form\+::on\+\_\+shutdown (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Called after closing is confirmed, before the form\textquotesingle{}s destructor is called. This is a good place to save user settings. 
+
+Avoid such logic errors as attempting to create widgets here.\mbox{\Hypertarget{classliblec_1_1lecui_1_1form_a8622be8d1616b5b0ff254d514f9a66cb}\label{classliblec_1_1lecui_1_1form_a8622be8d1616b5b0ff254d514f9a66cb}} 
+\index{liblec::lecui::form@{liblec::lecui::form}!on\_start@{on\_start}}
+\index{on\_start@{on\_start}!liblec::lecui::form@{liblec::lecui::form}}
+\doxysubsubsection{\texorpdfstring{on\_start()}{on\_start()}}
+{\footnotesize\ttfamily void liblec\+::lecui\+::form\+::on\+\_\+start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Called after \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a2f7b5c3433fe4b347c8082b777b06731}{on\+\_\+layout()}} just before the form is displayed. This is a good place to close the splash screen. The splash screen itself is best created in the constructor of the class that inherits directly from this class. 
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1form_a3477fae3ae3d391f62c1d0e04cf0e1af}\label{classliblec_1_1lecui_1_1form_a3477fae3ae3d391f62c1d0e04cf0e1af}} 
+\index{liblec::lecui::form@{liblec::lecui::form}!prompt@{prompt}}
+\index{prompt@{prompt}!liblec::lecui::form@{liblec::lecui::form}}
+\doxysubsubsection{\texorpdfstring{prompt()}{prompt()}}
+{\footnotesize\ttfamily bool liblec\+::lecui\+::form\+::prompt (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{question }\end{DoxyParamCaption})}
+
+
+
+Prompt the user for confirmation of an action. Displays a small modal message box with yes-\/no buttons. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em question} & The question to ask the user.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if yes is selected, else no.
+\end{DoxyReturn}
+
+
+Is centered to the form, and inherits the caption from the form.\mbox{\Hypertarget{classliblec_1_1lecui_1_1form_ae2a0525beb9d780abd15a9baa54ac3f7}\label{classliblec_1_1lecui_1_1form_ae2a0525beb9d780abd15a9baa54ac3f7}} 
+\index{liblec::lecui::form@{liblec::lecui::form}!reload@{reload}}
+\index{reload@{reload}!liblec::lecui::form@{liblec::lecui::form}}
+\doxysubsubsection{\texorpdfstring{reload()}{reload()}}
+{\footnotesize\ttfamily void liblec\+::lecui\+::form\+::reload (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Reload the form and all its widgets. A high resource reload of the entire form\textquotesingle{}s graphic resources. The following things happen when this method is called\+: 
+
+
+\begin{DoxyEnumerate}
+\item The form\textquotesingle{}s graphic resources are all recreated.
+\item The graphic resources for the currently displayed page are all recreated.
+\item The graphic resources of all pages that have been added to the form but are not currently displayed are all recreated.
+\end{DoxyEnumerate}
+
+Depending on the computing platform, this can take a considerable amount of time in a large app, ranging from milliseconds to actual seconds. The better the app is designed the less time it will take, as such applications typically only create pages on-\/demand. However, even in a well designed app the difference with \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a144e42ae28a7c24d470d5b9b147efebd}{update()}} will be obvious if many pages are currently open. Note\+: this doesn\textquotesingle{}t change the form\textquotesingle{}s \textquotesingle{}state\textquotesingle{}, e.\+g. if a widget was closed it won\textquotesingle{}t magically reappear. This reloads the current \textquotesingle{}state\textquotesingle{}. \mbox{\Hypertarget{classliblec_1_1lecui_1_1form_a65f0164f46c8bd3d61f8733bd0a45271}\label{classliblec_1_1lecui_1_1form_a65f0164f46c8bd3d61f8733bd0a45271}} 
+\index{liblec::lecui::form@{liblec::lecui::form}!show@{show}}
+\index{show@{show}!liblec::lecui::form@{liblec::lecui::form}}
+\doxysubsubsection{\texorpdfstring{show()}{show()}}
+{\footnotesize\ttfamily bool liblec\+::lecui\+::form\+::show (\begin{DoxyParamCaption}\item[{std\+::string \&}]{error }\end{DoxyParamCaption})}
+
+
+
+Show the form. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em error} & Error information on fail.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if successful, else false. If false, error information will be written to the error reference.
+\end{DoxyReturn}
+
+
+This is a blocking function and will only return when either the form is closed or in the event of an error during form creation.\mbox{\Hypertarget{classliblec_1_1lecui_1_1form_a144e42ae28a7c24d470d5b9b147efebd}\label{classliblec_1_1lecui_1_1form_a144e42ae28a7c24d470d5b9b147efebd}} 
+\index{liblec::lecui::form@{liblec::lecui::form}!update@{update}}
+\index{update@{update}!liblec::lecui::form@{liblec::lecui::form}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void liblec\+::lecui\+::form\+::update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Update the form. A low resource refresh of the current page. Typically necessary only after adding a new widget at runtime to the currently displayed page to avoid a situation whereby the widget is only displayed the next time the mouse moves or the next time the tab key is pressed. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+form.\+h\item 
+form.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,232 @@
+\hypertarget{classliblec_1_1lecui_1_1widgets_1_1specs}{}\doxysection{liblec\+::lecui\+::widgets\+::specs Class Reference}
+\label{classliblec_1_1lecui_1_1widgets_1_1specs}\index{liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}}
+
+
+Base class for all widget specifications.  
+
+
+
+
+{\ttfamily \#include $<$widget.\+h$>$}
+
+Inheritance diagram for liblec\+::lecui\+::widgets\+::specs\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=12.000000cm]{classliblec_1_1lecui_1_1widgets_1_1specs}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1specs_1_1basic__events}{basic\+\_\+events}}
+\begin{DoxyCompactList}\small\item\em Events common to all widgets. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1specs_1_1resize__params}{resize\+\_\+params}}
+\begin{DoxyCompactList}\small\item\em Resize parameters. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum class \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a3cba4c05a958d80dca72e4e9dd5360b1}{cursor\+\_\+type}} \{ {\bfseries arrow}
+, {\bfseries hand}
+, {\bfseries caret}
+ \}
+\begin{DoxyCompactList}\small\item\em Mouse cursor type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1specs_1_1basic__events}{basic\+\_\+events}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_af5e280dcc32e250216e223c492a489c2}{events}} ()
+\begin{DoxyCompactList}\small\item\em Widget events. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a65258100c285886744f1a21eccecc088}{operator==}} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs}{specs}} \&)
+\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1specs_a8933790a5fb9c21007497324912e9c4b}\label{classliblec_1_1lecui_1_1widgets_1_1specs_a8933790a5fb9c21007497324912e9c4b}} 
+bool {\bfseries operator!=} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs}{specs}} \&)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a6e41c96382c27dba2133aaee1774ff8f}{text}}
+\begin{DoxyCompactList}\small\item\em The widget text. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{lecui\+::rect}} \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a933348ca35cca993724d5e76b03a435e}{rect}}
+\begin{DoxyCompactList}\small\item\em The position and dimensions of the widget. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1specs_1_1resize__params}{resize\+\_\+params}} \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_af631f77f9b34a61126961b67b3f90c71}{on\+\_\+resize}} = \{ 0.f, 0.f, 0.f, 0.f \}
+\begin{DoxyCompactList}\small\item\em The behaviour of the widget when its container is resized. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a3cba4c05a958d80dca72e4e9dd5360b1}{cursor\+\_\+type}} \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a53b0a39e54721d7fabe54dea1b4cf60f}{cursor}} = cursor\+\_\+type\+::arrow
+\begin{DoxyCompactList}\small\item\em The cursor to be used when the mouse is over the widget. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a100c14e2b66ae57a74fe66912769447c}{font}} = \char`\"{}Segoe UI\char`\"{}
+\begin{DoxyCompactList}\small\item\em The font to use for the widget text. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_aa8b943a543299ca5e9c4ddb551021b47}{font\+\_\+size}} = 9.f
+\begin{DoxyCompactList}\small\item\em The size of the font, in points. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structliblec_1_1lecui_1_1color}{color}} \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a22c48f972b72e8649997eebb7511ef55}{color\+\_\+text}} = \{ 0, 0, 0, 255 \}
+\begin{DoxyCompactList}\small\item\em The color of the widget text. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structliblec_1_1lecui_1_1color}{color}} \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_af231c7c08da337517d674ad83c4966f7}{color\+\_\+fill}} = \{ 0, 120, 170, 255 \}
+\begin{DoxyCompactList}\small\item\em The fill color of the widget. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structliblec_1_1lecui_1_1color}{color}} \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_aca074d8f11e5ed68481918415b63f7d7}{color\+\_\+hot}} = \{ 0, 120, 170, 255 \}
+\begin{DoxyCompactList}\small\item\em The hit color when the mouse is over the widget. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structliblec_1_1lecui_1_1color}{color}} \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a882c8cc2ed13d0f86dbfad491b893703}{color\+\_\+selected}} = \{ 0, 120, 170, 30 \}
+\begin{DoxyCompactList}\small\item\em The color to be used to mark the widget as selected. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structliblec_1_1lecui_1_1color}{color}} \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a0e55d6ac3d68a11005f6224cc5e373f0}{color\+\_\+disabled}} = \{ 180, 180, 180, 255 \}
+\begin{DoxyCompactList}\small\item\em The color of the widget when it is disabled. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Base class for all widget specifications. 
+
+
+
+\doxysubsection{Member Enumeration Documentation}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1specs_a3cba4c05a958d80dca72e4e9dd5360b1}\label{classliblec_1_1lecui_1_1widgets_1_1specs_a3cba4c05a958d80dca72e4e9dd5360b1}} 
+\index{liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}!cursor\_type@{cursor\_type}}
+\index{cursor\_type@{cursor\_type}!liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}}
+\doxysubsubsection{\texorpdfstring{cursor\_type}{cursor\_type}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a3cba4c05a958d80dca72e4e9dd5360b1}{liblec\+::lecui\+::widgets\+::specs\+::cursor\+\_\+type}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+
+
+Mouse cursor type. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1specs_af5e280dcc32e250216e223c492a489c2}\label{classliblec_1_1lecui_1_1widgets_1_1specs_af5e280dcc32e250216e223c492a489c2}} 
+\index{liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}!events@{events}}
+\index{events@{events}!liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}}
+\doxysubsubsection{\texorpdfstring{events()}{events()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1specs_1_1basic__events}{basic\+\_\+events}}\& liblec\+::lecui\+::widgets\+::specs\+::events (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Widget events. 
+
+Widgets with additional events need to override this method.
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget\textquotesingle{}s basic events.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1specs_a65258100c285886744f1a21eccecc088}\label{classliblec_1_1lecui_1_1widgets_1_1specs_a65258100c285886744f1a21eccecc088}} 
+\index{liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}!operator==@{operator==}}
+\index{operator==@{operator==}!liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}}
+\doxysubsubsection{\texorpdfstring{operator==()}{operator==()}}
+{\footnotesize\ttfamily bool liblec\+::lecui\+::widgets\+::specs\+::operator== (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs}{specs}} \&}]{param }\end{DoxyParamCaption})}
+
+This operator is for determining whether to recreate widget resources. It doesn\textquotesingle{}t represent equality in the sense of widgets having the same characteristics! Colors
+
+Font
+
+Cursor
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1specs_a0e55d6ac3d68a11005f6224cc5e373f0}\label{classliblec_1_1lecui_1_1widgets_1_1specs_a0e55d6ac3d68a11005f6224cc5e373f0}} 
+\index{liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}!color\_disabled@{color\_disabled}}
+\index{color\_disabled@{color\_disabled}!liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}}
+\doxysubsubsection{\texorpdfstring{color\_disabled}{color\_disabled}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structliblec_1_1lecui_1_1color}{color}} liblec\+::lecui\+::widgets\+::specs\+::color\+\_\+disabled = \{ 180, 180, 180, 255 \}}
+
+
+
+The color of the widget when it is disabled. 
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1specs_af231c7c08da337517d674ad83c4966f7}\label{classliblec_1_1lecui_1_1widgets_1_1specs_af231c7c08da337517d674ad83c4966f7}} 
+\index{liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}!color\_fill@{color\_fill}}
+\index{color\_fill@{color\_fill}!liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}}
+\doxysubsubsection{\texorpdfstring{color\_fill}{color\_fill}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structliblec_1_1lecui_1_1color}{color}} liblec\+::lecui\+::widgets\+::specs\+::color\+\_\+fill = \{ 0, 120, 170, 255 \}}
+
+
+
+The fill color of the widget. 
+
+The use of the fill color varies from widget to widget. Refer to the specific widget\textquotesingle{}s documentation for details.\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1specs_aca074d8f11e5ed68481918415b63f7d7}\label{classliblec_1_1lecui_1_1widgets_1_1specs_aca074d8f11e5ed68481918415b63f7d7}} 
+\index{liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}!color\_hot@{color\_hot}}
+\index{color\_hot@{color\_hot}!liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}}
+\doxysubsubsection{\texorpdfstring{color\_hot}{color\_hot}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structliblec_1_1lecui_1_1color}{color}} liblec\+::lecui\+::widgets\+::specs\+::color\+\_\+hot = \{ 0, 120, 170, 255 \}}
+
+
+
+The hit color when the mouse is over the widget. 
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1specs_a882c8cc2ed13d0f86dbfad491b893703}\label{classliblec_1_1lecui_1_1widgets_1_1specs_a882c8cc2ed13d0f86dbfad491b893703}} 
+\index{liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}!color\_selected@{color\_selected}}
+\index{color\_selected@{color\_selected}!liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}}
+\doxysubsubsection{\texorpdfstring{color\_selected}{color\_selected}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structliblec_1_1lecui_1_1color}{color}} liblec\+::lecui\+::widgets\+::specs\+::color\+\_\+selected = \{ 0, 120, 170, 30 \}}
+
+
+
+The color to be used to mark the widget as selected. 
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1specs_a22c48f972b72e8649997eebb7511ef55}\label{classliblec_1_1lecui_1_1widgets_1_1specs_a22c48f972b72e8649997eebb7511ef55}} 
+\index{liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}!color\_text@{color\_text}}
+\index{color\_text@{color\_text}!liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}}
+\doxysubsubsection{\texorpdfstring{color\_text}{color\_text}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structliblec_1_1lecui_1_1color}{color}} liblec\+::lecui\+::widgets\+::specs\+::color\+\_\+text = \{ 0, 0, 0, 255 \}}
+
+
+
+The color of the widget text. 
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1specs_a53b0a39e54721d7fabe54dea1b4cf60f}\label{classliblec_1_1lecui_1_1widgets_1_1specs_a53b0a39e54721d7fabe54dea1b4cf60f}} 
+\index{liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}!cursor@{cursor}}
+\index{cursor@{cursor}!liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}}
+\doxysubsubsection{\texorpdfstring{cursor}{cursor}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a3cba4c05a958d80dca72e4e9dd5360b1}{cursor\+\_\+type}} liblec\+::lecui\+::widgets\+::specs\+::cursor = cursor\+\_\+type\+::arrow}
+
+
+
+The cursor to be used when the mouse is over the widget. 
+
+This is only used if the widget is non-\/static.\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1specs_a100c14e2b66ae57a74fe66912769447c}\label{classliblec_1_1lecui_1_1widgets_1_1specs_a100c14e2b66ae57a74fe66912769447c}} 
+\index{liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}!font@{font}}
+\index{font@{font}!liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}}
+\doxysubsubsection{\texorpdfstring{font}{font}}
+{\footnotesize\ttfamily std\+::string liblec\+::lecui\+::widgets\+::specs\+::font = \char`\"{}Segoe UI\char`\"{}}
+
+
+
+The font to use for the widget text. 
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1specs_aa8b943a543299ca5e9c4ddb551021b47}\label{classliblec_1_1lecui_1_1widgets_1_1specs_aa8b943a543299ca5e9c4ddb551021b47}} 
+\index{liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}!font\_size@{font\_size}}
+\index{font\_size@{font\_size}!liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}}
+\doxysubsubsection{\texorpdfstring{font\_size}{font\_size}}
+{\footnotesize\ttfamily float liblec\+::lecui\+::widgets\+::specs\+::font\+\_\+size = 9.f}
+
+
+
+The size of the font, in points. 
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1specs_af631f77f9b34a61126961b67b3f90c71}\label{classliblec_1_1lecui_1_1widgets_1_1specs_af631f77f9b34a61126961b67b3f90c71}} 
+\index{liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}!on\_resize@{on\_resize}}
+\index{on\_resize@{on\_resize}!liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}}
+\doxysubsubsection{\texorpdfstring{on\_resize}{on\_resize}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1specs_1_1resize__params}{resize\+\_\+params}} liblec\+::lecui\+::widgets\+::specs\+::on\+\_\+resize = \{ 0.f, 0.f, 0.f, 0.f \}}
+
+
+
+The behaviour of the widget when its container is resized. 
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1specs_a933348ca35cca993724d5e76b03a435e}\label{classliblec_1_1lecui_1_1widgets_1_1specs_a933348ca35cca993724d5e76b03a435e}} 
+\index{liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}!rect@{rect}}
+\index{rect@{rect}!liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}}
+\doxysubsubsection{\texorpdfstring{rect}{rect}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{lecui\+::rect}} liblec\+::lecui\+::widgets\+::specs\+::rect}
+
+
+
+The position and dimensions of the widget. 
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1specs_a6e41c96382c27dba2133aaee1774ff8f}\label{classliblec_1_1lecui_1_1widgets_1_1specs_a6e41c96382c27dba2133aaee1774ff8f}} 
+\index{liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}!text@{text}}
+\index{text@{text}!liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}}
+\doxysubsubsection{\texorpdfstring{text}{text}}
+{\footnotesize\ttfamily std\+::string liblec\+::lecui\+::widgets\+::specs\+::text}
+
+
+
+The widget text. 
+
+The use of the text varies from widget to widget. Some widgets don\textquotesingle{}t use this field.
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+widgets/widget.\+h\item 
+widgets/widget.\+cpp\end{DoxyCompactItemize}

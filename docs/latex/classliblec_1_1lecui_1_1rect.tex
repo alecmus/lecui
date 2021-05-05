@@ -1,0 +1,269 @@
+\hypertarget{classliblec_1_1lecui_1_1rect}{}\doxysection{liblec\+::lecui\+::rect Class Reference}
+\label{classliblec_1_1lecui_1_1rect}\index{liblec::lecui::rect@{liblec::lecui::rect}}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1rect_a3ca035f3512afc153148305b8d3eda07}\label{classliblec_1_1lecui_1_1rect_a3ca035f3512afc153148305b8d3eda07}} 
+enum class {\bfseries snap\+\_\+type} \{ \newline
+{\bfseries bottom\+\_\+left}
+, {\bfseries bottom}
+, {\bfseries bottom\+\_\+right}
+, {\bfseries top\+\_\+left}
+, \newline
+{\bfseries top}
+, {\bfseries top\+\_\+right}
+, {\bfseries right\+\_\+top}
+, {\bfseries right}
+, \newline
+{\bfseries right\+\_\+bottom}
+, {\bfseries left\+\_\+top}
+, {\bfseries left}
+, {\bfseries left\+\_\+bottom}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{classliblec_1_1lecui_1_1rect_ab71b5e119632fb8997889dd5a7a52c53}{width}} ()
+\begin{DoxyCompactList}\small\item\em Get the rectangle\textquotesingle{}s width. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classliblec_1_1lecui_1_1rect_a3ee9c5e1c5b4fd030956e8d056aa77ba}{height}} ()
+\begin{DoxyCompactList}\small\item\em Get the rectangle\textquotesingle{}s height. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structliblec_1_1lecui_1_1size}{size}} \mbox{\hyperlink{classliblec_1_1lecui_1_1rect_a3f5bf0b50f3420efe9670931b1e7209e}{size}} ()
+\begin{DoxyCompactList}\small\item\em Get the rectangle\textquotesingle{}s size. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classliblec_1_1lecui_1_1rect_a8e2f3f6868065ec1e6562c7b721d0c13}{width}} (float width)
+\begin{DoxyCompactList}\small\item\em Set the rectangle\textquotesingle{}s width. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classliblec_1_1lecui_1_1rect_a47038c087f7c2f217d9506908866b418}{height}} (float height)
+\begin{DoxyCompactList}\small\item\em Set the rectangle\textquotesingle{}s height. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classliblec_1_1lecui_1_1rect_ae8fbe8b67c5c24957281736f1155081d}{size}} (\mbox{\hyperlink{structliblec_1_1lecui_1_1size}{lecui\+::size}} \mbox{\hyperlink{structliblec_1_1lecui_1_1size}{size}})
+\begin{DoxyCompactList}\small\item\em Set the rectangle\textquotesingle{}s size (both width and height). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classliblec_1_1lecui_1_1rect_af97b3d2c999e604403a9b066cc8f95c9}{size}} (float \mbox{\hyperlink{classliblec_1_1lecui_1_1rect_ab71b5e119632fb8997889dd5a7a52c53}{width}}, float \mbox{\hyperlink{classliblec_1_1lecui_1_1rect_a3ee9c5e1c5b4fd030956e8d056aa77ba}{height}})
+\begin{DoxyCompactList}\small\item\em Set the rectangle\textquotesingle{}s size (both width and height). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classliblec_1_1lecui_1_1rect_a5c022152cb39f62e46b35063e83280ae}{set}} (float x, float y, float cx, float cy)
+\begin{DoxyCompactList}\small\item\em Set the rectangle dimensions and position. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classliblec_1_1lecui_1_1rect_ad13987fd15c0c2a3e95955b297029c45}{move}} (float x, float y)
+\begin{DoxyCompactList}\small\item\em Move the rectangle using it\textquotesingle{}s top left corner. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classliblec_1_1lecui_1_1rect_a8ce990f659b0b15e1313582bccc9e7f0}{place}} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{rect}} \&rect\+\_\+reference, const float \&perc\+\_\+h, const float \&perc\+\_\+v)
+\begin{DoxyCompactList}\small\item\em Place this rectangle within or over another. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classliblec_1_1lecui_1_1rect_a9f4373f99c0cf357340e82203c92daed}{snap\+\_\+to}} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{rect}} \&rect\+\_\+reference, snap\+\_\+type type, const float \&clearance)
+\begin{DoxyCompactList}\small\item\em Snap this rectangle to another, for quick positioning. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1rect_a7d316190ece4977df36c5161549f9e7d}\label{classliblec_1_1lecui_1_1rect_a7d316190ece4977df36c5161549f9e7d}} 
+bool {\bfseries operator==} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{rect}} \&)
+\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1rect_af42280c510ab99f70d8c403c7e975e3f}\label{classliblec_1_1lecui_1_1rect_af42280c510ab99f70d8c403c7e975e3f}} 
+bool {\bfseries operator!=} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{rect}} \&)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1rect_afa4135836ba1e90d62eda43e5bc7a679}\label{classliblec_1_1lecui_1_1rect_afa4135836ba1e90d62eda43e5bc7a679}} 
+float {\bfseries left} = 0.f
+\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1rect_a496a2da9d34a60c809a8958e52bdcd94}\label{classliblec_1_1lecui_1_1rect_a496a2da9d34a60c809a8958e52bdcd94}} 
+float {\bfseries right} = 0.f
+\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1rect_ae36be903cad158bcd7ac1664ab21848d}\label{classliblec_1_1lecui_1_1rect_ae36be903cad158bcd7ac1664ab21848d}} 
+float {\bfseries top} = 0.f
+\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1rect_a636aaaa8f1a59918885d6430c21be621}\label{classliblec_1_1lecui_1_1rect_a636aaaa8f1a59918885d6430c21be621}} 
+float {\bfseries bottom} = 0.f
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1rect_a3ee9c5e1c5b4fd030956e8d056aa77ba}\label{classliblec_1_1lecui_1_1rect_a3ee9c5e1c5b4fd030956e8d056aa77ba}} 
+\index{liblec::lecui::rect@{liblec::lecui::rect}!height@{height}}
+\index{height@{height}!liblec::lecui::rect@{liblec::lecui::rect}}
+\doxysubsubsection{\texorpdfstring{height()}{height()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily float liblec\+::lecui\+::rect\+::height (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the rectangle\textquotesingle{}s height. 
+
+\begin{DoxyReturn}{Returns}
+The height.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1rect_a47038c087f7c2f217d9506908866b418}\label{classliblec_1_1lecui_1_1rect_a47038c087f7c2f217d9506908866b418}} 
+\index{liblec::lecui::rect@{liblec::lecui::rect}!height@{height}}
+\index{height@{height}!liblec::lecui::rect@{liblec::lecui::rect}}
+\doxysubsubsection{\texorpdfstring{height()}{height()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void liblec\+::lecui\+::rect\+::height (\begin{DoxyParamCaption}\item[{float}]{height }\end{DoxyParamCaption})}
+
+
+
+Set the rectangle\textquotesingle{}s height. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em height} & The height to set it to.\\
+\hline
+\end{DoxyParams}
+
+
+The top left corner is used as an anchor.\mbox{\Hypertarget{classliblec_1_1lecui_1_1rect_ad13987fd15c0c2a3e95955b297029c45}\label{classliblec_1_1lecui_1_1rect_ad13987fd15c0c2a3e95955b297029c45}} 
+\index{liblec::lecui::rect@{liblec::lecui::rect}!move@{move}}
+\index{move@{move}!liblec::lecui::rect@{liblec::lecui::rect}}
+\doxysubsubsection{\texorpdfstring{move()}{move()}}
+{\footnotesize\ttfamily void liblec\+::lecui\+::rect\+::move (\begin{DoxyParamCaption}\item[{float}]{x,  }\item[{float}]{y }\end{DoxyParamCaption})}
+
+
+
+Move the rectangle using it\textquotesingle{}s top left corner. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & The new x-\/coordinate of the top-\/left corner.\\
+\hline
+{\em y} & The new y-\/coordinate of the top-\/left corner.\\
+\hline
+\end{DoxyParams}
+
+
+The size of the rectangle remains unchanged. The rectangle is effectively translated to the new coodinates.\mbox{\Hypertarget{classliblec_1_1lecui_1_1rect_a8ce990f659b0b15e1313582bccc9e7f0}\label{classliblec_1_1lecui_1_1rect_a8ce990f659b0b15e1313582bccc9e7f0}} 
+\index{liblec::lecui::rect@{liblec::lecui::rect}!place@{place}}
+\index{place@{place}!liblec::lecui::rect@{liblec::lecui::rect}}
+\doxysubsubsection{\texorpdfstring{place()}{place()}}
+{\footnotesize\ttfamily void liblec\+::lecui\+::rect\+::place (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{rect}} \&}]{rect\+\_\+reference,  }\item[{const float \&}]{perc\+\_\+h,  }\item[{const float \&}]{perc\+\_\+v }\end{DoxyParamCaption})}
+
+
+
+Place this rectangle within or over another. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rect\+\_\+reference} & The rectangle to place it on or over.\\
+\hline
+{\em perc\+\_\+h} & How far along vertically to place it, as a percentage. 50\% means this rectangle will be centered vertically.\\
+\hline
+{\em perc\+\_\+v} & How far along horizontally to place it, as a percentage. 50\% means this rectangle will be centered horizontally.\\
+\hline
+\end{DoxyParams}
+
+
+This is a handy method for faster coding and easier maintenance.\mbox{\Hypertarget{classliblec_1_1lecui_1_1rect_a5c022152cb39f62e46b35063e83280ae}\label{classliblec_1_1lecui_1_1rect_a5c022152cb39f62e46b35063e83280ae}} 
+\index{liblec::lecui::rect@{liblec::lecui::rect}!set@{set}}
+\index{set@{set}!liblec::lecui::rect@{liblec::lecui::rect}}
+\doxysubsubsection{\texorpdfstring{set()}{set()}}
+{\footnotesize\ttfamily void liblec\+::lecui\+::rect\+::set (\begin{DoxyParamCaption}\item[{float}]{x,  }\item[{float}]{y,  }\item[{float}]{cx,  }\item[{float}]{cy }\end{DoxyParamCaption})}
+
+
+
+Set the rectangle dimensions and position. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & The x-\/coordinate.\\
+\hline
+{\em y} & The y-\/coordinate.\\
+\hline
+{\em cx} & The width.\\
+\hline
+{\em cy} & The height.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1rect_a3f5bf0b50f3420efe9670931b1e7209e}\label{classliblec_1_1lecui_1_1rect_a3f5bf0b50f3420efe9670931b1e7209e}} 
+\index{liblec::lecui::rect@{liblec::lecui::rect}!size@{size}}
+\index{size@{size}!liblec::lecui::rect@{liblec::lecui::rect}}
+\doxysubsubsection{\texorpdfstring{size()}{size()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structliblec_1_1lecui_1_1size}{size}} liblec\+::lecui\+::rect\+::size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the rectangle\textquotesingle{}s size. 
+
+\begin{DoxyReturn}{Returns}
+The size.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1rect_af97b3d2c999e604403a9b066cc8f95c9}\label{classliblec_1_1lecui_1_1rect_af97b3d2c999e604403a9b066cc8f95c9}} 
+\index{liblec::lecui::rect@{liblec::lecui::rect}!size@{size}}
+\index{size@{size}!liblec::lecui::rect@{liblec::lecui::rect}}
+\doxysubsubsection{\texorpdfstring{size()}{size()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily void liblec\+::lecui\+::rect\+::size (\begin{DoxyParamCaption}\item[{float}]{width,  }\item[{float}]{height }\end{DoxyParamCaption})}
+
+
+
+Set the rectangle\textquotesingle{}s size (both width and height). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em width} & The width to set.\\
+\hline
+{\em height} & The height to set.\\
+\hline
+\end{DoxyParams}
+
+
+The top left corner is used as an anchor.\mbox{\Hypertarget{classliblec_1_1lecui_1_1rect_ae8fbe8b67c5c24957281736f1155081d}\label{classliblec_1_1lecui_1_1rect_ae8fbe8b67c5c24957281736f1155081d}} 
+\index{liblec::lecui::rect@{liblec::lecui::rect}!size@{size}}
+\index{size@{size}!liblec::lecui::rect@{liblec::lecui::rect}}
+\doxysubsubsection{\texorpdfstring{size()}{size()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily void liblec\+::lecui\+::rect\+::size (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structliblec_1_1lecui_1_1size}{lecui\+::size}}}]{size }\end{DoxyParamCaption})}
+
+
+
+Set the rectangle\textquotesingle{}s size (both width and height). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & The size to set it to.\\
+\hline
+\end{DoxyParams}
+
+
+The top left corner is used as an anchor.\mbox{\Hypertarget{classliblec_1_1lecui_1_1rect_a9f4373f99c0cf357340e82203c92daed}\label{classliblec_1_1lecui_1_1rect_a9f4373f99c0cf357340e82203c92daed}} 
+\index{liblec::lecui::rect@{liblec::lecui::rect}!snap\_to@{snap\_to}}
+\index{snap\_to@{snap\_to}!liblec::lecui::rect@{liblec::lecui::rect}}
+\doxysubsubsection{\texorpdfstring{snap\_to()}{snap\_to()}}
+{\footnotesize\ttfamily void liblec\+::lecui\+::rect\+::snap\+\_\+to (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{rect}} \&}]{rect\+\_\+reference,  }\item[{snap\+\_\+type}]{type,  }\item[{const float \&}]{clearance }\end{DoxyParamCaption})}
+
+
+
+Snap this rectangle to another, for quick positioning. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rect\+\_\+reference} & The rectangle to snap to.\\
+\hline
+{\em type} & The snap type.\\
+\hline
+{\em clearance} & The clearance to use in the snapping operation.\\
+\hline
+\end{DoxyParams}
+
+
+This is a handy method for faster coding and easier maintenance.\mbox{\Hypertarget{classliblec_1_1lecui_1_1rect_ab71b5e119632fb8997889dd5a7a52c53}\label{classliblec_1_1lecui_1_1rect_ab71b5e119632fb8997889dd5a7a52c53}} 
+\index{liblec::lecui::rect@{liblec::lecui::rect}!width@{width}}
+\index{width@{width}!liblec::lecui::rect@{liblec::lecui::rect}}
+\doxysubsubsection{\texorpdfstring{width()}{width()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily float liblec\+::lecui\+::rect\+::width (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the rectangle\textquotesingle{}s width. 
+
+\begin{DoxyReturn}{Returns}
+The width.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1rect_a8e2f3f6868065ec1e6562c7b721d0c13}\label{classliblec_1_1lecui_1_1rect_a8e2f3f6868065ec1e6562c7b721d0c13}} 
+\index{liblec::lecui::rect@{liblec::lecui::rect}!width@{width}}
+\index{width@{width}!liblec::lecui::rect@{liblec::lecui::rect}}
+\doxysubsubsection{\texorpdfstring{width()}{width()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void liblec\+::lecui\+::rect\+::width (\begin{DoxyParamCaption}\item[{float}]{width }\end{DoxyParamCaption})}
+
+
+
+Set the rectangle\textquotesingle{}s width. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em width} & The width to set it to.\\
+\hline
+\end{DoxyParams}
+
+
+The top left corner is used as an anchor.
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+lecui.\+h\item 
+lecui.\+cpp\end{DoxyCompactItemize}

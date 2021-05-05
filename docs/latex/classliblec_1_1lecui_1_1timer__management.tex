@@ -1,0 +1,96 @@
+\hypertarget{classliblec_1_1lecui_1_1timer__management}{}\doxysection{liblec\+::lecui\+::timer\+\_\+management Class Reference}
+\label{classliblec_1_1lecui_1_1timer__management}\index{liblec::lecui::timer\_management@{liblec::lecui::timer\_management}}
+
+
+Timer management.  
+
+
+
+
+{\ttfamily \#include $<$timer.\+h$>$}
+
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classliblec_1_1lecui_1_1timer__management_1_1impl}{impl}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1timer__management_aa485da3a7b03c01e04c07cd43e21c4fb}\label{classliblec_1_1lecui_1_1timer__management_aa485da3a7b03c01e04c07cd43e21c4fb}} 
+{\bfseries timer\+\_\+management} (\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}} \&fm)
+\item 
+void \mbox{\hyperlink{classliblec_1_1lecui_1_1timer__management_a6c92dc012873bf2f68ca0caa29a0402b}{add}} (const std\+::string \&alias, const unsigned long \&milliseconds, std\+::function$<$ void()$>$ on\+\_\+timer)
+\begin{DoxyCompactList}\small\item\em Add a timer. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classliblec_1_1lecui_1_1timer__management_a3cb1cb75f9c0b8b03598abc9a2e09828}{running}} (const std\+::string \&alias)
+\begin{DoxyCompactList}\small\item\em Check if a specific timer is running. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classliblec_1_1lecui_1_1timer__management_a473f98a4d5de9e1411e1150833d16efc}{stop}} (const std\+::string \&alias)
+\begin{DoxyCompactList}\small\item\em Stop a specific timer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Timer management. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1timer__management_a6c92dc012873bf2f68ca0caa29a0402b}\label{classliblec_1_1lecui_1_1timer__management_a6c92dc012873bf2f68ca0caa29a0402b}} 
+\index{liblec::lecui::timer\_management@{liblec::lecui::timer\_management}!add@{add}}
+\index{add@{add}!liblec::lecui::timer\_management@{liblec::lecui::timer\_management}}
+\doxysubsubsection{\texorpdfstring{add()}{add()}}
+{\footnotesize\ttfamily void liblec\+::lecui\+::timer\+\_\+management\+::add (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{alias,  }\item[{const unsigned long \&}]{milliseconds,  }\item[{std\+::function$<$ void()$>$}]{on\+\_\+timer }\end{DoxyParamCaption})}
+
+
+
+Add a timer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em alias} & The in-\/form unique alias, e.\+g. \char`\"{}activation\+\_\+timer\char`\"{}.\\
+\hline
+{\em milliseconds} & The cycle duration.\\
+\hline
+{\em on\+\_\+timer} & The handler that\textquotesingle{}s called after the duration.\\
+\hline
+\end{DoxyParams}
+
+
+The timer will keep running until stopped manually, with the handler getting called repeatedly in a cycle.\mbox{\Hypertarget{classliblec_1_1lecui_1_1timer__management_a3cb1cb75f9c0b8b03598abc9a2e09828}\label{classliblec_1_1lecui_1_1timer__management_a3cb1cb75f9c0b8b03598abc9a2e09828}} 
+\index{liblec::lecui::timer\_management@{liblec::lecui::timer\_management}!running@{running}}
+\index{running@{running}!liblec::lecui::timer\_management@{liblec::lecui::timer\_management}}
+\doxysubsubsection{\texorpdfstring{running()}{running()}}
+{\footnotesize\ttfamily bool liblec\+::lecui\+::timer\+\_\+management\+::running (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{alias }\end{DoxyParamCaption})}
+
+
+
+Check if a specific timer is running. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em alias} & The timer\textquotesingle{}s unique alias.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the timer is running, else false.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1timer__management_a473f98a4d5de9e1411e1150833d16efc}\label{classliblec_1_1lecui_1_1timer__management_a473f98a4d5de9e1411e1150833d16efc}} 
+\index{liblec::lecui::timer\_management@{liblec::lecui::timer\_management}!stop@{stop}}
+\index{stop@{stop}!liblec::lecui::timer\_management@{liblec::lecui::timer\_management}}
+\doxysubsubsection{\texorpdfstring{stop()}{stop()}}
+{\footnotesize\ttfamily void liblec\+::lecui\+::timer\+\_\+management\+::stop (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{alias }\end{DoxyParamCaption})}
+
+
+
+Stop a specific timer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em alias} & The timer\textquotesingle{}s unique alias.\\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+timer.\+h\item 
+timer.\+cpp\end{DoxyCompactItemize}

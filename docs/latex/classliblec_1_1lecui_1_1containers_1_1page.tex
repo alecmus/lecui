@@ -1,0 +1,74 @@
+\hypertarget{classliblec_1_1lecui_1_1containers_1_1page}{}\doxysection{liblec\+::lecui\+::containers\+::page Class Reference}
+\label{classliblec_1_1lecui_1_1containers_1_1page}\index{liblec::lecui::containers::page@{liblec::lecui::containers::page}}
+
+
+Page container.  
+
+
+
+
+{\ttfamily \#include $<$page.\+h$>$}
+
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1page_1_1impl}{impl}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1page_a47e4257dba4434a89319d0fc32a140f6}{page}} (\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}} \&fm, const std\+::string \&alias)
+\begin{DoxyCompactList}\small\item\em Page constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structliblec_1_1lecui_1_1size}{size}} \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1page_a56882e0ac2a7dea63c806d9e8c5b3327}{size}} ()
+\begin{DoxyCompactList}\small\item\em Get the size of the page. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Page container. 
+
+This is the generic container type, and is the only one of the containers that can be added directly to a form. Any widget and any container can be added to it. It comes full featured with scroll bars that appear if anything within it exceeds it\textquotesingle{}s dimensions. It covers the entire form save for the border and the titlebar. It\textquotesingle{}s size is tightly coupled to the form, and is resized automatically as the form is resized. As such, it\textquotesingle{}s size cannot be directly manipulated. Other container types, however, can be resized directly, e.\+g. panes, but then they cannot be added directly to a form.
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1page_a47e4257dba4434a89319d0fc32a140f6}\label{classliblec_1_1lecui_1_1containers_1_1page_a47e4257dba4434a89319d0fc32a140f6}} 
+\index{liblec::lecui::containers::page@{liblec::lecui::containers::page}!page@{page}}
+\index{page@{page}!liblec::lecui::containers::page@{liblec::lecui::containers::page}}
+\doxysubsubsection{\texorpdfstring{page()}{page()}}
+{\footnotesize\ttfamily liblec\+::lecui\+::containers\+::page\+::page (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}} \&}]{fm,  }\item[{const std\+::string \&}]{alias }\end{DoxyParamCaption})}
+
+
+
+Page constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fm} & The form to add the page to.\\
+\hline
+{\em alias} & The in-\/form unique alias, e.\+g. \char`\"{}home\+\_\+page\char`\"{}.\\
+\hline
+\end{DoxyParams}
+
+
+Ensure that the alias is unique within the form. Reusing an alias in a form leads to undefined behavior.
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1page_a56882e0ac2a7dea63c806d9e8c5b3327}\label{classliblec_1_1lecui_1_1containers_1_1page_a56882e0ac2a7dea63c806d9e8c5b3327}} 
+\index{liblec::lecui::containers::page@{liblec::lecui::containers::page}!size@{size}}
+\index{size@{size}!liblec::lecui::containers::page@{liblec::lecui::containers::page}}
+\doxysubsubsection{\texorpdfstring{size()}{size()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structliblec_1_1lecui_1_1size}{size}} liblec\+::lecui\+::containers\+::page\+::size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the size of the page. 
+
+\begin{DoxyReturn}{Returns}
+The size, in pixels.
+\end{DoxyReturn}
+
+
+The size is automatically determined by the library. It is important to note that any widgets added to a page, and any other container for that matter, only see the dimensions and coordinates of that container not those of the form or another container higher up the hierarchy. Dimensions and coordinates are local to a container.
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+containers/page.\+h\item 
+containers/page/page.\+cpp\end{DoxyCompactItemize}

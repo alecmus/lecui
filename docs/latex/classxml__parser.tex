@@ -1,0 +1,78 @@
+\hypertarget{classxml__parser}{}\doxysection{xml\+\_\+parser Class Reference}
+\label{classxml__parser}\index{xml\_parser@{xml\_parser}}
+
+
+A custom XML parser that describes the XML file based on positions of tags within a plaintext canvas.  
+
+
+
+
+{\ttfamily \#include $<$xml\+\_\+parser.\+h$>$}
+
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structxml__parser_1_1tag}{tag}}
+\begin{DoxyCompactList}\small\item\em Structure that defines an XML tag relative to a plaintext canvas. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structxml__parser_1_1tag__attribute}{tag\+\_\+attribute}}
+\begin{DoxyCompactList}\small\item\em Structure that describes an XML tag attribute. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structxml__parser_1_1xml}{xml}}
+\begin{DoxyCompactList}\small\item\em A structure that describes XML using positions of tags within a plaintext canvas. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structxml__parser_1_1xml}{xml}} \mbox{\hyperlink{classxml__parser_a8cefbee18fc4062565e10d2e25963a7e}{read}} (std\+::string xml\+\_\+text)
+\begin{DoxyCompactList}\small\item\em Read XML text into a \mbox{\hyperlink{structxml__parser_1_1xml}{xml\+\_\+parser\+::xml}} structure. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classxml__parser_aa32531386de38ed0fae371c477163db8}{write}} (const \mbox{\hyperlink{structxml__parser_1_1xml}{xml}} \&info)
+\begin{DoxyCompactList}\small\item\em Write data from a \mbox{\hyperlink{structxml__parser_1_1xml}{xml\+\_\+parser\+::xml}} structure to an XML string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A custom XML parser that describes the XML file based on positions of tags within a plaintext canvas. 
+
+This parser is specifically designed for use with text rendering. Use only XML text that does not have whitespace between tags.
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classxml__parser_a8cefbee18fc4062565e10d2e25963a7e}\label{classxml__parser_a8cefbee18fc4062565e10d2e25963a7e}} 
+\index{xml\_parser@{xml\_parser}!read@{read}}
+\index{read@{read}!xml\_parser@{xml\_parser}}
+\doxysubsubsection{\texorpdfstring{read()}{read()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structxml__parser_1_1xml}{xml\+\_\+parser\+::xml}} xml\+\_\+parser\+::read (\begin{DoxyParamCaption}\item[{std\+::string}]{xml\+\_\+text }\end{DoxyParamCaption})}
+
+
+
+Read XML text into a \mbox{\hyperlink{structxml__parser_1_1xml}{xml\+\_\+parser\+::xml}} structure. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em xml\+\_\+text} & XML text.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a description of the XML text using a \mbox{\hyperlink{structxml__parser_1_1xml}{xml\+\_\+parser\+::xml}} data structure. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classxml__parser_aa32531386de38ed0fae371c477163db8}\label{classxml__parser_aa32531386de38ed0fae371c477163db8}} 
+\index{xml\_parser@{xml\_parser}!write@{write}}
+\index{write@{write}!xml\_parser@{xml\_parser}}
+\doxysubsubsection{\texorpdfstring{write()}{write()}}
+{\footnotesize\ttfamily std\+::string xml\+\_\+parser\+::write (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structxml__parser_1_1xml}{xml}} \&}]{info }\end{DoxyParamCaption})}
+
+
+
+Write data from a \mbox{\hyperlink{structxml__parser_1_1xml}{xml\+\_\+parser\+::xml}} structure to an XML string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em info} & The description of the XML using the data structure.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An XML text string.
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+xml\+\_\+parser/xml\+\_\+parser.\+h\item 
+xml\+\_\+parser/xml\+\_\+reader.\+cpp\item 
+xml\+\_\+parser/xml\+\_\+writer.\+cpp\end{DoxyCompactItemize}

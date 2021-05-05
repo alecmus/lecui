@@ -1,0 +1,73 @@
+\hypertarget{classcss__parser}{}\doxysection{css\+\_\+parser Class Reference}
+\label{classcss__parser}\index{css\_parser@{css\_parser}}
+
+
+A custom CSS parser that describes CSS styles in a data structure.  
+
+
+
+
+{\ttfamily \#include $<$css\+\_\+parser.\+h$>$}
+
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structcss__parser_1_1css__property}{css\+\_\+property}}
+\begin{DoxyCompactList}\small\item\em A CSS property. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{structcss__parser_1_1css__property}{css\+\_\+property}} $>$ \mbox{\hyperlink{classcss__parser_aa0fe3734884212b642cc6cff615921ee}{read}} (const std\+::string style\+\_\+string)
+\begin{DoxyCompactList}\small\item\em Read CSS properties from a CSS style string. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classcss__parser_afba8a3c20f7dd5c34c83cddc54636af8}{write}} (const std\+::vector$<$ \mbox{\hyperlink{structcss__parser_1_1css__property}{css\+\_\+property}} $>$ \&css\+\_\+properties)
+\begin{DoxyCompactList}\small\item\em Write CSS properties to a CSS style string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A custom CSS parser that describes CSS styles in a data structure. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classcss__parser_aa0fe3734884212b642cc6cff615921ee}\label{classcss__parser_aa0fe3734884212b642cc6cff615921ee}} 
+\index{css\_parser@{css\_parser}!read@{read}}
+\index{read@{read}!css\_parser@{css\_parser}}
+\doxysubsubsection{\texorpdfstring{read()}{read()}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{structcss__parser_1_1css__property}{css\+\_\+parser\+::css\+\_\+property}} $>$ css\+\_\+parser\+::read (\begin{DoxyParamCaption}\item[{const std\+::string}]{style\+\_\+string }\end{DoxyParamCaption})}
+
+
+
+Read CSS properties from a CSS style string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em style\+\_\+string} & The CSS style string, e.\+g. \char`\"{}font-\/family\+: Segoe UI; color\+: rgb(0, 150, 0);\char`\"{}\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The CSS properties.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcss__parser_afba8a3c20f7dd5c34c83cddc54636af8}\label{classcss__parser_afba8a3c20f7dd5c34c83cddc54636af8}} 
+\index{css\_parser@{css\_parser}!write@{write}}
+\index{write@{write}!css\_parser@{css\_parser}}
+\doxysubsubsection{\texorpdfstring{write()}{write()}}
+{\footnotesize\ttfamily std\+::string css\+\_\+parser\+::write (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{structcss__parser_1_1css__property}{css\+\_\+property}} $>$ \&}]{css\+\_\+properties }\end{DoxyParamCaption})}
+
+
+
+Write CSS properties to a CSS style string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em css\+\_\+properties} & The CSS properties.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The CSS style string.
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+css\+\_\+parser/css\+\_\+parser.\+h\item 
+css\+\_\+parser/css\+\_\+parser.\+cpp\end{DoxyCompactItemize}

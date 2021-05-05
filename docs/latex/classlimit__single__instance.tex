@@ -1,0 +1,80 @@
+\hypertarget{classlimit__single__instance}{}\doxysection{limit\+\_\+single\+\_\+instance Class Reference}
+\label{classlimit__single__instance}\index{limit\_single\_instance@{limit\_single\_instance}}
+
+
+Limit app to a single instance.  
+
+
+
+
+{\ttfamily \#include $<$limit\+\_\+single\+\_\+instance.\+h$>$}
+
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classlimit__single__instance_1_1impl}{impl}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classlimit__single__instance_a15b287fcfbe28a6ef92ba29a35d2e4b2}{limit\+\_\+single\+\_\+instance}} (const std\+::string \&mutex\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classlimit__single__instance_ad1336e3ba58d128b959156fd676c30cc}{another\+\_\+instance\+\_\+running}} ()
+\begin{DoxyCompactList}\small\item\em Check if another instance is running. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classlimit__single__instance_a9504f7b423713c82b3b4e11e9dc4e967}{wait\+\_\+for\+\_\+other\+\_\+instance}} ()
+\begin{DoxyCompactList}\small\item\em Wait for the other instance. This function will block until the other instance is closed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Limit app to a single instance. 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classlimit__single__instance_a15b287fcfbe28a6ef92ba29a35d2e4b2}\label{classlimit__single__instance_a15b287fcfbe28a6ef92ba29a35d2e4b2}} 
+\index{limit\_single\_instance@{limit\_single\_instance}!limit\_single\_instance@{limit\_single\_instance}}
+\index{limit\_single\_instance@{limit\_single\_instance}!limit\_single\_instance@{limit\_single\_instance}}
+\doxysubsubsection{\texorpdfstring{limit\_single\_instance()}{limit\_single\_instance()}}
+{\footnotesize\ttfamily limit\+\_\+single\+\_\+instance\+::limit\+\_\+single\+\_\+instance (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{mutex\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mutex\+\_\+name} & Unique guid used to prevent multiple instances of the app, e.\+g. \char`\"{}\+Global\textbackslash{}\textbackslash{}\{14434072-\/3695-\/4\+BD7-\/8\+CD5-\/\+ECFCDD571\+FA4\}\char`\"{} \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classlimit__single__instance_ad1336e3ba58d128b959156fd676c30cc}\label{classlimit__single__instance_ad1336e3ba58d128b959156fd676c30cc}} 
+\index{limit\_single\_instance@{limit\_single\_instance}!another\_instance\_running@{another\_instance\_running}}
+\index{another\_instance\_running@{another\_instance\_running}!limit\_single\_instance@{limit\_single\_instance}}
+\doxysubsubsection{\texorpdfstring{another\_instance\_running()}{another\_instance\_running()}}
+{\footnotesize\ttfamily bool limit\+\_\+single\+\_\+instance\+::another\+\_\+instance\+\_\+running (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Check if another instance is running. 
+
+\begin{DoxyReturn}{Returns}
+Returns true if another instance is running, else false. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classlimit__single__instance_a9504f7b423713c82b3b4e11e9dc4e967}\label{classlimit__single__instance_a9504f7b423713c82b3b4e11e9dc4e967}} 
+\index{limit\_single\_instance@{limit\_single\_instance}!wait\_for\_other\_instance@{wait\_for\_other\_instance}}
+\index{wait\_for\_other\_instance@{wait\_for\_other\_instance}!limit\_single\_instance@{limit\_single\_instance}}
+\doxysubsubsection{\texorpdfstring{wait\_for\_other\_instance()}{wait\_for\_other\_instance()}}
+{\footnotesize\ttfamily void limit\+\_\+single\+\_\+instance\+::wait\+\_\+for\+\_\+other\+\_\+instance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Wait for the other instance. This function will block until the other instance is closed. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+limit\+\_\+single\+\_\+instance/limit\+\_\+single\+\_\+instance.\+h\item 
+limit\+\_\+single\+\_\+instance/limit\+\_\+single\+\_\+instance.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,74 @@
+\hypertarget{classliblec_1_1lecui_1_1controls}{}\doxysection{liblec\+::lecui\+::controls Class Reference}
+\label{classliblec_1_1lecui_1_1controls}\index{liblec::lecui::controls@{liblec::lecui::controls}}
+
+
+Manipulate a form\textquotesingle{}s controls.  
+
+
+
+
+{\ttfamily \#include $<$controls.\+h$>$}
+
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classliblec_1_1lecui_1_1controls_1_1impl}{impl}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1controls_a0051ffef45fab66ad1bae36a5d4e1134}\label{classliblec_1_1lecui_1_1controls_a0051ffef45fab66ad1bae36a5d4e1134}} 
+{\bfseries controls} (\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}} \&fm)
+\item 
+void \mbox{\hyperlink{classliblec_1_1lecui_1_1controls_a7e7b6395eb4b027243466b5e1c978d3f}{resize}} (bool enable)
+\begin{DoxyCompactList}\small\item\em Whether to allow a form to be resizable. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classliblec_1_1lecui_1_1controls_acd4660e0270b5d8d44b2b60a6af17735}{minimize}} (bool enable)
+\begin{DoxyCompactList}\small\item\em Whether to add a minimize control button to the form. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Manipulate a form\textquotesingle{}s controls. 
+
+This manipulation should be done in the form\textquotesingle{}s layout method.
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1controls_acd4660e0270b5d8d44b2b60a6af17735}\label{classliblec_1_1lecui_1_1controls_acd4660e0270b5d8d44b2b60a6af17735}} 
+\index{liblec::lecui::controls@{liblec::lecui::controls}!minimize@{minimize}}
+\index{minimize@{minimize}!liblec::lecui::controls@{liblec::lecui::controls}}
+\doxysubsubsection{\texorpdfstring{minimize()}{minimize()}}
+{\footnotesize\ttfamily void liblec\+::lecui\+::controls\+::minimize (\begin{DoxyParamCaption}\item[{bool}]{enable }\end{DoxyParamCaption})}
+
+
+
+Whether to add a minimize control button to the form. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em enable} & Set to false to remove the minimize control button.\\
+\hline
+\end{DoxyParams}
+
+
+The minimize control button is enabled by default if this method is never called.\mbox{\Hypertarget{classliblec_1_1lecui_1_1controls_a7e7b6395eb4b027243466b5e1c978d3f}\label{classliblec_1_1lecui_1_1controls_a7e7b6395eb4b027243466b5e1c978d3f}} 
+\index{liblec::lecui::controls@{liblec::lecui::controls}!resize@{resize}}
+\index{resize@{resize}!liblec::lecui::controls@{liblec::lecui::controls}}
+\doxysubsubsection{\texorpdfstring{resize()}{resize()}}
+{\footnotesize\ttfamily void liblec\+::lecui\+::controls\+::resize (\begin{DoxyParamCaption}\item[{bool}]{enable }\end{DoxyParamCaption})}
+
+
+
+Whether to allow a form to be resizable. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em enable} & Set to false to disable resizing.\\
+\hline
+\end{DoxyParams}
+
+
+For resizing is enabled by default if this method is never called. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+controls.\+h\item 
+controls.\+cpp\end{DoxyCompactItemize}

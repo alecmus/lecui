@@ -1,0 +1,280 @@
+\hypertarget{classliblec_1_1lecui_1_1date__time}{}\doxysection{liblec\+::lecui\+::date\+\_\+time Class Reference}
+\label{classliblec_1_1lecui_1_1date__time}\index{liblec::lecui::date\_time@{liblec::lecui::date\_time}}
+
+
+Interact with date/time.  
+
+
+
+
+{\ttfamily \#include $<$date\+\_\+time.\+h$>$}
+
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::string \mbox{\hyperlink{classliblec_1_1lecui_1_1date__time_a7e17bd9411d777546f4e7fffda1860e6}{time\+\_\+stamp}} ()
+\begin{DoxyCompactList}\small\item\em Make timestamp from current local time in the form 20190802 20\+:48\+:06. \end{DoxyCompactList}\item 
+static std\+::string \mbox{\hyperlink{classliblec_1_1lecui_1_1date__time_a8371f298d6c1e24cdc1544a060fe9d0e}{weekday\+\_\+to\+\_\+string}} (unsigned short d)
+\begin{DoxyCompactList}\small\item\em Get week day in the form of a string. \end{DoxyCompactList}\item 
+static std\+::string \mbox{\hyperlink{classliblec_1_1lecui_1_1date__time_a399ede6518e89cde8c9e5074a8cd2e52}{month\+\_\+to\+\_\+string}} (unsigned short m)
+\begin{DoxyCompactList}\small\item\em Get month in the form of a string. \end{DoxyCompactList}\item 
+static unsigned short \mbox{\hyperlink{classliblec_1_1lecui_1_1date__time_a34c4b18ae936cc284260a82fb2804cf4}{month\+\_\+from\+\_\+string}} (std\+::string m)
+\begin{DoxyCompactList}\small\item\em Get month from string. \end{DoxyCompactList}\item 
+static std\+::string \mbox{\hyperlink{classliblec_1_1lecui_1_1date__time_afa81202acb6096b2d55db0121cd3727f}{to\+\_\+string}} (\mbox{\hyperlink{structliblec_1_1lecui_1_1date}{date}} dt)
+\begin{DoxyCompactList}\small\item\em Get date in the form of a string. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{structliblec_1_1lecui_1_1date}{date}} \mbox{\hyperlink{classliblec_1_1lecui_1_1date__time_a4968a5d72334bae6ad99a82e8a32af19}{from\+\_\+string}} (const std\+::string \&dt)
+\begin{DoxyCompactList}\small\item\em Parse date from a date string. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{structliblec_1_1lecui_1_1date}{date}} \mbox{\hyperlink{classliblec_1_1lecui_1_1date__time_a441d442e3c166500b927dba8836e8ce6}{today}} ()
+\begin{DoxyCompactList}\small\item\em Get the current local date. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{structliblec_1_1lecui_1_1date}{date}} \mbox{\hyperlink{classliblec_1_1lecui_1_1date__time_a4ef177feb9017c4f4619e7a1c19329ae}{last\+\_\+day\+\_\+of\+\_\+month}} (const \mbox{\hyperlink{structliblec_1_1lecui_1_1date}{date}} \&dt)
+\begin{DoxyCompactList}\small\item\em Get the last day of the month for a given date. \end{DoxyCompactList}\item 
+static unsigned short \mbox{\hyperlink{classliblec_1_1lecui_1_1date__time_ab1e7650c68fd29a42c4a55cad07a54b5}{day\+\_\+of\+\_\+week}} (\mbox{\hyperlink{structliblec_1_1lecui_1_1date}{date}} dt)
+\begin{DoxyCompactList}\small\item\em Get the day of the week for a given date. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{structliblec_1_1lecui_1_1date}{date}} \mbox{\hyperlink{classliblec_1_1lecui_1_1date__time_a1928dac6ab26aeff9f63ea47f03c38da}{add\+\_\+days}} (\mbox{\hyperlink{structliblec_1_1lecui_1_1date}{date}} dt, int n)
+\begin{DoxyCompactList}\small\item\em Add days to a given date. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{classliblec_1_1lecui_1_1date__time_a823cf03f9c6a4abe7e0fbb6915311aa2}{get\+\_\+week}} (const \mbox{\hyperlink{structliblec_1_1lecui_1_1date}{date}} dt, \mbox{\hyperlink{structliblec_1_1lecui_1_1date}{date}} \&start, \mbox{\hyperlink{structliblec_1_1lecui_1_1date}{date}} \&end)
+\begin{DoxyCompactList}\small\item\em Get the start and end days of the week for a given date. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{classliblec_1_1lecui_1_1date__time_a5ddb1a7e90973a462c53544ec692852e}{get\+\_\+month}} (const \mbox{\hyperlink{structliblec_1_1lecui_1_1date}{date}} dt, \mbox{\hyperlink{structliblec_1_1lecui_1_1date}{date}} \&start, \mbox{\hyperlink{structliblec_1_1lecui_1_1date}{date}} \&end)
+\begin{DoxyCompactList}\small\item\em Get the start and end days of the month for a given date. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{classliblec_1_1lecui_1_1date__time_ad48a11ca00a1735d57d685427fc1fe05}{get\+\_\+year}} (const \mbox{\hyperlink{structliblec_1_1lecui_1_1date}{date}} dt, \mbox{\hyperlink{structliblec_1_1lecui_1_1date}{date}} \&start, \mbox{\hyperlink{structliblec_1_1lecui_1_1date}{date}} \&end)
+\begin{DoxyCompactList}\small\item\em Get the start and end days of the year for a given date. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Interact with date/time. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1date__time_a1928dac6ab26aeff9f63ea47f03c38da}\label{classliblec_1_1lecui_1_1date__time_a1928dac6ab26aeff9f63ea47f03c38da}} 
+\index{liblec::lecui::date\_time@{liblec::lecui::date\_time}!add\_days@{add\_days}}
+\index{add\_days@{add\_days}!liblec::lecui::date\_time@{liblec::lecui::date\_time}}
+\doxysubsubsection{\texorpdfstring{add\_days()}{add\_days()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structliblec_1_1lecui_1_1date}{date}} liblec\+::lecui\+::date\+\_\+time\+::add\+\_\+days (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structliblec_1_1lecui_1_1date}{date}}}]{dt,  }\item[{int}]{n }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Add days to a given date. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dt} & The date.\\
+\hline
+{\em n} & The number of days to add.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A date that is n days away from the given date.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1date__time_ab1e7650c68fd29a42c4a55cad07a54b5}\label{classliblec_1_1lecui_1_1date__time_ab1e7650c68fd29a42c4a55cad07a54b5}} 
+\index{liblec::lecui::date\_time@{liblec::lecui::date\_time}!day\_of\_week@{day\_of\_week}}
+\index{day\_of\_week@{day\_of\_week}!liblec::lecui::date\_time@{liblec::lecui::date\_time}}
+\doxysubsubsection{\texorpdfstring{day\_of\_week()}{day\_of\_week()}}
+{\footnotesize\ttfamily unsigned short liblec\+::lecui\+::date\+\_\+time\+::day\+\_\+of\+\_\+week (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structliblec_1_1lecui_1_1date}{date}}}]{dt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Get the day of the week for a given date. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dt} & The date.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The day of the week, from 1 to 7 inclusive (with Sunday as 1).
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1date__time_a4968a5d72334bae6ad99a82e8a32af19}\label{classliblec_1_1lecui_1_1date__time_a4968a5d72334bae6ad99a82e8a32af19}} 
+\index{liblec::lecui::date\_time@{liblec::lecui::date\_time}!from\_string@{from\_string}}
+\index{from\_string@{from\_string}!liblec::lecui::date\_time@{liblec::lecui::date\_time}}
+\doxysubsubsection{\texorpdfstring{from\_string()}{from\_string()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structliblec_1_1lecui_1_1date}{date}} liblec\+::lecui\+::date\+\_\+time\+::from\+\_\+string (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{dt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Parse date from a date string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dt} & The date string.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The date.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1date__time_a5ddb1a7e90973a462c53544ec692852e}\label{classliblec_1_1lecui_1_1date__time_a5ddb1a7e90973a462c53544ec692852e}} 
+\index{liblec::lecui::date\_time@{liblec::lecui::date\_time}!get\_month@{get\_month}}
+\index{get\_month@{get\_month}!liblec::lecui::date\_time@{liblec::lecui::date\_time}}
+\doxysubsubsection{\texorpdfstring{get\_month()}{get\_month()}}
+{\footnotesize\ttfamily void liblec\+::lecui\+::date\+\_\+time\+::get\+\_\+month (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structliblec_1_1lecui_1_1date}{date}}}]{dt,  }\item[{\mbox{\hyperlink{structliblec_1_1lecui_1_1date}{date}} \&}]{start,  }\item[{\mbox{\hyperlink{structliblec_1_1lecui_1_1date}{date}} \&}]{end }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Get the start and end days of the month for a given date. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dt} & The date.\\
+\hline
+{\em start} & The month\textquotesingle{}s start day.\\
+\hline
+{\em end} & The month\textquotesingle{}s end day.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1date__time_a823cf03f9c6a4abe7e0fbb6915311aa2}\label{classliblec_1_1lecui_1_1date__time_a823cf03f9c6a4abe7e0fbb6915311aa2}} 
+\index{liblec::lecui::date\_time@{liblec::lecui::date\_time}!get\_week@{get\_week}}
+\index{get\_week@{get\_week}!liblec::lecui::date\_time@{liblec::lecui::date\_time}}
+\doxysubsubsection{\texorpdfstring{get\_week()}{get\_week()}}
+{\footnotesize\ttfamily void liblec\+::lecui\+::date\+\_\+time\+::get\+\_\+week (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structliblec_1_1lecui_1_1date}{date}}}]{dt,  }\item[{\mbox{\hyperlink{structliblec_1_1lecui_1_1date}{date}} \&}]{start,  }\item[{\mbox{\hyperlink{structliblec_1_1lecui_1_1date}{date}} \&}]{end }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Get the start and end days of the week for a given date. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dt} & The date.\\
+\hline
+{\em start} & The week\textquotesingle{}s start day (Sunday).\\
+\hline
+{\em end} & The week\textquotesingle{}s end day (Saturday).\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1date__time_ad48a11ca00a1735d57d685427fc1fe05}\label{classliblec_1_1lecui_1_1date__time_ad48a11ca00a1735d57d685427fc1fe05}} 
+\index{liblec::lecui::date\_time@{liblec::lecui::date\_time}!get\_year@{get\_year}}
+\index{get\_year@{get\_year}!liblec::lecui::date\_time@{liblec::lecui::date\_time}}
+\doxysubsubsection{\texorpdfstring{get\_year()}{get\_year()}}
+{\footnotesize\ttfamily void liblec\+::lecui\+::date\+\_\+time\+::get\+\_\+year (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structliblec_1_1lecui_1_1date}{date}}}]{dt,  }\item[{\mbox{\hyperlink{structliblec_1_1lecui_1_1date}{date}} \&}]{start,  }\item[{\mbox{\hyperlink{structliblec_1_1lecui_1_1date}{date}} \&}]{end }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Get the start and end days of the year for a given date. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dt} & The date.\\
+\hline
+{\em start} & The year\textquotesingle{}s start day.\\
+\hline
+{\em end} & The year\textquotesingle{}s end day.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1date__time_a4ef177feb9017c4f4619e7a1c19329ae}\label{classliblec_1_1lecui_1_1date__time_a4ef177feb9017c4f4619e7a1c19329ae}} 
+\index{liblec::lecui::date\_time@{liblec::lecui::date\_time}!last\_day\_of\_month@{last\_day\_of\_month}}
+\index{last\_day\_of\_month@{last\_day\_of\_month}!liblec::lecui::date\_time@{liblec::lecui::date\_time}}
+\doxysubsubsection{\texorpdfstring{last\_day\_of\_month()}{last\_day\_of\_month()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structliblec_1_1lecui_1_1date}{date}} liblec\+::lecui\+::date\+\_\+time\+::last\+\_\+day\+\_\+of\+\_\+month (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structliblec_1_1lecui_1_1date}{date}} \&}]{dt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Get the last day of the month for a given date. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dt} & The date.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The last day of the month.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1date__time_a34c4b18ae936cc284260a82fb2804cf4}\label{classliblec_1_1lecui_1_1date__time_a34c4b18ae936cc284260a82fb2804cf4}} 
+\index{liblec::lecui::date\_time@{liblec::lecui::date\_time}!month\_from\_string@{month\_from\_string}}
+\index{month\_from\_string@{month\_from\_string}!liblec::lecui::date\_time@{liblec::lecui::date\_time}}
+\doxysubsubsection{\texorpdfstring{month\_from\_string()}{month\_from\_string()}}
+{\footnotesize\ttfamily unsigned short liblec\+::lecui\+::date\+\_\+time\+::month\+\_\+from\+\_\+string (\begin{DoxyParamCaption}\item[{std\+::string}]{m }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Get month from string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & The month string, in the form \char`\"{}\+Jan\char`\"{}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the month as a number from 1 to 12 inclusive.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1date__time_a399ede6518e89cde8c9e5074a8cd2e52}\label{classliblec_1_1lecui_1_1date__time_a399ede6518e89cde8c9e5074a8cd2e52}} 
+\index{liblec::lecui::date\_time@{liblec::lecui::date\_time}!month\_to\_string@{month\_to\_string}}
+\index{month\_to\_string@{month\_to\_string}!liblec::lecui::date\_time@{liblec::lecui::date\_time}}
+\doxysubsubsection{\texorpdfstring{month\_to\_string()}{month\_to\_string()}}
+{\footnotesize\ttfamily std\+::string liblec\+::lecui\+::date\+\_\+time\+::month\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{unsigned short}]{m }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Get month in the form of a string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & The month number, from 1 to 12 inclusive.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the month in the form \char`\"{}\+Jan\char`\"{}.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1date__time_a7e17bd9411d777546f4e7fffda1860e6}\label{classliblec_1_1lecui_1_1date__time_a7e17bd9411d777546f4e7fffda1860e6}} 
+\index{liblec::lecui::date\_time@{liblec::lecui::date\_time}!time\_stamp@{time\_stamp}}
+\index{time\_stamp@{time\_stamp}!liblec::lecui::date\_time@{liblec::lecui::date\_time}}
+\doxysubsubsection{\texorpdfstring{time\_stamp()}{time\_stamp()}}
+{\footnotesize\ttfamily std\+::string liblec\+::lecui\+::date\+\_\+time\+::time\+\_\+stamp (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Make timestamp from current local time in the form 20190802 20\+:48\+:06. 
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1date__time_afa81202acb6096b2d55db0121cd3727f}\label{classliblec_1_1lecui_1_1date__time_afa81202acb6096b2d55db0121cd3727f}} 
+\index{liblec::lecui::date\_time@{liblec::lecui::date\_time}!to\_string@{to\_string}}
+\index{to\_string@{to\_string}!liblec::lecui::date\_time@{liblec::lecui::date\_time}}
+\doxysubsubsection{\texorpdfstring{to\_string()}{to\_string()}}
+{\footnotesize\ttfamily std\+::string liblec\+::lecui\+::date\+\_\+time\+::to\+\_\+string (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structliblec_1_1lecui_1_1date}{date}}}]{dt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Get date in the form of a string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dt} & The date.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The date in the form \char`\"{}01-\/\+Jan-\/2020\char`\"{}.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1date__time_a441d442e3c166500b927dba8836e8ce6}\label{classliblec_1_1lecui_1_1date__time_a441d442e3c166500b927dba8836e8ce6}} 
+\index{liblec::lecui::date\_time@{liblec::lecui::date\_time}!today@{today}}
+\index{today@{today}!liblec::lecui::date\_time@{liblec::lecui::date\_time}}
+\doxysubsubsection{\texorpdfstring{today()}{today()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structliblec_1_1lecui_1_1date}{date}} liblec\+::lecui\+::date\+\_\+time\+::today (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Get the current local date. 
+
+\begin{DoxyReturn}{Returns}
+The local date.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1date__time_a8371f298d6c1e24cdc1544a060fe9d0e}\label{classliblec_1_1lecui_1_1date__time_a8371f298d6c1e24cdc1544a060fe9d0e}} 
+\index{liblec::lecui::date\_time@{liblec::lecui::date\_time}!weekday\_to\_string@{weekday\_to\_string}}
+\index{weekday\_to\_string@{weekday\_to\_string}!liblec::lecui::date\_time@{liblec::lecui::date\_time}}
+\doxysubsubsection{\texorpdfstring{weekday\_to\_string()}{weekday\_to\_string()}}
+{\footnotesize\ttfamily std\+::string liblec\+::lecui\+::date\+\_\+time\+::weekday\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{unsigned short}]{d }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Get week day in the form of a string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em d} & The day of the week, 1 to 7 inclusive.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The week day in the form \char`\"{}\+Tuesday\char`\"{}.
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+utilities/date\+\_\+time.\+h\item 
+utilities/date\+\_\+time/date\+\_\+time.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,61 @@
+\hypertarget{classliblec_1_1lecui_1_1context__menu_1_1impl}{}\doxysection{liblec\+::lecui\+::context\+\_\+menu\+::impl Class Reference}
+\label{classliblec_1_1lecui_1_1context__menu_1_1impl}\index{liblec::lecui::context\_menu::impl@{liblec::lecui::context\_menu::impl}}
+Inheritance diagram for liblec\+::lecui\+::context\+\_\+menu\+::impl\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classliblec_1_1lecui_1_1context__menu_1_1impl}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1context__menu_1_1impl_ace94c051b376baaa6356124991ec20b1}\label{classliblec_1_1lecui_1_1context__menu_1_1impl_ace94c051b376baaa6356124991ec20b1}} 
+{\bfseries impl} (\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{lecui\+::form}} \&parent, const \mbox{\hyperlink{structliblec_1_1lecui_1_1context__menu_1_1specs}{specs}} \&menu\+\_\+specs)
+\item 
+bool \mbox{\hyperlink{classliblec_1_1lecui_1_1context__menu_1_1impl_a968e2950bbaaf588032f357d1cd70b35}{on\+\_\+layout}} (std\+::string \&error) override
+\begin{DoxyCompactList}\small\item\em For defining the form\textquotesingle{}s layout. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1context__menu_1_1impl_a868c050905239d5125321708dac008f6}\label{classliblec_1_1lecui_1_1context__menu_1_1impl_a868c050905239d5125321708dac008f6}} 
+void {\bfseries make\+\_\+child} ()
+\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1context__menu_1_1impl_a2f48d627166c46056afba7650858ffa2}\label{classliblec_1_1lecui_1_1context__menu_1_1impl_a2f48d627166c46056afba7650858ffa2}} 
+void {\bfseries destroy\+\_\+child} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1context__menu_1_1impl_af0573a88f53b4994cee6dc0109e6e20b}\label{classliblec_1_1lecui_1_1context__menu_1_1impl_af0573a88f53b4994cee6dc0109e6e20b}} 
+std\+::string {\bfseries clicked\+\_\+}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1context__menu_1_1impl_a968e2950bbaaf588032f357d1cd70b35}\label{classliblec_1_1lecui_1_1context__menu_1_1impl_a968e2950bbaaf588032f357d1cd70b35}} 
+\index{liblec::lecui::context\_menu::impl@{liblec::lecui::context\_menu::impl}!on\_layout@{on\_layout}}
+\index{on\_layout@{on\_layout}!liblec::lecui::context\_menu::impl@{liblec::lecui::context\_menu::impl}}
+\doxysubsubsection{\texorpdfstring{on\_layout()}{on\_layout()}}
+{\footnotesize\ttfamily bool liblec\+::lecui\+::context\+\_\+menu\+::impl\+::on\+\_\+layout (\begin{DoxyParamCaption}\item[{std\+::string \&}]{error }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+For defining the form\textquotesingle{}s layout. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em error} & If there\textquotesingle{}s an error in the layout function\textquotesingle{}s implementation write that error information to this reference, and return false. This information will be internally passed to the blocking \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a65f0164f46c8bd3d61f8733bd0a45271}{show()}} method.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Return true if the layout is successful, else false.
+\end{DoxyReturn}
+
+
+It is recommended to add at least one page container to the form in this method and show it before returning from this method. This becomes the home page. All the form\textquotesingle{}s pages can be made in this method but this is not recommended. It is recommended to create other pages in the handlers that attempt to open them so that they are created dynamically at runtime so that the app uses the least amount of resources. 
+
+Reimplemented from \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a2f7b5c3433fe4b347c8082b777b06731}{liblec\+::lecui\+::form}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+menus/context\+\_\+menu/context\+\_\+menu.\+cpp\end{DoxyCompactItemize}

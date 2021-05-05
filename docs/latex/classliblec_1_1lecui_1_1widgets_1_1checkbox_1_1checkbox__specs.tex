@@ -1,0 +1,149 @@
+\hypertarget{classliblec_1_1lecui_1_1widgets_1_1checkbox_1_1checkbox__specs}{}\doxysection{liblec\+::lecui\+::widgets\+::checkbox\+::checkbox\+\_\+specs Class Reference}
+\label{classliblec_1_1lecui_1_1widgets_1_1checkbox_1_1checkbox__specs}\index{liblec::lecui::widgets::checkbox::checkbox\_specs@{liblec::lecui::widgets::checkbox::checkbox\_specs}}
+
+
+Checkbox widget specifications.  
+
+
+
+
+{\ttfamily \#include $<$checkbox.\+h$>$}
+
+Inheritance diagram for liblec\+::lecui\+::widgets\+::checkbox\+::checkbox\+\_\+specs\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classliblec_1_1lecui_1_1widgets_1_1checkbox_1_1checkbox__specs}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1checkbox_1_1checkbox__specs_1_1checkbox__events}{checkbox\+\_\+events}}
+\begin{DoxyCompactList}\small\item\em Events specific to this widget. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum class \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1checkbox_1_1checkbox__specs_a3d4af378cc8fc6849787237d6889f749}{checkbox\+\_\+status}} \{ \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1checkbox_1_1checkbox__specs_a3d4af378cc8fc6849787237d6889f749a3793ea52a7be2d7deafd858fda50775c}{checked}}
+, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1checkbox_1_1checkbox__specs_a3d4af378cc8fc6849787237d6889f749aad91a1da588ce256d30b1af38f78f84e}{unchecked}}
+, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1checkbox_1_1checkbox__specs_a3d4af378cc8fc6849787237d6889f749a44560d82707cce3b8111a770924cf0e2}{indeterminate}}
+ \}
+\begin{DoxyCompactList}\small\item\em Checkbox status. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1checkbox_1_1checkbox__specs_ad08429819bf80e562fec227788653f45}\label{classliblec_1_1lecui_1_1widgets_1_1checkbox_1_1checkbox__specs_ad08429819bf80e562fec227788653f45}} 
+\mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1checkbox_1_1checkbox__specs_1_1checkbox__events}{checkbox\+\_\+events}} \& {\bfseries events} ()
+\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1checkbox_1_1checkbox__specs_aa21689f5f0a8c0e75245edaeffd03c43}\label{classliblec_1_1lecui_1_1widgets_1_1checkbox_1_1checkbox__specs_aa21689f5f0a8c0e75245edaeffd03c43}} 
+bool {\bfseries operator==} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1checkbox_1_1checkbox__specs}{checkbox\+\_\+specs}} \&)
+\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1checkbox_1_1checkbox__specs_a9f615fa51713f0bad8478715e3863779}\label{classliblec_1_1lecui_1_1widgets_1_1checkbox_1_1checkbox__specs_a9f615fa51713f0bad8478715e3863779}} 
+bool {\bfseries operator!=} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1checkbox_1_1checkbox__specs}{checkbox\+\_\+specs}} \&)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1checkbox_1_1checkbox__specs_ac023aba3015a4dbfdb0848b1d89cb5b4}{text\+\_\+unchecked}}
+\begin{DoxyCompactList}\small\item\em The text to display when unchecked. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1checkbox_1_1checkbox__specs_a451834c527f5a27a30485d659b400cff}{text\+\_\+indeterminate}}
+\begin{DoxyCompactList}\small\item\em The text to display when in an indeterminate state. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1checkbox_1_1checkbox__specs_abaeaee345f8e7c1b7b35ce2f065c5acf}{border}} = .\+5f
+\begin{DoxyCompactList}\small\item\em The thickness of the border. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structliblec_1_1lecui_1_1color}{color}} \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1checkbox_1_1checkbox__specs_a8cb20805e38e200761327bd98d673f2d}{color\+\_\+border}}
+\begin{DoxyCompactList}\small\item\em The color of the border. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structliblec_1_1lecui_1_1color}{color}} \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1checkbox_1_1checkbox__specs_a6987ef53781906fb1601062ca7f7410b}{color\+\_\+check}}
+\begin{DoxyCompactList}\small\item\em The color of the check symbol. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1checkbox_1_1checkbox__specs_a692249c084033bb051287f86433cda27}\label{classliblec_1_1lecui_1_1widgets_1_1checkbox_1_1checkbox__specs_a692249c084033bb051287f86433cda27}} 
+enum \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1checkbox_1_1checkbox__specs_a3d4af378cc8fc6849787237d6889f749}{liblec\+::lecui\+::widgets\+::checkbox\+::checkbox\+\_\+specs\+::checkbox\+\_\+status}} {\bfseries status} = \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1checkbox_1_1checkbox__specs_a3d4af378cc8fc6849787237d6889f749a44560d82707cce3b8111a770924cf0e2}{checkbox\+\_\+status\+::indeterminate}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Checkbox widget specifications. 
+
+Recommended size with defaults is 20x20px.
+
+\doxysubsection{Member Enumeration Documentation}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1checkbox_1_1checkbox__specs_a3d4af378cc8fc6849787237d6889f749}\label{classliblec_1_1lecui_1_1widgets_1_1checkbox_1_1checkbox__specs_a3d4af378cc8fc6849787237d6889f749}} 
+\index{liblec::lecui::widgets::checkbox::checkbox\_specs@{liblec::lecui::widgets::checkbox::checkbox\_specs}!checkbox\_status@{checkbox\_status}}
+\index{checkbox\_status@{checkbox\_status}!liblec::lecui::widgets::checkbox::checkbox\_specs@{liblec::lecui::widgets::checkbox::checkbox\_specs}}
+\doxysubsubsection{\texorpdfstring{checkbox\_status}{checkbox\_status}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1checkbox_1_1checkbox__specs_a3d4af378cc8fc6849787237d6889f749}{liblec\+::lecui\+::widgets\+::checkbox\+::checkbox\+\_\+specs\+::checkbox\+\_\+status}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+
+
+Checkbox status. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{checked@{checked}!liblec::lecui::widgets::checkbox::checkbox\_specs@{liblec::lecui::widgets::checkbox::checkbox\_specs}}\index{liblec::lecui::widgets::checkbox::checkbox\_specs@{liblec::lecui::widgets::checkbox::checkbox\_specs}!checked@{checked}}}\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1checkbox_1_1checkbox__specs_a3d4af378cc8fc6849787237d6889f749a3793ea52a7be2d7deafd858fda50775c}\label{classliblec_1_1lecui_1_1widgets_1_1checkbox_1_1checkbox__specs_a3d4af378cc8fc6849787237d6889f749a3793ea52a7be2d7deafd858fda50775c}} 
+checked&\textquotesingle{}Checked\textquotesingle{} status. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{unchecked@{unchecked}!liblec::lecui::widgets::checkbox::checkbox\_specs@{liblec::lecui::widgets::checkbox::checkbox\_specs}}\index{liblec::lecui::widgets::checkbox::checkbox\_specs@{liblec::lecui::widgets::checkbox::checkbox\_specs}!unchecked@{unchecked}}}\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1checkbox_1_1checkbox__specs_a3d4af378cc8fc6849787237d6889f749aad91a1da588ce256d30b1af38f78f84e}\label{classliblec_1_1lecui_1_1widgets_1_1checkbox_1_1checkbox__specs_a3d4af378cc8fc6849787237d6889f749aad91a1da588ce256d30b1af38f78f84e}} 
+unchecked&\textquotesingle{}Unchecked\textquotesingle{} status. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{indeterminate@{indeterminate}!liblec::lecui::widgets::checkbox::checkbox\_specs@{liblec::lecui::widgets::checkbox::checkbox\_specs}}\index{liblec::lecui::widgets::checkbox::checkbox\_specs@{liblec::lecui::widgets::checkbox::checkbox\_specs}!indeterminate@{indeterminate}}}\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1checkbox_1_1checkbox__specs_a3d4af378cc8fc6849787237d6889f749a44560d82707cce3b8111a770924cf0e2}\label{classliblec_1_1lecui_1_1widgets_1_1checkbox_1_1checkbox__specs_a3d4af378cc8fc6849787237d6889f749a44560d82707cce3b8111a770924cf0e2}} 
+indeterminate&\textquotesingle{}Indeterminate\textquotesingle{} status. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1checkbox_1_1checkbox__specs_abaeaee345f8e7c1b7b35ce2f065c5acf}\label{classliblec_1_1lecui_1_1widgets_1_1checkbox_1_1checkbox__specs_abaeaee345f8e7c1b7b35ce2f065c5acf}} 
+\index{liblec::lecui::widgets::checkbox::checkbox\_specs@{liblec::lecui::widgets::checkbox::checkbox\_specs}!border@{border}}
+\index{border@{border}!liblec::lecui::widgets::checkbox::checkbox\_specs@{liblec::lecui::widgets::checkbox::checkbox\_specs}}
+\doxysubsubsection{\texorpdfstring{border}{border}}
+{\footnotesize\ttfamily float liblec\+::lecui\+::widgets\+::checkbox\+::checkbox\+\_\+specs\+::border = .\+5f}
+
+
+
+The thickness of the border. 
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1checkbox_1_1checkbox__specs_a8cb20805e38e200761327bd98d673f2d}\label{classliblec_1_1lecui_1_1widgets_1_1checkbox_1_1checkbox__specs_a8cb20805e38e200761327bd98d673f2d}} 
+\index{liblec::lecui::widgets::checkbox::checkbox\_specs@{liblec::lecui::widgets::checkbox::checkbox\_specs}!color\_border@{color\_border}}
+\index{color\_border@{color\_border}!liblec::lecui::widgets::checkbox::checkbox\_specs@{liblec::lecui::widgets::checkbox::checkbox\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_border}{color\_border}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structliblec_1_1lecui_1_1color}{color}} liblec\+::lecui\+::widgets\+::checkbox\+::checkbox\+\_\+specs\+::color\+\_\+border}
+
+
+
+The color of the border. 
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1checkbox_1_1checkbox__specs_a6987ef53781906fb1601062ca7f7410b}\label{classliblec_1_1lecui_1_1widgets_1_1checkbox_1_1checkbox__specs_a6987ef53781906fb1601062ca7f7410b}} 
+\index{liblec::lecui::widgets::checkbox::checkbox\_specs@{liblec::lecui::widgets::checkbox::checkbox\_specs}!color\_check@{color\_check}}
+\index{color\_check@{color\_check}!liblec::lecui::widgets::checkbox::checkbox\_specs@{liblec::lecui::widgets::checkbox::checkbox\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_check}{color\_check}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structliblec_1_1lecui_1_1color}{color}} liblec\+::lecui\+::widgets\+::checkbox\+::checkbox\+\_\+specs\+::color\+\_\+check}
+
+
+
+The color of the check symbol. 
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1checkbox_1_1checkbox__specs_a451834c527f5a27a30485d659b400cff}\label{classliblec_1_1lecui_1_1widgets_1_1checkbox_1_1checkbox__specs_a451834c527f5a27a30485d659b400cff}} 
+\index{liblec::lecui::widgets::checkbox::checkbox\_specs@{liblec::lecui::widgets::checkbox::checkbox\_specs}!text\_indeterminate@{text\_indeterminate}}
+\index{text\_indeterminate@{text\_indeterminate}!liblec::lecui::widgets::checkbox::checkbox\_specs@{liblec::lecui::widgets::checkbox::checkbox\_specs}}
+\doxysubsubsection{\texorpdfstring{text\_indeterminate}{text\_indeterminate}}
+{\footnotesize\ttfamily std\+::string liblec\+::lecui\+::widgets\+::checkbox\+::checkbox\+\_\+specs\+::text\+\_\+indeterminate}
+
+
+
+The text to display when in an indeterminate state. 
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1checkbox_1_1checkbox__specs_ac023aba3015a4dbfdb0848b1d89cb5b4}\label{classliblec_1_1lecui_1_1widgets_1_1checkbox_1_1checkbox__specs_ac023aba3015a4dbfdb0848b1d89cb5b4}} 
+\index{liblec::lecui::widgets::checkbox::checkbox\_specs@{liblec::lecui::widgets::checkbox::checkbox\_specs}!text\_unchecked@{text\_unchecked}}
+\index{text\_unchecked@{text\_unchecked}!liblec::lecui::widgets::checkbox::checkbox\_specs@{liblec::lecui::widgets::checkbox::checkbox\_specs}}
+\doxysubsubsection{\texorpdfstring{text\_unchecked}{text\_unchecked}}
+{\footnotesize\ttfamily std\+::string liblec\+::lecui\+::widgets\+::checkbox\+::checkbox\+\_\+specs\+::text\+\_\+unchecked}
+
+
+
+The text to display when unchecked. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+widgets/checkbox.\+h\item 
+widgets/checkbox/checkbox.\+cpp\end{DoxyCompactItemize}
