@@ -25,6 +25,9 @@ The lecui user interface library is designed for the rapid development of modern
 easy to maintain C++ applications with a graphical user interface (gui). It is part of the
 [liblec libraries](https://github.com/alecmus/liblec).
 
+### Documentation
+The library uses embedded XML-style documentation. An HTML version of this documentation is available [here](https://alecmus.github.io/lecui).
+
 ### Successor to the cui framework
 The lecui user interface library is designed to be a successor to the older
 [cui framework](https://github.com/alecmus/cui). But why? It features newer technologies,
