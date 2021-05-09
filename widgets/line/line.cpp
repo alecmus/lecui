@@ -1,15 +1,12 @@
-/*
-** line.cpp - line widget implementation
-**
-** lecui user interface library
-** Copyright (c) 2019 Alec Musasa (alecmus at live dot com)
-**
-*******************************************************************************
-** This file is part of the liblec library which is released under the Creative
-** Commons Attribution Non-Commercial 2.0 license (CC-BY-NC 2.0). See the file
-** LICENSE.txt or go to https://github.com/alecmus/liblec/blob/master/LICENSE.md
-** for full license details.
-*/
+//
+// line.cpp - line widget implementation
+//
+// lecui user interface library, part of the liblec library
+// Copyright (c) 2019 Alec Musasa (alecmus at live dot com)
+//
+// Released under the CC-BY-NC 2.0 license. For full details see the file
+// LICENSE.txt or go to https://github.com/alecmus/liblec/blob/master/LICENSE.md
+//
 
 #include "../line.h"
 #include "../../form_impl/form_impl.h"
