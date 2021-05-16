@@ -106,6 +106,7 @@ namespace liblec {
 				widgets_.emplace(alias, tab_panes_.at(alias));
 				widgets_order_.emplace_back(alias);
 			}
+			tab_panes_.at(alias).specs().alias(alias);
 			return tab_panes_.at(alias).specs();
 		}
 
@@ -116,6 +117,7 @@ namespace liblec {
 				widgets_.emplace(alias, panes_.at(alias));
 				widgets_order_.emplace_back(alias);
 			}
+			panes_.at(alias).specs().alias(alias);
 			return panes_.at(alias).specs();
 		}
 
@@ -126,6 +128,7 @@ namespace liblec {
 				widgets_.emplace(alias, rectangles_.at(alias));
 				widgets_order_.emplace_back(alias);
 			}
+			rectangles_.at(alias).specs().alias(alias);
 			return rectangles_.at(alias).specs();
 		}
 
@@ -136,6 +139,7 @@ namespace liblec {
 				widgets_.emplace(alias, labels_.at(alias));
 				widgets_order_.emplace_back(alias);
 			}
+			labels_.at(alias).specs().alias(alias);
 			return labels_.at(alias).specs();
 		}
 
@@ -146,6 +150,7 @@ namespace liblec {
 				widgets_.emplace(alias, groups_.at(alias));
 				widgets_order_.emplace_back(alias);
 			}
+			groups_.at(alias).specs().alias(alias);
 			return groups_.at(alias).specs();
 		}
 
@@ -156,6 +161,7 @@ namespace liblec {
 				widgets_.emplace(alias, buttons_.at(alias));
 				widgets_order_.emplace_back(alias);
 			}
+			buttons_.at(alias).specs().alias(alias);
 			return buttons_.at(alias).specs();
 		}
 
@@ -166,6 +172,7 @@ namespace liblec {
 				widgets_.emplace(alias, toggles_.at(alias));
 				widgets_order_.emplace_back(alias);
 			}
+			toggles_.at(alias).specs().alias(alias);
 			return toggles_.at(alias).specs();
 		}
 
@@ -176,6 +183,7 @@ namespace liblec {
 				widgets_.emplace(alias, table_views_.at(alias));
 				widgets_order_.emplace_back(alias);
 			}
+			table_views_.at(alias).specs().alias(alias);
 			return table_views_.at(alias).specs();
 		}
 
@@ -186,6 +194,7 @@ namespace liblec {
 				widgets_.emplace(alias, customs_.at(alias));
 				widgets_order_.emplace_back(alias);
 			}
+			customs_.at(alias).specs().alias(alias);
 			return customs_.at(alias).specs();
 		}
 
@@ -196,6 +205,7 @@ namespace liblec {
 				widgets_.emplace(alias, image_views_.at(alias));
 				widgets_order_.emplace_back(alias);
 			}
+			image_views_.at(alias).specs().alias(alias);
 			return image_views_.at(alias).specs();
 		}
 
@@ -206,6 +216,7 @@ namespace liblec {
 				widgets_.emplace(alias, progress_indicators_.at(alias));
 				widgets_order_.emplace_back(alias);
 			}
+			progress_indicators_.at(alias).specs().alias(alias);
 			return progress_indicators_.at(alias).specs();
 		}
 
@@ -216,6 +227,7 @@ namespace liblec {
 				widgets_.emplace(alias, progress_bars_.at(alias));
 				widgets_order_.emplace_back(alias);
 			}
+			progress_bars_.at(alias).specs().alias(alias);
 			return progress_bars_.at(alias).specs();
 		}
 
@@ -226,6 +238,7 @@ namespace liblec {
 				widgets_.emplace(alias, checkboxes_.at(alias));
 				widgets_order_.emplace_back(alias);
 			}
+			checkboxes_.at(alias).specs().alias(alias);
 			return checkboxes_.at(alias).specs();
 		}
 
@@ -236,6 +249,7 @@ namespace liblec {
 				widgets_.emplace(alias, text_fields_.at(alias));
 				widgets_order_.emplace_back(alias);
 			}
+			text_fields_.at(alias).specs().alias(alias);
 			return text_fields_.at(alias).specs();
 		}
 
@@ -246,6 +260,7 @@ namespace liblec {
 				widgets_.emplace(alias, trees_.at(alias));
 				widgets_order_.emplace_back(alias);
 			}
+			trees_.at(alias).specs().alias(alias);
 			return trees_.at(alias).specs();
 		}
 
@@ -256,6 +271,7 @@ namespace liblec {
 				widgets_.emplace(alias, sliders_.at(alias));
 				widgets_order_.emplace_back(alias);
 			}
+			sliders_.at(alias).specs().alias(alias);
 			return sliders_.at(alias).specs();
 		}
 
@@ -266,6 +282,7 @@ namespace liblec {
 				widgets_.emplace(alias, html_editors_.at(alias));
 				widgets_order_.emplace_back(alias);
 			}
+			html_editors_.at(alias).specs().alias(alias);
 			return html_editors_.at(alias).specs();
 		}
 
@@ -276,6 +293,7 @@ namespace liblec {
 				widgets_.emplace(alias, comboboxes_.at(alias));
 				widgets_order_.emplace_back(alias);
 			}
+			comboboxes_.at(alias).specs().alias(alias);
 			return comboboxes_.at(alias).specs();
 		}
 
@@ -286,6 +304,7 @@ namespace liblec {
 				widgets_.emplace(alias, lines_.at(alias));
 				widgets_order_.emplace_back(alias);
 			}
+			lines_.at(alias).specs().alias(alias);
 			return lines_.at(alias).specs();
 		}
 
@@ -296,6 +315,7 @@ namespace liblec {
 				widgets_.emplace(alias, times_.at(alias));
 				widgets_order_.emplace_back(alias);
 			}
+			times_.at(alias).specs().alias(alias);
 			return times_.at(alias).specs();
 		}
 
@@ -306,6 +326,7 @@ namespace liblec {
 				widgets_.emplace(alias, dates_.at(alias));
 				widgets_order_.emplace_back(alias);
 			}
+			dates_.at(alias).specs().alias(alias);
 			return dates_.at(alias).specs();
 		}
 
@@ -316,6 +337,7 @@ namespace liblec {
 				widgets_.emplace(alias, icons_.at(alias));
 				widgets_order_.emplace_back(alias);
 			}
+			icons_.at(alias).specs().alias(alias);
 			return icons_.at(alias).specs();
 		}
 

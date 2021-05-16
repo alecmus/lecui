@@ -18,13 +18,12 @@ namespace liblec {
 			impl(containers::page& page,
 				containers::pane::pane_specs& specs,
 				const std::string& alias) :
-				page_(page), specs_(specs), alias_(alias) {
+				page_(page), specs_(specs) {
 				specs_.color_fill = defaults::color(page_.d_page_.fm_.d_.theme_, item::pane);
 				specs_.color_border = defaults::color(page_.d_page_.fm_.d_.theme_, item::pane_border);
 			}
 			containers::page& page_;
 			containers::pane::pane_specs& specs_;
-			std::string alias_;
 		};
 
 		containers::pane::pane(containers::page& page) :
@@ -71,7 +70,7 @@ namespace liblec {
 		}
 
 		containers::page& containers::pane::get() {
-			auto& pane_ = d_.page_.d_page_.get_pane(d_.alias_);
+			auto& pane_ = d_.page_.d_page_.get_pane(d_.specs_.alias());
 
 			const std::string pane_name = "pane";
 

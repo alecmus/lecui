@@ -18,7 +18,7 @@ namespace liblec {
 			impl(containers::page& page,
 				containers::tab_pane::tab_pane_specs& specs,
 				const std::string& alias) :
-				page_(page), specs_(specs), alias_(alias) {
+				page_(page), specs_(specs) {
 				specs_.color_text = defaults::color(page_.d_page_.fm_.d_.theme_, item::label);
 				specs_.color_fill = defaults::color(page_.d_page_.fm_.d_.theme_, item::tab_pane);
 				specs_.color_border = defaults::color(page_.d_page_.fm_.d_.theme_, item::tab_pane_border);
@@ -27,7 +27,6 @@ namespace liblec {
 			}
 			containers::page& page_;
 			containers::tab_pane::tab_pane_specs& specs_;
-			std::string alias_;
 		};
 
 		containers::tab_pane::tab_pane(containers::page& page) :
@@ -75,7 +74,7 @@ namespace liblec {
 		}
 
 		void containers::tab_pane::select(const std::string& tab_name) {
-			auto& tab_pane_ = d_.page_.d_page_.get_tab_pane(d_.alias_);
+			auto& tab_pane_ = d_.page_.d_page_.get_tab_pane(d_.specs_.alias());
 			tab_pane_.current_tab_ = tab_name;
 		}
 
@@ -88,7 +87,7 @@ namespace liblec {
 			containers::page& page_;
 
 			static containers::page& add(tab_pane& tp, const std::string& tab_name) {
-				auto& tab_pane_ = tp.d_.page_.d_page_.get_tab_pane(tp.d_.alias_);
+				auto& tab_pane_ = tp.d_.page_.d_page_.get_tab_pane(tp.d_.specs_.alias());
 
 				if (tab_pane_.p_tabs_.count(tab_name)) {
 					log("library usage error containers::tab::impl::add");

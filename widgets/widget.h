@@ -12,6 +12,7 @@
 
 #if defined(LECUI_EXPORTS)
 #include "../form.h"
+#include "../containers/page.h"
 #else
 #include <liblec/lecui/form.h>
 #endif
@@ -141,8 +142,21 @@ namespace liblec {
 				bool operator==(const specs&);
 				bool operator!=(const specs&);
 
+				const std::string& alias() {
+					return alias_;
+				}
+
 			private:
 				basic_events events_;
+				std::string alias_;
+
+				void alias(const std::string alias) {
+					alias_ = alias;
+				}
+
+#if defined(LECUI_EXPORTS)
+				friend class containers::page;
+#endif
 			};
 		}
 

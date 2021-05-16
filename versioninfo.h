@@ -21,4 +21,4 @@
 #define lecuiminor			0
 #define lecuirevision		0
 
-#define lecuidate			"09 Aug 2020"
+#define lecuidate			"16 May 2021"
