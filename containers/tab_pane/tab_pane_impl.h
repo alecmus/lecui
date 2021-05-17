@@ -71,6 +71,7 @@ namespace liblec {
 				ID2D1SolidColorBrush* p_brush_hot_;
 				ID2D1SolidColorBrush* p_brush_disabled_;
 				ID2D1SolidColorBrush* p_brush_tabs_;
+				ID2D1SolidColorBrush* p_brush_tabs_border_;
 				ID2D1SolidColorBrush* p_brush_selected_;
 				IDWriteTextFormat* p_text_format_;
 

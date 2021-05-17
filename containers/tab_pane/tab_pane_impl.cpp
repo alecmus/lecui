@@ -23,6 +23,7 @@ namespace liblec {
 			p_brush_hot_(nullptr),
 			p_brush_disabled_(nullptr),
 			p_brush_tabs_(nullptr),
+			p_brush_tabs_border_(nullptr),
 			p_brush_selected_(nullptr),
 			p_text_format_(nullptr),
 			p_directwrite_factory_(p_directwrite_factory),
@@ -71,6 +72,9 @@ namespace liblec {
 				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_tabs),
 					&p_brush_tabs_);
 			if (SUCCEEDED(hr))
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_tabs_border),
+					&p_brush_tabs_border_);
+			if (SUCCEEDED(hr))
 				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_selected),
 					&p_brush_selected_);
 			if (SUCCEEDED(hr)) {
@@ -104,6 +108,7 @@ namespace liblec {
 			safe_release(&p_brush_hot_);
 			safe_release(&p_brush_disabled_);
 			safe_release(&p_brush_tabs_);
+			safe_release(&p_brush_tabs_border_);
 			safe_release(&p_brush_selected_);
 			safe_release(&p_text_format_);
 		}
@@ -217,7 +222,7 @@ namespace liblec {
 
 			p_render_target->FillRoundedRectangle(&rounded_rect, p_brush_tabs_);
 			p_render_target->DrawRoundedRectangle(&rounded_rect, is_enabled_ ?
-				p_brush_border_ : p_brush_disabled_, specs_.border);
+				p_brush_tabs_border_ : p_brush_disabled_, specs_.tabs_border);
 
 			/// draw the tab text
 			D2D1_RECT_F rect_current_tab_ = rect_tabs_;

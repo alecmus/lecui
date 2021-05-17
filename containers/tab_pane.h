@@ -61,9 +61,11 @@ namespace liblec {
 
 					orientation caption_orientation = orientation::horizontal;
 					color color_tabs;
+					color color_tabs_border;
 					color color_border;
 					color color_selected;
 					float border = .5f;
+					float tabs_border = .5f;
 					float corner_radius_x = 5.f;
 					float corner_radius_y = 5.f;
 				};

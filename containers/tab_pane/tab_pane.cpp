@@ -23,6 +23,7 @@ namespace liblec {
 				specs_.color_fill = defaults::color(page_.d_page_.fm_.d_.theme_, item::tab_pane);
 				specs_.color_border = defaults::color(page_.d_page_.fm_.d_.theme_, item::tab_pane_border);
 				specs_.color_tabs = defaults::color(page_.d_page_.fm_.d_.theme_, item::tab_bar);
+				specs_.color_tabs_border = defaults::color(page_.d_page_.fm_.d_.theme_, item::tab_pane_border);
 				specs_.color_selected = defaults::color(page_.d_page_.fm_.d_.theme_, item::tab_selected);
 			}
 			containers::page& page_;
