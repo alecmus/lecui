@@ -17,6 +17,8 @@
 
 #include <comdef.h>	// for _com_error
 
+using liblec::lecui::safe_release;
+
 // create a stream object initialized with the data from an executable resource
 IStream* create_stream_on_resource(
 	HMODULE h_module,
@@ -81,6 +83,7 @@ Return:
 // Load a PNG image from the specified stream (using Windows Imaging Component)
 IWICBitmapSource* load_bitmap_from_stream(
 	IStream* ip_image_stream,
+	float scale,
 	std::string& error) {
 	// initialize return value
 	IWICBitmapSource* ip_bitmap = nullptr;
@@ -91,28 +94,11 @@ IWICBitmapSource* load_bitmap_from_stream(
 	UINT nFrameCount = 0;
 
 	IWICBitmapFrameDecode* ip_frame = nullptr;
+	IWICImagingFactory* p_factory = nullptr;
+	IWICBitmapScaler* ip_scaler = nullptr;
 
-	///
-	/// using CLSID_WICPngDecoder1 instead of CLSID_WICPngDecoder
-	/// because the latter returns "class not registered" in Win7
-	/// with build from vs2017
-	/// Idea gotten from https://stackoverflow.com/questions/11985999/regdb-e-classnotreg-on-clsid-wicpngdecoder
-	///
-	/// This is all because of what's explained in https://docs.microsoft.com/en-us/windows/desktop/wic/what-s-new-in-wic-for-windows-8-1
-	/// Here's an extract from the link:
-	/// CLSID_WICPngDecoder1 has been added with the same GUID as CLSID_WICPngDecoder,
-	/// and CLSID_WICPngDecoder2 has been added. When compiled against the Windows 8 SDK,
-	/// CLSID_WICPngDecoder is #defined to CLSID_WICPngDecoder2 to promote newly compiled
-	/// apps using the new PNG decoder behavior. Apps should continue to specify CLSID_WICPngDecoder.
-	///
-	/// An app can specify CLSID_WICPngDecoder1
-	/// to create a version of the WIC PNG decoder that does not generate an IWICColorContext
-	/// from the gAMA and cHRM chunks. This matches the behavior of the PNG decoder in previous versions of Windows.
-	///
-	/// Before now, we've been using XP support which was causing CLSID_WICPngDecoder to be defined as CLSID_WICPngDecoder1
-	/// Now it was being defined as CLSID_WICPngDecoder2 hence breaking things in Windows 7
-	///
-	HRESULT result = CoCreateInstance(CLSID_WICPngDecoder1, nullptr, CLSCTX_INPROC_SERVER, __uuidof(ip_decoder), reinterpret_cast<void**>(&ip_decoder));
+	// create factory
+	HRESULT result = CoCreateInstance(CLSID_WICImagingFactory, NULL, CLSCTX_INPROC_SERVER, IID_PPV_ARGS(&p_factory));
 
 	if (FAILED(result)) {
 		_com_error err(result);
@@ -120,9 +106,13 @@ IWICBitmapSource* load_bitmap_from_stream(
 		goto Return;
 	}
 
-	// load the PNG
-
-	result = ip_decoder->Initialize(ip_image_stream, WICDecodeMetadataCacheOnLoad);
+	// Create a decoder for the stream.
+	result = p_factory->CreateDecoderFromStream(
+		ip_image_stream,
+		NULL,
+		WICDecodeMetadataCacheOnLoad,
+		&ip_decoder
+	);
 
 	if (FAILED(result)) {
 		_com_error err(result);
@@ -148,11 +138,43 @@ IWICBitmapSource* load_bitmap_from_stream(
 		goto ReleaseDecoder;
 	}
 
-	// convert the image to 32bpp BGRA format with pre-multiplied alpha
-	//   (it may not be stored in that format natively in the PNG resource,
-	//   but we need this format to create the DIB to use on-screen)
-	result = WICConvertBitmapSource(GUID_WICPixelFormat32bppPBGRA, ip_frame, &ip_bitmap);
-	ip_frame->Release();
+	if (scale == 1.f) {
+		// convert the image to 32bpp BGRA format with pre-multiplied alpha
+		//   (it may not be stored in that format natively in the PNG resource,
+		//   but we need this format to create the DIB to use on-screen)
+		result = WICConvertBitmapSource(GUID_WICPixelFormat32bppPBGRA, ip_frame, &ip_bitmap);
+	}
+	else {
+		UINT width, height;
+		ip_frame->GetSize(&width, &height);
+
+		result = p_factory->CreateBitmapScaler(&ip_scaler);
+
+		if (FAILED(result)) {
+			_com_error err(result);
+			error = liblec::lecui::convert_string(err.ErrorMessage());
+			goto ReleaseDecoder;
+		}
+
+		result = ip_scaler->Initialize(
+			ip_frame,
+			static_cast<UINT>(width * scale),
+			static_cast<UINT>(height * scale),
+			WICBitmapInterpolationModeHighQualityCubic
+		);
+
+		if (FAILED(result)) {
+			_com_error err(result);
+			error = liblec::lecui::convert_string(err.ErrorMessage());
+			goto ReleaseDecoder;
+		}
+
+		// convert the image to 32bpp BGRA format with pre-multiplied alpha
+		//   (it may not be stored in that format natively in the PNG resource,
+		//   but we need this format to create the DIB to use on-screen)
+		result = WICConvertBitmapSource(GUID_WICPixelFormat32bppPBGRA, ip_scaler, &ip_bitmap);
+	}
+	safe_release(&ip_frame);
 
 	if (FAILED(result)) {
 		_com_error err(result);
@@ -160,7 +182,9 @@ IWICBitmapSource* load_bitmap_from_stream(
 	}
 
 ReleaseDecoder:
-	ip_decoder->Release();
+	safe_release(&ip_decoder);
+	safe_release(&p_factory);
+	safe_release(&ip_scaler);
 Return:
 	return ip_bitmap;
 }
@@ -212,7 +236,7 @@ Return:
 	return h_bmp;
 }
 
-HBITMAP image_converter::png_to_argb(HMODULE h_module, int id_png, std::string& error) {
+HBITMAP image_converter::png_to_argb(HMODULE h_module, int id_png, float scale, std::string& error) {
 	HBITMAP h_bmp = nullptr;
 
 	// load the PNG image data into a stream
@@ -223,18 +247,18 @@ HBITMAP image_converter::png_to_argb(HMODULE h_module, int id_png, std::string& 
 
 	// load the bitmap with WIC
 	{
-		IWICBitmapSource* ip_bitmap = load_bitmap_from_stream(ip_image_stream, error);
+		IWICBitmapSource* ip_bitmap = load_bitmap_from_stream(ip_image_stream, scale, error);
 
 		if (ip_bitmap == nullptr)
 			goto ReleaseStream;
 
 		// create a HBITMAP containing the image
 		h_bmp = create_HBITMAP(ip_bitmap);
-		ip_bitmap->Release();
+		safe_release(&ip_bitmap);
 	}
 
 ReleaseStream:
-	ip_image_stream->Release();
+	safe_release(&ip_image_stream);
 
 Return:
 	return h_bmp;

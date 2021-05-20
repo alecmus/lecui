@@ -113,13 +113,13 @@ namespace liblec {
 			delete& d_;
 		}
 
-		bool splash::display(int png_resource, std::string& error) {
+		bool splash::display(int png_resource, bool dpi_aware, std::string& error) {
 			if (!d_.hWnd_splash_) {		// failsafe
 				image_converter imgcv;
 
 				d_.hWnd_splash_ = d_.CreateSplashWindow(d_.fm_.d_.idi_icon_small_);
 				d_.hbmp_splash_ = imgcv.png_to_argb(d_.fm_.d_.resource_module_handle_,
-					png_resource, error);
+					png_resource, dpi_aware ? d_.fm_.d_.get_dpi_scale() : 1.f, error);
 
 				if (d_.hbmp_splash_ == nullptr)
 					return false;	// error
