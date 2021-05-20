@@ -242,6 +242,11 @@ namespace liblec {
 			[[nodiscard]]
 			static bool keep_alive();
 
+			/// <summary>Get the current DPI scale.</summary>
+			/// <returns>The current DPI scale.</returns>
+			[[nodiscard]]
+			float get_dpi_scale();
+
 		private:
 			class impl;
 			impl& d_;

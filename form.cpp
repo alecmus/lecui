@@ -441,5 +441,9 @@ namespace liblec {
 
 			return true;
 		}
+
+		float form::get_dpi_scale() {
+			return d_.get_dpi_scale();
+		}
 	}
 }
