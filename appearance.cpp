@@ -327,5 +327,11 @@ namespace liblec {
 			d_.fm_.d_.clr_background_ = color;
 			d_.fm_.d_.clr_titlebar_background_ = color_titlebar;
 		}
+
+		void appearance::set_icons(int icon_resource,
+			int small_icon_resource) {
+			d_.fm_.d_.idi_icon_ = icon_resource;
+			d_.fm_.d_.idi_icon_small_ = small_icon_resource;
+		}
 	}
 }

@@ -194,6 +194,12 @@ namespace liblec {
 			void background(const lecui::color& color,
 				const lecui::color& color_titlebar);
 
+			/// <summary>Set the application icon resources.</summary>
+			/// <param name="icon_resource">The ID of the main .ico resource.</param>
+			/// <param name="small_icon_resource">The ID os the small .ico resource.</param>
+			void set_icons(int icon_resource,
+				int small_icon_resource);
+
 		private:
 			class impl;
 			impl& d_;
