@@ -125,6 +125,7 @@ namespace liblec {
 					d_.create_minimize_button();
 
 				d_.create_form_caption();
+				d_.create_form_menu();
 			}
 
 			// register window class

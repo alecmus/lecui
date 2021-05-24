@@ -74,6 +74,8 @@ namespace liblec {
 			receiving_(false),
 			data_received_(std::string()),
 			caption_bar_height_(menu_form_ ? 0.f : 30.f),
+			caption_and_menu_gap_(25.f),
+			form_menu_margin_(10.f),
 			form_border_thickness_(1.f),
 			page_tolerance_(form_border_thickness_ / 2.f),
 			control_button_margin_(2.f),
@@ -478,6 +480,91 @@ namespace liblec {
 
 			p_caption_->specs().events().action = on_caption_;
 		}
+
+		void form::impl::create_form_menu() {
+			float left = p_caption_->specs().rect.right + caption_and_menu_gap_;
+
+			for (auto& main_menu_item : form_menu_) {
+				p_menu_.push_back(
+					std::unique_ptr<widgets::label_impl>(new
+						widgets::label_impl(controls_page_, "menu::" + main_menu_item.text,
+							p_directwrite_factory_)));
+				auto& it = p_menu_.back();
+
+				widgets_.emplace(it->alias(), *it);
+				widgets_order_.emplace_back(it->alias());
+
+				it->specs().text = main_menu_item.text;
+				it->specs().center_v = true;
+				it->specs().multiline = false;
+
+				// load label settings
+				it->specs().color_text = defaults::color(theme_, item::label);
+				it->specs().color_selected = defaults::color(theme_, item::label_selected);
+				it->specs().color_hot = defaults::color(theme_, item::label_hover);
+				it->specs().color_hot_pressed = defaults::color(theme_, item::label_pressed);
+				it->specs().color_disabled = defaults::color(theme_, item::label_disabled);
+
+				// determine right-most edge based on available control buttons
+				const auto right_edge = allow_minimize_ ?
+					p_minimize_button_->specs().rect.left :
+					(allow_resizing_ ?
+						p_maximize_button_->specs().rect.left :
+						p_close_button_->specs().rect.left);
+
+				// determine the largest rect that the caption can occupy
+				const D2D1_RECT_F max_rect = D2D1::RectF(left, control_button_margin_,
+					right_edge - control_button_margin_, caption_bar_height_ - control_button_margin_);
+
+				// determine the optimal rect for the caption
+				const auto rect = widgets::measure_label(p_directwrite_factory_,
+					it->specs().text, it->specs().font, it->specs().font_size,
+					it->specs().center_h, it->specs().center_v, max_rect);
+
+				// to-do: address this ... when form is downsized enough, caption creeps behind control
+				// buttons since we've eliminated resizing caption rect; perhaps use clip???
+				it->specs().rect = convert_rect(rect);
+
+				main_menu_item.rc_text = it->specs().rect;
+
+				left = it->specs().rect.right + form_menu_margin_;
+
+				it->specs().events().action = [&]() {
+					if (main_menu_item.items.empty())
+						return;
+
+					context_menu::specs menu_specs;
+					menu_specs.quality = image_quality::high;
+
+					for (const auto& item : main_menu_item.items) {
+						menu_item mi;
+						mi.label = item.label;
+						mi.font = item.font;
+						mi.font_size = item.font_size;
+						menu_specs.items.push_back(mi);
+					}
+
+					menu_specs.pin = main_menu_item.rc_text;
+					menu_specs.type = context_menu::pin_type::bottom;
+
+					POINT pt = { 0, 0 };
+					ClientToScreen(hWnd_, &pt);
+
+					menu_specs.pin.left += (pt.x / get_dpi_scale());
+					menu_specs.pin.right += (pt.x / get_dpi_scale());
+					menu_specs.pin.top += (pt.y / get_dpi_scale());
+					menu_specs.pin.bottom += (pt.y / get_dpi_scale());
+
+					auto result = context_menu()(fm_, menu_specs);
+					
+					for (auto& m_it : main_menu_item.items) {
+						if (m_it.label == result) {
+							if (m_it.action != nullptr)
+								m_it.action();
+						}
+					}
+				};
+			}
 		}
 
 		void form::impl::update() { InvalidateRect(hWnd_, nullptr, FALSE); }

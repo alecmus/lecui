@@ -164,6 +164,9 @@
     <Filter Include="lecui\limit_single_instance">
       <UniqueIdentifier>{afb917aa-1826-40ff-9630-196f3ef3e6f2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="lecui\menus\form_menu">
+      <UniqueIdentifier>{4d447286-9907-4181-9e8e-40472b148ffb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="error\win_error.h">
@@ -397,6 +400,9 @@
     </ClInclude>
     <ClInclude Include="command_line_parser.h">
       <Filter>lecui</Filter>
+    </ClInclude>
+    <ClInclude Include="menus\form_menu.h">
+      <Filter>lecui\menus</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -658,6 +664,9 @@
     </ClCompile>
     <ClCompile Include="limit_single_instance\limit_single_instance.cpp">
       <Filter>lecui\limit_single_instance</Filter>
+    </ClCompile>
+    <ClCompile Include="menus\form_menu\form_menu.cpp">
+      <Filter>lecui\menus\form_menu</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

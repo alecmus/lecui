@@ -15,6 +15,7 @@
 #include "../limit_single_instance/limit_single_instance.h"
 #include "../containers/page/page_impl.h"
 #include "../containers/status_pane.h"
+#include "../menus/form_menu.h"
 
 #include "../widgets/widget_impl.h"
 #include "../widgets/control_buttons/close_button/close_button_impl.h"
@@ -84,6 +85,8 @@ namespace liblec {
 
 			// constant members
 			const float caption_bar_height_;
+			const float caption_and_menu_gap_;
+			const float form_menu_margin_;
 			const float form_border_thickness_;
 			const float page_tolerance_;
 			const float control_button_margin_;
@@ -149,6 +152,7 @@ namespace liblec {
 			std::unique_ptr<widgets::maximize_button_impl> p_maximize_button_;
 			std::unique_ptr<widgets::minimize_button_impl> p_minimize_button_;
 			std::unique_ptr<widgets::label_impl> p_caption_;
+			std::vector<std::unique_ptr<widgets::label_impl>> p_menu_;
 
 			D2D1_POINT_2F point_before_;
 			bool user_sizing_;
@@ -176,6 +180,15 @@ namespace liblec {
 			std::vector<std::string> scheduled_for_closure_;
 
 			HCURSOR h_widget_cursor_;
+
+			// form menu
+			struct form_menu_label {
+				std::string text;
+				std::vector<form_menu_item> items;
+				rect rc_text;
+			};
+
+			std::vector<form_menu_label> form_menu_;
 
 			/// <summary>Flag for scheduling a refresh. Important when the specs of a widget are
 			/// changed during the rendering of another widget.</summary>
@@ -216,6 +229,7 @@ namespace liblec {
 			friend class color_picker;
 			friend class splash;
 			friend class instance_management;
+			friend class form_menu;
 			friend class containers::status_pane;
 			friend class containers::tab_pane;
 			friend class containers::tab;
@@ -259,6 +273,7 @@ namespace liblec {
 			void create_maximize_button();
 			void create_minimize_button();
 			void create_form_caption();
+			void create_form_menu();
 			void update();
 			void move_trees();
 			void move_html_editors();

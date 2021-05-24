@@ -44,6 +44,7 @@
     <ClInclude Include="lecui.h" />
     <ClInclude Include="limit_single_instance\limit_single_instance.h" />
     <ClInclude Include="menus\context_menu.h" />
+    <ClInclude Include="menus\form_menu.h" />
     <ClInclude Include="timer.h" />
     <ClInclude Include="utilities\color_picker.h" />
     <ClInclude Include="utilities\date_time.h" />
@@ -133,6 +134,7 @@
     <ClCompile Include="lecui.cpp" />
     <ClCompile Include="limit_single_instance\limit_single_instance.cpp" />
     <ClCompile Include="menus\context_menu\context_menu.cpp" />
+    <ClCompile Include="menus\form_menu\form_menu.cpp" />
     <ClCompile Include="timer.cpp" />
     <ClCompile Include="unique_string.cpp" />
     <ClCompile Include="utilities\color_picker\color_picker.cpp" />
@@ -329,6 +331,7 @@ xcopy "$(ProjectDir)widgets\date.h" "$(SolutionDir)..\include\liblec\$(ProjectNa
 xcopy "$(ProjectDir)widgets\icon.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 
 xcopy "$(ProjectDir)menus\context_menu.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\menus\" /F /R /Y /I
+xcopy "$(ProjectDir)menus\form_menu.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\menus\" /F /R /Y /I
 
 xcopy "$(ProjectDir)utilities\filesystem.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\utilities\" /F /R /Y /I
 xcopy "$(ProjectDir)utilities\color_picker.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\utilities\" /F /R /Y /I
@@ -393,6 +396,7 @@ xcopy "$(ProjectDir)widgets\date.h" "$(SolutionDir)..\include\liblec\$(ProjectNa
 xcopy "$(ProjectDir)widgets\icon.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 
 xcopy "$(ProjectDir)menus\context_menu.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\menus\" /F /R /Y /I
+xcopy "$(ProjectDir)menus\form_menu.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\menus\" /F /R /Y /I
 
 xcopy "$(ProjectDir)utilities\filesystem.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\utilities\" /F /R /Y /I
 xcopy "$(ProjectDir)utilities\color_picker.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\utilities\" /F /R /Y /I
@@ -461,6 +465,7 @@ xcopy "$(ProjectDir)widgets\date.h" "$(SolutionDir)..\include\liblec\$(ProjectNa
 xcopy "$(ProjectDir)widgets\icon.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 
 xcopy "$(ProjectDir)menus\context_menu.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\menus\" /F /R /Y /I
+xcopy "$(ProjectDir)menus\form_menu.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\menus\" /F /R /Y /I
 
 xcopy "$(ProjectDir)utilities\filesystem.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\utilities\" /F /R /Y /I
 xcopy "$(ProjectDir)utilities\color_picker.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\utilities\" /F /R /Y /I
@@ -529,6 +534,7 @@ xcopy "$(ProjectDir)widgets\date.h" "$(SolutionDir)..\include\liblec\$(ProjectNa
 xcopy "$(ProjectDir)widgets\icon.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 
 xcopy "$(ProjectDir)menus\context_menu.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\menus\" /F /R /Y /I
+xcopy "$(ProjectDir)menus\form_menu.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\menus\" /F /R /Y /I
 
 xcopy "$(ProjectDir)utilities\filesystem.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\utilities\" /F /R /Y /I
 xcopy "$(ProjectDir)utilities\color_picker.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\utilities\" /F /R /Y /I

@@ -31,6 +31,7 @@ namespace liblec {
 		class color_picker;
 		class splash;
 		class instance_management;
+		class form_menu;
 
 		namespace containers {
 			class page;
@@ -267,6 +268,7 @@ namespace liblec {
 			friend class color_picker;
 			friend class splash;
 			friend class instance_management;
+			friend class form_menu;
 
 			friend class containers::page;
 			friend class containers::status_pane;
