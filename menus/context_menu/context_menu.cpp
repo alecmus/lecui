@@ -36,7 +36,7 @@ namespace liblec {
             float next_arrow_width_ = 0.f;
 
         public:
-            std::string clicked_;
+            std::string acted_on_;
 
             impl(lecui::form& parent, const specs& menu_specs) :
                 form(menu_form_caption(), parent),
@@ -224,8 +224,8 @@ namespace liblec {
                     rect().color_border.alpha = 0;
                     rect().color_border_hot.alpha = 0;
                     rect().color_hot.alpha = 50;
-                    rect().events().click = [&]() {
-                        clicked_ = item.label;
+                    rect().events().action = [&]() {
+                        acted_on_ = item.label;
                         close();
                     };
 
@@ -308,7 +308,7 @@ namespace liblec {
             std::string error;
             if (!m.show(error))
                 log(error);
-            return m.clicked_;
+            return m.acted_on_;
 		}
 	}
 }
