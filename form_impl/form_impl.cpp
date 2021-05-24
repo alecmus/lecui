@@ -476,7 +476,8 @@ namespace liblec {
 			// buttons since we've eliminated resizing caption rect; perhaps use clip???
 			p_caption_->specs().rect = convert_rect(rect);
 
-			p_caption_->specs().events().click = on_caption_;
+			p_caption_->specs().events().action = on_caption_;
+		}
 		}
 
 		void form::impl::update() { InvalidateRect(hWnd_, nullptr, FALSE); }
