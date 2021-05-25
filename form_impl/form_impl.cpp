@@ -2256,6 +2256,11 @@ namespace liblec {
 							GWL_STYLE) & ~(WS_SIZEBOX | WS_MAXIMIZEBOX));
 				}
 
+				if (!allow_minimize_) {
+					SetWindowLong(hWnd_, GWL_STYLE,
+						GetWindowLong(hWnd_, GWL_STYLE) & ~WS_MINIMIZEBOX);
+				}
+
 				// when switching between borderless and windowed, restore appropriate shadow state
 				set_shadow(hWnd, borderless_shadow_ && (new_style != style::windowed));
 
@@ -2541,6 +2546,13 @@ namespace liblec {
 
 			try { allow_minimize_ = widgets_.at("minimize_button").enabled(); }
 			catch (const std::exception&) { allow_minimize_ = false; }
+
+			if (allow_minimize_)
+				SetWindowLong(hWnd_, GWL_STYLE,
+					GetWindowLong(hWnd_, GWL_STYLE) | WS_MINIMIZEBOX);
+			else
+				SetWindowLong(hWnd_, GWL_STYLE,
+					GetWindowLong(hWnd_, GWL_STYLE) & ~WS_MINIMIZEBOX);
 		}
 
 		void form::impl::show(const std::string& path, bool show) {
@@ -2920,6 +2932,11 @@ namespace liblec {
 				if (!form_.d_.allow_resizing_)
 					SetWindowLong(hWnd, GWL_STYLE,
 						GetWindowLong(hWnd, GWL_STYLE) & ~(WS_SIZEBOX | WS_MAXIMIZEBOX));
+
+				if (!form_.d_.allow_minimize_) {
+					SetWindowLong(hWnd, GWL_STYLE,
+						GetWindowLong(hWnd, GWL_STYLE) & ~WS_MINIMIZEBOX);
+				}
 
 				form_.on_start();
 
