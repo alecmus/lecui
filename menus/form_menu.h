@@ -23,6 +23,12 @@ namespace liblec {
 			/// <summary>The label text of the menu item.</summary>
 			std::string label;
 
+			/// <summary>The action handler.</summary>
+			std::function<void()> action = nullptr;
+
+			/// <summary>The children of the menu item (used to make a tree).</summary>
+			std::vector<form_menu_item> children;
+
 			/// <summary>The image to use for the menu item (placed on the right).</summary>
 			std::string image_file;
 
@@ -31,12 +37,6 @@ namespace liblec {
 
 			/// <summary>The font size.</summary>
 			float font_size = 9.f;
-
-			/// <summary>The action handler.</summary>
-			std::function<void()> action = nullptr;
-
-			/// <summary>The children of the menu item (used to make a tree).</summary>
-			std::vector<form_menu_item> children;
 		};
 
 		/// <summary>Form menu.</summary>
