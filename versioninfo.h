@@ -14,6 +14,7 @@
 #define lecuidescription	"lecui user interface library"
 #define lecuicomments		"This file is part of the liblec library"
 #define lecuicopyright		"(c) 2019 Alec Musasa"
+#define lecuicompany		"Alec Musasa"
 #define lecuifilename		"lecui.dll"
 
 #define lecuiversion		"1.0.0 alpha 1"
