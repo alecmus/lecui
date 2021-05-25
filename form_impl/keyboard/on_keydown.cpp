@@ -221,8 +221,10 @@ namespace liblec {
 						widget.second.type() !=
 						widgets::widget_type::maximize_button &&
 						widget.second.type() !=
-						widgets::widget_type::minimize_button)
+						widgets::widget_type::minimize_button) {
+						update = true;
 						on_action_handler = [&]() { widget.second.on_action(); };
+					}
 				}
 
 				class helper {
