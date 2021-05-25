@@ -103,7 +103,11 @@ namespace liblec {
 			else
 				d_.resource_module_handle_ = GetModuleHandle(nullptr);
 
-			// call the on_layout virtual function
+			// call the on_initialize virtual method
+			if (!on_initialize(error))
+				return false;
+
+			// call the on_layout virtual method
 			if (!on_layout(error))
 				return false;
 
@@ -249,6 +253,7 @@ namespace liblec {
 			}
 		}
 
+		bool form::on_initialize(std::string& error) { return true; }
 		bool form::on_layout(std::string& error) { return true; }
 		void form::on_start() {}
 		void form::on_close() { close(); }

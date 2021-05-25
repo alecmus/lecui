@@ -148,6 +148,17 @@ namespace liblec {
 			/// is closed.</summary>
 			void close();
 
+			/// <summary>Called before on_layout(). This is a good place to create the splash
+			/// screen and do all essential app initilization like reading registry settings etc.
+			/// </summary>
+			/// <param name="error">Error information on fail.</param>
+			/// <returns>True if successful, else false. If false, error information will be
+			/// written to the error reference.</returns>
+			/// <remarks>Return false if you want to discountinue application initialization.
+			/// This means <see cref="on_layout"></see> won't even be called.
+			/// </remarks>
+			virtual bool on_initialize(std::string& error);
+
 			/// <summary>For defining the form's layout.</summary>
 			/// <param name="error">If there's an error in the layout function's implementation
 			/// write that error information to this reference, and return false. This information
@@ -163,8 +174,8 @@ namespace liblec {
 			[[nodiscard]] virtual bool on_layout(std::string& error);
 
 			/// <summary>Called after on_layout() just before the form is displayed. This is a good
-			/// place to close the splash screen. The splash screen itself is best created in the
-			/// constructor of the class that inherits directly from this class.</summary>
+			/// place to close the splash screen. The splash screen itself is best created in
+			/// <see cref="on_initialize"></see>.</summary>
 			virtual void on_start();
 
 			/// <summary>Called when either the close button on the top right is clicked, or when
