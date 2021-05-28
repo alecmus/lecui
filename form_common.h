@@ -97,30 +97,30 @@ namespace liblec {
 			rc.bottom = rc.top + iScaledH / DPIScale;
 		}
 
-		static inline std::wstring convert_string(const std::string& string_) {
-			int s_length = (int)string_.length() + 1;
-			int len = MultiByteToWideChar(CP_ACP, 0, string_.c_str(), s_length, 0, 0);
+		static inline std::wstring convert_string(const std::string& input) {
+			int s_length = (int)input.length() + 1;
+			int len = MultiByteToWideChar(CP_ACP, 0, input.c_str(), s_length, 0, 0);
 
-			wchar_t* buf = new wchar_t[len];
-			MultiByteToWideChar(CP_ACP, 0, string_.c_str(), s_length, buf, len);
+			wchar_t* buffer = new wchar_t[len];
+			MultiByteToWideChar(CP_ACP, 0, input.c_str(), s_length, buffer, len);
 
-			std::wstring r(buf);
-			delete[] buf;
+			std::wstring output(buffer);
+			delete[] buffer;
 
-			return r;
+			return output;
 		}
 
-		static inline std::string convert_string(const std::wstring& string_) {
-			int s_length = (int)string_.length() + 1;
-			int len = WideCharToMultiByte(CP_ACP, 0, string_.c_str(), s_length, 0, 0, 0, 0);
+		static inline std::string convert_string(const std::wstring& input) {
+			int s_length = (int)input.length() + 1;
+			int len = WideCharToMultiByte(CP_ACP, 0, input.c_str(), s_length, 0, 0, 0, 0);
 
-			char* buf = new char[len];
-			WideCharToMultiByte(CP_ACP, 0, string_.c_str(), s_length, buf, len, 0, 0);
+			char* buffer = new char[len];
+			WideCharToMultiByte(CP_ACP, 0, input.c_str(), s_length, buffer, len, 0, 0);
 
-			std::string r(buf);
-			delete[] buf;
+			std::string output(buffer);
+			delete[] buffer;
 
-			return r;
+			return output;
 		}
 
 		static inline D2D1::ColorF convert_color(const color& color_) {
