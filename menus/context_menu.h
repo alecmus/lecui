@@ -20,7 +20,7 @@ namespace liblec {
 	namespace lecui {
 		/// <summary>Menu items.</summary>
         struct menu_item {
-			/// <summary>The label text of the menu item.</summary>
+			/// <summary>The label text of the menu item. Use an empty string to make a separator.</summary>
             std::string label;
 
 			/// <summary>The image to use for the menu item (placed on the right).</summary>
@@ -33,6 +33,8 @@ namespace liblec {
 			float font_size = 9.f;
 
 			/// <summary>The children of the menu item (used to make a tree).</summary>
+			/// <remarks>Separators cannot have children. As such, this field is ignored in
+			/// separators.</remarks>
             std::vector<menu_item> children;
         };
 
