@@ -18,7 +18,7 @@ namespace liblec {
 
 		containers::page::~page() { delete& d_page_; }
 
-		inline size containers::page::size() { return d_page_.size(); }
+		inline const size containers::page::size() { return d_page_.size(); }
 
 		class page_management::impl {
 		public:

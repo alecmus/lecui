@@ -45,7 +45,7 @@ namespace liblec {
 				/// matter, only see the dimensions and coordinates of that container not those
 				/// of the form or another container higher up the hierarchy. Dimensions and
 				/// coordinates are local to a container.</remarks>
-				[[nodiscard]] size size();
+				[[nodiscard]] const size size();
 
 			private:
 				class impl;
