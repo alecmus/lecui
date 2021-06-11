@@ -202,6 +202,8 @@ namespace liblec {
 			/// widget from within the render method of another widget.</remarks>
 			bool schedule_refresh_;
 
+			bool close_called_;
+
 			/// we cannot just use WS_POPUP style
 			/// WS_THICKFRAME: without this the window cannot be resized and so aero snap, de-maximizing
 			///  and minimizing won't work

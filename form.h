@@ -146,6 +146,8 @@ namespace liblec {
 
 			/// <summary>Close the form. When this is called all activity is stopped and the form
 			/// is closed.</summary>
+			/// <remarks>If called in <see cref="on_initialize"></see> then on_layout is never called
+			/// and the app is terminated gracefully.</remarks>
 			void close();
 
 			/// <summary>Called before on_layout(). This is a good place to create the splash

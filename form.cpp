@@ -107,6 +107,10 @@ namespace liblec {
 			if (!on_initialize(error))
 				return false;
 
+			// check if close was called
+			if (d_.close_called_)
+				return true;
+
 			// call the on_layout virtual method
 			if (!on_layout(error))
 				return false;
@@ -226,6 +230,8 @@ namespace liblec {
 		}
 
 		void form::close() {
+			d_.close_called_ = true;
+
 			if (IsWindow(d_.hWnd_)) {
 				// stop all timers
 				for (auto& it : d_.timers_)
