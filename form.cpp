@@ -67,6 +67,10 @@ namespace liblec {
 			d_.form_position_ = form_position;
 		}
 
+		void form::force_instance() {
+			d_.force_instance_ = true;
+		}
+
 		bool form::show(std::string& error) {
 			if (d_.show_called_) {
 				error = "Library usage error: form::show";
@@ -84,8 +88,11 @@ namespace liblec {
 			if (d_.p_instance_) {
 				if (d_.p_instance_->another_instance_running()) {
 					log("another instance running");
-					d_.open_existing_instance();
-					return true;
+
+					if (!d_.force_instance_) {
+						d_.open_existing_instance();
+						return true;
+					}
 				}
 			}
 

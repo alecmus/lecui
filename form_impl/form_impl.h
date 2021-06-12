@@ -204,6 +204,8 @@ namespace liblec {
 
 			bool close_called_;
 
+			bool force_instance_;
+
 			/// we cannot just use WS_POPUP style
 			/// WS_THICKFRAME: without this the window cannot be resized and so aero snap, de-maximizing
 			///  and minimizing won't work

@@ -130,7 +130,8 @@ namespace liblec {
 			on_drop_files_(nullptr),
 			h_widget_cursor_(nullptr),
 			schedule_refresh_(false),
-			close_called_(false) {
+			close_called_(false),
+			force_instance_(false) {
 			++instances_;	// increment instances count
 
 			/// Use HeapSetInformation to specify that the process should terminate if the heap manager

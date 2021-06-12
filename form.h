@@ -136,6 +136,18 @@ namespace liblec {
 			/// <param name="form_position">The predefined form position.</param>
 			void move(const form_position& form_position);
 
+			/// <summary>Force this instance to run even if an existing instance is found.</summary>
+			/// <remarks>This method causes the <see cref="show"></see> method to continue execution
+			/// regardless of whether an existing instance is present. You would typically do this if you
+			/// need your app to reach the <see cref="initialize"></see> method without the intention of
+			/// allowing it to go as far as <see cref="on_layout"></see>, in which case you would call
+			/// the <see cref="close"></see> method within <see cref="initialize"></see>. A typical use-case
+			/// is when the app is calling itself during an update process. Not calling this method would
+			/// mean the spawning of the new instance is not guaranteed since the previous may still be
+			/// running when the new one reaches the instance checking logic. The best place to call this
+			/// method is in the constructor of the class that inherits from this base class.</remarks>
+			void force_instance();
+
 			/// <summary>Show the form.</summary>
 			/// <param name="error">Error information on fail.</param>
 			/// <returns>True if successful, else false. If false, error information will be
