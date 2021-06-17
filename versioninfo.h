@@ -22,4 +22,4 @@
 #define lecuiminor			0
 #define lecuirevision		0
 
-#define lecuidate			"12 Jun 2021"
+#define lecuidate			"18 Jun 2021"

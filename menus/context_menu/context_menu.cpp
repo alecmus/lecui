@@ -89,8 +89,11 @@ namespace liblec {
                         rect = dim.measure_label(item.label, item.font, font_size, false, false, rect);
                         rect.bottom += (2 * margin_);   // padding
                     }
-                    else
-                        rect.height(1.f);   // separator
+                    else {
+                        // separator
+                        rect.height(1.f);
+                        rect.width(0.f);
+                    }
 
                     if (!item.label.empty() && images_)
                         rect.right += (rect.height() + (margin_ / 2.f)); // image
