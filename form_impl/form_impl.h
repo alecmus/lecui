@@ -211,6 +211,8 @@ namespace liblec {
 			std::vector<tray_menu_item> tray_icon_menu_items_;
 			std::string tray_item_default_;
 
+			bool start_hidden_;
+
 			/// we cannot just use WS_POPUP style
 			/// WS_THICKFRAME: without this the window cannot be resized and so aero snap, de-maximizing
 			///  and minimizing won't work

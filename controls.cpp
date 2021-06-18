@@ -26,6 +26,7 @@ namespace liblec {
 		void controls::resize(bool enable) { d_.fm_.d_.allow_resizing_ = enable; }
 		void controls::minimize(bool enable) { d_.fm_.d_.allow_minimize_ = enable; }
 		void controls::top_most(bool make_top_most) { d_.fm_.d_.top_most_ = make_top_most; }
+		void controls::start_hidden(bool hidden) { d_.fm_.d_.start_hidden_ = hidden; }
 
 		class dimensions::impl {
 		public:

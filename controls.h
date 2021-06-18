@@ -42,6 +42,12 @@ namespace liblec {
 			/// appear above all other windows.</param>
 			void top_most(bool make_top_most);
 
+			/// <summary>Whether to keep the form hidden after its creation.</summary>
+			/// <param name="hidden">Set to false to keep normal form bahaviour and to true to initialize
+			/// app with the form hidden. Useful when starting app in the background and when using the
+			/// system tray.</param>
+			void start_hidden(bool hidden);
+
 		private:
 			class impl;
 			impl& d_;

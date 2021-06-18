@@ -202,7 +202,7 @@ namespace liblec {
 				return false;
 			}
 
-			ShowWindow(d_.hWnd_, SW_SHOW);
+			ShowWindow(d_.hWnd_, d_.start_hidden_ ? SW_HIDE : SW_SHOW);
 			UpdateWindow(d_.hWnd_);
 
 			// Update the user interface. This is important for widgets that are moved into
@@ -212,7 +212,7 @@ namespace liblec {
 			// won't initially be displayed.
 			update();
 
-			if (d_.activate_)
+			if (d_.activate_ && !d_.start_hidden_)
 				SetForegroundWindow(d_.hWnd_);
 
 			// Disable parent if this is not a menu form.
