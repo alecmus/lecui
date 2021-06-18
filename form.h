@@ -274,6 +274,19 @@ namespace liblec {
 			[[nodiscard]]
 			float get_dpi_scale();
 
+			/// <summary>Minimize the form.</summary>
+			/// <remarks>This method does nothing if the form is already minimized or if it doesn't have the minimize button.</remarks>
+			void minimize();
+
+			/// <summary>Restore the form.</summary>
+			/// <remarks>If the form is minimized it will be restored. If it is maximized it will also be restored to normal size. If
+			/// the form is already in normal form nothing will be done (except bring it to the foreground if it isn't already).</remarks>
+			void restore();
+
+			/// <summary>Maximize the form.</summary>
+			/// <remarks>This method does nothing if the form is already maximized or if it doesn't have the maximize button.</remarks>
+			void maximize();
+
 		private:
 			class impl;
 			impl& d_;

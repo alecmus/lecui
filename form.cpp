@@ -464,5 +464,26 @@ namespace liblec {
 		float form::get_dpi_scale() {
 			return d_.get_dpi_scale();
 		}
+
+		void form::minimize() {
+			if (!d_.allow_minimize_)
+				return;
+
+			if (IsWindow(d_.hWnd_))
+				ShowWindow(d_.hWnd_, SW_MINIMIZE);
+		}
+
+		void form::restore() {
+			if (IsWindow(d_.hWnd_))
+				ShowWindow(d_.hWnd_, SW_RESTORE);
+		}
+
+		void form::maximize() {
+			if (!d_.allow_resizing_)
+				return;
+
+			if (IsWindow(d_.hWnd_))
+				ShowWindow(d_.hWnd_, SW_MAXIMIZE);
+		}
 	}
 }
