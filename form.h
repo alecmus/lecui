@@ -32,6 +32,7 @@ namespace liblec {
 		class splash;
 		class instance_management;
 		class form_menu;
+		class tray_icon;
 
 		namespace containers {
 			class page;
@@ -294,6 +295,7 @@ namespace liblec {
 			friend class splash;
 			friend class instance_management;
 			friend class form_menu;
+			friend class tray_icon;
 
 			friend class containers::page;
 			friend class containers::status_pane;

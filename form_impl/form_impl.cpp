@@ -131,7 +131,8 @@ namespace liblec {
 			h_widget_cursor_(nullptr),
 			schedule_refresh_(false),
 			close_called_(false),
-			force_instance_(false) {
+			force_instance_(false),
+			tray_icon_present_(false) {
 			++instances_;	// increment instances count
 
 			/// Use HeapSetInformation to specify that the process should terminate if the heap manager
@@ -3182,6 +3183,47 @@ namespace liblec {
 
 			case WM_DROPFILES:
 				form_.d_.on_dropfiles(wParam);
+				break;
+
+			case WM_APP:
+				switch (lParam) {
+				case WM_RBUTTONUP:
+					// tray icon right clicked
+					// to-do: make this NOT crash when form is minimized
+					// to-do: make context menu close when taskbar is clicked
+					if (!form_.d_.tray_icon_menu_items_.empty()) {
+						context_menu::specs menu_specs;
+						menu_specs.quality = image_quality::high;
+
+						for (const auto& item : form_.d_.tray_icon_menu_items_) {
+							menu_item mi;
+							mi.label = item.label;
+							mi.font = item.font;
+							mi.font_size = item.font_size;
+							menu_specs.items.push_back(mi);
+						}
+
+						menu_specs.type = context_menu::pin_type::bottom;
+
+						auto result = context_menu()(form_, menu_specs);
+
+						for (auto& m_it : form_.d_.tray_icon_menu_items_) {
+							if (m_it.label == result) {
+								if (m_it.action != nullptr)
+									m_it.action();
+							}
+						}
+					}
+					break;
+
+				case WM_LBUTTONUP:
+					// tray icon left clicked
+					// make first item the default
+					break;
+
+				default:
+					break;
+				}
 				break;
 
 			default:

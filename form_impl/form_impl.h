@@ -16,6 +16,7 @@
 #include "../containers/page/page_impl.h"
 #include "../containers/status_pane.h"
 #include "../menus/form_menu.h"
+#include "../utilities/tray_icon.h"
 
 #include "../widgets/widget_impl.h"
 #include "../widgets/control_buttons/close_button/close_button_impl.h"
@@ -206,6 +207,9 @@ namespace liblec {
 
 			bool force_instance_;
 
+			bool tray_icon_present_;
+			std::vector<tray_menu_item> tray_icon_menu_items_;
+
 			/// we cannot just use WS_POPUP style
 			/// WS_THICKFRAME: without this the window cannot be resized and so aero snap, de-maximizing
 			///  and minimizing won't work
@@ -234,6 +238,7 @@ namespace liblec {
 			friend class splash;
 			friend class instance_management;
 			friend class form_menu;
+			friend class tray_icon;
 			friend class containers::status_pane;
 			friend class containers::tab_pane;
 			friend class containers::tab;

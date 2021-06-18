@@ -167,6 +167,9 @@
     <Filter Include="lecui\menus\form_menu">
       <UniqueIdentifier>{4d447286-9907-4181-9e8e-40472b148ffb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="lecui\utilities\tray_icon">
+      <UniqueIdentifier>{e401fe90-c034-4e2e-9113-a6b34883e106}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="error\win_error.h">
@@ -403,6 +406,9 @@
     </ClInclude>
     <ClInclude Include="menus\form_menu.h">
       <Filter>lecui\menus</Filter>
+    </ClInclude>
+    <ClInclude Include="utilities\tray_icon.h">
+      <Filter>lecui\utilities</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -667,6 +673,9 @@
     </ClCompile>
     <ClCompile Include="menus\form_menu\form_menu.cpp">
       <Filter>lecui\menus\form_menu</Filter>
+    </ClCompile>
+    <ClCompile Include="utilities\tray_icon\tray_icon.cpp">
+      <Filter>lecui\utilities\tray_icon</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

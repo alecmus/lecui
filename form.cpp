@@ -126,7 +126,7 @@ namespace liblec {
 			if (d_.menu_form_) {
 				d_.allow_resizing_ = false;
 				d_.allow_minimize_ = false;
-				d_.activate_ = false;
+				d_.activate_ = true;
 			}
 
 			// create form controls

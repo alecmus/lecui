@@ -27,7 +27,7 @@ namespace liblec {
 
 			/// <summary>Whether to allow a form to be resizable.</summary>
 			/// <param name="enable">Set to false to disable resizing.</param>
-			/// <remarks>For resizing is enabled by default if this method is never called.
+			/// <remarks>If resizing is enabled by default if this method is never called.
 			/// </remarks>
 			void resize(bool enable);
 
