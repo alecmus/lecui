@@ -479,6 +479,8 @@ namespace liblec {
 					ShowWindow(d_.hWnd_, SW_SHOW);
 				else
 					ShowWindow(d_.hWnd_, SW_RESTORE);
+
+				SetForegroundWindow(d_.hWnd_);
 			}
 		}
 

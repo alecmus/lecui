@@ -54,11 +54,15 @@ namespace liblec {
 			/// <param name="title">The title of the tray icon; displayed when the mouse is hovered over the tray icon.</param>
 			/// <param name="items">The menu items displayed when the tray icon is right clicked, as defined in the
 			/// <see cref="tray_menu_item"></see> type.</param>
+			/// <param name="default_item">The label of the item whose action is to be invoked when the system tray icon
+			/// is clicked (left click). If formatting is used for the actual label this does not have to be formatted
+			/// as well because only the plain-text is compared.</param>
 			/// <param name="error">Error information.</param>
 			/// <returns>Returns true if the icon is added successfully, else false.</returns>
 			bool add(int png_resource,
 				const std::string& title,
 				const std::vector<tray_menu_item>& items,
+				const std::string& default_item,
 				std::string& error);
 
 			/// <summary>Change the tray icon.</summary>

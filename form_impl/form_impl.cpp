@@ -3189,8 +3189,6 @@ namespace liblec {
 				switch (lParam) {
 				case WM_RBUTTONUP:
 					// tray icon right clicked
-					// to-do: make this NOT crash when form is minimized
-					// to-do: make context menu close when taskbar is clicked
 					if (!form_.d_.tray_icon_menu_items_.empty()) {
 						context_menu::specs menu_specs;
 						menu_specs.quality = image_quality::high;
@@ -3208,7 +3206,7 @@ namespace liblec {
 						auto result = context_menu()(form_, menu_specs);
 
 						for (auto& m_it : form_.d_.tray_icon_menu_items_) {
-							if (m_it.label == result) {
+							if (!m_it.label.empty() && m_it.label == result) {
 								if (m_it.action != nullptr)
 									m_it.action();
 							}
@@ -3217,8 +3215,21 @@ namespace liblec {
 					break;
 
 				case WM_LBUTTONUP:
-					// tray icon left clicked
-					// make first item the default
+					// tray icon left clicked, invoke the action of the default item
+					for (auto& m_it : form_.d_.tray_icon_menu_items_) {
+
+						std::string plain_label;
+						// parse the label
+						// the default color doesn't matter here we're just getting the plain text
+						std::vector<formatted_text_parser::text_range_properties> formatting;
+						widgets::parse_formatted_text(m_it.label, plain_label,
+							D2D1::ColorF(D2D1::ColorF::Black), formatting);
+
+						if (!plain_label.empty() && plain_label == form_.d_.tray_item_default_) {
+							if (m_it.action != nullptr)
+								m_it.action();
+						}
+					}
 					break;
 
 				default:

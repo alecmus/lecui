@@ -30,7 +30,8 @@ namespace liblec {
 		}
 
 		bool tray_icon::add(int png_resource, const std::string& title,
-			const std::vector<tray_menu_item>& items, std::string& error) {
+			const std::vector<tray_menu_item>& items,
+			const std::string& default_item, std::string& error) {
 			if (!png_resource) {
 				error = "PNG resource for tray icon not specified";
 				return false;
@@ -41,6 +42,12 @@ namespace liblec {
 				return true;
 
 			d_.fm_.d_.tray_icon_menu_items_ = items;
+
+			// parse the default item text
+			// the default color doesn't matter here we're just getting the plain text
+			std::vector<formatted_text_parser::text_range_properties> formatting;
+			widgets::parse_formatted_text(default_item, d_.fm_.d_.tray_item_default_,
+				D2D1::ColorF(D2D1::ColorF::Black), formatting);
 
 			// create system tray icon
 			NOTIFYICONDATAA nid;
