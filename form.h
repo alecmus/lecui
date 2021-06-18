@@ -289,6 +289,8 @@ namespace liblec {
 			void maximize();
 
 			/// <summary>Hide the form. Useful when using a system tray icon.</summary>
+			/// <remarks>Note that once called the form can only be restored through a call to the
+			/// <see cref="restore"></see> method. Besides that there will be no other means to make the form visible again.</remarks>
 			void hide();
 
 		private:
