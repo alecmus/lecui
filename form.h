@@ -280,12 +280,16 @@ namespace liblec {
 
 			/// <summary>Restore the form.</summary>
 			/// <remarks>If the form is minimized it will be restored. If it is maximized it will also be restored to normal size. If
-			/// the form is already in normal form nothing will be done (except bring it to the foreground if it isn't already).</remarks>
+			/// the form is already in normal form nothing will be done (except bring it to the foreground if it isn't already). If the
+			/// form was hidded it will be shown.</remarks>
 			void restore();
 
 			/// <summary>Maximize the form.</summary>
 			/// <remarks>This method does nothing if the form is already maximized or if it doesn't have the maximize button.</remarks>
 			void maximize();
+
+			/// <summary>Hide the form. Useful when using a system tray icon.</summary>
+			void hide();
 
 		private:
 			class impl;

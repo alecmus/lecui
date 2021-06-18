@@ -474,8 +474,12 @@ namespace liblec {
 		}
 
 		void form::restore() {
-			if (IsWindow(d_.hWnd_))
-				ShowWindow(d_.hWnd_, SW_RESTORE);
+			if (IsWindow(d_.hWnd_)) {
+				if (!IsWindowVisible(d_.hWnd_))
+					ShowWindow(d_.hWnd_, SW_SHOW);
+				else
+					ShowWindow(d_.hWnd_, SW_RESTORE);
+			}
 		}
 
 		void form::maximize() {
@@ -484,6 +488,11 @@ namespace liblec {
 
 			if (IsWindow(d_.hWnd_))
 				ShowWindow(d_.hWnd_, SW_MAXIMIZE);
+		}
+
+		void form::hide() {
+			if (IsWindow(d_.hWnd_))
+				ShowWindow(d_.hWnd_, SW_HIDE);
 		}
 	}
 }
