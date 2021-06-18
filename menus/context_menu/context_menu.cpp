@@ -49,6 +49,10 @@ namespace liblec {
                         break;
                     }
 
+                // make top level form
+                lecui::controls ctrls(*this);
+                ctrls.top_most(true);
+
                 // measure items
                 lecui::dimensions dim(*this);
 
