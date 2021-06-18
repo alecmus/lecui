@@ -19,7 +19,7 @@
 namespace liblec {
 	namespace lecui {
 		/// <summary>Manipulate a form's controls.</summary>
-		/// <remarks>This manipulation should be done in the form's layout method.</remarks>
+		/// <remarks>This manipulation is best done in the form's on_initialize method.</remarks>
 		class lecui_api controls {
 		public:
 			controls(form& fm);
@@ -37,6 +37,11 @@ namespace liblec {
 			/// called.</remarks>
 			void minimize(bool enable);
 
+			/// <summary>Whether to make this a top most form.</summary>
+			/// <param name="make_top_most">Set to false for a normal form and to true to make the form
+			/// appear above all other windows.</param>
+			void top_most(bool make_top_most);
+
 		private:
 			class impl;
 			impl& d_;
@@ -48,6 +53,7 @@ namespace liblec {
 		};
 
 		/// <summary>Manipulate a form's dimensions.</summary>
+		/// <remarks>This manipulation is best done in the form's on_initialize method.</remarks>
 		class lecui_api dimensions {
 		public:
 			dimensions(form& fm);
