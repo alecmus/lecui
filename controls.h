@@ -29,23 +29,26 @@ namespace liblec {
 			/// <param name="enable">Set to false to disable resizing.</param>
 			/// <remarks>If resizing is enabled by default if this method is never called.
 			/// </remarks>
-			void resize(bool enable);
+			void allow_resize(bool enable);
 
 			/// <summary>Whether to add a minimize control button to the form.</summary>
 			/// <param name="enable">Set to false to remove the minimize control button.</param>
 			/// <remarks>The minimize control button is enabled by default if this method is never
 			/// called.</remarks>
-			void minimize(bool enable);
+			void allow_minimize(bool enable);
 
 			/// <summary>Whether to make this a top most form.</summary>
-			/// <param name="make_top_most">Set to false for a normal form and to true to make the form
+			/// <param name="enable">Set to false for a normal form and to true to make the form
 			/// appear above all other windows.</param>
-			void top_most(bool make_top_most);
+			void make_top_most(bool enable);
 
 			/// <summary>Whether to keep the form hidden after its creation.</summary>
 			/// <param name="hidden">Set to false to keep normal form bahaviour and to true to initialize
 			/// app with the form hidden. Useful when starting app in the background and when using the
 			/// system tray.</param>
+			/// <remarks>To hide a form after it has already been created use the
+			/// <see cref="form::hide"></see> method. To restore a form after it's creation use the
+			/// <see cref="form::restore"></see> method.</remarks>
 			void start_hidden(bool hidden);
 
 		private:
@@ -91,7 +94,7 @@ namespace liblec {
 			/// <summary>Set the form's size.</summary>
 			/// <param name="size">The size, in pixels.</param>
 			/// <remarks>This manipulation should be done in the form's layout method.</remarks>
-			void size(const lecui::size& size);
+			void set_size(const lecui::size& size);
 
 			/// <summary>Get the form's size.</summary>
 			/// <returns>The size, in pixels.</returns>
@@ -101,16 +104,16 @@ namespace liblec {
 			/// form, some room is left for the form border, form controls, and depending on the
 			/// container possibly scroll area etc. Refer to the container's documentation for
 			/// more details.</remarks>
-			[[nodiscard]] const lecui::size& size();
+			[[nodiscard]] const lecui::size& get_size();
 
 			/// <summary>Set the form's minimum size.</summary>
 			/// <param name="size">The size, in pixels.</param>
 			/// <remarks>This manipulation should be done in the form's layout method.</remarks>
-			void minimum(const lecui::size& size);
+			void set_minimum(const lecui::size& size);
 
 			/// <summary>Get the form's minimum size.</summary>
 			/// <returns>The size, in pixels.</returns>
-			[[nodiscard]] const lecui::size& minimum();
+			[[nodiscard]] const lecui::size& get_minimum();
 
 		private:
 			class impl;

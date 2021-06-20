@@ -126,7 +126,6 @@ namespace liblec {
 			if (d_.menu_form_) {
 				d_.allow_resizing_ = false;
 				d_.allow_minimize_ = false;
-				d_.activate_ = true;
 			}
 
 			// create form controls
@@ -287,8 +286,8 @@ namespace liblec {
 					question_(question),
 					user_agreed_(user_agreed) {
 					controls ctrls(*this);
-					ctrls.resize(false);
-					ctrls.minimize(false);
+					ctrls.allow_resize(false);
+					ctrls.allow_minimize(false);
 
 					// impose maximums
 					D2D1_RECT_F rect = D2D1::RectF(0.f, 0.f, max_size_.width, max_size_.height);
@@ -307,7 +306,7 @@ namespace liblec {
 					height = largest(height, min_size_.height);
 
 					dimensions dim(*this);
-					dim.size({ width, height });
+					dim.set_size({ width, height });
 				}
 
 				bool on_layout(std::string& error) override {
@@ -371,8 +370,8 @@ namespace liblec {
 						form(title, parent),
 						message_(message) {
 						controls ctrls(*this);
-						ctrls.resize(false);
-						ctrls.minimize(false);
+						ctrls.allow_resize(false);
+						ctrls.allow_minimize(false);
 
 						// impose maximums
 						D2D1_RECT_F rect = D2D1::RectF(0.f, 0.f, max_size_.width, max_size_.height);
@@ -391,7 +390,7 @@ namespace liblec {
 						height = largest(height, min_size_.height);
 
 						dimensions dim(*this);
-						dim.size({ width, height });
+						dim.set_size({ width, height });
 					}
 
 					bool on_layout(std::string& error) override {
@@ -465,7 +464,7 @@ namespace liblec {
 			return d_.get_dpi_scale();
 		}
 
-		void form::minimize() {
+		void form::allow_minimize() {
 			if (!d_.allow_minimize_)
 				return;
 

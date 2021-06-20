@@ -51,7 +51,7 @@ namespace liblec {
 
                 // make top level form
                 lecui::controls ctrls(*this);
-                ctrls.top_most(true);
+                ctrls.make_top_most(true);
 
                 // measure items
                 lecui::dimensions dim(*this);
@@ -136,8 +136,8 @@ namespace liblec {
                 height = largest(height, min_size_.height);
 
                 auto set_size = [&]() {
-                    dim.size({ width, height });
-                    dim.minimum({ width, height });
+                    dim.set_size({ width, height });
+                    dim.set_minimum({ width, height });
                 };
 
                 // default to top left corner of cursor rect

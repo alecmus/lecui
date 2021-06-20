@@ -276,7 +276,7 @@ namespace liblec {
 
 			/// <summary>Minimize the form.</summary>
 			/// <remarks>This method does nothing if the form is already minimized or if it doesn't have the minimize button.</remarks>
-			void minimize();
+			void allow_minimize();
 
 			/// <summary>Restore the form.</summary>
 			/// <remarks>If the form is minimized it will be restored. If it is maximized it will also be restored to normal size. If
@@ -290,7 +290,8 @@ namespace liblec {
 
 			/// <summary>Hide the form. Useful when using a system tray icon.</summary>
 			/// <remarks>Note that once called the form can only be restored through a call to the
-			/// <see cref="restore"></see> method. Besides that there will be no other means to make the form visible again.</remarks>
+			/// <see cref="restore"></see> method. Besides that there will be no other means to make the form visible again. To
+			/// manipulate a form's visibility at creation time use the <see cref="controls::start_hidden"></see> method.</remarks>
 			void hide();
 
 		private:

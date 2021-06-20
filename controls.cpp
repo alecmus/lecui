@@ -23,9 +23,9 @@ namespace liblec {
 		controls::controls(form& fm) : d_(*(new impl(fm))) {}
 		controls::~controls() { delete& d_; }
 
-		void controls::resize(bool enable) { d_.fm_.d_.allow_resizing_ = enable; }
-		void controls::minimize(bool enable) { d_.fm_.d_.allow_minimize_ = enable; }
-		void controls::top_most(bool make_top_most) { d_.fm_.d_.top_most_ = make_top_most; }
+		void controls::allow_resize(bool enable) { d_.fm_.d_.allow_resizing_ = enable; }
+		void controls::allow_minimize(bool enable) { d_.fm_.d_.allow_minimize_ = enable; }
+		void controls::make_top_most(bool make_top_most) { d_.fm_.d_.top_most_ = make_top_most; }
 		void controls::start_hidden(bool hidden) { d_.fm_.d_.start_hidden_ = hidden; }
 
 		class dimensions::impl {
@@ -69,7 +69,7 @@ namespace liblec {
 			return rect;
 		}
 
-		void dimensions::size(const lecui::size& size) {
+		void dimensions::set_size(const lecui::size& size) {
 			if (size.width) {
 				d_.fm_.d_.size_.width = size.width;
 
@@ -85,11 +85,11 @@ namespace liblec {
 			}
 		}
 
-		const size& dimensions::size() {
+		const size& dimensions::get_size() {
 			return d_.fm_.d_.size_;
 		}
 
-		void dimensions::minimum(const lecui::size& size) {
+		void dimensions::set_minimum(const lecui::size& size) {
 			if (size.width)		// do not allow minimum width to be greater than current window width
 				d_.fm_.d_.min_size_.width = smallest(size.width, d_.fm_.d_.size_.width);
 
@@ -97,7 +97,7 @@ namespace liblec {
 				d_.fm_.d_.min_size_.height = smallest(size.height, d_.fm_.d_.size_.height);
 		}
 
-		const size& dimensions::minimum() {
+		const size& dimensions::get_minimum() {
 			return d_.fm_.d_.min_size_;
 		}
 	}
