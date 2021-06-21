@@ -119,10 +119,14 @@ namespace liblec {
 
 		void widgets::maximize_button_impl::on_click() {
 			if (IsWindow(hWnd_)) {
-				if (maximized(hWnd_))
+				if (maximized(hWnd_)) {
+					specs_.tooltip = "Maximize";
 					ShowWindow(hWnd_, SW_RESTORE);
-				else
+				}
+				else {
+					specs_.tooltip = "Restore down";
 					ShowWindow(hWnd_, SW_MAXIMIZE);
+				}
 			}
 
 			if (specs_.events().action)

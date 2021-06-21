@@ -380,6 +380,7 @@ namespace liblec {
 			widgets_.emplace(p_close_button_->alias(), *p_close_button_);
 			widgets_order_.emplace_back(p_close_button_->alias());
 			
+			p_close_button_->specs().tooltip = "Close";
 			p_close_button_->specs().color_fill = clr_theme_;
 			p_close_button_->specs().color_hot = clr_theme_hot_;
 			p_close_button_->specs().color_disabled = clr_theme_disabled_;
@@ -403,6 +404,7 @@ namespace liblec {
 			widgets_.emplace(p_maximize_button_->alias(), *p_maximize_button_);
 			widgets_order_.emplace_back(p_maximize_button_->alias());
 
+			p_maximize_button_->specs().tooltip = "Maximize";
 			p_maximize_button_->specs().color_fill = clr_theme_;
 			p_maximize_button_->specs().color_hot = clr_theme_hot_;
 			p_maximize_button_->specs().color_disabled = clr_theme_disabled_;
@@ -426,6 +428,7 @@ namespace liblec {
 			widgets_.emplace(p_minimize_button_->alias(), *p_minimize_button_);
 			widgets_order_.emplace_back(p_minimize_button_->alias());
 
+			p_minimize_button_->specs().tooltip = "Minimize";
 			p_minimize_button_->specs().color_fill = clr_theme_;
 			p_minimize_button_->specs().color_hot = clr_theme_hot_;
 			p_minimize_button_->specs().color_disabled = clr_theme_disabled_;
