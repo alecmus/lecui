@@ -454,6 +454,7 @@ namespace liblec {
 			widgets_.emplace(p_caption_->alias(), *p_caption_);
 			widgets_order_.emplace_back(p_caption_->alias());
 
+			p_caption_->specs().tooltip = caption_tooltip_;
 			p_caption_->specs().text = caption_formatted_;
 			p_caption_->specs().center_v = true;
 			p_caption_->specs().multiline = false;
@@ -501,6 +502,7 @@ namespace liblec {
 				widgets_.emplace(it->alias(), *it);
 				widgets_order_.emplace_back(it->alias());
 
+				it->specs().tooltip = main_menu_item.tooltip;
 				it->specs().text = main_menu_item.text;
 				it->specs().center_v = true;
 				it->specs().multiline = false;

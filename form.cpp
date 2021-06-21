@@ -436,8 +436,9 @@ namespace liblec {
 		// this is an expensive call. only use if update() doesn't get the job done.
 		void form::reload() { d_.discard_device_resources(); d_.update(); }
 
-		void form::on_caption(std::function<void()> on_caption) {
+		void form::on_caption(std::function<void()> on_caption, const std::string& tooltip) {
 			d_.on_caption_ = on_caption;
+			d_.caption_tooltip_ = tooltip;
 		}
 
 		void

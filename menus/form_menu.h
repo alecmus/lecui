@@ -48,11 +48,13 @@ namespace liblec {
 
 			/// <summary>Add form menu label.</summary>
 			/// <param name="text">The label text, e.g. "File".</param>
+			/// <param name="tooltip">The (optional) tooltip text.</param>
 			/// <param name="items">The items to be displayed when the
 			/// label is selected.</param>
 			/// <param name="error">Error information.</param>
 			/// <returns>Returns true if successful, else false.</returns>
 			bool add(const std::string& text,
+				const std::string& tooltip,
 				const std::vector<form_menu_item>& items,
 				std::string& error);
 

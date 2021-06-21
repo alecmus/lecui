@@ -250,10 +250,11 @@ namespace liblec {
 
 			/// <summary>Set the handler to be called when the form's caption is clicked.</summary>
 			/// <param name="on_caption">The handler.</param>
+			/// <param name="tooltip">The (optional) tooltip text.</param>
 			/// <remarks>The handler has to be set in on_layout() or before, else it will not
 			/// register. Setting the handler in on_start() is too late because the form caption
 			/// will have already been created by then.</remarks>
-			void on_caption(std::function<void()>on_caption);
+			void on_caption(std::function<void()>on_caption, const std::string& tooltip);
 
 			/// <summary>Set the handler to be called when files are dropped on the form.</summary>
 			/// <param name="on_drop_files">The handler. When it is called, the parameter will

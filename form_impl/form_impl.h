@@ -176,6 +176,7 @@ namespace liblec {
 			bool lbutton_pressed_;
 
 			std::function<void()> on_caption_;
+			std::string caption_tooltip_;
 			std::function<void(const std::string& file)> on_drop_files_;
 			std::function<void(const std::string& data)> on_receive_data_;
 
@@ -186,6 +187,7 @@ namespace liblec {
 			// form menu
 			struct form_menu_label {
 				std::string text;
+				std::string tooltip;
 				std::vector<form_menu_item> items;
 				rect rc_text;
 			};

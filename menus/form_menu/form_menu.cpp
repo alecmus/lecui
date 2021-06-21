@@ -24,6 +24,7 @@ namespace liblec {
 		form_menu::~form_menu() { delete& d_; }
 
 		bool form_menu::add(const std::string& text,
+			const std::string& tooltip,
 			const std::vector<form_menu_item>& items,
 			std::string& error) {
 			for (const auto& it : d_.fm_.d_.form_menu_) {
@@ -33,7 +34,7 @@ namespace liblec {
 				}
 			}
 
-			d_.fm_.d_.form_menu_.push_back({ text, items });
+			d_.fm_.d_.form_menu_.push_back({ text, tooltip, items });
 			return true;
 		}
 	}
