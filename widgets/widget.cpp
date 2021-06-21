@@ -46,9 +46,6 @@ namespace liblec {
 					(color_selected == param.color_selected) &&
 					(color_disabled == param.color_disabled) &&
 
-					/// Tooltip
-					(tooltip == param.tooltip) &&
-
 					/// Font
 					(font == param.font) &&
 					(font_size == param.font_size) &&
