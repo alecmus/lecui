@@ -20,6 +20,9 @@ namespace liblec {
 			public:
 				static void check_widgets(containers::page& page, const char& c, bool& change) {
 					for (auto& widget : page.d_page_.widgets()) {
+						// failsafe: for good measure
+						widget.second.hide_tooltip();
+
 						if (widget.second.type() ==
 							widgets::widget_type::text_field && widget.second.selected()) {
 							change = true;

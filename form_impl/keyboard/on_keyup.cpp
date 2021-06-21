@@ -22,6 +22,9 @@ namespace liblec {
 					if (widget.second.is_static() || !widget.second.visible() || !widget.second.enabled())
 						continue;
 
+					// failsafe: for good measure
+					widget.second.hide_tooltip();
+
 					if (widget.second.selected() &&
 						widget.second.type() !=
 						widgets::widget_type::close_button &&
@@ -44,6 +47,9 @@ namespace liblec {
 						for (auto& widget : page.d_page_.widgets()) {
 							if (widget.second.is_static() || !widget.second.visible() || !widget.second.enabled())
 								continue;
+
+							// failsafe: for good measure
+							widget.second.hide_tooltip();
 
 							if (widget.second.type() == widgets::widget_type::text_field ||
 								widget.second.type() == widgets::widget_type::html_editor ||

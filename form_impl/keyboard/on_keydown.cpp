@@ -26,6 +26,9 @@ namespace liblec {
 				public:
 					static void check_widgets(containers::page& page, WPARAM wParam, bool& change) {
 						for (auto& widget : page.d_page_.widgets()) {
+							// first things first
+							widget.second.hide_tooltip();
+
 							if (widget.second.type() ==
 								widgets::widget_type::text_field && widget.second.selected()) {
 								change = true;
@@ -162,6 +165,9 @@ namespace liblec {
 							if (widget.second.is_static() || !widget.second.visible() || !widget.second.enabled())
 								continue;
 
+							// first things first
+							widget.second.hide_tooltip();
+
 							if (widget.second.selected() &&
 								widget.second.type() != widgets::widget_type::text_field &&	// exclude text box from space bar presses
 								widget.second.type() != widgets::widget_type::html_editor)	// exclude html editor from space bar presses
@@ -215,6 +221,9 @@ namespace liblec {
 					if (widget.second.is_static() || !widget.second.visible() || !widget.second.enabled())
 						continue;
 
+					// first things first
+					widget.second.hide_tooltip();
+
 					if (widget.second.selected() &&
 						widget.second.type() !=
 						widgets::widget_type::close_button &&
@@ -235,6 +244,9 @@ namespace liblec {
 						for (auto& widget : page.d_page_.widgets()) {
 							if (widget.second.is_static() || !widget.second.visible() || !widget.second.enabled())
 								continue;
+
+							// first things first
+							widget.second.hide_tooltip();
 
 							if (widget.second.type() == widgets::widget_type::html_editor)
 								continue;	// this widget uses the enter key for paragraphs
@@ -298,6 +310,9 @@ namespace liblec {
 				if (widget.second.is_static() || !widget.second.visible() || !widget.second.enabled())
 					continue;
 
+				// first things first
+				widget.second.hide_tooltip();
+
 				if (widget.second.selected() &&
 					widget.second.type() !=
 					widgets::widget_type::close_button &&
@@ -319,6 +334,9 @@ namespace liblec {
 					for (auto& widget : page.d_page_.widgets()) {
 						if (widget.second.is_static() || !widget.second.visible() || !widget.second.enabled())
 							continue;
+
+						// first things first
+						widget.second.hide_tooltip();
 
 						if (widget.second.selected()) {
 							if (widget.second.on_keydown(wParam)) {
