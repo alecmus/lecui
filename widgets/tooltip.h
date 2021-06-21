@@ -31,6 +31,7 @@ namespace liblec {
 				lecui::page_management page_man_{ *this };
 				lecui::timer_management timer_man_{ *this };
 				const unsigned long lifetime_;
+				lecui::form& parent_;
 
 				bool on_initialize(std::string& error) override;
 				void on_start() override;

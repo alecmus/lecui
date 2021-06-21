@@ -18,16 +18,21 @@ bool liblec::lecui::widgets::tooltip_form::on_initialize(std::string& error) {
 
 	// measure items
 
-	// compute maximum based on working area size
+	// compute maximum based on working area size and parent form size
 	auto rect_wa = dim_.working_area();
 
-	// add padding to working area
+	// prevent from overlapping the right border of the parent form
+	dimensions dim_parent_(parent_);
+	const auto parent_right = dim_parent_.get_position().x + dim_parent_.get_size().width;
+	rect_wa.right = smallest(rect_wa.right, parent_right);
+
+	// add padding
 	rect_wa.left += margin_;
 	rect_wa.right -= margin_;
 	rect_wa.top += margin_;
 	rect_wa.bottom -= margin_;
 
-	// set maximum size to working area
+	// set maximum size to the computed area
 	max_size_.width = smallest(max_size_.width, rect_wa.width());
 	max_size_.height = smallest(max_size_.height, rect_wa.height());
 
@@ -105,8 +110,7 @@ bool liblec::lecui::widgets::tooltip_form::on_layout(std::string& error) {
 liblec::lecui::widgets::tooltip_form::tooltip_form(form& parent, const std::string& text, unsigned long lifetime) :
 	form(tooltip_form_caption(), parent),
 	tooltip_text_(text),
-	lifetime_(lifetime) {
-
-}
+	lifetime_(lifetime),
+	parent_(parent) {}
 
 liblec::lecui::widgets::tooltip_form::~tooltip_form() {}
