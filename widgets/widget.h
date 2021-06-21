@@ -26,7 +26,7 @@ namespace liblec {
 				specs() {};
 				virtual ~specs() {};
 
-				/// <summary>The text to display when the mouse is hovered over the control.</summary>
+				/// <summary>The text to display when the mouse is hovered over the widget.</summary>
 				std::string tooltip;
 
 				/// <summary>Resize parameters.</summary>
