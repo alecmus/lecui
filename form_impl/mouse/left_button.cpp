@@ -111,6 +111,8 @@ namespace liblec {
 						if (widget.second.selected())
 							update_anyway = true;
 
+						widget.second.hide_tooltip();
+
 						if (!pressed) {
 							// pressed widget not yet found
 							bool contains = widget.second.contains(point);
@@ -262,6 +264,9 @@ namespace liblec {
 
 						// reset pressed status
 						widget.second.press(false);
+
+						// failsafe: for good measure
+						widget.second.hide_tooltip();
 
 						if (widget.second.type() ==
 							widgets::widget_type::tab_pane) {

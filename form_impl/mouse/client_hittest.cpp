@@ -138,6 +138,10 @@ namespace liblec {
 						if (widget.second.is_static() || !widget.second.visible() || !widget.second.enabled())
 							continue;
 
+						// failsafe: for good measure
+						if (lbutton_pressed)
+							widget.second.hide_tooltip();
+
 						if (change)
 							break;
 
@@ -149,7 +153,7 @@ namespace liblec {
 						if (change = widget.second.hit(contains)) {
 							if (widget.second.hit()) h_cursor = widget.second.cursor();
 
-							if (contains)
+							if (contains && !lbutton_pressed)
 								tooltip_func = [&]() { widget.second.show_tooltip(); };
 							else
 								widget.second.hide_tooltip();
