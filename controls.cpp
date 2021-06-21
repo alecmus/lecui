@@ -89,6 +89,17 @@ namespace liblec {
 			return d_.fm_.d_.size_;
 		}
 
+		const lecui::point dimensions::get_position() {
+			if (IsWindow(d_.fm_.d_.hWnd_)) {
+				RECT rc;
+				GetWindowRect(d_.fm_.d_.hWnd_, &rc);
+				unscale_RECT(rc, d_.fm_.d_.dpi_scale_);
+				return { static_cast<float>(rc.left), static_cast<float>(rc.top) };
+			}
+			else
+				return { 0.f, 0.f };
+		}
+
 		void dimensions::set_minimum(const lecui::size& size) {
 			if (size.width)		// do not allow minimum width to be greater than current window width
 				d_.fm_.d_.min_size_.width = smallest(size.width, d_.fm_.d_.size_.width);

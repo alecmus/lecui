@@ -106,6 +106,10 @@ namespace liblec {
 			/// more details.</remarks>
 			[[nodiscard]] const lecui::size& get_size();
 
+			/// <summary>Get the form's position.</summary>
+			/// <returns>Returns the coordinates of the top left corner.</returns>
+			[[nodiscard]] const lecui::point get_position();
+
 			/// <summary>Set the form's minimum size.</summary>
 			/// <param name="size">The size, in pixels.</param>
 			/// <remarks>This manipulation should be done in the form's layout method.</remarks>
