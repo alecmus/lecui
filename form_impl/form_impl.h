@@ -76,6 +76,7 @@ namespace liblec {
 			form& fm_;
 			form* p_parent_;
 			bool menu_form_;	// for use as a menu; not resizable & has neither a caption nor control buttons
+			bool tooltip_form_;	// like a menu form but specifically designed for tooltips
 			bool parent_closing_;
 			std::map<form*, form*> m_children_;
 			bool show_called_;

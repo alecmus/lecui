@@ -14,8 +14,8 @@ namespace liblec {
 	namespace lecui {
 		void form::impl::on_lbuttondown(const D2D1_POINT_2F& point) {
 			for (auto& [key, child] : m_children_) {
-				if (child && IsWindow(child->d_.hWnd_) && child->d_.menu_form_) {
-					// close child menu forms
+				if (child && IsWindow(child->d_.hWnd_) && (child->d_.menu_form_ || child->d_.tooltip_form_)) {
+					// close child menu forms and tooltip forms
 					child->close();
 				}
 			}

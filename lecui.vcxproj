@@ -93,6 +93,7 @@
     <ClInclude Include="widgets\time\time_impl.h" />
     <ClInclude Include="widgets\toggle.h" />
     <ClInclude Include="widgets\toggle\toggle_impl.h" />
+    <ClInclude Include="widgets\tooltip.h" />
     <ClInclude Include="widgets\tree_view.h" />
     <ClInclude Include="widgets\tree_view\tree_view_impl.h" />
     <ClInclude Include="widgets\v_scrollbar\v_scrollbar_impl.h" />
@@ -183,6 +184,7 @@
     <ClCompile Include="widgets\time\time_impl.cpp" />
     <ClCompile Include="widgets\toggle\toggle.cpp" />
     <ClCompile Include="widgets\toggle\toggle_impl.cpp" />
+    <ClCompile Include="widgets\tooltip\tooltip.cpp" />
     <ClCompile Include="widgets\tree_view\tree_view.cpp" />
     <ClCompile Include="widgets\tree_view\tree_view_impl.cpp" />
     <ClCompile Include="widgets\v_scrollbar\v_scrollbar_impl.cpp" />

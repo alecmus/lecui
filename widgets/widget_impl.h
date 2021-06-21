@@ -13,6 +13,9 @@
 #include "../form_common.h"
 #include "widget.h"
 #include "../containers/page.h"
+#include "tooltip.h"
+
+#include <memory>
 
 namespace liblec {
 	namespace lecui {
@@ -99,6 +102,8 @@ namespace liblec {
 				HCURSOR cursor();
 				float get_dpi_scale();
 				form& get_form();
+				void show_tooltip();
+				void hide_tooltip();
 
 				virtual void press(const bool& pressed);
 
@@ -161,6 +166,9 @@ namespace liblec {
 				HCURSOR h_cursor_;
 
 				containers::page& page_;
+
+				std::string tooltip_text_;
+				std::unique_ptr<tooltip_form> p_tooltip_form_ = nullptr;
 			};
 		}
 	}

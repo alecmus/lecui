@@ -68,12 +68,13 @@ namespace liblec {
 			fm_(fm),
 			p_parent_(nullptr),
 			menu_form_(caption_formatted == form::menu_form_caption()),
+			tooltip_form_(caption_formatted == form::tooltip_form_caption()),
 			parent_closing_(false),
 			show_called_(false),
 			reg_id_(0),
 			receiving_(false),
 			data_received_(std::string()),
-			caption_bar_height_(menu_form_ ? 0.f : 30.f),
+			caption_bar_height_(menu_form_ || tooltip_form_ ? 0.f : 30.f),
 			caption_and_menu_gap_(25.f),
 			form_menu_margin_(10.f),
 			form_border_thickness_(1.f),
@@ -2929,8 +2930,10 @@ namespace liblec {
 				if (form_.d_.p_minimize_button_)
 					form_.d_.p_minimize_button_->set_hwnd(hWnd);
 
-				form_.d_.set_borderless(hWnd, form_.d_.borderless_);
-				form_.d_.set_borderless_shadow(hWnd, form_.d_.borderless_shadow_);
+				if (!form_.d_.tooltip_form_) {
+					form_.d_.set_borderless(hWnd, form_.d_.borderless_);
+					form_.d_.set_borderless_shadow(hWnd, form_.d_.borderless_shadow_);
+				}
 
 				if (!form_.d_.allow_resizing_)
 					SetWindowLong(hWnd, GWL_STYLE,
@@ -3013,7 +3016,7 @@ namespace liblec {
 
 			case WM_KILLFOCUS:
 				// check if it's the parent that now has focus
-				if (form_.d_.menu_form_) {
+				if (form_.d_.menu_form_ || form_.d_.tooltip_form_) {
 					if (IsWindow(form_.d_.hWnd_parent_)) {
 						if (GetForegroundWindow() != form_.d_.hWnd_parent_) {
 							// focus lost, but not to parent
@@ -3095,8 +3098,8 @@ namespace liblec {
 			case WM_NCRBUTTONDOWN:
 			case WM_NCLBUTTONDOWN:
 				for (auto& [key, child] : form_.d_.m_children_) {
-					if (child && IsWindow(child->d_.hWnd_) && child->d_.menu_form_) {
-						// close child menu forms
+					if (child && IsWindow(child->d_.hWnd_) && (child->d_.menu_form_ || child->d_.tooltip_form_)) {
+						// close child menu forms and child tooltip forms
 						child->close();
 					}
 				}

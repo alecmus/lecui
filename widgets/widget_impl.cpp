@@ -95,6 +95,59 @@ namespace liblec {
 		HCURSOR widgets::widget_impl::cursor() { return h_cursor_; }
 		float widgets::widget_impl::get_dpi_scale() { return page_.d_page_.get_dpi_scale(); }
 		form& widgets::widget_impl::get_form() { return page_.d_page_.get_form(); }
+
+		void widgets::widget_impl::show_tooltip() {
+			// make a local copy of the tooltip text
+			tooltip_text_ = generic_specs().tooltip;
+
+			// trim leading and trailing whitespace
+			trim(tooltip_text_);
+
+			// empty tooltips not allowed
+			if (tooltip_text_.empty())
+				return;
+
+			// failsafe
+			if (p_tooltip_form_.get())
+				return;
+
+			lecui::timer_management timer_man_(get_form());
+
+			// failsafe
+			if (timer_man_.running("lecui::tooltip::form"))
+				return;
+
+			// set timer for delayed display of tooltip for hover effect
+			timer_man_.add("lecui::tooltip::form", 500, [&]() {
+				lecui::timer_management timer_man_(get_form());
+
+				// stop the timer before we create the tooltip
+				timer_man_.stop("lecui::tooltip::form");
+
+				// create tooltip object
+				p_tooltip_form_ = std::unique_ptr<tooltip_form>(new tooltip_form(get_form(), tooltip_text_, 5000));
+
+				// display the tooltip
+				std::string error;
+				if (!p_tooltip_form_->show(error)) {}
+
+				// delete tooltip object
+				p_tooltip_form_.reset(nullptr);
+				});
+		}
+
+		void widgets::widget_impl::hide_tooltip() {
+			lecui::timer_management timer_man_(get_form());
+
+			// stop the timer before we close the tooltip
+			timer_man_.stop("lecui::tooltip::form");
+
+			// close the tooltip
+			// deletion of the tooltip object will be done in the timer handler
+			if (p_tooltip_form_ && p_tooltip_form_.get())
+				p_tooltip_form_->close();
+		}
+
 		void widgets::widget_impl::on_click() {
 			if (generic_specs().events().click)
 				generic_specs().events().click();

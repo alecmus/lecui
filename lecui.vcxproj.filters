@@ -170,6 +170,9 @@
     <Filter Include="lecui\utilities\tray_icon">
       <UniqueIdentifier>{e401fe90-c034-4e2e-9113-a6b34883e106}</UniqueIdentifier>
     </Filter>
+    <Filter Include="lecui\widgets\tooltip">
+      <UniqueIdentifier>{9fbf73b0-29ad-4691-b94d-c9baa11b456c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="error\win_error.h">
@@ -409,6 +412,9 @@
     </ClInclude>
     <ClInclude Include="utilities\tray_icon.h">
       <Filter>lecui\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="widgets\tooltip.h">
+      <Filter>lecui\widgets</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -676,6 +682,9 @@
     </ClCompile>
     <ClCompile Include="utilities\tray_icon\tray_icon.cpp">
       <Filter>lecui\utilities\tray_icon</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\tooltip\tooltip.cpp">
+      <Filter>lecui\widgets\tooltip</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

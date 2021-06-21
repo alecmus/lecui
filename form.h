@@ -128,6 +128,11 @@ namespace liblec {
 			[[nodiscard]]
 			static std::string menu_form_caption();
 
+			/// <summary>A special caption used to make a tooltip form.</summary>
+			/// <returns>The internally reserved caption for tooltip forms.</returns>
+			[[nodiscard]]
+			static std::string tooltip_form_caption();
+
 			/// <summary>Move the form.</summary>
 			/// <param name="point">The coordinates of the top left corner of the form, in pixels.
 			/// </param>

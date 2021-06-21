@@ -23,6 +23,7 @@ namespace liblec {
 			bool contains = false;
 			bool change = false;
 			HCURSOR h_cursor = nullptr;
+			std::function<void()> tooltip_func = nullptr;
 
 			class helper {
 			public:
@@ -123,7 +124,8 @@ namespace liblec {
 				}
 
 				static void hittest_widgets(containers::page& page,
-					const D2D1_POINT_2F& point, bool& contains, bool& change, bool lbutton_pressed, HCURSOR& h_cursor, const bool& scroll_bar_hit) {
+					const D2D1_POINT_2F& point, bool& contains, bool& change, bool lbutton_pressed, HCURSOR& h_cursor, const bool& scroll_bar_hit,
+					std::function<void()>& tooltip_func) {
 					bool in_page = page.d_page_.contains(point);
 
 					// hit test widgets
@@ -146,6 +148,12 @@ namespace liblec {
 
 						if (change = widget.second.hit(contains)) {
 							if (widget.second.hit()) h_cursor = widget.second.cursor();
+
+							if (contains)
+								tooltip_func = [&]() { widget.second.show_tooltip(); };
+							else
+								widget.second.hide_tooltip();
+
 							break;
 						}
 
@@ -157,7 +165,8 @@ namespace liblec {
 							auto page_iterator = tab_pane.p_tabs_.find(tab_pane.current_tab_);
 
 							if (page_iterator != tab_pane.p_tabs_.end())
-								helper::hittest_widgets(page_iterator->second, point, contains, change, lbutton_pressed, h_cursor, scroll_bar_hit);	// recursion
+								helper::hittest_widgets(page_iterator->second, point, contains, change, lbutton_pressed, h_cursor,
+									scroll_bar_hit, tooltip_func);	// recursion
 						}
 						else
 							if (widget.second.type() ==
@@ -168,7 +177,8 @@ namespace liblec {
 								auto page_iterator = pane.p_panes_.find(pane.current_pane_);
 
 								if (page_iterator != pane.p_panes_.end())
-									helper::hittest_widgets(page_iterator->second, point, contains, change, lbutton_pressed, h_cursor, scroll_bar_hit);	// recursion
+									helper::hittest_widgets(page_iterator->second, point, contains, change, lbutton_pressed, h_cursor,
+										scroll_bar_hit, tooltip_func);	// recursion
 							}
 					}
 				}
@@ -190,14 +200,16 @@ namespace liblec {
 
 			if (!change) {
 				for (auto& it : p_status_panes_)
-					helper::hittest_widgets(it.second, point, contains, change, lbutton_pressed_, h_cursor, scroll_bar_hit);
+					helper::hittest_widgets(it.second, point, contains, change, lbutton_pressed_, h_cursor,
+						scroll_bar_hit, tooltip_func);
 			}
 
 			if (!change) {
 				auto page_iterator = p_pages_.find(current_page_);
 
 				if (page_iterator != p_pages_.end())
-					helper::hittest_widgets(page_iterator->second, point, contains, change, lbutton_pressed_, h_cursor, scroll_bar_hit);
+					helper::hittest_widgets(page_iterator->second, point, contains, change, lbutton_pressed_, h_cursor,
+						scroll_bar_hit, tooltip_func);
 			}
 
 			if (!change) {
@@ -207,14 +219,23 @@ namespace liblec {
 						continue;
 
 					contains = widget.second.contains(point);
-					if (change = widget.second.hit(contains))
+					if (change = widget.second.hit(contains)) {
+						if (contains)
+							tooltip_func = [&]() { widget.second.show_tooltip(); };
+						else
+							widget.second.hide_tooltip();
+
 						break;
+					}
 				}
 			}
 
 			if (change) {
 				h_widget_cursor_ = h_cursor;
 				update();
+
+				if (tooltip_func)
+					tooltip_func();
 			}
 		}
 	}
