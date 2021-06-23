@@ -168,7 +168,7 @@ namespace liblec {
 				containers::page& page_;
 
 				std::string tooltip_text_;
-				std::unique_ptr<tooltip_form> p_tooltip_form_ = nullptr;
+				bool tooltip_active_;
 			};
 		}
 	}

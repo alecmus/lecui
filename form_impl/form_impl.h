@@ -23,6 +23,8 @@
 #include "../widgets/control_buttons/maximize_button/maximize_button_impl.h"
 #include "../widgets/control_buttons/minimize_button/minimize_button_impl.h"
 
+#include "../widgets/tooltip.h"
+
 // Windows headers
 #include <Windows.h>
 
@@ -216,6 +218,8 @@ namespace liblec {
 
 			bool start_hidden_;
 
+			std::unique_ptr<widgets::tooltip_form> p_tooltip_form_ = nullptr;
+
 			/// we cannot just use WS_POPUP style
 			/// WS_THICKFRAME: without this the window cannot be resized and so aero snap, de-maximizing
 			///  and minimizing won't work
@@ -270,6 +274,7 @@ namespace liblec {
 			friend class widgets::date;
 			friend class widgets::icon;
 
+			friend class widgets::widget_impl;
 			friend class widgets::combobox_impl;
 			friend class widgets::image_view_impl;
 			friend class widgets::tree_view_impl;

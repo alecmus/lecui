@@ -349,6 +349,7 @@ namespace liblec {
 			friend class widgets::date;
 			friend class widgets::icon;
 
+			friend class widgets::widget_impl;
 			friend class widgets::combobox_impl;
 			friend class widgets::image_view_impl;
 			friend class widgets::tree_view_impl;

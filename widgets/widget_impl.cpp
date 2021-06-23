@@ -9,6 +9,7 @@
 //
 
 #include "widget_impl.h"
+#include "../form_impl/form_impl.h"
 #include "../containers/page/page_impl.h"
 
 namespace liblec {
@@ -27,7 +28,8 @@ namespace liblec {
 			point_on_press_({ 0.f,0.f }),
 			point_on_release_({ 0.f,0.f }),
 			resources_created_(false),
-			h_cursor_(nullptr) {}
+			h_cursor_(nullptr),
+			tooltip_active_(false) {}
 
 		widgets::widget_impl::~widget_impl() {}
 
@@ -108,44 +110,31 @@ namespace liblec {
 				return;
 
 			// failsafe
-			if (p_tooltip_form_.get())
+			if (get_form().d_.p_tooltip_form_.get())
 				return;
 
-			lecui::timer_management timer_man_(get_form());
+			tooltip_active_ = true;
 
-			// failsafe
-			if (timer_man_.running("lecui::tooltip::form"))
-				return;
+			// create tooltip object
+			get_form().d_.p_tooltip_form_ = std::unique_ptr<tooltip_form>(new tooltip_form(get_form(), tooltip_text_, 5000));
 
-			// set timer for delayed display of tooltip for hover effect
-			timer_man_.add("lecui::tooltip::form", 500, [&]() {
-				lecui::timer_management timer_man_(get_form());
+			// display the tooltip
+			std::string error;
+			if (!get_form().d_.p_tooltip_form_->show(error)) {}
 
-				// stop the timer before we create the tooltip
-				timer_man_.stop("lecui::tooltip::form");
+			// delete tooltip object
+			get_form().d_.p_tooltip_form_.reset(nullptr);
 
-				// create tooltip object
-				p_tooltip_form_ = std::unique_ptr<tooltip_form>(new tooltip_form(get_form(), tooltip_text_, 5000));
-
-				// display the tooltip
-				std::string error;
-				if (!p_tooltip_form_->show(error)) {}
-
-				// delete tooltip object
-				p_tooltip_form_.reset(nullptr);
-				});
+			tooltip_active_ = false;
 		}
 
 		void widgets::widget_impl::hide_tooltip() {
-			lecui::timer_management timer_man_(get_form());
-
-			// stop the timer before we close the tooltip
-			timer_man_.stop("lecui::tooltip::form");
-
 			// close the tooltip
-			// deletion of the tooltip object will be done in the timer handler
-			if (p_tooltip_form_ && p_tooltip_form_.get())
-				p_tooltip_form_->close();
+			if (tooltip_active_) {
+				// deletion of the tooltip object will be done after the blocking show method returns
+				if (get_form().d_.p_tooltip_form_.get())
+					get_form().d_.p_tooltip_form_->close();
+			}
 		}
 
 		void widgets::widget_impl::on_click() {
