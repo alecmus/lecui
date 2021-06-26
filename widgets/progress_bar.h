@@ -25,22 +25,116 @@ namespace liblec {
 				/// <summary>Progress bar widget specifications.</summary>
 				/// <remarks>Recommended size with defaults is 200x12px</remarks>
 				class progress_bar_specs : public specs {
-				public:
-					progress_bar_specs() {
-						rect.size({ 200.f, 12.f });
-					}
-
 					/// <summary>The color of the border.</summary>
-					color color_border;
+					color color_border_;
 
 					/// <summary>The thickness of the border.</summary>
-					float border = 1.f;
+					float border_ = 1.f;
 
 					/// <summary>The percentage of the progress bar (0.f - 100.f).</summary>
-					float percentage = 0.f;
+					float percentage_ = 0.f;
+
+				public:
+					progress_bar_specs() {
+						rect_.size({ 200.f, 12.f });
+					}
 
 					bool operator==(const progress_bar_specs&);
 					bool operator!=(const progress_bar_specs&);
+
+					// generic specs
+
+					std::string& text() override { return text_; }
+					progress_bar_specs& text(const std::string& text) {
+						text_ = text;
+						return *this;
+					}
+
+					std::string& tooltip() override { return tooltip_; }
+					progress_bar_specs& tooltip(const std::string& tooltip) {
+						tooltip_ = tooltip;
+						return *this;
+					}
+
+					lecui::rect& rect() override { return rect_; }
+					progress_bar_specs& rect(const lecui::rect& rect) {
+						rect_ = rect;
+						return *this;
+					}
+
+					resize_params& on_resize() override { return on_resize_; }
+					progress_bar_specs& on_resize(const resize_params& on_resize) {
+						on_resize_ = on_resize;
+						return *this;
+					}
+
+					cursor_type& cursor() override { return cursor_; }
+					progress_bar_specs& cursor(const cursor_type cursor) {
+						cursor_ = cursor;
+						return *this;
+					}
+
+					std::string& font() override { return font_; }
+					progress_bar_specs& font(const std::string& font) {
+						font_ = font;
+						return *this;
+					}
+
+					float& font_size() override { return font_size_; }
+					progress_bar_specs& font_size(const float& font_size) {
+						font_size_ = font_size;
+						return *this;
+					}
+
+					color& color_text() override { return color_text_; }
+					progress_bar_specs& color_text(const color& color_text) {
+						color_text_ = color_text;
+						return *this;
+					}
+
+					color& color_fill() override { return color_fill_; }
+					progress_bar_specs& color_fill(const color& color_fill) {
+						color_fill_ = color_fill;
+						return *this;
+					}
+
+					color& color_hot() override { return color_hot_; }
+					progress_bar_specs& color_hot(const color& color_hot) {
+						color_hot_ = color_hot;
+						return *this;
+					}
+
+					color& color_selected() override { return color_selected_; }
+					progress_bar_specs& color_selected(const color& color_selected) {
+						color_selected_ = color_selected;
+						return *this;
+					}
+
+					color& color_disabled() override { return color_disabled_; }
+					progress_bar_specs& color_disabled(const color& color_disabled) {
+						color_disabled_ = color_disabled;
+						return *this;
+					}
+
+					// widget specific specs
+
+					float& border() { return border_; }
+					progress_bar_specs& border(const float& border) {
+						border_ = border;
+						return *this;
+					}
+
+					color& color_border() { return color_border_; }
+					progress_bar_specs& color_border(const color& color_border) {
+						color_border_ = color_border;
+						return *this;
+					}
+
+					float& percentage() { return percentage_; }
+					progress_bar_specs& percentage(const float& percentage) {
+						percentage_ = percentage;
+						return *this;
+					}
 				};
 
 				/// <summary>Progress bar constructor.</summary>

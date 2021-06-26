@@ -19,8 +19,8 @@ namespace liblec {
 				specs::operator==(param) &&
 
 				// widget specific specs
-				(color_border == param.color_border) &&
-				(color_check == param.color_check);
+				(color_border_ == param.color_border_) &&
+				(color_check_ == param.color_check_);
 		}
 
 		bool widgets::checkbox::checkbox_specs::operator!=(const checkbox_specs& param) {
@@ -32,12 +32,13 @@ namespace liblec {
 			impl(containers::page& page, const std::string& alias) :
 				page_(page),
 				specs_(page_.d_page_.add_checkbox(alias)) {
-				specs_.color_text = defaults::color(page_.d_page_.fm_.d_.theme_, item::label);
-				specs_.color_fill = defaults::color(page_.d_page_.fm_.d_.theme_, item::checkbox);
-				specs_.color_border = defaults::color(page_.d_page_.fm_.d_.theme_, item::checkbox_border);
-				specs_.color_check = defaults::color(page_.d_page_.fm_.d_.theme_, item::checkbox_tick);
-				specs_.color_hot = defaults::color(page_.d_page_.fm_.d_.theme_, item::checkbox_hover);
-				specs_.color_selected = defaults::color(page_.d_page_.fm_.d_.theme_, item::checkbox_selected);
+				specs_
+					.color_text(defaults::color(page_.d_page_.fm_.d_.theme_, item::label))
+					.color_fill(defaults::color(page_.d_page_.fm_.d_.theme_, item::checkbox))
+					.color_border(defaults::color(page_.d_page_.fm_.d_.theme_, item::checkbox_border))
+					.color_check(defaults::color(page_.d_page_.fm_.d_.theme_, item::checkbox_tick))
+					.color_hot(defaults::color(page_.d_page_.fm_.d_.theme_, item::checkbox_hover))
+					.color_selected(defaults::color(page_.d_page_.fm_.d_.theme_, item::checkbox_selected));
 			}
 			containers::page& page_;
 			checkbox_specs& specs_;

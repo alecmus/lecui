@@ -19,13 +19,13 @@ namespace liblec {
 				specs::operator==(param) &&
 
 				// widget specific specs
-				(color_border == param.color_border) &&
-				(color_grid == param.color_grid) &&
-				(color_text_header == param.color_text_header) &&
-				(color_fill_header == param.color_fill_header) &&
-				(color_fill_alternate == param.color_fill_alternate) &&
-				(color_row_hot == param.color_row_hot) &&
-				(color_row_selected == param.color_row_selected);
+				(color_border_ == param.color_border_) &&
+				(color_grid_ == param.color_grid_) &&
+				(color_text_header_ == param.color_text_header_) &&
+				(color_fill_header_ == param.color_fill_header_) &&
+				(color_fill_alternate_ == param.color_fill_alternate_) &&
+				(color_row_hot_ == param.color_row_hot_) &&
+				(color_row_selected_ == param.color_row_selected_);
 		}
 
 		bool widgets::table_view::table_view_specs::operator!=(const table_view_specs& param) {
@@ -37,16 +37,17 @@ namespace liblec {
 			impl(containers::page& page, const std::string& alias) :
 				page_(page),
 				specs_(page_.d_page_.add_table_view(alias)) {
-				specs_.color_text = defaults::color(page_.d_page_.fm_.d_.theme_, item::label);
-				specs_.color_text_selected = defaults::color(page_.d_page_.fm_.d_.theme_, item::table_view_text_selected);
-				specs_.color_fill = defaults::color(page_.d_page_.fm_.d_.theme_, item::table_view);
-				specs_.color_border = defaults::color(page_.d_page_.fm_.d_.theme_, item::table_view_border);
-				specs_.color_fill_alternate = defaults::color(page_.d_page_.fm_.d_.theme_, item::table_view_alternate);
-				specs_.color_row_hot = defaults::color(page_.d_page_.fm_.d_.theme_, item::table_view_row_hover);
-				specs_.color_row_selected = defaults::color(page_.d_page_.fm_.d_.theme_, item::table_view_row_selected);
-				specs_.color_text_header = defaults::color(page_.d_page_.fm_.d_.theme_, item::table_view_text_header);
-				specs_.color_fill_header = defaults::color(page_.d_page_.fm_.d_.theme_, item::table_view_header);
-				specs_.color_grid = defaults::color(page_.d_page_.fm_.d_.theme_, item::table_view_grid);
+				specs_
+					.color_text(defaults::color(page_.d_page_.fm_.d_.theme_, item::label))
+					.color_text_selected(defaults::color(page_.d_page_.fm_.d_.theme_, item::table_view_text_selected))
+					.color_fill(defaults::color(page_.d_page_.fm_.d_.theme_, item::table_view))
+					.color_border(defaults::color(page_.d_page_.fm_.d_.theme_, item::table_view_border))
+					.color_fill_alternate(defaults::color(page_.d_page_.fm_.d_.theme_, item::table_view_alternate))
+					.color_row_hot(defaults::color(page_.d_page_.fm_.d_.theme_, item::table_view_row_hover))
+					.color_row_selected(defaults::color(page_.d_page_.fm_.d_.theme_, item::table_view_row_selected))
+					.color_text_header(defaults::color(page_.d_page_.fm_.d_.theme_, item::table_view_text_header))
+					.color_fill_header(defaults::color(page_.d_page_.fm_.d_.theme_, item::table_view_header))
+					.color_grid(defaults::color(page_.d_page_.fm_.d_.theme_, item::table_view_grid));
 			}
 			containers::page& page_;
 			table_view_specs& specs_;

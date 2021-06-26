@@ -75,7 +75,7 @@ namespace liblec {
 										try {
 											auto& combobox = page.d_page_.get_combobox(widget.first);
 
-											if (combobox().editable) {
+											if (combobox().editable()) {
 												switch (wParam) {
 												case VK_LEFT: combobox.key_left(); break;
 												case VK_RIGHT: combobox.key_right(); break;

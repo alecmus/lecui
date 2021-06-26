@@ -25,28 +25,134 @@ namespace liblec {
 				/// <summary>Progress indicator widget specifications.</summary>
 				/// <remarks>Recommended size with defaults is 50x50px</remarks>
 				class progress_indicator_specs : public specs {
-				public:
-					progress_indicator_specs() {
-						rect.size({ 50.f, 50.f });
-					}
-
 					/// <summary>The color when empty.</summary>
-					color color_empty;
+					color color_empty_;
 
 					/// <summary>The thickness of the empty line.</summary>
-					float line_thickness_empty = .5f;
+					float line_thickness_empty_ = .5f;
 
 					/// <summary>The thickness of the filled line.</summary>
-					float line_thickness_fill = 1.5f;
+					float line_thickness_fill_ = 1.5f;
 
 					/// <summary>The percentage of the progress indicator (0.f - 100.f).</summary>
-					float percentage = 0.f;
+					float percentage_ = 0.f;
 
 					/// <summary>The precision to use for displaying the percentage.</summary>
-					int precision = 0;
+					int precision_ = 0;
+
+				public:
+					progress_indicator_specs() {
+						rect_.size({ 50.f, 50.f });
+					}
 
 					bool operator==(const progress_indicator_specs&);
 					bool operator!=(const progress_indicator_specs&);
+
+					// generic specs
+
+					std::string& text() override { return text_; }
+					progress_indicator_specs& text(const std::string& text) {
+						text_ = text;
+						return *this;
+					}
+
+					std::string& tooltip() override { return tooltip_; }
+					progress_indicator_specs& tooltip(const std::string& tooltip) {
+						tooltip_ = tooltip;
+						return *this;
+					}
+
+					lecui::rect& rect() override { return rect_; }
+					progress_indicator_specs& rect(const lecui::rect& rect) {
+						rect_ = rect;
+						return *this;
+					}
+
+					resize_params& on_resize() override { return on_resize_; }
+					progress_indicator_specs& on_resize(const resize_params& on_resize) {
+						on_resize_ = on_resize;
+						return *this;
+					}
+
+					cursor_type& cursor() override { return cursor_; }
+					progress_indicator_specs& cursor(const cursor_type cursor) {
+						cursor_ = cursor;
+						return *this;
+					}
+
+					std::string& font() override { return font_; }
+					progress_indicator_specs& font(const std::string& font) {
+						font_ = font;
+						return *this;
+					}
+
+					float& font_size() override { return font_size_; }
+					progress_indicator_specs& font_size(const float& font_size) {
+						font_size_ = font_size;
+						return *this;
+					}
+
+					color& color_text() override { return color_text_; }
+					progress_indicator_specs& color_text(const color& color_text) {
+						color_text_ = color_text;
+						return *this;
+					}
+
+					color& color_fill() override { return color_fill_; }
+					progress_indicator_specs& color_fill(const color& color_fill) {
+						color_fill_ = color_fill;
+						return *this;
+					}
+
+					color& color_hot() override { return color_hot_; }
+					progress_indicator_specs& color_hot(const color& color_hot) {
+						color_hot_ = color_hot;
+						return *this;
+					}
+
+					color& color_selected() override { return color_selected_; }
+					progress_indicator_specs& color_selected(const color& color_selected) {
+						color_selected_ = color_selected;
+						return *this;
+					}
+
+					color& color_disabled() override { return color_disabled_; }
+					progress_indicator_specs& color_disabled(const color& color_disabled) {
+						color_disabled_ = color_disabled;
+						return *this;
+					}
+
+					// widget specific specs
+
+					color& color_empty() { return color_empty_; }
+					progress_indicator_specs& color_empty(const color& color_empty) {
+						color_empty_ = color_empty;
+						return *this;
+					}
+
+					float& line_thickness_empty() { return line_thickness_empty_; }
+					progress_indicator_specs& line_thickness_empty(const float& line_thickness_empty) {
+						line_thickness_empty_ = line_thickness_empty;
+						return *this;
+					}
+
+					float& line_thickness_fill() { return line_thickness_fill_; }
+					progress_indicator_specs& line_thickness_fill(const float& line_thickness_fill) {
+						line_thickness_fill_ = line_thickness_fill;
+						return *this;
+					}
+
+					float& percentage() { return percentage_; }
+					progress_indicator_specs& percentage(const float& percentage) {
+						percentage_ = percentage;
+						return *this;
+					}
+
+					int& precision() { return precision_; }
+					progress_indicator_specs& precision(const int& precision) {
+						precision_ = precision;
+						return *this;
+					}
 				};
 
 				/// <summary>Progress indicator constructor.</summary>

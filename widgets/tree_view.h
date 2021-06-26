@@ -28,15 +28,6 @@ namespace liblec {
 				/// <remarks>Default size is 200x200px.</remarks>
 				class tree_view_specs : public specs {
 				public:
-					tree_view_specs() {
-						rect.size({ 200.f, 200.f });
-					}
-
-					float border = .5f;
-					float corner_radius_x = 5.f;
-					float corner_radius_y = 5.f;
-					color color_border;
-
 					/// <summary>Tree node.</summary>
 					class node {
 					public:
@@ -65,6 +56,27 @@ namespace liblec {
 #endif
 					};
 
+				private:
+					/// <summary>The thickness of the border.</summary>
+					float border_ = .5f;
+
+					/// <summary>The color of the border.</summary>
+					color color_border_;
+
+					/// <summary>The horizontal radius of the corners.</summary>
+					float corner_radius_x_ = 5.f;
+
+					/// <summary>The vertical radius of the corners.</summary>
+					float corner_radius_y_ = 5.f;
+
+					/// <summary>The entire tree is built recursively on this root.</summary>
+					std::map<std::string, node> root_;
+
+				public:
+					tree_view_specs() {
+						rect_.size({ 200.f, 200.f });
+					}
+
 					/// <summary>Helper for inserting a node.</summary>
 					/// <param name="parent">A reference to the root.</param>
 					/// <param name="name">The name of the node being added.</param>
@@ -75,9 +87,6 @@ namespace liblec {
 						root.insert(std::make_pair(name, node(name)));
 						return root.at(name);
 					}
-
-					/// <summary>The entire tree is built recursively on this root.</summary>
-					std::map<std::string, node> root;
 
 					struct tree_view_events : basic_events {
 						/// <summary>The handler to be called when the selection changes. The
@@ -91,6 +100,112 @@ namespace liblec {
 
 					bool operator==(const tree_view_specs&);
 					bool operator!=(const tree_view_specs&);
+
+					// generic specs
+
+					std::string& text() override { return text_; }
+					tree_view_specs& text(const std::string& text) {
+						text_ = text;
+						return *this;
+					}
+
+					std::string& tooltip() override { return tooltip_; }
+					tree_view_specs& tooltip(const std::string& tooltip) {
+						tooltip_ = tooltip;
+						return *this;
+					}
+
+					lecui::rect& rect() override { return rect_; }
+					tree_view_specs& rect(const lecui::rect& rect) {
+						rect_ = rect;
+						return *this;
+					}
+
+					resize_params& on_resize() override { return on_resize_; }
+					tree_view_specs& on_resize(const resize_params& on_resize) {
+						on_resize_ = on_resize;
+						return *this;
+					}
+
+					cursor_type& cursor() override { return cursor_; }
+					tree_view_specs& cursor(const cursor_type cursor) {
+						cursor_ = cursor;
+						return *this;
+					}
+
+					std::string& font() override { return font_; }
+					tree_view_specs& font(const std::string& font) {
+						font_ = font;
+						return *this;
+					}
+
+					float& font_size() override { return font_size_; }
+					tree_view_specs& font_size(const float& font_size) {
+						font_size_ = font_size;
+						return *this;
+					}
+
+					color& color_text() override { return color_text_; }
+					tree_view_specs& color_text(const color& color_text) {
+						color_text_ = color_text;
+						return *this;
+					}
+
+					color& color_fill() override { return color_fill_; }
+					tree_view_specs& color_fill(const color& color_fill) {
+						color_fill_ = color_fill;
+						return *this;
+					}
+
+					color& color_hot() override { return color_hot_; }
+					tree_view_specs& color_hot(const color& color_hot) {
+						color_hot_ = color_hot;
+						return *this;
+					}
+
+					color& color_selected() override { return color_selected_; }
+					tree_view_specs& color_selected(const color& color_selected) {
+						color_selected_ = color_selected;
+						return *this;
+					}
+
+					color& color_disabled() override { return color_disabled_; }
+					tree_view_specs& color_disabled(const color& color_disabled) {
+						color_disabled_ = color_disabled;
+						return *this;
+					}
+
+					// widget specific specs
+
+					float& border() { return border_; }
+					tree_view_specs& border(const float& border) {
+						border_ = border;
+						return *this;
+					}
+
+					color& color_border() { return color_border_; }
+					tree_view_specs& color_border(const color& color_border) {
+						color_border_ = color_border;
+						return *this;
+					}
+
+					float& corner_radius_x() { return corner_radius_x_; }
+					tree_view_specs& corner_radius_x(const float& corner_radius_x) {
+						corner_radius_x_ = corner_radius_x;
+						return *this;
+					}
+
+					float& corner_radius_y() { return corner_radius_y_; }
+					tree_view_specs& corner_radius_y(const float& corner_radius_y) {
+						corner_radius_y_ = corner_radius_y;
+						return *this;
+					}
+
+					std::map<std::string, node>& root() { return root_; }
+					tree_view_specs& root(const std::map<std::string, node>& root) {
+						root_ = root;
+						return *this;
+					}
 
 				private:
 					tree_view_events tree_events_;

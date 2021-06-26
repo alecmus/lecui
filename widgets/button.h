@@ -25,25 +25,125 @@ namespace liblec {
 				/// <summary>Button widget specifications.</summary>
 				/// <remarks>Recommended size with defaults is 80x25px.</remarks>
 				class button_specs : public specs {
-				public:
-					button_specs() {
-						rect.size({ 80.f, 25.f });
-					}
-
 					/// <summary>The thickness of the border.</summary>
-					float border = .5f;
+					float border_ = .5f;
 
 					/// <summary>The color of the border.</summary>
-					color color_border;
+					color color_border_;
 
 					/// <summary>The horizontal radius of the corners.</summary>
-					float corner_radius_x = 5.f;
+					float corner_radius_x_ = 5.f;
 
 					/// <summary>The vertical radius of the corners.</summary>
-					float corner_radius_y = 5.f;
+					float corner_radius_y_ = 5.f;
+
+				public:
+					button_specs() {
+						rect_.size({ 80.f, 25.f });
+					}
 
 					bool operator==(const button_specs&);
 					bool operator!=(const button_specs&);
+
+					// generic specs
+
+					std::string& text() override { return text_; }
+					button_specs& text(const std::string& text) {
+						text_ = text;
+						return *this;
+					}
+
+					std::string& tooltip() override { return tooltip_; }
+					button_specs& tooltip(const std::string& tooltip) {
+						tooltip_ = tooltip;
+						return *this;
+					}
+
+					lecui::rect& rect() override { return rect_; }
+					button_specs& rect(const lecui::rect& rect) {
+						rect_ = rect;
+						return *this;
+					}
+
+					resize_params& on_resize() override { return on_resize_; }
+					button_specs& on_resize(const resize_params& on_resize) {
+						on_resize_ = on_resize;
+						return *this;
+					}
+
+					cursor_type& cursor() override { return cursor_; }
+					button_specs& cursor(const cursor_type cursor) {
+						cursor_ = cursor;
+						return *this;
+					}
+
+					std::string& font() override { return font_; }
+					button_specs& font(const std::string& font) {
+						font_ = font;
+						return *this;
+					}
+
+					float& font_size() override { return font_size_; }
+					button_specs& font_size(const float& font_size) {
+						font_size_ = font_size;
+						return *this;
+					}
+
+					color& color_text() override { return color_text_; }
+					button_specs& color_text(const color& color_text) {
+						color_text_ = color_text;
+						return *this;
+					}
+
+					color& color_fill() override { return color_fill_; }
+					button_specs& color_fill(const color& color_fill) {
+						color_fill_ = color_fill;
+						return *this;
+					}
+
+					color& color_hot() override { return color_hot_; }
+					button_specs& color_hot(const color& color_hot) {
+						color_hot_ = color_hot;
+						return *this;
+					}
+
+					color& color_selected() override { return color_selected_; }
+					button_specs& color_selected(const color& color_selected) {
+						color_selected_ = color_selected;
+						return *this;
+					}
+
+					color& color_disabled() override { return color_disabled_; }
+					button_specs& color_disabled(const color& color_disabled) {
+						color_disabled_ = color_disabled;
+						return *this;
+					}
+
+					// widget specific specs
+
+					float& border() { return border_; }
+					button_specs& border(const float& border) {
+						border_ = border;
+						return *this;
+					}
+
+					color& color_border() { return color_border_; }
+					button_specs& color_border(const color& color_border) {
+						color_border_ = color_border;
+						return *this;
+					}
+
+					float& corner_radius_x() { return corner_radius_x_; }
+					button_specs& corner_radius_x(const float& corner_radius_x) {
+						corner_radius_x_ = corner_radius_x;
+						return *this;
+					}
+
+					float& corner_radius_y() { return corner_radius_y_; }
+					button_specs& corner_radius_y(const float& corner_radius_y) {
+						corner_radius_y_ = corner_radius_y;
+						return *this;
+					}
 				};
 
 				/// <summary>Button constructor.</summary>

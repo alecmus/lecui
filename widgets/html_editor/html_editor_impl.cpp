@@ -100,37 +100,37 @@ namespace liblec {
 			ID2D1HwndRenderTarget* p_render_target) {
 			specs_old_ = specs_;
 			is_static_ = false;
-			h_cursor_ = get_cursor(specs_.cursor);
+			h_cursor_ = get_cursor(specs_.cursor());
 
 			HRESULT hr = S_OK;
 
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_fill),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_fill()),
 					&p_brush_fill_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_border),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_border()),
 					&p_brush_border_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_disabled),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_disabled()),
 					&p_brush_disabled_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_selected),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_selected()),
 					&p_brush_selected_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_text),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_text()),
 					&p_brush_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_caret),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_caret()),
 					&p_brush_caret_);
 			if (SUCCEEDED(hr)) {
 				// Create a DirectWrite text format object.
 				hr = p_directwrite_factory_->CreateTextFormat(
-					convert_string(specs_.font).c_str(),
+					convert_string(specs_.font()).c_str(),
 					NULL,
 					DWRITE_FONT_WEIGHT_NORMAL,
 					DWRITE_FONT_STYLE_NORMAL,
 					DWRITE_FONT_STRETCH_NORMAL,
-					convert_fontsize_to_dip(specs_.font_size),
+					convert_fontsize_to_dip(specs_.font_size()),
 					L"", //locale
 					&p_text_format_
 					);
@@ -165,14 +165,14 @@ namespace liblec {
 				try {
 					if (html_pane_specs_.has_value()) {
 						// update the special pane specs
-						html_pane_specs_.value().get().color_fill = specs_.color_fill;
-						html_pane_specs_.value().get().color_border = specs_.color_border;
+						html_pane_specs_.value().get().color_fill() = specs_.color_fill();
+						html_pane_specs_.value().get().color_border() = specs_.color_border();
 					}
 
 					if (html_control_pane_specs_.has_value()) {
 						// update the special pane specs
-						html_control_pane_specs_.value().get().color_fill = specs_.color_control_fill;
-						html_control_pane_specs_.value().get().color_border = specs_.color_control_border;
+						html_control_pane_specs_.value().get().color_fill() = specs_.color_control_fill();
+						html_control_pane_specs_.value().get().color_border() = specs_.color_control_border();
 					}
 
 					// schedule a refresh
@@ -186,7 +186,7 @@ namespace liblec {
 			if (!resources_created_)
 				create_resources(p_render_target);
 
-			rect_ = position(specs_.rect, specs_.on_resize, change_in_size.width, change_in_size.height);
+			rect_ = position(specs_.rect(), specs_.on_resize(), change_in_size.width, change_in_size.height);
 			rect_.left -= offset.x;
 			rect_.right -= offset.x;
 			rect_.top -= offset.y;
@@ -196,13 +196,13 @@ namespace liblec {
 				return rect_;
 
 			// make sure caret is well positioned in case text has since been changed
-			caret_position_ = smallest(caret_position_, static_cast<UINT32>(specs_.text.length()));
+			caret_position_ = smallest(caret_position_, static_cast<UINT32>(specs_.text().length()));
 
 			D2D1_ROUNDED_RECT rounded_rect{ rect_,
-				specs_.corner_radius_x, specs_.corner_radius_y };
+				specs_.corner_radius_x(), specs_.corner_radius_y() };
 
 			// create a text layout
-			std::string text_ = specs_.text;
+			std::string text_ = specs_.text();
 
 			auto rect_text_ = rect_;
 
@@ -213,7 +213,7 @@ namespace liblec {
 
 			// to-do: performance issues ... only redo if there's been a change
 			if (true) {
-				parse_formatted_text(specs_.text, text_, convert_color(specs_.color_text), formatting_);
+				parse_formatted_text(specs_.text(), text_, convert_color(specs_.color_text()), formatting_);
 			}
 
 			HRESULT hr = p_directwrite_factory_->CreateTextLayout(convert_string(text_).c_str(),
@@ -334,14 +334,14 @@ namespace liblec {
 					if (hit_ && pressed_) {
 						reset_selection();
 
-						caret_position_ = get_caret_position(p_text_layout_, specs_.text, rect_text_, point_, get_dpi_scale());
+						caret_position_ = get_caret_position(p_text_layout_, specs_.text(), rect_text_, point_, get_dpi_scale());
 						caret_visible_ = true;
 
 						if (point_.x != point_on_press_.x || point_.y != point_on_press_.y) {
 							// user is making a selection
 							is_selecting_ = true;
 
-							auto selection_start_ = get_caret_position(p_text_layout_, specs_.text, rect_text_, point_on_press_, get_dpi_scale());
+							auto selection_start_ = get_caret_position(p_text_layout_, specs_.text(), rect_text_, point_on_press_, get_dpi_scale());
 							auto selection_end_ = caret_position_;
 
 							auto selection_rects = get_selection_rects(p_text_layout_, rect_text_, selection_start_, selection_end_);
@@ -355,8 +355,8 @@ namespace liblec {
 							is_selecting_ = false;
 
 							set_selection(
-								get_caret_position(p_text_layout_, specs_.text, rect_text_, point_on_press_, get_dpi_scale()),
-								get_caret_position(p_text_layout_, specs_.text, rect_text_, point_on_release_, get_dpi_scale()));
+								get_caret_position(p_text_layout_, specs_.text(), rect_text_, point_on_press_, get_dpi_scale()),
+								get_caret_position(p_text_layout_, specs_.text(), rect_text_, point_on_release_, get_dpi_scale()));
 						}
 				}
 			}
@@ -411,7 +411,7 @@ namespace liblec {
 			const auto height = optimized_bottom_ - rect_.top;
 
 			// update widget rect
-			specs_.rect.height(height);
+			specs_.rect().height(height);
 
 			// move rect to ensure caret visibility
 			if (move_v && !timer_management(get_form()).running(autoscroll_timer_name_)) {
@@ -472,11 +472,11 @@ namespace liblec {
 						swap(selection_info_.start, selection_info_.end);
 
 					caret_position_ = selection_info_.start;
-					tag_number = formatted_text_editor().erase(selection_info_.start, selection_info_.end, specs_.text);
+					tag_number = formatted_text_editor().erase(selection_info_.start, selection_info_.end, specs_.text());
 					reset_selection();
 				}
 
-				formatted_text_editor().insert_character(c, caret_position_, tag_number, specs_.text);
+				formatted_text_editor().insert_character(c, caret_position_, tag_number, specs_.text());
 				caret_position_++;
 				caret_visible_ = true;
 				skip_blink_ = true;
@@ -496,11 +496,11 @@ namespace liblec {
 						swap(selection_info_.start, selection_info_.end);
 
 					caret_position_ = selection_info_.start;
-					tag_number = formatted_text_editor().erase(selection_info_.start, selection_info_.end, specs_.text);
+					tag_number = formatted_text_editor().erase(selection_info_.start, selection_info_.end, specs_.text());
 					reset_selection();
 				}
 				else {
-					tag_number = formatted_text_editor().erase(caret_position_ - 1, caret_position_, specs_.text);
+					tag_number = formatted_text_editor().erase(caret_position_ - 1, caret_position_, specs_.text());
 					caret_position_--;
 					caret_visible_ = true;
 					skip_blink_ = true;
@@ -518,11 +518,11 @@ namespace liblec {
 						swap(selection_info_.start, selection_info_.end);
 
 					caret_position_ = selection_info_.start;
-					tag_number = formatted_text_editor().erase(selection_info_.start, selection_info_.end, specs_.text);
+					tag_number = formatted_text_editor().erase(selection_info_.start, selection_info_.end, specs_.text());
 					reset_selection();
 				}
 				else {
-					tag_number = formatted_text_editor().erase(caret_position_, caret_position_ + 1, specs_.text);
+					tag_number = formatted_text_editor().erase(caret_position_, caret_position_ + 1, specs_.text());
 					caret_visible_ = true;
 					skip_blink_ = true;
 				}
@@ -559,7 +559,7 @@ namespace liblec {
 					reset_selection();
 				}
 
-				if (caret_position_ < specs_.text.length())
+				if (caret_position_ < specs_.text().length())
 					caret_position_++;
 
 				caret_visible_ = true;
@@ -589,7 +589,7 @@ namespace liblec {
 			tag_attribute.name = "style";
 			tag_attribute.value = "font-family: " + font_name + ";";
 			tag_attributes.push_back(tag_attribute);
-			formatted_text_editor().toggle_tag(specs_.text, "span", tag_attributes, selection_info_.start, selection_info_.end);
+			formatted_text_editor().toggle_tag(specs_.text(), "span", tag_attributes, selection_info_.start, selection_info_.end);
 		}
 
 		void widgets::html_editor_impl::selection_font_size(const float& font_size) {
@@ -599,7 +599,7 @@ namespace liblec {
 			tag_attribute.name = "style";
 			tag_attribute.value = "font-size: " + std::to_string(font_size) + "pt;";
 			tag_attributes.push_back(tag_attribute);
-			formatted_text_editor().toggle_tag(specs_.text, "span", tag_attributes, selection_info_.start, selection_info_.end);
+			formatted_text_editor().toggle_tag(specs_.text(), "span", tag_attributes, selection_info_.start, selection_info_.end);
 		}
 
 		void widgets::html_editor_impl::selection_bold() {
@@ -609,7 +609,7 @@ namespace liblec {
 			tag_attribute.name = "style";
 			tag_attribute.value = "font-weight: bold;";
 			tag_attributes.push_back(tag_attribute);
-			formatted_text_editor().toggle_tag(specs_.text, "span", tag_attributes, selection_info_.start, selection_info_.end);
+			formatted_text_editor().toggle_tag(specs_.text(), "span", tag_attributes, selection_info_.start, selection_info_.end);
 		}
 
 		void widgets::html_editor_impl::selection_italic() {
@@ -619,7 +619,7 @@ namespace liblec {
 			tag_attribute.name = "style";
 			tag_attribute.value = "font-style: italic;";
 			tag_attributes.push_back(tag_attribute);
-			formatted_text_editor().toggle_tag(specs_.text, "span", tag_attributes, selection_info_.start, selection_info_.end);
+			formatted_text_editor().toggle_tag(specs_.text(), "span", tag_attributes, selection_info_.start, selection_info_.end);
 		}
 
 		void widgets::html_editor_impl::selection_underline() {
@@ -631,10 +631,10 @@ namespace liblec {
 				tag_attribute.name = "style";
 				tag_attribute.value = "text-decoration: underline;";
 				tag_attributes.push_back(tag_attribute);
-				formatted_text_editor().toggle_tag(specs_.text, "span", tag_attributes, selection_info_.start, selection_info_.end);
+				formatted_text_editor().toggle_tag(specs_.text(), "span", tag_attributes, selection_info_.start, selection_info_.end);
 			}
 			else
-				formatted_text_editor().toggle_tag(specs_.text, "u", selection_info_.start, selection_info_.end);
+				formatted_text_editor().toggle_tag(specs_.text(), "u", selection_info_.start, selection_info_.end);
 		}
 
 		void widgets::html_editor_impl::selection_strikethrough() {
@@ -644,7 +644,7 @@ namespace liblec {
 			tag_attribute.name = "style";
 			tag_attribute.value = "text-decoration: line-through;";
 			tag_attributes.push_back(tag_attribute);
-			formatted_text_editor().toggle_tag(specs_.text, "span", tag_attributes, selection_info_.start, selection_info_.end);
+			formatted_text_editor().toggle_tag(specs_.text(), "span", tag_attributes, selection_info_.start, selection_info_.end);
 		}
 
 		void widgets::html_editor_impl::selection_color() {
@@ -664,7 +664,7 @@ namespace liblec {
 			tag_attribute.name = "style";
 			tag_attribute.value = "color: " + color_string + ";";
 			tag_attributes.push_back(tag_attribute);
-			formatted_text_editor().toggle_tag(specs_.text, "span", tag_attributes, selection_info_.start, selection_info_.end);
+			formatted_text_editor().toggle_tag(specs_.text(), "span", tag_attributes, selection_info_.start, selection_info_.end);
 		}
 
 		color widgets::html_editor_impl::get_last_color() {

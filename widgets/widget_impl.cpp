@@ -100,7 +100,7 @@ namespace liblec {
 
 		void widgets::widget_impl::show_tooltip() {
 			// make a local copy of the tooltip text
-			tooltip_text_ = generic_specs().tooltip;
+			tooltip_text_ = generic_specs().tooltip();
 
 			// trim leading and trailing whitespace
 			trim(tooltip_text_);

@@ -21,14 +21,109 @@ namespace liblec {
 	namespace lecui {
 		namespace widgets {
 			class scrollbar_specs : public specs {
+				color color_scrollbar_border_ = { 180, 180, 180, 255 };
+				color color_hot_pressed_ = { 221, 221, 221, 255 };
+				color color_background_ = { 0, 0, 0, 0 };
+
 			public:
 				scrollbar_specs() {
-					color_fill = { 241, 241, 241, 255 };
-					color_hot = { 231, 231, 231, 255 };
+					color_fill_ = { 241, 241, 241, 255 };
+					color_hot_ = { 231, 231, 231, 255 };
 				}
-				color color_scrollbar_border = { 180, 180, 180, 255 };
-				color color_hot_pressed = { 221, 221, 221, 255 };
-				color color_background = { 0, 0, 0, 0 };
+
+				// generic specs
+
+				std::string& text() override { return text_; }
+				scrollbar_specs& text(const std::string& text) {
+					text_ = text;
+					return *this;
+				}
+
+				std::string& tooltip() override { return tooltip_; }
+				scrollbar_specs& tooltip(const std::string& tooltip) {
+					tooltip_ = tooltip;
+					return *this;
+				}
+
+				lecui::rect& rect() override { return rect_; }
+				scrollbar_specs& rect(const lecui::rect& rect) {
+					rect_ = rect;
+					return *this;
+				}
+
+				resize_params& on_resize() override { return on_resize_; }
+				scrollbar_specs& on_resize(const resize_params& on_resize) {
+					on_resize_ = on_resize;
+					return *this;
+				}
+
+				cursor_type& cursor() override { return cursor_; }
+				scrollbar_specs& cursor(const cursor_type cursor) {
+					cursor_ = cursor;
+					return *this;
+				}
+
+				std::string& font() override { return font_; }
+				scrollbar_specs& font(const std::string& font) {
+					font_ = font;
+					return *this;
+				}
+
+				float& font_size() override { return font_size_; }
+				scrollbar_specs& font_size(const float& font_size) {
+					font_size_ = font_size;
+					return *this;
+				}
+
+				color& color_text() override { return color_text_; }
+				scrollbar_specs& color_text(const color& color_text) {
+					color_text_ = color_text;
+					return *this;
+				}
+
+				color& color_fill() override { return color_fill_; }
+				scrollbar_specs& color_fill(const color& color_fill) {
+					color_fill_ = color_fill;
+					return *this;
+				}
+
+				color& color_hot() override { return color_hot_; }
+				scrollbar_specs& color_hot(const color& color_hot) {
+					color_hot_ = color_hot;
+					return *this;
+				}
+
+				color& color_selected() override { return color_selected_; }
+				scrollbar_specs& color_selected(const color& color_selected) {
+					color_selected_ = color_selected;
+					return *this;
+				}
+
+				color& color_disabled() override { return color_disabled_; }
+				scrollbar_specs& color_disabled(const color& color_disabled) {
+					color_disabled_ = color_disabled;
+					return *this;
+				}
+
+				// widget specific specs
+
+				color& color_scrollbar_border() { return color_scrollbar_border_; }
+				scrollbar_specs& color_scrollbar_border(const color& color_scrollbar_border) {
+					color_scrollbar_border_ = color_scrollbar_border;
+					return *this;
+				}
+
+				color& color_hot_pressed() { return color_hot_pressed_; }
+				scrollbar_specs& color_hot_pressed(const color& color_hot_pressed) {
+					color_hot_pressed_ = color_hot_pressed;
+					return *this;
+				}
+
+				color& color_background() { return color_background_; }
+				scrollbar_specs& color_background(const color& color_background) {
+					color_background_ = color_background;
+					return *this;
+				}
 			};
 
 			enum class widget_type {

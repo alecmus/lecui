@@ -50,40 +50,40 @@ namespace liblec {
 			ID2D1HwndRenderTarget* p_render_target) {
 			specs_old_ = specs_;
 			is_static_ = false;
-			h_cursor_ = get_cursor(specs_.cursor);
+			h_cursor_ = get_cursor(specs_.cursor());
 
 			HRESULT hr = S_OK;
 
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_fill),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_fill()),
 					&p_brush_fill_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_border),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_border()),
 					&p_brush_border_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_disabled),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_disabled()),
 					&p_brush_disabled_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_selected),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_selected()),
 					&p_brush_selected_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_text),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_text()),
 					&p_brush_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_caret),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_caret()),
 					&p_brush_caret_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_prompt),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_prompt()),
 					&p_brush_prompt_);
 			if (SUCCEEDED(hr)) {
 				// Create a DirectWrite text format object.
 				hr = p_directwrite_factory_->CreateTextFormat(
-					convert_string(specs_.font).c_str(),
+					convert_string(specs_.font()).c_str(),
 					NULL,
 					DWRITE_FONT_WEIGHT_NORMAL,
 					DWRITE_FONT_STYLE_NORMAL,
 					DWRITE_FONT_STRETCH_NORMAL,
-					convert_fontsize_to_dip(specs_.font_size),
+					convert_fontsize_to_dip(specs_.font_size()),
 					L"", //locale
 					&p_text_format_
 					);
@@ -122,7 +122,7 @@ namespace liblec {
 			if (!resources_created_)
 				create_resources(p_render_target);
 
-			rect_ = position(specs_.rect, specs_.on_resize, change_in_size.width, change_in_size.height);
+			rect_ = position(specs_.rect(), specs_.on_resize(), change_in_size.width, change_in_size.height);
 			rect_.left -= offset.x;
 			rect_.right -= offset.x;
 			rect_.top -= offset.y;
@@ -132,11 +132,11 @@ namespace liblec {
 				return rect_;
 
 			// make sure caret is well positioned in case text has since been changed
-			caret_position_ = smallest(caret_position_, static_cast<UINT32>(specs_.text.length()));
+			caret_position_ = smallest(caret_position_, static_cast<UINT32>(specs_.text().length()));
 
 			// draw background
 			D2D1_ROUNDED_RECT rounded_rect{ rect_,
-				specs_.corner_radius_x, specs_.corner_radius_y };
+				specs_.corner_radius_x(), specs_.corner_radius_y() };
 
 			p_render_target->FillRoundedRectangle(&rounded_rect, is_enabled_ ? p_brush_fill_ :
 				p_brush_disabled_);
@@ -147,11 +147,11 @@ namespace liblec {
 				p_render_target->DrawRoundedRectangle(&rounded_rect, p_brush_selected_, 1.75f);
 
 			// create a text layout
-			std::string text_ = !specs_.text.empty() ?
-				specs_.text : selected_ ?
-				std::string() : specs_.prompt;
+			std::string text_ = !specs_.text().empty() ?
+				specs_.text() : selected_ ?
+				std::string() : specs_.prompt();
 
-			if (!specs_.text.empty() && specs_.mask != '\0') {
+			if (!specs_.text().empty() && specs_.mask != '\0') {
 				// mask the text
 				for (auto& c : text_)
 					c = specs_.mask;
@@ -173,12 +173,12 @@ namespace liblec {
 			// define text box rect and actual text rect (with possible overflow)
 			const auto rect_text_box_ = rect_text_;
 			rect_text_ = measure_text(p_directwrite_factory_,
-				text_, specs_.font, specs_.font_size, false, true, true, false, rect_text_);
+				text_, specs_.font(), specs_.font_size(), false, true, true, false, rect_text_);
 
 			// measure the text up to the caret position
 			const auto text_to_caret = text_.substr(0, caret_position_);
 			const auto rect_up_to_caret_ = measure_text(p_directwrite_factory_,
-				text_to_caret, specs_.font, specs_.font_size, false, true, true, false, rect_text_);
+				text_to_caret, specs_.font(), specs_.font_size(), false, true, true, false, rect_text_);
 
 			bool iterate = false;
 			do {
@@ -255,7 +255,7 @@ namespace liblec {
 
 				// draw the text layout
 				p_render_target->DrawTextLayout(D2D1_POINT_2F{ rect_text_.left, rect_text_.top },
-					p_text_layout_, !specs_.text.empty() ?
+					p_text_layout_, !specs_.text().empty() ?
 					p_brush_ : p_brush_prompt_, D2D1_DRAW_TEXT_OPTIONS_CLIP);
 			}
 
@@ -263,14 +263,14 @@ namespace liblec {
 				if (hit_ && pressed_) {
 					reset_selection();
 
-					caret_position_ = get_caret_position(p_text_layout_, specs_.text, rect_text_, point_, get_dpi_scale());
+					caret_position_ = get_caret_position(p_text_layout_, specs_.text(), rect_text_, point_, get_dpi_scale());
 					caret_visible_ = true;
 
 					if (point_.x != point_on_press_.x || point_.y != point_on_press_.y) {
 						// user is making a selection
 						is_selecting_ = true;
 
-						auto selection_start_ = get_caret_position(p_text_layout_, specs_.text, rect_text_, point_on_press_, get_dpi_scale());
+						auto selection_start_ = get_caret_position(p_text_layout_, specs_.text(), rect_text_, point_on_press_, get_dpi_scale());
 						auto selection_end_ = caret_position_;
 
 						auto rect_selection = get_selection_rect(p_text_layout_, rect_text_, selection_start_, selection_end_);
@@ -283,8 +283,8 @@ namespace liblec {
 						is_selecting_ = false;
 
 						set_selection(
-							get_caret_position(p_text_layout_, specs_.text, rect_text_, point_on_press_, get_dpi_scale()),
-							get_caret_position(p_text_layout_, specs_.text, rect_text_, point_on_release_, get_dpi_scale()));
+							get_caret_position(p_text_layout_, specs_.text(), rect_text_, point_on_press_, get_dpi_scale()),
+							get_caret_position(p_text_layout_, specs_.text(), rect_text_, point_on_release_, get_dpi_scale()));
 					}
 			}
 
@@ -338,13 +338,13 @@ namespace liblec {
 						swap(selection_info_.start, selection_info_.end);
 
 					caret_position_ = selection_info_.start;
-					specs_.text.erase(selection_info_.start, selection_info_.end - selection_info_.start);
+					specs_.text().erase(selection_info_.start, selection_info_.end - selection_info_.start);
 					reset_selection();
 				}
 
 				std::string s;
 				s += c;
-				specs_.text.insert(caret_position_, s);
+				specs_.text().insert(caret_position_, s);
 				caret_position_++;
 				caret_visible_ = true;
 				skip_blink_ = true;
@@ -359,11 +359,11 @@ namespace liblec {
 						swap(selection_info_.start, selection_info_.end);
 
 					caret_position_ = selection_info_.start;
-					specs_.text.erase(selection_info_.start, selection_info_.end - selection_info_.start);
+					specs_.text().erase(selection_info_.start, selection_info_.end - selection_info_.start);
 					reset_selection();
 				}
 				else {
-					specs_.text.erase(caret_position_ - 1, 1);
+					specs_.text().erase(caret_position_ - 1, 1);
 					caret_position_--;
 					caret_visible_ = true;
 					skip_blink_ = true;
@@ -379,11 +379,11 @@ namespace liblec {
 						swap(selection_info_.start, selection_info_.end);
 
 					caret_position_ = selection_info_.start;
-					specs_.text.erase(selection_info_.start, selection_info_.end - selection_info_.start);
+					specs_.text().erase(selection_info_.start, selection_info_.end - selection_info_.start);
 					reset_selection();
 				}
 				else {
-					specs_.text.erase(caret_position_, 1);
+					specs_.text().erase(caret_position_, 1);
 					caret_visible_ = true;
 					skip_blink_ = true;
 				}
@@ -420,7 +420,7 @@ namespace liblec {
 					reset_selection();
 				}
 
-				if (caret_position_ < specs_.text.length())
+				if (caret_position_ < specs_.text().length())
 					caret_position_++;
 
 				caret_visible_ = true;

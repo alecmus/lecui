@@ -41,27 +41,27 @@ namespace liblec {
 			ID2D1HwndRenderTarget* p_render_target) {
 			specs_old_ = specs_;
 			is_static_ = (specs_.events().click == nullptr && specs_.events().action == nullptr);
-			h_cursor_ = get_cursor(specs_.cursor);
+			h_cursor_ = get_cursor(specs_.cursor());
 
 			HRESULT hr = S_OK;
 
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_fill),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_fill()),
 					&p_brush_fill_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_border),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_border()),
 					&p_brush_border_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_border_hot),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_border_hot()),
 					&p_brush_border_hot_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_hot),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_hot()),
 					&p_brush_hot_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_disabled),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_disabled()),
 					&p_brush_disabled_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_selected),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_selected()),
 					&p_brush_selected_);
 
 			resources_created_ = true;
@@ -90,7 +90,7 @@ namespace liblec {
 			if (!resources_created_)
 				create_resources(p_render_target);
 
-			rect_ = position(specs_.rect, specs_.on_resize, change_in_size.width, change_in_size.height);
+			rect_ = position(specs_.rect(), specs_.on_resize(), change_in_size.width, change_in_size.height);
 			rect_.left -= offset.x;
 			rect_.right -= offset.x;
 			rect_.top -= offset.y;
@@ -100,12 +100,12 @@ namespace liblec {
 				return rect_;
 
 			const D2D1_ROUNDED_RECT rounded_rect{ rect_,
-				specs_.corner_radius_x, specs_.corner_radius_y };
+				specs_.corner_radius_x(), specs_.corner_radius_y() };
 
 			p_render_target->FillRoundedRectangle(&rounded_rect, is_enabled_ ?
 				(hit_ ? p_brush_hot_ : p_brush_fill_) : p_brush_disabled_);
 			p_render_target->DrawRoundedRectangle(&rounded_rect, is_enabled_ ?
-				(hit_ ? p_brush_border_hot_ : p_brush_border_) : p_brush_disabled_, specs_.border);
+				(hit_ ? p_brush_border_hot_ : p_brush_border_) : p_brush_disabled_, specs_.border());
 
 			if (!is_static_ && is_enabled_) {
 				if (pressed_)

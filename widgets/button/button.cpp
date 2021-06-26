@@ -19,7 +19,7 @@ namespace liblec {
 				specs::operator==(param) &&
 
 				// widget specific specs
-				(color_border == param.color_border);
+				(color_border_ == param.color_border_);
 		}
 
 		bool widgets::button::button_specs::operator!=(const button_specs& param) {
@@ -31,11 +31,12 @@ namespace liblec {
 			impl(containers::page& page, const std::string& alias) :
 				page_(page),
 				specs_(page_.d_page_.add_button(alias)) {
-				specs_.color_text = defaults::color(page_.d_page_.fm_.d_.theme_, item::label);
-				specs_.color_fill = defaults::color(page_.d_page_.fm_.d_.theme_, item::button);
-				specs_.color_border = defaults::color(page_.d_page_.fm_.d_.theme_, item::button_border);
-				specs_.color_hot = defaults::color(page_.d_page_.fm_.d_.theme_, item::button_hover);
-				specs_.color_selected = defaults::color(page_.d_page_.fm_.d_.theme_, item::button_selected);
+				specs_
+					.color_text(defaults::color(page_.d_page_.fm_.d_.theme_, item::label))
+					.color_fill(defaults::color(page_.d_page_.fm_.d_.theme_, item::button))
+					.color_border(defaults::color(page_.d_page_.fm_.d_.theme_, item::button_border))
+					.color_hot(defaults::color(page_.d_page_.fm_.d_.theme_, item::button_hover))
+					.color_selected(defaults::color(page_.d_page_.fm_.d_.theme_, item::button_selected));
 			}
 			containers::page& page_;
 			button_specs& specs_;

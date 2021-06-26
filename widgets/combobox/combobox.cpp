@@ -19,14 +19,14 @@ namespace liblec {
 				specs::operator==(param) &&
 
 				// widget specific specs
-				(editable == param.editable) &&
-				(color_border == param.color_border) &&
-				(color_fill_editable == param.color_fill_editable) &&
-				(color_caret == param.color_caret) &&
-				(color_dropdown == param.color_dropdown) &&
-				(color_dropdown_hot == param.color_dropdown_hot) &&
-				(color_dropdown_arrow == param.color_dropdown_arrow) &&
-				(color_dropdown_arrow_hot == param.color_dropdown_arrow_hot);
+				(editable_ == param.editable_) &&
+				(color_border_ == param.color_border_) &&
+				(color_fill_editable_ == param.color_fill_editable_) &&
+				(color_caret_ == param.color_caret_) &&
+				(color_dropdown_ == param.color_dropdown_) &&
+				(color_dropdown_hot_ == param.color_dropdown_hot_) &&
+				(color_dropdown_arrow_ == param.color_dropdown_arrow_) &&
+				(color_dropdown_arrow_hot_ == param.color_dropdown_arrow_hot_);
 		}
 
 		bool widgets::combobox::combobox_specs::operator!=(const combobox_specs& param) {
@@ -38,17 +38,18 @@ namespace liblec {
 			combobox_impl(containers::page& page, const std::string& alias) :
 				page_(page),
 				specs_(page_.d_page_.add_combobox(alias)) {
-				specs_.color_text = defaults::color(page_.d_page_.fm_.d_.theme_, item::label);
-				specs_.color_fill = defaults::color(page_.d_page_.fm_.d_.theme_, item::combobox);
-				specs_.color_fill_editable = defaults::color(page_.d_page_.fm_.d_.theme_, item::combobox_editable);
-				specs_.color_caret = defaults::color(page_.d_page_.fm_.d_.theme_, item::combobox_caret);
-				specs_.color_border = defaults::color(page_.d_page_.fm_.d_.theme_, item::combobox_border);
-				specs_.color_hot = defaults::color(page_.d_page_.fm_.d_.theme_, item::combobox_hover);
-				specs_.color_selected = defaults::color(page_.d_page_.fm_.d_.theme_, item::combobox_selected);
-				specs_.color_dropdown = defaults::color(page_.d_page_.fm_.d_.theme_, item::combobox_dropdown);
-				specs_.color_dropdown_hot = defaults::color(page_.d_page_.fm_.d_.theme_, item::combobox_dropdown_hot);
-				specs_.color_dropdown_arrow = defaults::color(page_.d_page_.fm_.d_.theme_, item::combobox_dropdown_arrow);
-				specs_.color_dropdown_arrow_hot = defaults::color(page_.d_page_.fm_.d_.theme_, item::combobox_dropdown_arrow_hot);
+				specs_
+					.color_text(defaults::color(page_.d_page_.fm_.d_.theme_, item::label))
+					.color_fill(defaults::color(page_.d_page_.fm_.d_.theme_, item::combobox))
+					.color_fill_editable(defaults::color(page_.d_page_.fm_.d_.theme_, item::combobox_editable))
+					.color_caret(defaults::color(page_.d_page_.fm_.d_.theme_, item::combobox_caret))
+					.color_border(defaults::color(page_.d_page_.fm_.d_.theme_, item::combobox_border))
+					.color_hot(defaults::color(page_.d_page_.fm_.d_.theme_, item::combobox_hover))
+					.color_selected(defaults::color(page_.d_page_.fm_.d_.theme_, item::combobox_selected))
+					.color_dropdown(defaults::color(page_.d_page_.fm_.d_.theme_, item::combobox_dropdown))
+					.color_dropdown_hot(defaults::color(page_.d_page_.fm_.d_.theme_, item::combobox_dropdown_hot))
+					.color_dropdown_arrow(defaults::color(page_.d_page_.fm_.d_.theme_, item::combobox_dropdown_arrow))
+					.color_dropdown_arrow_hot(defaults::color(page_.d_page_.fm_.d_.theme_, item::combobox_dropdown_arrow_hot));
 			}
 			containers::page& page_;
 			combobox_specs& specs_;

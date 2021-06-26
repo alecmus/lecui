@@ -19,11 +19,11 @@ namespace liblec {
 				specs::operator==(param) &&
 
 				// widget specific specs
-				(text == param.text) &&
-				(color_hot_pressed == param.color_hot_pressed) &&
-				(multiline == param.multiline) &&
-				(center_h == param.center_h) &&
-				(center_v == param.center_v);
+				(text_ == param.text_) &&
+				(color_hot_pressed_ == param.color_hot_pressed_) &&
+				(multiline_ == param.multiline_) &&
+				(center_h_ == param.center_h_) &&
+				(center_v_ == param.center_v_);
 		}
 
 		bool widgets::label::label_specs::operator!=(const label_specs& param) {
@@ -35,11 +35,12 @@ namespace liblec {
 			impl(containers::page& page, const std::string& alias) :
 				page_(page),
 				specs_(page_.d_page_.add_label(alias)) {
-				specs_.color_text = defaults::color(page_.d_page_.fm_.d_.theme_, item::label);
-				specs_.color_selected = defaults::color(page_.d_page_.fm_.d_.theme_, item::label_selected);
-				specs_.color_hot = defaults::color(page_.d_page_.fm_.d_.theme_, item::label_hover);
-				specs_.color_hot_pressed = defaults::color(page_.d_page_.fm_.d_.theme_, item::label_pressed);
-				specs_.color_disabled = defaults::color(page_.d_page_.fm_.d_.theme_, item::label_disabled);
+				specs_
+					.color_text(defaults::color(page_.d_page_.fm_.d_.theme_, item::label))
+					.color_selected(defaults::color(page_.d_page_.fm_.d_.theme_, item::label_selected))
+					.color_hot(defaults::color(page_.d_page_.fm_.d_.theme_, item::label_hover))
+					.color_hot_pressed(defaults::color(page_.d_page_.fm_.d_.theme_, item::label_pressed))
+					.color_disabled(defaults::color(page_.d_page_.fm_.d_.theme_, item::label_disabled));
 			}
 			containers::page& page_;
 			label_specs& specs_;

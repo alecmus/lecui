@@ -19,12 +19,12 @@ namespace liblec {
 				specs::operator==(param) &&
 
 				// widget specific specs
-				(color_border == param.color_border) &&
-				(file == param.file) &&
-				(png_resource == param.png_resource) &&
-				(quality == param.quality) &&
-				(enlarge_if_smaller == param.enlarge_if_smaller) &&
-				(keep_aspect_ratio == param.keep_aspect_ratio);
+				(color_border_ == param.color_border_) &&
+				(file_ == param.file_) &&
+				(png_resource_ == param.png_resource_) &&
+				(quality_ == param.quality_) &&
+				(enlarge_if_smaller_ == param.enlarge_if_smaller_) &&
+				(keep_aspect_ratio_ == param.keep_aspect_ratio_);
 		}
 
 		bool widgets::image_view::image_view_specs::operator!=(const image_view_specs& param) {
@@ -36,10 +36,11 @@ namespace liblec {
 			impl(containers::page& page, const std::string& alias) :
 				page_(page),
 				specs_(page_.d_page_.add_image_view(alias)) {
-				specs_.color_fill = defaults::color(page_.d_page_.fm_.d_.theme_, item::image_view);
-				specs_.color_border = defaults::color(page_.d_page_.fm_.d_.theme_, item::image_view_border);
-				specs_.color_hot = defaults::color(page_.d_page_.fm_.d_.theme_, item::image_view_hover);
-				specs_.color_selected = defaults::color(page_.d_page_.fm_.d_.theme_, item::image_view_selected);
+				specs_
+					.color_fill(defaults::color(page_.d_page_.fm_.d_.theme_, item::image_view))
+					.color_border(defaults::color(page_.d_page_.fm_.d_.theme_, item::image_view_border))
+					.color_hot(defaults::color(page_.d_page_.fm_.d_.theme_, item::image_view_hover))
+					.color_selected(defaults::color(page_.d_page_.fm_.d_.theme_, item::image_view_selected));
 			}
 			containers::page& page_;
 			image_view_specs& specs_;

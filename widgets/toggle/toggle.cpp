@@ -19,8 +19,8 @@ namespace liblec {
 				specs::operator==(param) &&
 
 				// widget specific specs
-				(color_on == param.color_on) &&
-				(color_off == param.color_off);
+				(color_on_ == param.color_on_) &&
+				(color_off_ == param.color_off_);
 		}
 
 		bool widgets::toggle::toggle_specs::operator!=(const toggle_specs& param) {
@@ -32,11 +32,12 @@ namespace liblec {
 			impl(containers::page& page, const std::string& alias) :
 				page_(page),
 				specs_(page_.d_page_.add_toggle(alias)) {
-				specs_.color_text = defaults::color(page_.d_page_.fm_.d_.theme_, item::label);
-				specs_.color_fill = defaults::color(page_.d_page_.fm_.d_.theme_, item::toggle);
-				specs_.color_on = defaults::color(page_.d_page_.fm_.d_.theme_, item::toggle_on);
-				specs_.color_off = defaults::color(page_.d_page_.fm_.d_.theme_, item::toggle_off);
-				specs_.color_selected = defaults::color(page_.d_page_.fm_.d_.theme_, item::toggle_selected);
+				specs_
+					.color_text(defaults::color(page_.d_page_.fm_.d_.theme_, item::label))
+					.color_fill(defaults::color(page_.d_page_.fm_.d_.theme_, item::toggle))
+					.color_on(defaults::color(page_.d_page_.fm_.d_.theme_, item::toggle_on))
+					.color_off(defaults::color(page_.d_page_.fm_.d_.theme_, item::toggle_off))
+					.color_selected(defaults::color(page_.d_page_.fm_.d_.theme_, item::toggle_selected));
 			}
 			containers::page& page_;
 			toggle_specs& specs_;

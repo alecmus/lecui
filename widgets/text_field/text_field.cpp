@@ -21,9 +21,9 @@ namespace liblec {
 				specs::operator==(param) &&
 
 				// widget specific specs
-				(color_border == param.color_border) &&
-				(color_prompt == param.color_prompt) &&
-				(color_caret == param.color_caret);
+				(color_border_ == param.color_border_) &&
+				(color_prompt_ == param.color_prompt_) &&
+				(color_caret_ == param.color_caret_);
 		}
 
 		bool widgets::text_field::text_field_specs::operator!=(const text_field_specs& param) {
@@ -35,13 +35,14 @@ namespace liblec {
 			impl(containers::page& page, const std::string& alias) :
 				page_(page),
 				specs_(page_.d_page_.add_text_field(alias)) {
-				specs_.color_text = defaults::color(page_.d_page_.fm_.d_.theme_, item::label);
-				specs_.color_prompt = defaults::color(page_.d_page_.fm_.d_.theme_, item::text_field_prompt);
-				specs_.color_fill = defaults::color(page_.d_page_.fm_.d_.theme_, item::text_field);
-				specs_.color_border = defaults::color(page_.d_page_.fm_.d_.theme_, item::text_field_border);
-				specs_.color_disabled = defaults::color(page_.d_page_.fm_.d_.theme_, item::text_field_disabled);
-				specs_.color_selected = defaults::color(page_.d_page_.fm_.d_.theme_, item::text_field_selected);
-				specs_.color_caret = defaults::color(page_.d_page_.fm_.d_.theme_, item::text_field_caret);
+				specs_
+					.color_text(defaults::color(page_.d_page_.fm_.d_.theme_, item::label))
+					.color_prompt(defaults::color(page_.d_page_.fm_.d_.theme_, item::text_field_prompt))
+					.color_fill(defaults::color(page_.d_page_.fm_.d_.theme_, item::text_field))
+					.color_border(defaults::color(page_.d_page_.fm_.d_.theme_, item::text_field_border))
+					.color_disabled(defaults::color(page_.d_page_.fm_.d_.theme_, item::text_field_disabled))
+					.color_selected(defaults::color(page_.d_page_.fm_.d_.theme_, item::text_field_selected))
+					.color_caret(defaults::color(page_.d_page_.fm_.d_.theme_, item::text_field_caret));
 			}
 			containers::page& page_;
 			text_field_specs& specs_;
@@ -97,7 +98,7 @@ namespace liblec {
 		widgets::password_field::password_field(containers::page& page, const std::string& alias) :
 			text_field(page, alias) {
 			d_.specs_.mask = '•';
-			d_.specs_.prompt = "Enter password here";
+			d_.specs_.prompt("Enter password here");
 		}
 
 		widgets::password_field::~password_field() {}

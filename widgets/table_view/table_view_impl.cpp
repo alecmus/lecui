@@ -52,59 +52,59 @@ namespace liblec {
 			ID2D1HwndRenderTarget* p_render_target) {
 			specs_old_ = specs_;
 			is_static_ = false;
-			h_cursor_ = get_cursor(specs_.cursor);
+			h_cursor_ = get_cursor(specs_.cursor());
 
 			HRESULT hr = S_OK;
 
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_fill),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_fill()),
 					&p_brush_fill_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_text_header),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_text_header()),
 					&p_brush_text_header_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_text_selected),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_text_selected()),
 					&p_brush_text_selected_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_fill_header),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_fill_header()),
 					&p_brush_fill_header_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_fill_alternate),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_fill_alternate()),
 					&p_brush_fill_alternate_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_hot),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_hot()),
 					&p_brush_hot_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_disabled),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_disabled()),
 					&p_brush_disabled_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_selected),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_selected()),
 					&p_brush_selected_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_text),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_text()),
 					&p_brush_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_border),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_border()),
 					&p_brush_border_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_grid),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_grid()),
 					&p_brush_grid_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_row_hot),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_row_hot()),
 					&p_brush_row_hot_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_row_selected),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_row_selected()),
 					&p_brush_row_selected_);
 
 			if (SUCCEEDED(hr)) {
 				// Create a DirectWrite text format object.
 				hr = p_directwrite_factory_->CreateTextFormat(
-					convert_string(specs_.font).c_str(),
+					convert_string(specs_.font()).c_str(),
 					NULL,
 					DWRITE_FONT_WEIGHT_NORMAL,
 					DWRITE_FONT_STYLE_NORMAL,
 					DWRITE_FONT_STRETCH_NORMAL,
-					convert_fontsize_to_dip(specs_.font_size),
+					convert_fontsize_to_dip(specs_.font_size()),
 					L"", //locale
 					&p_text_format_
 					);
@@ -158,7 +158,7 @@ namespace liblec {
 					return false;
 			};
 
-			rect_ = position(specs_.rect, specs_.on_resize, change_in_size.width, change_in_size.height);
+			rect_ = position(specs_.rect(), specs_.on_resize(), change_in_size.width, change_in_size.height);
 			rect_.left -= offset.x;
 			rect_.right -= offset.x;
 			rect_.top -= offset.y;
@@ -169,7 +169,7 @@ namespace liblec {
 			// step3: draw widget background
 			{
 				D2D1_ROUNDED_RECT rounded_rect{ rect_,
-					specs_.corner_radius_x, specs_.corner_radius_y };
+					specs_.corner_radius_x(), specs_.corner_radius_y() };
 
 				if (render && visible_)
 					p_render_target->FillRoundedRectangle(&rounded_rect, !is_enabled_ ?
@@ -183,7 +183,7 @@ namespace liblec {
 				rect_header_.bottom = rect_header_.top + row_height_;
 
 				D2D1_ROUNDED_RECT rounded_rect{ rect_header_,
-					specs_.corner_radius_x, specs_.corner_radius_y };
+					specs_.corner_radius_x(), specs_.corner_radius_y() };
 
 				if (render && visible_)
 					p_render_target->FillRoundedRectangle(&rounded_rect, p_brush_fill_header_);
@@ -203,8 +203,8 @@ namespace liblec {
 			rectB_.bottom = largest(rectB_.bottom, rect_page.bottom);
 
 			float table_width = 0.f;
-			for (const auto& it : specs_.columns) table_width += static_cast<float>(it.width);
-			float table_height = row_height_ * specs_.data.size();
+			for (const auto& it : specs_.columns()) table_width += static_cast<float>(it.width);
+			float table_height = row_height_ * specs_.data().size();
 
 			// adjust rect_ (what will be written back) to match the table's used area
 			rect_.bottom = rectA_.top + table_height;
@@ -218,7 +218,7 @@ namespace liblec {
 				rect_header_cell.left = rectA_.left;
 				rect_header_cell.right = rect_header_cell.left;
 
-				for (const auto& it : specs_.columns) {
+				for (const auto& it : specs_.columns()) {
 					rect_header_cell.left = rect_header_cell.right;
 					rect_header_cell.right = rect_header_cell.left + static_cast<float>(it.width);
 
@@ -268,12 +268,12 @@ namespace liblec {
 					rect_row.bottom = rect_row.top + row_height_ * (hidden_above);
 
 					for (unsigned long row_number = hidden_above;
-						row_number < (specs_.data.size() - hidden_below); row_number++) {
+						row_number < (specs_.data().size() - hidden_below); row_number++) {
 						rect_row.top = rect_row.bottom;
 						rect_row.bottom = rect_row.top + row_height_;
 
-						bool selected = std::find(specs_.selected.begin(), specs_.selected.end(),
-							row_number) != specs_.selected.end();
+						bool selected = std::find(specs_.selected().begin(), specs_.selected().end(),
+							row_number) != specs_.selected().end();
 						bool hot = false;
 
 						{
@@ -300,7 +300,7 @@ namespace liblec {
 							rect.right = rectB_.right;
 
 							D2D1_ROUNDED_RECT rounded_rect{ rect,
-								specs_.corner_radius_x, specs_.corner_radius_y };
+								specs_.corner_radius_x(), specs_.corner_radius_y() };
 
 							if (render && visible_)
 								p_render_target->FillRoundedRectangle(&rounded_rect,
@@ -313,7 +313,7 @@ namespace liblec {
 								rect.right = rectB_.right;
 
 								D2D1_ROUNDED_RECT rounded_rect{ rect,
-									specs_.corner_radius_x, specs_.corner_radius_y };
+									specs_.corner_radius_x(), specs_.corner_radius_y() };
 
 								if (render && visible_)
 									p_render_target->FillRoundedRectangle(&rounded_rect,
@@ -327,7 +327,7 @@ namespace liblec {
 									rect.right = rectB_.right;
 
 									D2D1_ROUNDED_RECT rounded_rect{ rect,
-										specs_.corner_radius_x, specs_.corner_radius_y };
+										specs_.corner_radius_x(), specs_.corner_radius_y() };
 
 									if (render && visible_)
 										p_render_target->FillRoundedRectangle(&rounded_rect,
@@ -338,7 +338,7 @@ namespace liblec {
 						auto rect_cell = rect_row;
 						rect_cell.right = rect_cell.left;
 
-						for (const auto& it : specs_.columns) {
+						for (const auto& it : specs_.columns()) {
 							rect_cell.left = rect_cell.right;
 							rect_cell.right = rect_cell.left + static_cast<float>(it.width);
 
@@ -347,7 +347,7 @@ namespace liblec {
 							rect_text.right -= margin_;
 
 							try {
-								std::string text = specs_.data.at(row_number).at(it.name);
+								std::string text = specs_.data().at(row_number).at(it.name);
 
 								// create a text layout
 								HRESULT hr = p_directwrite_factory_->CreateTextLayout(
@@ -399,7 +399,7 @@ namespace liblec {
 					// step12b: draw vertical lines
 					{
 						auto x = rectA_.left;
-						for (auto& it : specs_.columns) {
+						for (auto& it : specs_.columns()) {
 							x += it.width;
 
 							p_render_target->DrawLine(D2D1::Point2F(x, rectB_.top),
@@ -427,8 +427,8 @@ namespace liblec {
 
 				// check if any of the rows have been clicked
 				bool selection_made = false;
-				auto selected_previous = specs_.selected;
-				specs_.selected.clear();
+				auto selected_previous = specs_.selected();
+				specs_.selected().clear();
 
 				for (auto& it : hot_spots_) {
 					auto rect = it.second;
@@ -444,14 +444,14 @@ namespace liblec {
 								it.first) == selected_previous.end()) {
 								// add this row to the current selection, using the
 								// order in which items appear in the table
-								for (unsigned long row_number = 0; row_number < specs_.data.size();
+								for (unsigned long row_number = 0; row_number < specs_.data().size();
 									row_number++) {
 									if (row_number == it.first)
-										specs_.selected.push_back(row_number);
+										specs_.selected().push_back(row_number);
 									else
 										if (std::find(selected_previous.begin(), selected_previous.end(),
 											row_number) != selected_previous.end())
-											specs_.selected.push_back(row_number);
+											specs_.selected().push_back(row_number);
 								}
 							}
 							else
@@ -460,7 +460,7 @@ namespace liblec {
 								for (const auto& m_it : selected_previous) {
 									if (m_it == it.first)
 										continue;
-									specs_.selected.push_back(m_it);
+									specs_.selected().push_back(m_it);
 								}
 							}
 						}
@@ -470,14 +470,14 @@ namespace liblec {
 								if (it.first > last_selected_)
 									for (unsigned long current_row = last_selected_;
 										current_row <= it.first; current_row++)
-										specs_.selected.push_back(current_row);
+										specs_.selected().push_back(current_row);
 								else
 									for (unsigned long current_row = it.first;
 										current_row <= last_selected_; current_row++)
-										specs_.selected.push_back(current_row);
+										specs_.selected().push_back(current_row);
 							}
 							else
-								specs_.selected.push_back(it.first);
+								specs_.selected().push_back(it.first);
 
 						/// Last selected item algorithm:
 						/// 
@@ -516,17 +516,17 @@ namespace liblec {
 			}
 
 			if (adjustment != 0.f) {
-				if (specs_.selected.empty()) {
+				if (specs_.selected().empty()) {
 					// simple scrolling
 				}
 				else {
 					// move last selection one unit (unless it's at the beginning or the end)
-					long new_selection = smallest(static_cast<long>(specs_.data.size() - 1),
+					long new_selection = smallest(static_cast<long>(specs_.data().size() - 1),
 						largest(0L, static_cast<long>(last_selected_) -
 							static_cast<long>(adjustment / row_height_)));
 
-					specs_.selected.clear();
-					specs_.selected.push_back(new_selection);
+					specs_.selected().clear();
+					specs_.selected().push_back(new_selection);
 					last_selected_ = new_selection;
 
 					// check out if new selection is within table area
@@ -577,8 +577,8 @@ namespace liblec {
 		void widgets::table_view_impl::on_selection() {
 			if (specs_.events().selection) {
 				std::vector<std::map<std::string, std::string>> var;
-				for (const auto& it : specs_.selected) {
-					try { var.push_back(specs_.data.at(it)); }
+				for (const auto& it : specs_.selected()) {
+					try { var.push_back(specs_.data().at(it)); }
 					catch (const std::exception&) {}
 				}
 

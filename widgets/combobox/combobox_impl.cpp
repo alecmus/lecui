@@ -56,7 +56,7 @@ namespace liblec {
 		widgets::combobox_impl::~combobox_impl() { discard_resources(); }
 
 		void widgets::combobox_impl::press(const bool& pressed) {
-			D2D1_RECT_F rect = specs_.editable ? rect_dropdown_ : rect_combobox_;
+			D2D1_RECT_F rect = specs_.editable() ? rect_dropdown_ : rect_combobox_;
 			scale_RECT(rect, get_dpi_scale());
 
 			if (point_.x >= rect.left && point_.x <= rect.right &&
@@ -79,11 +79,11 @@ namespace liblec {
 			ID2D1HwndRenderTarget* p_render_target) {
 			specs_old_ = specs_;
 			is_static_ = (specs_.events().click == nullptr && specs_.events().selection == nullptr && specs_.events().action == nullptr);
-			h_cursor_ = get_cursor(specs_.cursor);
+			h_cursor_ = get_cursor(specs_.cursor());
 			
-			for (auto& item : specs_.items) {
-				if (item.label == specs_.selected) {
-					specs_.text = item.label;
+			for (auto& item : specs_.items()) {
+				if (item.label == specs_.selected()) {
+					specs_.text(item.label);
 					break;
 				}
 			}
@@ -93,51 +93,51 @@ namespace liblec {
 			HRESULT hr = S_OK;
 
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_fill),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_fill()),
 					&p_brush_fill_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_fill_editable),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_fill_editable()),
 					&p_brush_fill_editable_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_hot),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_hot()),
 					&p_brush_hot_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_disabled),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_disabled()),
 					&p_brush_disabled_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_selected),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_selected()),
 					&p_brush_selected_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_text),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_text()),
 					&p_brush_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_caret),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_caret()),
 					&p_brush_caret_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_border),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_border()),
 					&p_brush_border_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_dropdown),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_dropdown()),
 					&p_brush_dropdown_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_dropdown_hot),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_dropdown_hot()),
 					&p_brush_dropdown_hot_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_dropdown_arrow),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_dropdown_arrow()),
 					&p_brush_dropdown_arrow_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_dropdown_arrow_hot),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_dropdown_arrow_hot()),
 					&p_brush_dropdown_arrow_hot_);
 
 			if (SUCCEEDED(hr)) {
 				// Create a DirectWrite text format object.
 				hr = p_directwrite_factory_->CreateTextFormat(
-					convert_string(specs_.font).c_str(),
+					convert_string(specs_.font()).c_str(),
 					NULL,
 					DWRITE_FONT_WEIGHT_NORMAL,
 					DWRITE_FONT_STYLE_NORMAL,
 					DWRITE_FONT_STRETCH_NORMAL,
-					convert_fontsize_to_dip(specs_.font_size),
+					convert_fontsize_to_dip(specs_.font_size()),
 					L"", //locale
 					&p_text_format_
 					);
@@ -181,7 +181,7 @@ namespace liblec {
 			if (!resources_created_)
 				create_resources(p_render_target);
 
-			rect_combobox_ = position(specs_.rect, specs_.on_resize, change_in_size.width, change_in_size.height);
+			rect_combobox_ = position(specs_.rect(), specs_.on_resize(), change_in_size.width, change_in_size.height);
 			rect_combobox_.left -= offset.x;
 			rect_combobox_.right -= offset.x;
 			rect_combobox_.top -= offset.y;
@@ -190,29 +190,29 @@ namespace liblec {
 			if (!render || !visible_)
 				return rect_;
 
-			if (!specs_.editable) {
-				specs_.text.clear();
+			if (!specs_.editable()) {
+				specs_.text().clear();
 
-				for (auto& item : specs_.items) {
-					if (item.label == specs_.selected) {
-						specs_.text = item.label;
+				for (auto& item : specs_.items()) {
+					if (item.label == specs_.selected()) {
+						specs_.text(item.label);
 						break;
 					}
 				}
 			}
 
-			auto text_ = specs_.text;
+			auto text_ = specs_.text();
 
 			// make sure caret is well positioned in case text has since been changed
-			caret_position_ = smallest(caret_position_, static_cast<UINT32>(specs_.text.length()));
+			caret_position_ = smallest(caret_position_, static_cast<UINT32>(specs_.text().length()));
 
 			D2D1_ROUNDED_RECT rounded_rect{ rect_combobox_,
-				specs_.corner_radius_x, specs_.corner_radius_y };
+				specs_.corner_radius_x(), specs_.corner_radius_y() };
 
 			// draw background
 			if (render && visible_)
 				p_render_target->FillRoundedRectangle(&rounded_rect, !is_enabled_ ? p_brush_disabled_ :
-					specs_.editable ? p_brush_fill_editable_ :
+					specs_.editable() ? p_brush_fill_editable_ :
 					hit_ ? p_brush_hot_ : p_brush_fill_);
 
 			// draw dropdown rect
@@ -223,7 +223,7 @@ namespace liblec {
 				.8f * (rect_dropdown_.bottom - rect_dropdown_.top);
 
 			D2D1_ROUNDED_RECT dropdown_rounded_rect{ rect_dropdown_,
-				specs_.corner_radius_x, specs_.corner_radius_y };
+				specs_.corner_radius_x(), specs_.corner_radius_y() };
 
 			// draw dropdown rectangle
 			if (render && visible_)
@@ -274,16 +274,16 @@ namespace liblec {
 			rect_text_clip_.top += (margin_y_ / 3.f);
 			rect_text_clip_.bottom -= (margin_y_ / 3.f);
 
-			if (specs_.editable) {
+			if (specs_.editable()) {
 				// define text box rect and actual text rect (with possible overflow)
 				const auto rect_text_box_ = rect_text_;
 				rect_text_ = measure_text(p_directwrite_factory_,
-					text_, specs_.font, specs_.font_size, false, true, true, false, rect_text_);
+					text_, specs_.font(), specs_.font_size(), false, true, true, false, rect_text_);
 
 				// measure the text up to the caret position
 				const auto text_to_caret = text_.substr(0, caret_position_);
 				const auto rect_up_to_caret_ = measure_text(p_directwrite_factory_,
-					text_to_caret, specs_.font, specs_.font_size, false, true, true, false, rect_text_);
+					text_to_caret, specs_.font(), specs_.font_size(), false, true, true, false, rect_text_);
 
 				bool iterate = false;
 				do {
@@ -352,8 +352,8 @@ namespace liblec {
 			}
 
 			// create a text layout
-			HRESULT hr = p_directwrite_factory_->CreateTextLayout(convert_string(specs_.text).c_str(),
-				(UINT32)specs_.text.length(), p_text_format_, rect_text_.right - rect_text_.left,
+			HRESULT hr = p_directwrite_factory_->CreateTextLayout(convert_string(specs_.text()).c_str(),
+				(UINT32)specs_.text().length(), p_text_format_, rect_text_.right - rect_text_.left,
 				rect_text_.bottom - rect_text_.top, &p_text_layout_);
 
 			if (SUCCEEDED(hr) && render && visible_) {
@@ -365,19 +365,19 @@ namespace liblec {
 					p_text_layout_, p_brush_, D2D1_DRAW_TEXT_OPTIONS_CLIP);
 			}
 
-			if (specs_.editable) {
+			if (specs_.editable()) {
 				if (!is_static_ && is_enabled_ && selected_) {
 					if (hit_ && pressed_) {
 						reset_selection();
 
-						caret_position_ = get_caret_position(p_text_layout_, specs_.text, rect_text_, point_, get_dpi_scale());
+						caret_position_ = get_caret_position(p_text_layout_, specs_.text(), rect_text_, point_, get_dpi_scale());
 						caret_visible_ = true;
 
 						if (point_.x != point_on_press_.x || point_.y != point_on_press_.y) {
 							// user is making a selection
 							is_selecting_ = true;
 
-							auto selection_start_ = get_caret_position(p_text_layout_, specs_.text, rect_text_, point_on_press_, get_dpi_scale());
+							auto selection_start_ = get_caret_position(p_text_layout_, specs_.text(), rect_text_, point_on_press_, get_dpi_scale());
 							auto selection_end_ = caret_position_;
 
 							auto rect_selection = get_selection_rect(p_text_layout_, rect_text_, selection_start_, selection_end_);
@@ -390,8 +390,8 @@ namespace liblec {
 							is_selecting_ = false;
 
 							set_selection(
-								get_caret_position(p_text_layout_, specs_.text, rect_text_, point_on_press_, get_dpi_scale()),
-								get_caret_position(p_text_layout_, specs_.text, rect_text_, point_on_release_, get_dpi_scale()));
+								get_caret_position(p_text_layout_, specs_.text(), rect_text_, point_on_press_, get_dpi_scale()),
+								get_caret_position(p_text_layout_, specs_.text(), rect_text_, point_on_release_, get_dpi_scale()));
 						}
 				}
 
@@ -419,7 +419,7 @@ namespace liblec {
 			bool drop_down = true;
 
 			if (!is_static_) {
-				D2D1_RECT_F rect = specs_.editable ? rect_dropdown_ : rect_combobox_;
+				D2D1_RECT_F rect = specs_.editable() ? rect_dropdown_ : rect_combobox_;
 				scale_RECT(rect, get_dpi_scale());
 
 				if (point_.x >= rect.left && point_.x <= rect.right &&
@@ -437,27 +437,27 @@ namespace liblec {
 
 			if (drop_down) {
 				// check if any of the items have been clicked
-				std::string selected_previous = specs_.selected;
+				std::string selected_previous = specs_.selected();
 
-				if (specs_.editable)
-					selected_previous = specs_.text;
+				if (specs_.editable())
+					selected_previous = specs_.text();
 
 				dropdown_activated_ = true;
 
 				auto selected_new = dropdown(rect_);
 
 				if (!selected_new.empty()) {
-					specs_.selected = selected_new;
+					specs_.selected(selected_new);
 
-					if (specs_.editable)
-						specs_.text = specs_.selected;
+					if (specs_.editable())
+						specs_.text(specs_.selected());
 
-					if (selected_previous != specs_.selected) {
+					if (selected_previous != specs_.selected()) {
 						// move caret to the end
-						caret_position_ = static_cast<UINT32>(specs_.selected.length());
+						caret_position_ = static_cast<UINT32>(specs_.selected().length());
 
 						if (specs_.events().selection)
-							specs_.events().selection(specs_.selected);
+							specs_.events().selection(specs_.selected());
 					}
 				}
 
@@ -466,7 +466,7 @@ namespace liblec {
 		}
 
 		bool widgets::combobox_impl::hit(const bool& hit) {
-			if (!is_static_ && specs_.editable) {
+			if (!is_static_ && specs_.editable()) {
 				D2D1_RECT_F rect = rect_dropdown_;
 				scale_RECT(rect, get_dpi_scale());
 
@@ -489,7 +489,7 @@ namespace liblec {
 		}
 
 		void widgets::combobox_impl::on_selection_change(const bool& selected) {
-			if (specs_.editable) {
+			if (specs_.editable()) {
 				if (selected) {
 					// start blink timer
 					timer_management(get_form()).add(caret_blink_timer_name_, 500,
@@ -519,13 +519,13 @@ namespace liblec {
 						swap(selection_info_.start, selection_info_.end);
 
 					caret_position_ = selection_info_.start;
-					specs_.text.erase(selection_info_.start, selection_info_.end - selection_info_.start);
+					specs_.text().erase(selection_info_.start, selection_info_.end - selection_info_.start);
 					reset_selection();
 				}
 
 				std::string s;
 				s += c;
-				specs_.text.insert(caret_position_, s);
+				specs_.text().insert(caret_position_, s);
 				caret_position_++;
 				caret_visible_ = true;
 				skip_blink_ = true;
@@ -540,11 +540,11 @@ namespace liblec {
 						swap(selection_info_.start, selection_info_.end);
 
 					caret_position_ = selection_info_.start;
-					specs_.text.erase(selection_info_.start, selection_info_.end - selection_info_.start);
+					specs_.text().erase(selection_info_.start, selection_info_.end - selection_info_.start);
 					reset_selection();
 				}
 				else {
-					specs_.text.erase(caret_position_ - 1, 1);
+					specs_.text().erase(caret_position_ - 1, 1);
 					caret_position_--;
 					caret_visible_ = true;
 					skip_blink_ = true;
@@ -560,11 +560,11 @@ namespace liblec {
 						swap(selection_info_.start, selection_info_.end);
 
 					caret_position_ = selection_info_.start;
-					specs_.text.erase(selection_info_.start, selection_info_.end - selection_info_.start);
+					specs_.text().erase(selection_info_.start, selection_info_.end - selection_info_.start);
 					reset_selection();
 				}
 				else {
-					specs_.text.erase(caret_position_, 1);
+					specs_.text().erase(caret_position_, 1);
 					caret_visible_ = true;
 					skip_blink_ = true;
 				}
@@ -601,7 +601,7 @@ namespace liblec {
 					reset_selection();
 				}
 
-				if (caret_position_ < specs_.text.length())
+				if (caret_position_ < specs_.text().length())
 					caret_position_++;
 
 				caret_visible_ = true;
@@ -611,11 +611,11 @@ namespace liblec {
 		}
 
 		void widgets::combobox_impl::key_return() {
-			if (specs_.editable) {
+			if (specs_.editable()) {
 				bool already_in_list = false;
 
-				for (const auto& item : specs_.items) {
-					if (item.label == specs_.text) {
+				for (const auto& item : specs_.items()) {
+					if (item.label == specs_.text()) {
 						already_in_list = true;
 						break;
 					}
@@ -624,27 +624,27 @@ namespace liblec {
 				if (!already_in_list) {
 					// add text to items list
 					widgets::combobox::combobox_item item;
-					item.label = specs_.text;
+					item.label = specs_.text();
 
 					if (alias() == html_editor_impl::alias_font_size()) {
 						// special treatment for font size combobox
 
 						// make font size match the label
 						std::stringstream ss;
-						ss << specs_.text;
+						ss << specs_.text();
 						ss >> item.font_size;
 
 						// don't allow a font size less than 1 or greater than 180
 						if (item.font_size < 1.f || item.font_size > 180.f) {
-							specs_.text = specs_.selected;
+							specs_.text(specs_.selected());
 							return;
 						}
 					}
 
-					specs_.items.push_back(item);
+					specs_.items().push_back(item);
 				}
 
-				specs_.selected = specs_.text;
+				specs_.selected(specs_.text());
 				sort_items();
 			}
 		}
@@ -786,18 +786,18 @@ namespace liblec {
 			};
 
 			// sort the items
-			switch (specs_.sort) {
+			switch (specs_.sort()) {
 			case sort_options::ascending:
-				if (specs_.force_numerical_sort || is_numeric(specs_.items))
-					std::sort(specs_.items.begin(), specs_.items.end(), sort_ascending_numeric);
+				if (specs_.force_numerical_sort() || is_numeric(specs_.items()))
+					std::sort(specs_.items().begin(), specs_.items().end(), sort_ascending_numeric);
 				else
-					std::sort(specs_.items.begin(), specs_.items.end(), sort_ascending);
+					std::sort(specs_.items().begin(), specs_.items().end(), sort_ascending);
 				break;
 			case sort_options::descending:
-				if (specs_.force_numerical_sort || is_numeric(specs_.items))
-					std::sort(specs_.items.begin(), specs_.items.end(), sort_descending_numeric);
+				if (specs_.force_numerical_sort() || is_numeric(specs_.items()))
+					std::sort(specs_.items().begin(), specs_.items().end(), sort_descending_numeric);
 				else
-					std::sort(specs_.items.begin(), specs_.items.end(), sort_descending);
+					std::sort(specs_.items().begin(), specs_.items().end(), sort_descending);
 				break;
 			case sort_options::none:
 			default:
@@ -809,9 +809,9 @@ namespace liblec {
 			widgets::combobox_impl::operator()() { return specs(); }
 		std::string widgets::combobox_impl::dropdown(D2D1_RECT_F rect) {
 			context_menu::specs menu_specs;
-			menu_specs.quality = specs_.quality;
+			menu_specs.quality = specs_.quality();
 
-			for (const auto& item : specs_.items) {
+			for (const auto& item : specs_.items()) {
 				menu_item mi;
 				mi.label = item.label;
 				mi.font = item.font;

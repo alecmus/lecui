@@ -40,24 +40,24 @@ namespace liblec {
 		HRESULT widgets::h_scrollbar_impl::create_resources(
 			ID2D1HwndRenderTarget* p_render_target) {
 			is_static_ = false;
-			h_cursor_ = get_cursor(specs_.cursor);
+			h_cursor_ = get_cursor(specs_.cursor());
 
 			HRESULT hr = S_OK;
 
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_fill),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_fill()),
 					&p_brush_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_scrollbar_border),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_scrollbar_border()),
 					&p_brush_border_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_hot),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_hot()),
 					&p_brush_hot_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_hot_pressed),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_hot_pressed()),
 					&p_brush_hot_pressed_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_background),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_background()),
 					&p_brush_background_);
 
 			resources_created_ = true;
@@ -90,7 +90,7 @@ namespace liblec {
 					return false;
 			};
 
-			rect_ = position(specs_.rect, specs_.on_resize, change_in_size.width, change_in_size.height);
+			rect_ = position(specs_.rect(), specs_.on_resize(), change_in_size.width, change_in_size.height);
 			rect_.left -= offset.x;
 			rect_.right -= offset.x;
 			rect_.top -= offset.y;

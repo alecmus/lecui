@@ -38,14 +38,28 @@ namespace liblec {
 				/// <summary>Status pane container specifications.</summary>
 				/// <remarks>Note that this does not inherit from widget::specs as regular
 				/// panes do. This is by design because of the nature of the status pane.</remarks>
-				struct status_pane_specs {
+				class status_pane_specs {
+				private:
 					/// <summary>The thickness. This will be a height for top and bottom panes,
 					/// and a width for left and right panes.</summary>
-					float thickness = 0.f;
+					float thickness_ = 0.f;
 
 					/// <summary>Whether the pane should just float above the form without eating
 					/// into the client area.</summary>
-					bool floating = false;
+					bool floating_ = false;
+
+				public:
+					float& thickness() { return thickness_; }
+					status_pane_specs& thickness(const float& thickness) {
+						thickness_ = thickness;
+						return *this;
+					}
+
+					bool& floating() { return floating_; }
+					status_pane_specs& floating(const bool& floating) {
+						floating_ = floating;
+						return *this;
+					}
 				};
 
 				/// <summary>status_pane constructor.</summary>

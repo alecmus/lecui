@@ -29,18 +29,18 @@ namespace liblec {
 		HRESULT widgets::maximize_button_impl::create_resources(
 			ID2D1HwndRenderTarget* p_render_target) {
 			is_static_ = false;
-			h_cursor_ = get_cursor(specs_.cursor);
+			h_cursor_ = get_cursor(specs_.cursor());
 
 			HRESULT hr = S_OK;
 
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_fill),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_fill()),
 					&p_brush_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_hot),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_hot()),
 					&p_brush_hot_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_disabled),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_disabled()),
 					&p_brush_disabled_);
 
 			resources_created_ = true;
@@ -64,7 +64,7 @@ namespace liblec {
 			if (!is_static_ && is_enabled_ && hit_)
 				p_brush_current_ = p_brush_hot_;
 
-			rect_ = position(specs_.rect, specs_.on_resize, change_in_size.width, change_in_size.height);
+			rect_ = position(specs_.rect(), specs_.on_resize(), change_in_size.width, change_in_size.height);
 
 			if (!is_static_ && hit_)
 				p_render_target->DrawRectangle(&rect_, p_brush_, pressed_ ? .5f : .0f);
@@ -120,11 +120,11 @@ namespace liblec {
 		void widgets::maximize_button_impl::on_click() {
 			if (IsWindow(hWnd_)) {
 				if (maximized(hWnd_)) {
-					specs_.tooltip = "Maximize";
+					specs_.tooltip("Maximize");
 					ShowWindow(hWnd_, SW_RESTORE);
 				}
 				else {
-					specs_.tooltip = "Restore down";
+					specs_.tooltip("Restore down");
 					ShowWindow(hWnd_, SW_MAXIMIZE);
 				}
 			}

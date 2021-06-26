@@ -25,28 +25,134 @@ namespace liblec {
 				/// <summary>Rectangle widget specifications.</summary>
 				/// <remarks>Default size is 200x200px.</remarks>
 				class rectangle_specs : public specs {
-				public:
-					rectangle_specs() {
-						rect.size({ 200.f, 200.f });
-					}
-
 					/// <summary>The thickness of the border.</summary>
-					float border = .5f;
+					float border_ = .5f;
 
 					/// <summary>The color of the border.</summary>
-					color color_border;
+					color color_border_;
 
 					/// <summary>The color of the border when the mouse is over the widget.</summary>
-					color color_border_hot;
+					color color_border_hot_;
 
 					/// <summary>The horizontal radius of the corners.</summary>
-					float corner_radius_x = .0f;
+					float corner_radius_x_ = .0f;
 
 					/// <summary>The vertical radius of the corners.</summary>
-					float corner_radius_y = .0f;
+					float corner_radius_y_ = .0f;
+
+				public:
+					rectangle_specs() {
+						rect_.size({ 200.f, 200.f });
+					}
 
 					bool operator==(const rectangle_specs&);
 					bool operator!=(const rectangle_specs&);
+
+					// generic specs
+
+					std::string& text() override { return text_; }
+					rectangle_specs& text(const std::string& text) {
+						text_ = text;
+						return *this;
+					}
+
+					std::string& tooltip() override { return tooltip_; }
+					rectangle_specs& tooltip(const std::string& tooltip) {
+						tooltip_ = tooltip;
+						return *this;
+					}
+
+					lecui::rect& rect() override { return rect_; }
+					rectangle_specs& rect(const lecui::rect& rect) {
+						rect_ = rect;
+						return *this;
+					}
+
+					resize_params& on_resize() override { return on_resize_; }
+					rectangle_specs& on_resize(const resize_params& on_resize) {
+						on_resize_ = on_resize;
+						return *this;
+					}
+
+					cursor_type& cursor() override { return cursor_; }
+					rectangle_specs& cursor(const cursor_type cursor) {
+						cursor_ = cursor;
+						return *this;
+					}
+
+					std::string& font() override { return font_; }
+					rectangle_specs& font(const std::string& font) {
+						font_ = font;
+						return *this;
+					}
+
+					float& font_size() override { return font_size_; }
+					rectangle_specs& font_size(const float& font_size) {
+						font_size_ = font_size;
+						return *this;
+					}
+
+					color& color_text() override { return color_text_; }
+					rectangle_specs& color_text(const color& color_text) {
+						color_text_ = color_text;
+						return *this;
+					}
+
+					color& color_fill() override { return color_fill_; }
+					rectangle_specs& color_fill(const color& color_fill) {
+						color_fill_ = color_fill;
+						return *this;
+					}
+
+					color& color_hot() override { return color_hot_; }
+					rectangle_specs& color_hot(const color& color_hot) {
+						color_hot_ = color_hot;
+						return *this;
+					}
+
+					color& color_selected() override { return color_selected_; }
+					rectangle_specs& color_selected(const color& color_selected) {
+						color_selected_ = color_selected;
+						return *this;
+					}
+
+					color& color_disabled() override { return color_disabled_; }
+					rectangle_specs& color_disabled(const color& color_disabled) {
+						color_disabled_ = color_disabled;
+						return *this;
+					}
+
+					// widget specific specs
+
+					float& border() { return border_; }
+					rectangle_specs& border(const float& border) {
+						border_ = border;
+						return *this;
+					}
+
+					color& color_border() { return color_border_; }
+					rectangle_specs& color_border(const color& color_border) {
+						color_border_ = color_border;
+						return *this;
+					}
+
+					color& color_border_hot() { return color_border_hot_; }
+					rectangle_specs& color_border_hot(const color& color_border_hot) {
+						color_border_hot_ = color_border_hot;
+						return *this;
+					}
+
+					float& corner_radius_x() { return corner_radius_x_; }
+					rectangle_specs& corner_radius_x(const float& corner_radius_x) {
+						corner_radius_x_ = corner_radius_x;
+						return *this;
+					}
+
+					float& corner_radius_y() { return corner_radius_y_; }
+					rectangle_specs& corner_radius_y(const float& corner_radius_y) {
+						corner_radius_y_ = corner_radius_y;
+						return *this;
+					}
 				};
 
 				/// <summary>Rectangle constructor.</summary>

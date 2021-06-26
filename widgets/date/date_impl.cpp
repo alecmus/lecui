@@ -64,21 +64,21 @@ namespace liblec {
 			ID2D1HwndRenderTarget* p_render_target) {
 			specs_old_ = specs_;
 			is_static_ = (specs_.events().click == nullptr && specs_.events().action == nullptr);
-			h_cursor_ = get_cursor(specs_.cursor);
+			h_cursor_ = get_cursor(specs_.cursor());
 
 			HRESULT hr = S_OK;
 
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_fill),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_fill()),
 					&p_brush_fill_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_hot),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_hot()),
 					&p_brush_hot_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_disabled),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_disabled()),
 					&p_brush_disabled_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_selected),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_selected()),
 					&p_brush_selected_);
 
 			resources_created_ = true;
@@ -103,37 +103,37 @@ namespace liblec {
 				try {
 					// update label specs
 					if (weekday_label_specs_.has_value())
-						weekday_label_specs_.value().get().color_text = specs_.color_text;
+						weekday_label_specs_.value().get().color_text() = specs_.color_text();
 
 					if (seperator_1_specs_.has_value())
-						seperator_1_specs_.value().get().color_text = specs_.color_text;
+						seperator_1_specs_.value().get().color_text() = specs_.color_text();
 
 					if (day_label_specs_.has_value())
-						day_label_specs_.value().get().color_text = specs_.color_text;
+						day_label_specs_.value().get().color_text() = specs_.color_text();
 
 					if (month_label_specs_.has_value())
-						month_label_specs_.value().get().color_text = specs_.color_text;
+						month_label_specs_.value().get().color_text() = specs_.color_text();
 
 					if (seperator_2_specs_.has_value())
-						seperator_2_specs_.value().get().color_text = specs_.color_text;
+						seperator_2_specs_.value().get().color_text() = specs_.color_text();
 
 					if (year_label_specs_.has_value())
-						year_label_specs_.value().get().color_text = specs_.color_text;
+						year_label_specs_.value().get().color_text() = specs_.color_text();
 
 					// update border specs and background specs
 					if (day_specs_.has_value()) {
-						day_specs_.value().get().color_border = specs_.color_border;
-						day_specs_.value().get().color_fill = specs_.color_fill;
+						day_specs_.value().get().color_border() = specs_.color_border();
+						day_specs_.value().get().color_fill() = specs_.color_fill();
 					}
 
 					if (month_specs_.has_value()) {
-						month_specs_.value().get().color_border = specs_.color_border;
-						month_specs_.value().get().color_fill = specs_.color_fill;
+						month_specs_.value().get().color_border() = specs_.color_border();
+						month_specs_.value().get().color_fill() = specs_.color_fill();
 					}
 
 					if (year_specs_.has_value()) {
-						year_specs_.value().get().color_border = specs_.color_border;
-						year_specs_.value().get().color_fill = specs_.color_fill;
+						year_specs_.value().get().color_border() = specs_.color_border();
+						year_specs_.value().get().color_fill() = specs_.color_fill();
 					}
 
 					// schedule a refresh
@@ -147,7 +147,7 @@ namespace liblec {
 			if (!resources_created_)
 				create_resources(p_render_target);
 
-			rect_ = position(specs_.rect, specs_.on_resize, change_in_size.width, change_in_size.height);
+			rect_ = position(specs_.rect(), specs_.on_resize(), change_in_size.width, change_in_size.height);
 			rect_.left -= offset.x;
 			rect_.right -= offset.x;
 			rect_.top -= offset.y;

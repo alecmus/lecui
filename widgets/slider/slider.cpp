@@ -19,11 +19,11 @@ namespace liblec {
 				specs::operator==(param) &&
 
 				// widget specific specs
-				(color_border == param.color_border) &&
-				(color_tick == param.color_tick) &&
-				(color_knob == param.color_knob) &&
-				(color_knob_hot == param.color_knob_hot) &&
-				(color_knob_border == param.color_knob_border);
+				(color_border_ == param.color_border_) &&
+				(color_tick_ == param.color_tick_) &&
+				(color_knob_ == param.color_knob_) &&
+				(color_knob_hot_ == param.color_knob_hot_) &&
+				(color_knob_border_ == param.color_knob_border_);
 		}
 
 		bool widgets::slider::slider_specs::operator!=(const slider_specs& param) {
@@ -35,15 +35,16 @@ namespace liblec {
 			impl(containers::page& page, const std::string& alias) :
 				page_(page),
 				specs_(page_.d_page_.add_slider(alias)) {
-				specs_.font_size = 7.f;
-				specs_.color_text = defaults::color(page_.d_page_.fm_.d_.theme_, item::label);
-				specs_.color_fill = defaults::color(page_.d_page_.fm_.d_.theme_, item::slider);
-				specs_.color_border = defaults::color(page_.d_page_.fm_.d_.theme_, item::slider_border);
-				specs_.color_knob = defaults::color(page_.d_page_.fm_.d_.theme_, item::slider_knob);
-				specs_.color_knob_hot = defaults::color(page_.d_page_.fm_.d_.theme_, item::slider_knob_hot);
-				specs_.color_knob_border = defaults::color(page_.d_page_.fm_.d_.theme_, item::slider_knob_border);
-				specs_.color_tick = defaults::color(page_.d_page_.fm_.d_.theme_, item::slider_tick);
-				specs_.color_selected = defaults::color(page_.d_page_.fm_.d_.theme_, item::slider_selected);
+				specs_
+					.font_size(7.f)
+					.color_text(defaults::color(page_.d_page_.fm_.d_.theme_, item::label))
+					.color_fill(defaults::color(page_.d_page_.fm_.d_.theme_, item::slider))
+					.color_border(defaults::color(page_.d_page_.fm_.d_.theme_, item::slider_border))
+					.color_knob(defaults::color(page_.d_page_.fm_.d_.theme_, item::slider_knob))
+					.color_knob_hot(defaults::color(page_.d_page_.fm_.d_.theme_, item::slider_knob_hot))
+					.color_knob_border(defaults::color(page_.d_page_.fm_.d_.theme_, item::slider_knob_border))
+					.color_tick(defaults::color(page_.d_page_.fm_.d_.theme_, item::slider_tick))
+					.color_selected(defaults::color(page_.d_page_.fm_.d_.theme_, item::slider_selected));
 			}
 			containers::page& page_;
 			slider_specs& specs_;

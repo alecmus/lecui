@@ -38,57 +38,57 @@ namespace liblec {
 				/// orientation is 35px and the recommended minimum with for vertical orientation
 				/// is 40px.</remarks>
 				class slider_specs : public specs {
-				public:
-					slider_specs() {
-						cursor = cursor_type::hand;
-						rect.size({ 200.f, 35.f });
-					}
+					/// <summary>The thickness of the border.</summary>
+					float border_ = 1.f;
 
 					/// <summary>The color of the border.</summary>
-					color color_border;
+					color color_border_;
 
 					/// <summary>The color of the knob.</summary>
-					color color_knob;
+					color color_knob_;
 
 					/// <summary>The color of the knob when the mouse is over the slider.</summary>
-					color color_knob_hot;
+					color color_knob_hot_;
 
 					/// <summary>The color of the knob's border.</summary>
-					color color_knob_border;
+					color color_knob_border_;
 
 					/// <summary>The color of the slider ticks.</summary>
-					color color_tick;
-
-					/// <summary>The thickness of the border.</summary>
-					float border = 1.f;
+					color color_tick_;
 
 					/// <summary>Whether to snap slider movements to the ticks.</summary>
-					bool snap_to_ticks = true;
+					bool snap_to_ticks_ = true;
 
 					/// <summary>Whether to show ticks marks on the slider.</summary>
-					bool show_tick_marks = true;
+					bool show_tick_marks_ = true;
 
 					/// <summary>Whether to show tick labels on the slider.</summary>
-					bool show_tick_labels = true;
+					bool show_tick_labels_ = true;
 
 					/// <summary>The slider's range.</summary>
-					slider_range range;
+					slider_range range_;
 
 					/// <summary>The radius of the knob.</summary>
-					float knob_radius = 8.f;
+					float knob_radius_ = 8.f;
 
 					/// <summary>The thickness of the slide.</summary>
-					float slide_thickness = 6.f;
+					float slide_thickness_ = 6.f;
 
 					/// <summary>The unit intervals for placing major ticks.</summary>
-					float major_tick_unit = 25.f;
+					float major_tick_unit_ = 25.f;
 
 					/// <summary>The number of minor ticks to place between successive major
 					/// ticks.</summary>
-					long minor_tick_count = 4;
-					
+					long minor_tick_count_ = 4;
+
 					/// <summary>The position of the knob along the slide.</summary>
-					float value = 0.f;
+					float value_ = 0.f;
+
+				public:
+					slider_specs() {
+						cursor_ = cursor_type::hand;
+						rect_.size({ 200.f, 35.f });
+					}
 					
 					/// <summary>Events specific to this widget.</summary>
 					struct slider_events : basic_events {
@@ -103,6 +103,172 @@ namespace liblec {
 
 					bool operator==(const slider_specs&);
 					bool operator!=(const slider_specs&);
+
+					// generic specs
+
+					std::string& text() override { return text_; }
+					slider_specs& text(const std::string& text) {
+						text_ = text;
+						return *this;
+					}
+
+					std::string& tooltip() override { return tooltip_; }
+					slider_specs& tooltip(const std::string& tooltip) {
+						tooltip_ = tooltip;
+						return *this;
+					}
+
+					lecui::rect& rect() override { return rect_; }
+					slider_specs& rect(const lecui::rect& rect) {
+						rect_ = rect;
+						return *this;
+					}
+
+					resize_params& on_resize() override { return on_resize_; }
+					slider_specs& on_resize(const resize_params& on_resize) {
+						on_resize_ = on_resize;
+						return *this;
+					}
+
+					cursor_type& cursor() override { return cursor_; }
+					slider_specs& cursor(const cursor_type cursor) {
+						cursor_ = cursor;
+						return *this;
+					}
+
+					std::string& font() override { return font_; }
+					slider_specs& font(const std::string& font) {
+						font_ = font;
+						return *this;
+					}
+
+					float& font_size() override { return font_size_; }
+					slider_specs& font_size(const float& font_size) {
+						font_size_ = font_size;
+						return *this;
+					}
+
+					color& color_text() override { return color_text_; }
+					slider_specs& color_text(const color& color_text) {
+						color_text_ = color_text;
+						return *this;
+					}
+
+					color& color_fill() override { return color_fill_; }
+					slider_specs& color_fill(const color& color_fill) {
+						color_fill_ = color_fill;
+						return *this;
+					}
+
+					color& color_hot() override { return color_hot_; }
+					slider_specs& color_hot(const color& color_hot) {
+						color_hot_ = color_hot;
+						return *this;
+					}
+
+					color& color_selected() override { return color_selected_; }
+					slider_specs& color_selected(const color& color_selected) {
+						color_selected_ = color_selected;
+						return *this;
+					}
+
+					color& color_disabled() override { return color_disabled_; }
+					slider_specs& color_disabled(const color& color_disabled) {
+						color_disabled_ = color_disabled;
+						return *this;
+					}
+
+					// widget specific specs
+
+					float& border() { return border_; }
+					slider_specs& border(const float& border) {
+						border_ = border;
+						return *this;
+					}
+
+					color& color_border() { return color_border_; }
+					slider_specs& color_border(const color& color_border) {
+						color_border_ = color_border;
+						return *this;
+					}
+
+					color& color_knob() { return color_knob_; }
+					slider_specs& color_knob(const color& color_knob) {
+						color_knob_ = color_knob;
+						return *this;
+					}
+
+					color& color_knob_hot() { return color_knob_hot_; }
+					slider_specs& color_knob_hot(const color& color_knob_hot) {
+						color_knob_hot_ = color_knob_hot;
+						return *this;
+					}
+
+					color& color_knob_border() { return color_knob_border_; }
+					slider_specs& color_knob_border(const color& color_knob_border) {
+						color_knob_border_ = color_knob_border;
+						return *this;
+					}
+
+					color& color_tick() { return color_tick_; }
+					slider_specs& color_tick(const color& color_tick) {
+						color_tick_ = color_tick;
+						return *this;
+					}
+
+					bool& snap_to_ticks() { return snap_to_ticks_; }
+					slider_specs& snap_to_ticks(const bool& snap_to_ticks) {
+						snap_to_ticks_ = snap_to_ticks;
+						return *this;
+					}
+
+					bool& show_tick_marks() { return show_tick_marks_; }
+					slider_specs& show_tick_marks(const bool& show_tick_marks) {
+						show_tick_marks_ = show_tick_marks;
+						return *this;
+					}
+
+					bool& show_tick_labels() { return show_tick_labels_; }
+					slider_specs& show_tick_labels(const bool& show_tick_labels) {
+						show_tick_labels_ = show_tick_labels;
+						return *this;
+					}
+
+					slider_range& range() { return range_; }
+					slider_specs& range(const slider_range& range) {
+						range_ = range;
+						return *this;
+					}
+
+					float& knob_radius() { return knob_radius_; }
+					slider_specs& knob_radius(const float& knob_radius) {
+						knob_radius_ = knob_radius;
+						return *this;
+					}
+
+					float& slide_thickness() { return slide_thickness_; }
+					slider_specs& slide_thickness(const float& slide_thickness) {
+						slide_thickness_ = slide_thickness;
+						return *this;
+					}
+
+					float& major_tick_unit() { return major_tick_unit_; }
+					slider_specs& major_tick_unit(const float& major_tick_unit) {
+						major_tick_unit_ = major_tick_unit;
+						return *this;
+					}
+
+					long& minor_tick_count() { return minor_tick_count_; }
+					slider_specs& minor_tick_count(const long& minor_tick_count) {
+						minor_tick_count_ = minor_tick_count;
+						return *this;
+					}
+
+					float& value() { return value_; }
+					slider_specs& value(const float& value) {
+						value_ = value;
+						return *this;
+					}
 
 				private:
 					slider_events slider_events_;

@@ -19,7 +19,7 @@ namespace liblec {
 				specs::operator==(param) &&
 
 				// widget specific specs
-				(color_border == param.color_border);
+				(color_border_ == param.color_border_);
 		}
 
 		bool widgets::time::time_specs::operator!=(const time_specs& param) {
@@ -31,11 +31,12 @@ namespace liblec {
 			impl(containers::page& page, const std::string& alias) :
 				page_(page),
 				specs_(page_.d_page_.add_time(alias)) {
-				specs_.color_text = defaults::color(page_.d_page_.fm_.d_.theme_, item::label);
-				specs_.color_fill = defaults::color(page_.d_page_.fm_.d_.theme_, item::text_field);
-				specs_.color_border = defaults::color(page_.d_page_.fm_.d_.theme_, item::text_field_border);
-				specs_.color_disabled = defaults::color(page_.d_page_.fm_.d_.theme_, item::text_field_disabled);
-				specs_.color_selected = defaults::color(page_.d_page_.fm_.d_.theme_, item::text_field_selected);
+				specs_
+					.color_text(defaults::color(page_.d_page_.fm_.d_.theme_, item::label))
+					.color_fill(defaults::color(page_.d_page_.fm_.d_.theme_, item::text_field))
+					.color_border(defaults::color(page_.d_page_.fm_.d_.theme_, item::text_field_border))
+					.color_disabled(defaults::color(page_.d_page_.fm_.d_.theme_, item::text_field_disabled))
+					.color_selected(defaults::color(page_.d_page_.fm_.d_.theme_, item::text_field_selected));
 			}
 			containers::page& page_;
 			time_specs& specs_;

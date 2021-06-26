@@ -77,52 +77,54 @@ namespace liblec {
 			// initialize the page's horizontal scroll bar
 			{
 				auto& specs_ = page_impl.h_scrollbar().specs();
-				specs_.on_resize.perc_width = 100;
-				specs_.on_resize.perc_y = 100;
+				specs_.on_resize().perc_width = 100;
+				specs_.on_resize().perc_y = 100;
 
-				specs_.rect.left = margin + thickness - d_.fm_.d_.page_tolerance_;
-				specs_.rect.right = page_impl.size().width - (margin + thickness) - d_.fm_.d_.page_tolerance_;
-				specs_.rect.bottom = page_impl.size().height - margin;
-				specs_.rect.top = specs_.rect.bottom - thickness;
+				specs_.rect().left = margin + thickness - d_.fm_.d_.page_tolerance_;
+				specs_.rect().right = page_impl.size().width - (margin + thickness) - d_.fm_.d_.page_tolerance_;
+				specs_.rect().bottom = page_impl.size().height - margin;
+				specs_.rect().top = specs_.rect().bottom - thickness;
 
-				specs_.color_fill = defaults::color(d_.fm_.d_.theme_, item::scrollbar);
-				specs_.color_scrollbar_border = defaults::color(d_.fm_.d_.theme_, item::scrollbar_border);
-				specs_.color_hot = defaults::color(d_.fm_.d_.theme_, item::scrollbar_hover);
-				specs_.color_hot_pressed = defaults::color(d_.fm_.d_.theme_, item::scrollbar_pressed);
+				specs_
+					.color_fill(defaults::color(d_.fm_.d_.theme_, item::scrollbar))
+					.color_scrollbar_border(defaults::color(d_.fm_.d_.theme_, item::scrollbar_border))
+					.color_hot(defaults::color(d_.fm_.d_.theme_, item::scrollbar_hover))
+					.color_hot_pressed(defaults::color(d_.fm_.d_.theme_, item::scrollbar_pressed));
 			}
 
 			// initialize the page's vertical scroll bar
 			{
 				auto& specs_ = page_impl.v_scrollbar().specs();
-				specs_.on_resize.perc_height = 100;
-				specs_.on_resize.perc_x = 100;
+				specs_.on_resize().perc_height = 100;
+				specs_.on_resize().perc_x = 100;
 
-				specs_.rect.top = margin + thickness - d_.fm_.d_.page_tolerance_;
-				specs_.rect.bottom = page_impl.size().height - (margin + thickness);
-				specs_.rect.right = page_impl.size().width - margin - d_.fm_.d_.page_tolerance_;
-				specs_.rect.left = specs_.rect.right - thickness;
+				specs_.rect().top = margin + thickness - d_.fm_.d_.page_tolerance_;
+				specs_.rect().bottom = page_impl.size().height - (margin + thickness);
+				specs_.rect().right = page_impl.size().width - margin - d_.fm_.d_.page_tolerance_;
+				specs_.rect().left = specs_.rect().right - thickness;
 
-				specs_.color_fill = defaults::color(d_.fm_.d_.theme_, item::scrollbar);
-				specs_.color_scrollbar_border = defaults::color(d_.fm_.d_.theme_, item::scrollbar_border);
-				specs_.color_hot = defaults::color(d_.fm_.d_.theme_, item::scrollbar_hover);
-				specs_.color_hot_pressed = defaults::color(d_.fm_.d_.theme_, item::scrollbar_pressed);
+				specs_
+					.color_fill(defaults::color(d_.fm_.d_.theme_, item::scrollbar))
+					.color_scrollbar_border(defaults::color(d_.fm_.d_.theme_, item::scrollbar_border))
+					.color_hot(defaults::color(d_.fm_.d_.theme_, item::scrollbar_hover))
+					.color_hot_pressed(defaults::color(d_.fm_.d_.theme_, item::scrollbar_pressed));
 			}
 
 			// add an invisible rect to bound the page. This is essential for scroll bars to work
 			// appropriately when contents don't reach the page borders
 			auto& rectangle = page_impl.add_rectangle(widgets::rectangle_impl::page_rect_alias());
-			rectangle.color_fill.alpha = 0;
+			rectangle.color_fill().alpha = 0;
 
 			// make it transparent
-			rectangle.color_border = { 255, 0, 0, 0 };
-			rectangle.color_hot = { 255, 0, 0, 0 };
+			rectangle.color_border({ 255, 0, 0, 0 }).color_hot({ 255, 0, 0, 0 })
 
-			// set its dimensions to exactly match the page
-			rectangle.rect.size(page_impl.size());
-			rectangle.corner_radius_x = 15.f;
-			rectangle.corner_radius_y = 15.f;
-			rectangle.on_resize.perc_width = 100;
-			rectangle.on_resize.perc_height = 100;
+				// set its dimensions to exactly match the page
+				.corner_radius_x(15.f)
+				.corner_radius_y(15.f)
+				.rect().size(page_impl.size());
+
+			rectangle.on_resize().perc_width = 100;
+			rectangle.on_resize().perc_height = 100;
 
 			// return reference to page so caller can add widgets to it
 			return d_.fm_.d_.p_pages_.at(alias);

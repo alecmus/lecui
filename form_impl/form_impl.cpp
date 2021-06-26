@@ -380,17 +380,18 @@ namespace liblec {
 			widgets_.emplace(p_close_button_->alias(), *p_close_button_);
 			widgets_order_.emplace_back(p_close_button_->alias());
 			
-			p_close_button_->specs().tooltip = "Close";
-			p_close_button_->specs().color_fill = clr_theme_;
-			p_close_button_->specs().color_hot = clr_theme_hot_;
-			p_close_button_->specs().color_disabled = clr_theme_disabled_;
-			p_close_button_->specs().on_resize.perc_x = 100;
+			p_close_button_->specs()
+				.tooltip("Close")
+				.color_fill(clr_theme_)
+				.color_hot(clr_theme_hot_)
+				.color_disabled(clr_theme_disabled_)
+				.on_resize().perc_x = 100;
 
-			p_close_button_->specs().rect.right = size_.width - control_button_margin_;
-			p_close_button_->specs().rect.top = control_button_margin_;
-			p_close_button_->specs().rect.left = p_close_button_->specs().rect.right -
+			p_close_button_->specs().rect().right = size_.width - control_button_margin_;
+			p_close_button_->specs().rect().top = control_button_margin_;
+			p_close_button_->specs().rect().left = p_close_button_->specs().rect().right -
 				(caption_bar_height_ - 2.f * control_button_margin_);
-			p_close_button_->specs().rect.bottom = p_close_button_->specs().rect.top +
+			p_close_button_->specs().rect().bottom = p_close_button_->specs().rect().top +
 				(caption_bar_height_ - 2.f * control_button_margin_);
 
 			p_close_button_->specs().events().click = on_click;
@@ -404,19 +405,20 @@ namespace liblec {
 			widgets_.emplace(p_maximize_button_->alias(), *p_maximize_button_);
 			widgets_order_.emplace_back(p_maximize_button_->alias());
 
-			p_maximize_button_->specs().tooltip = "Maximize";
-			p_maximize_button_->specs().color_fill = clr_theme_;
-			p_maximize_button_->specs().color_hot = clr_theme_hot_;
-			p_maximize_button_->specs().color_disabled = clr_theme_disabled_;
-			p_maximize_button_->specs().on_resize.perc_x = 100;
+			p_maximize_button_->specs()
+				.tooltip("Maximize")
+				.color_fill(clr_theme_)
+				.color_hot(clr_theme_hot_)
+				.color_disabled(clr_theme_disabled_)
+				.on_resize().perc_x = 100;
 
-			const auto right_edge = p_close_button_->specs().rect.left;
+			const auto right_edge = p_close_button_->specs().rect().left;
 
-			p_maximize_button_->specs().rect.right = right_edge - control_button_margin_;
-			p_maximize_button_->specs().rect.top = control_button_margin_;
-			p_maximize_button_->specs().rect.left = p_maximize_button_->specs().rect.right -
+			p_maximize_button_->specs().rect().right = right_edge - control_button_margin_;
+			p_maximize_button_->specs().rect().top = control_button_margin_;
+			p_maximize_button_->specs().rect().left = p_maximize_button_->specs().rect().right -
 				(caption_bar_height_ - 2.f * control_button_margin_);
-			p_maximize_button_->specs().rect.bottom = p_maximize_button_->specs().rect.top +
+			p_maximize_button_->specs().rect().bottom = p_maximize_button_->specs().rect().top +
 				(caption_bar_height_ - 2.f * control_button_margin_);
 		}
 
@@ -428,21 +430,22 @@ namespace liblec {
 			widgets_.emplace(p_minimize_button_->alias(), *p_minimize_button_);
 			widgets_order_.emplace_back(p_minimize_button_->alias());
 
-			p_minimize_button_->specs().tooltip = "Minimize";
-			p_minimize_button_->specs().color_fill = clr_theme_;
-			p_minimize_button_->specs().color_hot = clr_theme_hot_;
-			p_minimize_button_->specs().color_disabled = clr_theme_disabled_;
-			p_minimize_button_->specs().on_resize.perc_x = 100;
+			p_minimize_button_->specs()
+				.tooltip("Minimize")
+				.color_fill(clr_theme_)
+				.color_hot(clr_theme_hot_)
+				.color_disabled(clr_theme_disabled_)
+				.on_resize().perc_x = 100;
 
 			const auto right_edge = allow_resizing_ ?
-				p_maximize_button_->specs().rect.left :
-				p_close_button_->specs().rect.left;
+				p_maximize_button_->specs().rect().left :
+				p_close_button_->specs().rect().left;
 
-			p_minimize_button_->specs().rect.right = right_edge - control_button_margin_;
-			p_minimize_button_->specs().rect.top = control_button_margin_;
-			p_minimize_button_->specs().rect.left = p_minimize_button_->specs().rect.right -
+			p_minimize_button_->specs().rect().right = right_edge - control_button_margin_;
+			p_minimize_button_->specs().rect().top = control_button_margin_;
+			p_minimize_button_->specs().rect().left = p_minimize_button_->specs().rect().right -
 				(caption_bar_height_ - 2.f * control_button_margin_);
-			p_minimize_button_->specs().rect.bottom = p_minimize_button_->specs().rect.top +
+			p_minimize_button_->specs().rect().bottom = p_minimize_button_->specs().rect().top +
 				(caption_bar_height_ - 2.f * control_button_margin_);
 		}
 
@@ -454,24 +457,25 @@ namespace liblec {
 			widgets_.emplace(p_caption_->alias(), *p_caption_);
 			widgets_order_.emplace_back(p_caption_->alias());
 
-			p_caption_->specs().tooltip = caption_tooltip_;
-			p_caption_->specs().text = caption_formatted_;
-			p_caption_->specs().center_v = true;
-			p_caption_->specs().multiline = false;
+			p_caption_->specs()
+				.tooltip(caption_tooltip_)
+				.text(caption_formatted_)
+				.center_v(true)
+				.multiline(false)
 
-			// load label settings
-			p_caption_->specs().color_text = defaults::color(theme_, item::label);
-			p_caption_->specs().color_selected = defaults::color(theme_, item::label_selected);
-			p_caption_->specs().color_hot = defaults::color(theme_, item::label_hover);
-			p_caption_->specs().color_hot_pressed = defaults::color(theme_, item::label_pressed);
-			p_caption_->specs().color_disabled = defaults::color(theme_, item::label_disabled);
+				// load label settings
+				.color_text(defaults::color(theme_, item::label))
+				.color_selected(defaults::color(theme_, item::label_selected))
+				.color_hot(defaults::color(theme_, item::label_hover))
+				.color_hot_pressed(defaults::color(theme_, item::label_pressed))
+				.color_disabled(defaults::color(theme_, item::label_disabled));
 
 			// determine right-most edge based on available control buttons
 			const auto right_edge = allow_minimize_ ?
-				p_minimize_button_->specs().rect.left :
+				p_minimize_button_->specs().rect().left :
 				(allow_resizing_ ?
-					p_maximize_button_->specs().rect.left :
-					p_close_button_->specs().rect.left);
+					p_maximize_button_->specs().rect().left :
+					p_close_button_->specs().rect().left);
 
 			// determine the largest rect that the caption can occupy
 			const D2D1_RECT_F max_rect = D2D1::RectF(10.f, control_button_margin_,
@@ -479,18 +483,18 @@ namespace liblec {
 
 			// determine the optimal rect for the caption
 			const auto rect = widgets::measure_label(p_directwrite_factory_,
-				p_caption_->specs().text, p_caption_->specs().font, p_caption_->specs().font_size,
-				p_caption_->specs().center_h, p_caption_->specs().center_v, max_rect);
+				p_caption_->specs().text(), p_caption_->specs().font(), p_caption_->specs().font_size(),
+				p_caption_->specs().center_h(), p_caption_->specs().center_v(), max_rect);
 
 			// to-do: address this ... when form is downsized enough, caption creeps behind control
 			// buttons since we've eliminated resizing caption rect; perhaps use clip???
-			p_caption_->specs().rect = convert_rect(rect);
+			p_caption_->specs().rect(convert_rect(rect));
 
 			p_caption_->specs().events().action = on_caption_;
 		}
 
 		void form::impl::create_form_menu() {
-			float left = p_caption_->specs().rect.right + caption_and_menu_gap_;
+			float left = p_caption_->specs().rect().right + caption_and_menu_gap_;
 
 			for (auto& main_menu_item : form_menu_) {
 				p_menu_.push_back(
@@ -502,24 +506,25 @@ namespace liblec {
 				widgets_.emplace(it->alias(), *it);
 				widgets_order_.emplace_back(it->alias());
 
-				it->specs().tooltip = main_menu_item.tooltip;
-				it->specs().text = main_menu_item.text;
-				it->specs().center_v = true;
-				it->specs().multiline = false;
+				it->specs()
+					.tooltip(main_menu_item.tooltip)
+					.text(main_menu_item.text)
+					.center_v(true)
+					.multiline(false)
 
-				// load label settings
-				it->specs().color_text = defaults::color(theme_, item::label);
-				it->specs().color_selected = defaults::color(theme_, item::label_selected);
-				it->specs().color_hot = defaults::color(theme_, item::label_hover);
-				it->specs().color_hot_pressed = defaults::color(theme_, item::label_pressed);
-				it->specs().color_disabled = defaults::color(theme_, item::label_disabled);
+					// load label settings
+					.color_text(defaults::color(theme_, item::label))
+					.color_selected(defaults::color(theme_, item::label_selected))
+					.color_hot(defaults::color(theme_, item::label_hover))
+					.color_hot_pressed(defaults::color(theme_, item::label_pressed))
+					.color_disabled(defaults::color(theme_, item::label_disabled));
 
 				// determine right-most edge based on available control buttons
 				const auto right_edge = allow_minimize_ ?
-					p_minimize_button_->specs().rect.left :
+					p_minimize_button_->specs().rect().left :
 					(allow_resizing_ ?
-						p_maximize_button_->specs().rect.left :
-						p_close_button_->specs().rect.left);
+						p_maximize_button_->specs().rect().left :
+						p_close_button_->specs().rect().left);
 
 				// determine the largest rect that the caption can occupy
 				const D2D1_RECT_F max_rect = D2D1::RectF(left, control_button_margin_,
@@ -527,16 +532,16 @@ namespace liblec {
 
 				// determine the optimal rect for the caption
 				const auto rect = widgets::measure_label(p_directwrite_factory_,
-					it->specs().text, it->specs().font, it->specs().font_size,
-					it->specs().center_h, it->specs().center_v, max_rect);
+					it->specs().text(), it->specs().font(), it->specs().font_size(),
+					it->specs().center_h(), it->specs().center_v(), max_rect);
 
 				// to-do: address this ... when form is downsized enough, caption creeps behind control
 				// buttons since we've eliminated resizing caption rect; perhaps use clip???
-				it->specs().rect = convert_rect(rect);
+				it->specs().rect(convert_rect(rect));
 
-				main_menu_item.rc_text = it->specs().rect;
+				main_menu_item.rc_text = it->specs().rect();
 
-				left = it->specs().rect.right + form_menu_margin_;
+				left = it->specs().rect().right + form_menu_margin_;
 
 				it->specs().events().action = [&]() {
 					if (main_menu_item.items.empty())
@@ -620,10 +625,11 @@ namespace liblec {
 								containers::pane pane(page, widgets::pane_impl::tree_pane_alias_prefix() + widget.first);
 
 								// clone essential properties to pane
-								pane().rect = tree_specs.rect;
-								pane().on_resize = tree_specs.on_resize;
-								pane().color_fill = tree_specs.color_fill;
-								pane().color_border = tree_specs.color_border;
+								pane()
+									.rect(tree_specs.rect())
+									.on_resize(tree_specs.on_resize())
+									.color_fill(tree_specs.color_fill())
+									.color_border(tree_specs.color_border());
 
 								// save move info so we can move the tree into the pane later
 								// we cannot do it here because we're iterating
@@ -665,8 +671,9 @@ namespace liblec {
 						tree() = it.tree;
 
 						// adjust specs
-						tree().rect = { 0, it.destination.size().width, 0, it.destination.size().height };
-						tree().on_resize = { 0, 0, 0, 0 };	// critical because tree will change size as tree is browsed or changed. the pane scroll bars will do the job.
+						tree()
+							.rect({ 0, it.destination.size().width, 0, it.destination.size().height })
+							.on_resize({ 0, 0, 0, 0 });	// critical because tree will change size as tree is browsed or changed. the pane scroll bars will do the job.
 
 						// capture tree pane specs
 						it.destination.d_page_.get_tree(it.alias).set_tree_pane_specs(it.tree_pane_specs);
@@ -724,17 +731,18 @@ namespace liblec {
 
 								// make controls pane in source (predefined, fixed height)
 								containers::pane controls_pane(page, widgets::pane_impl::html_controls_pane_alias_prefix() + widget.first);
-								controls_pane().rect = html_editor_specs.rect;
-								controls_pane().rect.height(
+								controls_pane().rect(html_editor_specs.rect());
+								controls_pane().rect().height(
 									(10.f * 2) +	// top and bottom margin
 									25.f +			// first row (font name, font size ...)
 									5.f + 20.f		// seond row (bold, italic ...)
 									);
-								controls_pane().on_resize = html_editor_specs.on_resize;
-								controls_pane().on_resize.perc_height = 0.f;
-								controls_pane().on_resize.min_height = 0.f;
-								controls_pane().color_fill = html_editor_specs.color_control_fill;
-								controls_pane().color_border = html_editor_specs.color_control_border;
+								controls_pane()
+									.color_fill(html_editor_specs.color_control_fill())
+									.color_border(html_editor_specs.color_control_border())
+									.on_resize(html_editor_specs.on_resize());
+								controls_pane().on_resize().perc_height = 0.f;
+								controls_pane().on_resize().min_height = 0.f;
 
 								// cause controls pane to be initialized by calling get()
 								auto& controls_pane_page = controls_pane.get();
@@ -743,14 +751,16 @@ namespace liblec {
 								containers::pane pane(page, widgets::pane_impl::html_pane_alias_prefix() + widget.first);
 
 								// clone essential properties to pane
-								pane().rect = html_editor_specs.rect;
-								pane().rect.top = controls_pane().rect.bottom;
-								pane().on_resize = html_editor_specs.on_resize;
-								if (pane().on_resize.min_height)
-									pane().on_resize.min_height = largest(pane().on_resize.min_height - controls_pane().rect.height(), 0.f);
-								pane().color_fill = html_editor_specs.color_fill;
-								pane().color_border = html_editor_specs.color_border;
-
+								pane()
+									.color_fill(html_editor_specs.color_fill())
+									.color_border(html_editor_specs.color_border())
+									.rect(html_editor_specs.rect())
+									.on_resize(html_editor_specs.on_resize());
+								pane().rect().top = controls_pane().rect().bottom;
+								
+								if (pane().on_resize().min_height)
+									pane().on_resize().min_height = largest(pane().on_resize().min_height - controls_pane().rect().height(), 0.f);
+								
 								// save move info so we can move the tree into the pane later
 								// we cannot do it here because we're iterating
 								trees.push_back({ widget.first, html_editor_specs, page, pane.get(), controls_pane(), pane() });
@@ -791,8 +801,9 @@ namespace liblec {
 						html_editor() = it.html_editor;
 
 						// adjust specs
-						html_editor().rect = { 0, it.destination.size().width, 0, it.destination.size().height };
-						html_editor().on_resize = { 0.f, 0.f, 100.f, 0.f };	// critical because html_editor will change height as user types or contents are changed. the pane scroll bars will do the job.
+						html_editor()
+							.rect({ 0, it.destination.size().width, 0, it.destination.size().height })
+							.on_resize({ 0.f, 0.f, 100.f, 0.f });	// critical because html_editor will change height as user types or contents are changed. the pane scroll bars will do the job.
 
 						// capture html pane specs
 						it.destination.d_page_.get_html_editor(it.alias).set_pane_specs(it.html_control_pane_specs, it.html_pane_specs);
@@ -831,8 +842,8 @@ namespace liblec {
 											
 											/// add font selection combobox
 											widgets::combobox font(html_controls_page, html_editor.alias_font());
-											font().rect = { 0.f, 150.f, 0.f, 25.f };
-											font().editable = false;
+											font().rect({ 0.f, 150.f, 0.f, 25.f })
+												.editable(false);
 
 											// get list of fonts
 											const auto& font_list = font::available_fonts();
@@ -841,114 +852,121 @@ namespace liblec {
 												widgets::combobox::combobox_item item;
 												item.label = font_name;
 												item.font = font_name;	// essential for preview
-												font().items.push_back(item);
+												font().items().push_back(item);
 											}
 
-											font().selected = "Calibri";
-											font().events().selection = [&](const std::string& font_name) {
+											font()
+												.selected("Calibri")
+												.events().selection = [&](const std::string& font_name) {
 												html_editor.selection_font(font_name);
 											};
 											
 											/// add bold control
 											widgets::rectangle bold(html_controls_page, html_editor.alias_bold());
-											bold().rect.size(20.f, 20.f);
-											bold().rect.snap_to(font().rect, rect::snap_type::bottom_left, 5.f);
-											bold().color_fill.alpha = 0;
-											bold().color_border.alpha = 0;
+											bold().rect().size(20.f, 20.f);
+											bold().rect().snap_to(font().rect(), rect::snap_type::bottom_left, 5.f);
+											bold().color_fill().alpha = 0;
+											bold().color_border().alpha = 0;
 											bold().events().action = [&]() {
 												html_editor.selection_bold();
 											};
 
 											widgets::label bold_label(html_controls_page);
-											bold_label().rect = bold().rect;
-											bold_label().text = "<strong>B</strong>";
-											bold_label().font_size = 11.f;
-											bold_label().center_h = true;
-											bold_label().center_v = true;
+											bold_label()
+												.rect(bold().rect())
+												.text("<strong>B</strong>")
+												.font_size(11.f)
+												.center_h(true)
+												.center_v(true);
 
 											/// add italic control
 											widgets::rectangle italic(html_controls_page, html_editor.alias_italic());
-											italic().rect.size(20.f, 20.f);
-											italic().rect.snap_to(bold().rect, rect::snap_type::right, 5.f);
-											italic().color_fill.alpha = 0;
-											italic().color_border.alpha = 0;
+											italic().rect().size(20.f, 20.f);
+											italic().rect().snap_to(bold().rect(), rect::snap_type::right, 5.f);
+											italic().color_fill().alpha = 0;
+											italic().color_border().alpha = 0;
 											italic().events().action = [&]() {
 												html_editor.selection_italic();
 											};
 
 											widgets::label italic_label(html_controls_page);
-											italic_label().rect = italic().rect;
-											italic_label().text = "<em><strong>I</strong></em>";
-											italic_label().font_size = 11.f;
-											italic_label().center_h = true;
-											italic_label().center_v = true;
+											italic_label()
+												.rect(italic().rect())
+												.text("<em><strong>I</strong></em>")
+												.font_size(11.f)
+												.center_h(true)
+												.center_v(true);
 
 											/// add underline control
 											widgets::rectangle underline(html_controls_page, html_editor.alias_underline());
-											underline().rect.size(20.f, 20.f);
-											underline().rect.snap_to(italic_label().rect, rect::snap_type::right, 5.f);
-											underline().color_fill.alpha = 0;
-											underline().color_border.alpha = 0;
+											underline().rect().size(20.f, 20.f);
+											underline().rect().snap_to(italic_label().rect(), rect::snap_type::right, 5.f);
+											underline().color_fill().alpha = 0;
+											underline().color_border().alpha = 0;
 											underline().events().action = [&]() {
 												html_editor.selection_underline();
 											};
 
 											widgets::label underline_label(html_controls_page);
-											underline_label().rect = underline().rect;
-											underline_label().text = "<u>U</u>";
-											underline_label().font_size = 11.f;
-											underline_label().center_h = true;
-											underline_label().center_v = true;
+											underline_label()
+												.rect(underline().rect())
+												.text("<u>U</u>")
+												.font_size(11.f)
+												.center_h(true)
+												.center_v(true);
 
 											/// add strikethrough control
 											widgets::rectangle strikethrough(html_controls_page, html_editor.alias_strikethrough());
-											strikethrough().rect.size(30.f, 20.f);
-											strikethrough().rect.snap_to(underline_label().rect, rect::snap_type::right, 5.f);
-											strikethrough().color_fill.alpha = 0;
-											strikethrough().color_border.alpha = 0;
+											strikethrough().rect().size(30.f, 20.f);
+											strikethrough().rect().snap_to(underline_label().rect(), rect::snap_type::right, 5.f);
+											strikethrough().color_fill().alpha = 0;
+											strikethrough().color_border().alpha = 0;
 											strikethrough().events().action = [&]() {
 												html_editor.selection_strikethrough();
 											};
 
 											widgets::label strikethrough_label(html_controls_page);
-											strikethrough_label().rect = strikethrough().rect;
-											strikethrough_label().text = "<s>abc</s>";
-											strikethrough_label().font_size = 11.f;
-											strikethrough_label().center_h = true;
-											strikethrough_label().center_v = true;
+											strikethrough_label()
+												.rect(strikethrough().rect())
+												.text("<s>abc</s>")
+												.font_size(11.f)
+												.center_h(true)
+												.center_v(true);
 
 											/// add color control
 											widgets::rectangle font_color(html_controls_page, html_editor.alias_font_color());
-											font_color().rect.size(20.f, 20.f);
-											font_color().rect.snap_to(strikethrough().rect, rect::snap_type::right, 5.f);
-											font_color().color_fill.alpha = 0;
-											font_color().color_border.alpha = 0;
+											font_color().rect().size(20.f, 20.f);
+											font_color().rect().snap_to(strikethrough().rect(), rect::snap_type::right, 5.f);
+											font_color().color_fill().alpha = 0;
+											font_color().color_border().alpha = 0;
 											font_color().events().action = [&]() {
 												html_editor.selection_color();
 											};
 
 											widgets::label font_color_label(html_controls_page);
-											font_color_label().rect = font_color().rect;
-											font_color_label().rect.bottom -= 5.f;
-											font_color_label().text = "<strong>A</strong>";
-											font_color_label().font_size = 9.5f;
-											font_color_label().center_h = true;
-											font_color_label().center_v = true;
+											font_color_label()
+												.text("<strong>A</strong>")
+												.font_size(9.5f)
+												.center_h(true)
+												.center_v(true)
+												.rect(font_color().rect())
+												.rect().bottom -= 5.f;
 
 											widgets::rectangle font_color_bar(html_controls_page, html_editor.alias_font_color_bar());
-											font_color_bar().rect = font_color().rect;
-											font_color_bar().rect.top = font_color_label().rect.bottom;
-											font_color_bar().rect.bottom -= 1.f;
-											font_color_bar().rect.left += 2.f;
-											font_color_bar().rect.right -= 2.f;
-											font_color_bar().color_fill = html_editor.get_last_color();
-											font_color_bar().border = .2f;
+											font_color_bar()
+												.rect(font_color().rect())
+												.rect().top = font_color_label().rect().bottom;
+											font_color_bar().rect().bottom -= 1.f;
+											font_color_bar().rect().left += 2.f;
+											font_color_bar().rect().right -= 2.f;
+											font_color_bar().color_fill(html_editor.get_last_color());
+											font_color_bar().border(.2f);
 
 											widgets::rectangle font_color_menu(html_controls_page);
-											font_color_menu().rect.size(10.f, 20.f);
-											font_color_menu().rect.snap_to(font_color().rect, rect::snap_type::right, 2.f);
-											font_color_menu().color_fill.alpha = 0;
-											font_color_menu().color_border.alpha = 0;
+											font_color_menu().rect().size(10.f, 20.f);
+											font_color_menu().rect().snap_to(font_color().rect(), rect::snap_type::right, 2.f);
+											font_color_menu().color_fill().alpha = 0;
+											font_color_menu().color_border().alpha = 0;
 											font_color_menu().events().action = [&]() {
 												color font_color;
 												if (color_picker(page.d_page_.fm_).pick(font_color)) {
@@ -957,7 +975,7 @@ namespace liblec {
 													try {
 														// update font color bar
 														auto& font_color_bar_impl = html_controls_page.d_page_.get_rectangle(html_editor.alias_font_color_bar());
-														font_color_bar_impl.specs().color_fill = font_color;
+														font_color_bar_impl.specs().color_fill(font_color);
 													}
 													catch (const std::exception&) {}
 
@@ -966,19 +984,20 @@ namespace liblec {
 											};
 
 											widgets::line font_color_menu_dropdown(html_controls_page);
-											font_color_menu_dropdown().rect.size(font_color_menu().rect.width(), font_color_menu().rect.width());	// important for it to be a square
-											font_color_menu_dropdown().rect.place(font_color_menu().rect, 50.f, 50.f);
-											font_color_menu_dropdown().points.push_back({ .1f * font_color_menu_dropdown().rect.width(), .3f * font_color_menu_dropdown().rect.height() });
-											font_color_menu_dropdown().points.push_back({ .5f * font_color_menu_dropdown().rect.width(), .7f * font_color_menu_dropdown().rect.height() });
-											font_color_menu_dropdown().points.push_back({ .9f * font_color_menu_dropdown().rect.width(), .3f * font_color_menu_dropdown().rect.height() });
+											font_color_menu_dropdown().rect().size(font_color_menu().rect().width(), font_color_menu().rect().width());	// important for it to be a square
+											font_color_menu_dropdown().rect().place(font_color_menu().rect(), 50.f, 50.f);
+											font_color_menu_dropdown().points().push_back({ .1f * font_color_menu_dropdown().rect().width(), .3f * font_color_menu_dropdown().rect().height() });
+											font_color_menu_dropdown().points().push_back({ .5f * font_color_menu_dropdown().rect().width(), .7f * font_color_menu_dropdown().rect().height() });
+											font_color_menu_dropdown().points().push_back({ .9f * font_color_menu_dropdown().rect().width(), .3f * font_color_menu_dropdown().rect().height() });
 
 											/// add font size combobox
 											widgets::combobox font_size(html_controls_page, html_editor.alias_font_size());
-											font_size().rect.size(70.f, 25.f);
-											font_size().rect.snap_to(font().rect, rect::snap_type::right, 10.f);
-											font_size().editable = true;
-											font_size().force_numerical_sort = true;
-											font_size().items = {
+											font_size().rect().size(70.f, 25.f);
+											font_size().rect().snap_to(font().rect(), rect::snap_type::right, 10.f);
+											font_size()
+												.editable(true)
+												.force_numerical_sort(true)
+												.items({
 												{"8", "Segoe UI", 8 },
 												{"9", "Segoe UI", 9},
 												{"10", "Segoe UI", 10},
@@ -988,9 +1007,9 @@ namespace liblec {
 												{"14", "Segoe UI", 14},
 												{"18", "Segoe UI", 18},
 												{"24", "Segoe UI", 24},
-												{"36", "Segoe UI", 36} };
-											font_size().selected = "11";
-											font_size().events().selection = [&](const std::string& font_size) {
+												{"36", "Segoe UI", 36} })
+												.selected("11")
+												.events().selection = [&](const std::string& font_size) {
 												float font_size_ = 0.f;
 												std::stringstream ss;
 												ss << font_size;
@@ -1079,10 +1098,11 @@ namespace liblec {
 								containers::pane pane(page, widgets::pane_impl::time_pane_alias_prefix() + widget.first);
 
 								// clone essential properties to pane
-								pane().rect = time_specs.rect;
-								pane().on_resize = time_specs.on_resize;
-								pane().color_fill.alpha = 0;
-								pane().color_border.alpha = 0;
+								pane()
+									.rect(time_specs.rect())
+									.on_resize(time_specs.on_resize());
+								pane().color_fill().alpha = 0;
+								pane().color_border().alpha = 0;
 
 								// save move info so we can move the tree into the pane later
 								// we cannot do it here because we're iterating
@@ -1124,91 +1144,99 @@ namespace liblec {
 						time() = it.time;
 
 						// adjust specs
-						time().rect = { 0, it.destination.size().width, 0, it.destination.size().height };
-						time().on_resize = { 0, 0, 0, 0 };
+						time()
+							.rect({ 0, it.destination.size().width, 0, it.destination.size().height })
+							.on_resize({ 0, 0, 0, 0 });
 
 						// add hour destination
 						widgets::rectangle hour(it.destination, widgets::time_impl::alias_hour());
-						hour().rect = { 0, 18, 0, 20 };
-						hour().on_resize = { 0, 0, 0, 0 };
-						hour().corner_radius_x = time().corner_radius_x;
-						hour().corner_radius_y = time().corner_radius_y;
-						hour().border = time().border;
-						hour().color_fill = time().color_fill;
-						hour().color_border = time().color_border;
-						hour().color_disabled = time().color_disabled;
-						hour().color_selected = time().color_selected;
+						hour()
+							.rect({ 0, 18, 0, 20 })
+							.on_resize({ 0, 0, 0, 0 })
+							.corner_radius_x(time().corner_radius_x())
+							.corner_radius_y(time().corner_radius_y())
+							.border(time().border())
+							.color_fill(time().color_fill())
+							.color_border(time().color_border())
+							.color_disabled(time().color_disabled())
+							.color_selected(time().color_selected());
 
 						widgets::label hour_label(it.destination, widgets::time_impl::alias_hour_label());
-						hour_label().rect = hour().rect;
-						hour_label().center_h = true;
-						hour_label().center_v = true;
-						hour_label().on_resize = { 0, 0, 0, 0 };
-						hour_label().color_text = time().color_text;
-						hour_label().text = time().time_value.hour < 10 ? "0" + std::to_string(time().time_value.hour) :
-							std::to_string(time().time_value.hour);
+						hour_label()
+							.rect(hour().rect())
+							.center_h(true)
+							.center_v(true)
+							.on_resize({ 0, 0, 0, 0 })
+							.color_text(time().color_text())
+							.text(time().time_value().hour < 10 ? "0" + std::to_string(time().time_value().hour) :
+							std::to_string(time().time_value().hour));
 
 						// add seperator to destination
 						widgets::label seperator_1(it.destination);
-						seperator_1().rect = { 0, 8, 0, 20 };
-						seperator_1().rect.snap_to(hour().rect, rect::snap_type::right, 0.f);
-						seperator_1().on_resize = { 0, 0, 0, 0 };
-						seperator_1().text = ":";
-						seperator_1().color_text = time().color_text;
-						seperator_1().center_h = true;
-						seperator_1().center_v = true;
+						seperator_1()
+							.on_resize({ 0, 0, 0, 0 })
+							.text(":")
+							.color_text(time().color_text())
+							.center_h(true)
+							.center_v(true)
+							.rect({ 0, 8, 0, 20 })
+							.rect().snap_to(hour().rect(), rect::snap_type::right, 0.f);
 
 						// add minute to destination
 						widgets::rectangle minute(it.destination, widgets::time_impl::alias_minute());
-						minute().rect = { 0, 18, 0, 20 };
-						minute().rect.snap_to(seperator_1().rect, rect::snap_type::right, 0.f);
-						minute().corner_radius_x = time().corner_radius_x;
-						minute().corner_radius_y = time().corner_radius_y;
-						minute().border = time().border;
-						minute().color_fill = time().color_fill;
-						minute().color_border = time().color_border;
-						minute().color_disabled = time().color_disabled;
-						minute().color_selected = time().color_selected;
+						minute().corner_radius_x(time().corner_radius_x())
+							.corner_radius_y(time().corner_radius_y())
+							.border(time().border())
+							.color_fill(time().color_fill())
+							.color_border(time().color_border())
+							.color_disabled(time().color_disabled())
+							.color_selected(time().color_selected())
+							.rect({ 0, 18, 0, 20 })
+							.rect().snap_to(seperator_1().rect(), rect::snap_type::right, 0.f);
 
 						widgets::label minute_label(it.destination, widgets::time_impl::alias_minute_label());
-						minute_label().rect = minute().rect;
-						minute_label().center_h = true;
-						minute_label().center_v = true;
-						minute_label().on_resize = { 0, 0, 0, 0 };
-						minute_label().color_text = time().color_text;
-						minute_label().text = time().time_value.minute < 10 ? "0" + std::to_string(time().time_value.minute) :
-							std::to_string(time().time_value.minute);
+						minute_label()
+							.rect(minute().rect())
+							.center_h(true)
+							.center_v(true)
+							.on_resize({ 0, 0, 0, 0 })
+							.color_text(time().color_text())
+							.text(time().time_value().minute < 10 ? "0" + std::to_string(time().time_value().minute) :
+							std::to_string(time().time_value().minute));
 
 						// add seperator to destination
 						widgets::label seperator_2(it.destination);
-						seperator_2().rect = { 0, 8, 0, 20 };
-						seperator_2().rect.snap_to(minute().rect, rect::snap_type::right, 0.f);
-						seperator_2().on_resize = { 0, 0, 0, 0 };
-						seperator_2().text = ":";
-						seperator_2().color_text = time().color_text;
-						seperator_2().center_h = true;
-						seperator_2().center_v = true;
+						seperator_2()
+							.on_resize({ 0, 0, 0, 0 })
+							.text(":")
+							.color_text(time().color_text())
+							.center_h(true)
+							.center_v(true)
+							.rect({ 0, 8, 0, 20 })
+							.rect().snap_to(minute().rect(), rect::snap_type::right, 0.f);
 
 						// add second to destination
 						widgets::rectangle second(it.destination, widgets::time_impl::alias_second());
-						second().rect = { 0, 18, 0, 20 };
-						second().rect.snap_to(seperator_2().rect, rect::snap_type::right, 0.f);
-						second().corner_radius_x = time().corner_radius_x;
-						second().corner_radius_y = time().corner_radius_y;
-						second().border = time().border;
-						second().color_fill = time().color_fill;
-						second().color_border = time().color_border;
-						second().color_disabled = time().color_disabled;
-						second().color_selected = time().color_selected;
+						second()
+							.corner_radius_x(time().corner_radius_x())
+							.corner_radius_y(time().corner_radius_y())
+							.border(time().border())
+							.color_fill(time().color_fill())
+							.color_border(time().color_border())
+							.color_disabled(time().color_disabled())
+							.color_selected(time().color_selected())
+							.rect({ 0, 18, 0, 20 })
+							.rect().snap_to(seperator_2().rect(), rect::snap_type::right, 0.f);
 
 						widgets::label second_label(it.destination, widgets::time_impl::alias_second_label());
-						second_label().rect = second().rect;
-						second_label().center_h = true;
-						second_label().center_v = true;
-						second_label().on_resize = { 0, 0, 0, 0 };
-						second_label().color_text = time().color_text;
-						second_label().text = time().time_value.second < 10 ? "0" + std::to_string(time().time_value.second) :
-							std::to_string(time().time_value.second);
+						second_label()
+							.rect(second().rect())
+							.center_h(true)
+							.center_v(true)
+							.on_resize({ 0, 0, 0, 0 })
+							.color_text(time().color_text())
+							.text(time().time_value().second < 10 ? "0" + std::to_string(time().time_value().second) :
+							std::to_string(time().time_value().second));
 
 						// capture time label specs
 						it.destination.d_page_.get_time(it.alias).set_time_label_specs(
@@ -1263,13 +1291,13 @@ namespace liblec {
 												auto selected = context_menu()(time_page.d_page_.get_form(), menu_specs);
 
 												if (!selected.empty()) {
-													hour_lbl().text = selected;
+													hour_lbl().text(selected);
 													std::stringstream ss;
 													ss << selected;
-													ss >> specs.time_value.hour;
+													ss >> specs.time_value().hour;
 
 													if (specs.events().change)
-														specs.events().change(specs.time_value);
+														specs.events().change(specs.time_value());
 												}
 											};
 										}
@@ -1293,13 +1321,13 @@ namespace liblec {
 												auto selected = context_menu()(time_page.d_page_.get_form(), menu_specs);
 
 												if (!selected.empty()) {
-													minute_lbl().text = selected;
+													minute_lbl().text(selected);
 													std::stringstream ss;
 													ss << selected;
-													ss >> specs.time_value.minute;
+													ss >> specs.time_value().minute;
 
 													if (specs.events().change)
-														specs.events().change(specs.time_value);
+														specs.events().change(specs.time_value());
 												}
 											};
 										}
@@ -1323,13 +1351,13 @@ namespace liblec {
 												auto selected = context_menu()(time_page.d_page_.get_form(), menu_specs);
 
 												if (!selected.empty()) {
-													second_lbl().text = selected;
+													second_lbl().text(selected);
 													std::stringstream ss;
 													ss << selected;
-													ss >> specs.time_value.second;
+													ss >> specs.time_value().second;
 
 													if (specs.events().change)
-														specs.events().change(specs.time_value);
+														specs.events().change(specs.time_value());
 												}
 											};
 										}
@@ -1411,10 +1439,11 @@ namespace liblec {
 								containers::pane pane(page, widgets::pane_impl::date_pane_alias_prefix() + widget.first);
 
 								// clone essential properties to pane
-								pane().rect = date_specs.rect;
-								pane().on_resize = date_specs.on_resize;
-								pane().color_fill.alpha = 0;
-								pane().color_border.alpha = 0;
+								pane()
+									.rect(date_specs.rect())
+									.on_resize(date_specs.on_resize());
+								pane().color_fill().alpha = 0;
+								pane().color_border().alpha = 0;
 
 								// save move info so we can move the tree into the pane later
 								// we cannot do it here because we're iterating
@@ -1456,101 +1485,111 @@ namespace liblec {
 						date() = it.date;
 
 						// impose limits
-						date().date_value.year = largest(date().date_value.year, (unsigned short)1970);
+						date().date_value().year = largest(date().date_value().year, (unsigned short)1970);
 
 						// adjust specs
-						date().rect = { 0, it.destination.size().width, 0, it.destination.size().height };
-						date().on_resize = { 0, 0, 0, 0 };
-						date().color_fill.alpha = 0;
+						date().rect({ 0, it.destination.size().width, 0, it.destination.size().height });
+						date().on_resize({ 0, 0, 0, 0 });
+						date().color_fill().alpha = 0;
 
 						// add week day to destination
 						widgets::label weekday_label(it.destination, widgets::date_impl::alias_weekday_label());
-						weekday_label().rect = { 0, 90, 0, 20 };
-						weekday_label().on_resize = { 0, 0, 0, 0 };
-						weekday_label().color_text = date().color_text;
-						weekday_label().text = date_time::weekday_to_string(date_time::day_of_week(date().date_value));
-						weekday_label().font_size = 8.5f;	// to-do: eliminate magic number
+						weekday_label()
+							.rect({ 0, 90, 0, 20 })
+							.on_resize({ 0, 0, 0, 0 })
+							.color_text(date().color_text())
+							.text(date_time::weekday_to_string(date_time::day_of_week(date().date_value())))
+							.font_size(8.5f);	// to-do: eliminate magic number
 
 						// add day to destination
 						widgets::rectangle day(it.destination, widgets::date_impl::alias_day());
-						day().rect = { 0, 18, 20, 20 + 20 };
-						day().on_resize = { 0, 0, 0, 0 };
-						day().corner_radius_x = date().corner_radius_x;
-						day().corner_radius_y = date().corner_radius_y;
-						day().border = date().border;
-						day().color_fill = date().color_fill;
-						day().color_border = date().color_border;
-						day().color_disabled = date().color_disabled;
-						day().color_selected = date().color_selected;
+						day()
+							.rect({ 0, 18, 20, 20 + 20 })
+							.on_resize({ 0, 0, 0, 0 })
+							.corner_radius_x(date().corner_radius_x())
+							.corner_radius_y(date().corner_radius_y())
+							.border(date().border())
+							.color_fill(date().color_fill())
+							.color_border(date().color_border())
+							.color_disabled(date().color_disabled())
+							.color_selected(date().color_selected());
 
 						widgets::label day_label(it.destination, widgets::date_impl::alias_day_label());
-						day_label().rect = day().rect;
-						day_label().center_h = true;
-						day_label().center_v = true;
-						day_label().on_resize = { 0, 0, 0, 0 };
-						day_label().color_text = date().color_text;
-						day_label().text = date().date_value.day < 10 ? "0" + std::to_string(date().date_value.day) :
-							std::to_string(date().date_value.day);
+						day_label()
+							.rect(day().rect())
+							.center_h(true)
+							.center_v(true)
+							.on_resize({ 0, 0, 0, 0 })
+							.color_text(date().color_text())
+							.text(date().date_value().day < 10 ? "0" + std::to_string(date().date_value().day) :
+							std::to_string(date().date_value().day));
 
 						// add seperator to destination
 						widgets::label seperator_1(it.destination);
-						seperator_1().rect = { 0, 8, 0, 20 };
-						seperator_1().rect.snap_to(day().rect, rect::snap_type::right, 0.f);
-						seperator_1().on_resize = { 0, 0, 0, 0 };
-						seperator_1().text = "-";
-						seperator_1().color_text = date().color_text;
-						seperator_1().center_h = true;
-						seperator_1().center_v = true;
+						seperator_1()
+							.on_resize({ 0, 0, 0, 0 })
+							.text("-")
+							.color_text(date().color_text())
+							.center_h(true)
+							.center_v(true)
+							.rect({ 0, 8, 0, 20 })
+							.rect().snap_to(day().rect(), rect::snap_type::right, 0.f);
 
 						// add month to destination
 						widgets::rectangle month(it.destination, widgets::date_impl::alias_month());
-						month().rect = { 0, 25, 0, 20 };
-						month().rect.snap_to(seperator_1().rect, rect::snap_type::right, 0.f);
-						month().corner_radius_x = date().corner_radius_x;
-						month().corner_radius_y = date().corner_radius_y;
-						month().border = date().border;
-						month().color_fill = date().color_fill;
-						month().color_border = date().color_border;
-						month().color_disabled = date().color_disabled;
-						month().color_selected = date().color_selected;
+						month()
+							.corner_radius_x(date().corner_radius_x())
+							.corner_radius_y(date().corner_radius_y())
+							.border(date().border())
+							.color_fill(date().color_fill())
+							.color_border(date().color_border())
+							.color_disabled(date().color_disabled())
+							.color_selected(date().color_selected())
+							.rect({ 0, 25, 0, 20 })
+							.rect().snap_to(seperator_1().rect(), rect::snap_type::right, 0.f);
 
 						widgets::label month_label(it.destination, widgets::date_impl::alias_month_label());
-						month_label().rect = month().rect;
-						month_label().center_h = true;
-						month_label().center_v = true;
-						month_label().on_resize = { 0, 0, 0, 0 };
-						month_label().color_text = date().color_text;
-						month_label().text = date_time::month_to_string(date().date_value.month);
+						month_label()
+							.rect(month().rect())
+							.center_h(true)
+							.center_v(true)
+							.on_resize({ 0, 0, 0, 0 })
+							.color_text(date().color_text())
+							.text(date_time::month_to_string(date().date_value().month));
 
 						// add seperator to destination
 						widgets::label seperator_2(it.destination);
-						seperator_2().rect = { 0, 8, 0, 20 };
-						seperator_2().rect.snap_to(month().rect, rect::snap_type::right, 0.f);
-						seperator_2().on_resize = { 0, 0, 0, 0 };
-						seperator_2().text = "-";
-						seperator_2().color_text = date().color_text;
-						seperator_2().center_h = true;
-						seperator_2().center_v = true;
+						seperator_2()
+							.on_resize({ 0, 0, 0, 0 })
+							.text("-")
+							.color_text(date().color_text())
+							.center_h(true)
+							.center_v(true)
+							.rect({ 0, 8, 0, 20 })
+							.rect().snap_to(month().rect(), rect::snap_type::right, 0.f);
 
 						// add year to destination
 						widgets::rectangle year(it.destination, widgets::date_impl::alias_year());
-						year().rect = { 0, 31, 0, 20 };
-						year().rect.snap_to(seperator_2().rect, rect::snap_type::right, 0.f);
-						year().corner_radius_x = date().corner_radius_x;
-						year().corner_radius_y = date().corner_radius_y;
-						year().border = date().border;
-						year().color_fill = date().color_fill;
-						year().color_border = date().color_border;
-						year().color_disabled = date().color_disabled;
-						year().color_selected = date().color_selected;
+						year()
+							.corner_radius_x(date().corner_radius_x())
+							.corner_radius_y(date().corner_radius_y())
+							.border(date().border())
+							.color_fill(date().color_fill())
+							.color_border(date().color_border())
+							.color_disabled(date().color_disabled())
+							.color_selected(date().color_selected())
+							.rect({ 0, 31, 0, 20 })
+							.rect().snap_to(seperator_2().rect(), rect::snap_type::right, 0.f);
+						
 
 						widgets::label year_label(it.destination, widgets::date_impl::alias_year_label());
-						year_label().rect = year().rect;
-						year_label().center_h = true;
-						year_label().center_v = true;
-						year_label().on_resize = { 0, 0, 0, 0 };
-						year_label().color_text = date().color_text;
-						year_label().text = std::to_string(date().date_value.year);
+						year_label()
+							.rect(year().rect())
+							.center_h(true)
+							.center_v(true)
+							.on_resize({ 0, 0, 0, 0 })
+							.color_text(date().color_text())
+							.text(std::to_string(date().date_value().year));
 
 						// capture date label specs
 						it.destination.d_page_.get_date(it.alias).set_date_label_specs(
@@ -1598,7 +1637,7 @@ namespace liblec {
 												context_menu::specs menu_specs;
 												menu_specs.type = context_menu::pin_type::right;
 
-												for (int i = 1; i < date_time::last_day_of_month(specs.date_value).day + 1; i++) {
+												for (int i = 1; i < date_time::last_day_of_month(specs.date_value()).day + 1; i++) {
 													std::string dy = std::to_string(i);
 													if (i < 10)
 														dy = "0" + dy;
@@ -1608,16 +1647,16 @@ namespace liblec {
 												auto selected = context_menu()(date_page.d_page_.get_form(), menu_specs);
 
 												if (!selected.empty()) {
-													day_lbl().text = selected;
+													day_lbl().text(selected);
 													std::stringstream ss;
 													ss << selected;
-													ss >> specs.date_value.day;
+													ss >> specs.date_value().day;
 
 													// update weekday
-													weekday_lbl().text = date_time::weekday_to_string(date_time::day_of_week(specs.date_value));
+													weekday_lbl().text(date_time::weekday_to_string(date_time::day_of_week(specs.date_value())));
 
 													if (specs.events().change)
-														specs.events().change(specs.date_value);
+														specs.events().change(specs.date_value());
 												}
 											};
 										}
@@ -1649,20 +1688,20 @@ namespace liblec {
 												auto selected = context_menu()(date_page.d_page_.get_form(), menu_specs);
 
 												if (!selected.empty()) {
-													month_lbl().text = selected;
-													specs.date_value.month = date_time::month_from_string(selected);
+													month_lbl().text(selected);
+													specs.date_value().month = date_time::month_from_string(selected);
 
 													// ensure day is within range
-													specs.date_value.day = smallest(specs.date_value.day,
-														date_time::last_day_of_month({ 1, specs.date_value.month, specs.date_value.year }).day);
-													day_lbl().text = std::to_string(specs.date_value.day);
-													for (size_t i = day_lbl().text.length(); i < 2; i++) day_lbl().text = "0" + day_lbl().text;
+													specs.date_value().day = smallest(specs.date_value().day,
+														date_time::last_day_of_month({ 1, specs.date_value().month, specs.date_value().year }).day);
+													day_lbl().text(std::to_string(specs.date_value().day));
+													for (size_t i = day_lbl().text().length(); i < 2; i++) day_lbl().text("0" + day_lbl().text());
 
 													// update weekday
-													weekday_lbl().text = date_time::weekday_to_string(date_time::day_of_week(specs.date_value));
+													weekday_lbl().text(date_time::weekday_to_string(date_time::day_of_week(specs.date_value())));
 
 													if (specs.events().change)
-														specs.events().change(specs.date_value);
+														specs.events().change(specs.date_value());
 												}
 											};
 										}
@@ -1685,22 +1724,22 @@ namespace liblec {
 												auto selected = context_menu()(date_page.d_page_.get_form(), menu_specs);
 
 												if (!selected.empty()) {
-													year_lbl().text = selected;
+													year_lbl().text(selected);
 													std::stringstream ss;
 													ss << selected;
-													ss >> specs.date_value.year;
+													ss >> specs.date_value().year;
 
 													// ensure day is within range
-													specs.date_value.day = smallest(specs.date_value.day,
-														date_time::last_day_of_month({ 1, specs.date_value.month, specs.date_value.year }).day);
-													day_lbl().text = std::to_string(specs.date_value.day);
-													for (size_t i = day_lbl().text.length(); i < 2; i++) day_lbl().text = "0" + day_lbl().text;
+													specs.date_value().day = smallest(specs.date_value().day,
+														date_time::last_day_of_month({ 1, specs.date_value().month, specs.date_value().year }).day);
+													day_lbl().text(std::to_string(specs.date_value().day));
+													for (size_t i = day_lbl().text().length(); i < 2; i++) day_lbl().text("0" + day_lbl().text());
 
 													// update weekday
-													weekday_lbl().text = date_time::weekday_to_string(date_time::day_of_week(specs.date_value));
+													weekday_lbl().text(date_time::weekday_to_string(date_time::day_of_week(specs.date_value())));
 
 													if (specs.events().change)
-														specs.events().change(specs.date_value);
+														specs.events().change(specs.date_value());
 												}
 											};
 										}
@@ -1778,10 +1817,11 @@ namespace liblec {
 								containers::pane pane(page, widgets::pane_impl::icon_pane_alias_prefix() + widget.first);
 
 								// clone essential properties to pane
-								pane().rect = icon_specs.rect;
-								pane().on_resize = icon_specs.on_resize;
-								pane().color_fill.alpha = 0;
-								pane().color_border.alpha = 0;
+								pane()
+									.rect(icon_specs.rect())
+									.on_resize(icon_specs.on_resize());
+								pane().color_fill().alpha = 0;
+								pane().color_border().alpha = 0;
 
 								// save move info so we can move the tree into the pane later
 								// we cannot do it here because we're iterating
@@ -1823,22 +1863,24 @@ namespace liblec {
 						icon() = it.icon;
 
 						// adjust specs
-						icon().rect = { 0, it.destination.size().width, 0, it.destination.size().height };
-						icon().on_resize = { 0, 0, 0, 0 };
+						icon()
+							.rect({ 0, it.destination.size().width, 0, it.destination.size().height })
+							.on_resize({ 0, 0, 0, 0 });
 
 						const float gap_ = 5.f;
 						const float padding_ = 5.f;
 
 						// add rectangle to destination (for hit-testing)
 						widgets::rectangle icn(it.destination, widgets::icon_impl::alias_icon());
-						icn().rect.size(it.destination.size().width, it.destination.size().height);
-						icn().corner_radius_x = icon().corner_radius_x;
-						icn().corner_radius_y = icon().corner_radius_y;
-						icn().border = icon().border;
-						icn().color_fill = icon().color_fill;
-						icn().color_border = icon().color_border;
-						icn().color_hot = icon().color_hot;
-						icn().cursor = widgets::specs::cursor_type::hand;
+						icn()
+							.corner_radius_x(icon().corner_radius_x())
+							.corner_radius_y(icon().corner_radius_y())
+							.border(icon().border())
+							.color_fill(icon().color_fill())
+							.color_border(icon().color_border())
+							.color_hot(icon().color_hot())
+							.cursor(widgets::specs::cursor_type::hand)
+							.rect().size(it.destination.size().width, it.destination.size().height);
 
 						// move the click and action handler from the icon to the rectangle
 						icn().events().action = icon().events().action;
@@ -1848,76 +1890,77 @@ namespace liblec {
 
 						// compute size of image side
 						auto image_side = smallest(it.destination.size().width, it.destination.size().height) - 2 * padding_;
-						if (icon().max_image_size > 0.f)
-							image_side = smallest(image_side, icon().max_image_size);
+						if (icon().max_image_size() > 0.f)
+							image_side = smallest(image_side, icon().max_image_size());
 
 						// add image to destination
 						widgets::image_view image(it.destination, widgets::icon_impl::alias_image());
-						image().rect = { 0, image_side, 0, image_side };
+						image().rect({ 0, image_side, 0, image_side });
 
-						switch (icon().text_position) {
+						switch (icon().text_position()) {
 						case widgets::icon::icon_specs::icon_text_position::right:
-							image().rect.place({ padding_, it.destination.size().width - padding_, padding_, it.destination.size().height - padding_ },
+							image().rect().place({ padding_, it.destination.size().width - padding_, padding_, it.destination.size().height - padding_ },
 								0.f, 0.f);
 							break;
 						case widgets::icon::icon_specs::icon_text_position::left:
-							image().rect.place({ padding_, it.destination.size().width - padding_, padding_, it.destination.size().height - padding_ },
+							image().rect().place({ padding_, it.destination.size().width - padding_, padding_, it.destination.size().height - padding_ },
 								100.f, 0.f);
 							break;
 						case widgets::icon::icon_specs::icon_text_position::top:
-							image().rect.place({ padding_, it.destination.size().width - padding_, padding_, it.destination.size().height - padding_ },
+							image().rect().place({ padding_, it.destination.size().width - padding_, padding_, it.destination.size().height - padding_ },
 								50.f, 100.f);
 							break;
 						case widgets::icon::icon_specs::icon_text_position::bottom:
-							image().rect.place({ padding_, it.destination.size().width - padding_, padding_, it.destination.size().height - padding_ },
+							image().rect().place({ padding_, it.destination.size().width - padding_, padding_, it.destination.size().height - padding_ },
 								50.f, 0.f);
 							break;
 						default:
 							break;
 						}
 						
-						image().file = icon().file;
-						image().png_resource = icon().png_resource;
-						image().quality = icon().quality;
+						image().file(icon().file());
+						image().png_resource(icon().png_resource());
+						image().quality(icon().quality());
 
 						// add text to destination
 						widgets::label text(it.destination, widgets::icon_impl::alias_text());
-						text().text = icon().text;
-						text().color_text = icon().color_text;
-						text().font_size = icon().font_size;
+						text()
+							.text(icon().text())
+							.color_text(icon().color_text())
+							.font_size(icon().font_size());
 
-						switch (icon().text_position) {
+						switch (icon().text_position()) {
 						case widgets::icon::icon_specs::icon_text_position::right: {
-							text().rect = { 0, it.destination.size().width - (image_side + gap_) - padding_, 0, it.destination.size().height };
-							const auto ideal_rect = widgets::measure_label(p_directwrite_factory_, text().text, text().font, text().font_size,
-								false, false, convert_rect(text().rect));
-							text().rect.height(ideal_rect.bottom - ideal_rect.top);
-							text().rect.snap_to(image().rect, rect::snap_type::right_top, gap_);
+							text().rect({ 0, it.destination.size().width - (image_side + gap_) - padding_, 0, it.destination.size().height });
+							const auto ideal_rect = widgets::measure_label(p_directwrite_factory_, text().text(), text().font(), text().font_size(),
+								false, false, convert_rect(text().rect()));
+							text().rect().height(ideal_rect.bottom - ideal_rect.top);
+							text().rect().snap_to(image().rect(), rect::snap_type::right_top, gap_);
 						}
 							break;
 						case widgets::icon::icon_specs::icon_text_position::left: {
-							text().rect = { padding_, it.destination.size().width - (image_side + gap_) - padding_, padding_, it.destination.size().height };
-							const auto ideal_rect = widgets::measure_label(p_directwrite_factory_, text().text, text().font, text().font_size,
-								false, false, convert_rect(text().rect));
-							text().rect.height(ideal_rect.bottom - ideal_rect.top);
-							text().rect.snap_to(image().rect, rect::snap_type::left_top, gap_);
+							text().rect({ padding_, it.destination.size().width - (image_side + gap_) - padding_, padding_, it.destination.size().height });
+							const auto ideal_rect = widgets::measure_label(p_directwrite_factory_, text().text(), text().font(), text().font_size(),
+								false, false, convert_rect(text().rect()));
+							text().rect().height(ideal_rect.bottom - ideal_rect.top);
+							text().rect().snap_to(image().rect(), rect::snap_type::left_top, gap_);
 						}
 							break;
 						case widgets::icon::icon_specs::icon_text_position::top: {
-							text().rect = { padding_, it.destination.size().width - padding_, 0, it.destination.size().height - padding_ };
-							const auto ideal_rect = widgets::measure_label(p_directwrite_factory_, text().text, text().font, text().font_size,
-								false, false, convert_rect(text().rect));
-							text().rect.height(ideal_rect.bottom - ideal_rect.top);
-							text().center_h = true;
+							text().rect({ padding_, it.destination.size().width - padding_, 0, it.destination.size().height - padding_ });
+							const auto ideal_rect = widgets::measure_label(p_directwrite_factory_, text().text(), text().font(), text().font_size(),
+								false, false, convert_rect(text().rect()));
+							text().rect().height(ideal_rect.bottom - ideal_rect.top);
+							text().center_h(true);
 						}
 							break;
 						case widgets::icon::icon_specs::icon_text_position::bottom: {
-							text().rect = { padding_, it.destination.size().width - padding_, 0, it.destination.size().height - padding_ };
-							const auto ideal_rect = widgets::measure_label(p_directwrite_factory_, text().text, text().font, text().font_size,
-								false, false, convert_rect(text().rect));
-							text().rect.height(ideal_rect.bottom - ideal_rect.top);
-							text().center_h = true;
-							text().rect.snap_to(image().rect, rect::snap_type::bottom, gap_);
+							text().rect({ padding_, it.destination.size().width - padding_, 0, it.destination.size().height - padding_ });
+							const auto ideal_rect = widgets::measure_label(p_directwrite_factory_, text().text(), text().font(), text().font_size(),
+								false, false, convert_rect(text().rect()));
+							text().rect().height(ideal_rect.bottom - ideal_rect.top);
+							text().center_h(true);
+							text().rect().snap_to(image().rect(), rect::snap_type::bottom, gap_);
 						}
 							break;
 						default:
@@ -1926,32 +1969,32 @@ namespace liblec {
 
 						// add description to destination
 						widgets::label description(it.destination, widgets::icon_impl::alias_description());
-						description().text = icon().description;
-						description().color_text = icon().color_text_description;
-						description().font_size = icon().font_size_description;
-						description().multiline = true;
+						description().text(icon().description())
+							.color_text(icon().color_text_description())
+							.font_size(icon().font_size_description())
+							.multiline(true);
 
-						switch (icon().text_position) {
+						switch (icon().text_position()) {
 						case widgets::icon::icon_specs::icon_text_position::right: {
-							description().rect = { padding_, text().rect.width(), padding_, it.destination.size().height - text().rect.height() };
-							description().rect.snap_to(text().rect, rect::snap_type::bottom_left, 0.f);
+							description().rect({ padding_, text().rect().width(), padding_, it.destination.size().height - text().rect().height() });
+							description().rect().snap_to(text().rect(), rect::snap_type::bottom_left, 0.f);
 						}
 																				 break;
 						case widgets::icon::icon_specs::icon_text_position::left: {
-							description().rect = { padding_, text().rect.width(), padding_, it.destination.size().height - text().rect.height() };
-							description().rect.snap_to(text().rect, rect::snap_type::bottom_left, 0.f);
+							description().rect({ padding_, text().rect().width(), padding_, it.destination.size().height - text().rect().height() });
+							description().rect().snap_to(text().rect(), rect::snap_type::bottom_left, 0.f);
 						}
 							break;
 						case widgets::icon::icon_specs::icon_text_position::top: {
-							description().rect = { padding_, text().rect.width(), 0, it.destination.size().height - text().rect.height() };
-							description().rect.snap_to(text().rect, rect::snap_type::bottom, 0.f);
-							description().center_h = true;
+							description().rect({ padding_, text().rect().width(), 0, it.destination.size().height - text().rect().height() });
+							description().rect().snap_to(text().rect(), rect::snap_type::bottom, 0.f);
+							description().center_h(true);
 						}
 							break;
 						case widgets::icon::icon_specs::icon_text_position::bottom: {
-							description().rect = { padding_, text().rect.width(), 0, it.destination.size().height - text().rect.height() };
-							description().rect.snap_to(text().rect, rect::snap_type::bottom, 0.f);
-							description().center_h = true;
+							description().rect({ padding_, text().rect().width(), 0, it.destination.size().height - text().rect().height() });
+							description().rect().snap_to(text().rect(), rect::snap_type::bottom, 0.f);
+							description().center_h(true);
 						}
 							break;
 						default:
@@ -2013,10 +2056,11 @@ namespace liblec {
 								containers::pane pane(page, widgets::pane_impl::table_pane_alias_prefix() + widget.first);
 
 								// clone essential properties to pane
-								pane().rect = table_specs.rect;
-								pane().on_resize = table_specs.on_resize;
-								pane().color_fill = table_specs.color_fill;
-								pane().color_border = table_specs.color_border;
+								pane()
+									.rect(table_specs.rect())
+									.on_resize(table_specs.on_resize())
+									.color_fill(table_specs.color_fill())
+									.color_border(table_specs.color_border());
 
 								// save move info so we can move the table into the pane later
 								// we cannot do it here because we're iterating
@@ -2058,8 +2102,9 @@ namespace liblec {
 						table() = it.table;
 
 						// adjust specs
-						table().rect = { 0, it.destination.size().width, 0, it.destination.size().height };
-						table().on_resize = { 0, 0, 0, 0 };	// critical because table will change size as table is browsed or changed. the pane scroll bars will do the job.
+						table()
+							.rect({ 0, it.destination.size().width, 0, it.destination.size().height })
+							.on_resize({ 0, 0, 0, 0 });	// critical because table will change size as table is browsed or changed. the pane scroll bars will do the job.
 
 						// close widget
 						std::string error;
@@ -2781,7 +2826,7 @@ namespace liblec {
 			auto it = p_status_panes_.find(alias);
 			if (it != p_status_panes_.end()) {
 				try {
-					if (!p_status_pane_specs_.at(it->first).floating)
+					if (!p_status_pane_specs_.at(it->first).floating())
 						size = it->second.size();
 				}
 				catch (const std::exception&) {}

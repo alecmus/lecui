@@ -39,37 +39,37 @@ namespace liblec {
 			ID2D1HwndRenderTarget* p_render_target) {
 			specs_old_ = specs_;
 			is_static_ = true;
-			h_cursor_ = get_cursor(specs_.cursor);
+			h_cursor_ = get_cursor(specs_.cursor());
 
 			HRESULT hr = S_OK;
 
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_fill),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_fill()),
 					&p_brush_fill_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_empty),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_empty()),
 					&p_brush_empty_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_hot),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_hot()),
 					&p_brush_hot_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_disabled),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_disabled()),
 					&p_brush_disabled_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_selected),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_selected()),
 					&p_brush_selected_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_text),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_text()),
 					&p_brush_);
 			if (SUCCEEDED(hr)) {
 				// Create a DirectWrite text format object.
 				hr = p_directwrite_factory_->CreateTextFormat(
-					convert_string(specs_.font).c_str(),
+					convert_string(specs_.font()).c_str(),
 					NULL,
 					DWRITE_FONT_WEIGHT_NORMAL,
 					DWRITE_FONT_STYLE_NORMAL,
 					DWRITE_FONT_STRETCH_NORMAL,
-					convert_fontsize_to_dip(specs_.font_size),
+					convert_fontsize_to_dip(specs_.font_size()),
 					L"", //locale
 					&p_text_format_
 					);
@@ -108,10 +108,10 @@ namespace liblec {
 				create_resources(p_render_target);
 
 			// sanity check
-			specs_.percentage = smallest(specs_.percentage, 100.f);
-			specs_.percentage = largest(specs_.percentage, 0.f);
+			specs_.percentage(smallest(specs_.percentage(), 100.f));
+			specs_.percentage(largest(specs_.percentage(), 0.f));
 
-			rect_ = position(specs_.rect, specs_.on_resize, change_in_size.width, change_in_size.height);
+			rect_ = position(specs_.rect(), specs_.on_resize(), change_in_size.width, change_in_size.height);
 			rect_.left -= offset.x;
 			rect_.right -= offset.x;
 			rect_.top -= offset.y;
@@ -121,10 +121,10 @@ namespace liblec {
 				return rect_;
 
 			auto rect_ellipse_ = rect_;
-			rect_ellipse_.left += (specs_.line_thickness_fill * 2.f);
-			rect_ellipse_.top += (specs_.line_thickness_fill * 2.f);
-			rect_ellipse_.right -= (specs_.line_thickness_fill * 2.f);
-			rect_ellipse_.bottom -= (specs_.line_thickness_fill * 2.f);
+			rect_ellipse_.left += (specs_.line_thickness_fill() * 2.f);
+			rect_ellipse_.top += (specs_.line_thickness_fill() * 2.f);
+			rect_ellipse_.right -= (specs_.line_thickness_fill() * 2.f);
+			rect_ellipse_.bottom -= (specs_.line_thickness_fill() * 2.f);
 
 			// draw unfilled circle
 			const auto radius_x = (rect_ellipse_.right - rect_ellipse_.left) / 2.f;
@@ -134,14 +134,14 @@ namespace liblec {
 				radius_y
 			};
 
-			p_render_target->DrawEllipse(ellipse, p_brush_empty_, specs_.line_thickness_empty);
+			p_render_target->DrawEllipse(ellipse, p_brush_empty_, specs_.line_thickness_empty());
 
 			// draw filled arc
 			const auto start_point = D2D1::Point2F(rect_ellipse_.left + radius_x, rect_ellipse_.top);
 
 			const double pi = 3.1415926535897932384626433832795;
 
-			float percentage = specs_.percentage;
+			float percentage = specs_.percentage();
 			percentage = smallest(percentage, 99.9999f);	// so arc is drawn full
 			percentage = largest(percentage, 0.f);			// failsafe
 
@@ -176,25 +176,25 @@ namespace liblec {
 					}
 
 					// draw the geometry
-					p_render_target->DrawGeometry(p_arc_geometry, p_brush_fill_, specs_.line_thickness_fill);
+					p_render_target->DrawGeometry(p_arc_geometry, p_brush_fill_, specs_.line_thickness_fill());
 					safe_release(&p_arc_geometry);
 				}
 			}
 
 			// draw start line
-			p_render_target->DrawLine(D2D1::Point2F(start_point.x, start_point.y - specs_.line_thickness_fill / 2.f),
-				D2D1::Point2F(start_point.x, start_point.y + specs_.line_thickness_fill * 2.f),
-				p_brush_fill_, specs_.line_thickness_fill / 2.f);
+			p_render_target->DrawLine(D2D1::Point2F(start_point.x, start_point.y - specs_.line_thickness_fill() / 2.f),
+				D2D1::Point2F(start_point.x, start_point.y + specs_.line_thickness_fill() * 2.f),
+				p_brush_fill_, specs_.line_thickness_fill() / 2.f);
 
 			// draw end dot
 			D2D1_ELLIPSE dot{ end_point,
-				specs_.line_thickness_fill * 2.f,
-				specs_.line_thickness_fill * 2.f };
+				specs_.line_thickness_fill() * 2.f,
+				specs_.line_thickness_fill() * 2.f };
 
 			p_render_target->FillEllipse(dot, p_brush_fill_);
 
 			// create a text layout
-			std::string text = roundoff::tostr<char>(specs_.percentage, specs_.precision) + "%";
+			std::string text = roundoff::tostr<char>(specs_.percentage(), specs_.precision()) + "%";
 			HRESULT hr = p_directwrite_factory_->CreateTextLayout(convert_string(text).c_str(),
 				(UINT32)text.length(), p_text_format_, rect_ellipse_.right - rect_ellipse_.left,
 				rect_ellipse_.bottom - rect_ellipse_.top, &p_text_layout_);

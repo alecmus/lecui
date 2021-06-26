@@ -27,51 +27,46 @@ namespace liblec {
 				/// <summary>Table view widget specifications.</summary>
 				/// <remarks>Default size is 200x200px.</remarks>
 				class table_view_specs : public specs {
-				public:
-					table_view_specs() {
-						rect.size({ 200.f, 200.f });
-					}
-
-					/// <summary>The color of the text in a selected row.</summary>
-					color color_text_selected;
+					/// <summary>The thickness of the border.</summary>
+					float border_ = .5f;
 
 					/// <summary>The color of the border.</summary>
-					color color_border;
+					color color_border_;
+
+					/// <summary>The horizontal radius of the corners.</summary>
+					float corner_radius_x_ = 2.f;
+
+					/// <summary>The vertical radius of the corners.</summary>
+					float corner_radius_y_ = 2.f;
+
+					/// <summary>The color of the text in a selected row.</summary>
+					color color_text_selected_;
 
 					/// <summary>The color of the grid lines.</summary>
-					color color_grid;
+					color color_grid_;
 
 					/// <summary>The color of the header text.</summary>
-					color color_text_header;
+					color color_text_header_;
 
 					/// <summary>The table header's fill color.</summary>
-					color color_fill_header;
+					color color_fill_header_;
 
 					/// <summary>The table's alternate row color (used for the background of
 					/// even rows).</summary>
-					color color_fill_alternate;
-					
+					color color_fill_alternate_;
+
 					/// <summary>The background color of a row when the mouse is over it.</summary>
-					color color_row_hot;
+					color color_row_hot_;
 
 					/// <summary>The background color of a selected row.</summary>
-					color color_row_selected;
-
-					/// <summary>The thickness of the border.</summary>
-					float border = .5f;
-
-					/// <summary>The horizontal radius of the corners.</summary>
-					float corner_radius_x = 2.f;
-
-					/// <summary>The vertical radius of the corners.</summary>
-					float corner_radius_y = 2.f;
+					color color_row_selected_;
 
 					/// <summary>The table view columns.</summary>
 					/// <example>
 					/// Two columns can be defined as follows:
 					/// columns = { { "Name", 130 }, { "Surname", 210 } };
 					/// </example>
-					std::vector<table_column> columns;
+					std::vector<table_column> columns_;
 
 					/// <summary>
 					/// The table data. Each entry of the vector (a map) is a row and should
@@ -88,10 +83,15 @@ namespace liblec {
 					/// { {"Name", "Tanaka"}, {"Surname", "Sibanda"} },
 					/// { {"Name", "Precious"}, {"Surname", "Ncube"} }
 					/// </example>
-					std::vector<std::map<std::string, std::string>> data;
+					std::vector<std::map<std::string, std::string>> data_;
 
 					/// <summary>The rows to select by default, numbered from 0.</summary>
-					std::vector<long> selected;
+					std::vector<long> selected_;
+
+				public:
+					table_view_specs() {
+						rect_.size({ 200.f, 200.f });
+					}
 
 					/// <summary>Events specific to this widget.</summary>
 					struct table_view_events : basic_events {
@@ -108,6 +108,166 @@ namespace liblec {
 
 					bool operator==(const table_view_specs&);
 					bool operator!=(const table_view_specs&);
+
+					// generic specs
+
+					std::string& text() override { return text_; }
+					table_view_specs& text(const std::string& text) {
+						text_ = text;
+						return *this;
+					}
+
+					std::string& tooltip() override { return tooltip_; }
+					table_view_specs& tooltip(const std::string& tooltip) {
+						tooltip_ = tooltip;
+						return *this;
+					}
+
+					lecui::rect& rect() override { return rect_; }
+					table_view_specs& rect(const lecui::rect& rect) {
+						rect_ = rect;
+						return *this;
+					}
+
+					resize_params& on_resize() override { return on_resize_; }
+					table_view_specs& on_resize(const resize_params& on_resize) {
+						on_resize_ = on_resize;
+						return *this;
+					}
+
+					cursor_type& cursor() override { return cursor_; }
+					table_view_specs& cursor(const cursor_type cursor) {
+						cursor_ = cursor;
+						return *this;
+					}
+
+					std::string& font() override { return font_; }
+					table_view_specs& font(const std::string& font) {
+						font_ = font;
+						return *this;
+					}
+
+					float& font_size() override { return font_size_; }
+					table_view_specs& font_size(const float& font_size) {
+						font_size_ = font_size;
+						return *this;
+					}
+
+					color& color_text() override { return color_text_; }
+					table_view_specs& color_text(const color& color_text) {
+						color_text_ = color_text;
+						return *this;
+					}
+
+					color& color_fill() override { return color_fill_; }
+					table_view_specs& color_fill(const color& color_fill) {
+						color_fill_ = color_fill;
+						return *this;
+					}
+
+					color& color_hot() override { return color_hot_; }
+					table_view_specs& color_hot(const color& color_hot) {
+						color_hot_ = color_hot;
+						return *this;
+					}
+
+					color& color_selected() override { return color_selected_; }
+					table_view_specs& color_selected(const color& color_selected) {
+						color_selected_ = color_selected;
+						return *this;
+					}
+
+					color& color_disabled() override { return color_disabled_; }
+					table_view_specs& color_disabled(const color& color_disabled) {
+						color_disabled_ = color_disabled;
+						return *this;
+					}
+
+					// widget specific specs
+
+					float& border() { return border_; }
+					table_view_specs& border(const float& border) {
+						border_ = border;
+						return *this;
+					}
+
+					color& color_border() { return color_border_; }
+					table_view_specs& color_border(const color& color_border) {
+						color_border_ = color_border;
+						return *this;
+					}
+
+					float& corner_radius_x() { return corner_radius_x_; }
+					table_view_specs& corner_radius_x(const float& corner_radius_x) {
+						corner_radius_x_ = corner_radius_x;
+						return *this;
+					}
+
+					float& corner_radius_y() { return corner_radius_y_; }
+					table_view_specs& corner_radius_y(const float& corner_radius_y) {
+						corner_radius_y_ = corner_radius_y;
+						return *this;
+					}
+
+					color& color_text_selected() { return color_text_selected_; }
+					table_view_specs& color_text_selected(const color& color_text_selected) {
+						color_text_selected_ = color_text_selected;
+						return *this;
+					}
+
+					color& color_grid() { return color_grid_; }
+					table_view_specs& color_grid(const color& color_grid) {
+						color_grid_ = color_grid;
+						return *this;
+					}
+
+					color& color_text_header() { return color_text_header_; }
+					table_view_specs& color_text_header(const color& color_text_header) {
+						color_text_header_ = color_text_header;
+						return *this;
+					}
+
+					color& color_fill_header() { return color_fill_header_; }
+					table_view_specs& color_fill_header(const color& color_fill_header) {
+						color_fill_header_ = color_fill_header;
+						return *this;
+					}
+
+					color& color_fill_alternate() { return color_fill_alternate_; }
+					table_view_specs& color_fill_alternate(const color& color_fill_alternate) {
+						color_fill_alternate_ = color_fill_alternate;
+						return *this;
+					}
+
+					color& color_row_hot() { return color_row_hot_; }
+					table_view_specs& color_row_hot(const color& color_row_hot) {
+						color_row_hot_ = color_row_hot;
+						return *this;
+					}
+
+					color& color_row_selected() { return color_row_selected_; }
+					table_view_specs& color_row_selected(const color& color_row_selected) {
+						color_row_selected_ = color_row_selected;
+						return *this;
+					}
+
+					std::vector<table_column>& columns() { return columns_; }
+					table_view_specs& columns(const std::vector<table_column>& columns) {
+						columns_ = columns;
+						return *this;
+					}
+
+					std::vector<std::map<std::string, std::string>>& data() { return data_; }
+					table_view_specs& data(const std::vector<std::map<std::string, std::string>>& data) {
+						data_ = data;
+						return *this;
+					}
+
+					std::vector<long>& selected() { return selected_; }
+					table_view_specs& selected(const std::vector<long>& selected) {
+						selected_ = selected;
+						return *this;
+					}
 
 				private:
 					table_view_events table_events_;

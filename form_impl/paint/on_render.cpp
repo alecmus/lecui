@@ -213,7 +213,7 @@ namespace liblec {
 
 									bool groupbox_initialized = false;
 									for (auto& widget_alias :
-										page.d_page_.get_group(widget.first).specs().widgets) {
+										page.d_page_.get_group(widget.first).specs().widgets()) {
 										try {
 											// get the rect for this widget
 											const auto& rect_ =
@@ -221,17 +221,17 @@ namespace liblec {
 
 											// adjust the groupbox rect
 											if (!groupbox_initialized) {
-												specs.rect = convert_rect(rect_);
+												specs.rect(convert_rect(rect_));
 												groupbox_initialized = true;
 											}
 											else {
-												specs.rect.left = smallest(specs.rect.left,
+												specs.rect().left = smallest(specs.rect().left,
 													rect_.left);
-												specs.rect.top = smallest(specs.rect.top,
+												specs.rect().top = smallest(specs.rect().top,
 													rect_.top);
-												specs.rect.right = largest(specs.rect.right,
+												specs.rect().right = largest(specs.rect().right,
 													rect_.right);
-												specs.rect.bottom = largest(specs.rect.bottom,
+												specs.rect().bottom = largest(specs.rect().bottom,
 													rect_.bottom);
 											}
 										}
@@ -239,10 +239,10 @@ namespace liblec {
 									}
 
 									// apply the margin
-									specs.rect.left -= specs.margin;
-									specs.rect.top -= specs.margin;
-									specs.rect.right += specs.margin;
-									specs.rect.bottom += specs.margin;
+									specs.rect().left -= specs.margin();
+									specs.rect().top -= specs.margin();
+									specs.rect().right += specs.margin();
+									specs.rect().bottom += specs.margin();
 
 									// get bounding rect for all controls within this groupbox
 								}
@@ -260,7 +260,7 @@ namespace liblec {
 
 								try {
 									// check if groupbox has widgets
-									if (page.d_page_.get_group(widget.first).specs().widgets.empty())
+									if (page.d_page_.get_group(widget.first).specs().widgets().empty())
 										continue;
 
 									// to-do: check if widgets actually exist and discontinue if they dont
@@ -302,9 +302,9 @@ namespace liblec {
 
 										const D2D1_SIZE_F change_in_size =
 										{ (tab_pane.tab_pane_area().right - tab_pane.tab_pane_area().left) -
-											(tab_pane().rect.right - tab_pane().rect.left),
+											(tab_pane().rect().right - tab_pane().rect().left),
 											(tab_pane.tab_pane_area().bottom - tab_pane.tab_pane_area().top) -
-											(tab_pane().rect.bottom - tab_pane().rect.top) };
+											(tab_pane().rect().bottom - tab_pane().rect().top) };
 
 										for (auto& tab : tab_pane.p_tabs_) {
 											const float page_tolerance_ = 10.f;
@@ -333,9 +333,9 @@ namespace liblec {
 
 											const D2D1_SIZE_F change_in_size =
 											{ (pane.pane_area().right - pane.pane_area().left) -
-												(pane().rect.right - pane().rect.left),
+												(pane().rect().right - pane().rect().left),
 												(pane.pane_area().bottom - pane.pane_area().top) -
-												(pane().rect.bottom - pane().rect.top) };
+												(pane().rect().bottom - pane().rect().top) };
 
 											for (auto& page : pane.p_panes_) {
 												const float page_tolerance_ = 10.f;

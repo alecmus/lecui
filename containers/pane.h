@@ -27,13 +27,120 @@ namespace liblec {
 			public:
 				/// <summary>Pane container specifications.</summary>
 				class pane_specs : public widgets::specs {
+					/// <summary>The thickness of the border.</summary>
+					float border_ = .5f;
+
+					/// <summary>The color of the border.</summary>
+					color color_border_;
+
+					/// <summary>The horizontal radius of the corners.</summary>
+					float corner_radius_x_ = 5.f;
+
+					/// <summary>The vertical radius of the corners.</summary>
+					float corner_radius_y_ = 5.f;
+
 				public:
 					pane_specs() {}
 
-					color color_border;
-					float border = .5f;
-					float corner_radius_x = 5.f;
-					float corner_radius_y = 5.f;
+					// generic specs
+
+					std::string& text() override { return text_; }
+					pane_specs& text(const std::string& text) {
+						text_ = text;
+						return *this;
+					}
+
+					std::string& tooltip() override { return tooltip_; }
+					pane_specs& tooltip(const std::string& tooltip) {
+						tooltip_ = tooltip;
+						return *this;
+					}
+
+					lecui::rect& rect() override { return rect_; }
+					pane_specs& rect(const lecui::rect& rect) {
+						rect_ = rect;
+						return *this;
+					}
+
+					resize_params& on_resize() override { return on_resize_; }
+					pane_specs& on_resize(const resize_params& on_resize) {
+						on_resize_ = on_resize;
+						return *this;
+					}
+
+					cursor_type& cursor() override { return cursor_; }
+					pane_specs& cursor(const cursor_type cursor) {
+						cursor_ = cursor;
+						return *this;
+					}
+
+					std::string& font() override { return font_; }
+					pane_specs& font(const std::string& font) {
+						font_ = font;
+						return *this;
+					}
+
+					float& font_size() override { return font_size_; }
+					pane_specs& font_size(const float& font_size) {
+						font_size_ = font_size;
+						return *this;
+					}
+
+					color& color_text() override { return color_text_; }
+					pane_specs& color_text(const color& color_text) {
+						color_text_ = color_text;
+						return *this;
+					}
+
+					color& color_fill() override { return color_fill_; }
+					pane_specs& color_fill(const color& color_fill) {
+						color_fill_ = color_fill;
+						return *this;
+					}
+
+					color& color_hot() override { return color_hot_; }
+					pane_specs& color_hot(const color& color_hot) {
+						color_hot_ = color_hot;
+						return *this;
+					}
+
+					color& color_selected() override { return color_selected_; }
+					pane_specs& color_selected(const color& color_selected) {
+						color_selected_ = color_selected;
+						return *this;
+					}
+
+					color& color_disabled() override { return color_disabled_; }
+					pane_specs& color_disabled(const color& color_disabled) {
+						color_disabled_ = color_disabled;
+						return *this;
+					}
+
+					// widget specific specs
+
+					float& border() { return border_; }
+					pane_specs& border(const float& border) {
+						border_ = border;
+						return *this;
+					}
+
+					color& color_border() { return color_border_; }
+					pane_specs& color_border(const color& color_border) {
+						color_border_ = color_border;
+						return *this;
+					}
+
+					float& corner_radius_x() { return corner_radius_x_; }
+					pane_specs& corner_radius_x(const float& corner_radius_x) {
+						corner_radius_x_ = corner_radius_x;
+						return *this;
+					}
+
+					float& corner_radius_y() { return corner_radius_y_; }
+					pane_specs& corner_radius_y(const float& corner_radius_y) {
+						corner_radius_y_ = corner_radius_y;
+						return *this;
+					}
 				};
 
 				/// <summary>Pane constructor.</summary>

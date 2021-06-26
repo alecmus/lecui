@@ -23,12 +23,6 @@ namespace liblec {
 			/// <summary>Base class for all widget specifications.</summary>
 			class specs {
 			public:
-				specs() {};
-				virtual ~specs() {};
-
-				/// <summary>The text to display when the mouse is hovered over the widget.</summary>
-				std::string tooltip;
-
 				/// <summary>Resize parameters.</summary>
 				/// <remarks>Affects how the widget behaves when the immediate container's
 				/// dimensions change.</remarks>
@@ -81,6 +75,55 @@ namespace liblec {
 					caret,
 				};
 
+			protected:
+				/// <summary>The widget text.</summary>
+				/// <remarks>The use of the text varies from widget to widget. Some widgets don't
+				/// use this field.</remarks>
+				std::string text_;
+
+				/// <summary>The text to display when the mouse is hovered over the widget.</summary>
+				std::string tooltip_;
+
+				/// <summary>The position and dimensions of the widget.</summary>
+				lecui::rect rect_;
+
+				/// <summary>The behaviour of the widget when its container is resized.</summary>
+				resize_params on_resize_ = { 0.f, 0.f, 0.f, 0.f };
+
+				/// <summary>The cursor to be used when the mouse is over the widget.</summary>
+				/// <remarks>This is only used if the widget is non-static.</remarks>
+				cursor_type cursor_ = cursor_type::arrow;
+
+				/// <summary>The font to use for the widget text.</summary>
+				std::string font_ = "Segoe UI";
+
+				/// <summary>The size of the font, in points.</summary>
+				float font_size_ = 9.f;
+
+				/// <summary>The color of the widget text.</summary>
+				color color_text_ = { 0, 0, 0, 255 };
+
+				/// <summary>The fill color of the widget.</summary>
+				/// <remarks>The use of the fill color varies from widget to widget. Refer to the
+				/// specific widget's documentation for details.</remarks>
+				color color_fill_ = { 0, 120, 170, 255 };
+
+				/// <summary>The hit color when the mouse is over the widget.</summary>
+				color color_hot_ = { 0, 120, 170, 255 };
+
+				/// <summary>The color to be used to mark the widget as selected.</summary>
+				color color_selected_ = { 0, 120, 170, 30 };
+
+				/// <summary>The color of the widget when it is disabled.</summary>
+				color color_disabled_ = { 180, 180, 180, 255 };
+
+			public:
+				specs() {};
+				virtual ~specs() {};
+
+				bool operator==(const specs&);
+				bool operator!=(const specs&);
+
 				/// <summary>Events common to all widgets.</summary>
 				struct basic_events {
 					/// <summary>The handler to be called when either the space bar or enter key
@@ -97,57 +140,27 @@ namespace liblec {
 					std::function<void()> mouse_leave = nullptr;
 				};
 
-				/// <summary>The widget text.</summary>
-				/// <remarks>The use of the text varies from widget to widget. Some widgets don't
-				/// use this field.</remarks>
-				std::string text;
-
-				/// <summary>The position and dimensions of the widget.</summary>
-				lecui::rect rect;
-
-				/// <summary>The behaviour of the widget when its container is resized.</summary>
-				resize_params on_resize = { 0.f, 0.f, 0.f, 0.f };
-
-				/// <summary>The cursor to be used when the mouse is over the widget.</summary>
-				/// <remarks>This is only used if the widget is non-static.</remarks>
-				cursor_type cursor = cursor_type::arrow;
-
-				/// <summary>The font to use for the widget text.</summary>
-				std::string font = "Segoe UI";
-
-				/// <summary>The size of the font, in points.</summary>
-				float font_size = 9.f;
-
-				/// <summary>The color of the widget text.</summary>
-				color color_text = { 0, 0, 0, 255 };
-
-				/// <summary>The fill color of the widget.</summary>
-				/// <remarks>The use of the fill color varies from widget to widget. Refer to the
-				/// specific widget's documentation for details.</remarks>
-				color color_fill = { 0, 120, 170, 255 };
-
-				/// <summary>The hit color when the mouse is over the widget.</summary>
-				color color_hot = { 0, 120, 170, 255 };
-
-				/// <summary>The color to be used to mark the widget as selected.</summary>
-				color color_selected = { 0, 120, 170, 30 };
-
-				/// <summary>The color of the widget when it is disabled.</summary>
-				color color_disabled = { 180, 180, 180, 255 };
+				virtual std::string& text() = 0;
+				virtual std::string& tooltip() = 0;
+				virtual lecui::rect& rect() = 0;
+				virtual resize_params& on_resize() = 0;
+				virtual cursor_type& cursor() = 0;
+				virtual std::string& font() = 0;
+				virtual float& font_size() = 0;
+				virtual color& color_text() = 0;
+				virtual color& color_fill() = 0;
+				virtual color& color_hot() = 0;
+				virtual color& color_selected() = 0;
+				virtual color& color_disabled() = 0;
 
 				/// <summary>Widget events.</summary>
 				/// <remarks>Widgets with additional events need to override this method.</remarks>
 				/// <returns>A reference to the widget's basic events.</returns>
-				basic_events& events() {
-					return events_;
-				}
+				basic_events& events() { return events_; }
 
-				bool operator==(const specs&);
-				bool operator!=(const specs&);
-
-				const std::string& alias() {
-					return alias_;
-				}
+				/// <summary>The widget's alias, either user defined or automatically generated by the library.</summary>
+				/// <returns>The alias.</returns>
+				const std::string& alias() { return alias_; }
 
 			private:
 				basic_events events_;

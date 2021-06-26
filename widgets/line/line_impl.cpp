@@ -31,21 +31,21 @@ namespace liblec {
 			ID2D1HwndRenderTarget* p_render_target) {
 			specs_old_ = specs_;
 			is_static_ = (specs_.events().click == nullptr && specs_.events().action == nullptr);
-			h_cursor_ = get_cursor(specs_.cursor);
+			h_cursor_ = get_cursor(specs_.cursor());
 
 			HRESULT hr = S_OK;
 
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_fill),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_fill()),
 					&p_brush_fill_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_hot),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_hot()),
 					&p_brush_hot_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_disabled),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_disabled()),
 					&p_brush_disabled_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_selected),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_selected()),
 					&p_brush_selected_);
 
 			resources_created_ = true;
@@ -72,7 +72,7 @@ namespace liblec {
 			if (!resources_created_)
 				create_resources(p_render_target);
 
-			rect_ = position(specs_.rect, specs_.on_resize, change_in_size.width, change_in_size.height);
+			rect_ = position(specs_.rect(), specs_.on_resize(), change_in_size.width, change_in_size.height);
 			rect_.left -= offset.x;
 			rect_.right -= offset.x;
 			rect_.top -= offset.y;
@@ -81,16 +81,16 @@ namespace liblec {
 			if (!render || !visible_)
 				return rect_;
 
-			if (!specs_.points.empty()) {
-				D2D1_POINT_2F previous = { rect_.left + specs_.points[0].x, rect_.top + specs_.points[0].y };
-				for (auto& pt : specs_.points) {
+			if (!specs_.points().empty()) {
+				D2D1_POINT_2F previous = { rect_.left + specs_.points()[0].x, rect_.top + specs_.points()[0].y };
+				for (auto& pt : specs_.points()) {
 					D2D1_POINT_2F current = { rect_.left + pt.x, rect_.top + pt.y };
 
 					if (!(current.x == previous.x && current.y == previous.y))
 						p_render_target->DrawLine(previous, current, is_enabled_ ?
 							(hit_ ? p_brush_hot_ :
 								(selected_ ? p_brush_selected_ : p_brush_fill_)) : p_brush_disabled_,
-							specs_.thickness);
+							specs_.thickness());
 
 					previous = current;
 				}

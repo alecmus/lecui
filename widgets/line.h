@@ -24,19 +24,107 @@ namespace liblec {
 			public:
 				/// <summary>Line widget specifications.</summary>
 				class line_specs : public specs {
-				public:
-					line_specs() {}
-
 					/// <summary>The thickness of the line.</summary>
-					float thickness = 1.f;
+					float thickness_ = 1.f;
 
 					/// <summary>The points, in order, for the line line to go through. These
 					/// are relative to the top left corner of the line's bounding rectangle.
 					/// </summary>
-					std::vector<point> points;
+					std::vector<point> points_;
+
+				public:
+					line_specs() {}
 
 					bool operator==(const line_specs&);
 					bool operator!=(const line_specs&);
+
+					// generic specs
+
+					std::string& text() override { return text_; }
+					line_specs& text(const std::string& text) {
+						text_ = text;
+						return *this;
+					}
+
+					std::string& tooltip() override { return tooltip_; }
+					line_specs& tooltip(const std::string& tooltip) {
+						tooltip_ = tooltip;
+						return *this;
+					}
+
+					lecui::rect& rect() override { return rect_; }
+					line_specs& rect(const lecui::rect& rect) {
+						rect_ = rect;
+						return *this;
+					}
+
+					resize_params& on_resize() override { return on_resize_; }
+					line_specs& on_resize(const resize_params& on_resize) {
+						on_resize_ = on_resize;
+						return *this;
+					}
+
+					cursor_type& cursor() override { return cursor_; }
+					line_specs& cursor(const cursor_type cursor) {
+						cursor_ = cursor;
+						return *this;
+					}
+
+					std::string& font() override { return font_; }
+					line_specs& font(const std::string& font) {
+						font_ = font;
+						return *this;
+					}
+
+					float& font_size() override { return font_size_; }
+					line_specs& font_size(const float& font_size) {
+						font_size_ = font_size;
+						return *this;
+					}
+
+					color& color_text() override { return color_text_; }
+					line_specs& color_text(const color& color_text) {
+						color_text_ = color_text;
+						return *this;
+					}
+
+					color& color_fill() override { return color_fill_; }
+					line_specs& color_fill(const color& color_fill) {
+						color_fill_ = color_fill;
+						return *this;
+					}
+
+					color& color_hot() override { return color_hot_; }
+					line_specs& color_hot(const color& color_hot) {
+						color_hot_ = color_hot;
+						return *this;
+					}
+
+					color& color_selected() override { return color_selected_; }
+					line_specs& color_selected(const color& color_selected) {
+						color_selected_ = color_selected;
+						return *this;
+					}
+
+					color& color_disabled() override { return color_disabled_; }
+					line_specs& color_disabled(const color& color_disabled) {
+						color_disabled_ = color_disabled;
+						return *this;
+					}
+
+					// widget specific specs
+
+					float& thickness() { return thickness_; }
+					line_specs& thickness(const float& thickness) {
+						thickness_ = thickness;
+						return *this;
+					}
+
+					std::vector<point>& points() { return points_; }
+					line_specs& points(const std::vector<point>& points) {
+						points_ = points;
+						return *this;
+					}
 				};
 
 				/// <summary>Line constructor.</summary>

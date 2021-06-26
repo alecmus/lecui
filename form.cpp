@@ -284,7 +284,7 @@ namespace liblec {
 				const size max_size_ = { 420.f, 400.f };
 				const std::string question_;
 				const float margin_ = 10.f;
-				const size button_size_ = widgets::button::button_specs().rect.size();
+				const size button_size_ = widgets::button::button_specs().rect().size();
 				bool& user_agreed_;
 
 			public:
@@ -302,7 +302,7 @@ namespace liblec {
 					// measure the question
 					widgets::label::label_specs specs_lbl;
 					rect = widgets::measure_label(d_.p_directwrite_factory_, question,
-						specs_lbl.font, specs_lbl.font_size, false, false, rect);
+						specs_lbl.font(), specs_lbl.font_size(), false, false, rect);
 
 					auto width = (rect.right - rect.left) + 2 * margin_;
 					auto height = d_.caption_bar_height_ + margin_ + (rect.bottom - rect.top) +
@@ -321,18 +321,17 @@ namespace liblec {
 					auto& home_page = page_man.add("home");
 
 					widgets::label label(home_page);
-					label().text = question_;
-					label().multiline = true;
-					label().rect = { margin_, home_page.size().width, margin_,
-						home_page.size().height - margin_ - button_size_.height - margin_ };
+					label().text(question_).multiline(true)
+						.rect({ margin_, home_page.size().width, margin_,
+						home_page.size().height - margin_ - button_size_.height - margin_ });
 
 					// add yes and no buttons, in that order for tab navigation
 					widgets::button  button_yes(home_page, "button_yes");
 					widgets::button button_no(home_page, "button_no");
 
 					// position the no button on the bottom right
-					button_no().text = "No";
-					button_no().rect.place({ margin_, home_page.size().width - margin_,
+					button_no().text("No")
+						.rect().place({ margin_, home_page.size().width - margin_,
 							margin_, home_page.size().height - margin_ }, 100.f, 100.f);
 					button_no().events().action = [&]() {
 						user_agreed_ = false;
@@ -340,8 +339,8 @@ namespace liblec {
 					};
 
 					// snap the yes button to the no button
-					button_yes().text = "Yes";
-					button_yes().rect.snap_to(button_no().rect, lecui::rect::snap_type::left, margin_);
+					button_yes().text("Yes")
+						.rect().snap_to(button_no().rect(), lecui::rect::snap_type::left, margin_);
 					button_yes().events().action = [&]() {
 						user_agreed_ = true;
 						close();
@@ -370,7 +369,7 @@ namespace liblec {
 					const size max_size_ = { 420.f, 400.f };
 					const std::string message_;
 					const float margin_ = 10.f;
-					const size button_size_ = widgets::button::button_specs().rect.size();
+					const size button_size_ = widgets::button::button_specs().rect().size();
 
 				public:
 					message_form(const std::string& title, const std::string& message, form& parent) :
@@ -386,7 +385,7 @@ namespace liblec {
 						// measure the message
 						widgets::label::label_specs specs_lbl;
 						rect = widgets::measure_label(d_.p_directwrite_factory_, message,
-							specs_lbl.font, specs_lbl.font_size, false, false, rect);
+							specs_lbl.font(), specs_lbl.font_size(), false, false, rect);
 
 						auto width = (rect.right - rect.left) + 2 * margin_;
 						auto height = d_.caption_bar_height_ + margin_ + (rect.bottom - rect.top) +
@@ -405,15 +404,14 @@ namespace liblec {
 						auto& home_page = page_man.add("home");
 
 						widgets::label label(home_page);
-						label().text = message_;
-						label().multiline = true;
-						label().rect = { margin_, home_page.size().width, margin_,
-							home_page.size().height - margin_ - button_size_.height - margin_ };
+						label().text(message_).multiline(true)
+							.rect({ margin_, home_page.size().width, margin_,
+							home_page.size().height - margin_ - button_size_.height - margin_ });
 
 						// add the ok button on the bottom right
 						widgets::button button(home_page, "button_ok");
-						button().text = "Ok";
-						button().rect.place({margin_, home_page.size().width - margin_,
+						button().text("Ok")
+							.rect().place({margin_, home_page.size().width - margin_,
 							margin_, home_page.size().height - margin_ }, 100.f, 100.f);
 						button().events().action = [&]() { close(); };
 

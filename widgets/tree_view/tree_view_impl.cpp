@@ -42,31 +42,31 @@ namespace liblec {
 			ID2D1HwndRenderTarget* p_render_target) {
 			specs_old_ = specs_;
 			is_static_ = false;
-			h_cursor_ = get_cursor(specs_.cursor);
+			h_cursor_ = get_cursor(specs_.cursor());
 
 			HRESULT hr = S_OK;
 
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_hot),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_hot()),
 					&p_brush_hot_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_disabled),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_disabled()),
 					&p_brush_disabled_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_selected),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_selected()),
 					&p_brush_selected_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_text),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_text()),
 					&p_brush_);
 			if (SUCCEEDED(hr)) {
 				// Create a DirectWrite text format object.
 				hr = p_directwrite_factory_->CreateTextFormat(
-					convert_string(specs_.font).c_str(),
+					convert_string(specs_.font()).c_str(),
 					NULL,
 					DWRITE_FONT_WEIGHT_NORMAL,
 					DWRITE_FONT_STYLE_NORMAL,
 					DWRITE_FONT_STRETCH_NORMAL,
-					convert_fontsize_to_dip(specs_.font_size),
+					convert_fontsize_to_dip(specs_.font_size()),
 					L"", //locale
 					&p_text_format_
 					);
@@ -100,8 +100,8 @@ namespace liblec {
 				try {
 					if (tree_pane_specs_.has_value()) {
 						// update the special pane specs
-						tree_pane_specs_.value().get().color_fill = specs_.color_fill;
-						tree_pane_specs_.value().get().color_border = specs_.color_border;
+						tree_pane_specs_.value().get().color_fill() = specs_.color_fill();
+						tree_pane_specs_.value().get().color_border() = specs_.color_border();
 
 						// schedule a refresh
 						page_.d_page_.get_form().d_.schedule_refresh_ = true;
@@ -115,7 +115,7 @@ namespace liblec {
 			if (!resources_created_)
 				create_resources(p_render_target);
 
-			rect_ = position(specs_.rect, specs_.on_resize, change_in_size.width, change_in_size.height);
+			rect_ = position(specs_.rect(), specs_.on_resize(), change_in_size.width, change_in_size.height);
 			rect_.left -= offset.x;
 			rect_.right -= offset.x;
 			rect_.top -= offset.y;
@@ -315,16 +315,16 @@ namespace liblec {
 			auto optimized_right_ = 0.f;
 			auto optimized_bottom_ = 0.f;
 			helper::draw_level(p_direct2d_factory_, p_render_target, p_directwrite_factory_,
-				p_text_format_, p_brush_, p_brush_selected_, p_brush_hot_, specs_.font,
-				specs_.font_size, specs_.root, rect_, right_, bottom_, optimized_right_,
+				p_text_format_, p_brush_, p_brush_selected_, p_brush_hot_, specs_.font(),
+				specs_.font_size(), specs_.root(), rect_, right_, bottom_, optimized_right_,
 				optimized_bottom_, hit_, point_, get_dpi_scale());
 
 			const auto width = optimized_right_ - rect_.left;
 			const auto height = optimized_bottom_ - rect_.top;
 
 			// update widget rect
-			specs_.rect.width(width);
-			specs_.rect.height(height);
+			specs_.rect().width(width);
+			specs_.rect().height(height);
 
 			return rect_;
 		}
@@ -356,7 +356,7 @@ namespace liblec {
 			};
 
 			// mark selected
-			helper::check(specs_.root, point_, get_dpi_scale());
+			helper::check(specs_.root(), point_, get_dpi_scale());
 
 			// handle on_selection
 			if (specs_.events().selection)
@@ -408,7 +408,7 @@ namespace liblec {
 				}
 			};
 
-			helper::check(specs_.root, specs_.events().selection);
+			helper::check(specs_.root(), specs_.events().selection);
 		}
 	}
 }

@@ -19,8 +19,8 @@ namespace liblec {
 				specs::operator==(param) &&
 
 				// widget specific specs
-				(color_border == param.color_border) &&
-				(color_border_hot == param.color_border_hot);
+				(color_border_ == param.color_border_) &&
+				(color_border_hot_ == param.color_border_hot_);
 		}
 
 		bool widgets::rectangle::rectangle_specs::operator!=(const rectangle_specs& param) {
@@ -32,11 +32,12 @@ namespace liblec {
 			impl(containers::page& page, const std::string& alias) :
 				page_(page),
 				specs_(page_.d_page_.add_rectangle(alias)) {
-				specs_.color_fill = defaults::color(page_.d_page_.fm_.d_.theme_, item::rectangle);
-				specs_.color_border = defaults::color(page_.d_page_.fm_.d_.theme_, item::rectangle_border);
-				specs_.color_border_hot = defaults::color(page_.d_page_.fm_.d_.theme_, item::rectangle_border_hot);
-				specs_.color_hot = defaults::color(page_.d_page_.fm_.d_.theme_, item::rectangle_hover);
-				specs_.color_selected = defaults::color(page_.d_page_.fm_.d_.theme_, item::rectangle_selected);
+				specs_
+					.color_fill(defaults::color(page_.d_page_.fm_.d_.theme_, item::rectangle))
+					.color_border(defaults::color(page_.d_page_.fm_.d_.theme_, item::rectangle_border))
+					.color_border_hot(defaults::color(page_.d_page_.fm_.d_.theme_, item::rectangle_border_hot))
+					.color_hot(defaults::color(page_.d_page_.fm_.d_.theme_, item::rectangle_hover))
+					.color_selected(defaults::color(page_.d_page_.fm_.d_.theme_, item::rectangle_selected));
 
 			}
 			containers::page& page_;

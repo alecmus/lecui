@@ -19,7 +19,7 @@ namespace liblec {
 				specs::operator==(param) &&
 
 				// widget specific specs
-				(color_border == param.color_border);
+				(color_border_ == param.color_border_);
 		}
 
 		bool widgets::progress_bar::progress_bar_specs::operator!=(const progress_bar_specs& param) {
@@ -31,8 +31,9 @@ namespace liblec {
 			impl(containers::page& page, const std::string& alias) :
 				page_(page),
 				specs_(page_.d_page_.add_progress_bar(alias)) {
-				specs_.color_fill = defaults::color(page_.d_page_.fm_.d_.theme_, item::progress_bar);
-				specs_.color_border = defaults::color(page_.d_page_.fm_.d_.theme_, item::progress_bar_border);
+				specs_
+					.color_fill(defaults::color(page_.d_page_.fm_.d_.theme_, item::progress_bar))
+					.color_border(defaults::color(page_.d_page_.fm_.d_.theme_, item::progress_bar_border));
 			}
 			containers::page& page_;
 			progress_bar_specs& specs_;

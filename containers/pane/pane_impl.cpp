@@ -67,16 +67,16 @@ namespace liblec {
 			HRESULT hr = S_OK;
 
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_text),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_text()),
 					&p_brush_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_fill),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_fill()),
 					&p_brush_fill_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_border),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_border()),
 					&p_brush_border_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_disabled),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_disabled()),
 					&p_brush_disabled_);
 
 			resources_created_ = true;
@@ -103,7 +103,7 @@ namespace liblec {
 			if (!resources_created_)
 				create_resources(p_render_target);
 
-			rect_pane_ = position(specs_.rect, specs_.on_resize, change_in_size.width, change_in_size.height);
+			rect_pane_ = position(specs_.rect(), specs_.on_resize(), change_in_size.width, change_in_size.height);
 			rect_pane_.left -= offset.x;
 			rect_pane_.right -= offset.x;
 			rect_pane_.top -= offset.y;
@@ -119,12 +119,12 @@ namespace liblec {
 				return rect_pane_;
 
 			D2D1_ROUNDED_RECT rounded_rect{ rect_client_area_,
-				specs_.corner_radius_x, specs_.corner_radius_y };
+				specs_.corner_radius_x(), specs_.corner_radius_y() };
 
 			p_render_target->FillRoundedRectangle(&rounded_rect,
 				is_enabled_ ? p_brush_fill_ : p_brush_disabled_);
 			p_render_target->DrawRoundedRectangle(&rounded_rect, is_enabled_ ?
-				p_brush_border_ : p_brush_disabled_, specs_.border);
+				p_brush_border_ : p_brush_disabled_, specs_.border());
 
 			return rect_pane_;
 		}

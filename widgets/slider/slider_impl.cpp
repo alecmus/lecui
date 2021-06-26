@@ -42,46 +42,46 @@ namespace liblec {
 			ID2D1HwndRenderTarget* p_render_target) {
 			specs_old_ = specs_;
 			is_static_ = (specs_.events().slider == nullptr && specs_.events().click == nullptr && specs_.events().action == nullptr);
-			h_cursor_ = get_cursor(specs_.cursor);
+			h_cursor_ = get_cursor(specs_.cursor());
 
 			HRESULT hr = S_OK;
 
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_border),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_border()),
 					&p_brush_border_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_knob),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_knob()),
 					&p_brush_knob_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_knob_hot),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_knob_hot()),
 					&p_brush_knob_hot_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_knob_border),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_knob_border()),
 					&p_brush_knob_border_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_tick),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_tick()),
 					&p_brush_tick_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_disabled),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_disabled()),
 					&p_brush_disabled_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_selected),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_selected()),
 					&p_brush_selected_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_text),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_text()),
 					&p_brush_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_fill),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_fill()),
 					&p_brush_fill_);
 			if (SUCCEEDED(hr)) {
 				// Create a DirectWrite text format object.
 				hr = p_directwrite_factory_->CreateTextFormat(
-					convert_string(specs_.font).c_str(),
+					convert_string(specs_.font()).c_str(),
 					NULL,
 					DWRITE_FONT_WEIGHT_NORMAL,
 					DWRITE_FONT_STYLE_NORMAL,
 					DWRITE_FONT_STRETCH_NORMAL,
-					convert_fontsize_to_dip(specs_.font_size),
+					convert_fontsize_to_dip(specs_.font_size()),
 					L"", //locale
 					&p_text_format_
 					);
@@ -122,7 +122,7 @@ namespace liblec {
 			if (!resources_created_)
 				create_resources(p_render_target);
 
-			rect_ = position(specs_.rect, specs_.on_resize, change_in_size.width, change_in_size.height);
+			rect_ = position(specs_.rect(), specs_.on_resize(), change_in_size.width, change_in_size.height);
 			rect_.left -= offset.x;
 			rect_.right -= offset.x;
 			rect_.top -= offset.y;
@@ -134,18 +134,18 @@ namespace liblec {
 			// function for snapping value to ticks
 			auto do_snap = [&](float& value) {
 				std::vector<float> snap_to;
-				const float major_div = specs_.major_tick_unit;
-				const float minor_div = specs_.major_tick_unit / (specs_.minor_tick_count + 1);
-				for (float p = specs_.range.minimum; p <= specs_.range.maximum; p += specs_.major_tick_unit) {
+				const float major_div = specs_.major_tick_unit();
+				const float minor_div = specs_.major_tick_unit() / (specs_.minor_tick_count() + 1);
+				for (float p = specs_.range().minimum; p <= specs_.range().maximum; p += specs_.major_tick_unit()) {
 					// add major div to snap vector
 					snap_to.push_back(p);
 
 					// add minor divs to snap vector
-					for (float v = p + minor_div; v < smallest(p + major_div, specs_.range.maximum); v += minor_div)
+					for (float v = p + minor_div; v < smallest(p + major_div, specs_.range().maximum); v += minor_div)
 						snap_to.push_back(v);
 				}
 
-				float snap_value = specs_.range.minimum;
+				float snap_value = specs_.range().minimum;
 
 				for (const auto& v : snap_to) {
 					auto lower = v;
@@ -159,28 +159,28 @@ namespace liblec {
 				}
 
 				value = snap_value;
-				value = largest(value, specs_.range.minimum);
-				value = smallest(value, specs_.range.maximum);
+				value = largest(value, specs_.range().minimum);
+				value = smallest(value, specs_.range().maximum);
 			};
 
 			if (abs(rect_.right - rect_.left) > abs(rect_.bottom - rect_.top)) {
 				// orient horizontally
 
 				// starting and ending points of slider
-				const D2D1_POINT_2F start = { rect_.left + specs_.knob_radius, rect_.top + specs_.knob_radius };
-				const D2D1_POINT_2F end = { rect_.right - specs_.knob_radius, rect_.top + specs_.knob_radius };
+				const D2D1_POINT_2F start = { rect_.left + specs_.knob_radius(), rect_.top + specs_.knob_radius() };
+				const D2D1_POINT_2F end = { rect_.right - specs_.knob_radius(), rect_.top + specs_.knob_radius() };
 
 				// draw slide
 				const D2D1_RECT_F slide_rect = {
-					start.x - (specs_.slide_thickness / 2.f),
-					start.y - (specs_.slide_thickness / 2.f),
-					end.x + (specs_.slide_thickness / 2.f),
-					end.y + (specs_.slide_thickness / 2.f)
+					start.x - (specs_.slide_thickness() / 2.f),
+					start.y - (specs_.slide_thickness() / 2.f),
+					end.x + (specs_.slide_thickness() / 2.f),
+					end.y + (specs_.slide_thickness() / 2.f)
 				};
 
-				const D2D1_ROUNDED_RECT slide_rect_rounded = { slide_rect, specs_.slide_thickness / 2.f, specs_.slide_thickness / 2.f };
+				const D2D1_ROUNDED_RECT slide_rect_rounded = { slide_rect, specs_.slide_thickness() / 2.f, specs_.slide_thickness() / 2.f };
 				p_render_target->FillRoundedRectangle(&slide_rect_rounded, p_brush_fill_);
-				p_render_target->DrawRoundedRectangle(&slide_rect_rounded, p_brush_border_, specs_.border);
+				p_render_target->DrawRoundedRectangle(&slide_rect_rounded, p_brush_border_, specs_.border());
 
 				if (pressed_) {
 					// compute new value
@@ -195,36 +195,36 @@ namespace liblec {
 					perc_along_ = smallest(perc_along_, 100.f);
 
 					// calculate value
-					specs_.value = (specs_.range.maximum - specs_.range.minimum) * perc_along_ / 100.f;
+					specs_.value((specs_.range().maximum - specs_.range().minimum) * perc_along_ / 100.f);
 				}
 
 				// snap the value to ticks
-				if (specs_.snap_to_ticks)
-					do_snap(specs_.value);
+				if (specs_.snap_to_ticks())
+					do_snap(specs_.value());
 
 				// draw ticks. to-do: remove magic numbers
 				const float y = slide_rect.bottom + 5.f;
 				const float y_major_tick = y + 6.f;
 				const float y_minor_tick = y + 2.5f;
-				const float major_div = (specs_.major_tick_unit / (specs_.range.maximum - specs_.range.minimum)) * (end.x - start.x);
-				const float minor_div = major_div / (specs_.minor_tick_count + 1);
+				const float major_div = (specs_.major_tick_unit() / (specs_.range().maximum - specs_.range().minimum)) * (end.x - start.x);
+				const float minor_div = major_div / (specs_.minor_tick_count() + 1);
 
 				auto value = 0.f;
-				const long major_ticks = static_cast<long>(floor((specs_.range.maximum - specs_.range.minimum) / specs_.major_tick_unit));
-				const long minor_ticks = major_ticks * specs_.minor_tick_count;
+				const long major_ticks = static_cast<long>(floor((specs_.range().maximum - specs_.range().minimum) / specs_.major_tick_unit()));
+				const long minor_ticks = major_ticks * specs_.minor_tick_count();
 
 				long minor_tick_count = 0;
 				for (long n_major = 0; n_major < major_ticks + 1; n_major++) {
 					const float x_major = start.x + major_div * n_major;
 
 					float lower_margin = y;
-					if (specs_.show_tick_marks) {
+					if (specs_.show_tick_marks()) {
 						lower_margin = y_major_tick;
 
 						// draw major ticks
 						p_render_target->DrawLine({ x_major, y }, { x_major, y_major_tick }, p_brush_tick_, 0.5f);
 
-						for (long n_minor = 1; minor_tick_count < minor_ticks && n_minor < specs_.minor_tick_count + 1; n_minor++) {
+						for (long n_minor = 1; minor_tick_count < minor_ticks && n_minor < specs_.minor_tick_count() + 1; n_minor++) {
 							const float x_minor = x_major + minor_div * n_minor;
 
 							// draw minor ticks
@@ -234,14 +234,14 @@ namespace liblec {
 					}
 
 					// draw tick label
-					if (specs_.show_tick_labels) {
+					if (specs_.show_tick_labels()) {
 						D2D1_RECT_F max_rect = { 0.f, 0.f, major_div, 20.f };
 
 						const auto label = roundoff::tostr<char>(value, 0);
-						value += specs_.major_tick_unit;
+						value += specs_.major_tick_unit();
 
 						auto label_rect = widgets::measure_label(p_directwrite_factory_, label,
-							specs_.font, specs_.font_size, true, true, max_rect);
+							specs_.font(), specs_.font_size(), true, true, max_rect);
 
 						D2D1_RECT_F optimal_rect = {
 							x_major - (label_rect.right - label_rect.left) / 2.f,
@@ -269,39 +269,39 @@ namespace liblec {
 
 				// draw knob
 				const D2D1_POINT_2F position = {
-					start.x + (specs_.value / (specs_.range.maximum - specs_.range.minimum)) * (end.x - start.x),
+					start.x + (specs_.value() / (specs_.range().maximum - specs_.range().minimum)) * (end.x - start.x),
 					start.y };
 
 				const D2D1_RECT_F knob_rect = {
-					position.x - specs_.knob_radius,
-					position.y - specs_.knob_radius,
-					position.x + specs_.knob_radius,
-					position.y + specs_.knob_radius,
+					position.x - specs_.knob_radius(),
+					position.y - specs_.knob_radius(),
+					position.x + specs_.knob_radius(),
+					position.y + specs_.knob_radius(),
 				};
 
 				// draw knob
-				const D2D1_ROUNDED_RECT knob_rect_round_ = { knob_rect, specs_.knob_radius, specs_.knob_radius };
+				const D2D1_ROUNDED_RECT knob_rect_round_ = { knob_rect, specs_.knob_radius(), specs_.knob_radius() };
 				p_render_target->FillRoundedRectangle(&knob_rect_round_, (!is_static_ && is_enabled_ && hit_) ? p_brush_knob_hot_ : p_brush_knob_);
-				p_render_target->DrawRoundedRectangle(&knob_rect_round_, selected_ ? p_brush_selected_ : p_brush_knob_border_, specs_.border);
+				p_render_target->DrawRoundedRectangle(&knob_rect_round_, selected_ ? p_brush_selected_ : p_brush_knob_border_, specs_.border());
 			}
 			else {
 				// orient vertically
 
 				// starting and ending points of slider
-				const D2D1_POINT_2F start = { rect_.left + specs_.knob_radius, rect_.bottom - specs_.knob_radius };
-				const D2D1_POINT_2F end = { rect_.left + specs_.knob_radius, rect_.top + specs_.knob_radius };
+				const D2D1_POINT_2F start = { rect_.left + specs_.knob_radius(), rect_.bottom - specs_.knob_radius() };
+				const D2D1_POINT_2F end = { rect_.left + specs_.knob_radius(), rect_.top + specs_.knob_radius() };
 
 				// draw slide
 				const D2D1_RECT_F slide_rect = {
-					start.x - (specs_.slide_thickness / 2.f),
-					start.y + (specs_.slide_thickness / 2.f),
-					end.x + (specs_.slide_thickness / 2.f),
-					end.y - (specs_.slide_thickness / 2.f)
+					start.x - (specs_.slide_thickness() / 2.f),
+					start.y + (specs_.slide_thickness() / 2.f),
+					end.x + (specs_.slide_thickness() / 2.f),
+					end.y - (specs_.slide_thickness() / 2.f)
 				};
 
-				const D2D1_ROUNDED_RECT slide_rect_rounded = { slide_rect, specs_.slide_thickness / 2.f, specs_.slide_thickness / 2.f };
+				const D2D1_ROUNDED_RECT slide_rect_rounded = { slide_rect, specs_.slide_thickness() / 2.f, specs_.slide_thickness() / 2.f };
 				p_render_target->FillRoundedRectangle(&slide_rect_rounded, p_brush_fill_);
-				p_render_target->DrawRoundedRectangle(&slide_rect_rounded, p_brush_border_, specs_.border);
+				p_render_target->DrawRoundedRectangle(&slide_rect_rounded, p_brush_border_, specs_.border());
 
 				if (pressed_) {
 					// compute new value
@@ -316,36 +316,36 @@ namespace liblec {
 					perc_along_ = smallest(perc_along_, 100.f);
 
 					// calculate value
-					specs_.value = (specs_.range.maximum - specs_.range.minimum) * perc_along_ / 100.f;
+					specs_.value() = (specs_.range().maximum - specs_.range().minimum) * perc_along_ / 100.f;
 				}
 
 				// snap the value to ticks
-				if (specs_.snap_to_ticks)
-					do_snap(specs_.value);
+				if (specs_.snap_to_ticks())
+					do_snap(specs_.value());
 
 				// draw ticks. to-do: remove magic numbers
 				const float x = slide_rect.right + 5.f;
 				const float x_major_tick = x + 6.f;
 				const float x_minor_tick = x + 2.5f;
-				const float major_div = (specs_.major_tick_unit / (specs_.range.maximum - specs_.range.minimum)) * (start.y - end.y);
-				const float minor_div = major_div / (specs_.minor_tick_count + 1);
+				const float major_div = (specs_.major_tick_unit() / (specs_.range().maximum - specs_.range().minimum)) * (start.y - end.y);
+				const float minor_div = major_div / (specs_.minor_tick_count() + 1);
 
 				auto value = 0.f;
-				const long major_ticks = static_cast<long>(floor((specs_.range.maximum - specs_.range.minimum) / specs_.major_tick_unit));
-				const long minor_ticks = major_ticks * specs_.minor_tick_count;
+				const long major_ticks = static_cast<long>(floor((specs_.range().maximum - specs_.range().minimum) / specs_.major_tick_unit()));
+				const long minor_ticks = major_ticks * specs_.minor_tick_count();
 
 				long minor_tick_count = 0;
 				for (long n_major = 0; n_major < major_ticks + 1; n_major++) {
 					const float y_major = start.y - major_div * n_major;
 
 					float lower_margin = x;
-					if (specs_.show_tick_marks) {
+					if (specs_.show_tick_marks()) {
 						lower_margin = x_major_tick;
 
 						// draw major ticks
 						p_render_target->DrawLine({ x, y_major }, { x_major_tick, y_major }, p_brush_tick_, 0.5f);
 
-						for (long n_minor = 1; minor_tick_count < minor_ticks && n_minor < specs_.minor_tick_count + 1; n_minor++) {
+						for (long n_minor = 1; minor_tick_count < minor_ticks && n_minor < specs_.minor_tick_count() + 1; n_minor++) {
 							const float y_minor = y_major - minor_div * n_minor;
 
 							// draw minor ticks
@@ -355,14 +355,14 @@ namespace liblec {
 					}
 
 					// draw tick label
-					if (specs_.show_tick_labels) {
+					if (specs_.show_tick_labels()) {
 						D2D1_RECT_F max_rect = { 0.f, 0.f, rect_.right - x_minor_tick - .5f, major_div };
 
 						const auto label = roundoff::tostr<char>(value, 0);
-						value += specs_.major_tick_unit;
+						value += specs_.major_tick_unit();
 
 						auto label_rect = widgets::measure_label(p_directwrite_factory_, label,
-							specs_.font, specs_.font_size, true, true, max_rect);
+							specs_.font(), specs_.font_size(), true, true, max_rect);
 
 						D2D1_RECT_F optimal_rect = {
 							lower_margin + .5f,
@@ -390,19 +390,19 @@ namespace liblec {
 
 				// draw knob
 				const D2D1_POINT_2F position = { start.x,
-					start.y - (specs_.value / (specs_.range.maximum - specs_.range.minimum)) * (start.y - end.y)};
+					start.y - (specs_.value() / (specs_.range().maximum - specs_.range().minimum)) * (start.y - end.y)};
 
 				const D2D1_RECT_F knob_rect = {
-					position.x - specs_.knob_radius,
-					position.y - specs_.knob_radius,
-					position.x + specs_.knob_radius,
-					position.y + specs_.knob_radius,
+					position.x - specs_.knob_radius(),
+					position.y - specs_.knob_radius(),
+					position.x + specs_.knob_radius(),
+					position.y + specs_.knob_radius(),
 				};
 
 				// draw knob
-				const D2D1_ROUNDED_RECT knob_rect_round_ = { knob_rect, specs_.knob_radius, specs_.knob_radius };
+				const D2D1_ROUNDED_RECT knob_rect_round_ = { knob_rect, specs_.knob_radius(), specs_.knob_radius() };
 				p_render_target->FillRoundedRectangle(&knob_rect_round_, (!is_static_ && is_enabled_ && hit_) ? p_brush_knob_hot_ : p_brush_knob_);
-				p_render_target->DrawRoundedRectangle(&knob_rect_round_, selected_ ? p_brush_selected_ : p_brush_knob_border_, specs_.border);
+				p_render_target->DrawRoundedRectangle(&knob_rect_round_, selected_ ? p_brush_selected_ : p_brush_knob_border_, specs_.border());
 			}
 
 			return rect_;
@@ -410,7 +410,7 @@ namespace liblec {
 
 		void widgets::slider_impl::on_click() {
 			if (specs_.events().slider)
-				specs_.events().slider(specs_.value);
+				specs_.events().slider(specs_.value());
 
 			if (specs_.events().click)
 				specs_.events().click();
@@ -421,7 +421,7 @@ namespace liblec {
 
 		void widgets::slider_impl::on_action() {
 			if (specs_.events().slider)
-				specs_.events().slider(specs_.value);
+				specs_.events().slider(specs_.value());
 
 			if (specs_.events().action)
 				specs_.events().action();

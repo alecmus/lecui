@@ -49,21 +49,21 @@ namespace liblec {
 			ID2D1HwndRenderTarget* p_render_target) {
 			specs_old_ = specs_;
 			is_static_ = (specs_.events().click == nullptr && specs_.events().action == nullptr);
-			h_cursor_ = get_cursor(specs_.cursor);
+			h_cursor_ = get_cursor(specs_.cursor());
 
 			HRESULT hr = S_OK;
 
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_fill),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_fill()),
 					&p_brush_fill_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_hot),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_hot()),
 					&p_brush_hot_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_disabled),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_disabled()),
 					&p_brush_disabled_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_selected),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_selected()),
 					&p_brush_selected_);
 
 			resources_created_ = true;
@@ -88,34 +88,38 @@ namespace liblec {
 				try {
 					if (rectangle_specs_.has_value()) {
 						// update rectangle specs
-						rectangle_specs_.value().get().corner_radius_x = specs_.corner_radius_x;
-						rectangle_specs_.value().get().corner_radius_y = specs_.corner_radius_y;
-						rectangle_specs_.value().get().border = specs_.border;
-						rectangle_specs_.value().get().color_fill = specs_.color_fill;
-						rectangle_specs_.value().get().color_border = specs_.color_border;
-						rectangle_specs_.value().get().color_hot = specs_.color_hot;
+						rectangle_specs_.value().get()
+							.corner_radius_x(specs_.corner_radius_x())
+							.corner_radius_y(specs_.corner_radius_y())
+							.border(specs_.border())
+							.color_fill(specs_.color_fill())
+							.color_border(specs_.color_border())
+							.color_hot(specs_.color_hot());
 					}
 
 					if (image_view_specs_.has_value()) {
 						// update image view specs
-						image_view_specs_.value().get().png_resource = specs_.png_resource;
-						image_view_specs_.value().get().file = specs_.file;
+						image_view_specs_.value().get()
+							.png_resource(specs_.png_resource())
+							.file(specs_.file());
 					}
 
 					if (label_specs_.has_value()) {
 						// update text specs
-						label_specs_.value().get().text = specs_.text;
-						label_specs_.value().get().color_text = specs_.color_text;
-						label_specs_.value().get().font = specs_.font;
-						label_specs_.value().get().font_size = specs_.font_size;
+						label_specs_.value().get()
+							.text(specs_.text())
+							.color_text(specs_.color_text())
+							.font(specs_.font())
+							.font_size(specs_.font_size());
 					}
 
 					if (description_specs_.has_value()) {
 						// update description specs
-						description_specs_.value().get().text = specs_.description;
-						description_specs_.value().get().color_text = specs_.color_text_description;
-						description_specs_.value().get().font = specs_.font;
-						description_specs_.value().get().font_size = specs_.font_size_description;
+						description_specs_.value().get()
+							.text(specs_.description())
+							.color_text(specs_.color_text_description())
+							.font(specs_.font())
+							.font_size(specs_.font_size_description());
 					}
 
 					// schedule a refresh
@@ -129,7 +133,7 @@ namespace liblec {
 			if (!resources_created_)
 				create_resources(p_render_target);
 
-			rect_ = position(specs_.rect, specs_.on_resize, change_in_size.width, change_in_size.height);
+			rect_ = position(specs_.rect(), specs_.on_resize(), change_in_size.width, change_in_size.height);
 			rect_.left -= offset.x;
 			rect_.right -= offset.x;
 			rect_.top -= offset.y;

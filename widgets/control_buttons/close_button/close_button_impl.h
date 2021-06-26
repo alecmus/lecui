@@ -15,7 +15,85 @@
 namespace liblec {
 	namespace lecui {
 		namespace widgets {
-			class close_button_specs : public specs {};
+			class close_button_specs : public specs {
+			public:
+				// generic specs
+
+				std::string& text() override { return text_; }
+				close_button_specs& text(const std::string& text) {
+					text_ = text;
+					return *this;
+				}
+
+				std::string& tooltip() override { return tooltip_; }
+				close_button_specs& tooltip(const std::string& tooltip) {
+					tooltip_ = tooltip;
+					return *this;
+				}
+
+				lecui::rect& rect() override { return rect_; }
+				close_button_specs& rect(const lecui::rect& rect) {
+					rect_ = rect;
+					return *this;
+				}
+
+				resize_params& on_resize() override { return on_resize_; }
+				close_button_specs& on_resize(const resize_params& on_resize) {
+					on_resize_ = on_resize;
+					return *this;
+				}
+
+				cursor_type& cursor() override { return cursor_; }
+				close_button_specs& cursor(const cursor_type cursor) {
+					cursor_ = cursor;
+					return *this;
+				}
+
+				std::string& font() override { return font_; }
+				close_button_specs& font(const std::string& font) {
+					font_ = font;
+					return *this;
+				}
+
+				float& font_size() override { return font_size_; }
+				close_button_specs& font_size(const float& font_size) {
+					font_size_ = font_size;
+					return *this;
+				}
+
+				color& color_text() override { return color_text_; }
+				close_button_specs& color_text(const color& color_text) {
+					color_text_ = color_text;
+					return *this;
+				}
+
+				color& color_fill() override { return color_fill_; }
+				close_button_specs& color_fill(const color& color_fill) {
+					color_fill_ = color_fill;
+					return *this;
+				}
+
+				color& color_hot() override { return color_hot_; }
+				close_button_specs& color_hot(const color& color_hot) {
+					color_hot_ = color_hot;
+					return *this;
+				}
+
+				color& color_selected() override { return color_selected_; }
+				close_button_specs& color_selected(const color& color_selected) {
+					color_selected_ = color_selected;
+					return *this;
+				}
+
+				color& color_disabled() override { return color_disabled_; }
+				close_button_specs& color_disabled(const color& color_disabled) {
+					color_disabled_ = color_disabled;
+					return *this;
+				}
+
+				// widget specific specs
+
+			};
 
 			class close_button_impl : public widget_impl {
 				/// private virtual function overrides

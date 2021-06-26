@@ -89,24 +89,24 @@ namespace liblec {
 			switch (d_.location_) {
 
 			case containers::status_pane::location::top: {
-				rect.height(specs.thickness);
+				rect.height(specs.thickness());
 				rect.place(rect_client, 50.f, 0.f);
 				on_resize = { 0, 0, 100, 0 };
 			} break;
 			case containers::status_pane::location::left: {
-				rect.width(specs.thickness);
+				rect.width(specs.thickness());
 				rect.place(rect_client, 0.f, 50.f);
 				on_resize = { 0, 0, 0, 100 };
 			} break;
 			case containers::status_pane::location::right: {
-				rect.width(specs.thickness);
+				rect.width(specs.thickness());
 				rect.place(rect_client, 100.f, 50.f);
 				on_resize = { 100, 0, 0, 100 };
 			} break;
 
 			case containers::status_pane::location::bottom:
 			default: {
-				rect.height(specs.thickness);
+				rect.height(specs.thickness());
 				rect.place(rect_client, 50.f, 100.f);
 				on_resize = { 0, 100, 100, 0 };
 			} break;
@@ -129,17 +129,15 @@ namespace liblec {
 			// add an invisible rect to bound the page. This is essential for scroll bars to work
 			// appropriately when contents don't reach the page borders
 			auto& rectangle = page_impl.add_rectangle(widgets::rectangle_impl::page_rect_alias());
-			rectangle.color_fill.alpha = 0;
+			rectangle.color_fill().alpha = 0;
 
 			// make it transparent
-			rectangle.color_border = { 255, 0, 0, 0 };
-			rectangle.color_hot = { 255, 0, 0, 0 };
+			rectangle.color_border({ 255, 0, 0, 0 }).color_hot({ 255, 0, 0, 0 })
 
-			// set its dimensions to exactly match the page
-			rectangle.rect.size(page_impl.size());
-			rectangle.corner_radius_x = 15.f;
-			rectangle.corner_radius_y = 15.f;
-			rectangle.on_resize = on_resize;
+				// set its dimensions to exactly match the page
+				.corner_radius_x(15.f).corner_radius_y(15.f)
+				.on_resize(on_resize)
+				.rect().size(page_impl.size());
 
 			// return reference to page so caller can add widgets to it
 			return d_.fm_.d_.p_status_panes_.at(d_.alias_);

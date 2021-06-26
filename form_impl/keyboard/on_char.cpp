@@ -70,7 +70,7 @@ namespace liblec {
 											c == '\t' ||
 											c == '\r') {
 
-											if (c == '\r' && combobox().editable)
+											if (c == '\r' && combobox().editable())
 												combobox.key_return();
 
 											break;
@@ -78,7 +78,7 @@ namespace liblec {
 
 										// insert character
 
-										if (combobox().editable)
+										if (combobox().editable())
 											combobox.insert_character(c);
 									}
 									catch (const std::exception& e) { log(e.what()); }

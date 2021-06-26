@@ -40,43 +40,43 @@ namespace liblec {
 			ID2D1HwndRenderTarget* p_render_target) {
 			specs_old_ = specs_;
 			is_static_ = (specs_.events().toggle == nullptr && specs_.events().click == nullptr && specs_.events().action == nullptr);
-			h_cursor_ = get_cursor(specs_.cursor);
+			h_cursor_ = get_cursor(specs_.cursor());
 
 			HRESULT hr = S_OK;
 
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_on),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_on()),
 					&p_brush_on_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_off),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_off()),
 					&p_brush_off_);
 			if (SUCCEEDED(hr))
 				hr = p_render_target->CreateSolidColorBrush(
-					convert_color(lighten_color(specs_.color_on, 25)), &p_brush_on_hot_);
+					convert_color(lighten_color(specs_.color_on(), 25)), &p_brush_on_hot_);
 			if (SUCCEEDED(hr))
 				hr = p_render_target->CreateSolidColorBrush(
-					convert_color(lighten_color(specs_.color_off, 25)), &p_brush_off_hot_);
+					convert_color(lighten_color(specs_.color_off(), 25)), &p_brush_off_hot_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_disabled),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_disabled()),
 					&p_brush_disabled_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_selected),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_selected()),
 					&p_brush_selected_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_text),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_text()),
 					&p_brush_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_fill),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_fill()),
 					&p_brush_fill_);
 			if (SUCCEEDED(hr)) {
 				// Create a DirectWrite text format object.
 				hr = p_directwrite_factory_->CreateTextFormat(
-					convert_string(specs_.font).c_str(),
+					convert_string(specs_.font()).c_str(),
 					NULL,
 					DWRITE_FONT_WEIGHT_NORMAL,
 					DWRITE_FONT_STYLE_NORMAL,
 					DWRITE_FONT_STRETCH_NORMAL,
-					convert_fontsize_to_dip(specs_.font_size),
+					convert_fontsize_to_dip(specs_.font_size()),
 					L"", //locale
 					&p_text_format_
 					);
@@ -116,7 +116,7 @@ namespace liblec {
 			if (!resources_created_)
 				create_resources(p_render_target);
 
-			rect_ = position(specs_.rect, specs_.on_resize, change_in_size.width, change_in_size.height);
+			rect_ = position(specs_.rect(), specs_.on_resize(), change_in_size.width, change_in_size.height);
 			rect_.left -= offset.x;
 			rect_.right -= offset.x;
 			rect_.top -= offset.y;
@@ -139,7 +139,7 @@ namespace liblec {
 			toggle_foreground_.right = toggle_foreground_.right -
 				(toggle_foreground_.right - toggle_foreground_.left) / 2.f;
 
-			perc_along_ = specs_.on ? 100.f : 0.f;
+			perc_along_ = specs_.on() ? 100.f : 0.f;
 
 			bool x_change = (point_.x != point_on_press_.x);
 			bool y_change = (point_.y != point_on_press_.y);
@@ -186,7 +186,7 @@ namespace liblec {
 			rect_text_.left = rect_toggle_.right + ((rect_toggle_.bottom - rect_toggle_.top) / 3.f);
 
 			// create a text layout
-			const std::string& text = specs_.on ? specs_.text : specs_.text_off;
+			const std::string& text = specs_.on() ? specs_.text() : specs_.text_off();
 			HRESULT hr = p_directwrite_factory_->CreateTextLayout(
 				convert_string(text).c_str(),
 				(UINT32)text.length(),
@@ -226,24 +226,24 @@ namespace liblec {
 			bool y_change = (point_.y != point_on_press_.y);
 
 			if (!(x_change || y_change)) {
-				specs_.on = !specs_.on;	// A click with no mouse move. Toggle.
-				perc_along_ = specs_.on ? 100.f : 0.f;
+				specs_.on() = !specs_.on();	// A click with no mouse move. Toggle.
+				perc_along_ = specs_.on() ? 100.f : 0.f;
 			}
 			else
-				specs_.on = perc_along_ >= 50.f;
+				specs_.on() = perc_along_ >= 50.f;
 
 			if (specs_.events().toggle)
-				specs_.events().toggle(specs_.on);
+				specs_.events().toggle(specs_.on());
 
 			if (specs_.events().click)
 				specs_.events().click();
 		}
 
 		void widgets::toggle_impl::on_action() {
-			specs_.on = !specs_.on;	// Toggle.
+			specs_.on(!specs_.on());	// Toggle.
 
 			if (specs_.events().toggle)
-				specs_.events().toggle(specs_.on);
+				specs_.events().toggle(specs_.on());
 
 			if (specs_.events().action)
 				specs_.events().action();

@@ -19,7 +19,7 @@ namespace liblec {
 				specs::operator==(param) &&
 
 				// widget specific specs
-				(color_border == param.color_border);
+				(color_border_ == param.color_border_);
 		}
 
 		bool containers::group::group_specs::operator!=(const group_specs& param) {
@@ -31,8 +31,9 @@ namespace liblec {
 			impl(containers::page& page, const std::string& alias) :
 				page_(page),
 				specs_(page_.d_page_.add_group(alias)) {
-				specs_.color_fill = defaults::color(page_.d_page_.fm_.d_.theme_, item::group);
-				specs_.color_border = defaults::color(page_.d_page_.fm_.d_.theme_, item::group_border);
+				specs_
+					.color_fill(defaults::color(page_.d_page_.fm_.d_.theme_, item::group))
+					.color_border(defaults::color(page_.d_page_.fm_.d_.theme_, item::group_border));
 			}
 			containers::page& page_;
 			group_specs& specs_;

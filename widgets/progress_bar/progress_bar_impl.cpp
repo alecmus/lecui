@@ -39,37 +39,37 @@ namespace liblec {
 			ID2D1HwndRenderTarget* p_render_target) {
 			specs_old_ = specs_;
 			is_static_ = true;
-			h_cursor_ = get_cursor(specs_.cursor);
+			h_cursor_ = get_cursor(specs_.cursor());
 
 			HRESULT hr = S_OK;
 
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_fill),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_fill()),
 					&p_brush_fill_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_border),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_border()),
 					&p_brush_border_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_hot),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_hot()),
 					&p_brush_hot_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_disabled),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_disabled()),
 					&p_brush_disabled_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_selected),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_selected()),
 					&p_brush_selected_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_text),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_text()),
 					&p_brush_);
 			if (SUCCEEDED(hr)) {
 				// Create a DirectWrite text format object.
 				hr = p_directwrite_factory_->CreateTextFormat(
-					convert_string(specs_.font).c_str(),
+					convert_string(specs_.font()).c_str(),
 					NULL,
 					DWRITE_FONT_WEIGHT_NORMAL,
 					DWRITE_FONT_STYLE_NORMAL,
 					DWRITE_FONT_STRETCH_NORMAL,
-					convert_fontsize_to_dip(specs_.font_size),
+					convert_fontsize_to_dip(specs_.font_size()),
 					L"", //locale
 					&p_text_format_
 					);
@@ -108,10 +108,10 @@ namespace liblec {
 				create_resources(p_render_target);
 
 			// sanity check
-			specs_.percentage = smallest(specs_.percentage, 100.f);
-			specs_.percentage = largest(specs_.percentage, 0.f);
+			specs_.percentage(smallest(specs_.percentage(), 100.f));
+			specs_.percentage(largest(specs_.percentage(), 0.f));
 
-			rect_ = position(specs_.rect, specs_.on_resize, change_in_size.width, change_in_size.height);
+			rect_ = position(specs_.rect(), specs_.on_resize(), change_in_size.width, change_in_size.height);
 			rect_.left -= offset.x;
 			rect_.right -= offset.x;
 			rect_.top -= offset.y;
@@ -124,21 +124,21 @@ namespace liblec {
 			auto corner_radius = smallest((rect_.bottom - rect_.top) / 3.f,
 				(rect_.right - rect_.left) / 3.f);
 			D2D1_ROUNDED_RECT unfilled_rect{ rect_, corner_radius, corner_radius };
-			p_render_target->DrawRoundedRectangle(unfilled_rect, p_brush_border_, specs_.border);
+			p_render_target->DrawRoundedRectangle(unfilled_rect, p_brush_border_, specs_.border());
 
 			// draw filled rect
 			auto rect_subject = rect_;
-			rect_subject.left += (2.f * specs_.border);
-			rect_subject.right -= (2.f * specs_.border);
-			rect_subject.top += (2.f * specs_.border);
-			rect_subject.bottom -= (2.f * specs_.border);
+			rect_subject.left += (2.f * specs_.border());
+			rect_subject.right -= (2.f * specs_.border());
+			rect_subject.top += (2.f * specs_.border());
+			rect_subject.bottom -= (2.f * specs_.border());
 			corner_radius = smallest((rect_subject.bottom - rect_subject.top) / 3.f,
 				(rect_subject.right - rect_subject.left) / 3.f);
 
 			{
 				// define rectangle that should contain fill
 				auto rect_fill = rect_subject;
-				rect_fill.right = rect_fill.left + (specs_.percentage * (rect_fill.right - rect_fill.left) / 100.f);
+				rect_fill.right = rect_fill.left + (specs_.percentage() * (rect_fill.right - rect_fill.left) / 100.f);
 
 				// clip
 				auto_clip clip(render, p_render_target, rect_fill, 0.f);

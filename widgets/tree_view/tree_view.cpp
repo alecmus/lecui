@@ -19,7 +19,7 @@ namespace liblec {
 				specs::operator==(param) &&
 
 				// widget specific specs
-				(color_border == param.color_border);
+				(color_border_ == param.color_border_);
 		}
 
 		bool widgets::tree_view::tree_view_specs::operator!=(const tree_view_specs& param) {
@@ -37,11 +37,12 @@ namespace liblec {
 			impl(containers::page& page, const std::string& alias) :
 				page_(page),
 				specs_(page_.d_page_.add_tree(alias)) {
-				specs_.color_text = defaults::color(page_.d_page_.fm_.d_.theme_, item::label);
-				specs_.color_fill = defaults::color(page_.d_page_.fm_.d_.theme_, item::tree_view);
-				specs_.color_border = defaults::color(page_.d_page_.fm_.d_.theme_, item::tree_view_border);
-				specs_.color_hot = defaults::color(page_.d_page_.fm_.d_.theme_, item::tree_view_hover);
-				specs_.color_selected = defaults::color(page_.d_page_.fm_.d_.theme_, item::tree_view_selected);
+				specs_
+					.color_text(defaults::color(page_.d_page_.fm_.d_.theme_, item::label))
+					.color_fill(defaults::color(page_.d_page_.fm_.d_.theme_, item::tree_view))
+					.color_border(defaults::color(page_.d_page_.fm_.d_.theme_, item::tree_view_border))
+					.color_hot(defaults::color(page_.d_page_.fm_.d_.theme_, item::tree_view_hover))
+					.color_selected(defaults::color(page_.d_page_.fm_.d_.theme_, item::tree_view_selected));
 			}
 			containers::page& page_;
 			tree_view_specs& specs_;

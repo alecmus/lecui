@@ -19,10 +19,10 @@ namespace liblec {
 				specs::operator==(param) &&
 
 				// widget specific specs
-				(png_resource == param.png_resource) &&
-				(file == param.file) &&
-				(color_border == param.color_border) &&
-				(color_text_description == param.color_text_description);
+				(png_resource_ == param.png_resource_) &&
+				(file_ == param.file_) &&
+				(color_border_ == param.color_border_) &&
+				(color_text_description_ == param.color_text_description_);
 		}
 
 		bool widgets::icon::icon_specs::operator!=(const icon_specs& param) {
@@ -34,11 +34,12 @@ namespace liblec {
 			impl(containers::page& page, const std::string& alias) :
 				page_(page),
 				specs_(page_.d_page_.add_icon(alias)) {
-				specs_.color_fill = defaults::color(page_.d_page_.fm_.d_.theme_, item::icon);
-				specs_.color_border = defaults::color(page_.d_page_.fm_.d_.theme_, item::icon_border);
-				specs_.color_hot = defaults::color(page_.d_page_.fm_.d_.theme_, item::icon_hot);
-				specs_.color_text = defaults::color(page_.d_page_.fm_.d_.theme_, item::icon_text);
-				specs_.color_text_description = defaults::color(page_.d_page_.fm_.d_.theme_, item::icon_description_text);
+				specs_
+					.color_fill(defaults::color(page_.d_page_.fm_.d_.theme_, item::icon))
+					.color_border(defaults::color(page_.d_page_.fm_.d_.theme_, item::icon_border))
+					.color_hot(defaults::color(page_.d_page_.fm_.d_.theme_, item::icon_hot))
+					.color_text(defaults::color(page_.d_page_.fm_.d_.theme_, item::icon_text))
+					.color_text_description(defaults::color(page_.d_page_.fm_.d_.theme_, item::icon_description_text));
 			}
 			containers::page& page_;
 			icon_specs& specs_;

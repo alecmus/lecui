@@ -19,10 +19,10 @@ namespace liblec {
 				specs::operator==(param) &&
 
 				// widget specific specs
-				(color_border == param.color_border) &&
-				(color_caret == param.color_caret) &&
-				(color_control_border == param.color_control_border) &&
-				(color_control_fill == param.color_control_fill);
+				(color_border_ == param.color_border_) &&
+				(color_caret_ == param.color_caret_) &&
+				(color_control_border_ == param.color_control_border_) &&
+				(color_control_fill_ == param.color_control_fill_);
 		}
 
 		bool widgets::html_editor::html_editor_specs::operator!=(const html_editor_specs& param) {
@@ -34,16 +34,17 @@ namespace liblec {
 			impl(containers::page& page, const std::string& alias) :
 				page_(page),
 				specs_(page_.d_page_.add_html_editor(alias)) {
-				specs_.font = "Calibri";
-				specs_.font_size = 11.f;
-				specs_.color_text = defaults::color(page_.d_page_.fm_.d_.theme_, item::label);
-				specs_.color_fill = defaults::color(page_.d_page_.fm_.d_.theme_, item::html_editor);
-				specs_.color_border = defaults::color(page_.d_page_.fm_.d_.theme_, item::html_editor_border);
-				specs_.color_disabled = defaults::color(page_.d_page_.fm_.d_.theme_, item::html_editor_disabled);
-				specs_.color_selected = defaults::color(page_.d_page_.fm_.d_.theme_, item::html_editor_selected);
-				specs_.color_caret = defaults::color(page_.d_page_.fm_.d_.theme_, item::html_editor_caret);
-				specs_.color_control_fill = defaults::color(page_.d_page_.fm_.d_.theme_, item::html_control);
-				specs_.color_control_border = defaults::color(page_.d_page_.fm_.d_.theme_, item::html_control_border);
+				specs_
+					.font("Calibri")
+					.font_size(11.f)
+					.color_text(defaults::color(page_.d_page_.fm_.d_.theme_, item::label))
+					.color_fill(defaults::color(page_.d_page_.fm_.d_.theme_, item::html_editor))
+					.color_border(defaults::color(page_.d_page_.fm_.d_.theme_, item::html_editor_border))
+					.color_disabled(defaults::color(page_.d_page_.fm_.d_.theme_, item::html_editor_disabled))
+					.color_selected(defaults::color(page_.d_page_.fm_.d_.theme_, item::html_editor_selected))
+					.color_caret(defaults::color(page_.d_page_.fm_.d_.theme_, item::html_editor_caret))
+					.color_control_fill(defaults::color(page_.d_page_.fm_.d_.theme_, item::html_control))
+					.color_control_border(defaults::color(page_.d_page_.fm_.d_.theme_, item::html_control_border));
 			}
 			containers::page& page_;
 			html_editor_specs& specs_;

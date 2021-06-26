@@ -40,18 +40,18 @@ namespace liblec {
 			bool specs::operator==(const specs& param) {
 				return
 					/// Colors
-					(color_text == param.color_text) &&
-					(color_fill == param.color_fill) &&
-					(color_hot == param.color_hot) &&
-					(color_selected == param.color_selected) &&
-					(color_disabled == param.color_disabled) &&
+					(color_text_ == param.color_text_) &&
+					(color_fill_ == param.color_fill_) &&
+					(color_hot_ == param.color_hot_) &&
+					(color_selected_ == param.color_selected_) &&
+					(color_disabled_ == param.color_disabled_) &&
 
 					/// Font
-					(font == param.font) &&
-					(font_size == param.font_size) &&
+					(font_ == param.font_) &&
+					(font_size_ == param.font_size_) &&
 
 					/// Cursor
-					(cursor == param.cursor);
+					(cursor_ == param.cursor_);
 			}
 
 			bool specs::operator!=(const specs& param) {

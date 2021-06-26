@@ -19,12 +19,13 @@ namespace liblec {
 				containers::tab_pane::tab_pane_specs& specs,
 				const std::string& alias) :
 				page_(page), specs_(specs) {
-				specs_.color_text = defaults::color(page_.d_page_.fm_.d_.theme_, item::label);
-				specs_.color_fill = defaults::color(page_.d_page_.fm_.d_.theme_, item::tab_pane);
-				specs_.color_border = defaults::color(page_.d_page_.fm_.d_.theme_, item::tab_pane_border);
-				specs_.color_tabs = defaults::color(page_.d_page_.fm_.d_.theme_, item::tab_bar);
-				specs_.color_tabs_border = defaults::color(page_.d_page_.fm_.d_.theme_, item::tab_pane_border);
-				specs_.color_selected = defaults::color(page_.d_page_.fm_.d_.theme_, item::tab_selected);
+				specs_
+					.color_text(defaults::color(page_.d_page_.fm_.d_.theme_, item::label))
+					.color_fill(defaults::color(page_.d_page_.fm_.d_.theme_, item::tab_pane))
+					.color_border(defaults::color(page_.d_page_.fm_.d_.theme_, item::tab_pane_border))
+					.color_tabs(defaults::color(page_.d_page_.fm_.d_.theme_, item::tab_bar))
+					.color_tabs_border(defaults::color(page_.d_page_.fm_.d_.theme_, item::tab_pane_border))
+					.color_selected(defaults::color(page_.d_page_.fm_.d_.theme_, item::tab_selected));
 			}
 			containers::page& page_;
 			containers::tab_pane::tab_pane_specs& specs_;
@@ -117,33 +118,33 @@ namespace liblec {
 				const float margin = 10.f;
 				const float page_tolerance_ = 10.f;
 				float tab_height_ = tab_pane_.tab_height();
-				rect rect_client_area = tab_pane_().rect;
+				rect rect_client_area = tab_pane_().rect();
 
 				bool tabs_perpendicular = false;
 
-				switch (tp.d_.specs_.tab_side) {
+				switch (tp.d_.specs_.tab_side()) {
 				case tab_pane::side::left:
 				case tab_pane::side::right:
-					if (tp.d_.specs_.caption_orientation == tab_pane::orientation::horizontal)
+					if (tp.d_.specs_.caption_orientation() == tab_pane::orientation::horizontal)
 						tabs_perpendicular = true;
 					break;
 
 				case tab_pane::side::top:
 				case tab_pane::side::bottom:
 				default: 
-					if (tp.d_.specs_.caption_orientation == tab_pane::orientation::vertical)
+					if (tp.d_.specs_.caption_orientation() == tab_pane::orientation::vertical)
 						tabs_perpendicular = true;
 					break;
 				}
 
 				if (tabs_perpendicular && !tab_pane_.tab_height_set()) {
-					if (!tab_pane_.specs().caption_reserve.empty()) {
+					if (!tab_pane_.specs().caption_reserve().empty()) {
 						log(tab_name + ": using caption reserve to compute dimensions");
 						// compute the longest tab caption in the reserve
-						for (const auto& alias : tab_pane_.specs().caption_reserve) {
-							D2D1_RECT_F max_rect = { 0.f, 0.f, tab_pane_.specs().rect.height(), tab_pane_.caption_bar_height() };
-							auto caption_rect = widgets::measure_label(tp.d_.page_.d_page_.p_directwrite_factory_, alias, tab_pane_.specs().font,
-								tab_pane_.specs().font_size, false, true, max_rect);
+						for (const auto& alias : tab_pane_.specs().caption_reserve()) {
+							D2D1_RECT_F max_rect = { 0.f, 0.f, tab_pane_.specs().rect().height(), tab_pane_.caption_bar_height() };
+							auto caption_rect = widgets::measure_label(tp.d_.page_.d_page_.p_directwrite_factory_, alias, tab_pane_.specs().font(),
+								tab_pane_.specs().font_size(), false, true, max_rect);
 
 							tab_height_ = largest(tab_height_, caption_rect.right - caption_rect.left + 3.f * tab_pane_.padding());
 						}
@@ -151,9 +152,9 @@ namespace liblec {
 					else {
 						log(tab_name + ": WARNING - no caption reserve for perpendicular tab captions!");
 						// use current caption to set tab height
-						D2D1_RECT_F max_rect = { 0.f, 0.f, tab_pane_.specs().rect.height(), tab_pane_.caption_bar_height() };
-						auto caption_rect = widgets::measure_label(tp.d_.page_.d_page_.p_directwrite_factory_, tab_name, tab_pane_.specs().font,
-							tab_pane_.specs().font_size, false, true, max_rect);
+						D2D1_RECT_F max_rect = { 0.f, 0.f, tab_pane_.specs().rect().height(), tab_pane_.caption_bar_height() };
+						auto caption_rect = widgets::measure_label(tp.d_.page_.d_page_.p_directwrite_factory_, tab_name, tab_pane_.specs().font(),
+							tab_pane_.specs().font_size(), false, true, max_rect);
 
 						tab_height_ = largest(tab_height_, caption_rect.right - caption_rect.left + 3.f * tab_pane_.padding());
 					}
@@ -166,81 +167,80 @@ namespace liblec {
 				// initialize the page's horizontal scroll bar
 				{
 					auto& specs_ = page_impl.h_scrollbar().specs();
-					specs_.on_resize.perc_width = 100.f;
-					specs_.on_resize.perc_y = 100.f;
+					specs_.on_resize().perc_width = 100.f;
+					specs_.on_resize().perc_y = 100.f;
 
-					switch (tp.d_.specs_.tab_side)
-					{
+					switch (tp.d_.specs_.tab_side()) {
 					case tab_pane::side::left:
 					case tab_pane::side::right:
-						specs_.rect.left = 0.f;
-						specs_.rect.right =
+						specs_.rect().left = 0.f;
+						specs_.rect().right =
 							(rect_client_area.right - rect_client_area.left) - (margin + thickness) -
 							caption_bar_height_;
-						specs_.rect.bottom = (rect_client_area.bottom - rect_client_area.top) -
+						specs_.rect().bottom = (rect_client_area.bottom - rect_client_area.top) -
 							page_tolerance_;
-						specs_.rect.top = specs_.rect.bottom - thickness;
+						specs_.rect().top = specs_.rect().bottom - thickness;
 						break;
 
 					case tab_pane::side::top:
 					case tab_pane::side::bottom:
 					default:
-						specs_.rect.left = 0.f;
-						specs_.rect.right =
+						specs_.rect().left = 0.f;
+						specs_.rect().right =
 							(rect_client_area.right - rect_client_area.left) - (margin + thickness);
-						specs_.rect.bottom = (rect_client_area.bottom - rect_client_area.top) -
+						specs_.rect().bottom = (rect_client_area.bottom - rect_client_area.top) -
 							(caption_bar_height_ + page_tolerance_);
-						specs_.rect.top = specs_.rect.bottom - thickness;
+						specs_.rect().top = specs_.rect().bottom - thickness;
 						break;
 					}
 
-					specs_.color_fill = defaults::color(tp.d_.page_.d_page_.fm_.d_.theme_, item::scrollbar);
-					specs_.color_scrollbar_border = defaults::color(tp.d_.page_.d_page_.fm_.d_.theme_, item::scrollbar_border);
-					specs_.color_hot = defaults::color(tp.d_.page_.d_page_.fm_.d_.theme_, item::scrollbar_hover);
-					specs_.color_hot_pressed = defaults::color(tp.d_.page_.d_page_.fm_.d_.theme_, item::scrollbar_pressed);
+					specs_
+						.color_fill(defaults::color(tp.d_.page_.d_page_.fm_.d_.theme_, item::scrollbar))
+						.color_scrollbar_border(defaults::color(tp.d_.page_.d_page_.fm_.d_.theme_, item::scrollbar_border))
+						.color_hot(defaults::color(tp.d_.page_.d_page_.fm_.d_.theme_, item::scrollbar_hover))
+						.color_hot_pressed(defaults::color(tp.d_.page_.d_page_.fm_.d_.theme_, item::scrollbar_pressed));
 				}
 
 				// initialize the page's vertical scroll bar
 				{
 					auto& specs_ = page_impl.v_scrollbar().specs();
-					specs_.on_resize.perc_height = 100.f;
-					specs_.on_resize.perc_x = 100.f;
+					specs_.on_resize().perc_height = 100.f;
+					specs_.on_resize().perc_x = 100.f;
 
-					switch (tp.d_.specs_.tab_side)
-					{
+					switch (tp.d_.specs_.tab_side()) {
 					case tab_pane::side::left:
 					case tab_pane::side::right:
-						specs_.rect.top = 0.f;
-						specs_.rect.bottom = (rect_client_area.bottom - rect_client_area.top) -
+						specs_.rect().top = 0.f;
+						specs_.rect().bottom = (rect_client_area.bottom - rect_client_area.top) -
 							(margin + thickness);
-						specs_.rect.right =
+						specs_.rect().right =
 							(rect_client_area.right - rect_client_area.left) - margin - caption_bar_height_;
-						specs_.rect.left = specs_.rect.right - thickness;
+						specs_.rect().left = specs_.rect().right - thickness;
 						break;
 
 					case tab_pane::side::top:
 					case tab_pane::side::bottom:
 					default:
-						specs_.rect.top = 0.f;
-						specs_.rect.bottom = (rect_client_area.bottom - rect_client_area.top) -
+						specs_.rect().top = 0.f;
+						specs_.rect().bottom = (rect_client_area.bottom - rect_client_area.top) -
 							(margin + thickness) - caption_bar_height_;
-						specs_.rect.right =
+						specs_.rect().right =
 							(rect_client_area.right - rect_client_area.left) - margin;
-						specs_.rect.left = specs_.rect.right - thickness;
+						specs_.rect().left = specs_.rect().right - thickness;
 						break;
 					}
 
-					specs_.color_fill = defaults::color(tp.d_.page_.d_page_.fm_.d_.theme_, item::scrollbar);
-					specs_.color_scrollbar_border = defaults::color(tp.d_.page_.d_page_.fm_.d_.theme_, item::scrollbar_border);
-					specs_.color_hot = defaults::color(tp.d_.page_.d_page_.fm_.d_.theme_, item::scrollbar_hover);
-					specs_.color_hot_pressed = defaults::color(tp.d_.page_.d_page_.fm_.d_.theme_, item::scrollbar_pressed);
+					specs_
+						.color_fill(defaults::color(tp.d_.page_.d_page_.fm_.d_.theme_, item::scrollbar))
+						.color_scrollbar_border(defaults::color(tp.d_.page_.d_page_.fm_.d_.theme_, item::scrollbar_border))
+						.color_hot(defaults::color(tp.d_.page_.d_page_.fm_.d_.theme_, item::scrollbar_hover))
+						.color_hot_pressed(defaults::color(tp.d_.page_.d_page_.fm_.d_.theme_, item::scrollbar_pressed));
 				}
 
 				// set page size
 				page_impl.size({ rect_client_area.width(), rect_client_area.height() });
 
-				switch (tp.d_.specs_.tab_side)
-				{
+				switch (tp.d_.specs_.tab_side()) {
 				case tab_pane::side::left:
 				case tab_pane::side::right:
 					page_impl.width(page_impl.width() - (2.f * page_tolerance_ + caption_bar_height_));
@@ -258,18 +258,20 @@ namespace liblec {
 				// add an invisible rect to bound the page. This is essential for scroll bars
 				// to work appropriately when contents don't reach the page borders
 				auto& rectangle = page_impl.add_rectangle(widgets::rectangle_impl::page_rect_alias());
-				rectangle.color_fill.alpha = 0;
+				rectangle.color_fill().alpha = 0;
 
 				// make it transparent
-				rectangle.color_border = { 255, 0, 0, 0 };
-				rectangle.color_hot = { 255, 0, 0, 0 };
+				rectangle
+					.color_border({ 255, 0, 0, 0 })
+					.color_hot({ 255, 0, 0, 0 })
+					.corner_radius_x(15.f)
+					.corner_radius_y(15.f)
 
-				// set its dimensions to exactly match the page
-				rectangle.rect.size(page_impl.size());
-				rectangle.corner_radius_x = 15.f;
-				rectangle.corner_radius_y = 15.f;
-				rectangle.on_resize.perc_width = 100.f;
-				rectangle.on_resize.perc_height = 100.f;
+					// set its dimensions to exactly match the page
+					.rect().size(page_impl.size());
+
+				rectangle.on_resize().perc_width = 100.f;
+				rectangle.on_resize().perc_height = 100.f;
 
 				// return reference to page so caller can add widgets to it
 				return tab_pane_.p_tabs_.at(tab_name);

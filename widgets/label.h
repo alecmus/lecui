@@ -74,26 +74,126 @@ namespace liblec {
 				/// <summary>Label widget specifications.</summary>
 				/// <remarks>Recommended size with defaults is 200x20px.</remarks>
 				class label_specs : public specs {
-				public:
-					label_specs() {
-						rect.size({ 200.f, 20.f });
-					};
-
 					/// <summary>The color when the label is pressed and the mouse is over it.
 					/// </summary>
-					color color_hot_pressed;
+					color color_hot_pressed_;
 
 					/// <summary>Whether to allow multiple lines.</summary>
-					bool multiline = false;
+					bool multiline_ = false;
 
 					/// <summary>Whether to center the text horizontally.</summary>
-					bool center_h = false;
+					bool center_h_ = false;
 
 					/// <summary>Whether to center the text vertically.</summary>
-					bool center_v = false;
+					bool center_v_ = false;
+
+				public:
+					label_specs() {
+						rect_.size({ 200.f, 20.f });
+					};
 
 					bool operator==(const label_specs&);
 					bool operator!=(const label_specs&);
+
+					// generic specs
+
+					std::string& text() override { return text_; }
+					label_specs& text(const std::string& text) {
+						text_ = text;
+						return *this;
+					}
+
+					std::string& tooltip() override { return tooltip_; }
+					label_specs& tooltip(const std::string& tooltip) {
+						tooltip_ = tooltip;
+						return *this;
+					}
+
+					lecui::rect& rect() override { return rect_; }
+					label_specs& rect(const lecui::rect& rect) {
+						rect_ = rect;
+						return *this;
+					}
+
+					resize_params& on_resize() override { return on_resize_; }
+					label_specs& on_resize(const resize_params& on_resize) {
+						on_resize_ = on_resize;
+						return *this;
+					}
+
+					cursor_type& cursor() override { return cursor_; }
+					label_specs& cursor(const cursor_type cursor) {
+						cursor_ = cursor;
+						return *this;
+					}
+
+					std::string& font() override { return font_; }
+					label_specs& font(const std::string& font) {
+						font_ = font;
+						return *this;
+					}
+
+					float& font_size() override { return font_size_; }
+					label_specs& font_size(const float& font_size) {
+						font_size_ = font_size;
+						return *this;
+					}
+
+					color& color_text() override { return color_text_; }
+					label_specs& color_text(const color& color_text) {
+						color_text_ = color_text;
+						return *this;
+					}
+
+					color& color_fill() override { return color_fill_; }
+					label_specs& color_fill(const color& color_fill) {
+						color_fill_ = color_fill;
+						return *this;
+					}
+
+					color& color_hot() override { return color_hot_; }
+					label_specs& color_hot(const color& color_hot) {
+						color_hot_ = color_hot;
+						return *this;
+					}
+
+					color& color_selected() override { return color_selected_; }
+					label_specs& color_selected(const color& color_selected) {
+						color_selected_ = color_selected;
+						return *this;
+					}
+
+					color& color_disabled() override { return color_disabled_; }
+					label_specs& color_disabled(const color& color_disabled) {
+						color_disabled_ = color_disabled;
+						return *this;
+					}
+
+					// widget specific specs
+
+					color& color_hot_pressed() { return color_hot_pressed_; }
+					label_specs& color_hot_pressed(const color& color_hot_pressed) {
+						color_hot_pressed_ = color_hot_pressed;
+						return *this;
+					}
+
+					bool& multiline() { return multiline_; }
+					label_specs& multiline(const bool& multiline) {
+						multiline_ = multiline;
+						return *this;
+					}
+
+					bool& center_h() { return center_h_; }
+					label_specs& center_h(const bool& center_h) {
+						center_h_ = center_h;
+						return *this;
+					}
+
+					bool& center_v() { return center_v_; }
+					label_specs& center_v(const bool& center_v) {
+						center_v_ = center_v;
+						return *this;
+					}
 				};
 
 				/// <summary>Label constructor.</summary>

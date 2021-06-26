@@ -28,9 +28,10 @@ namespace liblec {
 			impl(containers::page& page, const std::string& alias) :
 				page_(page),
 				specs_(page_.d_page_.add_line(alias)) {
-				specs_.color_fill = defaults::color(page_.d_page_.fm_.d_.theme_, item::line);
-				specs_.color_hot = defaults::color(page_.d_page_.fm_.d_.theme_, item::line_hover);
-				specs_.color_selected = defaults::color(page_.d_page_.fm_.d_.theme_, item::line_selected);
+				specs_
+					.color_fill(defaults::color(page_.d_page_.fm_.d_.theme_, item::line))
+					.color_hot(defaults::color(page_.d_page_.fm_.d_.theme_, item::line_hover))
+					.color_selected(defaults::color(page_.d_page_.fm_.d_.theme_, item::line_selected));
 
 			}
 			containers::page& page_;

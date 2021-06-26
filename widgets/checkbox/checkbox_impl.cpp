@@ -40,40 +40,40 @@ namespace liblec {
 			ID2D1HwndRenderTarget* p_render_target) {
 			specs_old_ = specs_;
 			is_static_ = (specs_.events().check == nullptr && specs_.events().click == nullptr && specs_.events().action == nullptr);
-			h_cursor_ = get_cursor(specs_.cursor);
+			h_cursor_ = get_cursor(specs_.cursor());
 
 			HRESULT hr = S_OK;
 
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_fill),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_fill()),
 					&p_brush_fill_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_check),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_check()),
 					&p_brush_check_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_border),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_border()),
 					&p_brush_border_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_hot),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_hot()),
 					&p_brush_hot_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_disabled),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_disabled()),
 					&p_brush_disabled_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_selected),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_selected()),
 					&p_brush_selected_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_text),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_text()),
 					&p_brush_);
 			if (SUCCEEDED(hr)) {
 				// Create a DirectWrite text format object.
 				hr = p_directwrite_factory_->CreateTextFormat(
-					convert_string(specs_.font).c_str(),
+					convert_string(specs_.font()).c_str(),
 					NULL,
 					DWRITE_FONT_WEIGHT_NORMAL,
 					DWRITE_FONT_STYLE_NORMAL,
 					DWRITE_FONT_STRETCH_NORMAL,
-					convert_fontsize_to_dip(specs_.font_size),
+					convert_fontsize_to_dip(specs_.font_size()),
 					L"", //locale
 					&p_text_format_
 					);
@@ -112,7 +112,7 @@ namespace liblec {
 			if (!resources_created_)
 				create_resources(p_render_target);
 
-			rect_ = position(specs_.rect, specs_.on_resize, change_in_size.width, change_in_size.height);
+			rect_ = position(specs_.rect(), specs_.on_resize(), change_in_size.width, change_in_size.height);
 			rect_.left -= offset.x;
 			rect_.right -= offset.x;
 			rect_.top -= offset.y;
@@ -138,17 +138,17 @@ namespace liblec {
 				p_brush_fill_);
 
 			p_render_target->DrawRoundedRectangle(&rounded_rect, !is_enabled_ ? p_brush_disabled_ :
-				p_brush_border_, specs_.border);
+				p_brush_border_, specs_.border());
 
 			if (!is_static_ && is_enabled_ && selected_)
 				p_render_target->DrawRoundedRectangle(&rounded_rect, !is_enabled_ ? p_brush_disabled_ :
-					p_brush_selected_, pressed_ ? specs_.border * 3.5f : specs_.border * 2.f);
+					p_brush_selected_, pressed_ ? specs_.border() * 3.5f : specs_.border() * 2.f);
 
 			// draw checkbox contents
 			std::string text;
-			switch (specs_.status) {
+			switch (specs_.status()) {
 			case widgets::checkbox::checkbox_specs::checkbox_status::checked: {
-				text = specs_.text;
+				text = specs_.text();
 				HRESULT hr = S_OK;
 				ID2D1PathGeometry* p_checkbox_geometry = nullptr;
 				hr = p_direct2d_factory_->CreatePathGeometry(&p_checkbox_geometry);
@@ -179,10 +179,10 @@ namespace liblec {
 				}
 			} break;
 			case widgets::checkbox::checkbox_specs::checkbox_status::unchecked:
-				text = specs_.text_unchecked;
+				text = specs_.text_unchecked();
 				break;
 			case widgets::checkbox::checkbox_specs::checkbox_status::indeterminate: {
-				text = specs_.text_indeterminate;
+				text = specs_.text_indeterminate();
 				// draw a horizontal line to show indeterminate state
 				auto rect_indeterminate = rect_checkbox_;
 				rect_indeterminate.left += (.2f * side);
@@ -233,19 +233,19 @@ namespace liblec {
 		}
 
 		void widgets::checkbox_impl::on_click() {
-			switch (specs_.status) {
+			switch (specs_.status()) {
 			case widgets::checkbox::checkbox_specs::checkbox_status::unchecked:
-				specs_.status = widgets::checkbox::checkbox_specs::checkbox_status::checked;
+				specs_.status(widgets::checkbox::checkbox_specs::checkbox_status::checked);
 				break;
 			case widgets::checkbox::checkbox_specs::checkbox_status::checked:
 			case widgets::checkbox::checkbox_specs::checkbox_status::indeterminate:
 			default:
-				specs_.status = widgets::checkbox::checkbox_specs::checkbox_status::unchecked;
+				specs_.status(widgets::checkbox::checkbox_specs::checkbox_status::unchecked);
 				break;
 			}
 
 			if (specs_.events().check)
-				specs_.events().check(specs_.status);
+				specs_.events().check(specs_.status());
 
 			if (specs_.events().click)
 				specs_.events().click();
@@ -255,19 +255,19 @@ namespace liblec {
 		}
 
 		void widgets::checkbox_impl::on_action() {
-			switch (specs_.status) {
+			switch (specs_.status()) {
 			case widgets::checkbox::checkbox_specs::checkbox_status::unchecked:
-				specs_.status = widgets::checkbox::checkbox_specs::checkbox_status::checked;
+				specs_.status(widgets::checkbox::checkbox_specs::checkbox_status::checked);
 				break;
 			case widgets::checkbox::checkbox_specs::checkbox_status::checked:
 			case widgets::checkbox::checkbox_specs::checkbox_status::indeterminate:
 			default:
-				specs_.status = widgets::checkbox::checkbox_specs::checkbox_status::unchecked;
+				specs_.status(widgets::checkbox::checkbox_specs::checkbox_status::unchecked);
 				break;
 			}
 
 			if (specs_.events().check)
-				specs_.events().check(specs_.status);
+				specs_.events().check(specs_.status());
 
 			if (specs_.events().action)
 				specs_.events().action();

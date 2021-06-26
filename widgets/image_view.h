@@ -25,45 +25,175 @@ namespace liblec {
 				/// <summary>Image view widget specifications.</summary>
 				/// <remarks>Default size is 200x200px.</remarks>
 				class image_view_specs : public specs {
-				public:
-					image_view_specs() {
-						cursor = cursor_type::hand;
-						rect.size({ 200.f, 200.f });
-					}
-
 					/// <summary>The thickness of the border.</summary>
-					float border = .5f;
+					float border_ = .5f;
 
 					/// <summary>The color of the border.</summary>
-					color color_border;
+					color color_border_;
 
 					/// <summary>The horizontal radius of the corners.</summary>
-					float corner_radius_x = .0f;
+					float corner_radius_x_ = .0f;
 
 					/// <summary>The vertical radius of the corners.</summary>
-					float corner_radius_y = .0f;
+					float corner_radius_y_ = .0f;
 
 					/// <summary>ID of PNG resource containing the image.</summary>
 					/// <remarks>PNG resource takes precedence over image file.</remarks>
-					int png_resource = 0;
+					int png_resource_ = 0;
 
 					/// <summary>Full path to image file.</summary>
 					/// <remarks>PNG resource takes precedence over image file.</remarks>
-					std::string file;
+					std::string file_;
 
 					/// <summary>The quality of the image.</summary>
 					/// <remarks>Lower quality means greater performance and vice-versa.</remarks>
-					image_quality quality = image_quality::medium;
+					image_quality quality_ = image_quality::medium;
 
 					/// <summary>Whether to enlarge the image to fill up the rect if the image
 					/// is smaller than the rectangle.</summary>
-					bool enlarge_if_smaller = false;
+					bool enlarge_if_smaller_ = false;
 
 					/// <summary>Whether to keep the image aspect ratio.</summary>
-					bool keep_aspect_ratio = true;
+					bool keep_aspect_ratio_ = true;
+
+				public:
+					image_view_specs() {
+						cursor_ = cursor_type::hand;
+						rect_.size({ 200.f, 200.f });
+					}
 
 					bool operator==(const image_view_specs&);
 					bool operator!=(const image_view_specs&);
+
+					// generic specs
+
+					std::string& text() override { return text_; }
+					image_view_specs& text(const std::string& text) {
+						text_ = text;
+						return *this;
+					}
+
+					std::string& tooltip() override { return tooltip_; }
+					image_view_specs& tooltip(const std::string& tooltip) {
+						tooltip_ = tooltip;
+						return *this;
+					}
+
+					lecui::rect& rect() override { return rect_; }
+					image_view_specs& rect(const lecui::rect& rect) {
+						rect_ = rect;
+						return *this;
+					}
+
+					resize_params& on_resize() override { return on_resize_; }
+					image_view_specs& on_resize(const resize_params& on_resize) {
+						on_resize_ = on_resize;
+						return *this;
+					}
+
+					cursor_type& cursor() override { return cursor_; }
+					image_view_specs& cursor(const cursor_type cursor) {
+						cursor_ = cursor;
+						return *this;
+					}
+
+					std::string& font() override { return font_; }
+					image_view_specs& font(const std::string& font) {
+						font_ = font;
+						return *this;
+					}
+
+					float& font_size() override { return font_size_; }
+					image_view_specs& font_size(const float& font_size) {
+						font_size_ = font_size;
+						return *this;
+					}
+
+					color& color_text() override { return color_text_; }
+					image_view_specs& color_text(const color& color_text) {
+						color_text_ = color_text;
+						return *this;
+					}
+
+					color& color_fill() override { return color_fill_; }
+					image_view_specs& color_fill(const color& color_fill) {
+						color_fill_ = color_fill;
+						return *this;
+					}
+
+					color& color_hot() override { return color_hot_; }
+					image_view_specs& color_hot(const color& color_hot) {
+						color_hot_ = color_hot;
+						return *this;
+					}
+
+					color& color_selected() override { return color_selected_; }
+					image_view_specs& color_selected(const color& color_selected) {
+						color_selected_ = color_selected;
+						return *this;
+					}
+
+					color& color_disabled() override { return color_disabled_; }
+					image_view_specs& color_disabled(const color& color_disabled) {
+						color_disabled_ = color_disabled;
+						return *this;
+					}
+
+					// widget specific specs
+
+					float& border() { return border_; }
+					image_view_specs& border(const float& border) {
+						border_ = border;
+						return *this;
+					}
+
+					color& color_border() { return color_border_; }
+					image_view_specs& color_border(const color& color_border) {
+						color_border_ = color_border;
+						return *this;
+					}
+
+					float& corner_radius_x() { return corner_radius_x_; }
+					image_view_specs& corner_radius_x(const float& corner_radius_x) {
+						corner_radius_x_ = corner_radius_x;
+						return *this;
+					}
+
+					float& corner_radius_y() { return corner_radius_y_; }
+					image_view_specs& corner_radius_y(const float& corner_radius_y) {
+						corner_radius_y_ = corner_radius_y;
+						return *this;
+					}
+
+					int& png_resource() { return png_resource_; }
+					image_view_specs& png_resource(const int& png_resource) {
+						png_resource_ = png_resource;
+						return *this;
+					}
+
+					std::string& file() { return file_; }
+					image_view_specs& file(const std::string& file) {
+						file_ = file;
+						return *this;
+					}
+
+					image_quality& quality() { return quality_; }
+					image_view_specs& quality(const image_quality& quality) {
+						quality_ = quality;
+						return *this;
+					}
+
+					bool& enlarge_if_smaller() { return enlarge_if_smaller_; }
+					image_view_specs& enlarge_if_smaller(const bool& enlarge_if_smaller) {
+						enlarge_if_smaller_ = enlarge_if_smaller;
+						return *this;
+					}
+
+					bool& keep_aspect_ratio() { return keep_aspect_ratio_; }
+					image_view_specs& keep_aspect_ratio(const bool& keep_aspect_ratio) {
+						keep_aspect_ratio_ = keep_aspect_ratio;
+						return *this;
+					}
 				};
 
 				/// <summary>Image view constructor.</summary>

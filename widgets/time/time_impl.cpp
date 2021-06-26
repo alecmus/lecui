@@ -56,21 +56,21 @@ namespace liblec {
 			ID2D1HwndRenderTarget* p_render_target) {
 			specs_old_ = specs_;
 			is_static_ = (specs_.events().click == nullptr && specs_.events().action == nullptr);
-			h_cursor_ = get_cursor(specs_.cursor);
+			h_cursor_ = get_cursor(specs_.cursor());
 
 			HRESULT hr = S_OK;
 
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_fill),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_fill()),
 					&p_brush_fill_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_hot),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_hot()),
 					&p_brush_hot_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_disabled),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_disabled()),
 					&p_brush_disabled_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_selected),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_selected()),
 					&p_brush_selected_);
 
 			resources_created_ = true;
@@ -95,34 +95,34 @@ namespace liblec {
 				try {
 					// update label specs
 					if (hour_label_specs_.has_value())
-						hour_label_specs_.value().get().color_text = specs_.color_text;
+						hour_label_specs_.value().get().color_text() = specs_.color_text();
 
 					if (seperator_1_specs_.has_value())
-						seperator_1_specs_.value().get().color_text = specs_.color_text;
+						seperator_1_specs_.value().get().color_text() = specs_.color_text();
 
 					if (minute_label_specs_.has_value())
-						minute_label_specs_.value().get().color_text = specs_.color_text;
+						minute_label_specs_.value().get().color_text() = specs_.color_text();
 
 					if (seperator_2_specs_.has_value())
-						seperator_2_specs_.value().get().color_text = specs_.color_text;
+						seperator_2_specs_.value().get().color_text() = specs_.color_text();
 
 					if (second_label_specs_.has_value())
-						second_label_specs_.value().get().color_text = specs_.color_text;
+						second_label_specs_.value().get().color_text() = specs_.color_text();
 
 					// update border specs and background specs
 					if (hour_specs_.has_value()) {
-						hour_specs_.value().get().color_border = specs_.color_border;
-						hour_specs_.value().get().color_fill = specs_.color_fill;
+						hour_specs_.value().get().color_border() = specs_.color_border();
+						hour_specs_.value().get().color_fill() = specs_.color_fill();
 					}
 
 					if (minute_specs_.has_value()) {
-						minute_specs_.value().get().color_border = specs_.color_border;
-						minute_specs_.value().get().color_fill = specs_.color_fill;
+						minute_specs_.value().get().color_border() = specs_.color_border();
+						minute_specs_.value().get().color_fill() = specs_.color_fill();
 					}
 
 					if (second_specs_.has_value()) {
-						second_specs_.value().get().color_border = specs_.color_border;
-						second_specs_.value().get().color_fill = specs_.color_fill;
+						second_specs_.value().get().color_border() = specs_.color_border();
+						second_specs_.value().get().color_fill() = specs_.color_fill();
 					}
 
 					// schedule a refresh
@@ -136,7 +136,7 @@ namespace liblec {
 			if (!resources_created_)
 				create_resources(p_render_target);
 
-			rect_ = position(specs_.rect, specs_.on_resize, change_in_size.width, change_in_size.height);
+			rect_ = position(specs_.rect(), specs_.on_resize(), change_in_size.width, change_in_size.height);
 			rect_.left -= offset.x;
 			rect_.right -= offset.x;
 			rect_.top -= offset.y;

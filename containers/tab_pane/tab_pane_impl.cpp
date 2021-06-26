@@ -49,43 +49,43 @@ namespace liblec {
 			ID2D1HwndRenderTarget* p_render_target) {
 			specs_old_ = specs_;
 			is_static_ = false;
-			h_cursor_ = get_cursor(specs_.cursor);
+			h_cursor_ = get_cursor(specs_.cursor());
 
 			HRESULT hr = S_OK;
 
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_text),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_text()),
 					&p_brush_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_fill),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_fill()),
 					&p_brush_fill_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_border),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_border()),
 					&p_brush_border_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_hot),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_hot()),
 					&p_brush_hot_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_disabled),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_disabled()),
 					&p_brush_disabled_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_tabs),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_tabs()),
 					&p_brush_tabs_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_tabs_border),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_tabs_border()),
 					&p_brush_tabs_border_);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_selected),
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_selected()),
 					&p_brush_selected_);
 			if (SUCCEEDED(hr)) {
 				// Create a DirectWrite text format object.
 				hr = p_directwrite_factory_->CreateTextFormat(
-					convert_string(specs_.font).c_str(),
+					convert_string(specs_.font()).c_str(),
 					NULL,
 					DWRITE_FONT_WEIGHT_NORMAL,
 					DWRITE_FONT_STYLE_NORMAL,
 					DWRITE_FONT_STRETCH_NORMAL,
-					convert_fontsize_to_dip(specs_.font_size),
+					convert_fontsize_to_dip(specs_.font_size()),
 					L"", //locale
 					&p_text_format_
 					);
@@ -125,7 +125,7 @@ namespace liblec {
 			if (!resources_created_)
 				create_resources(p_render_target);
 
-			rect_tab_pane_ = position(specs_.rect, specs_.on_resize, change_in_size.width, change_in_size.height);
+			rect_tab_pane_ = position(specs_.rect(), specs_.on_resize(), change_in_size.width, change_in_size.height);
 			rect_tab_pane_.left -= offset.x;
 			rect_tab_pane_.right -= offset.x;
 			rect_tab_pane_.top -= offset.y;
@@ -134,8 +134,7 @@ namespace liblec {
 			/// compute rect_tabs_
 			rect_tabs_ = rect_tab_pane_;
 
-			switch (specs_.tab_side)
-			{
+			switch (specs_.tab_side()) {
 			case containers::tab_pane::side::left:
 				rect_tabs_.right = rect_tabs_.left + tab_height_ + bar_height_;
 				break;
@@ -157,8 +156,7 @@ namespace liblec {
 			/// compute rect_client_area_
 			rect_client_area_ = rect_tab_pane_;
 
-			switch (specs_.tab_side)
-			{
+			switch (specs_.tab_side()) {
 			case containers::tab_pane::side::left:
 				rect_client_area_.left = rect_tabs_.right;
 				break;
@@ -186,12 +184,12 @@ namespace liblec {
 
 			/// draw client area background and border
 			D2D1_ROUNDED_RECT rounded_rect{ rect_client_area_,
-				specs_.corner_radius_x, specs_.corner_radius_y };
+				specs_.corner_radius_x(), specs_.corner_radius_y() };
 
 			p_render_target->FillRoundedRectangle(&rounded_rect, is_enabled_ ?
 				p_brush_fill_ : p_brush_disabled_);
 			p_render_target->DrawRoundedRectangle(&rounded_rect, is_enabled_ ?
-				p_brush_border_ : p_brush_disabled_, specs_.border);
+				p_brush_border_ : p_brush_disabled_, specs_.border());
 
 			auto measure_string = [](IDWriteFactory* p_directwrite_factory_,
 				IDWriteTextFormat* p_text_format_, IDWriteTextLayout* p_text_layout_,
@@ -218,17 +216,16 @@ namespace liblec {
 
 			/// draw tabs rectangle
 			rounded_rect = { rect_tabs_,
-				specs_.corner_radius_x, specs_.corner_radius_y };
+				specs_.corner_radius_x(), specs_.corner_radius_y() };
 
 			p_render_target->FillRoundedRectangle(&rounded_rect, p_brush_tabs_);
 			p_render_target->DrawRoundedRectangle(&rounded_rect, is_enabled_ ?
-				p_brush_tabs_border_ : p_brush_disabled_, specs_.tabs_border);
+				p_brush_tabs_border_ : p_brush_disabled_, specs_.tabs_border());
 
 			/// draw the tab text
 			D2D1_RECT_F rect_current_tab_ = rect_tabs_;
 
-			switch (specs_.tab_side)
-			{
+			switch (specs_.tab_side()) {
 			case containers::tab_pane::side::left:
 				rect_current_tab_.right -= bar_height_;
 				rect_current_tab_.bottom = rect_current_tab_.top;
@@ -255,8 +252,7 @@ namespace liblec {
 
 				D2D1_SIZE_F min_size = { 0.f, 0.f };
 
-				switch (specs_.tab_side)
-				{
+				switch (specs_.tab_side()) {
 				case containers::tab_pane::side::left:
 				case containers::tab_pane::side::right:
 					// calculate tab rect
@@ -286,11 +282,10 @@ namespace liblec {
 				D2D1_RECT_F rect_text_ = { 0.f, 0.f, 0.f, 0.f };
 				bool excess = false;
 
-				switch (specs_.tab_side)
-				{
+				switch (specs_.tab_side()) {
 				case containers::tab_pane::side::left:
 				case containers::tab_pane::side::right:
-					if (specs_.caption_orientation == containers::tab_pane::orientation::vertical) {
+					if (specs_.caption_orientation() == containers::tab_pane::orientation::vertical) {
 						swap(min_size.width, min_size.height);
 						rect_current_tab_.bottom = rect_current_tab_.top + min_size.height + 2.f * tab_gap_;
 						rect_text_ = rect_current_tab_;
@@ -312,7 +307,7 @@ namespace liblec {
 				case containers::tab_pane::side::top:
 				case containers::tab_pane::side::bottom:
 				default:
-					if (specs_.caption_orientation == containers::tab_pane::orientation::horizontal) {
+					if (specs_.caption_orientation() == containers::tab_pane::orientation::horizontal) {
 						rect_current_tab_.right = rect_current_tab_.left + min_size.width + 2.f * tab_gap_;
 						rect_text_ = rect_current_tab_;
 					}
@@ -342,8 +337,7 @@ namespace liblec {
 
 					// for aesthetics and to allow switching when moving over from one tab to the other
 
-					switch (specs_.tab_side)
-					{
+					switch (specs_.tab_side()) {
 					case containers::tab_pane::side::left:
 					case containers::tab_pane::side::right:
 						rect.top += tab_gap_;
@@ -364,8 +358,7 @@ namespace liblec {
 				if (!is_static_ && is_enabled_ && hit_) {
 					D2D1_RECT_F rect = rect_current_tab_;
 
-					switch (specs_.tab_side)
-					{
+					switch (specs_.tab_side()) {
 					case containers::tab_pane::side::left:
 					case containers::tab_pane::side::right:
 						rect.top += tab_gap_;
@@ -389,8 +382,7 @@ namespace liblec {
 								current_tab_ = tab_name;	// it's a tab, don't wait for a click!
 
 							// move text a little (visual effect)
-							switch (specs_.tab_side)
-							{
+							switch (specs_.tab_side()) {
 							case containers::tab_pane::side::left:
 								rect_text_.right += 2.5f;
 								rect_text_.left += 2.5f;
@@ -416,11 +408,10 @@ namespace liblec {
 					}
 				}
 
-				switch (specs_.tab_side)
-				{
+				switch (specs_.tab_side()) {
 				case containers::tab_pane::side::left:
 				case containers::tab_pane::side::right: {
-					if (specs_.caption_orientation == containers::tab_pane::orientation::vertical) {
+					if (specs_.caption_orientation() == containers::tab_pane::orientation::vertical) {
 						// rotate the text rectangle about its center
 
 						const D2D1_POINT_2F center =
@@ -477,7 +468,7 @@ namespace liblec {
 				case containers::tab_pane::side::top:
 				case containers::tab_pane::side::bottom: {
 				default:
-					if (specs_.caption_orientation == containers::tab_pane::orientation::horizontal) {
+					if (specs_.caption_orientation() == containers::tab_pane::orientation::horizontal) {
 						// create a text layout
 						HRESULT hr = p_directwrite_factory_->CreateTextLayout(convert_string(tab_name).c_str(),
 							(UINT32)tab_name.length(), p_text_format_, rect_text_.right - rect_text_.left,
@@ -539,8 +530,7 @@ namespace liblec {
 			// draw the selected tab bar
 			for (const auto& it : p_tab_rects_) {
 				bool excess = false;
-				switch (specs_.tab_side)
-				{
+				switch (specs_.tab_side()) {
 				case containers::tab_pane::side::left:
 				case containers::tab_pane::side::right:
 					if ((it.second.bottom + tab_gap_) > rect_tab_pane_.bottom)
@@ -561,8 +551,7 @@ namespace liblec {
 				if (it.first == current_tab_) {
 					D2D1_RECT_F rect_bar_ = it.second;
 
-					switch (specs_.tab_side)
-					{
+					switch (specs_.tab_side()) {
 					case containers::tab_pane::side::left:
 						rect_bar_.left = rect_bar_.right;
 						rect_bar_.right = rect_bar_.right += bar_height_;
