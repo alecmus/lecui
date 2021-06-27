@@ -50,8 +50,8 @@ namespace liblec {
 				D2D1_POINT_2F get_scrollbar_offset();
 
 				/// widget specific methods
-				widgets::rectangle::rectangle_specs& specs();
-				widgets::rectangle::rectangle_specs& operator()();
+				widgets::rectangle_specs& specs();
+				widgets::rectangle_specs& operator()();
 
 			private:
 				// Default constructor and copying an object of this class are not allowed
@@ -60,7 +60,7 @@ namespace liblec {
 				rectangle_impl& operator=(const rectangle_impl&) = delete;
 
 				/// Private variables
-				widgets::rectangle::rectangle_specs specs_, specs_old_;
+				widgets::rectangle_specs specs_, specs_old_;
 				ID2D1SolidColorBrush* p_brush_fill_;
 				ID2D1SolidColorBrush* p_brush_border_;
 				ID2D1SolidColorBrush* p_brush_border_hot_;

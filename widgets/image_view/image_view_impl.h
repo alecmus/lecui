@@ -38,8 +38,8 @@ namespace liblec {
 					const bool& render) override;
 
 				/// widget specific methods
-				widgets::image_view::image_view_specs& specs();
-				widgets::image_view::image_view_specs& operator()();
+				widgets::image_view_specs& specs();
+				widgets::image_view_specs& operator()();
 
 			private:
 				// Default constructor and copying an object of this class are not allowed
@@ -48,7 +48,7 @@ namespace liblec {
 				image_view_impl& operator=(const image_view_impl&) = delete;
 
 				/// Private variables
-				widgets::image_view::image_view_specs specs_, specs_old_;
+				widgets::image_view_specs specs_, specs_old_;
 				ID2D1SolidColorBrush* p_brush_fill_;
 				ID2D1SolidColorBrush* p_brush_border_;
 				ID2D1SolidColorBrush* p_brush_hot_;

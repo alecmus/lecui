@@ -13,7 +13,7 @@
 
 namespace liblec {
 	namespace lecui {
-		bool widgets::label::label_specs::operator==(const label_specs& param) {
+		bool widgets::label_specs::operator==(const label_specs& param) {
 			return
 				// generic specs
 				specs::operator==(param) &&
@@ -26,11 +26,11 @@ namespace liblec {
 				(center_v_ == param.center_v_);
 		}
 
-		bool widgets::label::label_specs::operator!=(const label_specs& param) {
+		bool widgets::label_specs::operator!=(const label_specs& param) {
 			return !operator==(param);
 		}
 
-		class widgets::label::impl {
+		class widgets::label_builder::impl {
 		public:
 			impl(containers::page& page, const std::string& alias) :
 				page_(page),
@@ -46,26 +46,26 @@ namespace liblec {
 			label_specs& specs_;
 		};
 
-		widgets::label::label(containers::page& page) :
-			label(page, "") {}
+		widgets::label_builder::label_builder(containers::page& page) :
+			label_builder(page, "") {}
 
-		widgets::label::label(containers::page& page, const std::string& alias) :
+		widgets::label_builder::label_builder(containers::page& page, const std::string& alias) :
 			d_(*(new impl(page, alias))) {}
 
-		widgets::label::~label() { delete& d_; }
+		widgets::label_builder::~label_builder() { delete& d_; }
 
-		widgets::label::label_specs&
-			widgets::label::specs() {
+		widgets::label_specs&
+			widgets::label_builder::specs() {
 			return d_.specs_;
 		}
 
-		widgets::label::label_specs&
-			widgets::label::operator()() {
+		widgets::label_specs&
+			widgets::label_builder::operator()() {
 			return specs();
 		}
 
-		widgets::label::label_specs&
-			widgets::label::specs(form& fm,
+		widgets::label_specs&
+			widgets::label_builder::specs(form& fm,
 				const std::string& path) {
 			const auto idx = path.find("/");
 

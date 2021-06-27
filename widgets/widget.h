@@ -76,36 +76,14 @@ namespace liblec {
 				};
 
 			protected:
-				/// <summary>The widget text.</summary>
-				/// <remarks>The use of the text varies from widget to widget. Some widgets don't
-				/// use this field.</remarks>
 				std::string text_;
-
-				/// <summary>The text to display when the mouse is hovered over the widget.</summary>
 				std::string tooltip_;
-
-				/// <summary>The position and dimensions of the widget.</summary>
 				lecui::rect rect_;
-
-				/// <summary>The behaviour of the widget when its container is resized.</summary>
 				resize_params on_resize_ = { 0.f, 0.f, 0.f, 0.f };
-
-				/// <summary>The cursor to be used when the mouse is over the widget.</summary>
-				/// <remarks>This is only used if the widget is non-static.</remarks>
 				cursor_type cursor_ = cursor_type::arrow;
-
-				/// <summary>The font to use for the widget text.</summary>
 				std::string font_ = "Segoe UI";
-
-				/// <summary>The size of the font, in points.</summary>
 				float font_size_ = 9.f;
-
-				/// <summary>The color of the widget text.</summary>
 				color color_text_ = { 0, 0, 0, 255 };
-
-				/// <summary>The fill color of the widget.</summary>
-				/// <remarks>The use of the fill color varies from widget to widget. Refer to the
-				/// specific widget's documentation for details.</remarks>
 				color color_fill_ = { 0, 120, 170, 255 };
 
 				/// <summary>The hit color when the mouse is over the widget.</summary>
@@ -140,17 +118,60 @@ namespace liblec {
 					std::function<void()> mouse_leave = nullptr;
 				};
 
+				/// <summary>Get or set the widget text.</summary>
+				/// <returns>A reference to the widget text.</returns>
+				/// <remarks>The use of the text varies from widget to widget. Some widgets don't
+				/// use this field.</remarks>
 				virtual std::string& text() = 0;
+
+				/// <summary>Get or set the widget's tooltip text.</summary>
+				/// <returns>A reference to the tooltip text.</returns>
+				/// <remarks>The tooltip text is displayed when the mouse is hovered over the widget.</remarks>
 				virtual std::string& tooltip() = 0;
+
+				/// <summary>Get or set the position and dimensions of the widget.</summary>
+				/// <returns>A reference to the widget rectangle.</returns>
 				virtual lecui::rect& rect() = 0;
+
+				/// <summary>Get or set the behaviour of the widget when its container is resized.</summary>
+				/// <returns>A reference to the resize parameters as defined in <see cref="resize_params"></see>.</returns>
 				virtual resize_params& on_resize() = 0;
+
+				/// <summary>Get or set the mouse cursor to use then over the widget.</summary>
+				/// <returns>A reference to the cursor type as defined in <see cref="cursor_type"></see>.</returns>
+				/// <remarks>This is only used if the widget is non-static.</remarks>
 				virtual cursor_type& cursor() = 0;
+
+				/// <summary>Get or set the default widget font, e.g. "Georgia".</summary>
+				/// <returns>A reference to the widget's font name.</returns>
 				virtual std::string& font() = 0;
+
+				/// <summary>Get or set the default widget font size in points, e.g. 9.0.</summary>
+				/// <returns>A reference to the widget's font size.</returns>
 				virtual float& font_size() = 0;
+
+				/// <summary>Get or set the color of the widget's text.</summary>
+				/// <returns>A reference to the widget's text color.</returns>
 				virtual color& color_text() = 0;
+
+				/// <summary>Get or set the fill color of the widget.</summary>
+				/// <returns>A reference to the widget's fill color.</returns>
+				/// <remarks>The use of the fill color varies from widget to widget. Refer to the
+				/// specific widget's documentation for details.</remarks>
 				virtual color& color_fill() = 0;
+
+				/// <summary>Get or set the widget's color when the mouse is hovered over it.</summary>
+				/// <returns>A reference to the widget's hover color.</returns>
+				/// <remarks>The use of the hover color varies from widget to widget. Refer to the
+				/// specific widget's documentation for details.</remarks>
 				virtual color& color_hot() = 0;
+
+				/// <summary>Get or set the widget's color when selected.</summary>
+				/// <returns>A reference to the widget's color when selected.</returns>
 				virtual color& color_selected() = 0;
+
+				/// <summary>Get or set the widget's color when it's disabled.</summary>
+				/// <returns>A reference to the widget's color when disabled.</returns>
 				virtual color& color_disabled() = 0;
 
 				/// <summary>Widget events.</summary>

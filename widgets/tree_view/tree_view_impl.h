@@ -43,9 +43,9 @@ namespace liblec {
 				bool hit(const bool& hit) override;
 
 				/// widget specific methods
-				widgets::tree_view::tree_view_specs& specs();
-				widgets::tree_view::tree_view_specs& operator()();
-				void set_tree_pane_specs(containers::pane::pane_specs& specs);
+				widgets::tree_view_specs& specs();
+				widgets::tree_view_specs& operator()();
+				void set_tree_pane_specs(containers::pane_specs& specs);
 
 			private:
 				// Default constructor and copying an object of this class are not allowed
@@ -54,7 +54,7 @@ namespace liblec {
 				tree_view_impl& operator=(const tree_view_impl&) = delete;
 
 				/// Private variables
-				widgets::tree_view::tree_view_specs specs_, specs_old_;
+				widgets::tree_view_specs specs_, specs_old_;
 				ID2D1SolidColorBrush* p_brush_;
 				ID2D1SolidColorBrush* p_brush_hot_;
 				ID2D1SolidColorBrush* p_brush_disabled_;
@@ -67,7 +67,7 @@ namespace liblec {
 
 				const float margin_;
 
-				std::optional<std::reference_wrapper<containers::pane::pane_specs>> tree_pane_specs_;
+				std::optional<std::reference_wrapper<containers::pane_specs>> tree_pane_specs_;
 
 				/// Private methods.
 				void on_selection();

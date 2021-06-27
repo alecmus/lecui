@@ -57,10 +57,10 @@ namespace liblec {
 				void on_selection_change(const bool& selected) override;
 
 				/// widget specific methods
-				widgets::html_editor::html_editor_specs& specs();
-				widgets::html_editor::html_editor_specs& operator()();
-				void set_pane_specs(containers::pane::pane_specs& html_control,
-					containers::pane::pane_specs& html);
+				widgets::html_editor_specs& specs();
+				widgets::html_editor_specs& operator()();
+				void set_pane_specs(containers::pane_specs& html_control,
+					containers::pane_specs& html);
 				void insert_character(const char& c);
 				void key_backspace();
 				void key_delete();
@@ -89,7 +89,7 @@ namespace liblec {
 
 				/// Private variables
 				bool controls_initialized_;
-				widgets::html_editor::html_editor_specs specs_, specs_old_;
+				widgets::html_editor_specs specs_, specs_old_;
 				ID2D1SolidColorBrush* p_brush_;
 				ID2D1SolidColorBrush* p_brush_caret_;
 				ID2D1SolidColorBrush* p_brush_border_;
@@ -127,7 +127,7 @@ namespace liblec {
 
 				std::vector<formatted_text_parser::text_range_properties> formatting_;
 
-				std::optional<std::reference_wrapper<containers::pane::pane_specs>>
+				std::optional<std::reference_wrapper<containers::pane_specs>>
 					html_control_pane_specs_,
 					html_pane_specs_;
 

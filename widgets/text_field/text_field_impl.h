@@ -39,8 +39,8 @@ namespace liblec {
 				void on_selection_change(const bool& selected) override;
 
 				/// widget specific methods
-				widgets::text_field::text_field_specs& specs();
-				widgets::text_field::text_field_specs& operator()();
+				widgets::text_field_specs& specs();
+				widgets::text_field_specs& operator()();
 				void insert_character(const char& c);
 				void key_backspace();
 				void key_delete();
@@ -54,7 +54,7 @@ namespace liblec {
 				text_field_impl& operator=(const text_field_impl&) = delete;
 
 				/// Private variables
-				widgets::text_field::text_field_specs specs_, specs_old_;
+				widgets::text_field_specs specs_, specs_old_;
 				ID2D1SolidColorBrush* p_brush_;
 				ID2D1SolidColorBrush* p_brush_caret_;
 				ID2D1SolidColorBrush* p_brush_prompt_;

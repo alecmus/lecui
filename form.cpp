@@ -284,7 +284,7 @@ namespace liblec {
 				const size max_size_ = { 420.f, 400.f };
 				const std::string question_;
 				const float margin_ = 10.f;
-				const size button_size_ = widgets::button::button_specs().rect().size();
+				const size button_size_ = widgets::button_specs().rect().size();
 				bool& user_agreed_;
 
 			public:
@@ -300,7 +300,7 @@ namespace liblec {
 					D2D1_RECT_F rect = D2D1::RectF(0.f, 0.f, max_size_.width, max_size_.height);
 
 					// measure the question
-					widgets::label::label_specs specs_lbl;
+					widgets::label_specs specs_lbl;
 					rect = widgets::measure_label(d_.p_directwrite_factory_, question,
 						specs_lbl.font(), specs_lbl.font_size(), false, false, rect);
 
@@ -320,14 +320,14 @@ namespace liblec {
 					page_management page_man(*this);
 					auto& home_page = page_man.add("home");
 
-					widgets::label label(home_page);
+					widgets::label_builder label(home_page);
 					label().text(question_).multiline(true)
 						.rect({ margin_, home_page.size().width, margin_,
 						home_page.size().height - margin_ - button_size_.height - margin_ });
 
 					// add yes and no buttons, in that order for tab navigation
-					widgets::button  button_yes(home_page, "button_yes");
-					widgets::button button_no(home_page, "button_no");
+					widgets::button_builder button_yes(home_page, "button_yes");
+					widgets::button_builder button_no(home_page, "button_no");
 
 					// position the no button on the bottom right
 					button_no().text("No")
@@ -369,7 +369,7 @@ namespace liblec {
 					const size max_size_ = { 420.f, 400.f };
 					const std::string message_;
 					const float margin_ = 10.f;
-					const size button_size_ = widgets::button::button_specs().rect().size();
+					const size button_size_ = widgets::button_specs().rect().size();
 
 				public:
 					message_form(const std::string& title, const std::string& message, form& parent) :
@@ -383,7 +383,7 @@ namespace liblec {
 						D2D1_RECT_F rect = D2D1::RectF(0.f, 0.f, max_size_.width, max_size_.height);
 
 						// measure the message
-						widgets::label::label_specs specs_lbl;
+						widgets::label_specs specs_lbl;
 						rect = widgets::measure_label(d_.p_directwrite_factory_, message,
 							specs_lbl.font(), specs_lbl.font_size(), false, false, rect);
 
@@ -403,13 +403,13 @@ namespace liblec {
 						page_management page_man(*this);
 						auto& home_page = page_man.add("home");
 
-						widgets::label label(home_page);
+						widgets::label_builder label(home_page);
 						label().text(message_).multiline(true)
 							.rect({ margin_, home_page.size().width, margin_,
 							home_page.size().height - margin_ - button_size_.height - margin_ });
 
 						// add the ok button on the bottom right
-						widgets::button button(home_page, "button_ok");
+						widgets::button_builder button(home_page, "button_ok");
 						button().text("Ok")
 							.rect().place({margin_, home_page.size().width - margin_,
 							margin_, home_page.size().height - margin_ }, 100.f, 100.f);

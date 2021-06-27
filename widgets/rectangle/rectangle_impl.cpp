@@ -151,10 +151,10 @@ namespace liblec {
 			return { h_scrollbar_.x_off_set_, v_scrollbar_.y_off_set_ };
 		}
 
-		widgets::rectangle::rectangle_specs&
+		widgets::rectangle_specs&
 			widgets::rectangle_impl::specs() { return specs_; }
 
-		widgets::rectangle::rectangle_specs&
+		widgets::rectangle_specs&
 			widgets::rectangle_impl::operator()() { return specs(); }
 	}
 }

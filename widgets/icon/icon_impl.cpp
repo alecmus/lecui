@@ -145,15 +145,15 @@ namespace liblec {
 			return rect_;
 		}
 
-		widgets::icon::icon_specs&
+		widgets::icon_specs&
 			widgets::icon_impl::specs() { return specs_; }
 
-		widgets::icon::icon_specs&
+		widgets::icon_specs&
 			widgets::icon_impl::operator()() { return specs(); }
 
-		void widgets::icon_impl::set_icon_specs(rectangle::rectangle_specs& rectangle,
-			image_view::image_view_specs& image_view,
-			label::label_specs& label, label::label_specs& description) {
+		void widgets::icon_impl::set_icon_specs(rectangle_specs& rectangle,
+			image_view_specs& image_view,
+			label_specs& label, label_specs& description) {
 			rectangle_specs_ = rectangle;
 			image_view_specs_ = image_view;
 			label_specs_ = label;

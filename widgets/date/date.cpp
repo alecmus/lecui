@@ -14,7 +14,7 @@
 
 namespace liblec {
 	namespace lecui {
-		bool widgets::date::date_specs::operator==(const date_specs& param) {
+		bool widgets::date_specs::operator==(const date_specs& param) {
 			return
 				// generic specs
 				specs::operator==(param) &&
@@ -23,11 +23,11 @@ namespace liblec {
 				(color_border_ == param.color_border_);
 		}
 
-		bool widgets::date::date_specs::operator!=(const date_specs& param) {
+		bool widgets::date_specs::operator!=(const date_specs& param) {
 			return !operator==(param);
 		}
 
-		class widgets::date::impl {
+		class widgets::date_builder::impl {
 		public:
 			impl(containers::page& page, const std::string& alias) :
 				page_(page),
@@ -44,26 +44,26 @@ namespace liblec {
 			date_specs& specs_;
 		};
 
-		widgets::date::date(containers::page& page) :
-			date(page, "") {}
+		widgets::date_builder::date_builder(containers::page& page) :
+			date_builder(page, "") {}
 
-		widgets::date::date(containers::page& page, const std::string& alias) :
+		widgets::date_builder::date_builder(containers::page& page, const std::string& alias) :
 			d_(*(new impl(page, alias))) {}
 
-		widgets::date::~date() { delete& d_; }
+		widgets::date_builder::~date_builder() { delete& d_; }
 
-		widgets::date::date_specs&
-			widgets::date::specs() {
+		widgets::date_specs&
+			widgets::date_builder::specs() {
 			return d_.specs_;
 		}
 
-		widgets::date::date_specs&
-			widgets::date::operator()() {
+		widgets::date_specs&
+			widgets::date_builder::operator()() {
 			return specs();
 		}
 
-		widgets::date::date_specs&
-			widgets::date::specs(form& fm,
+		widgets::date_specs&
+			widgets::date_builder::specs(form& fm,
 				const std::string& path) {
 			const auto idx = path.find("/");
 

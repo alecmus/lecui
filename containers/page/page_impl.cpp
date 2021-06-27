@@ -99,7 +99,7 @@ namespace liblec {
 			return contains_;
 		}
 
-		containers::tab_pane::tab_pane_specs&
+		containers::tab_pane_specs&
 			containers::page::impl::add_tab_pane(std::string alias) {
 			check_alias(alias);
 			if (tab_panes_.try_emplace(alias, pg_, alias, p_directwrite_factory_).second) {
@@ -110,7 +110,7 @@ namespace liblec {
 			return tab_panes_.at(alias).specs();
 		}
 
-		containers::pane::pane_specs&
+		containers::pane_specs&
 			containers::page::impl::add_pane(std::string alias) {
 			check_alias(alias);
 			if (panes_.try_emplace(alias, pg_, alias).second) {
@@ -121,7 +121,7 @@ namespace liblec {
 			return panes_.at(alias).specs();
 		}
 
-		widgets::rectangle::rectangle_specs&
+		widgets::rectangle_specs&
 			containers::page::impl::add_rectangle(std::string alias) {
 			check_alias(alias);
 			if (rectangles_.try_emplace(alias, pg_, alias, h_scrollbar_, v_scrollbar_).second) {
@@ -132,7 +132,7 @@ namespace liblec {
 			return rectangles_.at(alias).specs();
 		}
 
-		widgets::label::label_specs&
+		widgets::label_specs&
 			containers::page::impl::add_label(std::string alias) {
 			check_alias(alias);
 			if (labels_.try_emplace(alias, pg_, alias, p_directwrite_factory_).second) {
@@ -143,7 +143,7 @@ namespace liblec {
 			return labels_.at(alias).specs();
 		}
 
-		containers::group::group_specs&
+		containers::group_specs&
 			containers::page::impl::add_group(std::string alias) {
 			check_alias(alias);
 			if (groups_.try_emplace(alias, pg_, alias).second) {
@@ -154,7 +154,7 @@ namespace liblec {
 			return groups_.at(alias).specs();
 		}
 
-		widgets::button::button_specs&
+		widgets::button_specs&
 			containers::page::impl::add_button(std::string alias) {
 			check_alias(alias);
 			if (buttons_.try_emplace(alias, pg_, alias, p_directwrite_factory_).second) {
@@ -165,7 +165,7 @@ namespace liblec {
 			return buttons_.at(alias).specs();
 		}
 
-		widgets::toggle::toggle_specs&
+		widgets::toggle_specs&
 			containers::page::impl::add_toggle(std::string alias) {
 			check_alias(alias);
 			if (toggles_.try_emplace(alias, pg_, alias, p_directwrite_factory_).second) {
@@ -176,7 +176,7 @@ namespace liblec {
 			return toggles_.at(alias).specs();
 		}
 
-		widgets::table_view::table_view_specs&
+		widgets::table_view_specs&
 			containers::page::impl::add_table_view(std::string alias) {
 			check_alias(alias);
 			if (table_views_.try_emplace(alias, pg_, alias, p_directwrite_factory_).second) {
@@ -187,7 +187,7 @@ namespace liblec {
 			return table_views_.at(alias).specs();
 		}
 
-		widgets::custom::custom_specs&
+		widgets::custom_specs&
 			containers::page::impl::add_custom(std::string alias) {
 			check_alias(alias);
 			if (customs_.try_emplace(alias, pg_, alias, p_directwrite_factory_, p_iwic_factory_).second) {
@@ -198,7 +198,7 @@ namespace liblec {
 			return customs_.at(alias).specs();
 		}
 
-		widgets::image_view::image_view_specs&
+		widgets::image_view_specs&
 			containers::page::impl::add_image_view(std::string alias) {
 			check_alias(alias);
 			if (image_views_.try_emplace(alias, pg_, alias, p_iwic_factory_).second) {
@@ -209,7 +209,7 @@ namespace liblec {
 			return image_views_.at(alias).specs();
 		}
 
-		widgets::progress_indicator::progress_indicator_specs&
+		widgets::progress_indicator_specs&
 			containers::page::impl::add_progress_indicator(std::string alias) {
 			check_alias(alias);
 			if (progress_indicators_.try_emplace(alias, pg_, alias, p_direct2d_factory_, p_directwrite_factory_).second) {
@@ -220,7 +220,7 @@ namespace liblec {
 			return progress_indicators_.at(alias).specs();
 		}
 
-		widgets::progress_bar::progress_bar_specs&
+		widgets::progress_bar_specs&
 			containers::page::impl::add_progress_bar(std::string alias) {
 			check_alias(alias);
 			if (progress_bars_.try_emplace(alias, pg_, alias, p_direct2d_factory_, p_directwrite_factory_).second) {
@@ -231,7 +231,7 @@ namespace liblec {
 			return progress_bars_.at(alias).specs();
 		}
 
-		widgets::checkbox::checkbox_specs&
+		widgets::checkbox_specs&
 			containers::page::impl::add_checkbox(std::string alias) {
 			check_alias(alias);
 			if (checkboxes_.try_emplace(alias, pg_, alias, p_direct2d_factory_, p_directwrite_factory_).second) {
@@ -242,7 +242,7 @@ namespace liblec {
 			return checkboxes_.at(alias).specs();
 		}
 
-		widgets::text_field::text_field_specs&
+		widgets::text_field_specs&
 			containers::page::impl::add_text_field(std::string alias) {
 			check_alias(alias);
 			if (text_fields_.try_emplace(alias, pg_, alias, p_directwrite_factory_).second) {
@@ -253,7 +253,7 @@ namespace liblec {
 			return text_fields_.at(alias).specs();
 		}
 
-		widgets::tree_view::tree_view_specs&
+		widgets::tree_view_specs&
 			containers::page::impl::add_tree(std::string alias) {
 			check_alias(alias);
 			if (trees_.try_emplace(alias, pg_, alias, p_direct2d_factory_, p_directwrite_factory_).second) {
@@ -264,7 +264,7 @@ namespace liblec {
 			return trees_.at(alias).specs();
 		}
 
-		widgets::slider::slider_specs&
+		widgets::slider_specs&
 			containers::page::impl::add_slider(std::string alias) {
 			check_alias(alias);
 			if (sliders_.try_emplace(alias, pg_, alias, p_directwrite_factory_).second) {
@@ -275,7 +275,7 @@ namespace liblec {
 			return sliders_.at(alias).specs();
 		}
 
-		widgets::html_editor::html_editor_specs&
+		widgets::html_editor_specs&
 			containers::page::impl::add_html_editor(std::string alias) {
 			check_alias(alias);
 			if (html_editors_.try_emplace(alias, pg_, alias, p_directwrite_factory_).second) {
@@ -286,7 +286,7 @@ namespace liblec {
 			return html_editors_.at(alias).specs();
 		}
 
-		widgets::combobox::combobox_specs&
+		widgets::combobox_specs&
 			containers::page::impl::add_combobox(std::string alias) {
 			check_alias(alias);
 			if (comboboxes_.try_emplace(alias, pg_, alias, p_directwrite_factory_).second) {
@@ -297,7 +297,7 @@ namespace liblec {
 			return comboboxes_.at(alias).specs();
 		}
 
-		widgets::line::line_specs&
+		widgets::line_specs&
 			containers::page::impl::add_line(std::string alias) {
 			check_alias(alias);
 			if (lines_.try_emplace(alias, pg_, alias).second) {
@@ -308,7 +308,7 @@ namespace liblec {
 			return lines_.at(alias).specs();
 		}
 
-		widgets::time::time_specs&
+		widgets::time_specs&
 			containers::page::impl::add_time(std::string alias) {
 			check_alias(alias);
 			if (times_.try_emplace(alias, pg_, alias).second) {
@@ -319,7 +319,7 @@ namespace liblec {
 			return times_.at(alias).specs();
 		}
 
-		widgets::date::date_specs&
+		widgets::date_specs&
 			containers::page::impl::add_date(std::string alias) {
 			check_alias(alias);
 			if (dates_.try_emplace(alias, pg_, alias).second) {
@@ -330,7 +330,7 @@ namespace liblec {
 			return dates_.at(alias).specs();
 		}
 
-		widgets::icon::icon_specs&
+		widgets::icon_specs&
 			containers::page::impl::add_icon(std::string alias) {
 			check_alias(alias);
 			if (icons_.try_emplace(alias, pg_, alias).second) {

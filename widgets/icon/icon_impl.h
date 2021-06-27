@@ -46,11 +46,11 @@ namespace liblec {
 					const bool& render) override;
 
 				/// widget specific methods
-				widgets::icon::icon_specs& specs();
-				widgets::icon::icon_specs& operator()();
-				void set_icon_specs(rectangle::rectangle_specs& rectangle,
-					image_view::image_view_specs& image_view,
-					label::label_specs& label, label::label_specs& description);
+				widgets::icon_specs& specs();
+				widgets::icon_specs& operator()();
+				void set_icon_specs(rectangle_specs& rectangle,
+					image_view_specs& image_view,
+					label_specs& label, label_specs& description);
 
 			private:
 				// Default constructor and copying an object of this class are not allowed
@@ -59,15 +59,15 @@ namespace liblec {
 				icon_impl& operator=(const icon_impl&) = delete;
 
 				/// Private variables
-				widgets::icon::icon_specs specs_, specs_old_;
+				widgets::icon_specs specs_, specs_old_;
 				ID2D1SolidColorBrush* p_brush_fill_;
 				ID2D1SolidColorBrush* p_brush_hot_;
 				ID2D1SolidColorBrush* p_brush_disabled_;
 				ID2D1SolidColorBrush* p_brush_selected_;
 
-				std::optional<std::reference_wrapper<rectangle::rectangle_specs>> rectangle_specs_;
-				std::optional<std::reference_wrapper<image_view::image_view_specs>> image_view_specs_;
-				std::optional<std::reference_wrapper<label::label_specs>> label_specs_, description_specs_;
+				std::optional<std::reference_wrapper<rectangle_specs>> rectangle_specs_;
+				std::optional<std::reference_wrapper<image_view_specs>> image_view_specs_;
+				std::optional<std::reference_wrapper<label_specs>> label_specs_, description_specs_;
 			};
 		}
 	}

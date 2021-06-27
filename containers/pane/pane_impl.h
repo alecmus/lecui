@@ -72,8 +72,8 @@ namespace liblec {
 					const bool& render) override;
 
 				/// widget specific methods
-				containers::pane::pane_specs& specs();
-				containers::pane::pane_specs& operator()();
+				containers::pane_specs& specs();
+				containers::pane_specs& operator()();
 				const D2D1_RECT_F& client_area();
 				const D2D1_RECT_F& pane_area();
 
@@ -84,7 +84,7 @@ namespace liblec {
 				pane_impl& operator=(const pane_impl&) = delete;
 
 				/// Private variables
-				containers::pane::pane_specs specs_, specs_old_;
+				containers::pane_specs specs_, specs_old_;
 				ID2D1SolidColorBrush* p_brush_;
 				ID2D1SolidColorBrush* p_brush_fill_;
 				ID2D1SolidColorBrush* p_brush_border_;

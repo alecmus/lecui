@@ -95,7 +95,7 @@ bool liblec::lecui::widgets::tooltip_form::on_layout(std::string& error) {
 	auto& home_page = page_man_.add(al_page_home_);
 
 	// label
-	lecui::widgets::label label(home_page, "");
+	lecui::widgets::label_builder label(home_page, "");
 	label()
 		.text(tooltip_text_).font(font_).font_size(font_size_)
 		.rect(rect_).center_v(true);

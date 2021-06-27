@@ -13,7 +13,7 @@
 
 namespace liblec {
 	namespace lecui {
-		bool widgets::combobox::combobox_specs::operator==(const combobox_specs& param) {
+		bool widgets::combobox_specs::operator==(const combobox_specs& param) {
 			return
 				// generic specs
 				specs::operator==(param) &&
@@ -29,13 +29,13 @@ namespace liblec {
 				(color_dropdown_arrow_hot_ == param.color_dropdown_arrow_hot_);
 		}
 
-		bool widgets::combobox::combobox_specs::operator!=(const combobox_specs& param) {
+		bool widgets::combobox_specs::operator!=(const combobox_specs& param) {
 			return !operator==(param);
 		}
 
-		class widgets::combobox::combobox_impl {
+		class widgets::combobox_builder::impl {
 		public:
-			combobox_impl(containers::page& page, const std::string& alias) :
+			impl(containers::page& page, const std::string& alias) :
 				page_(page),
 				specs_(page_.d_page_.add_combobox(alias)) {
 				specs_
@@ -55,26 +55,26 @@ namespace liblec {
 			combobox_specs& specs_;
 		};
 
-		widgets::combobox::combobox(containers::page& page) :
-			combobox(page, "") {}
+		widgets::combobox_builder::combobox_builder(containers::page& page) :
+			combobox_builder(page, "") {}
 
-		widgets::combobox::combobox(containers::page& page, const std::string& alias) :
-			d_(*(new combobox_impl(page, alias))) {}
+		widgets::combobox_builder::combobox_builder(containers::page& page, const std::string& alias) :
+			d_(*(new impl(page, alias))) {}
 
-		widgets::combobox::~combobox() { delete& d_; }
+		widgets::combobox_builder::~combobox_builder() { delete& d_; }
 
-		widgets::combobox::combobox_specs&
-			widgets::combobox::specs() {
+		widgets::combobox_specs&
+			widgets::combobox_builder::specs() {
 			return d_.specs_;
 		}
 
-		widgets::combobox::combobox_specs&
-			widgets::combobox::operator()() {
+		widgets::combobox_specs&
+			widgets::combobox_builder::operator()() {
 			return specs();
 		}
 
-		widgets::combobox::combobox_specs&
-			widgets::combobox::specs(form& fm, const std::string& path) {
+		widgets::combobox_specs&
+			widgets::combobox_builder::specs(form& fm, const std::string& path) {
 			const auto idx = path.find("/");
 
 			if (idx != std::string::npos) {

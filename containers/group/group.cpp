@@ -13,7 +13,7 @@
 
 namespace liblec {
 	namespace lecui {
-		bool containers::group::group_specs::operator==(const group_specs& param) {
+		bool containers::group_specs::operator==(const group_specs& param) {
 			return
 				// generic specs
 				specs::operator==(param) &&
@@ -22,11 +22,11 @@ namespace liblec {
 				(color_border_ == param.color_border_);
 		}
 
-		bool containers::group::group_specs::operator!=(const group_specs& param) {
+		bool containers::group_specs::operator!=(const group_specs& param) {
 			return !operator==(param);
 		}
 
-		class containers::group::impl {
+		class containers::group_builder::impl {
 		public:
 			impl(containers::page& page, const std::string& alias) :
 				page_(page),
@@ -39,26 +39,26 @@ namespace liblec {
 			group_specs& specs_;
 		};
 
-		containers::group::group(containers::page& page) :
-			group(page, "") {}
+		containers::group_builder::group_builder(containers::page& page) :
+			group_builder(page, "") {}
 
-		containers::group::group(containers::page& page, const std::string& alias) :
+		containers::group_builder::group_builder(containers::page& page, const std::string& alias) :
 			d_(*(new impl(page, alias))) {}
 
-		containers::group::~group() { delete& d_; }
+		containers::group_builder::~group_builder() { delete& d_; }
 
-		containers::group::group_specs&
-			containers::group::specs() {
+		containers::group_specs&
+			containers::group_builder::specs() {
 			return d_.specs_;
 		}
 
-		containers::group::group_specs&
-			containers::group::operator()() {
+		containers::group_specs&
+			containers::group_builder::operator()() {
 			return specs();
 		}
 
-		containers::group::group_specs&
-			containers::group::specs(form& fm, const std::string& path) {
+		containers::group_specs&
+			containers::group_builder::specs(form& fm, const std::string& path) {
 			const auto idx = path.find("/");
 
 			if (idx != std::string::npos) {

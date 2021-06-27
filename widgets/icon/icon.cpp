@@ -13,7 +13,7 @@
 
 namespace liblec {
 	namespace lecui {
-		bool widgets::icon::icon_specs::operator==(const icon_specs& param) {
+		bool widgets::icon_specs::operator==(const icon_specs& param) {
 			return
 				// generic specs
 				specs::operator==(param) &&
@@ -25,11 +25,11 @@ namespace liblec {
 				(color_text_description_ == param.color_text_description_);
 		}
 
-		bool widgets::icon::icon_specs::operator!=(const icon_specs& param) {
+		bool widgets::icon_specs::operator!=(const icon_specs& param) {
 			return !operator==(param);
 		}
 
-		class widgets::icon::impl {
+		class widgets::icon_builder::impl {
 		public:
 			impl(containers::page& page, const std::string& alias) :
 				page_(page),
@@ -45,26 +45,26 @@ namespace liblec {
 			icon_specs& specs_;
 		};
 
-		widgets::icon::icon(containers::page& page) :
-			icon(page, "") {}
+		widgets::icon_builder::icon_builder(containers::page& page) :
+			icon_builder(page, "") {}
 
-		widgets::icon::icon(containers::page& page, const std::string& alias) :
+		widgets::icon_builder::icon_builder(containers::page& page, const std::string& alias) :
 			d_(*(new impl(page, alias))) {}
 
-		widgets::icon::~icon() { delete& d_; }
+		widgets::icon_builder::~icon_builder() { delete& d_; }
 
-		widgets::icon::icon_specs&
-			widgets::icon::specs() {
+		widgets::icon_specs&
+			widgets::icon_builder::specs() {
 			return d_.specs_;
 		}
 
-		widgets::icon::icon_specs&
-			widgets::icon::operator()() {
+		widgets::icon_specs&
+			widgets::icon_builder::operator()() {
 			return specs();
 		}
 
-		widgets::icon::icon_specs&
-			widgets::icon::specs(form& fm,
+		widgets::icon_specs&
+			widgets::icon_builder::specs(form& fm,
 				const std::string& path) {
 			const auto idx = path.find("/");
 

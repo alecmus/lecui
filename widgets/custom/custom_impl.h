@@ -39,8 +39,8 @@ namespace liblec {
 					const bool& render) override;
 
 				/// widget specific methods
-				widgets::custom::custom_specs& specs();
-				widgets::custom::custom_specs& operator()();
+				widgets::custom_specs& specs();
+				widgets::custom_specs& operator()();
 
 			private:
 				// Default constructor and copying an object of this class are not allowed
@@ -49,7 +49,7 @@ namespace liblec {
 				custom_impl& operator=(const custom_impl&) = delete;
 
 				/// Private variables
-				widgets::custom::custom_specs specs_, specs_old_;
+				widgets::custom_specs specs_, specs_old_;
 
 				IDWriteFactory* p_directwrite_factory_;
 				IWICImagingFactory* p_iwic_factory_;

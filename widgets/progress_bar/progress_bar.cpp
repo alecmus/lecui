@@ -13,7 +13,7 @@
 
 namespace liblec {
 	namespace lecui {
-		bool widgets::progress_bar::progress_bar_specs::operator==(const progress_bar_specs& param) {
+		bool widgets::progress_bar_specs::operator==(const progress_bar_specs& param) {
 			return
 				// generic specs
 				specs::operator==(param) &&
@@ -22,11 +22,11 @@ namespace liblec {
 				(color_border_ == param.color_border_);
 		}
 
-		bool widgets::progress_bar::progress_bar_specs::operator!=(const progress_bar_specs& param) {
+		bool widgets::progress_bar_specs::operator!=(const progress_bar_specs& param) {
 			return !operator==(param);
 		}
 
-		class widgets::progress_bar::impl {
+		class widgets::progress_bar_builder::impl {
 		public:
 			impl(containers::page& page, const std::string& alias) :
 				page_(page),
@@ -39,26 +39,26 @@ namespace liblec {
 			progress_bar_specs& specs_;
 		};
 
-		widgets::progress_bar::progress_bar(containers::page& page) :
-			progress_bar(page, "") {}
+		widgets::progress_bar_builder::progress_bar_builder(containers::page& page) :
+			progress_bar_builder(page, "") {}
 
-		widgets::progress_bar::progress_bar(containers::page& page, const std::string& alias) :
+		widgets::progress_bar_builder::progress_bar_builder(containers::page& page, const std::string& alias) :
 			d_(*(new impl(page, alias))) {}
 
-		widgets::progress_bar::~progress_bar() { delete& d_; }
+		widgets::progress_bar_builder::~progress_bar_builder() { delete& d_; }
 
-		widgets::progress_bar::progress_bar_specs&
-			widgets::progress_bar::specs() {
+		widgets::progress_bar_specs&
+			widgets::progress_bar_builder::specs() {
 			return d_.specs_;
 		}
 
-		widgets::progress_bar::progress_bar_specs&
-			widgets::progress_bar::operator()() {
+		widgets::progress_bar_specs&
+			widgets::progress_bar_builder::operator()() {
 			return specs();
 		}
 
-		widgets::progress_bar::progress_bar_specs&
-			widgets::progress_bar::specs(form& fm, const std::string& path) {
+		widgets::progress_bar_specs&
+			widgets::progress_bar_builder::specs(form& fm, const std::string& path) {
 			const auto idx = path.find("/");
 
 			if (idx != std::string::npos) {

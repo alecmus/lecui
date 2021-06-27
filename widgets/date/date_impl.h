@@ -49,17 +49,17 @@ namespace liblec {
 					const bool& render) override;
 
 				/// widget specific methods
-				widgets::date::date_specs& specs();
-				widgets::date::date_specs& operator()();
-				void set_date_label_specs(widgets::label::label_specs& weekday,
-					widgets::label::label_specs& day,
-					widgets::label::label_specs& seperator_1,
-					widgets::label::label_specs& month,
-					widgets::label::label_specs& seperator_2,
-					widgets::label::label_specs& year);
-				void set_date_specs(widgets::rectangle::rectangle_specs& day,
-					widgets::rectangle::rectangle_specs& month,
-					widgets::rectangle::rectangle_specs& year);
+				widgets::date_specs& specs();
+				widgets::date_specs& operator()();
+				void set_date_label_specs(widgets::label_specs& weekday,
+					widgets::label_specs& day,
+					widgets::label_specs& seperator_1,
+					widgets::label_specs& month,
+					widgets::label_specs& seperator_2,
+					widgets::label_specs& year);
+				void set_date_specs(widgets::rectangle_specs& day,
+					widgets::rectangle_specs& month,
+					widgets::rectangle_specs& year);
 
 			private:
 				// Default constructor and copying an object of this class are not allowed
@@ -68,16 +68,16 @@ namespace liblec {
 				date_impl& operator=(const date_impl&) = delete;
 
 				/// Private variables
-				widgets::date::date_specs specs_, specs_old_;
+				widgets::date_specs specs_, specs_old_;
 				ID2D1SolidColorBrush* p_brush_fill_;
 				ID2D1SolidColorBrush* p_brush_hot_;
 				ID2D1SolidColorBrush* p_brush_disabled_;
 				ID2D1SolidColorBrush* p_brush_selected_;
 
-				std::optional<std::reference_wrapper<widgets::label::label_specs>>
+				std::optional<std::reference_wrapper<widgets::label_specs>>
 					weekday_label_specs_, day_label_specs_, seperator_1_specs_,
 					month_label_specs_, seperator_2_specs_, year_label_specs_;
-				std::optional<std::reference_wrapper<widgets::rectangle::rectangle_specs>>
+				std::optional<std::reference_wrapper<widgets::rectangle_specs>>
 					day_specs_, month_specs_, year_specs_;
 			};
 		}

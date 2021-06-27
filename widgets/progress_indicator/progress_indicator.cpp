@@ -13,7 +13,7 @@
 
 namespace liblec {
 	namespace lecui {
-		bool widgets::progress_indicator::progress_indicator_specs::operator==(const progress_indicator_specs& param) {
+		bool widgets::progress_indicator_specs::operator==(const progress_indicator_specs& param) {
 			return
 				// generic specs
 				specs::operator==(param) &&
@@ -22,11 +22,11 @@ namespace liblec {
 				(color_empty_ == param.color_empty_);
 		}
 
-		bool widgets::progress_indicator::progress_indicator_specs::operator!=(const progress_indicator_specs& param) {
+		bool widgets::progress_indicator_specs::operator!=(const progress_indicator_specs& param) {
 			return !operator==(param);
 		}
 
-		class widgets::progress_indicator::impl {
+		class widgets::progress_indicator_builder::impl {
 		public:
 			impl(containers::page& page, const std::string& alias) :
 				page_(page),
@@ -40,26 +40,26 @@ namespace liblec {
 			progress_indicator_specs& specs_;
 		};
 
-		widgets::progress_indicator::progress_indicator(containers::page& page) :
-			progress_indicator(page, "") {}
+		widgets::progress_indicator_builder::progress_indicator_builder(containers::page& page) :
+			progress_indicator_builder(page, "") {}
 
-		widgets::progress_indicator::progress_indicator(containers::page& page, const std::string& alias) :
+		widgets::progress_indicator_builder::progress_indicator_builder(containers::page& page, const std::string& alias) :
 			d_(*(new impl(page, alias))) {}
 
-		widgets::progress_indicator::~progress_indicator() { delete& d_; }
+		widgets::progress_indicator_builder::~progress_indicator_builder() { delete& d_; }
 
-		widgets::progress_indicator::progress_indicator_specs&
-			widgets::progress_indicator::specs() {
+		widgets::progress_indicator_specs&
+			widgets::progress_indicator_builder::specs() {
 			return d_.specs_;
 		}
 
-		widgets::progress_indicator::progress_indicator_specs&
-			widgets::progress_indicator::operator()() {
+		widgets::progress_indicator_specs&
+			widgets::progress_indicator_builder::operator()() {
 			return specs();
 		}
 
-		widgets::progress_indicator::progress_indicator_specs&
-			widgets::progress_indicator::specs(form& fm, const std::string& path) {
+		widgets::progress_indicator_specs&
+			widgets::progress_indicator_builder::specs(form& fm, const std::string& path) {
 			const auto idx = path.find("/");
 
 			if (idx != std::string::npos) {

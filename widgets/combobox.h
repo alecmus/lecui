@@ -19,282 +19,358 @@
 namespace liblec {
 	namespace lecui {
 		namespace widgets {
-			/// <summary>Combobox widget.</summary>
-			class lecui_api combobox {
+			/// <summary>Combobox widget specifications.</summary>
+			/// <remarks>Recommended height with defaults is 25px</remarks>
+			class combobox_specs : public specs {
 			public:
+				/// <summary>A combobox item.</summary>
 				struct combobox_item {
+					/// <summary>The label of the item.</summary>
 					std::string label;
+
+					/// <summary>The font to use for the item.</summary>
 					std::string font = "Segoe UI";
+
+					/// <summary>The size of the font, in points.</summary>
 					float font_size = 9.f;
 				};
 
-				/// <summary>Combobox widget specifications.</summary>
-				/// <remarks>Recommended height with defaults is 25px</remarks>
-				class combobox_specs : public specs {
-					/// <summary>Whether the combobox is editable.</summary>
-					bool editable_ = false;
+			private:
+				bool editable_ = false;
+				color color_fill_editable_;
+				color color_caret_;
+				color color_border_;
+				color color_dropdown_;
+				color color_dropdown_hot_;
+				color color_dropdown_arrow_;
+				color color_dropdown_arrow_hot_;
+				float border_ = .5f;
+				float corner_radius_x_ = 2.f;
+				float corner_radius_y_ = 2.f;
+				std::vector<combobox_item> items_;
+				image_quality quality_ = image_quality::high;
+				sort_options sort_ = sort_options::ascending;
+				bool force_numerical_sort_ = false;
+				std::string selected_;
 
-					/// <summary>The background color is it's editable.</summary>
-					color color_fill_editable_;
+			public:
+				combobox_specs() {
+					rect_.size({ 200.f, 25.f });
+				}
 
-					/// <summary>The color of the caret.</summary>
-					color color_caret_;
-
-					/// <summary>The color of the border.</summary>
-					color color_border_;
-
-					/// <summary>The color of the dropdown.</summary>
-					color color_dropdown_;
-
-					/// <summary>The color of the dropdown when the mouse is over it.</summary>
-					color color_dropdown_hot_;
-
-					/// <summary>The color of the dropdown arrow.</summary>
-					color color_dropdown_arrow_;
-
-					/// <summary>The color of the dropdown arrow when the mouse is over it.</summary>
-					color color_dropdown_arrow_hot_;
-
-					/// <summary>The thickness of the border.</summary>
-					float border_ = .5f;
-
-					/// <summary>The horizontal radius of the corners.</summary>
-					float corner_radius_x_ = 2.f;
-
-					/// <summary>The vertical radius of the corners.</summary>
-					float corner_radius_y_ = 2.f;
-
-					/// <summary>The list of items available in the dropdown.</summary>
-					std::vector<combobox_item> items_;
-
-					/// <summary>The quality of the combo item images.</summary>
-					image_quality quality_ = image_quality::high;
-
-					/// <summary>How to sort the items.</summary>
-					sort_options sort_ = sort_options::ascending;
-
-					/// <summary>Forces numerical sorting.</summary>
-					/// <remarks>When only numbers are in the items list numerical sorting is
-					/// used. The presence of at least one non-numeric character causes string
-					/// sorting to be used instead. In those instances where you need numerical
-					/// sorting to be used regardless of the presence of non-numeric characters
-					/// this is the way to do it.</remarks>
-					bool force_numerical_sort_ = false;
-
-					/// <summary>An item from the list in the dropdown that was last selected.
-					/// </summary>
-					/// <remarks>Note that this is not always the same as the .text variable in an
-					/// editable combobox. The .text in an editable combobox only becomes part of
-					/// the list of items when the user pressed the enter key. Only then can it be
-					/// considered as a "selected" item.</remarks>
-					std::string selected_;
-
-				public:
-					combobox_specs() {
-						rect_.size({ 200.f, 25.f });
-					}
-
-					/// <summary>Events specific to this widget.</summary>
-					struct combobox_events : basic_events {
-						/// <summary>Called when a selection is made.</summary>
-						/// <remarks>The parameter contains the selected item.</remarks>
-						std::function<void(const std::string&)> selection = nullptr;
-					};
-
-					combobox_events& events() {
-						return combobox_events_;
-					}
-
-					bool operator==(const combobox_specs&);
-					bool operator!=(const combobox_specs&);
-
-					// generic specs
-
-					std::string& text() override { return text_; }
-					combobox_specs& text(const std::string& text) {
-						text_ = text;
-						return *this;
-					}
-
-					std::string& tooltip() override { return tooltip_; }
-					combobox_specs& tooltip(const std::string& tooltip) {
-						tooltip_ = tooltip;
-						return *this;
-					}
-
-					lecui::rect& rect() override { return rect_; }
-					combobox_specs& rect(const lecui::rect& rect) {
-						rect_ = rect;
-						return *this;
-					}
-
-					resize_params& on_resize() override { return on_resize_; }
-					combobox_specs& on_resize(const resize_params& on_resize) {
-						on_resize_ = on_resize;
-						return *this;
-					}
-
-					cursor_type& cursor() override { return cursor_; }
-					combobox_specs& cursor(const cursor_type cursor) {
-						cursor_ = cursor;
-						return *this;
-					}
-
-					std::string& font() override { return font_; }
-					combobox_specs& font(const std::string& font) {
-						font_ = font;
-						return *this;
-					}
-
-					float& font_size() override { return font_size_; }
-					combobox_specs& font_size(const float& font_size) {
-						font_size_ = font_size;
-						return *this;
-					}
-
-					color& color_text() override { return color_text_; }
-					combobox_specs& color_text(const color& color_text) {
-						color_text_ = color_text;
-						return *this;
-					}
-
-					color& color_fill() override { return color_fill_; }
-					combobox_specs& color_fill(const color& color_fill) {
-						color_fill_ = color_fill;
-						return *this;
-					}
-
-					color& color_hot() override { return color_hot_; }
-					combobox_specs& color_hot(const color& color_hot) {
-						color_hot_ = color_hot;
-						return *this;
-					}
-
-					color& color_selected() override { return color_selected_; }
-					combobox_specs& color_selected(const color& color_selected) {
-						color_selected_ = color_selected;
-						return *this;
-					}
-
-					color& color_disabled() override { return color_disabled_; }
-					combobox_specs& color_disabled(const color& color_disabled) {
-						color_disabled_ = color_disabled;
-						return *this;
-					}
-
-					// widget specific specs
-
-					bool& editable() { return editable_; }
-					combobox_specs& editable(const bool& editable) {
-						editable_ = editable;
-						return *this;
-					}
-
-					color& color_fill_editable() { return color_fill_editable_; }
-					combobox_specs& color_fill_editable(const color& color_fill_editable) {
-						color_fill_editable_ = color_fill_editable;
-						return *this;
-					}
-
-					color& color_caret() { return color_caret_; }
-					combobox_specs& color_caret(const color& color_caret) {
-						color_caret_ = color_caret;
-						return *this;
-					}
-
-					color& color_border() { return color_border_; }
-					combobox_specs& color_border(const color& color_border) {
-						color_border_ = color_border;
-						return *this;
-					}
-
-					color& color_dropdown() { return color_dropdown_; }
-					combobox_specs& color_dropdown(const color& color_dropdown) {
-						color_dropdown_ = color_dropdown;
-						return *this;
-					}
-
-					color& color_dropdown_hot() { return color_dropdown_hot_; }
-					combobox_specs& color_dropdown_hot(const color& color_dropdown_hot) {
-						color_dropdown_hot_ = color_dropdown_hot;
-						return *this;
-					}
-
-					color& color_dropdown_arrow() { return color_dropdown_arrow_; }
-					combobox_specs& color_dropdown_arrow(const color& color_dropdown_arrow) {
-						color_dropdown_arrow_ = color_dropdown_arrow;
-						return *this;
-					}
-
-					color& color_dropdown_arrow_hot() { return color_dropdown_arrow_hot_; }
-					combobox_specs& color_dropdown_arrow_hot(const color& color_dropdown_arrow_hot) {
-						color_dropdown_arrow_hot_ = color_dropdown_arrow_hot;
-						return *this;
-					}
-
-					float& border() { return border_; }
-					combobox_specs& border(const float& border) {
-						border_ = border;
-						return *this;
-					}
-
-					float& corner_radius_x() { return corner_radius_x_; }
-					combobox_specs& corner_radius_x(const float& corner_radius_x) {
-						corner_radius_x_ = corner_radius_x;
-						return *this;
-					}
-
-					float& corner_radius_y() { return corner_radius_y_; }
-					combobox_specs& corner_radius_y(const float& corner_radius_y) {
-						corner_radius_y_ = corner_radius_y;
-						return *this;
-					}
-
-					std::vector<combobox_item>& items() { return items_; }
-					combobox_specs& items(const std::vector<combobox_item>& items) {
-						items_ = items;
-						return *this;
-					}
-
-					image_quality& quality() { return quality_; }
-					combobox_specs& quality(const image_quality& quality) {
-						quality_ = quality;
-						return *this;
-					}
-
-					sort_options& sort() { return sort_; }
-					combobox_specs& sort(const sort_options& sort) {
-						sort_ = sort;
-						return *this;
-					}
-
-					bool& force_numerical_sort() { return force_numerical_sort_; }
-					combobox_specs& force_numerical_sort(const bool& force_numerical_sort) {
-						force_numerical_sort_ = force_numerical_sort;
-						return *this;
-					}
-
-					std::string& selected() { return selected_; }
-					combobox_specs& selected(const std::string& selected) {
-						selected_ = selected;
-						return *this;
-					}
-
-				private:
-					combobox_events combobox_events_;
+				/// <summary>Events specific to this widget.</summary>
+				struct combobox_events : basic_events {
+					/// <summary>Called when a selection is made.</summary>
+					/// <remarks>The parameter contains the selected item.</remarks>
+					std::function<void(const std::string&)> selection = nullptr;
 				};
 
-				/// <summary>Combobox constructor.</summary>
-				/// <param name="page">The container to place it in.</param>
+				combobox_events& events() {
+					return combobox_events_;
+				}
+
+				bool operator==(const combobox_specs&);
+				bool operator!=(const combobox_specs&);
+
+				// generic specs
+
+				std::string& text() override { return text_; }
+				combobox_specs& text(const std::string& text) {
+					text_ = text;
+					return *this;
+				}
+
+				std::string& tooltip() override { return tooltip_; }
+				combobox_specs& tooltip(const std::string& tooltip) {
+					tooltip_ = tooltip;
+					return *this;
+				}
+
+				lecui::rect& rect() override { return rect_; }
+				combobox_specs& rect(const lecui::rect& rect) {
+					rect_ = rect;
+					return *this;
+				}
+
+				resize_params& on_resize() override { return on_resize_; }
+				combobox_specs& on_resize(const resize_params& on_resize) {
+					on_resize_ = on_resize;
+					return *this;
+				}
+
+				cursor_type& cursor() override { return cursor_; }
+				combobox_specs& cursor(const cursor_type cursor) {
+					cursor_ = cursor;
+					return *this;
+				}
+
+				std::string& font() override { return font_; }
+				combobox_specs& font(const std::string& font) {
+					font_ = font;
+					return *this;
+				}
+
+				float& font_size() override { return font_size_; }
+				combobox_specs& font_size(const float& font_size) {
+					font_size_ = font_size;
+					return *this;
+				}
+
+				color& color_text() override { return color_text_; }
+				combobox_specs& color_text(const color& color_text) {
+					color_text_ = color_text;
+					return *this;
+				}
+
+				color& color_fill() override { return color_fill_; }
+				combobox_specs& color_fill(const color& color_fill) {
+					color_fill_ = color_fill;
+					return *this;
+				}
+
+				color& color_hot() override { return color_hot_; }
+				combobox_specs& color_hot(const color& color_hot) {
+					color_hot_ = color_hot;
+					return *this;
+				}
+
+				color& color_selected() override { return color_selected_; }
+				combobox_specs& color_selected(const color& color_selected) {
+					color_selected_ = color_selected;
+					return *this;
+				}
+
+				color& color_disabled() override { return color_disabled_; }
+				combobox_specs& color_disabled(const color& color_disabled) {
+					color_disabled_ = color_disabled;
+					return *this;
+				}
+
+				// widget specific specs
+
+				/// <summary>Get or set the thickness of the border.</summary>
+				/// <returns>A reference to the border thickness, in pixels.</returns>
+				float& border() { return border_; }
+
+				/// <summary>Set the thickness of the border.</summary>
+				/// <param name="border">The border thickness, in pixels.</param>
+				/// <returns>A reference to the modified object.</returns>
+				combobox_specs& border(const float& border) {
+					border_ = border;
+					return *this;
+				}
+
+				/// <summary>Get or set the color of the border.</summary>
+				/// <returns>A reference to the border color, as defined in <see cref="color"></see>.</returns>
+				color& color_border() { return color_border_; }
+
+				/// <summary>Set the color of the border.</summary>
+				/// <param name="color_border">The border color, as defined in <see cref="color"></see>.</param>
+				/// <returns>A reference to the modified object.</returns>
+				combobox_specs& color_border(const color& color_border) {
+					color_border_ = color_border;
+					return *this;
+				}
+
+				/// <summary>Get or set the horizontal radius of the corners.</summary>
+				/// <returns>A reference to the radius, in pixels.</returns>
+				float& corner_radius_x() { return corner_radius_x_; }
+
+				/// <summary>Set the horizontal radius of the corners.</summary>
+				/// <param name="corner_radius_x">The horizontal radius of the corner, in pixels.</param>
+				/// <returns>A reference to the modified object.</returns>
+				combobox_specs& corner_radius_x(const float& corner_radius_x) {
+					corner_radius_x_ = corner_radius_x;
+					return *this;
+				}
+
+				/// <summary>Get or set the vertical radius of the corners.</summary>
+				/// <returns>A reference to the radius, in pixels.</returns>
+				float& corner_radius_y() { return corner_radius_y_; }
+
+				/// <summary>Set the vertical radius of the corners.</summary>
+				/// <param name="corner_radius_y">The horizontal radius of the corner, in pixels.</param>
+				/// <returns>A reference to the modified object.</returns>
+				combobox_specs& corner_radius_y(const float& corner_radius_y) {
+					corner_radius_y_ = corner_radius_y;
+					return *this;
+				}
+
+				/// <summary>Get or set the combobox editable property.</summary>
+				/// <returns>A reference to the property.</returns>
+				bool& editable() { return editable_; }
+
+				/// <summary>Set the combobox editable property.</summary>
+				/// <param name="editable">Whether to make the combobox editable.</param>
+				/// <returns>A reference to the modified object.</returns>
+				combobox_specs& editable(const bool& editable) {
+					editable_ = editable;
+					return *this;
+				}
+
+				/// <summary>Get or set the fill color of an editable combobox.</summary>
+				/// <returns>A reference to the color.</returns>
+				color& color_fill_editable() { return color_fill_editable_; }
+
+				/// <summary>Set the fill color of an editable combobox.</summary>
+				/// <returns>A reference to the modified object.</returns>
+				combobox_specs& color_fill_editable(const color& color_fill_editable) {
+					color_fill_editable_ = color_fill_editable;
+					return *this;
+				}
+
+				/// <summary>Get or set the color of the caret.</summary>
+				/// <returns>A reference to the caret color.</returns>
+				color& color_caret() { return color_caret_; }
+
+				/// <summary>Set the color of the caret.</summary>
+				/// <param name="color_caret">The color of the caret.</param>
+				/// <returns>A reference to the modified object.</returns>
+				combobox_specs& color_caret(const color& color_caret) {
+					color_caret_ = color_caret;
+					return *this;
+				}
+
+				/// <summary>Get or set the color of the dropdown.</summary>
+				/// <returns>A reference to the color.</returns>
+				color& color_dropdown() { return color_dropdown_; }
+
+				/// <summary>Set the color of the dropdown.</summary>
+				/// <param name="color_dropdown">The color of the dropdown.</param>
+				/// <returns>A reference to the modified object.</returns>
+				combobox_specs& color_dropdown(const color& color_dropdown) {
+					color_dropdown_ = color_dropdown;
+					return *this;
+				}
+
+				/// <summary>Get or set the color of the dropdown when the mouse is hovered over it.</summary>
+				/// <returns>A reference to the color.</returns>
+				color& color_dropdown_hot() { return color_dropdown_hot_; }
+
+				/// <summary>Set the color of the dropdown when the mouse is hovered over it.</summary>
+				/// <param name="color_dropdown_hot">The color.</param>
+				/// <returns>A reference to the modified object.</returns>
+				combobox_specs& color_dropdown_hot(const color& color_dropdown_hot) {
+					color_dropdown_hot_ = color_dropdown_hot;
+					return *this;
+				}
+
+				/// <summary>Get or set the color of the dropdown arrow.</summary>
+				/// <returns>A reference to the color.</returns>
+				color& color_dropdown_arrow() { return color_dropdown_arrow_; }
+
+				/// <summary>Set the color of the dropdown arrow.</summary>
+				/// <param name="color_dropdown_arrow">The color.</param>
+				/// <returns>A reference to the modified object.</returns>
+				combobox_specs& color_dropdown_arrow(const color& color_dropdown_arrow) {
+					color_dropdown_arrow_ = color_dropdown_arrow;
+					return *this;
+				}
+
+				/// <summary>Get or set the color of the dropdown arrow when the mouse is hovered over it.</summary>
+				/// <returns>A reference to the color.</returns>
+				color& color_dropdown_arrow_hot() { return color_dropdown_arrow_hot_; }
+
+				/// <summary>Set the color of the dropdown arrow when the mouse is hovered over it.</summary>
+				/// <param name="color_dropdown_arrow_hot">The color.</param>
+				/// <returns>A reference to the modified object.</returns>
+				combobox_specs& color_dropdown_arrow_hot(const color& color_dropdown_arrow_hot) {
+					color_dropdown_arrow_hot_ = color_dropdown_arrow_hot;
+					return *this;
+				}
+
+				/// <summary>Get or set the list of combobox items.</summary>
+				/// <returns>A reference to the list.</returns>
+				std::vector<combobox_item>& items() { return items_; }
+
+				/// <summary>Set the list of combobox items.</summary>
+				/// <param name="items">The list.</param>
+				/// <returns>A reference to the modified object.</returns>
+				combobox_specs& items(const std::vector<combobox_item>& items) {
+					items_ = items;
+					return *this;
+				}
+
+				/// <summary>Get or set the quality of the images.</summary>
+				/// <returns>A reference to the image quality.</returns>
+				image_quality& quality() { return quality_; }
+
+				/// <summary>Set the quality of the images.</summary>
+				/// <param name="quality">The quality, as defined in <see cref="quality"></see>.</param>
+				/// <returns>A reference to the modified object.</returns>
+				combobox_specs& quality(const image_quality& quality) {
+					quality_ = quality;
+					return *this;
+				}
+
+				/// <summary>Get or set the sort options.</summary>
+				/// <returns>A reference to the sort options.</returns>
+				sort_options& sort() { return sort_; }
+
+				/// <summary>Set the sort options.</summary>
+				/// <param name="sort">The sort options, as defined in <see cref="sort_options"></see>.</param>
+				/// <returns>A reference to the modified object.</returns>
+				combobox_specs& sort(const sort_options& sort) {
+					sort_ = sort;
+					return *this;
+				}
+
+				/// <summary>Get or set whether numerical sorting is forced.</summary>
+				/// <returns>A reference to the property.</returns>
+				/// <remarks>When only numbers are in the items list numerical sorting is
+				/// used. The presence of at least one non-numeric character causes string
+				/// sorting to be used instead. In those instances where you need numerical
+				/// sorting to be used regardless of the presence of non-numeric characters
+				/// this is the way to do it.</remarks>
+				bool& force_numerical_sort() { return force_numerical_sort_; }
+
+				/// <summary>Set whether numerical sorting is forced.</summary>
+				/// <param name="force_numerical_sort">Whether to force numerical sorting.</param>
+				/// <returns>A reference to the modified object.</returns>
+				/// <remarks>When only numbers are in the items list numerical sorting is
+				/// used. The presence of at least one non-numeric character causes string
+				/// sorting to be used instead. In those instances where you need numerical
+				/// sorting to be used regardless of the presence of non-numeric characters
+				/// this is the way to do it.</remarks>
+				combobox_specs& force_numerical_sort(const bool& force_numerical_sort) {
+					force_numerical_sort_ = force_numerical_sort;
+					return *this;
+				}
+
+				/// <summary>Get or set the selected item.</summary>
+				/// <returns>A reference to the selected item.</returns>
+				/// <remarks>Note that this is not always the same as the .text variable in an
+				/// editable combobox. The .text in an editable combobox only becomes part of
+				/// the list of items when the user presses the enter key. Only then can it be
+				/// considered as a "selected" item.</remarks>
+				std::string& selected() { return selected_; }
+
+				/// <summary>Set the selected item.</summary>
+				/// <param name="selected">The selected item.</param>
+				/// <returns>A reference to the modified object.</returns>
+				combobox_specs& selected(const std::string& selected) {
+					selected_ = selected;
+					return *this;
+				}
+
+			private:
+				combobox_events combobox_events_;
+			};
+
+			/// <summary>Combobox widget builder.</summary>
+			class lecui_api combobox_builder {
+			public:
+				/// <summary>Combobox builder constructor.</summary>
+				/// <param name="page">The container to place the widget in.</param>
 				/// <remarks>This constructs the widget with an internally generated random
 				/// alias.</remarks>
-				combobox(containers::page& page);
+				combobox_builder(containers::page& page);
 
-				/// <summary>Combobox constructor.</summary>
-				/// <param name="page">The container to place it in.</param>
+				/// <summary>Combobox builder constructor.</summary>
+				/// <param name="page">The container to place the widget in.</param>
 				/// <param name="alias">The in-page unique alias, e.g. "title".</param>
-				combobox(containers::page& page, const std::string& alias);
-				~combobox();
+				combobox_builder(containers::page& page, const std::string& alias);
+				~combobox_builder();
 
 				/// <summary>Get the combobox specifications.</summary>
 				/// <returns>A reference to the combobox specifications.</returns>
@@ -317,13 +393,13 @@ namespace liblec {
 				static combobox_specs& specs(form& fm, const std::string& path);
 
 			private:
-				class combobox_impl;
-				combobox_impl& d_;
+				class impl;
+				impl& d_;
 
 				// Default constructor and copying an object of this class are not allowed
-				combobox() = delete;
-				combobox(const combobox&) = delete;
-				combobox& operator=(const combobox&) = delete;
+				combobox_builder() = delete;
+				combobox_builder(const combobox_builder&) = delete;
+				combobox_builder& operator=(const combobox_builder&) = delete;
 			};
 		}
 	}

@@ -13,7 +13,7 @@
 
 namespace liblec {
 	namespace lecui {
-		bool widgets::tree_view::tree_view_specs::operator==(const tree_view_specs& param) {
+		bool widgets::tree_view_specs::operator==(const tree_view_specs& param) {
 			return
 				// generic specs
 				specs::operator==(param) &&
@@ -22,12 +22,12 @@ namespace liblec {
 				(color_border_ == param.color_border_);
 		}
 
-		bool widgets::tree_view::tree_view_specs::operator!=(const tree_view_specs& param) {
+		bool widgets::tree_view_specs::operator!=(const tree_view_specs& param) {
 			return !operator==(param);
 		}
 
 
-		class widgets::tree_view::impl {
+		class widgets::tree_view_builder::impl {
 		public:
 			// note: this placement is only temporary. the next time WM_PAINT is called
 			// this tree widget will be moved into a special pane
@@ -48,26 +48,26 @@ namespace liblec {
 			tree_view_specs& specs_;
 		};
 
-		widgets::tree_view::tree_view(containers::page& page) :
-			tree_view(page, "") {}
+		widgets::tree_view_builder::tree_view_builder(containers::page& page) :
+			tree_view_builder(page, "") {}
 
-		widgets::tree_view::tree_view(containers::page& page, const std::string& alias) :
+		widgets::tree_view_builder::tree_view_builder(containers::page& page, const std::string& alias) :
 			d_(*(new impl(page, alias))) {}
 
-		widgets::tree_view::~tree_view() { delete& d_; }
+		widgets::tree_view_builder::~tree_view_builder() { delete& d_; }
 
-		widgets::tree_view::tree_view_specs&
-			widgets::tree_view::specs() {
+		widgets::tree_view_specs&
+			widgets::tree_view_builder::specs() {
 			return d_.specs_;
 		}
 
-		widgets::tree_view::tree_view_specs&
-			widgets::tree_view::operator()() {
+		widgets::tree_view_specs&
+			widgets::tree_view_builder::operator()() {
 			return specs();
 		}
 
-		widgets::tree_view::tree_view_specs&
-			widgets::tree_view::specs(form& fm, const std::string& path) {
+		widgets::tree_view_specs&
+			widgets::tree_view_builder::specs(form& fm, const std::string& path) {
 			const auto idx = path.find("/");
 
 			if (idx != std::string::npos) {

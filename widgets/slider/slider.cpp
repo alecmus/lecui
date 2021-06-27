@@ -13,7 +13,7 @@
 
 namespace liblec {
 	namespace lecui {
-		bool widgets::slider::slider_specs::operator==(const slider_specs& param) {
+		bool widgets::slider_specs::operator==(const slider_specs& param) {
 			return
 				// generic specs
 				specs::operator==(param) &&
@@ -26,11 +26,11 @@ namespace liblec {
 				(color_knob_border_ == param.color_knob_border_);
 		}
 
-		bool widgets::slider::slider_specs::operator!=(const slider_specs& param) {
+		bool widgets::slider_specs::operator!=(const slider_specs& param) {
 			return !operator==(param);
 		}
 
-		class widgets::slider::impl {
+		class widgets::slider_builder::impl {
 		public:
 			impl(containers::page& page, const std::string& alias) :
 				page_(page),
@@ -50,26 +50,26 @@ namespace liblec {
 			slider_specs& specs_;
 		};
 
-		widgets::slider::slider(containers::page& page) :
-			slider(page, "") {}
+		widgets::slider_builder::slider_builder(containers::page& page) :
+			slider_builder(page, "") {}
 
-		widgets::slider::slider(containers::page& page, const std::string& alias) :
+		widgets::slider_builder::slider_builder(containers::page& page, const std::string& alias) :
 			d_(*(new impl(page, alias))) {}
 
-		widgets::slider::~slider() { delete& d_; }
+		widgets::slider_builder::~slider_builder() { delete& d_; }
 
-		widgets::slider::slider_specs&
-			widgets::slider::specs() {
+		widgets::slider_specs&
+			widgets::slider_builder::specs() {
 			return d_.specs_;
 		}
 
-		widgets::slider::slider_specs&
-			widgets::slider::operator()() {
+		widgets::slider_specs&
+			widgets::slider_builder::operator()() {
 			return specs();
 		}
 
-		widgets::slider::slider_specs&
-			widgets::slider::specs(form& fm, const std::string& path) {
+		widgets::slider_specs&
+			widgets::slider_builder::specs(form& fm, const std::string& path) {
 			const auto idx = path.find("/");
 
 			if (idx != std::string::npos) {

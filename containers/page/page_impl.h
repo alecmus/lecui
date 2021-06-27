@@ -68,50 +68,50 @@ namespace liblec {
 			const float height();
 			bool contains(const D2D1_POINT_2F& point);
 
-			containers::tab_pane::tab_pane_specs&
+			containers::tab_pane_specs&
 				add_tab_pane(std::string alias);
-			containers::pane::pane_specs&
+			containers::pane_specs&
 				add_pane(std::string alias);
 
-			widgets::rectangle::rectangle_specs&
+			widgets::rectangle_specs&
 				add_rectangle(std::string alias);
-			widgets::label::label_specs&
+			widgets::label_specs&
 				add_label(std::string alias);
-			containers::group::group_specs&
+			containers::group_specs&
 				add_group(std::string alias);
-			widgets::button::button_specs&
+			widgets::button_specs&
 				add_button(std::string alias);
-			widgets::toggle::toggle_specs&
+			widgets::toggle_specs&
 				add_toggle(std::string alias);
-			widgets::table_view::table_view_specs&
+			widgets::table_view_specs&
 				add_table_view(std::string alias);
-			widgets::custom::custom_specs&
+			widgets::custom_specs&
 				add_custom(std::string alias);
-			widgets::image_view::image_view_specs&
+			widgets::image_view_specs&
 				add_image_view(std::string alias);
-			widgets::progress_indicator::progress_indicator_specs&
+			widgets::progress_indicator_specs&
 				add_progress_indicator(std::string alias);
-			widgets::progress_bar::progress_bar_specs&
+			widgets::progress_bar_specs&
 				add_progress_bar(std::string alias);
-			widgets::checkbox::checkbox_specs&
+			widgets::checkbox_specs&
 				add_checkbox(std::string alias);
-			widgets::text_field::text_field_specs&
+			widgets::text_field_specs&
 				add_text_field(std::string alias);
-			widgets::tree_view::tree_view_specs&
+			widgets::tree_view_specs&
 				add_tree(std::string alias);
-			widgets::slider::slider_specs&
+			widgets::slider_specs&
 				add_slider(std::string alias);
-			widgets::html_editor::html_editor_specs&
+			widgets::html_editor_specs&
 				add_html_editor(std::string alias);
-			widgets::combobox::combobox_specs&
+			widgets::combobox_specs&
 				add_combobox(std::string alias);
-			widgets::line::line_specs&
+			widgets::line_specs&
 				add_line(std::string alias);
-			widgets::time::time_specs&
+			widgets::time_specs&
 				add_time(std::string alias);
-			widgets::date::date_specs&
+			widgets::date_specs&
 				add_date(std::string alias);
-			widgets::icon::icon_specs&
+			widgets::icon_specs&
 				add_icon(std::string alias);
 
 			std::map<std::string,
@@ -226,29 +226,29 @@ namespace liblec {
 			std::optional<std::reference_wrapper<containers::page>> parent_;
 
 			friend class form;
-			friend class containers::tab_pane;
-			friend class containers::tab;
-			friend class containers::pane;
-			friend class containers::group;
-			friend class widgets::rectangle;
-			friend class widgets::label;
-			friend class widgets::button;
-			friend class widgets::toggle;
-			friend class widgets::table_view;
-			friend class widgets::custom;
-			friend class widgets::image_view;
-			friend class widgets::progress_indicator;
-			friend class widgets::progress_bar;
-			friend class widgets::checkbox;
-			friend class widgets::text_field;
-			friend class widgets::tree_view;
-			friend class widgets::slider;
-			friend class widgets::html_editor;
-			friend class widgets::combobox;
-			friend class widgets::line;
-			friend class widgets::time;
-			friend class widgets::date;
-			friend class widgets::icon;
+			friend class containers::tab_pane_builder;
+			friend class containers::tab_builder;
+			friend class containers::pane_builder;
+			friend class containers::group_builder;
+			friend class widgets::rectangle_builder;
+			friend class widgets::label_builder;
+			friend class widgets::button_builder;
+			friend class widgets::toggle_builder;
+			friend class widgets::table_view_builder;
+			friend class widgets::custom_builder;
+			friend class widgets::image_view_builder;
+			friend class widgets::progress_indicator_builder;
+			friend class widgets::progress_bar_builder;
+			friend class widgets::checkbox_builder;
+			friend class widgets::text_field_builder;
+			friend class widgets::tree_view_builder;
+			friend class widgets::slider_builder;
+			friend class widgets::html_editor_builder;
+			friend class widgets::combobox_builder;
+			friend class widgets::line_builder;
+			friend class widgets::time_builder;
+			friend class widgets::date_builder;
+			friend class widgets::icon_builder;
 
 			friend class widgets::html_editor_impl;
 			friend class widgets::tree_view_impl;

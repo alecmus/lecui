@@ -13,7 +13,7 @@
 
 namespace liblec {
 	namespace lecui {
-		bool widgets::rectangle::rectangle_specs::operator==(const rectangle_specs& param) {
+		bool widgets::rectangle_specs::operator==(const rectangle_specs& param) {
 			return
 				// generic specs
 				specs::operator==(param) &&
@@ -23,11 +23,11 @@ namespace liblec {
 				(color_border_hot_ == param.color_border_hot_);
 		}
 
-		bool widgets::rectangle::rectangle_specs::operator!=(const rectangle_specs& param) {
+		bool widgets::rectangle_specs::operator!=(const rectangle_specs& param) {
 			return !operator==(param);
 		}
 
-		class widgets::rectangle::impl {
+		class widgets::rectangle_builder::impl {
 		public:
 			impl(containers::page& page, const std::string& alias) :
 				page_(page),
@@ -44,26 +44,26 @@ namespace liblec {
 			rectangle_specs& specs_;
 		};
 
-		widgets::rectangle::rectangle(containers::page& page) :
-			rectangle(page, "") {}
+		widgets::rectangle_builder::rectangle_builder(containers::page& page) :
+			rectangle_builder(page, "") {}
 
-		widgets::rectangle::rectangle(containers::page& page, const std::string& alias) :
+		widgets::rectangle_builder::rectangle_builder(containers::page& page, const std::string& alias) :
 			d_(*(new impl(page, alias))) {}
 
-		widgets::rectangle::~rectangle() { delete& d_; }
+		widgets::rectangle_builder::~rectangle_builder() { delete& d_; }
 
-		widgets::rectangle::rectangle_specs&
-			widgets::rectangle::specs() {
+		widgets::rectangle_specs&
+			widgets::rectangle_builder::specs() {
 			return d_.specs_;
 		}
 
-		widgets::rectangle::rectangle_specs&
-			widgets::rectangle::operator()() {
+		widgets::rectangle_specs&
+			widgets::rectangle_builder::operator()() {
 			return specs();
 		}
 
-		widgets::rectangle::rectangle_specs&
-			widgets::rectangle::specs(form& fm, const std::string& path) {
+		widgets::rectangle_specs&
+			widgets::rectangle_builder::specs(form& fm, const std::string& path) {
 			const auto idx = path.find("/");
 
 			if (idx != std::string::npos) {

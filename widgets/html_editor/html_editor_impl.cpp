@@ -451,14 +451,14 @@ namespace liblec {
 			}
 		}
 
-		widgets::html_editor::html_editor_specs&
+		widgets::html_editor_specs&
 			widgets::html_editor_impl::specs() { return specs_; }
 
-		widgets::html_editor::html_editor_specs&
+		widgets::html_editor_specs&
 			widgets::html_editor_impl::operator()() { return specs(); }
 
-		void widgets::html_editor_impl::set_pane_specs(containers::pane::pane_specs& html_control,
-			containers::pane::pane_specs& html) {
+		void widgets::html_editor_impl::set_pane_specs(containers::pane_specs& html_control,
+			containers::pane_specs& html) {
 			html_control_pane_specs_ = html_control;
 			html_pane_specs_ = html;
 		}

@@ -131,7 +131,7 @@ namespace liblec {
 					IDWriteTextFormat* p_text_format_, ID2D1SolidColorBrush* p_brush,
 					ID2D1SolidColorBrush* p_brush_selected, ID2D1SolidColorBrush* p_brush_hot_,
 					const std::string& font, const float& font_size, std::map<std::string,
-					widgets::tree_view::tree_view_specs::node>& level, const D2D1_RECT_F& rect,
+					widgets::tree_view_specs::node>& level, const D2D1_RECT_F& rect,
 					float& right_, float& bottom_, float& optimized_right_, float& optimized_bottom_, bool hit_, D2D1_POINT_2F point_,
 					float dpi_scale_) {
 					float bottom = rect.top;
@@ -332,7 +332,7 @@ namespace liblec {
 		void widgets::tree_view_impl::on_click() {
 			class helper {
 			public:
-				static void check(std::map<std::string, widgets::tree_view::tree_view_specs::node>& level, D2D1_POINT_2F point_, float dpi_scale_) {
+				static void check(std::map<std::string, widgets::tree_view_specs::node>& level, D2D1_POINT_2F point_, float dpi_scale_) {
 					for (auto& node : level) {
 						// check if marker has been clicked
 						auto rect_marker = convert_rect(node.second.rc_expand);
@@ -382,21 +382,21 @@ namespace liblec {
 			return true;
 		}
 
-		widgets::tree_view::tree_view_specs&
+		widgets::tree_view_specs&
 			widgets::tree_view_impl::specs() { return specs_; }
 
-		widgets::tree_view::tree_view_specs&
+		widgets::tree_view_specs&
 			widgets::tree_view_impl::operator()() { return specs(); }
 
-		void widgets::tree_view_impl::set_tree_pane_specs(containers::pane::pane_specs& specs) {
+		void widgets::tree_view_impl::set_tree_pane_specs(containers::pane_specs& specs) {
 			tree_pane_specs_ = specs;
 		}
 
 		void widgets::tree_view_impl::on_selection() {
 			class helper {
 			public:
-				static void check(std::map<std::string, widgets::tree_view::tree_view_specs::node>& level,
-					std::function<void(widgets::tree_view::tree_view_specs::node& n)> selection) {
+				static void check(std::map<std::string, widgets::tree_view_specs::node>& level,
+					std::function<void(widgets::tree_view_specs::node& n)> selection) {
 					for (auto& node : level) {
 						if (node.second.selected) {
 							if (selection)

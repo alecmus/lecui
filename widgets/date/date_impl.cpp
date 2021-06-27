@@ -159,18 +159,18 @@ namespace liblec {
 			return rect_;
 		}
 
-		widgets::date::date_specs&
+		widgets::date_specs&
 			widgets::date_impl::specs() { return specs_; }
 
-		widgets::date::date_specs&
+		widgets::date_specs&
 			widgets::date_impl::operator()() { return specs(); }
 
-		void widgets::date_impl::set_date_label_specs(widgets::label::label_specs& weekday,
-			widgets::label::label_specs& seperator_1,
-			widgets::label::label_specs& day,
-			widgets::label::label_specs& month,
-			widgets::label::label_specs& seperator_2,
-			widgets::label::label_specs& year) {
+		void widgets::date_impl::set_date_label_specs(widgets::label_specs& weekday,
+			widgets::label_specs& seperator_1,
+			widgets::label_specs& day,
+			widgets::label_specs& month,
+			widgets::label_specs& seperator_2,
+			widgets::label_specs& year) {
 			weekday_label_specs_ = weekday;
 			day_label_specs_ = day;
 			seperator_1_specs_ = seperator_1;
@@ -179,8 +179,8 @@ namespace liblec {
 			year_label_specs_ = year;
 		}
 
-		void widgets::date_impl::set_date_specs(widgets::rectangle::rectangle_specs& day,
-			widgets::rectangle::rectangle_specs& month, widgets::rectangle::rectangle_specs& year) {
+		void widgets::date_impl::set_date_specs(widgets::rectangle_specs& day,
+			widgets::rectangle_specs& month, widgets::rectangle_specs& year) {
 			day_specs_ = day;
 			month_specs_ = month;
 			year_specs_ = year;

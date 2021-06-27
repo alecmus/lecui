@@ -43,8 +43,8 @@ namespace liblec {
 				bool hit(const bool& hit) override;
 
 				/// widget specific methods
-				widgets::slider::slider_specs& specs();
-				widgets::slider::slider_specs& operator()();
+				widgets::slider_specs& specs();
+				widgets::slider_specs& operator()();
 
 			private:
 				// Default constructor and copying an object of this class are not allowed
@@ -53,7 +53,7 @@ namespace liblec {
 				slider_impl& operator=(const slider_impl&) = delete;
 
 				/// Private variables
-				widgets::slider::slider_specs specs_, specs_old_;
+				widgets::slider_specs specs_, specs_old_;
 				ID2D1SolidColorBrush* p_brush_;
 				ID2D1SolidColorBrush* p_brush_fill_;
 				ID2D1SolidColorBrush* p_brush_border_;

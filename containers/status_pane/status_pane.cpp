@@ -15,21 +15,21 @@ namespace liblec {
 	namespace lecui {
 		class containers::status_pane::impl {
 		public:
-			impl(form& fm, status_pane::location location) :
+			impl(form& fm, status_pane_specs::location location) :
 				fm_(fm),
 				location_(location) {
 				switch (location) {
-				case containers::status_pane::location::top: {
+				case containers::status_pane_specs::location::top: {
 					alias_ = "status::top";
 				} break;
-				case containers::status_pane::location::left: {
+				case containers::status_pane_specs::location::left: {
 					alias_ = "status::left";
 				} break;
-				case containers::status_pane::location::right: {
+				case containers::status_pane_specs::location::right: {
 					alias_ = "status::right";
 				} break;
 
-				case containers::status_pane::location::bottom:
+				case containers::status_pane_specs::location::bottom:
 				default: {
 					alias_ = "status::bottom";
 				} break;
@@ -43,24 +43,24 @@ namespace liblec {
 
 			form& fm_;
 			std::string alias_;
-			status_pane::location location_;
+			status_pane_specs::location location_;
 		};
 
-		containers::status_pane::status_pane(form& fm, status_pane::location location) :
+		containers::status_pane::status_pane(form& fm, status_pane_specs::location location) :
 			d_(*new impl(fm, location)) {}
 		containers::status_pane::~status_pane() {
 			delete& d_;
 		}
 
-		containers::status_pane::status_pane_specs& containers::status_pane::specs() {
+		containers::status_pane_specs& containers::status_pane::specs() {
 			return d_.fm_.d_.p_status_pane_specs_.at(d_.alias_);
 		}
 
-		containers::status_pane::status_pane_specs& containers::status_pane::operator()() {
+		containers::status_pane_specs& containers::status_pane::operator()() {
 			return specs();
 		}
 
-		containers::status_pane::status_pane_specs&
+		containers::status_pane_specs&
 			containers::status_pane::specs(form& fm, const std::string& alias) {
 			return fm.d_.p_status_pane_specs_.at(alias);
 		}
@@ -88,23 +88,23 @@ namespace liblec {
 
 			switch (d_.location_) {
 
-			case containers::status_pane::location::top: {
+			case containers::status_pane_specs::location::top: {
 				rect.height(specs.thickness());
 				rect.place(rect_client, 50.f, 0.f);
 				on_resize = { 0, 0, 100, 0 };
 			} break;
-			case containers::status_pane::location::left: {
+			case containers::status_pane_specs::location::left: {
 				rect.width(specs.thickness());
 				rect.place(rect_client, 0.f, 50.f);
 				on_resize = { 0, 0, 0, 100 };
 			} break;
-			case containers::status_pane::location::right: {
+			case containers::status_pane_specs::location::right: {
 				rect.width(specs.thickness());
 				rect.place(rect_client, 100.f, 50.f);
 				on_resize = { 100, 0, 0, 100 };
 			} break;
 
-			case containers::status_pane::location::bottom:
+			case containers::status_pane_specs::location::bottom:
 			default: {
 				rect.height(specs.thickness());
 				rect.place(rect_client, 50.f, 100.f);

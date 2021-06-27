@@ -39,8 +39,8 @@ namespace liblec {
 				void on_click() override;
 
 				/// widget specific methods
-				widgets::button::button_specs& specs();
-				widgets::button::button_specs& operator()();
+				widgets::button_specs& specs();
+				widgets::button_specs& operator()();
 
 			private:
 				// Default constructor and copying an object of this class are not allowed
@@ -49,7 +49,7 @@ namespace liblec {
 				button_impl& operator=(const button_impl&) = delete;
 
 				/// Private variables
-				widgets::button::button_specs specs_, specs_old_;
+				widgets::button_specs specs_, specs_old_;
 				ID2D1SolidColorBrush* p_brush_;
 				ID2D1SolidColorBrush* p_brush_border_;
 				ID2D1SolidColorBrush* p_brush_fill_;

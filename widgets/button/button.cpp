@@ -13,7 +13,7 @@
 
 namespace liblec {
 	namespace lecui {
-		bool widgets::button::button_specs::operator==(const button_specs& param) {
+		bool widgets::button_specs::operator==(const button_specs& param) {
 			return
 				// generic specs
 				specs::operator==(param) &&
@@ -22,11 +22,11 @@ namespace liblec {
 				(color_border_ == param.color_border_);
 		}
 
-		bool widgets::button::button_specs::operator!=(const button_specs& param) {
+		bool widgets::button_specs::operator!=(const button_specs& param) {
 			return !operator==(param);
 		}
 
-		class widgets::button::impl {
+		class widgets::button_builder::impl {
 		public:
 			impl(containers::page& page, const std::string& alias) :
 				page_(page),
@@ -42,26 +42,26 @@ namespace liblec {
 			button_specs& specs_;
 		};
 
-		widgets::button::button(containers::page& page) :
-			button(page, "") {}
+		widgets::button_builder::button_builder(containers::page& page) :
+			button_builder(page, "") {}
 
-		widgets::button::button(containers::page& page, const std::string& alias) :
+		widgets::button_builder::button_builder(containers::page& page, const std::string& alias) :
 			d_(*(new impl(page, alias))) {}
 
-		widgets::button::~button() { delete& d_; }
+		widgets::button_builder::~button_builder() { delete& d_; }
 
-		widgets::button::button_specs&
-			widgets::button::specs() {
+		widgets::button_specs&
+			widgets::button_builder::specs() {
 			return d_.specs_;
 		}
 
-		widgets::button::button_specs&
-			widgets::button::operator()() {
+		widgets::button_specs&
+			widgets::button_builder::operator()() {
 			return specs();
 		}
 
-		widgets::button::button_specs&
-			widgets::button::specs(form& fm, const std::string& path) {
+		widgets::button_specs&
+			widgets::button_builder::specs(form& fm, const std::string& path) {
 			const auto idx = path.find("/");
 
 			if (idx != std::string::npos) {

@@ -21,269 +21,341 @@
 namespace liblec {
 	namespace lecui {
 		namespace widgets {
-			/// <summary>Table view widget.</summary>
-			class lecui_api table_view {
+			/// <summary>Table view widget specifications.</summary>
+			/// <remarks>Default size is 200x200px.</remarks>
+			class table_view_specs : public specs {
+				float border_ = .5f;
+				color color_border_;
+				float corner_radius_x_ = 2.f;
+				float corner_radius_y_ = 2.f;
+				color color_text_selected_;
+				color color_grid_;
+				color color_text_header_;
+				color color_fill_header_;
+				color color_fill_alternate_;
+				color color_row_hot_;
+				color color_row_selected_;
+				std::vector<table_column> columns_;
+				std::vector<std::map<std::string, std::string>> data_;
+				std::vector<long> selected_;
+
 			public:
-				/// <summary>Table view widget specifications.</summary>
-				/// <remarks>Default size is 200x200px.</remarks>
-				class table_view_specs : public specs {
-					/// <summary>The thickness of the border.</summary>
-					float border_ = .5f;
+				table_view_specs() {
+					rect_.size({ 200.f, 200.f });
+				}
 
-					/// <summary>The color of the border.</summary>
-					color color_border_;
-
-					/// <summary>The horizontal radius of the corners.</summary>
-					float corner_radius_x_ = 2.f;
-
-					/// <summary>The vertical radius of the corners.</summary>
-					float corner_radius_y_ = 2.f;
-
-					/// <summary>The color of the text in a selected row.</summary>
-					color color_text_selected_;
-
-					/// <summary>The color of the grid lines.</summary>
-					color color_grid_;
-
-					/// <summary>The color of the header text.</summary>
-					color color_text_header_;
-
-					/// <summary>The table header's fill color.</summary>
-					color color_fill_header_;
-
-					/// <summary>The table's alternate row color (used for the background of
-					/// even rows).</summary>
-					color color_fill_alternate_;
-
-					/// <summary>The background color of a row when the mouse is over it.</summary>
-					color color_row_hot_;
-
-					/// <summary>The background color of a selected row.</summary>
-					color color_row_selected_;
-
-					/// <summary>The table view columns.</summary>
-					/// <example>
-					/// Two columns can be defined as follows:
-					/// columns = { { "Name", 130 }, { "Surname", 210 } };
-					/// </example>
-					std::vector<table_column> columns_;
-
-					/// <summary>
-					/// The table data. Each entry of the vector (a map) is a row and should
-					/// mirror the column structure. The key is the column name and the value is
-					/// the contents of the cell. Therefore the map size should be equivalent to
-					/// the number of columns, while the size of the vector will determine the
-					/// number of rows.
-					/// </summary>
-					/// <example>
-					/// A table with two columns 'Name' and 'Surname' can be populated as follows
-					/// to a total of three rows:
-					/// data = {
-					/// { {"Name", "Emily Yolanda"}, { "Surname", "Moyo" } },
-					/// { {"Name", "Tanaka"}, {"Surname", "Sibanda"} },
-					/// { {"Name", "Precious"}, {"Surname", "Ncube"} }
-					/// </example>
-					std::vector<std::map<std::string, std::string>> data_;
-
-					/// <summary>The rows to select by default, numbered from 0.</summary>
-					std::vector<long> selected_;
-
-				public:
-					table_view_specs() {
-						rect_.size({ 200.f, 200.f });
-					}
-
-					/// <summary>Events specific to this widget.</summary>
-					struct table_view_events : basic_events {
-						/// <summary>This handler is called when the selection changes.</summary>
-						/// <remarks>The parameter contains the selected rows.</remarks>
-						std::function<void(
-							const std::vector<std::map<std::string, std::string>>& rows)>
-							selection = nullptr;
-					};
-
-					table_view_events& events() {
-						return table_events_;
-					}
-
-					bool operator==(const table_view_specs&);
-					bool operator!=(const table_view_specs&);
-
-					// generic specs
-
-					std::string& text() override { return text_; }
-					table_view_specs& text(const std::string& text) {
-						text_ = text;
-						return *this;
-					}
-
-					std::string& tooltip() override { return tooltip_; }
-					table_view_specs& tooltip(const std::string& tooltip) {
-						tooltip_ = tooltip;
-						return *this;
-					}
-
-					lecui::rect& rect() override { return rect_; }
-					table_view_specs& rect(const lecui::rect& rect) {
-						rect_ = rect;
-						return *this;
-					}
-
-					resize_params& on_resize() override { return on_resize_; }
-					table_view_specs& on_resize(const resize_params& on_resize) {
-						on_resize_ = on_resize;
-						return *this;
-					}
-
-					cursor_type& cursor() override { return cursor_; }
-					table_view_specs& cursor(const cursor_type cursor) {
-						cursor_ = cursor;
-						return *this;
-					}
-
-					std::string& font() override { return font_; }
-					table_view_specs& font(const std::string& font) {
-						font_ = font;
-						return *this;
-					}
-
-					float& font_size() override { return font_size_; }
-					table_view_specs& font_size(const float& font_size) {
-						font_size_ = font_size;
-						return *this;
-					}
-
-					color& color_text() override { return color_text_; }
-					table_view_specs& color_text(const color& color_text) {
-						color_text_ = color_text;
-						return *this;
-					}
-
-					color& color_fill() override { return color_fill_; }
-					table_view_specs& color_fill(const color& color_fill) {
-						color_fill_ = color_fill;
-						return *this;
-					}
-
-					color& color_hot() override { return color_hot_; }
-					table_view_specs& color_hot(const color& color_hot) {
-						color_hot_ = color_hot;
-						return *this;
-					}
-
-					color& color_selected() override { return color_selected_; }
-					table_view_specs& color_selected(const color& color_selected) {
-						color_selected_ = color_selected;
-						return *this;
-					}
-
-					color& color_disabled() override { return color_disabled_; }
-					table_view_specs& color_disabled(const color& color_disabled) {
-						color_disabled_ = color_disabled;
-						return *this;
-					}
-
-					// widget specific specs
-
-					float& border() { return border_; }
-					table_view_specs& border(const float& border) {
-						border_ = border;
-						return *this;
-					}
-
-					color& color_border() { return color_border_; }
-					table_view_specs& color_border(const color& color_border) {
-						color_border_ = color_border;
-						return *this;
-					}
-
-					float& corner_radius_x() { return corner_radius_x_; }
-					table_view_specs& corner_radius_x(const float& corner_radius_x) {
-						corner_radius_x_ = corner_radius_x;
-						return *this;
-					}
-
-					float& corner_radius_y() { return corner_radius_y_; }
-					table_view_specs& corner_radius_y(const float& corner_radius_y) {
-						corner_radius_y_ = corner_radius_y;
-						return *this;
-					}
-
-					color& color_text_selected() { return color_text_selected_; }
-					table_view_specs& color_text_selected(const color& color_text_selected) {
-						color_text_selected_ = color_text_selected;
-						return *this;
-					}
-
-					color& color_grid() { return color_grid_; }
-					table_view_specs& color_grid(const color& color_grid) {
-						color_grid_ = color_grid;
-						return *this;
-					}
-
-					color& color_text_header() { return color_text_header_; }
-					table_view_specs& color_text_header(const color& color_text_header) {
-						color_text_header_ = color_text_header;
-						return *this;
-					}
-
-					color& color_fill_header() { return color_fill_header_; }
-					table_view_specs& color_fill_header(const color& color_fill_header) {
-						color_fill_header_ = color_fill_header;
-						return *this;
-					}
-
-					color& color_fill_alternate() { return color_fill_alternate_; }
-					table_view_specs& color_fill_alternate(const color& color_fill_alternate) {
-						color_fill_alternate_ = color_fill_alternate;
-						return *this;
-					}
-
-					color& color_row_hot() { return color_row_hot_; }
-					table_view_specs& color_row_hot(const color& color_row_hot) {
-						color_row_hot_ = color_row_hot;
-						return *this;
-					}
-
-					color& color_row_selected() { return color_row_selected_; }
-					table_view_specs& color_row_selected(const color& color_row_selected) {
-						color_row_selected_ = color_row_selected;
-						return *this;
-					}
-
-					std::vector<table_column>& columns() { return columns_; }
-					table_view_specs& columns(const std::vector<table_column>& columns) {
-						columns_ = columns;
-						return *this;
-					}
-
-					std::vector<std::map<std::string, std::string>>& data() { return data_; }
-					table_view_specs& data(const std::vector<std::map<std::string, std::string>>& data) {
-						data_ = data;
-						return *this;
-					}
-
-					std::vector<long>& selected() { return selected_; }
-					table_view_specs& selected(const std::vector<long>& selected) {
-						selected_ = selected;
-						return *this;
-					}
-
-				private:
-					table_view_events table_events_;
+				/// <summary>Events specific to this widget.</summary>
+				struct table_view_events : basic_events {
+					/// <summary>This handler is called when the selection changes.</summary>
+					/// <remarks>The parameter contains the selected rows.</remarks>
+					std::function<void(
+						const std::vector<std::map<std::string, std::string>>& rows)>
+						selection = nullptr;
 				};
 
-				/// <summary>Table constructor.</summary>
-				/// <param name="page">The container to place it in.</param>
+				table_view_events& events() {
+					return table_events_;
+				}
+
+				bool operator==(const table_view_specs&);
+				bool operator!=(const table_view_specs&);
+
+				// generic specs
+
+				std::string& text() override { return text_; }
+				table_view_specs& text(const std::string& text) {
+					text_ = text;
+					return *this;
+				}
+
+				std::string& tooltip() override { return tooltip_; }
+				table_view_specs& tooltip(const std::string& tooltip) {
+					tooltip_ = tooltip;
+					return *this;
+				}
+
+				lecui::rect& rect() override { return rect_; }
+				table_view_specs& rect(const lecui::rect& rect) {
+					rect_ = rect;
+					return *this;
+				}
+
+				resize_params& on_resize() override { return on_resize_; }
+				table_view_specs& on_resize(const resize_params& on_resize) {
+					on_resize_ = on_resize;
+					return *this;
+				}
+
+				cursor_type& cursor() override { return cursor_; }
+				table_view_specs& cursor(const cursor_type cursor) {
+					cursor_ = cursor;
+					return *this;
+				}
+
+				std::string& font() override { return font_; }
+				table_view_specs& font(const std::string& font) {
+					font_ = font;
+					return *this;
+				}
+
+				float& font_size() override { return font_size_; }
+				table_view_specs& font_size(const float& font_size) {
+					font_size_ = font_size;
+					return *this;
+				}
+
+				color& color_text() override { return color_text_; }
+				table_view_specs& color_text(const color& color_text) {
+					color_text_ = color_text;
+					return *this;
+				}
+
+				color& color_fill() override { return color_fill_; }
+				table_view_specs& color_fill(const color& color_fill) {
+					color_fill_ = color_fill;
+					return *this;
+				}
+
+				color& color_hot() override { return color_hot_; }
+				table_view_specs& color_hot(const color& color_hot) {
+					color_hot_ = color_hot;
+					return *this;
+				}
+
+				color& color_selected() override { return color_selected_; }
+				table_view_specs& color_selected(const color& color_selected) {
+					color_selected_ = color_selected;
+					return *this;
+				}
+
+				color& color_disabled() override { return color_disabled_; }
+				table_view_specs& color_disabled(const color& color_disabled) {
+					color_disabled_ = color_disabled;
+					return *this;
+				}
+
+				// widget specific specs
+
+				/// <summary>Get or set the thickness of the border.</summary>
+				/// <returns>A reference to the border thickness, in pixels.</returns>
+				float& border() { return border_; }
+
+				/// <summary>Set the thickness of the border.</summary>
+				/// <param name="border">The border thickness, in pixels.</param>
+				/// <returns>A reference to the modified object.</returns>
+				table_view_specs& border(const float& border) {
+					border_ = border;
+					return *this;
+				}
+
+				/// <summary>Get or set the color of the border.</summary>
+				/// <returns>A reference to the border color, as defined in <see cref="color"></see>.</returns>
+				color& color_border() { return color_border_; }
+
+				/// <summary>Set the color of the border.</summary>
+				/// <param name="color_border">The border color, as defined in <see cref="color"></see>.</param>
+				/// <returns>A reference to the modified object.</returns>
+				table_view_specs& color_border(const color& color_border) {
+					color_border_ = color_border;
+					return *this;
+				}
+
+				/// <summary>Get or set the horizontal radius of the corners.</summary>
+				/// <returns>A reference to the radius, in pixels.</returns>
+				float& corner_radius_x() { return corner_radius_x_; }
+
+				/// <summary>Set the horizontal radius of the corners.</summary>
+				/// <param name="corner_radius_x">The horizontal radius of the corner, in pixels.</param>
+				/// <returns>A reference to the modified object.</returns>
+				table_view_specs& corner_radius_x(const float& corner_radius_x) {
+					corner_radius_x_ = corner_radius_x;
+					return *this;
+				}
+
+				/// <summary>Get or set the vertical radius of the corners.</summary>
+				/// <returns>A reference to the radius, in pixels.</returns>
+				float& corner_radius_y() { return corner_radius_y_; }
+
+				/// <summary>Set the vertical radius of the corners.</summary>
+				/// <param name="corner_radius_y">The horizontal radius of the corner, in pixels.</param>
+				/// <returns>A reference to the modified object.</returns>
+				table_view_specs& corner_radius_y(const float& corner_radius_y) {
+					corner_radius_y_ = corner_radius_y;
+					return *this;
+				}
+
+				/// <summary>Get or set the color of the text in a selected row.</summary>
+				/// <returns>A reference to the color.</returns>
+				color& color_text_selected() { return color_text_selected_; }
+
+				/// <summary>Set the color of the text in a selected row.</summary>
+				/// <param name="color_text_selected">The color.</param>
+				/// <returns>A reference to the modified object.</returns>
+				table_view_specs& color_text_selected(const color& color_text_selected) {
+					color_text_selected_ = color_text_selected;
+					return *this;
+				}
+
+				/// <summary>Get or set the color of the grid lines.</summary>
+				/// <returns>A reference to the color.</returns>
+				color& color_grid() { return color_grid_; }
+
+				/// <summary>Set the color of the grid lines.</summary>
+				/// <param name="color_grid">The color.</param>
+				/// <returns>A reference to the modified object.</returns>
+				table_view_specs& color_grid(const color& color_grid) {
+					color_grid_ = color_grid;
+					return *this;
+				}
+
+				/// <summary>Get or set the color of the header text.</summary>
+				/// <returns>A reference to the color.</returns>
+				color& color_text_header() { return color_text_header_; }
+
+				/// <summary>Set the color of the header text.</summary>
+				/// <param name="color_text_header">The color.</param>
+				/// <returns>A reference to the modified object.</returns>
+				table_view_specs& color_text_header(const color& color_text_header) {
+					color_text_header_ = color_text_header;
+					return *this;
+				}
+
+				/// <summary>Get or set the table header's fill color.</summary>
+				/// <returns>A reference to the color.</returns>
+				color& color_fill_header() { return color_fill_header_; }
+
+				/// <summary>Set the table header's fill color.</summary>
+				/// <param name="color_fill_header">The color.</param>
+				/// <returns>A reference to the modified object.</returns>
+				table_view_specs& color_fill_header(const color& color_fill_header) {
+					color_fill_header_ = color_fill_header;
+					return *this;
+				}
+
+				/// <summary>Get or set the table's alternate row color (used for the
+				/// background of even rows).</summary>
+				/// <returns>A reference to the color.</returns>
+				color& color_fill_alternate() { return color_fill_alternate_; }
+
+				/// <summary>Set the table's alternate row color (used for the background of
+				/// even rows).</summary>
+				/// <param name="color_fill_alternate"></param>
+				/// <returns>A reference to the modified object.</returns>
+				table_view_specs& color_fill_alternate(const color& color_fill_alternate) {
+					color_fill_alternate_ = color_fill_alternate;
+					return *this;
+				}
+
+				/// <summary>Get or set the background color of a row when the mouse is over it.</summary>
+				/// <returns>A reference to the color.</returns>
+				color& color_row_hot() { return color_row_hot_; }
+
+				/// <summary>Set the background color of a row when the mouse is over it.</summary>
+				/// <param name="color_row_hot">The color.</param>
+				/// <returns>A reference to the modified object.</returns>
+				table_view_specs& color_row_hot(const color& color_row_hot) {
+					color_row_hot_ = color_row_hot;
+					return *this;
+				}
+
+				/// <summary>Get or set the background color of a selected row.</summary>
+				/// <returns>A reference to the color.</returns>
+				color& color_row_selected() { return color_row_selected_; }
+
+				/// <summary>Set the background color of a selected row.</summary>
+				/// <param name="color_row_selected">The color.</param>
+				/// <returns>A reference to the modified object.</returns>
+				table_view_specs& color_row_selected(const color& color_row_selected) {
+					color_row_selected_ = color_row_selected;
+					return *this;
+				}
+
+				/// <summary>Get or set the table view columns.</summary>
+				/// <returns>A reference to the list of the table view's columns.</returns>
+				/// <example>
+				/// Two columns can be defined as follows:
+				/// columns = { { "Name", 130 }, { "Surname", 210 } };
+				/// </example>
+				std::vector<table_column>& columns() { return columns_; }
+
+				/// <summary>Set the table view columns.</summary>
+				/// <param name="columns">The list of columns.</param>
+				/// <returns>A reference to the modified object.</returns>
+				/// <example>
+				/// Two columns can be defined as follows:
+				/// columns = { { "Name", 130 }, { "Surname", 210 } };
+				/// </example>
+				table_view_specs& columns(const std::vector<table_column>& columns) {
+					columns_ = columns;
+					return *this;
+				}
+
+				/// <summary>Get or set the table's data. Each entry of the vector (a map) is a
+				/// row and should mirror the column structure. The key is the column name and
+				/// the value is the contents of the cell. Therefore the map size should be
+				/// equivalent to the number of columns, while the size of the vector will
+				/// determine the number of rows.</summary>
+				/// <returns>A reference to the table's data.</returns>
+				/// <example>
+				/// A table with two columns 'Name' and 'Surname' can be populated as follows
+				/// to a total of three rows:
+				/// data = {
+				/// { {"Name", "Emily Yolanda"}, { "Surname", "Moyo" } },
+				/// { {"Name", "Tanaka"}, {"Surname", "Sibanda"} },
+				/// { {"Name", "Precious"}, {"Surname", "Ncube"} }
+				/// </example>
+				std::vector<std::map<std::string, std::string>>& data() { return data_; }
+
+				/// <summary>Set the table's data. Each entry of the vector (a map) is a
+				/// row and should mirror the column structure. The key is the column name and
+				/// the value is the contents of the cell. Therefore the map size should be
+				/// equivalent to the number of columns, while the size of the vector will
+				/// determine the number of rows.</summary>
+				/// <param name="data">The table's data.</param>
+				/// <returns>A reference to the modified object.</returns>
+				/// <example>
+				/// A table with two columns 'Name' and 'Surname' can be populated as follows
+				/// to a total of three rows:
+				/// data = {
+				/// { {"Name", "Emily Yolanda"}, { "Surname", "Moyo" } },
+				/// { {"Name", "Tanaka"}, {"Surname", "Sibanda"} },
+				/// { {"Name", "Precious"}, {"Surname", "Ncube"} }
+				/// </example>
+				table_view_specs& data(const std::vector<std::map<std::string, std::string>>& data) {
+					data_ = data;
+					return *this;
+				}
+
+				/// <summary>Get or set the rows to select by default, numbered from 0.</summary>
+				/// <returns>A reference to the selected rows.</returns>
+				std::vector<long>& selected() { return selected_; }
+
+				/// <summary>Set the rows to select by default, numbered from 0.</summary>
+				/// <param name="selected">The selected rows.</param>
+				/// <returns>A reference to the modified object.</returns>
+				table_view_specs& selected(const std::vector<long>& selected) {
+					selected_ = selected;
+					return *this;
+				}
+
+			private:
+				table_view_events table_events_;
+			};
+
+			/// <summary>Table view widget builder.</summary>
+			class lecui_api table_view_builder {
+			public:
+				/// <summary>Table view builder constructor.</summary>
+				/// <param name="page">The container to place the widget in.</param>
 				/// <remarks>This constructs the widget with an internally generated random
 				/// alias.</remarks>
-				table_view(containers::page& page);
+				table_view_builder(containers::page& page);
 
-				/// <summary>Table constructor.</summary>
-				/// <param name="page">The container to place it in.</param>
+				/// <summary>Table view builder constructor.</summary>
+				/// <param name="page">The container to place the widget in.</param>
 				/// <param name="alias">The in-page unique alias, e.g. "debtors".</param>
-				table_view(containers::page& page, const std::string& alias);
-				~table_view();
+				table_view_builder(containers::page& page, const std::string& alias);
+				~table_view_builder();
 
 				/// <summary>Get the table view specifications.</summary>
 				/// <returns>A reference to the table view specifications.</returns>
@@ -310,9 +382,9 @@ namespace liblec {
 				impl& d_;
 
 				// Default constructor and copying an object of this class are not allowed
-				table_view() = delete;
-				table_view(const table_view&) = delete;
-				table_view& operator=(const table_view&) = delete;
+				table_view_builder() = delete;
+				table_view_builder(const table_view_builder&) = delete;
+				table_view_builder& operator=(const table_view_builder&) = delete;
 			};
 		}
 	}

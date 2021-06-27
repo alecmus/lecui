@@ -509,7 +509,7 @@ namespace liblec {
 			}
 		}
 
-		widgets::combobox::combobox_specs&
+		widgets::combobox_specs&
 			widgets::combobox_impl::specs() { return specs_; }
 
 		void widgets::combobox_impl::insert_character(const char& c) {
@@ -623,7 +623,7 @@ namespace liblec {
 
 				if (!already_in_list) {
 					// add text to items list
-					widgets::combobox::combobox_item item;
+					widgets::combobox_specs::combobox_item item;
 					item.label = specs_.text();
 
 					if (alias() == html_editor_impl::alias_font_size()) {
@@ -754,7 +754,7 @@ namespace liblec {
 			return numeric;
 		}
 
-		bool widgets::combobox_impl::is_numeric(const std::vector<widgets::combobox::combobox_item>& items) {
+		bool widgets::combobox_impl::is_numeric(const std::vector<widgets::combobox_specs::combobox_item>& items) {
 			bool numeric = true;
 
 			for (auto& item : items) {
@@ -769,19 +769,19 @@ namespace liblec {
 		}
 
 		void widgets::combobox_impl::sort_items() {
-			auto sort_ascending = [](widgets::combobox::combobox_item& a, widgets::combobox::combobox_item& b) {
+			auto sort_ascending = [](widgets::combobox_specs::combobox_item& a, widgets::combobox_specs::combobox_item& b) {
 				return a.label < b.label;
 			};
 
-			auto sort_descending = [](widgets::combobox::combobox_item& a, widgets::combobox::combobox_item& b) {
+			auto sort_descending = [](widgets::combobox_specs::combobox_item& a, widgets::combobox_specs::combobox_item& b) {
 				return a.label > b.label;
 			};
 
-			auto sort_ascending_numeric = [](widgets::combobox::combobox_item& a, widgets::combobox::combobox_item& b) {
+			auto sort_ascending_numeric = [](widgets::combobox_specs::combobox_item& a, widgets::combobox_specs::combobox_item& b) {
 				return atof(a.label.c_str()) < atof(b.label.c_str());
 			};
 
-			auto sort_descending_numeric = [](widgets::combobox::combobox_item& a, widgets::combobox::combobox_item& b) {
+			auto sort_descending_numeric = [](widgets::combobox_specs::combobox_item& a, widgets::combobox_specs::combobox_item& b) {
 				return atof(a.label.c_str()) > atof(b.label.c_str());
 			};
 
@@ -805,7 +805,7 @@ namespace liblec {
 			}
 		}
 
-		widgets::combobox::combobox_specs&
+		widgets::combobox_specs&
 			widgets::combobox_impl::operator()() { return specs(); }
 		std::string widgets::combobox_impl::dropdown(D2D1_RECT_F rect) {
 			context_menu::specs menu_specs;

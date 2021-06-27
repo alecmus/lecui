@@ -13,7 +13,7 @@
 
 namespace liblec {
 	namespace lecui {
-		bool widgets::html_editor::html_editor_specs::operator==(const html_editor_specs& param) {
+		bool widgets::html_editor_specs::operator==(const html_editor_specs& param) {
 			return
 				// generic specs
 				specs::operator==(param) &&
@@ -25,11 +25,11 @@ namespace liblec {
 				(color_control_fill_ == param.color_control_fill_);
 		}
 
-		bool widgets::html_editor::html_editor_specs::operator!=(const html_editor_specs& param) {
+		bool widgets::html_editor_specs::operator!=(const html_editor_specs& param) {
 			return !operator==(param);
 		}
 
-		class widgets::html_editor::impl {
+		class widgets::html_editor_builder::impl {
 		public:
 			impl(containers::page& page, const std::string& alias) :
 				page_(page),
@@ -50,26 +50,26 @@ namespace liblec {
 			html_editor_specs& specs_;
 		};
 
-		widgets::html_editor::html_editor(containers::page& page) :
-			html_editor(page, "") {}
+		widgets::html_editor_builder::html_editor_builder(containers::page& page) :
+			html_editor_builder(page, "") {}
 
-		widgets::html_editor::html_editor(containers::page& page, const std::string& alias) :
+		widgets::html_editor_builder::html_editor_builder(containers::page& page, const std::string& alias) :
 			d_(*(new impl(page, alias))) {}
 
-		widgets::html_editor::~html_editor() { delete& d_; }
+		widgets::html_editor_builder::~html_editor_builder() { delete& d_; }
 
-		widgets::html_editor::html_editor_specs&
-			widgets::html_editor::specs() {
+		widgets::html_editor_specs&
+			widgets::html_editor_builder::specs() {
 			return d_.specs_;
 		}
 
-		widgets::html_editor::html_editor_specs&
-			widgets::html_editor::operator()() {
+		widgets::html_editor_specs&
+			widgets::html_editor_builder::operator()() {
 			return specs();
 		}
 
-		widgets::html_editor::html_editor_specs&
-			widgets::html_editor::specs(form& fm, const std::string& path) {
+		widgets::html_editor_specs&
+			widgets::html_editor_builder::specs(form& fm, const std::string& path) {
 			const auto idx = path.find("/");
 
 			if (idx != std::string::npos) {

@@ -19,11 +19,10 @@
 namespace liblec {
 	namespace lecui {
 		namespace containers {
-			class tab;
+			class tab_builder;
 
-			/// <summary>Tab pane container.</summary>
-			/// <remarks>Only tab containers can be added to this container.</remarks>
-			class lecui_api tab_pane {
+			/// <summary>Tab pane specifications.</summary>
+			class tab_pane_specs : public widgets::specs {
 			public:
 				enum class side {
 					left,
@@ -37,204 +36,260 @@ namespace liblec {
 					vertical,
 				};
 
-				/// <summary>Tab pane specifications.</summary>
-				class tab_pane_specs : public widgets::specs {
-					/// <summary>The thickness of the border.</summary>
-					float border_ = .5f;
+			private:
+				float border_ = .5f;
+				color color_border_;
+				float corner_radius_x_ = 5.f;
+				float corner_radius_y_ = 5.f;
+				side tab_side_ = side::top;
+				std::vector<std::string> caption_reserve_;
+				orientation caption_orientation_ = orientation::horizontal;
+				color color_tabs_;
+				color color_tabs_border_;
+				float tabs_border_ = .5f;
 
-					/// <summary>The color of the border.</summary>
-					color color_border_;
+			public:
+				tab_pane_specs() {
+					cursor_ = cursor_type::hand;
+				}
 
-					/// <summary>The horizontal radius of the corners.</summary>
-					float corner_radius_x_ = 5.f;
+				// generic specs
 
-					/// <summary>The vertical radius of the corners.</summary>
-					float corner_radius_y_ = 5.f;
+				std::string& text() override { return text_; }
+				tab_pane_specs& text(const std::string& text) {
+					text_ = text;
+					return *this;
+				}
 
-					/// <summary>The side on which to place the tab, as defined in <see cref="side"></see>.</summary>
-					side tab_side_ = side::top;
+				std::string& tooltip() override { return tooltip_; }
+				tab_pane_specs& tooltip(const std::string& tooltip) {
+					tooltip_ = tooltip;
+					return *this;
+				}
 
-					/// <summary>Only affects tab captions whose orientation is perpendicular to
-					/// the tab area. Make a reservation for the captions of all the tabs that are
-					/// going to be added. If there is no way to know before-hand it is recommended
-					/// to insert at least one dummy caption that estimates the size of the longest
-					/// expected caption.</summary>
-					/// <remarks>This is not required if the tab caption orientation is parallel
-					/// to the tab area. If the tab caption orientation is perpendicular, it is
-					/// important to set this reservation before adding the first tab to the tab
-					/// pane. Failure to do this will result in the thickness of the tab area being
-					/// clipped to the size of the first tab's caption. This, however, won't be an
-					/// issue if the rest of the tab captions are shorter than the first.</remarks>
-					std::vector<std::string> caption_reserve_;
+				lecui::rect& rect() override { return rect_; }
+				tab_pane_specs& rect(const lecui::rect& rect) {
+					rect_ = rect;
+					return *this;
+				}
 
-					/// <summary>The orientation of the caption text, as defined in <see cref="orientation"></see>.</summary>
-					orientation caption_orientation_ = orientation::horizontal;
+				resize_params& on_resize() override { return on_resize_; }
+				tab_pane_specs& on_resize(const resize_params& on_resize) {
+					on_resize_ = on_resize;
+					return *this;
+				}
 
-					/// <summary>The fill color of the tabs.</summary>
-					color color_tabs_;
+				cursor_type& cursor() override { return cursor_; }
+				tab_pane_specs& cursor(const cursor_type cursor) {
+					cursor_ = cursor;
+					return *this;
+				}
 
-					/// <summary>The color of the tab borders.</summary>
-					color color_tabs_border_;
+				std::string& font() override { return font_; }
+				tab_pane_specs& font(const std::string& font) {
+					font_ = font;
+					return *this;
+				}
 
-					/// <summary>The thickness of the tab borders.</summary>
-					float tabs_border_ = .5f;
+				float& font_size() override { return font_size_; }
+				tab_pane_specs& font_size(const float& font_size) {
+					font_size_ = font_size;
+					return *this;
+				}
 
-				public:
-					tab_pane_specs() {
-						cursor_ = cursor_type::hand;
-					}
+				color& color_text() override { return color_text_; }
+				tab_pane_specs& color_text(const color& color_text) {
+					color_text_ = color_text;
+					return *this;
+				}
 
-					// generic specs
+				color& color_fill() override { return color_fill_; }
+				tab_pane_specs& color_fill(const color& color_fill) {
+					color_fill_ = color_fill;
+					return *this;
+				}
 
-					std::string& text() override { return text_; }
-					tab_pane_specs& text(const std::string& text) {
-						text_ = text;
-						return *this;
-					}
+				color& color_hot() override { return color_hot_; }
+				tab_pane_specs& color_hot(const color& color_hot) {
+					color_hot_ = color_hot;
+					return *this;
+				}
 
-					std::string& tooltip() override { return tooltip_; }
-					tab_pane_specs& tooltip(const std::string& tooltip) {
-						tooltip_ = tooltip;
-						return *this;
-					}
+				color& color_selected() override { return color_selected_; }
+				tab_pane_specs& color_selected(const color& color_selected) {
+					color_selected_ = color_selected;
+					return *this;
+				}
 
-					lecui::rect& rect() override { return rect_; }
-					tab_pane_specs& rect(const lecui::rect& rect) {
-						rect_ = rect;
-						return *this;
-					}
+				color& color_disabled() override { return color_disabled_; }
+				tab_pane_specs& color_disabled(const color& color_disabled) {
+					color_disabled_ = color_disabled;
+					return *this;
+				}
 
-					resize_params& on_resize() override { return on_resize_; }
-					tab_pane_specs& on_resize(const resize_params& on_resize) {
-						on_resize_ = on_resize;
-						return *this;
-					}
+				// widget specific specs
 
-					cursor_type& cursor() override { return cursor_; }
-					tab_pane_specs& cursor(const cursor_type cursor) {
-						cursor_ = cursor;
-						return *this;
-					}
+				/// <summary>Get or set the thickness of the border.</summary>
+				/// <returns>A reference to the border thickness, in pixels.</returns>
+				float& border() { return border_; }
 
-					std::string& font() override { return font_; }
-					tab_pane_specs& font(const std::string& font) {
-						font_ = font;
-						return *this;
-					}
+				/// <summary>Set the thickness of the border.</summary>
+				/// <param name="border">The border thickness, in pixels.</param>
+				/// <returns>A reference to the modified object.</returns>
+				tab_pane_specs& border(const float& border) {
+					border_ = border;
+					return *this;
+				}
 
-					float& font_size() override { return font_size_; }
-					tab_pane_specs& font_size(const float& font_size) {
-						font_size_ = font_size;
-						return *this;
-					}
+				/// <summary>Get or set the color of the border.</summary>
+				/// <returns>A reference to the border color, as defined in <see cref="color"></see>.</returns>
+				color& color_border() { return color_border_; }
 
-					color& color_text() override { return color_text_; }
-					tab_pane_specs& color_text(const color& color_text) {
-						color_text_ = color_text;
-						return *this;
-					}
+				/// <summary>Set the color of the border.</summary>
+				/// <param name="color_border">The border color, as defined in <see cref="color"></see>.</param>
+				/// <returns>A reference to the modified object.</returns>
+				tab_pane_specs& color_border(const color& color_border) {
+					color_border_ = color_border;
+					return *this;
+				}
 
-					color& color_fill() override { return color_fill_; }
-					tab_pane_specs& color_fill(const color& color_fill) {
-						color_fill_ = color_fill;
-						return *this;
-					}
+				/// <summary>Get or set the horizontal radius of the corners.</summary>
+				/// <returns>A reference to the radius, in pixels.</returns>
+				float& corner_radius_x() { return corner_radius_x_; }
 
-					color& color_hot() override { return color_hot_; }
-					tab_pane_specs& color_hot(const color& color_hot) {
-						color_hot_ = color_hot;
-						return *this;
-					}
+				/// <summary>Set the horizontal radius of the corners.</summary>
+				/// <param name="corner_radius_x">The horizontal radius of the corner, in pixels.</param>
+				/// <returns>A reference to the modified object.</returns>
+				tab_pane_specs& corner_radius_x(const float& corner_radius_x) {
+					corner_radius_x_ = corner_radius_x;
+					return *this;
+				}
 
-					color& color_selected() override { return color_selected_; }
-					tab_pane_specs& color_selected(const color& color_selected) {
-						color_selected_ = color_selected;
-						return *this;
-					}
+				/// <summary>Get or set the vertical radius of the corners.</summary>
+				/// <returns>A reference to the radius, in pixels.</returns>
+				float& corner_radius_y() { return corner_radius_y_; }
 
-					color& color_disabled() override { return color_disabled_; }
-					tab_pane_specs& color_disabled(const color& color_disabled) {
-						color_disabled_ = color_disabled;
-						return *this;
-					}
+				/// <summary>Set the vertical radius of the corners.</summary>
+				/// <param name="corner_radius_y">The horizontal radius of the corner, in pixels.</param>
+				/// <returns>A reference to the modified object.</returns>
+				tab_pane_specs& corner_radius_y(const float& corner_radius_y) {
+					corner_radius_y_ = corner_radius_y;
+					return *this;
+				}
 
-					// widget specific specs
+				/// <summary>Get or set the side on which to place the tab.</summary>
+				/// <returns>A reference to the property, as defined in <see cref="side"></see>.</returns>
+				side& tab_side() { return tab_side_; }
 
-					float& border() { return border_; }
-					tab_pane_specs& border(const float& border) {
-						border_ = border;
-						return *this;
-					}
+				/// <summary>Set the side on which to place the tab.</summary>
+				/// <param name="tab_side">The property, as defined in <see cref="side"></see>.</param>
+				/// <returns>A reference to the modified object.</returns>
+				tab_pane_specs& tab_side(const side& tab_side) {
+					tab_side_ = tab_side;
+					return *this;
+				}
 
-					color& color_border() { return color_border_; }
-					tab_pane_specs& color_border(const color& color_border) {
-						color_border_ = color_border;
-						return *this;
-					}
+				/// <summary>Get or set the caption reserve property.</summary>
+				/// <returns>A reference to the list of tab captions.</returns>
+				/// <remarks>Only affects tab captions whose orientation is perpendicular to
+				/// the tab area. Make a reservation for the captions of all the tabs that are
+				/// going to be added. If there is no way to know before-hand it is recommended
+				/// to insert at least one dummy caption that estimates the size of the longest
+				/// expected caption.
+				/// This is not required if the tab caption orientation is parallel
+				/// to the tab area. If the tab caption orientation is perpendicular, it is
+				/// important to set this reservation before adding the first tab to the tab
+				/// pane. Failure to do this will result in the thickness of the tab area being
+				/// clipped to the size of the first tab's caption. This, however, won't be an
+				/// issue if the rest of the tab captions are shorter than the first.</remarks>
+				std::vector<std::string>& caption_reserve() { return caption_reserve_; }
 
-					float& corner_radius_x() { return corner_radius_x_; }
-					tab_pane_specs& corner_radius_x(const float& corner_radius_x) {
-						corner_radius_x_ = corner_radius_x;
-						return *this;
-					}
+				/// <summary>Set the caption reserve property.</summary>
+				/// <param name="caption_reserve">The list of tab captions.</param>
+				/// <returns>A reference to the modified object.</returns>
+				/// <remarks>Only affects tab captions whose orientation is perpendicular to
+				/// the tab area. Make a reservation for the captions of all the tabs that are
+				/// going to be added. If there is no way to know before-hand it is recommended
+				/// to insert at least one dummy caption that estimates the size of the longest
+				/// expected caption.
+				/// This is not required if the tab caption orientation is parallel
+				/// to the tab area. If the tab caption orientation is perpendicular, it is
+				/// important to set this reservation before adding the first tab to the tab
+				/// pane. Failure to do this will result in the thickness of the tab area being
+				/// clipped to the size of the first tab's caption. This, however, won't be an
+				/// issue if the rest of the tab captions are shorter than the first.</remarks>
+				tab_pane_specs& caption_reserve(const std::vector<std::string>& caption_reserve) {
+					caption_reserve_ = caption_reserve;
+					return *this;
+				}
 
-					float& corner_radius_y() { return corner_radius_y_; }
-					tab_pane_specs& corner_radius_y(const float& corner_radius_y) {
-						corner_radius_y_ = corner_radius_y;
-						return *this;
-					}
+				/// <summary>Get or set the orientation of the caption text.</summary>
+				/// <returns>A reference to the property, as defined in <see cref="orientation"></see>.</returns>
+				orientation& caption_orientation() { return caption_orientation_; }
 
-					side& tab_side() { return tab_side_; }
-					tab_pane_specs& tab_side(const side& tab_side) {
-						tab_side_ = tab_side;
-						return *this;
-					}
+				/// <summary>Set the orientation of the caption text.</summary>
+				/// <param name="caption_orientation">The caption orientation, as defined in <see cref="orientation"></see>.</param>
+				/// <returns>A reference to the modified object.</returns>
+				tab_pane_specs& caption_orientation(const orientation& caption_orientation) {
+					caption_orientation_ = caption_orientation;
+					return *this;
+				}
 
-					std::vector<std::string>& caption_reserve() { return caption_reserve_; }
-					tab_pane_specs& caption_reserve(const std::vector<std::string>& caption_reserve) {
-						caption_reserve_ = caption_reserve;
-						return *this;
-					}
+				/// <summary>Get or set the fill color of the tabs.</summary>
+				/// <returns>A reference to the color.</returns>
+				color& color_tabs() { return color_tabs_; }
 
-					orientation& caption_orientation() { return caption_orientation_; }
-					tab_pane_specs& caption_orientation(const orientation& caption_orientation) {
-						caption_orientation_ = caption_orientation;
-						return *this;
-					}
+				/// <summary>Set the fill color of the tabs.</summary>
+				/// <param name="color_tabs">The color.</param>
+				/// <returns>A reference to the modified object.</returns>
+				tab_pane_specs& color_tabs(const color& color_tabs) {
+					color_tabs_ = color_tabs;
+					return *this;
+				}
 
-					color& color_tabs() { return color_tabs_; }
-					tab_pane_specs& color_tabs(const color& color_tabs) {
-						color_tabs_ = color_tabs;
-						return *this;
-					}
+				/// <summary>Get or set the color of the tab borders.</summary>
+				/// <returns>A reference to the color.</returns>
+				color& color_tabs_border() { return color_tabs_border_; }
 
-					color& color_tabs_border() { return color_tabs_border_; }
-					tab_pane_specs& color_tabs_border(const color& color_tabs_border) {
-						color_tabs_border_ = color_tabs_border;
-						return *this;
-					}
+				/// <summary>Set the color of the tab borders.</summary>
+				/// <param name="color_tabs_border">The color.</param>
+				/// <returns>A reference to the modified object.</returns>
+				tab_pane_specs& color_tabs_border(const color& color_tabs_border) {
+					color_tabs_border_ = color_tabs_border;
+					return *this;
+				}
 
-					float& tabs_border() { return tabs_border_; }
-					tab_pane_specs& tabs_border(const float& tabs_border) {
-						tabs_border_ = tabs_border;
-						return *this;
-					}
-				};
+				/// <summary>Get or set the thickness of the tab borders.</summary>
+				/// <returns>A reference to the thickness, in pixels.</returns>
+				float& tabs_border() { return tabs_border_; }
 
-				/// <summary>Tab pane constructor.</summary>
+				/// <summary>Set the thickness of the tab borders.</summary>
+				/// <param name="tabs_border">The thickness, in pixels.</param>
+				/// <returns>A reference to the modified object.</returns>
+				tab_pane_specs& tabs_border(const float& tabs_border) {
+					tabs_border_ = tabs_border;
+					return *this;
+				}
+			};
+
+			/// <summary>Tab pane container builder.</summary>
+			/// <remarks>Only tab containers can be added to the tab pane container.</remarks>
+			class lecui_api tab_pane_builder {
+			public:
+				/// <summary>Tab pane builder constructor.</summary>
 				/// <param name="page">A reference to the container to place the control in.</param>
 				/// <remarks>This constructs the container with an internally generated random
 				/// alias.</remarks>
-				tab_pane(containers::page& page);
+				tab_pane_builder(containers::page& page);
 
-				/// <summary>Tab pane constructor.</summary>
+				/// <summary>Tab pane builder constructor.</summary>
 				/// <param name="page">A reference to the container to place the control in.</param>
 				/// <param name="alias">The in-page unique alias, e.g. "settings_tab_pane".
 				/// </param>
 				/// <remarks>Ensure that the alias is unique within the page. Reusing an alias
 				/// in a tab pane leads to undefined behavior.</remarks>
-				tab_pane(containers::page& page, const std::string& alias);
-				~tab_pane();
+				tab_pane_builder(containers::page& page, const std::string& alias);
+				~tab_pane_builder();
 
 				/// <summary>Get the tab pane specifications.</summary>
 				/// <returns>A reference to the control specifications.</returns>
@@ -270,26 +325,26 @@ namespace liblec {
 				impl& d_;
 
 				// Default constructor and copying an object of this class are not allowed
-				tab_pane() = delete;
-				tab_pane(const tab_pane&) = delete;
-				tab_pane& operator=(const tab_pane&) = delete;
+				tab_pane_builder() = delete;
+				tab_pane_builder(const tab_pane_builder&) = delete;
+				tab_pane_builder& operator=(const tab_pane_builder&) = delete;
 
-				friend class tab;
+				friend class tab_builder;
 			};
 
-			/// <summary>Tab container.</summary>
+			/// <summary>Tab container builder.</summary>
 			/// <remarks>Any widget can be added to this container. Consequently, recursion is
 			/// fully supported, allowing tab panes within tabs that are themselves in another
 			/// tab pane, to virtually any depth level that the memory of the computer the app
 			/// is running on can permit.</remarks>
-			class lecui_api tab {
+			class lecui_api tab_builder {
 			public:
-				/// <summary>Tab constructor.</summary>
+				/// <summary>Tab builder constructor.</summary>
 				/// <param name="tp">The tab pane to place it in.</param>
 				/// <param name="tab_name">The in-tab_pane unique name of the tab,
 				/// e.g. "Options".</param>
-				tab(tab_pane& tp, const std::string& tab_name);
-				~tab();
+				tab_builder(tab_pane_builder& tp, const std::string& tab_name);
+				~tab_builder();
 
 				/// <summary>Get the tab container page.</summary>
 				/// <returns>A reference to the tab container page.</returns>
@@ -314,9 +369,9 @@ namespace liblec {
 				impl& d_;
 
 				// Default constructor and copying an object of this class are not allowed
-				tab() = delete;
-				tab(const tab&) = delete;
-				tab& operator=(const tab&) = delete;
+				tab_builder() = delete;
+				tab_builder(const tab_builder&) = delete;
+				tab_builder& operator=(const tab_builder&) = delete;
 			};
 		}
 	}

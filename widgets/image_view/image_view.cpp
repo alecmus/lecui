@@ -13,7 +13,7 @@
 
 namespace liblec {
 	namespace lecui {
-		bool widgets::image_view::image_view_specs::operator==(const image_view_specs& param) {
+		bool widgets::image_view_specs::operator==(const image_view_specs& param) {
 			return
 				// generic specs
 				specs::operator==(param) &&
@@ -27,11 +27,11 @@ namespace liblec {
 				(keep_aspect_ratio_ == param.keep_aspect_ratio_);
 		}
 
-		bool widgets::image_view::image_view_specs::operator!=(const image_view_specs& param) {
+		bool widgets::image_view_specs::operator!=(const image_view_specs& param) {
 			return !operator==(param);
 		}
 
-		class widgets::image_view::impl {
+		class widgets::image_view_builder::impl {
 		public:
 			impl(containers::page& page, const std::string& alias) :
 				page_(page),
@@ -46,26 +46,26 @@ namespace liblec {
 			image_view_specs& specs_;
 		};
 
-		widgets::image_view::image_view(containers::page& page) :
-			image_view(page, "") {}
+		widgets::image_view_builder::image_view_builder(containers::page& page) :
+			image_view_builder(page, "") {}
 
-		widgets::image_view::image_view(containers::page& page, const std::string& alias) :
+		widgets::image_view_builder::image_view_builder(containers::page& page, const std::string& alias) :
 			d_(*(new impl(page, alias))) {}
 
-		widgets::image_view::~image_view() { delete& d_; }
+		widgets::image_view_builder::~image_view_builder() { delete& d_; }
 
-		widgets::image_view::image_view_specs&
-			widgets::image_view::specs() {
+		widgets::image_view_specs&
+			widgets::image_view_builder::specs() {
 			return d_.specs_;
 		}
 
-		widgets::image_view::image_view_specs&
-			widgets::image_view::operator()() {
+		widgets::image_view_specs&
+			widgets::image_view_builder::operator()() {
 			return specs();
 		}
 
-		widgets::image_view::image_view_specs&
-			widgets::image_view::specs(form& fm, const std::string& path) {
+		widgets::image_view_specs&
+			widgets::image_view_builder::specs(form& fm, const std::string& path) {
 			const auto idx = path.find("/");
 
 			if (idx != std::string::npos) {

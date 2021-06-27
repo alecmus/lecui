@@ -13,7 +13,7 @@
 
 namespace liblec {
 	namespace lecui {
-		bool widgets::table_view::table_view_specs::operator==(const table_view_specs& param) {
+		bool widgets::table_view_specs::operator==(const table_view_specs& param) {
 			return
 				// generic specs
 				specs::operator==(param) &&
@@ -28,11 +28,11 @@ namespace liblec {
 				(color_row_selected_ == param.color_row_selected_);
 		}
 
-		bool widgets::table_view::table_view_specs::operator!=(const table_view_specs& param) {
+		bool widgets::table_view_specs::operator!=(const table_view_specs& param) {
 			return !operator==(param);
 		}
 
-		class widgets::table_view::impl {
+		class widgets::table_view_builder::impl {
 		public:
 			impl(containers::page& page, const std::string& alias) :
 				page_(page),
@@ -53,26 +53,26 @@ namespace liblec {
 			table_view_specs& specs_;
 		};
 
-		widgets::table_view::table_view(containers::page& page) :
-			table_view(page, "") {}
+		widgets::table_view_builder::table_view_builder(containers::page& page) :
+			table_view_builder(page, "") {}
 
-		widgets::table_view::table_view(containers::page& page, const std::string& alias) :
+		widgets::table_view_builder::table_view_builder(containers::page& page, const std::string& alias) :
 			d_(*(new impl(page, alias))) {}
 
-		widgets::table_view::~table_view() { delete& d_; }
+		widgets::table_view_builder::~table_view_builder() { delete& d_; }
 
-		widgets::table_view::table_view_specs&
-			widgets::table_view::specs() {
+		widgets::table_view_specs&
+			widgets::table_view_builder::specs() {
 			return d_.specs_;
 		}
 
-		widgets::table_view::table_view_specs&
-			widgets::table_view::operator()() {
+		widgets::table_view_specs&
+			widgets::table_view_builder::operator()() {
 			return specs();
 		}
 
-		widgets::table_view::table_view_specs&
-			widgets::table_view::specs(form& fm, const std::string& path) {
+		widgets::table_view_specs&
+			widgets::table_view_builder::specs(form& fm, const std::string& path) {
 			const auto idx = path.find("/");
 
 			if (idx != std::string::npos) {

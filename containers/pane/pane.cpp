@@ -13,10 +13,10 @@
 
 namespace liblec {
 	namespace lecui {
-		class containers::pane::impl {
+		class containers::pane_builder::impl {
 		public:
 			impl(containers::page& page,
-				containers::pane::pane_specs& specs,
+				containers::pane_specs& specs,
 				const std::string& alias) :
 				page_(page), specs_(specs) {
 				specs_
@@ -24,28 +24,28 @@ namespace liblec {
 					.color_border(defaults::color(page_.d_page_.fm_.d_.theme_, item::pane_border));
 			}
 			containers::page& page_;
-			containers::pane::pane_specs& specs_;
+			containers::pane_specs& specs_;
 		};
 
-		containers::pane::pane(containers::page& page) :
-			pane(page, "") {}
+		containers::pane_builder::pane_builder(containers::page& page) :
+			pane_builder(page, "") {}
 
-		containers::pane::pane(containers::page& page,
+		containers::pane_builder::pane_builder(containers::page& page,
 			const std::string& alias) :
 			d_(*(new impl(page, page.d_page_.add_pane(alias), alias))) {}
 
-		containers::pane::~pane() { delete& d_; }
+		containers::pane_builder::~pane_builder() { delete& d_; }
 
-		containers::pane::pane_specs& containers::pane::specs() {
+		containers::pane_specs& containers::pane_builder::specs() {
 			return d_.specs_;
 		}
 
-		containers::pane::pane_specs& containers::pane::operator()() {
+		containers::pane_specs& containers::pane_builder::operator()() {
 			return specs();
 		}
 
-		containers::pane::pane_specs&
-			containers::pane::specs(form& fm, const std::string& path) {
+		containers::pane_specs&
+			containers::pane_builder::specs(form& fm, const std::string& path) {
 			const auto idx = path.find("/");
 
 			if (idx != std::string::npos) {
@@ -70,7 +70,7 @@ namespace liblec {
 			throw std::invalid_argument("Invalid path");
 		}
 
-		containers::page& containers::pane::get() {
+		containers::page& containers::pane_builder::get() {
 			auto& pane_ = d_.page_.d_page_.get_pane(d_.specs_.alias());
 
 			const std::string pane_name = "pane";
@@ -165,7 +165,7 @@ namespace liblec {
 		}
 
 		containers::page&
-			containers::pane::get(form& fm, const std::string& path) {
+			containers::pane_builder::get(form& fm, const std::string& path) {
 			const auto idx = path.find("/");
 
 			try {

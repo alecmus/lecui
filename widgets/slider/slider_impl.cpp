@@ -462,10 +462,10 @@ namespace liblec {
 			return true;
 		}
 
-		widgets::slider::slider_specs&
+		widgets::slider_specs&
 			widgets::slider_impl::specs() { return specs_; }
 
-		widgets::slider::slider_specs&
+		widgets::slider_specs&
 			widgets::slider_impl::operator()() { return specs(); }
 	}
 }

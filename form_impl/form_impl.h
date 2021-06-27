@@ -142,7 +142,7 @@ namespace liblec {
 
 			// pages <K = page alias, T>
 			std::map<std::string, containers::page> p_status_panes_;
-			std::map<std::string, containers::status_pane::status_pane_specs> p_status_pane_specs_;
+			std::map<std::string, containers::status_pane_specs> p_status_pane_specs_;
 			std::map<std::string, containers::page> p_pages_;
 			std::string current_page_;
 
@@ -250,29 +250,29 @@ namespace liblec {
 			friend class form_menu;
 			friend class tray_icon;
 			friend class containers::status_pane;
-			friend class containers::tab_pane;
-			friend class containers::tab;
-			friend class containers::pane;
-			friend class containers::group;
-			friend class widgets::label;
-			friend class widgets::image_view;
-			friend class widgets::button;
-			friend class widgets::custom;
-			friend class widgets::table_view;
-			friend class widgets::rectangle;
-			friend class widgets::toggle;
-			friend class widgets::progress_indicator;
-			friend class widgets::progress_bar;
-			friend class widgets::checkbox;
-			friend class widgets::text_field;
-			friend class widgets::tree_view;
-			friend class widgets::slider;
-			friend class widgets::html_editor;
-			friend class widgets::combobox;
-			friend class widgets::line;
-			friend class widgets::time;
-			friend class widgets::date;
-			friend class widgets::icon;
+			friend class containers::tab_pane_builder;
+			friend class containers::tab_builder;
+			friend class containers::pane_builder;
+			friend class containers::group_builder;
+			friend class widgets::label_builder;
+			friend class widgets::image_view_builder;
+			friend class widgets::button_builder;
+			friend class widgets::custom_builder;
+			friend class widgets::table_view_builder;
+			friend class widgets::rectangle_builder;
+			friend class widgets::toggle_builder;
+			friend class widgets::progress_indicator_builder;
+			friend class widgets::progress_bar_builder;
+			friend class widgets::checkbox_builder;
+			friend class widgets::text_field_builder;
+			friend class widgets::tree_view_builder;
+			friend class widgets::slider_builder;
+			friend class widgets::html_editor_builder;
+			friend class widgets::combobox_builder;
+			friend class widgets::line_builder;
+			friend class widgets::time_builder;
+			friend class widgets::date_builder;
+			friend class widgets::icon_builder;
 
 			friend class widgets::widget_impl;
 			friend class widgets::combobox_impl;
@@ -358,7 +358,7 @@ namespace liblec {
 			void clear_selection(containers::page& container);
 			void select(const std::string& path);
 
-			lecui::size get_status_size(containers::status_pane::location type);
+			lecui::size get_status_size(containers::status_pane_specs::location type);
 			HWND find_native_handle(const std::string& guid);
 			void open_existing_instance();
 

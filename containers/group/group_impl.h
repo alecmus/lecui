@@ -37,8 +37,8 @@ namespace liblec {
 					const bool& render) override;
 
 				/// widget specific methods
-				containers::group::group_specs& specs();
-				containers::group::group_specs& operator()();
+				containers::group_specs& specs();
+				containers::group_specs& operator()();
 
 			private:
 				// Default constructor and copying an object of this class are not allowed
@@ -47,7 +47,7 @@ namespace liblec {
 				group_impl& operator=(const group_impl&) = delete;
 
 				/// Private variables
-				containers::group::group_specs specs_, specs_old_;
+				containers::group_specs specs_, specs_old_;
 				ID2D1SolidColorBrush* p_brush_fill_;
 				ID2D1SolidColorBrush* p_brush_border_;
 				ID2D1SolidColorBrush* p_brush_hot_;

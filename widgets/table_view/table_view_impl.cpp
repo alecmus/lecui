@@ -568,10 +568,10 @@ namespace liblec {
 			return true;
 		}
 
-		widgets::table_view::table_view_specs&
+		widgets::table_view_specs&
 			widgets::table_view_impl::specs() { return specs_; }
 
-		widgets::table_view::table_view_specs&
+		widgets::table_view_specs&
 			widgets::table_view_impl::operator()() { return specs(); }
 
 		void widgets::table_view_impl::on_selection() {

@@ -15,7 +15,7 @@
 
 namespace liblec {
 	namespace lecui {
-		bool widgets::text_field::text_field_specs::operator==(const text_field_specs& param) {
+		bool widgets::text_field_specs::operator==(const text_field_specs& param) {
 			return
 				// generic specs
 				specs::operator==(param) &&
@@ -26,11 +26,11 @@ namespace liblec {
 				(color_caret_ == param.color_caret_);
 		}
 
-		bool widgets::text_field::text_field_specs::operator!=(const text_field_specs& param) {
+		bool widgets::text_field_specs::operator!=(const text_field_specs& param) {
 			return !operator==(param);
 		}
 
-		class widgets::text_field::impl {
+		class widgets::text_field_builder::impl {
 		public:
 			impl(containers::page& page, const std::string& alias) :
 				page_(page),
@@ -48,26 +48,26 @@ namespace liblec {
 			text_field_specs& specs_;
 		};
 
-		widgets::text_field::text_field(containers::page& page) :
-			text_field(page, "") {}
+		widgets::text_field_builder::text_field_builder(containers::page& page) :
+			text_field_builder(page, "") {}
 
-		widgets::text_field::text_field(containers::page& page, const std::string& alias) :
+		widgets::text_field_builder::text_field_builder(containers::page& page, const std::string& alias) :
 			d_(*(new impl(page, alias))) {}
 
-		widgets::text_field::~text_field() { delete& d_; }
+		widgets::text_field_builder::~text_field_builder() { delete& d_; }
 
-		widgets::text_field::text_field_specs&
-			widgets::text_field::specs() {
+		widgets::text_field_specs&
+			widgets::text_field_builder::specs() {
 			return d_.specs_;
 		}
 
-		widgets::text_field::text_field_specs&
-			widgets::text_field::operator()() {
+		widgets::text_field_specs&
+			widgets::text_field_builder::operator()() {
 			return specs();
 		}
 
-		widgets::text_field::text_field_specs&
-			widgets::text_field::specs(form& fm, const std::string& path) {
+		widgets::text_field_specs&
+			widgets::text_field_builder::specs(form& fm, const std::string& path) {
 			const auto idx = path.find("/");
 
 			if (idx != std::string::npos) {
@@ -92,15 +92,15 @@ namespace liblec {
 			throw std::invalid_argument("Invalid path");
 		}
 
-		widgets::password_field::password_field(containers::page& page) :
-			password_field(page, "") {}
+		widgets::password_field_builder::password_field_builder(containers::page& page) :
+			password_field_builder(page, "") {}
 
-		widgets::password_field::password_field(containers::page& page, const std::string& alias) :
-			text_field(page, alias) {
+		widgets::password_field_builder::password_field_builder(containers::page& page, const std::string& alias) :
+			text_field_builder(page, alias) {
 			d_.specs_.mask = '•';
 			d_.specs_.prompt("Enter password here");
 		}
 
-		widgets::password_field::~password_field() {}
+		widgets::password_field_builder::~password_field_builder() {}
 	}
 }

@@ -74,12 +74,12 @@ namespace liblec {
 			return rect_;
 		}
 
-		widgets::custom::custom_specs&
+		widgets::custom_specs&
 			widgets::custom_impl::specs() {
 			return specs_;
 		}
 
-		widgets::custom::custom_specs&
+		widgets::custom_specs&
 			widgets::custom_impl::operator()() {
 			return specs();
 		}

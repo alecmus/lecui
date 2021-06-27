@@ -19,125 +19,135 @@
 namespace liblec {
 	namespace lecui {
 		namespace widgets {
-			/// <summary>Line widget.</summary>
-			class lecui_api line {
+			/// <summary>Line widget specifications.</summary>
+			class line_specs : public specs {
+				float thickness_ = 1.f;
+				std::vector<point> points_;
+
 			public:
-				/// <summary>Line widget specifications.</summary>
-				class line_specs : public specs {
-					/// <summary>The thickness of the line.</summary>
-					float thickness_ = 1.f;
+				line_specs() {}
 
-					/// <summary>The points, in order, for the line line to go through. These
-					/// are relative to the top left corner of the line's bounding rectangle.
-					/// </summary>
-					std::vector<point> points_;
+				bool operator==(const line_specs&);
+				bool operator!=(const line_specs&);
 
-				public:
-					line_specs() {}
+				// generic specs
 
-					bool operator==(const line_specs&);
-					bool operator!=(const line_specs&);
+				std::string& text() override { return text_; }
+				line_specs& text(const std::string& text) {
+					text_ = text;
+					return *this;
+				}
 
-					// generic specs
+				std::string& tooltip() override { return tooltip_; }
+				line_specs& tooltip(const std::string& tooltip) {
+					tooltip_ = tooltip;
+					return *this;
+				}
 
-					std::string& text() override { return text_; }
-					line_specs& text(const std::string& text) {
-						text_ = text;
-						return *this;
-					}
+				lecui::rect& rect() override { return rect_; }
+				line_specs& rect(const lecui::rect& rect) {
+					rect_ = rect;
+					return *this;
+				}
 
-					std::string& tooltip() override { return tooltip_; }
-					line_specs& tooltip(const std::string& tooltip) {
-						tooltip_ = tooltip;
-						return *this;
-					}
+				resize_params& on_resize() override { return on_resize_; }
+				line_specs& on_resize(const resize_params& on_resize) {
+					on_resize_ = on_resize;
+					return *this;
+				}
 
-					lecui::rect& rect() override { return rect_; }
-					line_specs& rect(const lecui::rect& rect) {
-						rect_ = rect;
-						return *this;
-					}
+				cursor_type& cursor() override { return cursor_; }
+				line_specs& cursor(const cursor_type cursor) {
+					cursor_ = cursor;
+					return *this;
+				}
 
-					resize_params& on_resize() override { return on_resize_; }
-					line_specs& on_resize(const resize_params& on_resize) {
-						on_resize_ = on_resize;
-						return *this;
-					}
+				std::string& font() override { return font_; }
+				line_specs& font(const std::string& font) {
+					font_ = font;
+					return *this;
+				}
 
-					cursor_type& cursor() override { return cursor_; }
-					line_specs& cursor(const cursor_type cursor) {
-						cursor_ = cursor;
-						return *this;
-					}
+				float& font_size() override { return font_size_; }
+				line_specs& font_size(const float& font_size) {
+					font_size_ = font_size;
+					return *this;
+				}
 
-					std::string& font() override { return font_; }
-					line_specs& font(const std::string& font) {
-						font_ = font;
-						return *this;
-					}
+				color& color_text() override { return color_text_; }
+				line_specs& color_text(const color& color_text) {
+					color_text_ = color_text;
+					return *this;
+				}
 
-					float& font_size() override { return font_size_; }
-					line_specs& font_size(const float& font_size) {
-						font_size_ = font_size;
-						return *this;
-					}
+				color& color_fill() override { return color_fill_; }
+				line_specs& color_fill(const color& color_fill) {
+					color_fill_ = color_fill;
+					return *this;
+				}
 
-					color& color_text() override { return color_text_; }
-					line_specs& color_text(const color& color_text) {
-						color_text_ = color_text;
-						return *this;
-					}
+				color& color_hot() override { return color_hot_; }
+				line_specs& color_hot(const color& color_hot) {
+					color_hot_ = color_hot;
+					return *this;
+				}
 
-					color& color_fill() override { return color_fill_; }
-					line_specs& color_fill(const color& color_fill) {
-						color_fill_ = color_fill;
-						return *this;
-					}
+				color& color_selected() override { return color_selected_; }
+				line_specs& color_selected(const color& color_selected) {
+					color_selected_ = color_selected;
+					return *this;
+				}
 
-					color& color_hot() override { return color_hot_; }
-					line_specs& color_hot(const color& color_hot) {
-						color_hot_ = color_hot;
-						return *this;
-					}
+				color& color_disabled() override { return color_disabled_; }
+				line_specs& color_disabled(const color& color_disabled) {
+					color_disabled_ = color_disabled;
+					return *this;
+				}
 
-					color& color_selected() override { return color_selected_; }
-					line_specs& color_selected(const color& color_selected) {
-						color_selected_ = color_selected;
-						return *this;
-					}
+				// widget specific specs
 
-					color& color_disabled() override { return color_disabled_; }
-					line_specs& color_disabled(const color& color_disabled) {
-						color_disabled_ = color_disabled;
-						return *this;
-					}
+				/// <summary>Get or set the line's thickness.</summary>
+				/// <returns>A reference to the line's thickness, in pixels.</returns>
+				float& thickness() { return thickness_; }
 
-					// widget specific specs
+				/// <summary>Set the line's thickness.</summary>
+				/// <param name="thickness">The thickness of the line, in pixels.</param>
+				/// <returns>A reference to the modified object.</returns>
+				line_specs& thickness(const float& thickness) {
+					thickness_ = thickness;
+					return *this;
+				}
 
-					float& thickness() { return thickness_; }
-					line_specs& thickness(const float& thickness) {
-						thickness_ = thickness;
-						return *this;
-					}
+				/// <summary>Get or set the points, in order, for the line line to go through.
+				/// These are relative to the top left corner of the line's bounding rectangle.
+				/// </summary>
+				/// <returns>A reference to the list of points.</returns>
+				std::vector<point>& points() { return points_; }
 
-					std::vector<point>& points() { return points_; }
-					line_specs& points(const std::vector<point>& points) {
-						points_ = points;
-						return *this;
-					}
-				};
+				/// <summary>Set the points, in order, for the line line to go through.
+				/// These are relative to the top left corner of the line's bounding rectangle.</summary>
+				/// <param name="points">The list of points.</param>
+				/// <returns>A reference to the modified object.</returns>
+				line_specs& points(const std::vector<point>& points) {
+					points_ = points;
+					return *this;
+				}
+			};
 
-				/// <summary>Line constructor.</summary>
-				/// <param name="page">The container to place it in.</param>
+			/// <summary>Line widget builder.</summary>
+			class lecui_api line_builder {
+			public:
+				/// <summary>Line builder constructor.</summary>
+				/// <param name="page">The container to place the widget in.</param>
 				/// <remarks>This constructs the widget with an internally generated random
 				/// alias.</remarks>
-				line(containers::page& page);
+				line_builder(containers::page& page);
 
-				/// <summary>Line constructor.</summary>
-				/// <param name="page">The container to place it in.</param>
+				/// <summary>Line builder constructor.</summary>
+				/// <param name="page">The container to place the widget in.</param>
 				/// <param name="alias">The in-page unique alias, e.g. "border_line".</param>
-				line(containers::page& page, const std::string& alias);
-				~line();
+				line_builder(containers::page& page, const std::string& alias);
+				~line_builder();
 
 				/// <summary>Get the line specifications.</summary>
 				/// <returns>A reference to the line specifications.</returns>
@@ -164,9 +174,9 @@ namespace liblec {
 				impl& d_;
 
 				// Default constructor and copying an object of this class are not allowed
-				line() = delete;
-				line(const line&) = delete;
-				line& operator=(const line&) = delete;
+				line_builder() = delete;
+				line_builder(const line_builder&) = delete;
+				line_builder& operator=(const line_builder&) = delete;
 			};
 		}
 	}

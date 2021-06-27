@@ -153,17 +153,17 @@ namespace liblec {
 				specs_.events().click();
 		}
 
-		widgets::time::time_specs&
+		widgets::time_specs&
 			widgets::time_impl::specs() { return specs_; }
 
-		widgets::time::time_specs&
+		widgets::time_specs&
 			widgets::time_impl::operator()() { return specs(); }
 
-		void widgets::time_impl::set_time_label_specs(widgets::label::label_specs& hour,
-			widgets::label::label_specs& seperator_1,
-			widgets::label::label_specs& minute,
-			widgets::label::label_specs& seperator_2,
-			widgets::label::label_specs& second) {
+		void widgets::time_impl::set_time_label_specs(widgets::label_specs& hour,
+			widgets::label_specs& seperator_1,
+			widgets::label_specs& minute,
+			widgets::label_specs& seperator_2,
+			widgets::label_specs& second) {
 			hour_label_specs_ = hour;
 			seperator_1_specs_ = seperator_1;
 			minute_label_specs_ = minute;
@@ -171,9 +171,9 @@ namespace liblec {
 			second_label_specs_ = second;
 		}
 
-		void widgets::time_impl::set_time_specs(widgets::rectangle::rectangle_specs& hour,
-			widgets::rectangle::rectangle_specs& minute,
-			widgets::rectangle::rectangle_specs& second) {
+		void widgets::time_impl::set_time_specs(widgets::rectangle_specs& hour,
+			widgets::rectangle_specs& minute,
+			widgets::rectangle_specs& second) {
 			hour_specs_ = hour;
 			minute_specs_ = minute;
 			second_specs_ = second;

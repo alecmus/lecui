@@ -13,10 +13,10 @@
 
 namespace liblec {
 	namespace lecui {
-		class containers::tab_pane::impl {
+		class containers::tab_pane_builder::impl {
 		public:
 			impl(containers::page& page,
-				containers::tab_pane::tab_pane_specs& specs,
+				containers::tab_pane_specs& specs,
 				const std::string& alias) :
 				page_(page), specs_(specs) {
 				specs_
@@ -28,28 +28,28 @@ namespace liblec {
 					.color_selected(defaults::color(page_.d_page_.fm_.d_.theme_, item::tab_selected));
 			}
 			containers::page& page_;
-			containers::tab_pane::tab_pane_specs& specs_;
+			containers::tab_pane_specs& specs_;
 		};
 
-		containers::tab_pane::tab_pane(containers::page& page) :
-			tab_pane(page, "") {}
+		containers::tab_pane_builder::tab_pane_builder(containers::page& page) :
+			tab_pane_builder(page, "") {}
 
-		containers::tab_pane::tab_pane(containers::page& page,
+		containers::tab_pane_builder::tab_pane_builder(containers::page& page,
 			const std::string& alias) :
 			d_(*(new impl(page, page.d_page_.add_tab_pane(alias), alias))) {}
 
-		containers::tab_pane::~tab_pane() { delete& d_; }
+		containers::tab_pane_builder::~tab_pane_builder() { delete& d_; }
 
-		containers::tab_pane::tab_pane_specs& containers::tab_pane::specs() {
+		containers::tab_pane_specs& containers::tab_pane_builder::specs() {
 			return d_.specs_;
 		}
 
-		containers::tab_pane::tab_pane_specs& containers::tab_pane::operator()() {
+		containers::tab_pane_specs& containers::tab_pane_builder::operator()() {
 			return specs();
 		}
 
-		containers::tab_pane::tab_pane_specs&
-			containers::tab_pane::specs(form& fm,
+		containers::tab_pane_specs&
+			containers::tab_pane_builder::specs(form& fm,
 				const std::string& path) {
 			const auto idx = path.find("/");
 
@@ -75,20 +75,20 @@ namespace liblec {
 			throw std::invalid_argument("Invalid path");
 		}
 
-		void containers::tab_pane::select(const std::string& tab_name) {
+		void containers::tab_pane_builder::select(const std::string& tab_name) {
 			auto& tab_pane_ = d_.page_.d_page_.get_tab_pane(d_.specs_.alias());
 			tab_pane_.current_tab_ = tab_name;
 		}
 
-		class containers::tab::impl {
+		class containers::tab_builder::impl {
 		public:
-			impl(containers::tab_pane& tp, const std::string& tab_name) :
+			impl(containers::tab_pane_builder& tp, const std::string& tab_name) :
 				tp_(tp),
 				page_(add(tp, tab_name)) {}
-			containers::tab_pane& tp_;
+			containers::tab_pane_builder& tp_;
 			containers::page& page_;
 
-			static containers::page& add(tab_pane& tp, const std::string& tab_name) {
+			static containers::page& add(tab_pane_builder& tp, const std::string& tab_name) {
 				auto& tab_pane_ = tp.d_.page_.d_page_.get_tab_pane(tp.d_.specs_.alias());
 
 				if (tab_pane_.p_tabs_.count(tab_name)) {
@@ -123,16 +123,16 @@ namespace liblec {
 				bool tabs_perpendicular = false;
 
 				switch (tp.d_.specs_.tab_side()) {
-				case tab_pane::side::left:
-				case tab_pane::side::right:
-					if (tp.d_.specs_.caption_orientation() == tab_pane::orientation::horizontal)
+				case tab_pane_specs::side::left:
+				case tab_pane_specs::side::right:
+					if (tp.d_.specs_.caption_orientation() == tab_pane_specs::orientation::horizontal)
 						tabs_perpendicular = true;
 					break;
 
-				case tab_pane::side::top:
-				case tab_pane::side::bottom:
+				case tab_pane_specs::side::top:
+				case tab_pane_specs::side::bottom:
 				default: 
-					if (tp.d_.specs_.caption_orientation() == tab_pane::orientation::vertical)
+					if (tp.d_.specs_.caption_orientation() == tab_pane_specs::orientation::vertical)
 						tabs_perpendicular = true;
 					break;
 				}
@@ -171,8 +171,8 @@ namespace liblec {
 					specs_.on_resize().perc_y = 100.f;
 
 					switch (tp.d_.specs_.tab_side()) {
-					case tab_pane::side::left:
-					case tab_pane::side::right:
+					case tab_pane_specs::side::left:
+					case tab_pane_specs::side::right:
 						specs_.rect().left = 0.f;
 						specs_.rect().right =
 							(rect_client_area.right - rect_client_area.left) - (margin + thickness) -
@@ -182,8 +182,8 @@ namespace liblec {
 						specs_.rect().top = specs_.rect().bottom - thickness;
 						break;
 
-					case tab_pane::side::top:
-					case tab_pane::side::bottom:
+					case tab_pane_specs::side::top:
+					case tab_pane_specs::side::bottom:
 					default:
 						specs_.rect().left = 0.f;
 						specs_.rect().right =
@@ -208,8 +208,8 @@ namespace liblec {
 					specs_.on_resize().perc_x = 100.f;
 
 					switch (tp.d_.specs_.tab_side()) {
-					case tab_pane::side::left:
-					case tab_pane::side::right:
+					case tab_pane_specs::side::left:
+					case tab_pane_specs::side::right:
 						specs_.rect().top = 0.f;
 						specs_.rect().bottom = (rect_client_area.bottom - rect_client_area.top) -
 							(margin + thickness);
@@ -218,8 +218,8 @@ namespace liblec {
 						specs_.rect().left = specs_.rect().right - thickness;
 						break;
 
-					case tab_pane::side::top:
-					case tab_pane::side::bottom:
+					case tab_pane_specs::side::top:
+					case tab_pane_specs::side::bottom:
 					default:
 						specs_.rect().top = 0.f;
 						specs_.rect().bottom = (rect_client_area.bottom - rect_client_area.top) -
@@ -241,14 +241,14 @@ namespace liblec {
 				page_impl.size({ rect_client_area.width(), rect_client_area.height() });
 
 				switch (tp.d_.specs_.tab_side()) {
-				case tab_pane::side::left:
-				case tab_pane::side::right:
+				case tab_pane_specs::side::left:
+				case tab_pane_specs::side::right:
 					page_impl.width(page_impl.width() - (2.f * page_tolerance_ + caption_bar_height_));
 					page_impl.height(page_impl.height() - (2.f * page_tolerance_));
 					break;
 
-				case tab_pane::side::top:
-				case tab_pane::side::bottom:
+				case tab_pane_specs::side::top:
+				case tab_pane_specs::side::bottom:
 				default:
 					page_impl.width(page_impl.width() - (2.f * page_tolerance_));
 					page_impl.height(page_impl.height() - (2.f * page_tolerance_ + caption_bar_height_));
@@ -278,17 +278,17 @@ namespace liblec {
 			}
 		};
 
-		containers::tab::tab(containers::tab_pane& tp, const std::string& tab_name) :
+		containers::tab_builder::tab_builder(containers::tab_pane_builder& tp, const std::string& tab_name) :
 			d_(*(new impl(tp, tab_name))) {}
 
-		containers::tab::~tab() { delete& d_; }
+		containers::tab_builder::~tab_builder() { delete& d_; }
 
-		containers::page& containers::tab::get() {
+		containers::page& containers::tab_builder::get() {
 			return d_.page_;
 		}
 
 		containers::page&
-			containers::tab::get(form& fm, const std::string& path) {
+			containers::tab_builder::get(form& fm, const std::string& path) {
 			const auto idx = path.find("/");
 
 			try {

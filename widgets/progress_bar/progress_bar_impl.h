@@ -39,8 +39,8 @@ namespace liblec {
 					const bool& render) override;
 
 				/// widget specific methods
-				widgets::progress_bar::progress_bar_specs& specs();
-				widgets::progress_bar::progress_bar_specs& operator()();
+				widgets::progress_bar_specs& specs();
+				widgets::progress_bar_specs& operator()();
 
 			private:
 				// Default constructor and copying an object of this class are not allowed
@@ -49,7 +49,7 @@ namespace liblec {
 				progress_bar_impl& operator=(const progress_bar_impl&) = delete;
 
 				/// Private variables
-				widgets::progress_bar::progress_bar_specs specs_, specs_old_;
+				widgets::progress_bar_specs specs_, specs_old_;
 				ID2D1SolidColorBrush* p_brush_;
 				ID2D1SolidColorBrush* p_brush_border_;
 				ID2D1SolidColorBrush* p_brush_fill_;

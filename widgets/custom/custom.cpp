@@ -13,7 +13,7 @@
 
 namespace liblec {
 	namespace lecui {
-		bool widgets::custom::custom_specs::operator==(const custom_specs& param) {
+		bool widgets::custom_specs::operator==(const custom_specs& param) {
 			return
 				// generic specs
 				specs::operator==(param) &&
@@ -22,11 +22,11 @@ namespace liblec {
 				true;
 		}
 
-		bool widgets::custom::custom_specs::operator!=(const custom_specs& param) {
+		bool widgets::custom_specs::operator!=(const custom_specs& param) {
 			return !operator==(param);
 		}
 
-		class widgets::custom::impl {
+		class widgets::custom_builder::impl {
 		public:
 			impl(containers::page& page, const std::string& alias) :
 				page_(page),
@@ -35,26 +35,26 @@ namespace liblec {
 			custom_specs& specs_;
 		};
 
-		widgets::custom::custom(containers::page& page) :
-			custom(page, "") {}
+		widgets::custom_builder::custom_builder(containers::page& page) :
+			custom_builder(page, "") {}
 
-		widgets::custom::custom(containers::page& page, const std::string& alias) :
+		widgets::custom_builder::custom_builder(containers::page& page, const std::string& alias) :
 			d_(*(new impl(page, alias))) {}
 
-		widgets::custom::~custom() { delete& d_; }
+		widgets::custom_builder::~custom_builder() { delete& d_; }
 
-		widgets::custom::custom_specs&
-			widgets::custom::specs() {
+		widgets::custom_specs&
+			widgets::custom_builder::specs() {
 			return d_.specs_;
 		}
 
-		widgets::custom::custom_specs&
-			widgets::custom::operator()() {
+		widgets::custom_specs&
+			widgets::custom_builder::operator()() {
 			return specs();
 		}
 
-		widgets::custom::custom_specs&
-			widgets::custom::specs(form& fm, const std::string& path) {
+		widgets::custom_specs&
+			widgets::custom_builder::specs(form& fm, const std::string& path) {
 			const auto idx = path.find("/");
 
 			if (idx != std::string::npos) {

@@ -231,7 +231,7 @@ namespace liblec {
 
                     if (!item.label.empty()) {
                         // background
-                        lecui::widgets::rectangle rect(home_page, "");
+                        lecui::widgets::rectangle_builder rect(home_page, "");
                         rect().rect(rects_[index]);
                         rect().rect().left = margin_ / 3.f;
                         rect().rect().right = home_page.size().width - margin_ / 3.f;
@@ -246,7 +246,7 @@ namespace liblec {
 
                         if (images_) {
                             // image
-                            lecui::widgets::image_view image(home_page, "");
+                            lecui::widgets::image_view_builder image(home_page, "");
                             image().rect(rects_[index]);
                             image().rect().width(image().rect().height());    // make into a square
                             image().file(item.image_file).quality(menu_specs_.quality);
@@ -260,7 +260,7 @@ namespace liblec {
                         }
 
                         // label
-                        lecui::widgets::label label(home_page, "");
+                        lecui::widgets::label_builder label(home_page, "");
                         label().text(item.label).font(item.font).font_size(item.font_size);
 
                         // enforce font size limits
@@ -273,7 +273,7 @@ namespace liblec {
 
                         if (!item.children.empty()) {
                             // draw expansion arrow
-                            lecui::widgets::image_view image(home_page, "");
+                            lecui::widgets::image_view_builder image(home_page, "");
                             image().rect(rects_[index]);
                             image().rect().right = home_page.size().width;
                             image().rect().left = image().rect().right - (next_arrow_width_);
@@ -295,7 +295,7 @@ namespace liblec {
                     }
                     else {
                         // line
-                        lecui::widgets::line line(home_page, "");
+                        lecui::widgets::line_builder line(home_page, "");
                         line().color_fill().alpha /= 2;
                         line().thickness() /= 2.f;
                         line().rect(rects_[index]);

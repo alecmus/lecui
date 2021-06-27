@@ -19,6 +19,53 @@
 namespace liblec {
 	namespace lecui {
 		namespace containers {
+			/// <summary>Status pane container specifications.</summary>
+			/// <remarks>Note that this does not inherit from widget::specs as regular
+			/// panes do. This is by design because of the nature of the status pane.</remarks>
+			class status_pane_specs {
+			private:
+				float thickness_ = 0.f;
+				bool floating_ = false;
+
+			public:
+				enum class location {
+					bottom,
+					top,
+					left,
+					right,
+				};
+
+				/// <summary>Get or set the pane's thickness. This will be a height for top and bottom
+				/// panes, and a width for left and right panes.</summary>
+				/// <returns>A reference to the thickness, in pixels.</returns>
+				float& thickness() { return thickness_; }
+
+				/// <summary>Set the pane's thickness. This will be a height for top and bottom
+				/// panes, and a width for left and right panes.</summary>
+				/// <param name="thickness">The thickness, in pixels.</param>
+				/// <returns>A reference to the modified object.</returns>
+				status_pane_specs& thickness(const float& thickness) {
+					thickness_ = thickness;
+					return *this;
+				}
+
+				/// <summary>Get or set the floating property.</summary>
+				/// <returns>A reference to the property.</returns>
+				/// <remarks>The floating property determines whether the pane should just float
+				/// above the form without eating into the client area.</remarks>
+				bool& floating() { return floating_; }
+
+				/// <summary>Set the floating property.</summary>
+				/// <param name="floating">Whether to make this a floating pane.</param>
+				/// <returns>A reference to the modified object.</returns>
+				/// <remarks>The floating property determines whether the pane should just float
+				/// above the form without eating into the client area.</remarks>
+				status_pane_specs& floating(const bool& floating) {
+					floating_ = floating;
+					return *this;
+				}
+			};
+
 			/// <summary>Status pane container.</summary>
 			/// <remarks>Any widget can be added to this container. Consequently, recursion is
 			/// fully supported, allowing status panes within status panes, to virtually any depth level that
@@ -28,40 +75,6 @@ namespace liblec {
 			/// minimal and straightforward as a good gui design principle.</remarks>
 			class lecui_api status_pane {
 			public:
-				enum class location {
-					bottom,
-					top,
-					left,
-					right,
-				};
-
-				/// <summary>Status pane container specifications.</summary>
-				/// <remarks>Note that this does not inherit from widget::specs as regular
-				/// panes do. This is by design because of the nature of the status pane.</remarks>
-				class status_pane_specs {
-				private:
-					/// <summary>The thickness. This will be a height for top and bottom panes,
-					/// and a width for left and right panes.</summary>
-					float thickness_ = 0.f;
-
-					/// <summary>Whether the pane should just float above the form without eating
-					/// into the client area.</summary>
-					bool floating_ = false;
-
-				public:
-					float& thickness() { return thickness_; }
-					status_pane_specs& thickness(const float& thickness) {
-						thickness_ = thickness;
-						return *this;
-					}
-
-					bool& floating() { return floating_; }
-					status_pane_specs& floating(const bool& floating) {
-						floating_ = floating;
-						return *this;
-					}
-				};
-
 				/// <summary>status_pane constructor.</summary>
 				/// <param name="fm">The form to place it in.</param>
 				/// <param name="location">The location of the status pane.</param>
@@ -74,7 +87,7 @@ namespace liblec {
 				/// keep in mind that regular panes come with scroll bars. In fact, if you need a
 				/// status pane with scroll bars you can simply add a single pane that fills the
 				/// status pane entirely and you will have the desired effect.</remarks>
-				status_pane(form& fm, status_pane::location location);
+				status_pane(form& fm, status_pane_specs::location location);
 				~status_pane();
 
 				/// <summary>Get the status pane specifications.</summary>

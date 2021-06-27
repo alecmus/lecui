@@ -135,19 +135,19 @@ namespace liblec {
 			rect_tabs_ = rect_tab_pane_;
 
 			switch (specs_.tab_side()) {
-			case containers::tab_pane::side::left:
+			case containers::tab_pane_specs::side::left:
 				rect_tabs_.right = rect_tabs_.left + tab_height_ + bar_height_;
 				break;
 
-			case containers::tab_pane::side::right:
+			case containers::tab_pane_specs::side::right:
 				rect_tabs_.left = rect_tabs_.right - (tab_height_ + bar_height_);
 				break;
 
-			case containers::tab_pane::side::bottom:
+			case containers::tab_pane_specs::side::bottom:
 				rect_tabs_.top = rect_tabs_.bottom - (tab_height_ + bar_height_);
 				break;
 
-			case containers::tab_pane::side::top:
+			case containers::tab_pane_specs::side::top:
 			default:
 				rect_tabs_.bottom = rect_tabs_.top + tab_height_ + bar_height_;
 				break;
@@ -157,19 +157,19 @@ namespace liblec {
 			rect_client_area_ = rect_tab_pane_;
 
 			switch (specs_.tab_side()) {
-			case containers::tab_pane::side::left:
+			case containers::tab_pane_specs::side::left:
 				rect_client_area_.left = rect_tabs_.right;
 				break;
 
-			case containers::tab_pane::side::right:
+			case containers::tab_pane_specs::side::right:
 				rect_client_area_.right = rect_tabs_.left;
 				break;
 
-			case containers::tab_pane::side::bottom:
+			case containers::tab_pane_specs::side::bottom:
 				rect_client_area_.bottom = rect_tabs_.top;
 				break;
 
-			case containers::tab_pane::side::top:
+			case containers::tab_pane_specs::side::top:
 			default:
 				rect_client_area_.top = rect_tabs_.bottom;
 				break;
@@ -226,22 +226,22 @@ namespace liblec {
 			D2D1_RECT_F rect_current_tab_ = rect_tabs_;
 
 			switch (specs_.tab_side()) {
-			case containers::tab_pane::side::left:
+			case containers::tab_pane_specs::side::left:
 				rect_current_tab_.right -= bar_height_;
 				rect_current_tab_.bottom = rect_current_tab_.top;
 				break;
 
-			case containers::tab_pane::side::right:
+			case containers::tab_pane_specs::side::right:
 				rect_current_tab_.left += bar_height_;
 				rect_current_tab_.bottom = rect_current_tab_.top;
 				break;
 
-			case containers::tab_pane::side::bottom:
+			case containers::tab_pane_specs::side::bottom:
 				rect_current_tab_.top += bar_height_;
 				rect_current_tab_.right = rect_current_tab_.left;
 				break;
 
-			case containers::tab_pane::side::top:
+			case containers::tab_pane_specs::side::top:
 			default:
 				rect_current_tab_.bottom -= bar_height_;
 				rect_current_tab_.right = rect_current_tab_.left;
@@ -253,8 +253,8 @@ namespace liblec {
 				D2D1_SIZE_F min_size = { 0.f, 0.f };
 
 				switch (specs_.tab_side()) {
-				case containers::tab_pane::side::left:
-				case containers::tab_pane::side::right:
+				case containers::tab_pane_specs::side::left:
+				case containers::tab_pane_specs::side::right:
 					// calculate tab rect
 					rect_current_tab_.top = rect_current_tab_.bottom;
 					rect_current_tab_.bottom = rect_client_area_.bottom;
@@ -265,8 +265,8 @@ namespace liblec {
 						rect_current_tab_.right - rect_current_tab_.left);
 					break;
 
-				case containers::tab_pane::side::top:
-				case containers::tab_pane::side::bottom:
+				case containers::tab_pane_specs::side::top:
+				case containers::tab_pane_specs::side::bottom:
 				default:
 					// calculate tab rect
 					rect_current_tab_.left = rect_current_tab_.right;
@@ -283,9 +283,9 @@ namespace liblec {
 				bool excess = false;
 
 				switch (specs_.tab_side()) {
-				case containers::tab_pane::side::left:
-				case containers::tab_pane::side::right:
-					if (specs_.caption_orientation() == containers::tab_pane::orientation::vertical) {
+				case containers::tab_pane_specs::side::left:
+				case containers::tab_pane_specs::side::right:
+					if (specs_.caption_orientation() == containers::tab_pane_specs::orientation::vertical) {
 						swap(min_size.width, min_size.height);
 						rect_current_tab_.bottom = rect_current_tab_.top + min_size.height + 2.f * tab_gap_;
 						rect_text_ = rect_current_tab_;
@@ -304,10 +304,10 @@ namespace liblec {
 					rect_text_.bottom -= tab_gap_;
 					break;
 
-				case containers::tab_pane::side::top:
-				case containers::tab_pane::side::bottom:
+				case containers::tab_pane_specs::side::top:
+				case containers::tab_pane_specs::side::bottom:
 				default:
-					if (specs_.caption_orientation() == containers::tab_pane::orientation::horizontal) {
+					if (specs_.caption_orientation() == containers::tab_pane_specs::orientation::horizontal) {
 						rect_current_tab_.right = rect_current_tab_.left + min_size.width + 2.f * tab_gap_;
 						rect_text_ = rect_current_tab_;
 					}
@@ -338,14 +338,14 @@ namespace liblec {
 					// for aesthetics and to allow switching when moving over from one tab to the other
 
 					switch (specs_.tab_side()) {
-					case containers::tab_pane::side::left:
-					case containers::tab_pane::side::right:
+					case containers::tab_pane_specs::side::left:
+					case containers::tab_pane_specs::side::right:
 						rect.top += tab_gap_;
 						rect.bottom -= tab_gap_;
 						break;
 
-					case containers::tab_pane::side::top:
-					case containers::tab_pane::side::bottom:
+					case containers::tab_pane_specs::side::top:
+					case containers::tab_pane_specs::side::bottom:
 					default:
 						rect.left += tab_gap_;
 						rect.right -= tab_gap_;
@@ -359,14 +359,14 @@ namespace liblec {
 					D2D1_RECT_F rect = rect_current_tab_;
 
 					switch (specs_.tab_side()) {
-					case containers::tab_pane::side::left:
-					case containers::tab_pane::side::right:
+					case containers::tab_pane_specs::side::left:
+					case containers::tab_pane_specs::side::right:
 						rect.top += tab_gap_;
 						rect.bottom -= tab_gap_;
 						break;
 
-					case containers::tab_pane::side::top:
-					case containers::tab_pane::side::bottom:
+					case containers::tab_pane_specs::side::top:
+					case containers::tab_pane_specs::side::bottom:
 					default:
 						rect.left += tab_gap_;
 						rect.right -= tab_gap_;
@@ -383,22 +383,22 @@ namespace liblec {
 
 							// move text a little (visual effect)
 							switch (specs_.tab_side()) {
-							case containers::tab_pane::side::left:
+							case containers::tab_pane_specs::side::left:
 								rect_text_.right += 2.5f;
 								rect_text_.left += 2.5f;
 								break;
 
-							case containers::tab_pane::side::right:
+							case containers::tab_pane_specs::side::right:
 								rect_text_.left += 2.5f;
 								rect_text_.right += 2.5f;
 								break;
 
-							case containers::tab_pane::side::bottom:
+							case containers::tab_pane_specs::side::bottom:
 								rect_text_.top += 2.5f;
 								rect_text_.bottom += 2.5f;
 								break;
 
-							case containers::tab_pane::side::top:
+							case containers::tab_pane_specs::side::top:
 							default:
 								rect_text_.bottom -= 2.5f;
 								rect_text_.top -= 2.5f;
@@ -409,9 +409,9 @@ namespace liblec {
 				}
 
 				switch (specs_.tab_side()) {
-				case containers::tab_pane::side::left:
-				case containers::tab_pane::side::right: {
-					if (specs_.caption_orientation() == containers::tab_pane::orientation::vertical) {
+				case containers::tab_pane_specs::side::left:
+				case containers::tab_pane_specs::side::right: {
+					if (specs_.caption_orientation() == containers::tab_pane_specs::orientation::vertical) {
 						// rotate the text rectangle about its center
 
 						const D2D1_POINT_2F center =
@@ -465,10 +465,10 @@ namespace liblec {
 				}
 					break;
 
-				case containers::tab_pane::side::top:
-				case containers::tab_pane::side::bottom: {
+				case containers::tab_pane_specs::side::top:
+				case containers::tab_pane_specs::side::bottom: {
 				default:
-					if (specs_.caption_orientation() == containers::tab_pane::orientation::horizontal) {
+					if (specs_.caption_orientation() == containers::tab_pane_specs::orientation::horizontal) {
 						// create a text layout
 						HRESULT hr = p_directwrite_factory_->CreateTextLayout(convert_string(tab_name).c_str(),
 							(UINT32)tab_name.length(), p_text_format_, rect_text_.right - rect_text_.left,
@@ -531,14 +531,14 @@ namespace liblec {
 			for (const auto& it : p_tab_rects_) {
 				bool excess = false;
 				switch (specs_.tab_side()) {
-				case containers::tab_pane::side::left:
-				case containers::tab_pane::side::right:
+				case containers::tab_pane_specs::side::left:
+				case containers::tab_pane_specs::side::right:
 					if ((it.second.bottom + tab_gap_) > rect_tab_pane_.bottom)
 						excess = true;
 					break;
 
-				case containers::tab_pane::side::top:
-				case containers::tab_pane::side::bottom:
+				case containers::tab_pane_specs::side::top:
+				case containers::tab_pane_specs::side::bottom:
 				default:
 					if ((it.second.right + tab_gap_) > rect_tab_pane_.right)
 						excess = true;
@@ -552,22 +552,22 @@ namespace liblec {
 					D2D1_RECT_F rect_bar_ = it.second;
 
 					switch (specs_.tab_side()) {
-					case containers::tab_pane::side::left:
+					case containers::tab_pane_specs::side::left:
 						rect_bar_.left = rect_bar_.right;
 						rect_bar_.right = rect_bar_.right += bar_height_;
 						break;
 
-					case containers::tab_pane::side::right:
+					case containers::tab_pane_specs::side::right:
 						rect_bar_.right = rect_bar_.left;
 						rect_bar_.left = rect_bar_.left -= bar_height_;
 						break;
 
-					case containers::tab_pane::side::bottom:
+					case containers::tab_pane_specs::side::bottom:
 						rect_bar_.bottom = rect_bar_.top;
 						rect_bar_.top = rect_bar_.top -= bar_height_;
 						break;
 
-					case containers::tab_pane::side::top:
+					case containers::tab_pane_specs::side::top:
 					default:
 						rect_bar_.top = rect_bar_.bottom;
 						rect_bar_.bottom = rect_bar_.bottom += bar_height_;
@@ -593,10 +593,10 @@ namespace liblec {
 			}
 		}
 
-		containers::tab_pane::tab_pane_specs&
+		containers::tab_pane_specs&
 			widgets::tab_pane_impl::specs() { return specs_; }
 
-		containers::tab_pane::tab_pane_specs&
+		containers::tab_pane_specs&
 			widgets::tab_pane_impl::operator()() { return specs(); }
 
 		const D2D1_RECT_F& widgets::tab_pane_impl::client_area() {

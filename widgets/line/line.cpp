@@ -13,17 +13,17 @@
 
 namespace liblec {
 	namespace lecui {
-		bool widgets::line::line_specs::operator==(const line_specs& param) {
+		bool widgets::line_specs::operator==(const line_specs& param) {
 			return
 				// generic specs
 				specs::operator==(param);
 		}
 
-		bool widgets::line::line_specs::operator!=(const line_specs& param) {
+		bool widgets::line_specs::operator!=(const line_specs& param) {
 			return !operator==(param);
 		}
 
-		class widgets::line::impl {
+		class widgets::line_builder::impl {
 		public:
 			impl(containers::page& page, const std::string& alias) :
 				page_(page),
@@ -38,26 +38,26 @@ namespace liblec {
 			line_specs& specs_;
 		};
 
-		widgets::line::line(containers::page& page) :
-			line(page, "") {}
+		widgets::line_builder::line_builder(containers::page& page) :
+			line_builder(page, "") {}
 
-		widgets::line::line(containers::page& page, const std::string& alias) :
+		widgets::line_builder::line_builder(containers::page& page, const std::string& alias) :
 			d_(*(new impl(page, alias))) {}
 
-		widgets::line::~line() { delete& d_; }
+		widgets::line_builder::~line_builder() { delete& d_; }
 
-		widgets::line::line_specs&
-			widgets::line::specs() {
+		widgets::line_specs&
+			widgets::line_builder::specs() {
 			return d_.specs_;
 		}
 
-		widgets::line::line_specs&
-			widgets::line::operator()() {
+		widgets::line_specs&
+			widgets::line_builder::operator()() {
 			return specs();
 		}
 
-		widgets::line::line_specs&
-			widgets::line::specs(form& fm, const std::string& path) {
+		widgets::line_specs&
+			widgets::line_builder::specs(form& fm, const std::string& path) {
 			const auto idx = path.find("/");
 
 			if (idx != std::string::npos) {

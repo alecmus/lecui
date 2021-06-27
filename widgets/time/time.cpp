@@ -13,7 +13,7 @@
 
 namespace liblec {
 	namespace lecui {
-		bool widgets::time::time_specs::operator==(const time_specs& param) {
+		bool widgets::time_specs::operator==(const time_specs& param) {
 			return
 				// generic specs
 				specs::operator==(param) &&
@@ -22,11 +22,11 @@ namespace liblec {
 				(color_border_ == param.color_border_);
 		}
 
-		bool widgets::time::time_specs::operator!=(const time_specs& param) {
+		bool widgets::time_specs::operator!=(const time_specs& param) {
 			return !operator==(param);
 		}
 
-		class widgets::time::impl {
+		class widgets::time_builder::impl {
 		public:
 			impl(containers::page& page, const std::string& alias) :
 				page_(page),
@@ -42,26 +42,26 @@ namespace liblec {
 			time_specs& specs_;
 		};
 
-		widgets::time::time(containers::page& page) :
-			time(page, "") {}
+		widgets::time_builder::time_builder(containers::page& page) :
+			time_builder(page, "") {}
 
-		widgets::time::time(containers::page& page, const std::string& alias) :
+		widgets::time_builder::time_builder(containers::page& page, const std::string& alias) :
 			d_(*(new impl(page, alias))) {}
 
-		widgets::time::~time() { delete& d_; }
+		widgets::time_builder::~time_builder() { delete& d_; }
 
-		widgets::time::time_specs&
-			widgets::time::specs() {
+		widgets::time_specs&
+			widgets::time_builder::specs() {
 			return d_.specs_;
 		}
 
-		widgets::time::time_specs&
-			widgets::time::operator()() {
+		widgets::time_specs&
+			widgets::time_builder::operator()() {
 			return specs();
 		}
 
-		widgets::time::time_specs&
-			widgets::time::specs(form& fm,
+		widgets::time_specs&
+			widgets::time_builder::specs(form& fm,
 				const std::string& path) {
 			const auto idx = path.find("/");
 
