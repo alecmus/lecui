@@ -321,9 +321,9 @@ namespace liblec {
 					auto& home_page = page_man.add("home");
 
 					widgets::label_builder label(home_page);
-					label().text(question_).multiline(true)
-						.rect({ margin_, home_page.size().width, margin_,
-						home_page.size().height - margin_ - button_size_.height - margin_ });
+					label()
+						.text(question_).multiline(true)
+						.rect({ margin_, home_page.size().width, margin_, home_page.size().height - margin_ - button_size_.height - margin_ });
 
 					// add yes and no buttons, in that order for tab navigation
 					widgets::button_builder button_yes(home_page, "button_yes");
@@ -331,15 +331,15 @@ namespace liblec {
 
 					// position the no button on the bottom right
 					button_no().text("No")
-						.rect().place({ margin_, home_page.size().width - margin_,
-							margin_, home_page.size().height - margin_ }, 100.f, 100.f);
+						.rect().place({ margin_, home_page.size().width - margin_, margin_, home_page.size().height - margin_ }, 100.f, 100.f);
 					button_no().events().action = [&]() {
 						user_agreed_ = false;
 						close();
 					};
 
 					// snap the yes button to the no button
-					button_yes().text("Yes")
+					button_yes()
+						.text("Yes")
 						.rect().snap_to(button_no().rect(), lecui::rect::snap_type::left, margin_);
 					button_yes().events().action = [&]() {
 						user_agreed_ = true;
@@ -404,15 +404,15 @@ namespace liblec {
 						auto& home_page = page_man.add("home");
 
 						widgets::label_builder label(home_page);
-						label().text(message_).multiline(true)
-							.rect({ margin_, home_page.size().width, margin_,
-							home_page.size().height - margin_ - button_size_.height - margin_ });
+						label()
+							.text(message_).multiline(true)
+							.rect({ margin_, home_page.size().width, margin_, home_page.size().height - margin_ - button_size_.height - margin_ });
 
 						// add the ok button on the bottom right
 						widgets::button_builder button(home_page, "button_ok");
-						button().text("Ok")
-							.rect().place({margin_, home_page.size().width - margin_,
-							margin_, home_page.size().height - margin_ }, 100.f, 100.f);
+						button()
+							.text("Ok")
+							.rect().place({margin_, home_page.size().width - margin_, margin_, home_page.size().height - margin_ }, 100.f, 100.f);
 						button().events().action = [&]() { close(); };
 
 						page_man.show("home");

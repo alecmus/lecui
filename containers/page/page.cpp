@@ -80,10 +80,11 @@ namespace liblec {
 				specs_.on_resize().perc_width = 100;
 				specs_.on_resize().perc_y = 100;
 
-				specs_.rect().left = margin + thickness - d_.fm_.d_.page_tolerance_;
-				specs_.rect().right = page_impl.size().width - (margin + thickness) - d_.fm_.d_.page_tolerance_;
-				specs_.rect().bottom = page_impl.size().height - margin;
-				specs_.rect().top = specs_.rect().bottom - thickness;
+				specs_.rect()
+					.left(margin + thickness - d_.fm_.d_.page_tolerance_)
+					.right(page_impl.size().width - (margin + thickness) - d_.fm_.d_.page_tolerance_)
+					.bottom(page_impl.size().height - margin)
+					.top(specs_.rect().bottom() - thickness);
 
 				specs_
 					.color_fill(defaults::color(d_.fm_.d_.theme_, item::scrollbar))
@@ -98,10 +99,11 @@ namespace liblec {
 				specs_.on_resize().perc_height = 100;
 				specs_.on_resize().perc_x = 100;
 
-				specs_.rect().top = margin + thickness - d_.fm_.d_.page_tolerance_;
-				specs_.rect().bottom = page_impl.size().height - (margin + thickness);
-				specs_.rect().right = page_impl.size().width - margin - d_.fm_.d_.page_tolerance_;
-				specs_.rect().left = specs_.rect().right - thickness;
+				specs_.rect()
+					.top(margin + thickness - d_.fm_.d_.page_tolerance_)
+					.bottom(page_impl.size().height - (margin + thickness))
+					.right(page_impl.size().width - margin - d_.fm_.d_.page_tolerance_)
+					.left(specs_.rect().right() - thickness);
 
 				specs_
 					.color_fill(defaults::color(d_.fm_.d_.theme_, item::scrollbar))

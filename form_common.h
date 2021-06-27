@@ -137,6 +137,38 @@ namespace liblec {
 
 		/// <summary>position rect_subject within rect_reference,
 		/// perc_h% horizontally and perc_v% vertically</summary>
+		static inline void pos_rect(const D2D1_RECT_F& rect_reference,
+			D2D1_RECT_F& rect_subject, const float& perc_h, const float& perc_v) {
+			D2D1_RECT_F rect_original = rect_subject;
+
+			const auto delta_x = (rect_reference.right - rect_reference.left) - (rect_original.right - rect_original.left);
+			rect_subject.left = rect_reference.left + (perc_h * delta_x) / 100.f;
+
+			const auto delta_y = (rect_reference.bottom - rect_reference.top) - (rect_original.bottom - rect_original.top);
+			rect_subject.top = rect_reference.top + (perc_v * delta_y) / 100.f;
+
+			rect_subject.right = rect_subject.left + (rect_original.right - rect_original.left);
+			rect_subject.bottom = rect_subject.top + (rect_original.bottom - rect_original.top);
+		}
+
+		/// <summary>position rect_subject within rect_reference,
+		/// perc_h% horizontally and perc_v% vertically</summary>
+		static inline void pos_rect(const lecui::rect& rect_reference,
+			lecui::rect& rect_subject, const float& perc_h, const float& perc_v) {
+			lecui::rect rect_original = rect_subject;
+
+			const auto delta_x = (rect_reference.get_right() - rect_reference.get_left()) - (rect_original.right() - rect_original.left());
+			rect_subject.left() = rect_reference.get_left() + (perc_h * delta_x) / 100.f;
+
+			const auto delta_y = (rect_reference.get_bottom() - rect_reference.get_top()) - (rect_original.bottom() - rect_original.top());
+			rect_subject.top(rect_reference.get_top() + (perc_v * delta_y) / 100.f);
+
+			rect_subject.right(rect_subject.left() + (rect_original.right() - rect_original.left()));
+			rect_subject.bottom(rect_subject.top() + (rect_original.bottom() - rect_original.top()));
+		}
+
+		/// <summary>position rect_subject within rect_reference,
+		/// perc_h% horizontally and perc_v% vertically</summary>
 		template <class t>
 		static inline void pos_rect(const t& rect_reference,
 			t& rect_subject, const float& perc_h, const float& perc_v) {
@@ -220,19 +252,19 @@ namespace liblec {
 
 		static inline D2D1_RECT_F convert_rect(const rect& rect) {
 			D2D1_RECT_F rect_;
-			rect_.left = rect.left;
-			rect_.top = rect.top;
-			rect_.right = rect.right;
-			rect_.bottom = rect.bottom;
+			rect_.left = rect.get_left();
+			rect_.top = rect.get_top();
+			rect_.right = rect.get_right();
+			rect_.bottom = rect.get_bottom();
 			return rect_;
 		}
 
 		static inline rect convert_rect(const D2D1_RECT_F& rect) {
 			lecui::rect rect_;
-			rect_.left = rect.left;
-			rect_.top = rect.top;
-			rect_.right = rect.right;
-			rect_.bottom = rect.bottom;
+			rect_.left(rect.left);
+			rect_.top(rect.top);
+			rect_.right(rect.right);
+			rect_.bottom(rect.bottom);
 			return rect_;
 		}
 

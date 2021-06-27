@@ -387,12 +387,11 @@ namespace liblec {
 				.color_disabled(clr_theme_disabled_)
 				.on_resize().perc_x = 100;
 
-			p_close_button_->specs().rect().right = size_.width - control_button_margin_;
-			p_close_button_->specs().rect().top = control_button_margin_;
-			p_close_button_->specs().rect().left = p_close_button_->specs().rect().right -
-				(caption_bar_height_ - 2.f * control_button_margin_);
-			p_close_button_->specs().rect().bottom = p_close_button_->specs().rect().top +
-				(caption_bar_height_ - 2.f * control_button_margin_);
+			p_close_button_->specs().rect()
+				.right(size_.width - control_button_margin_)
+				.top(control_button_margin_)
+				.left(p_close_button_->specs().rect().right() - (caption_bar_height_ - 2.f * control_button_margin_))
+				.bottom(p_close_button_->specs().rect().top() + (caption_bar_height_ - 2.f * control_button_margin_));
 
 			p_close_button_->specs().events().click = on_click;
 		}
@@ -412,14 +411,13 @@ namespace liblec {
 				.color_disabled(clr_theme_disabled_)
 				.on_resize().perc_x = 100;
 
-			const auto right_edge = p_close_button_->specs().rect().left;
+			const auto right_edge = p_close_button_->specs().rect().left();
 
-			p_maximize_button_->specs().rect().right = right_edge - control_button_margin_;
-			p_maximize_button_->specs().rect().top = control_button_margin_;
-			p_maximize_button_->specs().rect().left = p_maximize_button_->specs().rect().right -
-				(caption_bar_height_ - 2.f * control_button_margin_);
-			p_maximize_button_->specs().rect().bottom = p_maximize_button_->specs().rect().top +
-				(caption_bar_height_ - 2.f * control_button_margin_);
+			p_maximize_button_->specs().rect()
+				.right(right_edge - control_button_margin_)
+				.top(control_button_margin_)
+				.left(p_maximize_button_->specs().rect().right() - (caption_bar_height_ - 2.f * control_button_margin_))
+				.bottom(p_maximize_button_->specs().rect().top() + (caption_bar_height_ - 2.f * control_button_margin_));
 		}
 
 		// should be called after create_close_button() and create_maximize_button()
@@ -438,15 +436,13 @@ namespace liblec {
 				.on_resize().perc_x = 100;
 
 			const auto right_edge = allow_resizing_ ?
-				p_maximize_button_->specs().rect().left :
-				p_close_button_->specs().rect().left;
+				p_maximize_button_->specs().rect().left() : p_close_button_->specs().rect().left();
 
-			p_minimize_button_->specs().rect().right = right_edge - control_button_margin_;
-			p_minimize_button_->specs().rect().top = control_button_margin_;
-			p_minimize_button_->specs().rect().left = p_minimize_button_->specs().rect().right -
-				(caption_bar_height_ - 2.f * control_button_margin_);
-			p_minimize_button_->specs().rect().bottom = p_minimize_button_->specs().rect().top +
-				(caption_bar_height_ - 2.f * control_button_margin_);
+			p_minimize_button_->specs().rect()
+				.right(right_edge - control_button_margin_)
+				.top(control_button_margin_)
+				.left(p_minimize_button_->specs().rect().right() - (caption_bar_height_ - 2.f * control_button_margin_))
+				.bottom(p_minimize_button_->specs().rect().top() + (caption_bar_height_ - 2.f * control_button_margin_));
 		}
 
 		void form::impl::create_form_caption() {
@@ -472,10 +468,8 @@ namespace liblec {
 
 			// determine right-most edge based on available control buttons
 			const auto right_edge = allow_minimize_ ?
-				p_minimize_button_->specs().rect().left :
-				(allow_resizing_ ?
-					p_maximize_button_->specs().rect().left :
-					p_close_button_->specs().rect().left);
+				p_minimize_button_->specs().rect().left() :
+				(allow_resizing_ ? p_maximize_button_->specs().rect().left() : p_close_button_->specs().rect().left());
 
 			// determine the largest rect that the caption can occupy
 			const D2D1_RECT_F max_rect = D2D1::RectF(10.f, control_button_margin_,
@@ -494,7 +488,7 @@ namespace liblec {
 		}
 
 		void form::impl::create_form_menu() {
-			float left = p_caption_->specs().rect().right + caption_and_menu_gap_;
+			float left = p_caption_->specs().rect().right() + caption_and_menu_gap_;
 
 			for (auto& main_menu_item : form_menu_) {
 				p_menu_.push_back(
@@ -521,10 +515,8 @@ namespace liblec {
 
 				// determine right-most edge based on available control buttons
 				const auto right_edge = allow_minimize_ ?
-					p_minimize_button_->specs().rect().left :
-					(allow_resizing_ ?
-						p_maximize_button_->specs().rect().left :
-						p_close_button_->specs().rect().left);
+					p_minimize_button_->specs().rect().left() :
+					(allow_resizing_ ? p_maximize_button_->specs().rect().left() : p_close_button_->specs().rect().left());
 
 				// determine the largest rect that the caption can occupy
 				const D2D1_RECT_F max_rect = D2D1::RectF(left, control_button_margin_,
@@ -541,7 +533,7 @@ namespace liblec {
 
 				main_menu_item.rc_text = it->specs().rect();
 
-				left = it->specs().rect().right + form_menu_margin_;
+				left = it->specs().rect().right() + form_menu_margin_;
 
 				it->specs().events().action = [&]() {
 					if (main_menu_item.items.empty())
@@ -564,10 +556,10 @@ namespace liblec {
 					POINT pt = { 0, 0 };
 					ClientToScreen(hWnd_, &pt);
 
-					menu_specs.pin.left += (pt.x / get_dpi_scale());
-					menu_specs.pin.right += (pt.x / get_dpi_scale());
-					menu_specs.pin.top += (pt.y / get_dpi_scale());
-					menu_specs.pin.bottom += (pt.y / get_dpi_scale());
+					menu_specs.pin.left() += (pt.x / get_dpi_scale());
+					menu_specs.pin.right() += (pt.x / get_dpi_scale());
+					menu_specs.pin.top() += (pt.y / get_dpi_scale());
+					menu_specs.pin.bottom() += (pt.y / get_dpi_scale());
 
 					auto result = context_menu()(fm_, menu_specs);
 					
@@ -755,8 +747,8 @@ namespace liblec {
 									.color_fill(html_editor_specs.color_fill())
 									.color_border(html_editor_specs.color_border())
 									.rect(html_editor_specs.rect())
-									.on_resize(html_editor_specs.on_resize());
-								pane().rect().top = controls_pane().rect().bottom;
+									.on_resize(html_editor_specs.on_resize())
+									.rect().top(controls_pane().rect().bottom());
 								
 								if (pane().on_resize().min_height)
 									pane().on_resize().min_height = largest(pane().on_resize().min_height - controls_pane().rect().height(), 0.f);
@@ -950,17 +942,18 @@ namespace liblec {
 												.center_h(true)
 												.center_v(true)
 												.rect(font_color().rect())
-												.rect().bottom -= 5.f;
+												.rect().bottom() -= 5.f;
 
 											widgets::rectangle_builder font_color_bar(html_controls_page, html_editor.alias_font_color_bar());
 											font_color_bar()
+												.color_fill(html_editor.get_last_color())
+												.border(.2f)
 												.rect(font_color().rect())
-												.rect().top = font_color_label().rect().bottom;
-											font_color_bar().rect().bottom -= 1.f;
-											font_color_bar().rect().left += 2.f;
-											font_color_bar().rect().right -= 2.f;
-											font_color_bar().color_fill(html_editor.get_last_color());
-											font_color_bar().border(.2f);
+												.rect().top(font_color_label().rect().bottom());
+											font_color_bar().rect().bottom() -= 1.f;
+											font_color_bar().rect().left() += 2.f;
+											font_color_bar().rect().right() -= 2.f;
+											
 
 											widgets::rectangle_builder font_color_menu(html_controls_page);
 											font_color_menu().rect().size(10.f, 20.f);

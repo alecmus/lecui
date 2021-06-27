@@ -824,10 +824,10 @@ namespace liblec {
 			POINT pt = { 0, 0 };
 			ClientToScreen(get_form().d_.hWnd_, &pt);
 
-			menu_specs.pin.left += (pt.x / get_dpi_scale());
-			menu_specs.pin.right += (pt.x / get_dpi_scale());
-			menu_specs.pin.top += (pt.y / get_dpi_scale());
-			menu_specs.pin.bottom += (pt.y / get_dpi_scale());
+			menu_specs.pin.left() += (pt.x / get_dpi_scale());
+			menu_specs.pin.right() += (pt.x / get_dpi_scale());
+			menu_specs.pin.top() += (pt.y / get_dpi_scale());
+			menu_specs.pin.bottom() += (pt.y / get_dpi_scale());
 
 			return context_menu()(get_form(), menu_specs);
 		}

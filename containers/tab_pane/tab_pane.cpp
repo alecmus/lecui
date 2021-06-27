@@ -173,24 +173,21 @@ namespace liblec {
 					switch (tp.d_.specs_.tab_side()) {
 					case tab_pane_specs::side::left:
 					case tab_pane_specs::side::right:
-						specs_.rect().left = 0.f;
-						specs_.rect().right =
-							(rect_client_area.right - rect_client_area.left) - (margin + thickness) -
-							caption_bar_height_;
-						specs_.rect().bottom = (rect_client_area.bottom - rect_client_area.top) -
-							page_tolerance_;
-						specs_.rect().top = specs_.rect().bottom - thickness;
+						specs_.rect()
+							.left(0.f)
+							.right((rect_client_area.right() - rect_client_area.left()) - (margin + thickness) - caption_bar_height_)
+							.bottom((rect_client_area.bottom() - rect_client_area.top()) - page_tolerance_)
+							.top(specs_.rect().bottom() - thickness);
 						break;
 
 					case tab_pane_specs::side::top:
 					case tab_pane_specs::side::bottom:
 					default:
-						specs_.rect().left = 0.f;
-						specs_.rect().right =
-							(rect_client_area.right - rect_client_area.left) - (margin + thickness);
-						specs_.rect().bottom = (rect_client_area.bottom - rect_client_area.top) -
-							(caption_bar_height_ + page_tolerance_);
-						specs_.rect().top = specs_.rect().bottom - thickness;
+						specs_.rect()
+							.left(0.f)
+							.right((rect_client_area.right() - rect_client_area.left()) - (margin + thickness))
+							.bottom((rect_client_area.bottom() - rect_client_area.top()) - (caption_bar_height_ + page_tolerance_))
+							.top(specs_.rect().bottom() - thickness);
 						break;
 					}
 
@@ -210,23 +207,21 @@ namespace liblec {
 					switch (tp.d_.specs_.tab_side()) {
 					case tab_pane_specs::side::left:
 					case tab_pane_specs::side::right:
-						specs_.rect().top = 0.f;
-						specs_.rect().bottom = (rect_client_area.bottom - rect_client_area.top) -
-							(margin + thickness);
-						specs_.rect().right =
-							(rect_client_area.right - rect_client_area.left) - margin - caption_bar_height_;
-						specs_.rect().left = specs_.rect().right - thickness;
+						specs_.rect()
+							.top(0.f)
+							.bottom((rect_client_area.bottom() - rect_client_area.top()) - (margin + thickness))
+							.right((rect_client_area.right() - rect_client_area.left()) - margin - caption_bar_height_)
+							.left(specs_.rect().right() - thickness);
 						break;
 
 					case tab_pane_specs::side::top:
 					case tab_pane_specs::side::bottom:
 					default:
-						specs_.rect().top = 0.f;
-						specs_.rect().bottom = (rect_client_area.bottom - rect_client_area.top) -
-							(margin + thickness) - caption_bar_height_;
-						specs_.rect().right =
-							(rect_client_area.right - rect_client_area.left) - margin;
-						specs_.rect().left = specs_.rect().right - thickness;
+						specs_.rect()
+							.top(0.f)
+							.bottom((rect_client_area.bottom() - rect_client_area.top()) - (margin + thickness) - caption_bar_height_)
+							.right((rect_client_area.right() - rect_client_area.left()) - margin)
+							.left(specs_.rect().right() - thickness);
 						break;
 					}
 

@@ -70,58 +70,126 @@ namespace liblec {
 		};
 
 		class lecui_api rect {
+			float left_ = 0.f;
+			float right_ = 0.f;
+			float top_ = 0.f;
+			float bottom_ = 0.f;
+
 		public:
-			float left = 0.f;
-			float right = 0.f;
-			float top = 0.f;
-			float bottom = 0.f;
+			/// <summary>Rectangle constructor. Makes a zero size rectangle with zero width and height.</summary>
+			rect();
+
+			/// <summary>Rectangle constructor.</summary>
+			/// <param name="left">The left coordinate, in pixels.</param>
+			/// <param name="right">The right coordinate, in pixels.</param>
+			/// <param name="top">The top coordinate, in pixels.</param>
+			/// <param name="bottom">The bottom coordinate, in pixels.</param>
+			rect(const float left, const float right, const float top, const float bottom);
+
+			/// <summary>Get or set the left coordinate.</summary>
+			/// <returns>A reference to the left coordinate, in pixels.</returns>
+			float& left();
+
+			/// <summary>Get the left coordinate.</summary>
+			/// <returns>The left coordinate, in pixels.</returns>
+			float get_left() const;
+
+			/// <summary>Set the left coordinate.</summary>
+			/// <param name="left">The left coordinate, in pixels.</param>
+			/// <returns>A reference to the modified object.</returns>
+			rect& left(const float& left);
+
+			/// <summary>Get or set the right coordinate.</summary>
+			/// <returns>A reference to the right coordinate, in pixels.</returns>
+			float& right();
+
+			/// <summary>Get the right coordinate.</summary>
+			/// <returns>The right coordinate, in pixels.</returns>
+			float get_right() const;
+
+			/// <summary>Set the right coordinate.</summary>
+			/// <param name="left">The right coordinate, in pixels.</param>
+			/// <returns>A reference to the modified object.</returns>
+			rect& right(const float& right);
+
+			/// <summary>Get or set the top coordinate.</summary>
+			/// <returns>A reference to the top coordinate, in pixels.</returns>
+			float& top();
+
+			/// <summary>Get the top coordinate.</summary>
+			/// <returns>The top coordinate, in pixels.</returns>
+			float get_top() const;
+
+			/// <summary>Set the top coordinate.</summary>
+			/// <param name="left">The top coordinate, in pixels.</param>
+			/// <returns>A reference to the modified object.</returns>
+			rect& top(const float& top);
+
+			/// <summary>Get or set the bottom coordinate.</summary>
+			/// <returns>A reference to the bottom coordinate, in pixels.</returns>
+			float& bottom();
+
+			/// <summary>Get the bottom coordinate.</summary>
+			/// <returns>The bottom coordinate, in pixels.</returns>
+			float get_bottom() const;
+
+			/// <summary>Set the bottom coordinate.</summary>
+			/// <param name="left">The bottom coordinate, in pixels.</param>
+			/// <returns>A reference to the modified object.</returns>
+			rect& bottom(const float& bottom);
 
 			/// <summary>Get the rectangle's width.</summary>
 			/// <returns>The width.</returns>
-			[[nodiscard]] float width();
+			[[nodiscard]] float width() const;
 
 			/// <summary>Get the rectangle's height.</summary>
 			/// <returns>The height.</returns>
-			[[nodiscard]] float height();
+			[[nodiscard]] float height() const;
 
 			/// <summary>Get the rectangle's size.</summary>
 			/// <returns>The size.</returns>
-			[[nodiscard]] size size();
+			[[nodiscard]] size size() const;
 
 			/// <summary>Set the rectangle's width.</summary>
 			/// <param name="width">The width to set it to.</param>
+			/// <returns>A reference to the modified object.</returns>
 			/// <remarks>The top left corner is used as an anchor.</remarks>
-			void width(float width);
+			rect& width(float width);
 
 			/// <summary>Set the rectangle's height.</summary>
 			/// <param name="height">The height to set it to.</param>
+			/// <returns>A reference to the modified object.</returns>
 			/// <remarks>The top left corner is used as an anchor.</remarks>
-			void height(float height);
+			rect& height(float height);
 
 			/// <summary>Set the rectangle's size (both width and height).</summary>
 			/// <param name="size">The size to set it to.</param>
+			/// <returns>A reference to the modified object.</returns>
 			/// <remarks>The top left corner is used as an anchor.</remarks>
-			void size(lecui::size size);
+			rect& size(lecui::size size);
 
 			/// <summary>Set the rectangle's size (both width and height).</summary>
 			/// <param name="width">The width to set.</param>
 			/// <param name="height">The height to set.</param>
+			/// <returns>A reference to the modified object.</returns>
 			/// <remarks>The top left corner is used as an anchor.</remarks>
-			void size(float width, float height);
+			rect& size(float width, float height);
 
 			/// <summary>Set the rectangle dimensions and position.</summary>
 			/// <param name="x">The x-coordinate.</param>
 			/// <param name="y">The y-coordinate.</param>
 			/// <param name="cx">The width.</param>
 			/// <param name="cy">The height.</param>
-			void set(float x, float y, float cx, float cy);
+			/// <returns>A reference to the modified object.</returns>
+			rect& set(float x, float y, float cx, float cy);
 
 			/// <summary>Move the rectangle using it's top left corner.</summary>
 			/// <param name="x">The new x-coordinate of the top-left corner.</param>
 			/// <param name="y">The new y-coordinate of the top-left corner.</param>
+			/// <returns>A reference to the modified object.</returns>
 			/// <remarks>The size of the rectangle remains unchanged. The rectangle is
 			/// effectively translated to the new coodinates.</remarks>
-			void move(float x, float y);
+			rect& move(float x, float y);
 
 			/// <summary>Place this rectangle within or over another.</summary>
 			/// <param name="rect_reference">The rectangle to place it on or over.</param>
@@ -129,8 +197,9 @@ namespace liblec {
 			/// means this rectangle will be centered vertically.</param>
 			/// <param name="perc_v">How far along horizontally to place it, as a percentage. 50%
 			/// means this rectangle will be centered horizontally.</param>
+			/// <returns>A reference to the modified object.</returns>
 			/// <remarks>This is a handy method for faster coding and easier maintenance.</remarks>
-			void place(const rect& rect_reference, const float& perc_h, const float& perc_v);
+			rect& place(const rect& rect_reference, const float& perc_h, const float& perc_v);
 
 			enum class snap_type {
 				bottom_left,
@@ -151,8 +220,9 @@ namespace liblec {
 			/// <param name="rect_reference">The rectangle to snap to.</param>
 			/// <param name="type">The snap type.</param>
 			/// <param name="clearance">The clearance to use in the snapping operation.</param>
+			/// <returns>A reference to the modified object.</returns>
 			/// <remarks>This is a handy method for faster coding and easier maintenance.</remarks>
-			void snap_to(const rect& rect_reference, snap_type type, const float& clearance);
+			rect& snap_to(const rect& rect_reference, snap_type type, const float& clearance);
 
 			bool operator==(const rect&);
 			bool operator!=(const rect&);

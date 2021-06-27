@@ -105,12 +105,11 @@ namespace liblec {
 				specs_.on_resize().perc_width = 100.f;
 				specs_.on_resize().perc_y = 100.f;
 
-				specs_.rect().left = 0.f;
-				specs_.rect().right =
-					(rect_client_area.right - rect_client_area.left) - (margin + thickness);
-				specs_.rect().bottom =
-					(rect_client_area.bottom - rect_client_area.top) - page_tolerance_;
-				specs_.rect().top = specs_.rect().bottom - thickness;
+				specs_.rect()
+					.left(0.f)
+					.right((rect_client_area.right() - rect_client_area.left()) - (margin + thickness))
+					.bottom((rect_client_area.bottom() - rect_client_area.top()) - page_tolerance_)
+					.top(specs_.rect().bottom() - thickness);
 
 				specs_
 					.color_fill(defaults::color(d_.page_.d_page_.fm_.d_.theme_, item::scrollbar))
@@ -125,12 +124,11 @@ namespace liblec {
 				specs_.on_resize().perc_height = 100.f;
 				specs_.on_resize().perc_x = 100.f;
 
-				specs_.rect().top = 0;
-				specs_.rect().bottom =
-					(rect_client_area.bottom - rect_client_area.top) - (margin + thickness);
-				specs_.rect().right =
-					(rect_client_area.right - rect_client_area.left) - margin;
-				specs_.rect().left = specs_.rect().right - thickness;
+				specs_.rect()
+					.top(0)
+					.bottom((rect_client_area.bottom() - rect_client_area.top()) - (margin + thickness))
+					.right((rect_client_area.right() - rect_client_area.left()) - margin)
+					.left(specs_.rect().right() - thickness);
 
 				specs_
 					.color_fill(defaults::color(d_.page_.d_page_.fm_.d_.theme_, item::scrollbar))

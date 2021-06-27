@@ -61,10 +61,11 @@ namespace liblec {
 			const auto dpi_scale_ = d_.fm_.d_.dpi_scale_;
 
 			lecui::rect rect;
-			rect.left = (point.x / dpi_scale_);
-			rect.top = (point.y / dpi_scale_);
-			rect.width(size.width / dpi_scale_);
-			rect.height(size.height / dpi_scale_);
+			rect
+				.left((point.x / dpi_scale_))
+				.top((point.y / dpi_scale_))
+				.width(size.width / dpi_scale_)
+				.height(size.height / dpi_scale_);
 
 			return rect;
 		}

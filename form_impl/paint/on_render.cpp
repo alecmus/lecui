@@ -225,24 +225,21 @@ namespace liblec {
 												groupbox_initialized = true;
 											}
 											else {
-												specs.rect().left = smallest(specs.rect().left,
-													rect_.left);
-												specs.rect().top = smallest(specs.rect().top,
-													rect_.top);
-												specs.rect().right = largest(specs.rect().right,
-													rect_.right);
-												specs.rect().bottom = largest(specs.rect().bottom,
-													rect_.bottom);
+												specs.rect()
+													.left(smallest(specs.rect().left(), rect_.left))
+													.top(smallest(specs.rect().top(), rect_.top))
+													.right(largest(specs.rect().right(), rect_.right))
+													.bottom(largest(specs.rect().bottom(), rect_.bottom));
 											}
 										}
 										catch (const std::exception&) {}
 									}
 
 									// apply the margin
-									specs.rect().left -= specs.margin();
-									specs.rect().top -= specs.margin();
-									specs.rect().right += specs.margin();
-									specs.rect().bottom += specs.margin();
+									specs.rect().left() -= specs.margin();
+									specs.rect().top() -= specs.margin();
+									specs.rect().right() += specs.margin();
+									specs.rect().bottom() += specs.margin();
 
 									// get bounding rect for all controls within this groupbox
 								}
@@ -300,11 +297,10 @@ namespace liblec {
 										// get client area for this tab pane
 										const auto& client_area = tab_pane.client_area();
 
-										const D2D1_SIZE_F change_in_size =
-										{ (tab_pane.tab_pane_area().right - tab_pane.tab_pane_area().left) -
-											(tab_pane().rect().right - tab_pane().rect().left),
-											(tab_pane.tab_pane_area().bottom - tab_pane.tab_pane_area().top) -
-											(tab_pane().rect().bottom - tab_pane().rect().top) };
+										const D2D1_SIZE_F change_in_size = {
+											(tab_pane.tab_pane_area().right - tab_pane.tab_pane_area().left) - tab_pane().rect().width(),
+											(tab_pane.tab_pane_area().bottom - tab_pane.tab_pane_area().top) - tab_pane().rect().height()
+										};
 
 										for (auto& tab : tab_pane.p_tabs_) {
 											const float page_tolerance_ = 10.f;
@@ -331,11 +327,10 @@ namespace liblec {
 											// get client area for this pane
 											const auto& client_area = pane.client_area();
 
-											const D2D1_SIZE_F change_in_size =
-											{ (pane.pane_area().right - pane.pane_area().left) -
-												(pane().rect().right - pane().rect().left),
-												(pane.pane_area().bottom - pane.pane_area().top) -
-												(pane().rect().bottom - pane().rect().top) };
+											const D2D1_SIZE_F change_in_size = {
+												(pane.pane_area().right - pane.pane_area().left) - pane().rect().width(),
+												(pane.pane_area().bottom - pane.pane_area().top) - pane().rect().height()
+											};
 
 											for (auto& page : pane.p_panes_) {
 												const float page_tolerance_ = 10.f;

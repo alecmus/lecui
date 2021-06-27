@@ -176,10 +176,10 @@ namespace liblec {
 			auto height_change =
 				change_in_height * on_resize.perc_height / 100.f;
 
-			auto left = rect.left + x_change;
-			auto top = rect.top + y_change;
-			auto right = rect.right + x_change + width_change;
-			auto bottom = rect.bottom + y_change + height_change;
+			auto left = rect.get_left() + x_change;
+			auto top = rect.get_top() + y_change;
+			auto right = rect.get_right() + x_change + width_change;
+			auto bottom = rect.get_bottom() + y_change + height_change;
 
 			// apply limits on width and height
 
