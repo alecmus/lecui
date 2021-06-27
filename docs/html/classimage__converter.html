@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">lecui
-   &#160;<span id="projectnumber">1.0.0-alpha.1</span>
+   &#160;<span id="projectnumber">1.0.0-alpha.3</span>
    </div>
    <div id="projectbrief">lecui C++ user interface library</div>
   </td>
@@ -73,13 +73,13 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aad302ace1a277171486168ce7093bcf4"><td class="memItemLeft" align="right" valign="top">HBITMAP&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classimage__converter.html#aad302ace1a277171486168ce7093bcf4">png_to_argb</a> (HMODULE h_module, int id_png, std::string &amp;error)</td></tr>
-<tr class="memdesc:aad302ace1a277171486168ce7093bcf4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a PNG resource to an HBITMAP with an alpha channel.  <a href="classimage__converter.html#aad302ace1a277171486168ce7093bcf4">More...</a><br /></td></tr>
-<tr class="separator:aad302ace1a277171486168ce7093bcf4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab092ab697610a5aee61c6da3258a3119"><td class="memItemLeft" align="right" valign="top">HBITMAP&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classimage__converter.html#ab092ab697610a5aee61c6da3258a3119">png_to_argb</a> (HMODULE h_module, int id_png, float scale, std::string &amp;error)</td></tr>
+<tr class="memdesc:ab092ab697610a5aee61c6da3258a3119"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a PNG resource to an HBITMAP with an alpha channel.  <a href="classimage__converter.html#ab092ab697610a5aee61c6da3258a3119">More...</a><br /></td></tr>
+<tr class="separator:ab092ab697610a5aee61c6da3258a3119"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="aad302ace1a277171486168ce7093bcf4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aad302ace1a277171486168ce7093bcf4">&#9670;&nbsp;</a></span>png_to_argb()</h2>
+<a id="ab092ab697610a5aee61c6da3258a3119"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab092ab697610a5aee61c6da3258a3119">&#9670;&nbsp;</a></span>png_to_argb()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -95,6 +95,12 @@ Public Member Functions</h2></td></tr>
           <td></td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>id_png</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>scale</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -115,6 +121,7 @@ Public Member Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">h_module</td><td>The handle of the module containing the PNG resource.</td></tr>
     <tr><td class="paramname">id_png</td><td>The ID of the PNG image.</td></tr>
+    <tr><td class="paramname">scale</td><td>The scale of the image. Use 1.f to keep as-is.</td></tr>
     <tr><td class="paramname">error</td><td>Error information.</td></tr>
   </table>
   </dd>

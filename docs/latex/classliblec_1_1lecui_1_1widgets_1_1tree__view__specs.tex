@@ -1,0 +1,529 @@
+\hypertarget{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs}{}\doxysection{liblec\+::lecui\+::widgets\+::tree\+\_\+view\+\_\+specs Class Reference}
+\label{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs}\index{liblec::lecui::widgets::tree\_view\_specs@{liblec::lecui::widgets::tree\_view\_specs}}
+
+
+Tree view widget specifications.  
+
+
+
+
+{\ttfamily \#include $<$tree\+\_\+view.\+h$>$}
+
+Inheritance diagram for liblec\+::lecui\+::widgets\+::tree\+\_\+view\+\_\+specs\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_1_1node}{node}}
+\begin{DoxyCompactList}\small\item\em Tree node. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1tree__view__specs_1_1tree__view__events}{tree\+\_\+view\+\_\+events}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_ad44f56a903046b4ddf3bd6f70942d79b}\label{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_ad44f56a903046b4ddf3bd6f70942d79b}} 
+\mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1tree__view__specs_1_1tree__view__events}{tree\+\_\+view\+\_\+events}} \& {\bfseries events} ()
+\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_a91793fc5ed09fe78e403bcbb8693ba64}\label{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_a91793fc5ed09fe78e403bcbb8693ba64}} 
+bool {\bfseries operator==} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs}{tree\+\_\+view\+\_\+specs}} \&)
+\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_ad982cfd075883e808352405c12551419}\label{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_ad982cfd075883e808352405c12551419}} 
+bool {\bfseries operator!=} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs}{tree\+\_\+view\+\_\+specs}} \&)
+\item 
+std\+::string \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_a0f83b1f8f2be8e79252657d1b13c18d9}{text}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the widget text. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_a1beeececda994c2802f53fe13dc47430}\label{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_a1beeececda994c2802f53fe13dc47430}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs}{tree\+\_\+view\+\_\+specs}} \& {\bfseries text} (const std\+::string \&text)
+\item 
+std\+::string \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_aae7308722a73b637283c4f5cf7c836c2}{tooltip}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the widget\textquotesingle{}s tooltip text. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_a44754375548ce37978103046056b07c6}\label{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_a44754375548ce37978103046056b07c6}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs}{tree\+\_\+view\+\_\+specs}} \& {\bfseries tooltip} (const std\+::string \&tooltip)
+\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{lecui\+::rect}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_adfa0cd2bd428c28b829e66b1140a6e3d}{rect}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the position and dimensions of the widget. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_abaa4a4b440611bea58f9389f16372074}\label{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_abaa4a4b440611bea58f9389f16372074}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs}{tree\+\_\+view\+\_\+specs}} \& {\bfseries rect} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{lecui\+::rect}} \&\mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{rect}})
+\item 
+\mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1specs_1_1resize__params}{resize\+\_\+params}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_a93eb0595bb710dc7322f7b3057f56bac}{on\+\_\+resize}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the behaviour of the widget when its container is resized. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_a5f92cd30760f1e93dd2a1edb3314b791}\label{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_a5f92cd30760f1e93dd2a1edb3314b791}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs}{tree\+\_\+view\+\_\+specs}} \& {\bfseries on\+\_\+resize} (const \mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1specs_1_1resize__params}{resize\+\_\+params}} \&on\+\_\+resize)
+\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a3cba4c05a958d80dca72e4e9dd5360b1}{cursor\+\_\+type}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_a3f56501978d7a558d6917580275db9b2}{cursor}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the mouse cursor to use then over the widget. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_ae94984a968ee64c4a210e234dcf5a21e}\label{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_ae94984a968ee64c4a210e234dcf5a21e}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs}{tree\+\_\+view\+\_\+specs}} \& {\bfseries cursor} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a3cba4c05a958d80dca72e4e9dd5360b1}{cursor\+\_\+type}} cursor)
+\item 
+std\+::string \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_ae36addb74beacb219006b089dda47f9c}{font}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the default widget font, e.\+g. \char`\"{}\+Georgia\char`\"{}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_af46e39ca49db79efedfa357a54b87937}\label{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_af46e39ca49db79efedfa357a54b87937}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs}{tree\+\_\+view\+\_\+specs}} \& {\bfseries font} (const std\+::string \&\mbox{\hyperlink{classfont}{font}})
+\item 
+float \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_adb87c2aae0097611a07b0aedb89b2bdc}{font\+\_\+size}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the default widget font size in points, e.\+g. 9.\+0. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_aafe733a3031adc6482ddef155d78a603}\label{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_aafe733a3031adc6482ddef155d78a603}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs}{tree\+\_\+view\+\_\+specs}} \& {\bfseries font\+\_\+size} (const float \&font\+\_\+size)
+\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_ad8dd95e1eab28a5de84cd2a23d6b1feb}{color\+\_\+text}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the color of the widget\textquotesingle{}s text. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_aca9f79f7f8b3162aad36442800c60c6c}\label{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_aca9f79f7f8b3162aad36442800c60c6c}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs}{tree\+\_\+view\+\_\+specs}} \& {\bfseries color\+\_\+text} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&color\+\_\+text)
+\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_a8de568a39cb9a16d75b9577038734eec}{color\+\_\+fill}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the fill color of the widget. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_a19445347647833b303d85cec3ec5b131}\label{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_a19445347647833b303d85cec3ec5b131}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs}{tree\+\_\+view\+\_\+specs}} \& {\bfseries color\+\_\+fill} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&color\+\_\+fill)
+\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_a573f3706a697c7e70570345f2a846924}{color\+\_\+hot}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the widget\textquotesingle{}s color when the mouse is hovered over it. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_a365cdbcdde7b16e87676a645926f9af7}\label{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_a365cdbcdde7b16e87676a645926f9af7}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs}{tree\+\_\+view\+\_\+specs}} \& {\bfseries color\+\_\+hot} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&color\+\_\+hot)
+\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_a356cbcb399388dac1160456401eb9a37}{color\+\_\+selected}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the widget\textquotesingle{}s color when selected. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_acf063272aabb7d56dfbb8a8adcab2c14}\label{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_acf063272aabb7d56dfbb8a8adcab2c14}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs}{tree\+\_\+view\+\_\+specs}} \& {\bfseries color\+\_\+selected} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&color\+\_\+selected)
+\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_ad344d22102500fa4a5f0728be5270032}{color\+\_\+disabled}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the widget\textquotesingle{}s color when it\textquotesingle{}s disabled. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_a0227c1e12d41ccf8157d67101ce51ddd}\label{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_a0227c1e12d41ccf8157d67101ce51ddd}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs}{tree\+\_\+view\+\_\+specs}} \& {\bfseries color\+\_\+disabled} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&color\+\_\+disabled)
+\item 
+float \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_a68a9e3f076578b165a6007d4253c9fb7}{border}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the thickness of the border. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs}{tree\+\_\+view\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_ac86b6e49fcd2ff67be4f028bd28d1ad7}{border}} (const float \&border)
+\begin{DoxyCompactList}\small\item\em Set the thickness of the border. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_a60dcfeb5a2c94d40761f7a5fe0ce7829}{color\+\_\+border}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the color of the border. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs}{tree\+\_\+view\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_a18c4d4cb9616035339c5f897629b0bb3}{color\+\_\+border}} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&color\+\_\+border)
+\begin{DoxyCompactList}\small\item\em Set the color of the border. \end{DoxyCompactList}\item 
+float \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_a6efebfcbabb7a995cecb6b95d11c7c3c}{corner\+\_\+radius\+\_\+x}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the horizontal radius of the corners. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs}{tree\+\_\+view\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_aad0704ae5b2d791208c38ca6694ef647}{corner\+\_\+radius\+\_\+x}} (const float \&corner\+\_\+radius\+\_\+x)
+\begin{DoxyCompactList}\small\item\em Set the horizontal radius of the corners. \end{DoxyCompactList}\item 
+float \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_a6c0776f233014ff5237b5c0ade05427c}{corner\+\_\+radius\+\_\+y}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the vertical radius of the corners. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs}{tree\+\_\+view\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_a4a7135499743c66ff4e64c85624ea1c3}{corner\+\_\+radius\+\_\+y}} (const float \&corner\+\_\+radius\+\_\+y)
+\begin{DoxyCompactList}\small\item\em Set the vertical radius of the corners. \end{DoxyCompactList}\item 
+std\+::map$<$ std\+::string, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_1_1node}{node}} $>$ \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_a16c59b75d99496ac48a9cbca75db927f}{root}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the root of the tree. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs}{tree\+\_\+view\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_ae48c720cc23ea56b12e7b17ab46798db}{root}} (const std\+::map$<$ std\+::string, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_1_1node}{node}} $>$ \&root)
+\begin{DoxyCompactList}\small\item\em Set the root of the tree. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_1_1node}{node}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_a4d4ff134a2824758de888bea7268721c}{insert\+\_\+node}} (std\+::map$<$ std\+::string, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_1_1node}{node}} $>$ \&\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_a16c59b75d99496ac48a9cbca75db927f}{root}}, std\+::string name)
+\begin{DoxyCompactList}\small\item\em Helper for inserting a node. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+Tree view widget specifications. 
+
+Default size is 200x200px.
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_a68a9e3f076578b165a6007d4253c9fb7}\label{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_a68a9e3f076578b165a6007d4253c9fb7}} 
+\index{liblec::lecui::widgets::tree\_view\_specs@{liblec::lecui::widgets::tree\_view\_specs}!border@{border}}
+\index{border@{border}!liblec::lecui::widgets::tree\_view\_specs@{liblec::lecui::widgets::tree\_view\_specs}}
+\doxysubsubsection{\texorpdfstring{border()}{border()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily float\& liblec\+::lecui\+::widgets\+::tree\+\_\+view\+\_\+specs\+::border (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get or set the thickness of the border. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the border thickness, in pixels.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_ac86b6e49fcd2ff67be4f028bd28d1ad7}\label{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_ac86b6e49fcd2ff67be4f028bd28d1ad7}} 
+\index{liblec::lecui::widgets::tree\_view\_specs@{liblec::lecui::widgets::tree\_view\_specs}!border@{border}}
+\index{border@{border}!liblec::lecui::widgets::tree\_view\_specs@{liblec::lecui::widgets::tree\_view\_specs}}
+\doxysubsubsection{\texorpdfstring{border()}{border()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs}{tree\+\_\+view\+\_\+specs}}\& liblec\+::lecui\+::widgets\+::tree\+\_\+view\+\_\+specs\+::border (\begin{DoxyParamCaption}\item[{const float \&}]{border }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the thickness of the border. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em border} & The border thickness, in pixels.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_a60dcfeb5a2c94d40761f7a5fe0ce7829}\label{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_a60dcfeb5a2c94d40761f7a5fe0ce7829}} 
+\index{liblec::lecui::widgets::tree\_view\_specs@{liblec::lecui::widgets::tree\_view\_specs}!color\_border@{color\_border}}
+\index{color\_border@{color\_border}!liblec::lecui::widgets::tree\_view\_specs@{liblec::lecui::widgets::tree\_view\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_border()}{color\_border()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::widgets\+::tree\+\_\+view\+\_\+specs\+::color\+\_\+border (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get or set the color of the border. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the border color, as defined in \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_a18c4d4cb9616035339c5f897629b0bb3}\label{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_a18c4d4cb9616035339c5f897629b0bb3}} 
+\index{liblec::lecui::widgets::tree\_view\_specs@{liblec::lecui::widgets::tree\_view\_specs}!color\_border@{color\_border}}
+\index{color\_border@{color\_border}!liblec::lecui::widgets::tree\_view\_specs@{liblec::lecui::widgets::tree\_view\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_border()}{color\_border()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs}{tree\+\_\+view\+\_\+specs}}\& liblec\+::lecui\+::widgets\+::tree\+\_\+view\+\_\+specs\+::color\+\_\+border (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&}]{color\+\_\+border }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the color of the border. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em color\+\_\+border} & The border color, as defined in \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_ad344d22102500fa4a5f0728be5270032}\label{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_ad344d22102500fa4a5f0728be5270032}} 
+\index{liblec::lecui::widgets::tree\_view\_specs@{liblec::lecui::widgets::tree\_view\_specs}!color\_disabled@{color\_disabled}}
+\index{color\_disabled@{color\_disabled}!liblec::lecui::widgets::tree\_view\_specs@{liblec::lecui::widgets::tree\_view\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_disabled()}{color\_disabled()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::widgets\+::tree\+\_\+view\+\_\+specs\+::color\+\_\+disabled (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the widget\textquotesingle{}s color when it\textquotesingle{}s disabled. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget\textquotesingle{}s color when disabled.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a063ce5777dcabe002f5ea88e15e39560}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_a8de568a39cb9a16d75b9577038734eec}\label{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_a8de568a39cb9a16d75b9577038734eec}} 
+\index{liblec::lecui::widgets::tree\_view\_specs@{liblec::lecui::widgets::tree\_view\_specs}!color\_fill@{color\_fill}}
+\index{color\_fill@{color\_fill}!liblec::lecui::widgets::tree\_view\_specs@{liblec::lecui::widgets::tree\_view\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_fill()}{color\_fill()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::widgets\+::tree\+\_\+view\+\_\+specs\+::color\+\_\+fill (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the fill color of the widget. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget\textquotesingle{}s fill color.
+\end{DoxyReturn}
+
+
+The use of the fill color varies from widget to widget. Refer to the specific widget\textquotesingle{}s documentation for details.
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_ab99407e83123ee1dd285f985dbb20747}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_a573f3706a697c7e70570345f2a846924}\label{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_a573f3706a697c7e70570345f2a846924}} 
+\index{liblec::lecui::widgets::tree\_view\_specs@{liblec::lecui::widgets::tree\_view\_specs}!color\_hot@{color\_hot}}
+\index{color\_hot@{color\_hot}!liblec::lecui::widgets::tree\_view\_specs@{liblec::lecui::widgets::tree\_view\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_hot()}{color\_hot()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::widgets\+::tree\+\_\+view\+\_\+specs\+::color\+\_\+hot (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the widget\textquotesingle{}s color when the mouse is hovered over it. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget\textquotesingle{}s hover color.
+\end{DoxyReturn}
+
+
+The use of the hover color varies from widget to widget. Refer to the specific widget\textquotesingle{}s documentation for details.
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a1fe7b1fe9f05604c6ab54696a1dc3d04}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_a356cbcb399388dac1160456401eb9a37}\label{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_a356cbcb399388dac1160456401eb9a37}} 
+\index{liblec::lecui::widgets::tree\_view\_specs@{liblec::lecui::widgets::tree\_view\_specs}!color\_selected@{color\_selected}}
+\index{color\_selected@{color\_selected}!liblec::lecui::widgets::tree\_view\_specs@{liblec::lecui::widgets::tree\_view\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_selected()}{color\_selected()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::widgets\+::tree\+\_\+view\+\_\+specs\+::color\+\_\+selected (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the widget\textquotesingle{}s color when selected. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget\textquotesingle{}s color when selected.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a53482bdf42a5e33ab53f87ce097e4837}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_ad8dd95e1eab28a5de84cd2a23d6b1feb}\label{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_ad8dd95e1eab28a5de84cd2a23d6b1feb}} 
+\index{liblec::lecui::widgets::tree\_view\_specs@{liblec::lecui::widgets::tree\_view\_specs}!color\_text@{color\_text}}
+\index{color\_text@{color\_text}!liblec::lecui::widgets::tree\_view\_specs@{liblec::lecui::widgets::tree\_view\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_text()}{color\_text()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::widgets\+::tree\+\_\+view\+\_\+specs\+::color\+\_\+text (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the color of the widget\textquotesingle{}s text. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget\textquotesingle{}s text color.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a8b272a6842d03791c3da0f04a69ad128}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_a6efebfcbabb7a995cecb6b95d11c7c3c}\label{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_a6efebfcbabb7a995cecb6b95d11c7c3c}} 
+\index{liblec::lecui::widgets::tree\_view\_specs@{liblec::lecui::widgets::tree\_view\_specs}!corner\_radius\_x@{corner\_radius\_x}}
+\index{corner\_radius\_x@{corner\_radius\_x}!liblec::lecui::widgets::tree\_view\_specs@{liblec::lecui::widgets::tree\_view\_specs}}
+\doxysubsubsection{\texorpdfstring{corner\_radius\_x()}{corner\_radius\_x()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily float\& liblec\+::lecui\+::widgets\+::tree\+\_\+view\+\_\+specs\+::corner\+\_\+radius\+\_\+x (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get or set the horizontal radius of the corners. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the radius, in pixels.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_aad0704ae5b2d791208c38ca6694ef647}\label{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_aad0704ae5b2d791208c38ca6694ef647}} 
+\index{liblec::lecui::widgets::tree\_view\_specs@{liblec::lecui::widgets::tree\_view\_specs}!corner\_radius\_x@{corner\_radius\_x}}
+\index{corner\_radius\_x@{corner\_radius\_x}!liblec::lecui::widgets::tree\_view\_specs@{liblec::lecui::widgets::tree\_view\_specs}}
+\doxysubsubsection{\texorpdfstring{corner\_radius\_x()}{corner\_radius\_x()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs}{tree\+\_\+view\+\_\+specs}}\& liblec\+::lecui\+::widgets\+::tree\+\_\+view\+\_\+specs\+::corner\+\_\+radius\+\_\+x (\begin{DoxyParamCaption}\item[{const float \&}]{corner\+\_\+radius\+\_\+x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the horizontal radius of the corners. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em corner\+\_\+radius\+\_\+x} & The horizontal radius of the corner, in pixels.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_a6c0776f233014ff5237b5c0ade05427c}\label{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_a6c0776f233014ff5237b5c0ade05427c}} 
+\index{liblec::lecui::widgets::tree\_view\_specs@{liblec::lecui::widgets::tree\_view\_specs}!corner\_radius\_y@{corner\_radius\_y}}
+\index{corner\_radius\_y@{corner\_radius\_y}!liblec::lecui::widgets::tree\_view\_specs@{liblec::lecui::widgets::tree\_view\_specs}}
+\doxysubsubsection{\texorpdfstring{corner\_radius\_y()}{corner\_radius\_y()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily float\& liblec\+::lecui\+::widgets\+::tree\+\_\+view\+\_\+specs\+::corner\+\_\+radius\+\_\+y (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get or set the vertical radius of the corners. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the radius, in pixels.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_a4a7135499743c66ff4e64c85624ea1c3}\label{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_a4a7135499743c66ff4e64c85624ea1c3}} 
+\index{liblec::lecui::widgets::tree\_view\_specs@{liblec::lecui::widgets::tree\_view\_specs}!corner\_radius\_y@{corner\_radius\_y}}
+\index{corner\_radius\_y@{corner\_radius\_y}!liblec::lecui::widgets::tree\_view\_specs@{liblec::lecui::widgets::tree\_view\_specs}}
+\doxysubsubsection{\texorpdfstring{corner\_radius\_y()}{corner\_radius\_y()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs}{tree\+\_\+view\+\_\+specs}}\& liblec\+::lecui\+::widgets\+::tree\+\_\+view\+\_\+specs\+::corner\+\_\+radius\+\_\+y (\begin{DoxyParamCaption}\item[{const float \&}]{corner\+\_\+radius\+\_\+y }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the vertical radius of the corners. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em corner\+\_\+radius\+\_\+y} & The horizontal radius of the corner, in pixels.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_a3f56501978d7a558d6917580275db9b2}\label{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_a3f56501978d7a558d6917580275db9b2}} 
+\index{liblec::lecui::widgets::tree\_view\_specs@{liblec::lecui::widgets::tree\_view\_specs}!cursor@{cursor}}
+\index{cursor@{cursor}!liblec::lecui::widgets::tree\_view\_specs@{liblec::lecui::widgets::tree\_view\_specs}}
+\doxysubsubsection{\texorpdfstring{cursor()}{cursor()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a3cba4c05a958d80dca72e4e9dd5360b1}{cursor\+\_\+type}}\& liblec\+::lecui\+::widgets\+::tree\+\_\+view\+\_\+specs\+::cursor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the mouse cursor to use then over the widget. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the cursor type as defined in \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a3cba4c05a958d80dca72e4e9dd5360b1}{cursor\+\_\+type}}.
+\end{DoxyReturn}
+
+
+This is only used if the widget is non-\/static.
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a28e525ebd75d587b17592dba23f24081}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_ae36addb74beacb219006b089dda47f9c}\label{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_ae36addb74beacb219006b089dda47f9c}} 
+\index{liblec::lecui::widgets::tree\_view\_specs@{liblec::lecui::widgets::tree\_view\_specs}!font@{font}}
+\index{font@{font}!liblec::lecui::widgets::tree\_view\_specs@{liblec::lecui::widgets::tree\_view\_specs}}
+\doxysubsubsection{\texorpdfstring{font()}{font()}}
+{\footnotesize\ttfamily std\+::string\& liblec\+::lecui\+::widgets\+::tree\+\_\+view\+\_\+specs\+::font (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the default widget font, e.\+g. \char`\"{}\+Georgia\char`\"{}. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget\textquotesingle{}s font name.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a5f42f2960de76e860d4b55e0e376f42a}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_adb87c2aae0097611a07b0aedb89b2bdc}\label{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_adb87c2aae0097611a07b0aedb89b2bdc}} 
+\index{liblec::lecui::widgets::tree\_view\_specs@{liblec::lecui::widgets::tree\_view\_specs}!font\_size@{font\_size}}
+\index{font\_size@{font\_size}!liblec::lecui::widgets::tree\_view\_specs@{liblec::lecui::widgets::tree\_view\_specs}}
+\doxysubsubsection{\texorpdfstring{font\_size()}{font\_size()}}
+{\footnotesize\ttfamily float\& liblec\+::lecui\+::widgets\+::tree\+\_\+view\+\_\+specs\+::font\+\_\+size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the default widget font size in points, e.\+g. 9.\+0. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget\textquotesingle{}s font size.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a540bfa7642033966614ccfda7ecf1f25}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_a4d4ff134a2824758de888bea7268721c}\label{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_a4d4ff134a2824758de888bea7268721c}} 
+\index{liblec::lecui::widgets::tree\_view\_specs@{liblec::lecui::widgets::tree\_view\_specs}!insert\_node@{insert\_node}}
+\index{insert\_node@{insert\_node}!liblec::lecui::widgets::tree\_view\_specs@{liblec::lecui::widgets::tree\_view\_specs}}
+\doxysubsubsection{\texorpdfstring{insert\_node()}{insert\_node()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_1_1node}{node}}\& liblec\+::lecui\+::widgets\+::tree\+\_\+view\+\_\+specs\+::insert\+\_\+node (\begin{DoxyParamCaption}\item[{std\+::map$<$ std\+::string, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_1_1node}{node}} $>$ \&}]{root,  }\item[{std\+::string}]{name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Helper for inserting a node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & A reference to the root.\\
+\hline
+{\em name} & The name of the node being added.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the node that\textquotesingle{}s been added.
+\end{DoxyReturn}
+
+
+Throws on failure.\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_a93eb0595bb710dc7322f7b3057f56bac}\label{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_a93eb0595bb710dc7322f7b3057f56bac}} 
+\index{liblec::lecui::widgets::tree\_view\_specs@{liblec::lecui::widgets::tree\_view\_specs}!on\_resize@{on\_resize}}
+\index{on\_resize@{on\_resize}!liblec::lecui::widgets::tree\_view\_specs@{liblec::lecui::widgets::tree\_view\_specs}}
+\doxysubsubsection{\texorpdfstring{on\_resize()}{on\_resize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1specs_1_1resize__params}{resize\+\_\+params}}\& liblec\+::lecui\+::widgets\+::tree\+\_\+view\+\_\+specs\+::on\+\_\+resize (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the behaviour of the widget when its container is resized. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the resize parameters as defined in \mbox{\hyperlink{}{resize\+\_\+params}}.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a3f6021dcec6d7b6d846911956a6bff32}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_adfa0cd2bd428c28b829e66b1140a6e3d}\label{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_adfa0cd2bd428c28b829e66b1140a6e3d}} 
+\index{liblec::lecui::widgets::tree\_view\_specs@{liblec::lecui::widgets::tree\_view\_specs}!rect@{rect}}
+\index{rect@{rect}!liblec::lecui::widgets::tree\_view\_specs@{liblec::lecui::widgets::tree\_view\_specs}}
+\doxysubsubsection{\texorpdfstring{rect()}{rect()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{lecui\+::rect}}\& liblec\+::lecui\+::widgets\+::tree\+\_\+view\+\_\+specs\+::rect (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the position and dimensions of the widget. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget rectangle.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a0d6cc5c9ed9591f2e8b306a18224f4d7}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_a16c59b75d99496ac48a9cbca75db927f}\label{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_a16c59b75d99496ac48a9cbca75db927f}} 
+\index{liblec::lecui::widgets::tree\_view\_specs@{liblec::lecui::widgets::tree\_view\_specs}!root@{root}}
+\index{root@{root}!liblec::lecui::widgets::tree\_view\_specs@{liblec::lecui::widgets::tree\_view\_specs}}
+\doxysubsubsection{\texorpdfstring{root()}{root()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily std\+::map$<$std\+::string, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_1_1node}{node}}$>$\& liblec\+::lecui\+::widgets\+::tree\+\_\+view\+\_\+specs\+::root (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get or set the root of the tree. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the root.
+\end{DoxyReturn}
+
+
+The entire tree is built recursively on this root.\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_ae48c720cc23ea56b12e7b17ab46798db}\label{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_ae48c720cc23ea56b12e7b17ab46798db}} 
+\index{liblec::lecui::widgets::tree\_view\_specs@{liblec::lecui::widgets::tree\_view\_specs}!root@{root}}
+\index{root@{root}!liblec::lecui::widgets::tree\_view\_specs@{liblec::lecui::widgets::tree\_view\_specs}}
+\doxysubsubsection{\texorpdfstring{root()}{root()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs}{tree\+\_\+view\+\_\+specs}}\& liblec\+::lecui\+::widgets\+::tree\+\_\+view\+\_\+specs\+::root (\begin{DoxyParamCaption}\item[{const std\+::map$<$ std\+::string, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_1_1node}{node}} $>$ \&}]{root }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the root of the tree. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em root} & The root.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_a0f83b1f8f2be8e79252657d1b13c18d9}\label{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_a0f83b1f8f2be8e79252657d1b13c18d9}} 
+\index{liblec::lecui::widgets::tree\_view\_specs@{liblec::lecui::widgets::tree\_view\_specs}!text@{text}}
+\index{text@{text}!liblec::lecui::widgets::tree\_view\_specs@{liblec::lecui::widgets::tree\_view\_specs}}
+\doxysubsubsection{\texorpdfstring{text()}{text()}}
+{\footnotesize\ttfamily std\+::string\& liblec\+::lecui\+::widgets\+::tree\+\_\+view\+\_\+specs\+::text (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the widget text. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget text.
+\end{DoxyReturn}
+
+
+The use of the text varies from widget to widget. Some widgets don\textquotesingle{}t use this field.
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a76c5292d60d7c9a3ab6f26a9ef5fcbad}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_aae7308722a73b637283c4f5cf7c836c2}\label{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_aae7308722a73b637283c4f5cf7c836c2}} 
+\index{liblec::lecui::widgets::tree\_view\_specs@{liblec::lecui::widgets::tree\_view\_specs}!tooltip@{tooltip}}
+\index{tooltip@{tooltip}!liblec::lecui::widgets::tree\_view\_specs@{liblec::lecui::widgets::tree\_view\_specs}}
+\doxysubsubsection{\texorpdfstring{tooltip()}{tooltip()}}
+{\footnotesize\ttfamily std\+::string\& liblec\+::lecui\+::widgets\+::tree\+\_\+view\+\_\+specs\+::tooltip (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the widget\textquotesingle{}s tooltip text. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the tooltip text.
+\end{DoxyReturn}
+
+
+The tooltip text is displayed when the mouse is hovered over the widget.
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_af82deb362bbf2fafe975296722785b3a}{liblec\+::lecui\+::widgets\+::specs}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+widgets/tree\+\_\+view.\+h\item 
+widgets/tree\+\_\+view/tree\+\_\+view.\+cpp\end{DoxyCompactItemize}

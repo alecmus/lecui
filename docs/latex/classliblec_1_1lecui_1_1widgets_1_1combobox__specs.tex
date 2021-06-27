@@ -1,0 +1,886 @@
+\hypertarget{classliblec_1_1lecui_1_1widgets_1_1combobox__specs}{}\doxysection{liblec\+::lecui\+::widgets\+::combobox\+\_\+specs Class Reference}
+\label{classliblec_1_1lecui_1_1widgets_1_1combobox__specs}\index{liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}}
+
+
+Combobox widget specifications.  
+
+
+
+
+{\ttfamily \#include $<$combobox.\+h$>$}
+
+Inheritance diagram for liblec\+::lecui\+::widgets\+::combobox\+\_\+specs\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classliblec_1_1lecui_1_1widgets_1_1combobox__specs}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1combobox__specs_1_1combobox__events}{combobox\+\_\+events}}
+\begin{DoxyCompactList}\small\item\em Events specific to this widget. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1combobox__specs_1_1combobox__item}{combobox\+\_\+item}}
+\begin{DoxyCompactList}\small\item\em A combobox item. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a8b5ae88d8352a4c27aabbce96b797cff}\label{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a8b5ae88d8352a4c27aabbce96b797cff}} 
+\mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1combobox__specs_1_1combobox__events}{combobox\+\_\+events}} \& {\bfseries events} ()
+\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a38d5c7c2eaf7fe06e237e7fcc92491c9}\label{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a38d5c7c2eaf7fe06e237e7fcc92491c9}} 
+bool {\bfseries operator==} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs}{combobox\+\_\+specs}} \&)
+\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a52399f47962df0cfc32518fdf8a62cbf}\label{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a52399f47962df0cfc32518fdf8a62cbf}} 
+bool {\bfseries operator!=} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs}{combobox\+\_\+specs}} \&)
+\item 
+std\+::string \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a34cca7c9ae0488cdf89807542088b8e8}{text}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the widget text. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a658ad654be60a51a5d65e065dbd41719}\label{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a658ad654be60a51a5d65e065dbd41719}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs}{combobox\+\_\+specs}} \& {\bfseries text} (const std\+::string \&text)
+\item 
+std\+::string \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a4773539308fe2911d3d386cf25c7aa71}{tooltip}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the widget\textquotesingle{}s tooltip text. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_adf4859b9b4a25823ee40a6bb3899702d}\label{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_adf4859b9b4a25823ee40a6bb3899702d}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs}{combobox\+\_\+specs}} \& {\bfseries tooltip} (const std\+::string \&tooltip)
+\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{lecui\+::rect}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a7f8ac7b13817dc1cf56789fc99c37659}{rect}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the position and dimensions of the widget. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a970f7da897f345671a1282c6599c6c49}\label{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a970f7da897f345671a1282c6599c6c49}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs}{combobox\+\_\+specs}} \& {\bfseries rect} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{lecui\+::rect}} \&\mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{rect}})
+\item 
+\mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1specs_1_1resize__params}{resize\+\_\+params}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_ad6e9a22161c904cfec604f3bad146d05}{on\+\_\+resize}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the behaviour of the widget when its container is resized. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a92dfbda5406005675db63efbb69afc08}\label{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a92dfbda5406005675db63efbb69afc08}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs}{combobox\+\_\+specs}} \& {\bfseries on\+\_\+resize} (const \mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1specs_1_1resize__params}{resize\+\_\+params}} \&on\+\_\+resize)
+\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a3cba4c05a958d80dca72e4e9dd5360b1}{cursor\+\_\+type}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a1d73c64d5a188297197f19bd21309e6f}{cursor}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the mouse cursor to use then over the widget. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a91550ed3feb92181d2bf92d34139275a}\label{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a91550ed3feb92181d2bf92d34139275a}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs}{combobox\+\_\+specs}} \& {\bfseries cursor} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a3cba4c05a958d80dca72e4e9dd5360b1}{cursor\+\_\+type}} cursor)
+\item 
+std\+::string \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a76d118bff17e19d3c0173d7c3df68283}{font}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the default widget font, e.\+g. \char`\"{}\+Georgia\char`\"{}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a05eeb950952336df953381e54e598467}\label{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a05eeb950952336df953381e54e598467}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs}{combobox\+\_\+specs}} \& {\bfseries font} (const std\+::string \&\mbox{\hyperlink{classfont}{font}})
+\item 
+float \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_ad818ae218a246b41a7283ce8f5df3921}{font\+\_\+size}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the default widget font size in points, e.\+g. 9.\+0. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a30e67e214057f5dfc2f701c62771f750}\label{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a30e67e214057f5dfc2f701c62771f750}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs}{combobox\+\_\+specs}} \& {\bfseries font\+\_\+size} (const float \&font\+\_\+size)
+\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_aa9a52c4f5a153eabe0474c7f4712740d}{color\+\_\+text}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the color of the widget\textquotesingle{}s text. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a03229ca4d5581db76a6b4fbdfe9ffadc}\label{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a03229ca4d5581db76a6b4fbdfe9ffadc}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs}{combobox\+\_\+specs}} \& {\bfseries color\+\_\+text} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&color\+\_\+text)
+\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_ae6d2070284a9b9d2c941db02985e0f1a}{color\+\_\+fill}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the fill color of the widget. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a0330ac9565ca13a55e62df9d2bb48e0b}\label{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a0330ac9565ca13a55e62df9d2bb48e0b}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs}{combobox\+\_\+specs}} \& {\bfseries color\+\_\+fill} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&color\+\_\+fill)
+\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a450c19aa04e510afda4b2c7818e2ed9d}{color\+\_\+hot}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the widget\textquotesingle{}s color when the mouse is hovered over it. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_acfb4fb0d3d6bd3d715080d1e92bc02f2}\label{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_acfb4fb0d3d6bd3d715080d1e92bc02f2}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs}{combobox\+\_\+specs}} \& {\bfseries color\+\_\+hot} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&color\+\_\+hot)
+\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_adb8c35b345030d78603b943864059220}{color\+\_\+selected}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the widget\textquotesingle{}s color when selected. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a02c9eb4972c653414f694e5cfdbbcda3}\label{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a02c9eb4972c653414f694e5cfdbbcda3}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs}{combobox\+\_\+specs}} \& {\bfseries color\+\_\+selected} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&color\+\_\+selected)
+\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a56c91c369d719278ef66a9a250bb8bd5}{color\+\_\+disabled}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the widget\textquotesingle{}s color when it\textquotesingle{}s disabled. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a97e2f1febad9a2869bf5a80f314064d8}\label{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a97e2f1febad9a2869bf5a80f314064d8}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs}{combobox\+\_\+specs}} \& {\bfseries color\+\_\+disabled} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&color\+\_\+disabled)
+\item 
+float \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a63165d1413964276786f522322cfd994}{border}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the thickness of the border. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs}{combobox\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a121f097ee5179f92f742718b23fc2641}{border}} (const float \&border)
+\begin{DoxyCompactList}\small\item\em Set the thickness of the border. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a62dfb8501c7f3605563dd990b1f2f648}{color\+\_\+border}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the color of the border. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs}{combobox\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a3e07edd3a2f2bd3ffbb4c991f12fcb8e}{color\+\_\+border}} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&color\+\_\+border)
+\begin{DoxyCompactList}\small\item\em Set the color of the border. \end{DoxyCompactList}\item 
+float \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_adcc0309a36cac57ba7899236a9a11eba}{corner\+\_\+radius\+\_\+x}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the horizontal radius of the corners. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs}{combobox\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_acf87c1bd43f90872e3711540dda707e0}{corner\+\_\+radius\+\_\+x}} (const float \&corner\+\_\+radius\+\_\+x)
+\begin{DoxyCompactList}\small\item\em Set the horizontal radius of the corners. \end{DoxyCompactList}\item 
+float \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_aff97950f85bafb7972807302c72d3897}{corner\+\_\+radius\+\_\+y}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the vertical radius of the corners. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs}{combobox\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_afdc617352fdbe3a1faac88b84c430463}{corner\+\_\+radius\+\_\+y}} (const float \&corner\+\_\+radius\+\_\+y)
+\begin{DoxyCompactList}\small\item\em Set the vertical radius of the corners. \end{DoxyCompactList}\item 
+bool \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a14f78da50c1afa89375a0db05a190744}{editable}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the combobox editable property. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs}{combobox\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_ab2a3d66f40f1453f0169f091c1a2e009}{editable}} (const bool \&editable)
+\begin{DoxyCompactList}\small\item\em Set the combobox editable property. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a70ac73584c9eb368a074fc83c7d28de0}{color\+\_\+fill\+\_\+editable}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the fill color of an editable combobox. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs}{combobox\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a14aab7942313f3ebf5406531d5d86bf6}{color\+\_\+fill\+\_\+editable}} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&color\+\_\+fill\+\_\+editable)
+\begin{DoxyCompactList}\small\item\em Set the fill color of an editable combobox. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_ab4c24641c8ab7b27c083a7427062d108}{color\+\_\+caret}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the color of the caret. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs}{combobox\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_ad083dd29e8e47fc27a31a4ef8032ddd8}{color\+\_\+caret}} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&color\+\_\+caret)
+\begin{DoxyCompactList}\small\item\em Set the color of the caret. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_ad9ac26323a5a28c516b627f780d95897}{color\+\_\+dropdown}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the color of the dropdown. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs}{combobox\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a8cf21f584c845dba6e55e25da36f9680}{color\+\_\+dropdown}} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&color\+\_\+dropdown)
+\begin{DoxyCompactList}\small\item\em Set the color of the dropdown. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_ae7bc516df1e7ddac83c63c4ae8eca32a}{color\+\_\+dropdown\+\_\+hot}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the color of the dropdown when the mouse is hovered over it. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs}{combobox\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a1b24523710dfad87c7a727d6a47b38ca}{color\+\_\+dropdown\+\_\+hot}} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&color\+\_\+dropdown\+\_\+hot)
+\begin{DoxyCompactList}\small\item\em Set the color of the dropdown when the mouse is hovered over it. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_aa5f3accae84452eeaebb89cb535c3555}{color\+\_\+dropdown\+\_\+arrow}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the color of the dropdown arrow. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs}{combobox\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a35fa85061ae2eabf655bd2c7b63c35d8}{color\+\_\+dropdown\+\_\+arrow}} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&color\+\_\+dropdown\+\_\+arrow)
+\begin{DoxyCompactList}\small\item\em Set the color of the dropdown arrow. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_ac6bb9eb61a5b54fa0fe57569601e8c75}{color\+\_\+dropdown\+\_\+arrow\+\_\+hot}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the color of the dropdown arrow when the mouse is hovered over it. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs}{combobox\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a72765c41f44fddb6f72ba0bc8aba48eb}{color\+\_\+dropdown\+\_\+arrow\+\_\+hot}} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&color\+\_\+dropdown\+\_\+arrow\+\_\+hot)
+\begin{DoxyCompactList}\small\item\em Set the color of the dropdown arrow when the mouse is hovered over it. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1combobox__specs_1_1combobox__item}{combobox\+\_\+item}} $>$ \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a6cca0e47a14269530bb54a80c2af1d9b}{items}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the list of combobox items. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs}{combobox\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a39cdc5ce7aeb6c0aba899b81b141ba12}{items}} (const std\+::vector$<$ \mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1combobox__specs_1_1combobox__item}{combobox\+\_\+item}} $>$ \&items)
+\begin{DoxyCompactList}\small\item\em Set the list of combobox items. \end{DoxyCompactList}\item 
+image\+\_\+quality \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_aa99dbad566469afb04a3a272363e943c}{quality}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the quality of the images. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs}{combobox\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a3d0bddb35e39b416419e50ef32ad410a}{quality}} (const image\+\_\+quality \&quality)
+\begin{DoxyCompactList}\small\item\em Set the quality of the images. \end{DoxyCompactList}\item 
+sort\+\_\+options \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a44700fe3b6e110dfe19a916436ac1754}{sort}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the sort options. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs}{combobox\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_aa0e5c5846df3f2613bdbeed02c9b7b68}{sort}} (const sort\+\_\+options \&sort)
+\begin{DoxyCompactList}\small\item\em Set the sort options. \end{DoxyCompactList}\item 
+bool \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a84e63edb4083daa56c8d3156d700e02b}{force\+\_\+numerical\+\_\+sort}} ()
+\begin{DoxyCompactList}\small\item\em Get or set whether numerical sorting is forced. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs}{combobox\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_ab9500e8f88a74d702a058b832fc1bd38}{force\+\_\+numerical\+\_\+sort}} (const bool \&force\+\_\+numerical\+\_\+sort)
+\begin{DoxyCompactList}\small\item\em Set whether numerical sorting is forced. \end{DoxyCompactList}\item 
+std\+::string \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_ad716e906376b869fa1e2c15267b0ca07}{selected}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the selected item. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs}{combobox\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_aabd98b937e5ed4708ffebad880756293}{selected}} (const std\+::string \&selected)
+\begin{DoxyCompactList}\small\item\em Set the selected item. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+Combobox widget specifications. 
+
+Recommended height with defaults is 25px
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a63165d1413964276786f522322cfd994}\label{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a63165d1413964276786f522322cfd994}} 
+\index{liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}!border@{border}}
+\index{border@{border}!liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}}
+\doxysubsubsection{\texorpdfstring{border()}{border()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily float\& liblec\+::lecui\+::widgets\+::combobox\+\_\+specs\+::border (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get or set the thickness of the border. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the border thickness, in pixels.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a121f097ee5179f92f742718b23fc2641}\label{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a121f097ee5179f92f742718b23fc2641}} 
+\index{liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}!border@{border}}
+\index{border@{border}!liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}}
+\doxysubsubsection{\texorpdfstring{border()}{border()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs}{combobox\+\_\+specs}}\& liblec\+::lecui\+::widgets\+::combobox\+\_\+specs\+::border (\begin{DoxyParamCaption}\item[{const float \&}]{border }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the thickness of the border. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em border} & The border thickness, in pixels.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a62dfb8501c7f3605563dd990b1f2f648}\label{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a62dfb8501c7f3605563dd990b1f2f648}} 
+\index{liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}!color\_border@{color\_border}}
+\index{color\_border@{color\_border}!liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_border()}{color\_border()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::widgets\+::combobox\+\_\+specs\+::color\+\_\+border (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get or set the color of the border. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the border color, as defined in \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a3e07edd3a2f2bd3ffbb4c991f12fcb8e}\label{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a3e07edd3a2f2bd3ffbb4c991f12fcb8e}} 
+\index{liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}!color\_border@{color\_border}}
+\index{color\_border@{color\_border}!liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_border()}{color\_border()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs}{combobox\+\_\+specs}}\& liblec\+::lecui\+::widgets\+::combobox\+\_\+specs\+::color\+\_\+border (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&}]{color\+\_\+border }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the color of the border. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em color\+\_\+border} & The border color, as defined in \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_ab4c24641c8ab7b27c083a7427062d108}\label{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_ab4c24641c8ab7b27c083a7427062d108}} 
+\index{liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}!color\_caret@{color\_caret}}
+\index{color\_caret@{color\_caret}!liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_caret()}{color\_caret()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::widgets\+::combobox\+\_\+specs\+::color\+\_\+caret (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get or set the color of the caret. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the caret color.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_ad083dd29e8e47fc27a31a4ef8032ddd8}\label{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_ad083dd29e8e47fc27a31a4ef8032ddd8}} 
+\index{liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}!color\_caret@{color\_caret}}
+\index{color\_caret@{color\_caret}!liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_caret()}{color\_caret()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs}{combobox\+\_\+specs}}\& liblec\+::lecui\+::widgets\+::combobox\+\_\+specs\+::color\+\_\+caret (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&}]{color\+\_\+caret }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the color of the caret. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em color\+\_\+caret} & The color of the caret.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a56c91c369d719278ef66a9a250bb8bd5}\label{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a56c91c369d719278ef66a9a250bb8bd5}} 
+\index{liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}!color\_disabled@{color\_disabled}}
+\index{color\_disabled@{color\_disabled}!liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_disabled()}{color\_disabled()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::widgets\+::combobox\+\_\+specs\+::color\+\_\+disabled (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the widget\textquotesingle{}s color when it\textquotesingle{}s disabled. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget\textquotesingle{}s color when disabled.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a063ce5777dcabe002f5ea88e15e39560}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_ad9ac26323a5a28c516b627f780d95897}\label{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_ad9ac26323a5a28c516b627f780d95897}} 
+\index{liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}!color\_dropdown@{color\_dropdown}}
+\index{color\_dropdown@{color\_dropdown}!liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_dropdown()}{color\_dropdown()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::widgets\+::combobox\+\_\+specs\+::color\+\_\+dropdown (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get or set the color of the dropdown. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the color.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a8cf21f584c845dba6e55e25da36f9680}\label{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a8cf21f584c845dba6e55e25da36f9680}} 
+\index{liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}!color\_dropdown@{color\_dropdown}}
+\index{color\_dropdown@{color\_dropdown}!liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_dropdown()}{color\_dropdown()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs}{combobox\+\_\+specs}}\& liblec\+::lecui\+::widgets\+::combobox\+\_\+specs\+::color\+\_\+dropdown (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&}]{color\+\_\+dropdown }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the color of the dropdown. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em color\+\_\+dropdown} & The color of the dropdown.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_aa5f3accae84452eeaebb89cb535c3555}\label{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_aa5f3accae84452eeaebb89cb535c3555}} 
+\index{liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}!color\_dropdown\_arrow@{color\_dropdown\_arrow}}
+\index{color\_dropdown\_arrow@{color\_dropdown\_arrow}!liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_dropdown\_arrow()}{color\_dropdown\_arrow()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::widgets\+::combobox\+\_\+specs\+::color\+\_\+dropdown\+\_\+arrow (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get or set the color of the dropdown arrow. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the color.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a35fa85061ae2eabf655bd2c7b63c35d8}\label{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a35fa85061ae2eabf655bd2c7b63c35d8}} 
+\index{liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}!color\_dropdown\_arrow@{color\_dropdown\_arrow}}
+\index{color\_dropdown\_arrow@{color\_dropdown\_arrow}!liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_dropdown\_arrow()}{color\_dropdown\_arrow()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs}{combobox\+\_\+specs}}\& liblec\+::lecui\+::widgets\+::combobox\+\_\+specs\+::color\+\_\+dropdown\+\_\+arrow (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&}]{color\+\_\+dropdown\+\_\+arrow }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the color of the dropdown arrow. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em color\+\_\+dropdown\+\_\+arrow} & The color.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_ac6bb9eb61a5b54fa0fe57569601e8c75}\label{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_ac6bb9eb61a5b54fa0fe57569601e8c75}} 
+\index{liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}!color\_dropdown\_arrow\_hot@{color\_dropdown\_arrow\_hot}}
+\index{color\_dropdown\_arrow\_hot@{color\_dropdown\_arrow\_hot}!liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_dropdown\_arrow\_hot()}{color\_dropdown\_arrow\_hot()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::widgets\+::combobox\+\_\+specs\+::color\+\_\+dropdown\+\_\+arrow\+\_\+hot (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get or set the color of the dropdown arrow when the mouse is hovered over it. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the color.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a72765c41f44fddb6f72ba0bc8aba48eb}\label{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a72765c41f44fddb6f72ba0bc8aba48eb}} 
+\index{liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}!color\_dropdown\_arrow\_hot@{color\_dropdown\_arrow\_hot}}
+\index{color\_dropdown\_arrow\_hot@{color\_dropdown\_arrow\_hot}!liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_dropdown\_arrow\_hot()}{color\_dropdown\_arrow\_hot()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs}{combobox\+\_\+specs}}\& liblec\+::lecui\+::widgets\+::combobox\+\_\+specs\+::color\+\_\+dropdown\+\_\+arrow\+\_\+hot (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&}]{color\+\_\+dropdown\+\_\+arrow\+\_\+hot }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the color of the dropdown arrow when the mouse is hovered over it. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em color\+\_\+dropdown\+\_\+arrow\+\_\+hot} & The color.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_ae7bc516df1e7ddac83c63c4ae8eca32a}\label{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_ae7bc516df1e7ddac83c63c4ae8eca32a}} 
+\index{liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}!color\_dropdown\_hot@{color\_dropdown\_hot}}
+\index{color\_dropdown\_hot@{color\_dropdown\_hot}!liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_dropdown\_hot()}{color\_dropdown\_hot()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::widgets\+::combobox\+\_\+specs\+::color\+\_\+dropdown\+\_\+hot (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get or set the color of the dropdown when the mouse is hovered over it. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the color.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a1b24523710dfad87c7a727d6a47b38ca}\label{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a1b24523710dfad87c7a727d6a47b38ca}} 
+\index{liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}!color\_dropdown\_hot@{color\_dropdown\_hot}}
+\index{color\_dropdown\_hot@{color\_dropdown\_hot}!liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_dropdown\_hot()}{color\_dropdown\_hot()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs}{combobox\+\_\+specs}}\& liblec\+::lecui\+::widgets\+::combobox\+\_\+specs\+::color\+\_\+dropdown\+\_\+hot (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&}]{color\+\_\+dropdown\+\_\+hot }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the color of the dropdown when the mouse is hovered over it. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em color\+\_\+dropdown\+\_\+hot} & The color.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_ae6d2070284a9b9d2c941db02985e0f1a}\label{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_ae6d2070284a9b9d2c941db02985e0f1a}} 
+\index{liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}!color\_fill@{color\_fill}}
+\index{color\_fill@{color\_fill}!liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_fill()}{color\_fill()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::widgets\+::combobox\+\_\+specs\+::color\+\_\+fill (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the fill color of the widget. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget\textquotesingle{}s fill color.
+\end{DoxyReturn}
+
+
+The use of the fill color varies from widget to widget. Refer to the specific widget\textquotesingle{}s documentation for details.
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_ab99407e83123ee1dd285f985dbb20747}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a70ac73584c9eb368a074fc83c7d28de0}\label{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a70ac73584c9eb368a074fc83c7d28de0}} 
+\index{liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}!color\_fill\_editable@{color\_fill\_editable}}
+\index{color\_fill\_editable@{color\_fill\_editable}!liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_fill\_editable()}{color\_fill\_editable()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::widgets\+::combobox\+\_\+specs\+::color\+\_\+fill\+\_\+editable (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get or set the fill color of an editable combobox. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the color.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a14aab7942313f3ebf5406531d5d86bf6}\label{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a14aab7942313f3ebf5406531d5d86bf6}} 
+\index{liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}!color\_fill\_editable@{color\_fill\_editable}}
+\index{color\_fill\_editable@{color\_fill\_editable}!liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_fill\_editable()}{color\_fill\_editable()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs}{combobox\+\_\+specs}}\& liblec\+::lecui\+::widgets\+::combobox\+\_\+specs\+::color\+\_\+fill\+\_\+editable (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&}]{color\+\_\+fill\+\_\+editable }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the fill color of an editable combobox. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a450c19aa04e510afda4b2c7818e2ed9d}\label{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a450c19aa04e510afda4b2c7818e2ed9d}} 
+\index{liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}!color\_hot@{color\_hot}}
+\index{color\_hot@{color\_hot}!liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_hot()}{color\_hot()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::widgets\+::combobox\+\_\+specs\+::color\+\_\+hot (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the widget\textquotesingle{}s color when the mouse is hovered over it. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget\textquotesingle{}s hover color.
+\end{DoxyReturn}
+
+
+The use of the hover color varies from widget to widget. Refer to the specific widget\textquotesingle{}s documentation for details.
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a1fe7b1fe9f05604c6ab54696a1dc3d04}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_adb8c35b345030d78603b943864059220}\label{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_adb8c35b345030d78603b943864059220}} 
+\index{liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}!color\_selected@{color\_selected}}
+\index{color\_selected@{color\_selected}!liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_selected()}{color\_selected()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::widgets\+::combobox\+\_\+specs\+::color\+\_\+selected (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the widget\textquotesingle{}s color when selected. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget\textquotesingle{}s color when selected.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a53482bdf42a5e33ab53f87ce097e4837}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_aa9a52c4f5a153eabe0474c7f4712740d}\label{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_aa9a52c4f5a153eabe0474c7f4712740d}} 
+\index{liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}!color\_text@{color\_text}}
+\index{color\_text@{color\_text}!liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_text()}{color\_text()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::widgets\+::combobox\+\_\+specs\+::color\+\_\+text (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the color of the widget\textquotesingle{}s text. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget\textquotesingle{}s text color.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a8b272a6842d03791c3da0f04a69ad128}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_adcc0309a36cac57ba7899236a9a11eba}\label{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_adcc0309a36cac57ba7899236a9a11eba}} 
+\index{liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}!corner\_radius\_x@{corner\_radius\_x}}
+\index{corner\_radius\_x@{corner\_radius\_x}!liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}}
+\doxysubsubsection{\texorpdfstring{corner\_radius\_x()}{corner\_radius\_x()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily float\& liblec\+::lecui\+::widgets\+::combobox\+\_\+specs\+::corner\+\_\+radius\+\_\+x (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get or set the horizontal radius of the corners. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the radius, in pixels.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_acf87c1bd43f90872e3711540dda707e0}\label{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_acf87c1bd43f90872e3711540dda707e0}} 
+\index{liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}!corner\_radius\_x@{corner\_radius\_x}}
+\index{corner\_radius\_x@{corner\_radius\_x}!liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}}
+\doxysubsubsection{\texorpdfstring{corner\_radius\_x()}{corner\_radius\_x()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs}{combobox\+\_\+specs}}\& liblec\+::lecui\+::widgets\+::combobox\+\_\+specs\+::corner\+\_\+radius\+\_\+x (\begin{DoxyParamCaption}\item[{const float \&}]{corner\+\_\+radius\+\_\+x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the horizontal radius of the corners. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em corner\+\_\+radius\+\_\+x} & The horizontal radius of the corner, in pixels.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_aff97950f85bafb7972807302c72d3897}\label{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_aff97950f85bafb7972807302c72d3897}} 
+\index{liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}!corner\_radius\_y@{corner\_radius\_y}}
+\index{corner\_radius\_y@{corner\_radius\_y}!liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}}
+\doxysubsubsection{\texorpdfstring{corner\_radius\_y()}{corner\_radius\_y()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily float\& liblec\+::lecui\+::widgets\+::combobox\+\_\+specs\+::corner\+\_\+radius\+\_\+y (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get or set the vertical radius of the corners. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the radius, in pixels.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_afdc617352fdbe3a1faac88b84c430463}\label{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_afdc617352fdbe3a1faac88b84c430463}} 
+\index{liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}!corner\_radius\_y@{corner\_radius\_y}}
+\index{corner\_radius\_y@{corner\_radius\_y}!liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}}
+\doxysubsubsection{\texorpdfstring{corner\_radius\_y()}{corner\_radius\_y()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs}{combobox\+\_\+specs}}\& liblec\+::lecui\+::widgets\+::combobox\+\_\+specs\+::corner\+\_\+radius\+\_\+y (\begin{DoxyParamCaption}\item[{const float \&}]{corner\+\_\+radius\+\_\+y }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the vertical radius of the corners. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em corner\+\_\+radius\+\_\+y} & The horizontal radius of the corner, in pixels.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a1d73c64d5a188297197f19bd21309e6f}\label{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a1d73c64d5a188297197f19bd21309e6f}} 
+\index{liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}!cursor@{cursor}}
+\index{cursor@{cursor}!liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}}
+\doxysubsubsection{\texorpdfstring{cursor()}{cursor()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a3cba4c05a958d80dca72e4e9dd5360b1}{cursor\+\_\+type}}\& liblec\+::lecui\+::widgets\+::combobox\+\_\+specs\+::cursor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the mouse cursor to use then over the widget. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the cursor type as defined in \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a3cba4c05a958d80dca72e4e9dd5360b1}{cursor\+\_\+type}}.
+\end{DoxyReturn}
+
+
+This is only used if the widget is non-\/static.
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a28e525ebd75d587b17592dba23f24081}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a14f78da50c1afa89375a0db05a190744}\label{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a14f78da50c1afa89375a0db05a190744}} 
+\index{liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}!editable@{editable}}
+\index{editable@{editable}!liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}}
+\doxysubsubsection{\texorpdfstring{editable()}{editable()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool\& liblec\+::lecui\+::widgets\+::combobox\+\_\+specs\+::editable (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get or set the combobox editable property. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the property.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_ab2a3d66f40f1453f0169f091c1a2e009}\label{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_ab2a3d66f40f1453f0169f091c1a2e009}} 
+\index{liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}!editable@{editable}}
+\index{editable@{editable}!liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}}
+\doxysubsubsection{\texorpdfstring{editable()}{editable()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs}{combobox\+\_\+specs}}\& liblec\+::lecui\+::widgets\+::combobox\+\_\+specs\+::editable (\begin{DoxyParamCaption}\item[{const bool \&}]{editable }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the combobox editable property. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em editable} & Whether to make the combobox editable.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a76d118bff17e19d3c0173d7c3df68283}\label{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a76d118bff17e19d3c0173d7c3df68283}} 
+\index{liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}!font@{font}}
+\index{font@{font}!liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}}
+\doxysubsubsection{\texorpdfstring{font()}{font()}}
+{\footnotesize\ttfamily std\+::string\& liblec\+::lecui\+::widgets\+::combobox\+\_\+specs\+::font (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the default widget font, e.\+g. \char`\"{}\+Georgia\char`\"{}. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget\textquotesingle{}s font name.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a5f42f2960de76e860d4b55e0e376f42a}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_ad818ae218a246b41a7283ce8f5df3921}\label{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_ad818ae218a246b41a7283ce8f5df3921}} 
+\index{liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}!font\_size@{font\_size}}
+\index{font\_size@{font\_size}!liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}}
+\doxysubsubsection{\texorpdfstring{font\_size()}{font\_size()}}
+{\footnotesize\ttfamily float\& liblec\+::lecui\+::widgets\+::combobox\+\_\+specs\+::font\+\_\+size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the default widget font size in points, e.\+g. 9.\+0. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget\textquotesingle{}s font size.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a540bfa7642033966614ccfda7ecf1f25}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a84e63edb4083daa56c8d3156d700e02b}\label{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a84e63edb4083daa56c8d3156d700e02b}} 
+\index{liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}!force\_numerical\_sort@{force\_numerical\_sort}}
+\index{force\_numerical\_sort@{force\_numerical\_sort}!liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}}
+\doxysubsubsection{\texorpdfstring{force\_numerical\_sort()}{force\_numerical\_sort()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool\& liblec\+::lecui\+::widgets\+::combobox\+\_\+specs\+::force\+\_\+numerical\+\_\+sort (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get or set whether numerical sorting is forced. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the property.
+\end{DoxyReturn}
+
+
+When only numbers are in the items list numerical sorting is used. The presence of at least one non-\/numeric character causes string sorting to be used instead. In those instances where you need numerical sorting to be used regardless of the presence of non-\/numeric characters this is the way to do it.\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_ab9500e8f88a74d702a058b832fc1bd38}\label{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_ab9500e8f88a74d702a058b832fc1bd38}} 
+\index{liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}!force\_numerical\_sort@{force\_numerical\_sort}}
+\index{force\_numerical\_sort@{force\_numerical\_sort}!liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}}
+\doxysubsubsection{\texorpdfstring{force\_numerical\_sort()}{force\_numerical\_sort()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs}{combobox\+\_\+specs}}\& liblec\+::lecui\+::widgets\+::combobox\+\_\+specs\+::force\+\_\+numerical\+\_\+sort (\begin{DoxyParamCaption}\item[{const bool \&}]{force\+\_\+numerical\+\_\+sort }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set whether numerical sorting is forced. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em force\+\_\+numerical\+\_\+sort} & Whether to force numerical sorting.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+
+
+When only numbers are in the items list numerical sorting is used. The presence of at least one non-\/numeric character causes string sorting to be used instead. In those instances where you need numerical sorting to be used regardless of the presence of non-\/numeric characters this is the way to do it.\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a6cca0e47a14269530bb54a80c2af1d9b}\label{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a6cca0e47a14269530bb54a80c2af1d9b}} 
+\index{liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}!items@{items}}
+\index{items@{items}!liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}}
+\doxysubsubsection{\texorpdfstring{items()}{items()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1combobox__specs_1_1combobox__item}{combobox\+\_\+item}}$>$\& liblec\+::lecui\+::widgets\+::combobox\+\_\+specs\+::items (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get or set the list of combobox items. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the list.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a39cdc5ce7aeb6c0aba899b81b141ba12}\label{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a39cdc5ce7aeb6c0aba899b81b141ba12}} 
+\index{liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}!items@{items}}
+\index{items@{items}!liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}}
+\doxysubsubsection{\texorpdfstring{items()}{items()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs}{combobox\+\_\+specs}}\& liblec\+::lecui\+::widgets\+::combobox\+\_\+specs\+::items (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1combobox__specs_1_1combobox__item}{combobox\+\_\+item}} $>$ \&}]{items }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the list of combobox items. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em items} & The list.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_ad6e9a22161c904cfec604f3bad146d05}\label{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_ad6e9a22161c904cfec604f3bad146d05}} 
+\index{liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}!on\_resize@{on\_resize}}
+\index{on\_resize@{on\_resize}!liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}}
+\doxysubsubsection{\texorpdfstring{on\_resize()}{on\_resize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1specs_1_1resize__params}{resize\+\_\+params}}\& liblec\+::lecui\+::widgets\+::combobox\+\_\+specs\+::on\+\_\+resize (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the behaviour of the widget when its container is resized. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the resize parameters as defined in \mbox{\hyperlink{}{resize\+\_\+params}}.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a3f6021dcec6d7b6d846911956a6bff32}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_aa99dbad566469afb04a3a272363e943c}\label{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_aa99dbad566469afb04a3a272363e943c}} 
+\index{liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}!quality@{quality}}
+\index{quality@{quality}!liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}}
+\doxysubsubsection{\texorpdfstring{quality()}{quality()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily image\+\_\+quality\& liblec\+::lecui\+::widgets\+::combobox\+\_\+specs\+::quality (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get or set the quality of the images. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the image quality.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a3d0bddb35e39b416419e50ef32ad410a}\label{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a3d0bddb35e39b416419e50ef32ad410a}} 
+\index{liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}!quality@{quality}}
+\index{quality@{quality}!liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}}
+\doxysubsubsection{\texorpdfstring{quality()}{quality()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs}{combobox\+\_\+specs}}\& liblec\+::lecui\+::widgets\+::combobox\+\_\+specs\+::quality (\begin{DoxyParamCaption}\item[{const image\+\_\+quality \&}]{quality }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the quality of the images. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em quality} & The quality, as defined in \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_aa99dbad566469afb04a3a272363e943c}{quality}}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a7f8ac7b13817dc1cf56789fc99c37659}\label{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a7f8ac7b13817dc1cf56789fc99c37659}} 
+\index{liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}!rect@{rect}}
+\index{rect@{rect}!liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}}
+\doxysubsubsection{\texorpdfstring{rect()}{rect()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{lecui\+::rect}}\& liblec\+::lecui\+::widgets\+::combobox\+\_\+specs\+::rect (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the position and dimensions of the widget. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget rectangle.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a0d6cc5c9ed9591f2e8b306a18224f4d7}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_ad716e906376b869fa1e2c15267b0ca07}\label{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_ad716e906376b869fa1e2c15267b0ca07}} 
+\index{liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}!selected@{selected}}
+\index{selected@{selected}!liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}}
+\doxysubsubsection{\texorpdfstring{selected()}{selected()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily std\+::string\& liblec\+::lecui\+::widgets\+::combobox\+\_\+specs\+::selected (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get or set the selected item. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the selected item.
+\end{DoxyReturn}
+
+
+Note that this is not always the same as the .text variable in an editable combobox. The .text in an editable combobox only becomes part of the list of items when the user presses the enter key. Only then can it be considered as a \char`\"{}selected\char`\"{} item.\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_aabd98b937e5ed4708ffebad880756293}\label{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_aabd98b937e5ed4708ffebad880756293}} 
+\index{liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}!selected@{selected}}
+\index{selected@{selected}!liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}}
+\doxysubsubsection{\texorpdfstring{selected()}{selected()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs}{combobox\+\_\+specs}}\& liblec\+::lecui\+::widgets\+::combobox\+\_\+specs\+::selected (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{selected }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the selected item. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em selected} & The selected item.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a44700fe3b6e110dfe19a916436ac1754}\label{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a44700fe3b6e110dfe19a916436ac1754}} 
+\index{liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}!sort@{sort}}
+\index{sort@{sort}!liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}}
+\doxysubsubsection{\texorpdfstring{sort()}{sort()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily sort\+\_\+options\& liblec\+::lecui\+::widgets\+::combobox\+\_\+specs\+::sort (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get or set the sort options. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the sort options.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_aa0e5c5846df3f2613bdbeed02c9b7b68}\label{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_aa0e5c5846df3f2613bdbeed02c9b7b68}} 
+\index{liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}!sort@{sort}}
+\index{sort@{sort}!liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}}
+\doxysubsubsection{\texorpdfstring{sort()}{sort()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs}{combobox\+\_\+specs}}\& liblec\+::lecui\+::widgets\+::combobox\+\_\+specs\+::sort (\begin{DoxyParamCaption}\item[{const sort\+\_\+options \&}]{sort }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the sort options. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sort} & The sort options, as defined in \mbox{\hyperlink{}{sort\+\_\+options}}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a34cca7c9ae0488cdf89807542088b8e8}\label{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a34cca7c9ae0488cdf89807542088b8e8}} 
+\index{liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}!text@{text}}
+\index{text@{text}!liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}}
+\doxysubsubsection{\texorpdfstring{text()}{text()}}
+{\footnotesize\ttfamily std\+::string\& liblec\+::lecui\+::widgets\+::combobox\+\_\+specs\+::text (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the widget text. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget text.
+\end{DoxyReturn}
+
+
+The use of the text varies from widget to widget. Some widgets don\textquotesingle{}t use this field.
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a76c5292d60d7c9a3ab6f26a9ef5fcbad}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a4773539308fe2911d3d386cf25c7aa71}\label{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a4773539308fe2911d3d386cf25c7aa71}} 
+\index{liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}!tooltip@{tooltip}}
+\index{tooltip@{tooltip}!liblec::lecui::widgets::combobox\_specs@{liblec::lecui::widgets::combobox\_specs}}
+\doxysubsubsection{\texorpdfstring{tooltip()}{tooltip()}}
+{\footnotesize\ttfamily std\+::string\& liblec\+::lecui\+::widgets\+::combobox\+\_\+specs\+::tooltip (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the widget\textquotesingle{}s tooltip text. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the tooltip text.
+\end{DoxyReturn}
+
+
+The tooltip text is displayed when the mouse is hovered over the widget.
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_af82deb362bbf2fafe975296722785b3a}{liblec\+::lecui\+::widgets\+::specs}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+widgets/combobox.\+h\item 
+widgets/combobox/combobox.\+cpp\end{DoxyCompactItemize}

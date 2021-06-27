@@ -1,0 +1,493 @@
+\hypertarget{classliblec_1_1lecui_1_1widgets_1_1label__specs}{}\doxysection{liblec\+::lecui\+::widgets\+::label\+\_\+specs Class Reference}
+\label{classliblec_1_1lecui_1_1widgets_1_1label__specs}\index{liblec::lecui::widgets::label\_specs@{liblec::lecui::widgets::label\_specs}}
+
+
+Label widget specifications.  
+
+
+
+
+{\ttfamily \#include $<$label.\+h$>$}
+
+Inheritance diagram for liblec\+::lecui\+::widgets\+::label\+\_\+specs\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classliblec_1_1lecui_1_1widgets_1_1label__specs}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1label__specs_a818003f4ab9d47e114595c8126d3e536}\label{classliblec_1_1lecui_1_1widgets_1_1label__specs_a818003f4ab9d47e114595c8126d3e536}} 
+bool {\bfseries operator==} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1label__specs}{label\+\_\+specs}} \&)
+\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1label__specs_a9e842c910d88096d9cccb2ad0a831f2b}\label{classliblec_1_1lecui_1_1widgets_1_1label__specs_a9e842c910d88096d9cccb2ad0a831f2b}} 
+bool {\bfseries operator!=} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1label__specs}{label\+\_\+specs}} \&)
+\item 
+std\+::string \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1label__specs_a4c83a24a3b19f6fdc59680c04df78f3e}{text}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the widget text. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1label__specs_a190f6ce97142ae4154c8369559a8bd21}\label{classliblec_1_1lecui_1_1widgets_1_1label__specs_a190f6ce97142ae4154c8369559a8bd21}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1label__specs}{label\+\_\+specs}} \& {\bfseries text} (const std\+::string \&text)
+\item 
+std\+::string \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1label__specs_a8d2b9a433adf51ec2d7bbad5b5b914c5}{tooltip}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the widget\textquotesingle{}s tooltip text. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1label__specs_a8e61a27cc9b7a4699d31cca76307ecbc}\label{classliblec_1_1lecui_1_1widgets_1_1label__specs_a8e61a27cc9b7a4699d31cca76307ecbc}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1label__specs}{label\+\_\+specs}} \& {\bfseries tooltip} (const std\+::string \&tooltip)
+\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{lecui\+::rect}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1label__specs_a9af6f4f288d5d078758fed116372e314}{rect}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the position and dimensions of the widget. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1label__specs_afd527d53d02974920bac880067728bb9}\label{classliblec_1_1lecui_1_1widgets_1_1label__specs_afd527d53d02974920bac880067728bb9}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1label__specs}{label\+\_\+specs}} \& {\bfseries rect} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{lecui\+::rect}} \&\mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{rect}})
+\item 
+\mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1specs_1_1resize__params}{resize\+\_\+params}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1label__specs_a8050933e89c4b1c2ef307a9bc9f1e5b4}{on\+\_\+resize}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the behaviour of the widget when its container is resized. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1label__specs_aa5c41903c014a4a11675068846cf682b}\label{classliblec_1_1lecui_1_1widgets_1_1label__specs_aa5c41903c014a4a11675068846cf682b}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1label__specs}{label\+\_\+specs}} \& {\bfseries on\+\_\+resize} (const \mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1specs_1_1resize__params}{resize\+\_\+params}} \&on\+\_\+resize)
+\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a3cba4c05a958d80dca72e4e9dd5360b1}{cursor\+\_\+type}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1label__specs_adca67abed0ca0ffeef4e7b6dee541245}{cursor}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the mouse cursor to use then over the widget. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1label__specs_a5f520739da2c831a9cef4e0be271aecb}\label{classliblec_1_1lecui_1_1widgets_1_1label__specs_a5f520739da2c831a9cef4e0be271aecb}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1label__specs}{label\+\_\+specs}} \& {\bfseries cursor} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a3cba4c05a958d80dca72e4e9dd5360b1}{cursor\+\_\+type}} cursor)
+\item 
+std\+::string \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1label__specs_a3a18b3d0aebeebd81a246ad744e7a7b2}{font}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the default widget font, e.\+g. \char`\"{}\+Georgia\char`\"{}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1label__specs_aab7abc5376517b4d130749a4b56567fe}\label{classliblec_1_1lecui_1_1widgets_1_1label__specs_aab7abc5376517b4d130749a4b56567fe}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1label__specs}{label\+\_\+specs}} \& {\bfseries font} (const std\+::string \&\mbox{\hyperlink{classfont}{font}})
+\item 
+float \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1label__specs_a3409aae4a0fca95e2955ba315da8f864}{font\+\_\+size}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the default widget font size in points, e.\+g. 9.\+0. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1label__specs_abd599d9187dc99cb13f6517e8ef6417c}\label{classliblec_1_1lecui_1_1widgets_1_1label__specs_abd599d9187dc99cb13f6517e8ef6417c}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1label__specs}{label\+\_\+specs}} \& {\bfseries font\+\_\+size} (const float \&font\+\_\+size)
+\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1label__specs_a8f20887538c1d37ea00643e4c21f82dc}{color\+\_\+text}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the color of the widget\textquotesingle{}s text. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1label__specs_a955c3ba22469e5cf740806f1838e0427}\label{classliblec_1_1lecui_1_1widgets_1_1label__specs_a955c3ba22469e5cf740806f1838e0427}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1label__specs}{label\+\_\+specs}} \& {\bfseries color\+\_\+text} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&color\+\_\+text)
+\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1label__specs_a1eeb0b181532421731ade63ac41f4a7b}{color\+\_\+fill}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the fill color of the widget. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1label__specs_a2e7bfddcf6a9bdc223ef6834e960a7e4}\label{classliblec_1_1lecui_1_1widgets_1_1label__specs_a2e7bfddcf6a9bdc223ef6834e960a7e4}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1label__specs}{label\+\_\+specs}} \& {\bfseries color\+\_\+fill} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&color\+\_\+fill)
+\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1label__specs_a671dcdbf4dd72c32a2e4aad170d4a616}{color\+\_\+hot}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the widget\textquotesingle{}s color when the mouse is hovered over it. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1label__specs_a1460b16ab1ba022045275509796333f8}\label{classliblec_1_1lecui_1_1widgets_1_1label__specs_a1460b16ab1ba022045275509796333f8}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1label__specs}{label\+\_\+specs}} \& {\bfseries color\+\_\+hot} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&color\+\_\+hot)
+\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1label__specs_ac739a6e518da56a227610c012d62448c}{color\+\_\+selected}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the widget\textquotesingle{}s color when selected. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1label__specs_a96beaca5d1be3fad4bb85e92afc4ed3c}\label{classliblec_1_1lecui_1_1widgets_1_1label__specs_a96beaca5d1be3fad4bb85e92afc4ed3c}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1label__specs}{label\+\_\+specs}} \& {\bfseries color\+\_\+selected} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&color\+\_\+selected)
+\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1label__specs_a5fe18379f77ef9757b563607636c4464}{color\+\_\+disabled}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the widget\textquotesingle{}s color when it\textquotesingle{}s disabled. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1label__specs_ad6ac907f79522cc4bbcde7bcc6fa73ad}\label{classliblec_1_1lecui_1_1widgets_1_1label__specs_ad6ac907f79522cc4bbcde7bcc6fa73ad}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1label__specs}{label\+\_\+specs}} \& {\bfseries color\+\_\+disabled} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&color\+\_\+disabled)
+\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1label__specs_aee012e0c1ec31d63c1b29bfb163feaad}{color\+\_\+hot\+\_\+pressed}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the color used when the label is pressed and the mouse is over it. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1label__specs}{label\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1label__specs_a957351404b3bbe680cff672bfba6d32f}{color\+\_\+hot\+\_\+pressed}} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&color\+\_\+hot\+\_\+pressed)
+\begin{DoxyCompactList}\small\item\em Set the color used when the label is pressed and the mouse is over it. \end{DoxyCompactList}\item 
+bool \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1label__specs_a351692b0a497605db9805ab5b92a38f5}{multiline}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the property for whether to allow multiple lines. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1label__specs}{label\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1label__specs_a109a970e5223d05360121fd20c278d6a}{multiline}} (const bool \&multiline)
+\begin{DoxyCompactList}\small\item\em Set the property for whether to allow multiple lines. \end{DoxyCompactList}\item 
+bool \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1label__specs_ae0bcefdfa52414e200103203446b61bc}{center\+\_\+h}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the property for whether to center the text horizontally. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1label__specs}{label\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1label__specs_abb5b7163c48a80e90fc19c6d70a8bcf2}{center\+\_\+h}} (const bool \&center\+\_\+h)
+\begin{DoxyCompactList}\small\item\em Set the property for whether to center the text horizontally. \end{DoxyCompactList}\item 
+bool \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1label__specs_ac64ec3703fc7f994cfb81bf58d6dc84f}{center\+\_\+v}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the property for whether to center the text vertically. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1label__specs}{label\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1label__specs_a487932c69a339d499c2386bdb493cc30}{center\+\_\+v}} (const bool \&center\+\_\+v)
+\begin{DoxyCompactList}\small\item\em Set the property for whether to center the text vertically. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+Label widget specifications. 
+
+This widget supports two kinds of formatting\+:
+
+
+\begin{DoxyEnumerate}
+\item HTML formatting with CSS style tags
+\end{DoxyEnumerate}
+
+e.\+g. \char`\"{}$<$html$>$\+This is $<$span style=\textquotesingle{}font-\/size\+: 16.\+5pt; font-\/style\+: italic; color\+: 0x0000\+FFFF;\textquotesingle{}$>$good$<$/span$>$.$<$/html$>$\char`\"{};
+
+The supported tags are as follows\+:
+
+strong Bold text em Italic text u Underline text s Strikethrough text span Use CSS style tags
+
+The span tag supports the style attribute and the following properties\+:
+
+font-\/family The font name font-\/size The font size, either in pt or in px font-\/weight The font weight, either \textquotesingle{}none\textquotesingle{} or \textquotesingle{}bold\textquotesingle{} font-\/style The font style, either \textquotesingle{}none\textquotesingle{} or \textquotesingle{}italic\textquotesingle{} text-\/decoration The text decoration, either \textquotesingle{}none\textquotesingle{} or \textquotesingle{}underline\textquotesingle{} or \textquotesingle{}line-\/through\textquotesingle{} color The text color, either in the form rgb(255, 0, 0) or 0x\+FF0000\+FF or \#\+FF0000\+FF
+
+Note\+: the strong, em and u html tags are automatically converted to CSS style tags internally.
+
+
+\begin{DoxyEnumerate}
+\item Custom formatting
+\end{DoxyEnumerate}
+
+Start and end of XML formatting is marked by the \textquotesingle{}text\textquotesingle{} tag\+: $<$text$>$$<$/text$>$
+
+The supported attributes of the text are\+:
+
+font The font name size The font size, in points bold \textquotesingle{}true\textquotesingle{} or \textquotesingle{}false\textquotesingle{} italic \textquotesingle{}true\textquotesingle{} or \textquotesingle{}false\textquotesingle{} underline \textquotesingle{}true\textquotesingle{} or \textquotesingle{}false\textquotesingle{} strikethrough \textquotesingle{}true\textquotesingle{} or \textquotesingle{}false\textquotesingle{} color 0x\+AABBCCDD where r = AA, g = BB, b=CC, a=DD
+
+e.\+g. \char`\"{}\+This is $<$text size=\textquotesingle{}16.\+5\textquotesingle{} italic=\textquotesingle{}true\textquotesingle{} color=\textquotesingle{}0x0000\+FFFF\textquotesingle{}$>$good$<$/text$>$.\char`\"{};
+
+Both of the above two methods of formatting will display a label with the sentence\+:
+
+This is good.
+
+The word \textquotesingle{}good\textquotesingle{} will be of size 16.\+5, italic and blue, while the rest of the text will use the widget specifications.
+
+Recommended size with defaults is 200x20px.
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1label__specs_ae0bcefdfa52414e200103203446b61bc}\label{classliblec_1_1lecui_1_1widgets_1_1label__specs_ae0bcefdfa52414e200103203446b61bc}} 
+\index{liblec::lecui::widgets::label\_specs@{liblec::lecui::widgets::label\_specs}!center\_h@{center\_h}}
+\index{center\_h@{center\_h}!liblec::lecui::widgets::label\_specs@{liblec::lecui::widgets::label\_specs}}
+\doxysubsubsection{\texorpdfstring{center\_h()}{center\_h()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool\& liblec\+::lecui\+::widgets\+::label\+\_\+specs\+::center\+\_\+h (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get or set the property for whether to center the text horizontally. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the property.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1label__specs_abb5b7163c48a80e90fc19c6d70a8bcf2}\label{classliblec_1_1lecui_1_1widgets_1_1label__specs_abb5b7163c48a80e90fc19c6d70a8bcf2}} 
+\index{liblec::lecui::widgets::label\_specs@{liblec::lecui::widgets::label\_specs}!center\_h@{center\_h}}
+\index{center\_h@{center\_h}!liblec::lecui::widgets::label\_specs@{liblec::lecui::widgets::label\_specs}}
+\doxysubsubsection{\texorpdfstring{center\_h()}{center\_h()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1label__specs}{label\+\_\+specs}}\& liblec\+::lecui\+::widgets\+::label\+\_\+specs\+::center\+\_\+h (\begin{DoxyParamCaption}\item[{const bool \&}]{center\+\_\+h }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the property for whether to center the text horizontally. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em center\+\_\+h} & Whether to center the text horizontally.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1label__specs_ac64ec3703fc7f994cfb81bf58d6dc84f}\label{classliblec_1_1lecui_1_1widgets_1_1label__specs_ac64ec3703fc7f994cfb81bf58d6dc84f}} 
+\index{liblec::lecui::widgets::label\_specs@{liblec::lecui::widgets::label\_specs}!center\_v@{center\_v}}
+\index{center\_v@{center\_v}!liblec::lecui::widgets::label\_specs@{liblec::lecui::widgets::label\_specs}}
+\doxysubsubsection{\texorpdfstring{center\_v()}{center\_v()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool\& liblec\+::lecui\+::widgets\+::label\+\_\+specs\+::center\+\_\+v (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get or set the property for whether to center the text vertically. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the property.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1label__specs_a487932c69a339d499c2386bdb493cc30}\label{classliblec_1_1lecui_1_1widgets_1_1label__specs_a487932c69a339d499c2386bdb493cc30}} 
+\index{liblec::lecui::widgets::label\_specs@{liblec::lecui::widgets::label\_specs}!center\_v@{center\_v}}
+\index{center\_v@{center\_v}!liblec::lecui::widgets::label\_specs@{liblec::lecui::widgets::label\_specs}}
+\doxysubsubsection{\texorpdfstring{center\_v()}{center\_v()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1label__specs}{label\+\_\+specs}}\& liblec\+::lecui\+::widgets\+::label\+\_\+specs\+::center\+\_\+v (\begin{DoxyParamCaption}\item[{const bool \&}]{center\+\_\+v }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the property for whether to center the text vertically. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em center\+\_\+h} & Whether to center the text vertically.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1label__specs_a5fe18379f77ef9757b563607636c4464}\label{classliblec_1_1lecui_1_1widgets_1_1label__specs_a5fe18379f77ef9757b563607636c4464}} 
+\index{liblec::lecui::widgets::label\_specs@{liblec::lecui::widgets::label\_specs}!color\_disabled@{color\_disabled}}
+\index{color\_disabled@{color\_disabled}!liblec::lecui::widgets::label\_specs@{liblec::lecui::widgets::label\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_disabled()}{color\_disabled()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::widgets\+::label\+\_\+specs\+::color\+\_\+disabled (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the widget\textquotesingle{}s color when it\textquotesingle{}s disabled. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget\textquotesingle{}s color when disabled.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a063ce5777dcabe002f5ea88e15e39560}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1label__specs_a1eeb0b181532421731ade63ac41f4a7b}\label{classliblec_1_1lecui_1_1widgets_1_1label__specs_a1eeb0b181532421731ade63ac41f4a7b}} 
+\index{liblec::lecui::widgets::label\_specs@{liblec::lecui::widgets::label\_specs}!color\_fill@{color\_fill}}
+\index{color\_fill@{color\_fill}!liblec::lecui::widgets::label\_specs@{liblec::lecui::widgets::label\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_fill()}{color\_fill()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::widgets\+::label\+\_\+specs\+::color\+\_\+fill (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the fill color of the widget. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget\textquotesingle{}s fill color.
+\end{DoxyReturn}
+
+
+The use of the fill color varies from widget to widget. Refer to the specific widget\textquotesingle{}s documentation for details.
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_ab99407e83123ee1dd285f985dbb20747}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1label__specs_a671dcdbf4dd72c32a2e4aad170d4a616}\label{classliblec_1_1lecui_1_1widgets_1_1label__specs_a671dcdbf4dd72c32a2e4aad170d4a616}} 
+\index{liblec::lecui::widgets::label\_specs@{liblec::lecui::widgets::label\_specs}!color\_hot@{color\_hot}}
+\index{color\_hot@{color\_hot}!liblec::lecui::widgets::label\_specs@{liblec::lecui::widgets::label\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_hot()}{color\_hot()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::widgets\+::label\+\_\+specs\+::color\+\_\+hot (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the widget\textquotesingle{}s color when the mouse is hovered over it. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget\textquotesingle{}s hover color.
+\end{DoxyReturn}
+
+
+The use of the hover color varies from widget to widget. Refer to the specific widget\textquotesingle{}s documentation for details.
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a1fe7b1fe9f05604c6ab54696a1dc3d04}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1label__specs_aee012e0c1ec31d63c1b29bfb163feaad}\label{classliblec_1_1lecui_1_1widgets_1_1label__specs_aee012e0c1ec31d63c1b29bfb163feaad}} 
+\index{liblec::lecui::widgets::label\_specs@{liblec::lecui::widgets::label\_specs}!color\_hot\_pressed@{color\_hot\_pressed}}
+\index{color\_hot\_pressed@{color\_hot\_pressed}!liblec::lecui::widgets::label\_specs@{liblec::lecui::widgets::label\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_hot\_pressed()}{color\_hot\_pressed()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::widgets\+::label\+\_\+specs\+::color\+\_\+hot\+\_\+pressed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get or set the color used when the label is pressed and the mouse is over it. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the color.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1label__specs_a957351404b3bbe680cff672bfba6d32f}\label{classliblec_1_1lecui_1_1widgets_1_1label__specs_a957351404b3bbe680cff672bfba6d32f}} 
+\index{liblec::lecui::widgets::label\_specs@{liblec::lecui::widgets::label\_specs}!color\_hot\_pressed@{color\_hot\_pressed}}
+\index{color\_hot\_pressed@{color\_hot\_pressed}!liblec::lecui::widgets::label\_specs@{liblec::lecui::widgets::label\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_hot\_pressed()}{color\_hot\_pressed()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1label__specs}{label\+\_\+specs}}\& liblec\+::lecui\+::widgets\+::label\+\_\+specs\+::color\+\_\+hot\+\_\+pressed (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&}]{color\+\_\+hot\+\_\+pressed }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the color used when the label is pressed and the mouse is over it. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em color\+\_\+hot\+\_\+pressed} & The color.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1label__specs_ac739a6e518da56a227610c012d62448c}\label{classliblec_1_1lecui_1_1widgets_1_1label__specs_ac739a6e518da56a227610c012d62448c}} 
+\index{liblec::lecui::widgets::label\_specs@{liblec::lecui::widgets::label\_specs}!color\_selected@{color\_selected}}
+\index{color\_selected@{color\_selected}!liblec::lecui::widgets::label\_specs@{liblec::lecui::widgets::label\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_selected()}{color\_selected()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::widgets\+::label\+\_\+specs\+::color\+\_\+selected (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the widget\textquotesingle{}s color when selected. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget\textquotesingle{}s color when selected.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a53482bdf42a5e33ab53f87ce097e4837}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1label__specs_a8f20887538c1d37ea00643e4c21f82dc}\label{classliblec_1_1lecui_1_1widgets_1_1label__specs_a8f20887538c1d37ea00643e4c21f82dc}} 
+\index{liblec::lecui::widgets::label\_specs@{liblec::lecui::widgets::label\_specs}!color\_text@{color\_text}}
+\index{color\_text@{color\_text}!liblec::lecui::widgets::label\_specs@{liblec::lecui::widgets::label\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_text()}{color\_text()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::widgets\+::label\+\_\+specs\+::color\+\_\+text (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the color of the widget\textquotesingle{}s text. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget\textquotesingle{}s text color.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a8b272a6842d03791c3da0f04a69ad128}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1label__specs_adca67abed0ca0ffeef4e7b6dee541245}\label{classliblec_1_1lecui_1_1widgets_1_1label__specs_adca67abed0ca0ffeef4e7b6dee541245}} 
+\index{liblec::lecui::widgets::label\_specs@{liblec::lecui::widgets::label\_specs}!cursor@{cursor}}
+\index{cursor@{cursor}!liblec::lecui::widgets::label\_specs@{liblec::lecui::widgets::label\_specs}}
+\doxysubsubsection{\texorpdfstring{cursor()}{cursor()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a3cba4c05a958d80dca72e4e9dd5360b1}{cursor\+\_\+type}}\& liblec\+::lecui\+::widgets\+::label\+\_\+specs\+::cursor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the mouse cursor to use then over the widget. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the cursor type as defined in \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a3cba4c05a958d80dca72e4e9dd5360b1}{cursor\+\_\+type}}.
+\end{DoxyReturn}
+
+
+This is only used if the widget is non-\/static.
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a28e525ebd75d587b17592dba23f24081}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1label__specs_a3a18b3d0aebeebd81a246ad744e7a7b2}\label{classliblec_1_1lecui_1_1widgets_1_1label__specs_a3a18b3d0aebeebd81a246ad744e7a7b2}} 
+\index{liblec::lecui::widgets::label\_specs@{liblec::lecui::widgets::label\_specs}!font@{font}}
+\index{font@{font}!liblec::lecui::widgets::label\_specs@{liblec::lecui::widgets::label\_specs}}
+\doxysubsubsection{\texorpdfstring{font()}{font()}}
+{\footnotesize\ttfamily std\+::string\& liblec\+::lecui\+::widgets\+::label\+\_\+specs\+::font (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the default widget font, e.\+g. \char`\"{}\+Georgia\char`\"{}. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget\textquotesingle{}s font name.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a5f42f2960de76e860d4b55e0e376f42a}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1label__specs_a3409aae4a0fca95e2955ba315da8f864}\label{classliblec_1_1lecui_1_1widgets_1_1label__specs_a3409aae4a0fca95e2955ba315da8f864}} 
+\index{liblec::lecui::widgets::label\_specs@{liblec::lecui::widgets::label\_specs}!font\_size@{font\_size}}
+\index{font\_size@{font\_size}!liblec::lecui::widgets::label\_specs@{liblec::lecui::widgets::label\_specs}}
+\doxysubsubsection{\texorpdfstring{font\_size()}{font\_size()}}
+{\footnotesize\ttfamily float\& liblec\+::lecui\+::widgets\+::label\+\_\+specs\+::font\+\_\+size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the default widget font size in points, e.\+g. 9.\+0. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget\textquotesingle{}s font size.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a540bfa7642033966614ccfda7ecf1f25}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1label__specs_a351692b0a497605db9805ab5b92a38f5}\label{classliblec_1_1lecui_1_1widgets_1_1label__specs_a351692b0a497605db9805ab5b92a38f5}} 
+\index{liblec::lecui::widgets::label\_specs@{liblec::lecui::widgets::label\_specs}!multiline@{multiline}}
+\index{multiline@{multiline}!liblec::lecui::widgets::label\_specs@{liblec::lecui::widgets::label\_specs}}
+\doxysubsubsection{\texorpdfstring{multiline()}{multiline()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool\& liblec\+::lecui\+::widgets\+::label\+\_\+specs\+::multiline (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get or set the property for whether to allow multiple lines. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the property.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1label__specs_a109a970e5223d05360121fd20c278d6a}\label{classliblec_1_1lecui_1_1widgets_1_1label__specs_a109a970e5223d05360121fd20c278d6a}} 
+\index{liblec::lecui::widgets::label\_specs@{liblec::lecui::widgets::label\_specs}!multiline@{multiline}}
+\index{multiline@{multiline}!liblec::lecui::widgets::label\_specs@{liblec::lecui::widgets::label\_specs}}
+\doxysubsubsection{\texorpdfstring{multiline()}{multiline()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1label__specs}{label\+\_\+specs}}\& liblec\+::lecui\+::widgets\+::label\+\_\+specs\+::multiline (\begin{DoxyParamCaption}\item[{const bool \&}]{multiline }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the property for whether to allow multiple lines. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em multiline} & Whether to allow multiple lines.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1label__specs_a8050933e89c4b1c2ef307a9bc9f1e5b4}\label{classliblec_1_1lecui_1_1widgets_1_1label__specs_a8050933e89c4b1c2ef307a9bc9f1e5b4}} 
+\index{liblec::lecui::widgets::label\_specs@{liblec::lecui::widgets::label\_specs}!on\_resize@{on\_resize}}
+\index{on\_resize@{on\_resize}!liblec::lecui::widgets::label\_specs@{liblec::lecui::widgets::label\_specs}}
+\doxysubsubsection{\texorpdfstring{on\_resize()}{on\_resize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1specs_1_1resize__params}{resize\+\_\+params}}\& liblec\+::lecui\+::widgets\+::label\+\_\+specs\+::on\+\_\+resize (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the behaviour of the widget when its container is resized. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the resize parameters as defined in \mbox{\hyperlink{}{resize\+\_\+params}}.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a3f6021dcec6d7b6d846911956a6bff32}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1label__specs_a9af6f4f288d5d078758fed116372e314}\label{classliblec_1_1lecui_1_1widgets_1_1label__specs_a9af6f4f288d5d078758fed116372e314}} 
+\index{liblec::lecui::widgets::label\_specs@{liblec::lecui::widgets::label\_specs}!rect@{rect}}
+\index{rect@{rect}!liblec::lecui::widgets::label\_specs@{liblec::lecui::widgets::label\_specs}}
+\doxysubsubsection{\texorpdfstring{rect()}{rect()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{lecui\+::rect}}\& liblec\+::lecui\+::widgets\+::label\+\_\+specs\+::rect (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the position and dimensions of the widget. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget rectangle.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a0d6cc5c9ed9591f2e8b306a18224f4d7}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1label__specs_a4c83a24a3b19f6fdc59680c04df78f3e}\label{classliblec_1_1lecui_1_1widgets_1_1label__specs_a4c83a24a3b19f6fdc59680c04df78f3e}} 
+\index{liblec::lecui::widgets::label\_specs@{liblec::lecui::widgets::label\_specs}!text@{text}}
+\index{text@{text}!liblec::lecui::widgets::label\_specs@{liblec::lecui::widgets::label\_specs}}
+\doxysubsubsection{\texorpdfstring{text()}{text()}}
+{\footnotesize\ttfamily std\+::string\& liblec\+::lecui\+::widgets\+::label\+\_\+specs\+::text (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the widget text. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget text.
+\end{DoxyReturn}
+
+
+The use of the text varies from widget to widget. Some widgets don\textquotesingle{}t use this field.
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a76c5292d60d7c9a3ab6f26a9ef5fcbad}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1label__specs_a8d2b9a433adf51ec2d7bbad5b5b914c5}\label{classliblec_1_1lecui_1_1widgets_1_1label__specs_a8d2b9a433adf51ec2d7bbad5b5b914c5}} 
+\index{liblec::lecui::widgets::label\_specs@{liblec::lecui::widgets::label\_specs}!tooltip@{tooltip}}
+\index{tooltip@{tooltip}!liblec::lecui::widgets::label\_specs@{liblec::lecui::widgets::label\_specs}}
+\doxysubsubsection{\texorpdfstring{tooltip()}{tooltip()}}
+{\footnotesize\ttfamily std\+::string\& liblec\+::lecui\+::widgets\+::label\+\_\+specs\+::tooltip (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the widget\textquotesingle{}s tooltip text. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the tooltip text.
+\end{DoxyReturn}
+
+
+The tooltip text is displayed when the mouse is hovered over the widget.
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_af82deb362bbf2fafe975296722785b3a}{liblec\+::lecui\+::widgets\+::specs}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+widgets/label.\+h\item 
+widgets/label/label.\+cpp\end{DoxyCompactItemize}

@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">lecui
-   &#160;<span id="projectnumber">1.0.0-alpha.1</span>
+   &#160;<span id="projectnumber">1.0.0-alpha.3</span>
    </div>
    <div id="projectbrief">lecui C++ user interface library</div>
   </td>
@@ -71,42 +71,39 @@ $(function() {
 <div class="title">css_parser.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">** css_parser.h - css parser interface</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">**</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">** lecui user interface library</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">** Copyright (c) 2019 Alec Musasa (alecmus at live dot com)</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">**</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">*******************************************************************************</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">** This file is part of the liblec library which is released under the Creative</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">** Commons Attribution Non-Commercial 2.0 license (CC-BY-NC 2.0). See the file</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment">** LICENSE.txt or go to https://github.com/alecmus/liblec/blob/master/LICENSE.md</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">** for full license details.</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">*/</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// css_parser.h - css parser interface</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">// lecui user interface library, part of the liblec library</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">// Copyright (c) 2019 Alec Musasa (alecmus at live dot com)</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">// Released under the CC-BY-NC 2.0 license. For full details see the file</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">// LICENSE.txt or go to https://github.com/alecmus/liblec/blob/master/LICENSE.md</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
-<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="classcss__parser.html">   20</a></span>&#160;<span class="keyword">class </span><a class="code" href="classcss__parser.html">css_parser</a> {</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="structcss__parser_1_1css__property.html">   23</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structcss__parser_1_1css__property.html">css_property</a> {</div>
-<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="structcss__parser_1_1css__property.html#afa518144eb6cc017711bded4731b6a8f">   25</a></span>&#160;        std::string <a class="code" href="structcss__parser_1_1css__property.html#afa518144eb6cc017711bded4731b6a8f">property</a>;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
-<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="structcss__parser_1_1css__property.html#af9d6abf6fa67b41742bca938304bb172">   28</a></span>&#160;        std::string <a class="code" href="structcss__parser_1_1css__property.html#af9d6abf6fa67b41742bca938304bb172">value</a>;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    };</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    std::vector&lt;css_property&gt; <a class="code" href="classcss__parser.html#aa0fe3734884212b642cc6cff615921ee">read</a>(<span class="keyword">const</span> std::string style_string);</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    std::string <a class="code" href="classcss__parser.html#afba8a3c20f7dd5c34c83cddc54636af8">write</a>(<span class="keyword">const</span> std::vector&lt;css_property&gt;&amp; css_properties);</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;};</div>
-<div class="ttc" id="aclasscss__parser_html"><div class="ttname"><a href="classcss__parser.html">css_parser</a></div><div class="ttdoc">A custom CSS parser that describes CSS styles in a data structure.</div><div class="ttdef"><b>Definition:</b> css_parser.h:20</div></div>
-<div class="ttc" id="aclasscss__parser_html_aa0fe3734884212b642cc6cff615921ee"><div class="ttname"><a href="classcss__parser.html#aa0fe3734884212b642cc6cff615921ee">css_parser::read</a></div><div class="ttdeci">std::vector&lt; css_property &gt; read(const std::string style_string)</div><div class="ttdoc">Read CSS properties from a CSS style string.</div><div class="ttdef"><b>Definition:</b> css_parser.cpp:55</div></div>
-<div class="ttc" id="aclasscss__parser_html_afba8a3c20f7dd5c34c83cddc54636af8"><div class="ttname"><a href="classcss__parser.html#afba8a3c20f7dd5c34c83cddc54636af8">css_parser::write</a></div><div class="ttdeci">std::string write(const std::vector&lt; css_property &gt; &amp;css_properties)</div><div class="ttdoc">Write CSS properties to a CSS style string.</div><div class="ttdef"><b>Definition:</b> css_parser.cpp:75</div></div>
-<div class="ttc" id="astructcss__parser_1_1css__property_html"><div class="ttname"><a href="structcss__parser_1_1css__property.html">css_parser::css_property</a></div><div class="ttdoc">A CSS property.</div><div class="ttdef"><b>Definition:</b> css_parser.h:23</div></div>
-<div class="ttc" id="astructcss__parser_1_1css__property_html_af9d6abf6fa67b41742bca938304bb172"><div class="ttname"><a href="structcss__parser_1_1css__property.html#af9d6abf6fa67b41742bca938304bb172">css_parser::css_property::value</a></div><div class="ttdeci">std::string value</div><div class="ttdoc">The value of the property, e.g. rgb(12, 45, 125).</div><div class="ttdef"><b>Definition:</b> css_parser.h:28</div></div>
-<div class="ttc" id="astructcss__parser_1_1css__property_html_afa518144eb6cc017711bded4731b6a8f"><div class="ttname"><a href="structcss__parser_1_1css__property.html#afa518144eb6cc017711bded4731b6a8f">css_parser::css_property::property</a></div><div class="ttdeci">std::string property</div><div class="ttdoc">The name of the property, e.g. color.</div><div class="ttdef"><b>Definition:</b> css_parser.h:25</div></div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="classcss__parser.html">   17</a></span>&#160;<span class="keyword">class </span><a class="code" href="classcss__parser.html">css_parser</a> {</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="structcss__parser_1_1css__property.html">   20</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structcss__parser_1_1css__property.html">css_property</a> {</div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="structcss__parser_1_1css__property.html#afa518144eb6cc017711bded4731b6a8f">   22</a></span>&#160;        std::string <a class="code" href="structcss__parser_1_1css__property.html#afa518144eb6cc017711bded4731b6a8f">property</a>;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="structcss__parser_1_1css__property.html#af9d6abf6fa67b41742bca938304bb172">   25</a></span>&#160;        std::string <a class="code" href="structcss__parser_1_1css__property.html#af9d6abf6fa67b41742bca938304bb172">value</a>;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    };</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    std::vector&lt;css_property&gt; <a class="code" href="classcss__parser.html#aa0fe3734884212b642cc6cff615921ee">read</a>(<span class="keyword">const</span> std::string style_string);</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    std::string <a class="code" href="classcss__parser.html#afba8a3c20f7dd5c34c83cddc54636af8">write</a>(<span class="keyword">const</span> std::vector&lt;css_property&gt;&amp; css_properties);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;};</div>
+<div class="ttc" id="aclasscss__parser_html"><div class="ttname"><a href="classcss__parser.html">css_parser</a></div><div class="ttdoc">A custom CSS parser that describes CSS styles in a data structure.</div><div class="ttdef"><b>Definition:</b> css_parser.h:17</div></div>
+<div class="ttc" id="aclasscss__parser_html_aa0fe3734884212b642cc6cff615921ee"><div class="ttname"><a href="classcss__parser.html#aa0fe3734884212b642cc6cff615921ee">css_parser::read</a></div><div class="ttdeci">std::vector&lt; css_property &gt; read(const std::string style_string)</div><div class="ttdoc">Read CSS properties from a CSS style string.</div><div class="ttdef"><b>Definition:</b> css_parser.cpp:52</div></div>
+<div class="ttc" id="aclasscss__parser_html_afba8a3c20f7dd5c34c83cddc54636af8"><div class="ttname"><a href="classcss__parser.html#afba8a3c20f7dd5c34c83cddc54636af8">css_parser::write</a></div><div class="ttdeci">std::string write(const std::vector&lt; css_property &gt; &amp;css_properties)</div><div class="ttdoc">Write CSS properties to a CSS style string.</div><div class="ttdef"><b>Definition:</b> css_parser.cpp:72</div></div>
+<div class="ttc" id="astructcss__parser_1_1css__property_html"><div class="ttname"><a href="structcss__parser_1_1css__property.html">css_parser::css_property</a></div><div class="ttdoc">A CSS property.</div><div class="ttdef"><b>Definition:</b> css_parser.h:20</div></div>
+<div class="ttc" id="astructcss__parser_1_1css__property_html_af9d6abf6fa67b41742bca938304bb172"><div class="ttname"><a href="structcss__parser_1_1css__property.html#af9d6abf6fa67b41742bca938304bb172">css_parser::css_property::value</a></div><div class="ttdeci">std::string value</div><div class="ttdoc">The value of the property, e.g. rgb(12, 45, 125).</div><div class="ttdef"><b>Definition:</b> css_parser.h:25</div></div>
+<div class="ttc" id="astructcss__parser_1_1css__property_html_afa518144eb6cc017711bded4731b6a8f"><div class="ttname"><a href="structcss__parser_1_1css__property.html#afa518144eb6cc017711bded4731b6a8f">css_parser::css_property::property</a></div><div class="ttdeci">std::string property</div><div class="ttdoc">The name of the property, e.g. color.</div><div class="ttdef"><b>Definition:</b> css_parser.h:22</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

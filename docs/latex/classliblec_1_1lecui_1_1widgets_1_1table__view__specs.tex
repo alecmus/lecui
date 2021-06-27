@@ -1,0 +1,821 @@
+\hypertarget{classliblec_1_1lecui_1_1widgets_1_1table__view__specs}{}\doxysection{liblec\+::lecui\+::widgets\+::table\+\_\+view\+\_\+specs Class Reference}
+\label{classliblec_1_1lecui_1_1widgets_1_1table__view__specs}\index{liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}}
+
+
+Table view widget specifications.  
+
+
+
+
+{\ttfamily \#include $<$table\+\_\+view.\+h$>$}
+
+Inheritance diagram for liblec\+::lecui\+::widgets\+::table\+\_\+view\+\_\+specs\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classliblec_1_1lecui_1_1widgets_1_1table__view__specs}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1table__view__specs_1_1table__view__events}{table\+\_\+view\+\_\+events}}
+\begin{DoxyCompactList}\small\item\em Events specific to this widget. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a6a388fe1a75d6682b0abfc51a6901489}\label{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a6a388fe1a75d6682b0abfc51a6901489}} 
+\mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1table__view__specs_1_1table__view__events}{table\+\_\+view\+\_\+events}} \& {\bfseries events} ()
+\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a6b6d0048cfd00a2b67edb897a098ccd3}\label{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a6b6d0048cfd00a2b67edb897a098ccd3}} 
+bool {\bfseries operator==} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs}{table\+\_\+view\+\_\+specs}} \&)
+\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a64bd9547e9a67e68b58a34cbdcf7f68d}\label{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a64bd9547e9a67e68b58a34cbdcf7f68d}} 
+bool {\bfseries operator!=} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs}{table\+\_\+view\+\_\+specs}} \&)
+\item 
+std\+::string \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_abf999a0811f7ea70895c70feaec248ed}{text}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the widget text. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a0a9e9ee908be377bc0199d3c972a04f9}\label{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a0a9e9ee908be377bc0199d3c972a04f9}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs}{table\+\_\+view\+\_\+specs}} \& {\bfseries text} (const std\+::string \&text)
+\item 
+std\+::string \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a0e6cf39dc3aab4444e963fa5972271c2}{tooltip}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the widget\textquotesingle{}s tooltip text. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a06c346101620d6c4004a8c40cce500e0}\label{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a06c346101620d6c4004a8c40cce500e0}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs}{table\+\_\+view\+\_\+specs}} \& {\bfseries tooltip} (const std\+::string \&tooltip)
+\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{lecui\+::rect}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a6d9257a245abac2a24f7943814b97192}{rect}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the position and dimensions of the widget. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a746f32f54f9e81419479106d3a5431e9}\label{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a746f32f54f9e81419479106d3a5431e9}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs}{table\+\_\+view\+\_\+specs}} \& {\bfseries rect} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{lecui\+::rect}} \&\mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{rect}})
+\item 
+\mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1specs_1_1resize__params}{resize\+\_\+params}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a242ff583c5591d5fff4e87cc83fc20c1}{on\+\_\+resize}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the behaviour of the widget when its container is resized. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_abac72609796a82548f2277fb5ccfc315}\label{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_abac72609796a82548f2277fb5ccfc315}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs}{table\+\_\+view\+\_\+specs}} \& {\bfseries on\+\_\+resize} (const \mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1specs_1_1resize__params}{resize\+\_\+params}} \&on\+\_\+resize)
+\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a3cba4c05a958d80dca72e4e9dd5360b1}{cursor\+\_\+type}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a902ac34586a09dd6e130d16fea1fc474}{cursor}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the mouse cursor to use then over the widget. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a8a64e808f6868709fb8431df9ae38d85}\label{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a8a64e808f6868709fb8431df9ae38d85}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs}{table\+\_\+view\+\_\+specs}} \& {\bfseries cursor} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a3cba4c05a958d80dca72e4e9dd5360b1}{cursor\+\_\+type}} cursor)
+\item 
+std\+::string \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_ab87e6d73f7ccff333a85e4cfb3ddc0db}{font}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the default widget font, e.\+g. \char`\"{}\+Georgia\char`\"{}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a509c5704e2f702b3182a89eb44d852e1}\label{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a509c5704e2f702b3182a89eb44d852e1}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs}{table\+\_\+view\+\_\+specs}} \& {\bfseries font} (const std\+::string \&\mbox{\hyperlink{classfont}{font}})
+\item 
+float \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a51f813d41c32465215bd04f7ea10d1fe}{font\+\_\+size}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the default widget font size in points, e.\+g. 9.\+0. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_aed1024e93071c1145dfe76c89dc175d6}\label{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_aed1024e93071c1145dfe76c89dc175d6}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs}{table\+\_\+view\+\_\+specs}} \& {\bfseries font\+\_\+size} (const float \&font\+\_\+size)
+\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a4db28c46d8a81863ceca96942365ce7b}{color\+\_\+text}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the color of the widget\textquotesingle{}s text. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a2094b5587699e8f4c999d7dbe632f054}\label{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a2094b5587699e8f4c999d7dbe632f054}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs}{table\+\_\+view\+\_\+specs}} \& {\bfseries color\+\_\+text} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&color\+\_\+text)
+\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_ae47d579f0e943d2fe8bd4424bf986c34}{color\+\_\+fill}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the fill color of the widget. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a6dbe3677215de7c485d101ffac9ee086}\label{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a6dbe3677215de7c485d101ffac9ee086}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs}{table\+\_\+view\+\_\+specs}} \& {\bfseries color\+\_\+fill} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&color\+\_\+fill)
+\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a3ea6ead84df739ae1720969e6b428c3e}{color\+\_\+hot}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the widget\textquotesingle{}s color when the mouse is hovered over it. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a578345e4c5028b5e7561103565781c52}\label{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a578345e4c5028b5e7561103565781c52}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs}{table\+\_\+view\+\_\+specs}} \& {\bfseries color\+\_\+hot} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&color\+\_\+hot)
+\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_af668e87b713ad0a31f2a3a4d1badd48d}{color\+\_\+selected}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the widget\textquotesingle{}s color when selected. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a1c8fc3165d3f94a351b12788445d5aa1}\label{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a1c8fc3165d3f94a351b12788445d5aa1}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs}{table\+\_\+view\+\_\+specs}} \& {\bfseries color\+\_\+selected} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&color\+\_\+selected)
+\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a1e2d3ded2bc845aeb442dc71b42713d4}{color\+\_\+disabled}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the widget\textquotesingle{}s color when it\textquotesingle{}s disabled. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_afe5779e5f1059376ecc2a47b8c6d0846}\label{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_afe5779e5f1059376ecc2a47b8c6d0846}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs}{table\+\_\+view\+\_\+specs}} \& {\bfseries color\+\_\+disabled} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&color\+\_\+disabled)
+\item 
+float \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_ae2920dd7dee710337ac0b2908c70bd87}{border}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the thickness of the border. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs}{table\+\_\+view\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a24f39a21861d3e126e84ad6afc2e9e34}{border}} (const float \&border)
+\begin{DoxyCompactList}\small\item\em Set the thickness of the border. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a0c26165ff80dd21c87ae4393e812f4ba}{color\+\_\+border}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the color of the border. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs}{table\+\_\+view\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a77f32f8bd2edd72f410f3f14fc128f2d}{color\+\_\+border}} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&color\+\_\+border)
+\begin{DoxyCompactList}\small\item\em Set the color of the border. \end{DoxyCompactList}\item 
+float \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a6381918e0ef4bf68de7f6de6d00c1c65}{corner\+\_\+radius\+\_\+x}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the horizontal radius of the corners. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs}{table\+\_\+view\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a11fb045d7bc10e97a3fbb55363b8349c}{corner\+\_\+radius\+\_\+x}} (const float \&corner\+\_\+radius\+\_\+x)
+\begin{DoxyCompactList}\small\item\em Set the horizontal radius of the corners. \end{DoxyCompactList}\item 
+float \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a91875f076a95550f33c5e843455ea0ea}{corner\+\_\+radius\+\_\+y}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the vertical radius of the corners. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs}{table\+\_\+view\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a4b28da5628cd346c9ad73371ab776681}{corner\+\_\+radius\+\_\+y}} (const float \&corner\+\_\+radius\+\_\+y)
+\begin{DoxyCompactList}\small\item\em Set the vertical radius of the corners. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a6d5752011aa82291e50022269c727430}{color\+\_\+text\+\_\+selected}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the color of the text in a selected row. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs}{table\+\_\+view\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a027f0525994b153918547134d7863dd9}{color\+\_\+text\+\_\+selected}} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&color\+\_\+text\+\_\+selected)
+\begin{DoxyCompactList}\small\item\em Set the color of the text in a selected row. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a0b13851cc356114562e932a2208f2930}{color\+\_\+grid}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the color of the grid lines. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs}{table\+\_\+view\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a8ec3d1466d06f44991f494eaf119fca6}{color\+\_\+grid}} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&color\+\_\+grid)
+\begin{DoxyCompactList}\small\item\em Set the color of the grid lines. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a82b88e7e0fee485b975c89697610b979}{color\+\_\+text\+\_\+header}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the color of the header text. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs}{table\+\_\+view\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a02af5b2af26a6821595fc418cf6c56a8}{color\+\_\+text\+\_\+header}} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&color\+\_\+text\+\_\+header)
+\begin{DoxyCompactList}\small\item\em Set the color of the header text. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a3d8329e0d706d358786e56384037f43b}{color\+\_\+fill\+\_\+header}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the table header\textquotesingle{}s fill color. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs}{table\+\_\+view\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_af2ef1678b5a3a6b82bce9b3f4584ed19}{color\+\_\+fill\+\_\+header}} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&color\+\_\+fill\+\_\+header)
+\begin{DoxyCompactList}\small\item\em Set the table header\textquotesingle{}s fill color. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a9f76acc9ac1c2c8d3ecebcf83d5911da}{color\+\_\+fill\+\_\+alternate}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the table\textquotesingle{}s alternate row color (used for the background of even rows). \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs}{table\+\_\+view\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a9aa958876a6d178b377a79d4bc0c7d37}{color\+\_\+fill\+\_\+alternate}} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&color\+\_\+fill\+\_\+alternate)
+\begin{DoxyCompactList}\small\item\em Set the table\textquotesingle{}s alternate row color (used for the background of even rows). \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a2aadb83cd7d13f52ecab98196f6f2242}{color\+\_\+row\+\_\+hot}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the background color of a row when the mouse is over it. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs}{table\+\_\+view\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_ad7f714743897f62b1ec42c7cdc933ffe}{color\+\_\+row\+\_\+hot}} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&color\+\_\+row\+\_\+hot)
+\begin{DoxyCompactList}\small\item\em Set the background color of a row when the mouse is over it. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a4ff73205ffea67743c30057b775e7d1f}{color\+\_\+row\+\_\+selected}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the background color of a selected row. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs}{table\+\_\+view\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_ace917271e4ff6eb780d6aea668d87020}{color\+\_\+row\+\_\+selected}} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&color\+\_\+row\+\_\+selected)
+\begin{DoxyCompactList}\small\item\em Set the background color of a selected row. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{structliblec_1_1lecui_1_1table__column}{table\+\_\+column}} $>$ \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_ae581b362502d0da4b975ea0b76d310a8}{columns}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the table view columns. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs}{table\+\_\+view\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_ae9d60fc537ee60bd781cae81f438cd41}{columns}} (const std\+::vector$<$ \mbox{\hyperlink{structliblec_1_1lecui_1_1table__column}{table\+\_\+column}} $>$ \&columns)
+\begin{DoxyCompactList}\small\item\em Set the table view columns. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::map$<$ std\+::string, std\+::string $>$ $>$ \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_ae5412eaa17f8bd88eb564823ede3563c}{data}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the table\textquotesingle{}s data. Each entry of the vector (a map) is a row and should mirror the column structure. The key is the column name and the value is the contents of the cell. Therefore the map size should be equivalent to the number of columns, while the size of the vector will determine the number of rows. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs}{table\+\_\+view\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a0c809f12893186f03d14424eaaca06cf}{data}} (const std\+::vector$<$ std\+::map$<$ std\+::string, std\+::string $>$$>$ \&data)
+\begin{DoxyCompactList}\small\item\em Set the table\textquotesingle{}s data. Each entry of the vector (a map) is a row and should mirror the column structure. The key is the column name and the value is the contents of the cell. Therefore the map size should be equivalent to the number of columns, while the size of the vector will determine the number of rows. \end{DoxyCompactList}\item 
+std\+::vector$<$ long $>$ \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_ab50b986e24c43f5626a905fa4e792fe8}{selected}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the rows to select by default, numbered from 0. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs}{table\+\_\+view\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a840305cb8a3ad5f450e7fc60df59d66e}{selected}} (const std\+::vector$<$ long $>$ \&selected)
+\begin{DoxyCompactList}\small\item\em Set the rows to select by default, numbered from 0. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+Table view widget specifications. 
+
+Default size is 200x200px.
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_ae2920dd7dee710337ac0b2908c70bd87}\label{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_ae2920dd7dee710337ac0b2908c70bd87}} 
+\index{liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}!border@{border}}
+\index{border@{border}!liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}}
+\doxysubsubsection{\texorpdfstring{border()}{border()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily float\& liblec\+::lecui\+::widgets\+::table\+\_\+view\+\_\+specs\+::border (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get or set the thickness of the border. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the border thickness, in pixels.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a24f39a21861d3e126e84ad6afc2e9e34}\label{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a24f39a21861d3e126e84ad6afc2e9e34}} 
+\index{liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}!border@{border}}
+\index{border@{border}!liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}}
+\doxysubsubsection{\texorpdfstring{border()}{border()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs}{table\+\_\+view\+\_\+specs}}\& liblec\+::lecui\+::widgets\+::table\+\_\+view\+\_\+specs\+::border (\begin{DoxyParamCaption}\item[{const float \&}]{border }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the thickness of the border. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em border} & The border thickness, in pixels.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a0c26165ff80dd21c87ae4393e812f4ba}\label{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a0c26165ff80dd21c87ae4393e812f4ba}} 
+\index{liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}!color\_border@{color\_border}}
+\index{color\_border@{color\_border}!liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_border()}{color\_border()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::widgets\+::table\+\_\+view\+\_\+specs\+::color\+\_\+border (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get or set the color of the border. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the border color, as defined in \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a77f32f8bd2edd72f410f3f14fc128f2d}\label{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a77f32f8bd2edd72f410f3f14fc128f2d}} 
+\index{liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}!color\_border@{color\_border}}
+\index{color\_border@{color\_border}!liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_border()}{color\_border()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs}{table\+\_\+view\+\_\+specs}}\& liblec\+::lecui\+::widgets\+::table\+\_\+view\+\_\+specs\+::color\+\_\+border (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&}]{color\+\_\+border }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the color of the border. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em color\+\_\+border} & The border color, as defined in \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a1e2d3ded2bc845aeb442dc71b42713d4}\label{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a1e2d3ded2bc845aeb442dc71b42713d4}} 
+\index{liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}!color\_disabled@{color\_disabled}}
+\index{color\_disabled@{color\_disabled}!liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_disabled()}{color\_disabled()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::widgets\+::table\+\_\+view\+\_\+specs\+::color\+\_\+disabled (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the widget\textquotesingle{}s color when it\textquotesingle{}s disabled. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget\textquotesingle{}s color when disabled.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a063ce5777dcabe002f5ea88e15e39560}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_ae47d579f0e943d2fe8bd4424bf986c34}\label{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_ae47d579f0e943d2fe8bd4424bf986c34}} 
+\index{liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}!color\_fill@{color\_fill}}
+\index{color\_fill@{color\_fill}!liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_fill()}{color\_fill()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::widgets\+::table\+\_\+view\+\_\+specs\+::color\+\_\+fill (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the fill color of the widget. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget\textquotesingle{}s fill color.
+\end{DoxyReturn}
+
+
+The use of the fill color varies from widget to widget. Refer to the specific widget\textquotesingle{}s documentation for details.
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_ab99407e83123ee1dd285f985dbb20747}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a9f76acc9ac1c2c8d3ecebcf83d5911da}\label{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a9f76acc9ac1c2c8d3ecebcf83d5911da}} 
+\index{liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}!color\_fill\_alternate@{color\_fill\_alternate}}
+\index{color\_fill\_alternate@{color\_fill\_alternate}!liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_fill\_alternate()}{color\_fill\_alternate()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::widgets\+::table\+\_\+view\+\_\+specs\+::color\+\_\+fill\+\_\+alternate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get or set the table\textquotesingle{}s alternate row color (used for the background of even rows). 
+
+\begin{DoxyReturn}{Returns}
+A reference to the color.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a9aa958876a6d178b377a79d4bc0c7d37}\label{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a9aa958876a6d178b377a79d4bc0c7d37}} 
+\index{liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}!color\_fill\_alternate@{color\_fill\_alternate}}
+\index{color\_fill\_alternate@{color\_fill\_alternate}!liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_fill\_alternate()}{color\_fill\_alternate()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs}{table\+\_\+view\+\_\+specs}}\& liblec\+::lecui\+::widgets\+::table\+\_\+view\+\_\+specs\+::color\+\_\+fill\+\_\+alternate (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&}]{color\+\_\+fill\+\_\+alternate }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the table\textquotesingle{}s alternate row color (used for the background of even rows). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em color\+\_\+fill\+\_\+alternate} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a3d8329e0d706d358786e56384037f43b}\label{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a3d8329e0d706d358786e56384037f43b}} 
+\index{liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}!color\_fill\_header@{color\_fill\_header}}
+\index{color\_fill\_header@{color\_fill\_header}!liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_fill\_header()}{color\_fill\_header()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::widgets\+::table\+\_\+view\+\_\+specs\+::color\+\_\+fill\+\_\+header (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get or set the table header\textquotesingle{}s fill color. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the color.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_af2ef1678b5a3a6b82bce9b3f4584ed19}\label{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_af2ef1678b5a3a6b82bce9b3f4584ed19}} 
+\index{liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}!color\_fill\_header@{color\_fill\_header}}
+\index{color\_fill\_header@{color\_fill\_header}!liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_fill\_header()}{color\_fill\_header()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs}{table\+\_\+view\+\_\+specs}}\& liblec\+::lecui\+::widgets\+::table\+\_\+view\+\_\+specs\+::color\+\_\+fill\+\_\+header (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&}]{color\+\_\+fill\+\_\+header }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the table header\textquotesingle{}s fill color. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em color\+\_\+fill\+\_\+header} & The color.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a0b13851cc356114562e932a2208f2930}\label{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a0b13851cc356114562e932a2208f2930}} 
+\index{liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}!color\_grid@{color\_grid}}
+\index{color\_grid@{color\_grid}!liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_grid()}{color\_grid()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::widgets\+::table\+\_\+view\+\_\+specs\+::color\+\_\+grid (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get or set the color of the grid lines. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the color.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a8ec3d1466d06f44991f494eaf119fca6}\label{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a8ec3d1466d06f44991f494eaf119fca6}} 
+\index{liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}!color\_grid@{color\_grid}}
+\index{color\_grid@{color\_grid}!liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_grid()}{color\_grid()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs}{table\+\_\+view\+\_\+specs}}\& liblec\+::lecui\+::widgets\+::table\+\_\+view\+\_\+specs\+::color\+\_\+grid (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&}]{color\+\_\+grid }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the color of the grid lines. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em color\+\_\+grid} & The color.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a3ea6ead84df739ae1720969e6b428c3e}\label{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a3ea6ead84df739ae1720969e6b428c3e}} 
+\index{liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}!color\_hot@{color\_hot}}
+\index{color\_hot@{color\_hot}!liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_hot()}{color\_hot()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::widgets\+::table\+\_\+view\+\_\+specs\+::color\+\_\+hot (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the widget\textquotesingle{}s color when the mouse is hovered over it. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget\textquotesingle{}s hover color.
+\end{DoxyReturn}
+
+
+The use of the hover color varies from widget to widget. Refer to the specific widget\textquotesingle{}s documentation for details.
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a1fe7b1fe9f05604c6ab54696a1dc3d04}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a2aadb83cd7d13f52ecab98196f6f2242}\label{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a2aadb83cd7d13f52ecab98196f6f2242}} 
+\index{liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}!color\_row\_hot@{color\_row\_hot}}
+\index{color\_row\_hot@{color\_row\_hot}!liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_row\_hot()}{color\_row\_hot()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::widgets\+::table\+\_\+view\+\_\+specs\+::color\+\_\+row\+\_\+hot (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get or set the background color of a row when the mouse is over it. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the color.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_ad7f714743897f62b1ec42c7cdc933ffe}\label{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_ad7f714743897f62b1ec42c7cdc933ffe}} 
+\index{liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}!color\_row\_hot@{color\_row\_hot}}
+\index{color\_row\_hot@{color\_row\_hot}!liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_row\_hot()}{color\_row\_hot()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs}{table\+\_\+view\+\_\+specs}}\& liblec\+::lecui\+::widgets\+::table\+\_\+view\+\_\+specs\+::color\+\_\+row\+\_\+hot (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&}]{color\+\_\+row\+\_\+hot }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the background color of a row when the mouse is over it. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em color\+\_\+row\+\_\+hot} & The color.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a4ff73205ffea67743c30057b775e7d1f}\label{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a4ff73205ffea67743c30057b775e7d1f}} 
+\index{liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}!color\_row\_selected@{color\_row\_selected}}
+\index{color\_row\_selected@{color\_row\_selected}!liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_row\_selected()}{color\_row\_selected()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::widgets\+::table\+\_\+view\+\_\+specs\+::color\+\_\+row\+\_\+selected (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get or set the background color of a selected row. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the color.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_ace917271e4ff6eb780d6aea668d87020}\label{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_ace917271e4ff6eb780d6aea668d87020}} 
+\index{liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}!color\_row\_selected@{color\_row\_selected}}
+\index{color\_row\_selected@{color\_row\_selected}!liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_row\_selected()}{color\_row\_selected()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs}{table\+\_\+view\+\_\+specs}}\& liblec\+::lecui\+::widgets\+::table\+\_\+view\+\_\+specs\+::color\+\_\+row\+\_\+selected (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&}]{color\+\_\+row\+\_\+selected }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the background color of a selected row. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em color\+\_\+row\+\_\+selected} & The color.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_af668e87b713ad0a31f2a3a4d1badd48d}\label{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_af668e87b713ad0a31f2a3a4d1badd48d}} 
+\index{liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}!color\_selected@{color\_selected}}
+\index{color\_selected@{color\_selected}!liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_selected()}{color\_selected()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::widgets\+::table\+\_\+view\+\_\+specs\+::color\+\_\+selected (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the widget\textquotesingle{}s color when selected. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget\textquotesingle{}s color when selected.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a53482bdf42a5e33ab53f87ce097e4837}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a4db28c46d8a81863ceca96942365ce7b}\label{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a4db28c46d8a81863ceca96942365ce7b}} 
+\index{liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}!color\_text@{color\_text}}
+\index{color\_text@{color\_text}!liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_text()}{color\_text()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::widgets\+::table\+\_\+view\+\_\+specs\+::color\+\_\+text (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the color of the widget\textquotesingle{}s text. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget\textquotesingle{}s text color.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a8b272a6842d03791c3da0f04a69ad128}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a82b88e7e0fee485b975c89697610b979}\label{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a82b88e7e0fee485b975c89697610b979}} 
+\index{liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}!color\_text\_header@{color\_text\_header}}
+\index{color\_text\_header@{color\_text\_header}!liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_text\_header()}{color\_text\_header()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::widgets\+::table\+\_\+view\+\_\+specs\+::color\+\_\+text\+\_\+header (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get or set the color of the header text. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the color.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a02af5b2af26a6821595fc418cf6c56a8}\label{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a02af5b2af26a6821595fc418cf6c56a8}} 
+\index{liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}!color\_text\_header@{color\_text\_header}}
+\index{color\_text\_header@{color\_text\_header}!liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_text\_header()}{color\_text\_header()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs}{table\+\_\+view\+\_\+specs}}\& liblec\+::lecui\+::widgets\+::table\+\_\+view\+\_\+specs\+::color\+\_\+text\+\_\+header (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&}]{color\+\_\+text\+\_\+header }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the color of the header text. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em color\+\_\+text\+\_\+header} & The color.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a6d5752011aa82291e50022269c727430}\label{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a6d5752011aa82291e50022269c727430}} 
+\index{liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}!color\_text\_selected@{color\_text\_selected}}
+\index{color\_text\_selected@{color\_text\_selected}!liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_text\_selected()}{color\_text\_selected()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::widgets\+::table\+\_\+view\+\_\+specs\+::color\+\_\+text\+\_\+selected (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get or set the color of the text in a selected row. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the color.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a027f0525994b153918547134d7863dd9}\label{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a027f0525994b153918547134d7863dd9}} 
+\index{liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}!color\_text\_selected@{color\_text\_selected}}
+\index{color\_text\_selected@{color\_text\_selected}!liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_text\_selected()}{color\_text\_selected()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs}{table\+\_\+view\+\_\+specs}}\& liblec\+::lecui\+::widgets\+::table\+\_\+view\+\_\+specs\+::color\+\_\+text\+\_\+selected (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&}]{color\+\_\+text\+\_\+selected }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the color of the text in a selected row. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em color\+\_\+text\+\_\+selected} & The color.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_ae581b362502d0da4b975ea0b76d310a8}\label{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_ae581b362502d0da4b975ea0b76d310a8}} 
+\index{liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}!columns@{columns}}
+\index{columns@{columns}!liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}}
+\doxysubsubsection{\texorpdfstring{columns()}{columns()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{structliblec_1_1lecui_1_1table__column}{table\+\_\+column}}$>$\& liblec\+::lecui\+::widgets\+::table\+\_\+view\+\_\+specs\+::columns (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get or set the table view columns. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the list of the table view\textquotesingle{}s columns.
+\end{DoxyReturn}
+
+
+Two columns can be defined as follows\+: columns = \{ \{ \char`\"{}\+Name\char`\"{}, 130 \}, \{ \char`\"{}\+Surname\char`\"{}, 210 \} \}; \mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_ae9d60fc537ee60bd781cae81f438cd41}\label{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_ae9d60fc537ee60bd781cae81f438cd41}} 
+\index{liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}!columns@{columns}}
+\index{columns@{columns}!liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}}
+\doxysubsubsection{\texorpdfstring{columns()}{columns()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs}{table\+\_\+view\+\_\+specs}}\& liblec\+::lecui\+::widgets\+::table\+\_\+view\+\_\+specs\+::columns (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{structliblec_1_1lecui_1_1table__column}{table\+\_\+column}} $>$ \&}]{columns }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the table view columns. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em columns} & The list of columns.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+
+
+Two columns can be defined as follows\+: columns = \{ \{ \char`\"{}\+Name\char`\"{}, 130 \}, \{ \char`\"{}\+Surname\char`\"{}, 210 \} \}; \mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a6381918e0ef4bf68de7f6de6d00c1c65}\label{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a6381918e0ef4bf68de7f6de6d00c1c65}} 
+\index{liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}!corner\_radius\_x@{corner\_radius\_x}}
+\index{corner\_radius\_x@{corner\_radius\_x}!liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}}
+\doxysubsubsection{\texorpdfstring{corner\_radius\_x()}{corner\_radius\_x()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily float\& liblec\+::lecui\+::widgets\+::table\+\_\+view\+\_\+specs\+::corner\+\_\+radius\+\_\+x (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get or set the horizontal radius of the corners. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the radius, in pixels.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a11fb045d7bc10e97a3fbb55363b8349c}\label{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a11fb045d7bc10e97a3fbb55363b8349c}} 
+\index{liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}!corner\_radius\_x@{corner\_radius\_x}}
+\index{corner\_radius\_x@{corner\_radius\_x}!liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}}
+\doxysubsubsection{\texorpdfstring{corner\_radius\_x()}{corner\_radius\_x()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs}{table\+\_\+view\+\_\+specs}}\& liblec\+::lecui\+::widgets\+::table\+\_\+view\+\_\+specs\+::corner\+\_\+radius\+\_\+x (\begin{DoxyParamCaption}\item[{const float \&}]{corner\+\_\+radius\+\_\+x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the horizontal radius of the corners. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em corner\+\_\+radius\+\_\+x} & The horizontal radius of the corner, in pixels.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a91875f076a95550f33c5e843455ea0ea}\label{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a91875f076a95550f33c5e843455ea0ea}} 
+\index{liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}!corner\_radius\_y@{corner\_radius\_y}}
+\index{corner\_radius\_y@{corner\_radius\_y}!liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}}
+\doxysubsubsection{\texorpdfstring{corner\_radius\_y()}{corner\_radius\_y()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily float\& liblec\+::lecui\+::widgets\+::table\+\_\+view\+\_\+specs\+::corner\+\_\+radius\+\_\+y (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get or set the vertical radius of the corners. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the radius, in pixels.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a4b28da5628cd346c9ad73371ab776681}\label{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a4b28da5628cd346c9ad73371ab776681}} 
+\index{liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}!corner\_radius\_y@{corner\_radius\_y}}
+\index{corner\_radius\_y@{corner\_radius\_y}!liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}}
+\doxysubsubsection{\texorpdfstring{corner\_radius\_y()}{corner\_radius\_y()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs}{table\+\_\+view\+\_\+specs}}\& liblec\+::lecui\+::widgets\+::table\+\_\+view\+\_\+specs\+::corner\+\_\+radius\+\_\+y (\begin{DoxyParamCaption}\item[{const float \&}]{corner\+\_\+radius\+\_\+y }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the vertical radius of the corners. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em corner\+\_\+radius\+\_\+y} & The horizontal radius of the corner, in pixels.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a902ac34586a09dd6e130d16fea1fc474}\label{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a902ac34586a09dd6e130d16fea1fc474}} 
+\index{liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}!cursor@{cursor}}
+\index{cursor@{cursor}!liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}}
+\doxysubsubsection{\texorpdfstring{cursor()}{cursor()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a3cba4c05a958d80dca72e4e9dd5360b1}{cursor\+\_\+type}}\& liblec\+::lecui\+::widgets\+::table\+\_\+view\+\_\+specs\+::cursor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the mouse cursor to use then over the widget. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the cursor type as defined in \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a3cba4c05a958d80dca72e4e9dd5360b1}{cursor\+\_\+type}}.
+\end{DoxyReturn}
+
+
+This is only used if the widget is non-\/static.
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a28e525ebd75d587b17592dba23f24081}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_ae5412eaa17f8bd88eb564823ede3563c}\label{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_ae5412eaa17f8bd88eb564823ede3563c}} 
+\index{liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}!data@{data}}
+\index{data@{data}!liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}}
+\doxysubsubsection{\texorpdfstring{data()}{data()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::map$<$std\+::string, std\+::string$>$ $>$\& liblec\+::lecui\+::widgets\+::table\+\_\+view\+\_\+specs\+::data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get or set the table\textquotesingle{}s data. Each entry of the vector (a map) is a row and should mirror the column structure. The key is the column name and the value is the contents of the cell. Therefore the map size should be equivalent to the number of columns, while the size of the vector will determine the number of rows. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the table\textquotesingle{}s data.
+\end{DoxyReturn}
+
+
+A table with two columns \textquotesingle{}Name\textquotesingle{} and \textquotesingle{}Surname\textquotesingle{} can be populated as follows to a total of three rows\+: data = \{ \{ \{\char`\"{}\+Name\char`\"{}, \char`\"{}\+Emily Yolanda\char`\"{}\}, \{ \char`\"{}\+Surname\char`\"{}, \char`\"{}\+Moyo\char`\"{} \} \}, \{ \{\char`\"{}\+Name\char`\"{}, \char`\"{}\+Tanaka\char`\"{}\}, \{\char`\"{}\+Surname\char`\"{}, \char`\"{}\+Sibanda\char`\"{}\} \}, \{ \{\char`\"{}\+Name\char`\"{}, \char`\"{}\+Precious\char`\"{}\}, \{\char`\"{}\+Surname\char`\"{}, \char`\"{}\+Ncube\char`\"{}\} \} \mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a0c809f12893186f03d14424eaaca06cf}\label{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a0c809f12893186f03d14424eaaca06cf}} 
+\index{liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}!data@{data}}
+\index{data@{data}!liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}}
+\doxysubsubsection{\texorpdfstring{data()}{data()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs}{table\+\_\+view\+\_\+specs}}\& liblec\+::lecui\+::widgets\+::table\+\_\+view\+\_\+specs\+::data (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ std\+::map$<$ std\+::string, std\+::string $>$$>$ \&}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the table\textquotesingle{}s data. Each entry of the vector (a map) is a row and should mirror the column structure. The key is the column name and the value is the contents of the cell. Therefore the map size should be equivalent to the number of columns, while the size of the vector will determine the number of rows. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The table\textquotesingle{}s data.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+
+
+A table with two columns \textquotesingle{}Name\textquotesingle{} and \textquotesingle{}Surname\textquotesingle{} can be populated as follows to a total of three rows\+: data = \{ \{ \{\char`\"{}\+Name\char`\"{}, \char`\"{}\+Emily Yolanda\char`\"{}\}, \{ \char`\"{}\+Surname\char`\"{}, \char`\"{}\+Moyo\char`\"{} \} \}, \{ \{\char`\"{}\+Name\char`\"{}, \char`\"{}\+Tanaka\char`\"{}\}, \{\char`\"{}\+Surname\char`\"{}, \char`\"{}\+Sibanda\char`\"{}\} \}, \{ \{\char`\"{}\+Name\char`\"{}, \char`\"{}\+Precious\char`\"{}\}, \{\char`\"{}\+Surname\char`\"{}, \char`\"{}\+Ncube\char`\"{}\} \} \mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_ab87e6d73f7ccff333a85e4cfb3ddc0db}\label{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_ab87e6d73f7ccff333a85e4cfb3ddc0db}} 
+\index{liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}!font@{font}}
+\index{font@{font}!liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}}
+\doxysubsubsection{\texorpdfstring{font()}{font()}}
+{\footnotesize\ttfamily std\+::string\& liblec\+::lecui\+::widgets\+::table\+\_\+view\+\_\+specs\+::font (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the default widget font, e.\+g. \char`\"{}\+Georgia\char`\"{}. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget\textquotesingle{}s font name.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a5f42f2960de76e860d4b55e0e376f42a}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a51f813d41c32465215bd04f7ea10d1fe}\label{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a51f813d41c32465215bd04f7ea10d1fe}} 
+\index{liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}!font\_size@{font\_size}}
+\index{font\_size@{font\_size}!liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}}
+\doxysubsubsection{\texorpdfstring{font\_size()}{font\_size()}}
+{\footnotesize\ttfamily float\& liblec\+::lecui\+::widgets\+::table\+\_\+view\+\_\+specs\+::font\+\_\+size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the default widget font size in points, e.\+g. 9.\+0. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget\textquotesingle{}s font size.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a540bfa7642033966614ccfda7ecf1f25}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a242ff583c5591d5fff4e87cc83fc20c1}\label{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a242ff583c5591d5fff4e87cc83fc20c1}} 
+\index{liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}!on\_resize@{on\_resize}}
+\index{on\_resize@{on\_resize}!liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}}
+\doxysubsubsection{\texorpdfstring{on\_resize()}{on\_resize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1specs_1_1resize__params}{resize\+\_\+params}}\& liblec\+::lecui\+::widgets\+::table\+\_\+view\+\_\+specs\+::on\+\_\+resize (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the behaviour of the widget when its container is resized. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the resize parameters as defined in \mbox{\hyperlink{}{resize\+\_\+params}}.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a3f6021dcec6d7b6d846911956a6bff32}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a6d9257a245abac2a24f7943814b97192}\label{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a6d9257a245abac2a24f7943814b97192}} 
+\index{liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}!rect@{rect}}
+\index{rect@{rect}!liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}}
+\doxysubsubsection{\texorpdfstring{rect()}{rect()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{lecui\+::rect}}\& liblec\+::lecui\+::widgets\+::table\+\_\+view\+\_\+specs\+::rect (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the position and dimensions of the widget. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget rectangle.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a0d6cc5c9ed9591f2e8b306a18224f4d7}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_ab50b986e24c43f5626a905fa4e792fe8}\label{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_ab50b986e24c43f5626a905fa4e792fe8}} 
+\index{liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}!selected@{selected}}
+\index{selected@{selected}!liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}}
+\doxysubsubsection{\texorpdfstring{selected()}{selected()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily std\+::vector$<$long$>$\& liblec\+::lecui\+::widgets\+::table\+\_\+view\+\_\+specs\+::selected (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get or set the rows to select by default, numbered from 0. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the selected rows.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a840305cb8a3ad5f450e7fc60df59d66e}\label{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a840305cb8a3ad5f450e7fc60df59d66e}} 
+\index{liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}!selected@{selected}}
+\index{selected@{selected}!liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}}
+\doxysubsubsection{\texorpdfstring{selected()}{selected()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs}{table\+\_\+view\+\_\+specs}}\& liblec\+::lecui\+::widgets\+::table\+\_\+view\+\_\+specs\+::selected (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ long $>$ \&}]{selected }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the rows to select by default, numbered from 0. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em selected} & The selected rows.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_abf999a0811f7ea70895c70feaec248ed}\label{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_abf999a0811f7ea70895c70feaec248ed}} 
+\index{liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}!text@{text}}
+\index{text@{text}!liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}}
+\doxysubsubsection{\texorpdfstring{text()}{text()}}
+{\footnotesize\ttfamily std\+::string\& liblec\+::lecui\+::widgets\+::table\+\_\+view\+\_\+specs\+::text (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the widget text. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget text.
+\end{DoxyReturn}
+
+
+The use of the text varies from widget to widget. Some widgets don\textquotesingle{}t use this field.
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a76c5292d60d7c9a3ab6f26a9ef5fcbad}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a0e6cf39dc3aab4444e963fa5972271c2}\label{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a0e6cf39dc3aab4444e963fa5972271c2}} 
+\index{liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}!tooltip@{tooltip}}
+\index{tooltip@{tooltip}!liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}}
+\doxysubsubsection{\texorpdfstring{tooltip()}{tooltip()}}
+{\footnotesize\ttfamily std\+::string\& liblec\+::lecui\+::widgets\+::table\+\_\+view\+\_\+specs\+::tooltip (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the widget\textquotesingle{}s tooltip text. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the tooltip text.
+\end{DoxyReturn}
+
+
+The tooltip text is displayed when the mouse is hovered over the widget.
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_af82deb362bbf2fafe975296722785b3a}{liblec\+::lecui\+::widgets\+::specs}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+widgets/table\+\_\+view.\+h\item 
+widgets/table\+\_\+view/table\+\_\+view.\+cpp\end{DoxyCompactItemize}

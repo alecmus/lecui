@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['image_5ffile_752',['image_file',['../structliblec_1_1lecui_1_1menu__item.html#a964b76ce4e3757ba0c7203d49d6d6fe1',1,'liblec::lecui::menu_item']]],
-  ['items_753',['items',['../structliblec_1_1lecui_1_1context__menu_1_1specs.html#a60f2f921b07061a19e9bc60fb4637fe2',1,'liblec::lecui::context_menu::specs::items()'],['../classliblec_1_1lecui_1_1widgets_1_1combobox_1_1combobox__specs.html#a6b49cbb8bd3805b37e6ab9e93976c3ad',1,'liblec::lecui::widgets::combobox::combobox_specs::items()']]]
+  ['label_892',['label',['../structliblec_1_1lecui_1_1menu__item.html#afb0ebb3e77d4be07def969f26742e6ad',1,'liblec::lecui::menu_item::label()'],['../structliblec_1_1lecui_1_1form__menu__item.html#aa2c93f5713cd3e840a08f18b8ff0ea20',1,'liblec::lecui::form_menu_item::label()'],['../structliblec_1_1lecui_1_1tray__menu__item.html#a3dbd0046c36e4147e91bc866ea0e61f4',1,'liblec::lecui::tray_menu_item::label()'],['../structliblec_1_1lecui_1_1widgets_1_1combobox__specs_1_1combobox__item.html#a493a5c661e71ef0f0b570513a52188da',1,'liblec::lecui::widgets::combobox_specs::combobox_item::label()']]],
+  ['length_893',['length',['../structxml__parser_1_1tag.html#a6b43eb648c925253864d32bf7ac90898',1,'xml_parser::tag']]],
+  ['level_894',['level',['../structxml__parser_1_1tag.html#a9dbf34e22558a42a4eb2a32b1703bdb9',1,'xml_parser::tag']]]
 ];

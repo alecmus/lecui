@@ -13,7 +13,7 @@ Menu items.
 \begin{DoxyCompactItemize}
 \item 
 std\+::string \mbox{\hyperlink{structliblec_1_1lecui_1_1menu__item_afb0ebb3e77d4be07def969f26742e6ad}{label}}
-\begin{DoxyCompactList}\small\item\em The label text of the menu item. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em The label text of the menu item. Use an empty string to make a separator. \end{DoxyCompactList}\item 
 std\+::string \mbox{\hyperlink{structliblec_1_1lecui_1_1menu__item_a964b76ce4e3757ba0c7203d49d6d6fe1}{image\+\_\+file}}
 \begin{DoxyCompactList}\small\item\em The image to use for the menu item (placed on the right). \end{DoxyCompactList}\item 
 std\+::string \mbox{\hyperlink{structliblec_1_1lecui_1_1menu__item_a5f572a917fbbc2a765a59dcbe6504a21}{font}} = \char`\"{}Segoe UI\char`\"{}
@@ -40,7 +40,7 @@ Menu items.
 
 The children of the menu item (used to make a tree). 
 
-\mbox{\Hypertarget{structliblec_1_1lecui_1_1menu__item_a5f572a917fbbc2a765a59dcbe6504a21}\label{structliblec_1_1lecui_1_1menu__item_a5f572a917fbbc2a765a59dcbe6504a21}} 
+Separators cannot have children. As such, this field is ignored in separators.\mbox{\Hypertarget{structliblec_1_1lecui_1_1menu__item_a5f572a917fbbc2a765a59dcbe6504a21}\label{structliblec_1_1lecui_1_1menu__item_a5f572a917fbbc2a765a59dcbe6504a21}} 
 \index{liblec::lecui::menu\_item@{liblec::lecui::menu\_item}!font@{font}}
 \index{font@{font}!liblec::lecui::menu\_item@{liblec::lecui::menu\_item}}
 \doxysubsubsection{\texorpdfstring{font}{font}}
@@ -78,7 +78,7 @@ The image to use for the menu item (placed on the right).
 
 
 
-The label text of the menu item. 
+The label text of the menu item. Use an empty string to make a separator. 
 
 
 

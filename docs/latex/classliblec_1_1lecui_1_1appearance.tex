@@ -26,10 +26,12 @@ void \mbox{\hyperlink{classliblec_1_1lecui_1_1appearance_a167781098f67780e81ef74
 \begin{DoxyCompactList}\small\item\em Set a preset theme. \end{DoxyCompactList}\item 
 themes \mbox{\hyperlink{classliblec_1_1lecui_1_1appearance_a941ae6fa59f4c4b14f024e9276634e07}{theme}} ()
 \begin{DoxyCompactList}\small\item\em Get the preset theme. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classliblec_1_1lecui_1_1appearance_a32778dc960a49c962b53e19d01f38b4e}{theme}} (const \mbox{\hyperlink{structliblec_1_1lecui_1_1color}{lecui\+::color}} \&\mbox{\hyperlink{structliblec_1_1lecui_1_1color}{color}}, const \mbox{\hyperlink{structliblec_1_1lecui_1_1color}{lecui\+::color}} \&color\+\_\+hot, const \mbox{\hyperlink{structliblec_1_1lecui_1_1color}{lecui\+::color}} \&color\+\_\+disabled, const \mbox{\hyperlink{structliblec_1_1lecui_1_1color}{lecui\+::color}} \&color\+\_\+text)
+void \mbox{\hyperlink{classliblec_1_1lecui_1_1appearance_a32778dc960a49c962b53e19d01f38b4e}{theme}} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{lecui\+::color}} \&\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}, const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{lecui\+::color}} \&color\+\_\+hot, const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{lecui\+::color}} \&color\+\_\+disabled, const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{lecui\+::color}} \&color\+\_\+text)
 \begin{DoxyCompactList}\small\item\em Set the theme color. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classliblec_1_1lecui_1_1appearance_a428351326a6579cd411e4ef13bba7ede}{background}} (const \mbox{\hyperlink{structliblec_1_1lecui_1_1color}{lecui\+::color}} \&\mbox{\hyperlink{structliblec_1_1lecui_1_1color}{color}}, const \mbox{\hyperlink{structliblec_1_1lecui_1_1color}{lecui\+::color}} \&color\+\_\+titlebar)
-\begin{DoxyCompactList}\small\item\em Set the form\textquotesingle{}s background colors. \end{DoxyCompactList}\end{DoxyCompactItemize}
+void \mbox{\hyperlink{classliblec_1_1lecui_1_1appearance_a428351326a6579cd411e4ef13bba7ede}{background}} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{lecui\+::color}} \&\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}, const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{lecui\+::color}} \&color\+\_\+titlebar)
+\begin{DoxyCompactList}\small\item\em Set the form\textquotesingle{}s background colors. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classliblec_1_1lecui_1_1appearance_a1ecc845f785e8850309de270cf6713b8}{set\+\_\+icons}} (int icon\+\_\+resource, int small\+\_\+icon\+\_\+resource)
+\begin{DoxyCompactList}\small\item\em Set the application icon resources. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -42,7 +44,7 @@ Manipulate the form\textquotesingle{}s appearance.
 \index{liblec::lecui::appearance@{liblec::lecui::appearance}!background@{background}}
 \index{background@{background}!liblec::lecui::appearance@{liblec::lecui::appearance}}
 \doxysubsubsection{\texorpdfstring{background()}{background()}}
-{\footnotesize\ttfamily void liblec\+::lecui\+::appearance\+::background (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structliblec_1_1lecui_1_1color}{lecui\+::color}} \&}]{color,  }\item[{const \mbox{\hyperlink{structliblec_1_1lecui_1_1color}{lecui\+::color}} \&}]{color\+\_\+titlebar }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void liblec\+::lecui\+::appearance\+::background (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{lecui\+::color}} \&}]{color,  }\item[{const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{lecui\+::color}} \&}]{color\+\_\+titlebar }\end{DoxyParamCaption})}
 
 
 
@@ -53,6 +55,23 @@ Set the form\textquotesingle{}s background colors.
 {\em color} & The background color of the entire form.\\
 \hline
 {\em color\+\_\+titlebar} & The background color of the titlebar.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1appearance_a1ecc845f785e8850309de270cf6713b8}\label{classliblec_1_1lecui_1_1appearance_a1ecc845f785e8850309de270cf6713b8}} 
+\index{liblec::lecui::appearance@{liblec::lecui::appearance}!set\_icons@{set\_icons}}
+\index{set\_icons@{set\_icons}!liblec::lecui::appearance@{liblec::lecui::appearance}}
+\doxysubsubsection{\texorpdfstring{set\_icons()}{set\_icons()}}
+{\footnotesize\ttfamily void liblec\+::lecui\+::appearance\+::set\+\_\+icons (\begin{DoxyParamCaption}\item[{int}]{icon\+\_\+resource,  }\item[{int}]{small\+\_\+icon\+\_\+resource }\end{DoxyParamCaption})}
+
+
+
+Set the application icon resources. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em icon\+\_\+resource} & The ID of the main .ico resource.\\
+\hline
+{\em small\+\_\+icon\+\_\+resource} & The ID os the small .ico resource.\\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{classliblec_1_1lecui_1_1appearance_a71c0138fba854f3765396ca3dd3068e2}\label{classliblec_1_1lecui_1_1appearance_a71c0138fba854f3765396ca3dd3068e2}} 
@@ -89,7 +108,7 @@ The theme.
 \index{liblec::lecui::appearance@{liblec::lecui::appearance}!theme@{theme}}
 \index{theme@{theme}!liblec::lecui::appearance@{liblec::lecui::appearance}}
 \doxysubsubsection{\texorpdfstring{theme()}{theme()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
-{\footnotesize\ttfamily void liblec\+::lecui\+::appearance\+::theme (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structliblec_1_1lecui_1_1color}{lecui\+::color}} \&}]{color,  }\item[{const \mbox{\hyperlink{structliblec_1_1lecui_1_1color}{lecui\+::color}} \&}]{color\+\_\+hot,  }\item[{const \mbox{\hyperlink{structliblec_1_1lecui_1_1color}{lecui\+::color}} \&}]{color\+\_\+disabled,  }\item[{const \mbox{\hyperlink{structliblec_1_1lecui_1_1color}{lecui\+::color}} \&}]{color\+\_\+text }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void liblec\+::lecui\+::appearance\+::theme (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{lecui\+::color}} \&}]{color,  }\item[{const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{lecui\+::color}} \&}]{color\+\_\+hot,  }\item[{const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{lecui\+::color}} \&}]{color\+\_\+disabled,  }\item[{const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{lecui\+::color}} \&}]{color\+\_\+text }\end{DoxyParamCaption})}
 
 
 

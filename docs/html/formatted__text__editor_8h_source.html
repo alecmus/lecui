@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">lecui
-   &#160;<span id="projectnumber">1.0.0-alpha.1</span>
+   &#160;<span id="projectnumber">1.0.0-alpha.3</span>
    </div>
    <div id="projectbrief">lecui C++ user interface library</div>
   </td>
@@ -71,46 +71,43 @@ $(function() {
 <div class="title">formatted_text_editor.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">** formatted_text_editor.h - formatted text editor interface</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">**</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">** lecui user interface library</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">** Copyright (c) 2019 Alec Musasa (alecmus at live dot com)</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">**</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">*******************************************************************************</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">** This file is part of the liblec library which is released under the Creative</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">** Commons Attribution Non-Commercial 2.0 license (CC-BY-NC 2.0). See the file</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment">** LICENSE.txt or go to https://github.com/alecmus/liblec/blob/master/LICENSE.md</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">** for full license details.</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">*/</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#pragma once</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &quot;../css_parser/css_parser.h&quot;</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &quot;../xml_parser/xml_parser.h&quot;</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
-<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="classformatted__text__editor.html">   21</a></span>&#160;<span class="keyword">class </span><a class="code" href="classformatted__text__editor.html">formatted_text_editor</a> {</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classformatted__text__editor.html#a049f42c0905a552c23df80b75e322669">insert_character</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> c, <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> position, <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> tag_number, std::string&amp; xml_text);</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    [[nodiscard]]</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <a class="code" href="classformatted__text__editor.html#a2ab6592e8526ec45ee255ab4a92e78d7">erase</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> start, <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> end, std::string&amp; xml_text);</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classformatted__text__editor.html#ae3e299acdb758fb23eb1b48596662501">cleanup</a>(std::string&amp; xml_text);</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classformatted__text__editor.html#abba7202aad96852a9d7fa4cb07d4b8f6">toggle_tag</a>(std::string&amp; xml_text, <span class="keyword">const</span> std::string&amp; tag_name,</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="keyword">const</span> std::vector&lt;xml_parser::tag_attribute&gt;&amp; tag_attributes,</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> start, <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> end);</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classformatted__text__editor.html#abba7202aad96852a9d7fa4cb07d4b8f6">toggle_tag</a>(std::string&amp; xml_text, <span class="keyword">const</span> std::string&amp; tag_name,</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> start, <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> end);</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;};</div>
-<div class="ttc" id="aclassformatted__text__editor_html"><div class="ttname"><a href="classformatted__text__editor.html">formatted_text_editor</a></div><div class="ttdoc">Class editing formatted text using position references in the plaintext.</div><div class="ttdef"><b>Definition:</b> formatted_text_editor.h:21</div></div>
-<div class="ttc" id="aclassformatted__text__editor_html_a049f42c0905a552c23df80b75e322669"><div class="ttname"><a href="classformatted__text__editor.html#a049f42c0905a552c23df80b75e322669">formatted_text_editor::insert_character</a></div><div class="ttdeci">void insert_character(const char c, unsigned long position, unsigned long tag_number, std::string &amp;xml_text)</div><div class="ttdoc">Insert a character at a given position.</div><div class="ttdef"><b>Definition:</b> formatted_text_editor.cpp:19</div></div>
-<div class="ttc" id="aclassformatted__text__editor_html_a2ab6592e8526ec45ee255ab4a92e78d7"><div class="ttname"><a href="classformatted__text__editor.html#a2ab6592e8526ec45ee255ab4a92e78d7">formatted_text_editor::erase</a></div><div class="ttdeci">unsigned long erase(unsigned long start, unsigned long end, std::string &amp;xml_text)</div><div class="ttdoc">Erase some characters from a formatted string.</div><div class="ttdef"><b>Definition:</b> formatted_text_editor.cpp:74</div></div>
-<div class="ttc" id="aclassformatted__text__editor_html_abba7202aad96852a9d7fa4cb07d4b8f6"><div class="ttname"><a href="classformatted__text__editor.html#abba7202aad96852a9d7fa4cb07d4b8f6">formatted_text_editor::toggle_tag</a></div><div class="ttdeci">void toggle_tag(std::string &amp;xml_text, const std::string &amp;tag_name, const std::vector&lt; xml_parser::tag_attribute &gt; &amp;tag_attributes, unsigned long start, unsigned long end)</div><div class="ttdoc">For toggling tags, e.g. 'strong', 'em'.</div><div class="ttdef"><b>Definition:</b> formatted_text_editor.cpp:195</div></div>
-<div class="ttc" id="aclassformatted__text__editor_html_ae3e299acdb758fb23eb1b48596662501"><div class="ttname"><a href="classformatted__text__editor.html#ae3e299acdb758fb23eb1b48596662501">formatted_text_editor::cleanup</a></div><div class="ttdeci">void cleanup(std::string &amp;xml_text)</div><div class="ttdoc">Cleanup an XML formatted string (removed any dangling empty tags that are typically left behind after...</div><div class="ttdef"><b>Definition:</b> formatted_text_editor.cpp:153</div></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// formatted_text_editor.h - formatted text editor interface</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">// lecui user interface library, part of the liblec library</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">// Copyright (c) 2019 Alec Musasa (alecmus at live dot com)</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">// Released under the CC-BY-NC 2.0 license. For full details see the file</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">// LICENSE.txt or go to https://github.com/alecmus/liblec/blob/master/LICENSE.md</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;../css_parser/css_parser.h&quot;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &quot;../xml_parser/xml_parser.h&quot;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="classformatted__text__editor.html">   18</a></span>&#160;<span class="keyword">class </span><a class="code" href="classformatted__text__editor.html">formatted_text_editor</a> {</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classformatted__text__editor.html#a049f42c0905a552c23df80b75e322669">insert_character</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> c, <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> position, <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> tag_number, std::string&amp; xml_text);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    [[nodiscard]]</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <a class="code" href="classformatted__text__editor.html#a2ab6592e8526ec45ee255ab4a92e78d7">erase</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> start, <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> end, std::string&amp; xml_text);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classformatted__text__editor.html#ae3e299acdb758fb23eb1b48596662501">cleanup</a>(std::string&amp; xml_text);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classformatted__text__editor.html#abba7202aad96852a9d7fa4cb07d4b8f6">toggle_tag</a>(std::string&amp; xml_text, <span class="keyword">const</span> std::string&amp; tag_name,</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <span class="keyword">const</span> std::vector&lt;xml_parser::tag_attribute&gt;&amp; tag_attributes,</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> start, <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> end);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classformatted__text__editor.html#abba7202aad96852a9d7fa4cb07d4b8f6">toggle_tag</a>(std::string&amp; xml_text, <span class="keyword">const</span> std::string&amp; tag_name,</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> start, <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> end);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;};</div>
+<div class="ttc" id="aclassformatted__text__editor_html"><div class="ttname"><a href="classformatted__text__editor.html">formatted_text_editor</a></div><div class="ttdoc">Class editing formatted text using position references in the plaintext.</div><div class="ttdef"><b>Definition:</b> formatted_text_editor.h:18</div></div>
+<div class="ttc" id="aclassformatted__text__editor_html_a049f42c0905a552c23df80b75e322669"><div class="ttname"><a href="classformatted__text__editor.html#a049f42c0905a552c23df80b75e322669">formatted_text_editor::insert_character</a></div><div class="ttdeci">void insert_character(const char c, unsigned long position, unsigned long tag_number, std::string &amp;xml_text)</div><div class="ttdoc">Insert a character at a given position.</div><div class="ttdef"><b>Definition:</b> formatted_text_editor.cpp:16</div></div>
+<div class="ttc" id="aclassformatted__text__editor_html_a2ab6592e8526ec45ee255ab4a92e78d7"><div class="ttname"><a href="classformatted__text__editor.html#a2ab6592e8526ec45ee255ab4a92e78d7">formatted_text_editor::erase</a></div><div class="ttdeci">unsigned long erase(unsigned long start, unsigned long end, std::string &amp;xml_text)</div><div class="ttdoc">Erase some characters from a formatted string.</div><div class="ttdef"><b>Definition:</b> formatted_text_editor.cpp:71</div></div>
+<div class="ttc" id="aclassformatted__text__editor_html_abba7202aad96852a9d7fa4cb07d4b8f6"><div class="ttname"><a href="classformatted__text__editor.html#abba7202aad96852a9d7fa4cb07d4b8f6">formatted_text_editor::toggle_tag</a></div><div class="ttdeci">void toggle_tag(std::string &amp;xml_text, const std::string &amp;tag_name, const std::vector&lt; xml_parser::tag_attribute &gt; &amp;tag_attributes, unsigned long start, unsigned long end)</div><div class="ttdoc">For toggling tags, e.g. 'strong', 'em'.</div><div class="ttdef"><b>Definition:</b> formatted_text_editor.cpp:192</div></div>
+<div class="ttc" id="aclassformatted__text__editor_html_ae3e299acdb758fb23eb1b48596662501"><div class="ttname"><a href="classformatted__text__editor.html#ae3e299acdb758fb23eb1b48596662501">formatted_text_editor::cleanup</a></div><div class="ttdeci">void cleanup(std::string &amp;xml_text)</div><div class="ttdoc">Cleanup an XML formatted string (removed any dangling empty tags that are typically left behind after...</div><div class="ttdef"><b>Definition:</b> formatted_text_editor.cpp:150</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

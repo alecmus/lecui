@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">lecui
-   &#160;<span id="projectnumber">1.0.0-alpha.1</span>
+   &#160;<span id="projectnumber">1.0.0-alpha.3</span>
    </div>
    <div id="projectbrief">lecui C++ user interface library</div>
   </td>
@@ -79,6 +79,9 @@ Commit Info</h3>
 About the Library</h2>
 <p>The lecui user interface library is designed for the rapid development of modern, efficient and easy to maintain C++ applications with a graphical user interface (gui). It is part of the <a href="https://github.com/alecmus/liblec">liblec libraries</a>.</p>
 <h2><a class="anchor" id="autotoc_md6"></a>
+Documentation</h2>
+<p>The library uses embedded XML-style documentation. An HTML version of this documentation is available <a href="https://alecmus.github.io/lecui">here</a>.</p>
+<h2><a class="anchor" id="autotoc_md7"></a>
 Successor to the cui framework</h2>
 <p>The lecui user interface library is designed to be a successor to the older <a href="https://github.com/alecmus/cui">cui framework</a>. But why? It features newer technologies, greater flexibility and a more robust architecture. Below are some of the most important differences between the two:</p>
 <ol type="1">
@@ -87,9 +90,9 @@ Successor to the cui framework</h2>
 <li>Containers - the former only has a single type of container (page) while the latter features a myriad of containers for a much more flexible design (pages, panes, tab panes, etc.). All containers support recursion; they can have not only widgets but also other containers, and the containers in them can also contain containers and so forth. This makes it possible to design advanced, compact modular user interfaces with layers. Every container supports transparency as well through the use of an alpha channel.</li>
 <li>Scroll bars - the way the former was designed from the word go does not support the overlap of widgets beyond the page or form; lecui supports this and vertical and/or horizontal scrollbars are automatically triggered to permit the user to scroll. These scroll bars are supported for all containers.</li>
 </ol>
-<h2><a class="anchor" id="autotoc_md7"></a>
+<h2><a class="anchor" id="autotoc_md8"></a>
 Usage Examples</h2>
-<p>Various useful usage examples are available in the <a href="https://github.com/alecmus/lecui_demo">lecui demo</a> repository. These range from minimalist hello world examples all the way up to advanced multi-page and multi-layer apps.</p>
+<p>The library is used in the <a href="https://github.com/alecmus/pc_info">pc_info</a> app and various useful usage examples are available in the <a href="https://github.com/alecmus/lecui_demo">lecui demo</a> repository. These range from minimalist hello world examples all the way up to advanced multi-page and multi-layer apps.</p>
 <p>Various screenshots are available in the following places:</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -99,10 +102,10 @@ Usage Examples</h2>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">lecui_minimal   </td><td class="markdownTableBodyNone"><a href="https://github.com/alecmus/files/tree/master/liblec/lecui/screenshots/lecui_minimal">https://github.com/alecmus/files/tree/master/liblec/lecui/screenshots/lecui_minimal</a>   </td></tr>
 </table>
-<h2><a class="anchor" id="autotoc_md8"></a>
+<h2><a class="anchor" id="autotoc_md9"></a>
 Prebuilt Binaries</h2>
 <p>Prebuilt binaries of the library can be found under <a href="https://github.com/alecmus/lecui/releases">releases</a>.</p>
-<h2><a class="anchor" id="autotoc_md9"></a>
+<h2><a class="anchor" id="autotoc_md10"></a>
 Compile-time Dependencies</h2>
 <p>The library has the following compile-time dependencies:</p><ol type="1">
 <li>boost C++ libraries</li>
@@ -114,7 +117,7 @@ Compile-time Dependencies</h2>
 <li>For Microsoft Visual Studio 2019 you can download the file boost_1_72_0-msvc-14.2-64.exe (64 bit) and boost_1_72_0-msvc-14.2-32.exe (32 bit).</li>
 <li>if the boost c++ library is installed elsewhere you will need to change the Microsoft Visual Studio project properties under Properties - C/C++ - General - Additional Include Directories and also under Properties - Linker - General - Additional Library Directories.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md10"></a>
+<h2><a class="anchor" id="autotoc_md11"></a>
 Building</h2>
 <p>Create a folder '\liblec' and clone the repository into it such that it resides in 'liblec\lecui'. Open the Microsoft Visual Studio Solution file liblec\lecui\lecui.sln. Select Build -&gt; Batch Build, then select the desired configurations of the given four:</p><ol type="1">
 <li>Debug x86</li>
@@ -143,9 +146,9 @@ Building</h2>
 <li>lib - contains the static library files that accompany the dlls. The files are named after the respective dlls.</li>
 <li>include - contains the include files</li>
 </ol>
-<h2><a class="anchor" id="autotoc_md11"></a>
+<h2><a class="anchor" id="autotoc_md12"></a>
 Linking to the Library</h2>
-<h3><a class="anchor" id="autotoc_md12"></a>
+<h3><a class="anchor" id="autotoc_md13"></a>
 Microsoft Visual Studio</h3>
 <p>Open your project's properties and for All Configurations and All Platforms set the following:</p><ol type="1">
 <li>C/C++ -&gt; General -&gt; Additional Include Directories -&gt; Edit -&gt; New Line ... add \liblecLinker -&gt; General -&gt; Additional Library Directories -&gt; Edit -&gt; New Line ... add \liblec\lib</li>
@@ -153,7 +156,7 @@ Microsoft Visual Studio</h3>
 </ol>
 <p>Now you can use the required functions by calling #include &lt;liblec/lecui/...&gt;</p>
 <p>Build.</p>
-<h2><a class="anchor" id="autotoc_md13"></a>
+<h2><a class="anchor" id="autotoc_md14"></a>
 Using the library</h2>
 <p>The smallest possible gui app is as follows:</p>
 <div class="fragment"><div class="line">#include &lt;liblec/lecui/form.h&gt;</div>
@@ -168,7 +171,7 @@ Using the library</h2>
 <p>Surely, it doesn't get easier than that!</p>
 <p>For more sophisticated examples refer to the section 'Usage Examples' above.</p>
 <p>And that's the point of this library: to allow you to make a simple gui app with minimal code but also give you the power to build a marvel if you need to.</p>
-<h2><a class="anchor" id="autotoc_md14"></a>
+<h2><a class="anchor" id="autotoc_md15"></a>
 Deploying your Application</h2>
 <p>If it's the 32 bit build you will need to deploy it with lecui32.dll in the same folder. If it's a 64 bit build use the lecui64.dll. </p>
 </div></div><!-- contents -->

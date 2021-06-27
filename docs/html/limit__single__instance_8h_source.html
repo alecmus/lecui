@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">lecui
-   &#160;<span id="projectnumber">1.0.0-alpha.1</span>
+   &#160;<span id="projectnumber">1.0.0-alpha.3</span>
    </div>
    <div id="projectbrief">lecui C++ user interface library</div>
   </td>
@@ -71,39 +71,36 @@ $(function() {
 <div class="title">limit_single_instance.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">** limit_single_instance.h - limit_single_instance interface</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">**</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">** lecui user interface library</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">** Copyright (c) 2019 Alec Musasa (alecmus at live dot com)</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">**</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">*******************************************************************************</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">** This file is part of the liblec library which is released under the Creative</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">** Commons Attribution Non-Commercial 2.0 license (CC-BY-NC 2.0). See the file</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment">** LICENSE.txt or go to https://github.com/alecmus/liblec/blob/master/LICENSE.md</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">** for full license details.</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">*/</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
-<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="classlimit__single__instance.html">   19</a></span>&#160;<span class="keyword">class </span><a class="code" href="classlimit__single__instance.html">limit_single_instance</a> {</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <a class="code" href="classlimit__single__instance.html">limit_single_instance</a>(<span class="keyword">const</span> std::string&amp; mutex_name);</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    ~<a class="code" href="classlimit__single__instance.html">limit_single_instance</a>();</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classlimit__single__instance.html#ad1336e3ba58d128b959156fd676c30cc">another_instance_running</a>();</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classlimit__single__instance.html#a9504f7b423713c82b3b4e11e9dc4e967">wait_for_other_instance</a>();</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <a class="code" href="classlimit__single__instance.html">limit_single_instance</a>();</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keyword">class </span><a class="code" href="classlimit__single__instance_1_1impl.html">impl</a>;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <a class="code" href="classlimit__single__instance_1_1impl.html">impl</a>* d_;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;};</div>
-<div class="ttc" id="aclasslimit__single__instance_1_1impl_html"><div class="ttname"><a href="classlimit__single__instance_1_1impl.html">limit_single_instance::impl</a></div><div class="ttdef"><b>Definition:</b> limit_single_instance.cpp:18</div></div>
-<div class="ttc" id="aclasslimit__single__instance_html"><div class="ttname"><a href="classlimit__single__instance.html">limit_single_instance</a></div><div class="ttdoc">Limit app to a single instance.</div><div class="ttdef"><b>Definition:</b> limit_single_instance.h:19</div></div>
-<div class="ttc" id="aclasslimit__single__instance_html_a9504f7b423713c82b3b4e11e9dc4e967"><div class="ttname"><a href="classlimit__single__instance.html#a9504f7b423713c82b3b4e11e9dc4e967">limit_single_instance::wait_for_other_instance</a></div><div class="ttdeci">void wait_for_other_instance()</div><div class="ttdoc">Wait for the other instance. This function will block until the other instance is closed.</div><div class="ttdef"><b>Definition:</b> limit_single_instance.cpp:89</div></div>
-<div class="ttc" id="aclasslimit__single__instance_html_ad1336e3ba58d128b959156fd676c30cc"><div class="ttname"><a href="classlimit__single__instance.html#ad1336e3ba58d128b959156fd676c30cc">limit_single_instance::another_instance_running</a></div><div class="ttdeci">bool another_instance_running()</div><div class="ttdoc">Check if another instance is running.</div><div class="ttdef"><b>Definition:</b> limit_single_instance.cpp:82</div></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// limit_single_instance.h - limit_single_instance interface</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">// lecui user interface library, part of the liblec library</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">// Copyright (c) 2019 Alec Musasa (alecmus at live dot com)</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">// Released under the CC-BY-NC 2.0 license. For full details see the file</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">// LICENSE.txt or go to https://github.com/alecmus/liblec/blob/master/LICENSE.md</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="classlimit__single__instance.html">   16</a></span>&#160;<span class="keyword">class </span><a class="code" href="classlimit__single__instance.html">limit_single_instance</a> {</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <a class="code" href="classlimit__single__instance.html">limit_single_instance</a>(<span class="keyword">const</span> std::string&amp; mutex_name);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    ~<a class="code" href="classlimit__single__instance.html">limit_single_instance</a>();</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classlimit__single__instance.html#ad1336e3ba58d128b959156fd676c30cc">another_instance_running</a>();</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classlimit__single__instance.html#a9504f7b423713c82b3b4e11e9dc4e967">wait_for_other_instance</a>();</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <a class="code" href="classlimit__single__instance.html">limit_single_instance</a>();</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keyword">class </span><a class="code" href="classlimit__single__instance_1_1impl.html">impl</a>;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <a class="code" href="classlimit__single__instance_1_1impl.html">impl</a>* d_;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;};</div>
+<div class="ttc" id="aclasslimit__single__instance_1_1impl_html"><div class="ttname"><a href="classlimit__single__instance_1_1impl.html">limit_single_instance::impl</a></div><div class="ttdef"><b>Definition:</b> limit_single_instance.cpp:15</div></div>
+<div class="ttc" id="aclasslimit__single__instance_html"><div class="ttname"><a href="classlimit__single__instance.html">limit_single_instance</a></div><div class="ttdoc">Limit app to a single instance.</div><div class="ttdef"><b>Definition:</b> limit_single_instance.h:16</div></div>
+<div class="ttc" id="aclasslimit__single__instance_html_a9504f7b423713c82b3b4e11e9dc4e967"><div class="ttname"><a href="classlimit__single__instance.html#a9504f7b423713c82b3b4e11e9dc4e967">limit_single_instance::wait_for_other_instance</a></div><div class="ttdeci">void wait_for_other_instance()</div><div class="ttdoc">Wait for the other instance. This function will block until the other instance is closed.</div><div class="ttdef"><b>Definition:</b> limit_single_instance.cpp:86</div></div>
+<div class="ttc" id="aclasslimit__single__instance_html_ad1336e3ba58d128b959156fd676c30cc"><div class="ttname"><a href="classlimit__single__instance.html#ad1336e3ba58d128b959156fd676c30cc">limit_single_instance::another_instance_running</a></div><div class="ttdeci">bool another_instance_running()</div><div class="ttdoc">Check if another instance is running.</div><div class="ttdef"><b>Definition:</b> limit_single_instance.cpp:79</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

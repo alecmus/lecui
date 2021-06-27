@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">lecui
-   &#160;<span id="projectnumber">1.0.0-alpha.1</span>
+   &#160;<span id="projectnumber">1.0.0-alpha.3</span>
    </div>
    <div id="projectbrief">lecui C++ user interface library</div>
   </td>
@@ -91,9 +91,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a5eca5d283116750fc8a1dc173c0b4202"><td class="memItemLeft" align="right" valign="top"><a id="a5eca5d283116750fc8a1dc173c0b4202"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>splash</b> (<a class="el" href="classliblec_1_1lecui_1_1form.html">form</a> &amp;fm)</td></tr>
 <tr class="separator:a5eca5d283116750fc8a1dc173c0b4202"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a117bae549ae107420034cc8a33913780"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classliblec_1_1lecui_1_1splash.html#a117bae549ae107420034cc8a33913780">display</a> (int png_resource, std::string &amp;error)</td></tr>
-<tr class="memdesc:a117bae549ae107420034cc8a33913780"><td class="mdescLeft">&#160;</td><td class="mdescRight">Display splash screen image.  <a href="classliblec_1_1lecui_1_1splash.html#a117bae549ae107420034cc8a33913780">More...</a><br /></td></tr>
-<tr class="separator:a117bae549ae107420034cc8a33913780"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0489764cd75f58d372509433beef140"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classliblec_1_1lecui_1_1splash.html#af0489764cd75f58d372509433beef140">display</a> (int png_resource, bool dpi_aware, std::string &amp;error)</td></tr>
+<tr class="memdesc:af0489764cd75f58d372509433beef140"><td class="mdescLeft">&#160;</td><td class="mdescRight">Display splash screen image.  <a href="classliblec_1_1lecui_1_1splash.html#af0489764cd75f58d372509433beef140">More...</a><br /></td></tr>
+<tr class="separator:af0489764cd75f58d372509433beef140"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa97d29ad159e313a7baa214b3a234c48"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classliblec_1_1lecui_1_1splash.html#aa97d29ad159e313a7baa214b3a234c48">remove</a> ()</td></tr>
 <tr class="memdesc:aa97d29ad159e313a7baa214b3a234c48"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove splash screen image.  <a href="classliblec_1_1lecui_1_1splash.html#aa97d29ad159e313a7baa214b3a234c48">More...</a><br /></td></tr>
 <tr class="separator:aa97d29ad159e313a7baa214b3a234c48"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -101,8 +101,8 @@ Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Splash screen class. Useful for displaying graphics while app is loading. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a117bae549ae107420034cc8a33913780"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a117bae549ae107420034cc8a33913780">&#9670;&nbsp;</a></span>display()</h2>
+<a id="af0489764cd75f58d372509433beef140"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af0489764cd75f58d372509433beef140">&#9670;&nbsp;</a></span>display()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -112,6 +112,12 @@ Public Member Functions</h2></td></tr>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>png_resource</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>dpi_aware</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -131,11 +137,13 @@ Public Member Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">png_resource</td><td>The ID of the PNG resource containing the image.</td></tr>
+    <tr><td class="paramname">dpi_aware</td><td>Whether the splash screen scales the image automatically based on the DPI scale.</td></tr>
     <tr><td class="paramname">error</td><td>Error information.</td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns true if successful, else false (in which case error information if written to the "error" parameter.</dd></dl>
+<p>To use the same image and have it appear the same size on screens with different DPI settings set the <a class="el" href="">dpi_aware</a> flag to true. However, if you would like to have only a sharp, pixel-perfect splash screen it is recommended to set the flag to false and (optionally) load a different resource based on the dpi scale reported through the <a class="el" href="classliblec_1_1lecui_1_1form.html#a045f0d9eed1c1ede57fa9618b49fdbea">form::get_dpi_scale()</a> method. For example, you may have three different images: one for 1.0 up to 1.5 scale, another for 1.75 to 2.25 and then another for 2.50 and beyond. </p>
 
 </div>
 </div>

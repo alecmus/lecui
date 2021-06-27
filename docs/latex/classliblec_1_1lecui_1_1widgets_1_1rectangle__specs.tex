@@ -1,0 +1,490 @@
+\hypertarget{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs}{}\doxysection{liblec\+::lecui\+::widgets\+::rectangle\+\_\+specs Class Reference}
+\label{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs}\index{liblec::lecui::widgets::rectangle\_specs@{liblec::lecui::widgets::rectangle\_specs}}
+
+
+Rectangle widget specifications.  
+
+
+
+
+{\ttfamily \#include $<$rectangle.\+h$>$}
+
+Inheritance diagram for liblec\+::lecui\+::widgets\+::rectangle\+\_\+specs\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a501e6532d38d2f1707d5086762c15231}\label{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a501e6532d38d2f1707d5086762c15231}} 
+bool {\bfseries operator==} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs}{rectangle\+\_\+specs}} \&)
+\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a5a896ca0a46be22abf4c4a00c952a1a0}\label{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a5a896ca0a46be22abf4c4a00c952a1a0}} 
+bool {\bfseries operator!=} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs}{rectangle\+\_\+specs}} \&)
+\item 
+std\+::string \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a059f3c1bfb8946a0a6d5dacc2049f9fa}{text}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the widget text. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a7b33d0e9264ad59a08aa9347e26e666c}\label{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a7b33d0e9264ad59a08aa9347e26e666c}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs}{rectangle\+\_\+specs}} \& {\bfseries text} (const std\+::string \&text)
+\item 
+std\+::string \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a44c8b8844fd8f94de3c52ebb1b1c392c}{tooltip}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the widget\textquotesingle{}s tooltip text. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_ac919a6750c385901d8716170336d2fae}\label{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_ac919a6750c385901d8716170336d2fae}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs}{rectangle\+\_\+specs}} \& {\bfseries tooltip} (const std\+::string \&tooltip)
+\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{lecui\+::rect}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a3ad5a875e3d57530d3850420539b482d}{rect}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the position and dimensions of the widget. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a0b24455a270b91280a4dfe68fa4f0bd7}\label{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a0b24455a270b91280a4dfe68fa4f0bd7}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs}{rectangle\+\_\+specs}} \& {\bfseries rect} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{lecui\+::rect}} \&\mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{rect}})
+\item 
+\mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1specs_1_1resize__params}{resize\+\_\+params}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a28703adbe40c43c094b8551e537cb1f2}{on\+\_\+resize}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the behaviour of the widget when its container is resized. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a4f0034080cc65142c1af8975bb5edfd4}\label{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a4f0034080cc65142c1af8975bb5edfd4}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs}{rectangle\+\_\+specs}} \& {\bfseries on\+\_\+resize} (const \mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1specs_1_1resize__params}{resize\+\_\+params}} \&on\+\_\+resize)
+\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a3cba4c05a958d80dca72e4e9dd5360b1}{cursor\+\_\+type}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a009164f08e87685e861567789953b805}{cursor}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the mouse cursor to use then over the widget. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_adc13e40c1e1c931e8b266d6e7bd288e8}\label{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_adc13e40c1e1c931e8b266d6e7bd288e8}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs}{rectangle\+\_\+specs}} \& {\bfseries cursor} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a3cba4c05a958d80dca72e4e9dd5360b1}{cursor\+\_\+type}} cursor)
+\item 
+std\+::string \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a656abc12b60fd4ae62bc76130b740f8b}{font}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the default widget font, e.\+g. \char`\"{}\+Georgia\char`\"{}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a791087617776d4a9179ebc8b8d4ae0b9}\label{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a791087617776d4a9179ebc8b8d4ae0b9}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs}{rectangle\+\_\+specs}} \& {\bfseries font} (const std\+::string \&\mbox{\hyperlink{classfont}{font}})
+\item 
+float \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_ad63e93a996c38f8751deb599c0c81cd5}{font\+\_\+size}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the default widget font size in points, e.\+g. 9.\+0. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a4d7ff76a62fafa748f791f753ba2c8c2}\label{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a4d7ff76a62fafa748f791f753ba2c8c2}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs}{rectangle\+\_\+specs}} \& {\bfseries font\+\_\+size} (const float \&font\+\_\+size)
+\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a7d0d1525ac37ec97bc44beca788c1713}{color\+\_\+text}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the color of the widget\textquotesingle{}s text. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a6e69e7f9e9583d210214d983aeda426d}\label{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a6e69e7f9e9583d210214d983aeda426d}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs}{rectangle\+\_\+specs}} \& {\bfseries color\+\_\+text} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&color\+\_\+text)
+\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_afc47ef7b395bd6ac5ca0baafe33db6e8}{color\+\_\+fill}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the fill color of the widget. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a2a9643f1e3f0d5eed87f313e9413720a}\label{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a2a9643f1e3f0d5eed87f313e9413720a}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs}{rectangle\+\_\+specs}} \& {\bfseries color\+\_\+fill} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&color\+\_\+fill)
+\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a91fc76bf062f448a31dbee4e1de750cb}{color\+\_\+hot}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the widget\textquotesingle{}s color when the mouse is hovered over it. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a9c0ff536508251534d3aeeef55ba94dc}\label{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a9c0ff536508251534d3aeeef55ba94dc}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs}{rectangle\+\_\+specs}} \& {\bfseries color\+\_\+hot} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&color\+\_\+hot)
+\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_af977f51b827de40b296bc04557dad4d7}{color\+\_\+selected}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the widget\textquotesingle{}s color when selected. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a829f34a3dded615f3b3e4a7d4cd0b831}\label{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a829f34a3dded615f3b3e4a7d4cd0b831}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs}{rectangle\+\_\+specs}} \& {\bfseries color\+\_\+selected} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&color\+\_\+selected)
+\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a626c11cd04d43622d6890c685bde5960}{color\+\_\+disabled}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the widget\textquotesingle{}s color when it\textquotesingle{}s disabled. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a44ea4a5b2b56141db61b1c9958d3f2d7}\label{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a44ea4a5b2b56141db61b1c9958d3f2d7}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs}{rectangle\+\_\+specs}} \& {\bfseries color\+\_\+disabled} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&color\+\_\+disabled)
+\item 
+float \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a2ba8e512676de6e1e867c993b3e07a82}{border}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the thickness of the border. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs}{rectangle\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_ae842e3c68f7e1413de66305c88041145}{border}} (const float \&border)
+\begin{DoxyCompactList}\small\item\em Set the thickness of the border. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a06e24814163a84ace2405f11fb18690b}{color\+\_\+border}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the color of the border. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs}{rectangle\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a559e75c8e742a2fab230cb8cda4b7c4a}{color\+\_\+border}} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&color\+\_\+border)
+\begin{DoxyCompactList}\small\item\em Set the color of the border. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_ac99b2d4a1bface581f659b12845a7076}{color\+\_\+border\+\_\+hot}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the color of the border when the mouse is over the widget. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs}{rectangle\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a9f8771d488154c94af0189138225d4c4}{color\+\_\+border\+\_\+hot}} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&color\+\_\+border\+\_\+hot)
+\begin{DoxyCompactList}\small\item\em Set the color of the border when the mouse is over the widget. \end{DoxyCompactList}\item 
+float \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a18fad2b43e8b6be84a7d498410b8db38}{corner\+\_\+radius\+\_\+x}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the horizontal radius of the corners. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs}{rectangle\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a9a48a0269f8dbf0459069d6e168b43c9}{corner\+\_\+radius\+\_\+x}} (const float \&corner\+\_\+radius\+\_\+x)
+\begin{DoxyCompactList}\small\item\em Set the horizontal radius of the corners. \end{DoxyCompactList}\item 
+float \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a7696aad82a8dfa6ed13d88ac8153c1c2}{corner\+\_\+radius\+\_\+y}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the vertical radius of the corners. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs}{rectangle\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_ae3e74fb38ab0304c203ce2b6a85ea03b}{corner\+\_\+radius\+\_\+y}} (const float \&corner\+\_\+radius\+\_\+y)
+\begin{DoxyCompactList}\small\item\em Set the vertical radius of the corners. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+Rectangle widget specifications. 
+
+Default size is 200x200px.
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a2ba8e512676de6e1e867c993b3e07a82}\label{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a2ba8e512676de6e1e867c993b3e07a82}} 
+\index{liblec::lecui::widgets::rectangle\_specs@{liblec::lecui::widgets::rectangle\_specs}!border@{border}}
+\index{border@{border}!liblec::lecui::widgets::rectangle\_specs@{liblec::lecui::widgets::rectangle\_specs}}
+\doxysubsubsection{\texorpdfstring{border()}{border()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily float\& liblec\+::lecui\+::widgets\+::rectangle\+\_\+specs\+::border (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get or set the thickness of the border. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the border thickness, in pixels.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_ae842e3c68f7e1413de66305c88041145}\label{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_ae842e3c68f7e1413de66305c88041145}} 
+\index{liblec::lecui::widgets::rectangle\_specs@{liblec::lecui::widgets::rectangle\_specs}!border@{border}}
+\index{border@{border}!liblec::lecui::widgets::rectangle\_specs@{liblec::lecui::widgets::rectangle\_specs}}
+\doxysubsubsection{\texorpdfstring{border()}{border()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs}{rectangle\+\_\+specs}}\& liblec\+::lecui\+::widgets\+::rectangle\+\_\+specs\+::border (\begin{DoxyParamCaption}\item[{const float \&}]{border }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the thickness of the border. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em border} & The border thickness, in pixels.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a06e24814163a84ace2405f11fb18690b}\label{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a06e24814163a84ace2405f11fb18690b}} 
+\index{liblec::lecui::widgets::rectangle\_specs@{liblec::lecui::widgets::rectangle\_specs}!color\_border@{color\_border}}
+\index{color\_border@{color\_border}!liblec::lecui::widgets::rectangle\_specs@{liblec::lecui::widgets::rectangle\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_border()}{color\_border()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::widgets\+::rectangle\+\_\+specs\+::color\+\_\+border (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get or set the color of the border. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the border color, as defined in \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a559e75c8e742a2fab230cb8cda4b7c4a}\label{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a559e75c8e742a2fab230cb8cda4b7c4a}} 
+\index{liblec::lecui::widgets::rectangle\_specs@{liblec::lecui::widgets::rectangle\_specs}!color\_border@{color\_border}}
+\index{color\_border@{color\_border}!liblec::lecui::widgets::rectangle\_specs@{liblec::lecui::widgets::rectangle\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_border()}{color\_border()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs}{rectangle\+\_\+specs}}\& liblec\+::lecui\+::widgets\+::rectangle\+\_\+specs\+::color\+\_\+border (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&}]{color\+\_\+border }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the color of the border. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em color\+\_\+border} & The border color, as defined in \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_ac99b2d4a1bface581f659b12845a7076}\label{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_ac99b2d4a1bface581f659b12845a7076}} 
+\index{liblec::lecui::widgets::rectangle\_specs@{liblec::lecui::widgets::rectangle\_specs}!color\_border\_hot@{color\_border\_hot}}
+\index{color\_border\_hot@{color\_border\_hot}!liblec::lecui::widgets::rectangle\_specs@{liblec::lecui::widgets::rectangle\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_border\_hot()}{color\_border\_hot()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::widgets\+::rectangle\+\_\+specs\+::color\+\_\+border\+\_\+hot (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get or set the color of the border when the mouse is over the widget. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the color, as defined in \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a9f8771d488154c94af0189138225d4c4}\label{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a9f8771d488154c94af0189138225d4c4}} 
+\index{liblec::lecui::widgets::rectangle\_specs@{liblec::lecui::widgets::rectangle\_specs}!color\_border\_hot@{color\_border\_hot}}
+\index{color\_border\_hot@{color\_border\_hot}!liblec::lecui::widgets::rectangle\_specs@{liblec::lecui::widgets::rectangle\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_border\_hot()}{color\_border\_hot()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs}{rectangle\+\_\+specs}}\& liblec\+::lecui\+::widgets\+::rectangle\+\_\+specs\+::color\+\_\+border\+\_\+hot (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&}]{color\+\_\+border\+\_\+hot }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the color of the border when the mouse is over the widget. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em color\+\_\+border} & The color, as defined in \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a626c11cd04d43622d6890c685bde5960}\label{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a626c11cd04d43622d6890c685bde5960}} 
+\index{liblec::lecui::widgets::rectangle\_specs@{liblec::lecui::widgets::rectangle\_specs}!color\_disabled@{color\_disabled}}
+\index{color\_disabled@{color\_disabled}!liblec::lecui::widgets::rectangle\_specs@{liblec::lecui::widgets::rectangle\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_disabled()}{color\_disabled()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::widgets\+::rectangle\+\_\+specs\+::color\+\_\+disabled (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the widget\textquotesingle{}s color when it\textquotesingle{}s disabled. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget\textquotesingle{}s color when disabled.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a063ce5777dcabe002f5ea88e15e39560}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_afc47ef7b395bd6ac5ca0baafe33db6e8}\label{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_afc47ef7b395bd6ac5ca0baafe33db6e8}} 
+\index{liblec::lecui::widgets::rectangle\_specs@{liblec::lecui::widgets::rectangle\_specs}!color\_fill@{color\_fill}}
+\index{color\_fill@{color\_fill}!liblec::lecui::widgets::rectangle\_specs@{liblec::lecui::widgets::rectangle\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_fill()}{color\_fill()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::widgets\+::rectangle\+\_\+specs\+::color\+\_\+fill (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the fill color of the widget. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget\textquotesingle{}s fill color.
+\end{DoxyReturn}
+
+
+The use of the fill color varies from widget to widget. Refer to the specific widget\textquotesingle{}s documentation for details.
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_ab99407e83123ee1dd285f985dbb20747}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a91fc76bf062f448a31dbee4e1de750cb}\label{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a91fc76bf062f448a31dbee4e1de750cb}} 
+\index{liblec::lecui::widgets::rectangle\_specs@{liblec::lecui::widgets::rectangle\_specs}!color\_hot@{color\_hot}}
+\index{color\_hot@{color\_hot}!liblec::lecui::widgets::rectangle\_specs@{liblec::lecui::widgets::rectangle\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_hot()}{color\_hot()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::widgets\+::rectangle\+\_\+specs\+::color\+\_\+hot (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the widget\textquotesingle{}s color when the mouse is hovered over it. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget\textquotesingle{}s hover color.
+\end{DoxyReturn}
+
+
+The use of the hover color varies from widget to widget. Refer to the specific widget\textquotesingle{}s documentation for details.
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a1fe7b1fe9f05604c6ab54696a1dc3d04}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_af977f51b827de40b296bc04557dad4d7}\label{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_af977f51b827de40b296bc04557dad4d7}} 
+\index{liblec::lecui::widgets::rectangle\_specs@{liblec::lecui::widgets::rectangle\_specs}!color\_selected@{color\_selected}}
+\index{color\_selected@{color\_selected}!liblec::lecui::widgets::rectangle\_specs@{liblec::lecui::widgets::rectangle\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_selected()}{color\_selected()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::widgets\+::rectangle\+\_\+specs\+::color\+\_\+selected (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the widget\textquotesingle{}s color when selected. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget\textquotesingle{}s color when selected.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a53482bdf42a5e33ab53f87ce097e4837}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a7d0d1525ac37ec97bc44beca788c1713}\label{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a7d0d1525ac37ec97bc44beca788c1713}} 
+\index{liblec::lecui::widgets::rectangle\_specs@{liblec::lecui::widgets::rectangle\_specs}!color\_text@{color\_text}}
+\index{color\_text@{color\_text}!liblec::lecui::widgets::rectangle\_specs@{liblec::lecui::widgets::rectangle\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_text()}{color\_text()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::widgets\+::rectangle\+\_\+specs\+::color\+\_\+text (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the color of the widget\textquotesingle{}s text. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget\textquotesingle{}s text color.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a8b272a6842d03791c3da0f04a69ad128}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a18fad2b43e8b6be84a7d498410b8db38}\label{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a18fad2b43e8b6be84a7d498410b8db38}} 
+\index{liblec::lecui::widgets::rectangle\_specs@{liblec::lecui::widgets::rectangle\_specs}!corner\_radius\_x@{corner\_radius\_x}}
+\index{corner\_radius\_x@{corner\_radius\_x}!liblec::lecui::widgets::rectangle\_specs@{liblec::lecui::widgets::rectangle\_specs}}
+\doxysubsubsection{\texorpdfstring{corner\_radius\_x()}{corner\_radius\_x()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily float\& liblec\+::lecui\+::widgets\+::rectangle\+\_\+specs\+::corner\+\_\+radius\+\_\+x (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get or set the horizontal radius of the corners. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the radius, in pixels.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a9a48a0269f8dbf0459069d6e168b43c9}\label{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a9a48a0269f8dbf0459069d6e168b43c9}} 
+\index{liblec::lecui::widgets::rectangle\_specs@{liblec::lecui::widgets::rectangle\_specs}!corner\_radius\_x@{corner\_radius\_x}}
+\index{corner\_radius\_x@{corner\_radius\_x}!liblec::lecui::widgets::rectangle\_specs@{liblec::lecui::widgets::rectangle\_specs}}
+\doxysubsubsection{\texorpdfstring{corner\_radius\_x()}{corner\_radius\_x()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs}{rectangle\+\_\+specs}}\& liblec\+::lecui\+::widgets\+::rectangle\+\_\+specs\+::corner\+\_\+radius\+\_\+x (\begin{DoxyParamCaption}\item[{const float \&}]{corner\+\_\+radius\+\_\+x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the horizontal radius of the corners. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em corner\+\_\+radius\+\_\+x} & The horizontal radius of the corner, in pixels.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a7696aad82a8dfa6ed13d88ac8153c1c2}\label{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a7696aad82a8dfa6ed13d88ac8153c1c2}} 
+\index{liblec::lecui::widgets::rectangle\_specs@{liblec::lecui::widgets::rectangle\_specs}!corner\_radius\_y@{corner\_radius\_y}}
+\index{corner\_radius\_y@{corner\_radius\_y}!liblec::lecui::widgets::rectangle\_specs@{liblec::lecui::widgets::rectangle\_specs}}
+\doxysubsubsection{\texorpdfstring{corner\_radius\_y()}{corner\_radius\_y()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily float\& liblec\+::lecui\+::widgets\+::rectangle\+\_\+specs\+::corner\+\_\+radius\+\_\+y (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get or set the vertical radius of the corners. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the radius, in pixels.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_ae3e74fb38ab0304c203ce2b6a85ea03b}\label{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_ae3e74fb38ab0304c203ce2b6a85ea03b}} 
+\index{liblec::lecui::widgets::rectangle\_specs@{liblec::lecui::widgets::rectangle\_specs}!corner\_radius\_y@{corner\_radius\_y}}
+\index{corner\_radius\_y@{corner\_radius\_y}!liblec::lecui::widgets::rectangle\_specs@{liblec::lecui::widgets::rectangle\_specs}}
+\doxysubsubsection{\texorpdfstring{corner\_radius\_y()}{corner\_radius\_y()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs}{rectangle\+\_\+specs}}\& liblec\+::lecui\+::widgets\+::rectangle\+\_\+specs\+::corner\+\_\+radius\+\_\+y (\begin{DoxyParamCaption}\item[{const float \&}]{corner\+\_\+radius\+\_\+y }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the vertical radius of the corners. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em corner\+\_\+radius\+\_\+y} & The horizontal radius of the corner, in pixels.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a009164f08e87685e861567789953b805}\label{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a009164f08e87685e861567789953b805}} 
+\index{liblec::lecui::widgets::rectangle\_specs@{liblec::lecui::widgets::rectangle\_specs}!cursor@{cursor}}
+\index{cursor@{cursor}!liblec::lecui::widgets::rectangle\_specs@{liblec::lecui::widgets::rectangle\_specs}}
+\doxysubsubsection{\texorpdfstring{cursor()}{cursor()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a3cba4c05a958d80dca72e4e9dd5360b1}{cursor\+\_\+type}}\& liblec\+::lecui\+::widgets\+::rectangle\+\_\+specs\+::cursor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the mouse cursor to use then over the widget. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the cursor type as defined in \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a3cba4c05a958d80dca72e4e9dd5360b1}{cursor\+\_\+type}}.
+\end{DoxyReturn}
+
+
+This is only used if the widget is non-\/static.
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a28e525ebd75d587b17592dba23f24081}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a656abc12b60fd4ae62bc76130b740f8b}\label{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a656abc12b60fd4ae62bc76130b740f8b}} 
+\index{liblec::lecui::widgets::rectangle\_specs@{liblec::lecui::widgets::rectangle\_specs}!font@{font}}
+\index{font@{font}!liblec::lecui::widgets::rectangle\_specs@{liblec::lecui::widgets::rectangle\_specs}}
+\doxysubsubsection{\texorpdfstring{font()}{font()}}
+{\footnotesize\ttfamily std\+::string\& liblec\+::lecui\+::widgets\+::rectangle\+\_\+specs\+::font (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the default widget font, e.\+g. \char`\"{}\+Georgia\char`\"{}. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget\textquotesingle{}s font name.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a5f42f2960de76e860d4b55e0e376f42a}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_ad63e93a996c38f8751deb599c0c81cd5}\label{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_ad63e93a996c38f8751deb599c0c81cd5}} 
+\index{liblec::lecui::widgets::rectangle\_specs@{liblec::lecui::widgets::rectangle\_specs}!font\_size@{font\_size}}
+\index{font\_size@{font\_size}!liblec::lecui::widgets::rectangle\_specs@{liblec::lecui::widgets::rectangle\_specs}}
+\doxysubsubsection{\texorpdfstring{font\_size()}{font\_size()}}
+{\footnotesize\ttfamily float\& liblec\+::lecui\+::widgets\+::rectangle\+\_\+specs\+::font\+\_\+size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the default widget font size in points, e.\+g. 9.\+0. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget\textquotesingle{}s font size.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a540bfa7642033966614ccfda7ecf1f25}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a28703adbe40c43c094b8551e537cb1f2}\label{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a28703adbe40c43c094b8551e537cb1f2}} 
+\index{liblec::lecui::widgets::rectangle\_specs@{liblec::lecui::widgets::rectangle\_specs}!on\_resize@{on\_resize}}
+\index{on\_resize@{on\_resize}!liblec::lecui::widgets::rectangle\_specs@{liblec::lecui::widgets::rectangle\_specs}}
+\doxysubsubsection{\texorpdfstring{on\_resize()}{on\_resize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1specs_1_1resize__params}{resize\+\_\+params}}\& liblec\+::lecui\+::widgets\+::rectangle\+\_\+specs\+::on\+\_\+resize (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the behaviour of the widget when its container is resized. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the resize parameters as defined in \mbox{\hyperlink{}{resize\+\_\+params}}.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a3f6021dcec6d7b6d846911956a6bff32}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a3ad5a875e3d57530d3850420539b482d}\label{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a3ad5a875e3d57530d3850420539b482d}} 
+\index{liblec::lecui::widgets::rectangle\_specs@{liblec::lecui::widgets::rectangle\_specs}!rect@{rect}}
+\index{rect@{rect}!liblec::lecui::widgets::rectangle\_specs@{liblec::lecui::widgets::rectangle\_specs}}
+\doxysubsubsection{\texorpdfstring{rect()}{rect()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{lecui\+::rect}}\& liblec\+::lecui\+::widgets\+::rectangle\+\_\+specs\+::rect (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the position and dimensions of the widget. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget rectangle.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a0d6cc5c9ed9591f2e8b306a18224f4d7}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a059f3c1bfb8946a0a6d5dacc2049f9fa}\label{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a059f3c1bfb8946a0a6d5dacc2049f9fa}} 
+\index{liblec::lecui::widgets::rectangle\_specs@{liblec::lecui::widgets::rectangle\_specs}!text@{text}}
+\index{text@{text}!liblec::lecui::widgets::rectangle\_specs@{liblec::lecui::widgets::rectangle\_specs}}
+\doxysubsubsection{\texorpdfstring{text()}{text()}}
+{\footnotesize\ttfamily std\+::string\& liblec\+::lecui\+::widgets\+::rectangle\+\_\+specs\+::text (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the widget text. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget text.
+\end{DoxyReturn}
+
+
+The use of the text varies from widget to widget. Some widgets don\textquotesingle{}t use this field.
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a76c5292d60d7c9a3ab6f26a9ef5fcbad}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a44c8b8844fd8f94de3c52ebb1b1c392c}\label{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a44c8b8844fd8f94de3c52ebb1b1c392c}} 
+\index{liblec::lecui::widgets::rectangle\_specs@{liblec::lecui::widgets::rectangle\_specs}!tooltip@{tooltip}}
+\index{tooltip@{tooltip}!liblec::lecui::widgets::rectangle\_specs@{liblec::lecui::widgets::rectangle\_specs}}
+\doxysubsubsection{\texorpdfstring{tooltip()}{tooltip()}}
+{\footnotesize\ttfamily std\+::string\& liblec\+::lecui\+::widgets\+::rectangle\+\_\+specs\+::tooltip (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the widget\textquotesingle{}s tooltip text. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the tooltip text.
+\end{DoxyReturn}
+
+
+The tooltip text is displayed when the mouse is hovered over the widget.
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_af82deb362bbf2fafe975296722785b3a}{liblec\+::lecui\+::widgets\+::specs}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+widgets/rectangle.\+h\item 
+widgets/rectangle/rectangle.\+cpp\end{DoxyCompactItemize}

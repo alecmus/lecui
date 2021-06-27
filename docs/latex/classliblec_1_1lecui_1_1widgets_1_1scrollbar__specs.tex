@@ -6,19 +6,305 @@ Inheritance diagram for liblec\+::lecui\+::widgets\+::scrollbar\+\_\+specs\+:\be
 \includegraphics[height=3.000000cm]{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs}
 \end{center}
 \end{figure}
-\doxysubsection*{Public Attributes}
+\doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_a1bca32760e3456f8bf599b13f3b2b830}\label{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_a1bca32760e3456f8bf599b13f3b2b830}} 
-\mbox{\hyperlink{structliblec_1_1lecui_1_1color}{color}} {\bfseries color\+\_\+scrollbar\+\_\+border} = \{ 180, 180, 180, 255 \}
+std\+::string \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_aca3daebef01831bd5532a48d0c637f74}{text}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the widget text. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_a970b242ee0819ec2a2c8b445b96d72c3}\label{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_a970b242ee0819ec2a2c8b445b96d72c3}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs}{scrollbar\+\_\+specs}} \& {\bfseries text} (const std\+::string \&text)
 \item 
-\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_a850a025cb682a4e3b926f378a30f7a2a}\label{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_a850a025cb682a4e3b926f378a30f7a2a}} 
-\mbox{\hyperlink{structliblec_1_1lecui_1_1color}{color}} {\bfseries color\+\_\+hot\+\_\+pressed} = \{ 221, 221, 221, 255 \}
+std\+::string \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_ab88ad83f1c2981a84344bf493800cd61}{tooltip}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the widget\textquotesingle{}s tooltip text. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_a5b69c8b46c8ee17b081e8c4c73493c50}\label{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_a5b69c8b46c8ee17b081e8c4c73493c50}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs}{scrollbar\+\_\+specs}} \& {\bfseries tooltip} (const std\+::string \&tooltip)
 \item 
-\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_a25aa6f261b89e04653eae8d7a23a9d5a}\label{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_a25aa6f261b89e04653eae8d7a23a9d5a}} 
-\mbox{\hyperlink{structliblec_1_1lecui_1_1color}{color}} {\bfseries color\+\_\+background} = \{ 0, 0, 0, 0 \}
+\mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{lecui\+::rect}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_a7a3378c5f33b987b32dd511c8181f4f8}{rect}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the position and dimensions of the widget. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_a2410d3ee37c98ce1ae1b61170988bea4}\label{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_a2410d3ee37c98ce1ae1b61170988bea4}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs}{scrollbar\+\_\+specs}} \& {\bfseries rect} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{lecui\+::rect}} \&\mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{rect}})
+\item 
+\mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1specs_1_1resize__params}{resize\+\_\+params}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_ad06f2f50301e515ce5835bbd48dc305a}{on\+\_\+resize}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the behaviour of the widget when its container is resized. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_a6f608eb57571b7de004a45c287040fc2}\label{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_a6f608eb57571b7de004a45c287040fc2}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs}{scrollbar\+\_\+specs}} \& {\bfseries on\+\_\+resize} (const \mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1specs_1_1resize__params}{resize\+\_\+params}} \&on\+\_\+resize)
+\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a3cba4c05a958d80dca72e4e9dd5360b1}{cursor\+\_\+type}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_a17c099ae94e07db6ebbe43ffeb145234}{cursor}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the mouse cursor to use then over the widget. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_af07e7dc5e536a4d96b55eb5e2d37425d}\label{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_af07e7dc5e536a4d96b55eb5e2d37425d}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs}{scrollbar\+\_\+specs}} \& {\bfseries cursor} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a3cba4c05a958d80dca72e4e9dd5360b1}{cursor\+\_\+type}} cursor)
+\item 
+std\+::string \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_a15ba7f75c9329e99690741824169a89c}{font}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the default widget font, e.\+g. \char`\"{}\+Georgia\char`\"{}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_ad3d0a3a0e415873a5850178423bb91bb}\label{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_ad3d0a3a0e415873a5850178423bb91bb}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs}{scrollbar\+\_\+specs}} \& {\bfseries font} (const std\+::string \&\mbox{\hyperlink{classfont}{font}})
+\item 
+float \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_a7dea561a6e7aefac479863ac255b937c}{font\+\_\+size}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the default widget font size in points, e.\+g. 9.\+0. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_aea2e2fbf5c58d837e1b254d87ae7b26b}\label{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_aea2e2fbf5c58d837e1b254d87ae7b26b}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs}{scrollbar\+\_\+specs}} \& {\bfseries font\+\_\+size} (const float \&font\+\_\+size)
+\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_a8c62f21ef2e11ec307ef595245a0c45a}{color\+\_\+text}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the color of the widget\textquotesingle{}s text. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_aba081acc88c25616745739fb08598486}\label{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_aba081acc88c25616745739fb08598486}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs}{scrollbar\+\_\+specs}} \& {\bfseries color\+\_\+text} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&color\+\_\+text)
+\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_a20022eb497c07935bbd6368a04789fa9}{color\+\_\+fill}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the fill color of the widget. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_ae7f22b5f01652ad2d3c87b2291d67133}\label{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_ae7f22b5f01652ad2d3c87b2291d67133}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs}{scrollbar\+\_\+specs}} \& {\bfseries color\+\_\+fill} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&color\+\_\+fill)
+\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_adb14dda2e6b095f3c77f5024df291e0f}{color\+\_\+hot}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the widget\textquotesingle{}s color when the mouse is hovered over it. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_a60380a56203ed7ac2b0bbdb7b8846d22}\label{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_a60380a56203ed7ac2b0bbdb7b8846d22}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs}{scrollbar\+\_\+specs}} \& {\bfseries color\+\_\+hot} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&color\+\_\+hot)
+\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_aba8f94c2d9e624cf79e176680b1c4ed0}{color\+\_\+selected}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the widget\textquotesingle{}s color when selected. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_a16fc42e26d8c2471e7861be36a210330}\label{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_a16fc42e26d8c2471e7861be36a210330}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs}{scrollbar\+\_\+specs}} \& {\bfseries color\+\_\+selected} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&color\+\_\+selected)
+\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_ad553d8e93064fed3b7d422d62b0e7706}{color\+\_\+disabled}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the widget\textquotesingle{}s color when it\textquotesingle{}s disabled. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_a44e7228090a3079d179d611e51b2d8f5}\label{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_a44e7228090a3079d179d611e51b2d8f5}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs}{scrollbar\+\_\+specs}} \& {\bfseries color\+\_\+disabled} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&color\+\_\+disabled)
+\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_a78452aba82ae32eca80d16351b16a329}\label{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_a78452aba82ae32eca80d16351b16a329}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& {\bfseries color\+\_\+scrollbar\+\_\+border} ()
+\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_adbf76887d1e4d73aa32cdd83b2f05ccf}\label{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_adbf76887d1e4d73aa32cdd83b2f05ccf}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs}{scrollbar\+\_\+specs}} \& {\bfseries color\+\_\+scrollbar\+\_\+border} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&color\+\_\+scrollbar\+\_\+border)
+\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_a073bf056d4d5f3756c9227fb1d1c788e}\label{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_a073bf056d4d5f3756c9227fb1d1c788e}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& {\bfseries color\+\_\+hot\+\_\+pressed} ()
+\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_a71b6661a81b3e1f85eb6701e112cec3e}\label{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_a71b6661a81b3e1f85eb6701e112cec3e}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs}{scrollbar\+\_\+specs}} \& {\bfseries color\+\_\+hot\+\_\+pressed} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&color\+\_\+hot\+\_\+pressed)
+\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_a7f6a48e491e77f87f221d8aff0a5117b}\label{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_a7f6a48e491e77f87f221d8aff0a5117b}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& {\bfseries color\+\_\+background} ()
+\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_af43cc71f5cf49a365e4a4ce8532f7d69}\label{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_af43cc71f5cf49a365e4a4ce8532f7d69}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs}{scrollbar\+\_\+specs}} \& {\bfseries color\+\_\+background} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&color\+\_\+background)
 \end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_ad553d8e93064fed3b7d422d62b0e7706}\label{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_ad553d8e93064fed3b7d422d62b0e7706}} 
+\index{liblec::lecui::widgets::scrollbar\_specs@{liblec::lecui::widgets::scrollbar\_specs}!color\_disabled@{color\_disabled}}
+\index{color\_disabled@{color\_disabled}!liblec::lecui::widgets::scrollbar\_specs@{liblec::lecui::widgets::scrollbar\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_disabled()}{color\_disabled()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::widgets\+::scrollbar\+\_\+specs\+::color\+\_\+disabled (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the widget\textquotesingle{}s color when it\textquotesingle{}s disabled. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget\textquotesingle{}s color when disabled.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a063ce5777dcabe002f5ea88e15e39560}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_a20022eb497c07935bbd6368a04789fa9}\label{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_a20022eb497c07935bbd6368a04789fa9}} 
+\index{liblec::lecui::widgets::scrollbar\_specs@{liblec::lecui::widgets::scrollbar\_specs}!color\_fill@{color\_fill}}
+\index{color\_fill@{color\_fill}!liblec::lecui::widgets::scrollbar\_specs@{liblec::lecui::widgets::scrollbar\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_fill()}{color\_fill()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::widgets\+::scrollbar\+\_\+specs\+::color\+\_\+fill (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the fill color of the widget. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget\textquotesingle{}s fill color.
+\end{DoxyReturn}
+
+
+The use of the fill color varies from widget to widget. Refer to the specific widget\textquotesingle{}s documentation for details.
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_ab99407e83123ee1dd285f985dbb20747}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_adb14dda2e6b095f3c77f5024df291e0f}\label{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_adb14dda2e6b095f3c77f5024df291e0f}} 
+\index{liblec::lecui::widgets::scrollbar\_specs@{liblec::lecui::widgets::scrollbar\_specs}!color\_hot@{color\_hot}}
+\index{color\_hot@{color\_hot}!liblec::lecui::widgets::scrollbar\_specs@{liblec::lecui::widgets::scrollbar\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_hot()}{color\_hot()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::widgets\+::scrollbar\+\_\+specs\+::color\+\_\+hot (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the widget\textquotesingle{}s color when the mouse is hovered over it. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget\textquotesingle{}s hover color.
+\end{DoxyReturn}
+
+
+The use of the hover color varies from widget to widget. Refer to the specific widget\textquotesingle{}s documentation for details.
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a1fe7b1fe9f05604c6ab54696a1dc3d04}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_aba8f94c2d9e624cf79e176680b1c4ed0}\label{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_aba8f94c2d9e624cf79e176680b1c4ed0}} 
+\index{liblec::lecui::widgets::scrollbar\_specs@{liblec::lecui::widgets::scrollbar\_specs}!color\_selected@{color\_selected}}
+\index{color\_selected@{color\_selected}!liblec::lecui::widgets::scrollbar\_specs@{liblec::lecui::widgets::scrollbar\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_selected()}{color\_selected()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::widgets\+::scrollbar\+\_\+specs\+::color\+\_\+selected (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the widget\textquotesingle{}s color when selected. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget\textquotesingle{}s color when selected.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a53482bdf42a5e33ab53f87ce097e4837}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_a8c62f21ef2e11ec307ef595245a0c45a}\label{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_a8c62f21ef2e11ec307ef595245a0c45a}} 
+\index{liblec::lecui::widgets::scrollbar\_specs@{liblec::lecui::widgets::scrollbar\_specs}!color\_text@{color\_text}}
+\index{color\_text@{color\_text}!liblec::lecui::widgets::scrollbar\_specs@{liblec::lecui::widgets::scrollbar\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_text()}{color\_text()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::widgets\+::scrollbar\+\_\+specs\+::color\+\_\+text (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the color of the widget\textquotesingle{}s text. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget\textquotesingle{}s text color.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a8b272a6842d03791c3da0f04a69ad128}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_a17c099ae94e07db6ebbe43ffeb145234}\label{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_a17c099ae94e07db6ebbe43ffeb145234}} 
+\index{liblec::lecui::widgets::scrollbar\_specs@{liblec::lecui::widgets::scrollbar\_specs}!cursor@{cursor}}
+\index{cursor@{cursor}!liblec::lecui::widgets::scrollbar\_specs@{liblec::lecui::widgets::scrollbar\_specs}}
+\doxysubsubsection{\texorpdfstring{cursor()}{cursor()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a3cba4c05a958d80dca72e4e9dd5360b1}{cursor\+\_\+type}}\& liblec\+::lecui\+::widgets\+::scrollbar\+\_\+specs\+::cursor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the mouse cursor to use then over the widget. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the cursor type as defined in \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a3cba4c05a958d80dca72e4e9dd5360b1}{cursor\+\_\+type}}.
+\end{DoxyReturn}
+
+
+This is only used if the widget is non-\/static.
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a28e525ebd75d587b17592dba23f24081}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_a15ba7f75c9329e99690741824169a89c}\label{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_a15ba7f75c9329e99690741824169a89c}} 
+\index{liblec::lecui::widgets::scrollbar\_specs@{liblec::lecui::widgets::scrollbar\_specs}!font@{font}}
+\index{font@{font}!liblec::lecui::widgets::scrollbar\_specs@{liblec::lecui::widgets::scrollbar\_specs}}
+\doxysubsubsection{\texorpdfstring{font()}{font()}}
+{\footnotesize\ttfamily std\+::string\& liblec\+::lecui\+::widgets\+::scrollbar\+\_\+specs\+::font (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the default widget font, e.\+g. \char`\"{}\+Georgia\char`\"{}. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget\textquotesingle{}s font name.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a5f42f2960de76e860d4b55e0e376f42a}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_a7dea561a6e7aefac479863ac255b937c}\label{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_a7dea561a6e7aefac479863ac255b937c}} 
+\index{liblec::lecui::widgets::scrollbar\_specs@{liblec::lecui::widgets::scrollbar\_specs}!font\_size@{font\_size}}
+\index{font\_size@{font\_size}!liblec::lecui::widgets::scrollbar\_specs@{liblec::lecui::widgets::scrollbar\_specs}}
+\doxysubsubsection{\texorpdfstring{font\_size()}{font\_size()}}
+{\footnotesize\ttfamily float\& liblec\+::lecui\+::widgets\+::scrollbar\+\_\+specs\+::font\+\_\+size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the default widget font size in points, e.\+g. 9.\+0. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget\textquotesingle{}s font size.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a540bfa7642033966614ccfda7ecf1f25}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_ad06f2f50301e515ce5835bbd48dc305a}\label{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_ad06f2f50301e515ce5835bbd48dc305a}} 
+\index{liblec::lecui::widgets::scrollbar\_specs@{liblec::lecui::widgets::scrollbar\_specs}!on\_resize@{on\_resize}}
+\index{on\_resize@{on\_resize}!liblec::lecui::widgets::scrollbar\_specs@{liblec::lecui::widgets::scrollbar\_specs}}
+\doxysubsubsection{\texorpdfstring{on\_resize()}{on\_resize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1specs_1_1resize__params}{resize\+\_\+params}}\& liblec\+::lecui\+::widgets\+::scrollbar\+\_\+specs\+::on\+\_\+resize (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the behaviour of the widget when its container is resized. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the resize parameters as defined in \mbox{\hyperlink{}{resize\+\_\+params}}.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a3f6021dcec6d7b6d846911956a6bff32}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_a7a3378c5f33b987b32dd511c8181f4f8}\label{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_a7a3378c5f33b987b32dd511c8181f4f8}} 
+\index{liblec::lecui::widgets::scrollbar\_specs@{liblec::lecui::widgets::scrollbar\_specs}!rect@{rect}}
+\index{rect@{rect}!liblec::lecui::widgets::scrollbar\_specs@{liblec::lecui::widgets::scrollbar\_specs}}
+\doxysubsubsection{\texorpdfstring{rect()}{rect()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{lecui\+::rect}}\& liblec\+::lecui\+::widgets\+::scrollbar\+\_\+specs\+::rect (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the position and dimensions of the widget. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget rectangle.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a0d6cc5c9ed9591f2e8b306a18224f4d7}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_aca3daebef01831bd5532a48d0c637f74}\label{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_aca3daebef01831bd5532a48d0c637f74}} 
+\index{liblec::lecui::widgets::scrollbar\_specs@{liblec::lecui::widgets::scrollbar\_specs}!text@{text}}
+\index{text@{text}!liblec::lecui::widgets::scrollbar\_specs@{liblec::lecui::widgets::scrollbar\_specs}}
+\doxysubsubsection{\texorpdfstring{text()}{text()}}
+{\footnotesize\ttfamily std\+::string\& liblec\+::lecui\+::widgets\+::scrollbar\+\_\+specs\+::text (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the widget text. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget text.
+\end{DoxyReturn}
+
+
+The use of the text varies from widget to widget. Some widgets don\textquotesingle{}t use this field.
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a76c5292d60d7c9a3ab6f26a9ef5fcbad}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_ab88ad83f1c2981a84344bf493800cd61}\label{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_ab88ad83f1c2981a84344bf493800cd61}} 
+\index{liblec::lecui::widgets::scrollbar\_specs@{liblec::lecui::widgets::scrollbar\_specs}!tooltip@{tooltip}}
+\index{tooltip@{tooltip}!liblec::lecui::widgets::scrollbar\_specs@{liblec::lecui::widgets::scrollbar\_specs}}
+\doxysubsubsection{\texorpdfstring{tooltip()}{tooltip()}}
+{\footnotesize\ttfamily std\+::string\& liblec\+::lecui\+::widgets\+::scrollbar\+\_\+specs\+::tooltip (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the widget\textquotesingle{}s tooltip text. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the tooltip text.
+\end{DoxyReturn}
+
+
+The tooltip text is displayed when the mouse is hovered over the widget.
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_af82deb362bbf2fafe975296722785b3a}{liblec\+::lecui\+::widgets\+::specs}}.
+
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

@@ -1,0 +1,111 @@
+\hypertarget{classliblec_1_1lecui_1_1containers_1_1status__pane__specs}{}\doxysection{liblec\+::lecui\+::containers\+::status\+\_\+pane\+\_\+specs Class Reference}
+\label{classliblec_1_1lecui_1_1containers_1_1status__pane__specs}\index{liblec::lecui::containers::status\_pane\_specs@{liblec::lecui::containers::status\_pane\_specs}}
+
+
+Status pane container specifications.  
+
+
+
+
+{\ttfamily \#include $<$status\+\_\+pane.\+h$>$}
+
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1status__pane__specs_a5dd93ef087b6179f91762f339eb9e294}\label{classliblec_1_1lecui_1_1containers_1_1status__pane__specs_a5dd93ef087b6179f91762f339eb9e294}} 
+enum class {\bfseries location} \{ {\bfseries bottom}
+, {\bfseries top}
+, {\bfseries left}
+, {\bfseries right}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+float \& \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane__specs_a7621d5a64fcda7c63764615ee8d04eec}{thickness}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the pane\textquotesingle{}s thickness. This will be a height for top and bottom panes, and a width for left and right panes. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane__specs}{status\+\_\+pane\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane__specs_a1794205c86f9e48ccd12bb1ad8b0a558}{thickness}} (const float \&thickness)
+\begin{DoxyCompactList}\small\item\em Set the pane\textquotesingle{}s thickness. This will be a height for top and bottom panes, and a width for left and right panes. \end{DoxyCompactList}\item 
+bool \& \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane__specs_a816114602a20c42b683cadfeed1dd2fa}{floating}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the floating property. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane__specs}{status\+\_\+pane\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane__specs_a0065296a61a45f8a15dd99b28f316beb}{floating}} (const bool \&floating)
+\begin{DoxyCompactList}\small\item\em Set the floating property. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Status pane container specifications. 
+
+Note that this does not inherit from widget\+::specs as regular panes do. This is by design because of the nature of the status pane.
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1status__pane__specs_a816114602a20c42b683cadfeed1dd2fa}\label{classliblec_1_1lecui_1_1containers_1_1status__pane__specs_a816114602a20c42b683cadfeed1dd2fa}} 
+\index{liblec::lecui::containers::status\_pane\_specs@{liblec::lecui::containers::status\_pane\_specs}!floating@{floating}}
+\index{floating@{floating}!liblec::lecui::containers::status\_pane\_specs@{liblec::lecui::containers::status\_pane\_specs}}
+\doxysubsubsection{\texorpdfstring{floating()}{floating()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool\& liblec\+::lecui\+::containers\+::status\+\_\+pane\+\_\+specs\+::floating (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get or set the floating property. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the property.
+\end{DoxyReturn}
+
+
+The floating property determines whether the pane should just float above the form without eating into the client area.\mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1status__pane__specs_a0065296a61a45f8a15dd99b28f316beb}\label{classliblec_1_1lecui_1_1containers_1_1status__pane__specs_a0065296a61a45f8a15dd99b28f316beb}} 
+\index{liblec::lecui::containers::status\_pane\_specs@{liblec::lecui::containers::status\_pane\_specs}!floating@{floating}}
+\index{floating@{floating}!liblec::lecui::containers::status\_pane\_specs@{liblec::lecui::containers::status\_pane\_specs}}
+\doxysubsubsection{\texorpdfstring{floating()}{floating()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane__specs}{status\+\_\+pane\+\_\+specs}}\& liblec\+::lecui\+::containers\+::status\+\_\+pane\+\_\+specs\+::floating (\begin{DoxyParamCaption}\item[{const bool \&}]{floating }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the floating property. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em floating} & Whether to make this a floating pane.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+
+
+The floating property determines whether the pane should just float above the form without eating into the client area.\mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1status__pane__specs_a7621d5a64fcda7c63764615ee8d04eec}\label{classliblec_1_1lecui_1_1containers_1_1status__pane__specs_a7621d5a64fcda7c63764615ee8d04eec}} 
+\index{liblec::lecui::containers::status\_pane\_specs@{liblec::lecui::containers::status\_pane\_specs}!thickness@{thickness}}
+\index{thickness@{thickness}!liblec::lecui::containers::status\_pane\_specs@{liblec::lecui::containers::status\_pane\_specs}}
+\doxysubsubsection{\texorpdfstring{thickness()}{thickness()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily float\& liblec\+::lecui\+::containers\+::status\+\_\+pane\+\_\+specs\+::thickness (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get or set the pane\textquotesingle{}s thickness. This will be a height for top and bottom panes, and a width for left and right panes. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the thickness, in pixels.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1status__pane__specs_a1794205c86f9e48ccd12bb1ad8b0a558}\label{classliblec_1_1lecui_1_1containers_1_1status__pane__specs_a1794205c86f9e48ccd12bb1ad8b0a558}} 
+\index{liblec::lecui::containers::status\_pane\_specs@{liblec::lecui::containers::status\_pane\_specs}!thickness@{thickness}}
+\index{thickness@{thickness}!liblec::lecui::containers::status\_pane\_specs@{liblec::lecui::containers::status\_pane\_specs}}
+\doxysubsubsection{\texorpdfstring{thickness()}{thickness()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane__specs}{status\+\_\+pane\+\_\+specs}}\& liblec\+::lecui\+::containers\+::status\+\_\+pane\+\_\+specs\+::thickness (\begin{DoxyParamCaption}\item[{const float \&}]{thickness }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the pane\textquotesingle{}s thickness. This will be a height for top and bottom panes, and a width for left and right panes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em thickness} & The thickness, in pixels.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+containers/status\+\_\+pane.\+h\end{DoxyCompactItemize}

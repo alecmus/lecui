@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">lecui
-   &#160;<span id="projectnumber">1.0.0-alpha.1</span>
+   &#160;<span id="projectnumber">1.0.0-alpha.3</span>
    </div>
    <div id="projectbrief">lecui C++ user interface library</div>
   </td>
@@ -87,7 +87,8 @@ Inheritance diagram for liblec::lecui::form:</div>
  <div class="center">
   <img src="classliblec_1_1lecui_1_1form.png" usemap="#liblec::lecui::form_map" alt=""/>
   <map id="liblec::lecui::form_map" name="liblec::lecui::form_map">
-<area href="classliblec_1_1lecui_1_1context__menu_1_1impl.html" alt="liblec::lecui::context_menu::impl" shape="rect" coords="0,56,186,80"/>
+<area href="classliblec_1_1lecui_1_1context__menu_1_1impl.html" alt="liblec::lecui::context_menu::impl" shape="rect" coords="0,56,194,80"/>
+<area href="classliblec_1_1lecui_1_1widgets_1_1tooltip__form.html" alt="liblec::lecui::widgets::tooltip_form" shape="rect" coords="204,56,398,80"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -110,17 +111,23 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a8dcfa7376585537c1439cb79992e4c78"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classliblec_1_1lecui_1_1form.html#a8dcfa7376585537c1439cb79992e4c78">move</a> (const form_position &amp;form_position)</td></tr>
 <tr class="memdesc:a8dcfa7376585537c1439cb79992e4c78"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move the form.  <a href="classliblec_1_1lecui_1_1form.html#a8dcfa7376585537c1439cb79992e4c78">More...</a><br /></td></tr>
 <tr class="separator:a8dcfa7376585537c1439cb79992e4c78"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7dc5f9275022a0c260bccdf9c2ffb567"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classliblec_1_1lecui_1_1form.html#a7dc5f9275022a0c260bccdf9c2ffb567">force_instance</a> ()</td></tr>
+<tr class="memdesc:a7dc5f9275022a0c260bccdf9c2ffb567"><td class="mdescLeft">&#160;</td><td class="mdescRight">Force this instance to run even if an existing instance is found.  <a href="classliblec_1_1lecui_1_1form.html#a7dc5f9275022a0c260bccdf9c2ffb567">More...</a><br /></td></tr>
+<tr class="separator:a7dc5f9275022a0c260bccdf9c2ffb567"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a65f0164f46c8bd3d61f8733bd0a45271"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classliblec_1_1lecui_1_1form.html#a65f0164f46c8bd3d61f8733bd0a45271">show</a> (std::string &amp;error)</td></tr>
 <tr class="memdesc:a65f0164f46c8bd3d61f8733bd0a45271"><td class="mdescLeft">&#160;</td><td class="mdescRight">Show the form.  <a href="classliblec_1_1lecui_1_1form.html#a65f0164f46c8bd3d61f8733bd0a45271">More...</a><br /></td></tr>
 <tr class="separator:a65f0164f46c8bd3d61f8733bd0a45271"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab2331a6e572e672d4e875302da594666"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classliblec_1_1lecui_1_1form.html#ab2331a6e572e672d4e875302da594666">close</a> ()</td></tr>
 <tr class="memdesc:ab2331a6e572e672d4e875302da594666"><td class="mdescLeft">&#160;</td><td class="mdescRight">Close the form. When this is called all activity is stopped and the form is closed.  <a href="classliblec_1_1lecui_1_1form.html#ab2331a6e572e672d4e875302da594666">More...</a><br /></td></tr>
 <tr class="separator:ab2331a6e572e672d4e875302da594666"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92c73293ed4f3740805e7dcc32072bad"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classliblec_1_1lecui_1_1form.html#a92c73293ed4f3740805e7dcc32072bad">on_initialize</a> (std::string &amp;error)</td></tr>
+<tr class="memdesc:a92c73293ed4f3740805e7dcc32072bad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called before <a class="el" href="classliblec_1_1lecui_1_1form.html#a2f7b5c3433fe4b347c8082b777b06731" title="For defining the form&#39;s layout.">on_layout()</a>. This is a good place to create the splash screen and do all essential app initilization like reading registry settings etc.  <a href="classliblec_1_1lecui_1_1form.html#a92c73293ed4f3740805e7dcc32072bad">More...</a><br /></td></tr>
+<tr class="separator:a92c73293ed4f3740805e7dcc32072bad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2f7b5c3433fe4b347c8082b777b06731"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classliblec_1_1lecui_1_1form.html#a2f7b5c3433fe4b347c8082b777b06731">on_layout</a> (std::string &amp;error)</td></tr>
 <tr class="memdesc:a2f7b5c3433fe4b347c8082b777b06731"><td class="mdescLeft">&#160;</td><td class="mdescRight">For defining the form's layout.  <a href="classliblec_1_1lecui_1_1form.html#a2f7b5c3433fe4b347c8082b777b06731">More...</a><br /></td></tr>
 <tr class="separator:a2f7b5c3433fe4b347c8082b777b06731"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8622be8d1616b5b0ff254d514f9a66cb"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classliblec_1_1lecui_1_1form.html#a8622be8d1616b5b0ff254d514f9a66cb">on_start</a> ()</td></tr>
-<tr class="memdesc:a8622be8d1616b5b0ff254d514f9a66cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called after <a class="el" href="classliblec_1_1lecui_1_1form.html#a2f7b5c3433fe4b347c8082b777b06731" title="For defining the form&#39;s layout.">on_layout()</a> just before the form is displayed. This is a good place to close the splash screen. The splash screen itself is best created in the constructor of the class that inherits directly from this class.  <a href="classliblec_1_1lecui_1_1form.html#a8622be8d1616b5b0ff254d514f9a66cb">More...</a><br /></td></tr>
+<tr class="memdesc:a8622be8d1616b5b0ff254d514f9a66cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called after <a class="el" href="classliblec_1_1lecui_1_1form.html#a2f7b5c3433fe4b347c8082b777b06731" title="For defining the form&#39;s layout.">on_layout()</a> just before the form is displayed. This is a good place to close the splash screen. The splash screen itself is best created in <a class="el" href="classliblec_1_1lecui_1_1form.html#a92c73293ed4f3740805e7dcc32072bad">on_initialize</a>.  <a href="classliblec_1_1lecui_1_1form.html#a8622be8d1616b5b0ff254d514f9a66cb">More...</a><br /></td></tr>
 <tr class="separator:a8622be8d1616b5b0ff254d514f9a66cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5f09417b21bcf56b829fcd06d6e06843"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classliblec_1_1lecui_1_1form.html#a5f09417b21bcf56b829fcd06d6e06843">on_close</a> ()</td></tr>
 <tr class="memdesc:a5f09417b21bcf56b829fcd06d6e06843"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called when either the close button on the top right is clicked, or when Alt+F4 is pressed on the keyboard. This is a good place to ask the user if they really wish to close the form, and then call <a class="el" href="classliblec_1_1lecui_1_1form.html#ab2331a6e572e672d4e875302da594666" title="Close the form. When this is called all activity is stopped and the form is closed.">close()</a> if they confirm.  <a href="classliblec_1_1lecui_1_1form.html#a5f09417b21bcf56b829fcd06d6e06843">More...</a><br /></td></tr>
@@ -140,21 +147,39 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ae2a0525beb9d780abd15a9baa54ac3f7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classliblec_1_1lecui_1_1form.html#ae2a0525beb9d780abd15a9baa54ac3f7">reload</a> ()</td></tr>
 <tr class="memdesc:ae2a0525beb9d780abd15a9baa54ac3f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reload the form and all its widgets. A high resource reload of the entire form's graphic resources. The following things happen when this method is called:  <a href="classliblec_1_1lecui_1_1form.html#ae2a0525beb9d780abd15a9baa54ac3f7">More...</a><br /></td></tr>
 <tr class="separator:ae2a0525beb9d780abd15a9baa54ac3f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1aea644ddea7acdc7a4d8b9a62a508d5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classliblec_1_1lecui_1_1form.html#a1aea644ddea7acdc7a4d8b9a62a508d5">on_caption</a> (std::function&lt; void()&gt;on_caption)</td></tr>
-<tr class="memdesc:a1aea644ddea7acdc7a4d8b9a62a508d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the handler to be called when the form's caption is clicked.  <a href="classliblec_1_1lecui_1_1form.html#a1aea644ddea7acdc7a4d8b9a62a508d5">More...</a><br /></td></tr>
-<tr class="separator:a1aea644ddea7acdc7a4d8b9a62a508d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a9fc229d83e98928bf2b47bf5f186fc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classliblec_1_1lecui_1_1form.html#a1a9fc229d83e98928bf2b47bf5f186fc">on_caption</a> (std::function&lt; void()&gt;on_caption, const std::string &amp;tooltip)</td></tr>
+<tr class="memdesc:a1a9fc229d83e98928bf2b47bf5f186fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the handler to be called when the form's caption is clicked.  <a href="classliblec_1_1lecui_1_1form.html#a1a9fc229d83e98928bf2b47bf5f186fc">More...</a><br /></td></tr>
+<tr class="separator:a1a9fc229d83e98928bf2b47bf5f186fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4e99b2e92968755f60f112bdf2a86650"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classliblec_1_1lecui_1_1form.html#a4e99b2e92968755f60f112bdf2a86650">on_drop_files</a> (std::function&lt; void(const std::string &amp;file)&gt;on_drop_files)</td></tr>
 <tr class="memdesc:a4e99b2e92968755f60f112bdf2a86650"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the handler to be called when files are dropped on the form.  <a href="classliblec_1_1lecui_1_1form.html#a4e99b2e92968755f60f112bdf2a86650">More...</a><br /></td></tr>
 <tr class="separator:a4e99b2e92968755f60f112bdf2a86650"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aca1171d5db45597a569f7ec7e592eb37"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classliblec_1_1lecui_1_1form.html#aca1171d5db45597a569f7ec7e592eb37">on_receive_data</a> (std::function&lt; void(const std::string &amp;data)&gt;on_receive_data)</td></tr>
 <tr class="memdesc:aca1171d5db45597a569f7ec7e592eb37"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the handler to be called when data is received from another instance.  <a href="classliblec_1_1lecui_1_1form.html#aca1171d5db45597a569f7ec7e592eb37">More...</a><br /></td></tr>
 <tr class="separator:aca1171d5db45597a569f7ec7e592eb37"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a045f0d9eed1c1ede57fa9618b49fdbea"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classliblec_1_1lecui_1_1form.html#a045f0d9eed1c1ede57fa9618b49fdbea">get_dpi_scale</a> ()</td></tr>
+<tr class="memdesc:a045f0d9eed1c1ede57fa9618b49fdbea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current DPI scale.  <a href="classliblec_1_1lecui_1_1form.html#a045f0d9eed1c1ede57fa9618b49fdbea">More...</a><br /></td></tr>
+<tr class="separator:a045f0d9eed1c1ede57fa9618b49fdbea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5047dd2b740499e48f13dd73747056f7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classliblec_1_1lecui_1_1form.html#a5047dd2b740499e48f13dd73747056f7">allow_minimize</a> ()</td></tr>
+<tr class="memdesc:a5047dd2b740499e48f13dd73747056f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minimize the form.  <a href="classliblec_1_1lecui_1_1form.html#a5047dd2b740499e48f13dd73747056f7">More...</a><br /></td></tr>
+<tr class="separator:a5047dd2b740499e48f13dd73747056f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace55cac000c3c24063d5e4e278054c4d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classliblec_1_1lecui_1_1form.html#ace55cac000c3c24063d5e4e278054c4d">restore</a> ()</td></tr>
+<tr class="memdesc:ace55cac000c3c24063d5e4e278054c4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Restore the form.  <a href="classliblec_1_1lecui_1_1form.html#ace55cac000c3c24063d5e4e278054c4d">More...</a><br /></td></tr>
+<tr class="separator:ace55cac000c3c24063d5e4e278054c4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24aed3ecd75221fefebf159b7329ed75"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classliblec_1_1lecui_1_1form.html#a24aed3ecd75221fefebf159b7329ed75">maximize</a> ()</td></tr>
+<tr class="memdesc:a24aed3ecd75221fefebf159b7329ed75"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximize the form.  <a href="classliblec_1_1lecui_1_1form.html#a24aed3ecd75221fefebf159b7329ed75">More...</a><br /></td></tr>
+<tr class="separator:a24aed3ecd75221fefebf159b7329ed75"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e113933e10a1aa1f66a5edfe8636d9d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classliblec_1_1lecui_1_1form.html#a9e113933e10a1aa1f66a5edfe8636d9d">hide</a> ()</td></tr>
+<tr class="memdesc:a9e113933e10a1aa1f66a5edfe8636d9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hide the form. Useful when using a system tray icon.  <a href="classliblec_1_1lecui_1_1form.html#a9e113933e10a1aa1f66a5edfe8636d9d">More...</a><br /></td></tr>
+<tr class="separator:a9e113933e10a1aa1f66a5edfe8636d9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a584db2a8621227633d2cd3a1658536a0"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classliblec_1_1lecui_1_1form.html#a584db2a8621227633d2cd3a1658536a0">menu_form_caption</a> ()</td></tr>
 <tr class="memdesc:a584db2a8621227633d2cd3a1658536a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">A special caption used to make a menu form.  <a href="classliblec_1_1lecui_1_1form.html#a584db2a8621227633d2cd3a1658536a0">More...</a><br /></td></tr>
 <tr class="separator:a584db2a8621227633d2cd3a1658536a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0377f580e85951a7431478ba231a3b5f"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classliblec_1_1lecui_1_1form.html#a0377f580e85951a7431478ba231a3b5f">tooltip_form_caption</a> ()</td></tr>
+<tr class="memdesc:a0377f580e85951a7431478ba231a3b5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">A special caption used to make a tooltip form.  <a href="classliblec_1_1lecui_1_1form.html#a0377f580e85951a7431478ba231a3b5f">More...</a><br /></td></tr>
+<tr class="separator:a0377f580e85951a7431478ba231a3b5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7b654f7048c08f06be84542ddef767e5"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classliblec_1_1lecui_1_1form.html#a7b654f7048c08f06be84542ddef767e5">keep_alive</a> ()</td></tr>
 <tr class="memdesc:a7b654f7048c08f06be84542ddef767e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Keep UI responsive during lengthy calls.  <a href="classliblec_1_1lecui_1_1form.html#a7b654f7048c08f06be84542ddef767e5">More...</a><br /></td></tr>
 <tr class="separator:a7b654f7048c08f06be84542ddef767e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -228,6 +253,26 @@ Static Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a5047dd2b740499e48f13dd73747056f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5047dd2b740499e48f13dd73747056f7">&#9670;&nbsp;</a></span>allow_minimize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void liblec::lecui::form::allow_minimize </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Minimize the form. </p>
+<p>This method does nothing if the form is already minimized or if it doesn't have the minimize button.</p>
+
+</div>
+</div>
 <a id="ab2331a6e572e672d4e875302da594666"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab2331a6e572e672d4e875302da594666">&#9670;&nbsp;</a></span>close()</h2>
 
@@ -244,6 +289,67 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Close the form. When this is called all activity is stopped and the form is closed. </p>
+<p>If called in <a class="el" href="classliblec_1_1lecui_1_1form.html#a92c73293ed4f3740805e7dcc32072bad">on_initialize</a> then on_layout is never called and the app is terminated gracefully.</p>
+
+</div>
+</div>
+<a id="a7dc5f9275022a0c260bccdf9c2ffb567"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7dc5f9275022a0c260bccdf9c2ffb567">&#9670;&nbsp;</a></span>force_instance()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void liblec::lecui::form::force_instance </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Force this instance to run even if an existing instance is found. </p>
+<p>This method causes the <a class="el" href="classliblec_1_1lecui_1_1form.html#a65f0164f46c8bd3d61f8733bd0a45271">show</a> method to continue execution regardless of whether an existing instance is present. You would typically do this if you need your app to reach the <a class="el" href="">initialize</a> method without the intention of allowing it to go as far as <a class="el" href="classliblec_1_1lecui_1_1form.html#a2f7b5c3433fe4b347c8082b777b06731">on_layout</a>, in which case you would call the <a class="el" href="classliblec_1_1lecui_1_1form.html#ab2331a6e572e672d4e875302da594666">close</a> method within <a class="el" href="">initialize</a>. A typical use-case is when the app is calling itself during an update process. Not calling this method would mean the spawning of the new instance is not guaranteed since the previous may still be running when the new one reaches the instance checking logic. The best place to call this method is in the constructor of the class that inherits from this base class.</p>
+
+</div>
+</div>
+<a id="a045f0d9eed1c1ede57fa9618b49fdbea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a045f0d9eed1c1ede57fa9618b49fdbea">&#9670;&nbsp;</a></span>get_dpi_scale()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float liblec::lecui::form::get_dpi_scale </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the current DPI scale. </p>
+<dl class="section return"><dt>Returns</dt><dd>The current DPI scale.</dd></dl>
+
+</div>
+</div>
+<a id="a9e113933e10a1aa1f66a5edfe8636d9d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9e113933e10a1aa1f66a5edfe8636d9d">&#9670;&nbsp;</a></span>hide()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void liblec::lecui::form::hide </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Hide the form. Useful when using a system tray icon. </p>
+<p>Note that once called the form can only be restored through a call to the <a class="el" href="classliblec_1_1lecui_1_1form.html#ace55cac000c3c24063d5e4e278054c4d">restore</a> method. Besides that there will be no other means to make the form visible again. To manipulate a form's visibility at creation time use the <a class="el" href="classliblec_1_1lecui_1_1controls.html#a9321c01cee60d8766dddc483235ba09f">controls::start_hidden</a> method.</p>
 
 </div>
 </div>
@@ -273,6 +379,26 @@ Static Public Member Functions</h2></td></tr>
 <p>Keep UI responsive during lengthy calls. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns true to continue operation, and false to quit immediately.</dd></dl>
 <p>In lengthy operations it is useful to call this method between successive steps in order to keep the UI responsive.</p>
+
+</div>
+</div>
+<a id="a24aed3ecd75221fefebf159b7329ed75"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a24aed3ecd75221fefebf159b7329ed75">&#9670;&nbsp;</a></span>maximize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void liblec::lecui::form::maximize </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Maximize the form. </p>
+<p>This method does nothing if the form is already maximized or if it doesn't have the maximize button.</p>
 
 </div>
 </div>
@@ -383,8 +509,8 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a1aea644ddea7acdc7a4d8b9a62a508d5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1aea644ddea7acdc7a4d8b9a62a508d5">&#9670;&nbsp;</a></span>on_caption()</h2>
+<a id="a1a9fc229d83e98928bf2b47bf5f186fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a9fc229d83e98928bf2b47bf5f186fc">&#9670;&nbsp;</a></span>on_caption()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -393,8 +519,18 @@ Static Public Member Functions</h2></td></tr>
           <td class="memname">void liblec::lecui::form::on_caption </td>
           <td>(</td>
           <td class="paramtype">std::function&lt; void()&gt;&#160;</td>
-          <td class="paramname"><em>on_caption</em></td><td>)</td>
+          <td class="paramname"><em>on_caption</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>tooltip</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -403,6 +539,7 @@ Static Public Member Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">on_caption</td><td>The handler.</td></tr>
+    <tr><td class="paramname">tooltip</td><td>The (optional) tooltip text.</td></tr>
   </table>
   </dd>
 </dl>
@@ -462,6 +599,42 @@ Static Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <p>If this method is never called the form will not accept dropped files. To stop accepting dropped files pass a nullptr to this method.</p>
+
+</div>
+</div>
+<a id="a92c73293ed4f3740805e7dcc32072bad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a92c73293ed4f3740805e7dcc32072bad">&#9670;&nbsp;</a></span>on_initialize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool liblec::lecui::form::on_initialize </td>
+          <td>(</td>
+          <td class="paramtype">std::string &amp;&#160;</td>
+          <td class="paramname"><em>error</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Called before <a class="el" href="classliblec_1_1lecui_1_1form.html#a2f7b5c3433fe4b347c8082b777b06731" title="For defining the form&#39;s layout.">on_layout()</a>. This is a good place to create the splash screen and do all essential app initilization like reading registry settings etc. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">error</td><td>Error information on fail.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if successful, else false. If false, error information will be written to the error reference.</dd></dl>
+<p>Return false if you want to discountinue application initialization. This means <a class="el" href="classliblec_1_1lecui_1_1form.html#a2f7b5c3433fe4b347c8082b777b06731">on_layout</a> won't even be called. </p>
 
 </div>
 </div>
@@ -580,7 +753,7 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Called after <a class="el" href="classliblec_1_1lecui_1_1form.html#a2f7b5c3433fe4b347c8082b777b06731" title="For defining the form&#39;s layout.">on_layout()</a> just before the form is displayed. This is a good place to close the splash screen. The splash screen itself is best created in the constructor of the class that inherits directly from this class. </p>
+<p>Called after <a class="el" href="classliblec_1_1lecui_1_1form.html#a2f7b5c3433fe4b347c8082b777b06731" title="For defining the form&#39;s layout.">on_layout()</a> just before the form is displayed. This is a good place to close the splash screen. The splash screen itself is best created in <a class="el" href="classliblec_1_1lecui_1_1form.html#a92c73293ed4f3740805e7dcc32072bad">on_initialize</a>. </p>
 
 </div>
 </div>
@@ -637,6 +810,26 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="ace55cac000c3c24063d5e4e278054c4d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace55cac000c3c24063d5e4e278054c4d">&#9670;&nbsp;</a></span>restore()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void liblec::lecui::form::restore </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Restore the form. </p>
+<p>If the form is minimized it will be restored. If it is maximized it will also be restored to normal size. If the form is already in normal form nothing will be done (except bring it to the foreground if it isn't already). If the form was hidded it will be shown.</p>
+
+</div>
+</div>
 <a id="a65f0164f46c8bd3d61f8733bd0a45271"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a65f0164f46c8bd3d61f8733bd0a45271">&#9670;&nbsp;</a></span>show()</h2>
 
@@ -662,6 +855,34 @@ Static Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if successful, else false. If false, error information will be written to the error reference.</dd></dl>
 <p>This is a blocking function and will only return when either the form is closed or in the event of an error during form creation.</p>
+
+</div>
+</div>
+<a id="a0377f580e85951a7431478ba231a3b5f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0377f580e85951a7431478ba231a3b5f">&#9670;&nbsp;</a></span>tooltip_form_caption()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string liblec::lecui::form::tooltip_form_caption </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>A special caption used to make a tooltip form. </p>
+<dl class="section return"><dt>Returns</dt><dd>The internally reserved caption for tooltip forms.</dd></dl>
 
 </div>
 </div>

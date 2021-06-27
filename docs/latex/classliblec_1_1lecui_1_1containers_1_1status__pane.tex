@@ -13,34 +13,22 @@ Status pane container.
 \begin{DoxyCompactItemize}
 \item 
 class \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane_1_1impl}{impl}}
-\item 
-struct \mbox{\hyperlink{structliblec_1_1lecui_1_1containers_1_1status__pane_1_1status__pane__specs}{status\+\_\+pane\+\_\+specs}}
-\begin{DoxyCompactList}\small\item\em Status pane container specifications. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsection*{Public Types}
-\begin{DoxyCompactItemize}
-\item 
-\mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1status__pane_aa287f690cfcd164cfc7b2e6d76871255}\label{classliblec_1_1lecui_1_1containers_1_1status__pane_aa287f690cfcd164cfc7b2e6d76871255}} 
-enum class {\bfseries location} \{ {\bfseries bottom}
-, {\bfseries top}
-, {\bfseries left}
-, {\bfseries right}
- \}
 \end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane_a7a124908825ee791f46d9513e09fb2f1}{status\+\_\+pane}} (\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}} \&fm, status\+\_\+pane\+::location location)
+\mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane_ad3022d11e5fbb58770a1d9934b10f879}{status\+\_\+pane}} (\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}} \&fm, status\+\_\+pane\+\_\+specs\+::location location)
 \begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane}{status\+\_\+pane}} constructor. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{structliblec_1_1lecui_1_1containers_1_1status__pane_1_1status__pane__specs}{status\+\_\+pane\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane_a119037e0fef4b5fde21ce5b8144921df}{specs}} ()
+\mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane__specs}{status\+\_\+pane\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane_af0b06d46d7e2b86df251808d74a47659}{specs}} ()
 \begin{DoxyCompactList}\small\item\em Get the status pane specifications. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{structliblec_1_1lecui_1_1containers_1_1status__pane_1_1status__pane__specs}{status\+\_\+pane\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane_a650a2fd429112271dd3d5f99447bc479}{operator()}} ()
+\mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane__specs}{status\+\_\+pane\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane_a71d16dccf85dbc1f84f7c07b7e96aa0e}{operator()}} ()
 \begin{DoxyCompactList}\small\item\em Get the status pane specifications. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1page}{containers\+::page}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane_ac70da8b1a2fc7846669f3c06e4d57c0d}{get}} ()
 \begin{DoxyCompactList}\small\item\em Get the status pane container page. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-static \mbox{\hyperlink{structliblec_1_1lecui_1_1containers_1_1status__pane_1_1status__pane__specs}{status\+\_\+pane\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane_ab10397b7a8251839847506ef8a752cd1}{specs}} (\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}} \&fm, const std\+::string \&alias)
+static \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane__specs}{status\+\_\+pane\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane_a16695fa701323e68c100174417cf7b27}{specs}} (\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}} \&fm, const std\+::string \&alias)
 \begin{DoxyCompactList}\small\item\em Get the specifications of a status pane. \end{DoxyCompactList}\item 
 static \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1page}{containers\+::page}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane_ac3b12062a87f9b888fc8af6a6050461a}{get}} (\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}} \&fm, const std\+::string \&alias)
 \begin{DoxyCompactList}\small\item\em Get the status pane container page of an existing status pane. \end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -52,11 +40,11 @@ Status pane container.
 Any widget can be added to this container. Consequently, recursion is fully supported, allowing status panes within status panes, to virtually any depth level that the memory of the computer the app is running on can permit. However, it is recommended to limit the number of widgets within status panes as these panes persist throughout the runtime of the app, and are visible in all pages. Keep the contents of status panes minimal and straightforward as a good gui design principle.
 
 \doxysubsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1status__pane_a7a124908825ee791f46d9513e09fb2f1}\label{classliblec_1_1lecui_1_1containers_1_1status__pane_a7a124908825ee791f46d9513e09fb2f1}} 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1status__pane_ad3022d11e5fbb58770a1d9934b10f879}\label{classliblec_1_1lecui_1_1containers_1_1status__pane_ad3022d11e5fbb58770a1d9934b10f879}} 
 \index{liblec::lecui::containers::status\_pane@{liblec::lecui::containers::status\_pane}!status\_pane@{status\_pane}}
 \index{status\_pane@{status\_pane}!liblec::lecui::containers::status\_pane@{liblec::lecui::containers::status\_pane}}
 \doxysubsubsection{\texorpdfstring{status\_pane()}{status\_pane()}}
-{\footnotesize\ttfamily liblec\+::lecui\+::containers\+::status\+\_\+pane\+::status\+\_\+pane (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}} \&}]{fm,  }\item[{status\+\_\+pane\+::location}]{location }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily liblec\+::lecui\+::containers\+::status\+\_\+pane\+::status\+\_\+pane (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}} \&}]{fm,  }\item[{status\+\_\+pane\+\_\+specs\+::location}]{location }\end{DoxyParamCaption})}
 
 
 
@@ -109,11 +97,11 @@ Get the status pane container page of an existing status pane.
 \begin{DoxyReturn}{Returns}
 A reference to the status pane container page.
 \end{DoxyReturn}
-\mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1status__pane_a650a2fd429112271dd3d5f99447bc479}\label{classliblec_1_1lecui_1_1containers_1_1status__pane_a650a2fd429112271dd3d5f99447bc479}} 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1status__pane_a71d16dccf85dbc1f84f7c07b7e96aa0e}\label{classliblec_1_1lecui_1_1containers_1_1status__pane_a71d16dccf85dbc1f84f7c07b7e96aa0e}} 
 \index{liblec::lecui::containers::status\_pane@{liblec::lecui::containers::status\_pane}!operator()@{operator()}}
 \index{operator()@{operator()}!liblec::lecui::containers::status\_pane@{liblec::lecui::containers::status\_pane}}
 \doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{structliblec_1_1lecui_1_1containers_1_1status__pane_1_1status__pane__specs}{containers\+::status\+\_\+pane\+::status\+\_\+pane\+\_\+specs}} \& liblec\+::lecui\+::containers\+::status\+\_\+pane\+::operator() (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane__specs}{containers\+::status\+\_\+pane\+\_\+specs}} \& liblec\+::lecui\+::containers\+::status\+\_\+pane\+::operator() (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 
 
@@ -124,11 +112,11 @@ A reference to the status pane specifications.
 \end{DoxyReturn}
 
 
-Alternative to \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane_a119037e0fef4b5fde21ce5b8144921df}{specs()}} for more terse code.\mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1status__pane_a119037e0fef4b5fde21ce5b8144921df}\label{classliblec_1_1lecui_1_1containers_1_1status__pane_a119037e0fef4b5fde21ce5b8144921df}} 
+Alternative to \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane_af0b06d46d7e2b86df251808d74a47659}{specs()}} for more terse code.\mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1status__pane_af0b06d46d7e2b86df251808d74a47659}\label{classliblec_1_1lecui_1_1containers_1_1status__pane_af0b06d46d7e2b86df251808d74a47659}} 
 \index{liblec::lecui::containers::status\_pane@{liblec::lecui::containers::status\_pane}!specs@{specs}}
 \index{specs@{specs}!liblec::lecui::containers::status\_pane@{liblec::lecui::containers::status\_pane}}
 \doxysubsubsection{\texorpdfstring{specs()}{specs()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily \mbox{\hyperlink{structliblec_1_1lecui_1_1containers_1_1status__pane_1_1status__pane__specs}{containers\+::status\+\_\+pane\+::status\+\_\+pane\+\_\+specs}} \& liblec\+::lecui\+::containers\+::status\+\_\+pane\+::specs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane__specs}{containers\+::status\+\_\+pane\+\_\+specs}} \& liblec\+::lecui\+::containers\+::status\+\_\+pane\+::specs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 
 
@@ -137,11 +125,11 @@ Get the status pane specifications.
 \begin{DoxyReturn}{Returns}
 A reference to the status pane specifications.
 \end{DoxyReturn}
-\mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1status__pane_ab10397b7a8251839847506ef8a752cd1}\label{classliblec_1_1lecui_1_1containers_1_1status__pane_ab10397b7a8251839847506ef8a752cd1}} 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1status__pane_a16695fa701323e68c100174417cf7b27}\label{classliblec_1_1lecui_1_1containers_1_1status__pane_a16695fa701323e68c100174417cf7b27}} 
 \index{liblec::lecui::containers::status\_pane@{liblec::lecui::containers::status\_pane}!specs@{specs}}
 \index{specs@{specs}!liblec::lecui::containers::status\_pane@{liblec::lecui::containers::status\_pane}}
 \doxysubsubsection{\texorpdfstring{specs()}{specs()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily \mbox{\hyperlink{structliblec_1_1lecui_1_1containers_1_1status__pane_1_1status__pane__specs}{containers\+::status\+\_\+pane\+::status\+\_\+pane\+\_\+specs}} \& liblec\+::lecui\+::containers\+::status\+\_\+pane\+::specs (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}} \&}]{fm,  }\item[{const std\+::string \&}]{alias }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane__specs}{containers\+::status\+\_\+pane\+\_\+specs}} \& liblec\+::lecui\+::containers\+::status\+\_\+pane\+::specs (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}} \&}]{fm,  }\item[{const std\+::string \&}]{alias }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 
 

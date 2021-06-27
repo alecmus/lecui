@@ -1,0 +1,560 @@
+\hypertarget{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs}{}\doxysection{liblec\+::lecui\+::widgets\+::html\+\_\+editor\+\_\+specs Class Reference}
+\label{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs}\index{liblec::lecui::widgets::html\_editor\_specs@{liblec::lecui::widgets::html\_editor\_specs}}
+
+
+HTML editor widget specifications.  
+
+
+
+
+{\ttfamily \#include $<$html\+\_\+editor.\+h$>$}
+
+Inheritance diagram for liblec\+::lecui\+::widgets\+::html\+\_\+editor\+\_\+specs\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_aad3d58b2c03f4a6539755a6eda5bc5fc}\label{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_aad3d58b2c03f4a6539755a6eda5bc5fc}} 
+bool {\bfseries operator==} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs}{html\+\_\+editor\+\_\+specs}} \&)
+\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_ab47c213441073f03ed3f2b467085cd62}\label{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_ab47c213441073f03ed3f2b467085cd62}} 
+bool {\bfseries operator!=} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs}{html\+\_\+editor\+\_\+specs}} \&)
+\item 
+std\+::string \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_ac3469befce2f3a2a818b0badf3fc8687}{text}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the widget text. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_aa6932e132830ea176c4778cf39fe4701}\label{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_aa6932e132830ea176c4778cf39fe4701}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs}{html\+\_\+editor\+\_\+specs}} \& {\bfseries text} (const std\+::string \&text)
+\item 
+std\+::string \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_ab650369d596388fab73e9abc08eb7b14}{tooltip}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the widget\textquotesingle{}s tooltip text. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_a2b08cb6428bd710085da336eae65ed0c}\label{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_a2b08cb6428bd710085da336eae65ed0c}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs}{html\+\_\+editor\+\_\+specs}} \& {\bfseries tooltip} (const std\+::string \&tooltip)
+\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{lecui\+::rect}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_a39df78acd0dcaf762202030aa539d2e5}{rect}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the position and dimensions of the widget. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_a0da4b9c98d601f5f87ba47aa68413a3b}\label{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_a0da4b9c98d601f5f87ba47aa68413a3b}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs}{html\+\_\+editor\+\_\+specs}} \& {\bfseries rect} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{lecui\+::rect}} \&\mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{rect}})
+\item 
+\mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1specs_1_1resize__params}{resize\+\_\+params}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_a35b0288141527306f04361024e8bfaec}{on\+\_\+resize}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the behaviour of the widget when its container is resized. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_ab31b7d2b5f6cadca04d77c2f23973d3c}\label{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_ab31b7d2b5f6cadca04d77c2f23973d3c}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs}{html\+\_\+editor\+\_\+specs}} \& {\bfseries on\+\_\+resize} (const \mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1specs_1_1resize__params}{resize\+\_\+params}} \&on\+\_\+resize)
+\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a3cba4c05a958d80dca72e4e9dd5360b1}{cursor\+\_\+type}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_a01f2bb5d3ef962a0db5c27c56de2a828}{cursor}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the mouse cursor to use then over the widget. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_a3460acd276c2621eb8e8313be05465b6}\label{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_a3460acd276c2621eb8e8313be05465b6}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs}{html\+\_\+editor\+\_\+specs}} \& {\bfseries cursor} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a3cba4c05a958d80dca72e4e9dd5360b1}{cursor\+\_\+type}} cursor)
+\item 
+std\+::string \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_ab9f16ba3376f6fe2af37e1e3fa66c365}{font}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the default widget font, e.\+g. \char`\"{}\+Georgia\char`\"{}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_a7ccd591c33cbfc8eb98667af90f5b817}\label{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_a7ccd591c33cbfc8eb98667af90f5b817}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs}{html\+\_\+editor\+\_\+specs}} \& {\bfseries font} (const std\+::string \&\mbox{\hyperlink{classfont}{font}})
+\item 
+float \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_ae7ed305c17aa054213a0d667b9873656}{font\+\_\+size}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the default widget font size in points, e.\+g. 9.\+0. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_a23648d1d3171fbdaf40c2c17d4c2e0c7}\label{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_a23648d1d3171fbdaf40c2c17d4c2e0c7}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs}{html\+\_\+editor\+\_\+specs}} \& {\bfseries font\+\_\+size} (const float \&font\+\_\+size)
+\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_ae64c5cce6b311157502ccb73b820c4b6}{color\+\_\+text}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the color of the widget\textquotesingle{}s text. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_ae55f090aceaa62f56b29035c744cdd9b}\label{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_ae55f090aceaa62f56b29035c744cdd9b}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs}{html\+\_\+editor\+\_\+specs}} \& {\bfseries color\+\_\+text} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&color\+\_\+text)
+\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_af25b804740de19b9b77621bf33229633}{color\+\_\+fill}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the fill color of the widget. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_ab57bc8969727c90d1331b935c4a6b780}\label{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_ab57bc8969727c90d1331b935c4a6b780}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs}{html\+\_\+editor\+\_\+specs}} \& {\bfseries color\+\_\+fill} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&color\+\_\+fill)
+\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_aebec06b65c783af81545140c35e6ca9f}{color\+\_\+hot}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the widget\textquotesingle{}s color when the mouse is hovered over it. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_a34d82c3734e04d4b338e93bc080cd69c}\label{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_a34d82c3734e04d4b338e93bc080cd69c}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs}{html\+\_\+editor\+\_\+specs}} \& {\bfseries color\+\_\+hot} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&color\+\_\+hot)
+\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_a9716fcaa53a6fced45b642e9090a4e4d}{color\+\_\+selected}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the widget\textquotesingle{}s color when selected. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_a7a0add316561a3f80c99d0e2de9468dc}\label{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_a7a0add316561a3f80c99d0e2de9468dc}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs}{html\+\_\+editor\+\_\+specs}} \& {\bfseries color\+\_\+selected} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&color\+\_\+selected)
+\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_a3fe91adb0e20c11d5248d1c4f92cea17}{color\+\_\+disabled}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the widget\textquotesingle{}s color when it\textquotesingle{}s disabled. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_ae5663017afab7c91e59f676b7310ed2b}\label{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_ae5663017afab7c91e59f676b7310ed2b}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs}{html\+\_\+editor\+\_\+specs}} \& {\bfseries color\+\_\+disabled} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&color\+\_\+disabled)
+\item 
+float \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_a1b7b88a3051d99a44383af38ad8537a2}{border}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the thickness of the border. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs}{html\+\_\+editor\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_a7eb647ae2c83187e5ebcfc4765e03a9c}{border}} (const float \&border)
+\begin{DoxyCompactList}\small\item\em Set the thickness of the border. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_ab78516386d43c71c919d8b226a057922}{color\+\_\+border}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the color of the border. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs}{html\+\_\+editor\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_a8e9767baf64bf61389a1ee884f68c424}{color\+\_\+border}} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&color\+\_\+border)
+\begin{DoxyCompactList}\small\item\em Set the color of the border. \end{DoxyCompactList}\item 
+float \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_af2231a8027b36ead2d43fbc19dc631fc}{corner\+\_\+radius\+\_\+x}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the horizontal radius of the corners. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs}{html\+\_\+editor\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_ad2b36419bcdab21d775ec43e6ddab0d6}{corner\+\_\+radius\+\_\+x}} (const float \&corner\+\_\+radius\+\_\+x)
+\begin{DoxyCompactList}\small\item\em Set the horizontal radius of the corners. \end{DoxyCompactList}\item 
+float \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_a35a207485ffe9594912003cf2b9a2f27}{corner\+\_\+radius\+\_\+y}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the vertical radius of the corners. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs}{html\+\_\+editor\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_a677cd20899a7e42527bb2ed702bd1919}{corner\+\_\+radius\+\_\+y}} (const float \&corner\+\_\+radius\+\_\+y)
+\begin{DoxyCompactList}\small\item\em Set the vertical radius of the corners. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_a97ab8dd9f8098807ddf9f8dfc1697eec}{color\+\_\+caret}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the color of the caret. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs}{html\+\_\+editor\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_a7bb8c2a543e4926c058a672c353a8701}{color\+\_\+caret}} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&color\+\_\+caret)
+\begin{DoxyCompactList}\small\item\em Set the color of the caret. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_ac73096716fe953bd91a40428fd9b7f5a}{color\+\_\+control\+\_\+border}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the color of the html control pane border. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs}{html\+\_\+editor\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_a815d393e5299f9fb322208bdcc446723}{color\+\_\+control\+\_\+border}} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&color\+\_\+control\+\_\+border)
+\begin{DoxyCompactList}\small\item\em Set the color of the html control pane border. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_a7fef75727e37fc6b604119526b3a9872}{color\+\_\+control\+\_\+fill}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the fill color of the control. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs}{html\+\_\+editor\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_a25f2ae2f632c0f6b710900e76ba0428b}{color\+\_\+control\+\_\+fill}} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&color\+\_\+control\+\_\+fill)
+\begin{DoxyCompactList}\small\item\em Set the fill color of the control. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+HTML editor widget specifications. 
+
+Recommended size with defaults is a minimum of 320x215px.
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_a1b7b88a3051d99a44383af38ad8537a2}\label{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_a1b7b88a3051d99a44383af38ad8537a2}} 
+\index{liblec::lecui::widgets::html\_editor\_specs@{liblec::lecui::widgets::html\_editor\_specs}!border@{border}}
+\index{border@{border}!liblec::lecui::widgets::html\_editor\_specs@{liblec::lecui::widgets::html\_editor\_specs}}
+\doxysubsubsection{\texorpdfstring{border()}{border()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily float\& liblec\+::lecui\+::widgets\+::html\+\_\+editor\+\_\+specs\+::border (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get or set the thickness of the border. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the border thickness, in pixels.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_a7eb647ae2c83187e5ebcfc4765e03a9c}\label{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_a7eb647ae2c83187e5ebcfc4765e03a9c}} 
+\index{liblec::lecui::widgets::html\_editor\_specs@{liblec::lecui::widgets::html\_editor\_specs}!border@{border}}
+\index{border@{border}!liblec::lecui::widgets::html\_editor\_specs@{liblec::lecui::widgets::html\_editor\_specs}}
+\doxysubsubsection{\texorpdfstring{border()}{border()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs}{html\+\_\+editor\+\_\+specs}}\& liblec\+::lecui\+::widgets\+::html\+\_\+editor\+\_\+specs\+::border (\begin{DoxyParamCaption}\item[{const float \&}]{border }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the thickness of the border. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em border} & The border thickness, in pixels.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_ab78516386d43c71c919d8b226a057922}\label{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_ab78516386d43c71c919d8b226a057922}} 
+\index{liblec::lecui::widgets::html\_editor\_specs@{liblec::lecui::widgets::html\_editor\_specs}!color\_border@{color\_border}}
+\index{color\_border@{color\_border}!liblec::lecui::widgets::html\_editor\_specs@{liblec::lecui::widgets::html\_editor\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_border()}{color\_border()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::widgets\+::html\+\_\+editor\+\_\+specs\+::color\+\_\+border (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get or set the color of the border. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the border color, as defined in \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_a8e9767baf64bf61389a1ee884f68c424}\label{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_a8e9767baf64bf61389a1ee884f68c424}} 
+\index{liblec::lecui::widgets::html\_editor\_specs@{liblec::lecui::widgets::html\_editor\_specs}!color\_border@{color\_border}}
+\index{color\_border@{color\_border}!liblec::lecui::widgets::html\_editor\_specs@{liblec::lecui::widgets::html\_editor\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_border()}{color\_border()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs}{html\+\_\+editor\+\_\+specs}}\& liblec\+::lecui\+::widgets\+::html\+\_\+editor\+\_\+specs\+::color\+\_\+border (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&}]{color\+\_\+border }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the color of the border. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em color\+\_\+border} & The border color, as defined in \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_a97ab8dd9f8098807ddf9f8dfc1697eec}\label{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_a97ab8dd9f8098807ddf9f8dfc1697eec}} 
+\index{liblec::lecui::widgets::html\_editor\_specs@{liblec::lecui::widgets::html\_editor\_specs}!color\_caret@{color\_caret}}
+\index{color\_caret@{color\_caret}!liblec::lecui::widgets::html\_editor\_specs@{liblec::lecui::widgets::html\_editor\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_caret()}{color\_caret()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::widgets\+::html\+\_\+editor\+\_\+specs\+::color\+\_\+caret (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get or set the color of the caret. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the caret color.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_a7bb8c2a543e4926c058a672c353a8701}\label{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_a7bb8c2a543e4926c058a672c353a8701}} 
+\index{liblec::lecui::widgets::html\_editor\_specs@{liblec::lecui::widgets::html\_editor\_specs}!color\_caret@{color\_caret}}
+\index{color\_caret@{color\_caret}!liblec::lecui::widgets::html\_editor\_specs@{liblec::lecui::widgets::html\_editor\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_caret()}{color\_caret()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs}{html\+\_\+editor\+\_\+specs}}\& liblec\+::lecui\+::widgets\+::html\+\_\+editor\+\_\+specs\+::color\+\_\+caret (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&}]{color\+\_\+caret }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the color of the caret. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em color\+\_\+caret} & The color of the caret.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_ac73096716fe953bd91a40428fd9b7f5a}\label{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_ac73096716fe953bd91a40428fd9b7f5a}} 
+\index{liblec::lecui::widgets::html\_editor\_specs@{liblec::lecui::widgets::html\_editor\_specs}!color\_control\_border@{color\_control\_border}}
+\index{color\_control\_border@{color\_control\_border}!liblec::lecui::widgets::html\_editor\_specs@{liblec::lecui::widgets::html\_editor\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_control\_border()}{color\_control\_border()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::widgets\+::html\+\_\+editor\+\_\+specs\+::color\+\_\+control\+\_\+border (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get or set the color of the html control pane border. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the property.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_a815d393e5299f9fb322208bdcc446723}\label{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_a815d393e5299f9fb322208bdcc446723}} 
+\index{liblec::lecui::widgets::html\_editor\_specs@{liblec::lecui::widgets::html\_editor\_specs}!color\_control\_border@{color\_control\_border}}
+\index{color\_control\_border@{color\_control\_border}!liblec::lecui::widgets::html\_editor\_specs@{liblec::lecui::widgets::html\_editor\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_control\_border()}{color\_control\_border()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs}{html\+\_\+editor\+\_\+specs}}\& liblec\+::lecui\+::widgets\+::html\+\_\+editor\+\_\+specs\+::color\+\_\+control\+\_\+border (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&}]{color\+\_\+control\+\_\+border }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the color of the html control pane border. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em color\+\_\+control\+\_\+border} & The color.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_a7fef75727e37fc6b604119526b3a9872}\label{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_a7fef75727e37fc6b604119526b3a9872}} 
+\index{liblec::lecui::widgets::html\_editor\_specs@{liblec::lecui::widgets::html\_editor\_specs}!color\_control\_fill@{color\_control\_fill}}
+\index{color\_control\_fill@{color\_control\_fill}!liblec::lecui::widgets::html\_editor\_specs@{liblec::lecui::widgets::html\_editor\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_control\_fill()}{color\_control\_fill()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::widgets\+::html\+\_\+editor\+\_\+specs\+::color\+\_\+control\+\_\+fill (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get or set the fill color of the control. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the property.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_a25f2ae2f632c0f6b710900e76ba0428b}\label{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_a25f2ae2f632c0f6b710900e76ba0428b}} 
+\index{liblec::lecui::widgets::html\_editor\_specs@{liblec::lecui::widgets::html\_editor\_specs}!color\_control\_fill@{color\_control\_fill}}
+\index{color\_control\_fill@{color\_control\_fill}!liblec::lecui::widgets::html\_editor\_specs@{liblec::lecui::widgets::html\_editor\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_control\_fill()}{color\_control\_fill()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs}{html\+\_\+editor\+\_\+specs}}\& liblec\+::lecui\+::widgets\+::html\+\_\+editor\+\_\+specs\+::color\+\_\+control\+\_\+fill (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&}]{color\+\_\+control\+\_\+fill }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the fill color of the control. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em color\+\_\+control\+\_\+fill} & The color.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_a3fe91adb0e20c11d5248d1c4f92cea17}\label{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_a3fe91adb0e20c11d5248d1c4f92cea17}} 
+\index{liblec::lecui::widgets::html\_editor\_specs@{liblec::lecui::widgets::html\_editor\_specs}!color\_disabled@{color\_disabled}}
+\index{color\_disabled@{color\_disabled}!liblec::lecui::widgets::html\_editor\_specs@{liblec::lecui::widgets::html\_editor\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_disabled()}{color\_disabled()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::widgets\+::html\+\_\+editor\+\_\+specs\+::color\+\_\+disabled (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the widget\textquotesingle{}s color when it\textquotesingle{}s disabled. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget\textquotesingle{}s color when disabled.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a063ce5777dcabe002f5ea88e15e39560}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_af25b804740de19b9b77621bf33229633}\label{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_af25b804740de19b9b77621bf33229633}} 
+\index{liblec::lecui::widgets::html\_editor\_specs@{liblec::lecui::widgets::html\_editor\_specs}!color\_fill@{color\_fill}}
+\index{color\_fill@{color\_fill}!liblec::lecui::widgets::html\_editor\_specs@{liblec::lecui::widgets::html\_editor\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_fill()}{color\_fill()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::widgets\+::html\+\_\+editor\+\_\+specs\+::color\+\_\+fill (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the fill color of the widget. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget\textquotesingle{}s fill color.
+\end{DoxyReturn}
+
+
+The use of the fill color varies from widget to widget. Refer to the specific widget\textquotesingle{}s documentation for details.
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_ab99407e83123ee1dd285f985dbb20747}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_aebec06b65c783af81545140c35e6ca9f}\label{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_aebec06b65c783af81545140c35e6ca9f}} 
+\index{liblec::lecui::widgets::html\_editor\_specs@{liblec::lecui::widgets::html\_editor\_specs}!color\_hot@{color\_hot}}
+\index{color\_hot@{color\_hot}!liblec::lecui::widgets::html\_editor\_specs@{liblec::lecui::widgets::html\_editor\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_hot()}{color\_hot()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::widgets\+::html\+\_\+editor\+\_\+specs\+::color\+\_\+hot (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the widget\textquotesingle{}s color when the mouse is hovered over it. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget\textquotesingle{}s hover color.
+\end{DoxyReturn}
+
+
+The use of the hover color varies from widget to widget. Refer to the specific widget\textquotesingle{}s documentation for details.
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a1fe7b1fe9f05604c6ab54696a1dc3d04}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_a9716fcaa53a6fced45b642e9090a4e4d}\label{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_a9716fcaa53a6fced45b642e9090a4e4d}} 
+\index{liblec::lecui::widgets::html\_editor\_specs@{liblec::lecui::widgets::html\_editor\_specs}!color\_selected@{color\_selected}}
+\index{color\_selected@{color\_selected}!liblec::lecui::widgets::html\_editor\_specs@{liblec::lecui::widgets::html\_editor\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_selected()}{color\_selected()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::widgets\+::html\+\_\+editor\+\_\+specs\+::color\+\_\+selected (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the widget\textquotesingle{}s color when selected. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget\textquotesingle{}s color when selected.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a53482bdf42a5e33ab53f87ce097e4837}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_ae64c5cce6b311157502ccb73b820c4b6}\label{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_ae64c5cce6b311157502ccb73b820c4b6}} 
+\index{liblec::lecui::widgets::html\_editor\_specs@{liblec::lecui::widgets::html\_editor\_specs}!color\_text@{color\_text}}
+\index{color\_text@{color\_text}!liblec::lecui::widgets::html\_editor\_specs@{liblec::lecui::widgets::html\_editor\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_text()}{color\_text()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::widgets\+::html\+\_\+editor\+\_\+specs\+::color\+\_\+text (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the color of the widget\textquotesingle{}s text. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget\textquotesingle{}s text color.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a8b272a6842d03791c3da0f04a69ad128}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_af2231a8027b36ead2d43fbc19dc631fc}\label{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_af2231a8027b36ead2d43fbc19dc631fc}} 
+\index{liblec::lecui::widgets::html\_editor\_specs@{liblec::lecui::widgets::html\_editor\_specs}!corner\_radius\_x@{corner\_radius\_x}}
+\index{corner\_radius\_x@{corner\_radius\_x}!liblec::lecui::widgets::html\_editor\_specs@{liblec::lecui::widgets::html\_editor\_specs}}
+\doxysubsubsection{\texorpdfstring{corner\_radius\_x()}{corner\_radius\_x()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily float\& liblec\+::lecui\+::widgets\+::html\+\_\+editor\+\_\+specs\+::corner\+\_\+radius\+\_\+x (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get or set the horizontal radius of the corners. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the radius, in pixels.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_ad2b36419bcdab21d775ec43e6ddab0d6}\label{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_ad2b36419bcdab21d775ec43e6ddab0d6}} 
+\index{liblec::lecui::widgets::html\_editor\_specs@{liblec::lecui::widgets::html\_editor\_specs}!corner\_radius\_x@{corner\_radius\_x}}
+\index{corner\_radius\_x@{corner\_radius\_x}!liblec::lecui::widgets::html\_editor\_specs@{liblec::lecui::widgets::html\_editor\_specs}}
+\doxysubsubsection{\texorpdfstring{corner\_radius\_x()}{corner\_radius\_x()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs}{html\+\_\+editor\+\_\+specs}}\& liblec\+::lecui\+::widgets\+::html\+\_\+editor\+\_\+specs\+::corner\+\_\+radius\+\_\+x (\begin{DoxyParamCaption}\item[{const float \&}]{corner\+\_\+radius\+\_\+x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the horizontal radius of the corners. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em corner\+\_\+radius\+\_\+x} & The horizontal radius of the corner, in pixels.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_a35a207485ffe9594912003cf2b9a2f27}\label{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_a35a207485ffe9594912003cf2b9a2f27}} 
+\index{liblec::lecui::widgets::html\_editor\_specs@{liblec::lecui::widgets::html\_editor\_specs}!corner\_radius\_y@{corner\_radius\_y}}
+\index{corner\_radius\_y@{corner\_radius\_y}!liblec::lecui::widgets::html\_editor\_specs@{liblec::lecui::widgets::html\_editor\_specs}}
+\doxysubsubsection{\texorpdfstring{corner\_radius\_y()}{corner\_radius\_y()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily float\& liblec\+::lecui\+::widgets\+::html\+\_\+editor\+\_\+specs\+::corner\+\_\+radius\+\_\+y (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get or set the vertical radius of the corners. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the radius, in pixels.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_a677cd20899a7e42527bb2ed702bd1919}\label{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_a677cd20899a7e42527bb2ed702bd1919}} 
+\index{liblec::lecui::widgets::html\_editor\_specs@{liblec::lecui::widgets::html\_editor\_specs}!corner\_radius\_y@{corner\_radius\_y}}
+\index{corner\_radius\_y@{corner\_radius\_y}!liblec::lecui::widgets::html\_editor\_specs@{liblec::lecui::widgets::html\_editor\_specs}}
+\doxysubsubsection{\texorpdfstring{corner\_radius\_y()}{corner\_radius\_y()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs}{html\+\_\+editor\+\_\+specs}}\& liblec\+::lecui\+::widgets\+::html\+\_\+editor\+\_\+specs\+::corner\+\_\+radius\+\_\+y (\begin{DoxyParamCaption}\item[{const float \&}]{corner\+\_\+radius\+\_\+y }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the vertical radius of the corners. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em corner\+\_\+radius\+\_\+y} & The horizontal radius of the corner, in pixels.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_a01f2bb5d3ef962a0db5c27c56de2a828}\label{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_a01f2bb5d3ef962a0db5c27c56de2a828}} 
+\index{liblec::lecui::widgets::html\_editor\_specs@{liblec::lecui::widgets::html\_editor\_specs}!cursor@{cursor}}
+\index{cursor@{cursor}!liblec::lecui::widgets::html\_editor\_specs@{liblec::lecui::widgets::html\_editor\_specs}}
+\doxysubsubsection{\texorpdfstring{cursor()}{cursor()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a3cba4c05a958d80dca72e4e9dd5360b1}{cursor\+\_\+type}}\& liblec\+::lecui\+::widgets\+::html\+\_\+editor\+\_\+specs\+::cursor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the mouse cursor to use then over the widget. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the cursor type as defined in \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a3cba4c05a958d80dca72e4e9dd5360b1}{cursor\+\_\+type}}.
+\end{DoxyReturn}
+
+
+This is only used if the widget is non-\/static.
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a28e525ebd75d587b17592dba23f24081}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_ab9f16ba3376f6fe2af37e1e3fa66c365}\label{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_ab9f16ba3376f6fe2af37e1e3fa66c365}} 
+\index{liblec::lecui::widgets::html\_editor\_specs@{liblec::lecui::widgets::html\_editor\_specs}!font@{font}}
+\index{font@{font}!liblec::lecui::widgets::html\_editor\_specs@{liblec::lecui::widgets::html\_editor\_specs}}
+\doxysubsubsection{\texorpdfstring{font()}{font()}}
+{\footnotesize\ttfamily std\+::string\& liblec\+::lecui\+::widgets\+::html\+\_\+editor\+\_\+specs\+::font (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the default widget font, e.\+g. \char`\"{}\+Georgia\char`\"{}. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget\textquotesingle{}s font name.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a5f42f2960de76e860d4b55e0e376f42a}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_ae7ed305c17aa054213a0d667b9873656}\label{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_ae7ed305c17aa054213a0d667b9873656}} 
+\index{liblec::lecui::widgets::html\_editor\_specs@{liblec::lecui::widgets::html\_editor\_specs}!font\_size@{font\_size}}
+\index{font\_size@{font\_size}!liblec::lecui::widgets::html\_editor\_specs@{liblec::lecui::widgets::html\_editor\_specs}}
+\doxysubsubsection{\texorpdfstring{font\_size()}{font\_size()}}
+{\footnotesize\ttfamily float\& liblec\+::lecui\+::widgets\+::html\+\_\+editor\+\_\+specs\+::font\+\_\+size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the default widget font size in points, e.\+g. 9.\+0. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget\textquotesingle{}s font size.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a540bfa7642033966614ccfda7ecf1f25}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_a35b0288141527306f04361024e8bfaec}\label{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_a35b0288141527306f04361024e8bfaec}} 
+\index{liblec::lecui::widgets::html\_editor\_specs@{liblec::lecui::widgets::html\_editor\_specs}!on\_resize@{on\_resize}}
+\index{on\_resize@{on\_resize}!liblec::lecui::widgets::html\_editor\_specs@{liblec::lecui::widgets::html\_editor\_specs}}
+\doxysubsubsection{\texorpdfstring{on\_resize()}{on\_resize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1specs_1_1resize__params}{resize\+\_\+params}}\& liblec\+::lecui\+::widgets\+::html\+\_\+editor\+\_\+specs\+::on\+\_\+resize (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the behaviour of the widget when its container is resized. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the resize parameters as defined in \mbox{\hyperlink{}{resize\+\_\+params}}.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a3f6021dcec6d7b6d846911956a6bff32}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_a39df78acd0dcaf762202030aa539d2e5}\label{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_a39df78acd0dcaf762202030aa539d2e5}} 
+\index{liblec::lecui::widgets::html\_editor\_specs@{liblec::lecui::widgets::html\_editor\_specs}!rect@{rect}}
+\index{rect@{rect}!liblec::lecui::widgets::html\_editor\_specs@{liblec::lecui::widgets::html\_editor\_specs}}
+\doxysubsubsection{\texorpdfstring{rect()}{rect()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{lecui\+::rect}}\& liblec\+::lecui\+::widgets\+::html\+\_\+editor\+\_\+specs\+::rect (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the position and dimensions of the widget. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget rectangle.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a0d6cc5c9ed9591f2e8b306a18224f4d7}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_ac3469befce2f3a2a818b0badf3fc8687}\label{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_ac3469befce2f3a2a818b0badf3fc8687}} 
+\index{liblec::lecui::widgets::html\_editor\_specs@{liblec::lecui::widgets::html\_editor\_specs}!text@{text}}
+\index{text@{text}!liblec::lecui::widgets::html\_editor\_specs@{liblec::lecui::widgets::html\_editor\_specs}}
+\doxysubsubsection{\texorpdfstring{text()}{text()}}
+{\footnotesize\ttfamily std\+::string\& liblec\+::lecui\+::widgets\+::html\+\_\+editor\+\_\+specs\+::text (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the widget text. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget text.
+\end{DoxyReturn}
+
+
+The use of the text varies from widget to widget. Some widgets don\textquotesingle{}t use this field.
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a76c5292d60d7c9a3ab6f26a9ef5fcbad}{liblec\+::lecui\+::widgets\+::specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_ab650369d596388fab73e9abc08eb7b14}\label{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_ab650369d596388fab73e9abc08eb7b14}} 
+\index{liblec::lecui::widgets::html\_editor\_specs@{liblec::lecui::widgets::html\_editor\_specs}!tooltip@{tooltip}}
+\index{tooltip@{tooltip}!liblec::lecui::widgets::html\_editor\_specs@{liblec::lecui::widgets::html\_editor\_specs}}
+\doxysubsubsection{\texorpdfstring{tooltip()}{tooltip()}}
+{\footnotesize\ttfamily std\+::string\& liblec\+::lecui\+::widgets\+::html\+\_\+editor\+\_\+specs\+::tooltip (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the widget\textquotesingle{}s tooltip text. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the tooltip text.
+\end{DoxyReturn}
+
+
+The tooltip text is displayed when the mouse is hovered over the widget.
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_af82deb362bbf2fafe975296722785b3a}{liblec\+::lecui\+::widgets\+::specs}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+widgets/html\+\_\+editor.\+h\item 
+widgets/html\+\_\+editor/html\+\_\+editor.\+cpp\end{DoxyCompactItemize}

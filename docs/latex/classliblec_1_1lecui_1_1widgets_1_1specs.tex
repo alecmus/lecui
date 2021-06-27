@@ -33,37 +33,74 @@ enum class \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a3cba4c05a9
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1specs_1_1basic__events}{basic\+\_\+events}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_af5e280dcc32e250216e223c492a489c2}{events}} ()
-\begin{DoxyCompactList}\small\item\em Widget events. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a65258100c285886744f1a21eccecc088}{operator==}} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs}{specs}} \&)
 \item 
 \mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1specs_a8933790a5fb9c21007497324912e9c4b}\label{classliblec_1_1lecui_1_1widgets_1_1specs_a8933790a5fb9c21007497324912e9c4b}} 
 bool {\bfseries operator!=} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs}{specs}} \&)
-\end{DoxyCompactItemize}
-\doxysubsection*{Public Attributes}
+\item 
+virtual std\+::string \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a76c5292d60d7c9a3ab6f26a9ef5fcbad}{text}} ()=0
+\begin{DoxyCompactList}\small\item\em Get or set the widget text. \end{DoxyCompactList}\item 
+virtual std\+::string \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_af82deb362bbf2fafe975296722785b3a}{tooltip}} ()=0
+\begin{DoxyCompactList}\small\item\em Get or set the widget\textquotesingle{}s tooltip text. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{lecui\+::rect}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a0d6cc5c9ed9591f2e8b306a18224f4d7}{rect}} ()=0
+\begin{DoxyCompactList}\small\item\em Get or set the position and dimensions of the widget. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1specs_1_1resize__params}{resize\+\_\+params}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a3f6021dcec6d7b6d846911956a6bff32}{on\+\_\+resize}} ()=0
+\begin{DoxyCompactList}\small\item\em Get or set the behaviour of the widget when its container is resized. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a3cba4c05a958d80dca72e4e9dd5360b1}{cursor\+\_\+type}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a28e525ebd75d587b17592dba23f24081}{cursor}} ()=0
+\begin{DoxyCompactList}\small\item\em Get or set the mouse cursor to use then over the widget. \end{DoxyCompactList}\item 
+virtual std\+::string \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a5f42f2960de76e860d4b55e0e376f42a}{font}} ()=0
+\begin{DoxyCompactList}\small\item\em Get or set the default widget font, e.\+g. \char`\"{}\+Georgia\char`\"{}. \end{DoxyCompactList}\item 
+virtual float \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a540bfa7642033966614ccfda7ecf1f25}{font\+\_\+size}} ()=0
+\begin{DoxyCompactList}\small\item\em Get or set the default widget font size in points, e.\+g. 9.\+0. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a8b272a6842d03791c3da0f04a69ad128}{color\+\_\+text}} ()=0
+\begin{DoxyCompactList}\small\item\em Get or set the color of the widget\textquotesingle{}s text. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_ab99407e83123ee1dd285f985dbb20747}{color\+\_\+fill}} ()=0
+\begin{DoxyCompactList}\small\item\em Get or set the fill color of the widget. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a1fe7b1fe9f05604c6ab54696a1dc3d04}{color\+\_\+hot}} ()=0
+\begin{DoxyCompactList}\small\item\em Get or set the widget\textquotesingle{}s color when the mouse is hovered over it. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a53482bdf42a5e33ab53f87ce097e4837}{color\+\_\+selected}} ()=0
+\begin{DoxyCompactList}\small\item\em Get or set the widget\textquotesingle{}s color when selected. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a063ce5777dcabe002f5ea88e15e39560}{color\+\_\+disabled}} ()=0
+\begin{DoxyCompactList}\small\item\em Get or set the widget\textquotesingle{}s color when it\textquotesingle{}s disabled. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1specs_1_1basic__events}{basic\+\_\+events}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_af5e280dcc32e250216e223c492a489c2}{events}} ()
+\begin{DoxyCompactList}\small\item\em Widget events. \end{DoxyCompactList}\item 
+const std\+::string \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a4cf700d870204dcc7b32ce6f87e51951}{alias}} ()
+\begin{DoxyCompactList}\small\item\em The widget\textquotesingle{}s alias, either user defined or automatically generated by the library. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-std\+::string \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a6e41c96382c27dba2133aaee1774ff8f}{text}}
-\begin{DoxyCompactList}\small\item\em The widget text. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{lecui\+::rect}} \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a933348ca35cca993724d5e76b03a435e}{rect}}
-\begin{DoxyCompactList}\small\item\em The position and dimensions of the widget. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1specs_1_1resize__params}{resize\+\_\+params}} \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_af631f77f9b34a61126961b67b3f90c71}{on\+\_\+resize}} = \{ 0.f, 0.f, 0.f, 0.f \}
-\begin{DoxyCompactList}\small\item\em The behaviour of the widget when its container is resized. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a3cba4c05a958d80dca72e4e9dd5360b1}{cursor\+\_\+type}} \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a53b0a39e54721d7fabe54dea1b4cf60f}{cursor}} = cursor\+\_\+type\+::arrow
-\begin{DoxyCompactList}\small\item\em The cursor to be used when the mouse is over the widget. \end{DoxyCompactList}\item 
-std\+::string \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a100c14e2b66ae57a74fe66912769447c}{font}} = \char`\"{}Segoe UI\char`\"{}
-\begin{DoxyCompactList}\small\item\em The font to use for the widget text. \end{DoxyCompactList}\item 
-float \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_aa8b943a543299ca5e9c4ddb551021b47}{font\+\_\+size}} = 9.f
-\begin{DoxyCompactList}\small\item\em The size of the font, in points. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{structliblec_1_1lecui_1_1color}{color}} \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a22c48f972b72e8649997eebb7511ef55}{color\+\_\+text}} = \{ 0, 0, 0, 255 \}
-\begin{DoxyCompactList}\small\item\em The color of the widget text. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{structliblec_1_1lecui_1_1color}{color}} \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_af231c7c08da337517d674ad83c4966f7}{color\+\_\+fill}} = \{ 0, 120, 170, 255 \}
-\begin{DoxyCompactList}\small\item\em The fill color of the widget. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{structliblec_1_1lecui_1_1color}{color}} \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_aca074d8f11e5ed68481918415b63f7d7}{color\+\_\+hot}} = \{ 0, 120, 170, 255 \}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1specs_acce3475a6ff1f04c66c425c460e2a52d}\label{classliblec_1_1lecui_1_1widgets_1_1specs_acce3475a6ff1f04c66c425c460e2a52d}} 
+std\+::string {\bfseries text\+\_\+}
+\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1specs_a735186ad64443f466a1635481fd1529f}\label{classliblec_1_1lecui_1_1widgets_1_1specs_a735186ad64443f466a1635481fd1529f}} 
+std\+::string {\bfseries tooltip\+\_\+}
+\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1specs_a381e472527dfc8e85013f208a7872d00}\label{classliblec_1_1lecui_1_1widgets_1_1specs_a381e472527dfc8e85013f208a7872d00}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{lecui\+::rect}} {\bfseries rect\+\_\+}
+\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1specs_a9d63d3757e36ce494f81eecc0e37665d}\label{classliblec_1_1lecui_1_1widgets_1_1specs_a9d63d3757e36ce494f81eecc0e37665d}} 
+\mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1specs_1_1resize__params}{resize\+\_\+params}} {\bfseries on\+\_\+resize\+\_\+} = \{ 0.f, 0.f, 0.f, 0.f \}
+\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1specs_a363a24c363dbacbe4875111e29642ceb}\label{classliblec_1_1lecui_1_1widgets_1_1specs_a363a24c363dbacbe4875111e29642ceb}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a3cba4c05a958d80dca72e4e9dd5360b1}{cursor\+\_\+type}} {\bfseries cursor\+\_\+} = cursor\+\_\+type\+::arrow
+\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1specs_a98965113e35a89f4c23a873ad07c7385}\label{classliblec_1_1lecui_1_1widgets_1_1specs_a98965113e35a89f4c23a873ad07c7385}} 
+std\+::string {\bfseries font\+\_\+} = \char`\"{}Segoe UI\char`\"{}
+\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1specs_a017a5379ff94a221febd8306eecb5761}\label{classliblec_1_1lecui_1_1widgets_1_1specs_a017a5379ff94a221febd8306eecb5761}} 
+float {\bfseries font\+\_\+size\+\_\+} = 9.f
+\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1specs_a80a0bf329015b34cd5556fcb91a3b718}\label{classliblec_1_1lecui_1_1widgets_1_1specs_a80a0bf329015b34cd5556fcb91a3b718}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} {\bfseries color\+\_\+text\+\_\+} = \{ 0, 0, 0, 255 \}
+\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1specs_a6e5b924394b731bdda6e7ae55d3a491b}\label{classliblec_1_1lecui_1_1widgets_1_1specs_a6e5b924394b731bdda6e7ae55d3a491b}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} {\bfseries color\+\_\+fill\+\_\+} = \{ 0, 120, 170, 255 \}
+\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_ad8f0c191e2d4fbb439886108ff351d1b}{color\+\_\+hot\+\_\+}} = \{ 0, 120, 170, 255 \}
 \begin{DoxyCompactList}\small\item\em The hit color when the mouse is over the widget. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{structliblec_1_1lecui_1_1color}{color}} \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a882c8cc2ed13d0f86dbfad491b893703}{color\+\_\+selected}} = \{ 0, 120, 170, 30 \}
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a9360ad6e57da3f042df03422d0ed03b2}{color\+\_\+selected\+\_\+}} = \{ 0, 120, 170, 30 \}
 \begin{DoxyCompactList}\small\item\em The color to be used to mark the widget as selected. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{structliblec_1_1lecui_1_1color}{color}} \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a0e55d6ac3d68a11005f6224cc5e373f0}{color\+\_\+disabled}} = \{ 180, 180, 180, 255 \}
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_aaaa453252af3aaef8b427893f4c8a150}{color\+\_\+disabled\+\_\+}} = \{ 180, 180, 180, 255 \}
 \begin{DoxyCompactList}\small\item\em The color of the widget when it is disabled. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
@@ -86,6 +123,127 @@ Mouse cursor type.
 
 
 \doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1specs_a4cf700d870204dcc7b32ce6f87e51951}\label{classliblec_1_1lecui_1_1widgets_1_1specs_a4cf700d870204dcc7b32ce6f87e51951}} 
+\index{liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}!alias@{alias}}
+\index{alias@{alias}!liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}}
+\doxysubsubsection{\texorpdfstring{alias()}{alias()}}
+{\footnotesize\ttfamily const std\+::string\& liblec\+::lecui\+::widgets\+::specs\+::alias (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The widget\textquotesingle{}s alias, either user defined or automatically generated by the library. 
+
+\begin{DoxyReturn}{Returns}
+The alias.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1specs_a063ce5777dcabe002f5ea88e15e39560}\label{classliblec_1_1lecui_1_1widgets_1_1specs_a063ce5777dcabe002f5ea88e15e39560}} 
+\index{liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}!color\_disabled@{color\_disabled}}
+\index{color\_disabled@{color\_disabled}!liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}}
+\doxysubsubsection{\texorpdfstring{color\_disabled()}{color\_disabled()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::widgets\+::specs\+::color\+\_\+disabled (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Get or set the widget\textquotesingle{}s color when it\textquotesingle{}s disabled. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget\textquotesingle{}s color when disabled.
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_ad553d8e93064fed3b7d422d62b0e7706}{liblec\+::lecui\+::widgets\+::scrollbar\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_ad344d22102500fa4a5f0728be5270032}{liblec\+::lecui\+::widgets\+::tree\+\_\+view\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1toggle__specs_af5f17e3c9acbc0d5e7e0734b5a47fce8}{liblec\+::lecui\+::widgets\+::toggle\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1time__specs_a1a190d55e8c17acd8ae7d20837eee13e}{liblec\+::lecui\+::widgets\+::time\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1text__field__specs_ab102e257fcd7ee2dd8ef4d35d6a2a0ac}{liblec\+::lecui\+::widgets\+::text\+\_\+field\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a1e2d3ded2bc845aeb442dc71b42713d4}{liblec\+::lecui\+::widgets\+::table\+\_\+view\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider__specs_a787e40baf7fc26ace079f9d5e141e8fb}{liblec\+::lecui\+::widgets\+::slider\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a626c11cd04d43622d6890c685bde5960}{liblec\+::lecui\+::widgets\+::rectangle\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1progress__indicator__specs_a7802e86b21c57cca16665fa5da937308}{liblec\+::lecui\+::widgets\+::progress\+\_\+indicator\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1progress__bar__specs_a266d6173dfae99afd09150962b3fa85f}{liblec\+::lecui\+::widgets\+::progress\+\_\+bar\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1line__specs_a70aa0a7debcd8e59c7423bad07fb482c}{liblec\+::lecui\+::widgets\+::line\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1label__specs_a5fe18379f77ef9757b563607636c4464}{liblec\+::lecui\+::widgets\+::label\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1image__view__specs_a93898ad7b199f31b1eeeb9e49d235c2f}{liblec\+::lecui\+::widgets\+::image\+\_\+view\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1icon__specs_a64e90c93feba1b9d62d0a103e489080b}{liblec\+::lecui\+::widgets\+::icon\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_a3fe91adb0e20c11d5248d1c4f92cea17}{liblec\+::lecui\+::widgets\+::html\+\_\+editor\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1date__specs_a751c456dd8f2845253cffb03cdd454fa}{liblec\+::lecui\+::widgets\+::date\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1custom__specs_a02de1e13459b77724be0833f2a4e77ff}{liblec\+::lecui\+::widgets\+::custom\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1minimize__button__specs_a131747caf292f023eb3d7d77b3294f57}{liblec\+::lecui\+::widgets\+::minimize\+\_\+button\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1maximize__button__specs_ad343cfe8e00d6c16ca8730b2e682e403}{liblec\+::lecui\+::widgets\+::maximize\+\_\+button\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1close__button__specs_a8f9fff3739acab0d0bf6df72b67a9b4d}{liblec\+::lecui\+::widgets\+::close\+\_\+button\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a56c91c369d719278ef66a9a250bb8bd5}{liblec\+::lecui\+::widgets\+::combobox\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1checkbox__specs_a8f2e2865c5dc4c041e3c2f046644dbb6}{liblec\+::lecui\+::widgets\+::checkbox\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1button__specs_a84e590f82dd05c02e3909eec0750c76a}{liblec\+::lecui\+::widgets\+::button\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1tab__pane__specs_a9792770aebe861b30d7407bd38e3b88f}{liblec\+::lecui\+::containers\+::tab\+\_\+pane\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1pane__specs_a80d266ad290180e64c5c5aea563681d5}{liblec\+::lecui\+::containers\+::pane\+\_\+specs}}, and \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1group__specs_a6f2a44054310dcd84d03660264ec91f5}{liblec\+::lecui\+::containers\+::group\+\_\+specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1specs_ab99407e83123ee1dd285f985dbb20747}\label{classliblec_1_1lecui_1_1widgets_1_1specs_ab99407e83123ee1dd285f985dbb20747}} 
+\index{liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}!color\_fill@{color\_fill}}
+\index{color\_fill@{color\_fill}!liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}}
+\doxysubsubsection{\texorpdfstring{color\_fill()}{color\_fill()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::widgets\+::specs\+::color\+\_\+fill (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Get or set the fill color of the widget. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget\textquotesingle{}s fill color.
+\end{DoxyReturn}
+
+
+The use of the fill color varies from widget to widget. Refer to the specific widget\textquotesingle{}s documentation for details.
+
+Implemented in \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_a20022eb497c07935bbd6368a04789fa9}{liblec\+::lecui\+::widgets\+::scrollbar\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_a8de568a39cb9a16d75b9577038734eec}{liblec\+::lecui\+::widgets\+::tree\+\_\+view\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1toggle__specs_a25637dd5892749127ff96c9e432cf220}{liblec\+::lecui\+::widgets\+::toggle\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1time__specs_ab13fc8cf5b6f847f53811f6b3cfbbade}{liblec\+::lecui\+::widgets\+::time\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1text__field__specs_a8e1be03ddcdd44bd44970c8eef125652}{liblec\+::lecui\+::widgets\+::text\+\_\+field\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_ae47d579f0e943d2fe8bd4424bf986c34}{liblec\+::lecui\+::widgets\+::table\+\_\+view\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider__specs_abae4337c16b0cbcb80776520007cafd1}{liblec\+::lecui\+::widgets\+::slider\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_afc47ef7b395bd6ac5ca0baafe33db6e8}{liblec\+::lecui\+::widgets\+::rectangle\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1progress__indicator__specs_a4b5e6e73a5efb343e93036cdd770a27a}{liblec\+::lecui\+::widgets\+::progress\+\_\+indicator\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1progress__bar__specs_a2f05aa865e17a241dff64f58177b1296}{liblec\+::lecui\+::widgets\+::progress\+\_\+bar\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1line__specs_a64a8119947625cdb7f52d769d4320949}{liblec\+::lecui\+::widgets\+::line\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1label__specs_a1eeb0b181532421731ade63ac41f4a7b}{liblec\+::lecui\+::widgets\+::label\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1image__view__specs_ab11230f3087d9f7ed39e9b4c75de6f6e}{liblec\+::lecui\+::widgets\+::image\+\_\+view\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1icon__specs_a3469058deb1c895a1cb2f10dcf785b7f}{liblec\+::lecui\+::widgets\+::icon\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_af25b804740de19b9b77621bf33229633}{liblec\+::lecui\+::widgets\+::html\+\_\+editor\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1date__specs_a60ce13888d22f859ab0b17ad7d9c42d9}{liblec\+::lecui\+::widgets\+::date\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1custom__specs_a390b1786bec22a8c3ecc81acd60d977c}{liblec\+::lecui\+::widgets\+::custom\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1minimize__button__specs_a48013fc10c6ccc7315921445f9c50268}{liblec\+::lecui\+::widgets\+::minimize\+\_\+button\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1maximize__button__specs_a3b72852418f24d33684418f152c2faff}{liblec\+::lecui\+::widgets\+::maximize\+\_\+button\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1close__button__specs_a80b9b2b63ea0744383e4cc550f547ddc}{liblec\+::lecui\+::widgets\+::close\+\_\+button\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_ae6d2070284a9b9d2c941db02985e0f1a}{liblec\+::lecui\+::widgets\+::combobox\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1checkbox__specs_a66771f159d029029e0264360bce873c0}{liblec\+::lecui\+::widgets\+::checkbox\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1button__specs_a1c7bd597090ba86fd7295c2e9eaa6beb}{liblec\+::lecui\+::widgets\+::button\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1tab__pane__specs_a6d4867080efc059ef17e72671b4b3b40}{liblec\+::lecui\+::containers\+::tab\+\_\+pane\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1pane__specs_aec8157db6cf2e9d83b19091aa72e39c1}{liblec\+::lecui\+::containers\+::pane\+\_\+specs}}, and \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1group__specs_ab0dc93a98a0b28a76bc02ed8b7eb60ef}{liblec\+::lecui\+::containers\+::group\+\_\+specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1specs_a1fe7b1fe9f05604c6ab54696a1dc3d04}\label{classliblec_1_1lecui_1_1widgets_1_1specs_a1fe7b1fe9f05604c6ab54696a1dc3d04}} 
+\index{liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}!color\_hot@{color\_hot}}
+\index{color\_hot@{color\_hot}!liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}}
+\doxysubsubsection{\texorpdfstring{color\_hot()}{color\_hot()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::widgets\+::specs\+::color\+\_\+hot (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Get or set the widget\textquotesingle{}s color when the mouse is hovered over it. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget\textquotesingle{}s hover color.
+\end{DoxyReturn}
+
+
+The use of the hover color varies from widget to widget. Refer to the specific widget\textquotesingle{}s documentation for details.
+
+Implemented in \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_adb14dda2e6b095f3c77f5024df291e0f}{liblec\+::lecui\+::widgets\+::scrollbar\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_a573f3706a697c7e70570345f2a846924}{liblec\+::lecui\+::widgets\+::tree\+\_\+view\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1toggle__specs_a0fe7ea94396595c70e84888ba16b5ba5}{liblec\+::lecui\+::widgets\+::toggle\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1time__specs_a406d72346805e0a77cdab1ffe340fe35}{liblec\+::lecui\+::widgets\+::time\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1text__field__specs_a159e61527b99ea158bf0b7f3a378f224}{liblec\+::lecui\+::widgets\+::text\+\_\+field\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a3ea6ead84df739ae1720969e6b428c3e}{liblec\+::lecui\+::widgets\+::table\+\_\+view\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider__specs_a43003c1c59960deaf0b28f35f3b1a3b3}{liblec\+::lecui\+::widgets\+::slider\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a91fc76bf062f448a31dbee4e1de750cb}{liblec\+::lecui\+::widgets\+::rectangle\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1progress__indicator__specs_a7948909564cb6d4a999f93d077fc6518}{liblec\+::lecui\+::widgets\+::progress\+\_\+indicator\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1progress__bar__specs_a2a545805aafa84142b92fcbe7f297e56}{liblec\+::lecui\+::widgets\+::progress\+\_\+bar\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1line__specs_aab1ad320572f0126a68e5f880cbe254d}{liblec\+::lecui\+::widgets\+::line\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1label__specs_a671dcdbf4dd72c32a2e4aad170d4a616}{liblec\+::lecui\+::widgets\+::label\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1image__view__specs_aa8a2b0d1a6b7a8a196a5ff0935750911}{liblec\+::lecui\+::widgets\+::image\+\_\+view\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1icon__specs_a475df4abd79f1f4d77e1b390d9c68e9b}{liblec\+::lecui\+::widgets\+::icon\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_aebec06b65c783af81545140c35e6ca9f}{liblec\+::lecui\+::widgets\+::html\+\_\+editor\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1date__specs_a15f5244d37482851129ead04c2f20602}{liblec\+::lecui\+::widgets\+::date\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1custom__specs_a9d9cb2c5c084331d2adff5a6273133bc}{liblec\+::lecui\+::widgets\+::custom\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1minimize__button__specs_a7e962210f20d8cb0ac19073f8c356b0b}{liblec\+::lecui\+::widgets\+::minimize\+\_\+button\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1maximize__button__specs_ac5e44ae019bb7a6f7915354c1dd0919e}{liblec\+::lecui\+::widgets\+::maximize\+\_\+button\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1close__button__specs_a7b4b2c35e104969521a420eb4b837214}{liblec\+::lecui\+::widgets\+::close\+\_\+button\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a450c19aa04e510afda4b2c7818e2ed9d}{liblec\+::lecui\+::widgets\+::combobox\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1checkbox__specs_ab317268038fd52d2e35c6b71f03cb71b}{liblec\+::lecui\+::widgets\+::checkbox\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1button__specs_acc3f6b0eb7e91a269fb73cb1cf3b6502}{liblec\+::lecui\+::widgets\+::button\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1tab__pane__specs_a758044ba678dda96bdef0761d5866494}{liblec\+::lecui\+::containers\+::tab\+\_\+pane\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1pane__specs_acc0a93c451ffdfda9da4141f2bdff795}{liblec\+::lecui\+::containers\+::pane\+\_\+specs}}, and \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1group__specs_a108e54d5a2450762c4df7f89cb45857f}{liblec\+::lecui\+::containers\+::group\+\_\+specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1specs_a53482bdf42a5e33ab53f87ce097e4837}\label{classliblec_1_1lecui_1_1widgets_1_1specs_a53482bdf42a5e33ab53f87ce097e4837}} 
+\index{liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}!color\_selected@{color\_selected}}
+\index{color\_selected@{color\_selected}!liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}}
+\doxysubsubsection{\texorpdfstring{color\_selected()}{color\_selected()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::widgets\+::specs\+::color\+\_\+selected (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Get or set the widget\textquotesingle{}s color when selected. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget\textquotesingle{}s color when selected.
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_aba8f94c2d9e624cf79e176680b1c4ed0}{liblec\+::lecui\+::widgets\+::scrollbar\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_a356cbcb399388dac1160456401eb9a37}{liblec\+::lecui\+::widgets\+::tree\+\_\+view\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1toggle__specs_aa42a5b4d1625529b3af4d9ffb2ef9e43}{liblec\+::lecui\+::widgets\+::toggle\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1time__specs_a267d2aa44835fc4adfe4be215156e670}{liblec\+::lecui\+::widgets\+::time\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1text__field__specs_aef94139d1ce9c8c8bf2640c168155637}{liblec\+::lecui\+::widgets\+::text\+\_\+field\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_af668e87b713ad0a31f2a3a4d1badd48d}{liblec\+::lecui\+::widgets\+::table\+\_\+view\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider__specs_a28ea54cd3674572a3e8ac26c21c8ebe0}{liblec\+::lecui\+::widgets\+::slider\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_af977f51b827de40b296bc04557dad4d7}{liblec\+::lecui\+::widgets\+::rectangle\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1progress__indicator__specs_a1b05b7e1cca8688455cdf1bf7b7b0b10}{liblec\+::lecui\+::widgets\+::progress\+\_\+indicator\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1progress__bar__specs_ae00f361745de179e5a691e04a586e5ab}{liblec\+::lecui\+::widgets\+::progress\+\_\+bar\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1line__specs_a23851a329b82e8eb1c92b68235125bb7}{liblec\+::lecui\+::widgets\+::line\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1label__specs_ac739a6e518da56a227610c012d62448c}{liblec\+::lecui\+::widgets\+::label\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1image__view__specs_ad97f0398b34673287a181cfd68b6da6d}{liblec\+::lecui\+::widgets\+::image\+\_\+view\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1icon__specs_ab39834844850b32bd718f4e540158e53}{liblec\+::lecui\+::widgets\+::icon\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_a9716fcaa53a6fced45b642e9090a4e4d}{liblec\+::lecui\+::widgets\+::html\+\_\+editor\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1date__specs_aec7a5f8d785c25d582b9b0ed93d29739}{liblec\+::lecui\+::widgets\+::date\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1custom__specs_a327e1d9759b6df8234e7c79c190afb9b}{liblec\+::lecui\+::widgets\+::custom\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1minimize__button__specs_adae2ee7c4e1faca493b3d34d140b9dc8}{liblec\+::lecui\+::widgets\+::minimize\+\_\+button\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1maximize__button__specs_adb82924d3bc6c6aa6c4b4e9864438862}{liblec\+::lecui\+::widgets\+::maximize\+\_\+button\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1close__button__specs_ac14a2d9332bed2bf8078c44badb70095}{liblec\+::lecui\+::widgets\+::close\+\_\+button\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_adb8c35b345030d78603b943864059220}{liblec\+::lecui\+::widgets\+::combobox\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1checkbox__specs_a8ec52d5532859a5541d95d0b3fa77d4b}{liblec\+::lecui\+::widgets\+::checkbox\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1button__specs_a8091f96944e9579a6a6d84a1ebaab737}{liblec\+::lecui\+::widgets\+::button\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1tab__pane__specs_a9ae3bedc389107bc970a20610c884f9a}{liblec\+::lecui\+::containers\+::tab\+\_\+pane\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1pane__specs_ad26dadb0327f78efcc992a27815107ca}{liblec\+::lecui\+::containers\+::pane\+\_\+specs}}, and \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1group__specs_a1056fc531863dc4e200dcc9c35a1a6dc}{liblec\+::lecui\+::containers\+::group\+\_\+specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1specs_a8b272a6842d03791c3da0f04a69ad128}\label{classliblec_1_1lecui_1_1widgets_1_1specs_a8b272a6842d03791c3da0f04a69ad128}} 
+\index{liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}!color\_text@{color\_text}}
+\index{color\_text@{color\_text}!liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}}
+\doxysubsubsection{\texorpdfstring{color\_text()}{color\_text()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::widgets\+::specs\+::color\+\_\+text (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Get or set the color of the widget\textquotesingle{}s text. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget\textquotesingle{}s text color.
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_a8c62f21ef2e11ec307ef595245a0c45a}{liblec\+::lecui\+::widgets\+::scrollbar\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_ad8dd95e1eab28a5de84cd2a23d6b1feb}{liblec\+::lecui\+::widgets\+::tree\+\_\+view\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1toggle__specs_a8e453d94c63f57e9a311bf76236e050d}{liblec\+::lecui\+::widgets\+::toggle\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1time__specs_a4402a157458e1922d15007c75fa1a834}{liblec\+::lecui\+::widgets\+::time\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1text__field__specs_aaad6efc7df948968552e65f167b349bc}{liblec\+::lecui\+::widgets\+::text\+\_\+field\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a4db28c46d8a81863ceca96942365ce7b}{liblec\+::lecui\+::widgets\+::table\+\_\+view\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider__specs_a1c2fbb264a769273a7e71b88ac475c89}{liblec\+::lecui\+::widgets\+::slider\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a7d0d1525ac37ec97bc44beca788c1713}{liblec\+::lecui\+::widgets\+::rectangle\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1progress__indicator__specs_a0a0153429b16ddb942c30495d292ea75}{liblec\+::lecui\+::widgets\+::progress\+\_\+indicator\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1progress__bar__specs_ac173b3bd942f75d6968d8ff58adb756b}{liblec\+::lecui\+::widgets\+::progress\+\_\+bar\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1line__specs_a70a08880fb6ced7fd7791fd88db9e7b2}{liblec\+::lecui\+::widgets\+::line\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1label__specs_a8f20887538c1d37ea00643e4c21f82dc}{liblec\+::lecui\+::widgets\+::label\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1image__view__specs_a54f96aaffa0da2afa8badfaaab863821}{liblec\+::lecui\+::widgets\+::image\+\_\+view\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1icon__specs_a9c385fc2927bcbacd23ba71ec20079e8}{liblec\+::lecui\+::widgets\+::icon\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_ae64c5cce6b311157502ccb73b820c4b6}{liblec\+::lecui\+::widgets\+::html\+\_\+editor\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1date__specs_aadd612f1e526c7e55dfdaba6523692af}{liblec\+::lecui\+::widgets\+::date\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1custom__specs_a495a8a62d11419d99d405076b27876ae}{liblec\+::lecui\+::widgets\+::custom\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1minimize__button__specs_a2e93f09c8cd69e8e783490d2a60f57ba}{liblec\+::lecui\+::widgets\+::minimize\+\_\+button\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1maximize__button__specs_a09c0ffeb770768af9adac108f98154b0}{liblec\+::lecui\+::widgets\+::maximize\+\_\+button\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1close__button__specs_aaf7e77cf95ac4176e53f26896d35128f}{liblec\+::lecui\+::widgets\+::close\+\_\+button\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_aa9a52c4f5a153eabe0474c7f4712740d}{liblec\+::lecui\+::widgets\+::combobox\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1checkbox__specs_ac5b056939d0da2641f8ecdb237ff7133}{liblec\+::lecui\+::widgets\+::checkbox\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1button__specs_a9dc976fe8b6d373febc3117dde53cc22}{liblec\+::lecui\+::widgets\+::button\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1tab__pane__specs_adea6933c52683ba1cc4927851c83d187}{liblec\+::lecui\+::containers\+::tab\+\_\+pane\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1pane__specs_a110631341fc08f7c7304dd6f7e1a63f1}{liblec\+::lecui\+::containers\+::pane\+\_\+specs}}, and \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1group__specs_a6f2ea846d42c56c43af25fb93f604d9a}{liblec\+::lecui\+::containers\+::group\+\_\+specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1specs_a28e525ebd75d587b17592dba23f24081}\label{classliblec_1_1lecui_1_1widgets_1_1specs_a28e525ebd75d587b17592dba23f24081}} 
+\index{liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}!cursor@{cursor}}
+\index{cursor@{cursor}!liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}}
+\doxysubsubsection{\texorpdfstring{cursor()}{cursor()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a3cba4c05a958d80dca72e4e9dd5360b1}{cursor\+\_\+type}}\& liblec\+::lecui\+::widgets\+::specs\+::cursor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Get or set the mouse cursor to use then over the widget. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the cursor type as defined in \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a3cba4c05a958d80dca72e4e9dd5360b1}{cursor\+\_\+type}}.
+\end{DoxyReturn}
+
+
+This is only used if the widget is non-\/static.
+
+Implemented in \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_a17c099ae94e07db6ebbe43ffeb145234}{liblec\+::lecui\+::widgets\+::scrollbar\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_a3f56501978d7a558d6917580275db9b2}{liblec\+::lecui\+::widgets\+::tree\+\_\+view\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1toggle__specs_a750fa606eb650033bcb2d7d5ef13e9a4}{liblec\+::lecui\+::widgets\+::toggle\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1time__specs_a7c16bd9c1ea25a9f4a3a437a39d5bb07}{liblec\+::lecui\+::widgets\+::time\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1text__field__specs_a528ec1f84edb5106fef2a7b2e2bdb40d}{liblec\+::lecui\+::widgets\+::text\+\_\+field\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a902ac34586a09dd6e130d16fea1fc474}{liblec\+::lecui\+::widgets\+::table\+\_\+view\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider__specs_a60208feca169262aa3396b1d2bbda63f}{liblec\+::lecui\+::widgets\+::slider\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a009164f08e87685e861567789953b805}{liblec\+::lecui\+::widgets\+::rectangle\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1progress__indicator__specs_ab4c48e847db5d6238cba332e8ee03b87}{liblec\+::lecui\+::widgets\+::progress\+\_\+indicator\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1progress__bar__specs_aecfa1560a97c2e01d061b69a8a580853}{liblec\+::lecui\+::widgets\+::progress\+\_\+bar\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1line__specs_ac94993de50e5c4aedfe20d227dd3bab6}{liblec\+::lecui\+::widgets\+::line\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1label__specs_adca67abed0ca0ffeef4e7b6dee541245}{liblec\+::lecui\+::widgets\+::label\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1image__view__specs_a732ae6c8ff7280a3dbe20bf76e17d21b}{liblec\+::lecui\+::widgets\+::image\+\_\+view\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1icon__specs_a65cbf0f7ec25bf7b9fa42c289dede48f}{liblec\+::lecui\+::widgets\+::icon\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_a01f2bb5d3ef962a0db5c27c56de2a828}{liblec\+::lecui\+::widgets\+::html\+\_\+editor\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1date__specs_ae569ab8cf7a3bbde3d1abd6aff72c7f8}{liblec\+::lecui\+::widgets\+::date\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1custom__specs_a48539057881ac887669e6f99909128e9}{liblec\+::lecui\+::widgets\+::custom\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1minimize__button__specs_a0fb07de5bd921e3d1c9ac062c21d7649}{liblec\+::lecui\+::widgets\+::minimize\+\_\+button\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1maximize__button__specs_a92091c35bcca40ae06b9ba0eac098857}{liblec\+::lecui\+::widgets\+::maximize\+\_\+button\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1close__button__specs_aae88ed7ed54ede158b9fc91eebe27f87}{liblec\+::lecui\+::widgets\+::close\+\_\+button\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a1d73c64d5a188297197f19bd21309e6f}{liblec\+::lecui\+::widgets\+::combobox\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1checkbox__specs_a75ffa1efd26a687f64f26bace038e24c}{liblec\+::lecui\+::widgets\+::checkbox\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1button__specs_a64cea8fa6706226eb411835133e093fc}{liblec\+::lecui\+::widgets\+::button\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1tab__pane__specs_af7c5a7925ae087c15a0b66e1d2f00093}{liblec\+::lecui\+::containers\+::tab\+\_\+pane\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1pane__specs_abdca34622d1d1a94b42a8bf7d29f51ed}{liblec\+::lecui\+::containers\+::pane\+\_\+specs}}, and \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1group__specs_a0c2b8b73c535eb2d7e852b44ba47d000}{liblec\+::lecui\+::containers\+::group\+\_\+specs}}.
+
 \mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1specs_af5e280dcc32e250216e223c492a489c2}\label{classliblec_1_1lecui_1_1widgets_1_1specs_af5e280dcc32e250216e223c492a489c2}} 
 \index{liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}!events@{events}}
 \index{events@{events}!liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}}
@@ -101,6 +259,57 @@ Widgets with additional events need to override this method.
 \begin{DoxyReturn}{Returns}
 A reference to the widget\textquotesingle{}s basic events.
 \end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1specs_a5f42f2960de76e860d4b55e0e376f42a}\label{classliblec_1_1lecui_1_1widgets_1_1specs_a5f42f2960de76e860d4b55e0e376f42a}} 
+\index{liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}!font@{font}}
+\index{font@{font}!liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}}
+\doxysubsubsection{\texorpdfstring{font()}{font()}}
+{\footnotesize\ttfamily virtual std\+::string\& liblec\+::lecui\+::widgets\+::specs\+::font (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Get or set the default widget font, e.\+g. \char`\"{}\+Georgia\char`\"{}. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget\textquotesingle{}s font name.
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_a15ba7f75c9329e99690741824169a89c}{liblec\+::lecui\+::widgets\+::scrollbar\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_ae36addb74beacb219006b089dda47f9c}{liblec\+::lecui\+::widgets\+::tree\+\_\+view\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1toggle__specs_aa32321964d9eb72980d3ac44d7e92a40}{liblec\+::lecui\+::widgets\+::toggle\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1time__specs_a3a33b60745affcae9a6ed11e84419d30}{liblec\+::lecui\+::widgets\+::time\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1text__field__specs_a5c049727c292e6bc62d67a0392f3ecc0}{liblec\+::lecui\+::widgets\+::text\+\_\+field\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_ab87e6d73f7ccff333a85e4cfb3ddc0db}{liblec\+::lecui\+::widgets\+::table\+\_\+view\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider__specs_a6cd808273d89f414086065bb92d36c0e}{liblec\+::lecui\+::widgets\+::slider\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a656abc12b60fd4ae62bc76130b740f8b}{liblec\+::lecui\+::widgets\+::rectangle\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1progress__indicator__specs_ae2e4223ce1edfba44adc15e7719e45bc}{liblec\+::lecui\+::widgets\+::progress\+\_\+indicator\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1progress__bar__specs_af850056c09dba232de709136b4dc05e7}{liblec\+::lecui\+::widgets\+::progress\+\_\+bar\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1line__specs_a9259cf4de4da419c162bc64e310cb8e1}{liblec\+::lecui\+::widgets\+::line\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1label__specs_a3a18b3d0aebeebd81a246ad744e7a7b2}{liblec\+::lecui\+::widgets\+::label\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1image__view__specs_a51ba22196f0706ccad8ac74b8ebebc08}{liblec\+::lecui\+::widgets\+::image\+\_\+view\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1icon__specs_af22d6beafd0792b6259b39e58d5cb733}{liblec\+::lecui\+::widgets\+::icon\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_ab9f16ba3376f6fe2af37e1e3fa66c365}{liblec\+::lecui\+::widgets\+::html\+\_\+editor\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1date__specs_a44ef5d35658bdc4b9206d97225b6d73a}{liblec\+::lecui\+::widgets\+::date\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1custom__specs_ae7df05b67f90f66f73a8e68680f376fd}{liblec\+::lecui\+::widgets\+::custom\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1minimize__button__specs_a385dd2041ba15e53ef47bab242fa43d0}{liblec\+::lecui\+::widgets\+::minimize\+\_\+button\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1maximize__button__specs_a4ad78a8476f02ca57905fb4a57884d94}{liblec\+::lecui\+::widgets\+::maximize\+\_\+button\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1close__button__specs_ab77ae501bd7b4a624dc8a50c6b4e3ae8}{liblec\+::lecui\+::widgets\+::close\+\_\+button\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a76d118bff17e19d3c0173d7c3df68283}{liblec\+::lecui\+::widgets\+::combobox\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1checkbox__specs_af6b00aff88b94512f99a9c57623267a9}{liblec\+::lecui\+::widgets\+::checkbox\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1button__specs_ab2b88397d1ecf77c3d9af61e4abc3a7e}{liblec\+::lecui\+::widgets\+::button\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1tab__pane__specs_a3c68bddf716a246d346d005d65859857}{liblec\+::lecui\+::containers\+::tab\+\_\+pane\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1pane__specs_a42559e3b9ddd0643e071fdbc44129205}{liblec\+::lecui\+::containers\+::pane\+\_\+specs}}, and \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1group__specs_a27a294ca53ab5ac048f26c418a3e150c}{liblec\+::lecui\+::containers\+::group\+\_\+specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1specs_a540bfa7642033966614ccfda7ecf1f25}\label{classliblec_1_1lecui_1_1widgets_1_1specs_a540bfa7642033966614ccfda7ecf1f25}} 
+\index{liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}!font\_size@{font\_size}}
+\index{font\_size@{font\_size}!liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}}
+\doxysubsubsection{\texorpdfstring{font\_size()}{font\_size()}}
+{\footnotesize\ttfamily virtual float\& liblec\+::lecui\+::widgets\+::specs\+::font\+\_\+size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Get or set the default widget font size in points, e.\+g. 9.\+0. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget\textquotesingle{}s font size.
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_a7dea561a6e7aefac479863ac255b937c}{liblec\+::lecui\+::widgets\+::scrollbar\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_adb87c2aae0097611a07b0aedb89b2bdc}{liblec\+::lecui\+::widgets\+::tree\+\_\+view\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1toggle__specs_adad40457db93e7797c3fc77f6e25f8b0}{liblec\+::lecui\+::widgets\+::toggle\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1time__specs_a3e5d9509275a0ce060b12e414fa58228}{liblec\+::lecui\+::widgets\+::time\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1text__field__specs_aa01ccbd666b5d19ff5867e507a1998b4}{liblec\+::lecui\+::widgets\+::text\+\_\+field\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a51f813d41c32465215bd04f7ea10d1fe}{liblec\+::lecui\+::widgets\+::table\+\_\+view\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider__specs_ac732c51140408b65ca370f4c7141e797}{liblec\+::lecui\+::widgets\+::slider\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_ad63e93a996c38f8751deb599c0c81cd5}{liblec\+::lecui\+::widgets\+::rectangle\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1progress__indicator__specs_a2ac250ddb21c662e1e6c7da6ce8a897e}{liblec\+::lecui\+::widgets\+::progress\+\_\+indicator\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1progress__bar__specs_afdf36acd828a1e0ecef569eff17d3c59}{liblec\+::lecui\+::widgets\+::progress\+\_\+bar\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1line__specs_ae7afc8d2d13776969dc5135f48077ebc}{liblec\+::lecui\+::widgets\+::line\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1label__specs_a3409aae4a0fca95e2955ba315da8f864}{liblec\+::lecui\+::widgets\+::label\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1image__view__specs_a472d089a3fa5c19dfb3ce5f596f2d156}{liblec\+::lecui\+::widgets\+::image\+\_\+view\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1icon__specs_a477f8fc7c3f40744c00433e2dd8b0eff}{liblec\+::lecui\+::widgets\+::icon\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_ae7ed305c17aa054213a0d667b9873656}{liblec\+::lecui\+::widgets\+::html\+\_\+editor\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1date__specs_a12424c56fe5fbd83245e92a47e44c8cc}{liblec\+::lecui\+::widgets\+::date\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1custom__specs_acc22ff2c1ced42b99f9cc9395efb7637}{liblec\+::lecui\+::widgets\+::custom\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1minimize__button__specs_a2bbeb31664415d2eeebd856ca90b4f55}{liblec\+::lecui\+::widgets\+::minimize\+\_\+button\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1maximize__button__specs_a2d9a6a75c8f5b34cadb99fce37967ee3}{liblec\+::lecui\+::widgets\+::maximize\+\_\+button\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1close__button__specs_ac8d79195109db74ac61d7b64b1646a54}{liblec\+::lecui\+::widgets\+::close\+\_\+button\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_ad818ae218a246b41a7283ce8f5df3921}{liblec\+::lecui\+::widgets\+::combobox\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1checkbox__specs_a5099f607dc70d1b902cab5290f80af44}{liblec\+::lecui\+::widgets\+::checkbox\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1button__specs_ad60880a3129251826f7f73c823e11a2b}{liblec\+::lecui\+::widgets\+::button\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1tab__pane__specs_a435644f11ee7d032bf3d29f9459f6759}{liblec\+::lecui\+::containers\+::tab\+\_\+pane\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1pane__specs_a4b63be1479dc5ef2b8ba802c7a9ea808}{liblec\+::lecui\+::containers\+::pane\+\_\+specs}}, and \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1group__specs_a5c1e75dc6d6af7c9a5653226e78d89cb}{liblec\+::lecui\+::containers\+::group\+\_\+specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1specs_a3f6021dcec6d7b6d846911956a6bff32}\label{classliblec_1_1lecui_1_1widgets_1_1specs_a3f6021dcec6d7b6d846911956a6bff32}} 
+\index{liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}!on\_resize@{on\_resize}}
+\index{on\_resize@{on\_resize}!liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}}
+\doxysubsubsection{\texorpdfstring{on\_resize()}{on\_resize()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1specs_1_1resize__params}{resize\+\_\+params}}\& liblec\+::lecui\+::widgets\+::specs\+::on\+\_\+resize (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Get or set the behaviour of the widget when its container is resized. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the resize parameters as defined in \mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1specs_1_1resize__params}{resize\+\_\+params}}.
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_ad06f2f50301e515ce5835bbd48dc305a}{liblec\+::lecui\+::widgets\+::scrollbar\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_a93eb0595bb710dc7322f7b3057f56bac}{liblec\+::lecui\+::widgets\+::tree\+\_\+view\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1toggle__specs_a03acaae3941a93ff36e40b0deb269110}{liblec\+::lecui\+::widgets\+::toggle\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1time__specs_a5db86c45a396885ad0b1b235ef1161f7}{liblec\+::lecui\+::widgets\+::time\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1text__field__specs_a1a37df42f916d1e6bb77b8e3c0347f9b}{liblec\+::lecui\+::widgets\+::text\+\_\+field\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a242ff583c5591d5fff4e87cc83fc20c1}{liblec\+::lecui\+::widgets\+::table\+\_\+view\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider__specs_ab113ef57f7b57dc62c03c4329c41bae8}{liblec\+::lecui\+::widgets\+::slider\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a28703adbe40c43c094b8551e537cb1f2}{liblec\+::lecui\+::widgets\+::rectangle\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1progress__indicator__specs_a988c3d1fc4531b302f470885e4cec3bf}{liblec\+::lecui\+::widgets\+::progress\+\_\+indicator\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1progress__bar__specs_a8e1e4765fe1510e0234deef773505093}{liblec\+::lecui\+::widgets\+::progress\+\_\+bar\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1line__specs_a406f0166b87d1c4de2be0fdc35a9afe0}{liblec\+::lecui\+::widgets\+::line\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1label__specs_a8050933e89c4b1c2ef307a9bc9f1e5b4}{liblec\+::lecui\+::widgets\+::label\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1image__view__specs_a8eebf39375611883da189b1418ae334d}{liblec\+::lecui\+::widgets\+::image\+\_\+view\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1icon__specs_a0b8d33a6d8c3955e952c22310666f153}{liblec\+::lecui\+::widgets\+::icon\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_a35b0288141527306f04361024e8bfaec}{liblec\+::lecui\+::widgets\+::html\+\_\+editor\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1date__specs_a2bb584d55107cd2476785694d9ae6184}{liblec\+::lecui\+::widgets\+::date\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1custom__specs_abbd162d6b2d7ebf7abe8cccb6bd0a048}{liblec\+::lecui\+::widgets\+::custom\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1minimize__button__specs_a26ed4cce2238febea8f875e9cacc1c38}{liblec\+::lecui\+::widgets\+::minimize\+\_\+button\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1maximize__button__specs_a54d17bf60ac79b31ff553d70cfdec06c}{liblec\+::lecui\+::widgets\+::maximize\+\_\+button\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1close__button__specs_a40ff275f4deebb348ba7b6f0c1bc48c1}{liblec\+::lecui\+::widgets\+::close\+\_\+button\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_ad6e9a22161c904cfec604f3bad146d05}{liblec\+::lecui\+::widgets\+::combobox\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1checkbox__specs_aa2f671d1e7ccc90eefef9b2382ad09ca}{liblec\+::lecui\+::widgets\+::checkbox\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1button__specs_aad22e69fbd533654762bff88f1e62ed6}{liblec\+::lecui\+::widgets\+::button\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1tab__pane__specs_a1150bf657ca400f1b927b7ff5cdfcb06}{liblec\+::lecui\+::containers\+::tab\+\_\+pane\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1pane__specs_acbfd605f2b3460ee4f81491e5171b512}{liblec\+::lecui\+::containers\+::pane\+\_\+specs}}, and \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1group__specs_afe6af17b29be186661c820ac63865f4e}{liblec\+::lecui\+::containers\+::group\+\_\+specs}}.
+
 \mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1specs_a65258100c285886744f1a21eccecc088}\label{classliblec_1_1lecui_1_1widgets_1_1specs_a65258100c285886744f1a21eccecc088}} 
 \index{liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}!operator==@{operator==}}
 \index{operator==@{operator==}!liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}}
@@ -111,120 +320,95 @@ This operator is for determining whether to recreate widget resources. It doesn\
 
 Font
 
-Cursor
+Cursor\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1specs_a0d6cc5c9ed9591f2e8b306a18224f4d7}\label{classliblec_1_1lecui_1_1widgets_1_1specs_a0d6cc5c9ed9591f2e8b306a18224f4d7}} 
+\index{liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}!rect@{rect}}
+\index{rect@{rect}!liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}}
+\doxysubsubsection{\texorpdfstring{rect()}{rect()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{lecui\+::rect}}\& liblec\+::lecui\+::widgets\+::specs\+::rect (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Get or set the position and dimensions of the widget. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget rectangle.
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_a7a3378c5f33b987b32dd511c8181f4f8}{liblec\+::lecui\+::widgets\+::scrollbar\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_adfa0cd2bd428c28b829e66b1140a6e3d}{liblec\+::lecui\+::widgets\+::tree\+\_\+view\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1toggle__specs_ac5a796ee30446ce224c907ba0d2be74d}{liblec\+::lecui\+::widgets\+::toggle\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1time__specs_a9262d96e648d0ade2a7c180c3d9437ef}{liblec\+::lecui\+::widgets\+::time\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1text__field__specs_ae111979c3e181c663daa1fe96e0669e6}{liblec\+::lecui\+::widgets\+::text\+\_\+field\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a6d9257a245abac2a24f7943814b97192}{liblec\+::lecui\+::widgets\+::table\+\_\+view\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider__specs_ae301791e8455b39c3d82e6b03fe10cd5}{liblec\+::lecui\+::widgets\+::slider\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a3ad5a875e3d57530d3850420539b482d}{liblec\+::lecui\+::widgets\+::rectangle\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1progress__indicator__specs_a8bd7b9ab5195e0ccf96796233455833f}{liblec\+::lecui\+::widgets\+::progress\+\_\+indicator\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1progress__bar__specs_a6b734501e20635c598b088301e751a7a}{liblec\+::lecui\+::widgets\+::progress\+\_\+bar\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1line__specs_a58e5439475bee32bd1bcebf2ba8265f0}{liblec\+::lecui\+::widgets\+::line\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1label__specs_a9af6f4f288d5d078758fed116372e314}{liblec\+::lecui\+::widgets\+::label\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1image__view__specs_a1144d6ec7a11bbf16200fa7c37aec7c9}{liblec\+::lecui\+::widgets\+::image\+\_\+view\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1icon__specs_a8a299cdcb95bdd49e03e65a64a24a33b}{liblec\+::lecui\+::widgets\+::icon\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_a39df78acd0dcaf762202030aa539d2e5}{liblec\+::lecui\+::widgets\+::html\+\_\+editor\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1date__specs_ab1ec449659e8b88664900b19abcaa2d1}{liblec\+::lecui\+::widgets\+::date\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1custom__specs_a578f9dabb36813fa074b0552c16a1344}{liblec\+::lecui\+::widgets\+::custom\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1minimize__button__specs_a528f5e44fd56f76cb69d722978481e39}{liblec\+::lecui\+::widgets\+::minimize\+\_\+button\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1maximize__button__specs_a23eb55ff688e9428fe694c7a0c38c6f6}{liblec\+::lecui\+::widgets\+::maximize\+\_\+button\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1close__button__specs_a1bf92adfde2d9015ce47afa5604014ec}{liblec\+::lecui\+::widgets\+::close\+\_\+button\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a7f8ac7b13817dc1cf56789fc99c37659}{liblec\+::lecui\+::widgets\+::combobox\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1checkbox__specs_a81fb0e5b8e128701b01d5379679bbac8}{liblec\+::lecui\+::widgets\+::checkbox\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1button__specs_a69001deafec02378c7a0ff4157bee6f0}{liblec\+::lecui\+::widgets\+::button\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1tab__pane__specs_ab3f9f044e2b2639d44d87edaed763558}{liblec\+::lecui\+::containers\+::tab\+\_\+pane\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1pane__specs_a614034f8fd5b07135ee64ce2324d62f8}{liblec\+::lecui\+::containers\+::pane\+\_\+specs}}, and \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1group__specs_a9095e7724426146fb717a1196f7e1f6f}{liblec\+::lecui\+::containers\+::group\+\_\+specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1specs_a76c5292d60d7c9a3ab6f26a9ef5fcbad}\label{classliblec_1_1lecui_1_1widgets_1_1specs_a76c5292d60d7c9a3ab6f26a9ef5fcbad}} 
+\index{liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}!text@{text}}
+\index{text@{text}!liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}}
+\doxysubsubsection{\texorpdfstring{text()}{text()}}
+{\footnotesize\ttfamily virtual std\+::string\& liblec\+::lecui\+::widgets\+::specs\+::text (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Get or set the widget text. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget text.
+\end{DoxyReturn}
+
+
+The use of the text varies from widget to widget. Some widgets don\textquotesingle{}t use this field.
+
+Implemented in \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_aca3daebef01831bd5532a48d0c637f74}{liblec\+::lecui\+::widgets\+::scrollbar\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_a0f83b1f8f2be8e79252657d1b13c18d9}{liblec\+::lecui\+::widgets\+::tree\+\_\+view\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1toggle__specs_aa4a49f2439b0dd6aebdda4af27ce9ecf}{liblec\+::lecui\+::widgets\+::toggle\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1time__specs_aa67a06826ffab57a2099e67170926a7f}{liblec\+::lecui\+::widgets\+::time\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1text__field__specs_a1900e98b09fcc5ca136bbb1dd1e83e7c}{liblec\+::lecui\+::widgets\+::text\+\_\+field\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_abf999a0811f7ea70895c70feaec248ed}{liblec\+::lecui\+::widgets\+::table\+\_\+view\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider__specs_afb930d35b8a401576897b1a14086c3e8}{liblec\+::lecui\+::widgets\+::slider\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a059f3c1bfb8946a0a6d5dacc2049f9fa}{liblec\+::lecui\+::widgets\+::rectangle\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1progress__indicator__specs_a47cb5c4963d265979735df5ef96c1c6c}{liblec\+::lecui\+::widgets\+::progress\+\_\+indicator\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1progress__bar__specs_a3d97f44a049be109a8af92eb72be14e0}{liblec\+::lecui\+::widgets\+::progress\+\_\+bar\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1line__specs_af15eef43906e0c70fb95a140b1c9e301}{liblec\+::lecui\+::widgets\+::line\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1label__specs_a4c83a24a3b19f6fdc59680c04df78f3e}{liblec\+::lecui\+::widgets\+::label\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1image__view__specs_a1a433c01bdda997f01bf3287de0c38f4}{liblec\+::lecui\+::widgets\+::image\+\_\+view\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1icon__specs_a940d28b6add332b011f44e01b44da4ba}{liblec\+::lecui\+::widgets\+::icon\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_ac3469befce2f3a2a818b0badf3fc8687}{liblec\+::lecui\+::widgets\+::html\+\_\+editor\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1date__specs_ada6d9e7e9fac03fe05c8162782997d7a}{liblec\+::lecui\+::widgets\+::date\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1custom__specs_af424632fdf97e3d8421c41d662153714}{liblec\+::lecui\+::widgets\+::custom\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1minimize__button__specs_a3a39abb8fed273660b9bf0813269c471}{liblec\+::lecui\+::widgets\+::minimize\+\_\+button\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1maximize__button__specs_ab6dd6e9c8d21d70255ecf78f312895d4}{liblec\+::lecui\+::widgets\+::maximize\+\_\+button\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1close__button__specs_a2c8557270422fecc038d9dfd0fd475e8}{liblec\+::lecui\+::widgets\+::close\+\_\+button\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a34cca7c9ae0488cdf89807542088b8e8}{liblec\+::lecui\+::widgets\+::combobox\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1checkbox__specs_a0b91582a03fa0c00061ab750f10cc72a}{liblec\+::lecui\+::widgets\+::checkbox\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1button__specs_a9166d3fd68985685510dbb0b17ba4de8}{liblec\+::lecui\+::widgets\+::button\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1tab__pane__specs_aaf6b5dcfe412dd7ed4701df65fdaf703}{liblec\+::lecui\+::containers\+::tab\+\_\+pane\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1pane__specs_a5bf7139c6f320dbec4228ba9963e3b79}{liblec\+::lecui\+::containers\+::pane\+\_\+specs}}, and \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1group__specs_a1b0faad761a07533eec944fb1ed5c246}{liblec\+::lecui\+::containers\+::group\+\_\+specs}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1specs_af82deb362bbf2fafe975296722785b3a}\label{classliblec_1_1lecui_1_1widgets_1_1specs_af82deb362bbf2fafe975296722785b3a}} 
+\index{liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}!tooltip@{tooltip}}
+\index{tooltip@{tooltip}!liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}}
+\doxysubsubsection{\texorpdfstring{tooltip()}{tooltip()}}
+{\footnotesize\ttfamily virtual std\+::string\& liblec\+::lecui\+::widgets\+::specs\+::tooltip (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Get or set the widget\textquotesingle{}s tooltip text. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the tooltip text.
+\end{DoxyReturn}
+
+
+The tooltip text is displayed when the mouse is hovered over the widget.
+
+Implemented in \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_ab88ad83f1c2981a84344bf493800cd61}{liblec\+::lecui\+::widgets\+::scrollbar\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_aae7308722a73b637283c4f5cf7c836c2}{liblec\+::lecui\+::widgets\+::tree\+\_\+view\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1toggle__specs_a82a972b295f18bf21bc6bf6e27e375c9}{liblec\+::lecui\+::widgets\+::toggle\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1time__specs_abfdee25839eb31abed5a615cda90688d}{liblec\+::lecui\+::widgets\+::time\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1text__field__specs_a6ac022d4fe1a1993d7e877d0c865e28d}{liblec\+::lecui\+::widgets\+::text\+\_\+field\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a0e6cf39dc3aab4444e963fa5972271c2}{liblec\+::lecui\+::widgets\+::table\+\_\+view\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider__specs_ab277a415b583aff5368d370d5c26ffd3}{liblec\+::lecui\+::widgets\+::slider\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1rectangle__specs_a44c8b8844fd8f94de3c52ebb1b1c392c}{liblec\+::lecui\+::widgets\+::rectangle\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1progress__indicator__specs_aee44602a1f16cdd33ff7a3d527cd6302}{liblec\+::lecui\+::widgets\+::progress\+\_\+indicator\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1progress__bar__specs_a73080168ca77c0a8c3c12418d6c239c4}{liblec\+::lecui\+::widgets\+::progress\+\_\+bar\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1line__specs_a27ac29cf6b65a7ffc93eba15fc3ec58e}{liblec\+::lecui\+::widgets\+::line\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1label__specs_a8d2b9a433adf51ec2d7bbad5b5b914c5}{liblec\+::lecui\+::widgets\+::label\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1image__view__specs_ac1d924f582d9ddb2b51b4e2d2fe4d1c5}{liblec\+::lecui\+::widgets\+::image\+\_\+view\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1icon__specs_aded2862e335213f777723b5ab7931cae}{liblec\+::lecui\+::widgets\+::icon\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1html__editor__specs_ab650369d596388fab73e9abc08eb7b14}{liblec\+::lecui\+::widgets\+::html\+\_\+editor\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1date__specs_a4c63bca1694ed9f437e4e4f51c4f1454}{liblec\+::lecui\+::widgets\+::date\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1custom__specs_a868e25bf7e31cd7ecf087776b2d2b3c2}{liblec\+::lecui\+::widgets\+::custom\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1minimize__button__specs_afc672ecd27f32ec4f7da7c0f33254c24}{liblec\+::lecui\+::widgets\+::minimize\+\_\+button\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1maximize__button__specs_a2ed6c423fabb67f9cacaf5ed54593cb6}{liblec\+::lecui\+::widgets\+::maximize\+\_\+button\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1close__button__specs_a23938c6f32df3d8482727739a7a4f627}{liblec\+::lecui\+::widgets\+::close\+\_\+button\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox__specs_a4773539308fe2911d3d386cf25c7aa71}{liblec\+::lecui\+::widgets\+::combobox\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1checkbox__specs_a1a94f5987c28b69622febbf745abcddb}{liblec\+::lecui\+::widgets\+::checkbox\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1button__specs_a5fdc043e0aa9ff1f1d133512474524f7}{liblec\+::lecui\+::widgets\+::button\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1tab__pane__specs_a85e71c31c9e091ed9cb13ac89d79232a}{liblec\+::lecui\+::containers\+::tab\+\_\+pane\+\_\+specs}}, \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1pane__specs_a2695ec2dd1ce67abedd2229fbaade8f7}{liblec\+::lecui\+::containers\+::pane\+\_\+specs}}, and \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1group__specs_a452e2b98db52f133a5ec04ad3fd86f32}{liblec\+::lecui\+::containers\+::group\+\_\+specs}}.
+
+
 
 \doxysubsection{Member Data Documentation}
-\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1specs_a0e55d6ac3d68a11005f6224cc5e373f0}\label{classliblec_1_1lecui_1_1widgets_1_1specs_a0e55d6ac3d68a11005f6224cc5e373f0}} 
-\index{liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}!color\_disabled@{color\_disabled}}
-\index{color\_disabled@{color\_disabled}!liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}}
-\doxysubsubsection{\texorpdfstring{color\_disabled}{color\_disabled}}
-{\footnotesize\ttfamily \mbox{\hyperlink{structliblec_1_1lecui_1_1color}{color}} liblec\+::lecui\+::widgets\+::specs\+::color\+\_\+disabled = \{ 180, 180, 180, 255 \}}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1specs_aaaa453252af3aaef8b427893f4c8a150}\label{classliblec_1_1lecui_1_1widgets_1_1specs_aaaa453252af3aaef8b427893f4c8a150}} 
+\index{liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}!color\_disabled\_@{color\_disabled\_}}
+\index{color\_disabled\_@{color\_disabled\_}!liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}}
+\doxysubsubsection{\texorpdfstring{color\_disabled\_}{color\_disabled\_}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} liblec\+::lecui\+::widgets\+::specs\+::color\+\_\+disabled\+\_\+ = \{ 180, 180, 180, 255 \}\hspace{0.3cm}{\ttfamily [protected]}}
 
 
 
 The color of the widget when it is disabled. 
 
-\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1specs_af231c7c08da337517d674ad83c4966f7}\label{classliblec_1_1lecui_1_1widgets_1_1specs_af231c7c08da337517d674ad83c4966f7}} 
-\index{liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}!color\_fill@{color\_fill}}
-\index{color\_fill@{color\_fill}!liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}}
-\doxysubsubsection{\texorpdfstring{color\_fill}{color\_fill}}
-{\footnotesize\ttfamily \mbox{\hyperlink{structliblec_1_1lecui_1_1color}{color}} liblec\+::lecui\+::widgets\+::specs\+::color\+\_\+fill = \{ 0, 120, 170, 255 \}}
-
-
-
-The fill color of the widget. 
-
-The use of the fill color varies from widget to widget. Refer to the specific widget\textquotesingle{}s documentation for details.\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1specs_aca074d8f11e5ed68481918415b63f7d7}\label{classliblec_1_1lecui_1_1widgets_1_1specs_aca074d8f11e5ed68481918415b63f7d7}} 
-\index{liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}!color\_hot@{color\_hot}}
-\index{color\_hot@{color\_hot}!liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}}
-\doxysubsubsection{\texorpdfstring{color\_hot}{color\_hot}}
-{\footnotesize\ttfamily \mbox{\hyperlink{structliblec_1_1lecui_1_1color}{color}} liblec\+::lecui\+::widgets\+::specs\+::color\+\_\+hot = \{ 0, 120, 170, 255 \}}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1specs_ad8f0c191e2d4fbb439886108ff351d1b}\label{classliblec_1_1lecui_1_1widgets_1_1specs_ad8f0c191e2d4fbb439886108ff351d1b}} 
+\index{liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}!color\_hot\_@{color\_hot\_}}
+\index{color\_hot\_@{color\_hot\_}!liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}}
+\doxysubsubsection{\texorpdfstring{color\_hot\_}{color\_hot\_}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} liblec\+::lecui\+::widgets\+::specs\+::color\+\_\+hot\+\_\+ = \{ 0, 120, 170, 255 \}\hspace{0.3cm}{\ttfamily [protected]}}
 
 
 
 The hit color when the mouse is over the widget. 
 
-\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1specs_a882c8cc2ed13d0f86dbfad491b893703}\label{classliblec_1_1lecui_1_1widgets_1_1specs_a882c8cc2ed13d0f86dbfad491b893703}} 
-\index{liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}!color\_selected@{color\_selected}}
-\index{color\_selected@{color\_selected}!liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}}
-\doxysubsubsection{\texorpdfstring{color\_selected}{color\_selected}}
-{\footnotesize\ttfamily \mbox{\hyperlink{structliblec_1_1lecui_1_1color}{color}} liblec\+::lecui\+::widgets\+::specs\+::color\+\_\+selected = \{ 0, 120, 170, 30 \}}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1specs_a9360ad6e57da3f042df03422d0ed03b2}\label{classliblec_1_1lecui_1_1widgets_1_1specs_a9360ad6e57da3f042df03422d0ed03b2}} 
+\index{liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}!color\_selected\_@{color\_selected\_}}
+\index{color\_selected\_@{color\_selected\_}!liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}}
+\doxysubsubsection{\texorpdfstring{color\_selected\_}{color\_selected\_}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} liblec\+::lecui\+::widgets\+::specs\+::color\+\_\+selected\+\_\+ = \{ 0, 120, 170, 30 \}\hspace{0.3cm}{\ttfamily [protected]}}
 
 
 
 The color to be used to mark the widget as selected. 
 
-\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1specs_a22c48f972b72e8649997eebb7511ef55}\label{classliblec_1_1lecui_1_1widgets_1_1specs_a22c48f972b72e8649997eebb7511ef55}} 
-\index{liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}!color\_text@{color\_text}}
-\index{color\_text@{color\_text}!liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}}
-\doxysubsubsection{\texorpdfstring{color\_text}{color\_text}}
-{\footnotesize\ttfamily \mbox{\hyperlink{structliblec_1_1lecui_1_1color}{color}} liblec\+::lecui\+::widgets\+::specs\+::color\+\_\+text = \{ 0, 0, 0, 255 \}}
 
-
-
-The color of the widget text. 
-
-\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1specs_a53b0a39e54721d7fabe54dea1b4cf60f}\label{classliblec_1_1lecui_1_1widgets_1_1specs_a53b0a39e54721d7fabe54dea1b4cf60f}} 
-\index{liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}!cursor@{cursor}}
-\index{cursor@{cursor}!liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}}
-\doxysubsubsection{\texorpdfstring{cursor}{cursor}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a3cba4c05a958d80dca72e4e9dd5360b1}{cursor\+\_\+type}} liblec\+::lecui\+::widgets\+::specs\+::cursor = cursor\+\_\+type\+::arrow}
-
-
-
-The cursor to be used when the mouse is over the widget. 
-
-This is only used if the widget is non-\/static.\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1specs_a100c14e2b66ae57a74fe66912769447c}\label{classliblec_1_1lecui_1_1widgets_1_1specs_a100c14e2b66ae57a74fe66912769447c}} 
-\index{liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}!font@{font}}
-\index{font@{font}!liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}}
-\doxysubsubsection{\texorpdfstring{font}{font}}
-{\footnotesize\ttfamily std\+::string liblec\+::lecui\+::widgets\+::specs\+::font = \char`\"{}Segoe UI\char`\"{}}
-
-
-
-The font to use for the widget text. 
-
-\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1specs_aa8b943a543299ca5e9c4ddb551021b47}\label{classliblec_1_1lecui_1_1widgets_1_1specs_aa8b943a543299ca5e9c4ddb551021b47}} 
-\index{liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}!font\_size@{font\_size}}
-\index{font\_size@{font\_size}!liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}}
-\doxysubsubsection{\texorpdfstring{font\_size}{font\_size}}
-{\footnotesize\ttfamily float liblec\+::lecui\+::widgets\+::specs\+::font\+\_\+size = 9.f}
-
-
-
-The size of the font, in points. 
-
-\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1specs_af631f77f9b34a61126961b67b3f90c71}\label{classliblec_1_1lecui_1_1widgets_1_1specs_af631f77f9b34a61126961b67b3f90c71}} 
-\index{liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}!on\_resize@{on\_resize}}
-\index{on\_resize@{on\_resize}!liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}}
-\doxysubsubsection{\texorpdfstring{on\_resize}{on\_resize}}
-{\footnotesize\ttfamily \mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1specs_1_1resize__params}{resize\+\_\+params}} liblec\+::lecui\+::widgets\+::specs\+::on\+\_\+resize = \{ 0.f, 0.f, 0.f, 0.f \}}
-
-
-
-The behaviour of the widget when its container is resized. 
-
-\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1specs_a933348ca35cca993724d5e76b03a435e}\label{classliblec_1_1lecui_1_1widgets_1_1specs_a933348ca35cca993724d5e76b03a435e}} 
-\index{liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}!rect@{rect}}
-\index{rect@{rect}!liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}}
-\doxysubsubsection{\texorpdfstring{rect}{rect}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{lecui\+::rect}} liblec\+::lecui\+::widgets\+::specs\+::rect}
-
-
-
-The position and dimensions of the widget. 
-
-\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1specs_a6e41c96382c27dba2133aaee1774ff8f}\label{classliblec_1_1lecui_1_1widgets_1_1specs_a6e41c96382c27dba2133aaee1774ff8f}} 
-\index{liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}!text@{text}}
-\index{text@{text}!liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}}
-\doxysubsubsection{\texorpdfstring{text}{text}}
-{\footnotesize\ttfamily std\+::string liblec\+::lecui\+::widgets\+::specs\+::text}
-
-
-
-The widget text. 
-
-The use of the text varies from widget to widget. Some widgets don\textquotesingle{}t use this field.
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

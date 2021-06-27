@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">lecui
-   &#160;<span id="projectnumber">1.0.0-alpha.1</span>
+   &#160;<span id="projectnumber">1.0.0-alpha.3</span>
    </div>
    <div id="projectbrief">lecui C++ user interface library</div>
   </td>
@@ -71,85 +71,82 @@ $(function() {
 <div class="title">context_menu.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">** context_menu.h - context menu interface</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">**</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">** lecui user interface library</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">** Copyright (c) 2019 Alec Musasa (alecmus at live dot com)</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">**</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">*******************************************************************************</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">** This file is part of the liblec library which is released under the Creative</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">** Commons Attribution Non-Commercial 2.0 license (CC-BY-NC 2.0). See the file</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment">** LICENSE.txt or go to https://github.com/alecmus/liblec/blob/master/LICENSE.md</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">** for full license details.</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">*/</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#pragma once</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#if defined(LECUI_EXPORTS)</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &quot;../form.h&quot;</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#else</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &lt;liblec/lecui/form.h&gt;</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword">namespace </span>liblec {</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keyword">namespace </span>lecui {</div>
-<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="structliblec_1_1lecui_1_1menu__item.html">   25</a></span>&#160;        <span class="keyword">struct </span><a class="code" href="structliblec_1_1lecui_1_1menu__item.html">menu_item</a> {</div>
-<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="structliblec_1_1lecui_1_1menu__item.html#afb0ebb3e77d4be07def969f26742e6ad">   27</a></span>&#160;            std::string <a class="code" href="structliblec_1_1lecui_1_1menu__item.html#afb0ebb3e77d4be07def969f26742e6ad">label</a>;</div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// context_menu.h - context menu interface</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">// lecui user interface library, part of the liblec library</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">// Copyright (c) 2019 Alec Musasa (alecmus at live dot com)</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">// Released under the CC-BY-NC 2.0 license. For full details see the file</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">// LICENSE.txt or go to https://github.com/alecmus/liblec/blob/master/LICENSE.md</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#if defined(LECUI_EXPORTS)</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;../form.h&quot;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;liblec/lecui/form.h&gt;</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">namespace </span>liblec {</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keyword">namespace </span>lecui {</div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="structliblec_1_1lecui_1_1menu__item.html">   22</a></span>&#160;        <span class="keyword">struct </span><a class="code" href="structliblec_1_1lecui_1_1menu__item.html">menu_item</a> {</div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="structliblec_1_1lecui_1_1menu__item.html#afb0ebb3e77d4be07def969f26742e6ad">   24</a></span>&#160;            std::string <a class="code" href="structliblec_1_1lecui_1_1menu__item.html#afb0ebb3e77d4be07def969f26742e6ad">label</a>;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="structliblec_1_1lecui_1_1menu__item.html#a964b76ce4e3757ba0c7203d49d6d6fe1">   27</a></span>&#160;            std::string <a class="code" href="structliblec_1_1lecui_1_1menu__item.html#a964b76ce4e3757ba0c7203d49d6d6fe1">image_file</a>;</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
-<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="structliblec_1_1lecui_1_1menu__item.html#a964b76ce4e3757ba0c7203d49d6d6fe1">   30</a></span>&#160;            std::string <a class="code" href="structliblec_1_1lecui_1_1menu__item.html#a964b76ce4e3757ba0c7203d49d6d6fe1">image_file</a>;</div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="structliblec_1_1lecui_1_1menu__item.html#a5f572a917fbbc2a765a59dcbe6504a21">   30</a></span>&#160;            std::string <a class="code" href="classfont.html">font</a> = <span class="stringliteral">&quot;Segoe UI&quot;</span>;</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
-<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="structliblec_1_1lecui_1_1menu__item.html#a5f572a917fbbc2a765a59dcbe6504a21">   33</a></span>&#160;            std::string <a class="code" href="classfont.html">font</a> = <span class="stringliteral">&quot;Segoe UI&quot;</span>;</div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="structliblec_1_1lecui_1_1menu__item.html#a0bf2ee7747a6f1d495162cd6fab5c28a">   33</a></span>&#160;            <span class="keywordtype">float</span> <a class="code" href="structliblec_1_1lecui_1_1menu__item.html#a0bf2ee7747a6f1d495162cd6fab5c28a">font_size</a> = 9.f;</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
-<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="structliblec_1_1lecui_1_1menu__item.html#a0bf2ee7747a6f1d495162cd6fab5c28a">   36</a></span>&#160;            <span class="keywordtype">float</span> <a class="code" href="structliblec_1_1lecui_1_1menu__item.html#a0bf2ee7747a6f1d495162cd6fab5c28a">font_size</a> = 9.f;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
-<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="structliblec_1_1lecui_1_1menu__item.html#aa9dd0a8d48b40224793e7efed439429b">   39</a></span>&#160;            std::vector&lt;menu_item&gt; <a class="code" href="structliblec_1_1lecui_1_1menu__item.html#aa9dd0a8d48b40224793e7efed439429b">children</a>;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        };</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
-<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1context__menu.html">   42</a></span>&#160;        <span class="keyword">class </span>lecui_api <a class="code" href="classliblec_1_1lecui_1_1context__menu.html">context_menu</a> {</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1context__menu.html#aaf13a430f41f8011377d77f46076871f">   46</a></span>&#160;            <span class="keyword">enum class</span> <a class="code" href="classliblec_1_1lecui_1_1context__menu.html#aaf13a430f41f8011377d77f46076871f">pin_type</a> {</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                bottom,</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;                right,</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            };</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
-<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="structliblec_1_1lecui_1_1context__menu_1_1specs.html">   61</a></span>&#160;            <span class="keyword">struct </span><a class="code" href="structliblec_1_1lecui_1_1context__menu_1_1specs.html">specs</a> {</div>
-<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="structliblec_1_1lecui_1_1context__menu_1_1specs.html#a60f2f921b07061a19e9bc60fb4637fe2">   63</a></span>&#160;                std::vector&lt;menu_item&gt; <a class="code" href="structliblec_1_1lecui_1_1context__menu_1_1specs.html#a60f2f921b07061a19e9bc60fb4637fe2">items</a>;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
-<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="structliblec_1_1lecui_1_1context__menu_1_1specs.html#abd274c41e064ab6333aa695ef04a3332">   67</a></span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1rect.html">lecui::rect</a> pin = { 0.f, 0.f, 0.f, 0.f };</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
-<div class="line"><a name="l00071"></a><span class="lineno"><a class="line" href="structliblec_1_1lecui_1_1context__menu_1_1specs.html#ad43d29a15a8377f5019f7654719416aa">   71</a></span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1context__menu.html#aaf13a430f41f8011377d77f46076871f">pin_type</a> type = pin_type::bottom;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
-<div class="line"><a name="l00076"></a><span class="lineno"><a class="line" href="structliblec_1_1lecui_1_1context__menu_1_1specs.html#a6c29e685f18ffb8ce62167f966f3bc94">   76</a></span>&#160;                image_quality quality = image_quality::high;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;            };</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;            <a class="code" href="classliblec_1_1lecui_1_1context__menu.html">context_menu</a>();</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;            std::string operator() (<a class="code" href="classliblec_1_1lecui_1_1form.html">form</a>&amp; fm, <span class="keyword">const</span> <a class="code" href="structliblec_1_1lecui_1_1context__menu_1_1specs.html">specs</a>&amp; menu_specs);</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;            <span class="keyword">class </span><a class="code" href="classliblec_1_1lecui_1_1context__menu_1_1impl.html">impl</a>;</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160; </div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;            <span class="comment">// Copying an object of this class are not allowed</span></div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;            <a class="code" href="classliblec_1_1lecui_1_1context__menu.html">context_menu</a>(<span class="keyword">const</span> <a class="code" href="classliblec_1_1lecui_1_1context__menu.html">context_menu</a>&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;            <a class="code" href="classliblec_1_1lecui_1_1context__menu.html">context_menu</a>&amp; operator=(<span class="keyword">const</span> <a class="code" href="classliblec_1_1lecui_1_1context__menu.html">context_menu</a>&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        };</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    }</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;}</div>
-<div class="ttc" id="aclassfont_html"><div class="ttname"><a href="classfont.html">font</a></div><div class="ttdoc">Font handling class.</div><div class="ttdef"><b>Definition:</b> font.h:20</div></div>
-<div class="ttc" id="aclassliblec_1_1lecui_1_1context__menu_1_1impl_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1context__menu_1_1impl.html">liblec::lecui::context_menu::impl</a></div><div class="ttdef"><b>Definition:</b> context_menu.cpp:25</div></div>
-<div class="ttc" id="aclassliblec_1_1lecui_1_1context__menu_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1context__menu.html">liblec::lecui::context_menu</a></div><div class="ttdef"><b>Definition:</b> context_menu.h:42</div></div>
-<div class="ttc" id="aclassliblec_1_1lecui_1_1context__menu_html_aaf13a430f41f8011377d77f46076871f"><div class="ttname"><a href="classliblec_1_1lecui_1_1context__menu.html#aaf13a430f41f8011377d77f46076871f">liblec::lecui::context_menu::pin_type</a></div><div class="ttdeci">pin_type</div><div class="ttdoc">Pin type. Used to determine the position of the context menu with respect to the pin rectangle.</div><div class="ttdef"><b>Definition:</b> context_menu.h:46</div></div>
-<div class="ttc" id="aclassliblec_1_1lecui_1_1form_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1form.html">liblec::lecui::form</a></div><div class="ttdoc">Form base class. The user must inherit from this class and call one of the two constructors from its ...</div><div class="ttdef"><b>Definition:</b> form.h:100</div></div>
-<div class="ttc" id="aclassliblec_1_1lecui_1_1rect_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1rect.html">liblec::lecui::rect</a></div><div class="ttdef"><b>Definition:</b> lecui.h:75</div></div>
-<div class="ttc" id="astructliblec_1_1lecui_1_1context__menu_1_1specs_html"><div class="ttname"><a href="structliblec_1_1lecui_1_1context__menu_1_1specs.html">liblec::lecui::context_menu::specs</a></div><div class="ttdoc">The context menu specifications. By default the menu is pinned to the top left corner of the mouse cu...</div><div class="ttdef"><b>Definition:</b> context_menu.h:61</div></div>
-<div class="ttc" id="astructliblec_1_1lecui_1_1context__menu_1_1specs_html_a60f2f921b07061a19e9bc60fb4637fe2"><div class="ttname"><a href="structliblec_1_1lecui_1_1context__menu_1_1specs.html#a60f2f921b07061a19e9bc60fb4637fe2">liblec::lecui::context_menu::specs::items</a></div><div class="ttdeci">std::vector&lt; menu_item &gt; items</div><div class="ttdoc">The menu items.</div><div class="ttdef"><b>Definition:</b> context_menu.h:63</div></div>
-<div class="ttc" id="astructliblec_1_1lecui_1_1menu__item_html"><div class="ttname"><a href="structliblec_1_1lecui_1_1menu__item.html">liblec::lecui::menu_item</a></div><div class="ttdoc">Menu items.</div><div class="ttdef"><b>Definition:</b> context_menu.h:25</div></div>
-<div class="ttc" id="astructliblec_1_1lecui_1_1menu__item_html_a0bf2ee7747a6f1d495162cd6fab5c28a"><div class="ttname"><a href="structliblec_1_1lecui_1_1menu__item.html#a0bf2ee7747a6f1d495162cd6fab5c28a">liblec::lecui::menu_item::font_size</a></div><div class="ttdeci">float font_size</div><div class="ttdoc">The font size.</div><div class="ttdef"><b>Definition:</b> context_menu.h:36</div></div>
-<div class="ttc" id="astructliblec_1_1lecui_1_1menu__item_html_a964b76ce4e3757ba0c7203d49d6d6fe1"><div class="ttname"><a href="structliblec_1_1lecui_1_1menu__item.html#a964b76ce4e3757ba0c7203d49d6d6fe1">liblec::lecui::menu_item::image_file</a></div><div class="ttdeci">std::string image_file</div><div class="ttdoc">The image to use for the menu item (placed on the right).</div><div class="ttdef"><b>Definition:</b> context_menu.h:30</div></div>
-<div class="ttc" id="astructliblec_1_1lecui_1_1menu__item_html_aa9dd0a8d48b40224793e7efed439429b"><div class="ttname"><a href="structliblec_1_1lecui_1_1menu__item.html#aa9dd0a8d48b40224793e7efed439429b">liblec::lecui::menu_item::children</a></div><div class="ttdeci">std::vector&lt; menu_item &gt; children</div><div class="ttdoc">The children of the menu item (used to make a tree).</div><div class="ttdef"><b>Definition:</b> context_menu.h:39</div></div>
-<div class="ttc" id="astructliblec_1_1lecui_1_1menu__item_html_afb0ebb3e77d4be07def969f26742e6ad"><div class="ttname"><a href="structliblec_1_1lecui_1_1menu__item.html#afb0ebb3e77d4be07def969f26742e6ad">liblec::lecui::menu_item::label</a></div><div class="ttdeci">std::string label</div><div class="ttdoc">The label text of the menu item.</div><div class="ttdef"><b>Definition:</b> context_menu.h:27</div></div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="structliblec_1_1lecui_1_1menu__item.html#aa9dd0a8d48b40224793e7efed439429b">   38</a></span>&#160;            std::vector&lt;menu_item&gt; <a class="code" href="structliblec_1_1lecui_1_1menu__item.html#aa9dd0a8d48b40224793e7efed439429b">children</a>;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        };</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1context__menu.html">   41</a></span>&#160;        <span class="keyword">class </span>lecui_api <a class="code" href="classliblec_1_1lecui_1_1context__menu.html">context_menu</a> {</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1context__menu.html#aaf13a430f41f8011377d77f46076871f">   45</a></span>&#160;            <span class="keyword">enum class</span> <a class="code" href="classliblec_1_1lecui_1_1context__menu.html#aaf13a430f41f8011377d77f46076871f">pin_type</a> {</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                bottom,</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                right,</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            };</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
+<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="structliblec_1_1lecui_1_1context__menu_1_1specs.html">   60</a></span>&#160;            <span class="keyword">struct </span><a class="code" href="structliblec_1_1lecui_1_1context__menu_1_1specs.html">specs</a> {</div>
+<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="structliblec_1_1lecui_1_1context__menu_1_1specs.html#a60f2f921b07061a19e9bc60fb4637fe2">   62</a></span>&#160;                std::vector&lt;menu_item&gt; <a class="code" href="structliblec_1_1lecui_1_1context__menu_1_1specs.html#a60f2f921b07061a19e9bc60fb4637fe2">items</a>;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
+<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="structliblec_1_1lecui_1_1context__menu_1_1specs.html#abd274c41e064ab6333aa695ef04a3332">   66</a></span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1rect.html">lecui::rect</a> pin = { 0.f, 0.f, 0.f, 0.f };</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
+<div class="line"><a name="l00070"></a><span class="lineno"><a class="line" href="structliblec_1_1lecui_1_1context__menu_1_1specs.html#ad43d29a15a8377f5019f7654719416aa">   70</a></span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1context__menu.html#aaf13a430f41f8011377d77f46076871f">pin_type</a> type = pin_type::bottom;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
+<div class="line"><a name="l00075"></a><span class="lineno"><a class="line" href="structliblec_1_1lecui_1_1context__menu_1_1specs.html#a6c29e685f18ffb8ce62167f966f3bc94">   75</a></span>&#160;                image_quality quality = image_quality::high;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;            };</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            <a class="code" href="classliblec_1_1lecui_1_1context__menu.html">context_menu</a>();</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;            std::string operator() (<a class="code" href="classliblec_1_1lecui_1_1form.html">form</a>&amp; fm, <span class="keyword">const</span> <a class="code" href="structliblec_1_1lecui_1_1context__menu_1_1specs.html">specs</a>&amp; menu_specs);</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;            <span class="keyword">class </span><a class="code" href="classliblec_1_1lecui_1_1context__menu_1_1impl.html">impl</a>;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;            <span class="comment">// Copying an object of this class are not allowed</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;            <a class="code" href="classliblec_1_1lecui_1_1context__menu.html">context_menu</a>(<span class="keyword">const</span> <a class="code" href="classliblec_1_1lecui_1_1context__menu.html">context_menu</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;            <a class="code" href="classliblec_1_1lecui_1_1context__menu.html">context_menu</a>&amp; operator=(<span class="keyword">const</span> <a class="code" href="classliblec_1_1lecui_1_1context__menu.html">context_menu</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        };</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    }</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;}</div>
+<div class="ttc" id="aclassfont_html"><div class="ttname"><a href="classfont.html">font</a></div><div class="ttdoc">Font handling class.</div><div class="ttdef"><b>Definition:</b> font.h:17</div></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1context__menu_1_1impl_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1context__menu_1_1impl.html">liblec::lecui::context_menu::impl</a></div><div class="ttdef"><b>Definition:</b> context_menu.cpp:23</div></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1context__menu_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1context__menu.html">liblec::lecui::context_menu</a></div><div class="ttdef"><b>Definition:</b> context_menu.h:41</div></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1context__menu_html_aaf13a430f41f8011377d77f46076871f"><div class="ttname"><a href="classliblec_1_1lecui_1_1context__menu.html#aaf13a430f41f8011377d77f46076871f">liblec::lecui::context_menu::pin_type</a></div><div class="ttdeci">pin_type</div><div class="ttdoc">Pin type. Used to determine the position of the context menu with respect to the pin rectangle.</div><div class="ttdef"><b>Definition:</b> context_menu.h:45</div></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1form_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1form.html">liblec::lecui::form</a></div><div class="ttdoc">Form base class. The user must inherit from this class and call one of the two constructors from its ...</div><div class="ttdef"><b>Definition:</b> form.h:99</div></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1rect_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1rect.html">liblec::lecui::rect</a></div><div class="ttdef"><b>Definition:</b> lecui.h:72</div></div>
+<div class="ttc" id="astructliblec_1_1lecui_1_1context__menu_1_1specs_html"><div class="ttname"><a href="structliblec_1_1lecui_1_1context__menu_1_1specs.html">liblec::lecui::context_menu::specs</a></div><div class="ttdoc">The context menu specifications. By default the menu is pinned to the top left corner of the mouse cu...</div><div class="ttdef"><b>Definition:</b> context_menu.h:60</div></div>
+<div class="ttc" id="astructliblec_1_1lecui_1_1context__menu_1_1specs_html_a60f2f921b07061a19e9bc60fb4637fe2"><div class="ttname"><a href="structliblec_1_1lecui_1_1context__menu_1_1specs.html#a60f2f921b07061a19e9bc60fb4637fe2">liblec::lecui::context_menu::specs::items</a></div><div class="ttdeci">std::vector&lt; menu_item &gt; items</div><div class="ttdoc">The menu items.</div><div class="ttdef"><b>Definition:</b> context_menu.h:62</div></div>
+<div class="ttc" id="astructliblec_1_1lecui_1_1menu__item_html"><div class="ttname"><a href="structliblec_1_1lecui_1_1menu__item.html">liblec::lecui::menu_item</a></div><div class="ttdoc">Menu items.</div><div class="ttdef"><b>Definition:</b> context_menu.h:22</div></div>
+<div class="ttc" id="astructliblec_1_1lecui_1_1menu__item_html_a0bf2ee7747a6f1d495162cd6fab5c28a"><div class="ttname"><a href="structliblec_1_1lecui_1_1menu__item.html#a0bf2ee7747a6f1d495162cd6fab5c28a">liblec::lecui::menu_item::font_size</a></div><div class="ttdeci">float font_size</div><div class="ttdoc">The font size.</div><div class="ttdef"><b>Definition:</b> context_menu.h:33</div></div>
+<div class="ttc" id="astructliblec_1_1lecui_1_1menu__item_html_a964b76ce4e3757ba0c7203d49d6d6fe1"><div class="ttname"><a href="structliblec_1_1lecui_1_1menu__item.html#a964b76ce4e3757ba0c7203d49d6d6fe1">liblec::lecui::menu_item::image_file</a></div><div class="ttdeci">std::string image_file</div><div class="ttdoc">The image to use for the menu item (placed on the right).</div><div class="ttdef"><b>Definition:</b> context_menu.h:27</div></div>
+<div class="ttc" id="astructliblec_1_1lecui_1_1menu__item_html_aa9dd0a8d48b40224793e7efed439429b"><div class="ttname"><a href="structliblec_1_1lecui_1_1menu__item.html#aa9dd0a8d48b40224793e7efed439429b">liblec::lecui::menu_item::children</a></div><div class="ttdeci">std::vector&lt; menu_item &gt; children</div><div class="ttdoc">The children of the menu item (used to make a tree).</div><div class="ttdef"><b>Definition:</b> context_menu.h:38</div></div>
+<div class="ttc" id="astructliblec_1_1lecui_1_1menu__item_html_afb0ebb3e77d4be07def969f26742e6ad"><div class="ttname"><a href="structliblec_1_1lecui_1_1menu__item.html#afb0ebb3e77d4be07def969f26742e6ad">liblec::lecui::menu_item::label</a></div><div class="ttdeci">std::string label</div><div class="ttdoc">The label text of the menu item. Use an empty string to make a separator.</div><div class="ttdef"><b>Definition:</b> context_menu.h:24</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

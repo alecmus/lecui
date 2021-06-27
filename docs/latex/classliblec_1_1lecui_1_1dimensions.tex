@@ -26,20 +26,22 @@ class \mbox{\hyperlink{classliblec_1_1lecui_1_1dimensions_1_1impl}{impl}}
 \begin{DoxyCompactList}\small\item\em Get the working area of the screen. This is the part of the screen that excludes the operating system\textquotesingle{}s task bar. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{lecui\+::rect}} \mbox{\hyperlink{classliblec_1_1lecui_1_1dimensions_a4993995cddd9e36239188c695f6ba3cb}{cursor\+\_\+rect}} ()
 \begin{DoxyCompactList}\small\item\em Get the position of the mouse cursor. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classliblec_1_1lecui_1_1dimensions_acfdf5d2e0239b2722fb8315f6af768a8}{size}} (const \mbox{\hyperlink{structliblec_1_1lecui_1_1size}{lecui\+::size}} \&\mbox{\hyperlink{structliblec_1_1lecui_1_1size}{size}})
+void \mbox{\hyperlink{classliblec_1_1lecui_1_1dimensions_a144efcd0d35af2ae4dddb62a618f44b1}{set\+\_\+size}} (const \mbox{\hyperlink{structliblec_1_1lecui_1_1size}{lecui\+::size}} \&\mbox{\hyperlink{structliblec_1_1lecui_1_1size}{size}})
 \begin{DoxyCompactList}\small\item\em Set the form\textquotesingle{}s size. \end{DoxyCompactList}\item 
-const \mbox{\hyperlink{structliblec_1_1lecui_1_1size}{lecui\+::size}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1dimensions_a044b049617adf1e289142b75f33f4d35}{size}} ()
+const \mbox{\hyperlink{structliblec_1_1lecui_1_1size}{lecui\+::size}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1dimensions_a0ace3c3af74d7d3023bfe84a5e295f14}{get\+\_\+size}} ()
 \begin{DoxyCompactList}\small\item\em Get the form\textquotesingle{}s size. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classliblec_1_1lecui_1_1dimensions_ac5f8454f3a93243acb1fe35f5f50693b}{minimum}} (const \mbox{\hyperlink{structliblec_1_1lecui_1_1size}{lecui\+::size}} \&\mbox{\hyperlink{structliblec_1_1lecui_1_1size}{size}})
+const \mbox{\hyperlink{structliblec_1_1lecui_1_1point}{lecui\+::point}} \mbox{\hyperlink{classliblec_1_1lecui_1_1dimensions_a7b0ec34b8a98123f355afcfb1f15b2b4}{get\+\_\+position}} ()
+\begin{DoxyCompactList}\small\item\em Get the form\textquotesingle{}s position. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classliblec_1_1lecui_1_1dimensions_a9e25db24c5e3fe3fa2f5ab7e91d6b822}{set\+\_\+minimum}} (const \mbox{\hyperlink{structliblec_1_1lecui_1_1size}{lecui\+::size}} \&\mbox{\hyperlink{structliblec_1_1lecui_1_1size}{size}})
 \begin{DoxyCompactList}\small\item\em Set the form\textquotesingle{}s minimum size. \end{DoxyCompactList}\item 
-const \mbox{\hyperlink{structliblec_1_1lecui_1_1size}{lecui\+::size}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1dimensions_ae67732214fd105f2b9aece8a472556a5}{minimum}} ()
+const \mbox{\hyperlink{structliblec_1_1lecui_1_1size}{lecui\+::size}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1dimensions_a66be85748a6992863bca8c833a171a25}{get\+\_\+minimum}} ()
 \begin{DoxyCompactList}\small\item\em Get the form\textquotesingle{}s minimum size. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 Manipulate a form\textquotesingle{}s dimensions. 
 
-
+This manipulation is best done in the form\textquotesingle{}s on\+\_\+initialize method.
 
 \doxysubsection{Member Function Documentation}
 \mbox{\Hypertarget{classliblec_1_1lecui_1_1dimensions_a4993995cddd9e36239188c695f6ba3cb}\label{classliblec_1_1lecui_1_1dimensions_a4993995cddd9e36239188c695f6ba3cb}} 
@@ -57,7 +59,48 @@ The rectangle bounding the cursor.
 \end{DoxyReturn}
 
 
-This method is DPI aware.\mbox{\Hypertarget{classliblec_1_1lecui_1_1dimensions_a5068e51fd7ab831a5b14ff7231892985}\label{classliblec_1_1lecui_1_1dimensions_a5068e51fd7ab831a5b14ff7231892985}} 
+This method is DPI aware.\mbox{\Hypertarget{classliblec_1_1lecui_1_1dimensions_a66be85748a6992863bca8c833a171a25}\label{classliblec_1_1lecui_1_1dimensions_a66be85748a6992863bca8c833a171a25}} 
+\index{liblec::lecui::dimensions@{liblec::lecui::dimensions}!get\_minimum@{get\_minimum}}
+\index{get\_minimum@{get\_minimum}!liblec::lecui::dimensions@{liblec::lecui::dimensions}}
+\doxysubsubsection{\texorpdfstring{get\_minimum()}{get\_minimum()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{structliblec_1_1lecui_1_1size}{size}} \& liblec\+::lecui\+::dimensions\+::get\+\_\+minimum (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the form\textquotesingle{}s minimum size. 
+
+\begin{DoxyReturn}{Returns}
+The size, in pixels.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1dimensions_a7b0ec34b8a98123f355afcfb1f15b2b4}\label{classliblec_1_1lecui_1_1dimensions_a7b0ec34b8a98123f355afcfb1f15b2b4}} 
+\index{liblec::lecui::dimensions@{liblec::lecui::dimensions}!get\_position@{get\_position}}
+\index{get\_position@{get\_position}!liblec::lecui::dimensions@{liblec::lecui::dimensions}}
+\doxysubsubsection{\texorpdfstring{get\_position()}{get\_position()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{structliblec_1_1lecui_1_1point}{lecui\+::point}} liblec\+::lecui\+::dimensions\+::get\+\_\+position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the form\textquotesingle{}s position. 
+
+\begin{DoxyReturn}{Returns}
+Returns the coordinates of the top left corner.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1dimensions_a0ace3c3af74d7d3023bfe84a5e295f14}\label{classliblec_1_1lecui_1_1dimensions_a0ace3c3af74d7d3023bfe84a5e295f14}} 
+\index{liblec::lecui::dimensions@{liblec::lecui::dimensions}!get\_size@{get\_size}}
+\index{get\_size@{get\_size}!liblec::lecui::dimensions@{liblec::lecui::dimensions}}
+\doxysubsubsection{\texorpdfstring{get\_size()}{get\_size()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{structliblec_1_1lecui_1_1size}{size}} \& liblec\+::lecui\+::dimensions\+::get\+\_\+size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the form\textquotesingle{}s size. 
+
+\begin{DoxyReturn}{Returns}
+The size, in pixels.
+\end{DoxyReturn}
+
+
+Do not use this for laying out widgets on the form. Widgets are never placed directly onto a form, only into containers. Therefore, use the size of the containers for widget layout. Containers are never the same size as the form, some room is left for the form border, form controls, and depending on the container possibly scroll area etc. Refer to the container\textquotesingle{}s documentation for more details.\mbox{\Hypertarget{classliblec_1_1lecui_1_1dimensions_a5068e51fd7ab831a5b14ff7231892985}\label{classliblec_1_1lecui_1_1dimensions_a5068e51fd7ab831a5b14ff7231892985}} 
 \index{liblec::lecui::dimensions@{liblec::lecui::dimensions}!measure\_label@{measure\_label}}
 \index{measure\_label@{measure\_label}!liblec::lecui::dimensions@{liblec::lecui::dimensions}}
 \doxysubsubsection{\texorpdfstring{measure\_label()}{measure\_label()}}
@@ -85,24 +128,11 @@ Measure how much space a label will take.
 \begin{DoxyReturn}{Returns}
 The rectangle that defines the optimal rectangle for the text.
 \end{DoxyReturn}
-\mbox{\Hypertarget{classliblec_1_1lecui_1_1dimensions_ae67732214fd105f2b9aece8a472556a5}\label{classliblec_1_1lecui_1_1dimensions_ae67732214fd105f2b9aece8a472556a5}} 
-\index{liblec::lecui::dimensions@{liblec::lecui::dimensions}!minimum@{minimum}}
-\index{minimum@{minimum}!liblec::lecui::dimensions@{liblec::lecui::dimensions}}
-\doxysubsubsection{\texorpdfstring{minimum()}{minimum()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily const \mbox{\hyperlink{structliblec_1_1lecui_1_1size}{size}} \& liblec\+::lecui\+::dimensions\+::minimum (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
-
-
-
-Get the form\textquotesingle{}s minimum size. 
-
-\begin{DoxyReturn}{Returns}
-The size, in pixels.
-\end{DoxyReturn}
-\mbox{\Hypertarget{classliblec_1_1lecui_1_1dimensions_ac5f8454f3a93243acb1fe35f5f50693b}\label{classliblec_1_1lecui_1_1dimensions_ac5f8454f3a93243acb1fe35f5f50693b}} 
-\index{liblec::lecui::dimensions@{liblec::lecui::dimensions}!minimum@{minimum}}
-\index{minimum@{minimum}!liblec::lecui::dimensions@{liblec::lecui::dimensions}}
-\doxysubsubsection{\texorpdfstring{minimum()}{minimum()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily void liblec\+::lecui\+::dimensions\+::minimum (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structliblec_1_1lecui_1_1size}{lecui\+::size}} \&}]{size }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1dimensions_a9e25db24c5e3fe3fa2f5ab7e91d6b822}\label{classliblec_1_1lecui_1_1dimensions_a9e25db24c5e3fe3fa2f5ab7e91d6b822}} 
+\index{liblec::lecui::dimensions@{liblec::lecui::dimensions}!set\_minimum@{set\_minimum}}
+\index{set\_minimum@{set\_minimum}!liblec::lecui::dimensions@{liblec::lecui::dimensions}}
+\doxysubsubsection{\texorpdfstring{set\_minimum()}{set\_minimum()}}
+{\footnotesize\ttfamily void liblec\+::lecui\+::dimensions\+::set\+\_\+minimum (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structliblec_1_1lecui_1_1size}{lecui\+::size}} \&}]{size }\end{DoxyParamCaption})}
 
 
 
@@ -115,26 +145,11 @@ Set the form\textquotesingle{}s minimum size.
 \end{DoxyParams}
 
 
-This manipulation should be done in the form\textquotesingle{}s layout method.\mbox{\Hypertarget{classliblec_1_1lecui_1_1dimensions_a044b049617adf1e289142b75f33f4d35}\label{classliblec_1_1lecui_1_1dimensions_a044b049617adf1e289142b75f33f4d35}} 
-\index{liblec::lecui::dimensions@{liblec::lecui::dimensions}!size@{size}}
-\index{size@{size}!liblec::lecui::dimensions@{liblec::lecui::dimensions}}
-\doxysubsubsection{\texorpdfstring{size()}{size()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily const \mbox{\hyperlink{structliblec_1_1lecui_1_1size}{size}} \& liblec\+::lecui\+::dimensions\+::size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
-
-
-
-Get the form\textquotesingle{}s size. 
-
-\begin{DoxyReturn}{Returns}
-The size, in pixels.
-\end{DoxyReturn}
-
-
-Do not use this for laying out widgets on the form. Widgets are never placed directly onto a form, only into containers. Therefore, use the size of the containers for widget layout. Containers are never the same size as the form, some room is left for the form border, form controls, and depending on the container possibly scroll area etc. Refer to the container\textquotesingle{}s documentation for more details.\mbox{\Hypertarget{classliblec_1_1lecui_1_1dimensions_acfdf5d2e0239b2722fb8315f6af768a8}\label{classliblec_1_1lecui_1_1dimensions_acfdf5d2e0239b2722fb8315f6af768a8}} 
-\index{liblec::lecui::dimensions@{liblec::lecui::dimensions}!size@{size}}
-\index{size@{size}!liblec::lecui::dimensions@{liblec::lecui::dimensions}}
-\doxysubsubsection{\texorpdfstring{size()}{size()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily void liblec\+::lecui\+::dimensions\+::size (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structliblec_1_1lecui_1_1size}{lecui\+::size}} \&}]{size }\end{DoxyParamCaption})}
+This manipulation should be done in the form\textquotesingle{}s layout method.\mbox{\Hypertarget{classliblec_1_1lecui_1_1dimensions_a144efcd0d35af2ae4dddb62a618f44b1}\label{classliblec_1_1lecui_1_1dimensions_a144efcd0d35af2ae4dddb62a618f44b1}} 
+\index{liblec::lecui::dimensions@{liblec::lecui::dimensions}!set\_size@{set\_size}}
+\index{set\_size@{set\_size}!liblec::lecui::dimensions@{liblec::lecui::dimensions}}
+\doxysubsubsection{\texorpdfstring{set\_size()}{set\_size()}}
+{\footnotesize\ttfamily void liblec\+::lecui\+::dimensions\+::set\+\_\+size (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structliblec_1_1lecui_1_1size}{lecui\+::size}} \&}]{size }\end{DoxyParamCaption})}
 
 
 

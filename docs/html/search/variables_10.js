@@ -1,12 +1,4 @@
 var searchData=
 [
-  ['selected_796',['selected',['../classliblec_1_1lecui_1_1widgets_1_1combobox_1_1combobox__specs.html#aa58762ea8f13e2ff1d8a01b04ca88c3b',1,'liblec::lecui::widgets::combobox::combobox_specs::selected()'],['../classliblec_1_1lecui_1_1widgets_1_1table__view_1_1table__view__specs.html#a6391c8b27dd0ce31d5c3101c0e08c4c8',1,'liblec::lecui::widgets::table_view::table_view_specs::selected()']]],
-  ['selection_797',['selection',['../structliblec_1_1lecui_1_1widgets_1_1combobox_1_1combobox__specs_1_1combobox__events.html#ab45eb2716f838043f3a5a28f6ebae446',1,'liblec::lecui::widgets::combobox::combobox_specs::combobox_events::selection()'],['../structliblec_1_1lecui_1_1widgets_1_1table__view_1_1table__view__specs_1_1table__view__events.html#aa4df6c9019f3bdd8900dab99ccbca88d',1,'liblec::lecui::widgets::table_view::table_view_specs::table_view_events::selection()'],['../structliblec_1_1lecui_1_1widgets_1_1tree__view_1_1tree__view__specs_1_1tree__view__events.html#aec72052a3b65037d9b44170c0f9ec354',1,'liblec::lecui::widgets::tree_view::tree_view_specs::tree_view_events::selection()']]],
-  ['show_5ftick_5flabels_798',['show_tick_labels',['../classliblec_1_1lecui_1_1widgets_1_1slider_1_1slider__specs.html#a3a6998b39616d0271b8b3ea04ef31927',1,'liblec::lecui::widgets::slider::slider_specs']]],
-  ['show_5ftick_5fmarks_799',['show_tick_marks',['../classliblec_1_1lecui_1_1widgets_1_1slider_1_1slider__specs.html#aaae7ecfeab20efab6a5656ed53ed86a7',1,'liblec::lecui::widgets::slider::slider_specs']]],
-  ['slide_5fthickness_800',['slide_thickness',['../classliblec_1_1lecui_1_1widgets_1_1slider_1_1slider__specs.html#a07c10ac67fafa2cfadcf9c94d938a00c',1,'liblec::lecui::widgets::slider::slider_specs']]],
-  ['slider_801',['slider',['../structliblec_1_1lecui_1_1widgets_1_1slider_1_1slider__specs_1_1slider__events.html#aadd25b9ce51ef41d9203317684e4d981',1,'liblec::lecui::widgets::slider::slider_specs::slider_events']]],
-  ['snap_5fto_5fticks_802',['snap_to_ticks',['../classliblec_1_1lecui_1_1widgets_1_1slider_1_1slider__specs.html#aadcf057f628c3f317001f2b682797051',1,'liblec::lecui::widgets::slider::slider_specs']]],
-  ['sort_803',['sort',['../classliblec_1_1lecui_1_1widgets_1_1combobox_1_1combobox__specs.html#ad0590d820263b615243ce4416d870979',1,'liblec::lecui::widgets::combobox::combobox_specs']]],
-  ['start_5fposition_804',['start_position',['../structxml__parser_1_1tag.html#ac5839a4f83e5644a6ff10a89c08f8d1b',1,'xml_parser::tag']]]
+  ['value_923',['value',['../structcss__parser_1_1css__property.html#af9d6abf6fa67b41742bca938304bb172',1,'css_parser::css_property::value()'],['../structxml__parser_1_1tag__attribute.html#a0f626402d535c8e7cf12175e5b76e7e1',1,'xml_parser::tag_attribute::value()']]]
 ];

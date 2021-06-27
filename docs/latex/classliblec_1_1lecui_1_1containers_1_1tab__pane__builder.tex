@@ -1,0 +1,160 @@
+\hypertarget{classliblec_1_1lecui_1_1containers_1_1tab__pane__builder}{}\doxysection{liblec\+::lecui\+::containers\+::tab\+\_\+pane\+\_\+builder Class Reference}
+\label{classliblec_1_1lecui_1_1containers_1_1tab__pane__builder}\index{liblec::lecui::containers::tab\_pane\_builder@{liblec::lecui::containers::tab\_pane\_builder}}
+
+
+Tab pane container builder.  
+
+
+
+
+{\ttfamily \#include $<$tab\+\_\+pane.\+h$>$}
+
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1tab__pane__builder_1_1impl}{impl}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1tab__pane__builder_a2c2f239f9e693a3398895b04b0cb7608}{tab\+\_\+pane\+\_\+builder}} (\mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1page}{containers\+::page}} \&\mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1page}{page}})
+\begin{DoxyCompactList}\small\item\em Tab pane builder constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1tab__pane__builder_a50a6e7ddff891033f5e5deb3a363b6c5}{tab\+\_\+pane\+\_\+builder}} (\mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1page}{containers\+::page}} \&\mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1page}{page}}, const std\+::string \&alias)
+\begin{DoxyCompactList}\small\item\em Tab pane builder constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1tab__pane__specs}{tab\+\_\+pane\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1tab__pane__builder_a5a37d9b58d1bd20a9123b203e73c06cf}{specs}} ()
+\begin{DoxyCompactList}\small\item\em Get the tab pane specifications. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1tab__pane__specs}{tab\+\_\+pane\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1tab__pane__builder_ac058e82506dd84d13c486ce10d1803a3}{operator()}} ()
+\begin{DoxyCompactList}\small\item\em Get the tab pane specifications. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1tab__pane__builder_a6ff565edcfdc71ff96ea52fa2a8e6ae2}{select}} (const std\+::string \&tab\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Select the visible tab in the tab pane. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1tab__pane__specs}{tab\+\_\+pane\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1tab__pane__builder_aa2ab33adf1fd36f16ebb21b9de414b9e}{specs}} (\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}} \&fm, const std\+::string \&path)
+\begin{DoxyCompactList}\small\item\em Get the specifications of a tab pane. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1tab__pane__builder_ac02209bc9c8eed0045563e5e2d9bbc13}\label{classliblec_1_1lecui_1_1containers_1_1tab__pane__builder_ac02209bc9c8eed0045563e5e2d9bbc13}} 
+class {\bfseries tab\+\_\+builder}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Tab pane container builder. 
+
+Only tab containers can be added to the tab pane container.
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1tab__pane__builder_a2c2f239f9e693a3398895b04b0cb7608}\label{classliblec_1_1lecui_1_1containers_1_1tab__pane__builder_a2c2f239f9e693a3398895b04b0cb7608}} 
+\index{liblec::lecui::containers::tab\_pane\_builder@{liblec::lecui::containers::tab\_pane\_builder}!tab\_pane\_builder@{tab\_pane\_builder}}
+\index{tab\_pane\_builder@{tab\_pane\_builder}!liblec::lecui::containers::tab\_pane\_builder@{liblec::lecui::containers::tab\_pane\_builder}}
+\doxysubsubsection{\texorpdfstring{tab\_pane\_builder()}{tab\_pane\_builder()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily liblec\+::lecui\+::containers\+::tab\+\_\+pane\+\_\+builder\+::tab\+\_\+pane\+\_\+builder (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1page}{containers\+::page}} \&}]{page }\end{DoxyParamCaption})}
+
+
+
+Tab pane builder constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em page} & A reference to the container to place the control in.\\
+\hline
+\end{DoxyParams}
+
+
+This constructs the container with an internally generated random alias.\mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1tab__pane__builder_a50a6e7ddff891033f5e5deb3a363b6c5}\label{classliblec_1_1lecui_1_1containers_1_1tab__pane__builder_a50a6e7ddff891033f5e5deb3a363b6c5}} 
+\index{liblec::lecui::containers::tab\_pane\_builder@{liblec::lecui::containers::tab\_pane\_builder}!tab\_pane\_builder@{tab\_pane\_builder}}
+\index{tab\_pane\_builder@{tab\_pane\_builder}!liblec::lecui::containers::tab\_pane\_builder@{liblec::lecui::containers::tab\_pane\_builder}}
+\doxysubsubsection{\texorpdfstring{tab\_pane\_builder()}{tab\_pane\_builder()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily liblec\+::lecui\+::containers\+::tab\+\_\+pane\+\_\+builder\+::tab\+\_\+pane\+\_\+builder (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1page}{containers\+::page}} \&}]{page,  }\item[{const std\+::string \&}]{alias }\end{DoxyParamCaption})}
+
+
+
+Tab pane builder constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em page} & A reference to the container to place the control in.\\
+\hline
+{\em alias} & The in-\/page unique alias, e.\+g. \char`\"{}settings\+\_\+tab\+\_\+pane\char`\"{}. \\
+\hline
+\end{DoxyParams}
+
+
+Ensure that the alias is unique within the page. Reusing an alias in a tab pane leads to undefined behavior.
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1tab__pane__builder_ac058e82506dd84d13c486ce10d1803a3}\label{classliblec_1_1lecui_1_1containers_1_1tab__pane__builder_ac058e82506dd84d13c486ce10d1803a3}} 
+\index{liblec::lecui::containers::tab\_pane\_builder@{liblec::lecui::containers::tab\_pane\_builder}!operator()@{operator()}}
+\index{operator()@{operator()}!liblec::lecui::containers::tab\_pane\_builder@{liblec::lecui::containers::tab\_pane\_builder}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1tab__pane__specs}{containers\+::tab\+\_\+pane\+\_\+specs}} \& liblec\+::lecui\+::containers\+::tab\+\_\+pane\+\_\+builder\+::operator() (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the tab pane specifications. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the control specifications.
+\end{DoxyReturn}
+
+
+Alternative to \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1tab__pane__builder_a5a37d9b58d1bd20a9123b203e73c06cf}{specs()}} for more terse code.\mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1tab__pane__builder_a6ff565edcfdc71ff96ea52fa2a8e6ae2}\label{classliblec_1_1lecui_1_1containers_1_1tab__pane__builder_a6ff565edcfdc71ff96ea52fa2a8e6ae2}} 
+\index{liblec::lecui::containers::tab\_pane\_builder@{liblec::lecui::containers::tab\_pane\_builder}!select@{select}}
+\index{select@{select}!liblec::lecui::containers::tab\_pane\_builder@{liblec::lecui::containers::tab\_pane\_builder}}
+\doxysubsubsection{\texorpdfstring{select()}{select()}}
+{\footnotesize\ttfamily void liblec\+::lecui\+::containers\+::tab\+\_\+pane\+\_\+builder\+::select (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{tab\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+Select the visible tab in the tab pane. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tab\+\_\+name} & The in-\/control unique name of the tab, e.\+g. \char`\"{}\+Options\char`\"{}. \\
+\hline
+\end{DoxyParams}
+
+
+By default none of the tabs is selected if this method is never called and the tab pane will load empty. The first selection will happen when the user clicks a tab, at which point the contents of that tab will be displayed.\mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1tab__pane__builder_a5a37d9b58d1bd20a9123b203e73c06cf}\label{classliblec_1_1lecui_1_1containers_1_1tab__pane__builder_a5a37d9b58d1bd20a9123b203e73c06cf}} 
+\index{liblec::lecui::containers::tab\_pane\_builder@{liblec::lecui::containers::tab\_pane\_builder}!specs@{specs}}
+\index{specs@{specs}!liblec::lecui::containers::tab\_pane\_builder@{liblec::lecui::containers::tab\_pane\_builder}}
+\doxysubsubsection{\texorpdfstring{specs()}{specs()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1tab__pane__specs}{containers\+::tab\+\_\+pane\+\_\+specs}} \& liblec\+::lecui\+::containers\+::tab\+\_\+pane\+\_\+builder\+::specs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the tab pane specifications. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the control specifications.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1tab__pane__builder_aa2ab33adf1fd36f16ebb21b9de414b9e}\label{classliblec_1_1lecui_1_1containers_1_1tab__pane__builder_aa2ab33adf1fd36f16ebb21b9de414b9e}} 
+\index{liblec::lecui::containers::tab\_pane\_builder@{liblec::lecui::containers::tab\_pane\_builder}!specs@{specs}}
+\index{specs@{specs}!liblec::lecui::containers::tab\_pane\_builder@{liblec::lecui::containers::tab\_pane\_builder}}
+\doxysubsubsection{\texorpdfstring{specs()}{specs()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1tab__pane__specs}{containers\+::tab\+\_\+pane\+\_\+specs}} \& liblec\+::lecui\+::containers\+::tab\+\_\+pane\+\_\+builder\+::specs (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}} \&}]{fm,  }\item[{const std\+::string \&}]{path }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Get the specifications of a tab pane. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fm} & The form the control is in.\\
+\hline
+{\em path} & The full path to the control, e.\+g. \char`\"{}sample\+\_\+page/settings\+\_\+tab\+\_\+pane\char`\"{}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the control specifications.
+\end{DoxyReturn}
+
+
+Throws on failure.
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+containers/tab\+\_\+pane.\+h\item 
+containers/tab\+\_\+pane/tab\+\_\+pane.\+cpp\end{DoxyCompactItemize}

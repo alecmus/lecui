@@ -20,23 +20,27 @@ class \mbox{\hyperlink{classliblec_1_1lecui_1_1controls_1_1impl}{impl}}
 \mbox{\Hypertarget{classliblec_1_1lecui_1_1controls_a0051ffef45fab66ad1bae36a5d4e1134}\label{classliblec_1_1lecui_1_1controls_a0051ffef45fab66ad1bae36a5d4e1134}} 
 {\bfseries controls} (\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}} \&fm)
 \item 
-void \mbox{\hyperlink{classliblec_1_1lecui_1_1controls_a7e7b6395eb4b027243466b5e1c978d3f}{resize}} (bool enable)
+void \mbox{\hyperlink{classliblec_1_1lecui_1_1controls_a3e96c83f238c4ee9cdccfb6a8278cad5}{allow\+\_\+resize}} (bool enable)
 \begin{DoxyCompactList}\small\item\em Whether to allow a form to be resizable. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classliblec_1_1lecui_1_1controls_acd4660e0270b5d8d44b2b60a6af17735}{minimize}} (bool enable)
-\begin{DoxyCompactList}\small\item\em Whether to add a minimize control button to the form. \end{DoxyCompactList}\end{DoxyCompactItemize}
+void \mbox{\hyperlink{classliblec_1_1lecui_1_1controls_a0cbf1053f1bdd816ad9809e2d6389150}{allow\+\_\+minimize}} (bool enable)
+\begin{DoxyCompactList}\small\item\em Whether to add a minimize control button to the form. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classliblec_1_1lecui_1_1controls_a377124699ab874b797272c8fc93a31c7}{make\+\_\+top\+\_\+most}} (bool enable)
+\begin{DoxyCompactList}\small\item\em Whether to make this a top most form. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classliblec_1_1lecui_1_1controls_a9321c01cee60d8766dddc483235ba09f}{start\+\_\+hidden}} (bool hidden)
+\begin{DoxyCompactList}\small\item\em Whether to keep the form hidden after its creation. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 Manipulate a form\textquotesingle{}s controls. 
 
-This manipulation should be done in the form\textquotesingle{}s layout method.
+This manipulation is best done in the form\textquotesingle{}s on\+\_\+initialize method.
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{classliblec_1_1lecui_1_1controls_acd4660e0270b5d8d44b2b60a6af17735}\label{classliblec_1_1lecui_1_1controls_acd4660e0270b5d8d44b2b60a6af17735}} 
-\index{liblec::lecui::controls@{liblec::lecui::controls}!minimize@{minimize}}
-\index{minimize@{minimize}!liblec::lecui::controls@{liblec::lecui::controls}}
-\doxysubsubsection{\texorpdfstring{minimize()}{minimize()}}
-{\footnotesize\ttfamily void liblec\+::lecui\+::controls\+::minimize (\begin{DoxyParamCaption}\item[{bool}]{enable }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1controls_a0cbf1053f1bdd816ad9809e2d6389150}\label{classliblec_1_1lecui_1_1controls_a0cbf1053f1bdd816ad9809e2d6389150}} 
+\index{liblec::lecui::controls@{liblec::lecui::controls}!allow\_minimize@{allow\_minimize}}
+\index{allow\_minimize@{allow\_minimize}!liblec::lecui::controls@{liblec::lecui::controls}}
+\doxysubsubsection{\texorpdfstring{allow\_minimize()}{allow\_minimize()}}
+{\footnotesize\ttfamily void liblec\+::lecui\+::controls\+::allow\+\_\+minimize (\begin{DoxyParamCaption}\item[{bool}]{enable }\end{DoxyParamCaption})}
 
 
 
@@ -49,11 +53,11 @@ Whether to add a minimize control button to the form.
 \end{DoxyParams}
 
 
-The minimize control button is enabled by default if this method is never called.\mbox{\Hypertarget{classliblec_1_1lecui_1_1controls_a7e7b6395eb4b027243466b5e1c978d3f}\label{classliblec_1_1lecui_1_1controls_a7e7b6395eb4b027243466b5e1c978d3f}} 
-\index{liblec::lecui::controls@{liblec::lecui::controls}!resize@{resize}}
-\index{resize@{resize}!liblec::lecui::controls@{liblec::lecui::controls}}
-\doxysubsubsection{\texorpdfstring{resize()}{resize()}}
-{\footnotesize\ttfamily void liblec\+::lecui\+::controls\+::resize (\begin{DoxyParamCaption}\item[{bool}]{enable }\end{DoxyParamCaption})}
+The minimize control button is enabled by default if this method is never called.\mbox{\Hypertarget{classliblec_1_1lecui_1_1controls_a3e96c83f238c4ee9cdccfb6a8278cad5}\label{classliblec_1_1lecui_1_1controls_a3e96c83f238c4ee9cdccfb6a8278cad5}} 
+\index{liblec::lecui::controls@{liblec::lecui::controls}!allow\_resize@{allow\_resize}}
+\index{allow\_resize@{allow\_resize}!liblec::lecui::controls@{liblec::lecui::controls}}
+\doxysubsubsection{\texorpdfstring{allow\_resize()}{allow\_resize()}}
+{\footnotesize\ttfamily void liblec\+::lecui\+::controls\+::allow\+\_\+resize (\begin{DoxyParamCaption}\item[{bool}]{enable }\end{DoxyParamCaption})}
 
 
 
@@ -66,7 +70,39 @@ Whether to allow a form to be resizable.
 \end{DoxyParams}
 
 
-For resizing is enabled by default if this method is never called. 
+If resizing is enabled by default if this method is never called. \mbox{\Hypertarget{classliblec_1_1lecui_1_1controls_a377124699ab874b797272c8fc93a31c7}\label{classliblec_1_1lecui_1_1controls_a377124699ab874b797272c8fc93a31c7}} 
+\index{liblec::lecui::controls@{liblec::lecui::controls}!make\_top\_most@{make\_top\_most}}
+\index{make\_top\_most@{make\_top\_most}!liblec::lecui::controls@{liblec::lecui::controls}}
+\doxysubsubsection{\texorpdfstring{make\_top\_most()}{make\_top\_most()}}
+{\footnotesize\ttfamily void liblec\+::lecui\+::controls\+::make\+\_\+top\+\_\+most (\begin{DoxyParamCaption}\item[{bool}]{enable }\end{DoxyParamCaption})}
+
+
+
+Whether to make this a top most form. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em enable} & Set to false for a normal form and to true to make the form appear above all other windows.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1controls_a9321c01cee60d8766dddc483235ba09f}\label{classliblec_1_1lecui_1_1controls_a9321c01cee60d8766dddc483235ba09f}} 
+\index{liblec::lecui::controls@{liblec::lecui::controls}!start\_hidden@{start\_hidden}}
+\index{start\_hidden@{start\_hidden}!liblec::lecui::controls@{liblec::lecui::controls}}
+\doxysubsubsection{\texorpdfstring{start\_hidden()}{start\_hidden()}}
+{\footnotesize\ttfamily void liblec\+::lecui\+::controls\+::start\+\_\+hidden (\begin{DoxyParamCaption}\item[{bool}]{hidden }\end{DoxyParamCaption})}
+
+
+
+Whether to keep the form hidden after its creation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em hidden} & Set to false to keep normal form bahaviour and to true to initialize app with the form hidden. Useful when starting app in the background and when using the system tray.\\
+\hline
+\end{DoxyParams}
+
+
+To hide a form after it has already been created use the \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a9e113933e10a1aa1f66a5edfe8636d9d}{form\+::hide}} method. To restore a form after it\textquotesingle{}s creation use the \mbox{\hyperlink{classliblec_1_1lecui_1_1form_ace55cac000c3c24063d5e4e278054c4d}{form\+::restore}} method.
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
