@@ -129,7 +129,7 @@ namespace liblec {
 			// add an invisible rect to bound the page. This is essential for scroll bars to work
 			// appropriately when contents don't reach the page borders
 			auto& rectangle = page_impl.add_rectangle(widgets::rectangle_impl::page_rect_alias());
-			rectangle.color_fill().alpha = 0;
+			rectangle.color_fill().alpha(0);
 
 			// make it transparent
 			rectangle.color_border({ 255, 0, 0, 0 }).color_hot({ 255, 0, 0, 0 })

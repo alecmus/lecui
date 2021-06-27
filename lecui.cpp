@@ -214,12 +214,66 @@ namespace liblec {
 			return !operator==(param);
 		}
 
+		color::color() :
+			color(0, 0, 0, 255) {}
+
+		color::color(const unsigned short red,
+			const unsigned short green,
+			const unsigned short blue,
+			const unsigned short alpha) :
+			red_(red), green_(green), blue_(blue), alpha_(alpha) {
+			red_ = smallest(red_, (unsigned short)255);
+			red_ = largest(red_, (unsigned short)0);
+			green_ = smallest(green_, (unsigned short)255);
+			green_ = largest(green_, (unsigned short)0);
+			blue_ = smallest(blue_, (unsigned short)255);
+			blue_ = largest(blue_, (unsigned short)0);
+			alpha_ = smallest(alpha_, (unsigned short)255);
+			alpha_ = largest(alpha_, (unsigned short)0);
+		}
+
+		unsigned short& color::red() { return red_; }
+		unsigned short color::get_red() const { return red_; }
+		color& color::red(const unsigned short& red) {
+			red_ = red;
+			red_ = smallest(red_, (unsigned short)255);
+			red_ = largest(red_, (unsigned short)0);
+			return *this;
+		}
+
+		unsigned short& color::green() { return green_; }
+		unsigned short color::get_green() const { return green_; }
+		color& color::green(const unsigned short& green) {
+			green_ = green;
+			green_ = smallest(green_, (unsigned short)255);
+			green_ = largest(green_, (unsigned short)0);
+			return *this;
+		}
+
+		unsigned short& color::blue() { return blue_; }
+		unsigned short color::get_blue() const { return blue_; }
+		color& color::blue(const unsigned short& blue) {
+			blue_ = blue;
+			blue_ = smallest(blue_, (unsigned short)255);
+			blue_ = largest(blue_, (unsigned short)0);
+			return *this;
+		}
+
+		unsigned short& color::alpha() { return alpha_; }
+		unsigned short color::get_alpha() const { return alpha_; }
+		color& color::alpha(const unsigned short& alpha) {
+			alpha_ = alpha;
+			alpha_ = smallest(alpha_, (unsigned short)255);
+			alpha_ = largest(alpha_, (unsigned short)0);
+			return *this;
+		}
+
 		bool color::operator==(const color& param) {
 			return
-				(red == param.red) &&
-				(green == param.green) &&
-				(blue == param.blue) &&
-				(alpha == param.alpha);
+				(red_ == param.red_) &&
+				(green_ == param.green_) &&
+				(blue_ == param.blue_) &&
+				(alpha_ == param.alpha_);
 		}
 
 		bool color::operator!=(const color& param) {

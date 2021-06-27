@@ -857,8 +857,8 @@ namespace liblec {
 											widgets::rectangle_builder bold(html_controls_page, html_editor.alias_bold());
 											bold().rect().size(20.f, 20.f);
 											bold().rect().snap_to(font().rect(), rect::snap_type::bottom_left, 5.f);
-											bold().color_fill().alpha = 0;
-											bold().color_border().alpha = 0;
+											bold().color_fill().alpha(0);
+											bold().color_border().alpha(0);
 											bold().events().action = [&]() {
 												html_editor.selection_bold();
 											};
@@ -875,8 +875,8 @@ namespace liblec {
 											widgets::rectangle_builder italic(html_controls_page, html_editor.alias_italic());
 											italic().rect().size(20.f, 20.f);
 											italic().rect().snap_to(bold().rect(), rect::snap_type::right, 5.f);
-											italic().color_fill().alpha = 0;
-											italic().color_border().alpha = 0;
+											italic().color_fill().alpha(0);
+											italic().color_border().alpha(0);
 											italic().events().action = [&]() {
 												html_editor.selection_italic();
 											};
@@ -893,8 +893,8 @@ namespace liblec {
 											widgets::rectangle_builder underline(html_controls_page, html_editor.alias_underline());
 											underline().rect().size(20.f, 20.f);
 											underline().rect().snap_to(italic_label().rect(), rect::snap_type::right, 5.f);
-											underline().color_fill().alpha = 0;
-											underline().color_border().alpha = 0;
+											underline().color_fill().alpha(0);
+											underline().color_border().alpha(0);
 											underline().events().action = [&]() {
 												html_editor.selection_underline();
 											};
@@ -911,8 +911,8 @@ namespace liblec {
 											widgets::rectangle_builder strikethrough(html_controls_page, html_editor.alias_strikethrough());
 											strikethrough().rect().size(30.f, 20.f);
 											strikethrough().rect().snap_to(underline_label().rect(), rect::snap_type::right, 5.f);
-											strikethrough().color_fill().alpha = 0;
-											strikethrough().color_border().alpha = 0;
+											strikethrough().color_fill().alpha(0);
+											strikethrough().color_border().alpha(0);
 											strikethrough().events().action = [&]() {
 												html_editor.selection_strikethrough();
 											};
@@ -929,8 +929,8 @@ namespace liblec {
 											widgets::rectangle_builder font_color(html_controls_page, html_editor.alias_font_color());
 											font_color().rect().size(20.f, 20.f);
 											font_color().rect().snap_to(strikethrough().rect(), rect::snap_type::right, 5.f);
-											font_color().color_fill().alpha = 0;
-											font_color().color_border().alpha = 0;
+											font_color().color_fill().alpha(0);
+											font_color().color_border().alpha(0);
 											font_color().events().action = [&]() {
 												html_editor.selection_color();
 											};
@@ -958,8 +958,8 @@ namespace liblec {
 											widgets::rectangle_builder font_color_menu(html_controls_page);
 											font_color_menu().rect().size(10.f, 20.f);
 											font_color_menu().rect().snap_to(font_color().rect(), rect::snap_type::right, 2.f);
-											font_color_menu().color_fill().alpha = 0;
-											font_color_menu().color_border().alpha = 0;
+											font_color_menu().color_fill().alpha(0);
+											font_color_menu().color_border().alpha(0);
 											font_color_menu().events().action = [&]() {
 												color font_color;
 												if (color_picker(page.d_page_.fm_).pick(font_color)) {
@@ -1094,8 +1094,8 @@ namespace liblec {
 								pane()
 									.rect(time_specs.rect())
 									.on_resize(time_specs.on_resize());
-								pane().color_fill().alpha = 0;
-								pane().color_border().alpha = 0;
+								pane().color_fill().alpha(0);
+								pane().color_border().alpha(0);
 
 								// save move info so we can move the tree into the pane later
 								// we cannot do it here because we're iterating
@@ -1435,8 +1435,8 @@ namespace liblec {
 								pane()
 									.rect(date_specs.rect())
 									.on_resize(date_specs.on_resize());
-								pane().color_fill().alpha = 0;
-								pane().color_border().alpha = 0;
+								pane().color_fill().alpha(0);
+								pane().color_border().alpha(0);
 
 								// save move info so we can move the tree into the pane later
 								// we cannot do it here because we're iterating
@@ -1483,7 +1483,7 @@ namespace liblec {
 						// adjust specs
 						date().rect({ 0, it.destination.size().width, 0, it.destination.size().height });
 						date().on_resize({ 0, 0, 0, 0 });
-						date().color_fill().alpha = 0;
+						date().color_fill().alpha(0);
 
 						// add week day to destination
 						widgets::label_builder weekday_label(it.destination, widgets::date_impl::alias_weekday_label());
@@ -1813,8 +1813,8 @@ namespace liblec {
 								pane()
 									.rect(icon_specs.rect())
 									.on_resize(icon_specs.on_resize());
-								pane().color_fill().alpha = 0;
-								pane().color_border().alpha = 0;
+								pane().color_fill().alpha(0);
+								pane().color_border().alpha(0);
 
 								// save move info so we can move the tree into the pane later
 								// we cannot do it here because we're iterating

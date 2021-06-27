@@ -236,10 +236,10 @@ namespace liblec {
                         rect().rect()
                             .left(margin_ / 3.f)
                             .right(home_page.size().width - margin_ / 3.f);
-                        rect().color_fill().alpha = 0;
-                        rect().color_border().alpha = 0;
-                        rect().color_border_hot().alpha = 0;
-                        rect().color_hot().alpha = 50;
+                        rect().color_fill().alpha(0);
+                        rect().color_border().alpha(0);
+                        rect().color_border_hot().alpha(0);
+                        rect().color_hot().alpha(50);
                         rect().events().action = [&]() {
                             acted_on_ = item.label;
                             close();
@@ -298,7 +298,7 @@ namespace liblec {
                     else {
                         // line
                         lecui::widgets::line_builder line(home_page, "");
-                        line().color_fill().alpha /= 2;
+                        line().color_fill().alpha() /= 2;
                         line().thickness() /= 2.f;
                         line().rect(rects_[index]);
                         line().rect().left(margin_ / 3.f).right(home_page.size().width - margin_ / 3.f);

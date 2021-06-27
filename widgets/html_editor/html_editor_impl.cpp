@@ -655,9 +655,9 @@ namespace liblec {
 			last_color_ = font_color;
 
 			std::string color_string = "rgb(" +
-				std::to_string(font_color.red) + ", "
-				+ std::to_string(font_color.green) + ", "
-				+ std::to_string(font_color.blue) + ")";
+				std::to_string(font_color.get_red()) + ", "
+				+ std::to_string(font_color.get_green()) + ", "
+				+ std::to_string(font_color.get_blue()) + ")";
 			log("selection_color: " + color_string);
 			std::vector<xml_parser::tag_attribute> tag_attributes;
 			xml_parser::tag_attribute tag_attribute;

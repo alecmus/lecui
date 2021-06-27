@@ -124,10 +124,10 @@ namespace liblec {
 		}
 
 		static inline D2D1::ColorF convert_color(const color& color_) {
-			return D2D1::ColorF(static_cast<float>(color_.red) / 255.f,
-				static_cast<float>(color_.green) / 255.f,
-				static_cast<float>(color_.blue) / 255.f,
-				static_cast<float>(color_.alpha) / 255.f
+			return D2D1::ColorF(static_cast<float>(color_.get_red()) / 255.f,
+				static_cast<float>(color_.get_green()) / 255.f,
+				static_cast<float>(color_.get_blue()) / 255.f,
+				static_cast<float>(color_.get_alpha()) / 255.f
 				);
 		}
 
@@ -340,18 +340,18 @@ namespace liblec {
 		static inline color lighten_color(const color& clr_in,
 			unsigned short percentage) {
 			color color = clr_in;
-			color.red = clr_in.red + (((255 - clr_in.red) * percentage) / 100);
-			color.green = clr_in.green + (((255 - clr_in.green) * percentage) / 100);
-			color.blue = clr_in.blue + (((255 - clr_in.blue) * percentage) / 100);
+			color.red(clr_in.get_red() + (((255 - clr_in.get_red()) * percentage) / 100));
+			color.green(clr_in.get_green() + (((255 - clr_in.get_green()) * percentage) / 100));
+			color.blue(clr_in.get_blue() + (((255 - clr_in.get_blue()) * percentage) / 100));
 			return color;
 		}
 
 		static inline color darken_color(const color& clr_in,
 			unsigned short percentage) {
 			color color = clr_in;
-			color.red = ((clr_in.red - 0) * (100 - percentage)) / 100;
-			color.green = ((clr_in.green - 0) * (100 - percentage)) / 100;
-			color.blue = ((clr_in.blue - 0) * (100 - percentage)) / 100;
+			color.red(((clr_in.get_red() - 0) * (100 - percentage)) / 100);
+			color.green(((clr_in.get_green() - 0) * (100 - percentage)) / 100);
+			color.blue(((clr_in.get_blue() - 0) * (100 - percentage)) / 100);
 			return color;
 		}
 

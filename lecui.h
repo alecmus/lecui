@@ -228,11 +228,78 @@ namespace liblec {
 			bool operator!=(const rect&);
 		};
 
-		struct color {
-			unsigned short red = 0;
-			unsigned short green = 0;
-			unsigned short blue = 0;
-			unsigned short alpha = 255;
+		/// <summary>RGBA color on a standard 0 to 255 scale. For the alpha channel 0 is transparent and 255 is opaque.</summary>
+		class lecui_api color {
+			unsigned short red_ = 0;
+			unsigned short green_ = 0;
+			unsigned short blue_ = 0;
+			unsigned short alpha_ = 255;
+
+		public:
+			/// <summary>Color constructor. Makes opaque black (0, 0, 0, 255).</summary>
+			color();
+
+			/// <summary>Color constructor.</summary>
+			/// <param name="red">The red channel, on a scale of 0 to 255.</param>
+			/// <param name="green">The green channel, on a scale of 0 to 255.</param>
+			/// <param name="blue">The blue channel, on a scale of 0 to 255.</param>
+			/// <param name="alpha">The alpha channel, on a scale of 0 to 255.</param>
+			color(const unsigned short red,
+				const unsigned short green,
+				const unsigned short blue,
+				const unsigned short alpha);
+
+			/// <summary>Get or set the red property.</summary>
+			/// <returns>A reference to the property, from 0 to 255 inclusive.</returns>
+			unsigned short& red();
+
+			/// <summary>Get the red property.</summary>
+			/// <returns>The property, from 0 to 255 inclusive.</returns>
+			unsigned short get_red() const;
+
+			/// <summary>Set the red property.</summary>
+			/// <param name="red">The property, from 0 to 255 inclusive.</param>
+			/// <returns>A reference to the modified object.</returns>
+			color& red(const unsigned short& red);
+			
+			/// <summary>Get or set the green property.</summary>
+			/// <returns>A reference to the property, from 0 to 255 inclusive.</returns>
+			unsigned short& green();
+
+			/// <summary>Get the green property.</summary>
+			/// <returns>The property, from 0 to 255 inclusive.</returns>
+			unsigned short get_green() const;
+
+			/// <summary>Set the green property.</summary>
+			/// <param name="green">The property, from 0 to 255 inclusive.</param>
+			/// <returns>A reference to the modified object.</returns>
+			color& green(const unsigned short& green);
+
+			/// <summary>Get or set the blue property.</summary>
+			/// <returns>A reference to the property, from 0 to 255 inclusive.</returns>
+			unsigned short& blue();
+
+			/// <summary>Get the blue property.</summary>
+			/// <returns>The property, from 0 to 255 inclusive.</returns>
+			unsigned short get_blue() const;
+
+			/// <summary>Set the blue property.</summary>
+			/// <param name="blue">The property, from 0 to 255 inclusive.</param>
+			/// <returns>A reference to the modified object.</returns>
+			color& blue(const unsigned short& blue);
+
+			/// <summary>Get or set the alpha property.</summary>
+			/// <returns>A reference to the property, from 0 to 255 inclusive.</returns>
+			unsigned short& alpha();
+
+			/// <summary>Get the alpha property.</summary>
+			/// <returns>The property, from 0 to 255 inclusive.</returns>
+			unsigned short get_alpha() const;
+
+			/// <summary>Set the alpha property.</summary>
+			/// <param name="alpha">The property, from 0 to 255 inclusive.</param>
+			/// <returns>A reference to the modified object.</returns>
+			color& alpha(const unsigned short& alpha);
 
 			bool operator==(const color&);
 			bool operator!=(const color&);

@@ -59,10 +59,10 @@ namespace liblec {
 			cc.lpTemplateName = NULL;
 
 			if (ChooseColor(&cc)) {
-				picked_color.red = static_cast<unsigned short>(GetRValue(cc.rgbResult));
-				picked_color.green = static_cast<unsigned short>(GetGValue(cc.rgbResult));
-				picked_color.blue = static_cast<unsigned short>(GetBValue(cc.rgbResult));
-				picked_color.alpha = 255;
+				picked_color.red(static_cast<unsigned short>(GetRValue(cc.rgbResult)));
+				picked_color.green(static_cast<unsigned short>(GetGValue(cc.rgbResult)));
+				picked_color.blue(static_cast<unsigned short>(GetBValue(cc.rgbResult)));
+				picked_color.alpha(255);
 				return true;
 			}
 			else

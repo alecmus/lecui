@@ -18,7 +18,7 @@ namespace liblec {
 				/// Light theme
 			case themes::light: {
 				switch (wc) {
-				case item::form: return { 244, 244, 244 };
+				case item::form: return { 244, 244, 244, 255 };
 				case item::titlebar: return defaults::color(theme, item::form);
 				case item::accent: return { 0, 120, 170, 255 };
 				case item::accent_hover: return { 255, 180, 0, 255 };
@@ -145,7 +145,7 @@ namespace liblec {
 				/// Dark theme
 			case themes::dark: {
 				switch (wc) {
-				case item::form: return { 16, 29, 36 };
+				case item::form: return { 16, 29, 36, 255 };
 				case item::titlebar: return defaults::color(theme, item::form);
 				case item::accent: return { 60, 190, 175, 255 };
 				case item::accent_hover: return { 255, 255, 255, 255 };
