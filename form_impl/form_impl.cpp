@@ -2431,6 +2431,18 @@ namespace liblec {
 				}
 				catch (const std::exception&) {}
 
+				try {
+					// check special table view pane
+					auto& table_view_pane_control = container.d_page_.get_pane(widgets::pane_impl::table_pane_alias_prefix() + path);
+
+					// table view pane control confirmed ... get the pane page
+					auto& table_view_pane = table_view_pane_control.p_panes_.at("pane");
+
+					// pane confirmed ... recurse
+					return find_widget(table_view_pane, path);
+				}
+				catch (const std::exception&) {}
+
 				// check special icon pane
 				auto& icon_pane_control = container.d_page_.get_pane(widgets::pane_impl::icon_pane_alias_prefix() + path);
 
