@@ -125,6 +125,9 @@ namespace liblec {
 
 			/// <summary>Show a page.</summary>
 			/// <param name="alias">The in-form unique alias, e.g. "home_page".</param>
+			/// <remarks>This method is only applicable to form pages and not panes and tab panes even though
+			/// they are also containers. To manipulate the visibility of the other containers use the
+			/// widget_management::show method instead.</remarks>
 			void show(const std::string& alias);
 
 			/// <summary>Close a container.</summary>
