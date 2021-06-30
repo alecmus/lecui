@@ -293,8 +293,9 @@ namespace liblec {
 					question_(question),
 					user_agreed_(user_agreed) {
 					controls ctrls(*this);
-					ctrls.allow_resize(false);
-					ctrls.allow_minimize(false);
+					ctrls
+						.allow_resize(false)
+						.allow_minimize(false);
 
 					// impose maximums
 					D2D1_RECT_F rect = D2D1::RectF(0.f, 0.f, max_size_.width, max_size_.height);
@@ -376,8 +377,9 @@ namespace liblec {
 						form(title, parent),
 						message_(message) {
 						controls ctrls(*this);
-						ctrls.allow_resize(false);
-						ctrls.allow_minimize(false);
+						ctrls
+							.allow_resize(false)
+							.allow_minimize(false);
 
 						// impose maximums
 						D2D1_RECT_F rect = D2D1::RectF(0.f, 0.f, max_size_.width, max_size_.height);

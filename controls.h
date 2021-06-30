@@ -27,29 +27,33 @@ namespace liblec {
 
 			/// <summary>Whether to allow a form to be resizable.</summary>
 			/// <param name="enable">Set to false to disable resizing.</param>
+			/// <returns>A reference to the modified object.</returns>
 			/// <remarks>If resizing is enabled by default if this method is never called.
 			/// </remarks>
-			void allow_resize(bool enable);
+			controls& allow_resize(bool enable);
 
 			/// <summary>Whether to add a minimize control button to the form.</summary>
 			/// <param name="enable">Set to false to remove the minimize control button.</param>
+			/// <returns>A reference to the modified object.</returns>
 			/// <remarks>The minimize control button is enabled by default if this method is never
 			/// called.</remarks>
-			void allow_minimize(bool enable);
+			controls& allow_minimize(bool enable);
 
 			/// <summary>Whether to make this a top most form.</summary>
 			/// <param name="enable">Set to false for a normal form and to true to make the form
 			/// appear above all other windows.</param>
-			void make_top_most(bool enable);
+			/// <returns>A reference to the modified object.</returns>
+			controls& make_top_most(bool enable);
 
 			/// <summary>Whether to keep the form hidden after its creation.</summary>
 			/// <param name="hidden">Set to false to keep normal form bahaviour and to true to initialize
 			/// app with the form hidden. Useful when starting app in the background and when using the
 			/// system tray.</param>
+			/// <returns>A reference to the modified object.</returns>
 			/// <remarks>To hide a form after it has already been created use the
 			/// <see cref="form::hide"></see> method. To restore a form after it's creation use the
 			/// <see cref="form::restore"></see> method.</remarks>
-			void start_hidden(bool hidden);
+			controls& start_hidden(bool hidden);
 
 		private:
 			class impl;

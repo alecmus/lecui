@@ -23,10 +23,25 @@ namespace liblec {
 		controls::controls(form& fm) : d_(*(new impl(fm))) {}
 		controls::~controls() { delete& d_; }
 
-		void controls::allow_resize(bool enable) { d_.fm_.d_.allow_resizing_ = enable; }
-		void controls::allow_minimize(bool enable) { d_.fm_.d_.allow_minimize_ = enable; }
-		void controls::make_top_most(bool make_top_most) { d_.fm_.d_.top_most_ = make_top_most; }
-		void controls::start_hidden(bool hidden) { d_.fm_.d_.start_hidden_ = hidden; }
+		controls& controls::allow_resize(bool enable) {
+			d_.fm_.d_.allow_resizing_ = enable;
+			return *this;
+		}
+
+		controls& controls::allow_minimize(bool enable) {
+			d_.fm_.d_.allow_minimize_ = enable;
+			return *this;
+		}
+
+		controls& controls::make_top_most(bool make_top_most) {
+			d_.fm_.d_.top_most_ = make_top_most;
+			return *this;
+		}
+
+		controls& controls::start_hidden(bool hidden) {
+			d_.fm_.d_.start_hidden_ = hidden;
+			return *this;
+		}
 
 		class dimensions::impl {
 		public:
