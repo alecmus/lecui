@@ -104,7 +104,7 @@ namespace liblec {
 			/// form, some room is left for the form border, form controls, and depending on the
 			/// container possibly scroll area etc. Refer to the container's documentation for
 			/// more details.</remarks>
-			[[nodiscard]] const lecui::size& get_size();
+			[[nodiscard]] const lecui::size get_size();
 
 			/// <summary>Get the form's position.</summary>
 			/// <returns>Returns the coordinates of the top left corner.</returns>

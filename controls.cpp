@@ -86,8 +86,16 @@ namespace liblec {
 			}
 		}
 
-		const size& dimensions::get_size() {
-			return d_.fm_.d_.size_;
+		const size dimensions::get_size() {
+			if (IsWindow(d_.fm_.d_.hWnd_)) {
+				RECT rc;
+				GetWindowRect(d_.fm_.d_.hWnd_, &rc);
+				unscale_RECT(rc, d_.fm_.d_.dpi_scale_);
+				const size size_ = { static_cast<float>(rc.right - rc.left), static_cast<float>(rc.bottom - rc.top) };
+				return size_;
+			}
+			else
+				return d_.fm_.d_.size_;
 		}
 
 		const lecui::point dimensions::get_position() {
