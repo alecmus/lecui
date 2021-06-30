@@ -1,6 +1,6 @@
 # lecui tutorial
 
-Below are step-by-step instructions on how to use the library to build a Windows gui app in C++.
+Below are step-by-step instructions on how to use the library to build a Windows gui app in C++. This file will be revised from time to time.
 
 ### Inherit from the form base class
 
@@ -113,7 +113,7 @@ label()
   .rect().left(10.f).right(home.size().width - 10.f).top(10.f).bottom(30.f);
 ```
 
-## Make an instance of the class and show the Form
+## Make an instance of the class and show the form
 
 We can instantiate our class and call the show() method as follows to display the form:
 
