@@ -164,14 +164,16 @@ namespace liblec {
 
 			/// <summary>Whether to add a shadow to the form.</summary>
 			/// <param name="enable">Set to false to disable the shadow.</param>
+			/// <returns>A reference to the modified object.</returns>
 			/// <remarks>The shadow is enabled by default if this method is never called.</remarks>
-			void shadow(const bool& enable);
+			appearance& shadow(const bool& enable);
 
 			/// <summary>Set a preset theme.</summary>
 			/// <param name="theme">The theme to set.</param>
-			/// /// <remarks>This option has to be set early in on_layout(), or in the
+			/// <returns>A reference to the modified object.</returns>
+			/// <remarks>This option has to be set early in on_layout(), or in the
 			/// constructor. Changing this later is not yet supported.</remarks>
-			void theme(themes theme);
+			appearance& theme(themes theme);
 
 			/// <summary>Get the preset theme.</summary>
 			/// <returns>The theme.</returns>
@@ -183,7 +185,8 @@ namespace liblec {
 			/// <param name="color_hot">The color on-hovering over a control.</param>
 			/// <param name="color_disabled">The color when a control is disabled.</param>
 			/// <param name="color_text">The text color.</param>
-			void theme(const lecui::color& color,
+			/// <returns>A reference to the modified object.</returns>
+			appearance& theme(const lecui::color& color,
 				const lecui::color& color_hot,
 				const lecui::color& color_disabled,
 				const lecui::color& color_text);
@@ -191,13 +194,15 @@ namespace liblec {
 			/// <summary>Set the form's background colors.</summary>
 			/// <param name="color">The background color of the entire form.</param>
 			/// <param name="color_titlebar">The background color of the titlebar.</param>
-			void background(const lecui::color& color,
+			/// <returns>A reference to the modified object.</returns>
+			appearance& background(const lecui::color& color,
 				const lecui::color& color_titlebar);
 
 			/// <summary>Set the application icon resources.</summary>
 			/// <param name="icon_resource">The ID of the main .ico resource.</param>
 			/// <param name="small_icon_resource">The ID os the small .ico resource.</param>
-			void set_icons(int icon_resource,
+			/// <returns>A reference to the modified object.</returns>
+			appearance& set_icons(int icon_resource,
 				int small_icon_resource);
 
 		private:

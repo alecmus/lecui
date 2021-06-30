@@ -287,14 +287,16 @@ namespace liblec {
 
 		appearance::~appearance() { delete& d_; }
 
-		void appearance::shadow(const bool& enable) {
+		appearance& appearance::shadow(const bool& enable) {
 			if (IsWindow(d_.fm_.d_.hWnd_))
 				d_.fm_.d_.set_borderless_shadow(d_.fm_.d_.hWnd_, enable);
 			else
 				d_.fm_.d_.borderless_shadow_ = enable;
+
+			return *this;
 		}
 
-		void appearance::theme(themes theme) {
+		appearance& appearance::theme(themes theme) {
 			d_.fm_.d_.theme_ = theme;
 
 			// change the background color
@@ -306,13 +308,15 @@ namespace liblec {
 				defaults::color(theme, item::accent_hover),
 				defaults::color(theme, item::disabled),
 				defaults::color(theme, item::label));
+
+			return *this;
 		}
 
 		themes appearance::theme() {
 			return d_.fm_.d_.theme_;
 		}
 
-		void appearance::theme(const lecui::color& color,
+		appearance& appearance::theme(const lecui::color& color,
 			const lecui::color& color_hot,
 			const lecui::color& color_disabled,
 			const lecui::color& color_text) {
@@ -320,18 +324,24 @@ namespace liblec {
 			d_.fm_.d_.clr_theme_hot_ = color_hot;
 			d_.fm_.d_.clr_theme_disabled_ = color_disabled;
 			d_.fm_.d_.clr_theme_text_ = color_text;
+
+			return *this;
 		}
 
-		void appearance::background(const lecui::color& color,
+		appearance& appearance::background(const lecui::color& color,
 			const lecui::color& color_titlebar) {
 			d_.fm_.d_.clr_background_ = color;
 			d_.fm_.d_.clr_titlebar_background_ = color_titlebar;
+
+			return *this;
 		}
 
-		void appearance::set_icons(int icon_resource,
+		appearance& appearance::set_icons(int icon_resource,
 			int small_icon_resource) {
 			d_.fm_.d_.idi_icon_ = icon_resource;
 			d_.fm_.d_.idi_icon_small_ = small_icon_resource;
+
+			return *this;
 		}
 	}
 }
