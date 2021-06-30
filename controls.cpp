@@ -70,7 +70,7 @@ namespace liblec {
 			return rect;
 		}
 
-		void dimensions::set_size(const lecui::size& size) {
+		dimensions& dimensions::set_size(const lecui::size& size) {
 			if (size.width) {
 				d_.fm_.d_.size_.width = size.width;
 
@@ -84,6 +84,8 @@ namespace liblec {
 				// force minimum height to conform (it cannot be greater)
 				d_.fm_.d_.min_size_.height = smallest(d_.fm_.d_.size_.height, d_.fm_.d_.min_size_.height);
 			}
+
+			return *this;
 		}
 
 		const size dimensions::get_size() {
@@ -109,12 +111,14 @@ namespace liblec {
 				return { 0.f, 0.f };
 		}
 
-		void dimensions::set_minimum(const lecui::size& size) {
+		dimensions& dimensions::set_minimum(const lecui::size& size) {
 			if (size.width)		// do not allow minimum width to be greater than current window width
 				d_.fm_.d_.min_size_.width = smallest(size.width, d_.fm_.d_.size_.width);
 
 			if (size.height)	// do not allow minimum height to be greater than current window height
 				d_.fm_.d_.min_size_.height = smallest(size.height, d_.fm_.d_.size_.height);
+
+			return *this;
 		}
 
 		const size& dimensions::get_minimum() {

@@ -93,8 +93,9 @@ namespace liblec {
 
 			/// <summary>Set the form's size.</summary>
 			/// <param name="size">The size, in pixels.</param>
+			/// <returns>A reference to the modified object.</returns>
 			/// <remarks>This manipulation should be done in the form's layout method.</remarks>
-			void set_size(const lecui::size& size);
+			dimensions& set_size(const lecui::size& size);
 
 			/// <summary>Get the form's size.</summary>
 			/// <returns>The size, in pixels.</returns>
@@ -112,8 +113,9 @@ namespace liblec {
 
 			/// <summary>Set the form's minimum size.</summary>
 			/// <param name="size">The size, in pixels.</param>
+			/// <returns>A reference to the modified object.</returns>
 			/// <remarks>This manipulation should be done in the form's layout method.</remarks>
-			void set_minimum(const lecui::size& size);
+			dimensions& set_minimum(const lecui::size& size);
 
 			/// <summary>Get the form's minimum size.</summary>
 			/// <returns>The size, in pixels.</returns>
