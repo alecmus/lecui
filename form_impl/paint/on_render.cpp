@@ -310,7 +310,7 @@ namespace liblec {
 											rect_page.right -= page_tolerance_;
 											rect_page.bottom -= page_tolerance_;
 
-											render_page(render, tab.first, tab_pane.current_tab_, tab.second,
+											render_page(render ? tab_pane.visible() : false, tab.first, tab_pane.current_tab_, tab.second,
 												p_render_target_, rect_page, rect_page, change_in_size,
 												dpi_scale_, p_brush_theme_, p_brush_theme_hot_, lbutton_pressed);	// recursion
 										}
@@ -340,7 +340,7 @@ namespace liblec {
 												rect_page.right -= page_tolerance_;
 												rect_page.bottom -= page_tolerance_;
 
-												render_page(render, page.first, pane.current_pane_, page.second,
+												render_page(render ? pane.visible() : false, page.first, pane.current_pane_, page.second,
 													p_render_target_, rect_page, rect_page, change_in_size,
 													dpi_scale_, p_brush_theme_, p_brush_theme_hot_, lbutton_pressed);	// recursion
 											}
