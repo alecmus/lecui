@@ -113,9 +113,12 @@ Now you can use the required functions by calling #include <liblec/lecui/...>
 Build.
 
 ### Using the library
+
+If you are new to the library you can follow this straight to the point step-by-step [tutorial](https://github.com/alecmus/lecui/blob/master/TUTORIAL.md).
+
 The smallest possible gui app is as follows:
 
-```
+```C++
 #include <liblec/lecui/form.h>
 
 int main() {
