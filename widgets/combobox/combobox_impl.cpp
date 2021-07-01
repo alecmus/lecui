@@ -509,6 +509,11 @@ namespace liblec {
 			}
 		}
 
+		void widgets::combobox_impl::on_right_click() {
+			if (specs_.events().right_click)
+				specs_.events().right_click();
+		}
+
 		widgets::combobox_specs&
 			widgets::combobox_impl::specs() { return specs_; }
 

@@ -427,6 +427,11 @@ namespace liblec {
 				specs_.events().action();
 		}
 
+		void widgets::slider_impl::on_right_click() {
+			if (specs_.events().right_click)
+				specs_.events().right_click();
+		}
+
 		bool widgets::slider_impl::contains(const D2D1_POINT_2F& point) {
 			// capture the point
 			point_ = point;

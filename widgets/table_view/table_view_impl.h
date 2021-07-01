@@ -39,6 +39,7 @@ namespace liblec {
 				void on_click() override;
 				bool on_keydown(WPARAM wParam) override;
 				bool hit(const bool& hit) override;
+				void on_right_click() override;
 
 				/// widget specific methods
 				widgets::table_view_specs& specs();

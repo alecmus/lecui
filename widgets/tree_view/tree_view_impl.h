@@ -41,6 +41,7 @@ namespace liblec {
 					const bool& render) override;
 				void on_click() override;
 				bool hit(const bool& hit) override;
+				void on_right_click() override;
 
 				/// widget specific methods
 				widgets::tree_view_specs& specs();

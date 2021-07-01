@@ -46,6 +46,7 @@ namespace liblec {
 					const D2D1_SIZE_F& change_in_size, const D2D1_POINT_2F& offset,
 					const bool& render) override;
 				void on_click() override;
+				void on_right_click() override;
 
 				/// widget specific methods
 				widgets::time_specs& specs();

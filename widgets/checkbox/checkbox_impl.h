@@ -39,6 +39,7 @@ namespace liblec {
 					const bool& render) override;
 				void on_click() override;
 				void on_action() override;
+				void on_right_click() override;
 
 				/// widget specific methods
 				widgets::checkbox_specs& specs();

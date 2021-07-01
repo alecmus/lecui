@@ -273,6 +273,11 @@ namespace liblec {
 				specs_.events().action();
 		}
 
+		void widgets::checkbox_impl::on_right_click() {
+			if (specs_.events().right_click)
+				specs_.events().right_click();
+		}
+
 		widgets::checkbox_specs&
 			widgets::checkbox_impl::specs() { return specs_; }
 

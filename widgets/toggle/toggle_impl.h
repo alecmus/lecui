@@ -38,6 +38,7 @@ namespace liblec {
 					const bool& render) override;
 				void on_click() override;
 				void on_action() override;
+				void on_right_click() override;
 				bool contains(const D2D1_POINT_2F& point) override;
 				bool contains() override;
 				bool hit(const bool& hit) override;

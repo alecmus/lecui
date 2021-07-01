@@ -40,6 +40,7 @@ namespace liblec {
 				void on_click() override;
 				bool hit(const bool& hit) override;
 				void on_selection_change(const bool& selected) override;
+				void on_right_click() override;
 
 				/// widget specific methods
 				widgets::combobox_specs& specs();

@@ -568,6 +568,11 @@ namespace liblec {
 			return true;
 		}
 
+		void widgets::table_view_impl::on_right_click() {
+			if (specs_.events().right_click)
+				specs_.events().right_click();
+		}
+
 		widgets::table_view_specs&
 			widgets::table_view_impl::specs() { return specs_; }
 

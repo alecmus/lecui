@@ -382,6 +382,11 @@ namespace liblec {
 			return true;
 		}
 
+		void widgets::tree_view_impl::on_right_click() {
+			if (specs_.events().right_click)
+				specs_.events().right_click();
+		}
+
 		widgets::tree_view_specs&
 			widgets::tree_view_impl::specs() { return specs_; }
 
