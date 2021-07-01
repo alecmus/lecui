@@ -3021,6 +3021,14 @@ namespace liblec {
 				form_.d_.lbutton_pressed_ = false;
 				return NULL;
 
+			case WM_RBUTTONDOWN:
+				form_.d_.on_rbuttondown(form_.d_.get_cursor_position());
+				return NULL;
+
+			case WM_RBUTTONUP:
+				form_.d_.on_rbuttonup(form_.d_.get_cursor_position());
+				return NULL;
+
 			case WM_SIZING:
 				form_.d_.user_sizing_ = true;
 				break;

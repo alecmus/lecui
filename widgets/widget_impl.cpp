@@ -148,10 +148,17 @@ namespace liblec {
 					generic_specs().events().action();
 			}
 		}
+
+		void widgets::widget_impl::on_right_click() {
+			if (generic_specs().events().right_click)
+				generic_specs().events().right_click();
+		}
+
 		void widgets::widget_impl::on_action() {
 			if (generic_specs().events().action)
 				generic_specs().events().action();
 		}
+
 		bool widgets::widget_impl::on_mousewheel(float units) { return false; }
 		bool widgets::widget_impl::on_keydown(WPARAM wParam) { return false; }
 		void widgets::widget_impl::on_selection_change(const bool& selected) {}

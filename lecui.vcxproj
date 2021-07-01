@@ -128,6 +128,7 @@
     <ClCompile Include="form_impl\mouse\non_client_hittest.cpp" />
     <ClCompile Include="form_impl\mouse\left_button.cpp" />
     <ClCompile Include="form_impl\mouse\on_dropfiles.cpp" />
+    <ClCompile Include="form_impl\mouse\right_button.cpp" />
     <ClCompile Include="form_impl\mouse\wheel.cpp" />
     <ClCompile Include="form_impl\paint\on_render.cpp" />
     <ClCompile Include="form_impl\size\on_form_pos_changing.cpp" />

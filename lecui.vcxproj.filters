@@ -686,6 +686,9 @@
     <ClCompile Include="widgets\tooltip\tooltip.cpp">
       <Filter>lecui\widgets\tooltip</Filter>
     </ClCompile>
+    <ClCompile Include="form_impl\mouse\right_button.cpp">
+      <Filter>lecui\form_impl\mouse</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="LICENSE.md">

@@ -223,6 +223,7 @@ namespace liblec {
 					const D2D1_SIZE_F& change_in_size, const D2D1_POINT_2F& offset,
 					const bool& render) = 0;
 				virtual void on_click();
+				virtual void on_right_click();
 				virtual void on_action();
 				virtual bool on_mousewheel(float units);
 				virtual bool on_keydown(WPARAM wParam);

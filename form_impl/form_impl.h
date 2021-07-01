@@ -326,6 +326,8 @@ namespace liblec {
 			/// mouse
 			void on_lbuttondown(const D2D1_POINT_2F& point);
 			void on_lbuttonup(const D2D1_POINT_2F& point);
+			void on_rbuttondown(const D2D1_POINT_2F& point);
+			void on_rbuttonup(const D2D1_POINT_2F& point);
 			void client_hittest(const D2D1_POINT_2F& point);
 			LRESULT non_client_hittest(const POINT& cursor);
 			void on_wheel(WPARAM wParam);

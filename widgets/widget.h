@@ -111,6 +111,9 @@ namespace liblec {
 					/// <summary>The handler to be called when the widget is clicked.</summary>
 					std::function<void()> click = nullptr;
 
+					/// <summary>The handler to be called when the widget is right-clicked.</summary>
+					std::function<void()> right_click = nullptr;
+
 					/// <summary>The handler to be called when the mouse enters the widget.</summary>
 					std::function<void()> mouse_enter = nullptr;
 
