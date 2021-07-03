@@ -21,7 +21,7 @@ namespace liblec {
 		namespace widgets {
 			/// <summary>Date widget specifications.</summary>
 			/// <remarks>Recommended size with defaults is 110x60px.</remarks>
-			class date_specs : public specs {
+			class lecui_api date_specs : public specs {
 				float border_ = .5f;
 				color color_border_;
 				float corner_radius_x_ = 2.f;

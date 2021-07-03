@@ -21,7 +21,7 @@ namespace liblec {
 		namespace widgets {
 			/// <summary>Progress indicator widget specifications.</summary>
 				/// <remarks>Recommended size with defaults is 50x50px</remarks>
-			class progress_indicator_specs : public specs {
+			class lecui_api progress_indicator_specs : public specs {
 				color color_empty_;
 				float line_thickness_empty_ = .5f;
 				float line_thickness_fill_ = 1.5f;

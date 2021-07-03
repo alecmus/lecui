@@ -21,7 +21,7 @@ namespace liblec {
 		namespace widgets {
 			/// <summary>Icon widget specifications.</summary>
 			/// <remarks>Recommended size with defaults is 180x78px.</remarks>
-			class icon_specs : public specs {
+			class lecui_api icon_specs : public specs {
 			public:
 				/// <summary>Text position in icon.</summary>
 				enum class icon_text_position {

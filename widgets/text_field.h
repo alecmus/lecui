@@ -21,7 +21,7 @@ namespace liblec {
 		namespace widgets {
 			/// <summary>Text field widget specifications.</summary>
 			/// <remarks>Recommended size with defaults is 200x25px</remarks>
-			class text_field_specs : public specs {
+			class lecui_api text_field_specs : public specs {
 				float border_ = .5f;
 				color color_border_;
 				float corner_radius_x_ = 3.f;

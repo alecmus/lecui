@@ -21,7 +21,7 @@ namespace liblec {
 		namespace widgets {
 			/// <summary>Rectangle widget specifications.</summary>
 			/// <remarks>Default size is 200x200px.</remarks>
-			class rectangle_specs : public specs {
+			class lecui_api rectangle_specs : public specs {
 				float border_ = .5f;
 				color color_border_;
 				color color_border_hot_;

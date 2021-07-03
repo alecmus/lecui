@@ -21,7 +21,7 @@ namespace liblec {
 		namespace widgets {
 			/// <summary>Progress bar widget specifications.</summary>
 			/// <remarks>Recommended size with defaults is 200x12px</remarks>
-			class progress_bar_specs : public specs {
+			class lecui_api progress_bar_specs : public specs {
 				float border_ = 1.f;
 				color color_border_;
 				float percentage_ = 0.f;

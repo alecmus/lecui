@@ -21,7 +21,7 @@ namespace liblec {
 		namespace widgets {
 			/// <summary>Combobox widget specifications.</summary>
 			/// <remarks>Recommended height with defaults is 25px</remarks>
-			class combobox_specs : public specs {
+			class lecui_api combobox_specs : public specs {
 			public:
 				/// <summary>A combobox item.</summary>
 				struct combobox_item {

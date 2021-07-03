@@ -21,7 +21,7 @@ namespace liblec {
 	namespace lecui {
 		namespace widgets {
 			/// <summary>Base class for all widget specifications.</summary>
-			class specs {
+			class lecui_api specs {
 			public:
 				/// <summary>Resize parameters.</summary>
 				/// <remarks>Affects how the widget behaves when the immediate container's

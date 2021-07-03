@@ -20,7 +20,7 @@ namespace liblec {
 	namespace lecui {
 		namespace widgets {
 			/// <summary>Custom widget specifications.</summary>
-			class custom_specs : public specs {
+			class lecui_api custom_specs : public specs {
 			public:
 				/// <summary>
 				/// Handler for resource creation. The pointers need to be cast back to their

@@ -22,7 +22,7 @@ namespace liblec {
 			/// <summary>Toggle widget specifications.</summary>
 			/// <remarks>Recommended height with defaults is 20px. Recommended minimum
 			/// width with defaults is 100px. Default size is 200x20px.</remarks>
-			class toggle_specs : public specs {
+			class lecui_api toggle_specs : public specs {
 				std::string text_off_ = "Off";
 				color color_on_;
 				color color_off_;

@@ -23,7 +23,7 @@ namespace liblec {
 		namespace widgets {
 			/// <summary>Table view widget specifications.</summary>
 			/// <remarks>Default size is 200x200px.</remarks>
-			class table_view_specs : public specs {
+			class lecui_api table_view_specs : public specs {
 				float border_ = .5f;
 				color color_border_;
 				float corner_radius_x_ = 2.f;

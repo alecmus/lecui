@@ -25,7 +25,7 @@ namespace liblec {
 			/// being added to a group. Never add a group name to a path. Groups are strictly for
 			/// aesthetics and they don't "carry" the widgets that belong to them like other
 			/// containers.</remarks>
-			class group_specs : public widgets::specs {
+			class lecui_api group_specs : public widgets::specs {
 				float border_ = .5f;
 				color color_border_;
 				float corner_radius_x_ = 5.f;

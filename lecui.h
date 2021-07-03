@@ -36,6 +36,11 @@
 	#endif
 #endif
 
+#if defined(_MSC_VER)
+// Turn off annoying "needs to have dll-interface" warning
+#pragma warning(disable:4251)
+#endif
+
 #include <string>
 #include <vector>
 

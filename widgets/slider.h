@@ -25,7 +25,7 @@ namespace liblec {
 			/// vertically. With the defaults, the recommended minimum height for horizontal
 			/// orientation is 35px and the recommended minimum with for vertical orientation
 			/// is 40px.</remarks>
-			class slider_specs : public specs {
+			class lecui_api slider_specs : public specs {
 			public:
 				/// <summary>Slider range.</summary>
 				struct slider_range {

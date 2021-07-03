@@ -21,7 +21,7 @@ namespace liblec {
 		namespace widgets {
 			/// <summary>Image view widget specifications.</summary>
 			/// <remarks>Default size is 200x200px.</remarks>
-			class image_view_specs : public specs {
+			class lecui_api image_view_specs : public specs {
 				float border_ = .5f;
 				color color_border_;
 				float corner_radius_x_ = .0f;

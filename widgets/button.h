@@ -21,7 +21,7 @@ namespace liblec {
 		namespace widgets {
 			/// <summary>Button widget specifications.</summary>
 			/// <remarks>Recommended size with defaults is 80x25px.</remarks>
-			class button_specs : public specs {
+			class lecui_api button_specs : public specs {
 				float border_ = .5f;
 				color color_border_;
 				float corner_radius_x_ = 5.f;

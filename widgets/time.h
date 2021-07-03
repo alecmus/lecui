@@ -21,7 +21,7 @@ namespace liblec {
 		namespace widgets {
 			/// <summary>Time widget specifications.</summary>
 			/// <remarks>Recommended size with defaults is 90x40px.</remarks>
-			class time_specs : public specs {
+			class lecui_api time_specs : public specs {
 				float border_ = .5f;
 				color color_border_;
 				float corner_radius_x_ = 2.f;

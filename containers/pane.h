@@ -20,7 +20,7 @@ namespace liblec {
 	namespace lecui {
 		namespace containers {
 			/// <summary>Pane container specifications.</summary>
-			class pane_specs : public widgets::specs {
+			class lecui_api pane_specs : public widgets::specs {
 				float border_ = .5f;
 				color color_border_;
 				float corner_radius_x_ = 5.f;

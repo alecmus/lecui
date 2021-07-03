@@ -23,7 +23,7 @@ namespace liblec {
 		namespace widgets {
 			/// <summary>Tree view widget specifications.</summary>
 			/// <remarks>Default size is 200x200px.</remarks>
-			class tree_view_specs : public specs {
+			class lecui_api tree_view_specs : public specs {
 			public:
 				/// <summary>Tree node.</summary>
 				class node {

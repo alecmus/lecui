@@ -20,7 +20,7 @@ namespace liblec {
 	namespace lecui {
 		namespace widgets {
 			/// <summary>Line widget specifications.</summary>
-			class line_specs : public specs {
+			class lecui_api line_specs : public specs {
 				float thickness_ = 1.f;
 				std::vector<point> points_;
 

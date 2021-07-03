@@ -70,7 +70,7 @@ namespace liblec {
 			
 			/// <summary>Label widget specifications.</summary>
 			/// <remarks>Recommended size with defaults is 200x20px.</remarks>
-			class label_specs : public specs {
+			class lecui_api label_specs : public specs {
 				color color_hot_pressed_;
 				bool multiline_ = false;
 				bool center_h_ = false;

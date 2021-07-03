@@ -22,7 +22,7 @@ namespace liblec {
 			class tab_builder;
 
 			/// <summary>Tab pane specifications.</summary>
-			class tab_pane_specs : public widgets::specs {
+			class lecui_api tab_pane_specs : public widgets::specs {
 			public:
 				enum class side {
 					left,

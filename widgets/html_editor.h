@@ -21,7 +21,7 @@ namespace liblec {
 		namespace widgets {
 			/// <summary>HTML editor widget specifications.</summary>
 			/// <remarks>Recommended size with defaults is a minimum of 320x215px.</remarks>
-			class html_editor_specs : public specs {
+			class lecui_api html_editor_specs : public specs {
 				float border_ = .5f;
 				color color_border_;
 				float corner_radius_x_ = 3.f;

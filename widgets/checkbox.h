@@ -21,7 +21,7 @@ namespace liblec {
 		namespace widgets {
 			/// <summary>Checkbox widget specifications.</summary>
 			/// <remarks>Recommended size with defaults is 20x20px.</remarks>
-			class checkbox_specs : public specs {
+			class lecui_api checkbox_specs : public specs {
 			public:
 				/// <summary>Checkbox status.</summary>
 				enum class checkbox_status {
