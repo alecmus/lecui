@@ -47,11 +47,6 @@ namespace liblec {
 					std::function<void()>& on_right_click_handler) {
 					// check widgets
 					for (auto& widget : page.d_page_.widgets()) {
-						if (widget.second.alias() == "darktheme") {
-							int dummy = 0;
-							dummy++;
-						}
-
 						if (widget.second.is_static() || !widget.second.visible() || !widget.second.enabled())
 							continue;
 
