@@ -32,6 +32,188 @@ namespace liblec {
 			return !operator==(param);
 		}
 
+		std::string& widgets::table_view_specs::text() { return text_; }
+
+		widgets::table_view_specs& widgets::table_view_specs::text(const std::string& text) {
+			text_ = text;
+			return *this;
+		}
+
+		std::string& widgets::table_view_specs::tooltip() { return tooltip_; }
+
+		widgets::table_view_specs& widgets::table_view_specs::tooltip(const std::string& tooltip) {
+			tooltip_ = tooltip;
+			return *this;
+		}
+
+		lecui::rect& widgets::table_view_specs::rect() { return rect_; }
+
+		widgets::table_view_specs& widgets::table_view_specs::rect(const lecui::rect& rect) {
+			rect_ = rect;
+			return *this;
+		}
+
+		widgets::specs::resize_params& widgets::table_view_specs::on_resize() { return on_resize_; }
+
+		widgets::table_view_specs& widgets::table_view_specs::on_resize(const resize_params& on_resize) {
+			on_resize_ = on_resize;
+			return *this;
+		}
+
+		widgets::specs::cursor_type& widgets::table_view_specs::cursor() { return cursor_; }
+
+		widgets::table_view_specs& widgets::table_view_specs::cursor(const cursor_type cursor) {
+			cursor_ = cursor;
+			return *this;
+		}
+
+		std::string& widgets::table_view_specs::font() { return font_; }
+
+		widgets::table_view_specs& widgets::table_view_specs::font(const std::string& font) {
+			font_ = font;
+			return *this;
+		}
+
+		float& widgets::table_view_specs::font_size() { return font_size_; }
+
+		widgets::table_view_specs& widgets::table_view_specs::font_size(const float& font_size) {
+			font_size_ = font_size;
+			return *this;
+		}
+
+		color& widgets::table_view_specs::color_text() { return color_text_; }
+
+		widgets::table_view_specs& widgets::table_view_specs::color_text(const color& color_text) {
+			color_text_ = color_text;
+			return *this;
+		}
+
+		color& widgets::table_view_specs::color_fill() { return color_fill_; }
+
+		widgets::table_view_specs& widgets::table_view_specs::color_fill(const color& color_fill) {
+			color_fill_ = color_fill;
+			return *this;
+		}
+
+		color& widgets::table_view_specs::color_hot() { return color_hot_; }
+
+		widgets::table_view_specs& widgets::table_view_specs::color_hot(const color& color_hot) {
+			color_hot_ = color_hot;
+			return *this;
+		}
+
+		color& widgets::table_view_specs::color_selected() { return color_selected_; }
+
+		widgets::table_view_specs& widgets::table_view_specs::color_selected(const color& color_selected) {
+			color_selected_ = color_selected;
+			return *this;
+		}
+
+		color& widgets::table_view_specs::color_disabled() { return color_disabled_; }
+
+		widgets::table_view_specs& widgets::table_view_specs::color_disabled(const color& color_disabled) {
+			color_disabled_ = color_disabled;
+			return *this;
+		}
+
+		float& widgets::table_view_specs::border() { return border_; }
+
+		widgets::table_view_specs& widgets::table_view_specs::border(const float& border) {
+			border_ = border;
+			return *this;
+		}
+
+		lecui::color& widgets::table_view_specs::color_border() { return color_border_; }
+
+		widgets::table_view_specs& widgets::table_view_specs::color_border(const color& color_border) {
+			color_border_ = color_border;
+			return *this;
+		}
+
+		float& widgets::table_view_specs::corner_radius_x() { return corner_radius_x_; }
+
+		widgets::table_view_specs& widgets::table_view_specs::corner_radius_x(const float& corner_radius_x) {
+			corner_radius_x_ = corner_radius_x;
+			return *this;
+		}
+
+		float& widgets::table_view_specs::corner_radius_y() { return corner_radius_y_; }
+
+		widgets::table_view_specs& widgets::table_view_specs::corner_radius_y(const float& corner_radius_y) {
+			corner_radius_y_ = corner_radius_y;
+			return *this;
+		}
+
+		lecui::color& widgets::table_view_specs::color_text_selected() { return color_text_selected_; }
+
+		widgets::table_view_specs& widgets::table_view_specs::color_text_selected(const color& color_text_selected) {
+			color_text_selected_ = color_text_selected;
+			return *this;
+		}
+
+		color& widgets::table_view_specs::color_grid() { return color_grid_; }
+
+		widgets::table_view_specs& widgets::table_view_specs::color_grid(const color& color_grid) {
+			color_grid_ = color_grid;
+			return *this;
+		}
+
+		lecui::color& widgets::table_view_specs::color_text_header() { return color_text_header_; }
+
+		widgets::table_view_specs& widgets::table_view_specs::color_text_header(const color& color_text_header) {
+			color_text_header_ = color_text_header;
+			return *this;
+		}
+
+		color& widgets::table_view_specs::color_fill_header() { return color_fill_header_; }
+
+		widgets::table_view_specs& widgets::table_view_specs::color_fill_header(const color& color_fill_header) {
+			color_fill_header_ = color_fill_header;
+			return *this;
+		}
+
+		lecui::color& widgets::table_view_specs::color_fill_alternate() { return color_fill_alternate_; }
+
+		widgets::table_view_specs& widgets::table_view_specs::color_fill_alternate(const color& color_fill_alternate) {
+			color_fill_alternate_ = color_fill_alternate;
+			return *this;
+		}
+
+		lecui::color& widgets::table_view_specs::color_row_hot() { return color_row_hot_; }
+
+		widgets::table_view_specs& widgets::table_view_specs::color_row_hot(const color& color_row_hot) {
+			color_row_hot_ = color_row_hot;
+			return *this;
+		}
+
+		lecui::color& widgets::table_view_specs::color_row_selected() { return color_row_selected_; }
+
+		widgets::table_view_specs& widgets::table_view_specs::color_row_selected(const color& color_row_selected) {
+			color_row_selected_ = color_row_selected;
+			return *this;
+		}
+
+		std::vector<lecui::table_column>& widgets::table_view_specs::columns() { return columns_; }
+
+		widgets::table_view_specs& widgets::table_view_specs::columns(const std::vector<table_column>& columns) {
+			columns_ = columns;
+			return *this;
+		}
+
+		std::vector<std::map<std::string, std::string>>& widgets::table_view_specs::data() { return data_; }
+
+		widgets::table_view_specs& widgets::table_view_specs::data(const std::vector<std::map<std::string, std::string>>& data) {
+			data_ = data;
+			return *this;
+		}
+
+		std::vector<long>& widgets::table_view_specs::selected() { return selected_; }
+
+		widgets::table_view_specs& widgets::table_view_specs::selected(const std::vector<long>& selected) {
+			selected_ = selected;
+			return *this;
+		}
+
 		class widgets::table_view_builder::impl {
 		public:
 			impl(containers::page& page, const std::string& alias) :

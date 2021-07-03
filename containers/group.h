@@ -45,153 +45,99 @@ namespace liblec {
 
 				// generic specs
 
-				std::string& text() override { return text_; }
-				group_specs& text(const std::string& text) {
-					text_ = text;
-					return *this;
-				}
+				std::string& text() override;
+				group_specs& text(const std::string& text);
 
-				std::string& tooltip() override { return tooltip_; }
-				group_specs& tooltip(const std::string& tooltip) {
-					tooltip_ = tooltip;
-					return *this;
-				}
+				std::string& tooltip() override;
+				group_specs& tooltip(const std::string& tooltip);
 
-				lecui::rect& rect() override { return rect_; }
-				group_specs& rect(const lecui::rect& rect) {
-					rect_ = rect;
-					return *this;
-				}
+				lecui::rect& rect() override;
+				group_specs& rect(const lecui::rect& rect);
 
-				resize_params& on_resize() override { return on_resize_; }
-				group_specs& on_resize(const resize_params& on_resize) {
-					on_resize_ = on_resize;
-					return *this;
-				}
+				resize_params& on_resize() override;
+				group_specs& on_resize(const resize_params& on_resize);
 
-				cursor_type& cursor() override { return cursor_; }
-				group_specs& cursor(const cursor_type cursor) {
-					cursor_ = cursor;
-					return *this;
-				}
+				cursor_type& cursor() override;
+				group_specs& cursor(const cursor_type cursor);
 
-				std::string& font() override { return font_; }
-				group_specs& font(const std::string& font) {
-					font_ = font;
-					return *this;
-				}
+				std::string& font() override;
+				group_specs& font(const std::string& font);
 
-				float& font_size() override { return font_size_; }
-				group_specs& font_size(const float& font_size) {
-					font_size_ = font_size;
-					return *this;
-				}
+				float& font_size() override;
+				group_specs& font_size(const float& font_size);
 
-				color& color_text() override { return color_text_; }
-				group_specs& color_text(const color& color_text) {
-					color_text_ = color_text;
-					return *this;
-				}
+				color& color_text() override;
+				group_specs& color_text(const color& color_text);
 
-				color& color_fill() override { return color_fill_; }
-				group_specs& color_fill(const color& color_fill) {
-					color_fill_ = color_fill;
-					return *this;
-				}
+				color& color_fill() override;
+				group_specs& color_fill(const color& color_fill);
 
-				color& color_hot() override { return color_hot_; }
-				group_specs& color_hot(const color& color_hot) {
-					color_hot_ = color_hot;
-					return *this;
-				}
+				color& color_hot() override;
+				group_specs& color_hot(const color& color_hot);
 
-				color& color_selected() override { return color_selected_; }
-				group_specs& color_selected(const color& color_selected) {
-					color_selected_ = color_selected;
-					return *this;
-				}
+				color& color_selected() override;
+				group_specs& color_selected(const color& color_selected);
 
-				color& color_disabled() override { return color_disabled_; }
-				group_specs& color_disabled(const color& color_disabled) {
-					color_disabled_ = color_disabled;
-					return *this;
-				}
+				color& color_disabled() override;
+				group_specs& color_disabled(const color& color_disabled);
 
 				// widget specific specs
 
 				/// <summary>Get or set the thickness of the border.</summary>
 				/// <returns>A reference to the border thickness, in pixels.</returns>
-				float& border() { return border_; }
+				float& border();
 
 				/// <summary>Set the thickness of the border.</summary>
 				/// <param name="border">The border thickness, in pixels.</param>
 				/// <returns>A reference to the modified object.</returns>
-				group_specs& border(const float& border) {
-					border_ = border;
-					return *this;
-				}
+				group_specs& border(const float& border);
 
 				/// <summary>Get or set the color of the border.</summary>
 				/// <returns>A reference to the border color, as defined in <see cref="color"></see>.</returns>
-				color& color_border() { return color_border_; }
+				color& color_border();
 
 				/// <summary>Set the color of the border.</summary>
 				/// <param name="color_border">The border color, as defined in <see cref="color"></see>.</param>
 				/// <returns>A reference to the modified object.</returns>
-				group_specs& color_border(const color& color_border) {
-					color_border_ = color_border;
-					return *this;
-				}
+				group_specs& color_border(const color& color_border);
 
 				/// <summary>Get or set the horizontal radius of the corners.</summary>
 				/// <returns>A reference to the radius, in pixels.</returns>
-				float& corner_radius_x() { return corner_radius_x_; }
+				float& corner_radius_x();
 
 				/// <summary>Set the horizontal radius of the corners.</summary>
 				/// <param name="corner_radius_x">The horizontal radius of the corner, in pixels.</param>
 				/// <returns>A reference to the modified object.</returns>
-				group_specs& corner_radius_x(const float& corner_radius_x) {
-					corner_radius_x_ = corner_radius_x;
-					return *this;
-				}
+				group_specs& corner_radius_x(const float& corner_radius_x);
 
 				/// <summary>Get or set the vertical radius of the corners.</summary>
 				/// <returns>A reference to the radius, in pixels.</returns>
-				float& corner_radius_y() { return corner_radius_y_; }
+				float& corner_radius_y();
 
 				/// <summary>Set the vertical radius of the corners.</summary>
 				/// <param name="corner_radius_y">The horizontal radius of the corner, in pixels.</param>
 				/// <returns>A reference to the modified object.</returns>
-				group_specs& corner_radius_y(const float& corner_radius_y) {
-					corner_radius_y_ = corner_radius_y;
-					return *this;
-				}
+				group_specs& corner_radius_y(const float& corner_radius_y);
 
 				/// <summary>Get or set the group's margin. Defines how far we extend outside the collective group rectangles.</summary>
 				/// <returns>A reference to the margin, in pixels.</returns>
-				float& margin() { return margin_; }
+				float& margin();
 
 				/// <summary>Set the group's margin. Defines how far we extend outside the collective group rectangles.</summary>
 				/// <param name="margin">The margin, in pixels.</param>
 				/// <returns>A reference to the modified object.</returns>
-				group_specs& margin(const float& margin) {
-					margin_ = margin;
-					return *this;
-				}
+				group_specs& margin(const float& margin);
 
 				/// <summary>Get or set the list of the aliases for the widgets to be added to the group. e.g.
 				/// { "username_text_field", "password_text_field", "login_button" }.</summary>
 				/// <returns>A reference to the list of aliases.</returns>
-				std::vector<std::string>& widgets() { return widgets_; }
+				std::vector<std::string>& widgets();
 
 				/// <summary>Set the list of the aliases for the widgets to be added to the group. e.g.
 				/// { "username_text_field", "password_text_field", "login_button" }.</summary>
 				/// <param name="widgets">The list of aliases.</param>
 				/// <returns>A reference to the modified object.</returns>
-				group_specs& widgets(const std::vector<std::string>& widgets) {
-					widgets_ = widgets;
-					return *this;
-				}
+				group_specs& widgets(const std::vector<std::string>& widgets);
 			};
 
 			/// <summary>Group container builder.</summary>

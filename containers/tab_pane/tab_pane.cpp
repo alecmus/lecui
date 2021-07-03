@@ -313,5 +313,159 @@ namespace liblec {
 
 			throw std::invalid_argument("Invalid path");
 		}
+
+		std::string& containers::tab_pane_specs::text() { return text_; }
+
+		containers::tab_pane_specs& containers::tab_pane_specs::text(const std::string& text) {
+			text_ = text;
+			return *this;
+		}
+
+		std::string& containers::tab_pane_specs::tooltip() { return tooltip_; }
+
+		containers::tab_pane_specs& containers::tab_pane_specs::tooltip(const std::string& tooltip) {
+			tooltip_ = tooltip;
+			return *this;
+		}
+
+		lecui::rect& containers::tab_pane_specs::rect() { return rect_; }
+
+		containers::tab_pane_specs& containers::tab_pane_specs::rect(const lecui::rect& rect) {
+			rect_ = rect;
+			return *this;
+		}
+
+		widgets::specs::resize_params& containers::tab_pane_specs::on_resize() { return on_resize_; }
+
+		containers::tab_pane_specs& containers::tab_pane_specs::on_resize(const resize_params& on_resize) {
+			on_resize_ = on_resize;
+			return *this;
+		}
+
+		widgets::specs::cursor_type& containers::tab_pane_specs::cursor() { return cursor_; }
+
+		containers::tab_pane_specs& containers::tab_pane_specs::cursor(const cursor_type cursor) {
+			cursor_ = cursor;
+			return *this;
+		}
+
+		std::string& containers::tab_pane_specs::font() { return font_; }
+
+		containers::tab_pane_specs& containers::tab_pane_specs::font(const std::string& font) {
+			font_ = font;
+			return *this;
+		}
+
+		float& containers::tab_pane_specs::font_size() { return font_size_; }
+
+		containers::tab_pane_specs& containers::tab_pane_specs::font_size(const float& font_size) {
+			font_size_ = font_size;
+			return *this;
+		}
+
+		color& containers::tab_pane_specs::color_text() { return color_text_; }
+
+		containers::tab_pane_specs& containers::tab_pane_specs::color_text(const color& color_text) {
+			color_text_ = color_text;
+			return *this;
+		}
+
+		color& containers::tab_pane_specs::color_fill() { return color_fill_; }
+
+		containers::tab_pane_specs& containers::tab_pane_specs::color_fill(const color& color_fill) {
+			color_fill_ = color_fill;
+			return *this;
+		}
+
+		color& containers::tab_pane_specs::color_hot() { return color_hot_; }
+
+		containers::tab_pane_specs& containers::tab_pane_specs::color_hot(const color& color_hot) {
+			color_hot_ = color_hot;
+			return *this;
+		}
+
+		color& containers::tab_pane_specs::color_selected() { return color_selected_; }
+
+		containers::tab_pane_specs& containers::tab_pane_specs::color_selected(const color& color_selected) {
+			color_selected_ = color_selected;
+			return *this;
+		}
+
+		color& containers::tab_pane_specs::color_disabled() { return color_disabled_; }
+
+		containers::tab_pane_specs& containers::tab_pane_specs::color_disabled(const color& color_disabled) {
+			color_disabled_ = color_disabled;
+			return *this;
+		}
+
+		float& containers::tab_pane_specs::border() { return border_; }
+
+		containers::tab_pane_specs& containers::tab_pane_specs::border(const float& border) {
+			border_ = border;
+			return *this;
+		}
+
+		lecui::color& containers::tab_pane_specs::color_border() { return color_border_; }
+
+		containers::tab_pane_specs& containers::tab_pane_specs::color_border(const color& color_border) {
+			color_border_ = color_border;
+			return *this;
+		}
+
+		float& containers::tab_pane_specs::corner_radius_x() { return corner_radius_x_; }
+
+		containers::tab_pane_specs& containers::tab_pane_specs::corner_radius_x(const float& corner_radius_x) {
+			corner_radius_x_ = corner_radius_x;
+			return *this;
+		}
+
+		float& containers::tab_pane_specs::corner_radius_y() { return corner_radius_y_; }
+
+		containers::tab_pane_specs& containers::tab_pane_specs::corner_radius_y(const float& corner_radius_y) {
+			corner_radius_y_ = corner_radius_y;
+			return *this;
+		}
+
+		containers::tab_pane_specs::side& containers::tab_pane_specs::tab_side() { return tab_side_; }
+
+		containers::tab_pane_specs& containers::tab_pane_specs::tab_side(const side& tab_side) {
+			tab_side_ = tab_side;
+			return *this;
+		}
+
+		std::vector<std::string>& containers::tab_pane_specs::caption_reserve() { return caption_reserve_; }
+
+		containers::tab_pane_specs& containers::tab_pane_specs::caption_reserve(const std::vector<std::string>& caption_reserve) {
+			caption_reserve_ = caption_reserve;
+			return *this;
+		}
+
+		containers::tab_pane_specs::orientation& containers::tab_pane_specs::caption_orientation() { return caption_orientation_; }
+
+		containers::tab_pane_specs& containers::tab_pane_specs::caption_orientation(const orientation& caption_orientation) {
+			caption_orientation_ = caption_orientation;
+			return *this;
+		}
+
+		lecui::color& containers::tab_pane_specs::color_tabs() { return color_tabs_; }
+
+		containers::tab_pane_specs& containers::tab_pane_specs::color_tabs(const color& color_tabs) {
+			color_tabs_ = color_tabs;
+			return *this;
+		}
+
+		lecui::color& containers::tab_pane_specs::color_tabs_border() { return color_tabs_border_; }
+
+		containers::tab_pane_specs& containers::tab_pane_specs::color_tabs_border(const color& color_tabs_border) {
+			color_tabs_border_ = color_tabs_border;
+			return *this;
+		}
+
+		float& containers::tab_pane_specs::tabs_border() { return tabs_border_; }
+
+		containers::tab_pane_specs& containers::tab_pane_specs::tabs_border(const float& tabs_border) {
+			tabs_border_ = tabs_border;
+			return *this;
+		}
 	}
 }

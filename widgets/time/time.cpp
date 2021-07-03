@@ -26,6 +26,125 @@ namespace liblec {
 			return !operator==(param);
 		}
 
+		std::string& widgets::time_specs::text() { return text_; }
+
+		widgets::time_specs& widgets::time_specs::text(const std::string& text) {
+			text_ = text;
+			return *this;
+		}
+
+		std::string& widgets::time_specs::tooltip() { return tooltip_; }
+
+		widgets::time_specs& widgets::time_specs::tooltip(const std::string& tooltip) {
+			tooltip_ = tooltip;
+			return *this;
+		}
+
+		lecui::rect& widgets::time_specs::rect() { return rect_; }
+
+		widgets::time_specs& widgets::time_specs::rect(const lecui::rect& rect) {
+			rect_ = rect;
+			return *this;
+		}
+
+		widgets::specs::resize_params& widgets::time_specs::on_resize() { return on_resize_; }
+
+		widgets::time_specs& widgets::time_specs::on_resize(const resize_params& on_resize) {
+			on_resize_ = on_resize;
+			return *this;
+		}
+
+		widgets::specs::cursor_type& widgets::time_specs::cursor() { return cursor_; }
+
+		widgets::time_specs& widgets::time_specs::cursor(const cursor_type cursor) {
+			cursor_ = cursor;
+			return *this;
+		}
+
+		std::string& widgets::time_specs::font() { return font_; }
+
+		widgets::time_specs& widgets::time_specs::font(const std::string& font) {
+			font_ = font;
+			return *this;
+		}
+
+		float& widgets::time_specs::font_size() { return font_size_; }
+
+		widgets::time_specs& widgets::time_specs::font_size(const float& font_size) {
+			font_size_ = font_size;
+			return *this;
+		}
+
+		color& widgets::time_specs::color_text() { return color_text_; }
+
+		widgets::time_specs& widgets::time_specs::color_text(const color& color_text) {
+			color_text_ = color_text;
+			return *this;
+		}
+
+		color& widgets::time_specs::color_fill() { return color_fill_; }
+
+		widgets::time_specs& widgets::time_specs::color_fill(const color& color_fill) {
+			color_fill_ = color_fill;
+			return *this;
+		}
+
+		color& widgets::time_specs::color_hot() { return color_hot_; }
+
+		widgets::time_specs& widgets::time_specs::color_hot(const color& color_hot) {
+			color_hot_ = color_hot;
+			return *this;
+		}
+
+		color& widgets::time_specs::color_selected() { return color_selected_; }
+
+		widgets::time_specs& widgets::time_specs::color_selected(const color& color_selected) {
+			color_selected_ = color_selected;
+			return *this;
+		}
+
+		color& widgets::time_specs::color_disabled() { return color_disabled_; }
+
+		widgets::time_specs& widgets::time_specs::color_disabled(const color& color_disabled) {
+			color_disabled_ = color_disabled;
+			return *this;
+		}
+
+		float& widgets::time_specs::border() { return border_; }
+
+		widgets::time_specs& widgets::time_specs::border(const float& border) {
+			border_ = border;
+			return *this;
+		}
+
+		lecui::color& widgets::time_specs::color_border() { return color_border_; }
+
+		widgets::time_specs& widgets::time_specs::color_border(const color& color_border) {
+			color_border_ = color_border;
+			return *this;
+		}
+
+		float& widgets::time_specs::corner_radius_x() { return corner_radius_x_; }
+
+		widgets::time_specs& widgets::time_specs::corner_radius_x(const float& corner_radius_x) {
+			corner_radius_x_ = corner_radius_x;
+			return *this;
+		}
+
+		float& widgets::time_specs::corner_radius_y() { return corner_radius_y_; }
+
+		widgets::time_specs& widgets::time_specs::corner_radius_y(const float& corner_radius_y) {
+			corner_radius_y_ = corner_radius_y;
+			return *this;
+		}
+
+		lecui::time& widgets::time_specs::time_value() { return time_value_; }
+
+		widgets::time_specs& widgets::time_specs::time_value(const lecui::time& time_value) {
+			time_value_ = time_value;
+			return *this;
+		}
+
 		class widgets::time_builder::impl {
 		public:
 			impl(containers::page& page, const std::string& alias) :

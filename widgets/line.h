@@ -32,106 +32,64 @@ namespace liblec {
 
 				// generic specs
 
-				std::string& text() override { return text_; }
-				line_specs& text(const std::string& text) {
-					text_ = text;
-					return *this;
-				}
+				std::string& text() override;
+				line_specs& text(const std::string& text);
 
-				std::string& tooltip() override { return tooltip_; }
-				line_specs& tooltip(const std::string& tooltip) {
-					tooltip_ = tooltip;
-					return *this;
-				}
+				std::string& tooltip() override;
+				line_specs& tooltip(const std::string& tooltip);
 
-				lecui::rect& rect() override { return rect_; }
-				line_specs& rect(const lecui::rect& rect) {
-					rect_ = rect;
-					return *this;
-				}
+				lecui::rect& rect() override;
+				line_specs& rect(const lecui::rect& rect);
 
-				resize_params& on_resize() override { return on_resize_; }
-				line_specs& on_resize(const resize_params& on_resize) {
-					on_resize_ = on_resize;
-					return *this;
-				}
+				resize_params& on_resize() override;
+				line_specs& on_resize(const resize_params& on_resize);
 
-				cursor_type& cursor() override { return cursor_; }
-				line_specs& cursor(const cursor_type cursor) {
-					cursor_ = cursor;
-					return *this;
-				}
+				cursor_type& cursor() override;
+				line_specs& cursor(const cursor_type cursor);
 
-				std::string& font() override { return font_; }
-				line_specs& font(const std::string& font) {
-					font_ = font;
-					return *this;
-				}
+				std::string& font() override;
+				line_specs& font(const std::string& font);
 
-				float& font_size() override { return font_size_; }
-				line_specs& font_size(const float& font_size) {
-					font_size_ = font_size;
-					return *this;
-				}
+				float& font_size() override;
+				line_specs& font_size(const float& font_size);
 
-				color& color_text() override { return color_text_; }
-				line_specs& color_text(const color& color_text) {
-					color_text_ = color_text;
-					return *this;
-				}
+				color& color_text() override;
+				line_specs& color_text(const color& color_text);
 
-				color& color_fill() override { return color_fill_; }
-				line_specs& color_fill(const color& color_fill) {
-					color_fill_ = color_fill;
-					return *this;
-				}
+				color& color_fill() override;
+				line_specs& color_fill(const color& color_fill);
 
-				color& color_hot() override { return color_hot_; }
-				line_specs& color_hot(const color& color_hot) {
-					color_hot_ = color_hot;
-					return *this;
-				}
+				color& color_hot() override;
+				line_specs& color_hot(const color& color_hot);
 
-				color& color_selected() override { return color_selected_; }
-				line_specs& color_selected(const color& color_selected) {
-					color_selected_ = color_selected;
-					return *this;
-				}
+				color& color_selected() override;
+				line_specs& color_selected(const color& color_selected);
 
-				color& color_disabled() override { return color_disabled_; }
-				line_specs& color_disabled(const color& color_disabled) {
-					color_disabled_ = color_disabled;
-					return *this;
-				}
+				color& color_disabled() override;
+				line_specs& color_disabled(const color& color_disabled);
 
 				// widget specific specs
 
 				/// <summary>Get or set the line's thickness.</summary>
 				/// <returns>A reference to the line's thickness, in pixels.</returns>
-				float& thickness() { return thickness_; }
+				float& thickness();
 
 				/// <summary>Set the line's thickness.</summary>
 				/// <param name="thickness">The thickness of the line, in pixels.</param>
 				/// <returns>A reference to the modified object.</returns>
-				line_specs& thickness(const float& thickness) {
-					thickness_ = thickness;
-					return *this;
-				}
+				line_specs& thickness(const float& thickness);
 
 				/// <summary>Get or set the points, in order, for the line line to go through.
 				/// These are relative to the top left corner of the line's bounding rectangle.
 				/// </summary>
 				/// <returns>A reference to the list of points.</returns>
-				std::vector<point>& points() { return points_; }
+				std::vector<point>& points();
 
 				/// <summary>Set the points, in order, for the line line to go through.
 				/// These are relative to the top left corner of the line's bounding rectangle.</summary>
 				/// <param name="points">The list of points.</param>
 				/// <returns>A reference to the modified object.</returns>
-				line_specs& points(const std::vector<point>& points) {
-					points_ = points;
-					return *this;
-				}
+				line_specs& points(const std::vector<point>& points);
 			};
 
 			/// <summary>Line widget builder.</summary>

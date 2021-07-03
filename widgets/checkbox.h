@@ -65,151 +65,97 @@ namespace liblec {
 
 				// generic specs
 
-				std::string& text() override { return text_; }
-				checkbox_specs& text(const std::string& text) {
-					text_ = text;
-					return *this;
-				}
+				std::string& text() override;
+				checkbox_specs& text(const std::string& text);
 
-				std::string& tooltip() override { return tooltip_; }
-				checkbox_specs& tooltip(const std::string& tooltip) {
-					tooltip_ = tooltip;
-					return *this;
-				}
+				std::string& tooltip() override;
+				checkbox_specs& tooltip(const std::string& tooltip);
 
-				lecui::rect& rect() override { return rect_; }
-				checkbox_specs& rect(const lecui::rect& rect) {
-					rect_ = rect;
-					return *this;
-				}
+				lecui::rect& rect() override;
+				checkbox_specs& rect(const lecui::rect& rect);
 
-				resize_params& on_resize() override { return on_resize_; }
-				checkbox_specs& on_resize(const resize_params& on_resize) {
-					on_resize_ = on_resize;
-					return *this;
-				}
+				resize_params& on_resize() override;
+				checkbox_specs& on_resize(const resize_params& on_resize);
 
-				cursor_type& cursor() override { return cursor_; }
-				checkbox_specs& cursor(const cursor_type cursor) {
-					cursor_ = cursor;
-					return *this;
-				}
+				cursor_type& cursor() override;
+				checkbox_specs& cursor(const cursor_type cursor);
 
-				std::string& font() override { return font_; }
-				checkbox_specs& font(const std::string& font) {
-					font_ = font;
-					return *this;
-				}
+				std::string& font() override;
+				checkbox_specs& font(const std::string& font);
 
-				float& font_size() override { return font_size_; }
-				checkbox_specs& font_size(const float& font_size) {
-					font_size_ = font_size;
-					return *this;
-				}
+				float& font_size() override;
+				checkbox_specs& font_size(const float& font_size);
 
-				color& color_text() override { return color_text_; }
-				checkbox_specs& color_text(const color& color_text) {
-					color_text_ = color_text;
-					return *this;
-				}
+				color& color_text() override;
+				checkbox_specs& color_text(const color& color_text);
 
-				color& color_fill() override { return color_fill_; }
-				checkbox_specs& color_fill(const color& color_fill) {
-					color_fill_ = color_fill;
-					return *this;
-				}
+				color& color_fill() override;
+				checkbox_specs& color_fill(const color& color_fill);
 
-				color& color_hot() override { return color_hot_; }
-				checkbox_specs& color_hot(const color& color_hot) {
-					color_hot_ = color_hot;
-					return *this;
-				}
+				color& color_hot() override;
+				checkbox_specs& color_hot(const color& color_hot);
 
-				color& color_selected() override { return color_selected_; }
-				checkbox_specs& color_selected(const color& color_selected) {
-					color_selected_ = color_selected;
-					return *this;
-				}
+				color& color_selected() override;
+				checkbox_specs& color_selected(const color& color_selected);
 
-				color& color_disabled() override { return color_disabled_; }
-				checkbox_specs& color_disabled(const color& color_disabled) {
-					color_disabled_ = color_disabled;
-					return *this;
-				}
+				color& color_disabled() override;
+				checkbox_specs& color_disabled(const color& color_disabled);
 
 				// widget specific specs
 
 				/// <summary>Get or set the thickness of the border.</summary>
 				/// <returns>A reference to the border thickness, in pixels.</returns>
-				float& border() { return border_; }
+				float& border();
 
 				/// <summary>Set the thickness of the border.</summary>
 				/// <param name="border">The border thickness, in pixels.</param>
 				/// <returns>A reference to the modified object.</returns>
-				checkbox_specs& border(const float& border) {
-					border_ = border;
-					return *this;
-				}
+				checkbox_specs& border(const float& border);
 
 				/// <summary>Get or set the color of the border.</summary>
 				/// <returns>A reference to the border color, as defined in <see cref="color"></see>.</returns>
-				color& color_border() { return color_border_; }
+				color& color_border();
 
 				/// <summary>Set the color of the border.</summary>
 				/// <param name="color_border">The border color, as defined in <see cref="color"></see>.</param>
 				/// <returns>A reference to the modified object.</returns>
-				checkbox_specs& color_border(const color& color_border) {
-					color_border_ = color_border;
-					return *this;
-				}
+				checkbox_specs& color_border(const color& color_border);
 
 				/// <summary>Get or set the text to display when the widget is unchecked.</summary>
 				/// <returns>A reference to the text.</returns>
-				std::string& text_unchecked() { return text_unchecked_; }
+				std::string& text_unchecked();
 
 				/// <summary>Set the text to display when the widget is unchecked.</summary>
 				/// <param name="text_unchecked">The text.</param>
 				/// <returns>A reference to the modified object.</returns>
-				checkbox_specs& text_unchecked(const std::string& text_unchecked) {
-					text_unchecked_ = text_unchecked;
-					return *this;
-				}
+				checkbox_specs& text_unchecked(const std::string& text_unchecked);
 
 				/// <summary>Get or set the text to display when the widget's check status has not been explicitly set.</summary>
 				/// <returns>A reference to the text.</returns>
-				std::string& text_indeterminate() { return text_indeterminate_; }
+				std::string& text_indeterminate();
 
 				/// <summary>Set the text to display when the widget's check status has not been explicitly set.</summary>
 				/// <param name="text_unchecked">The text.</param>
 				/// <returns>A reference to the modified object.</returns>
-				checkbox_specs& text_indeterminate(const std::string& text_indeterminate) {
-					text_indeterminate_ = text_indeterminate;
-					return *this;
-				}
+				checkbox_specs& text_indeterminate(const std::string& text_indeterminate);
 
 				/// <summary>Get or set the color to use for the check symbol.</summary>
 				/// <returns>A reference to the color.</returns>
-				color& color_check() { return color_check_; }
+				color& color_check();
 
 				/// <summary>Set the color to use for the check symbol.</summary>
 				/// <param name="color_check">The color.</param>
 				/// <returns>A reference to the modified object.</returns>
-				checkbox_specs& color_check(const color& color_check) {
-					color_check_ = color_check;
-					return *this;
-				}
+				checkbox_specs& color_check(const color& color_check);
 
 				/// <summary>Get or set the status of the checkbox widget.</summary>
 				/// <returns>The status of the widget as defined in <see cref="checkbox_status"></see>.</returns>
-				checkbox_status& status() { return status_; }
+				checkbox_status& status();
 
 				/// <summary>Set the status of the checkbox widget.</summary>
 				/// <param name="status">The status of the widget as defined in <see cref="checkbox_status"></see>.</param>
 				/// <returns></returns>
-				checkbox_specs& status(const checkbox_status& status) {
-					status_ = status;
-					return *this;
-				}
+				checkbox_specs& status(const checkbox_status& status);
 
 			private:
 				checkbox_events checkbox_events_;

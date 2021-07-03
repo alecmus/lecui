@@ -23,6 +23,104 @@ namespace liblec {
 			return !operator==(param);
 		}
 
+		std::string& widgets::line_specs::text() { return text_; }
+
+		widgets::line_specs& widgets::line_specs::text(const std::string& text) {
+			text_ = text;
+			return *this;
+		}
+
+		std::string& widgets::line_specs::tooltip() { return tooltip_; }
+
+		widgets::line_specs& widgets::line_specs::tooltip(const std::string& tooltip) {
+			tooltip_ = tooltip;
+			return *this;
+		}
+
+		lecui::rect& widgets::line_specs::rect() { return rect_; }
+
+		widgets::line_specs& widgets::line_specs::rect(const lecui::rect& rect) {
+			rect_ = rect;
+			return *this;
+		}
+
+		widgets::specs::resize_params& widgets::line_specs::on_resize() { return on_resize_; }
+
+		widgets::line_specs& widgets::line_specs::on_resize(const resize_params& on_resize) {
+			on_resize_ = on_resize;
+			return *this;
+		}
+
+		widgets::specs::cursor_type& widgets::line_specs::cursor() { return cursor_; }
+
+		widgets::line_specs& widgets::line_specs::cursor(const cursor_type cursor) {
+			cursor_ = cursor;
+			return *this;
+		}
+
+		std::string& widgets::line_specs::font() { return font_; }
+
+		widgets::line_specs& widgets::line_specs::font(const std::string& font) {
+			font_ = font;
+			return *this;
+		}
+
+		float& widgets::line_specs::font_size() { return font_size_; }
+
+		widgets::line_specs& widgets::line_specs::font_size(const float& font_size) {
+			font_size_ = font_size;
+			return *this;
+		}
+
+		color& widgets::line_specs::color_text() { return color_text_; }
+
+		widgets::line_specs& widgets::line_specs::color_text(const color& color_text) {
+			color_text_ = color_text;
+			return *this;
+		}
+
+		color& widgets::line_specs::color_fill() { return color_fill_; }
+
+		widgets::line_specs& widgets::line_specs::color_fill(const color& color_fill) {
+			color_fill_ = color_fill;
+			return *this;
+		}
+
+		color& widgets::line_specs::color_hot() { return color_hot_; }
+
+		widgets::line_specs& widgets::line_specs::color_hot(const color& color_hot) {
+			color_hot_ = color_hot;
+			return *this;
+		}
+
+		color& widgets::line_specs::color_selected() { return color_selected_; }
+
+		widgets::line_specs& widgets::line_specs::color_selected(const color& color_selected) {
+			color_selected_ = color_selected;
+			return *this;
+		}
+
+		color& widgets::line_specs::color_disabled() { return color_disabled_; }
+
+		widgets::line_specs& widgets::line_specs::color_disabled(const color& color_disabled) {
+			color_disabled_ = color_disabled;
+			return *this;
+		}
+
+		float& widgets::line_specs::thickness() { return thickness_; }
+
+		widgets::line_specs& widgets::line_specs::thickness(const float& thickness) {
+			thickness_ = thickness;
+			return *this;
+		}
+
+		std::vector<point>& widgets::line_specs::points() { return points_; }
+
+		widgets::line_specs& widgets::line_specs::points(const std::vector<point>& points) {
+			points_ = points;
+			return *this;
+		}
+
 		class widgets::line_builder::impl {
 		public:
 			impl(containers::page& page, const std::string& alias) :

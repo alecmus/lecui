@@ -51,123 +51,75 @@ namespace liblec {
 
 				// generic specs
 
-				std::string& text() override { return text_; }
-				toggle_specs& text(const std::string& text) {
-					text_ = text;
-					return *this;
-				}
+				std::string& text() override;
+				toggle_specs& text(const std::string& text);
 
-				std::string& tooltip() override { return tooltip_; }
-				toggle_specs& tooltip(const std::string& tooltip) {
-					tooltip_ = tooltip;
-					return *this;
-				}
+				std::string& tooltip() override;
+				toggle_specs& tooltip(const std::string& tooltip);
 
-				lecui::rect& rect() override { return rect_; }
-				toggle_specs& rect(const lecui::rect& rect) {
-					rect_ = rect;
-					return *this;
-				}
+				lecui::rect& rect() override;
+				toggle_specs& rect(const lecui::rect& rect);
 
-				resize_params& on_resize() override { return on_resize_; }
-				toggle_specs& on_resize(const resize_params& on_resize) {
-					on_resize_ = on_resize;
-					return *this;
-				}
+				resize_params& on_resize() override;
+				toggle_specs& on_resize(const resize_params& on_resize);
 
-				cursor_type& cursor() override { return cursor_; }
-				toggle_specs& cursor(const cursor_type cursor) {
-					cursor_ = cursor;
-					return *this;
-				}
+				cursor_type& cursor() override;
+				toggle_specs& cursor(const cursor_type cursor);
 
-				std::string& font() override { return font_; }
-				toggle_specs& font(const std::string& font) {
-					font_ = font;
-					return *this;
-				}
+				std::string& font() override;
+				toggle_specs& font(const std::string& font);
 
-				float& font_size() override { return font_size_; }
-				toggle_specs& font_size(const float& font_size) {
-					font_size_ = font_size;
-					return *this;
-				}
+				float& font_size() override;
+				toggle_specs& font_size(const float& font_size);
 
-				color& color_text() override { return color_text_; }
-				toggle_specs& color_text(const color& color_text) {
-					color_text_ = color_text;
-					return *this;
-				}
+				color& color_text() override;
+				toggle_specs& color_text(const color& color_text);
 
-				color& color_fill() override { return color_fill_; }
-				toggle_specs& color_fill(const color& color_fill) {
-					color_fill_ = color_fill;
-					return *this;
-				}
+				color& color_fill() override;
+				toggle_specs& color_fill(const color& color_fill);
 
-				color& color_hot() override { return color_hot_; }
-				toggle_specs& color_hot(const color& color_hot) {
-					color_hot_ = color_hot;
-					return *this;
-				}
+				color& color_hot() override;
+				toggle_specs& color_hot(const color& color_hot);
 
-				color& color_selected() override { return color_selected_; }
-				toggle_specs& color_selected(const color& color_selected) {
-					color_selected_ = color_selected;
-					return *this;
-				}
+				color& color_selected() override;
+				toggle_specs& color_selected(const color& color_selected);
 
-				color& color_disabled() override { return color_disabled_; }
-				toggle_specs& color_disabled(const color& color_disabled) {
-					color_disabled_ = color_disabled;
-					return *this;
-				}
+				color& color_disabled() override;
+				toggle_specs& color_disabled(const color& color_disabled);
 
 				// widget specific specs
 
 				/// <summary>Get or set the text to show when the toggle is off.</summary>
 				/// <returns>A reference to the text.</returns>
-				std::string& text_off() { return text_off_; }
+				std::string& text_off();
 
 				/// <summary>Set the text to show when the toggle is off.</summary>
 				/// <param name="text_off">The text.</param>
 				/// <returns>A reference to the modified object.</returns>
-				toggle_specs& text_off(const std::string& text_off) {
-					text_off_ = text_off;
-					return *this;
-				}
+				toggle_specs& text_off(const std::string& text_off);
 
 				/// <summary>Get or set the background color to use when the toggle is on.</summary>
 				/// <returns>A reference to the color.</returns>
-				color& color_on() { return color_on_; }
+				color& color_on();
 
 				/// <summary>Set the background color to use when the toggle is on.</summary>
 				/// <param name="color_on">The color.</param>
 				/// <returns>A reference to the modified object.</returns>
-				toggle_specs& color_on(const color& color_on) {
-					color_on_ = color_on;
-					return *this;
-				}
+				toggle_specs& color_on(const color& color_on);
 
 				/// <summary>Get or set the background color to use when the toggle is off.</summary>
 				/// <returns>A reference to the color.</returns>
-				color& color_off() { return color_off_; }
+				color& color_off();
 
 				/// <summary>Set the background color to use when the toggle is off.</summary>
 				/// <param name="color_off">The color.</param>
 				/// <returns>A reference to the modified object.</returns>
-				toggle_specs& color_off(const color& color_off) {
-					color_off_ = color_off;
-					return *this;
-				}
+				toggle_specs& color_off(const color& color_off);
 
 				/// <summary>Get or set the toggle status.</summary>
 				/// <returns>A reference to the toggle status.</returns>
-				bool& on() { return on_; }
-				toggle_specs& on(const bool& on) {
-					on_ = on;
-					return *this;
-				}
+				bool& on();
+				toggle_specs& on(const bool& on);
 
 			private:
 				toggle_events toggle_events_;

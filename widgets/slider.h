@@ -75,261 +75,180 @@ namespace liblec {
 
 				// generic specs
 
-				std::string& text() override { return text_; }
-				slider_specs& text(const std::string& text) {
-					text_ = text;
-					return *this;
-				}
+				std::string& text() override;
+				slider_specs& text(const std::string& text);
 
-				std::string& tooltip() override { return tooltip_; }
-				slider_specs& tooltip(const std::string& tooltip) {
-					tooltip_ = tooltip;
-					return *this;
-				}
+				std::string& tooltip() override;
+				slider_specs& tooltip(const std::string& tooltip);
 
-				lecui::rect& rect() override { return rect_; }
-				slider_specs& rect(const lecui::rect& rect) {
-					rect_ = rect;
-					return *this;
-				}
+				lecui::rect& rect() override;
+				slider_specs& rect(const lecui::rect& rect);
 
-				resize_params& on_resize() override { return on_resize_; }
-				slider_specs& on_resize(const resize_params& on_resize) {
-					on_resize_ = on_resize;
-					return *this;
-				}
+				resize_params& on_resize() override;
+				slider_specs& on_resize(const resize_params& on_resize);
 
-				cursor_type& cursor() override { return cursor_; }
-				slider_specs& cursor(const cursor_type cursor) {
-					cursor_ = cursor;
-					return *this;
-				}
+				cursor_type& cursor() override;
+				slider_specs& cursor(const cursor_type cursor);
 
-				std::string& font() override { return font_; }
-				slider_specs& font(const std::string& font) {
-					font_ = font;
-					return *this;
-				}
+				std::string& font() override;
+				slider_specs& font(const std::string& font);
 
-				float& font_size() override { return font_size_; }
-				slider_specs& font_size(const float& font_size) {
-					font_size_ = font_size;
-					return *this;
-				}
+				float& font_size() override;
+				slider_specs& font_size(const float& font_size);
 
-				color& color_text() override { return color_text_; }
-				slider_specs& color_text(const color& color_text) {
-					color_text_ = color_text;
-					return *this;
-				}
+				color& color_text() override;
+				slider_specs& color_text(const color& color_text);
 
-				color& color_fill() override { return color_fill_; }
-				slider_specs& color_fill(const color& color_fill) {
-					color_fill_ = color_fill;
-					return *this;
-				}
+				color& color_fill() override;
+				slider_specs& color_fill(const color& color_fill);
 
-				color& color_hot() override { return color_hot_; }
-				slider_specs& color_hot(const color& color_hot) {
-					color_hot_ = color_hot;
-					return *this;
-				}
+				color& color_hot() override;
+				slider_specs& color_hot(const color& color_hot);
 
-				color& color_selected() override { return color_selected_; }
-				slider_specs& color_selected(const color& color_selected) {
-					color_selected_ = color_selected;
-					return *this;
-				}
+				color& color_selected() override;
+				slider_specs& color_selected(const color& color_selected);
 
-				color& color_disabled() override { return color_disabled_; }
-				slider_specs& color_disabled(const color& color_disabled) {
-					color_disabled_ = color_disabled;
-					return *this;
-				}
+				color& color_disabled() override;
+				slider_specs& color_disabled(const color& color_disabled);
 
 				// widget specific specs
 
 				/// <summary>Get or set the thickness of the border.</summary>
 				/// <returns>A reference to the border thickness, in pixels.</returns>
-				float& border() { return border_; }
+				float& border();
 
 				/// <summary>Set the thickness of the border.</summary>
 				/// <param name="border">The border thickness, in pixels.</param>
 				/// <returns>A reference to the modified object.</returns>
-				slider_specs& border(const float& border) {
-					border_ = border;
-					return *this;
-				}
+				slider_specs& border(const float& border);
 
 				/// <summary>Get or set the color of the border.</summary>
 				/// <returns>A reference to the border color, as defined in <see cref="color"></see>.</returns>
-				color& color_border() { return color_border_; }
+				color& color_border();
 
 				/// <summary>Set the color of the border.</summary>
 				/// <param name="color_border">The border color, as defined in <see cref="color"></see>.</param>
 				/// <returns>A reference to the modified object.</returns>
-				slider_specs& color_border(const color& color_border) {
-					color_border_ = color_border;
-					return *this;
-				}
+				slider_specs& color_border(const color& color_border);
 
 				/// <summary>Get or set the color of the knob.</summary>
 				/// <returns>A reference to the color.</returns>
-				color& color_knob() { return color_knob_; }
+				color& color_knob();
 
 				/// <summary>Set the color of the knob.</summary>
 				/// <param name="color_knob">The color.</param>
 				/// <returns>A reference to the modified object.</returns>
-				slider_specs& color_knob(const color& color_knob) {
-					color_knob_ = color_knob;
-					return *this;
-				}
+				slider_specs& color_knob(const color& color_knob);
 
 				/// <summary>Get or set the color of the knob when the mouse is over the slider.</summary>
 				/// <returns>A reference to the color.</returns>
-				color& color_knob_hot() { return color_knob_hot_; }
+				color& color_knob_hot();
 
 				/// <summary>Set the color of the knob when the mouse is over the slider.</summary>
 				/// <param name="color_knob_hot">The color.</param>
 				/// <returns>A reference to the modified object.</returns>
-				slider_specs& color_knob_hot(const color& color_knob_hot) {
-					color_knob_hot_ = color_knob_hot;
-					return *this;
-				}
+				slider_specs& color_knob_hot(const color& color_knob_hot);
 
 				/// <summary>Get or set the color of the knob's border.</summary>
 				/// <returns>A reference to the color.</returns>
-				color& color_knob_border() { return color_knob_border_; }
+				color& color_knob_border();
 
 				/// <summary>Set the color of the knob's border.</summary>
 				/// <param name="color_knob_border">The color.</param>
 				/// <returns>A reference to the modified object.</returns>
-				slider_specs& color_knob_border(const color& color_knob_border) {
-					color_knob_border_ = color_knob_border;
-					return *this;
-				}
+				slider_specs& color_knob_border(const color& color_knob_border);
 
 				/// <summary>Get or set the color of the slider ticks.</summary>
 				/// <returns>A reference to the color.</returns>
-				color& color_tick() { return color_tick_; }
+				color& color_tick();
 
 				/// <summary>Set the color of the slider ticks.</summary>
 				/// <param name="color_tick">The color.</param>
 				/// <returns>A reference to the modified object.</returns>
-				slider_specs& color_tick(const color& color_tick) {
-					color_tick_ = color_tick;
-					return *this;
-				}
+				slider_specs& color_tick(const color& color_tick);
 
 				/// <summary>Get or set the property for whether to snap slider movements to the ticks.</summary>
 				/// <returns>A reference to the property.</returns>
-				bool& snap_to_ticks() { return snap_to_ticks_; }
+				bool& snap_to_ticks();
 
 				/// <summary>Set the property for whether to snap slider movements to the ticks.</summary>
 				/// <param name="snap_to_ticks">Whether to snap slider movements to the ticks.</param>
 				/// <returns>A reference to the modified object.</returns>
-				slider_specs& snap_to_ticks(const bool& snap_to_ticks) {
-					snap_to_ticks_ = snap_to_ticks;
-					return *this;
-				}
+				slider_specs& snap_to_ticks(const bool& snap_to_ticks);
 
 				/// <summary>Get or set the property for whether to show ticks marks on the slider.</summary>
 				/// <returns>A reference to the property.</returns>
-				bool& show_tick_marks() { return show_tick_marks_; }
+				bool& show_tick_marks();
 
 				/// <summary>Set the property for whether to show ticks marks on the slider.</summary>
 				/// <param name="show_tick_marks">Whether to show tick marks on the slider.</param>
 				/// <returns>A reference to the modified object.</returns>
-				slider_specs& show_tick_marks(const bool& show_tick_marks) {
-					show_tick_marks_ = show_tick_marks;
-					return *this;
-				}
+				slider_specs& show_tick_marks(const bool& show_tick_marks);
 
 				/// <summary>Get or set the property for whether to show tick labels on the slider.</summary>
 				/// <returns>A reference to the property.</returns>
-				bool& show_tick_labels() { return show_tick_labels_; }
+				bool& show_tick_labels();
 
 				/// <summary>Set the property for whether to show tick labels on the slider.</summary>
 				/// <param name="show_tick_labels">Whether to show tick labels on the slider.</param>
 				/// <returns>A reference to the modified object.</returns>
-				slider_specs& show_tick_labels(const bool& show_tick_labels) {
-					show_tick_labels_ = show_tick_labels;
-					return *this;
-				}
+				slider_specs& show_tick_labels(const bool& show_tick_labels);
 
 				/// <summary>Get or set the slider's range.</summary>
 				/// <returns>A reference to the range, as defined in <see cref="slider_range"></see>.</returns>
-				slider_range& range() { return range_; }
+				slider_range& range();
 
 				/// <summary>Set the slider's range.</summary>
 				/// <param name="range">The range.</param>
 				/// <returns>A reference to the modified object.</returns>
-				slider_specs& range(const slider_range& range) {
-					range_ = range;
-					return *this;
-				}
+				slider_specs& range(const slider_range& range);
 
 				/// <summary>Get or set the radius of the knob.</summary>
 				/// <returns>A reference to the radius, in pixels.</returns>
-				float& knob_radius() { return knob_radius_; }
+				float& knob_radius();
 
 				/// <summary>Set the radius of the knob.</summary>
 				/// <param name="knob_radius">The knob's radius, in pixels.</param>
 				/// <returns>A reference to the modified object.</returns>
-				slider_specs& knob_radius(const float& knob_radius) {
-					knob_radius_ = knob_radius;
-					return *this;
-				}
+				slider_specs& knob_radius(const float& knob_radius);
 
 				/// <summary>Get or set the thickness of the slide.</summary>
 				/// <returns>A reference to the thickness, in pixels.</returns>
-				float& slide_thickness() { return slide_thickness_; }
+				float& slide_thickness();
 
 				/// <summary>Set the thickness of the slide.</summary>
 				/// <param name="slide_thickness">The thickness of the slide, in pixels.</param>
 				/// <returns>A reference to the modified object.</returns>
-				slider_specs& slide_thickness(const float& slide_thickness) {
-					slide_thickness_ = slide_thickness;
-					return *this;
-				}
+				slider_specs& slide_thickness(const float& slide_thickness);
 
 				/// <summary>Get or set the unit intervals for placing major ticks.</summary>
 				/// <returns>A reference to the unit interval property.</returns>
-				float& major_tick_unit() { return major_tick_unit_; }
+				float& major_tick_unit();
 
 				/// <summary>Set the unit intervals for placing major ticks, e.g. 25.f.</summary>
 				/// <param name="major_tick_unit">The unit interval.</param>
 				/// <returns>A reference to the modified object.</returns>
-				slider_specs& major_tick_unit(const float& major_tick_unit) {
-					major_tick_unit_ = major_tick_unit;
-					return *this;
-				}
+				slider_specs& major_tick_unit(const float& major_tick_unit);
 
 				/// <summary>Get or set the number of minor ticks to place between
 				/// successive major ticks.</summary>
 				/// <returns>The number of ticks.</returns>
-				long& minor_tick_count() { return minor_tick_count_; }
+				long& minor_tick_count();
 
 				/// <summary>Set the number of minor ticks to place between successive
 				/// major ticks, e.g. 4.</summary>
 				/// <param name="minor_tick_count">The number of ticks.</param>
 				/// <returns>A reference to the modified object.</returns>
-				slider_specs& minor_tick_count(const long& minor_tick_count) {
-					minor_tick_count_ = minor_tick_count;
-					return *this;
-				}
+				slider_specs& minor_tick_count(const long& minor_tick_count);
 
 				/// <summary>Get or set the position of the knob along the slide.</summary>
 				/// <returns>A reference to the position.</returns>
-				float& value() { return value_; }
+				float& value();
 
 				/// <summary>Set the position of the knob along the slide, e.g. 63.5f.</summary>
 				/// <param name="value">The position of the knob.</param>
 				/// <returns>A reference to the modified object.</returns>
-				slider_specs& value(const float& value) {
-					value_ = value;
-					return *this;
-				}
+				slider_specs& value(const float& value);
 
 			private:
 				slider_events slider_events_;

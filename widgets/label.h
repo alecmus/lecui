@@ -86,127 +86,79 @@ namespace liblec {
 
 				// generic specs
 
-				std::string& text() override { return text_; }
-				label_specs& text(const std::string& text) {
-					text_ = text;
-					return *this;
-				}
+				std::string& text() override;
+				label_specs& text(const std::string& text);
 
-				std::string& tooltip() override { return tooltip_; }
-				label_specs& tooltip(const std::string& tooltip) {
-					tooltip_ = tooltip;
-					return *this;
-				}
+				std::string& tooltip() override;
+				label_specs& tooltip(const std::string& tooltip);
 
-				lecui::rect& rect() override { return rect_; }
-				label_specs& rect(const lecui::rect& rect) {
-					rect_ = rect;
-					return *this;
-				}
+				lecui::rect& rect() override;
+				label_specs& rect(const lecui::rect& rect);
 
-				resize_params& on_resize() override { return on_resize_; }
-				label_specs& on_resize(const resize_params& on_resize) {
-					on_resize_ = on_resize;
-					return *this;
-				}
+				resize_params& on_resize() override;
+				label_specs& on_resize(const resize_params& on_resize);
 
-				cursor_type& cursor() override { return cursor_; }
-				label_specs& cursor(const cursor_type cursor) {
-					cursor_ = cursor;
-					return *this;
-				}
+				cursor_type& cursor() override;
+				label_specs& cursor(const cursor_type cursor);
 
-				std::string& font() override { return font_; }
-				label_specs& font(const std::string& font) {
-					font_ = font;
-					return *this;
-				}
+				std::string& font() override;
+				label_specs& font(const std::string& font);
 
-				float& font_size() override { return font_size_; }
-				label_specs& font_size(const float& font_size) {
-					font_size_ = font_size;
-					return *this;
-				}
+				float& font_size() override;
+				label_specs& font_size(const float& font_size);
 
-				color& color_text() override { return color_text_; }
-				label_specs& color_text(const color& color_text) {
-					color_text_ = color_text;
-					return *this;
-				}
+				color& color_text() override;
+				label_specs& color_text(const color& color_text);
 
-				color& color_fill() override { return color_fill_; }
-				label_specs& color_fill(const color& color_fill) {
-					color_fill_ = color_fill;
-					return *this;
-				}
+				color& color_fill() override;
+				label_specs& color_fill(const color& color_fill);
 
-				color& color_hot() override { return color_hot_; }
-				label_specs& color_hot(const color& color_hot) {
-					color_hot_ = color_hot;
-					return *this;
-				}
+				color& color_hot() override;
+				label_specs& color_hot(const color& color_hot);
 
-				color& color_selected() override { return color_selected_; }
-				label_specs& color_selected(const color& color_selected) {
-					color_selected_ = color_selected;
-					return *this;
-				}
+				color& color_selected() override;
+				label_specs& color_selected(const color& color_selected);
 
-				color& color_disabled() override { return color_disabled_; }
-				label_specs& color_disabled(const color& color_disabled) {
-					color_disabled_ = color_disabled;
-					return *this;
-				}
+				color& color_disabled() override;
+				label_specs& color_disabled(const color& color_disabled);
 
 				// widget specific specs
 
 				/// <summary>Get or set the color used when the label is pressed and the mouse is over it.</summary>
 				/// <returns>A reference to the color.</returns>
-				color& color_hot_pressed() { return color_hot_pressed_; }
+				color& color_hot_pressed();
 
 				/// <summary>Set the color used when the label is pressed and the mouse is over it.</summary>
 				/// <param name="color_hot_pressed">The color.</param>
 				/// <returns>A reference to the modified object.</returns>
-				label_specs& color_hot_pressed(const color& color_hot_pressed) {
-					color_hot_pressed_ = color_hot_pressed;
-					return *this;
-				}
+				label_specs& color_hot_pressed(const color& color_hot_pressed);
 
 				/// <summary>Get or set the property for whether to allow multiple lines.</summary>
 				/// <returns>A reference to the property.</returns>
-				bool& multiline() { return multiline_; }
+				bool& multiline();
 
 				/// <summary>Set the property for whether to allow multiple lines.</summary>
 				/// <param name="multiline">Whether to allow multiple lines.</param>
 				/// <returns>A reference to the modified object.</returns>
-				label_specs& multiline(const bool& multiline) {
-					multiline_ = multiline;
-					return *this;
-				}
+				label_specs& multiline(const bool& multiline);
 
 				/// <summary>Get or set the property for whether to center the text horizontally.</summary>
 				/// <returns>A reference to the property.</returns>
-				bool& center_h() { return center_h_; }
+				bool& center_h();
 
 				/// <summary>Set the property for whether to center the text horizontally.</summary>
 				/// <param name="center_h">Whether to center the text horizontally.</param>
 				/// <returns>A reference to the modified object.</returns>
-				label_specs& center_h(const bool& center_h) {
-					center_h_ = center_h;
-					return *this;
-				}
+				label_specs& center_h(const bool& center_h);
 
 				/// <summary>Get or set the property for whether to center the text vertically.</summary>
 				/// <returns>A reference to the property.</returns>
-				bool& center_v() { return center_v_; }
+				bool& center_v();
 
 				/// <summary>Set the property for whether to center the text vertically.</summary>
 				/// <param name="center_h">Whether to center the text vertically.</param>
 				/// <returns>A reference to the modified object.</returns>
-				label_specs& center_v(const bool& center_v) {
-					center_v_ = center_v;
-					return *this;
-				}
+				label_specs& center_v(const bool& center_v);
 			};
 
 			/// <summary>Label widget builder.</summary>

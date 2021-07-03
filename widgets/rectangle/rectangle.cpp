@@ -27,6 +27,125 @@ namespace liblec {
 			return !operator==(param);
 		}
 
+		std::string& widgets::rectangle_specs::text() { return text_; }
+
+		widgets::rectangle_specs& widgets::rectangle_specs::text(const std::string& text) {
+			text_ = text;
+			return *this;
+		}
+
+		std::string& widgets::rectangle_specs::tooltip() { return tooltip_; }
+
+		widgets::rectangle_specs& widgets::rectangle_specs::tooltip(const std::string& tooltip) {
+			tooltip_ = tooltip;
+			return *this;
+		}
+
+		lecui::rect& widgets::rectangle_specs::rect() { return rect_; }
+
+		widgets::rectangle_specs& widgets::rectangle_specs::rect(const lecui::rect& rect) {
+			rect_ = rect;
+			return *this;
+		}
+
+		widgets::specs::resize_params& widgets::rectangle_specs::on_resize() { return on_resize_; }
+
+		widgets::rectangle_specs& widgets::rectangle_specs::on_resize(const resize_params& on_resize) {
+			on_resize_ = on_resize;
+			return *this;
+		}
+
+		widgets::specs::cursor_type& widgets::rectangle_specs::cursor() { return cursor_; }
+
+		widgets::rectangle_specs& widgets::rectangle_specs::cursor(const cursor_type cursor) {
+			cursor_ = cursor;
+			return *this;
+		}
+
+		std::string& widgets::rectangle_specs::font() { return font_; }
+
+		widgets::rectangle_specs& widgets::rectangle_specs::font(const std::string& font) {
+			font_ = font;
+			return *this;
+		}
+
+		float& widgets::rectangle_specs::font_size() { return font_size_; }
+
+		widgets::rectangle_specs& widgets::rectangle_specs::font_size(const float& font_size) {
+			font_size_ = font_size;
+			return *this;
+		}
+
+		color& widgets::rectangle_specs::color_text() { return color_text_; }
+
+		widgets::rectangle_specs& widgets::rectangle_specs::color_text(const color& color_text) {
+			color_text_ = color_text;
+			return *this;
+		}
+
+		color& widgets::rectangle_specs::color_fill() { return color_fill_; }
+
+		widgets::rectangle_specs& widgets::rectangle_specs::color_fill(const color& color_fill) {
+			color_fill_ = color_fill;
+			return *this;
+		}
+
+		color& widgets::rectangle_specs::color_hot() { return color_hot_; }
+
+		widgets::rectangle_specs& widgets::rectangle_specs::color_hot(const color& color_hot) {
+			color_hot_ = color_hot;
+			return *this;
+		}
+
+		color& widgets::rectangle_specs::color_selected() { return color_selected_; }
+
+		widgets::rectangle_specs& widgets::rectangle_specs::color_selected(const color& color_selected) {
+			color_selected_ = color_selected;
+			return *this;
+		}
+
+		color& widgets::rectangle_specs::color_disabled() { return color_disabled_; }
+
+		widgets::rectangle_specs& widgets::rectangle_specs::color_disabled(const color& color_disabled) {
+			color_disabled_ = color_disabled;
+			return *this;
+		}
+
+		float& widgets::rectangle_specs::border() { return border_; }
+
+		widgets::rectangle_specs& widgets::rectangle_specs::border(const float& border) {
+			border_ = border;
+			return *this;
+		}
+
+		lecui::color& widgets::rectangle_specs::color_border() { return color_border_; }
+
+		widgets::rectangle_specs& widgets::rectangle_specs::color_border(const color& color_border) {
+			color_border_ = color_border;
+			return *this;
+		}
+
+		lecui::color& widgets::rectangle_specs::color_border_hot() { return color_border_hot_; }
+
+		widgets::rectangle_specs& widgets::rectangle_specs::color_border_hot(const color& color_border_hot) {
+			color_border_hot_ = color_border_hot;
+			return *this;
+		}
+
+		float& widgets::rectangle_specs::corner_radius_x() { return corner_radius_x_; }
+
+		widgets::rectangle_specs& widgets::rectangle_specs::corner_radius_x(const float& corner_radius_x) {
+			corner_radius_x_ = corner_radius_x;
+			return *this;
+		}
+
+		float& widgets::rectangle_specs::corner_radius_y() { return corner_radius_y_; }
+
+		widgets::rectangle_specs& widgets::rectangle_specs::corner_radius_y(const float& corner_radius_y) {
+			corner_radius_y_ = corner_radius_y;
+			return *this;
+		}
+
 		class widgets::rectangle_builder::impl {
 		public:
 			impl(containers::page& page, const std::string& alias) :

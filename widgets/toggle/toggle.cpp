@@ -27,6 +27,118 @@ namespace liblec {
 			return !operator==(param);
 		}
 
+		std::string& widgets::toggle_specs::text() { return text_; }
+
+		widgets::toggle_specs& widgets::toggle_specs::text(const std::string& text) {
+			text_ = text;
+			return *this;
+		}
+
+		std::string& widgets::toggle_specs::tooltip() { return tooltip_; }
+
+		widgets::toggle_specs& widgets::toggle_specs::tooltip(const std::string& tooltip) {
+			tooltip_ = tooltip;
+			return *this;
+		}
+
+		lecui::rect& widgets::toggle_specs::rect() { return rect_; }
+
+		widgets::toggle_specs& widgets::toggle_specs::rect(const lecui::rect& rect) {
+			rect_ = rect;
+			return *this;
+		}
+
+		widgets::specs::resize_params& widgets::toggle_specs::on_resize() { return on_resize_; }
+
+		widgets::toggle_specs& widgets::toggle_specs::on_resize(const resize_params& on_resize) {
+			on_resize_ = on_resize;
+			return *this;
+		}
+
+		widgets::specs::cursor_type& widgets::toggle_specs::cursor() { return cursor_; }
+
+		widgets::toggle_specs& widgets::toggle_specs::cursor(const cursor_type cursor) {
+			cursor_ = cursor;
+			return *this;
+		}
+
+		std::string& widgets::toggle_specs::font() { return font_; }
+
+		widgets::toggle_specs& widgets::toggle_specs::font(const std::string& font) {
+			font_ = font;
+			return *this;
+		}
+
+		float& widgets::toggle_specs::font_size() { return font_size_; }
+
+		widgets::toggle_specs& widgets::toggle_specs::font_size(const float& font_size) {
+			font_size_ = font_size;
+			return *this;
+		}
+
+		color& widgets::toggle_specs::color_text() { return color_text_; }
+
+		widgets::toggle_specs& widgets::toggle_specs::color_text(const color& color_text) {
+			color_text_ = color_text;
+			return *this;
+		}
+
+		color& widgets::toggle_specs::color_fill() { return color_fill_; }
+
+		widgets::toggle_specs& widgets::toggle_specs::color_fill(const color& color_fill) {
+			color_fill_ = color_fill;
+			return *this;
+		}
+
+		color& widgets::toggle_specs::color_hot() { return color_hot_; }
+
+		widgets::toggle_specs& widgets::toggle_specs::color_hot(const color& color_hot) {
+			color_hot_ = color_hot;
+			return *this;
+		}
+
+		color& widgets::toggle_specs::color_selected() { return color_selected_; }
+
+		widgets::toggle_specs& widgets::toggle_specs::color_selected(const color& color_selected) {
+			color_selected_ = color_selected;
+			return *this;
+		}
+
+		color& widgets::toggle_specs::color_disabled() { return color_disabled_; }
+
+		widgets::toggle_specs& widgets::toggle_specs::color_disabled(const color& color_disabled) {
+			color_disabled_ = color_disabled;
+			return *this;
+		}
+
+		std::string& widgets::toggle_specs::text_off() { return text_off_; }
+
+		widgets::toggle_specs& widgets::toggle_specs::text_off(const std::string& text_off) {
+			text_off_ = text_off;
+			return *this;
+		}
+
+		color& widgets::toggle_specs::color_on() { return color_on_; }
+
+		widgets::toggle_specs& widgets::toggle_specs::color_on(const color& color_on) {
+			color_on_ = color_on;
+			return *this;
+		}
+
+		lecui::color& widgets::toggle_specs::color_off() { return color_off_; }
+
+		widgets::toggle_specs& widgets::toggle_specs::color_off(const color& color_off) {
+			color_off_ = color_off;
+			return *this;
+		}
+
+		bool& widgets::toggle_specs::on() { return on_; }
+
+		widgets::toggle_specs& widgets::toggle_specs::on(const bool& on) {
+			on_ = on;
+			return *this;
+		}
+
 		class widgets::toggle_builder::impl {
 		public:
 			impl(containers::page& page, const std::string& alias) :
