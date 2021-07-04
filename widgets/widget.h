@@ -197,6 +197,7 @@ namespace liblec {
 #if defined(LECUI_EXPORTS)
 				friend class containers::page;
 				friend class table_view_impl;
+				friend class tree_view_impl;
 #endif
 			};
 		}

@@ -59,6 +59,7 @@ namespace liblec {
 				float corner_radius_x_ = 5.f;
 				float corner_radius_y_ = 5.f;
 				std::map<std::string, node> root_;
+				void* p_special_pane_specs_ = nullptr;
 
 			public:
 				tree_view_specs() {
@@ -88,6 +89,8 @@ namespace liblec {
 
 				bool operator==(const tree_view_specs&);
 				bool operator!=(const tree_view_specs&);
+				tree_view_specs& operator=(const tree_view_specs&);
+				tree_view_specs(const tree_view_specs&);
 
 				// generic specs
 
@@ -177,6 +180,10 @@ namespace liblec {
 
 			private:
 				tree_view_events tree_events_;
+
+#if defined(LECUI_EXPORTS)
+				friend class form;
+#endif
 			};
 
 			/// <summary>Tree view widget builder.</summary>

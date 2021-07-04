@@ -115,7 +115,7 @@ namespace liblec {
 			if (!resources_created_)
 				create_resources(p_render_target);
 
-			rect_ = position(specs_.rect(), specs_.on_resize(), change_in_size.width, change_in_size.height);
+			rect_ = position(specs_.rect_, specs_.on_resize_, change_in_size.width, change_in_size.height);
 			rect_.left -= offset.x;
 			rect_.right -= offset.x;
 			rect_.top -= offset.y;
@@ -323,8 +323,8 @@ namespace liblec {
 			const auto height = optimized_bottom_ - rect_.top;
 
 			// update widget rect
-			specs_.rect().width(width);
-			specs_.rect().height(height);
+			specs_.rect_.width(width);
+			specs_.rect_.height(height);
 
 			return rect_;
 		}

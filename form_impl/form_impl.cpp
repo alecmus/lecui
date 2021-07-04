@@ -589,7 +589,7 @@ namespace liblec {
 				lecui::widgets::tree_view_specs tree;
 				lecui::containers::page& source;
 				lecui::containers::page& destination;
-				containers::pane_specs& tree_pane_specs;
+				containers::pane_specs& destination_specs;
 			};
 
 			std::vector<tree_info> trees;
@@ -621,7 +621,8 @@ namespace liblec {
 									.rect(tree_specs.rect())
 									.on_resize(tree_specs.on_resize())
 									.color_fill(tree_specs.color_fill())
-									.color_border(tree_specs.color_border());
+									.color_border(tree_specs.color_border())
+									.border(tree_specs.border());
 
 								// save move info so we can move the tree into the pane later
 								// we cannot do it here because we're iterating
@@ -668,7 +669,10 @@ namespace liblec {
 							.on_resize({ 0, 0, 0, 0 });	// critical because tree will change size as tree is browsed or changed. the pane scroll bars will do the job.
 
 						// capture tree pane specs
-						it.destination.d_page_.get_tree(it.alias).set_tree_pane_specs(it.tree_pane_specs);
+						it.destination.d_page_.get_tree(it.alias).set_tree_pane_specs(it.destination_specs);
+
+						// copy pointer to pane specs so we can return the pane specs for those properties that are handled by the pane, like the bounding rectangle
+						tree().p_special_pane_specs_ = &it.destination_specs;
 
 						// close widget
 						std::string error;

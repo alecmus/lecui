@@ -26,6 +26,40 @@ namespace liblec {
 			return !operator==(param);
 		}
 
+		widgets::tree_view_specs& widgets::tree_view_specs::operator=(const tree_view_specs& right) {
+			// generic specs
+			text_ = right.text_;
+			tooltip_ = right.tooltip_;
+			rect_ = right.rect_;
+			on_resize_ = right.on_resize_;
+			cursor_ = right.cursor_;
+			font_ = right.font_;
+			font_size_ = right.font_size_;
+			color_text_ = right.color_text_;
+			color_fill_ = right.color_fill_;
+			color_hot_ = right.color_hot_;
+			color_selected_ = right.color_selected_;
+			color_disabled_ = right.color_disabled_;
+
+			// events
+			tree_events_ = right.tree_events_;
+
+			// widget specific specs
+			border_ = right.border_;
+			color_border_ = right.color_border_;
+			corner_radius_x_ = right.corner_radius_x_;
+			corner_radius_y_ = right.corner_radius_y_;
+			root_ = right.root_;
+
+			// NOT copied (alias_, p_special_pane_specs_)
+
+			return *this;
+		}
+
+		widgets::tree_view_specs::tree_view_specs(const tree_view_specs& right) {
+			*this = right;
+		}
+
 		std::string& widgets::tree_view_specs::text() { return text_; }
 
 		widgets::tree_view_specs& widgets::tree_view_specs::text(const std::string& text) {
@@ -40,17 +74,35 @@ namespace liblec {
 			return *this;
 		}
 
-		lecui::rect& widgets::tree_view_specs::rect() { return rect_; }
+		lecui::rect& widgets::tree_view_specs::rect() {
+			if (p_special_pane_specs_)	// redirect to special pane
+				return reinterpret_cast<lecui::containers::pane_specs*>(p_special_pane_specs_)->rect();
+			else
+				return rect_;
+		}
 
 		widgets::tree_view_specs& widgets::tree_view_specs::rect(const lecui::rect& rect) {
-			rect_ = rect;
+			if (p_special_pane_specs_)	// redirect to special pane
+				reinterpret_cast<lecui::containers::pane_specs*>(p_special_pane_specs_)->rect(rect);
+			else
+				rect_ = rect;
+
 			return *this;
 		}
 
-		widgets::specs::resize_params& widgets::tree_view_specs::on_resize() { return on_resize_; }
+		widgets::specs::resize_params& widgets::tree_view_specs::on_resize() {
+			if (p_special_pane_specs_)	// redirect to special pane
+				return reinterpret_cast<lecui::containers::pane_specs*>(p_special_pane_specs_)->on_resize();
+			else
+				return on_resize_;
+		}
 
 		widgets::tree_view_specs& widgets::tree_view_specs::on_resize(const resize_params& on_resize) {
-			on_resize_ = on_resize;
+			if (p_special_pane_specs_)	// redirect to special pane
+				reinterpret_cast<lecui::containers::pane_specs*>(p_special_pane_specs_)->on_resize(on_resize);
+			else
+				on_resize_ = on_resize;
+
 			return *this;
 		}
 
@@ -82,10 +134,19 @@ namespace liblec {
 			return *this;
 		}
 
-		color& widgets::tree_view_specs::color_fill() { return color_fill_; }
+		color& widgets::tree_view_specs::color_fill() {
+			if (p_special_pane_specs_)	// redirect to special pane
+				return reinterpret_cast<lecui::containers::pane_specs*>(p_special_pane_specs_)->color_fill();
+			else
+				return color_fill_;
+		}
 
 		widgets::tree_view_specs& widgets::tree_view_specs::color_fill(const color& color_fill) {
-			color_fill_ = color_fill;
+			if (p_special_pane_specs_)	// redirect to special pane
+				reinterpret_cast<lecui::containers::pane_specs*>(p_special_pane_specs_)->color_fill(color_fill);
+			else
+				color_fill_ = color_fill;
+
 			return *this;
 		}
 
@@ -110,17 +171,35 @@ namespace liblec {
 			return *this;
 		}
 
-		float& widgets::tree_view_specs::border() { return border_; }
+		float& widgets::tree_view_specs::border() {
+			if (p_special_pane_specs_)	// redirect to special pane
+				return reinterpret_cast<lecui::containers::pane_specs*>(p_special_pane_specs_)->border();
+			else
+				return border_;
+		}
 
 		widgets::tree_view_specs& widgets::tree_view_specs::border(const float& border) {
-			border_ = border;
+			if (p_special_pane_specs_)	// redirect to special pane
+				reinterpret_cast<lecui::containers::pane_specs*>(p_special_pane_specs_)->border(border);
+			else
+				border_ = border;
+
 			return *this;
 		}
 
-		lecui::color& widgets::tree_view_specs::color_border() { return color_border_; }
+		lecui::color& widgets::tree_view_specs::color_border() {
+			if (p_special_pane_specs_)	// redirect to special pane
+				return reinterpret_cast<lecui::containers::pane_specs*>(p_special_pane_specs_)->color_border();
+			else
+				return color_border_;
+		}
 
 		widgets::tree_view_specs& widgets::tree_view_specs::color_border(const color& color_border) {
-			color_border_ = color_border;
+			if (p_special_pane_specs_)	// redirect to special pane
+				reinterpret_cast<lecui::containers::pane_specs*>(p_special_pane_specs_)->color_border(color_border);
+			else
+				color_border_ = color_border;
+
 			return *this;
 		}
 
