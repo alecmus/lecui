@@ -46,6 +46,8 @@ namespace liblec {
 			color_hot_ = right.color_hot_;
 			color_selected_ = right.color_selected_;
 			color_disabled_ = right.color_disabled_;
+
+			// events
 			table_events_ = right.table_events_;
 
 			// widget specific specs
