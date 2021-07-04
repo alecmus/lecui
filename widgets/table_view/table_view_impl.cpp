@@ -158,7 +158,7 @@ namespace liblec {
 					return false;
 			};
 
-			rect_ = position(specs_.rect_, specs_.on_resize(), change_in_size.width, change_in_size.height);
+			rect_ = position(specs_.rect_, specs_.on_resize_, change_in_size.width, change_in_size.height);
 			rect_.left -= offset.x;
 			rect_.right -= offset.x;
 			rect_.top -= offset.y;
