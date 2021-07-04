@@ -2022,6 +2022,7 @@ namespace liblec {
 				lecui::widgets::table_view_specs table;
 				lecui::containers::page& source;
 				lecui::containers::page& destination;
+				lecui::containers::pane_specs& destination_specs;
 			};
 
 			std::vector<table_info> tables;
@@ -2048,16 +2049,17 @@ namespace liblec {
 								// make pane whose alias is prefixed by the special string
 								containers::pane_builder pane(page, widgets::pane_impl::table_pane_alias_prefix() + widget.first);
 
-								// clone essential properties to pane
+								// clone essential properties to pane (the pane will handle these and all later calls to this widget's specs will be redirected to the pane)
 								pane()
 									.rect(table_specs.rect())
 									.on_resize(table_specs.on_resize())
 									.color_fill(table_specs.color_fill())
-									.color_border(table_specs.color_border());
+									.color_border(table_specs.color_border())
+									.border(table_specs.border());
 
 								// save move info so we can move the table into the pane later
 								// we cannot do it here because we're iterating
-								tables.push_back({ widget.first, table_specs, page, pane.get() });
+								tables.push_back({ widget.first, table_specs, page, pane.get(), pane() });
 								break;
 							}
 
@@ -2098,6 +2100,9 @@ namespace liblec {
 						table()
 							.rect({ 0, it.destination.size().width, 0, it.destination.size().height })
 							.on_resize({ 0, 0, 0, 0 });	// critical because table will change size as table is browsed or changed. the pane scroll bars will do the job.
+
+						// copy pointer to pane specs so we can return the pane specs for those properties that are handled by the pane, like the bounding rectangle
+						table().p_special_pane_specs_ = &it.destination_specs;
 
 						// close widget
 						std::string error;

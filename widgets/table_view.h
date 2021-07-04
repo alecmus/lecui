@@ -38,6 +38,7 @@ namespace liblec {
 				std::vector<table_column> columns_;
 				std::vector<std::map<std::string, std::string>> data_;
 				std::vector<long> selected_;
+				void* p_special_pane_specs_ = nullptr;
 
 			public:
 				table_view_specs() {
@@ -59,6 +60,8 @@ namespace liblec {
 
 				bool operator==(const table_view_specs&);
 				bool operator!=(const table_view_specs&);
+				table_view_specs& operator=(const table_view_specs&);
+				table_view_specs(const table_view_specs&);
 
 				// generic specs
 
@@ -262,6 +265,10 @@ namespace liblec {
 
 			private:
 				table_view_events table_events_;
+
+#if defined(LECUI_EXPORTS)
+				friend class form;
+#endif
 			};
 
 			/// <summary>Table view widget builder.</summary>
