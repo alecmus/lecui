@@ -12,7 +12,7 @@
 
 #include "../font/font.h"
 
-#include "../timer.h"
+#include "../utilities/timer.h"
 
 #include "../containers/page.h"
 #include "../containers/tab_pane.h"

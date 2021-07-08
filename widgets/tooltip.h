@@ -12,7 +12,7 @@
 
 #include "../containers/page.h"
 #include "../controls.h"
-#include "../timer.h"
+#include "../utilities/timer.h"
 
 namespace liblec {
 	namespace lecui {

@@ -11,7 +11,7 @@
 #pragma once
 
 #if defined(LECUI_EXPORTS)
-#include "form.h"
+#include "../form.h"
 #else
 #include <liblec/lecui/form.h>
 #endif

@@ -10,7 +10,7 @@
 
 #include "widget.h"
 #include "../form_impl/form_impl.h"
-#include "../timer.h"
+#include "../utilities/timer.h"
 
 namespace liblec {
 	namespace lecui {

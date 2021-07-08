@@ -173,6 +173,9 @@
     <Filter Include="lecui\widgets\tooltip">
       <UniqueIdentifier>{9fbf73b0-29ad-4691-b94d-c9baa11b456c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="lecui\utilities\timer">
+      <UniqueIdentifier>{c15ed7e7-185d-4594-875e-f2c9297858ee}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="error\win_error.h">
@@ -271,9 +274,6 @@
     </ClInclude>
     <ClInclude Include="containers\group\group_impl.h">
       <Filter>lecui\containers\group</Filter>
-    </ClInclude>
-    <ClInclude Include="timer.h">
-      <Filter>lecui</Filter>
     </ClInclude>
     <ClInclude Include="containers\status_pane.h">
       <Filter>lecui\containers</Filter>
@@ -416,6 +416,9 @@
     <ClInclude Include="widgets\tooltip.h">
       <Filter>lecui\widgets</Filter>
     </ClInclude>
+    <ClInclude Include="utilities\timer.h">
+      <Filter>lecui\utilities</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="error\win_error.cpp">
@@ -453,9 +456,6 @@
       <Filter>lecui</Filter>
     </ClCompile>
     <ClCompile Include="controls.cpp">
-      <Filter>lecui</Filter>
-    </ClCompile>
-    <ClCompile Include="timer.cpp">
       <Filter>lecui</Filter>
     </ClCompile>
     <ClCompile Include="containers\page\page.cpp">
@@ -688,6 +688,9 @@
     </ClCompile>
     <ClCompile Include="form_impl\mouse\right_button.cpp">
       <Filter>lecui\form_impl\mouse</Filter>
+    </ClCompile>
+    <ClCompile Include="utilities\timer\timer.cpp">
+      <Filter>lecui\utilities\timer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

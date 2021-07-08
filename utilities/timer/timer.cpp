@@ -8,8 +8,8 @@
 // LICENSE.txt or go to https://github.com/alecmus/liblec/blob/master/LICENSE.md
 //
 
-#include "timer.h"
-#include "form_impl/form_impl.h"
+#include "../timer.h"
+#include "../../form_impl/form_impl.h"
 
 namespace liblec {
 	namespace lecui {

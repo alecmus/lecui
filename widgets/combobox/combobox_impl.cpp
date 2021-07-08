@@ -9,7 +9,7 @@
 //
 
 #include "combobox_impl.h"
-#include "../../timer.h"
+#include "../../utilities/timer.h"
 #include "../../menus/context_menu.h"
 #include "../../form_impl/form_impl.h"
 

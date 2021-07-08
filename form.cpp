@@ -11,7 +11,7 @@
 #include "form.h"
 #include "appearance.h"
 #include "controls.h"
-#include "timer.h"
+#include "utilities/timer.h"
 #include "form_impl/form_impl.h"
 #include "error/win_error.h"
 
