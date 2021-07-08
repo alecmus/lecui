@@ -198,6 +198,7 @@ namespace liblec {
 				friend class containers::page;
 				friend class table_view_impl;
 				friend class tree_view_impl;
+				friend class html_editor_impl;
 #endif
 			};
 		}

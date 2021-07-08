@@ -736,6 +736,7 @@ namespace liblec {
 								controls_pane()
 									.color_fill(html_editor_specs.color_control_fill())
 									.color_border(html_editor_specs.color_control_border())
+									.border(html_editor_specs.border())
 									.on_resize(html_editor_specs.on_resize());
 								controls_pane().on_resize().perc_height = 0.f;
 								controls_pane().on_resize().min_height = 0.f;
@@ -750,6 +751,7 @@ namespace liblec {
 								pane()
 									.color_fill(html_editor_specs.color_fill())
 									.color_border(html_editor_specs.color_border())
+									.border(html_editor_specs.border())
 									.rect(html_editor_specs.rect())
 									.on_resize(html_editor_specs.on_resize())
 									.rect().top(controls_pane().rect().bottom());
@@ -803,6 +805,19 @@ namespace liblec {
 
 						// capture html pane specs
 						it.destination.d_page_.get_html_editor(it.alias).set_pane_specs(it.html_control_pane_specs, it.html_pane_specs);
+
+						// copy pointer to controls pane specs so we can return the pane specs for those properties that are handled by the pane, like the bounding rectangle
+						html_editor().p_controls_pane_specs_ = &it.html_control_pane_specs;
+
+						// copy pointer to html pane specs so we can return the pane specs for those properties that are handled by the pane, like the bounding rectangle
+						html_editor().p_html_pane_specs_ = &it.html_pane_specs;
+
+						// get overall widget resize parameters
+						html_editor().on_resize_overall_ = it.html_editor.on_resize_;
+
+						// get overall widget rectangle
+						html_editor().rect_widget_overall_ = it.html_control_pane_specs.rect();
+						html_editor().rect_widget_overall_.bottom(it.html_pane_specs.rect().bottom());
 
 						// close the widget
 						std::string error;

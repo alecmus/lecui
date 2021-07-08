@@ -32,6 +32,11 @@ namespace liblec {
 				/// <summary>The color of the html control pane background.</summary>
 				color color_control_fill_;
 
+				void* p_controls_pane_specs_ = nullptr;
+				void* p_html_pane_specs_ = nullptr;
+				lecui::rect rect_widget_overall_ = { 0, 0, 0, 0 };
+				resize_params on_resize_overall_ = { 0.f, 0.f, 0.f, 0.f };
+
 			public:
 				html_editor_specs() {
 					cursor_ = cursor_type::caret;
@@ -143,6 +148,11 @@ namespace liblec {
 				/// <param name="color_control_fill">The color.</param>
 				/// <returns>A reference to the modified object.</returns>
 				html_editor_specs& color_control_fill(const color& color_control_fill);
+
+			private:
+#if defined(LECUI_EXPORTS)
+				friend class form;
+#endif
 			};
 
 			/// <summary>HTML editor widget builder.</summary>

@@ -43,17 +43,35 @@ namespace liblec {
 			return *this;
 		}
 
-		lecui::rect& widgets::html_editor_specs::rect() { return rect_; }
+		lecui::rect& widgets::html_editor_specs::rect() {
+			if (p_controls_pane_specs_ && p_html_pane_specs_)	// redirect to special rectangle
+				return rect_widget_overall_;	// to-do: how to transfer changes to special panes
+			else
+				return rect_;
+		}
 
 		widgets::html_editor_specs& widgets::html_editor_specs::rect(const lecui::rect& rect) {
-			rect_ = rect;
+			if (p_controls_pane_specs_ && p_html_pane_specs_)	// redirect to special pane
+				rect_widget_overall_ = rect;	// to-do: how to transfer changes to special panes
+			else
+				rect_ = rect;
+
 			return *this;
 		}
 
-		widgets::specs::resize_params& widgets::html_editor_specs::on_resize() { return on_resize_; }
+		widgets::specs::resize_params& widgets::html_editor_specs::on_resize() {
+			if (p_controls_pane_specs_ && p_html_pane_specs_)	// redirect to special pane
+				return on_resize_overall_;	// to-do: how to transfer changes to special panes
+			else
+				return on_resize_;
+		}
 
 		widgets::html_editor_specs& widgets::html_editor_specs::on_resize(const resize_params& on_resize) {
-			on_resize_ = on_resize;
+			if (p_controls_pane_specs_ && p_html_pane_specs_)	// redirect to special pane
+				on_resize_overall_ = on_resize;	// to-do: how to transfer changes to special panes
+			else
+				on_resize_ = on_resize;
+
 			return *this;
 		}
 
@@ -113,17 +131,35 @@ namespace liblec {
 			return *this;
 		}
 
-		float& widgets::html_editor_specs::border() { return border_; }
+		float& widgets::html_editor_specs::border() {
+			if (p_controls_pane_specs_ && p_html_pane_specs_)	// redirect to special pane
+				return reinterpret_cast<lecui::containers::pane_specs*>(p_html_pane_specs_)->border();
+			else
+				return border_;
+		}
 
 		widgets::html_editor_specs& widgets::html_editor_specs::border(const float& border) {
-			border_ = border;
+			if (p_controls_pane_specs_ && p_html_pane_specs_)	// redirect to special pane
+				reinterpret_cast<lecui::containers::pane_specs*>(p_html_pane_specs_)->border(border);
+			else
+				border_ = border;
+
 			return *this;
 		}
 
-		lecui::color& widgets::html_editor_specs::color_border() { return color_border_; }
+		lecui::color& widgets::html_editor_specs::color_border() {
+			if (p_controls_pane_specs_ && p_html_pane_specs_)	// redirect to special pane
+				return reinterpret_cast<lecui::containers::pane_specs*>(p_html_pane_specs_)->color_border();
+			else
+				return color_border_;
+		}
 
 		widgets::html_editor_specs& widgets::html_editor_specs::color_border(const color& color_border) {
-			color_border_ = color_border;
+			if (p_controls_pane_specs_ && p_html_pane_specs_)	// redirect to special pane
+				reinterpret_cast<lecui::containers::pane_specs*>(p_html_pane_specs_)->color_border(color_border);
+			else
+				color_border_ = color_border;
+
 			return *this;
 		}
 
@@ -148,17 +184,35 @@ namespace liblec {
 			return *this;
 		}
 
-		lecui::color& widgets::html_editor_specs::color_control_border() { return color_control_border_; }
+		lecui::color& widgets::html_editor_specs::color_control_border() {
+			if (p_controls_pane_specs_ && p_html_pane_specs_)	// redirect to special pane
+				return reinterpret_cast<lecui::containers::pane_specs*>(p_controls_pane_specs_)->color_border();
+			else
+				return color_control_border_;
+		}
 
 		widgets::html_editor_specs& widgets::html_editor_specs::color_control_border(const color& color_control_border) {
-			color_control_border_ = color_control_border;
+			if (p_controls_pane_specs_ && p_html_pane_specs_)	// redirect to special pane
+				reinterpret_cast<lecui::containers::pane_specs*>(p_controls_pane_specs_)->color_border(color_control_border);
+			else
+				color_control_border_ = color_control_border;
+
 			return *this;
 		}
 
-		lecui::color& widgets::html_editor_specs::color_control_fill() { return color_control_fill_; }
+		lecui::color& widgets::html_editor_specs::color_control_fill() {
+			if (p_controls_pane_specs_ && p_html_pane_specs_)	// redirect to special pane
+				return reinterpret_cast<lecui::containers::pane_specs*>(p_controls_pane_specs_)->color_fill();
+			else
+				return color_control_fill_;
+		}
 
 		widgets::html_editor_specs& widgets::html_editor_specs::color_control_fill(const color& color_control_fill) {
-			color_control_fill_ = color_control_fill;
+			if (p_controls_pane_specs_ && p_html_pane_specs_)	// redirect to special pane
+				reinterpret_cast<lecui::containers::pane_specs*>(p_controls_pane_specs_)->color_fill(color_control_fill);
+			else
+				color_control_fill_ = color_control_fill;
+
 			return *this;
 		}
 
