@@ -22,7 +22,7 @@ namespace liblec {
 	namespace lecui {
 #if defined(LECUI_EXPORTS)
 		class page_management;
-		class widget_management;
+		class widget_manager;
 		class timer_management;
 		class dimensions;
 		class appearance;
@@ -311,7 +311,7 @@ namespace liblec {
 
 #if defined(LECUI_EXPORTS)
 			friend class page_management;
-			friend class widget_management;
+			friend class widget_manager;
 			friend class timer_management;
 			friend class dimensions;
 			friend class appearance;

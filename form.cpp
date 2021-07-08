@@ -348,7 +348,7 @@ namespace liblec {
 					};
 
 					page_man.show("home");
-					widget_management widget_man(*this);
+					widget_manager widget_man(*this);
 					widget_man.select("home/button_yes");
 					return true;
 				}
@@ -418,7 +418,7 @@ namespace liblec {
 						button().events().action = [&]() { close(); };
 
 						page_man.show("home");
-						widget_management widget_man(*this);
+						widget_manager widget_man(*this);
 						widget_man.select("home/button_ok");
 						return true;
 					}

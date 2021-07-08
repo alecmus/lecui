@@ -208,11 +208,11 @@ namespace liblec {
 			};
 		}
 
-		/// <summary>Widget management.</summary>
-		class lecui_api widget_management {
+		/// <summary>Widget manager class.</summary>
+		class lecui_api widget_manager {
 		public:
-			widget_management(form& fm);
-			~widget_management();
+			widget_manager(form& fm);
+			~widget_manager();
 
 			/// <summary>Enable or disable a widget.</summary>
 			/// <param name="path">The full path to the widget, e.g. "home_page/username".</param>
@@ -248,9 +248,9 @@ namespace liblec {
 			impl& d_;
 
 			// Default constructor and copying an object of this class are not allowed
-			widget_management() = delete;
-			widget_management(const widget_management&) = delete;
-			widget_management& operator=(const widget_management&) = delete;
+			widget_manager() = delete;
+			widget_manager(const widget_manager&) = delete;
+			widget_manager& operator=(const widget_manager&) = delete;
 		};
 	}
 }

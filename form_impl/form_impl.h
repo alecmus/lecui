@@ -241,7 +241,7 @@ namespace liblec {
 			friend class appearance;
 			friend class controls;
 			friend class page_management;
-			friend class widget_management;
+			friend class widget_manager;
 			friend class timer_management;
 			friend class filesystem;
 			friend class color_picker;

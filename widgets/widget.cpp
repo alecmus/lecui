@@ -59,27 +59,27 @@ namespace liblec {
 			}
 		}
 
-		class widget_management::impl {
+		class widget_manager::impl {
 		public:
 			impl(form& fm) :
 				fm_(fm) {}
 			form& fm_;
 		};
 
-		widget_management::widget_management(form& fm) :
+		widget_manager::widget_manager(form& fm) :
 			d_(*new impl(fm)) {}
-		widget_management::~widget_management() {
+		widget_manager::~widget_manager() {
 			delete& d_;
 		}
 
-		void widget_management::enable(const std::string& path, bool enable) {
+		void widget_manager::enable(const std::string& path, bool enable) {
 			d_.fm_.d_.enable(path, enable);
 		}
 
-		void widget_management::show(const std::string& path, bool show) {
+		void widget_manager::show(const std::string& path, bool show) {
 			d_.fm_.d_.show(path, show);
 		}
-		void widget_management::close(const std::string& path) {
+		void widget_manager::close(const std::string& path) {
 			// use timer in case a widget is closed from its own handler.
 			// this way the actual closing will be done (hopefully) outside the handler coz of async.
 			// the caller still has to exercise caution by avoiding such logical errors.
@@ -94,7 +94,7 @@ namespace liblec {
 				});
 		}
 
-		void widget_management::select(const std::string& path) {
+		void widget_manager::select(const std::string& path) {
 			d_.fm_.d_.select(path);
 		}
 	}
