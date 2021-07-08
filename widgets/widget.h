@@ -196,6 +196,8 @@ namespace liblec {
 
 #if defined(LECUI_EXPORTS)
 				friend class containers::page;
+
+				// implementation classes for widgets that use special panes ... they need access to private variables for redirection
 				friend class table_view_impl;
 				friend class tree_view_impl;
 				friend class html_editor_impl;
