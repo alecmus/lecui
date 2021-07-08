@@ -147,6 +147,22 @@ namespace liblec {
 			return *this;
 		}
 
+		float& widgets::html_editor_specs::control_border() {
+			if (p_controls_pane_specs_ && p_html_pane_specs_)	// redirect to special pane
+				return reinterpret_cast<lecui::containers::pane_specs*>(p_controls_pane_specs_)->border();
+			else
+				return control_border_;
+		}
+
+		widgets::html_editor_specs& widgets::html_editor_specs::control_border(const float& control_border) {
+			if (p_controls_pane_specs_ && p_html_pane_specs_)	// redirect to special pane
+				reinterpret_cast<lecui::containers::pane_specs*>(p_controls_pane_specs_)->border(control_border);
+			else
+				control_border_ = control_border;
+
+			return *this;
+		}
+
 		lecui::color& widgets::html_editor_specs::color_border() {
 			if (p_controls_pane_specs_ && p_html_pane_specs_)	// redirect to special pane
 				return reinterpret_cast<lecui::containers::pane_specs*>(p_html_pane_specs_)->color_border();

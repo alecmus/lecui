@@ -23,6 +23,7 @@ namespace liblec {
 			/// <remarks>Recommended size with defaults is a minimum of 320x215px.</remarks>
 			class lecui_api html_editor_specs : public specs {
 				float border_ = .5f;
+				float control_border_ = .5f;
 				color color_border_;
 				float corner_radius_x_ = 3.f;
 				float corner_radius_y_ = 3.f;
@@ -94,6 +95,15 @@ namespace liblec {
 				/// <param name="border">The border thickness, in pixels.</param>
 				/// <returns>A reference to the modified object.</returns>
 				html_editor_specs& border(const float& border);
+
+				/// <summary>Get or set the thickness of the control pane border.</summary>
+				/// <returns>A reference to the border thickness, in pixels.</returns>
+				float& control_border();
+
+				/// <summary>Set the thickness of the control border.</summary>
+				/// <param name="control_border">The border thickness, in pixels.</param>
+				/// <returns>A reference to the modified object.</returns>
+				html_editor_specs& control_border(const float& control_border);
 
 				/// <summary>Get or set the color of the border.</summary>
 				/// <returns>A reference to the border color, as defined in <see cref="color"></see>.</returns>

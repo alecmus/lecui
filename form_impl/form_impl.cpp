@@ -736,7 +736,7 @@ namespace liblec {
 								controls_pane()
 									.color_fill(html_editor_specs.color_control_fill())
 									.color_border(html_editor_specs.color_control_border())
-									.border(html_editor_specs.border())
+									.border(html_editor_specs.control_border())
 									.on_resize(html_editor_specs.on_resize());
 								controls_pane().on_resize().perc_height = 0.f;
 								controls_pane().on_resize().min_height = 0.f;
