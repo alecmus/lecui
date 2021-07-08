@@ -133,6 +133,7 @@ namespace liblec {
 			if (!resources_created_)
 				create_resources(p_render_target);
 
+			// use specs_.rect_ not specs_.rect() and specs_.on_resize_ not specs_.on_resize() due to redirection to special pane
 			rect_ = position(specs_.rect_, specs_.on_resize_, change_in_size.width, change_in_size.height);
 			rect_.left -= offset.x;
 			rect_.right -= offset.x;
