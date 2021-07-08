@@ -309,7 +309,7 @@ namespace liblec {
 		void widgets::text_field_impl::on_selection_change(const bool& selected) {
 			if (selected) {
 				// start blink timer
-				timer_management(get_form()).add(caret_blink_timer_name_, 500,
+				timer_manager(get_form()).add(caret_blink_timer_name_, 500,
 					[&]() {
 						if (skip_blink_)
 							skip_blink_ = false;
@@ -321,7 +321,7 @@ namespace liblec {
 			}
 			else {
 				// stop blink timer
-				timer_management(get_form()).stop(caret_blink_timer_name_);
+				timer_manager(get_form()).stop(caret_blink_timer_name_);
 			}
 		}
 

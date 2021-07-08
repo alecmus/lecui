@@ -3262,8 +3262,8 @@ namespace liblec {
 						// forward data to the receive data handler through a timer set to 0
 						if (!form_.d_.data_received_.empty()) {
 							form_.d_.receiving_ = true;
-							timer_management(form_).add(form_.d_.receive_data_timer_alias_, 0, [&]() {
-								timer_management(form_).stop(form_.d_.receive_data_timer_alias_);
+							timer_manager(form_).add(form_.d_.receive_data_timer_alias_, 0, [&]() {
+								timer_manager(form_).stop(form_.d_.receive_data_timer_alias_);
 								form_.d_.on_receive_data_(form_.d_.data_received_);
 								form_.d_.receiving_ = false;
 								});

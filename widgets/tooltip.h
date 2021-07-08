@@ -29,7 +29,7 @@ namespace liblec {
 				lecui::controls ctrls_{ *this };
 				lecui::dimensions dim_{ *this };
 				lecui::page_manager page_man_{ *this };
-				lecui::timer_management timer_man_{ *this };
+				lecui::timer_manager timer_man_{ *this };
 				const unsigned long lifetime_;
 				lecui::form& parent_;
 

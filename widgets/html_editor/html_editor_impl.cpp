@@ -415,18 +415,18 @@ namespace liblec {
 			specs_.rect_.height(height);
 
 			// move rect to ensure caret visibility
-			if (move_v && !timer_management(get_form()).running(autoscroll_timer_name_)) {
+			if (move_v && !timer_manager(get_form()).running(autoscroll_timer_name_)) {
 				log("move_v: " + std::to_string(move_v));
 				scroll_amount_ = move_v;
 
-				timer_management(get_form()).add(autoscroll_timer_name_, 0,
+				timer_manager(get_form()).add(autoscroll_timer_name_, 0,
 					[&]() {
 						// scroll page to ensure caret visibility
 						page_.d_page_.scroll(scroll_amount_);
 						get_form().update();
 
 						// stop timer
-						timer_management(get_form()).stop(autoscroll_timer_name_);
+						timer_manager(get_form()).stop(autoscroll_timer_name_);
 					});
 			}
 
@@ -436,7 +436,7 @@ namespace liblec {
 		void widgets::html_editor_impl::on_selection_change(const bool& selected) {
 			if (selected) {
 				// start blink timer
-				timer_management(get_form()).add(caret_blink_timer_name_, 500,
+				timer_manager(get_form()).add(caret_blink_timer_name_, 500,
 					[&]() {
 						if (skip_blink_)
 							skip_blink_ = false;
@@ -448,7 +448,7 @@ namespace liblec {
 			}
 			else {
 				// stop blink timer
-				timer_management(get_form()).stop(caret_blink_timer_name_);
+				timer_manager(get_form()).stop(caret_blink_timer_name_);
 			}
 		}
 

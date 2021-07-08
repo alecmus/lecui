@@ -13,19 +13,19 @@
 
 namespace liblec {
 	namespace lecui {
-		class timer_management::impl {
+		class timer_manager::impl {
 		public:
 			impl(form& fm) :
 				fm_(fm) {}
 			form& fm_;
 		};
 
-		timer_management::timer_management(form& fm) :
+		timer_manager::timer_manager(form& fm) :
 			d_(*new impl(fm)) {}
 
-		timer_management::~timer_management() { delete& d_; }
+		timer_manager::~timer_manager() { delete& d_; }
 
-		void timer_management::add(const std::string& alias,
+		void timer_manager::add(const std::string& alias,
 			const unsigned long& milliseconds, std::function<void()> on_timer) {
 			if (running(alias)) return;
 
@@ -46,12 +46,12 @@ namespace liblec {
 				d_.fm_.d_.timers_.at(alias).running = false;	// timer will be started on form creation
 		}
 
-		bool timer_management::running(const std::string& alias) {
+		bool timer_manager::running(const std::string& alias) {
 			return (d_.fm_.d_.timers_.find(alias) == d_.fm_.d_.timers_.end()) ?
 				false : d_.fm_.d_.timers_.at(alias).running;
 		}
 
-		void timer_management::stop(const std::string& alias) {
+		void timer_manager::stop(const std::string& alias) {
 			if (d_.fm_.d_.timers_.find(alias) != d_.fm_.d_.timers_.end()) {
 				KillTimer(d_.fm_.d_.hWnd_, (UINT_PTR)d_.fm_.d_.timers_.at(alias).unique_id);
 				d_.fm_.d_.timers_.at(alias).running = false;

@@ -84,9 +84,9 @@ namespace liblec {
 			// this way the actual closing will be done (hopefully) outside the handler coz of async.
 			// the caller still has to exercise caution by avoiding such logical errors.
 			d_.fm_.d_.scheduled_for_closure_.push_back(path);
-			timer_management(d_.fm_).add("close_widget_timer", 0,
+			timer_manager(d_.fm_).add("close_widget_timer", 0,
 				[&]() {
-					timer_management(d_.fm_).stop("close_widget_timer");
+					timer_manager(d_.fm_).stop("close_widget_timer");
 					for (const auto& it : d_.fm_.d_.scheduled_for_closure_)
 						d_.fm_.d_.close(it);
 

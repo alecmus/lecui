@@ -18,11 +18,13 @@
 
 namespace liblec {
 	namespace lecui {
-		/// <summary>Timer management.</summary>
-		class lecui_api timer_management {
+		/// <summary>Timer manager class.</summary>
+		class lecui_api timer_manager {
 		public:
-			timer_management(form& fm);
-			~timer_management();
+			/// <summary>Timer manager constructor.</summary>
+			/// <param name="fm">The form.</param>
+			timer_manager(form& fm);
+			~timer_manager();
 
 			/// <summary>Add a timer.</summary>
 			/// <param name="alias">The in-form unique alias, e.g. "activation_timer".</param>
@@ -48,9 +50,9 @@ namespace liblec {
 			impl& d_;
 
 			// Default constructor and copying an object of this class are not allowed
-			timer_management() = delete;
-			timer_management(const timer_management&) = delete;
-			timer_management& operator=(const timer_management&) = delete;
+			timer_manager() = delete;
+			timer_manager(const timer_manager&) = delete;
+			timer_manager& operator=(const timer_manager&) = delete;
 		};
 	}
 }

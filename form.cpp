@@ -249,7 +249,7 @@ namespace liblec {
 				// stop all timers
 				for (auto& it : d_.timers_)
 				{
-					timer_management timer(*this);
+					timer_manager timer(*this);
 					if (timer.running(it.first))
 						timer.stop(it.first);
 				}
