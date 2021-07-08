@@ -246,7 +246,7 @@ namespace liblec {
 			friend class filesystem;
 			friend class color_picker;
 			friend class splash;
-			friend class instance_management;
+			friend class instance_manager;
 			friend class form_menu;
 			friend class tray_icon;
 			friend class containers::status_pane;

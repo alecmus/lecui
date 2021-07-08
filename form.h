@@ -30,7 +30,7 @@ namespace liblec {
 		class filesystem;
 		class color_picker;
 		class splash;
-		class instance_management;
+		class instance_manager;
 		class form_menu;
 		class tray_icon;
 
@@ -319,7 +319,7 @@ namespace liblec {
 			friend class filesystem;
 			friend class color_picker;
 			friend class splash;
-			friend class instance_management;
+			friend class instance_manager;
 			friend class form_menu;
 			friend class tray_icon;
 

@@ -19,7 +19,7 @@
 namespace liblec {
 	namespace lecui {
 		/// <summary>Manage application instances.</summary>
-		class lecui_api instance_management {
+		class lecui_api instance_manager {
 		public:
 			/// <summary>Constructor</summary>
 			/// <param name="fm">A reference to the form.</param>
@@ -35,8 +35,8 @@ namespace liblec {
 			/// the same guid. This way, when a new instance is attempted, the latest form to be
 			/// created will be brought to the foreground. GUIDs only apply to top level forms.
 			/// </remarks>
-			instance_management(form& fm, const std::string& guid);
-			~instance_management();
+			instance_manager(form& fm, const std::string& guid);
+			~instance_manager();
 
 			/// <summary>Send data to another application instance.</summary>
 			/// <param name="guid">The unique guid of the target application.</param>
@@ -53,9 +53,9 @@ namespace liblec {
 			impl& d_;
 
 			// Default constructor and copying an object of this class are not allowed
-			instance_management() = delete;
-			instance_management(const instance_management&) = delete;
-			instance_management& operator=(const instance_management&) = delete;
+			instance_manager() = delete;
+			instance_manager(const instance_manager&) = delete;
+			instance_manager& operator=(const instance_manager&) = delete;
 		};
 	}
 }

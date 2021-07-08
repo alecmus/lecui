@@ -14,7 +14,7 @@
 
 namespace liblec {
 	namespace lecui {
-		class instance_management::impl {
+		class instance_manager::impl {
 		public:
 			impl(form& fm, const std::string& guid) :
 				fm_(fm) {
@@ -31,10 +31,10 @@ namespace liblec {
 			form& fm_;
 		};
 
-		instance_management::instance_management(form& fm, const std::string& guid) : d_(*(new impl(fm, guid))) {}
-		instance_management::~instance_management() { delete& d_; }
+		instance_manager::instance_manager(form& fm, const std::string& guid) : d_(*(new impl(fm, guid))) {}
+		instance_manager::~instance_manager() { delete& d_; }
 
-		bool instance_management::send_data(const std::string& guid, const std::string& data,
+		bool instance_manager::send_data(const std::string& guid, const std::string& data,
 			const long& timeout_milliseconds, std::string& error) {
 			
 			// find the form's native handle
