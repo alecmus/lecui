@@ -40,17 +40,35 @@ namespace liblec {
 			return *this;
 		}
 
-		lecui::rect& widgets::time_specs::rect() { return rect_; }
+		lecui::rect& widgets::time_specs::rect() {
+			if (p_special_pane_specs_)	// redirect to special pane
+				return reinterpret_cast<lecui::containers::pane_specs*>(p_special_pane_specs_)->rect();
+			else
+				return rect_;
+		}
 
 		widgets::time_specs& widgets::time_specs::rect(const lecui::rect& rect) {
-			rect_ = rect;
+			if (p_special_pane_specs_)	// redirect to special pane
+				reinterpret_cast<lecui::containers::pane_specs*>(p_special_pane_specs_)->rect(rect);
+			else
+				rect_ = rect;
+
 			return *this;
 		}
 
-		widgets::specs::resize_params& widgets::time_specs::on_resize() { return on_resize_; }
+		widgets::specs::resize_params& widgets::time_specs::on_resize() {
+			if (p_special_pane_specs_)	// redirect to special pane
+				return reinterpret_cast<lecui::containers::pane_specs*>(p_special_pane_specs_)->on_resize();
+			else
+				return on_resize_;
+		}
 
 		widgets::time_specs& widgets::time_specs::on_resize(const resize_params& on_resize) {
-			on_resize_ = on_resize;
+			if (p_special_pane_specs_)	// redirect to special pane
+				reinterpret_cast<lecui::containers::pane_specs*>(p_special_pane_specs_)->on_resize(on_resize);
+			else
+				on_resize_ = on_resize;
+
 			return *this;
 		}
 

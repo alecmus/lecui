@@ -1083,6 +1083,7 @@ namespace liblec {
 				lecui::widgets::time_specs time;
 				lecui::containers::page& source;
 				lecui::containers::page& destination;
+				lecui::containers::pane_specs& destination_specs;
 			};
 
 			std::vector<time_info> times;
@@ -1118,7 +1119,7 @@ namespace liblec {
 
 								// save move info so we can move the tree into the pane later
 								// we cannot do it here because we're iterating
-								times.push_back({ widget.first, time_specs, page, pane.get() });
+								times.push_back({ widget.first, time_specs, page, pane.get(), pane() });
 								break;
 							}
 
@@ -1257,6 +1258,9 @@ namespace liblec {
 						// capture rectangle specs
 						it.destination.d_page_.get_time(it.alias).set_time_specs(
 							hour(), minute(), second());
+
+						// copy pointer to pane specs so we can return the pane specs for those properties that are handled by the pane, like the bounding rectangle
+						time().p_special_pane_specs_ = &it.destination_specs;
 
 						// close widget
 						std::string error;

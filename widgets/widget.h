@@ -199,6 +199,7 @@ namespace liblec {
 				friend class table_view_impl;
 				friend class tree_view_impl;
 				friend class html_editor_impl;
+				friend class time_impl;
 #endif
 			};
 		}
