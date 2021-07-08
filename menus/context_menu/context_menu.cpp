@@ -27,7 +27,7 @@ namespace liblec {
             const float max_font_size_ = 72.f;
             lecui::size max_size_ = { 4200.f, 10000.f };
             const std::string al_page_home_ = "home_page";
-            lecui::page_management page_man_{ *this };
+            lecui::page_manager page_man_{ *this };
             const context_menu::specs& menu_specs_;
             std::vector<lecui::rect> rects_;
             bool images_ = false;

@@ -318,7 +318,7 @@ namespace liblec {
 				}
 
 				bool on_layout(std::string& error) override {
-					page_management page_man(*this);
+					page_manager page_man(*this);
 					auto& home_page = page_man.add("home");
 
 					widgets::label_builder label(home_page);
@@ -402,7 +402,7 @@ namespace liblec {
 					}
 
 					bool on_layout(std::string& error) override {
-						page_management page_man(*this);
+						page_manager page_man(*this);
 						auto& home_page = page_man.add("home");
 
 						widgets::label_builder label(home_page);

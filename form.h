@@ -21,7 +21,7 @@
 namespace liblec {
 	namespace lecui {
 #if defined(LECUI_EXPORTS)
-		class page_management;
+		class page_manager;
 		class widget_manager;
 		class timer_management;
 		class dimensions;
@@ -310,7 +310,7 @@ namespace liblec {
 			form& operator=(const form&) = delete;
 
 #if defined(LECUI_EXPORTS)
-			friend class page_management;
+			friend class page_manager;
 			friend class widget_manager;
 			friend class timer_management;
 			friend class dimensions;

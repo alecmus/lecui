@@ -240,7 +240,7 @@ namespace liblec {
 			friend class dimensions;
 			friend class appearance;
 			friend class controls;
-			friend class page_management;
+			friend class page_manager;
 			friend class widget_manager;
 			friend class timer_management;
 			friend class filesystem;

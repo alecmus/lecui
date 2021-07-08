@@ -58,7 +58,7 @@ namespace liblec {
 
 #if defined(LECUI_EXPORTS)
 				friend class form;
-				friend class page_management;
+				friend class page_manager;
 				friend class containers::status_pane;
 				friend class containers::tab_pane_builder;
 				friend class containers::tab_builder;
@@ -96,11 +96,11 @@ namespace liblec {
 			};
 		}
 
-		/// <summary>Page management.</summary>
-		class lecui_api page_management {
+		/// <summary>Page manager class.</summary>
+		class lecui_api page_manager {
 		public:
-			page_management(form& fm);
-			~page_management();
+			page_manager(form& fm);
+			~page_manager();
 
 			/// <summary>Check if a page exists.</summary>
 			/// <param name="alias">The in-form unique alias, e.g. "home_page".</param>
@@ -139,9 +139,9 @@ namespace liblec {
 			impl& d_;
 
 			// Default constructor and copying an object of this class are not allowed
-			page_management() = delete;
-			page_management(const page_management&) = delete;
-			page_management& operator=(const page_management&) = delete;
+			page_manager() = delete;
+			page_manager(const page_manager&) = delete;
+			page_manager& operator=(const page_manager&) = delete;
 		};
 	}
 }

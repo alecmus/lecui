@@ -20,21 +20,21 @@ namespace liblec {
 
 		inline const size containers::page::size() { return d_page_.size(); }
 
-		class page_management::impl {
+		class page_manager::impl {
 		public:
 			impl(form& fm) :
 				fm_(fm) {}
 			form& fm_;
 		};
 
-		page_management::page_management(form& fm) : d_(*(new impl(fm))) {}
-		page_management::~page_management() { delete& d_; }
+		page_manager::page_manager(form& fm) : d_(*(new impl(fm))) {}
+		page_manager::~page_manager() { delete& d_; }
 
-		bool page_management::exists(const std::string& alias) {
+		bool page_manager::exists(const std::string& alias) {
 			return d_.fm_.d_.p_pages_.count(alias) != 0;
 		}
 
-		containers::page& page_management::add(const std::string& alias) {
+		containers::page& page_manager::add(const std::string& alias) {
 			if (d_.fm_.d_.p_pages_.count(alias)) {
 				log("library usage error page::add");
 
@@ -133,7 +133,7 @@ namespace liblec {
 		}
 
 		containers::page&
-			page_management::get(form& fm, const std::string& alias) {
+			page_manager::get(form& fm, const std::string& alias) {
 			try {
 				// check form pages
 				return fm.d_.p_pages_.at(alias);
@@ -148,14 +148,14 @@ namespace liblec {
 			throw std::invalid_argument("Invalid path");
 		}
 
-		void page_management::show(const std::string& alias) {
+		void page_manager::show(const std::string& alias) {
 			d_.fm_.d_.current_page_ = alias;
 
 			if (IsWindow(d_.fm_.d_.hWnd_))
 				d_.fm_.d_.update();
 		}
 
-		void page_management::close(const std::string& path) {
+		void page_manager::close(const std::string& path) {
 			d_.fm_.d_.close_container(path);
 		}
 	}
