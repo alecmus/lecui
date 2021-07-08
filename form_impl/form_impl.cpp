@@ -1810,6 +1810,7 @@ namespace liblec {
 				lecui::widgets::icon_specs icon;
 				lecui::containers::page& source;
 				lecui::containers::page& destination;
+				lecui::containers::pane_specs& destination_specs;
 			};
 
 			std::vector<icon_info> icons;
@@ -1845,7 +1846,7 @@ namespace liblec {
 
 								// save move info so we can move the tree into the pane later
 								// we cannot do it here because we're iterating
-								icons.push_back({ widget.first, icon_specs, page, pane.get() });
+								icons.push_back({ widget.first, icon_specs, page, pane.get(), pane() });
 								break;
 							}
 
@@ -2024,6 +2025,9 @@ namespace liblec {
 						// capture image view specs
 						it.destination.d_page_.get_icon(it.alias).set_icon_specs(
 							icn(), image(), text(), description());
+
+						// copy pointer to pane specs so we can return the pane specs for those properties that are handled by the pane, like the bounding rectangle
+						icon().p_special_pane_specs_ = &it.destination_specs;
 
 						// close widget
 						std::string error;

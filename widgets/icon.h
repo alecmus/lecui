@@ -44,6 +44,7 @@ namespace liblec {
 				image_quality quality_ = image_quality::high;
 				std::string description_;
 				icon_text_position text_position_ = icon_text_position::right;
+				void* p_special_pane_specs_ = nullptr;
 
 			public:
 				icon_specs() {
@@ -209,6 +210,11 @@ namespace liblec {
 				/// <param name="text_position">The position of the text as defined in <see cref="icon_text_position"></see>.</param>
 				/// <returns>A reference to the modified object.</returns>
 				icon_specs& text_position(const icon_text_position& text_position);
+
+			private:
+#if defined(LECUI_EXPORTS)
+				friend class form;
+#endif
 			};
 
 			/// <summary>Icon widget builder.</summary>

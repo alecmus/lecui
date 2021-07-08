@@ -201,6 +201,7 @@ namespace liblec {
 				friend class html_editor_impl;
 				friend class time_impl;
 				friend class date_impl;
+				friend class icon_impl;
 #endif
 			};
 		}
