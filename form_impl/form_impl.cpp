@@ -1428,6 +1428,7 @@ namespace liblec {
 				lecui::widgets::date_specs date;
 				lecui::containers::page& source;
 				lecui::containers::page& destination;
+				lecui::containers::pane_specs& destination_specs;
 			};
 
 			std::vector<date_info> dates;
@@ -1463,7 +1464,7 @@ namespace liblec {
 
 								// save move info so we can move the tree into the pane later
 								// we cannot do it here because we're iterating
-								dates.push_back({ widget.first, date_specs, page, pane.get() });
+								dates.push_back({ widget.first, date_specs, page, pane.get(), pane() });
 								break;
 							}
 
@@ -1614,6 +1615,9 @@ namespace liblec {
 						// capture rectangle specs
 						it.destination.d_page_.get_date(it.alias).set_date_specs(
 							day(), month(), year());
+
+						// copy pointer to pane specs so we can return the pane specs for those properties that are handled by the pane, like the bounding rectangle
+						date().p_special_pane_specs_ = &it.destination_specs;
 
 						// close widget
 						std::string error;

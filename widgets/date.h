@@ -27,6 +27,7 @@ namespace liblec {
 				float corner_radius_x_ = 2.f;
 				float corner_radius_y_ = 2.f;
 				date date_value_;
+				void* p_special_pane_specs_ = nullptr;
 
 			public:
 				date_specs() {
@@ -134,6 +135,10 @@ namespace liblec {
 
 			private:
 				date_events date_events_;
+
+#if defined(LECUI_EXPORTS)
+				friend class form;
+#endif
 			};
 
 			/// <summary>Date widget builder.</summary>
