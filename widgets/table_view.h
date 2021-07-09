@@ -52,6 +52,12 @@ namespace liblec {
 					std::function<void(
 						const std::vector<std::map<std::string, std::string>>& rows)>
 						selection = nullptr;
+
+					/// <summary>This handler is called when the table view is right clicked.</summary>
+					/// <remarks>The parameter contained the selected rows.</remarks>
+					std::function<void(
+						const std::vector<std::map<std::string, std::string>>& rows)>
+						context_menu = nullptr;
 				};
 
 				table_view_events& events() {

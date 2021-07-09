@@ -570,6 +570,16 @@ namespace liblec {
 		}
 
 		void widgets::table_view_impl::on_right_click() {
+			if (specs_.events().context_menu) {
+				std::vector<std::map<std::string, std::string>> var;
+				for (const auto& it : specs_.selected()) {
+					try { var.push_back(specs_.data().at(it)); }
+					catch (const std::exception&) {}
+				}
+
+				specs_.events().context_menu(var);
+			}
+
 			if (specs_.events().right_click)
 				specs_.events().right_click();
 		}
