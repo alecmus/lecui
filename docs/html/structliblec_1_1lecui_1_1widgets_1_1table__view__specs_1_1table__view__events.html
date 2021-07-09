@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">lecui
-   &#160;<span id="projectnumber">1.0.0-alpha.3</span>
+   &#160;<span id="projectnumber">1.0.0-alpha.5</span>
    </div>
    <div id="projectbrief">lecui C++ user interface library</div>
   </td>
@@ -91,9 +91,12 @@ Inheritance diagram for liblec::lecui::widgets::table_view_specs::table_view_eve
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a025becf54f07a4fc0b8716cd144eaa20"><td class="memItemLeft" align="right" valign="top">std::function&lt; void(const std::vector&lt; std::map&lt; std::string, std::string &gt;&gt; &amp;rows)&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structliblec_1_1lecui_1_1widgets_1_1table__view__specs_1_1table__view__events.html#a025becf54f07a4fc0b8716cd144eaa20">selection</a> = nullptr</td></tr>
-<tr class="memdesc:a025becf54f07a4fc0b8716cd144eaa20"><td class="mdescLeft">&#160;</td><td class="mdescRight">This handler is called when the selection changes.  <a href="structliblec_1_1lecui_1_1widgets_1_1table__view__specs_1_1table__view__events.html#a025becf54f07a4fc0b8716cd144eaa20">More...</a><br /></td></tr>
-<tr class="separator:a025becf54f07a4fc0b8716cd144eaa20"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6f513cf4bc53826c18dc46528cad928"><td class="memItemLeft" align="right" valign="top">std::function&lt; void(const std::vector&lt; table_row &gt; &amp;rows)&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structliblec_1_1lecui_1_1widgets_1_1table__view__specs_1_1table__view__events.html#ae6f513cf4bc53826c18dc46528cad928">selection</a> = nullptr</td></tr>
+<tr class="memdesc:ae6f513cf4bc53826c18dc46528cad928"><td class="mdescLeft">&#160;</td><td class="mdescRight">This handler is called when the selection changes.  <a href="structliblec_1_1lecui_1_1widgets_1_1table__view__specs_1_1table__view__events.html#ae6f513cf4bc53826c18dc46528cad928">More...</a><br /></td></tr>
+<tr class="separator:ae6f513cf4bc53826c18dc46528cad928"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:accccf79126b4b8fad210f6ecc1f9bbf0"><td class="memItemLeft" align="right" valign="top">std::function&lt; void(const std::vector&lt; table_row &gt; &amp;rows)&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structliblec_1_1lecui_1_1widgets_1_1table__view__specs_1_1table__view__events.html#accccf79126b4b8fad210f6ecc1f9bbf0">context_menu</a> = nullptr</td></tr>
+<tr class="memdesc:accccf79126b4b8fad210f6ecc1f9bbf0"><td class="mdescLeft">&#160;</td><td class="mdescRight">This handler is called when the table view is right clicked.  <a href="structliblec_1_1lecui_1_1widgets_1_1table__view__specs_1_1table__view__events.html#accccf79126b4b8fad210f6ecc1f9bbf0">More...</a><br /></td></tr>
+<tr class="separator:accccf79126b4b8fad210f6ecc1f9bbf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_attribs_structliblec_1_1lecui_1_1widgets_1_1specs_1_1basic__events"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_structliblec_1_1lecui_1_1widgets_1_1specs_1_1basic__events')"><img src="closed.png" alt="-"/>&#160;Public Attributes inherited from <a class="el" href="structliblec_1_1lecui_1_1widgets_1_1specs_1_1basic__events.html">liblec::lecui::widgets::specs::basic_events</a></td></tr>
 <tr class="memitem:a55805eceed708f645bbc232c367ce8b6 inherit pub_attribs_structliblec_1_1lecui_1_1widgets_1_1specs_1_1basic__events"><td class="memItemLeft" align="right" valign="top">std::function&lt; void()&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structliblec_1_1lecui_1_1widgets_1_1specs_1_1basic__events.html#a55805eceed708f645bbc232c367ce8b6">action</a> = nullptr</td></tr>
 <tr class="memdesc:a55805eceed708f645bbc232c367ce8b6 inherit pub_attribs_structliblec_1_1lecui_1_1widgets_1_1specs_1_1basic__events"><td class="mdescLeft">&#160;</td><td class="mdescRight">The handler to be called when either the space bar or enter key is pressed, or if the widget is clicked.  <a href="structliblec_1_1lecui_1_1widgets_1_1specs_1_1basic__events.html#a55805eceed708f645bbc232c367ce8b6">More...</a><br /></td></tr>
@@ -101,6 +104,9 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:ac72e2bb4e37922996331aebecc13bc7b inherit pub_attribs_structliblec_1_1lecui_1_1widgets_1_1specs_1_1basic__events"><td class="memItemLeft" align="right" valign="top">std::function&lt; void()&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structliblec_1_1lecui_1_1widgets_1_1specs_1_1basic__events.html#ac72e2bb4e37922996331aebecc13bc7b">click</a> = nullptr</td></tr>
 <tr class="memdesc:ac72e2bb4e37922996331aebecc13bc7b inherit pub_attribs_structliblec_1_1lecui_1_1widgets_1_1specs_1_1basic__events"><td class="mdescLeft">&#160;</td><td class="mdescRight">The handler to be called when the widget is clicked.  <a href="structliblec_1_1lecui_1_1widgets_1_1specs_1_1basic__events.html#ac72e2bb4e37922996331aebecc13bc7b">More...</a><br /></td></tr>
 <tr class="separator:ac72e2bb4e37922996331aebecc13bc7b inherit pub_attribs_structliblec_1_1lecui_1_1widgets_1_1specs_1_1basic__events"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5de4d7605e499e610df43a437f5c7c9d inherit pub_attribs_structliblec_1_1lecui_1_1widgets_1_1specs_1_1basic__events"><td class="memItemLeft" align="right" valign="top">std::function&lt; void()&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structliblec_1_1lecui_1_1widgets_1_1specs_1_1basic__events.html#a5de4d7605e499e610df43a437f5c7c9d">right_click</a> = nullptr</td></tr>
+<tr class="memdesc:a5de4d7605e499e610df43a437f5c7c9d inherit pub_attribs_structliblec_1_1lecui_1_1widgets_1_1specs_1_1basic__events"><td class="mdescLeft">&#160;</td><td class="mdescRight">The handler to be called when the widget is right-clicked.  <a href="structliblec_1_1lecui_1_1widgets_1_1specs_1_1basic__events.html#a5de4d7605e499e610df43a437f5c7c9d">More...</a><br /></td></tr>
+<tr class="separator:a5de4d7605e499e610df43a437f5c7c9d inherit pub_attribs_structliblec_1_1lecui_1_1widgets_1_1specs_1_1basic__events"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aca456ae72d12dd1ade2a57c12c3ae875 inherit pub_attribs_structliblec_1_1lecui_1_1widgets_1_1specs_1_1basic__events"><td class="memItemLeft" align="right" valign="top">std::function&lt; void()&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structliblec_1_1lecui_1_1widgets_1_1specs_1_1basic__events.html#aca456ae72d12dd1ade2a57c12c3ae875">mouse_enter</a> = nullptr</td></tr>
 <tr class="memdesc:aca456ae72d12dd1ade2a57c12c3ae875 inherit pub_attribs_structliblec_1_1lecui_1_1widgets_1_1specs_1_1basic__events"><td class="mdescLeft">&#160;</td><td class="mdescRight">The handler to be called when the mouse enters the widget.  <a href="structliblec_1_1lecui_1_1widgets_1_1specs_1_1basic__events.html#aca456ae72d12dd1ade2a57c12c3ae875">More...</a><br /></td></tr>
 <tr class="separator:aca456ae72d12dd1ade2a57c12c3ae875 inherit pub_attribs_structliblec_1_1lecui_1_1widgets_1_1specs_1_1basic__events"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -111,14 +117,31 @@ Public Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Events specific to this widget. </p>
 </div><h2 class="groupheader">Member Data Documentation</h2>
-<a id="a025becf54f07a4fc0b8716cd144eaa20"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a025becf54f07a4fc0b8716cd144eaa20">&#9670;&nbsp;</a></span>selection</h2>
+<a id="accccf79126b4b8fad210f6ecc1f9bbf0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#accccf79126b4b8fad210f6ecc1f9bbf0">&#9670;&nbsp;</a></span>context_menu</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::function&lt;void( const std::vector&lt;std::map&lt;std::string, std::string&gt;&gt;&amp; rows)&gt; liblec::lecui::widgets::table_view_specs::table_view_events::selection = nullptr</td>
+          <td class="memname">std::function&lt;void( const std::vector&lt;table_row&gt;&amp; rows)&gt; liblec::lecui::widgets::table_view_specs::table_view_events::context_menu = nullptr</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This handler is called when the table view is right clicked. </p>
+<p>The parameter contained the selected rows.</p>
+
+</div>
+</div>
+<a id="ae6f513cf4bc53826c18dc46528cad928"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae6f513cf4bc53826c18dc46528cad928">&#9670;&nbsp;</a></span>selection</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::function&lt;void( const std::vector&lt;table_row&gt;&amp; rows)&gt; liblec::lecui::widgets::table_view_specs::table_view_events::selection = nullptr</td>
         </tr>
       </table>
 </div><div class="memdoc">

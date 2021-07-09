@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">lecui
-   &#160;<span id="projectnumber">1.0.0-alpha.3</span>
+   &#160;<span id="projectnumber">1.0.0-alpha.5</span>
    </div>
    <div id="projectbrief">lecui C++ user interface library</div>
   </td>
@@ -285,44 +285,45 @@ $(function() {
 <div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;                    <span class="keyword">const</span> D2D1_SIZE_F&amp; change_in_size, <span class="keyword">const</span> D2D1_POINT_2F&amp; offset,</div>
 <div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;                    <span class="keyword">const</span> <span class="keywordtype">bool</span>&amp; render) = 0;</div>
 <div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;                <span class="keyword">virtual</span> <span class="keywordtype">void</span> on_click();</div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;                <span class="keyword">virtual</span> <span class="keywordtype">void</span> on_action();</div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;                <span class="keyword">virtual</span> <span class="keywordtype">bool</span> on_mousewheel(<span class="keywordtype">float</span> units);</div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;                <span class="keyword">virtual</span> <span class="keywordtype">bool</span> on_keydown(WPARAM wParam);</div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;                <span class="keyword">virtual</span> <span class="keywordtype">void</span> on_selection_change(<span class="keyword">const</span> <span class="keywordtype">bool</span>&amp; selected);</div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160; </div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;            <span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;                D2D1_RECT_F position(<span class="keyword">const</span> <a class="code" href="classliblec_1_1lecui_1_1rect.html">rect</a>&amp; <a class="code" href="classliblec_1_1lecui_1_1rect.html">rect</a>,</div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;                    <span class="keyword">const</span> <a class="code" href="structliblec_1_1lecui_1_1widgets_1_1specs_1_1resize__params.html">widgets::specs::resize_params</a>&amp; on_resize,</div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;                    <span class="keyword">const</span> <span class="keywordtype">float</span>&amp; change_in_width,</div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;                    <span class="keyword">const</span> <span class="keywordtype">float</span>&amp; change_in_height);</div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160; </div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;                <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classliblec_1_1lecui_1_1widgets_1_1widget__impl.html#aa59b661079293e4e3eaea2f526c4dfd6">contains</a>();</div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160; </div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;                std::string alias_;</div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;                <span class="keywordtype">bool</span> is_static_, hit_, pressed_;</div>
-<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;                D2D1_RECT_F rect_;</div>
-<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;                <span class="keywordtype">bool</span> visible_, is_enabled_;</div>
-<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;                D2D1_POINT_2F point_;</div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;                <span class="keywordtype">bool</span> selected_;</div>
-<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;                D2D1_POINT_2F point_on_press_, point_on_release_;</div>
-<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160; </div>
-<div class="line"><a name="l00255"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1widgets_1_1widget__impl.html#a0421b4136588d85b9e714ee17b2b909c">  255</a></span>&#160;                <span class="keywordtype">bool</span> <a class="code" href="classliblec_1_1lecui_1_1widgets_1_1widget__impl.html#a0421b4136588d85b9e714ee17b2b909c">resources_created_</a>;</div>
-<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160; </div>
-<div class="line"><a name="l00261"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1widgets_1_1widget__impl.html#a62461100e5b71dbc3f0bab8475fcff7e">  261</a></span>&#160;                HCURSOR <a class="code" href="classliblec_1_1lecui_1_1widgets_1_1widget__impl.html#a62461100e5b71dbc3f0bab8475fcff7e">h_cursor_</a>;</div>
-<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160; </div>
-<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1containers_1_1page.html">containers::page</a>&amp; page_;</div>
-<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160; </div>
-<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;                std::string tooltip_text_;</div>
-<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;                <span class="keywordtype">bool</span> tooltip_active_;</div>
-<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;            };</div>
-<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;        }</div>
-<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;    }</div>
-<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;}</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;                <span class="keyword">virtual</span> <span class="keywordtype">void</span> on_right_click();</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;                <span class="keyword">virtual</span> <span class="keywordtype">void</span> on_action();</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;                <span class="keyword">virtual</span> <span class="keywordtype">bool</span> on_mousewheel(<span class="keywordtype">float</span> units);</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;                <span class="keyword">virtual</span> <span class="keywordtype">bool</span> on_keydown(WPARAM wParam);</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;                <span class="keyword">virtual</span> <span class="keywordtype">void</span> on_selection_change(<span class="keyword">const</span> <span class="keywordtype">bool</span>&amp; selected);</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160; </div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;            <span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;                D2D1_RECT_F position(<span class="keyword">const</span> <a class="code" href="classliblec_1_1lecui_1_1rect.html">rect</a>&amp; <a class="code" href="classliblec_1_1lecui_1_1rect.html">rect</a>,</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;                    <span class="keyword">const</span> <a class="code" href="structliblec_1_1lecui_1_1widgets_1_1specs_1_1resize__params.html">widgets::specs::resize_params</a>&amp; on_resize,</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;                    <span class="keyword">const</span> <span class="keywordtype">float</span>&amp; change_in_width,</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;                    <span class="keyword">const</span> <span class="keywordtype">float</span>&amp; change_in_height);</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160; </div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;                <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classliblec_1_1lecui_1_1widgets_1_1widget__impl.html#aa59b661079293e4e3eaea2f526c4dfd6">contains</a>();</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160; </div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;                std::string alias_;</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;                <span class="keywordtype">bool</span> is_static_, hit_, pressed_;</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;                D2D1_RECT_F rect_;</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;                <span class="keywordtype">bool</span> visible_, is_enabled_;</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;                D2D1_POINT_2F point_;</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;                <span class="keywordtype">bool</span> selected_;</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;                D2D1_POINT_2F point_on_press_, point_on_release_;</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160; </div>
+<div class="line"><a name="l00256"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1widgets_1_1widget__impl.html#a0421b4136588d85b9e714ee17b2b909c">  256</a></span>&#160;                <span class="keywordtype">bool</span> <a class="code" href="classliblec_1_1lecui_1_1widgets_1_1widget__impl.html#a0421b4136588d85b9e714ee17b2b909c">resources_created_</a>;</div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160; </div>
+<div class="line"><a name="l00262"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1widgets_1_1widget__impl.html#a62461100e5b71dbc3f0bab8475fcff7e">  262</a></span>&#160;                HCURSOR <a class="code" href="classliblec_1_1lecui_1_1widgets_1_1widget__impl.html#a62461100e5b71dbc3f0bab8475fcff7e">h_cursor_</a>;</div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160; </div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1containers_1_1page.html">containers::page</a>&amp; page_;</div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160; </div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;                std::string tooltip_text_;</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;                <span class="keywordtype">bool</span> tooltip_active_;</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;            };</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;        }</div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;    }</div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;}</div>
 <div class="ttc" id="aclassfont_html"><div class="ttname"><a href="classfont.html">font</a></div><div class="ttdoc">Font handling class.</div><div class="ttdef"><b>Definition:</b> font.h:17</div></div>
-<div class="ttc" id="aclassliblec_1_1lecui_1_1color_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1color.html">liblec::lecui::color</a></div><div class="ttdoc">RGBA color on a standard 0 to 255 scale. For the alpha channel 0 is transparent and 255 is opaque.</div><div class="ttdef"><b>Definition:</b> lecui.h:232</div></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1color_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1color.html">liblec::lecui::color</a></div><div class="ttdoc">RGBA color on a standard 0 to 255 scale. For the alpha channel 0 is transparent and 255 is opaque.</div><div class="ttdef"><b>Definition:</b> lecui.h:247</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1containers_1_1page_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1containers_1_1page.html">liblec::lecui::containers::page</a></div><div class="ttdoc">Page container.</div><div class="ttdef"><b>Definition:</b> page.h:31</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1form_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1form.html">liblec::lecui::form</a></div><div class="ttdoc">Form base class. The user must inherit from this class and call one of the two constructors from its ...</div><div class="ttdef"><b>Definition:</b> form.h:99</div></div>
-<div class="ttc" id="aclassliblec_1_1lecui_1_1rect_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1rect.html">liblec::lecui::rect</a></div><div class="ttdef"><b>Definition:</b> lecui.h:72</div></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1rect_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1rect.html">liblec::lecui::rect</a></div><div class="ttdef"><b>Definition:</b> lecui.h:87</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs.html">liblec::lecui::widgets::scrollbar_specs</a></div><div class="ttdef"><b>Definition:</b> widget_impl.h:23</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_html_a15ba7f75c9329e99690741824169a89c"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs.html#a15ba7f75c9329e99690741824169a89c">liblec::lecui::widgets::scrollbar_specs::font</a></div><div class="ttdeci">std::string &amp; font() override</div><div class="ttdoc">Get or set the default widget font, e.g. &quot;Georgia&quot;.</div><div class="ttdef"><b>Definition:</b> widget_impl.h:66</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1scrollbar__specs_html_a17c099ae94e07db6ebbe43ffeb145234"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1scrollbar__specs.html#a17c099ae94e07db6ebbe43ffeb145234">liblec::lecui::widgets::scrollbar_specs::cursor</a></div><div class="ttdeci">cursor_type &amp; cursor() override</div><div class="ttdoc">Get or set the mouse cursor to use then over the widget.</div><div class="ttdef"><b>Definition:</b> widget_impl.h:60</div></div>
@@ -342,10 +343,10 @@ $(function() {
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1specs_html_aaaa453252af3aaef8b427893f4c8a150"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1specs.html#aaaa453252af3aaef8b427893f4c8a150">liblec::lecui::widgets::specs::color_disabled_</a></div><div class="ttdeci">color color_disabled_</div><div class="ttdoc">The color of the widget when it is disabled.</div><div class="ttdef"><b>Definition:</b> widget.h:96</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1specs_html_ad8f0c191e2d4fbb439886108ff351d1b"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1specs.html#ad8f0c191e2d4fbb439886108ff351d1b">liblec::lecui::widgets::specs::color_hot_</a></div><div class="ttdeci">color color_hot_</div><div class="ttdoc">The hit color when the mouse is over the widget.</div><div class="ttdef"><b>Definition:</b> widget.h:90</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1widget__impl_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1widget__impl.html">liblec::lecui::widgets::widget_impl</a></div><div class="ttdef"><b>Definition:</b> widget_impl.h:178</div></div>
-<div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1widget__impl_html_a0421b4136588d85b9e714ee17b2b909c"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1widget__impl.html#a0421b4136588d85b9e714ee17b2b909c">liblec::lecui::widgets::widget_impl::resources_created_</a></div><div class="ttdeci">bool resources_created_</div><div class="ttdoc">Flag to track the status of widget resources. Enables the creation of widget resources on-the-fly and...</div><div class="ttdef"><b>Definition:</b> widget_impl.h:255</div></div>
-<div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1widget__impl_html_a62461100e5b71dbc3f0bab8475fcff7e"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1widget__impl.html#a62461100e5b71dbc3f0bab8475fcff7e">liblec::lecui::widgets::widget_impl::h_cursor_</a></div><div class="ttdeci">HCURSOR h_cursor_</div><div class="ttdoc">The cursor to be displayed when the mouse is over the widget. When equal to a nullptr the default cur...</div><div class="ttdef"><b>Definition:</b> widget_impl.h:261</div></div>
-<div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1widget__impl_html_aa59b661079293e4e3eaea2f526c4dfd6"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1widget__impl.html#aa59b661079293e4e3eaea2f526c4dfd6">liblec::lecui::widgets::widget_impl::contains</a></div><div class="ttdeci">virtual bool contains()</div><div class="ttdoc">For in-widget hit-testing of complex widgets. Called by default in the public overload.</div><div class="ttdef"><b>Definition:</b> widget_impl.cpp:158</div></div>
-<div class="ttc" id="astructliblec_1_1lecui_1_1point_html"><div class="ttname"><a href="structliblec_1_1lecui_1_1point.html">liblec::lecui::point</a></div><div class="ttdef"><b>Definition:</b> lecui.h:62</div></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1widget__impl_html_a0421b4136588d85b9e714ee17b2b909c"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1widget__impl.html#a0421b4136588d85b9e714ee17b2b909c">liblec::lecui::widgets::widget_impl::resources_created_</a></div><div class="ttdeci">bool resources_created_</div><div class="ttdoc">Flag to track the status of widget resources. Enables the creation of widget resources on-the-fly and...</div><div class="ttdef"><b>Definition:</b> widget_impl.h:256</div></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1widget__impl_html_a62461100e5b71dbc3f0bab8475fcff7e"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1widget__impl.html#a62461100e5b71dbc3f0bab8475fcff7e">liblec::lecui::widgets::widget_impl::h_cursor_</a></div><div class="ttdeci">HCURSOR h_cursor_</div><div class="ttdoc">The cursor to be displayed when the mouse is over the widget. When equal to a nullptr the default cur...</div><div class="ttdef"><b>Definition:</b> widget_impl.h:262</div></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1widget__impl_html_aa59b661079293e4e3eaea2f526c4dfd6"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1widget__impl.html#aa59b661079293e4e3eaea2f526c4dfd6">liblec::lecui::widgets::widget_impl::contains</a></div><div class="ttdeci">virtual bool contains()</div><div class="ttdoc">For in-widget hit-testing of complex widgets. Called by default in the public overload.</div><div class="ttdef"><b>Definition:</b> widget_impl.cpp:165</div></div>
+<div class="ttc" id="astructliblec_1_1lecui_1_1point_html"><div class="ttname"><a href="structliblec_1_1lecui_1_1point.html">liblec::lecui::point</a></div><div class="ttdoc">A point.</div><div class="ttdef"><b>Definition:</b> lecui.h:70</div></div>
 <div class="ttc" id="astructliblec_1_1lecui_1_1widgets_1_1specs_1_1resize__params_html"><div class="ttname"><a href="structliblec_1_1lecui_1_1widgets_1_1specs_1_1resize__params.html">liblec::lecui::widgets::specs::resize_params</a></div><div class="ttdoc">Resize parameters.</div><div class="ttdef"><b>Definition:</b> widget.h:29</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

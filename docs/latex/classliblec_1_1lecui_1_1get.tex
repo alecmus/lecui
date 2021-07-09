@@ -1,0 +1,88 @@
+\hypertarget{classliblec_1_1lecui_1_1get}{}\doxysection{liblec\+::lecui\+::get Class Reference}
+\label{classliblec_1_1lecui_1_1get}\index{liblec::lecui::get@{liblec::lecui::get}}
+
+
+Helper class for extracting values from a std\+::any. Strictly added to enable more terse code and make the code more readable.  
+
+
+
+
+{\ttfamily \#include $<$lecui.\+h$>$}
+
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{classliblec_1_1lecui_1_1get_ad0b9a4250dbce1b0efcc2c5053a718a6}{integer}} (const std\+::any \&value)
+\begin{DoxyCompactList}\small\item\em Extract integer value. \end{DoxyCompactList}\item 
+static double \mbox{\hyperlink{classliblec_1_1lecui_1_1get_aa26c3e3f4d3db66da92016fd591ba7d5}{real}} (const std\+::any \&value)
+\begin{DoxyCompactList}\small\item\em Extract double value. \end{DoxyCompactList}\item 
+static std\+::string \mbox{\hyperlink{classliblec_1_1lecui_1_1get_ad17671cc4739266fcec101f0c42e206c}{text}} (const std\+::any \&value)
+\begin{DoxyCompactList}\small\item\em Extract text. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Helper class for extracting values from a std\+::any. Strictly added to enable more terse code and make the code more readable. 
+
+If the std\+::any actually contains a different data type than what you expect the methods in this class will throw, so make sure to use a try-\/catch block in the calling code.
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1get_ad0b9a4250dbce1b0efcc2c5053a718a6}\label{classliblec_1_1lecui_1_1get_ad0b9a4250dbce1b0efcc2c5053a718a6}} 
+\index{liblec::lecui::get@{liblec::lecui::get}!integer@{integer}}
+\index{integer@{integer}!liblec::lecui::get@{liblec::lecui::get}}
+\doxysubsubsection{\texorpdfstring{integer()}{integer()}}
+{\footnotesize\ttfamily int liblec\+::lecui\+::get\+::integer (\begin{DoxyParamCaption}\item[{const std\+::any \&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Extract integer value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The std\+::any containing the value.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The integer.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1get_aa26c3e3f4d3db66da92016fd591ba7d5}\label{classliblec_1_1lecui_1_1get_aa26c3e3f4d3db66da92016fd591ba7d5}} 
+\index{liblec::lecui::get@{liblec::lecui::get}!real@{real}}
+\index{real@{real}!liblec::lecui::get@{liblec::lecui::get}}
+\doxysubsubsection{\texorpdfstring{real()}{real()}}
+{\footnotesize\ttfamily double liblec\+::lecui\+::get\+::real (\begin{DoxyParamCaption}\item[{const std\+::any \&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Extract double value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The std\+::any containing the value.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The double.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1get_ad17671cc4739266fcec101f0c42e206c}\label{classliblec_1_1lecui_1_1get_ad17671cc4739266fcec101f0c42e206c}} 
+\index{liblec::lecui::get@{liblec::lecui::get}!text@{text}}
+\index{text@{text}!liblec::lecui::get@{liblec::lecui::get}}
+\doxysubsubsection{\texorpdfstring{text()}{text()}}
+{\footnotesize\ttfamily std\+::string liblec\+::lecui\+::get\+::text (\begin{DoxyParamCaption}\item[{const std\+::any \&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Extract text. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The std\+::any containing the text.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The text.
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+lecui.\+h\item 
+lecui.\+cpp\end{DoxyCompactItemize}

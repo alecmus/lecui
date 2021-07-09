@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['xml_924',['xml',['../structformatted__text__parser_1_1formatted__text__properties.html#a51b0be0ed1e74bb8e442ff7e68bf92e6',1,'formatted_text_parser::formatted_text_properties']]]
+  ['width_962',['width',['../structliblec_1_1lecui_1_1size.html#a83625648c2b6255004cb2b92f01d664e',1,'liblec::lecui::size::width()'],['../structliblec_1_1lecui_1_1table__column.html#a536b8a962d8d52ad1c1af5dfa150673d',1,'liblec::lecui::table_column::width()']]]
 ];

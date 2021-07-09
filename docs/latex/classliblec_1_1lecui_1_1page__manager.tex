@@ -1,0 +1,141 @@
+\hypertarget{classliblec_1_1lecui_1_1page__manager}{}\doxysection{liblec\+::lecui\+::page\+\_\+manager Class Reference}
+\label{classliblec_1_1lecui_1_1page__manager}\index{liblec::lecui::page\_manager@{liblec::lecui::page\_manager}}
+
+
+Page manager class.  
+
+
+
+
+{\ttfamily \#include $<$page.\+h$>$}
+
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classliblec_1_1lecui_1_1page__manager_1_1impl}{impl}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1page__manager_a77c6503e0190af5ff0ff18b52ce8a9d0}\label{classliblec_1_1lecui_1_1page__manager_a77c6503e0190af5ff0ff18b52ce8a9d0}} 
+{\bfseries page\+\_\+manager} (\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}} \&fm)
+\item 
+bool \mbox{\hyperlink{classliblec_1_1lecui_1_1page__manager_ad871d2b763d30faf369064101a8ed351}{exists}} (const std\+::string \&alias)
+\begin{DoxyCompactList}\small\item\em Check if a page exists. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1page}{containers\+::page}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1page__manager_a4645f516aa542a39ca26f6929aa9b3a9}{add}} (const std\+::string \&alias)
+\begin{DoxyCompactList}\small\item\em Add a page to the form. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classliblec_1_1lecui_1_1page__manager_a24bd295fbcd6c8734b1b6bc4eeaf2716}{show}} (const std\+::string \&alias)
+\begin{DoxyCompactList}\small\item\em Show a page. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classliblec_1_1lecui_1_1page__manager_a7963e1c4e36279f7d800eddf1807c073}{close}} (const std\+::string \&path)
+\begin{DoxyCompactList}\small\item\em Close a container. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1page}{containers\+::page}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1page__manager_a91327832dd302fdd91832f3c8348fb85}{get}} (\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}} \&fm, const std\+::string \&alias)
+\begin{DoxyCompactList}\small\item\em Get the page container of an existing page. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Page manager class. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1page__manager_a4645f516aa542a39ca26f6929aa9b3a9}\label{classliblec_1_1lecui_1_1page__manager_a4645f516aa542a39ca26f6929aa9b3a9}} 
+\index{liblec::lecui::page\_manager@{liblec::lecui::page\_manager}!add@{add}}
+\index{add@{add}!liblec::lecui::page\_manager@{liblec::lecui::page\_manager}}
+\doxysubsubsection{\texorpdfstring{add()}{add()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1page}{containers\+::page}} \& liblec\+::lecui\+::page\+\_\+manager\+::add (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{alias }\end{DoxyParamCaption})}
+
+
+
+Add a page to the form. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em alias} & The in-\/form unique alias, e.\+g. \char`\"{}home\+\_\+page\char`\"{}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the page container.
+\end{DoxyReturn}
+
+
+throws on failure, but ensure to not attempt to add a page that already exists. Use an if statement guard as follows\+: if (!exists())\{ \mbox{\hyperlink{classliblec_1_1lecui_1_1page__manager_a4645f516aa542a39ca26f6929aa9b3a9}{add()}}; \}.to-\/do\+: find a mechanism that makes sense ...\mbox{\Hypertarget{classliblec_1_1lecui_1_1page__manager_a7963e1c4e36279f7d800eddf1807c073}\label{classliblec_1_1lecui_1_1page__manager_a7963e1c4e36279f7d800eddf1807c073}} 
+\index{liblec::lecui::page\_manager@{liblec::lecui::page\_manager}!close@{close}}
+\index{close@{close}!liblec::lecui::page\_manager@{liblec::lecui::page\_manager}}
+\doxysubsubsection{\texorpdfstring{close()}{close()}}
+{\footnotesize\ttfamily void liblec\+::lecui\+::page\+\_\+manager\+::close (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{path }\end{DoxyParamCaption})}
+
+
+
+Close a container. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & The full path to the container, e.\+g. \char`\"{}home\+\_\+page/task\+\_\+pane\char`\"{}.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1page__manager_ad871d2b763d30faf369064101a8ed351}\label{classliblec_1_1lecui_1_1page__manager_ad871d2b763d30faf369064101a8ed351}} 
+\index{liblec::lecui::page\_manager@{liblec::lecui::page\_manager}!exists@{exists}}
+\index{exists@{exists}!liblec::lecui::page\_manager@{liblec::lecui::page\_manager}}
+\doxysubsubsection{\texorpdfstring{exists()}{exists()}}
+{\footnotesize\ttfamily bool liblec\+::lecui\+::page\+\_\+manager\+::exists (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{alias }\end{DoxyParamCaption})}
+
+
+
+Check if a page exists. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em alias} & The in-\/form unique alias, e.\+g. \char`\"{}home\+\_\+page\char`\"{}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the page has been created, else false.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1page__manager_a91327832dd302fdd91832f3c8348fb85}\label{classliblec_1_1lecui_1_1page__manager_a91327832dd302fdd91832f3c8348fb85}} 
+\index{liblec::lecui::page\_manager@{liblec::lecui::page\_manager}!get@{get}}
+\index{get@{get}!liblec::lecui::page\_manager@{liblec::lecui::page\_manager}}
+\doxysubsubsection{\texorpdfstring{get()}{get()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1page}{containers\+::page}} \& liblec\+::lecui\+::page\+\_\+manager\+::get (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}} \&}]{fm,  }\item[{const std\+::string \&}]{alias }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Get the page container of an existing page. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fm} & The form the page is in.\\
+\hline
+{\em alias} & The in-\/form unique alias, e.\+g. \char`\"{}home\+\_\+page\char`\"{}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the page container.
+\end{DoxyReturn}
+
+
+Throws on failure.\mbox{\Hypertarget{classliblec_1_1lecui_1_1page__manager_a24bd295fbcd6c8734b1b6bc4eeaf2716}\label{classliblec_1_1lecui_1_1page__manager_a24bd295fbcd6c8734b1b6bc4eeaf2716}} 
+\index{liblec::lecui::page\_manager@{liblec::lecui::page\_manager}!show@{show}}
+\index{show@{show}!liblec::lecui::page\_manager@{liblec::lecui::page\_manager}}
+\doxysubsubsection{\texorpdfstring{show()}{show()}}
+{\footnotesize\ttfamily void liblec\+::lecui\+::page\+\_\+manager\+::show (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{alias }\end{DoxyParamCaption})}
+
+
+
+Show a page. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em alias} & The in-\/form unique alias, e.\+g. \char`\"{}home\+\_\+page\char`\"{}.\\
+\hline
+\end{DoxyParams}
+
+
+This method is only applicable to form pages and not panes and tab panes even though they are also containers. To manipulate the visibility of the other containers use the \mbox{\hyperlink{classliblec_1_1lecui_1_1widget__manager_a8d87e61291d62bde3ecc42f5dbebe398}{widget\+\_\+manager\+::show}} method instead.
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+containers/page.\+h\item 
+containers/page/page.\+cpp\end{DoxyCompactItemize}
