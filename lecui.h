@@ -66,13 +66,21 @@ namespace liblec {
 		/// universally unique. The probability of a clash, however, is infinitesimal.</remarks>
 		std::string lecui_api unique_string_short();
 
+		/// <summary>A point.</summary>
 		struct point {
+			/// <summary>The x-coordinate of the point, from the top-left.</summary>
 			float x = 0.f;
+
+			/// <summary>The y-coordinate of the point, from the top-left.</summary>
 			float y = 0.f;
 		};
 
+		/// <summary>Size of a rectangular structure.</summary>
 		struct size {
+			/// <summary>The width of the structure.</summary>
 			float width = 0.f;
+
+			/// <summary>The height of the structure.</summary>
 			float height = 0.f;
 		};
 
@@ -312,29 +320,54 @@ namespace liblec {
 			bool operator!=(const color&);
 		};
 
+		/// <summary>Sort options.</summary>
 		enum class sort_options {
+			/// <summary>Sort in ascending order.</summary>
 			ascending,
+
+			/// <summary>Sort in descending order.</summary>
 			descending,
+
+			/// <summary>No sorting order specified.</summary>
 			none,
 		};
 
+		/// <summary>File type.</summary>
 		struct file_type {
+			/// <summary>The file extension, excluding the dot, e.g. "png".</summary>
 			std::string extension = "png";
+
+			/// <summary>The description of the file type, e.g. "PNG Image".</summary>
 			std::string description = "PNG Image";
 		};
 
+		/// <summary>Open file parameters.</summary>
 		struct open_file_params {
+			/// <summary>The list of file types to open, as defined in <see cref="file_type"></see>.</summary>
 			std::vector<file_type> file_types;
+
+			/// <summary>Whether to include and "all supported file types" entry to allow viewing
+			/// of all supported file types instead of being forced to select at least one.</summary>
 			bool include_all_supported_types = true;
+
+			/// <summary>The title of the dialog box, e.g. "Open Image".</summary>
 			std::string title = "Open File";
 		};
 
+		/// <summary>Save file parameters.</summary>
 		struct save_file_params {
+			/// <summary>The list of file types to open, as defined in <see cref="file_type"></see>.</summary>
 			std::vector<file_type> file_types;
+
+			/// <summary>Whether to include and "all supported file types" entry to allow viewing
+			/// of all supported file types instead of being forced to select at least one.</summary>
 			bool include_all_supported_types = true;
+
+			/// <summary>The title of the dialog box, e.g. "Save Document".</summary>
 			std::string title = "Save File";
 		};
 
+		/// <summary>Table column.</summary>
 		struct table_column {
 			/// <summary>The name of the column. Has to be unique.</summary>
 			std::string name;
@@ -355,10 +388,16 @@ namespace liblec {
 		/// </summary>
 		using table_row = std::map<std::string, std::any>;
 
+		/// <summary>Time class.</summary>
 		class lecui_api time {
 		public:
+			/// <summary>The hour, from 0 to 23 inclusive.</summary>
 			unsigned short hour = 0;
+
+			/// <summary>The minute, from 0 to 59 inclusive.</summary>
 			unsigned short minute = 0;
+
+			/// <summary>The second, from 0 to 59 inclusive.</summary>
 			unsigned short second = 0;
 
 			/// <summary>Constructor.</summary>
@@ -375,16 +414,27 @@ namespace liblec {
 			std::string to_string();
 		};
 
+		/// <summary>Date class.</summary>
 		struct date {
+			/// <summary>The day of the month.</summary>
 			unsigned short day = 1;
+
+			/// <summary>The month of the year, from 1 to 12 inclusive.</summary>
 			unsigned short month = 1;
+
+			/// <summary>The year.</summary>
 			unsigned short year = 2020;
 		};
 
 		/// <summary>Image render quality. Used when resampling images.</summary>
 		enum class image_quality {
+			/// <summary>Low image quality, for faster rendering.</summary>
 			low,
+
+			/// <summary>Medium image quality, for a balance between quality and rendering speed.</summary>
 			medium,
+
+			/// <summary>High image quality, for best image quality possibly at the cost of rendering speed.</summary>
 			high,
 		};
 
