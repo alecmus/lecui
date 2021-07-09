@@ -66,6 +66,7 @@ namespace liblec {
 				case item::table_view_row_hover: return { 225, 242, 255, 255 };
 				case item::table_view_row_selected: return { 40, 160, 200, 255 };
 				case item::table_view_text_header: return { 0, 0, 0, 255 };
+				case item::table_view_text_header_hot: return defaults::color(theme, item::form);
 				case item::table_view_text_selected: return defaults::color(theme, item::form);
 				case item::table_view_header: return { 222, 222, 222, 255 };
 				case item::table_view_grid: return { 215, 215, 215, 255 };
@@ -193,6 +194,7 @@ namespace liblec {
 				case item::table_view_row_hover: return { 40, 160, 200, 100 };
 				case item::table_view_row_selected: return { 40, 160, 200, 255 };
 				case item::table_view_text_header: return { 155, 165, 180, 255 };
+				case item::table_view_text_header_hot: return defaults::color(theme, item::form);
 				case item::table_view_text_selected: return defaults::color(theme, item::form);
 				case item::table_view_header: return { 16, 29, 36, 255 };
 				case item::table_view_grid: return { 55, 60, 65, 255 };

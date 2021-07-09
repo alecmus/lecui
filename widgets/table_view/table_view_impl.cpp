@@ -20,6 +20,7 @@ namespace liblec {
 			p_brush_(nullptr),
 			p_brush_fill_(nullptr),
 			p_brush_text_header_(nullptr),
+			p_brush_text_header_hot_(nullptr),
 			p_brush_text_selected_(nullptr),
 			p_brush_fill_header_(nullptr),
 			p_brush_fill_alternate_(nullptr),
@@ -62,6 +63,9 @@ namespace liblec {
 			if (SUCCEEDED(hr))
 				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_text_header()),
 					&p_brush_text_header_);
+			if (SUCCEEDED(hr))
+				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_text_header_hot()),
+					&p_brush_text_header_hot_);
 			if (SUCCEEDED(hr))
 				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_text_selected()),
 					&p_brush_text_selected_);
@@ -124,6 +128,7 @@ namespace liblec {
 			safe_release(&p_brush_);
 			safe_release(&p_brush_fill_);
 			safe_release(&p_brush_text_header_);
+			safe_release(&p_brush_text_header_hot_);
 			safe_release(&p_brush_text_selected_);
 			safe_release(&p_brush_fill_header_);
 			safe_release(&p_brush_fill_alternate_);
@@ -223,6 +228,34 @@ namespace liblec {
 					rect_header_cell.left = rect_header_cell.right;
 					rect_header_cell.right = rect_header_cell.left + static_cast<float>(it.width);
 
+					bool hot = false;
+
+					if (specs().user_sort()) {
+						// check if mouse is within this cell
+						auto rect = rect_header_cell;
+
+						column_hot_spots_[it.name] = rect;
+
+						scale_RECT(rect, get_dpi_scale());
+
+						// handle hit status
+						if (hit_ &&
+							point_.x >= rect.left && point_.x <= rect.right &&
+							point_.y >= rect.top && point_.y <= rect.bottom)
+							hot = true;
+						else
+							hot = false;
+
+						if (hot) {
+							D2D1_ROUNDED_RECT rounded_rect{ rect_header_cell,
+								specs_.corner_radius_x(), specs_.corner_radius_y() };
+
+							if (render && visible_)
+								p_render_target->FillRoundedRectangle(&rounded_rect,
+									p_brush_hot_);
+						}
+					}
+
 					auto rect_text = rect_header_cell;
 					rect_text.left += margin_;
 					rect_text.right -= margin_;
@@ -241,7 +274,7 @@ namespace liblec {
 
 					if (SUCCEEDED(hr) && render && visible_)
 						p_render_target->DrawTextLayout(D2D1_POINT_2F{ rect_text.left, rect_text.top },
-							p_text_layout_, p_brush_text_header_, D2D1_DRAW_TEXT_OPTIONS_CLIP);
+							p_text_layout_, hot ? p_brush_text_header_hot_ : p_brush_text_header_, D2D1_DRAW_TEXT_OPTIONS_CLIP);
 
 					safe_release(&p_text_layout_);
 				}

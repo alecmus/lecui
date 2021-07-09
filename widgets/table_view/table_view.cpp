@@ -22,6 +22,7 @@ namespace liblec {
 				(color_border_ == param.color_border_) &&
 				(color_grid_ == param.color_grid_) &&
 				(color_text_header_ == param.color_text_header_) &&
+				(color_text_header_hot_ == param.color_text_header_hot_) &&
 				(color_fill_header_ == param.color_fill_header_) &&
 				(color_fill_alternate_ == param.color_fill_alternate_) &&
 				(color_row_hot_ == param.color_row_hot_) &&
@@ -58,6 +59,7 @@ namespace liblec {
 			color_text_selected_ = right.color_text_selected_;
 			color_grid_ = right.color_grid_;
 			color_text_header_ = right.color_text_header_;
+			color_text_header_hot_ = right.color_text_header_hot_;
 			color_fill_header_ = right.color_fill_header_;
 			color_fill_alternate_ = right.color_fill_alternate_;
 			color_row_hot_ = right.color_row_hot_;
@@ -254,6 +256,13 @@ namespace liblec {
 			return *this;
 		}
 
+		lecui::color& widgets::table_view_specs::color_text_header_hot() { return color_text_header_hot_; }
+
+		widgets::table_view_specs& widgets::table_view_specs::color_text_header_hot(const color& color_text_header_hot) {
+			color_text_header_hot_ = color_text_header_hot;
+			return *this;
+		}
+
 		color& widgets::table_view_specs::color_fill_header() { return color_fill_header_; }
 
 		widgets::table_view_specs& widgets::table_view_specs::color_fill_header(const color& color_fill_header) {
@@ -324,6 +333,7 @@ namespace liblec {
 					.color_row_hot(defaults::color(page_.d_page_.fm_.d_.theme_, item::table_view_row_hover))
 					.color_row_selected(defaults::color(page_.d_page_.fm_.d_.theme_, item::table_view_row_selected))
 					.color_text_header(defaults::color(page_.d_page_.fm_.d_.theme_, item::table_view_text_header))
+					.color_text_header_hot(defaults::color(page_.d_page_.fm_.d_.theme_, item::table_view_text_header_hot))
 					.color_fill_header(defaults::color(page_.d_page_.fm_.d_.theme_, item::table_view_header))
 					.color_grid(defaults::color(page_.d_page_.fm_.d_.theme_, item::table_view_grid));
 			}

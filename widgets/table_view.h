@@ -31,6 +31,7 @@ namespace liblec {
 				color color_text_selected_;
 				color color_grid_;
 				color color_text_header_;
+				color color_text_header_hot_;
 				color color_fill_header_;
 				color color_fill_alternate_;
 				color color_row_hot_;
@@ -172,6 +173,15 @@ namespace liblec {
 				/// <param name="color_text_header">The color.</param>
 				/// <returns>A reference to the modified object.</returns>
 				table_view_specs& color_text_header(const color& color_text_header);
+
+				/// <summary>Get or set the color of the header text when the mouse is over it (if user sorting is allowed).</summary>
+				/// <returns>A reference to the color.</returns>
+				color& color_text_header_hot();
+
+				/// <summary>Set the color of the header text when the mouse is over it (if user sorting is allowed).</summary>
+				/// <param name="color_text_header_hot">The color.</param>
+				/// <returns>A reference to the modified object.</returns>
+				table_view_specs& color_text_header_hot(const color& color_text_header_hot);
 
 				/// <summary>Get or set the table header's fill color.</summary>
 				/// <returns>A reference to the color.</returns>
