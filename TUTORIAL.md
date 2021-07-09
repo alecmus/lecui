@@ -49,7 +49,7 @@ Content can only be added to containers, and only two containers can be added di
 using namespace liblec;
 
 class sample_form : public lecui::form {
-  lecui::page_management page_man_{ *this };
+  lecui::page_manager page_man_{ *this };
 
   bool on_layout(std::string& error) override {
     auto& home = page_man_.add("home");
@@ -79,7 +79,7 @@ Widgets can be added to any container using the widget's builder class. We will 
 using namespace liblec;
 
 class sample_form : public lecui::form {
-  lecui::page_management page_man_{ *this };
+  lecui::page_manager page_man_{ *this };
 
   bool on_layout(std::string& error) override {
     auto& home = page_man_.add("home");
