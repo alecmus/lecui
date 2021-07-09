@@ -266,15 +266,14 @@ namespace liblec {
 		}
 
 		/// <summary>Rounding off class.</summary>
-		class roundoff {
+		class round_off {
 		public:
 			/// <summary>Round-off a double to a string.</summary>
 			/// <param name="d">The double to round-off.</param>
 			/// <param name="precision">The number of decimal places to round it off to.</param>
 			/// <returns>The rounded-off value, as a string.</returns>
-			template <typename T>
-			static std::basic_string<T> tostr(const double& d, int precision) {
-				std::basic_stringstream<T> ss;
+			static std::string to_string(const double& d, int precision) {
+				std::stringstream ss;
 				ss << std::fixed;
 				ss.precision(precision);
 				ss << d;
@@ -285,10 +284,10 @@ namespace liblec {
 			/// <param name="d">The double to round-off.</param>
 			/// <param name="precision">The number of decimal places to round it off to.</param>
 			/// <returns>The rounded-off value.</returns>
-			static double tod(const double& d, int precision) {
+			static double to_double(const double& d, int precision) {
 				int y = (int)d;
 				double z = d - (double)y;
-				double m = pow(10, precision);
+				double m = pow(10.0, (double)precision);
 				double q = z * m;
 				double r = round(q);
 
@@ -299,8 +298,14 @@ namespace liblec {
 			/// <param name="d">The float to round-off.</param>
 			/// <param name="precision">The number of decimal places to round it off to.</param>
 			/// <returns>The rounded-off value.</returns>
-			static float tof(const float& f, int precision) {
-				return static_cast<float>(tod(static_cast<double>(f), precision));
+			static float to_float(const float& f, int precision) {
+				int y = (int)f;
+				float z = f - (float)y;
+				float m = pow(10.f, (float)precision);
+				float q = z * m;
+				float r = round(q);
+
+				return static_cast<float>(y) + (1.f / m) * r;
 			}
 		};
 

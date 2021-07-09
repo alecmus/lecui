@@ -194,7 +194,7 @@ namespace liblec {
 			p_render_target->FillEllipse(dot, p_brush_fill_);
 
 			// create a text layout
-			std::string text = roundoff::tostr<char>(specs_.percentage(), specs_.precision()) + "%";
+			std::string text = round_off::to_string(specs_.percentage(), specs_.precision()) + "%";
 			HRESULT hr = p_directwrite_factory_->CreateTextLayout(convert_string(text).c_str(),
 				(UINT32)text.length(), p_text_format_, rect_ellipse_.right - rect_ellipse_.left,
 				rect_ellipse_.bottom - rect_ellipse_.top, &p_text_layout_);

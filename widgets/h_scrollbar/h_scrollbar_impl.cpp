@@ -81,10 +81,10 @@ namespace liblec {
 
 			const int precision = 3;	// to prevent false-positives (4 is enough, 3 is a failsafe)
 			auto equal = [&](const D2D1_RECT_F& rect_1, const D2D1_RECT_F& rect_2) {
-				if (roundoff::tof(rect_1.left, precision) == roundoff::tof(rect_2.left, precision) &&
-					roundoff::tof(rect_1.top, precision) == roundoff::tof(rect_2.top, precision) &&
-					roundoff::tof(rect_1.right, precision) == roundoff::tof(rect_2.right, precision) &&
-					roundoff::tof(rect_1.bottom, precision) == roundoff::tof(rect_2.bottom, precision))
+				if (round_off::to_float(rect_1.left, precision) == round_off::to_float(rect_2.left, precision) &&
+					round_off::to_float(rect_1.top, precision) == round_off::to_float(rect_2.top, precision) &&
+					round_off::to_float(rect_1.right, precision) == round_off::to_float(rect_2.right, precision) &&
+					round_off::to_float(rect_1.bottom, precision) == round_off::to_float(rect_2.bottom, precision))
 					return true;
 				else
 					return false;
@@ -113,8 +113,8 @@ namespace liblec {
 				return rect_;
 
 			if (!equal(rectC_, rectD_) &&
-				!(roundoff::tof((rectD_.right - rectD_.left), precision) >=
-					roundoff::tof((rectC_.right - rectC_.left), precision))) {
+				!(round_off::to_float((rectD_.right - rectD_.left), precision) >=
+					round_off::to_float((rectC_.right - rectC_.left), precision))) {
 				auto corner_radius = smallest((rectD_.bottom - rectD_.top) / 3.f,
 					(rectD_.right - rectD_.left) / 3.f);
 

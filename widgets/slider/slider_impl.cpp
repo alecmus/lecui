@@ -237,7 +237,7 @@ namespace liblec {
 					if (specs_.show_tick_labels()) {
 						D2D1_RECT_F max_rect = { 0.f, 0.f, major_div, 20.f };
 
-						const auto label = roundoff::tostr<char>(value, 0);
+						const auto label = round_off::to_string(value, 0);
 						value += specs_.major_tick_unit();
 
 						auto label_rect = widgets::measure_label(p_directwrite_factory_, label,
@@ -358,7 +358,7 @@ namespace liblec {
 					if (specs_.show_tick_labels()) {
 						D2D1_RECT_F max_rect = { 0.f, 0.f, rect_.right - x_minor_tick - .5f, major_div };
 
-						const auto label = roundoff::tostr<char>(value, 0);
+						const auto label = round_off::to_string(value, 0);
 						value += specs_.major_tick_unit();
 
 						auto label_rect = widgets::measure_label(p_directwrite_factory_, label,
