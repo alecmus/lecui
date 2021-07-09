@@ -182,22 +182,9 @@ namespace liblec {
 						p_brush_disabled_ : p_brush_fill_);
 			}
 
-			// step4: draw header background
-			{
-				rect_header_ = rect_;
-				rect_header_.top = rect_page.top;
-				rect_header_.bottom = rect_header_.top + row_height_;
-
-				D2D1_ROUNDED_RECT rounded_rect{ rect_header_,
-					specs_.corner_radius_x(), specs_.corner_radius_y() };
-
-				if (render && visible_)
-					p_render_target->FillRoundedRectangle(&rounded_rect, p_brush_fill_header_);
-			}
-
 			rectA_ = { rect_.left, rect_.top + row_height_, rect_.right, rect_.bottom };
 
-			// step5: define rectB_ (the table area)
+			// step4: define rectB_ (the table area)
 			rectB_ = { rect_.left, rect_.top + row_height_, rect_.right, rect_.bottom };
 
 			// for table rows to fill up horizontally (aesthetics)
@@ -207,6 +194,20 @@ namespace liblec {
 			// for table rows to fill up vertically (aesthetics)
 			rectA_.bottom = largest(rectA_.bottom, rect_page.bottom);
 			rectB_.bottom = largest(rectB_.bottom, rect_page.bottom);
+
+			// step5: draw header background
+			{
+				rect_header_ = rect_;
+				rect_header_.top = rect_page.top;
+				rect_header_.bottom = rect_header_.top + row_height_;
+				rect_header_.right = rectA_.right;
+
+				D2D1_ROUNDED_RECT rounded_rect{ rect_header_,
+					specs_.corner_radius_x(), specs_.corner_radius_y() };
+
+				if (render && visible_)
+					p_render_target->FillRoundedRectangle(&rounded_rect, p_brush_fill_header_);
+			}
 
 			float table_width = 0.f;
 			for (const auto& it : specs_.columns()) table_width += static_cast<float>(it.width);
