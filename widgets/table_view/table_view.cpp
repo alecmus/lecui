@@ -65,6 +65,7 @@ namespace liblec {
 			columns_ = right.columns_;
 			data_ = right.data_;
 			selected_ = right.selected_;
+			user_sort_ = right.user_sort_;
 
 			// NOT copied (alias_, p_special_pane_specs_)
 
@@ -299,6 +300,13 @@ namespace liblec {
 
 		widgets::table_view_specs& widgets::table_view_specs::selected(const std::vector<long>& selected) {
 			selected_ = selected;
+			return *this;
+		}
+
+		bool& widgets::table_view_specs::user_sort() { return user_sort_; }
+
+		widgets::table_view_specs& widgets::table_view_specs::user_sort(const bool& user_sort) {
+			user_sort_ = user_sort;
 			return *this;
 		}
 

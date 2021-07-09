@@ -38,6 +38,7 @@ namespace liblec {
 				std::vector<table_column> columns_;
 				std::vector<std::map<std::string, std::string>> data_;
 				std::vector<long> selected_;
+				bool user_sort_ = false;
 				void* p_special_pane_specs_ = nullptr;
 
 			public:
@@ -268,6 +269,15 @@ namespace liblec {
 				/// <param name="selected">The selected rows.</param>
 				/// <returns>A reference to the modified object.</returns>
 				table_view_specs& selected(const std::vector<long>& selected);
+
+				/// <summary>Get or set whether to allow sorting by clicking columns.</summary>
+				/// <returns>A reference to the property.</returns>
+				bool& user_sort();
+
+				/// <summary>Set whether to allow sorting by clicking columns.</summary>
+				/// <param name="user_sort">The property.</param>
+				/// <returns>A reference to the modified object.</returns>
+				table_view_specs& user_sort(const bool& user_sort);
 
 			private:
 				table_view_events table_events_;
