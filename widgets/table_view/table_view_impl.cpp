@@ -532,6 +532,17 @@ namespace liblec {
 					if (specs_.events().action)
 						specs_.events().action();
 				}
+
+				for (auto& [name, rectangle] : column_hot_spots_) {
+					auto rect = rectangle;
+					scale_RECT(rect, get_dpi_scale());
+
+					if (point_.x >= rect.left && point_.x <= rect.right &&
+						point_.y >= rect.top && point_.y <= rect.bottom) {
+						// column has been clicked
+						log(name + " clicked for sorting");
+					}
+				}
 			}
 		}
 
