@@ -17,7 +17,7 @@
 #define lecuicompany		"Alec Musasa"
 #define lecuifilename		"lecui.dll"
 
-#define lecuiversion		"1.0.0 alpha 4"
+#define lecuiversion		"1.0.0 alpha 5"
 #define lecuimajor			1
 #define lecuiminor			0
 #define lecuirevision		0
