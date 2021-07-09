@@ -234,7 +234,7 @@ namespace liblec {
 						// check if mouse is within this cell
 						auto rect = rect_header_cell;
 
-						column_hot_spots_[it.name] = rect;
+						header_hot_spots_[it.name] = rect;
 
 						scale_RECT(rect, get_dpi_scale());
 
@@ -533,7 +533,7 @@ namespace liblec {
 						specs_.events().action();
 				}
 
-				for (auto& [name, rectangle] : column_hot_spots_) {
+				for (auto& [name, rectangle] : header_hot_spots_) {
 					auto rect = rectangle;
 					scale_RECT(rect, get_dpi_scale());
 
