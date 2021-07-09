@@ -330,5 +330,23 @@ namespace liblec {
 				(minute < 10 ? "0" + std::to_string(minute) : std::to_string(minute)) + ":" +
 				(second < 10 ? "0" + std::to_string(second) : std::to_string(second));
 		}
-	}
+
+		int get::integer(const std::any& value) {
+			return std::any_cast<int>(value);
+		}
+
+		double get::real(const std::any& value) {
+			if (value.type() == typeid(float))
+				return std::any_cast<float>(value);
+			else
+				return std::any_cast<double>(value);
+		}
+
+		std::string get::text(const std::any& value) {
+			if (value.type() == typeid(const char*))
+				return std::string(std::any_cast<const char*>(value));
+			else
+				return std::any_cast<std::string>(value);
+		}
+}
 }

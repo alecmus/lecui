@@ -16,8 +16,6 @@
 #include <liblec/lecui/widgets/widget.h>
 #endif
 
-#include <map>
-
 namespace liblec {
 	namespace lecui {
 		namespace widgets {
@@ -37,7 +35,7 @@ namespace liblec {
 				color color_row_hot_;
 				color color_row_selected_;
 				std::vector<table_column> columns_;
-				std::vector<std::map<std::string, std::string>> data_;
+				std::vector<table_row> data_;
 				std::vector<long> selected_;
 				bool user_sort_ = false;
 				void* p_special_pane_specs_ = nullptr;
@@ -52,13 +50,13 @@ namespace liblec {
 					/// <summary>This handler is called when the selection changes.</summary>
 					/// <remarks>The parameter contains the selected rows.</remarks>
 					std::function<void(
-						const std::vector<std::map<std::string, std::string>>& rows)>
+						const std::vector<table_row>& rows)>
 						selection = nullptr;
 
 					/// <summary>This handler is called when the table view is right clicked.</summary>
 					/// <remarks>The parameter contained the selected rows.</remarks>
 					std::function<void(
-						const std::vector<std::map<std::string, std::string>>& rows)>
+						const std::vector<table_row>& rows)>
 						context_menu = nullptr;
 				};
 
@@ -252,7 +250,7 @@ namespace liblec {
 				/// { {"Name", "Tanaka"}, {"Surname", "Sibanda"} },
 				/// { {"Name", "Precious"}, {"Surname", "Ncube"} }
 				/// </example>
-				std::vector<std::map<std::string, std::string>>& data();
+				std::vector<table_row>& data();
 
 				/// <summary>Set the table's data. Each entry of the vector (a map) is a
 				/// row and should mirror the column structure. The key is the column name and
@@ -269,7 +267,7 @@ namespace liblec {
 				/// { {"Name", "Tanaka"}, {"Surname", "Sibanda"} },
 				/// { {"Name", "Precious"}, {"Surname", "Ncube"} }
 				/// </example>
-				table_view_specs& data(const std::vector<std::map<std::string, std::string>>& data);
+				table_view_specs& data(const std::vector<table_row>& data);
 
 				/// <summary>Get or set the rows to select by default, numbered from 0.</summary>
 				/// <returns>A reference to the selected rows.</returns>

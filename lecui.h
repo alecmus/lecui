@@ -43,6 +43,8 @@
 
 #include <string>
 #include <vector>
+#include <map>
+#include <any>
 
 namespace liblec {
 	namespace lecui {
@@ -334,12 +336,24 @@ namespace liblec {
 		};
 
 		struct table_column {
+			/// <summary>The name of the column. Has to be unique.</summary>
 			std::string name;
+
+			/// <summary>The width of the column, in pixels.</summary>
 			unsigned short width = 80;
+
+			/// <summary>The number of decimal places to round off the entries in this column to when displaying (if they are floats or doubles).</summary>
+			int precision = 2;
 
 			bool operator==(const table_column&);
 			bool operator!=(const table_column&);
 		};
+
+		/// <summary>Table row; a list of (column, value) pairs. The map's "key" is
+		/// the column name and it's "value" is the value under that column for the given row, e.g.
+		/// { { "Name", "John" }, { "Surname", "Doe" }, { "Height", 172 }, { "Image", _blob_data_ } }
+		/// </summary>
+		using table_row = std::map<std::string, std::any>;
 
 		class lecui_api time {
 		public:
@@ -372,6 +386,29 @@ namespace liblec {
 			low,
 			medium,
 			high,
+		};
+
+		/// <summary>Helper class for extracting values from a std::any. Strictly added to
+		/// enable more terse code and make the code more readable.</summary>
+		/// <remarks>If the std::any actually contains a different data type than what you expect
+		/// the methods in this class will throw, so make sure to use a try-catch block in the calling
+		/// code.</remarks>
+		class lecui_api get {
+		public:
+			/// <summary>Extract integer value.</summary>
+			/// <param name="value">The std::any containing the value.</param>
+			/// <returns>The integer.</returns>
+			static int integer(const std::any& value);
+
+			/// <summary>Extract double value.</summary>
+			/// <param name="value">The std::any containing the value.</param>
+			/// <returns>The double.</returns>
+			static double real(const std::any& value);
+
+			/// <summary>Extract text.</summary>
+			/// <param name="value">The std::any containing the text.</param>
+			/// <returns>The text.</returns>
+			static std::string text(const std::any& value);
 		};
 	}
 }

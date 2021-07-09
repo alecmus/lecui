@@ -16,8 +16,6 @@
 #include <liblec/lecui/widgets/widget.h>
 #endif
 
-#include <map>
-
 namespace liblec {
 	namespace lecui {
 		namespace widgets {

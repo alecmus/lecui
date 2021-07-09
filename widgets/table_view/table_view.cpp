@@ -298,9 +298,9 @@ namespace liblec {
 			return *this;
 		}
 
-		std::vector<std::map<std::string, std::string>>& widgets::table_view_specs::data() { return data_; }
+		std::vector<table_row>& widgets::table_view_specs::data() { return data_; }
 
-		widgets::table_view_specs& widgets::table_view_specs::data(const std::vector<std::map<std::string, std::string>>& data) {
+		widgets::table_view_specs& widgets::table_view_specs::data(const std::vector<table_row>& data) {
 			data_ = data;
 			return *this;
 		}

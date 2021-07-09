@@ -382,7 +382,23 @@ namespace liblec {
 							rect_text.right -= margin_;
 
 							try {
-								std::string text = specs_.data().at(row_number).at(it.name);
+								auto value = specs_.data().at(row_number).at(it.name);
+
+								std::string text;
+
+								if (value.has_value()) {
+									// integer
+									if (value.type() == typeid(int))
+										text = std::to_string(get::integer(value));
+
+									// float, double
+									if (value.type() == typeid(float) || value.type() == typeid(double))
+										text = roundoff::tostr<char>(get::real(value), it.precision);
+
+									// const char*, string
+									if (value.type() == typeid(const char*) || value.type() == typeid(std::string))
+										text = get::text(value);
+								}
 
 								// create a text layout
 								HRESULT hr = p_directwrite_factory_->CreateTextLayout(
@@ -616,7 +632,7 @@ namespace liblec {
 
 		void widgets::table_view_impl::on_right_click() {
 			if (specs_.events().context_menu) {
-				std::vector<std::map<std::string, std::string>> var;
+				std::vector<table_row> var;
 				for (const auto& it : specs_.selected()) {
 					try { var.push_back(specs_.data().at(it)); }
 					catch (const std::exception&) {}
@@ -637,7 +653,7 @@ namespace liblec {
 
 		void widgets::table_view_impl::on_selection() {
 			if (specs_.events().selection) {
-				std::vector<std::map<std::string, std::string>> var;
+				std::vector<table_row> var;
 				for (const auto& it : specs_.selected()) {
 					try { var.push_back(specs_.data().at(it)); }
 					catch (const std::exception&) {}

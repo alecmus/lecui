@@ -50,8 +50,6 @@
 #include <comdef.h>
 
 // C++ STL headers
-#include <vector>
-#include <map>
 #include <optional>
 
 namespace liblec {
