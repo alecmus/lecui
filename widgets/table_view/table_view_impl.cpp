@@ -153,6 +153,26 @@ namespace liblec {
 			if (!resources_created_)
 				create_resources(p_render_target);
 
+			// check if user requested a fixed numbered column
+			if (specs_.fixed_number_column()) {
+				// failsafe
+				if (specs_.fixed_number_column_name().empty())
+					specs_.fixed_number_column_name("#");
+
+				// check if we already have it
+				bool exists = false;
+
+				for (const auto& it : specs_.columns()) {
+					if (it.name == specs_.fixed_number_column_name()) {
+						exists = true;
+						break;
+					}
+				}
+
+				if (!exists)
+					specs_.columns().insert(specs_.columns().begin(), { specs_.fixed_number_column_name(), 35 });
+			}
+
 			const int precision = 3;	// to prevent false-positives (4 is enough, 3 is a failsafe)
 			auto equal = [&](const D2D1_RECT_F& rect_1, const D2D1_RECT_F& rect_2) {
 				if (round_off::to_float(rect_1.left, precision) == round_off::to_float(rect_2.left, precision) &&
@@ -232,7 +252,7 @@ namespace liblec {
 
 					bool hot = false;
 
-					if (specs().user_sort()) {
+					if (specs().user_sort() && !(specs().fixed_number_column() && it.name == specs_.fixed_number_column_name())) {
 						// check if mouse is within this cell
 						auto rect = rect_header_cell;
 
@@ -448,22 +468,26 @@ namespace liblec {
 							rect_text.right -= margin_;
 
 							try {
-								auto value = specs_.data().at(row_number).at(it.name);
-
 								std::string text;
 
-								if (value.has_value()) {
-									// integer
-									if (value.type() == typeid(int))
-										text = std::to_string(get::integer(value));
+								if (specs_.fixed_number_column() && it.name == specs_.fixed_number_column_name()) {
+									text = std::to_string(row_number + 1);
+								}
+								else {
+									auto value = specs_.data().at(row_number).at(it.name);
+									if (value.has_value()) {
+										// integer
+										if (value.type() == typeid(int))
+											text = std::to_string(get::integer(value));
 
-									// float, double
-									if (value.type() == typeid(float) || value.type() == typeid(double))
-										text = round_off::to_string(get::real(value), it.precision);
+										// float, double
+										if (value.type() == typeid(float) || value.type() == typeid(double))
+											text = round_off::to_string(get::real(value), it.precision);
 
-									// const char*, string
-									if (value.type() == typeid(const char*) || value.type() == typeid(std::string))
-										text = get::text(value);
+										// const char*, string
+										if (value.type() == typeid(const char*) || value.type() == typeid(std::string))
+											text = get::text(value);
+									}
 								}
 
 								// create a text layout
@@ -615,6 +639,9 @@ namespace liblec {
 				}
 
 				for (auto& [name, rectangle] : header_hot_spots_) {
+					if (specs_.fixed_number_column() && name == specs_.fixed_number_column_name())
+						continue;	// failsafe ... shouldn't be in header_hot_spots_ anyway
+
 					auto rect = rectangle;
 					scale_RECT(rect, get_dpi_scale());
 
@@ -672,6 +699,7 @@ namespace liblec {
 								// sort
 								std::sort(specs_.data().begin(), specs_.data().end(), compare_by_column_for_ascending);
 							} break;
+
 							case sort_options::descending: {
 								log(name + ": sort descending");
 
@@ -702,6 +730,7 @@ namespace liblec {
 								// sort
 								std::sort(specs_.data().begin(), specs_.data().end(), compare_by_column_for_descending);
 							} break;
+
 							case sort_options::none:
 							default:
 								log(name + ": no sorting");

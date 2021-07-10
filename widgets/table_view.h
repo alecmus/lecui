@@ -39,6 +39,8 @@ namespace liblec {
 				std::vector<table_row> data_;
 				std::vector<long> selected_;
 				bool user_sort_ = false;
+				bool fixed_number_column_ = false;
+				std::string fixed_number_column_name_ = "#";
 				void* p_special_pane_specs_ = nullptr;
 
 			public:
@@ -296,6 +298,28 @@ namespace liblec {
 				/// <param name="user_sort">The property.</param>
 				/// <returns>A reference to the modified object.</returns>
 				table_view_specs& user_sort(const bool& user_sort);
+
+				/// <summary>Get or set whether to add a fixed number column.</summary>
+				/// <returns>A reference to the property.</returns>
+				/// <remarks>Counts from 1 and is not sorted when the table's columns
+				/// are user sorted.</remarks>
+				bool& fixed_number_column();
+
+				/// <summary>Set whether to add a fixed number column.</summary>
+				/// <param name="fixed_number_column">The property.</param>
+				/// <returns>A reference to the modified object.</returns>
+				/// <remarks>Counts from 1 and is not sorted when the table's columns
+				/// are user sorted.</remarks>
+				table_view_specs& fixed_number_column(const bool& fixed_number_column);
+
+				/// <summary>Get or set the name of the fixed number column.</summary>
+				/// <returns>A reference to the property.</returns>
+				std::string& fixed_number_column_name();
+
+				/// <summary>Set the name of the fixed number column.</summary>
+				/// <param name="fixed_number_column_name">The property.</param>
+				/// <returns>A reference to the modified object.</returns>
+				table_view_specs& fixed_number_column_name(const std::string& fixed_number_column_name);
 
 			private:
 				table_view_events table_events_;

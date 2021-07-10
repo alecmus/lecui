@@ -69,6 +69,8 @@ namespace liblec {
 			data_ = right.data_;
 			selected_ = right.selected_;
 			user_sort_ = right.user_sort_;
+			fixed_number_column_ = right.fixed_number_column_;
+			fixed_number_column_name_ = right.fixed_number_column_name_;
 
 			// NOT copied (alias_, p_special_pane_specs_)
 
@@ -324,6 +326,20 @@ namespace liblec {
 
 		widgets::table_view_specs& widgets::table_view_specs::user_sort(const bool& user_sort) {
 			user_sort_ = user_sort;
+			return *this;
+		}
+
+		bool& widgets::table_view_specs::fixed_number_column() { return fixed_number_column_; }
+
+		widgets::table_view_specs& widgets::table_view_specs::fixed_number_column(const bool& fixed_number_column) {
+			fixed_number_column_ = fixed_number_column;
+			return *this;
+		}
+
+		std::string& widgets::table_view_specs::fixed_number_column_name() { return fixed_number_column_name_; }
+
+		widgets::table_view_specs& widgets::table_view_specs::fixed_number_column_name(const std::string& fixed_number_column_name) {
+			fixed_number_column_name_ = fixed_number_column_name;
 			return *this;
 		}
 
