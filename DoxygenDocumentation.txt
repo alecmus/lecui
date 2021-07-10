@@ -1,0 +1,11 @@
+To generate Doxygen documentation that includes only files in the public interface:
+
+1. Create a folder
+2. Copy the contents of /include/liblec/lecui to the folder
+3. Copy the following files to the folder as well:
+	Doxyfile
+	lecui.h
+4. Go to the commandline and run "doxygen Doxyfile".
+5. Copy the folders "html" and "latex" from the docs folder and replace the older ones in the same location in the repo (delete the older one first, don't overwrite ... replace).
+
+This process mimicks the file structure in the repo, but excludes those files that are not in the public interface.
