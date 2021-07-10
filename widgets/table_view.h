@@ -23,6 +23,7 @@ namespace liblec {
 			/// <remarks>Default size is 200x200px.</remarks>
 			class lecui_api table_view_specs : public specs {
 				float border_ = .5f;
+				float grid_line_ = .5f;
 				color color_border_;
 				float corner_radius_x_ = 2.f;
 				float corner_radius_y_ = 2.f;
@@ -117,6 +118,15 @@ namespace liblec {
 				/// <param name="border">The border thickness, in pixels.</param>
 				/// <returns>A reference to the modified object.</returns>
 				table_view_specs& border(const float& border);
+
+				/// <summary>Get or set the thickness of the grid-lines.</summary>
+				/// <returns>A reference to the line thickness, in pixels.</returns>
+				float& grid_line();
+
+				/// <summary>Set the thickness of the grid-line.</summary>
+				/// <param name="grid_line">The line thickness, in pixels.</param>
+				/// <returns>A reference to the modified object.</returns>
+				table_view_specs& grid_line(const float& grid_line);
 
 				/// <summary>Get or set the color of the border.</summary>
 				/// <returns>A reference to the border color, as defined in <see cref="color"></see>.</returns>

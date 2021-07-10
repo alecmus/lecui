@@ -53,6 +53,7 @@ namespace liblec {
 
 			// widget specific specs
 			border_ = right.border_;
+			grid_line_ = right.grid_line_;
 			color_border_ = right.color_border_;
 			corner_radius_x_ = right.corner_radius_x_;
 			corner_radius_y_ = right.corner_radius_y_;
@@ -202,6 +203,13 @@ namespace liblec {
 			else
 				border_ = border;
 
+			return *this;
+		}
+
+		float& widgets::table_view_specs::grid_line() { return grid_line_; }
+
+		widgets::table_view_specs& widgets::table_view_specs::grid_line(const float& grid_line) {
+			grid_line_ = grid_line;
 			return *this;
 		}
 

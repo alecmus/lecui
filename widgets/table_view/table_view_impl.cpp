@@ -221,7 +221,6 @@ namespace liblec {
 			// step9: define rectA_ (the area containing all the table contents)
 
 			// step10: draw header
-			const float line_width = .5f;
 			{
 				auto rect_header_cell = rect_header_;
 				rect_header_cell.left = rectA_.left;
@@ -262,7 +261,7 @@ namespace liblec {
 
 					// draw the vertical divider
 					p_render_target->DrawLine(D2D1::Point2F(rect_header_cell.right, rect_header_cell.top),
-						D2D1::Point2F(rect_header_cell.right, rect_header_cell.bottom), p_brush_grid_, line_width);
+						D2D1::Point2F(rect_header_cell.right, rect_header_cell.bottom), p_brush_grid_, specs_.grid_line());
 
 					auto right_limit = rect_header_cell.right;
 
@@ -346,7 +345,7 @@ namespace liblec {
 
 			// draw the horizontal divider
 			p_render_target->DrawLine(D2D1::Point2F(rect_header_.left, rect_header_.bottom),
-				D2D1::Point2F(rect_header_.right, rect_header_.bottom), p_brush_grid_, line_width);
+				D2D1::Point2F(rect_header_.right, rect_header_.bottom), p_brush_grid_, specs_.grid_line());
 
 			// step11: draw table
 			{
@@ -508,7 +507,7 @@ namespace liblec {
 								break;
 
 							p_render_target->DrawLine(D2D1::Point2F(rectB_.left, rect_row.bottom),
-								D2D1::Point2F(rectB_.right, rect_row.bottom), p_brush_grid_, line_width);
+								D2D1::Point2F(rectB_.right, rect_row.bottom), p_brush_grid_, specs_.grid_line());
 						} while (true);
 					}
 
@@ -519,7 +518,7 @@ namespace liblec {
 							x += it.width;
 
 							p_render_target->DrawLine(D2D1::Point2F(x, rectB_.top),
-								D2D1::Point2F(x, rectB_.bottom), p_brush_grid_, line_width);
+								D2D1::Point2F(x, rectB_.bottom), p_brush_grid_, specs_.grid_line());
 						}
 					}
 				}
