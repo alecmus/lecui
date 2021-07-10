@@ -258,7 +258,63 @@ namespace liblec {
 						}
 					}
 
+					auto right_limit = rect_header_cell.right;
+
+					// check if there are sort options
+					if (header_sort_options_.count(it.name)) {
+						// make a reference rectangle
+						auto reference = rect_header_cell;
+						const auto side = reference.bottom - reference.top;
+
+						// make it a square
+						reference.left = reference.right - side;
+
+						// make our target rectangle
+						// width 40%
+						// height 25%
+						D2D1_RECT_F rect = { 0.f, 0.f, 8.f, 5.f };
+
+						// position the square to the middle of the reference
+						pos_rect(reference, rect, 50.f, 50.f);
+
+						switch (header_sort_options_.at(it.name)) {
+						case liblec::lecui::sort_options::ascending: {
+							// draw marker pointing upwards to show ascent
+
+							D2D1_POINT_2F bottom_left, bottom_right, top;
+							bottom_left = { rect.left, rect.bottom };
+							bottom_right = { rect.right, rect.bottom };
+							top = { rect.left + (rect.right - rect.left) / 2.f, rect.top };
+
+							// draw arrow
+							p_render_target->DrawLine(bottom_left, top, hot ? p_brush_text_header_hot_ : p_brush_text_header_);
+							p_render_target->DrawLine(bottom_right, top, hot ? p_brush_text_header_hot_ : p_brush_text_header_);
+
+							right_limit = rect.left;
+						} break;
+
+						case liblec::lecui::sort_options::descending: {
+							// draw marker pointing downwards to show descent
+
+							D2D1_POINT_2F top_left, top_right, bottom;
+							top_left = { rect.left, rect.top };
+							top_right = { rect.right, rect.top };
+							bottom = { rect.left + (rect.right - rect.left) / 2.f, rect.bottom };
+
+							// draw arrow
+							p_render_target->DrawLine(top_left, bottom, hot ? p_brush_text_header_hot_ : p_brush_text_header_);
+							p_render_target->DrawLine(top_right, bottom, hot ? p_brush_text_header_hot_ : p_brush_text_header_);
+
+							right_limit = rect.left;
+						} break;
+						case liblec::lecui::sort_options::none:
+						default:
+							break;
+						}
+					}
+
 					auto rect_text = rect_header_cell;
+					rect_text.right = right_limit;
 					rect_text.left += margin_;
 					rect_text.right -= margin_;
 
