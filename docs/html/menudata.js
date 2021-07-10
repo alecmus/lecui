@@ -24,7 +24,6 @@
 */
 var menudata={children:[
 {text:"Main Page",url:"index.html"},
-{text:"Related Pages",url:"pages.html"},
 {text:"Classes",url:"annotated.html",children:[
 {text:"Class List",url:"annotated.html"},
 {text:"Class Index",url:"classes.html"},
@@ -94,7 +93,6 @@ var menudata={children:[
 {text:"r",url:"functions_vars.html#index_r"},
 {text:"s",url:"functions_vars.html#index_s"},
 {text:"t",url:"functions_vars.html#index_t"},
-{text:"v",url:"functions_vars.html#index_v"},
 {text:"w",url:"functions_vars.html#index_w"},
 {text:"x",url:"functions_vars.html#index_x"},
 {text:"y",url:"functions_vars.html#index_y"}]},

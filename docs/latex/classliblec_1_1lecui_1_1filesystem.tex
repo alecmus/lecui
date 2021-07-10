@@ -9,11 +9,6 @@ Interact with the OS file system.
 
 {\ttfamily \#include $<$filesystem.\+h$>$}
 
-\doxysubsection*{Classes}
-\begin{DoxyCompactItemize}
-\item 
-class \mbox{\hyperlink{classliblec_1_1lecui_1_1filesystem_1_1impl}{impl}}
-\end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -72,7 +67,7 @@ Display a \textquotesingle{}save file\textquotesingle{} modal dialog so the user
 \begin{DoxyReturn}{Returns}
 The full path the user desires, including the filename and extension. 
 \end{DoxyReturn}
-n\+Filter\+Index Type\+: DWORD The index of the currently selected filter in the File Types control. The buffer pointed to by lpstr\+Filter contains pairs of strings that define the filters. The first pair of strings has an index value of 1, the second pair 2, and so on. An index of zero indicates the custom filter specified by lpstr\+Custom\+Filter. You can specify an index on input to indicate the initial filter description and filter pattern for the dialog box. When the user selects a file, n\+Filter\+Index returns the index of the currently displayed filter. If n\+Filter\+Index is zero and lpstr\+Custom\+Filter is NULL, the system uses the first filter in the lpstr\+Filter buffer. If all three members are zero or NULL, the system does not use any filters and does not show any files in the file list control of the dialog box. \href{https://msdn.microsoft.com/en-us/library/windows/desktop/ms646839(v=vs.85).aspx}{\texttt{ https\+://msdn.\+microsoft.\+com/en-\/us/library/windows/desktop/ms646839(v=vs.\+85).\+aspx}}\mbox{\Hypertarget{classliblec_1_1lecui_1_1filesystem_a069948b5528a180066abdff4b9002be2}\label{classliblec_1_1lecui_1_1filesystem_a069948b5528a180066abdff4b9002be2}} 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1filesystem_a069948b5528a180066abdff4b9002be2}\label{classliblec_1_1lecui_1_1filesystem_a069948b5528a180066abdff4b9002be2}} 
 \index{liblec::lecui::filesystem@{liblec::lecui::filesystem}!select\_folder@{select\_folder}}
 \index{select\_folder@{select\_folder}!liblec::lecui::filesystem@{liblec::lecui::filesystem}}
 \doxysubsubsection{\texorpdfstring{select\_folder()}{select\_folder()}}
@@ -92,7 +87,6 @@ The full path to the selected folder. Empty if none is selected.
 \end{DoxyReturn}
 
 
-The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-utilities/filesystem.\+h\item 
-utilities/filesystem/filesystem.\+cpp\end{DoxyCompactItemize}
+utilities/filesystem.\+h\end{DoxyCompactItemize}

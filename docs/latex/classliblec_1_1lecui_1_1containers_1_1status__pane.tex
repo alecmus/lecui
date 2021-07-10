@@ -9,28 +9,23 @@ Status pane container.
 
 {\ttfamily \#include $<$status\+\_\+pane.\+h$>$}
 
-\doxysubsection*{Classes}
-\begin{DoxyCompactItemize}
-\item 
-class \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane_1_1impl}{impl}}
-\end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane_ad3022d11e5fbb58770a1d9934b10f879}{status\+\_\+pane}} (\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}} \&fm, status\+\_\+pane\+\_\+specs\+::location location)
 \begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane}{status\+\_\+pane}} constructor. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane__specs}{status\+\_\+pane\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane_af0b06d46d7e2b86df251808d74a47659}{specs}} ()
+\mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane__specs}{status\+\_\+pane\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane_ad02b020f12891ebc0468741263cb6d66}{specs}} ()
 \begin{DoxyCompactList}\small\item\em Get the status pane specifications. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane__specs}{status\+\_\+pane\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane_a71d16dccf85dbc1f84f7c07b7e96aa0e}{operator()}} ()
+\mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane__specs}{status\+\_\+pane\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane_afffa90fb157c13b457f53bf7d6924680}{operator()}} ()
 \begin{DoxyCompactList}\small\item\em Get the status pane specifications. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1page}{containers\+::page}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane_ac70da8b1a2fc7846669f3c06e4d57c0d}{get}} ()
+\mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1page}{containers\+::page}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane_a14efa88d81f5d9be0bc7dc30253b1064}{get}} ()
 \begin{DoxyCompactList}\small\item\em Get the status pane container page. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-static \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane__specs}{status\+\_\+pane\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane_a16695fa701323e68c100174417cf7b27}{specs}} (\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}} \&fm, const std\+::string \&alias)
+static \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane__specs}{status\+\_\+pane\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane_ad38d46aeb7b4d9b2fc8080636b6bb267}{specs}} (\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}} \&fm, const std\+::string \&alias)
 \begin{DoxyCompactList}\small\item\em Get the specifications of a status pane. \end{DoxyCompactList}\item 
-static \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1page}{containers\+::page}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane_ac3b12062a87f9b888fc8af6a6050461a}{get}} (\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}} \&fm, const std\+::string \&alias)
+static \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1page}{containers\+::page}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane_a99b6ec21fd62f4bae4709be8f43ec074}{get}} (\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}} \&fm, const std\+::string \&alias)
 \begin{DoxyCompactList}\small\item\em Get the status pane container page of an existing status pane. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
@@ -62,11 +57,11 @@ Any widget can be added to this container. Consequently, recursion is fully supp
 Status panes are transparent by default, and have no scroll bars. A background can be added by using a rectangle widget. Ensure that there is a maximum of one pane per location. Readding a status pane in a given location leads to undefined behavior, i.\+e. a maximum of one left, one right, one top and one bottom status pane. If you need to split the content of a given pane simply add regular panes within it like you with any other container. However, keep in mind that regular panes come with scroll bars. In fact, if you need a status pane with scroll bars you can simply add a single pane that fills the status pane entirely and you will have the desired effect.
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1status__pane_ac70da8b1a2fc7846669f3c06e4d57c0d}\label{classliblec_1_1lecui_1_1containers_1_1status__pane_ac70da8b1a2fc7846669f3c06e4d57c0d}} 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1status__pane_a14efa88d81f5d9be0bc7dc30253b1064}\label{classliblec_1_1lecui_1_1containers_1_1status__pane_a14efa88d81f5d9be0bc7dc30253b1064}} 
 \index{liblec::lecui::containers::status\_pane@{liblec::lecui::containers::status\_pane}!get@{get}}
 \index{get@{get}!liblec::lecui::containers::status\_pane@{liblec::lecui::containers::status\_pane}}
 \doxysubsubsection{\texorpdfstring{get()}{get()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1page}{containers\+::page}} \& liblec\+::lecui\+::containers\+::status\+\_\+pane\+::get (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1page}{containers\+::page}}\& liblec\+::lecui\+::containers\+::status\+\_\+pane\+::get (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 
 
@@ -77,11 +72,11 @@ A reference to the status pane container page.
 \end{DoxyReturn}
 
 
-Note that this is a container of type \textquotesingle{}page\textquotesingle{}, hence anything that can be added to a regular page can be added here as well. The status pane, however, does not have scroll bars like other containers. If you really need a status pane to have scroll bars (though it\textquotesingle{}s unimaginable why one would need to do this) add a single pane within it that fills it up entirely.to-\/do\+: find a mechanism that makes sense ...\mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1status__pane_ac3b12062a87f9b888fc8af6a6050461a}\label{classliblec_1_1lecui_1_1containers_1_1status__pane_ac3b12062a87f9b888fc8af6a6050461a}} 
+Note that this is a container of type \textquotesingle{}page\textquotesingle{}, hence anything that can be added to a regular page can be added here as well. The status pane, however, does not have scroll bars like other containers. If you really need a status pane to have scroll bars (though it\textquotesingle{}s unimaginable why one would need to do this) add a single pane within it that fills it up entirely.\mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1status__pane_a99b6ec21fd62f4bae4709be8f43ec074}\label{classliblec_1_1lecui_1_1containers_1_1status__pane_a99b6ec21fd62f4bae4709be8f43ec074}} 
 \index{liblec::lecui::containers::status\_pane@{liblec::lecui::containers::status\_pane}!get@{get}}
 \index{get@{get}!liblec::lecui::containers::status\_pane@{liblec::lecui::containers::status\_pane}}
 \doxysubsubsection{\texorpdfstring{get()}{get()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1page}{containers\+::page}} \& liblec\+::lecui\+::containers\+::status\+\_\+pane\+::get (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}} \&}]{fm,  }\item[{const std\+::string \&}]{alias }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1page}{containers\+::page}}\& liblec\+::lecui\+::containers\+::status\+\_\+pane\+::get (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}} \&}]{fm,  }\item[{const std\+::string \&}]{alias }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 
 
@@ -97,11 +92,11 @@ Get the status pane container page of an existing status pane.
 \begin{DoxyReturn}{Returns}
 A reference to the status pane container page.
 \end{DoxyReturn}
-\mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1status__pane_a71d16dccf85dbc1f84f7c07b7e96aa0e}\label{classliblec_1_1lecui_1_1containers_1_1status__pane_a71d16dccf85dbc1f84f7c07b7e96aa0e}} 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1status__pane_afffa90fb157c13b457f53bf7d6924680}\label{classliblec_1_1lecui_1_1containers_1_1status__pane_afffa90fb157c13b457f53bf7d6924680}} 
 \index{liblec::lecui::containers::status\_pane@{liblec::lecui::containers::status\_pane}!operator()@{operator()}}
 \index{operator()@{operator()}!liblec::lecui::containers::status\_pane@{liblec::lecui::containers::status\_pane}}
 \doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane__specs}{containers\+::status\+\_\+pane\+\_\+specs}} \& liblec\+::lecui\+::containers\+::status\+\_\+pane\+::operator() (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane__specs}{status\+\_\+pane\+\_\+specs}}\& liblec\+::lecui\+::containers\+::status\+\_\+pane\+::operator() (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 
 
@@ -112,11 +107,11 @@ A reference to the status pane specifications.
 \end{DoxyReturn}
 
 
-Alternative to \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane_af0b06d46d7e2b86df251808d74a47659}{specs()}} for more terse code.\mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1status__pane_af0b06d46d7e2b86df251808d74a47659}\label{classliblec_1_1lecui_1_1containers_1_1status__pane_af0b06d46d7e2b86df251808d74a47659}} 
+Alternative to \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane_ad02b020f12891ebc0468741263cb6d66}{specs()}} for more terse code.\mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1status__pane_ad02b020f12891ebc0468741263cb6d66}\label{classliblec_1_1lecui_1_1containers_1_1status__pane_ad02b020f12891ebc0468741263cb6d66}} 
 \index{liblec::lecui::containers::status\_pane@{liblec::lecui::containers::status\_pane}!specs@{specs}}
 \index{specs@{specs}!liblec::lecui::containers::status\_pane@{liblec::lecui::containers::status\_pane}}
 \doxysubsubsection{\texorpdfstring{specs()}{specs()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane__specs}{containers\+::status\+\_\+pane\+\_\+specs}} \& liblec\+::lecui\+::containers\+::status\+\_\+pane\+::specs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane__specs}{status\+\_\+pane\+\_\+specs}}\& liblec\+::lecui\+::containers\+::status\+\_\+pane\+::specs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 
 
@@ -125,11 +120,11 @@ Get the status pane specifications.
 \begin{DoxyReturn}{Returns}
 A reference to the status pane specifications.
 \end{DoxyReturn}
-\mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1status__pane_a16695fa701323e68c100174417cf7b27}\label{classliblec_1_1lecui_1_1containers_1_1status__pane_a16695fa701323e68c100174417cf7b27}} 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1status__pane_ad38d46aeb7b4d9b2fc8080636b6bb267}\label{classliblec_1_1lecui_1_1containers_1_1status__pane_ad38d46aeb7b4d9b2fc8080636b6bb267}} 
 \index{liblec::lecui::containers::status\_pane@{liblec::lecui::containers::status\_pane}!specs@{specs}}
 \index{specs@{specs}!liblec::lecui::containers::status\_pane@{liblec::lecui::containers::status\_pane}}
 \doxysubsubsection{\texorpdfstring{specs()}{specs()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane__specs}{containers\+::status\+\_\+pane\+\_\+specs}} \& liblec\+::lecui\+::containers\+::status\+\_\+pane\+::specs (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}} \&}]{fm,  }\item[{const std\+::string \&}]{alias }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane__specs}{status\+\_\+pane\+\_\+specs}}\& liblec\+::lecui\+::containers\+::status\+\_\+pane\+::specs (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}} \&}]{fm,  }\item[{const std\+::string \&}]{alias }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 
 
@@ -149,7 +144,6 @@ A reference to the status pane specifications.
 
 Throws of failure.
 
-The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-containers/status\+\_\+pane.\+h\item 
-containers/status\+\_\+pane/status\+\_\+pane.\+cpp\end{DoxyCompactItemize}
+containers/status\+\_\+pane.\+h\end{DoxyCompactItemize}
