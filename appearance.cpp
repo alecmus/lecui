@@ -68,7 +68,7 @@ namespace liblec {
 				case item::table_view_text_header: return { 0, 0, 0, 255 };
 				case item::table_view_text_header_hot: return defaults::color(theme, item::form);
 				case item::table_view_text_selected: return defaults::color(theme, item::form);
-				case item::table_view_header: return { 222, 222, 222, 255 };
+				case item::table_view_header: return { 255, 255, 255, 255 };
 				case item::table_view_grid: return { 215, 215, 215, 255 };
 
 				case item::toggle: return { 255, 255, 255, 200 };
