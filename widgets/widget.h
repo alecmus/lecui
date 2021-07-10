@@ -48,20 +48,28 @@ namespace liblec {
 					/// changes at same rate as that of container.</summary>
 					float perc_height = 0.f;
 
-					/// Minimum coordinates permitted as widget moves
+					/// <summary>Minimum x-coordinate permitted as widget moves.</summary>
 					float min_x = 0.f;
+
+					/// <summary>Minimum y-coordinate permitted as widget moves.</summary>
 					float min_y = 0.f;
 
-					/// Maximum coordinates permitted as widget moves
+					/// <summary>Maximum x-coordinate permitted as widget moves.</summary>
 					float max_x = 0.f;
+
+					/// <summary>Maximum y-coordinate permitted as widget moves.</summary>
 					float max_y = 0.f;
 
-					/// Minimum dimensions permitted as widget shrinks
+					/// <summary>Minimum width permitted as widget is resized.</summary>
 					float min_width = 0.f;
+
+					/// <summary>Minimum height permitted as widget is resized.</summary>
 					float min_height = 0.f;
 
-					/// Maximum dimensions permitted as widget grows
+					/// <summary>Maximum width permitted as widget is resized.</summary>
 					float max_width = 0.f;
+
+					/// <summary>Maximum height permitted as widget is resized.</summary>
 					float max_height = 0.f;
 
 					bool operator==(const resize_params&);
@@ -70,8 +78,13 @@ namespace liblec {
 
 				/// <summary>Mouse cursor type.</summary>
 				enum class cursor_type {
+					/// <summary>Arrow cursor. Used in most cases.</summary>
 					arrow,
+
+					/// <summary>Hand cursor. Used to show that an action or link is available over the control.</summary>
 					hand,
+
+					/// <summary>Caret cursor. Used to show the position in text where the next character will be inserted.</summary>
 					caret,
 				};
 
@@ -85,14 +98,8 @@ namespace liblec {
 				float font_size_ = 9.f;
 				color color_text_ = { 0, 0, 0, 255 };
 				color color_fill_ = { 0, 120, 170, 255 };
-
-				/// <summary>The hit color when the mouse is over the widget.</summary>
 				color color_hot_ = { 0, 120, 170, 255 };
-
-				/// <summary>The color to be used to mark the widget as selected.</summary>
 				color color_selected_ = { 0, 120, 170, 30 };
-
-				/// <summary>The color of the widget when it is disabled.</summary>
 				color color_disabled_ = { 180, 180, 180, 255 };
 
 			public:
