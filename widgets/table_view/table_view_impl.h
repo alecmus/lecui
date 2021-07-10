@@ -78,6 +78,7 @@ namespace liblec {
 				D2D1_RECT_F rect_header_;
 				std::map<unsigned long, D2D1_RECT_F> hot_spots_;
 				std::map<std::string, D2D1_RECT_F> header_hot_spots_;
+				std::map<std::string, sort_options> header_sort_options_;
 				unsigned long last_selected_;
 
 				bool book_on_selection_;

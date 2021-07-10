@@ -10,6 +10,7 @@
 
 #include "table_view_impl.h"
 #include "../../containers/page/page_impl.h"
+#include <algorithm>
 
 namespace liblec {
 	namespace lecui {
@@ -556,8 +557,101 @@ namespace liblec {
 
 					if (point_.x >= rect.left && point_.x <= rect.right &&
 						point_.y >= rect.top && point_.y <= rect.bottom) {
-						// column has been clicked
-						log(name + " clicked for sorting");
+						// column has been clicked for sorting
+						try {
+							if (header_sort_options_.count(name)) {
+								// sort option entry already exists ... flip it
+								auto& sort_option = header_sort_options_.at(name);
+
+								switch (sort_option) {
+								case sort_options::ascending:
+									sort_option = sort_options::descending;
+									break;
+								case sort_options::descending:
+								case sort_options::none:
+								default:
+									sort_option = sort_options::ascending;
+									break;
+								}
+							}
+							else
+								header_sort_options_.insert(std::make_pair(name, sort_options::ascending));
+
+							// do the sorting
+							switch (header_sort_options_.at(name)) {
+							case sort_options::ascending: {
+								log(name + ": sort ascending");
+
+								const std::string column_name(name);
+
+								auto compare_by_column_for_ascending = [&](const lecui::table_row& a, const lecui::table_row& b)->bool {
+									const auto& a_value = a.at(column_name);
+									const auto& b_value = b.at(column_name);
+
+									if (!a_value.has_value() || !b_value.has_value())
+										return true;
+
+									if (a_value.type() != b_value.type())
+										return true;
+
+									if (a_value.type() == typeid(int))
+										return get::integer(a_value) < get::integer(b_value);
+
+									if (a_value.type() == typeid(float) || a_value.type() == typeid(double))
+										return get::real(a_value) < get::real(b_value);
+
+									if (a_value.type() == typeid(std::string) || a_value.type() == typeid(const char*))
+										return get::text(a_value) < get::text(b_value);
+
+									return true;
+								};
+
+								// sort
+								std::sort(specs_.data().begin(), specs_.data().end(), compare_by_column_for_ascending);
+							} break;
+							case sort_options::descending: {
+								log(name + ": sort descending");
+
+								const std::string column_name(name);
+
+								auto compare_by_column_for_descending = [&](const lecui::table_row& a, const lecui::table_row& b)->bool {
+									const auto& a_value = a.at(column_name);
+									const auto& b_value = b.at(column_name);
+
+									if (!a_value.has_value() || !b_value.has_value())
+										return false;
+
+									if (a_value.type() != b_value.type())
+										return false;
+
+									if (a_value.type() == typeid(int))
+										return get::integer(a_value) > get::integer(b_value);
+
+									if (a_value.type() == typeid(float) || a_value.type() == typeid(double))
+										return get::real(a_value) > get::real(b_value);
+
+									if (a_value.type() == typeid(std::string) || a_value.type() == typeid(const char*))
+										return get::text(a_value) > get::text(b_value);
+
+									return false;
+								};
+
+								// sort
+								std::sort(specs_.data().begin(), specs_.data().end(), compare_by_column_for_descending);
+							} break;
+							case sort_options::none:
+							default:
+								log(name + ": no sorting");
+								break;
+							}
+
+							// reset the other sort options
+							for (auto& it : header_sort_options_) {
+								if (it.first != name)
+									it.second = sort_options::none;
+							}
+						}
+						catch (const std::exception& e) { log(e.what()); }
 					}
 				}
 			}
