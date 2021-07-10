@@ -221,6 +221,7 @@ namespace liblec {
 			// step9: define rectA_ (the area containing all the table contents)
 
 			// step10: draw header
+			const float line_width = .5f;
 			{
 				auto rect_header_cell = rect_header_;
 				rect_header_cell.left = rectA_.left;
@@ -249,6 +250,7 @@ namespace liblec {
 							hot = false;
 
 						if (hot) {
+							// show that mouse is over this header by drawing the "hot" rectangle
 							D2D1_ROUNDED_RECT rounded_rect{ rect_header_cell,
 								specs_.corner_radius_x(), specs_.corner_radius_y() };
 
@@ -257,6 +259,10 @@ namespace liblec {
 									p_brush_hot_);
 						}
 					}
+
+					// draw the vertical divider
+					p_render_target->DrawLine(D2D1::Point2F(rect_header_cell.right, rect_header_cell.top),
+						D2D1::Point2F(rect_header_cell.right, rect_header_cell.bottom), p_brush_grid_, line_width);
 
 					auto right_limit = rect_header_cell.right;
 
@@ -337,6 +343,10 @@ namespace liblec {
 					safe_release(&p_text_layout_);
 				}
 			}
+
+			// draw the horizontal divider
+			p_render_target->DrawLine(D2D1::Point2F(rect_header_.left, rect_header_.bottom),
+				D2D1::Point2F(rect_header_.right, rect_header_.bottom), p_brush_grid_, line_width);
 
 			// step11: draw table
 			{
@@ -485,8 +495,6 @@ namespace liblec {
 
 				// step12: draw grid
 				if (render && visible_) {
-					const float line_width = .5f;
-
 					// step12a: draw horizontal lines
 					{
 						auto rect_row = rectA_;
