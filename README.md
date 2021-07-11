@@ -23,7 +23,11 @@ lecui user interface library
 ### About the Library
 The lecui user interface library is designed for the rapid development of modern, efficient and
 easy to maintain C++ applications with a graphical user interface (gui). It is part of the
-[liblec libraries](https://github.com/alecmus/liblec).
+[liblec libraries](https://github.com/alecmus/liblec). It enabled you to make a simple gui app
+with minimal code but also give you the power to build a marvel if you need to.
+
+### Wiki
+The library has a wiki available [here](https://github.com/alecmus/lecui/wiki). The wiki has details about how to use the library, examples, guidelines and more.
 
 ### Documentation
 The library uses embedded XML-style documentation. An HTML version of this documentation is available [here](https://alecmus.github.io/lecui).
@@ -65,77 +69,11 @@ lecui_minimal       | https://github.com/alecmus/files/tree/master/liblec/lecui/
 Prebuilt binaries of the library can be found under
 [releases](https://github.com/alecmus/lecui/releases).
 
-### Compile-time Dependencies
-The library has the following compile-time dependencies:
-1. boost C++ libraries
-* assumes boost 1.72 prebuilt binaries are in C:\local\libs\boost_1_72_0
-* download prebuilt boost binaries [here](https://sourceforge.net/projects/boost/files/boost-binaries/)
-* For example, the binaries for boost 1.72 are [here](https://sourceforge.net/projects/boost/files/boost-binaries/1.72.0/)
-* For Microsoft Visual Studio 2019 you can download the file boost_1_72_0-msvc-14.2-64.exe (64 bit)
-and boost_1_72_0-msvc-14.2-32.exe (32 bit).
-* if the boost c++ library is installed elsewhere you will need to change the Microsoft Visual Studio project
-properties under Properties - C/C++ - General - Additional Include Directories and also under
-Properties - Linker - General - Additional Library Directories.
-
 ### Building
-Create a folder '\liblec' and clone the repository into it such that it resides in 'liblec\lecui'. Open the Microsoft Visual Studio Solution file liblec\lecui\lecui.sln. Select Build -> Batch Build, then select the desired configurations of the given four:
-1. Debug x86
-2. Relese x86 (32 bit Release Build)
-3. Debug x64
-4. Release x64 (64 bit Release Build)
-
-Build.
-
-Three folders will be created in the \liblec directory, namely bin, lib and include. Below is a description of these subdirectories.
-
-1. bin - contains the binary files. The following files will be created:
-
-File            | Description
---------------- | ------------------------------------
-lecui32.dll    | 32 bit release build
-lecui64.dll    | 64 bit release build
-lecui32d.dll   | 32 bit debug build
-lecui64d.dll   | 64 bit debug build
-
-2. lib - contains the static library files that accompany the dlls. The files are named after the respective dlls.
-3. include - contains the include files
+Refer to the [wiki](https://github.com/alecmus/lecui/wiki/Installation).
 
 ### Linking to the Library
-
-#### Microsoft Visual Studio
-Open your project's properties and for All Configurations and All Platforms set the following:
-1. C/C++ -> General -> Additional Include Directories -> Edit -> New Line ... add \liblec\include
-2. Linker -> General -> Additional Library Directories -> Edit -> New Line ... add \liblec\lib
-3. Debugging -> Environment -> Edit ... add PATH=\liblec\bin;PATH%
-
-Now you can use the required functions by calling #include <liblec/lecui/...>
-
-Build.
-
-### Using the library
-
-If you are new to the library you can follow this straight to the point step-by-step [tutorial](https://github.com/alecmus/lecui/blob/master/TUTORIAL.md).
-
-The smallest possible gui app is as follows:
-
-```C++
-#include <liblec/lecui/form.h>
-
-int main() {
-	liblec::lecui::form("Form").message("Hello world!");
-	return 0;
-}
-```
-
-The above code displays the following form:<br/><br/>
-<img src="https://github.com/alecmus/files/blob/master/liblec/lecui/screenshots/lecui_1.0.0_screenshot_01.PNG?raw=true" alt="screenshot" width="220"/>
-
-Surely, it doesn't get easier than that!
-
-For more sophisticated examples refer to the section 'Usage Examples' above.
-
-And that's the point of this library: to allow you to make a simple gui app
-with minimal code but also give you the power to build a marvel if you need to.
+Refer to the [wiki](https://github.com/alecmus/lecui/wiki).
 
 ### Deploying your Application
 If it's the 32 bit build you will need to deploy it with lecui32.dll in the same folder. If it's a
