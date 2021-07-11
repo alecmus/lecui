@@ -128,7 +128,7 @@ int main() {
 ```
 
 The above code displays the following form:<br/><br/>
-![](https://github.com/alecmus/files/blob/master/liblec/lecui/screenshots/lecui_1.0.0_screenshot_01.PNG?raw=true)
+<img src="https://github.com/alecmus/files/blob/master/liblec/lecui/screenshots/lecui_1.0.0_screenshot_01.PNG?raw=true" alt="screenshot" width="220"/>
 
 Surely, it doesn't get easier than that!
 
