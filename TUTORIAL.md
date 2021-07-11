@@ -127,6 +127,9 @@ int main() {
 }
 ```
 
+The code above display the following form:<br/><br/>
+<img src="https://github.com/alecmus/files/blob/master/liblec/lecui/tutorial/01.PNG?raw=true" alt="screenshot" width="780"/>
+
 Things to note:
 1. The show() method takes only one parameter, a string. If an error occurs it is written back to this string.
 2. The show() method returns a boolean. If the method is successful true is returned and if not false is returned (in which case error information will be available in the parameter we just mentioned).
