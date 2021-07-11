@@ -127,7 +127,7 @@ int main() {
 }
 ```
 
-The code above display the following form:<br/><br/>
+The code above displays the following form:<br/><br/>
 <img src="https://github.com/alecmus/files/blob/master/liblec/lecui/tutorial/01.PNG?raw=true" alt="screenshot" width="780"/>
 
 Things to note:
