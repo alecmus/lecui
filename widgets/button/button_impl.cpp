@@ -16,15 +16,15 @@ namespace liblec {
 			const std::string& alias,
 			IDWriteFactory* p_directwrite_factory) :
 			widget_impl(page, alias),
-			p_brush_(nullptr),
-			p_brush_border_(nullptr),
-			p_brush_fill_(nullptr),
-			p_brush_hot_(nullptr),
-			p_brush_disabled_(nullptr),
-			p_brush_selected_(nullptr),
-			p_text_format_(nullptr),
-			p_directwrite_factory_(p_directwrite_factory),
-			p_text_layout_(nullptr) {}
+			_p_brush(nullptr),
+			_p_brush_border(nullptr),
+			_p_brush_fill(nullptr),
+			_p_brush_hot(nullptr),
+			_p_brush_disabled(nullptr),
+			_p_brush_selected(nullptr),
+			_p_text_format(nullptr),
+			_p_directwrite_factory(p_directwrite_factory),
+			_p_text_layout(nullptr) {}
 
 		widgets::button_impl::~button_impl() { discard_resources(); }
 
@@ -35,128 +35,128 @@ namespace liblec {
 
 		HRESULT widgets::button_impl::create_resources(
 			ID2D1HwndRenderTarget* p_render_target) {
-			specs_old_ = specs_;
-			is_static_ = (specs_.events().click == nullptr && specs_.events().action == nullptr);
-			h_cursor_ = get_cursor(specs_.cursor());
+			_specs_old = _specs;
+			_is_static = (_specs.events().click == nullptr && _specs.events().action == nullptr);
+			_h_cursor = get_cursor(_specs.cursor());
 
 			HRESULT hr = S_OK;
 
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_fill()),
-					&p_brush_fill_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_fill()),
+					&_p_brush_fill);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_border()),
-					&p_brush_border_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_border()),
+					&_p_brush_border);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_hot()),
-					&p_brush_hot_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_hot()),
+					&_p_brush_hot);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_disabled()),
-					&p_brush_disabled_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_disabled()),
+					&_p_brush_disabled);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_selected()),
-					&p_brush_selected_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_selected()),
+					&_p_brush_selected);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_text()),
-					&p_brush_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_text()),
+					&_p_brush);
 			if (SUCCEEDED(hr)) {
 				// Create a DirectWrite text format object.
-				hr = p_directwrite_factory_->CreateTextFormat(
-					convert_string(specs_.font()).c_str(),
+				hr = _p_directwrite_factory->CreateTextFormat(
+					convert_string(_specs.font()).c_str(),
 					NULL,
 					DWRITE_FONT_WEIGHT_NORMAL,
 					DWRITE_FONT_STYLE_NORMAL,
 					DWRITE_FONT_STRETCH_NORMAL,
-					convert_fontsize_to_dip(specs_.font_size()),
+					convert_fontsize_to_dip(_specs.font_size()),
 					L"", //locale
-					&p_text_format_
+					&_p_text_format
 					);
 			}
 			if (SUCCEEDED(hr)) {
-				p_text_format_->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_CENTER);
-				p_text_format_->SetParagraphAlignment(DWRITE_PARAGRAPH_ALIGNMENT_CENTER);
-				make_single_line(p_directwrite_factory_, p_text_format_);
+				_p_text_format->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_CENTER);
+				_p_text_format->SetParagraphAlignment(DWRITE_PARAGRAPH_ALIGNMENT_CENTER);
+				make_single_line(_p_directwrite_factory, _p_text_format);
 			}
 
-			resources_created_ = true;
+			_resources_created = true;
 			return hr;
 		}
 
 		void widgets::button_impl::discard_resources() {
-			resources_created_ = false;
-			safe_release(&p_brush_);
-			safe_release(&p_brush_border_);
-			safe_release(&p_brush_fill_);
-			safe_release(&p_brush_hot_);
-			safe_release(&p_brush_disabled_);
-			safe_release(&p_brush_selected_);
-			safe_release(&p_text_format_);
+			_resources_created = false;
+			safe_release(&_p_brush);
+			safe_release(&_p_brush_border);
+			safe_release(&_p_brush_fill);
+			safe_release(&_p_brush_hot);
+			safe_release(&_p_brush_disabled);
+			safe_release(&_p_brush_selected);
+			safe_release(&_p_text_format);
 		}
 
 		D2D1_RECT_F&
 			widgets::button_impl::render(ID2D1HwndRenderTarget* p_render_target,
 				const D2D1_SIZE_F& change_in_size, const D2D1_POINT_2F& offset, const bool& render) {
-			if (specs_old_ != specs_) {
-				log("specs changed: " + alias_);
-				specs_old_ = specs_;
+			if (_specs_old != _specs) {
+				log("specs changed: " + _alias);
+				_specs_old = _specs;
 				discard_resources();
 			}
 
-			if (!resources_created_)
+			if (!_resources_created)
 				create_resources(p_render_target);
 
-			rect_ = position(specs_.rect(), specs_.on_resize(), change_in_size.width, change_in_size.height);
-			rect_.left -= offset.x;
-			rect_.right -= offset.x;
-			rect_.top -= offset.y;
-			rect_.bottom -= offset.y;
+			_rect = position(_specs.rect(), _specs.on_resize(), change_in_size.width, change_in_size.height);
+			_rect.left -= offset.x;
+			_rect.right -= offset.x;
+			_rect.top -= offset.y;
+			_rect.bottom -= offset.y;
 
-			if (!render || !visible_)
-				return rect_;
+			if (!render || !_visible)
+				return _rect;
 
-			D2D1_ROUNDED_RECT rounded_rect{ rect_,
-				specs_.corner_radius_x(), specs_.corner_radius_y() };
+			D2D1_ROUNDED_RECT rounded_rect{ _rect,
+				_specs.corner_radius_x(), _specs.corner_radius_y() };
 
-			p_render_target->FillRoundedRectangle(&rounded_rect, is_static_ ? p_brush_fill_ :
-				hit_ && pressed_ ? p_brush_fill_ :
-				hit_ ? p_brush_hot_ :
-				p_brush_fill_);
+			p_render_target->FillRoundedRectangle(&rounded_rect, _is_static ? _p_brush_fill :
+				_hit && _pressed ? _p_brush_fill :
+				_hit ? _p_brush_hot :
+				_p_brush_fill);
 
-			p_render_target->DrawRoundedRectangle(&rounded_rect, !is_enabled_ ? p_brush_disabled_ :
-				p_brush_border_, .5f);
+			p_render_target->DrawRoundedRectangle(&rounded_rect, !_is_enabled ? _p_brush_disabled :
+				_p_brush_border, .5f);
 
-			if (!is_static_ && is_enabled_ && selected_)
-				p_render_target->DrawRoundedRectangle(&rounded_rect, !is_enabled_ ? p_brush_disabled_ :
-					p_brush_selected_, pressed_ ? 1.75f : 1.f);
+			if (!_is_static && _is_enabled && _selected)
+				p_render_target->DrawRoundedRectangle(&rounded_rect, !_is_enabled ? _p_brush_disabled :
+					_p_brush_selected, _pressed ? 1.75f : 1.f);
 
 			// create a text layout
-			HRESULT hr = p_directwrite_factory_->CreateTextLayout(convert_string(specs_.text()).c_str(),
-				(UINT32)specs_.text().length(), p_text_format_, rect_.right - rect_.left,
-				rect_.bottom - rect_.top, &p_text_layout_);
+			HRESULT hr = _p_directwrite_factory->CreateTextLayout(convert_string(_specs.text()).c_str(),
+				(UINT32)_specs.text().length(), _p_text_format, _rect.right - _rect.left,
+				_rect.bottom - _rect.top, &_p_text_layout);
 
 			if (SUCCEEDED(hr)) {
 				// draw the text layout
-				p_render_target->DrawTextLayout(D2D1_POINT_2F{ rect_.left, rect_.top },
-					p_text_layout_, is_enabled_ ?
-					p_brush_ : p_brush_disabled_, D2D1_DRAW_TEXT_OPTIONS_CLIP);
+				p_render_target->DrawTextLayout(D2D1_POINT_2F{ _rect.left, _rect.top },
+					_p_text_layout, _is_enabled ?
+					_p_brush : _p_brush_disabled, D2D1_DRAW_TEXT_OPTIONS_CLIP);
 			}
 
 			// release the text layout
-			safe_release(&p_text_layout_);
+			safe_release(&_p_text_layout);
 
-			return rect_;
+			return _rect;
 		}
 
 		void widgets::button_impl::on_click() {
-			if (specs_.events().click)
-				specs_.events().click();
+			if (_specs.events().click)
+				_specs.events().click();
 
-			if (specs_.events().action)
-				specs_.events().action();
+			if (_specs.events().action)
+				_specs.events().action();
 		}
 
 		widgets::button_specs&
-			widgets::button_impl::specs() { return specs_; }
+			widgets::button_impl::specs() { return _specs; }
 
 		widgets::button_specs&
 			widgets::button_impl::operator()() { return specs(); }

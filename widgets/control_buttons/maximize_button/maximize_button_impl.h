@@ -19,75 +19,75 @@ namespace liblec {
 			public:
 				// generic specs
 
-				std::string& text() override { return text_; }
+				std::string& text() override { return _text; }
 				maximize_button_specs& text(const std::string& text) {
-					text_ = text;
+					_text = text;
 					return *this;
 				}
 
-				std::string& tooltip() override { return tooltip_; }
+				std::string& tooltip() override { return _tooltip; }
 				maximize_button_specs& tooltip(const std::string& tooltip) {
-					tooltip_ = tooltip;
+					_tooltip = tooltip;
 					return *this;
 				}
 
-				lecui::rect& rect() override { return rect_; }
+				lecui::rect& rect() override { return _rect; }
 				maximize_button_specs& rect(const lecui::rect& rect) {
-					rect_ = rect;
+					_rect = rect;
 					return *this;
 				}
 
-				resize_params& on_resize() override { return on_resize_; }
+				resize_params& on_resize() override { return _on_resize; }
 				maximize_button_specs& on_resize(const resize_params& on_resize) {
-					on_resize_ = on_resize;
+					_on_resize = on_resize;
 					return *this;
 				}
 
-				cursor_type& cursor() override { return cursor_; }
+				cursor_type& cursor() override { return _cursor; }
 				maximize_button_specs& cursor(const cursor_type cursor) {
-					cursor_ = cursor;
+					_cursor = cursor;
 					return *this;
 				}
 
-				std::string& font() override { return font_; }
+				std::string& font() override { return _font; }
 				maximize_button_specs& font(const std::string& font) {
-					font_ = font;
+					_font = font;
 					return *this;
 				}
 
-				float& font_size() override { return font_size_; }
+				float& font_size() override { return _font_size; }
 				maximize_button_specs& font_size(const float& font_size) {
-					font_size_ = font_size;
+					_font_size = font_size;
 					return *this;
 				}
 
-				color& color_text() override { return color_text_; }
+				color& color_text() override { return _color_text; }
 				maximize_button_specs& color_text(const color& color_text) {
-					color_text_ = color_text;
+					_color_text = color_text;
 					return *this;
 				}
 
-				color& color_fill() override { return color_fill_; }
+				color& color_fill() override { return _color_fill; }
 				maximize_button_specs& color_fill(const color& color_fill) {
-					color_fill_ = color_fill;
+					_color_fill = color_fill;
 					return *this;
 				}
 
-				color& color_hot() override { return color_hot_; }
+				color& color_hot() override { return _color_hot; }
 				maximize_button_specs& color_hot(const color& color_hot) {
-					color_hot_ = color_hot;
+					_color_hot = color_hot;
 					return *this;
 				}
 
-				color& color_selected() override { return color_selected_; }
+				color& color_selected() override { return _color_selected; }
 				maximize_button_specs& color_selected(const color& color_selected) {
-					color_selected_ = color_selected;
+					_color_selected = color_selected;
 					return *this;
 				}
 
-				color& color_disabled() override { return color_disabled_; }
+				color& color_disabled() override { return _color_disabled; }
 				maximize_button_specs& color_disabled(const color& color_disabled) {
-					color_disabled_ = color_disabled;
+					_color_disabled = color_disabled;
 					return *this;
 				}
 
@@ -98,7 +98,7 @@ namespace liblec {
 			class maximize_button_impl : public widget_impl {
 				/// private virtual function overrides
 				widgets::specs& generic_specs() override {
-					return specs_;
+					return _specs;
 				}
 
 			public:
@@ -126,11 +126,11 @@ namespace liblec {
 				maximize_button_impl& operator=(const maximize_button_impl&) = delete;
 
 				/// Private variables
-				HWND hWnd_;
-				widgets::maximize_button_specs specs_;
-				ID2D1SolidColorBrush* p_brush_;
-				ID2D1SolidColorBrush* p_brush_hot_;
-				ID2D1SolidColorBrush* p_brush_disabled_;
+				HWND _hWnd;
+				widgets::maximize_button_specs _specs;
+				ID2D1SolidColorBrush* _p_brush;
+				ID2D1SolidColorBrush* _p_brush_hot;
+				ID2D1SolidColorBrush* _p_brush_disabled;
 
 				/// Private methods
 				bool maximized(HWND hwnd);

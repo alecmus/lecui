@@ -85,10 +85,10 @@ namespace liblec {
 		};
 
 		class lecui_api rect {
-			float left_ = 0.f;
-			float right_ = 0.f;
-			float top_ = 0.f;
-			float bottom_ = 0.f;
+			float _left = 0.f;
+			float _right = 0.f;
+			float _top = 0.f;
+			float _bottom = 0.f;
 
 		public:
 			/// <summary>Rectangle constructor. Makes a zero size rectangle with zero width and height.</summary>
@@ -245,10 +245,10 @@ namespace liblec {
 
 		/// <summary>RGBA color on a standard 0 to 255 scale. For the alpha channel 0 is transparent and 255 is opaque.</summary>
 		class lecui_api color {
-			unsigned short red_ = 0;
-			unsigned short green_ = 0;
-			unsigned short blue_ = 0;
-			unsigned short alpha_ = 255;
+			unsigned short _red = 0;
+			unsigned short _green = 0;
+			unsigned short _blue = 0;
+			unsigned short _alpha = 255;
 
 		public:
 			/// <summary>Color constructor. Makes opaque black (0, 0, 0, 255).</summary>
@@ -384,7 +384,7 @@ namespace liblec {
 
 		/// <summary>Table row; a list of (column, value) pairs. The map's "key" is
 		/// the column name and it's "value" is the value under that column for the given row, e.g.
-		/// { { "Name", "John" }, { "Surname", "Doe" }, { "Height", 172 }, { "Image", _blob_data_ } }
+		/// { { "Name", "John" }, { "Surname", "Doe" }, { "Height", 172 } }
 		/// </summary>
 		using table_row = std::map<std::string, std::any>;
 

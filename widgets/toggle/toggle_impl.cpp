@@ -16,18 +16,18 @@ namespace liblec {
 			const std::string& alias,
 			IDWriteFactory* p_directwrite_factory) :
 			widget_impl(page, alias),
-			p_brush_(nullptr),
-			p_brush_fill_(nullptr),
-			p_brush_on_(nullptr),
-			p_brush_off_(nullptr),
-			p_brush_on_hot_(nullptr),
-			p_brush_off_hot_(nullptr),
-			p_brush_disabled_(nullptr),
-			p_brush_selected_(nullptr),
-			p_text_format_(nullptr),
-			p_directwrite_factory_(p_directwrite_factory),
-			p_text_layout_(nullptr),
-			perc_along_(0.f) {}
+			_p_brush(nullptr),
+			_p_brush_fill(nullptr),
+			_p_brush_on(nullptr),
+			_p_brush_off(nullptr),
+			_p_brush_on_hot(nullptr),
+			_p_brush_off_hot(nullptr),
+			_p_brush_disabled(nullptr),
+			_p_brush_selected(nullptr),
+			_p_text_format(nullptr),
+			_p_directwrite_factory(p_directwrite_factory),
+			_p_text_layout(nullptr),
+			_perc_along(0.f) {}
 
 		widgets::toggle_impl::~toggle_impl() { discard_resources(); }
 
@@ -38,237 +38,237 @@ namespace liblec {
 
 		HRESULT widgets::toggle_impl::create_resources(
 			ID2D1HwndRenderTarget* p_render_target) {
-			specs_old_ = specs_;
-			is_static_ = (specs_.events().toggle == nullptr && specs_.events().click == nullptr && specs_.events().action == nullptr);
-			h_cursor_ = get_cursor(specs_.cursor());
+			_specs_old = _specs;
+			_is_static = (_specs.events().toggle == nullptr && _specs.events().click == nullptr && _specs.events().action == nullptr);
+			_h_cursor = get_cursor(_specs.cursor());
 
 			HRESULT hr = S_OK;
 
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_on()),
-					&p_brush_on_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_on()),
+					&_p_brush_on);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_off()),
-					&p_brush_off_);
-			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(
-					convert_color(lighten_color(specs_.color_on(), 25)), &p_brush_on_hot_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_off()),
+					&_p_brush_off);
 			if (SUCCEEDED(hr))
 				hr = p_render_target->CreateSolidColorBrush(
-					convert_color(lighten_color(specs_.color_off(), 25)), &p_brush_off_hot_);
+					convert_color(lighten_color(_specs.color_on(), 25)), &_p_brush_on_hot);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_disabled()),
-					&p_brush_disabled_);
+				hr = p_render_target->CreateSolidColorBrush(
+					convert_color(lighten_color(_specs.color_off(), 25)), &_p_brush_off_hot);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_selected()),
-					&p_brush_selected_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_disabled()),
+					&_p_brush_disabled);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_text()),
-					&p_brush_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_selected()),
+					&_p_brush_selected);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_fill()),
-					&p_brush_fill_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_text()),
+					&_p_brush);
+			if (SUCCEEDED(hr))
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_fill()),
+					&_p_brush_fill);
 			if (SUCCEEDED(hr)) {
 				// Create a DirectWrite text format object.
-				hr = p_directwrite_factory_->CreateTextFormat(
-					convert_string(specs_.font()).c_str(),
+				hr = _p_directwrite_factory->CreateTextFormat(
+					convert_string(_specs.font()).c_str(),
 					NULL,
 					DWRITE_FONT_WEIGHT_NORMAL,
 					DWRITE_FONT_STYLE_NORMAL,
 					DWRITE_FONT_STRETCH_NORMAL,
-					convert_fontsize_to_dip(specs_.font_size()),
+					convert_fontsize_to_dip(_specs.font_size()),
 					L"", //locale
-					&p_text_format_
+					&_p_text_format
 					);
 			}
 			if (SUCCEEDED(hr)) {
-				p_text_format_->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_LEADING);
-				p_text_format_->SetParagraphAlignment(DWRITE_PARAGRAPH_ALIGNMENT_CENTER);
-				make_single_line(p_directwrite_factory_, p_text_format_);
+				_p_text_format->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_LEADING);
+				_p_text_format->SetParagraphAlignment(DWRITE_PARAGRAPH_ALIGNMENT_CENTER);
+				make_single_line(_p_directwrite_factory, _p_text_format);
 			}
 
-			resources_created_ = true;
+			_resources_created = true;
 			return hr;
 		}
 
 		void widgets::toggle_impl::discard_resources() {
-			resources_created_ = false;
-			safe_release(&p_brush_);
-			safe_release(&p_brush_fill_);
-			safe_release(&p_brush_on_);
-			safe_release(&p_brush_off_);
-			safe_release(&p_brush_on_hot_);
-			safe_release(&p_brush_off_hot_);
-			safe_release(&p_brush_disabled_);
-			safe_release(&p_brush_selected_);
-			safe_release(&p_text_format_);
+			_resources_created = false;
+			safe_release(&_p_brush);
+			safe_release(&_p_brush_fill);
+			safe_release(&_p_brush_on);
+			safe_release(&_p_brush_off);
+			safe_release(&_p_brush_on_hot);
+			safe_release(&_p_brush_off_hot);
+			safe_release(&_p_brush_disabled);
+			safe_release(&_p_brush_selected);
+			safe_release(&_p_text_format);
 		}
 
 		D2D1_RECT_F&
 			widgets::toggle_impl::render(ID2D1HwndRenderTarget* p_render_target,
 				const D2D1_SIZE_F& change_in_size, const D2D1_POINT_2F& offset, const bool& render) {
-			if (specs_old_ != specs_) {
-				log("specs changed: " + alias_);
-				specs_old_ = specs_;
+			if (_specs_old != _specs) {
+				log("specs changed: " + _alias);
+				_specs_old = _specs;
 				discard_resources();
 			}
 
-			if (!resources_created_)
+			if (!_resources_created)
 				create_resources(p_render_target);
 
-			rect_ = position(specs_.rect(), specs_.on_resize(), change_in_size.width, change_in_size.height);
-			rect_.left -= offset.x;
-			rect_.right -= offset.x;
-			rect_.top -= offset.y;
-			rect_.bottom -= offset.y;
+			_rect = position(_specs.rect(), _specs.on_resize(), change_in_size.width, change_in_size.height);
+			_rect.left -= offset.x;
+			_rect.right -= offset.x;
+			_rect.top -= offset.y;
+			_rect.bottom -= offset.y;
 
-			const float toggle_height = smallest(rect_.bottom - rect_.top, rect_.right - rect_.left);
+			const float toggle_height = smallest(_rect.bottom - _rect.top, _rect.right - _rect.left);
 			const float toggle_width = 2.f * toggle_height;
 
-			rect_toggle_ = rect_;
-			rect_toggle_.right = rect_toggle_.left + toggle_width;
-			rect_toggle_.bottom = rect_toggle_.top + toggle_height;
-			pos_rect(rect_, rect_toggle_, 0.f, 50.f);
+			_rect_toggle = _rect;
+			_rect_toggle.right = _rect_toggle.left + toggle_width;
+			_rect_toggle.bottom = _rect_toggle.top + toggle_height;
+			pos_rect(_rect, _rect_toggle, 0.f, 50.f);
 
-			D2D1_RECT_F toggle_background_ = rect_toggle_;
-			D2D1_ROUNDED_RECT toggle_background_round_ = { toggle_background_,
-				(toggle_background_.bottom - toggle_background_.top) / 2.f,
-				(toggle_background_.bottom - toggle_background_.top) / 2.f };
+			D2D1_RECT_F _toggle_background = _rect_toggle;
+			D2D1_ROUNDED_RECT _toggle_background_round = { _toggle_background,
+				(_toggle_background.bottom - _toggle_background.top) / 2.f,
+				(_toggle_background.bottom - _toggle_background.top) / 2.f };
 
-			D2D1_RECT_F toggle_foreground_ = rect_toggle_;
-			toggle_foreground_.right = toggle_foreground_.right -
-				(toggle_foreground_.right - toggle_foreground_.left) / 2.f;
+			D2D1_RECT_F _toggle_foreground = _rect_toggle;
+			_toggle_foreground.right = _toggle_foreground.right -
+				(_toggle_foreground.right - _toggle_foreground.left) / 2.f;
 
-			perc_along_ = specs_.on() ? 100.f : 0.f;
+			_perc_along = _specs.on() ? 100.f : 0.f;
 
-			bool x_change = (point_.x != point_on_press_.x);
-			bool y_change = (point_.y != point_on_press_.y);
+			bool x_change = (_point.x != _point_on_press.x);
+			bool y_change = (_point.y != _point_on_press.y);
 
-			if (pressed_ && (x_change || y_change)) {
-				D2D1_RECT_F rect = rect_toggle_;
-				rect.left += ((toggle_foreground_.right - toggle_foreground_.left) / 2.f);
-				rect.right -= ((toggle_foreground_.right - toggle_foreground_.left) / 2.f);
+			if (_pressed && (x_change || y_change)) {
+				D2D1_RECT_F rect = _rect_toggle;
+				rect.left += ((_toggle_foreground.right - _toggle_foreground.left) / 2.f);
+				rect.right -= ((_toggle_foreground.right - _toggle_foreground.left) / 2.f);
 
 				scale_RECT(rect, get_dpi_scale());
 
 				const float mid_point_x = rect.left + ((rect.right - rect.left) / 2.f);
 
-				perc_along_ = 100.f * (point_.x - rect.left) / (rect.right - rect.left);
-				perc_along_ = largest(perc_along_, 0.f);
-				perc_along_ = smallest(perc_along_, 100.f);
+				_perc_along = 100.f * (_point.x - rect.left) / (rect.right - rect.left);
+				_perc_along = largest(_perc_along, 0.f);
+				_perc_along = smallest(_perc_along, 100.f);
 			}
 
-			pos_rect(rect_toggle_, toggle_foreground_, perc_along_, 50.f);
+			pos_rect(_rect_toggle, _toggle_foreground, _perc_along, 50.f);
 
 			// to-do: shrink by exactly 90%
-			const float shrink_amount = .05f * (toggle_foreground_.right - toggle_foreground_.left);
-			toggle_foreground_.left += shrink_amount;
-			toggle_foreground_.right -= shrink_amount;
-			toggle_foreground_.top += shrink_amount;
-			toggle_foreground_.bottom -= shrink_amount;
+			const float shrink_amount = .05f * (_toggle_foreground.right - _toggle_foreground.left);
+			_toggle_foreground.left += shrink_amount;
+			_toggle_foreground.right -= shrink_amount;
+			_toggle_foreground.top += shrink_amount;
+			_toggle_foreground.bottom -= shrink_amount;
 
-			D2D1_ROUNDED_RECT toggle_foreground_round_ = { toggle_foreground_,
-				(toggle_foreground_.bottom - toggle_foreground_.top) / 2.f,
-				(toggle_foreground_.bottom - toggle_foreground_.top) / 2.f };
+			D2D1_ROUNDED_RECT _toggle_foreground_round = { _toggle_foreground,
+				(_toggle_foreground.bottom - _toggle_foreground.top) / 2.f,
+				(_toggle_foreground.bottom - _toggle_foreground.top) / 2.f };
 
-			ID2D1SolidColorBrush* p_brush = (perc_along_ >= 50.f) ? p_brush_on_ : p_brush_off_;
-			ID2D1SolidColorBrush* p_brush_hot = (perc_along_ >= 50.f) ?
-				p_brush_on_hot_ : p_brush_off_hot_;
+			ID2D1SolidColorBrush* p_brush = (_perc_along >= 50.f) ? _p_brush_on : _p_brush_off;
+			ID2D1SolidColorBrush* p_brush_hot = (_perc_along >= 50.f) ?
+				_p_brush_on_hot : _p_brush_off_hot;
 
-			if (render && visible_) {
-				p_render_target->FillRoundedRectangle(&toggle_background_round_, !is_enabled_ ?
-					p_brush_disabled_ : hit_ ? p_brush_hot : p_brush);
-				p_render_target->FillRoundedRectangle(&toggle_foreground_round_, !is_enabled_ ?
-					p_brush_fill_ : p_brush_fill_);
+			if (render && _visible) {
+				p_render_target->FillRoundedRectangle(&_toggle_background_round, !_is_enabled ?
+					_p_brush_disabled : _hit ? p_brush_hot : p_brush);
+				p_render_target->FillRoundedRectangle(&_toggle_foreground_round, !_is_enabled ?
+					_p_brush_fill : _p_brush_fill);
 			}
 
-			auto rect_text_ = rect_;
-			rect_text_.left = rect_toggle_.right + ((rect_toggle_.bottom - rect_toggle_.top) / 3.f);
+			auto _rect_text = _rect;
+			_rect_text.left = _rect_toggle.right + ((_rect_toggle.bottom - _rect_toggle.top) / 3.f);
 
 			// create a text layout
-			const std::string& text = specs_.on() ? specs_.text() : specs_.text_off();
-			HRESULT hr = p_directwrite_factory_->CreateTextLayout(
+			const std::string& text = _specs.on() ? _specs.text() : _specs.text_off();
+			HRESULT hr = _p_directwrite_factory->CreateTextLayout(
 				convert_string(text).c_str(),
 				(UINT32)text.length(),
-				p_text_format_,
-				rect_text_.right - rect_text_.left,
-				rect_text_.bottom - rect_text_.top,
-				&p_text_layout_);
+				_p_text_format,
+				_rect_text.right - _rect_text.left,
+				_rect_text.bottom - _rect_text.top,
+				&_p_text_layout);
 
 			if (SUCCEEDED(hr)) {
 				DWRITE_TEXT_METRICS textMetrics;
-				p_text_layout_->GetMetrics(&textMetrics);
+				_p_text_layout->GetMetrics(&textMetrics);
 
-				const auto rect_text_og = rect_text_;
-				rect_text_.left += textMetrics.left;
-				rect_text_.top += textMetrics.top;
-				rect_text_.right = smallest(rect_text_.left + textMetrics.width, rect_text_.right);
-				rect_text_.bottom = smallest(rect_text_.top + textMetrics.height, rect_text_.bottom);
+				const auto rect_text_og = _rect_text;
+				_rect_text.left += textMetrics.left;
+				_rect_text.top += textMetrics.top;
+				_rect_text.right = smallest(_rect_text.left + textMetrics.width, _rect_text.right);
+				_rect_text.bottom = smallest(_rect_text.top + textMetrics.height, _rect_text.bottom);
 
-				if (render && visible_ && !is_static_ && is_enabled_ && selected_)
-					p_render_target->FillRectangle(&rect_text_, p_brush_selected_);
+				if (render && _visible && !_is_static && _is_enabled && _selected)
+					p_render_target->FillRectangle(&_rect_text, _p_brush_selected);
 
-				if (render && visible_)
+				if (render && _visible)
 					p_render_target->DrawTextLayout(D2D1_POINT_2F{ rect_text_og.left, rect_text_og.top },
-						p_text_layout_, p_brush_, D2D1_DRAW_TEXT_OPTIONS_CLIP);
+						_p_text_layout, _p_brush, D2D1_DRAW_TEXT_OPTIONS_CLIP);
 			}
 
-			rect_.right = rect_text_.right;
+			_rect.right = _rect_text.right;
 
 			// release the text layout
-			safe_release(&p_text_layout_);
+			safe_release(&_p_text_layout);
 
-			return rect_;
+			return _rect;
 		}
 
 		void widgets::toggle_impl::on_click() {
-			bool x_change = (point_.x != point_on_press_.x);
-			bool y_change = (point_.y != point_on_press_.y);
+			bool x_change = (_point.x != _point_on_press.x);
+			bool y_change = (_point.y != _point_on_press.y);
 
 			if (!(x_change || y_change)) {
-				specs_.on() = !specs_.on();	// A click with no mouse move. Toggle.
-				perc_along_ = specs_.on() ? 100.f : 0.f;
+				_specs.on() = !_specs.on();	// A click with no mouse move. Toggle.
+				_perc_along = _specs.on() ? 100.f : 0.f;
 			}
 			else
-				specs_.on() = perc_along_ >= 50.f;
+				_specs.on() = _perc_along >= 50.f;
 
-			if (specs_.events().toggle)
-				specs_.events().toggle(specs_.on());
+			if (_specs.events().toggle)
+				_specs.events().toggle(_specs.on());
 
-			if (specs_.events().click)
-				specs_.events().click();
+			if (_specs.events().click)
+				_specs.events().click();
 		}
 
 		void widgets::toggle_impl::on_action() {
-			specs_.on(!specs_.on());	// Toggle.
+			_specs.on(!_specs.on());	// Toggle.
 
-			if (specs_.events().toggle)
-				specs_.events().toggle(specs_.on());
+			if (_specs.events().toggle)
+				_specs.events().toggle(_specs.on());
 
-			if (specs_.events().action)
-				specs_.events().action();
+			if (_specs.events().action)
+				_specs.events().action();
 		}
 
 		void widgets::toggle_impl::on_right_click() {
-			if (specs_.events().right_click)
-				specs_.events().right_click();
+			if (_specs.events().right_click)
+				_specs.events().right_click();
 		}
 
 		bool widgets::toggle_impl::contains(const D2D1_POINT_2F& point) {
 			// capture the point
-			point_ = point;
+			_point = point;
 
 			if (point.x == 0.f && point.y == 0.f)
 				return false;
 
-			D2D1_RECT_F rect = rect_;
+			D2D1_RECT_F rect = _rect;
 			scale_RECT(rect, get_dpi_scale());
 
 			if (point.x >= rect.left && point.x <= rect.right &&
 				point.y >= rect.top && point.y <= rect.bottom)
 				return contains();
 			else {
-				if (pressed_)
+				if (_pressed)
 					return true;
 				else
 					return false;
@@ -278,19 +278,19 @@ namespace liblec {
 		bool widgets::toggle_impl::contains() { return true; }
 
 		bool widgets::toggle_impl::hit(const bool& hit) {
-			if (is_static_ || hit == hit_) {
-				if (pressed_)
+			if (_is_static || hit == _hit) {
+				if (_pressed)
 					return true;
 				else
 					return false;
 			}
 
-			hit_ = hit;
+			_hit = hit;
 			return true;
 		}
 
 		widgets::toggle_specs&
-			widgets::toggle_impl::specs() { return specs_; }
+			widgets::toggle_impl::specs() { return _specs; }
 
 		widgets::toggle_specs&
 			widgets::toggle_impl::operator()() { return specs(); }

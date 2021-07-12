@@ -13,21 +13,21 @@
 namespace liblec {
 	namespace lecui {
 		void form::impl::on_lbuttondown(const D2D1_POINT_2F& point) {
-			for (auto& [key, child] : m_children_) {
-				if (child && IsWindow(child->d_.hWnd_) && (child->d_.menu_form_ || child->d_.tooltip_form_)) {
+			for (auto& [key, child] : _m_children) {
+				if (child && IsWindow(child->_d._hWnd) && (child->_d._menu_form || child->_d._tooltip_form)) {
 					// close child menu forms and tooltip forms
 					child->close();
 				}
 			}
 
-			point_before_ = point;
+			_point_before = point;
 
 			bool pressed = false;
 			bool selected = false;
 			bool update_anyway = false;
 
 			// check form widgets
-			for (auto& widget : widgets_) {
+			for (auto& widget : _widgets) {
 				if (widget.second.is_static() || !widget.second.visible() || !widget.second.enabled())
 					continue;
 
@@ -52,10 +52,10 @@ namespace liblec {
 				static void check_scroll_bars(containers::page& page,
 					const D2D1_POINT_2F& point, const float& dpi_scale,
 					bool& scroll_bar_contains) {
-					bool in_page = page.d_page_.contains(point);
+					bool in_page = page._d_page.contains(point);
 
 					// check widgets
-					for (auto& widget : page.d_page_.widgets()) {
+					for (auto& widget : page._d_page.widgets()) {
 						bool is_scroll_bar = (widget.second.type() ==
 							widgets::widget_type::h_scrollbar) ||
 							(widget.second.type() ==
@@ -68,26 +68,26 @@ namespace liblec {
 							scroll_bar_contains = true;
 					}
 
-					for (auto& widget : page.d_page_.widgets()) {
+					for (auto& widget : page._d_page.widgets()) {
 						if (widget.second.type() ==
 							widgets::widget_type::tab_pane) {
 							// get this tab pane
-							auto& tab_pane = page.d_page_.get_tab_pane(widget.first);
+							auto& tab_pane = page._d_page.get_tab_pane(widget.first);
 
-							auto page_iterator = tab_pane.p_tabs_.find(tab_pane.current_tab_);
+							auto page_iterator = tab_pane._p_tabs.find(tab_pane._current_tab);
 
-							if (page_iterator != tab_pane.p_tabs_.end())
+							if (page_iterator != tab_pane._p_tabs.end())
 								helper::check_scroll_bars(page_iterator->second, point, dpi_scale, scroll_bar_contains);
 						}
 						else
 							if (widget.second.type() ==
 								widgets::widget_type::pane) {
 								// get this pane
-								auto& pane = page.d_page_.get_pane(widget.first);
+								auto& pane = page._d_page.get_pane(widget.first);
 
-								auto page_iterator = pane.p_panes_.find(pane.current_pane_);
+								auto page_iterator = pane._p_panes.find(pane._current_pane);
 
-								if (page_iterator != pane.p_panes_.end())
+								if (page_iterator != pane._p_panes.end())
 									helper::check_scroll_bars(page_iterator->second, point, dpi_scale, scroll_bar_contains);
 							}
 					}
@@ -96,10 +96,10 @@ namespace liblec {
 				static void check_widgets(containers::page& page,
 					const D2D1_POINT_2F& point, const float& dpi_scale, bool& pressed,
 					bool& update_anyway, const bool& scroll_bar_hit) {
-					bool in_page = page.d_page_.contains(point);
+					bool in_page = page._d_page.contains(point);
 
 					// check widgets
-					for (auto& widget : page.d_page_.widgets()) {
+					for (auto& widget : page._d_page.widgets()) {
 						bool is_scroll_bar = (widget.second.type() ==
 							widgets::widget_type::h_scrollbar) ||
 							(widget.second.type() ==
@@ -139,15 +139,15 @@ namespace liblec {
 						}
 					}
 
-					for (auto& widget : page.d_page_.widgets()) {
+					for (auto& widget : page._d_page.widgets()) {
 						if (widget.second.type() ==
 							widgets::widget_type::tab_pane) {
 							// get this tab pane
-							auto& tab_pane = page.d_page_.get_tab_pane(widget.first);
+							auto& tab_pane = page._d_page.get_tab_pane(widget.first);
 
-							auto page_iterator = tab_pane.p_tabs_.find(tab_pane.current_tab_);
+							auto page_iterator = tab_pane._p_tabs.find(tab_pane._current_tab);
 
-							if (page_iterator != tab_pane.p_tabs_.end())
+							if (page_iterator != tab_pane._p_tabs.end())
 								helper::check_widgets(page_iterator->second, point, dpi_scale, pressed,
 									update_anyway, scroll_bar_hit);	// recursion
 						}
@@ -155,47 +155,47 @@ namespace liblec {
 							if (widget.second.type() ==
 								widgets::widget_type::pane) {
 								// get this pane
-								auto& pane = page.d_page_.get_pane(widget.first);
+								auto& pane = page._d_page.get_pane(widget.first);
 
-								auto page_iterator = pane.p_panes_.find(pane.current_pane_);
+								auto page_iterator = pane._p_panes.find(pane._current_pane);
 
-								if (page_iterator != pane.p_panes_.end())
+								if (page_iterator != pane._p_panes.end())
 									helper::check_widgets(page_iterator->second, point, dpi_scale, pressed,
 										update_anyway, scroll_bar_hit);	// recursion
 							}
 					}
 
 					// check scroll bars
-					if (page.d_page_.h_scrollbar().pressed()) {
-						page.d_page_.h_scrollbar().max_displacement(
-							page.d_page_.h_scrollbar().max_displacement_left_,
-							page.d_page_.h_scrollbar().max_displacement_right_);
-						page.d_page_.h_scrollbar().max_displacement_left_ *= dpi_scale;
-						page.d_page_.h_scrollbar().max_displacement_right_ *= dpi_scale;
+					if (page._d_page.h_scrollbar().pressed()) {
+						page._d_page.h_scrollbar().max_displacement(
+							page._d_page.h_scrollbar()._max_displacement_left,
+							page._d_page.h_scrollbar()._max_displacement_right);
+						page._d_page.h_scrollbar()._max_displacement_left *= dpi_scale;
+						page._d_page.h_scrollbar()._max_displacement_right *= dpi_scale;
 
 						// translate the environment
-						page.d_page_.h_scrollbar().x_displacement_previous_ =
-							page.d_page_.h_scrollbar().x_displacement_;
-						page.d_page_.h_scrollbar().max_displacement_left_ +=
-							page.d_page_.h_scrollbar().x_displacement_previous_;
-						page.d_page_.h_scrollbar().max_displacement_right_ +=
-							page.d_page_.h_scrollbar().x_displacement_previous_;
+						page._d_page.h_scrollbar()._x_displacement_previous =
+							page._d_page.h_scrollbar()._x_displacement;
+						page._d_page.h_scrollbar()._max_displacement_left +=
+							page._d_page.h_scrollbar()._x_displacement_previous;
+						page._d_page.h_scrollbar()._max_displacement_right +=
+							page._d_page.h_scrollbar()._x_displacement_previous;
 					}
 					else
-						if (page.d_page_.v_scrollbar().pressed()) {
-							page.d_page_.v_scrollbar().max_displacement(
-								page.d_page_.v_scrollbar().max_displacement_top_,
-								page.d_page_.v_scrollbar().max_displacement_bottom_);
-							page.d_page_.v_scrollbar().max_displacement_top_ *= dpi_scale;
-							page.d_page_.v_scrollbar().max_displacement_bottom_ *= dpi_scale;
+						if (page._d_page.v_scrollbar().pressed()) {
+							page._d_page.v_scrollbar().max_displacement(
+								page._d_page.v_scrollbar()._max_displacement_top,
+								page._d_page.v_scrollbar()._max_displacement_bottom);
+							page._d_page.v_scrollbar()._max_displacement_top *= dpi_scale;
+							page._d_page.v_scrollbar()._max_displacement_bottom *= dpi_scale;
 
 							// translate the environment
-							page.d_page_.v_scrollbar().y_displacement_previous_ =
-								page.d_page_.v_scrollbar().y_displacement_;
-							page.d_page_.v_scrollbar().max_displacement_top_ +=
-								page.d_page_.v_scrollbar().y_displacement_previous_;
-							page.d_page_.v_scrollbar().max_displacement_bottom_ +=
-								page.d_page_.v_scrollbar().y_displacement_previous_;
+							page._d_page.v_scrollbar()._y_displacement_previous =
+								page._d_page.v_scrollbar()._y_displacement;
+							page._d_page.v_scrollbar()._max_displacement_top +=
+								page._d_page.v_scrollbar()._y_displacement_previous;
+							page._d_page.v_scrollbar()._max_displacement_bottom +=
+								page._d_page.v_scrollbar()._y_displacement_previous;
 						}
 				}
 			};
@@ -203,16 +203,16 @@ namespace liblec {
 			// variable to ensure that once a scroll bar has been hit nothing else should
 			bool scroll_bar_hit = false;
 
-			auto page_iterator = p_pages_.find(current_page_);
+			auto page_iterator = _p_pages.find(_current_page);
 
-			if (page_iterator != p_pages_.end())
-				helper::check_scroll_bars(page_iterator->second, point, dpi_scale_, scroll_bar_hit);
+			if (page_iterator != _p_pages.end())
+				helper::check_scroll_bars(page_iterator->second, point, _dpi_scale, scroll_bar_hit);
 
-			for (auto& it : p_status_panes_)
-				helper::check_widgets(it.second, point, dpi_scale_, pressed, update_anyway, scroll_bar_hit);
+			for (auto& it : _p_status_panes)
+				helper::check_widgets(it.second, point, _dpi_scale, pressed, update_anyway, scroll_bar_hit);
 
-			if (page_iterator != p_pages_.end())
-				helper::check_widgets(page_iterator->second, point, dpi_scale_, pressed, update_anyway, scroll_bar_hit);
+			if (page_iterator != _p_pages.end())
+				helper::check_widgets(page_iterator->second, point, _dpi_scale, pressed, update_anyway, scroll_bar_hit);
 
 			if (pressed || update_anyway)
 				update();
@@ -224,7 +224,7 @@ namespace liblec {
 			std::function<void()> on_click_handler = nullptr;
 
 			// check form widgets
-			for (auto& widget : widgets_) {
+			for (auto& widget : _widgets) {
 				if (widget.second.is_static() || !widget.second.visible() || !widget.second.enabled())
 					continue;
 
@@ -248,7 +248,7 @@ namespace liblec {
 					const D2D1_POINT_2F& point, bool& clicked, bool& update_anyway,
 					std::function<void()>& on_click_handler) {
 					// check widgets
-					for (auto& widget : page.d_page_.widgets()) {
+					for (auto& widget : page._d_page.widgets()) {
 						if (widget.second.is_static() || !widget.second.visible() || !widget.second.enabled())
 							continue;
 
@@ -271,11 +271,11 @@ namespace liblec {
 						if (widget.second.type() ==
 							widgets::widget_type::tab_pane) {
 							// get this tab pane
-							auto& tab_pane = page.d_page_.get_tab_pane(widget.first);
+							auto& tab_pane = page._d_page.get_tab_pane(widget.first);
 
-							auto page_iterator = tab_pane.p_tabs_.find(tab_pane.current_tab_);
+							auto page_iterator = tab_pane._p_tabs.find(tab_pane._current_tab);
 
-							if (page_iterator != tab_pane.p_tabs_.end())
+							if (page_iterator != tab_pane._p_tabs.end())
 								check_widgets(page_iterator->second, point, clicked, update_anyway,
 									on_click_handler);
 						}
@@ -283,11 +283,11 @@ namespace liblec {
 							if (widget.second.type() ==
 								widgets::widget_type::pane) {
 								// get this pane
-								auto& pane = page.d_page_.get_pane(widget.first);
+								auto& pane = page._d_page.get_pane(widget.first);
 
-								auto page_iterator = pane.p_panes_.find(pane.current_pane_);
+								auto page_iterator = pane._p_panes.find(pane._current_pane);
 
-								if (page_iterator != pane.p_panes_.end())
+								if (page_iterator != pane._p_panes.end())
 									check_widgets(page_iterator->second, point, clicked, update_anyway,
 										on_click_handler);
 							}
@@ -295,13 +295,13 @@ namespace liblec {
 				}
 			};
 
-			for (auto& it : p_status_panes_)
+			for (auto& it : _p_status_panes)
 				helper::check_widgets(it.second, point, clicked, update_anyway,
 					on_click_handler);
 
-			auto page_iterator = p_pages_.find(current_page_);
+			auto page_iterator = _p_pages.find(_current_page);
 
-			if (page_iterator != p_pages_.end())
+			if (page_iterator != _p_pages.end())
 				helper::check_widgets(page_iterator->second, point, clicked, update_anyway,
 					on_click_handler);
 

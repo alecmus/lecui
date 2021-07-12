@@ -18,26 +18,26 @@ namespace liblec {
 			const std::string& alias,
 			IDWriteFactory* p_directwrite_factory) :
 			widget_impl(page, alias),
-			p_brush_(nullptr),
-			p_brush_caret_(nullptr),
-			p_brush_prompt_(nullptr),
-			p_brush_border_(nullptr),
-			p_brush_fill_(nullptr),
-			p_brush_disabled_(nullptr),
-			p_brush_selected_(nullptr),
-			p_text_format_(nullptr),
-			p_directwrite_factory_(p_directwrite_factory),
-			p_text_layout_(nullptr),
-			margin_x_(7.5f),
-			margin_y_(2.5f),
-			caret_blink_timer_name_("caret_blink_timer::text_field"),
-			caret_position_(0),
-			caret_visible_(true),
-			skip_blink_(false),
-			text_off_set_(0.f),
-			is_selecting_(false),
-			is_selected_(false),
-			selection_info_({ 0, 0 }) {}
+			_p_brush(nullptr),
+			_p_brush_caret(nullptr),
+			_p_brush_prompt(nullptr),
+			_p_brush_border(nullptr),
+			_p_brush_fill(nullptr),
+			_p_brush_disabled(nullptr),
+			_p_brush_selected(nullptr),
+			_p_text_format(nullptr),
+			_p_directwrite_factory(p_directwrite_factory),
+			_p_text_layout(nullptr),
+			_margin_x(7.5f),
+			_margin_y(2.5f),
+			_caret_blink_timer_name("caret_blink_timer::text_field"),
+			_caret_position(0),
+			_caret_visible(true),
+			_skip_blink(false),
+			_text_off_set(0.f),
+			_is_selecting(false),
+			_is_selected(false),
+			_selection_info({ 0, 0 }) {}
 
 		widgets::text_field_impl::~text_field_impl() { discard_resources(); }
 
@@ -48,137 +48,137 @@ namespace liblec {
 
 		HRESULT widgets::text_field_impl::create_resources(
 			ID2D1HwndRenderTarget* p_render_target) {
-			specs_old_ = specs_;
-			is_static_ = false;
-			h_cursor_ = get_cursor(specs_.cursor());
+			_specs_old = _specs;
+			_is_static = false;
+			_h_cursor = get_cursor(_specs.cursor());
 
 			HRESULT hr = S_OK;
 
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_fill()),
-					&p_brush_fill_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_fill()),
+					&_p_brush_fill);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_border()),
-					&p_brush_border_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_border()),
+					&_p_brush_border);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_disabled()),
-					&p_brush_disabled_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_disabled()),
+					&_p_brush_disabled);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_selected()),
-					&p_brush_selected_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_selected()),
+					&_p_brush_selected);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_text()),
-					&p_brush_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_text()),
+					&_p_brush);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_caret()),
-					&p_brush_caret_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_caret()),
+					&_p_brush_caret);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_prompt()),
-					&p_brush_prompt_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_prompt()),
+					&_p_brush_prompt);
 			if (SUCCEEDED(hr)) {
 				// Create a DirectWrite text format object.
-				hr = p_directwrite_factory_->CreateTextFormat(
-					convert_string(specs_.font()).c_str(),
+				hr = _p_directwrite_factory->CreateTextFormat(
+					convert_string(_specs.font()).c_str(),
 					NULL,
 					DWRITE_FONT_WEIGHT_NORMAL,
 					DWRITE_FONT_STYLE_NORMAL,
 					DWRITE_FONT_STRETCH_NORMAL,
-					convert_fontsize_to_dip(specs_.font_size()),
+					convert_fontsize_to_dip(_specs.font_size()),
 					L"", //locale
-					&p_text_format_
+					&_p_text_format
 					);
 			}
 			if (SUCCEEDED(hr)) {
-				p_text_format_->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_LEADING);
-				p_text_format_->SetParagraphAlignment(DWRITE_PARAGRAPH_ALIGNMENT_CENTER);
-				make_single_line(p_directwrite_factory_, p_text_format_);
+				_p_text_format->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_LEADING);
+				_p_text_format->SetParagraphAlignment(DWRITE_PARAGRAPH_ALIGNMENT_CENTER);
+				make_single_line(_p_directwrite_factory, _p_text_format);
 			}
 
-			resources_created_ = true;
+			_resources_created = true;
 			return hr;
 		}
 
 		void widgets::text_field_impl::discard_resources() {
-			resources_created_ = false;
-			safe_release(&p_brush_);
-			safe_release(&p_brush_caret_);
-			safe_release(&p_brush_prompt_);
-			safe_release(&p_brush_border_);
-			safe_release(&p_brush_fill_);
-			safe_release(&p_brush_disabled_);
-			safe_release(&p_brush_selected_);
-			safe_release(&p_text_format_);
+			_resources_created = false;
+			safe_release(&_p_brush);
+			safe_release(&_p_brush_caret);
+			safe_release(&_p_brush_prompt);
+			safe_release(&_p_brush_border);
+			safe_release(&_p_brush_fill);
+			safe_release(&_p_brush_disabled);
+			safe_release(&_p_brush_selected);
+			safe_release(&_p_text_format);
 		}
 
 		D2D1_RECT_F&
 			widgets::text_field_impl::render(ID2D1HwndRenderTarget* p_render_target,
 				const D2D1_SIZE_F& change_in_size, const D2D1_POINT_2F& offset, const bool& render) {
-			if (specs_old_ != specs_) {
-				log("specs changed: " + alias_);
-				specs_old_ = specs_;
+			if (_specs_old != _specs) {
+				log("specs changed: " + _alias);
+				_specs_old = _specs;
 				discard_resources();
 			}
 
-			if (!resources_created_)
+			if (!_resources_created)
 				create_resources(p_render_target);
 
-			rect_ = position(specs_.rect(), specs_.on_resize(), change_in_size.width, change_in_size.height);
-			rect_.left -= offset.x;
-			rect_.right -= offset.x;
-			rect_.top -= offset.y;
-			rect_.bottom -= offset.y;
+			_rect = position(_specs.rect(), _specs.on_resize(), change_in_size.width, change_in_size.height);
+			_rect.left -= offset.x;
+			_rect.right -= offset.x;
+			_rect.top -= offset.y;
+			_rect.bottom -= offset.y;
 
-			if (!render || !visible_)
-				return rect_;
+			if (!render || !_visible)
+				return _rect;
 
 			// make sure caret is well positioned in case text has since been changed
-			caret_position_ = smallest(caret_position_, static_cast<UINT32>(specs_.text().length()));
+			_caret_position = smallest(_caret_position, static_cast<UINT32>(_specs.text().length()));
 
 			// draw background
-			D2D1_ROUNDED_RECT rounded_rect{ rect_,
-				specs_.corner_radius_x(), specs_.corner_radius_y() };
+			D2D1_ROUNDED_RECT rounded_rect{ _rect,
+				_specs.corner_radius_x(), _specs.corner_radius_y() };
 
-			p_render_target->FillRoundedRectangle(&rounded_rect, is_enabled_ ? p_brush_fill_ :
-				p_brush_disabled_);
+			p_render_target->FillRoundedRectangle(&rounded_rect, _is_enabled ? _p_brush_fill :
+				_p_brush_disabled);
 
-			p_render_target->DrawRoundedRectangle(&rounded_rect, p_brush_border_, .5f);
+			p_render_target->DrawRoundedRectangle(&rounded_rect, _p_brush_border, .5f);
 
-			if (!is_static_ && is_enabled_ && selected_)
-				p_render_target->DrawRoundedRectangle(&rounded_rect, p_brush_selected_, 1.75f);
+			if (!_is_static && _is_enabled && _selected)
+				p_render_target->DrawRoundedRectangle(&rounded_rect, _p_brush_selected, 1.75f);
 
 			// create a text layout
-			std::string text_ = !specs_.text().empty() ?
-				specs_.text() : selected_ ?
-				std::string() : specs_.prompt();
+			std::string _text = !_specs.text().empty() ?
+				_specs.text() : _selected ?
+				std::string() : _specs.prompt();
 
-			if (!specs_.text().empty() && specs_.mask != '\0') {
+			if (!_specs.text().empty() && _specs.mask != '\0') {
 				// mask the text
-				for (auto& c : text_)
-					c = specs_.mask;
+				for (auto& c : _text)
+					c = _specs.mask;
 			}
 
-			auto rect_text_ = rect_;
-			rect_text_.left += margin_x_;
-			rect_text_.right -= margin_x_;
-			rect_text_.top += margin_y_;
-			rect_text_.bottom -= margin_y_;
+			auto _rect_text = _rect;
+			_rect_text.left += _margin_x;
+			_rect_text.right -= _margin_x;
+			_rect_text.top += _margin_y;
+			_rect_text.bottom -= _margin_y;
 
 			// define rectangle for clipping text
-			auto rect_text_clip_ = rect_;
-			rect_text_clip_.left += (margin_x_ / 3.f);
-			rect_text_clip_.right -= (margin_x_ / 3.f);
-			rect_text_clip_.top += (margin_y_ / 3.f);
-			rect_text_clip_.bottom -= (margin_y_ / 3.f);
+			auto _rect_text_clip = _rect;
+			_rect_text_clip.left += (_margin_x / 3.f);
+			_rect_text_clip.right -= (_margin_x / 3.f);
+			_rect_text_clip.top += (_margin_y / 3.f);
+			_rect_text_clip.bottom -= (_margin_y / 3.f);
 
 			// define text box rect and actual text rect (with possible overflow)
-			const auto rect_text_box_ = rect_text_;
-			rect_text_ = measure_text(p_directwrite_factory_,
-				text_, specs_.font(), specs_.font_size(), false, true, true, false, rect_text_);
+			const auto _rect_text_box = _rect_text;
+			_rect_text = measure_text(_p_directwrite_factory,
+				_text, _specs.font(), _specs.font_size(), false, true, true, false, _rect_text);
 
 			// measure the text up to the caret position
-			const auto text_to_caret = text_.substr(0, caret_position_);
-			const auto rect_up_to_caret_ = measure_text(p_directwrite_factory_,
-				text_to_caret, specs_.font(), specs_.font_size(), false, true, true, false, rect_text_);
+			const auto text_to_caret = _text.substr(0, _caret_position);
+			const auto _rect_up_to_caret = measure_text(_p_directwrite_factory,
+				text_to_caret, _specs.font(), _specs.font_size(), false, true, true, false, _rect_text);
 
 			bool iterate = false;
 			do {
@@ -187,48 +187,48 @@ namespace liblec {
 				// compute offset
 				UINT32 hidden_left = 0;
 				UINT32 hidden_right = 0;
-				const float off_set_right = ((rect_text_.right - rect_text_.left) - (rect_text_box_.right - rect_text_box_.left)) + text_off_set_;
+				const float off_set_right = ((_rect_text.right - _rect_text.left) - (_rect_text_box.right - _rect_text_box.left)) + _text_off_set;
 				{
-					HRESULT hr = p_directwrite_factory_->CreateTextLayout(convert_string(text_).c_str(),
-						(UINT32)text_.length(), p_text_format_, rect_text_.right - rect_text_.left,
-						rect_text_.bottom - rect_text_.top, &p_text_layout_);
+					HRESULT hr = _p_directwrite_factory->CreateTextLayout(convert_string(_text).c_str(),
+						(UINT32)_text.length(), _p_text_format, _rect_text.right - _rect_text.left,
+						_rect_text.bottom - _rect_text.top, &_p_text_layout);
 
 					// characters hidden to the left of text box
-					const D2D1_POINT_2F pt_left = D2D1::Point2F(rect_text_.left - text_off_set_, rect_text_.top + (rect_text_.bottom - rect_text_.top) / 2.f);
-					hidden_left = count_characters(p_text_layout_, text_, rect_text_, pt_left, get_dpi_scale());
+					const D2D1_POINT_2F pt_left = D2D1::Point2F(_rect_text.left - _text_off_set, _rect_text.top + (_rect_text.bottom - _rect_text.top) / 2.f);
+					hidden_left = count_characters(_p_text_layout, _text, _rect_text, pt_left, get_dpi_scale());
 
 					// characters hidden to the right of text box
 
-					const D2D1_POINT_2F pt_right = D2D1::Point2F(rect_text_box_.left + off_set_right, rect_text_.top + (rect_text_.bottom - rect_text_.top) / 2.f);
-					hidden_right = count_characters(p_text_layout_, text_, rect_text_, pt_right, get_dpi_scale());
+					const D2D1_POINT_2F pt_right = D2D1::Point2F(_rect_text_box.left + off_set_right, _rect_text.top + (_rect_text.bottom - _rect_text.top) / 2.f);
+					hidden_right = count_characters(_p_text_layout, _text, _rect_text, pt_right, get_dpi_scale());
 
-					safe_release(&p_text_layout_);
+					safe_release(&_p_text_layout);
 				}
 
-				const auto text_field_width = rect_text_box_.right - rect_text_box_.left;
-				const auto distance_to_caret = rect_up_to_caret_.right - rect_up_to_caret_.left;
+				const auto text_field_width = _rect_text_box.right - _rect_text_box.left;
+				const auto distance_to_caret = _rect_up_to_caret.right - _rect_up_to_caret.left;
 				const auto off_set_left = text_field_width - distance_to_caret;
 
-				if (off_set_left < text_off_set_ || hidden_left == 0) {
+				if (off_set_left < _text_off_set || hidden_left == 0) {
 					// Either
 					// 1. caret has reached far right and text is being added
 					// 2. text hasn't filled text_field
 					//
 					// keep caret to the rightmost but within text_field (pin to the right if end is reached,
 					// pushing text to the left).
-					text_off_set_ = off_set_left;
+					_text_off_set = off_set_left;
 				}
 				else {
-					if (hidden_left >= caret_position_) {
+					if (hidden_left >= _caret_position) {
 						// caret has reached far left
 						// prevent caret from being hidden by off-setting text by up to 40px
-						text_off_set_ += 40.f;
+						_text_off_set += 40.f;
 						iterate = true;
 					}
 					else
 						if (hidden_right == 0) {
 							// keep text pinned to the right as we downsize while there's some hidden on the left
-							text_off_set_ -= off_set_right;
+							_text_off_set -= off_set_right;
 						}
 						else {
 							// do nothing under these circumstances
@@ -238,135 +238,135 @@ namespace liblec {
 				}
 
 				// this offset cannot be greater than zero or text will be indented!!!
-				text_off_set_ = smallest(text_off_set_, 0.f);
+				_text_off_set = smallest(_text_off_set, 0.f);
 			} while (iterate);
 
 			// apply offset to text rect to ensure visibility of caret
-			rect_text_.left += text_off_set_;
-			rect_text_.right += text_off_set_;
+			_rect_text.left += _text_off_set;
+			_rect_text.right += _text_off_set;
 
-			HRESULT hr = p_directwrite_factory_->CreateTextLayout(convert_string(text_).c_str(),
-				(UINT32)text_.length(), p_text_format_, rect_text_.right - rect_text_.left,
-				rect_text_.bottom - rect_text_.top, &p_text_layout_);
+			HRESULT hr = _p_directwrite_factory->CreateTextLayout(convert_string(_text).c_str(),
+				(UINT32)_text.length(), _p_text_format, _rect_text.right - _rect_text.left,
+				_rect_text.bottom - _rect_text.top, &_p_text_layout);
 
 			if (SUCCEEDED(hr)) {
 				// clip text
-				auto_clip clip(render, p_render_target, rect_text_clip_, 0.f);
+				auto_clip clip(render, p_render_target, _rect_text_clip, 0.f);
 
 				// draw the text layout
-				p_render_target->DrawTextLayout(D2D1_POINT_2F{ rect_text_.left, rect_text_.top },
-					p_text_layout_, !specs_.text().empty() ?
-					p_brush_ : p_brush_prompt_, D2D1_DRAW_TEXT_OPTIONS_CLIP);
+				p_render_target->DrawTextLayout(D2D1_POINT_2F{ _rect_text.left, _rect_text.top },
+					_p_text_layout, !_specs.text().empty() ?
+					_p_brush : _p_brush_prompt, D2D1_DRAW_TEXT_OPTIONS_CLIP);
 			}
 
-			if (!is_static_ && is_enabled_ && selected_) {
-				if (hit_ && pressed_) {
+			if (!_is_static && _is_enabled && _selected) {
+				if (_hit && _pressed) {
 					reset_selection();
 
-					caret_position_ = get_caret_position(p_text_layout_, specs_.text(), rect_text_, point_, get_dpi_scale());
-					caret_visible_ = true;
+					_caret_position = get_caret_position(_p_text_layout, _specs.text(), _rect_text, _point, get_dpi_scale());
+					_caret_visible = true;
 
-					if (point_.x != point_on_press_.x || point_.y != point_on_press_.y) {
+					if (_point.x != _point_on_press.x || _point.y != _point_on_press.y) {
 						// user is making a selection
-						is_selecting_ = true;
+						_is_selecting = true;
 
-						auto selection_start_ = get_caret_position(p_text_layout_, specs_.text(), rect_text_, point_on_press_, get_dpi_scale());
-						auto selection_end_ = caret_position_;
+						auto _selection_start = get_caret_position(_p_text_layout, _specs.text(), _rect_text, _point_on_press, get_dpi_scale());
+						auto _selection_end = _caret_position;
 
-						auto rect_selection = get_selection_rect(p_text_layout_, rect_text_, selection_start_, selection_end_);
-						p_render_target->FillRectangle(rect_selection, p_brush_selected_);
+						auto rect_selection = get_selection_rect(_p_text_layout, _rect_text, _selection_start, _selection_end);
+						p_render_target->FillRectangle(rect_selection, _p_brush_selected);
 					}
 				}
 				else
-					if (!pressed_ && is_selecting_) {
+					if (!_pressed && _is_selecting) {
 						// user is done with the selection
-						is_selecting_ = false;
+						_is_selecting = false;
 
 						set_selection(
-							get_caret_position(p_text_layout_, specs_.text(), rect_text_, point_on_press_, get_dpi_scale()),
-							get_caret_position(p_text_layout_, specs_.text(), rect_text_, point_on_release_, get_dpi_scale()));
+							get_caret_position(_p_text_layout, _specs.text(), _rect_text, _point_on_press, get_dpi_scale()),
+							get_caret_position(_p_text_layout, _specs.text(), _rect_text, _point_on_release, get_dpi_scale()));
 					}
 			}
 
 			// draw selection rectangle
-			if (!is_static_ && is_enabled_ && is_selected_) {
-				auto rect_selection = get_selection_rect(p_text_layout_, rect_text_, selection_info_.start, selection_info_.end);
-				p_render_target->FillRectangle(rect_selection, p_brush_selected_);
+			if (!_is_static && _is_enabled && _is_selected) {
+				auto rect_selection = get_selection_rect(_p_text_layout, _rect_text, _selection_info.start, _selection_info.end);
+				p_render_target->FillRectangle(rect_selection, _p_brush_selected);
 			}
 
 			// draw caret
-			if (!is_static_ && is_enabled_ && selected_ && caret_visible_) {
-				const auto caret_rect = get_caret_rect(p_text_layout_, rect_text_, caret_position_);
-				p_render_target->FillRectangle(&caret_rect, p_brush_caret_);
+			if (!_is_static && _is_enabled && _selected && _caret_visible) {
+				const auto caret_rect = get_caret_rect(_p_text_layout, _rect_text, _caret_position);
+				p_render_target->FillRectangle(&caret_rect, _p_brush_caret);
 			}
 
 			// release the text layout
-			safe_release(&p_text_layout_);
+			safe_release(&_p_text_layout);
 
-			return rect_;
+			return _rect;
 		}
 
 		void widgets::text_field_impl::on_selection_change(const bool& selected) {
 			if (selected) {
 				// start blink timer
-				timer_manager(get_form()).add(caret_blink_timer_name_, 500,
+				timer_manager(get_form()).add(_caret_blink_timer_name, 500,
 					[&]() {
-						if (skip_blink_)
-							skip_blink_ = false;
+						if (_skip_blink)
+							_skip_blink = false;
 						else {
-							caret_visible_ = !caret_visible_;
+							_caret_visible = !_caret_visible;
 							get_form().update();
 						}
 					});
 			}
 			else {
 				// stop blink timer
-				timer_manager(get_form()).stop(caret_blink_timer_name_);
+				timer_manager(get_form()).stop(_caret_blink_timer_name);
 			}
 		}
 
 		widgets::text_field_specs&
-			widgets::text_field_impl::specs() { return specs_; }
+			widgets::text_field_impl::specs() { return _specs; }
 
 		widgets::text_field_specs&
 			widgets::text_field_impl::operator()() { return specs(); }
 
 		void widgets::text_field_impl::insert_character(const char& c) {
 			try {
-				if (is_selected_) {
-					if (selection_info_.start > selection_info_.end)
-						swap(selection_info_.start, selection_info_.end);
+				if (_is_selected) {
+					if (_selection_info.start > _selection_info.end)
+						swap(_selection_info.start, _selection_info.end);
 
-					caret_position_ = selection_info_.start;
-					specs_.text().erase(selection_info_.start, selection_info_.end - selection_info_.start);
+					_caret_position = _selection_info.start;
+					_specs.text().erase(_selection_info.start, _selection_info.end - _selection_info.start);
 					reset_selection();
 				}
 
 				std::string s;
 				s += c;
-				specs_.text().insert(caret_position_, s);
-				caret_position_++;
-				caret_visible_ = true;
-				skip_blink_ = true;
+				_specs.text().insert(_caret_position, s);
+				_caret_position++;
+				_caret_visible = true;
+				_skip_blink = true;
 			}
 			catch (const std::exception& e) { log(e.what()); }
 		}
 
 		void widgets::text_field_impl::key_backspace() {
 			try {
-				if (is_selected_) {
-					if (selection_info_.start > selection_info_.end)
-						swap(selection_info_.start, selection_info_.end);
+				if (_is_selected) {
+					if (_selection_info.start > _selection_info.end)
+						swap(_selection_info.start, _selection_info.end);
 
-					caret_position_ = selection_info_.start;
-					specs_.text().erase(selection_info_.start, selection_info_.end - selection_info_.start);
+					_caret_position = _selection_info.start;
+					_specs.text().erase(_selection_info.start, _selection_info.end - _selection_info.start);
 					reset_selection();
 				}
 				else {
-					specs_.text().erase(caret_position_ - 1, 1);
-					caret_position_--;
-					caret_visible_ = true;
-					skip_blink_ = true;
+					_specs.text().erase(_caret_position - 1, 1);
+					_caret_position--;
+					_caret_visible = true;
+					_skip_blink = true;
 				}
 			}
 			catch (const std::exception& e) { log(e.what()); }
@@ -374,18 +374,18 @@ namespace liblec {
 
 		void widgets::text_field_impl::key_delete() {
 			try {
-				if (is_selected_) {
-					if (selection_info_.start > selection_info_.end)
-						swap(selection_info_.start, selection_info_.end);
+				if (_is_selected) {
+					if (_selection_info.start > _selection_info.end)
+						swap(_selection_info.start, _selection_info.end);
 
-					caret_position_ = selection_info_.start;
-					specs_.text().erase(selection_info_.start, selection_info_.end - selection_info_.start);
+					_caret_position = _selection_info.start;
+					_specs.text().erase(_selection_info.start, _selection_info.end - _selection_info.start);
 					reset_selection();
 				}
 				else {
-					specs_.text().erase(caret_position_, 1);
-					caret_visible_ = true;
-					skip_blink_ = true;
+					_specs.text().erase(_caret_position, 1);
+					_caret_visible = true;
+					_skip_blink = true;
 				}
 			}
 			catch (const std::exception& e) { log(e.what()); }
@@ -393,38 +393,38 @@ namespace liblec {
 
 		void widgets::text_field_impl::key_left() {
 			try {
-				if (is_selected_) {
-					if (selection_info_.start > selection_info_.end)
-						swap(selection_info_.start, selection_info_.end);
+				if (_is_selected) {
+					if (_selection_info.start > _selection_info.end)
+						swap(_selection_info.start, _selection_info.end);
 
-					caret_position_ = selection_info_.start + 1;
+					_caret_position = _selection_info.start + 1;
 					reset_selection();
 				}
 
-				if (caret_position_ > 0)
-					caret_position_--;
+				if (_caret_position > 0)
+					_caret_position--;
 
-				caret_visible_ = true;
-				skip_blink_ = true;
+				_caret_visible = true;
+				_skip_blink = true;
 			}
 			catch (const std::exception& e) { log(e.what()); }
 		}
 
 		void widgets::text_field_impl::key_right() {
 			try {
-				if (is_selected_) {
-					if (selection_info_.start > selection_info_.end)
-						swap(selection_info_.start, selection_info_.end);
+				if (_is_selected) {
+					if (_selection_info.start > _selection_info.end)
+						swap(_selection_info.start, _selection_info.end);
 
-					caret_position_ = selection_info_.end - 1;
+					_caret_position = _selection_info.end - 1;
 					reset_selection();
 				}
 
-				if (caret_position_ < specs_.text().length())
-					caret_position_++;
+				if (_caret_position < _specs.text().length())
+					_caret_position++;
 
-				caret_visible_ = true;
-				skip_blink_ = true;
+				_caret_visible = true;
+				_skip_blink = true;
 			}
 			catch (const std::exception& e) { log(e.what()); }
 		}

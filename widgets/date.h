@@ -22,16 +22,16 @@ namespace liblec {
 			/// <summary>Date widget specifications.</summary>
 			/// <remarks>Recommended size with defaults is 110x60px.</remarks>
 			class lecui_api date_specs : public specs {
-				float border_ = .5f;
-				color color_border_;
-				float corner_radius_x_ = 2.f;
-				float corner_radius_y_ = 2.f;
-				date date_value_;
-				void* p_special_pane_specs_ = nullptr;
+				float _border = .5f;
+				color _color_border;
+				float _corner_radius_x = 2.f;
+				float _corner_radius_y = 2.f;
+				date _date_value;
+				void* _p_special_pane_specs = nullptr;
 
 			public:
 				date_specs() {
-					rect_.size({ 110.f, 60.f });
+					_rect.size({ 110.f, 60.f });
 				};
 
 				/// <summary>Events specific to this widget.</summary>
@@ -42,7 +42,7 @@ namespace liblec {
 				};
 
 				date_events& events() {
-					return date_events_;
+					return _date_events;
 				}
 
 				bool operator==(const date_specs&);
@@ -134,7 +134,7 @@ namespace liblec {
 				date_specs& date_value(const date& date_value);
 
 			private:
-				date_events date_events_;
+				date_events _date_events;
 
 #if defined(LECUI_EXPORTS)
 				friend class form;
@@ -178,7 +178,7 @@ namespace liblec {
 
 			private:
 				class impl;
-				impl& d_;
+				impl& _d;
 
 				// Default constructor and copying an object of this class are not allowed
 				date_builder() = delete;

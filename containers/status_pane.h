@@ -24,8 +24,8 @@ namespace liblec {
 			/// panes do. This is by design because of the nature of the status pane.</remarks>
 			class status_pane_specs {
 			private:
-				float thickness_ = 0.f;
-				bool floating_ = false;
+				float _thickness = 0.f;
+				bool _floating = false;
 
 			public:
 				enum class location {
@@ -38,14 +38,14 @@ namespace liblec {
 				/// <summary>Get or set the pane's thickness. This will be a height for top and bottom
 				/// panes, and a width for left and right panes.</summary>
 				/// <returns>A reference to the thickness, in pixels.</returns>
-				float& thickness() { return thickness_; }
+				float& thickness() { return _thickness; }
 
 				/// <summary>Set the pane's thickness. This will be a height for top and bottom
 				/// panes, and a width for left and right panes.</summary>
 				/// <param name="thickness">The thickness, in pixels.</param>
 				/// <returns>A reference to the modified object.</returns>
 				status_pane_specs& thickness(const float& thickness) {
-					thickness_ = thickness;
+					_thickness = thickness;
 					return *this;
 				}
 
@@ -53,7 +53,7 @@ namespace liblec {
 				/// <returns>A reference to the property.</returns>
 				/// <remarks>The floating property determines whether the pane should just float
 				/// above the form without eating into the client area.</remarks>
-				bool& floating() { return floating_; }
+				bool& floating() { return _floating; }
 
 				/// <summary>Set the floating property.</summary>
 				/// <param name="floating">Whether to make this a floating pane.</param>
@@ -61,7 +61,7 @@ namespace liblec {
 				/// <remarks>The floating property determines whether the pane should just float
 				/// above the form without eating into the client area.</remarks>
 				status_pane_specs& floating(const bool& floating) {
-					floating_ = floating;
+					_floating = floating;
 					return *this;
 				}
 			};
@@ -129,7 +129,7 @@ namespace liblec {
 
 			private:
 				class impl;
-				impl& d_;
+				impl& _d;
 
 				// Default constructor and copying an object of this class are not allowed
 				status_pane() = delete;

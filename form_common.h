@@ -24,9 +24,9 @@ namespace liblec {
 	namespace lecui {
 		static inline void log(const std::string& string) {
 #if defined(_DEBUG)
-			std::string string_ = "-->" + string + "\n";
-			printf(string_.c_str());
-			OutputDebugStringA(string_.c_str());
+			std::string _string = "-->" + string + "\n";
+			printf(_string.c_str());
+			OutputDebugStringA(_string.c_str());
 #endif
 		}
 
@@ -120,11 +120,11 @@ namespace liblec {
 			return output;
 		}
 
-		static inline D2D1::ColorF convert_color(const color& color_) {
-			return D2D1::ColorF(static_cast<float>(color_.get_red()) / 255.f,
-				static_cast<float>(color_.get_green()) / 255.f,
-				static_cast<float>(color_.get_blue()) / 255.f,
-				static_cast<float>(color_.get_alpha()) / 255.f
+		static inline D2D1::ColorF convert_color(const color& _color) {
+			return D2D1::ColorF(static_cast<float>(_color.get_red()) / 255.f,
+				static_cast<float>(_color.get_green()) / 255.f,
+				static_cast<float>(_color.get_blue()) / 255.f,
+				static_cast<float>(_color.get_alpha()) / 255.f
 				);
 		}
 
@@ -248,21 +248,21 @@ namespace liblec {
 		}
 
 		static inline D2D1_RECT_F convert_rect(const rect& rect) {
-			D2D1_RECT_F rect_;
-			rect_.left = rect.get_left();
-			rect_.top = rect.get_top();
-			rect_.right = rect.get_right();
-			rect_.bottom = rect.get_bottom();
-			return rect_;
+			D2D1_RECT_F _rect;
+			_rect.left = rect.get_left();
+			_rect.top = rect.get_top();
+			_rect.right = rect.get_right();
+			_rect.bottom = rect.get_bottom();
+			return _rect;
 		}
 
 		static inline rect convert_rect(const D2D1_RECT_F& rect) {
-			lecui::rect rect_;
-			rect_.left(rect.left);
-			rect_.top(rect.top);
-			rect_.right(rect.right);
-			rect_.bottom(rect.bottom);
-			return rect_;
+			lecui::rect _rect;
+			_rect.left(rect.left);
+			_rect.top(rect.top);
+			_rect.right(rect.right);
+			_rect.bottom(rect.bottom);
+			return _rect;
 		}
 
 		/// <summary>Rounding off class.</summary>
@@ -363,24 +363,24 @@ namespace liblec {
 				ID2D1HwndRenderTarget* p_render_target,
 				const D2D1_RECT_F& rect,
 				float tolerance) :
-				render_(render),
-				p_render_target_(p_render_target),
-				rect_({ rect.left - tolerance, rect.top - tolerance,
+				_render(render),
+				_p_render_target(p_render_target),
+				_rect({ rect.left - tolerance, rect.top - tolerance,
 					rect.right + tolerance, rect.bottom + tolerance }) {
 				if (render)
-					p_render_target_->PushAxisAlignedClip(rect_,
+					_p_render_target->PushAxisAlignedClip(_rect,
 						D2D1_ANTIALIAS_MODE_PER_PRIMITIVE);
 			}
 
 			~auto_clip() {
-				if (render_)
-					p_render_target_->PopAxisAlignedClip();
+				if (_render)
+					_p_render_target->PopAxisAlignedClip();
 			}
 
 		private:
-			bool render_;
-			ID2D1HwndRenderTarget* p_render_target_;
-			D2D1_RECT_F rect_;
+			bool _render;
+			ID2D1HwndRenderTarget* _p_render_target;
+			D2D1_RECT_F _rect;
 		};
 
 		/// <summary>Fit a rectangle within another.</summary>
@@ -623,10 +623,10 @@ namespace liblec {
 
 			// capture current DPI scale
 			HDC hdc_screen = GetDC(NULL);
-			auto dpi_scale_ = (float)GetDeviceCaps(hdc_screen, LOGPIXELSY) / 96.0f;
+			auto _dpi_scale = (float)GetDeviceCaps(hdc_screen, LOGPIXELSY) / 96.0f;
 			ReleaseDC(NULL, hdc_screen);
 
-			return dpi_scale_;
+			return _dpi_scale;
 		}
 
 		static inline void trim(std::string& s) {

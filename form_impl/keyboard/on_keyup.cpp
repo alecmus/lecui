@@ -18,7 +18,7 @@ namespace liblec {
 				std::function<void()> on_space = nullptr;
 
 				// check form widgets
-				for (auto& widget : widgets_) {
+				for (auto& widget : _widgets) {
 					if (widget.second.is_static() || !widget.second.visible() || !widget.second.enabled())
 						continue;
 
@@ -44,7 +44,7 @@ namespace liblec {
 					static void check_widgets(containers::page& page,
 						std::function<void()>& on_space) {
 						// check widgets
-						for (auto& widget : page.d_page_.widgets()) {
+						for (auto& widget : page._d_page.widgets()) {
 							if (widget.second.is_static() || !widget.second.visible() || !widget.second.enabled())
 								continue;
 
@@ -63,22 +63,22 @@ namespace liblec {
 								if (widget.second.type() ==
 									widgets::widget_type::tab_pane) {
 									// get this tab pane
-									auto& tab_pane = page.d_page_.get_tab_pane(widget.first);
+									auto& tab_pane = page._d_page.get_tab_pane(widget.first);
 
-									auto page_iterator = tab_pane.p_tabs_.find(tab_pane.current_tab_);
+									auto page_iterator = tab_pane._p_tabs.find(tab_pane._current_tab);
 
-									if (page_iterator != tab_pane.p_tabs_.end())
+									if (page_iterator != tab_pane._p_tabs.end())
 										helper::check_widgets(page_iterator->second, on_space);
 								}
 								else
 									if (widget.second.type() ==
 										widgets::widget_type::pane) {
 										// get this pane
-										auto& pane = page.d_page_.get_pane(widget.first);
+										auto& pane = page._d_page.get_pane(widget.first);
 
-										auto page_iterator = pane.p_panes_.find(pane.current_pane_);
+										auto page_iterator = pane._p_panes.find(pane._current_pane);
 
-										if (page_iterator != pane.p_panes_.end())
+										if (page_iterator != pane._p_panes.end())
 											helper::check_widgets(page_iterator->second, on_space);
 									}
 
@@ -88,12 +88,12 @@ namespace liblec {
 					}
 				};
 
-				for (auto& it : p_status_panes_)
+				for (auto& it : _p_status_panes)
 					helper::check_widgets(it.second, on_space);
 
-				auto page_iterator = p_pages_.find(current_page_);
+				auto page_iterator = _p_pages.find(_current_page);
 
-				if (page_iterator != p_pages_.end())
+				if (page_iterator != _p_pages.end())
 					helper::check_widgets(page_iterator->second, on_space);
 
 				if (on_space) {
@@ -101,13 +101,13 @@ namespace liblec {
 					on_space();
 				}
 
-				space_pressed_ = false;
+				_space_pressed = false;
 			}
 						 break;
 
 			case VK_SHIFT:
-				reverse_tab_navigation_ = false;
-				shift_pressed_ = false;
+				_reverse_tab_navigation = false;
+				_shift_pressed = false;
 				break;
 
 			case VK_TAB: {
@@ -117,12 +117,12 @@ namespace liblec {
 						const bool& reverse_tab_navigation,
 						bool& select_next, bool& selected) {
 						// check widgets
-						auto widgets = page.d_page_.widgets_order();
+						auto widgets = page._d_page.widgets_order();
 						if (reverse_tab_navigation) std::reverse(widgets.begin(), widgets.end());
 
 						for (const auto& alias : widgets) {
 							try {
-								auto& widget = page.d_page_.widgets().at(alias);
+								auto& widget = page._d_page.widgets().at(alias);
 
 								if (widget.is_static() || !widget.visible() || !widget.enabled())
 									continue;
@@ -136,11 +136,11 @@ namespace liblec {
 									}
 
 									// get this tab pane
-									auto& tab_pane = page.d_page_.get_tab_pane(alias);
+									auto& tab_pane = page._d_page.get_tab_pane(alias);
 
-									auto page_iterator = tab_pane.p_tabs_.find(tab_pane.current_tab_);
+									auto page_iterator = tab_pane._p_tabs.find(tab_pane._current_tab);
 
-									if (page_iterator != tab_pane.p_tabs_.end())
+									if (page_iterator != tab_pane._p_tabs.end())
 										helper::check_widgets(page_iterator->second, reverse_tab_navigation,
 											select_next, selected);
 								}
@@ -148,11 +148,11 @@ namespace liblec {
 									if (widget.type() ==
 										widgets::widget_type::pane) {
 										// get this pane
-										auto& pane = page.d_page_.get_pane(alias);
+										auto& pane = page._d_page.get_pane(alias);
 
-										auto page_iterator = pane.p_panes_.find(pane.current_pane_);
+										auto page_iterator = pane._p_panes.find(pane._current_pane);
 
-										if (page_iterator != pane.p_panes_.end())
+										if (page_iterator != pane._p_panes.end())
 											helper::check_widgets(page_iterator->second, reverse_tab_navigation,
 												select_next, selected);
 									}
@@ -179,13 +179,13 @@ namespace liblec {
 				// loop twice because the currently selected widget may be the last to be checked
 				for (size_t i = 0; i < 2; i++) {
 					// check form widgets
-					auto widgets = widgets_order_;
-					if (reverse_tab_navigation_)
+					auto widgets = _widgets_order;
+					if (_reverse_tab_navigation)
 						std::reverse(widgets.begin(), widgets.end());
 
 					for (auto& alias : widgets) {
 						try {
-							auto& widget = widgets_.at(alias);
+							auto& widget = _widgets.at(alias);
 
 							if (widget.is_static() || !widget.visible() || !widget.enabled())
 								continue;
@@ -218,34 +218,34 @@ namespace liblec {
 					/// 5. bottom status pane
 
 					/// 1. left status pane
-					auto it_status_bar_left = p_status_panes_.find("status::left");
-					if (it_status_bar_left != p_status_panes_.end())
+					auto it_status_bar_left = _p_status_panes.find("status::left");
+					if (it_status_bar_left != _p_status_panes.end())
 						helper::check_widgets(it_status_bar_left->second,
-							reverse_tab_navigation_, select_next, selected);
+							_reverse_tab_navigation, select_next, selected);
 
 					/// 2. top status pane
-					auto it_status_bar_top = p_status_panes_.find("status::top");
-					if (it_status_bar_top != p_status_panes_.end())
+					auto it_status_bar_top = _p_status_panes.find("status::top");
+					if (it_status_bar_top != _p_status_panes.end())
 						helper::check_widgets(it_status_bar_top->second,
-							reverse_tab_navigation_, select_next, selected);
+							_reverse_tab_navigation, select_next, selected);
 
 					/// 3. page
-					auto page_iterator = p_pages_.find(current_page_);
-					if (page_iterator != p_pages_.end())
+					auto page_iterator = _p_pages.find(_current_page);
+					if (page_iterator != _p_pages.end())
 						helper::check_widgets(page_iterator->second,
-							reverse_tab_navigation_, select_next, selected);
+							_reverse_tab_navigation, select_next, selected);
 
 					/// 4. right status pane
-					auto it_status_bar_right = p_status_panes_.find("status::right");
-					if (it_status_bar_right != p_status_panes_.end())
+					auto it_status_bar_right = _p_status_panes.find("status::right");
+					if (it_status_bar_right != _p_status_panes.end())
 						helper::check_widgets(it_status_bar_right->second,
-							reverse_tab_navigation_, select_next, selected);
+							_reverse_tab_navigation, select_next, selected);
 
 					/// 5. bottom status pane
-					auto it_status_bar_bottom = p_status_panes_.find("status::bottom");
-					if (it_status_bar_bottom != p_status_panes_.end())
+					auto it_status_bar_bottom = _p_status_panes.find("status::bottom");
+					if (it_status_bar_bottom != _p_status_panes.end())
 						helper::check_widgets(it_status_bar_bottom->second,
-							reverse_tab_navigation_, select_next, selected);
+							_reverse_tab_navigation, select_next, selected);
 
 					if (select_next)
 						update();

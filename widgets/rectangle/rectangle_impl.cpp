@@ -21,14 +21,14 @@ namespace liblec {
 			widgets::h_scrollbar_impl& h_scrollbar,
 			widgets::v_scrollbar_impl& v_scrollbar) :
 			widget_impl(page, alias),
-			p_brush_fill_(nullptr),
-			p_brush_border_(nullptr),
-			p_brush_border_hot_(nullptr),
-			p_brush_hot_(nullptr),
-			p_brush_disabled_(nullptr),
-			p_brush_selected_(nullptr),
-			h_scrollbar_(h_scrollbar),
-			v_scrollbar_(v_scrollbar) {}
+			_p_brush_fill(nullptr),
+			_p_brush_border(nullptr),
+			_p_brush_border_hot(nullptr),
+			_p_brush_hot(nullptr),
+			_p_brush_disabled(nullptr),
+			_p_brush_selected(nullptr),
+			_h_scrollbar(h_scrollbar),
+			_v_scrollbar(v_scrollbar) {}
 
 		widgets::rectangle_impl::~rectangle_impl() { discard_resources(); }
 
@@ -39,105 +39,105 @@ namespace liblec {
 
 		HRESULT widgets::rectangle_impl::create_resources(
 			ID2D1HwndRenderTarget* p_render_target) {
-			specs_old_ = specs_;
-			is_static_ = (specs_.events().click == nullptr && specs_.events().action == nullptr);
-			h_cursor_ = get_cursor(specs_.cursor());
+			_specs_old = _specs;
+			_is_static = (_specs.events().click == nullptr && _specs.events().action == nullptr);
+			_h_cursor = get_cursor(_specs.cursor());
 
 			HRESULT hr = S_OK;
 
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_fill()),
-					&p_brush_fill_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_fill()),
+					&_p_brush_fill);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_border()),
-					&p_brush_border_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_border()),
+					&_p_brush_border);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_border_hot()),
-					&p_brush_border_hot_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_border_hot()),
+					&_p_brush_border_hot);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_hot()),
-					&p_brush_hot_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_hot()),
+					&_p_brush_hot);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_disabled()),
-					&p_brush_disabled_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_disabled()),
+					&_p_brush_disabled);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_selected()),
-					&p_brush_selected_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_selected()),
+					&_p_brush_selected);
 
-			resources_created_ = true;
+			_resources_created = true;
 			return hr;
 		}
 
 		void widgets::rectangle_impl::discard_resources() {
-			resources_created_ = false;
-			safe_release(&p_brush_fill_);
-			safe_release(&p_brush_border_);
-			safe_release(&p_brush_border_hot_);
-			safe_release(&p_brush_hot_);
-			safe_release(&p_brush_disabled_);
-			safe_release(&p_brush_selected_);
+			_resources_created = false;
+			safe_release(&_p_brush_fill);
+			safe_release(&_p_brush_border);
+			safe_release(&_p_brush_border_hot);
+			safe_release(&_p_brush_hot);
+			safe_release(&_p_brush_disabled);
+			safe_release(&_p_brush_selected);
 		}
 
 		D2D1_RECT_F&
 			widgets::rectangle_impl::render(ID2D1HwndRenderTarget* p_render_target,
 				const D2D1_SIZE_F& change_in_size, const D2D1_POINT_2F& offset, const bool& render) {
-			if (specs_old_ != specs_) {
-				log("specs changed: " + alias_);
-				specs_old_ = specs_;
+			if (_specs_old != _specs) {
+				log("specs changed: " + _alias);
+				_specs_old = _specs;
 				discard_resources();
 			}
 
-			if (!resources_created_)
+			if (!_resources_created)
 				create_resources(p_render_target);
 
-			rect_ = position(specs_.rect(), specs_.on_resize(), change_in_size.width, change_in_size.height);
-			rect_.left -= offset.x;
-			rect_.right -= offset.x;
-			rect_.top -= offset.y;
-			rect_.bottom -= offset.y;
+			_rect = position(_specs.rect(), _specs.on_resize(), change_in_size.width, change_in_size.height);
+			_rect.left -= offset.x;
+			_rect.right -= offset.x;
+			_rect.top -= offset.y;
+			_rect.bottom -= offset.y;
 
-			if (!render || !visible_)
-				return rect_;
+			if (!render || !_visible)
+				return _rect;
 
-			const D2D1_ROUNDED_RECT rounded_rect{ rect_,
-				specs_.corner_radius_x(), specs_.corner_radius_y() };
+			const D2D1_ROUNDED_RECT rounded_rect{ _rect,
+				_specs.corner_radius_x(), _specs.corner_radius_y() };
 
-			p_render_target->FillRoundedRectangle(&rounded_rect, is_enabled_ ?
-				(hit_ ? p_brush_hot_ : p_brush_fill_) : p_brush_disabled_);
-			p_render_target->DrawRoundedRectangle(&rounded_rect, is_enabled_ ?
-				(hit_ ? p_brush_border_hot_ : p_brush_border_) : p_brush_disabled_, specs_.border());
+			p_render_target->FillRoundedRectangle(&rounded_rect, _is_enabled ?
+				(_hit ? _p_brush_hot : _p_brush_fill) : _p_brush_disabled);
+			p_render_target->DrawRoundedRectangle(&rounded_rect, _is_enabled ?
+				(_hit ? _p_brush_border_hot : _p_brush_border) : _p_brush_disabled, _specs.border());
 
-			if (!is_static_ && is_enabled_) {
-				if (pressed_)
-					p_render_target->DrawRoundedRectangle(&rounded_rect, p_brush_hot_, 1.f);
+			if (!_is_static && _is_enabled) {
+				if (_pressed)
+					p_render_target->DrawRoundedRectangle(&rounded_rect, _p_brush_hot, 1.f);
 
-				if (selected_)
-					p_render_target->DrawRoundedRectangle(&rounded_rect, p_brush_selected_, pressed_ ?
+				if (_selected)
+					p_render_target->DrawRoundedRectangle(&rounded_rect, _p_brush_selected, _pressed ?
 						1.75f : 1.f);
 			}
 
-			return rect_;
+			return _rect;
 		}
 
 		bool widgets::rectangle_impl::contains(const D2D1_POINT_2F& point) {
 			// capture the point
-			point_ = point;
+			_point = point;
 
 			if (point.x == 0.f && point.y == 0.f)
 				return false;
 
-			D2D1_RECT_F rect = rect_;
+			D2D1_RECT_F rect = _rect;
 			scale_RECT(rect, get_dpi_scale());
 
-			if (alias_ == page_rect_alias()) {
+			if (_alias == page_rect_alias()) {
 				// this is a special rectangle used to manage pages.
 				// scrollbar movements move everything, including the minimal page border rect.
 				// keep the page virtual hit area over the actual page by ignoring scrollbar movements.
 
-				rect.left += h_scrollbar_.x_off_set_;
-				rect.right += h_scrollbar_.x_off_set_;
-				rect.top += v_scrollbar_.y_off_set_;
-				rect.bottom += v_scrollbar_.y_off_set_;
+				rect.left += _h_scrollbar._x_off_set;
+				rect.right += _h_scrollbar._x_off_set;
+				rect.top += _v_scrollbar._y_off_set;
+				rect.bottom += _v_scrollbar._y_off_set;
 			}
 
 			if (point.x >= rect.left && point.x <= rect.right &&
@@ -148,11 +148,11 @@ namespace liblec {
 		}
 
 		D2D1_POINT_2F widgets::rectangle_impl::get_scrollbar_offset() {
-			return { h_scrollbar_.x_off_set_, v_scrollbar_.y_off_set_ };
+			return { _h_scrollbar._x_off_set, _v_scrollbar._y_off_set };
 		}
 
 		widgets::rectangle_specs&
-			widgets::rectangle_impl::specs() { return specs_; }
+			widgets::rectangle_impl::specs() { return _specs; }
 
 		widgets::rectangle_specs&
 			widgets::rectangle_impl::operator()() { return specs(); }

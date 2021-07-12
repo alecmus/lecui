@@ -19,14 +19,14 @@ namespace liblec {
 			class tab_pane_impl : public widget_impl {
 				/// private virtual function overrides
 				widgets::specs& generic_specs() override {
-					return specs_;
+					return _specs;
 				}
 
 			public:
 				// pages <K = tab name, T>
-				std::map<std::string, containers::page> p_tabs_;
-				std::vector<std::string> tab_order_;
-				std::string current_tab_;
+				std::map<std::string, containers::page> _p_tabs;
+				std::vector<std::string> _tab_order;
+				std::string _current_tab;
 
 				/// constructor and destructor
 				tab_pane_impl(containers::page& page,
@@ -64,30 +64,30 @@ namespace liblec {
 				tab_pane_impl& operator=(const tab_pane_impl&) = delete;
 
 				/// Private variables
-				containers::tab_pane_specs specs_, specs_old_;
-				ID2D1SolidColorBrush* p_brush_;
-				ID2D1SolidColorBrush* p_brush_fill_;
-				ID2D1SolidColorBrush* p_brush_border_;
-				ID2D1SolidColorBrush* p_brush_hot_;
-				ID2D1SolidColorBrush* p_brush_disabled_;
-				ID2D1SolidColorBrush* p_brush_tabs_;
-				ID2D1SolidColorBrush* p_brush_tabs_border_;
-				ID2D1SolidColorBrush* p_brush_selected_;
-				IDWriteTextFormat* p_text_format_;
+				containers::tab_pane_specs _specs, _specs_old;
+				ID2D1SolidColorBrush* _p_brush;
+				ID2D1SolidColorBrush* _p_brush_fill;
+				ID2D1SolidColorBrush* _p_brush_border;
+				ID2D1SolidColorBrush* _p_brush_hot;
+				ID2D1SolidColorBrush* _p_brush_disabled;
+				ID2D1SolidColorBrush* _p_brush_tabs;
+				ID2D1SolidColorBrush* _p_brush_tabs_border;
+				ID2D1SolidColorBrush* _p_brush_selected;
+				IDWriteTextFormat* _p_text_format;
 
-				IDWriteFactory* p_directwrite_factory_;
-				IDWriteTextLayout* p_text_layout_;
-				const float margin_, padding_;
-				const float tab_gap_;
-				float tab_height_;
-				bool tab_height_set_;
-				const float bar_height_;
-				D2D1_RECT_F rect_tabs_;
-				D2D1_RECT_F rect_client_area_;
-				D2D1_RECT_F rect_tab_pane_;
+				IDWriteFactory* _p_directwrite_factory;
+				IDWriteTextLayout* _p_text_layout;
+				const float _margin, _padding;
+				const float _tab_gap;
+				float _tab_height;
+				bool _tab_height_set;
+				const float _bar_height;
+				D2D1_RECT_F _rect_tabs;
+				D2D1_RECT_F _rect_client_area;
+				D2D1_RECT_F _rect_tab_pane;
 
 				// tab rectangles <K = tab name, T>
-				std::map<std::string, D2D1_RECT_F> p_tab_rects_;
+				std::map<std::string, D2D1_RECT_F> _p_tab_rects;
 
 				/// Important override for tab pane to work properly.
 				bool contains();

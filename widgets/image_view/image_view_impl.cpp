@@ -17,14 +17,14 @@ namespace liblec {
 		widgets::image_view_impl::image_view_impl(containers::page& page,
 			const std::string& alias, IWICImagingFactory* p_IWICFactory) :
 			widget_impl(page, alias),
-			p_brush_fill_(nullptr),
-			p_brush_border_(nullptr),
-			p_brush_hot_(nullptr),
-			p_brush_disabled_(nullptr),
-			p_brush_selected_(nullptr),
-			p_bitmap_(nullptr),
-			p_IWICFactory_(p_IWICFactory),
-			old_size_({ 0.f, 0.f })	{}
+			_p_brush_fill(nullptr),
+			_p_brush_border(nullptr),
+			_p_brush_hot(nullptr),
+			_p_brush_disabled(nullptr),
+			_p_brush_selected(nullptr),
+			_p_bitmap(nullptr),
+			_p_IWICFactory(p_IWICFactory),
+			_old_size({ 0.f, 0.f })	{}
 
 		widgets::image_view_impl::~image_view_impl() { discard_resources(); }
 
@@ -35,113 +35,113 @@ namespace liblec {
 
 		HRESULT widgets::image_view_impl::create_resources(
 			ID2D1HwndRenderTarget* p_render_target) {
-			specs_old_ = specs_;
-			is_static_ = (specs_.events().click == nullptr && specs_.events().action == nullptr);
-			h_cursor_ = get_cursor(specs_.cursor());
+			_specs_old = _specs;
+			_is_static = (_specs.events().click == nullptr && _specs.events().action == nullptr);
+			_h_cursor = get_cursor(_specs.cursor());
 
 			HRESULT hr = S_OK;
 
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_fill()),
-					&p_brush_fill_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_fill()),
+					&_p_brush_fill);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_border()),
-					&p_brush_border_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_border()),
+					&_p_brush_border);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_hot()),
-					&p_brush_hot_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_hot()),
+					&_p_brush_hot);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_disabled()),
-					&p_brush_disabled_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_disabled()),
+					&_p_brush_disabled);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_selected()),
-					&p_brush_selected_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_selected()),
+					&_p_brush_selected);
 
-			resources_created_ = true;
+			_resources_created = true;
 			return hr;
 		}
 
 		void widgets::image_view_impl::discard_resources() {
-			resources_created_ = false;
-			safe_release(&p_brush_fill_);
-			safe_release(&p_brush_border_);
-			safe_release(&p_brush_hot_);
-			safe_release(&p_brush_disabled_);
-			safe_release(&p_brush_selected_);
-			safe_release(&p_bitmap_);
+			_resources_created = false;
+			safe_release(&_p_brush_fill);
+			safe_release(&_p_brush_border);
+			safe_release(&_p_brush_hot);
+			safe_release(&_p_brush_disabled);
+			safe_release(&_p_brush_selected);
+			safe_release(&_p_bitmap);
 		}
 
 		D2D1_RECT_F&
 			widgets::image_view_impl::render(ID2D1HwndRenderTarget* p_render_target,
 				const D2D1_SIZE_F& change_in_size, const D2D1_POINT_2F& offset, const bool& render) {
-			if (specs_old_ != specs_) {
-				log("specs changed: " + alias_);
-				specs_old_ = specs_;
+			if (_specs_old != _specs) {
+				log("specs changed: " + _alias);
+				_specs_old = _specs;
 				discard_resources();
 			}
 
-			if (!resources_created_)
+			if (!_resources_created)
 				create_resources(p_render_target);
 
-			rect_ = position(specs_.rect(), specs_.on_resize(), change_in_size.width, change_in_size.height);
-			rect_.left -= offset.x;
-			rect_.right -= offset.x;
-			rect_.top -= offset.y;
-			rect_.bottom -= offset.y;
+			_rect = position(_specs.rect(), _specs.on_resize(), change_in_size.width, change_in_size.height);
+			_rect.left -= offset.x;
+			_rect.right -= offset.x;
+			_rect.top -= offset.y;
+			_rect.bottom -= offset.y;
 
-			if (!render || !visible_)
-				return rect_;
+			if (!render || !_visible)
+				return _rect;
 
-			D2D1_ROUNDED_RECT rounded_rect{ rect_,
-				specs_.corner_radius_x(), specs_.corner_radius_y() };
+			D2D1_ROUNDED_RECT rounded_rect{ _rect,
+				_specs.corner_radius_x(), _specs.corner_radius_y() };
 
-			p_render_target->FillRoundedRectangle(&rounded_rect, p_brush_fill_);
+			p_render_target->FillRoundedRectangle(&rounded_rect, _p_brush_fill);
 
-			const size current_size = { rect_.right - rect_.left, rect_.bottom - rect_.top };
+			const size current_size = { _rect.right - _rect.left, _rect.bottom - _rect.top };
 
-			if ((current_size.width != old_size_.width) ||
-				current_size.height != old_size_.height)
-				safe_release(&p_bitmap_);
+			if ((current_size.width != _old_size.width) ||
+				current_size.height != _old_size.height)
+				safe_release(&_p_bitmap);
 
-			if (!p_bitmap_) {
-				if (specs_.png_resource())	// png resource takes precedence
-					load_bitmap_resource(p_render_target, p_IWICFactory_,
-						page_.d_page_.get_form().d_.resource_module_handle_, specs_.png_resource(), "PNG",
-						&p_bitmap_, current_size, specs_.enlarge_if_smaller(), specs_.keep_aspect_ratio(), specs_.quality());
-				if (!specs_.file().empty() && !p_bitmap_)
-					load_bitmap_file(p_render_target, p_IWICFactory_, convert_string(specs_.file()).c_str(),
-						&p_bitmap_, current_size, specs_.enlarge_if_smaller(), specs_.keep_aspect_ratio(), specs_.quality());
+			if (!_p_bitmap) {
+				if (_specs.png_resource())	// png resource takes precedence
+					load_bitmap_resource(p_render_target, _p_IWICFactory,
+						_page._d_page.get_form()._d._resource_module_handle, _specs.png_resource(), "PNG",
+						&_p_bitmap, current_size, _specs.enlarge_if_smaller(), _specs.keep_aspect_ratio(), _specs.quality());
+				if (!_specs.file().empty() && !_p_bitmap)
+					load_bitmap_file(p_render_target, _p_IWICFactory, convert_string(_specs.file()).c_str(),
+						&_p_bitmap, current_size, _specs.enlarge_if_smaller(), _specs.keep_aspect_ratio(), _specs.quality());
 			}
 
-			if (p_bitmap_) {
+			if (_p_bitmap) {
 				// retrieve the size of the bitmap and define suitably sized rectangle for the image
-				const auto size = p_bitmap_->GetSize();
+				const auto size = _p_bitmap->GetSize();
 				auto rect_image = D2D1::RectF(0, 0, size.width, size.height);
-				fit_rect(rect_, rect_image, false, true, true);
+				fit_rect(_rect, rect_image, false, true, true);
 
 				// draw the bitmap
-				p_render_target->DrawBitmap(p_bitmap_, rect_image);
+				p_render_target->DrawBitmap(_p_bitmap, rect_image);
 			}
 
-			p_render_target->DrawRoundedRectangle(&rounded_rect, p_brush_border_, specs_.border());
+			p_render_target->DrawRoundedRectangle(&rounded_rect, _p_brush_border, _specs.border());
 
-			if (!is_static_ && is_enabled_) {
-				if (hit_ || pressed_)
-					p_render_target->DrawRoundedRectangle(&rounded_rect, p_brush_hot_, pressed_ ?
+			if (!_is_static && _is_enabled) {
+				if (_hit || _pressed)
+					p_render_target->DrawRoundedRectangle(&rounded_rect, _p_brush_hot, _pressed ?
 						1.75f : 1.f);
 
-				if (selected_)
-					p_render_target->DrawRoundedRectangle(&rounded_rect, p_brush_selected_, pressed_ ?
+				if (_selected)
+					p_render_target->DrawRoundedRectangle(&rounded_rect, _p_brush_selected, _pressed ?
 						1.75f : 1.f);
 			}
 
-			old_size_ = current_size;
+			_old_size = current_size;
 
-			return rect_;
+			return _rect;
 		}
 
 		widgets::image_view_specs&
-			widgets::image_view_impl::specs() { return specs_; }
+			widgets::image_view_impl::specs() { return _specs; }
 
 		widgets::image_view_specs&
 			widgets::image_view_impl::operator()() { return specs(); }

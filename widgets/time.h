@@ -22,16 +22,16 @@ namespace liblec {
 			/// <summary>Time widget specifications.</summary>
 			/// <remarks>Recommended size with defaults is 90x40px.</remarks>
 			class lecui_api time_specs : public specs {
-				float border_ = .5f;
-				color color_border_;
-				float corner_radius_x_ = 2.f;
-				float corner_radius_y_ = 2.f;
-				lecui::time time_value_{};
-				void* p_special_pane_specs_ = nullptr;
+				float _border = .5f;
+				color _color_border;
+				float _corner_radius_x = 2.f;
+				float _corner_radius_y = 2.f;
+				lecui::time _time_value{};
+				void* _p_special_pane_specs = nullptr;
 
 			public:
 				time_specs() {
-					rect_.size({ 90.f, 40.f });
+					_rect.size({ 90.f, 40.f });
 				};
 
 				/// <summary>Events specific to this widget.</summary>
@@ -42,7 +42,7 @@ namespace liblec {
 				};
 
 				time_events& events() {
-					return time_events_;
+					return _time_events;
 				}
 
 				bool operator==(const time_specs&);
@@ -134,7 +134,7 @@ namespace liblec {
 				time_specs& time_value(const lecui::time& time_value);
 
 			private:
-				time_events time_events_;
+				time_events _time_events;
 
 #if defined(LECUI_EXPORTS)
 				friend class form;
@@ -178,7 +178,7 @@ namespace liblec {
 
 			private:
 				class impl;
-				impl& d_;
+				impl& _d;
 
 				// Default constructor and copying an object of this class are not allowed
 				time_builder() = delete;

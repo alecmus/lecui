@@ -20,19 +20,19 @@ namespace liblec {
 		class filesystem::impl {
 		public:
 			impl(form& fm) :
-				fm_(fm) {}
-			form& fm_;
+				_fm(fm) {}
+			form& _fm;
 		};
 
 		filesystem::filesystem(form& fm) :
-			d_(*(new impl(fm))) {}
+			_d(*(new impl(fm))) {}
 
-		filesystem::~filesystem() { delete& d_; }
+		filesystem::~filesystem() { delete& _d; }
 
 		std::string filesystem::select_folder(const std::string& title) {
 			char szDir[MAX_PATH];
 			BROWSEINFOA bInfo = { 0 };
-			bInfo.hwndOwner = d_.fm_.d_.hWnd_;
+			bInfo.hwndOwner = _d._fm._d._hWnd;
 			bInfo.pszDisplayName = szDir;
 			bInfo.lpszTitle = title.c_str();
 			bInfo.iImage = -1;
@@ -101,23 +101,23 @@ namespace liblec {
 				else
 					all_file_extensions += ";" + extension;
 
-				std::string filter_;
-				filter_ = description + " (" + extension + ")" + s_null;
-				filter_ += extension + s_null;
+				std::string _filter;
+				_filter = description + " (" + extension + ")" + s_null;
+				_filter += extension + s_null;
 
-				filter += filter_;
+				filter += _filter;
 				filetypes_indexed.push_back(types[i].extension);
 			}
 
 			// add all supported files
 			if (include_all_supported_types) {
-				std::string filter_;
+				std::string _filter;
 				std::string description = "All supported files";
 				std::string extension = all_file_extensions;
-				filter_ = description + " (" + extension + ")" + s_null;
-				filter_ += extension + s_null;
+				_filter = description + " (" + extension + ")" + s_null;
+				_filter += extension + s_null;
 
-				filter += filter_;
+				filter += _filter;
 				filetypes_indexed.push_back("");
 			}
 
@@ -144,7 +144,7 @@ namespace liblec {
 			OPENFILENAMEA ofn;
 			ZeroMemory(&ofn, sizeof(ofn));
 			ofn.lStructSize = sizeof(ofn);
-			ofn.hwndOwner = d_.fm_.d_.hWnd_;
+			ofn.hwndOwner = _d._fm._d._hWnd;
 			ofn.lpstrFile = _FilePath;
 			ofn.lpstrFile[0] = '\0';
 			ofn.nMaxFile = MAX_PATH;
@@ -169,7 +169,7 @@ namespace liblec {
 			char _FilePath[MAX_PATH];
 			if (!file.empty())
 				auto temp = lstrcpynA(_FilePath, file.c_str(), _countof(_FilePath));
-			ofn.hwndOwner = d_.fm_.d_.hWnd_;
+			ofn.hwndOwner = _d._fm._d._hWnd;
 			ofn.lpstrFile = _FilePath;
 			if (file.empty())
 				ofn.lpstrFile[0] = '\0';

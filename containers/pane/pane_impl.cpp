@@ -44,13 +44,13 @@ namespace liblec {
 		widgets::pane_impl::pane_impl(containers::page& page,
 			const std::string& alias) :
 			widget_impl(page, alias),
-			p_brush_(nullptr),
-			p_brush_fill_(nullptr),
-			p_brush_border_(nullptr),
-			p_brush_disabled_(nullptr),
-			margin_(12.f),
-			rect_client_area_({ 0.f, 0.f, 0.f, 0.f }),
-			rect_pane_({ 0.f, 0.f, 0.f, 0.f }) {}
+			_p_brush(nullptr),
+			_p_brush_fill(nullptr),
+			_p_brush_border(nullptr),
+			_p_brush_disabled(nullptr),
+			_margin(12.f),
+			_rect_client_area({ 0.f, 0.f, 0.f, 0.f }),
+			_rect_pane({ 0.f, 0.f, 0.f, 0.f }) {}
 
 		widgets::pane_impl::~pane_impl() { discard_resources(); }
 
@@ -61,86 +61,86 @@ namespace liblec {
 
 		HRESULT widgets::pane_impl::create_resources(
 			ID2D1HwndRenderTarget* p_render_target) {
-			specs_old_ = specs_;
-			is_static_ = false;
+			_specs_old = _specs;
+			_is_static = false;
 
 			HRESULT hr = S_OK;
 
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_text()),
-					&p_brush_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_text()),
+					&_p_brush);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_fill()),
-					&p_brush_fill_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_fill()),
+					&_p_brush_fill);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_border()),
-					&p_brush_border_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_border()),
+					&_p_brush_border);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_disabled()),
-					&p_brush_disabled_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_disabled()),
+					&_p_brush_disabled);
 
-			resources_created_ = true;
+			_resources_created = true;
 			return hr;
 		}
 
 		void widgets::pane_impl::discard_resources() {
-			resources_created_ = false;
-			safe_release(&p_brush_);
-			safe_release(&p_brush_fill_);
-			safe_release(&p_brush_border_);
-			safe_release(&p_brush_disabled_);
+			_resources_created = false;
+			safe_release(&_p_brush);
+			safe_release(&_p_brush_fill);
+			safe_release(&_p_brush_border);
+			safe_release(&_p_brush_disabled);
 		}
 
 		D2D1_RECT_F&
 			widgets::pane_impl::render(ID2D1HwndRenderTarget* p_render_target,
 				const D2D1_SIZE_F& change_in_size, const D2D1_POINT_2F& offset, const bool& render) {
-			if (specs_old_ != specs_) {
-				log("specs changed: " + alias_);
-				specs_old_ = specs_;
+			if (_specs_old != _specs) {
+				log("specs changed: " + _alias);
+				_specs_old = _specs;
 				discard_resources();
 			}
 
-			if (!resources_created_)
+			if (!_resources_created)
 				create_resources(p_render_target);
 
-			rect_pane_ = position(specs_.rect(), specs_.on_resize(), change_in_size.width, change_in_size.height);
-			rect_pane_.left -= offset.x;
-			rect_pane_.right -= offset.x;
-			rect_pane_.top -= offset.y;
-			rect_pane_.bottom -= offset.y;
+			_rect_pane = position(_specs.rect(), _specs.on_resize(), change_in_size.width, change_in_size.height);
+			_rect_pane.left -= offset.x;
+			_rect_pane.right -= offset.x;
+			_rect_pane.top -= offset.y;
+			_rect_pane.bottom -= offset.y;
 
 			// no reponse to hit testing, even though for scroll bar at form level
-			// we need to return the entire region through rect_pane_
-			rect_ = { 0.f, 0.f, 0.f, 0.f };
+			// we need to return the entire region through _rect_pane
+			_rect = { 0.f, 0.f, 0.f, 0.f };
 
-			rect_client_area_ = rect_pane_;
+			_rect_client_area = _rect_pane;
 
-			if (!render || !visible_)
-				return rect_pane_;
+			if (!render || !_visible)
+				return _rect_pane;
 
-			D2D1_ROUNDED_RECT rounded_rect{ rect_client_area_,
-				specs_.corner_radius_x(), specs_.corner_radius_y() };
+			D2D1_ROUNDED_RECT rounded_rect{ _rect_client_area,
+				_specs.corner_radius_x(), _specs.corner_radius_y() };
 
 			p_render_target->FillRoundedRectangle(&rounded_rect,
-				is_enabled_ ? p_brush_fill_ : p_brush_disabled_);
-			p_render_target->DrawRoundedRectangle(&rounded_rect, is_enabled_ ?
-				p_brush_border_ : p_brush_disabled_, specs_.border());
+				_is_enabled ? _p_brush_fill : _p_brush_disabled);
+			p_render_target->DrawRoundedRectangle(&rounded_rect, _is_enabled ?
+				_p_brush_border : _p_brush_disabled, _specs.border());
 
-			return rect_pane_;
+			return _rect_pane;
 		}
 
 		containers::pane_specs&
-			widgets::pane_impl::specs() { return specs_; }
+			widgets::pane_impl::specs() { return _specs; }
 
 		containers::pane_specs&
 			widgets::pane_impl::operator()() { return specs(); }
 
 		const D2D1_RECT_F& widgets::pane_impl::client_area() {
-			return rect_client_area_;
+			return _rect_client_area;
 		}
 
 		const D2D1_RECT_F& widgets::pane_impl::pane_area() {
-			return rect_pane_;
+			return _rect_pane;
 		}
 
 		bool widgets::pane_impl::contains() { return false; }

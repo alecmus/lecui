@@ -18,7 +18,7 @@ namespace liblec {
 			bool update = false;
 
 			// check form widgets
-			for (auto& widget : widgets_) {
+			for (auto& widget : _widgets) {
 				if (widget.second.is_static() || !widget.second.visible() || !widget.second.enabled())
 					continue;
 
@@ -38,7 +38,7 @@ namespace liblec {
 				static void check_widgets(containers::page& page,
 					float units, bool& update) {
 					// check widgets
-					for (auto& widget : page.d_page_.widgets()) {
+					for (auto& widget : page._d_page.widgets()) {
 						if (widget.second.is_static() || !widget.second.visible() || !widget.second.enabled())
 							continue;
 
@@ -50,15 +50,15 @@ namespace liblec {
 							if (widget.second.type() ==
 								widgets::widget_type::tab_pane) {
 								// get this tab pane
-								auto& tab_pane = page.d_page_.get_tab_pane(widget.first);
+								auto& tab_pane = page._d_page.get_tab_pane(widget.first);
 
-								auto page_iterator = tab_pane.p_tabs_.find(tab_pane.current_tab_);
+								auto page_iterator = tab_pane._p_tabs.find(tab_pane._current_tab);
 
-								if (page_iterator != tab_pane.p_tabs_.end()) {
+								if (page_iterator != tab_pane._p_tabs.end()) {
 									helper::check_widgets(page_iterator->second, units, update);
 
-									if (!update && page_iterator->second.d_page_.hit())
-										if (page_iterator->second.d_page_.on_mousewheel(units))
+									if (!update && page_iterator->second._d_page.hit())
+										if (page_iterator->second._d_page.on_mousewheel(units))
 											update = true;
 								}
 							}
@@ -66,15 +66,15 @@ namespace liblec {
 								if (widget.second.type() ==
 									widgets::widget_type::pane) {
 									// get this pane
-									auto& pane = page.d_page_.get_pane(widget.first);
+									auto& pane = page._d_page.get_pane(widget.first);
 
-									auto page_iterator = pane.p_panes_.find(pane.current_pane_);
+									auto page_iterator = pane._p_panes.find(pane._current_pane);
 
-									if (page_iterator != pane.p_panes_.end()) {
+									if (page_iterator != pane._p_panes.end()) {
 										helper::check_widgets(page_iterator->second, units, update);
 
-										if (!update && page_iterator->second.d_page_.hit())
-											if (page_iterator->second.d_page_.on_mousewheel(units))
+										if (!update && page_iterator->second._d_page.hit())
+											if (page_iterator->second._d_page.on_mousewheel(units))
 												update = true;
 									}
 								}
@@ -86,21 +86,21 @@ namespace liblec {
 			/// If none of the widgets handled the mousewheel check the page itself
 			/// Checking is recursive, reaching all widgets in all containers
 
-			for (auto& it : p_status_panes_) {
+			for (auto& it : _p_status_panes) {
 				helper::check_widgets(it.second, units, update);
 
-				if (!update && it.second.d_page_.hit())
-					if (it.second.d_page_.on_mousewheel(units))
+				if (!update && it.second._d_page.hit())
+					if (it.second._d_page.on_mousewheel(units))
 						update = true;
 			}
 
-			auto page_iterator = p_pages_.find(current_page_);
+			auto page_iterator = _p_pages.find(_current_page);
 
-			if (page_iterator != p_pages_.end()) {
+			if (page_iterator != _p_pages.end()) {
 				helper::check_widgets(page_iterator->second, units, update);
 
-				if (!update && page_iterator->second.d_page_.hit())
-					if (page_iterator->second.d_page_.on_mousewheel(units))
+				if (!update && page_iterator->second._d_page.hit())
+					if (page_iterator->second._d_page.on_mousewheel(units))
 						update = true;
 			}
 

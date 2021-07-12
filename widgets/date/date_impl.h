@@ -22,7 +22,7 @@ namespace liblec {
 			class date_impl : public widget_impl {
 				/// private virtual function overrides
 				widgets::specs& generic_specs() override {
-					return specs_;
+					return _specs;
 				}
 
 			public:
@@ -68,17 +68,17 @@ namespace liblec {
 				date_impl& operator=(const date_impl&) = delete;
 
 				/// Private variables
-				widgets::date_specs specs_, specs_old_;
-				ID2D1SolidColorBrush* p_brush_fill_;
-				ID2D1SolidColorBrush* p_brush_hot_;
-				ID2D1SolidColorBrush* p_brush_disabled_;
-				ID2D1SolidColorBrush* p_brush_selected_;
+				widgets::date_specs _specs, _specs_old;
+				ID2D1SolidColorBrush* _p_brush_fill;
+				ID2D1SolidColorBrush* _p_brush_hot;
+				ID2D1SolidColorBrush* _p_brush_disabled;
+				ID2D1SolidColorBrush* _p_brush_selected;
 
 				std::optional<std::reference_wrapper<widgets::label_specs>>
-					weekday_label_specs_, day_label_specs_, seperator_1_specs_,
-					month_label_specs_, seperator_2_specs_, year_label_specs_;
+					_weekday_label_specs, _day_label_specs, _seperator_1_specs,
+					_month_label_specs, _seperator_2_specs, _year_label_specs;
 				std::optional<std::reference_wrapper<widgets::rectangle_specs>>
-					day_specs_, month_specs_, year_specs_;
+					_day_specs, _month_specs, _year_specs;
 			};
 		}
 	}

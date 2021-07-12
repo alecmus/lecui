@@ -21,8 +21,8 @@ namespace liblec {
 		namespace widgets {
 			/// <summary>Line widget specifications.</summary>
 			class lecui_api line_specs : public specs {
-				float thickness_ = 1.f;
-				std::vector<point> points_;
+				float _thickness = 1.f;
+				std::vector<point> _points;
 
 			public:
 				line_specs() {}
@@ -129,7 +129,7 @@ namespace liblec {
 
 			private:
 				class impl;
-				impl& d_;
+				impl& _d;
 
 				// Default constructor and copying an object of this class are not allowed
 				line_builder() = delete;

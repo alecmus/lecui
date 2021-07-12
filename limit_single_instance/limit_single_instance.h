@@ -43,5 +43,5 @@ private:
 	limit_single_instance();
 
 	class impl;
-	impl* d_;
+	impl* _d;
 };

@@ -19,7 +19,7 @@ namespace liblec {
 			class text_field_impl : public widget_impl {
 				/// private virtual function overrides
 				widgets::specs& generic_specs() override {
-					return specs_;
+					return _specs;
 				}
 
 			public:
@@ -54,46 +54,46 @@ namespace liblec {
 				text_field_impl& operator=(const text_field_impl&) = delete;
 
 				/// Private variables
-				widgets::text_field_specs specs_, specs_old_;
-				ID2D1SolidColorBrush* p_brush_;
-				ID2D1SolidColorBrush* p_brush_caret_;
-				ID2D1SolidColorBrush* p_brush_prompt_;
-				ID2D1SolidColorBrush* p_brush_border_;
-				ID2D1SolidColorBrush* p_brush_fill_;
-				ID2D1SolidColorBrush* p_brush_disabled_;
-				ID2D1SolidColorBrush* p_brush_selected_;
-				IDWriteTextFormat* p_text_format_;
+				widgets::text_field_specs _specs, _specs_old;
+				ID2D1SolidColorBrush* _p_brush;
+				ID2D1SolidColorBrush* _p_brush_caret;
+				ID2D1SolidColorBrush* _p_brush_prompt;
+				ID2D1SolidColorBrush* _p_brush_border;
+				ID2D1SolidColorBrush* _p_brush_fill;
+				ID2D1SolidColorBrush* _p_brush_disabled;
+				ID2D1SolidColorBrush* _p_brush_selected;
+				IDWriteTextFormat* _p_text_format;
 
-				ID2D1Factory* p_direct2d_factory_;
-				IDWriteFactory* p_directwrite_factory_;
-				IDWriteTextLayout* p_text_layout_;
+				ID2D1Factory* _p_direct2d_factory;
+				IDWriteFactory* _p_directwrite_factory;
+				IDWriteTextLayout* _p_text_layout;
 
-				const float margin_x_;
-				const float margin_y_;
+				const float _margin_x;
+				const float _margin_y;
 				
-				const std::string caret_blink_timer_name_;
-				UINT32 caret_position_;
-				bool caret_visible_;
-				bool skip_blink_;
-				float text_off_set_;
-				bool is_selecting_;
-				bool is_selected_;
+				const std::string _caret_blink_timer_name;
+				UINT32 _caret_position;
+				bool _caret_visible;
+				bool _skip_blink;
+				float _text_off_set;
+				bool _is_selecting;
+				bool _is_selected;
 
 				struct selection_info {
 					UINT32 start = 0;
 					UINT32 end = 0;
-				} selection_info_;
+				} _selection_info;
 
 				/// Private methods.
 				void reset_selection() {
-					selection_info_ = { 0, 0 };
-					is_selected_ = false;
+					_selection_info = { 0, 0 };
+					_is_selected = false;
 				}
 
 				void set_selection(const UINT start, const UINT end) {
-					selection_info_.start = start;
-					selection_info_.end = end;
-					is_selected_ = true;
+					_selection_info.start = start;
+					_selection_info.end = end;
+					_is_selected = true;
 				}
 
 				static UINT32 count_characters(IDWriteTextLayout* p_text_layout,

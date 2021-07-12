@@ -37,20 +37,20 @@ namespace liblec {
 				};
 
 			private:
-				float border_ = .5f;
-				color color_border_;
-				float corner_radius_x_ = 5.f;
-				float corner_radius_y_ = 5.f;
-				side tab_side_ = side::top;
-				std::vector<std::string> caption_reserve_;
-				orientation caption_orientation_ = orientation::horizontal;
-				color color_tabs_;
-				color color_tabs_border_;
-				float tabs_border_ = .5f;
+				float _border = .5f;
+				color _color_border;
+				float _corner_radius_x = 5.f;
+				float _corner_radius_y = 5.f;
+				side _tab_side = side::top;
+				std::vector<std::string> _caption_reserve;
+				orientation _caption_orientation = orientation::horizontal;
+				color _color_tabs;
+				color _color_tabs_border;
+				float _tabs_border = .5f;
 
 			public:
 				tab_pane_specs() {
-					cursor_ = cursor_type::hand;
+					_cursor = cursor_type::hand;
 				}
 
 				// generic specs
@@ -256,7 +256,7 @@ namespace liblec {
 
 			private:
 				class impl;
-				impl& d_;
+				impl& _d;
 
 				// Default constructor and copying an object of this class are not allowed
 				tab_pane_builder() = delete;
@@ -300,7 +300,7 @@ namespace liblec {
 
 			private:
 				class impl;
-				impl& d_;
+				impl& _d;
 
 				// Default constructor and copying an object of this class are not allowed
 				tab_builder() = delete;

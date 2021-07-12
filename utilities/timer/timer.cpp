@@ -16,45 +16,45 @@ namespace liblec {
 		class timer_manager::impl {
 		public:
 			impl(form& fm) :
-				fm_(fm) {}
-			form& fm_;
+				_fm(fm) {}
+			form& _fm;
 		};
 
 		timer_manager::timer_manager(form& fm) :
-			d_(*new impl(fm)) {}
+			_d(*new impl(fm)) {}
 
-		timer_manager::~timer_manager() { delete& d_; }
+		timer_manager::~timer_manager() { delete& _d; }
 
 		void timer_manager::add(const std::string& alias,
 			const unsigned long& milliseconds, std::function<void()> on_timer) {
 			if (running(alias)) return;
 
-			int unique_id = (d_.fm_.d_.timers_.find(alias) == d_.fm_.d_.timers_.end()) ?
-				d_.fm_.d_.make_unique_id() : d_.fm_.d_.timers_.at(alias).unique_id;
+			int unique_id = (_d._fm._d._timers.find(alias) == _d._fm._d._timers.end()) ?
+				_d._fm._d.make_unique_id() : _d._fm._d._timers.at(alias).unique_id;
 
-			form::impl::timer timer_;
-			timer_.milliseconds = milliseconds;
-			timer_.on_timer = on_timer;
-			timer_.unique_id = unique_id;
+			form::impl::timer _timer;
+			_timer.milliseconds = milliseconds;
+			_timer.on_timer = on_timer;
+			_timer.unique_id = unique_id;
 
 			// insert to timer map
-			d_.fm_.d_.timers_[alias] = timer_;
+			_d._fm._d._timers[alias] = _timer;
 
-			if (IsWindow(d_.fm_.d_.hWnd_))
-				d_.fm_.d_.start_timer(alias);
+			if (IsWindow(_d._fm._d._hWnd))
+				_d._fm._d.start_timer(alias);
 			else
-				d_.fm_.d_.timers_.at(alias).running = false;	// timer will be started on form creation
+				_d._fm._d._timers.at(alias).running = false;	// timer will be started on form creation
 		}
 
 		bool timer_manager::running(const std::string& alias) {
-			return (d_.fm_.d_.timers_.find(alias) == d_.fm_.d_.timers_.end()) ?
-				false : d_.fm_.d_.timers_.at(alias).running;
+			return (_d._fm._d._timers.find(alias) == _d._fm._d._timers.end()) ?
+				false : _d._fm._d._timers.at(alias).running;
 		}
 
 		void timer_manager::stop(const std::string& alias) {
-			if (d_.fm_.d_.timers_.find(alias) != d_.fm_.d_.timers_.end()) {
-				KillTimer(d_.fm_.d_.hWnd_, (UINT_PTR)d_.fm_.d_.timers_.at(alias).unique_id);
-				d_.fm_.d_.timers_.at(alias).running = false;
+			if (_d._fm._d._timers.find(alias) != _d._fm._d._timers.end()) {
+				KillTimer(_d._fm._d._hWnd, (UINT_PTR)_d._fm._d._timers.at(alias).unique_id);
+				_d._fm._d._timers.at(alias).running = false;
 			}
 		}
 	}

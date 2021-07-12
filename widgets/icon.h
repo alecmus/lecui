@@ -32,24 +32,24 @@ namespace liblec {
 				};
 
 			private:
-				float border_ = .5f;
-				color color_border_;
-				float corner_radius_x_ = 3.f;
-				float corner_radius_y_ = 3.f;
-				float max_image_size_ = 48.f;
-				color color_text_description_;
-				float font_size_description_ = 8.5f;
-				int png_resource_ = 0;
-				std::string file_;
-				image_quality quality_ = image_quality::high;
-				std::string description_;
-				icon_text_position text_position_ = icon_text_position::right;
-				void* p_special_pane_specs_ = nullptr;
+				float _border = .5f;
+				color _color_border;
+				float _corner_radius_x = 3.f;
+				float _corner_radius_y = 3.f;
+				float _max_image_size = 48.f;
+				color _color_text_description;
+				float _font_size_description = 8.5f;
+				int _png_resource = 0;
+				std::string _file;
+				image_quality _quality = image_quality::high;
+				std::string _description;
+				icon_text_position _text_position = icon_text_position::right;
+				void* _p_special_pane_specs = nullptr;
 
 			public:
 				icon_specs() {
-					rect_.size({ 180.f, 78.f });
-					font_size_ = 11.f;
+					_rect.size({ 180.f, 78.f });
+					_font_size = 11.f;
 				};
 
 				bool operator==(const icon_specs&);
@@ -254,7 +254,7 @@ namespace liblec {
 
 			private:
 				class impl;
-				impl& d_;
+				impl& _d;
 
 				// Default constructor and copying an object of this class are not allowed
 				icon_builder() = delete;

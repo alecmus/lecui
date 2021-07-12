@@ -394,13 +394,13 @@ void formatted_text_editor::toggle_tag(std::string& xml_text, const std::string&
 
 											for (const auto& incoming_property : incoming_properties) {
 												// check if incoming property exists in the existing properties
-												bool exists_ = false;
+												bool _exists = false;
 
 												std::vector<css_parser::css_property> eliminate_property;
 
 												for (auto& existing_property : existing_properties) {
 													if (existing_property.property == incoming_property.property) {
-														exists_ = true;
+														_exists = true;
 
 														if (!equal_to_selection) {
 															// schedule this property for deletion
@@ -486,7 +486,7 @@ void formatted_text_editor::toggle_tag(std::string& xml_text, const std::string&
 													existing_properties = properties_new;
 												}
 
-												if (!exists_ && equal_to_selection) {
+												if (!_exists && equal_to_selection) {
 													// add the property
 													existing_properties.push_back(incoming_property);
 												}

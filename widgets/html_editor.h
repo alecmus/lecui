@@ -22,26 +22,26 @@ namespace liblec {
 			/// <summary>HTML editor widget specifications.</summary>
 			/// <remarks>Recommended size with defaults is a minimum of 320x215px.</remarks>
 			class lecui_api html_editor_specs : public specs {
-				float border_ = .5f;
-				float control_border_ = .5f;
-				color color_border_;
-				float corner_radius_x_ = 3.f;
-				float corner_radius_y_ = 3.f;
-				color color_caret_;
-				color color_control_border_;
+				float _border = .5f;
+				float _control_border = .5f;
+				color _color_border;
+				float _corner_radius_x = 3.f;
+				float _corner_radius_y = 3.f;
+				color _color_caret;
+				color _color_control_border;
 
 				/// <summary>The color of the html control pane background.</summary>
-				color color_control_fill_;
+				color _color_control_fill;
 
-				void* p_controls_pane_specs_ = nullptr;
-				void* p_html_pane_specs_ = nullptr;
-				lecui::rect rect_widget_overall_ = { 0, 0, 0, 0 };
-				resize_params on_resize_overall_ = { 0.f, 0.f, 0.f, 0.f };
+				void* _p_controls_pane_specs = nullptr;
+				void* _p_html_pane_specs = nullptr;
+				lecui::rect _rect_widget_overall = { 0, 0, 0, 0 };
+				resize_params _on_resize_overall = { 0.f, 0.f, 0.f, 0.f };
 
 			public:
 				html_editor_specs() {
-					cursor_ = cursor_type::caret;
-					rect_.size({ 320.f, 215.f });
+					_cursor = cursor_type::caret;
+					_rect.size({ 320.f, 215.f });
 				}
 
 				bool operator==(const html_editor_specs&);
@@ -202,7 +202,7 @@ namespace liblec {
 
 			protected:
 				class impl;
-				impl& d_;
+				impl& _d;
 
 				// Default constructor and copying an object of this class are not allowed
 				html_editor_builder() = delete;

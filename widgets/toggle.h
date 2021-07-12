@@ -23,16 +23,16 @@ namespace liblec {
 			/// <remarks>Recommended height with defaults is 20px. Recommended minimum
 			/// width with defaults is 100px. Default size is 200x20px.</remarks>
 			class lecui_api toggle_specs : public specs {
-				std::string text_off_ = "Off";
-				color color_on_;
-				color color_off_;
-				bool on_ = false;
+				std::string _text_off = "Off";
+				color _color_on;
+				color _color_off;
+				bool _on = false;
 
 			public:
 				toggle_specs() {
-					cursor_ = cursor_type::hand;
-					rect_.size({ 200.f, 20.f });
-					text_ = "On";
+					_cursor = cursor_type::hand;
+					_rect.size({ 200.f, 20.f });
+					_text = "On";
 				}
 
 				/// <summary>Events specific to this widget.</summary>
@@ -43,7 +43,7 @@ namespace liblec {
 				};
 
 				toggle_events& events() {
-					return toggle_events_;
+					return _toggle_events;
 				}
 
 				bool operator==(const toggle_specs&);
@@ -122,7 +122,7 @@ namespace liblec {
 				toggle_specs& on(const bool& on);
 
 			private:
-				toggle_events toggle_events_;
+				toggle_events _toggle_events;
 			};
 
 			/// <summary>Toggle widget builder.</summary>
@@ -162,7 +162,7 @@ namespace liblec {
 
 			private:
 				class impl;
-				impl& d_;
+				impl& _d;
 
 				// Default constructor and copying an object of this class are not allowed
 				toggle_builder() = delete;

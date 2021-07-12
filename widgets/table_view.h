@@ -22,30 +22,30 @@ namespace liblec {
 			/// <summary>Table view widget specifications.</summary>
 			/// <remarks>Default size is 200x200px.</remarks>
 			class lecui_api table_view_specs : public specs {
-				float border_ = .5f;
-				float grid_line_ = .5f;
-				color color_border_;
-				float corner_radius_x_ = 2.f;
-				float corner_radius_y_ = 2.f;
-				color color_text_selected_;
-				color color_grid_;
-				color color_text_header_;
-				color color_text_header_hot_;
-				color color_fill_header_;
-				color color_fill_alternate_;
-				color color_row_hot_;
-				color color_row_selected_;
-				std::vector<table_column> columns_;
-				std::vector<table_row> data_;
-				std::vector<long> selected_;
-				bool user_sort_ = false;
-				bool fixed_number_column_ = false;
-				std::string fixed_number_column_name_ = "#";
-				void* p_special_pane_specs_ = nullptr;
+				float _border = .5f;
+				float _grid_line = .5f;
+				color _color_border;
+				float _corner_radius_x = 2.f;
+				float _corner_radius_y = 2.f;
+				color _color_text_selected;
+				color _color_grid;
+				color _color_text_header;
+				color _color_text_header_hot;
+				color _color_fill_header;
+				color _color_fill_alternate;
+				color _color_row_hot;
+				color _color_row_selected;
+				std::vector<table_column> _columns;
+				std::vector<table_row> _data;
+				std::vector<long> _selected;
+				bool _user_sort = false;
+				bool _fixed_number_column = false;
+				std::string _fixed_number_column_name = "#";
+				void* _p_special_pane_specs = nullptr;
 
 			public:
 				table_view_specs() {
-					rect_.size({ 200.f, 200.f });
+					_rect.size({ 200.f, 200.f });
 				}
 
 				/// <summary>Events specific to this widget.</summary>
@@ -64,7 +64,7 @@ namespace liblec {
 				};
 
 				table_view_events& events() {
-					return table_events_;
+					return _table_events;
 				}
 
 				bool operator==(const table_view_specs&);
@@ -322,7 +322,7 @@ namespace liblec {
 				table_view_specs& fixed_number_column_name(const std::string& fixed_number_column_name);
 
 			private:
-				table_view_events table_events_;
+				table_view_events _table_events;
 
 #if defined(LECUI_EXPORTS)
 				friend class form;
@@ -366,7 +366,7 @@ namespace liblec {
 
 			private:
 				class impl;
-				impl& d_;
+				impl& _d;
 
 				// Default constructor and copying an object of this class are not allowed
 				table_view_builder() = delete;

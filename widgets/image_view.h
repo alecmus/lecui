@@ -22,20 +22,20 @@ namespace liblec {
 			/// <summary>Image view widget specifications.</summary>
 			/// <remarks>Default size is 200x200px.</remarks>
 			class lecui_api image_view_specs : public specs {
-				float border_ = .5f;
-				color color_border_;
-				float corner_radius_x_ = .0f;
-				float corner_radius_y_ = .0f;
-				int png_resource_ = 0;
-				std::string file_;
-				image_quality quality_ = image_quality::medium;
-				bool enlarge_if_smaller_ = false;
-				bool keep_aspect_ratio_ = true;
+				float _border = .5f;
+				color _color_border;
+				float _corner_radius_x = .0f;
+				float _corner_radius_y = .0f;
+				int _png_resource = 0;
+				std::string _file;
+				image_quality _quality = image_quality::medium;
+				bool _enlarge_if_smaller = false;
+				bool _keep_aspect_ratio = true;
 
 			public:
 				image_view_specs() {
-					cursor_ = cursor_type::hand;
-					rect_.size({ 200.f, 200.f });
+					_cursor = cursor_type::hand;
+					_rect.size({ 200.f, 200.f });
 				}
 
 				bool operator==(const image_view_specs&);
@@ -209,7 +209,7 @@ namespace liblec {
 
 			private:
 				class impl;
-				impl& d_;
+				impl& _d;
 
 				// Default constructor and copying an object of this class are not allowed
 				image_view_builder() = delete;

@@ -14,409 +14,409 @@
 namespace liblec {
 	namespace lecui {
 		containers::page::impl::impl(form& fm, containers::page& pg, const std::string& alias) :
-			fm_(fm),
-			pg_(pg),
-			p_direct2d_factory_(nullptr),
-			p_directwrite_factory_(nullptr),
-			p_iwic_factory_(nullptr),
-			alias_(alias),
-			hit_(false),
-			scrollbar_set_(false),
-			h_scrollbar_(pg),
-			v_scrollbar_(pg) {
-			widgets_.emplace(h_scrollbar_.alias(), h_scrollbar_);
-			widgets_.emplace(v_scrollbar_.alias(), v_scrollbar_);
+			_fm(fm),
+			_pg(pg),
+			_p_direct2d_factory(nullptr),
+			_p_directwrite_factory(nullptr),
+			_p_iwic_factory(nullptr),
+			_alias(alias),
+			_hit(false),
+			_scrollbar_set(false),
+			_h_scrollbar(pg),
+			_v_scrollbar(pg) {
+			_widgets.emplace(_h_scrollbar.alias(), _h_scrollbar);
+			_widgets.emplace(_v_scrollbar.alias(), _v_scrollbar);
 		}
 
 		containers::page::impl::~impl() {}
-		const std::string& containers::page::impl::alias() { return alias_; }
+		const std::string& containers::page::impl::alias() { return _alias; }
 
 		void containers::page::impl::direct2d_factory(ID2D1Factory* p_direct2d_factory) {
-			p_direct2d_factory_ = p_direct2d_factory;
+			_p_direct2d_factory = p_direct2d_factory;
 		}
 
 		ID2D1Factory* containers::page::impl::direct2d_factory() {
-			return p_direct2d_factory_;
+			return _p_direct2d_factory;
 		}
 
 		void
 			containers::page::impl::directwrite_factory(IDWriteFactory* p_directwrite_factory) {
-			p_directwrite_factory_ = p_directwrite_factory;
+			_p_directwrite_factory = p_directwrite_factory;
 		}
 
 		IDWriteFactory* containers::page::impl::directwrite_factory() {
-			return p_directwrite_factory_;
+			return _p_directwrite_factory;
 		}
 
 		void
 			containers::page::impl::iwic_factory(IWICImagingFactory* p_iwic_factory) {
-			p_iwic_factory_ = p_iwic_factory;
+			_p_iwic_factory = p_iwic_factory;
 		}
 
 		IWICImagingFactory* containers::page::impl::iwic_factory() {
-			return p_iwic_factory_;
+			return _p_iwic_factory;
 		}
 
 		void containers::page::impl::parent(containers::page& p) {
-			parent_ = p;
+			_parent = p;
 		}
 
 		std::optional<std::reference_wrapper<containers::page>>
 			containers::page::impl::parent() {
-			return parent_;
+			return _parent;
 		}
 
 		float containers::page::impl::get_dpi_scale() {
-			return fm_.d_.get_dpi_scale();
+			return _fm._d.get_dpi_scale();
 		}
 
 		form& containers::page::impl::get_form() {
-			return fm_;
+			return _fm;
 		}
 
-		void containers::page::impl::size(const lecui::size& size) { size_ = size; }
-		const size& containers::page::impl::size() { return size_; }
-		void containers::page::impl::width(const float& width) { size_.width = width; }
-		const float containers::page::impl::width() { return size_.width; }
-		void containers::page::impl::height(const float& height) { size_.height = height; }
-		const float containers::page::impl::height() { return size_.height; }
+		void containers::page::impl::size(const lecui::size& size) { _size = size; }
+		const size& containers::page::impl::size() { return _size; }
+		void containers::page::impl::width(const float& width) { _size.width = width; }
+		const float containers::page::impl::width() { return _size.width; }
+		void containers::page::impl::height(const float& height) { _size.height = height; }
+		const float containers::page::impl::height() { return _size.height; }
 
 		bool containers::page::impl::contains(const D2D1_POINT_2F& point) {
-			bool contains_ = false;
+			bool _contains = false;
 
 			try {
 				// check if minimal page border rect contains the point
-				auto& rect = rectangles_.at(widgets::rectangle_impl::page_rect_alias());
-				contains_ = rect.contains(point);
+				auto& rect = _rectangles.at(widgets::rectangle_impl::page_rect_alias());
+				_contains = rect.contains(point);
 			}
 			catch (const std::exception&) {}
 
-			hit_ = contains_;
+			_hit = _contains;
 
-			if (!contains_)
-				scrollbar_set_ = false;
+			if (!_contains)
+				_scrollbar_set = false;
 
-			return contains_;
+			return _contains;
 		}
 
 		containers::tab_pane_specs&
 			containers::page::impl::add_tab_pane(std::string alias) {
 			check_alias(alias);
-			if (tab_panes_.try_emplace(alias, pg_, alias, p_directwrite_factory_).second) {
-				widgets_.emplace(alias, tab_panes_.at(alias));
-				widgets_order_.emplace_back(alias);
+			if (_tab_panes.try_emplace(alias, _pg, alias, _p_directwrite_factory).second) {
+				_widgets.emplace(alias, _tab_panes.at(alias));
+				_widgets_order.emplace_back(alias);
 			}
-			tab_panes_.at(alias).specs().alias(alias);
-			return tab_panes_.at(alias).specs();
+			_tab_panes.at(alias).specs().alias(alias);
+			return _tab_panes.at(alias).specs();
 		}
 
 		containers::pane_specs&
 			containers::page::impl::add_pane(std::string alias) {
 			check_alias(alias);
-			if (panes_.try_emplace(alias, pg_, alias).second) {
-				widgets_.emplace(alias, panes_.at(alias));
-				widgets_order_.emplace_back(alias);
+			if (_panes.try_emplace(alias, _pg, alias).second) {
+				_widgets.emplace(alias, _panes.at(alias));
+				_widgets_order.emplace_back(alias);
 			}
-			panes_.at(alias).specs().alias(alias);
-			return panes_.at(alias).specs();
+			_panes.at(alias).specs().alias(alias);
+			return _panes.at(alias).specs();
 		}
 
 		widgets::rectangle_specs&
 			containers::page::impl::add_rectangle(std::string alias) {
 			check_alias(alias);
-			if (rectangles_.try_emplace(alias, pg_, alias, h_scrollbar_, v_scrollbar_).second) {
-				widgets_.emplace(alias, rectangles_.at(alias));
-				widgets_order_.emplace_back(alias);
+			if (_rectangles.try_emplace(alias, _pg, alias, _h_scrollbar, _v_scrollbar).second) {
+				_widgets.emplace(alias, _rectangles.at(alias));
+				_widgets_order.emplace_back(alias);
 			}
-			rectangles_.at(alias).specs().alias(alias);
-			return rectangles_.at(alias).specs();
+			_rectangles.at(alias).specs().alias(alias);
+			return _rectangles.at(alias).specs();
 		}
 
 		widgets::label_specs&
 			containers::page::impl::add_label(std::string alias) {
 			check_alias(alias);
-			if (labels_.try_emplace(alias, pg_, alias, p_directwrite_factory_).second) {
-				widgets_.emplace(alias, labels_.at(alias));
-				widgets_order_.emplace_back(alias);
+			if (_labels.try_emplace(alias, _pg, alias, _p_directwrite_factory).second) {
+				_widgets.emplace(alias, _labels.at(alias));
+				_widgets_order.emplace_back(alias);
 			}
-			labels_.at(alias).specs().alias(alias);
-			return labels_.at(alias).specs();
+			_labels.at(alias).specs().alias(alias);
+			return _labels.at(alias).specs();
 		}
 
 		containers::group_specs&
 			containers::page::impl::add_group(std::string alias) {
 			check_alias(alias);
-			if (groups_.try_emplace(alias, pg_, alias).second) {
-				widgets_.emplace(alias, groups_.at(alias));
-				widgets_order_.emplace_back(alias);
+			if (_groups.try_emplace(alias, _pg, alias).second) {
+				_widgets.emplace(alias, _groups.at(alias));
+				_widgets_order.emplace_back(alias);
 			}
-			groups_.at(alias).specs().alias(alias);
-			return groups_.at(alias).specs();
+			_groups.at(alias).specs().alias(alias);
+			return _groups.at(alias).specs();
 		}
 
 		widgets::button_specs&
 			containers::page::impl::add_button(std::string alias) {
 			check_alias(alias);
-			if (buttons_.try_emplace(alias, pg_, alias, p_directwrite_factory_).second) {
-				widgets_.emplace(alias, buttons_.at(alias));
-				widgets_order_.emplace_back(alias);
+			if (_buttons.try_emplace(alias, _pg, alias, _p_directwrite_factory).second) {
+				_widgets.emplace(alias, _buttons.at(alias));
+				_widgets_order.emplace_back(alias);
 			}
-			buttons_.at(alias).specs().alias(alias);
-			return buttons_.at(alias).specs();
+			_buttons.at(alias).specs().alias(alias);
+			return _buttons.at(alias).specs();
 		}
 
 		widgets::toggle_specs&
 			containers::page::impl::add_toggle(std::string alias) {
 			check_alias(alias);
-			if (toggles_.try_emplace(alias, pg_, alias, p_directwrite_factory_).second) {
-				widgets_.emplace(alias, toggles_.at(alias));
-				widgets_order_.emplace_back(alias);
+			if (_toggles.try_emplace(alias, _pg, alias, _p_directwrite_factory).second) {
+				_widgets.emplace(alias, _toggles.at(alias));
+				_widgets_order.emplace_back(alias);
 			}
-			toggles_.at(alias).specs().alias(alias);
-			return toggles_.at(alias).specs();
+			_toggles.at(alias).specs().alias(alias);
+			return _toggles.at(alias).specs();
 		}
 
 		widgets::table_view_specs&
 			containers::page::impl::add_table_view(std::string alias) {
 			check_alias(alias);
-			if (table_views_.try_emplace(alias, pg_, alias, p_directwrite_factory_).second) {
-				widgets_.emplace(alias, table_views_.at(alias));
-				widgets_order_.emplace_back(alias);
+			if (_table_views.try_emplace(alias, _pg, alias, _p_directwrite_factory).second) {
+				_widgets.emplace(alias, _table_views.at(alias));
+				_widgets_order.emplace_back(alias);
 			}
-			table_views_.at(alias).specs().alias(alias);
-			return table_views_.at(alias).specs();
+			_table_views.at(alias).specs().alias(alias);
+			return _table_views.at(alias).specs();
 		}
 
 		widgets::custom_specs&
 			containers::page::impl::add_custom(std::string alias) {
 			check_alias(alias);
-			if (customs_.try_emplace(alias, pg_, alias, p_directwrite_factory_, p_iwic_factory_).second) {
-				widgets_.emplace(alias, customs_.at(alias));
-				widgets_order_.emplace_back(alias);
+			if (_customs.try_emplace(alias, _pg, alias, _p_directwrite_factory, _p_iwic_factory).second) {
+				_widgets.emplace(alias, _customs.at(alias));
+				_widgets_order.emplace_back(alias);
 			}
-			customs_.at(alias).specs().alias(alias);
-			return customs_.at(alias).specs();
+			_customs.at(alias).specs().alias(alias);
+			return _customs.at(alias).specs();
 		}
 
 		widgets::image_view_specs&
 			containers::page::impl::add_image_view(std::string alias) {
 			check_alias(alias);
-			if (image_views_.try_emplace(alias, pg_, alias, p_iwic_factory_).second) {
-				widgets_.emplace(alias, image_views_.at(alias));
-				widgets_order_.emplace_back(alias);
+			if (_image_views.try_emplace(alias, _pg, alias, _p_iwic_factory).second) {
+				_widgets.emplace(alias, _image_views.at(alias));
+				_widgets_order.emplace_back(alias);
 			}
-			image_views_.at(alias).specs().alias(alias);
-			return image_views_.at(alias).specs();
+			_image_views.at(alias).specs().alias(alias);
+			return _image_views.at(alias).specs();
 		}
 
 		widgets::progress_indicator_specs&
 			containers::page::impl::add_progress_indicator(std::string alias) {
 			check_alias(alias);
-			if (progress_indicators_.try_emplace(alias, pg_, alias, p_direct2d_factory_, p_directwrite_factory_).second) {
-				widgets_.emplace(alias, progress_indicators_.at(alias));
-				widgets_order_.emplace_back(alias);
+			if (_progress_indicators.try_emplace(alias, _pg, alias, _p_direct2d_factory, _p_directwrite_factory).second) {
+				_widgets.emplace(alias, _progress_indicators.at(alias));
+				_widgets_order.emplace_back(alias);
 			}
-			progress_indicators_.at(alias).specs().alias(alias);
-			return progress_indicators_.at(alias).specs();
+			_progress_indicators.at(alias).specs().alias(alias);
+			return _progress_indicators.at(alias).specs();
 		}
 
 		widgets::progress_bar_specs&
 			containers::page::impl::add_progress_bar(std::string alias) {
 			check_alias(alias);
-			if (progress_bars_.try_emplace(alias, pg_, alias, p_direct2d_factory_, p_directwrite_factory_).second) {
-				widgets_.emplace(alias, progress_bars_.at(alias));
-				widgets_order_.emplace_back(alias);
+			if (_progress_bars.try_emplace(alias, _pg, alias, _p_direct2d_factory, _p_directwrite_factory).second) {
+				_widgets.emplace(alias, _progress_bars.at(alias));
+				_widgets_order.emplace_back(alias);
 			}
-			progress_bars_.at(alias).specs().alias(alias);
-			return progress_bars_.at(alias).specs();
+			_progress_bars.at(alias).specs().alias(alias);
+			return _progress_bars.at(alias).specs();
 		}
 
 		widgets::checkbox_specs&
 			containers::page::impl::add_checkbox(std::string alias) {
 			check_alias(alias);
-			if (checkboxes_.try_emplace(alias, pg_, alias, p_direct2d_factory_, p_directwrite_factory_).second) {
-				widgets_.emplace(alias, checkboxes_.at(alias));
-				widgets_order_.emplace_back(alias);
+			if (_checkboxes.try_emplace(alias, _pg, alias, _p_direct2d_factory, _p_directwrite_factory).second) {
+				_widgets.emplace(alias, _checkboxes.at(alias));
+				_widgets_order.emplace_back(alias);
 			}
-			checkboxes_.at(alias).specs().alias(alias);
-			return checkboxes_.at(alias).specs();
+			_checkboxes.at(alias).specs().alias(alias);
+			return _checkboxes.at(alias).specs();
 		}
 
 		widgets::text_field_specs&
 			containers::page::impl::add_text_field(std::string alias) {
 			check_alias(alias);
-			if (text_fields_.try_emplace(alias, pg_, alias, p_directwrite_factory_).second) {
-				widgets_.emplace(alias, text_fields_.at(alias));
-				widgets_order_.emplace_back(alias);
+			if (_text_fields.try_emplace(alias, _pg, alias, _p_directwrite_factory).second) {
+				_widgets.emplace(alias, _text_fields.at(alias));
+				_widgets_order.emplace_back(alias);
 			}
-			text_fields_.at(alias).specs().alias(alias);
-			return text_fields_.at(alias).specs();
+			_text_fields.at(alias).specs().alias(alias);
+			return _text_fields.at(alias).specs();
 		}
 
 		widgets::tree_view_specs&
 			containers::page::impl::add_tree(std::string alias) {
 			check_alias(alias);
-			if (trees_.try_emplace(alias, pg_, alias, p_direct2d_factory_, p_directwrite_factory_).second) {
-				widgets_.emplace(alias, trees_.at(alias));
-				widgets_order_.emplace_back(alias);
+			if (_trees.try_emplace(alias, _pg, alias, _p_direct2d_factory, _p_directwrite_factory).second) {
+				_widgets.emplace(alias, _trees.at(alias));
+				_widgets_order.emplace_back(alias);
 			}
-			trees_.at(alias).specs().alias(alias);
-			return trees_.at(alias).specs();
+			_trees.at(alias).specs().alias(alias);
+			return _trees.at(alias).specs();
 		}
 
 		widgets::slider_specs&
 			containers::page::impl::add_slider(std::string alias) {
 			check_alias(alias);
-			if (sliders_.try_emplace(alias, pg_, alias, p_directwrite_factory_).second) {
-				widgets_.emplace(alias, sliders_.at(alias));
-				widgets_order_.emplace_back(alias);
+			if (_sliders.try_emplace(alias, _pg, alias, _p_directwrite_factory).second) {
+				_widgets.emplace(alias, _sliders.at(alias));
+				_widgets_order.emplace_back(alias);
 			}
-			sliders_.at(alias).specs().alias(alias);
-			return sliders_.at(alias).specs();
+			_sliders.at(alias).specs().alias(alias);
+			return _sliders.at(alias).specs();
 		}
 
 		widgets::html_editor_specs&
 			containers::page::impl::add_html_editor(std::string alias) {
 			check_alias(alias);
-			if (html_editors_.try_emplace(alias, pg_, alias, p_directwrite_factory_).second) {
-				widgets_.emplace(alias, html_editors_.at(alias));
-				widgets_order_.emplace_back(alias);
+			if (_html_editors.try_emplace(alias, _pg, alias, _p_directwrite_factory).second) {
+				_widgets.emplace(alias, _html_editors.at(alias));
+				_widgets_order.emplace_back(alias);
 			}
-			html_editors_.at(alias).specs().alias(alias);
-			return html_editors_.at(alias).specs();
+			_html_editors.at(alias).specs().alias(alias);
+			return _html_editors.at(alias).specs();
 		}
 
 		widgets::combobox_specs&
 			containers::page::impl::add_combobox(std::string alias) {
 			check_alias(alias);
-			if (comboboxes_.try_emplace(alias, pg_, alias, p_directwrite_factory_).second) {
-				widgets_.emplace(alias, comboboxes_.at(alias));
-				widgets_order_.emplace_back(alias);
+			if (_comboboxes.try_emplace(alias, _pg, alias, _p_directwrite_factory).second) {
+				_widgets.emplace(alias, _comboboxes.at(alias));
+				_widgets_order.emplace_back(alias);
 			}
-			comboboxes_.at(alias).specs().alias(alias);
-			return comboboxes_.at(alias).specs();
+			_comboboxes.at(alias).specs().alias(alias);
+			return _comboboxes.at(alias).specs();
 		}
 
 		widgets::line_specs&
 			containers::page::impl::add_line(std::string alias) {
 			check_alias(alias);
-			if (lines_.try_emplace(alias, pg_, alias).second) {
-				widgets_.emplace(alias, lines_.at(alias));
-				widgets_order_.emplace_back(alias);
+			if (_lines.try_emplace(alias, _pg, alias).second) {
+				_widgets.emplace(alias, _lines.at(alias));
+				_widgets_order.emplace_back(alias);
 			}
-			lines_.at(alias).specs().alias(alias);
-			return lines_.at(alias).specs();
+			_lines.at(alias).specs().alias(alias);
+			return _lines.at(alias).specs();
 		}
 
 		widgets::time_specs&
 			containers::page::impl::add_time(std::string alias) {
 			check_alias(alias);
-			if (times_.try_emplace(alias, pg_, alias).second) {
-				widgets_.emplace(alias, times_.at(alias));
-				widgets_order_.emplace_back(alias);
+			if (_times.try_emplace(alias, _pg, alias).second) {
+				_widgets.emplace(alias, _times.at(alias));
+				_widgets_order.emplace_back(alias);
 			}
-			times_.at(alias).specs().alias(alias);
-			return times_.at(alias).specs();
+			_times.at(alias).specs().alias(alias);
+			return _times.at(alias).specs();
 		}
 
 		widgets::date_specs&
 			containers::page::impl::add_date(std::string alias) {
 			check_alias(alias);
-			if (dates_.try_emplace(alias, pg_, alias).second) {
-				widgets_.emplace(alias, dates_.at(alias));
-				widgets_order_.emplace_back(alias);
+			if (_dates.try_emplace(alias, _pg, alias).second) {
+				_widgets.emplace(alias, _dates.at(alias));
+				_widgets_order.emplace_back(alias);
 			}
-			dates_.at(alias).specs().alias(alias);
-			return dates_.at(alias).specs();
+			_dates.at(alias).specs().alias(alias);
+			return _dates.at(alias).specs();
 		}
 
 		widgets::icon_specs&
 			containers::page::impl::add_icon(std::string alias) {
 			check_alias(alias);
-			if (icons_.try_emplace(alias, pg_, alias).second) {
-				widgets_.emplace(alias, icons_.at(alias));
-				widgets_order_.emplace_back(alias);
+			if (_icons.try_emplace(alias, _pg, alias).second) {
+				_widgets.emplace(alias, _icons.at(alias));
+				_widgets_order.emplace_back(alias);
 			}
-			icons_.at(alias).specs().alias(alias);
-			return icons_.at(alias).specs();
+			_icons.at(alias).specs().alias(alias);
+			return _icons.at(alias).specs();
 		}
 
 		std::map<std::string, widgets::widget_impl&>&
-			containers::page::impl::widgets() { return widgets_; }
+			containers::page::impl::widgets() { return _widgets; }
 
 		const std::vector<std::string>&
-			containers::page::impl::widgets_order() { return widgets_order_; }
+			containers::page::impl::widgets_order() { return _widgets_order; }
 
 		widgets::h_scrollbar_impl&
-			containers::page::impl::h_scrollbar() { return h_scrollbar_; }
+			containers::page::impl::h_scrollbar() { return _h_scrollbar; }
 		widgets::v_scrollbar_impl&
-			containers::page::impl::v_scrollbar() { return v_scrollbar_; }
+			containers::page::impl::v_scrollbar() { return _v_scrollbar; }
 
 		widgets::tab_pane_impl&
-			containers::page::impl::get_tab_pane(const std::string& alias) { return tab_panes_.at(alias); }
+			containers::page::impl::get_tab_pane(const std::string& alias) { return _tab_panes.at(alias); }
 
 		widgets::pane_impl&
-			containers::page::impl::get_pane(const std::string& alias) { return panes_.at(alias); }
+			containers::page::impl::get_pane(const std::string& alias) { return _panes.at(alias); }
 
 		widgets::rectangle_impl&
-			containers::page::impl::get_rectangle(const std::string& alias) { return rectangles_.at(alias); }
+			containers::page::impl::get_rectangle(const std::string& alias) { return _rectangles.at(alias); }
 
 		widgets::button_impl&
-			containers::page::impl::get_button(const std::string& alias) { return buttons_.at(alias); }
+			containers::page::impl::get_button(const std::string& alias) { return _buttons.at(alias); }
 
 		widgets::label_impl&
-			containers::page::impl::get_label(const std::string& alias) { return labels_.at(alias); }
+			containers::page::impl::get_label(const std::string& alias) { return _labels.at(alias); }
 
 		widgets::group_impl&
-			containers::page::impl::get_group(const std::string& alias) { return groups_.at(alias); }
+			containers::page::impl::get_group(const std::string& alias) { return _groups.at(alias); }
 
 		widgets::toggle_impl&
-			containers::page::impl::get_toggle(const std::string& alias) { return toggles_.at(alias); }
+			containers::page::impl::get_toggle(const std::string& alias) { return _toggles.at(alias); }
 
 		widgets::table_view_impl&
-			containers::page::impl::get_table_view(const std::string& alias) { return table_views_.at(alias); }
+			containers::page::impl::get_table_view(const std::string& alias) { return _table_views.at(alias); }
 
 		widgets::custom_impl&
-			containers::page::impl::get_custom(const std::string& alias) { return customs_.at(alias); }
+			containers::page::impl::get_custom(const std::string& alias) { return _customs.at(alias); }
 
 		widgets::image_view_impl&
-			containers::page::impl::get_image_view(const std::string& alias) { return image_views_.at(alias); }
+			containers::page::impl::get_image_view(const std::string& alias) { return _image_views.at(alias); }
 
 		widgets::progress_indicator_impl&
-			containers::page::impl::get_progress_indicator(const std::string& alias) { return progress_indicators_.at(alias); }
+			containers::page::impl::get_progress_indicator(const std::string& alias) { return _progress_indicators.at(alias); }
 
 		widgets::progress_bar_impl&
-			containers::page::impl::get_progress_bar(const std::string& alias) { return progress_bars_.at(alias); }
+			containers::page::impl::get_progress_bar(const std::string& alias) { return _progress_bars.at(alias); }
 
 		widgets::checkbox_impl&
-			containers::page::impl::get_checkbox(const std::string& alias) { return checkboxes_.at(alias); }
+			containers::page::impl::get_checkbox(const std::string& alias) { return _checkboxes.at(alias); }
 
 		widgets::text_field_impl&
-			containers::page::impl::get_text_field(const std::string& alias) { return text_fields_.at(alias); }
+			containers::page::impl::get_text_field(const std::string& alias) { return _text_fields.at(alias); }
 
 		widgets::tree_view_impl&
-			containers::page::impl::get_tree(const std::string& alias) { return trees_.at(alias); }
+			containers::page::impl::get_tree(const std::string& alias) { return _trees.at(alias); }
 
 		widgets::slider_impl&
-			containers::page::impl::get_slider(const std::string& alias) { return sliders_.at(alias); }
+			containers::page::impl::get_slider(const std::string& alias) { return _sliders.at(alias); }
 
 		widgets::html_editor_impl&
-			containers::page::impl::get_html_editor(const std::string& alias) { return html_editors_.at(alias); }
+			containers::page::impl::get_html_editor(const std::string& alias) { return _html_editors.at(alias); }
 
 		widgets::combobox_impl&
-			containers::page::impl::get_combobox(const std::string& alias) { return comboboxes_.at(alias); }
+			containers::page::impl::get_combobox(const std::string& alias) { return _comboboxes.at(alias); }
 
 		widgets::line_impl&
-			containers::page::impl::get_line(const std::string& alias) { return lines_.at(alias); }
+			containers::page::impl::get_line(const std::string& alias) { return _lines.at(alias); }
 
 		widgets::time_impl&
-			containers::page::impl::get_time(const std::string& alias) { return times_.at(alias); }
+			containers::page::impl::get_time(const std::string& alias) { return _times.at(alias); }
 
 		widgets::date_impl&
-			containers::page::impl::get_date(const std::string& alias) { return dates_.at(alias); }
+			containers::page::impl::get_date(const std::string& alias) { return _dates.at(alias); }
 
 		widgets::icon_impl&
-			containers::page::impl::get_icon(const std::string& alias) { return icons_.at(alias); }
+			containers::page::impl::get_icon(const std::string& alias) { return _icons.at(alias); }
 
 		bool
 			containers::page::impl::close_widget(const std::string& alias,
@@ -424,87 +424,87 @@ namespace liblec {
 				std::string& error) {
 			// make a local copy since this reference may become invalid before we exit depending
 			// on how the closing is being done.
-			const std::string alias_(alias);
+			const std::string _alias(alias);
 
-			// to-do: prevent erasure from widgets_ only to throw later in the switch because the data
+			// to-do: prevent erasure from _widgets only to throw later in the switch because the data
 			// was wrong to begin with!!!!!
 			try {
 				///
 				/// close widget by
-				/// 1. removing it from widgets_
-				/// 2. removing it from the page it's in, e.g. tab_panes_ for tab panes
-				/// 3. removing it from widgets_order_
+				/// 1. removing it from _widgets
+				/// 2. removing it from the page it's in, e.g. _tab_panes for tab panes
+				/// 3. removing it from _widgets_order
 
 				// step 1
-				widgets_.erase(alias_);
+				_widgets.erase(_alias);
 
 				// step 2
 				switch (type) {
 				case widgets::widget_type::rectangle:
-					rectangles_.erase(alias_);
+					_rectangles.erase(_alias);
 					break;
 				case widgets::widget_type::label:
-					labels_.erase(alias_);
+					_labels.erase(_alias);
 					break;
 				case widgets::widget_type::group:
-					groups_.erase(alias_);
+					_groups.erase(_alias);
 					break;
 				case widgets::widget_type::tab_pane:
-					tab_panes_.erase(alias_);
+					_tab_panes.erase(_alias);
 					break;
 				case widgets::widget_type::button:
-					buttons_.erase(alias_);
+					_buttons.erase(_alias);
 					break;
 				case widgets::widget_type::toggle:
-					toggles_.erase(alias_);
+					_toggles.erase(_alias);
 					break;
 				case widgets::widget_type::table_view:
-					table_views_.erase(alias_);
+					_table_views.erase(_alias);
 					break;
 				case widgets::widget_type::custom:
-					customs_.erase(alias_);
+					_customs.erase(_alias);
 					break;
 				case widgets::widget_type::pane:
-					panes_.erase(alias_);
+					_panes.erase(_alias);
 					break;
 				case widgets::widget_type::image_view:
-					image_views_.erase(alias_);
+					_image_views.erase(_alias);
 					break;
 				case widgets::widget_type::progress_indicator:
-					progress_indicators_.erase(alias_);
+					_progress_indicators.erase(_alias);
 					break;
 				case widgets::widget_type::progress_bar:
-					progress_bars_.erase(alias_);
+					_progress_bars.erase(_alias);
 					break;
 				case widgets::widget_type::checkbox:
-					checkboxes_.erase(alias_);
+					_checkboxes.erase(_alias);
 					break;
 				case widgets::widget_type::text_field:
-					text_fields_.erase(alias_);
+					_text_fields.erase(_alias);
 					break;
 				case widgets::widget_type::tree_view:
-					trees_.erase(alias_);
+					_trees.erase(_alias);
 					break;
 				case widgets::widget_type::slider:
-					sliders_.erase(alias_);
+					_sliders.erase(_alias);
 					break;
 				case widgets::widget_type::html_editor:
-					html_editors_.erase(alias_);
+					_html_editors.erase(_alias);
 					break;
 				case widgets::widget_type::combobox:
-					comboboxes_.erase(alias_);
+					_comboboxes.erase(_alias);
 					break;
 				case widgets::widget_type::line:
-					lines_.erase(alias_);
+					_lines.erase(_alias);
 					break;
 				case widgets::widget_type::time:
-					times_.erase(alias_);
+					_times.erase(_alias);
 					break;
 				case widgets::widget_type::date:
-					dates_.erase(alias_);
+					_dates.erase(_alias);
 					break;
 				case widgets::widget_type::icon:
-					icons_.erase(alias_);
+					_icons.erase(_alias);
 					break;
 				case widgets::widget_type::close_button:
 				case widgets::widget_type::maximize_button:
@@ -517,10 +517,10 @@ namespace liblec {
 
 				// step 3
 				std::vector<std::string> widgets_order;
-				for (auto it : widgets_order_)
-					if (it != alias_)
+				for (auto it : _widgets_order)
+					if (it != _alias)
 						widgets_order.push_back(it);
-				widgets_order_ = widgets_order;
+				_widgets_order = widgets_order;
 
 				return true;
 			}
@@ -534,7 +534,7 @@ namespace liblec {
 			auto rect_pg = D2D1_RECT_F();
 			try {
 				// check if minimal page border rect contains the point
-				auto& rect = rectangles_.at(widgets::rectangle_impl::page_rect_alias());
+				auto& rect = _rectangles.at(widgets::rectangle_impl::page_rect_alias());
 				rect_pg = rect.get_rect();
 				scale_RECT(rect_pg, get_dpi_scale());
 
@@ -550,12 +550,12 @@ namespace liblec {
 			return rect_pg;
 		}
 
-		bool containers::page::impl::hit() { return hit_; }
+		bool containers::page::impl::hit() { return _hit; }
 
 		bool containers::page::impl::on_mousewheel(float units) {
-			if (hit_ && v_scrollbar_.visible()) {
-				float row_height_ = 10.f;
-				float adjustment = units * row_height_;
+			if (_hit && _v_scrollbar.visible()) {
+				float _row_height = 10.f;
+				float adjustment = units * _row_height;
 				scroll(adjustment);
 				return true;
 			}
@@ -564,29 +564,29 @@ namespace liblec {
 		}
 
 		void containers::page::impl::scroll(float pixels) {
-			if (v_scrollbar_.visible()) {
-				if (!scrollbar_set_) {
+			if (_v_scrollbar.visible()) {
+				if (!_scrollbar_set) {
 					// check scroll bar
-					v_scrollbar_.max_displacement(
-						v_scrollbar_.max_displacement_top_,
-						v_scrollbar_.max_displacement_bottom_);
-					v_scrollbar_.max_displacement_top_ *= get_dpi_scale();
-					v_scrollbar_.max_displacement_bottom_ *= get_dpi_scale();
+					_v_scrollbar.max_displacement(
+						_v_scrollbar._max_displacement_top,
+						_v_scrollbar._max_displacement_bottom);
+					_v_scrollbar._max_displacement_top *= get_dpi_scale();
+					_v_scrollbar._max_displacement_bottom *= get_dpi_scale();
 
-					v_scrollbar_.max_displacement_top_ += v_scrollbar_.y_displacement_;
-					v_scrollbar_.max_displacement_bottom_ += v_scrollbar_.y_displacement_;
+					_v_scrollbar._max_displacement_top += _v_scrollbar._y_displacement;
+					_v_scrollbar._max_displacement_bottom += _v_scrollbar._y_displacement;
 
-					scrollbar_set_ = true;
+					_scrollbar_set = true;
 				}
 
 				float adjustment = pixels;
 
-				v_scrollbar_.y_displacement_ -= adjustment;
-				v_scrollbar_.y_displacement_previous_ -= adjustment;
+				_v_scrollbar._y_displacement -= adjustment;
+				_v_scrollbar._y_displacement_previous -= adjustment;
 			}
 		}
 
-		void containers::page::impl::force_scrollbar_set() { scrollbar_set_ = false; }
+		void containers::page::impl::force_scrollbar_set() { _scrollbar_set = false; }
 
 		void containers::page::impl::check_alias(std::string& alias) {
 			// prevent empty alias

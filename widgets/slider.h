@@ -37,26 +37,26 @@ namespace liblec {
 				};
 
 			private:
-				float border_ = 1.f;
-				color color_border_;
-				color color_knob_;
-				color color_knob_hot_;
-				color color_knob_border_;
-				color color_tick_;
-				bool snap_to_ticks_ = true;
-				bool show_tick_marks_ = true;
-				bool show_tick_labels_ = true;
-				slider_range range_;
-				float knob_radius_ = 8.f;
-				float slide_thickness_ = 6.f;
-				float major_tick_unit_ = 25.f;
-				long minor_tick_count_ = 4;
-				float value_ = 0.f;
+				float _border = 1.f;
+				color _color_border;
+				color _color_knob;
+				color _color_knob_hot;
+				color _color_knob_border;
+				color _color_tick;
+				bool _snap_to_ticks = true;
+				bool _show_tick_marks = true;
+				bool _show_tick_labels = true;
+				slider_range _range;
+				float _knob_radius = 8.f;
+				float _slide_thickness = 6.f;
+				float _major_tick_unit = 25.f;
+				long _minor_tick_count = 4;
+				float _value = 0.f;
 
 			public:
 				slider_specs() {
-					cursor_ = cursor_type::hand;
-					rect_.size({ 200.f, 35.f });
+					_cursor = cursor_type::hand;
+					_rect.size({ 200.f, 35.f });
 				}
 
 				/// <summary>Events specific to this widget.</summary>
@@ -67,7 +67,7 @@ namespace liblec {
 				};
 
 				slider_events& events() {
-					return slider_events_;
+					return _slider_events;
 				}
 
 				bool operator==(const slider_specs&);
@@ -251,7 +251,7 @@ namespace liblec {
 				slider_specs& value(const float& value);
 
 			private:
-				slider_events slider_events_;
+				slider_events _slider_events;
 			};
 
 			/// <summary>Slider widget builder.</summary>
@@ -291,7 +291,7 @@ namespace liblec {
 
 			private:
 				class impl;
-				impl& d_;
+				impl& _d;
 
 				// Default constructor and copying an object of this class are not allowed
 				slider_builder() = delete;

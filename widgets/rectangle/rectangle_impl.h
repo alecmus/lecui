@@ -22,7 +22,7 @@ namespace liblec {
 			class rectangle_impl : public widget_impl {
 				/// private virtual function overrides
 				widgets::specs& generic_specs() override {
-					return specs_;
+					return _specs;
 				}
 
 			public:
@@ -60,17 +60,17 @@ namespace liblec {
 				rectangle_impl& operator=(const rectangle_impl&) = delete;
 
 				/// Private variables
-				widgets::rectangle_specs specs_, specs_old_;
-				ID2D1SolidColorBrush* p_brush_fill_;
-				ID2D1SolidColorBrush* p_brush_border_;
-				ID2D1SolidColorBrush* p_brush_border_hot_;
-				ID2D1SolidColorBrush* p_brush_hot_;
-				ID2D1SolidColorBrush* p_brush_disabled_;
-				ID2D1SolidColorBrush* p_brush_selected_;
+				widgets::rectangle_specs _specs, _specs_old;
+				ID2D1SolidColorBrush* _p_brush_fill;
+				ID2D1SolidColorBrush* _p_brush_border;
+				ID2D1SolidColorBrush* _p_brush_border_hot;
+				ID2D1SolidColorBrush* _p_brush_hot;
+				ID2D1SolidColorBrush* _p_brush_disabled;
+				ID2D1SolidColorBrush* _p_brush_selected;
 
 				/// page scroll bars
-				widgets::h_scrollbar_impl& h_scrollbar_;
-				widgets::v_scrollbar_impl& v_scrollbar_;
+				widgets::h_scrollbar_impl& _h_scrollbar;
+				widgets::v_scrollbar_impl& _v_scrollbar;
 			};
 		}
 	}

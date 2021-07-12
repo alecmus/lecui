@@ -15,7 +15,7 @@ namespace liblec {
 		D2D1_POINT_2F form::impl::get_cursor_position() {
 			POINT pt = { 0 };
 			GetCursorPos(&pt);
-			ScreenToClient(hWnd_, &pt);
+			ScreenToClient(_hWnd, &pt);
 			return { static_cast<float>(pt.x), static_cast<float>(pt.y) };
 		}
 

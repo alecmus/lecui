@@ -22,15 +22,15 @@ namespace liblec {
 			/// <summary>Progress indicator widget specifications.</summary>
 				/// <remarks>Recommended size with defaults is 50x50px</remarks>
 			class lecui_api progress_indicator_specs : public specs {
-				color color_empty_;
-				float line_thickness_empty_ = .5f;
-				float line_thickness_fill_ = 1.5f;
-				float percentage_ = 0.f;
-				int precision_ = 0;
+				color _color_empty;
+				float _line_thickness_empty = .5f;
+				float _line_thickness_fill = 1.5f;
+				float _percentage = 0.f;
+				int _precision = 0;
 
 			public:
 				progress_indicator_specs() {
-					rect_.size({ 50.f, 50.f });
+					_rect.size({ 50.f, 50.f });
 				}
 
 				bool operator==(const progress_indicator_specs&);
@@ -159,7 +159,7 @@ namespace liblec {
 
 			private:
 				class impl;
-				impl& d_;
+				impl& _d;
 
 				// Default constructor and copying an object of this class are not allowed
 				progress_indicator_builder() = delete;

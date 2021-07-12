@@ -21,7 +21,7 @@ namespace liblec {
 			class tree_view_impl : public widget_impl {
 				/// private virtual function overrides
 				widgets::specs& generic_specs() override {
-					return specs_;
+					return _specs;
 				}
 
 			public:
@@ -55,20 +55,20 @@ namespace liblec {
 				tree_view_impl& operator=(const tree_view_impl&) = delete;
 
 				/// Private variables
-				widgets::tree_view_specs specs_, specs_old_;
-				ID2D1SolidColorBrush* p_brush_;
-				ID2D1SolidColorBrush* p_brush_hot_;
-				ID2D1SolidColorBrush* p_brush_disabled_;
-				ID2D1SolidColorBrush* p_brush_selected_;
-				IDWriteTextFormat* p_text_format_;
+				widgets::tree_view_specs _specs, _specs_old;
+				ID2D1SolidColorBrush* _p_brush;
+				ID2D1SolidColorBrush* _p_brush_hot;
+				ID2D1SolidColorBrush* _p_brush_disabled;
+				ID2D1SolidColorBrush* _p_brush_selected;
+				IDWriteTextFormat* _p_text_format;
 
-				ID2D1Factory* p_direct2d_factory_;
-				IDWriteFactory* p_directwrite_factory_;
-				IDWriteTextLayout* p_text_layout_;
+				ID2D1Factory* _p_direct2d_factory;
+				IDWriteFactory* _p_directwrite_factory;
+				IDWriteTextLayout* _p_text_layout;
 
-				const float margin_;
+				const float _margin;
 
-				std::optional<std::reference_wrapper<containers::pane_specs>> tree_pane_specs_;
+				std::optional<std::reference_wrapper<containers::pane_specs>> _tree_pane_specs;
 
 				/// Private methods.
 				void on_selection();

@@ -17,28 +17,28 @@ namespace liblec {
 		class instance_manager::impl {
 		public:
 			impl(form& fm, const std::string& guid) :
-				fm_(fm) {
+				_fm(fm) {
 				if (!guid.empty()) {
 					// capture form guid
-					if (fm.d_.guid_.empty())
-						fm.d_.guid_ = guid;
+					if (fm._d._guid.empty())
+						fm._d._guid = guid;
 
 					// for limiting the number of instances of the app
-					if (!fm.d_.p_instance_)
-						fm.d_.p_instance_ = new limit_single_instance(guid);
+					if (!fm._d._p_instance)
+						fm._d._p_instance = new limit_single_instance(guid);
 				}
 			}
-			form& fm_;
+			form& _fm;
 		};
 
-		instance_manager::instance_manager(form& fm, const std::string& guid) : d_(*(new impl(fm, guid))) {}
-		instance_manager::~instance_manager() { delete& d_; }
+		instance_manager::instance_manager(form& fm, const std::string& guid) : _d(*(new impl(fm, guid))) {}
+		instance_manager::~instance_manager() { delete& _d; }
 
 		bool instance_manager::send_data(const std::string& guid, const std::string& data,
 			const long& timeout_milliseconds, std::string& error) {
 			
 			// find the form's native handle
-			auto hWnd = d_.fm_.d_.find_native_handle(guid);
+			auto hWnd = _d._fm._d.find_native_handle(guid);
 
 			if (hWnd == nullptr) {
 				error = "Instance not found";

@@ -280,26 +280,26 @@ namespace liblec {
 		class appearance::impl {
 		public:
 			impl(form& fm) :
-				fm_(fm) {}
-			form& fm_;
+				_fm(fm) {}
+			form& _fm;
 		};
 
 		appearance::appearance(form& fm) :
-			d_(*(new impl(fm))) {}
+			_d(*(new impl(fm))) {}
 
-		appearance::~appearance() { delete& d_; }
+		appearance::~appearance() { delete& _d; }
 
 		appearance& appearance::shadow(const bool& enable) {
-			if (IsWindow(d_.fm_.d_.hWnd_))
-				d_.fm_.d_.set_borderless_shadow(d_.fm_.d_.hWnd_, enable);
+			if (IsWindow(_d._fm._d._hWnd))
+				_d._fm._d.set_borderless_shadow(_d._fm._d._hWnd, enable);
 			else
-				d_.fm_.d_.borderless_shadow_ = enable;
+				_d._fm._d._borderless_shadow = enable;
 
 			return *this;
 		}
 
 		appearance& appearance::theme(themes theme) {
-			d_.fm_.d_.theme_ = theme;
+			_d._fm._d._theme = theme;
 
 			// change the background color
 			background(defaults::color(theme, item::form),
@@ -315,33 +315,33 @@ namespace liblec {
 		}
 
 		themes appearance::theme() {
-			return d_.fm_.d_.theme_;
+			return _d._fm._d._theme;
 		}
 
 		appearance& appearance::theme(const lecui::color& color,
 			const lecui::color& color_hot,
 			const lecui::color& color_disabled,
 			const lecui::color& color_text) {
-			d_.fm_.d_.clr_theme_ = color;
-			d_.fm_.d_.clr_theme_hot_ = color_hot;
-			d_.fm_.d_.clr_theme_disabled_ = color_disabled;
-			d_.fm_.d_.clr_theme_text_ = color_text;
+			_d._fm._d._clr_theme = color;
+			_d._fm._d._clr_theme_hot = color_hot;
+			_d._fm._d._clr_theme_disabled = color_disabled;
+			_d._fm._d._clr_theme_text = color_text;
 
 			return *this;
 		}
 
 		appearance& appearance::background(const lecui::color& color,
 			const lecui::color& color_titlebar) {
-			d_.fm_.d_.clr_background_ = color;
-			d_.fm_.d_.clr_titlebar_background_ = color_titlebar;
+			_d._fm._d._clr_background = color;
+			_d._fm._d._clr_titlebar_background = color_titlebar;
 
 			return *this;
 		}
 
 		appearance& appearance::set_icons(int icon_resource,
 			int small_icon_resource) {
-			d_.fm_.d_.idi_icon_ = icon_resource;
-			d_.fm_.d_.idi_icon_small_ = small_icon_resource;
+			_d._fm._d._idi_icon = icon_resource;
+			_d._fm._d._idi_icon_small = small_icon_resource;
 
 			return *this;
 		}

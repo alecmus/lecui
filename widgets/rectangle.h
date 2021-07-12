@@ -22,15 +22,15 @@ namespace liblec {
 			/// <summary>Rectangle widget specifications.</summary>
 			/// <remarks>Default size is 200x200px.</remarks>
 			class lecui_api rectangle_specs : public specs {
-				float border_ = .5f;
-				color color_border_;
-				color color_border_hot_;
-				float corner_radius_x_ = .0f;
-				float corner_radius_y_ = .0f;
+				float _border = .5f;
+				color _color_border;
+				color _color_border_hot;
+				float _corner_radius_x = .0f;
+				float _corner_radius_y = .0f;
 
 			public:
 				rectangle_specs() {
-					rect_.size({ 200.f, 200.f });
+					_rect.size({ 200.f, 200.f });
 				}
 
 				bool operator==(const rectangle_specs&);
@@ -159,7 +159,7 @@ namespace liblec {
 
 			private:
 				class impl;
-				impl& d_;
+				impl& _d;
 
 				// Default constructor and copying an object of this class are not allowed
 				rectangle_builder() = delete;

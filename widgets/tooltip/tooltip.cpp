@@ -14,53 +14,53 @@
 
 bool liblec::lecui::widgets::tooltip_form::on_initialize(std::string& error) {
 	// make top level form
-	ctrls_.make_top_most(true);
+	_ctrls.make_top_most(true);
 
 	// measure items
 
 	// compute maximum based on working area size and parent form size
-	auto rect_wa = dim_.working_area();
+	auto rect_wa = _dim.working_area();
 
 	// prevent from overlapping the right border of the parent form
-	dimensions dim_parent_(parent_);
-	const auto parent_right = dim_parent_.get_position().x + dim_parent_.get_size().width;
+	dimensions _dim_parent(_parent);
+	const auto parent_right = _dim_parent.get_position().x + _dim_parent.get_size().width;
 	rect_wa.right(smallest(rect_wa.right(), parent_right));
 
 	// add padding
-	rect_wa.left() += margin_;
-	rect_wa.right() -= margin_;
-	rect_wa.top() += margin_;
-	rect_wa.bottom() -= margin_;
+	rect_wa.left() += _margin;
+	rect_wa.right() -= _margin;
+	rect_wa.top() += _margin;
+	rect_wa.bottom() -= _margin;
 
 	// set maximum size to the computed area
-	max_size_.width = smallest(max_size_.width, rect_wa.width());
-	max_size_.height = smallest(max_size_.height, rect_wa.height());
+	_max_size.width = smallest(_max_size.width, rect_wa.width());
+	_max_size.height = smallest(_max_size.height, rect_wa.height());
 
-	const auto cursor_rect = dim_.cursor_rect();
+	const auto cursor_rect = _dim.cursor_rect();
 
 	// impose maximums
-	const lecui::rect max_rect = { margin_, max_size_.width, margin_, max_size_.height };
-	float bottom_ = 0.f;
-	float right_ = 0.f;
+	const lecui::rect max_rect = { _margin, _max_size.width, _margin, _max_size.height };
+	float _bottom = 0.f;
+	float _right = 0.f;
 
 	// compute rect
-	rect_ = max_rect;
+	_rect = max_rect;
 
-	rect_ = dim_.measure_label(tooltip_text_, font_, font_size_, false, false, rect_);
+	_rect = _dim.measure_label(_tooltip_text, _font, _font_size, false, false, _rect);
 
-	bottom_ = rect_.bottom();
-	right_ = rect_.right();
+	_bottom = _rect.bottom();
+	_right = _rect.right();
 
-	auto width = right_ + margin_;
-	auto height = smallest(max_size_.height, bottom_ + margin_);
+	auto width = _right + _margin;
+	auto height = smallest(_max_size.height, _bottom + _margin);
 
 	// impose minimums
-	width = largest(width, min_size_.width);
-	height = largest(height, min_size_.height);
+	width = largest(width, _min_size.width);
+	height = largest(height, _min_size.height);
 
 	auto set_size = [&]() {
-		dim_.set_size({ width, height });
-		dim_.set_minimum({ width, height });
+		_dim.set_size({ width, height });
+		_dim.set_minimum({ width, height });
 	};
 
 	// default to top left corner of cursor rect
@@ -87,27 +87,27 @@ bool liblec::lecui::widgets::tooltip_form::on_initialize(std::string& error) {
 
 void liblec::lecui::widgets::tooltip_form::on_start() {
 	// set timer to automatically close the tooltip
-	timer_man_.add("lecui::tooltip::autoclose", lifetime_, [&]() { close(); });
+	_timer_man.add("lecui::tooltip::autoclose", _lifetime, [&]() { close(); });
 }
 
 bool liblec::lecui::widgets::tooltip_form::on_layout(std::string& error) {
 	// add home page
-	auto& home_page = page_man_.add(al_page_home_);
+	auto& home_page = _page_man.add(_al_page_home);
 
 	// label
 	lecui::widgets::label_builder label(home_page, "");
 	label()
-		.text(tooltip_text_).font(font_).font_size(font_size_)
-		.rect(rect_).center_v(true);
+		.text(_tooltip_text).font(_font).font_size(_font_size)
+		.rect(_rect).center_v(true);
 
-	page_man_.show(al_page_home_);
+	_page_man.show(_al_page_home);
 	return true;
 }
 
 liblec::lecui::widgets::tooltip_form::tooltip_form(form& parent, const std::string& text, unsigned long lifetime) :
 	form(tooltip_form_caption(), parent),
-	tooltip_text_(text),
-	lifetime_(lifetime),
-	parent_(parent) {}
+	_tooltip_text(text),
+	_lifetime(lifetime),
+	_parent(parent) {}
 
 liblec::lecui::widgets::tooltip_form::~tooltip_form() {}

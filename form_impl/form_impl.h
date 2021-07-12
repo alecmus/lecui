@@ -39,13 +39,13 @@
 namespace liblec {
 	namespace lecui {
 		class mouse_track {
-			bool mouse_tracking_;
+			bool _mouse_tracking;
 
 		public:
-			mouse_track() : mouse_tracking_(false) {}
+			mouse_track() : _mouse_tracking(false) {}
 
 			void on_mouse_move(HWND hWnd) {
-				if (!mouse_tracking_) {
+				if (!_mouse_tracking) {
 					// Enable mouse tracking
 					TRACKMOUSEEVENT tme;
 					tme.cbSize = sizeof(tme);
@@ -53,21 +53,21 @@ namespace liblec {
 					tme.dwFlags = TME_HOVER | TME_LEAVE;
 					tme.dwHoverTime = HOVER_DEFAULT;
 					TrackMouseEvent(&tme);
-					mouse_tracking_ = true;
+					_mouse_tracking = true;
 				}
 			}
 
-			void reset(HWND hWnd) { mouse_tracking_ = false; }
+			void reset(HWND hWnd) { _mouse_tracking = false; }
 		};
 
 		class form::impl {
 			// static members
-			static std::atomic<unsigned long> instances_;
-			static std::atomic<bool> initialized_;
-			static ID2D1Factory* p_direct2d_factory_;
-			static IDWriteFactory* p_directwrite_factory_;
-			static IWICImagingFactory* p_iwic_factory_;
-			static limit_single_instance* p_instance_;
+			static std::atomic<unsigned long> _instances;
+			static std::atomic<bool> _initialized;
+			static ID2D1Factory* _p_direct2d_factory;
+			static IDWriteFactory* _p_directwrite_factory;
+			static IWICImagingFactory* _p_iwic_factory;
+			static limit_single_instance* _p_instance;
 
 			enum instance_messages {
 				busy = 1,
@@ -75,91 +75,91 @@ namespace liblec {
 				handled,
 			};
 
-			form& fm_;
-			form* p_parent_;
-			bool menu_form_;	// for use as a menu; not resizable & has neither a caption nor control buttons
-			bool tooltip_form_;	// like a menu form but specifically designed for tooltips
-			bool parent_closing_;
-			std::map<form*, form*> m_children_;
-			bool show_called_;
-			std::string guid_;
-			UINT reg_id_;
-			bool receiving_;	// for preventing multiple concurrent receiving operations
-			std::string data_received_;
+			form& _fm;
+			form* _p_parent;
+			bool _menu_form;	// for use as a menu; not resizable & has neither a caption nor control buttons
+			bool _tooltip_form;	// like a menu form but specifically designed for tooltips
+			bool _parent_closing;
+			std::map<form*, form*> _m_children;
+			bool _show_called;
+			std::string _guid;
+			UINT _reg_id;
+			bool _receiving;	// for preventing multiple concurrent receiving operations
+			std::string _data_received;
 
 			// constant members
-			const float caption_bar_height_;
-			const float caption_and_menu_gap_;
-			const float form_menu_margin_;
-			const float form_border_thickness_;
-			const float page_tolerance_;
-			const float control_button_margin_;
-			const std::string receive_data_timer_alias_;
+			const float _caption_bar_height;
+			const float _caption_and_menu_gap;
+			const float _form_menu_margin;
+			const float _form_border_thickness;
+			const float _page_tolerance;
+			const float _control_button_margin;
+			const std::string _receive_data_timer_alias;
 
 			// name of dll containing resources like PNGs etc
-			std::string resource_dll_filename_;
-			HMODULE resource_module_handle_;
+			std::string _resource_dll_filename;
+			HMODULE _resource_module_handle;
 
 			// icons for use by the Windows OS
-			int idi_icon_, idi_icon_small_;
+			int _idi_icon, _idi_icon_small;
 
 			// the theme
-			themes theme_;
+			themes _theme;
 
 			// colors
-			color clr_background_, clr_titlebar_background_, clr_theme_, clr_theme_hot_,
-				clr_theme_disabled_, clr_theme_text_;
+			color _clr_background, _clr_titlebar_background, _clr_theme, _clr_theme_hot,
+				_clr_theme_disabled, _clr_theme_text;
 
-			bool top_most_;
-			HWND hWnd_, hWnd_parent_;
+			bool _top_most;
+			HWND _hWnd, _hWnd_parent;
 
 			// form caption
-			std::string caption_formatted_, caption_plain_;
+			std::string _caption_formatted, _caption_plain;
 
-			bool activate_;
+			bool _activate;
 
 			// window coordinates
-			point point_;
-			size size_, min_size_;
-			bool allow_resizing_, allow_minimize_;
+			point _point;
+			size _size, _min_size;
+			bool _allow_resizing, _allow_minimize;
 
-			bool user_pos_;
-			bool preset_pos_;
-			form_position form_position_;
+			bool _user_pos;
+			bool _preset_pos;
+			form_position _form_position;
 
-			float dpi_scale_;
+			float _dpi_scale;
 
-			bool borderless_;			// should the window be borderless
-			bool borderless_shadow_;	// should the window display a native aero shadow while borderless
-			bool shadow_setting_before_maximize_;
+			bool _borderless;			// should the window be borderless
+			bool _borderless_shadow;	// should the window display a native aero shadow while borderless
+			bool _shadow_setting_before_maximize;
 
 			// Direct2D resources
-			ID2D1HwndRenderTarget* p_render_target_;
-			ID2D1SolidColorBrush* p_brush_theme_;
-			ID2D1SolidColorBrush* p_brush_theme_hot_;
-			ID2D1SolidColorBrush* p_brush_theme_disabled_;
-			ID2D1SolidColorBrush* p_brush_titlebar_;
+			ID2D1HwndRenderTarget* _p_render_target;
+			ID2D1SolidColorBrush* _p_brush_theme;
+			ID2D1SolidColorBrush* _p_brush_theme_hot;
+			ID2D1SolidColorBrush* _p_brush_theme_disabled;
+			ID2D1SolidColorBrush* _p_brush_titlebar;
 
 			// pages <K = page alias, T>
-			std::map<std::string, containers::page> p_status_panes_;
-			std::map<std::string, containers::status_pane_specs> p_status_pane_specs_;
-			std::map<std::string, containers::page> p_pages_;
-			std::string current_page_;
+			std::map<std::string, containers::page> _p_status_panes;
+			std::map<std::string, containers::status_pane_specs> _p_status_pane_specs;
+			std::map<std::string, containers::page> _p_pages;
+			std::string _current_page;
 
-			mouse_track mouse_track_;
+			mouse_track _mouse_track;
 
 			// form widgets <K = widget alias, T>
-			std::map<std::string, widgets::widget_impl&> widgets_;
-			std::vector<std::string> widgets_order_;
-			containers::page controls_page_;
-			std::unique_ptr<widgets::close_button_impl> p_close_button_;
-			std::unique_ptr<widgets::maximize_button_impl> p_maximize_button_;
-			std::unique_ptr<widgets::minimize_button_impl> p_minimize_button_;
-			std::unique_ptr<widgets::label_impl> p_caption_;
-			std::vector<std::unique_ptr<widgets::label_impl>> p_menu_;
+			std::map<std::string, widgets::widget_impl&> _widgets;
+			std::vector<std::string> _widgets_order;
+			containers::page _controls_page;
+			std::unique_ptr<widgets::close_button_impl> _p_close_button;
+			std::unique_ptr<widgets::maximize_button_impl> _p_maximize_button;
+			std::unique_ptr<widgets::minimize_button_impl> _p_minimize_button;
+			std::unique_ptr<widgets::label_impl> _p_caption;
+			std::vector<std::unique_ptr<widgets::label_impl>> _p_menu;
 
-			D2D1_POINT_2F point_before_;
-			bool user_sizing_;
+			D2D1_POINT_2F _point_before;
+			bool _user_sizing;
 
 			struct timer {
 				int unique_id = -1;
@@ -169,22 +169,22 @@ namespace liblec {
 			};
 
 			// timer map <K = alias, T>
-			std::map<std::string, timer> timers_;
-			std::atomic<int> unique_id_;
+			std::map<std::string, timer> _timers;
+			std::atomic<int> _unique_id;
 
-			bool reverse_tab_navigation_;
-			bool shift_pressed_;
-			bool space_pressed_;
-			bool lbutton_pressed_;
+			bool _reverse_tab_navigation;
+			bool _shift_pressed;
+			bool _space_pressed;
+			bool _lbutton_pressed;
 
-			std::function<void()> on_caption_;
-			std::string caption_tooltip_;
-			std::function<void(const std::string& file)> on_drop_files_;
-			std::function<void(const std::string& data)> on_receive_data_;
+			std::function<void()> _on_caption;
+			std::string _caption_tooltip;
+			std::function<void(const std::string& file)> _on_drop_files;
+			std::function<void(const std::string& data)> _on_receive_data;
 
-			std::vector<std::string> scheduled_for_closure_;
+			std::vector<std::string> _scheduled_for_closure;
 
-			HCURSOR h_widget_cursor_;
+			HCURSOR _h_widget_cursor;
 
 			// form menu
 			struct form_menu_label {
@@ -194,7 +194,7 @@ namespace liblec {
 				rect rc_text;
 			};
 
-			std::vector<form_menu_label> form_menu_;
+			std::vector<form_menu_label> _form_menu;
 
 			/// <summary>Flag for scheduling a refresh. Important when the specs of a widget are
 			/// changed during the rendering of another widget.</summary>
@@ -206,19 +206,19 @@ namespace liblec {
 			/// later in the render queue (which is not always the case, obviously). To ensure
 			/// consistency, it is important to set this flag to true when changing the specs of a
 			/// widget from within the render method of another widget.</remarks>
-			bool schedule_refresh_;
+			bool _schedule_refresh;
 
-			bool close_called_;
+			bool _close_called;
 
-			bool force_instance_;
+			bool _force_instance;
 
-			bool tray_icon_present_;
-			std::vector<tray_menu_item> tray_icon_menu_items_;
-			std::string tray_item_default_;
+			bool _tray_icon_present;
+			std::vector<tray_menu_item> _tray_icon_menu_items;
+			std::string _tray_item_default;
 
-			bool start_hidden_;
+			bool _start_hidden;
 
-			std::unique_ptr<widgets::tooltip_form> p_tooltip_form_ = nullptr;
+			std::unique_ptr<widgets::tooltip_form> _p_tooltip_form = nullptr;
 
 			/// we cannot just use WS_POPUP style
 			/// WS_THICKFRAME: without this the window cannot be resized and so aero snap, de-maximizing

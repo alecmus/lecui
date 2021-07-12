@@ -36,26 +36,26 @@ namespace liblec {
 				};
 
 			private:
-				bool editable_ = false;
-				color color_fill_editable_;
-				color color_caret_;
-				color color_border_;
-				color color_dropdown_;
-				color color_dropdown_hot_;
-				color color_dropdown_arrow_;
-				color color_dropdown_arrow_hot_;
-				float border_ = .5f;
-				float corner_radius_x_ = 2.f;
-				float corner_radius_y_ = 2.f;
-				std::vector<combobox_item> items_;
-				image_quality quality_ = image_quality::high;
-				sort_options sort_ = sort_options::ascending;
-				bool force_numerical_sort_ = false;
-				std::string selected_;
+				bool _editable = false;
+				color _color_fill_editable;
+				color _color_caret;
+				color _color_border;
+				color _color_dropdown;
+				color _color_dropdown_hot;
+				color _color_dropdown_arrow;
+				color _color_dropdown_arrow_hot;
+				float _border = .5f;
+				float _corner_radius_x = 2.f;
+				float _corner_radius_y = 2.f;
+				std::vector<combobox_item> _items;
+				image_quality _quality = image_quality::high;
+				sort_options _sort = sort_options::ascending;
+				bool _force_numerical_sort = false;
+				std::string _selected;
 
 			public:
 				combobox_specs() {
-					rect_.size({ 200.f, 25.f });
+					_rect.size({ 200.f, 25.f });
 				}
 
 				/// <summary>Events specific to this widget.</summary>
@@ -66,7 +66,7 @@ namespace liblec {
 				};
 
 				combobox_events& events() {
-					return combobox_events_;
+					return _combobox_events;
 				}
 
 				bool operator==(const combobox_specs&);
@@ -230,7 +230,7 @@ namespace liblec {
 
 				/// <summary>Get or set the sort options.</summary>
 				/// <returns>A reference to the sort options.</returns>
-				sort_options& sort() { return sort_; }
+				sort_options& sort() { return _sort; }
 
 				/// <summary>Set the sort options.</summary>
 				/// <param name="sort">The sort options, as defined in <see cref="sort_options"></see>.</param>
@@ -270,7 +270,7 @@ namespace liblec {
 				combobox_specs& selected(const std::string& selected);
 
 			private:
-				combobox_events combobox_events_;
+				combobox_events _combobox_events;
 			};
 
 			/// <summary>Combobox widget builder.</summary>
@@ -310,7 +310,7 @@ namespace liblec {
 
 			private:
 				class impl;
-				impl& d_;
+				impl& _d;
 
 				// Default constructor and copying an object of this class are not allowed
 				combobox_builder() = delete;

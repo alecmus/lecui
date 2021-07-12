@@ -16,25 +16,25 @@ namespace liblec {
 		class form_menu::form_menu::impl {
 		public:
 			impl(form& fm) :
-				fm_(fm) {}
-			form& fm_;
+				_fm(fm) {}
+			form& _fm;
 		};
 
-		form_menu::form_menu(form& fm) : d_(*(new impl(fm))) {}
-		form_menu::~form_menu() { delete& d_; }
+		form_menu::form_menu(form& fm) : _d(*(new impl(fm))) {}
+		form_menu::~form_menu() { delete& _d; }
 
 		bool form_menu::add(const std::string& text,
 			const std::string& tooltip,
 			const std::vector<form_menu_item>& items,
 			std::string& error) {
-			for (const auto& it : d_.fm_.d_.form_menu_) {
+			for (const auto& it : _d._fm._d._form_menu) {
 				if (it.text == text) {
 					error = "Menu item already exists";
 					return false;
 				}
 			}
 
-			d_.fm_.d_.form_menu_.push_back({ text, tooltip, items });
+			_d._fm._d._form_menu.push_back({ text, tooltip, items });
 			return true;
 		}
 	}

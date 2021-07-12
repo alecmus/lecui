@@ -16,8 +16,8 @@ namespace liblec {
 			const std::string& alias,
 			IDWriteFactory* p_directwrite_factory, IWICImagingFactory* p_iwic_factory) :
 			widget_impl(page, alias),
-			p_directwrite_factory_(p_directwrite_factory),
-			p_iwic_factory_(p_iwic_factory) {}
+			_p_directwrite_factory(p_directwrite_factory),
+			_p_iwic_factory(p_iwic_factory) {}
 
 		widgets::custom_impl::~custom_impl() {
 			// DO NOT call discard_resources() here. Let the client do that
@@ -34,49 +34,49 @@ namespace liblec {
 
 		HRESULT widgets::custom_impl::create_resources(
 			ID2D1HwndRenderTarget* p_render_target) {
-			specs_old_ = specs_;
-			is_static_ = (specs_.events().click == nullptr && specs_.events().action == nullptr);
-			h_cursor_ = get_cursor(specs_.cursor());
+			_specs_old = _specs;
+			_is_static = (_specs.events().click == nullptr && _specs.events().action == nullptr);
+			_h_cursor = get_cursor(_specs.cursor());
 
-			if (specs_.on_create_resources != nullptr)
-				specs_.on_create_resources(p_render_target, p_directwrite_factory_, p_iwic_factory_);
+			if (_specs.on_create_resources != nullptr)
+				_specs.on_create_resources(p_render_target, _p_directwrite_factory, _p_iwic_factory);
 
-			resources_created_ = true;
+			_resources_created = true;
 			return S_OK;
 		}
 
 		void widgets::custom_impl::discard_resources() {
-			resources_created_ = false;
-			if (specs_.on_discard_resources != nullptr)
-				specs_.on_discard_resources();
+			_resources_created = false;
+			if (_specs.on_discard_resources != nullptr)
+				_specs.on_discard_resources();
 		}
 
 		D2D1_RECT_F& widgets::custom_impl::render(ID2D1HwndRenderTarget* p_render_target,
 			const D2D1_SIZE_F& change_in_size, const D2D1_POINT_2F& offset, const bool& render) {
-			if (specs_old_ != specs_) {
-				log("specs changed: " + alias_);
-				specs_old_ = specs_;
+			if (_specs_old != _specs) {
+				log("specs changed: " + _alias);
+				_specs_old = _specs;
 				discard_resources();
 			}
 
-			if (!resources_created_)
+			if (!_resources_created)
 				create_resources(p_render_target);
 
-			rect_ = position(specs_.rect(), specs_.on_resize(), change_in_size.width, change_in_size.height);
-			rect_.left -= offset.x;
-			rect_.right -= offset.x;
-			rect_.top -= offset.y;
-			rect_.bottom -= offset.y;
+			_rect = position(_specs.rect(), _specs.on_resize(), change_in_size.width, change_in_size.height);
+			_rect.left -= offset.x;
+			_rect.right -= offset.x;
+			_rect.top -= offset.y;
+			_rect.bottom -= offset.y;
 
-			if (render && (specs_.on_render != nullptr))
-				specs_.on_render(&rect_, is_enabled_, hit_, pressed_, selected_);
+			if (render && (_specs.on_render != nullptr))
+				_specs.on_render(&_rect, _is_enabled, _hit, _pressed, _selected);
 
-			return rect_;
+			return _rect;
 		}
 
 		widgets::custom_specs&
 			widgets::custom_impl::specs() {
-			return specs_;
+			return _specs;
 		}
 
 		widgets::custom_specs&

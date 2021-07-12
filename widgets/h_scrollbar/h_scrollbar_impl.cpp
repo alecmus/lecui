@@ -14,21 +14,21 @@ namespace liblec {
 	namespace lecui {
 		widgets::h_scrollbar_impl::h_scrollbar_impl(containers::page& page) :
 			widget_impl(page, "h_scrollbar"),
-			p_brush_(nullptr),
-			p_brush_border_(nullptr),
-			p_brush_hot_(nullptr),
-			p_brush_hot_pressed_(nullptr),
-			p_brush_background_(nullptr),
-			rectA_({ 0.f, 0.f, 0.f, 0.f }),
-			rectB_({ 0.f, 0.f, 0.f, 0.f }),
-			rectC_({ 0.f, 0.f, 0.f, 0.f }),
-			rectD_({ 0.f, 0.f, 0.f, 0.f }),
-			x_displacement_previous_(0.f),
-			x_displacement_(0.f),
-			x_off_set_(0.f),
-			max_displacement_left_(0.f),
-			max_displacement_right_(0.f),
-			force_translate_(false) {}
+			_p_brush(nullptr),
+			_p_brush_border(nullptr),
+			_p_brush_hot(nullptr),
+			_p_brush_hot_pressed(nullptr),
+			_p_brush_background(nullptr),
+			_rectA({ 0.f, 0.f, 0.f, 0.f }),
+			_rectB({ 0.f, 0.f, 0.f, 0.f }),
+			_rectC({ 0.f, 0.f, 0.f, 0.f }),
+			_rectD({ 0.f, 0.f, 0.f, 0.f }),
+			_x_displacement_previous(0.f),
+			_x_displacement(0.f),
+			_x_off_set(0.f),
+			_max_displacement_left(0.f),
+			_max_displacement_right(0.f),
+			_force_translate(false) {}
 
 		widgets::h_scrollbar_impl::~h_scrollbar_impl() { discard_resources(); }
 
@@ -39,44 +39,44 @@ namespace liblec {
 
 		HRESULT widgets::h_scrollbar_impl::create_resources(
 			ID2D1HwndRenderTarget* p_render_target) {
-			is_static_ = false;
-			h_cursor_ = get_cursor(specs_.cursor());
+			_is_static = false;
+			_h_cursor = get_cursor(_specs.cursor());
 
 			HRESULT hr = S_OK;
 
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_fill()),
-					&p_brush_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_fill()),
+					&_p_brush);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_scrollbar_border()),
-					&p_brush_border_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_scrollbar_border()),
+					&_p_brush_border);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_hot()),
-					&p_brush_hot_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_hot()),
+					&_p_brush_hot);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_hot_pressed()),
-					&p_brush_hot_pressed_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_hot_pressed()),
+					&_p_brush_hot_pressed);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_background()),
-					&p_brush_background_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_background()),
+					&_p_brush_background);
 
-			resources_created_ = true;
+			_resources_created = true;
 			return hr;
 		}
 
 		void widgets::h_scrollbar_impl::discard_resources() {
-			resources_created_ = false;
-			safe_release(&p_brush_);
-			safe_release(&p_brush_border_);
-			safe_release(&p_brush_hot_);
-			safe_release(&p_brush_hot_pressed_);
-			safe_release(&p_brush_background_);
+			_resources_created = false;
+			safe_release(&_p_brush);
+			safe_release(&_p_brush_border);
+			safe_release(&_p_brush_hot);
+			safe_release(&_p_brush_hot_pressed);
+			safe_release(&_p_brush_background);
 		}
 
 		D2D1_RECT_F&
 			widgets::h_scrollbar_impl::render(ID2D1HwndRenderTarget* p_render_target,
 				const D2D1_SIZE_F& change_in_size, const D2D1_POINT_2F& offset, const bool& render) {
-			if (!resources_created_)
+			if (!_resources_created)
 				create_resources(p_render_target);
 
 			const int precision = 3;	// to prevent false-positives (4 is enough, 3 is a failsafe)
@@ -90,40 +90,40 @@ namespace liblec {
 					return false;
 			};
 
-			rect_ = position(specs_.rect(), specs_.on_resize(), change_in_size.width, change_in_size.height);
-			rect_.left -= offset.x;
-			rect_.right -= offset.x;
-			rect_.top -= offset.y;
-			rect_.bottom -= offset.y;
+			_rect = position(_specs.rect(), _specs.on_resize(), change_in_size.width, change_in_size.height);
+			_rect.left -= offset.x;
+			_rect.right -= offset.x;
+			_rect.top -= offset.y;
+			_rect.bottom -= offset.y;
 
-			rectC_ = rect_;
+			_rectC = _rect;
 
-			rectD_ = { 0.f, 0.f, 0.f, 0.f };
-			position_h_scrollbar(rectA_, rectB_, rectC_, rectD_);
+			_rectD = { 0.f, 0.f, 0.f, 0.f };
+			position_h_scrollbar(_rectA, _rectB, _rectC, _rectD);
 
-			// adjust x_displacement_ to match what the user is seeing. Ensures consistency.
-			auto const ui_displacement = get_dpi_scale() * (rectD_.left - rectC_.left);
+			// adjust _x_displacement to match what the user is seeing. Ensures consistency.
+			auto const ui_displacement = get_dpi_scale() * (_rectD.left - _rectC.left);
 			
-			if (ui_displacement != x_displacement_) {
-				x_displacement_ = ui_displacement;
-				force_translate_ = true;
+			if (ui_displacement != _x_displacement) {
+				_x_displacement = ui_displacement;
+				_force_translate = true;
 			}
 
 			if (!render)
-				return rect_;
+				return _rect;
 
-			if (!equal(rectC_, rectD_) &&
-				!(round_off::to_float((rectD_.right - rectD_.left), precision) >=
-					round_off::to_float((rectC_.right - rectC_.left), precision))) {
-				auto corner_radius = smallest((rectD_.bottom - rectD_.top) / 3.f,
-					(rectD_.right - rectD_.left) / 3.f);
+			if (!equal(_rectC, _rectD) &&
+				!(round_off::to_float((_rectD.right - _rectD.left), precision) >=
+					round_off::to_float((_rectC.right - _rectC.left), precision))) {
+				auto corner_radius = smallest((_rectD.bottom - _rectD.top) / 3.f,
+					(_rectD.right - _rectD.left) / 3.f);
 
 				// scroll area
-				D2D1_ROUNDED_RECT rounded_rectC{ rectC_, corner_radius, corner_radius };
-				p_render_target->FillRoundedRectangle(&rounded_rectC, p_brush_background_);
+				D2D1_ROUNDED_RECT rounded_rectC{ _rectC, corner_radius, corner_radius };
+				p_render_target->FillRoundedRectangle(&rounded_rectC, _p_brush_background);
 
 				// scroll bar
-				auto rect_scroll_bar = rectD_;
+				auto rect_scroll_bar = _rectD;
 				const float scroll_bar_margin = 2.f;
 				rect_scroll_bar.left += scroll_bar_margin;
 				rect_scroll_bar.top += scroll_bar_margin;
@@ -133,35 +133,35 @@ namespace liblec {
 					(rect_scroll_bar.right - rect_scroll_bar.left) / 3.f);
 				D2D1_ROUNDED_RECT rounded_rectD{ rect_scroll_bar, corner_radius, corner_radius };
 				p_render_target->FillRoundedRectangle(&rounded_rectD,
-					pressed_ ? p_brush_hot_pressed_ : (hit_ ? p_brush_hot_ : p_brush_));
-				p_render_target->DrawRoundedRectangle(&rounded_rectD, p_brush_border_);
+					_pressed ? _p_brush_hot_pressed : (_hit ? _p_brush_hot : _p_brush));
+				p_render_target->DrawRoundedRectangle(&rounded_rectD, _p_brush_border);
 
-				visible_ = true;
+				_visible = true;
 			}
 			else
-				visible_ = false;
+				_visible = false;
 
-			return rect_;
+			return _rect;
 		}
 
 		widgets::h_scrollbar_specs&
-			widgets::h_scrollbar_impl::specs() { return specs_; }
+			widgets::h_scrollbar_impl::specs() { return _specs; }
 
 		widgets::h_scrollbar_specs&
 			widgets::h_scrollbar_impl::operator()() { return specs(); }
 
 		void widgets::h_scrollbar_impl::max_displacement(float& left,
 			float& right) {
-			right = rectC_.right - rectD_.right;
-			left = rectC_.left - rectD_.left;
+			right = _rectC.right - _rectD.right;
+			left = _rectC.left - _rectD.left;
 		}
 
 		bool widgets::h_scrollbar_impl::translate_x_displacement(
 			const float& displacement, float& x_displacement_translated, bool force) {
-			if (pressed_ || force) {
+			if (_pressed || force) {
 				// calculate the scale factor for amplifying the movement of the scroll bar
-				const float width_A = rectA_.right - rectA_.left;
-				const float width_C = rectC_.right - rectC_.left;
+				const float width_A = _rectA.right - _rectA.left;
+				const float width_C = _rectC.right - _rectC.left;
 				const float scale_factor = width_C != 0.f ? width_A / width_C : 1.f;
 
 				x_displacement_translated = displacement * scale_factor;
@@ -173,8 +173,8 @@ namespace liblec {
 
 		void widgets::h_scrollbar_impl::setup(const D2D1_RECT_F& rectA,
 			const D2D1_RECT_F& rectB) {
-			rectA_ = rectA;
-			rectB_ = rectB;
+			_rectA = rectA;
+			_rectB = rectB;
 		}
 	}
 }

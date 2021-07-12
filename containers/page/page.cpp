@@ -14,56 +14,56 @@
 namespace liblec {
 	namespace lecui {
 		containers::page::page(form& fm, const std::string& alias) :
-			d_page_(*new impl(fm, *this, alias)) {}
+			_d_page(*new impl(fm, *this, alias)) {}
 
-		containers::page::~page() { delete& d_page_; }
+		containers::page::~page() { delete& _d_page; }
 
-		inline const size containers::page::size() { return d_page_.size(); }
+		inline const size containers::page::size() { return _d_page.size(); }
 
 		class page_manager::impl {
 		public:
 			impl(form& fm) :
-				fm_(fm) {}
-			form& fm_;
+				_fm(fm) {}
+			form& _fm;
 		};
 
-		page_manager::page_manager(form& fm) : d_(*(new impl(fm))) {}
-		page_manager::~page_manager() { delete& d_; }
+		page_manager::page_manager(form& fm) : _d(*(new impl(fm))) {}
+		page_manager::~page_manager() { delete& _d; }
 
 		bool page_manager::exists(const std::string& alias) {
-			return d_.fm_.d_.p_pages_.count(alias) != 0;
+			return _d._fm._d._p_pages.count(alias) != 0;
 		}
 
 		containers::page& page_manager::add(const std::string& alias) {
-			if (d_.fm_.d_.p_pages_.count(alias)) {
+			if (_d._fm._d._p_pages.count(alias)) {
 				log("library usage error page::add");
 
 				/// to-do: find a mechanism that makes sense ...
-				return d_.fm_.d_.p_pages_.at(alias);
+				return _d._fm._d._p_pages.at(alias);
 			}
 
-			d_.fm_.d_.p_pages_.try_emplace(alias, d_.fm_, alias);
-			auto& page_impl = d_.fm_.d_.p_pages_.at(alias).d_page_;
+			_d._fm._d._p_pages.try_emplace(alias, _d._fm, alias);
+			auto& page_impl = _d._fm._d._p_pages.at(alias)._d_page;
 
 			// specify direct2d factory (used internally for geometries and stuff)
-			page_impl.direct2d_factory(d_.fm_.d_.p_direct2d_factory_);
+			page_impl.direct2d_factory(_d._fm._d._p_direct2d_factory);
 
 			// specify directwrite factory (used internally for text rendering)
-			page_impl.directwrite_factory(d_.fm_.d_.p_directwrite_factory_);
+			page_impl.directwrite_factory(_d._fm._d._p_directwrite_factory);
 
 			// specify iwic imaging factory (used internally for image rendering)
-			page_impl.iwic_factory(d_.fm_.d_.p_iwic_factory_);
+			page_impl.iwic_factory(_d._fm._d._p_iwic_factory);
 
 			// set page size
-			page_impl.size(d_.fm_.d_.size_);
-			page_impl.width(page_impl.width() - (2.f * d_.fm_.d_.page_tolerance_));
-			page_impl.height(page_impl.height() - (2.f * d_.fm_.d_.page_tolerance_ + d_.fm_.d_.caption_bar_height_));
+			page_impl.size(_d._fm._d._size);
+			page_impl.width(page_impl.width() - (2.f * _d._fm._d._page_tolerance));
+			page_impl.height(page_impl.height() - (2.f * _d._fm._d._page_tolerance + _d._fm._d._caption_bar_height));
 
 			// get status pane sizes
-			const auto rect_status_bottom = d_.fm_.d_.get_status_size(containers::status_pane_specs::location::bottom);
-			const auto rect_status_top = d_.fm_.d_.get_status_size(containers::status_pane_specs::location::top);
-			const auto rect_status_left = d_.fm_.d_.get_status_size(containers::status_pane_specs::location::left);
-			const auto rect_status_right = d_.fm_.d_.get_status_size(containers::status_pane_specs::location::right);
+			const auto rect_status_bottom = _d._fm._d.get_status_size(containers::status_pane_specs::location::bottom);
+			const auto rect_status_top = _d._fm._d.get_status_size(containers::status_pane_specs::location::top);
+			const auto rect_status_left = _d._fm._d.get_status_size(containers::status_pane_specs::location::left);
+			const auto rect_status_right = _d._fm._d.get_status_size(containers::status_pane_specs::location::right);
 
 			// adjust for status panes
 			page_impl.height(page_impl.height() - rect_status_bottom.height);
@@ -72,44 +72,44 @@ namespace liblec {
 			page_impl.width(page_impl.width() - rect_status_right.width);
 
 			const float thickness = 10.f;
-			const float margin = d_.fm_.d_.page_tolerance_;
+			const float margin = _d._fm._d._page_tolerance;
 
 			// initialize the page's horizontal scroll bar
 			{
-				auto& specs_ = page_impl.h_scrollbar().specs();
-				specs_.on_resize().perc_width = 100;
-				specs_.on_resize().perc_y = 100;
+				auto& _specs = page_impl.h_scrollbar().specs();
+				_specs.on_resize().perc_width = 100;
+				_specs.on_resize().perc_y = 100;
 
-				specs_.rect()
-					.left(margin + thickness - d_.fm_.d_.page_tolerance_)
-					.right(page_impl.size().width - (margin + thickness) - d_.fm_.d_.page_tolerance_)
+				_specs.rect()
+					.left(margin + thickness - _d._fm._d._page_tolerance)
+					.right(page_impl.size().width - (margin + thickness) - _d._fm._d._page_tolerance)
 					.bottom(page_impl.size().height - margin)
-					.top(specs_.rect().bottom() - thickness);
+					.top(_specs.rect().bottom() - thickness);
 
-				specs_
-					.color_fill(defaults::color(d_.fm_.d_.theme_, item::scrollbar))
-					.color_scrollbar_border(defaults::color(d_.fm_.d_.theme_, item::scrollbar_border))
-					.color_hot(defaults::color(d_.fm_.d_.theme_, item::scrollbar_hover))
-					.color_hot_pressed(defaults::color(d_.fm_.d_.theme_, item::scrollbar_pressed));
+				_specs
+					.color_fill(defaults::color(_d._fm._d._theme, item::scrollbar))
+					.color_scrollbar_border(defaults::color(_d._fm._d._theme, item::scrollbar_border))
+					.color_hot(defaults::color(_d._fm._d._theme, item::scrollbar_hover))
+					.color_hot_pressed(defaults::color(_d._fm._d._theme, item::scrollbar_pressed));
 			}
 
 			// initialize the page's vertical scroll bar
 			{
-				auto& specs_ = page_impl.v_scrollbar().specs();
-				specs_.on_resize().perc_height = 100;
-				specs_.on_resize().perc_x = 100;
+				auto& _specs = page_impl.v_scrollbar().specs();
+				_specs.on_resize().perc_height = 100;
+				_specs.on_resize().perc_x = 100;
 
-				specs_.rect()
-					.top(margin + thickness - d_.fm_.d_.page_tolerance_)
+				_specs.rect()
+					.top(margin + thickness - _d._fm._d._page_tolerance)
 					.bottom(page_impl.size().height - (margin + thickness))
-					.right(page_impl.size().width - margin - d_.fm_.d_.page_tolerance_)
-					.left(specs_.rect().right() - thickness);
+					.right(page_impl.size().width - margin - _d._fm._d._page_tolerance)
+					.left(_specs.rect().right() - thickness);
 
-				specs_
-					.color_fill(defaults::color(d_.fm_.d_.theme_, item::scrollbar))
-					.color_scrollbar_border(defaults::color(d_.fm_.d_.theme_, item::scrollbar_border))
-					.color_hot(defaults::color(d_.fm_.d_.theme_, item::scrollbar_hover))
-					.color_hot_pressed(defaults::color(d_.fm_.d_.theme_, item::scrollbar_pressed));
+				_specs
+					.color_fill(defaults::color(_d._fm._d._theme, item::scrollbar))
+					.color_scrollbar_border(defaults::color(_d._fm._d._theme, item::scrollbar_border))
+					.color_hot(defaults::color(_d._fm._d._theme, item::scrollbar_hover))
+					.color_hot_pressed(defaults::color(_d._fm._d._theme, item::scrollbar_pressed));
 			}
 
 			// add an invisible rect to bound the page. This is essential for scroll bars to work
@@ -129,19 +129,19 @@ namespace liblec {
 			rectangle.on_resize().perc_height = 100;
 
 			// return reference to page so caller can add widgets to it
-			return d_.fm_.d_.p_pages_.at(alias);
+			return _d._fm._d._p_pages.at(alias);
 		}
 
 		containers::page&
 			page_manager::get(form& fm, const std::string& alias) {
 			try {
 				// check form pages
-				return fm.d_.p_pages_.at(alias);
+				return fm._d._p_pages.at(alias);
 			}
 			catch (const std::exception&) {}
 			try {
 				// check status panes
-				return fm.d_.p_status_panes_.at(alias);
+				return fm._d._p_status_panes.at(alias);
 			}
 			catch (const std::exception&) {}
 
@@ -149,14 +149,14 @@ namespace liblec {
 		}
 
 		void page_manager::show(const std::string& alias) {
-			d_.fm_.d_.current_page_ = alias;
+			_d._fm._d._current_page = alias;
 
-			if (IsWindow(d_.fm_.d_.hWnd_))
-				d_.fm_.d_.update();
+			if (IsWindow(_d._fm._d._hWnd))
+				_d._fm._d.update();
 		}
 
 		void page_manager::close(const std::string& path) {
-			d_.fm_.d_.close_container(path);
+			_d._fm._d.close_container(path);
 		}
 	}
 }

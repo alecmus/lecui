@@ -125,23 +125,23 @@ namespace liblec {
 		}
 
 		date date_time::from_string(const std::string& dt) {
-			date date_ = today();
+			date _date = today();
 			try {
 				std::stringstream ss;
 				ss << dt.substr(0, 2);	// parse day
-				ss >> date_.day;		// write day
+				ss >> _date.day;		// write day
 				ss.clear();
 
 				std::string month_string;
 				ss << dt.substr(3, 3);	// parse month
 				ss >> month_string;		// write month
-				date_.month = month_from_string(month_string);
+				_date.month = month_from_string(month_string);
 				ss.clear();
 				ss << dt.substr(7, 4);	// parse year
-				ss >> date_.year;		// write year
+				ss >> _date.year;		// write year
 			}
 			catch (const std::exception&) {}
-			return date_;
+			return _date;
 		}
 
 		date date_time::today() {
@@ -149,11 +149,11 @@ namespace liblec {
 			std::tm time_out = { };
 			localtime_s(&time_out, &time_temp);
 
-			date date_;
-			date_.day = (unsigned short)time_out.tm_mday;
-			date_.month = (unsigned short)time_out.tm_mon + 1;
-			date_.year = (unsigned short)time_out.tm_year + 1900;
-			return date_;
+			date _date;
+			_date.day = (unsigned short)time_out.tm_mday;
+			_date.month = (unsigned short)time_out.tm_mon + 1;
+			_date.year = (unsigned short)time_out.tm_year + 1900;
+			return _date;
 		}
 
 		date date_time::last_day_of_month(const date& dt) {
@@ -172,11 +172,11 @@ namespace liblec {
 			const time_t lastday = mktime(&when) - 86400;
 			localtime_s(&when, &lastday);
 
-			date date_;
-			date_.day = (unsigned short)(when.tm_mday);
-			date_.month = (unsigned short)(when.tm_mon + 1);
-			date_.year = (unsigned short)(when.tm_year + 1900);
-			return date_;
+			date _date;
+			_date.day = (unsigned short)(when.tm_mday);
+			_date.month = (unsigned short)(when.tm_mon + 1);
+			_date.year = (unsigned short)(when.tm_year + 1900);
+			return _date;
 		}
 
 		unsigned short date_time::day_of_week(date dt) {
@@ -195,11 +195,11 @@ namespace liblec {
 			std::tm time_out = { };
 			localtime_s(&time_out, &time_temp);
 
-			date date_;
-			date_.day = (unsigned short)(time_out.tm_mday);
-			date_.month = (unsigned short)(time_out.tm_mon + 1);
-			date_.year = (unsigned short)(time_out.tm_year + 1900);
-			return date_;
+			date _date;
+			_date.day = (unsigned short)(time_out.tm_mday);
+			_date.month = (unsigned short)(time_out.tm_mon + 1);
+			_date.year = (unsigned short)(time_out.tm_year + 1900);
+			return _date;
 		}
 
 		void date_time::get_week(const date dt, date& start, date& end) {

@@ -19,156 +19,156 @@ namespace liblec {
 				specs::operator==(param) &&
 
 				// widget specific specs
-				(text_ == param.text_) &&
-				(color_hot_pressed_ == param.color_hot_pressed_) &&
-				(multiline_ == param.multiline_) &&
-				(center_h_ == param.center_h_) &&
-				(center_v_ == param.center_v_);
+				(_text == param._text) &&
+				(_color_hot_pressed == param._color_hot_pressed) &&
+				(_multiline == param._multiline) &&
+				(_center_h == param._center_h) &&
+				(_center_v == param._center_v);
 		}
 
 		bool widgets::label_specs::operator!=(const label_specs& param) {
 			return !operator==(param);
 		}
 
-		std::string& widgets::label_specs::text() { return text_; }
+		std::string& widgets::label_specs::text() { return _text; }
 
 		widgets::label_specs& widgets::label_specs::text(const std::string& text) {
-			text_ = text;
+			_text = text;
 			return *this;
 		}
 
-		std::string& widgets::label_specs::tooltip() { return tooltip_; }
+		std::string& widgets::label_specs::tooltip() { return _tooltip; }
 
 		widgets::label_specs& widgets::label_specs::tooltip(const std::string& tooltip) {
-			tooltip_ = tooltip;
+			_tooltip = tooltip;
 			return *this;
 		}
 
-		lecui::rect& widgets::label_specs::rect() { return rect_; }
+		lecui::rect& widgets::label_specs::rect() { return _rect; }
 
 		widgets::label_specs& widgets::label_specs::rect(const lecui::rect& rect) {
-			rect_ = rect;
+			_rect = rect;
 			return *this;
 		}
 
-		widgets::specs::resize_params& widgets::label_specs::on_resize() { return on_resize_; }
+		widgets::specs::resize_params& widgets::label_specs::on_resize() { return _on_resize; }
 
 		widgets::label_specs& widgets::label_specs::on_resize(const resize_params& on_resize) {
-			on_resize_ = on_resize;
+			_on_resize = on_resize;
 			return *this;
 		}
 
-		widgets::specs::cursor_type& widgets::label_specs::cursor() { return cursor_; }
+		widgets::specs::cursor_type& widgets::label_specs::cursor() { return _cursor; }
 
 		widgets::label_specs& widgets::label_specs::cursor(const cursor_type cursor) {
-			cursor_ = cursor;
+			_cursor = cursor;
 			return *this;
 		}
 
-		std::string& widgets::label_specs::font() { return font_; }
+		std::string& widgets::label_specs::font() { return _font; }
 
 		widgets::label_specs& widgets::label_specs::font(const std::string& font) {
-			font_ = font;
+			_font = font;
 			return *this;
 		}
 
-		float& widgets::label_specs::font_size() { return font_size_; }
+		float& widgets::label_specs::font_size() { return _font_size; }
 
 		widgets::label_specs& widgets::label_specs::font_size(const float& font_size) {
-			font_size_ = font_size;
+			_font_size = font_size;
 			return *this;
 		}
 
-		color& widgets::label_specs::color_text() { return color_text_; }
+		color& widgets::label_specs::color_text() { return _color_text; }
 
 		widgets::label_specs& widgets::label_specs::color_text(const color& color_text) {
-			color_text_ = color_text;
+			_color_text = color_text;
 			return *this;
 		}
 
-		color& widgets::label_specs::color_fill() { return color_fill_; }
+		color& widgets::label_specs::color_fill() { return _color_fill; }
 
 		widgets::label_specs& widgets::label_specs::color_fill(const color& color_fill) {
-			color_fill_ = color_fill;
+			_color_fill = color_fill;
 			return *this;
 		}
 
-		color& widgets::label_specs::color_hot() { return color_hot_; }
+		color& widgets::label_specs::color_hot() { return _color_hot; }
 
 		widgets::label_specs& widgets::label_specs::color_hot(const color& color_hot) {
-			color_hot_ = color_hot;
+			_color_hot = color_hot;
 			return *this;
 		}
 
-		color& widgets::label_specs::color_selected() { return color_selected_; }
+		color& widgets::label_specs::color_selected() { return _color_selected; }
 
 		widgets::label_specs& widgets::label_specs::color_selected(const color& color_selected) {
-			color_selected_ = color_selected;
+			_color_selected = color_selected;
 			return *this;
 		}
 
-		color& widgets::label_specs::color_disabled() { return color_disabled_; }
+		color& widgets::label_specs::color_disabled() { return _color_disabled; }
 
 		widgets::label_specs& widgets::label_specs::color_disabled(const color& color_disabled) {
-			color_disabled_ = color_disabled;
+			_color_disabled = color_disabled;
 			return *this;
 		}
 
-		lecui::color& widgets::label_specs::color_hot_pressed() { return color_hot_pressed_; }
+		lecui::color& widgets::label_specs::color_hot_pressed() { return _color_hot_pressed; }
 
 		widgets::label_specs& widgets::label_specs::color_hot_pressed(const color& color_hot_pressed) {
-			color_hot_pressed_ = color_hot_pressed;
+			_color_hot_pressed = color_hot_pressed;
 			return *this;
 		}
 
-		bool& widgets::label_specs::multiline() { return multiline_; }
+		bool& widgets::label_specs::multiline() { return _multiline; }
 
 		widgets::label_specs& widgets::label_specs::multiline(const bool& multiline) {
-			multiline_ = multiline;
+			_multiline = multiline;
 			return *this;
 		}
 
-		bool& widgets::label_specs::center_h() { return center_h_; }
+		bool& widgets::label_specs::center_h() { return _center_h; }
 
 		widgets::label_specs& widgets::label_specs::center_h(const bool& center_h) {
-			center_h_ = center_h;
+			_center_h = center_h;
 			return *this;
 		}
 
-		bool& widgets::label_specs::center_v() { return center_v_; }
+		bool& widgets::label_specs::center_v() { return _center_v; }
 
 		widgets::label_specs& widgets::label_specs::center_v(const bool& center_v) {
-			center_v_ = center_v;
+			_center_v = center_v;
 			return *this;
 		}
 
 		class widgets::label_builder::impl {
 		public:
 			impl(containers::page& page, const std::string& alias) :
-				page_(page),
-				specs_(page_.d_page_.add_label(alias)) {
-				specs_
-					.color_text(defaults::color(page_.d_page_.fm_.d_.theme_, item::label))
-					.color_selected(defaults::color(page_.d_page_.fm_.d_.theme_, item::label_selected))
-					.color_hot(defaults::color(page_.d_page_.fm_.d_.theme_, item::label_hover))
-					.color_hot_pressed(defaults::color(page_.d_page_.fm_.d_.theme_, item::label_pressed))
-					.color_disabled(defaults::color(page_.d_page_.fm_.d_.theme_, item::label_disabled));
+				_page(page),
+				_specs(_page._d_page.add_label(alias)) {
+				_specs
+					.color_text(defaults::color(_page._d_page._fm._d._theme, item::label))
+					.color_selected(defaults::color(_page._d_page._fm._d._theme, item::label_selected))
+					.color_hot(defaults::color(_page._d_page._fm._d._theme, item::label_hover))
+					.color_hot_pressed(defaults::color(_page._d_page._fm._d._theme, item::label_pressed))
+					.color_disabled(defaults::color(_page._d_page._fm._d._theme, item::label_disabled));
 			}
-			containers::page& page_;
-			label_specs& specs_;
+			containers::page& _page;
+			label_specs& _specs;
 		};
 
 		widgets::label_builder::label_builder(containers::page& page) :
 			label_builder(page, "") {}
 
 		widgets::label_builder::label_builder(containers::page& page, const std::string& alias) :
-			d_(*(new impl(page, alias))) {}
+			_d(*(new impl(page, alias))) {}
 
-		widgets::label_builder::~label_builder() { delete& d_; }
+		widgets::label_builder::~label_builder() { delete& _d; }
 
 		widgets::label_specs&
 			widgets::label_builder::specs() {
-			return d_.specs_;
+			return _d._specs;
 		}
 
 		widgets::label_specs&
@@ -186,16 +186,16 @@ namespace liblec {
 				const auto path_remaining = path.substr(idx + 1);
 				try {
 					// check form pages
-					auto& page = fm.d_.p_pages_.at(page_alias);
-					auto results = fm.d_.find_widget(page, path_remaining);
-					return results.page.d_page_.get_label(results.widget.alias()).specs();
+					auto& page = fm._d._p_pages.at(page_alias);
+					auto results = fm._d.find_widget(page, path_remaining);
+					return results.page._d_page.get_label(results.widget.alias()).specs();
 				}
 				catch (const std::exception&) {}
 				try {
 					// check status panes
-					auto& page = fm.d_.p_status_panes_.at(page_alias);
-					auto results = fm.d_.find_widget(page, path_remaining);
-					return results.page.d_page_.get_label(results.widget.alias()).specs();
+					auto& page = fm._d._p_status_panes.at(page_alias);
+					auto results = fm._d.find_widget(page, path_remaining);
+					return results.page._d_page.get_label(results.widget.alias()).specs();
 				}
 				catch (const std::exception&) {}
 			}

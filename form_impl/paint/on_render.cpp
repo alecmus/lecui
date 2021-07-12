@@ -22,19 +22,19 @@ namespace liblec {
 			hr = create_device_resources();
 
 			if (SUCCEEDED(hr)) {
-				p_render_target_->BeginDraw();
+				_p_render_target->BeginDraw();
 
-				p_render_target_->SetTransform(D2D1::Matrix3x2F::Identity());
+				_p_render_target->SetTransform(D2D1::Matrix3x2F::Identity());
 
 				// fill form background
-				p_render_target_->Clear(convert_color(clr_background_));
+				_p_render_target->Clear(convert_color(_clr_background));
 
 				// get render target size
-				const D2D1_SIZE_F rtSize = p_render_target_->GetSize();
+				const D2D1_SIZE_F rtSize = _p_render_target->GetSize();
 
 				// fill titlebar background
-				const D2D1_RECT_F rect_titlebar_ = { 0.f, 0.f, rtSize.width, caption_bar_height_ };
-				p_render_target_->FillRectangle(&rect_titlebar_, p_brush_titlebar_);
+				const D2D1_RECT_F _rect_titlebar = { 0.f, 0.f, rtSize.width, _caption_bar_height };
+				_p_render_target->FillRectangle(&_rect_titlebar, _p_brush_titlebar);
 
 #if defined(_DEBUG) and DESIGNLINES
 				// Draw a grid background
@@ -44,14 +44,14 @@ namespace liblec {
 				const float line_width = .05f;
 
 				for (int x = 0; x < width; x += 10)
-					p_render_target_->DrawLine(D2D1::Point2F(static_cast<FLOAT>(x), .0f),
+					_p_render_target->DrawLine(D2D1::Point2F(static_cast<FLOAT>(x), .0f),
 						D2D1::Point2F(static_cast<FLOAT>(x), rtSize.height),
-						p_brush_theme_, line_width);
+						_p_brush_theme, line_width);
 
 				for (int y = 0; y < height; y += 10)
-					p_render_target_->DrawLine(D2D1::Point2F(.0f, static_cast<FLOAT>(y)),
+					_p_render_target->DrawLine(D2D1::Point2F(.0f, static_cast<FLOAT>(y)),
 						D2D1::Point2F(rtSize.width, static_cast<FLOAT>(y)),
-						p_brush_theme_, line_width);
+						_p_brush_theme, line_width);
 #endif
 
 				class helper {
@@ -60,13 +60,13 @@ namespace liblec {
 						const std::string& page_alias,
 						const std::string& current_page,
 						containers::page& page,
-						ID2D1HwndRenderTarget* p_render_target_,
+						ID2D1HwndRenderTarget* _p_render_target,
 						const D2D1_RECT_F& rectB,
 						const D2D1_RECT_F& client_area,
 						const D2D1_SIZE_F& change_in_size,
-						const float& dpi_scale_,
-						ID2D1SolidColorBrush* p_brush_theme_,
-						ID2D1SolidColorBrush* p_brush_theme_hot_,
+						const float& _dpi_scale,
+						ID2D1SolidColorBrush* _p_brush_theme,
+						ID2D1SolidColorBrush* _p_brush_theme_hot,
 						bool lbutton_pressed) {
 						bool render = page_alias == current_page;
 
@@ -80,54 +80,54 @@ namespace liblec {
 
 						{
 							// clip
-							auto_clip clip(render, p_render_target_, client_area, 1.f);
+							auto_clip clip(render, _p_render_target, client_area, 1.f);
 
 							do {
 								// h_scrollbar
 								{
 									// impose limits
-									if (page.d_page_.h_scrollbar().x_displacement_ < 0.f)
-										page.d_page_.h_scrollbar().x_displacement_ =
-										largest(page.d_page_.h_scrollbar().x_displacement_,
-											page.d_page_.h_scrollbar().max_displacement_left_);
+									if (page._d_page.h_scrollbar()._x_displacement < 0.f)
+										page._d_page.h_scrollbar()._x_displacement =
+										largest(page._d_page.h_scrollbar()._x_displacement,
+											page._d_page.h_scrollbar()._max_displacement_left);
 									else
-										page.d_page_.h_scrollbar().x_displacement_ =
-										smallest(page.d_page_.h_scrollbar().x_displacement_,
-											page.d_page_.h_scrollbar().max_displacement_right_);
+										page._d_page.h_scrollbar()._x_displacement =
+										smallest(page._d_page.h_scrollbar()._x_displacement,
+											page._d_page.h_scrollbar()._max_displacement_right);
 
 									// translate the displacement
-									float x_displacement_translated_ = 0.f;
-									if (page.d_page_.h_scrollbar().translate_x_displacement(
-										page.d_page_.h_scrollbar().x_displacement_,
-										x_displacement_translated_,
-										page.d_page_.h_scrollbar().force_translate_)) {
-										page.d_page_.h_scrollbar().force_translate_ = false;
-										page.d_page_.h_scrollbar().x_off_set_ =
-											x_displacement_translated_;
+									float _x_displacement_translated = 0.f;
+									if (page._d_page.h_scrollbar().translate_x_displacement(
+										page._d_page.h_scrollbar()._x_displacement,
+										_x_displacement_translated,
+										page._d_page.h_scrollbar()._force_translate)) {
+										page._d_page.h_scrollbar()._force_translate = false;
+										page._d_page.h_scrollbar()._x_off_set =
+											_x_displacement_translated;
 									}
 								}
 
 								// v_scrollbar
 								{
 									// impose limits
-									if (page.d_page_.v_scrollbar().y_displacement_ < 0.f)
-										page.d_page_.v_scrollbar().y_displacement_ =
-										largest(page.d_page_.v_scrollbar().y_displacement_,
-											page.d_page_.v_scrollbar().max_displacement_top_);
+									if (page._d_page.v_scrollbar()._y_displacement < 0.f)
+										page._d_page.v_scrollbar()._y_displacement =
+										largest(page._d_page.v_scrollbar()._y_displacement,
+											page._d_page.v_scrollbar()._max_displacement_top);
 									else
-										page.d_page_.v_scrollbar().y_displacement_ =
-										smallest(page.d_page_.v_scrollbar().y_displacement_,
-											page.d_page_.v_scrollbar().max_displacement_bottom_);
+										page._d_page.v_scrollbar()._y_displacement =
+										smallest(page._d_page.v_scrollbar()._y_displacement,
+											page._d_page.v_scrollbar()._max_displacement_bottom);
 
 									// translate the displacement
-									float y_displacement_translated_ = 0.f;
-									if (page.d_page_.v_scrollbar().translate_y_displacement(
-										page.d_page_.v_scrollbar().y_displacement_,
-										y_displacement_translated_,
-										page.d_page_.v_scrollbar().force_translate_)) {
-										page.d_page_.v_scrollbar().force_translate_ = false;
-										page.d_page_.v_scrollbar().y_off_set_ =
-											y_displacement_translated_;
+									float _y_displacement_translated = 0.f;
+									if (page._d_page.v_scrollbar().translate_y_displacement(
+										page._d_page.v_scrollbar()._y_displacement,
+										_y_displacement_translated,
+										page._d_page.v_scrollbar()._force_translate)) {
+										page._d_page.v_scrollbar()._force_translate = false;
+										page._d_page.v_scrollbar()._y_off_set =
+											_y_displacement_translated;
 									}
 								}
 
@@ -135,8 +135,8 @@ namespace liblec {
 
 								// measure widgets
 								bool initialized = false;
-								D2D1_RECT_F rect_widgets_ = { 0.f, 0.f, 0.f, 0.f };
-								for (auto& widget : page.d_page_.widgets()) {
+								D2D1_RECT_F _rect_widgets = { 0.f, 0.f, 0.f, 0.f };
+								for (auto& widget : page._d_page.widgets()) {
 									if (widget.second.type() ==
 										widgets::widget_type::h_scrollbar ||
 										widget.second.type() ==
@@ -145,21 +145,21 @@ namespace liblec {
 										widgets::widget_type::group)
 										continue;
 
-									rect_widgets_ = widget.second.render(p_render_target_,
+									_rect_widgets = widget.second.render(_p_render_target,
 										change_in_size,
-										{ (page.d_page_.h_scrollbar().x_off_set_ / dpi_scale_) - client_area.left,
-										(page.d_page_.v_scrollbar().y_off_set_ / dpi_scale_) - client_area.top },
+										{ (page._d_page.h_scrollbar()._x_off_set / _dpi_scale) - client_area.left,
+										(page._d_page.v_scrollbar()._y_off_set / _dpi_scale) - client_area.top },
 										false);
 
 									if (!initialized) {
 										initialized = true;
-										rectA = rect_widgets_;
+										rectA = _rect_widgets;
 									}
 									else {
-										rectA.left = smallest(rectA.left, rect_widgets_.left);
-										rectA.right = largest(rectA.right, rect_widgets_.right);
-										rectA.top = smallest(rectA.top, rect_widgets_.top);
-										rectA.bottom = largest(rectA.bottom, rect_widgets_.bottom);
+										rectA.left = smallest(rectA.left, _rect_widgets.left);
+										rectA.right = largest(rectA.right, _rect_widgets.right);
+										rectA.top = smallest(rectA.top, _rect_widgets.top);
+										rectA.bottom = largest(rectA.bottom, _rect_widgets.bottom);
 									}
 								}
 
@@ -176,8 +176,8 @@ namespace liblec {
 										const auto x_overflow = abs(left) < abs(right) ? left : right;
 
 										// translate the environment
-										page.d_page_.h_scrollbar().x_displacement_ += x_overflow;
-										page.d_page_.h_scrollbar().force_translate_ = true;
+										page._d_page.h_scrollbar()._x_displacement += x_overflow;
+										page._d_page.h_scrollbar()._force_translate = true;
 										correct = true;
 									}
 
@@ -189,8 +189,8 @@ namespace liblec {
 										const auto y_overflow = abs(top) < abs(bottom) ? top : bottom;
 
 										// translate the environment
-										page.d_page_.v_scrollbar().y_displacement_ += y_overflow;
-										page.d_page_.v_scrollbar().force_translate_ = true;
+										page._d_page.v_scrollbar()._y_displacement += y_overflow;
+										page._d_page.v_scrollbar()._force_translate = true;
 										correct = true;
 									}
 
@@ -202,34 +202,34 @@ namespace liblec {
 							} while (true);
 
 							// resize groupboxes
-							for (auto& widget : page.d_page_.widgets()) {
+							for (auto& widget : page._d_page.widgets()) {
 								if (widget.second.type() !=
 									widgets::widget_type::group)
 									continue;
 
 								try {
 									// get the groupbox specs
-									auto& specs = page.d_page_.get_group(widget.first).specs();
+									auto& specs = page._d_page.get_group(widget.first).specs();
 
 									bool groupbox_initialized = false;
 									for (auto& widget_alias :
-										page.d_page_.get_group(widget.first).specs().widgets()) {
+										page._d_page.get_group(widget.first).specs().widgets()) {
 										try {
 											// get the rect for this widget
-											const auto& rect_ =
-												page.d_page_.widgets().at(widget_alias).get_rect();
+											const auto& _rect =
+												page._d_page.widgets().at(widget_alias).get_rect();
 
 											// adjust the groupbox rect
 											if (!groupbox_initialized) {
-												specs.rect(convert_rect(rect_));
+												specs.rect(convert_rect(_rect));
 												groupbox_initialized = true;
 											}
 											else {
 												specs.rect()
-													.left(smallest(specs.rect().left(), rect_.left))
-													.top(smallest(specs.rect().top(), rect_.top))
-													.right(largest(specs.rect().right(), rect_.right))
-													.bottom(largest(specs.rect().bottom(), rect_.bottom));
+													.left(smallest(specs.rect().left(), _rect.left))
+													.top(smallest(specs.rect().top(), _rect.top))
+													.right(largest(specs.rect().right(), _rect.right))
+													.bottom(largest(specs.rect().bottom(), _rect.bottom));
 											}
 										}
 										catch (const std::exception&) {}
@@ -250,14 +250,14 @@ namespace liblec {
 							}
 
 							// render groupboxes
-							for (auto& widget : page.d_page_.widgets()) {
+							for (auto& widget : page._d_page.widgets()) {
 								if (widget.second.type() !=
 									widgets::widget_type::group)
 									continue;
 
 								try {
 									// check if groupbox has widgets
-									if (page.d_page_.get_group(widget.first).specs().widgets().empty())
+									if (page._d_page.get_group(widget.first).specs().widgets().empty())
 										continue;
 
 									// to-do: check if widgets actually exist and discontinue if they dont
@@ -268,12 +268,12 @@ namespace liblec {
 
 								// render with no resizing or offset parameters because the rect for the
 								// group is already properly set
-								widget.second.render(p_render_target_,
+								widget.second.render(_p_render_target,
 									{ 0.f, 0.f }, { 0.f, 0.f }, render);
 							}
 
 							// render widgets
-							for (auto& widget : page.d_page_.widgets()) {
+							for (auto& widget : page._d_page.widgets()) {
 								if (widget.second.type() ==
 									widgets::widget_type::h_scrollbar ||
 									widget.second.type() ==
@@ -282,17 +282,17 @@ namespace liblec {
 									widgets::widget_type::group)
 									continue;
 
-								widget.second.render(p_render_target_,
+								widget.second.render(_p_render_target,
 									change_in_size,
-									{ (page.d_page_.h_scrollbar().x_off_set_ / dpi_scale_) - client_area.left,
-									(page.d_page_.v_scrollbar().y_off_set_ / dpi_scale_) - client_area.top },
+									{ (page._d_page.h_scrollbar()._x_off_set / _dpi_scale) - client_area.left,
+									(page._d_page.v_scrollbar()._y_off_set / _dpi_scale) - client_area.top },
 									render);
 
 								if (widget.second.type() ==
 									widgets::widget_type::tab_pane) {
 									try {
 										// get this tab pane
-										auto& tab_pane = page.d_page_.get_tab_pane(widget.first);
+										auto& tab_pane = page._d_page.get_tab_pane(widget.first);
 
 										// get client area for this tab pane
 										const auto& client_area = tab_pane.client_area();
@@ -302,17 +302,17 @@ namespace liblec {
 											(tab_pane.tab_pane_area().bottom - tab_pane.tab_pane_area().top) - tab_pane().rect().height()
 										};
 
-										for (auto& tab : tab_pane.p_tabs_) {
-											const float page_tolerance_ = 10.f;
+										for (auto& tab : tab_pane._p_tabs) {
+											const float _page_tolerance = 10.f;
 											D2D1_RECT_F rect_page = client_area;
-											rect_page.left += page_tolerance_;
-											rect_page.top += page_tolerance_;
-											rect_page.right -= page_tolerance_;
-											rect_page.bottom -= page_tolerance_;
+											rect_page.left += _page_tolerance;
+											rect_page.top += _page_tolerance;
+											rect_page.right -= _page_tolerance;
+											rect_page.bottom -= _page_tolerance;
 
-											render_page(render ? tab_pane.visible() : false, tab.first, tab_pane.current_tab_, tab.second,
-												p_render_target_, rect_page, rect_page, change_in_size,
-												dpi_scale_, p_brush_theme_, p_brush_theme_hot_, lbutton_pressed);	// recursion
+											render_page(render ? tab_pane.visible() : false, tab.first, tab_pane._current_tab, tab.second,
+												_p_render_target, rect_page, rect_page, change_in_size,
+												_dpi_scale, _p_brush_theme, _p_brush_theme_hot, lbutton_pressed);	// recursion
 										}
 									}
 									catch (const std::exception&) {}
@@ -322,7 +322,7 @@ namespace liblec {
 										widgets::widget_type::pane) {
 										try {
 											// get this pane
-											auto& pane = page.d_page_.get_pane(widget.first);
+											auto& pane = page._d_page.get_pane(widget.first);
 
 											// get client area for this pane
 											const auto& client_area = pane.client_area();
@@ -332,17 +332,17 @@ namespace liblec {
 												(pane.pane_area().bottom - pane.pane_area().top) - pane().rect().height()
 											};
 
-											for (auto& page : pane.p_panes_) {
-												const float page_tolerance_ = 10.f;
+											for (auto& page : pane._p_panes) {
+												const float _page_tolerance = 10.f;
 												D2D1_RECT_F rect_page = client_area;
-												rect_page.left += page_tolerance_;
-												rect_page.top += page_tolerance_;
-												rect_page.right -= page_tolerance_;
-												rect_page.bottom -= page_tolerance_;
+												rect_page.left += _page_tolerance;
+												rect_page.top += _page_tolerance;
+												rect_page.right -= _page_tolerance;
+												rect_page.bottom -= _page_tolerance;
 
-												render_page(render ? pane.visible() : false, page.first, pane.current_pane_, page.second,
-													p_render_target_, rect_page, rect_page, change_in_size,
-													dpi_scale_, p_brush_theme_, p_brush_theme_hot_, lbutton_pressed);	// recursion
+												render_page(render ? pane.visible() : false, page.first, pane._current_pane, page.second,
+													_p_render_target, rect_page, rect_page, change_in_size,
+													_dpi_scale, _p_brush_theme, _p_brush_theme_hot, lbutton_pressed);	// recursion
 											}
 										}
 										catch (const std::exception&) {}
@@ -352,21 +352,21 @@ namespace liblec {
 #if defined(_DEBUG) and DESIGNLINES
 							if (render) {
 								// draw rectA and rectB
-								p_render_target_->DrawRectangle(&rectA, p_brush_theme_, .5f);
-								p_render_target_->DrawRectangle(&rectB, p_brush_theme_hot_, .5f);
+								_p_render_target->DrawRectangle(&rectA, _p_brush_theme, .5f);
+								_p_render_target->DrawRectangle(&rectB, _p_brush_theme_hot, .5f);
 							}
 #endif
 						}
 
 						// setup horizontal scroll bar and render it
-						page.d_page_.h_scrollbar().setup(rectA, rectB);
-						page.d_page_.h_scrollbar().render(p_render_target_,
+						page._d_page.h_scrollbar().setup(rectA, rectB);
+						page._d_page.h_scrollbar().render(_p_render_target,
 							change_in_size, { 0.f - client_area.left,
 							0.f - client_area.top }, render);
 
 						// setup vertical scroll bar and render it
-						page.d_page_.v_scrollbar().setup(rectA, rectB);
-						page.d_page_.v_scrollbar().render(p_render_target_,
+						page._d_page.v_scrollbar().setup(rectA, rectB);
+						page._d_page.v_scrollbar().render(_p_render_target,
 							change_in_size, { 0.f - client_area.left,
 							0.f - client_area.top }, render);
 					}
@@ -378,94 +378,94 @@ namespace liblec {
 				const auto status_left = get_status_size(containers::status_pane_specs::location::left);
 				const auto status_right = get_status_size(containers::status_pane_specs::location::right);
 
-				const D2D1_SIZE_F change_in_size = { rtSize.width - size_.width, rtSize.height - size_.height };
+				const D2D1_SIZE_F change_in_size = { rtSize.width - _size.width, rtSize.height - _size.height };
 
 				// render page
-				for (auto& page : p_pages_) {
-					const D2D1_RECT_F rect_page = { page_tolerance_ + status_left.width,
-						caption_bar_height_ + page_tolerance_ + status_top.height,
-						rtSize.width - page_tolerance_ - status_right.width, rtSize.height - page_tolerance_ - status_bottom.height };
+				for (auto& page : _p_pages) {
+					const D2D1_RECT_F rect_page = { _page_tolerance + status_left.width,
+						_caption_bar_height + _page_tolerance + status_top.height,
+						rtSize.width - _page_tolerance - status_right.width, rtSize.height - _page_tolerance - status_bottom.height };
 
 					const D2D1_RECT_F client_area = rect_page;
 
-					helper::render_page(true, page.first, current_page_, page.second, p_render_target_,
-						rect_page, client_area, change_in_size, dpi_scale_,
-						p_brush_theme_, p_brush_theme_hot_, lbutton_pressed_);
+					helper::render_page(true, page.first, _current_page, page.second, _p_render_target,
+						rect_page, client_area, change_in_size, _dpi_scale,
+						_p_brush_theme, _p_brush_theme_hot, _lbutton_pressed);
 				}
 
 				// render status panes
-				for (auto& page : p_status_panes_) {
+				for (auto& page : _p_status_panes) {
 					if (page.first == "status::bottom") {
-						const auto left = page_tolerance_;
-						const auto bottom = rtSize.height - page_tolerance_;
-						const auto right = rtSize.width - page_tolerance_;
+						const auto left = _page_tolerance;
+						const auto bottom = rtSize.height - _page_tolerance;
+						const auto right = rtSize.width - _page_tolerance;
 						const auto top = bottom - page.second.size().height;
 
 						const D2D1_RECT_F rect_page = { left, top, right, bottom };
 						const D2D1_RECT_F client_area = rect_page;
 
-						helper::render_page(true, page.first, page.first, page.second, p_render_target_,
-							rect_page, client_area, change_in_size, dpi_scale_,
-							p_brush_theme_, p_brush_theme_hot_, lbutton_pressed_);
+						helper::render_page(true, page.first, page.first, page.second, _p_render_target,
+							rect_page, client_area, change_in_size, _dpi_scale,
+							_p_brush_theme, _p_brush_theme_hot, _lbutton_pressed);
 					}
 
 					if (page.first == "status::top") {
-						const auto left = page_tolerance_;
-						const auto top = caption_bar_height_ + page_tolerance_;
+						const auto left = _page_tolerance;
+						const auto top = _caption_bar_height + _page_tolerance;
 						const auto bottom = top + page.second.size().height;
-						const auto right = rtSize.width - page_tolerance_;
+						const auto right = rtSize.width - _page_tolerance;
 
 						const D2D1_RECT_F rect_page = { left, top, right, bottom };
 						const D2D1_RECT_F client_area = rect_page;
 
-						helper::render_page(true, page.first, page.first, page.second, p_render_target_,
-							rect_page, client_area, change_in_size, dpi_scale_,
-							p_brush_theme_, p_brush_theme_hot_, lbutton_pressed_);
+						helper::render_page(true, page.first, page.first, page.second, _p_render_target,
+							rect_page, client_area, change_in_size, _dpi_scale,
+							_p_brush_theme, _p_brush_theme_hot, _lbutton_pressed);
 					}
 
 					if (page.first == "status::left") {
-						const auto left = page_tolerance_;
-						const auto top = caption_bar_height_ + page_tolerance_;
-						const auto bottom = rtSize.height - page_tolerance_;
+						const auto left = _page_tolerance;
+						const auto top = _caption_bar_height + _page_tolerance;
+						const auto bottom = rtSize.height - _page_tolerance;
 						const auto right = left + page.second.size().width;
 
 						const D2D1_RECT_F rect_page = { left, top, right, bottom };
 						const D2D1_RECT_F client_area = rect_page;
 
-						helper::render_page(true, page.first, page.first, page.second, p_render_target_,
-							rect_page, client_area, change_in_size, dpi_scale_,
-							p_brush_theme_, p_brush_theme_hot_, lbutton_pressed_);
+						helper::render_page(true, page.first, page.first, page.second, _p_render_target,
+							rect_page, client_area, change_in_size, _dpi_scale,
+							_p_brush_theme, _p_brush_theme_hot, _lbutton_pressed);
 					}
 
 					if (page.first == "status::right") {
-						const auto right = rtSize.width - page_tolerance_;
+						const auto right = rtSize.width - _page_tolerance;
 						const auto left = right - page.second.size().width;
-						const auto top = caption_bar_height_ + page_tolerance_;
-						const auto bottom = rtSize.height - page_tolerance_;
+						const auto top = _caption_bar_height + _page_tolerance;
+						const auto bottom = rtSize.height - _page_tolerance;
 
 						const D2D1_RECT_F rect_page = { left, top, right, bottom };
 						const D2D1_RECT_F client_area = rect_page;
 
-						helper::render_page(true, page.first, page.first, page.second, p_render_target_,
-							rect_page, client_area, change_in_size, dpi_scale_,
-							p_brush_theme_, p_brush_theme_hot_, lbutton_pressed_);
+						helper::render_page(true, page.first, page.first, page.second, _p_render_target,
+							rect_page, client_area, change_in_size, _dpi_scale,
+							_p_brush_theme, _p_brush_theme_hot, _lbutton_pressed);
 					}
 				}
 
 				// render form widgets
-				for (auto& widget : widgets_)
-					widget.second.render(p_render_target_,
+				for (auto& widget : _widgets)
+					widget.second.render(_p_render_target,
 						change_in_size, { 0.f, 0.f }, true);
 
 				// render form border
-				if (!maximized(hWnd_)) {
+				if (!maximized(_hWnd)) {
 					const D2D1_RECT_F form_rectangle =
 						D2D1::RectF(.0f, .0f, rtSize.width, rtSize.height);
-					p_render_target_->DrawRectangle(&form_rectangle,
-						p_brush_theme_, form_border_thickness_);
+					_p_render_target->DrawRectangle(&form_rectangle,
+						_p_brush_theme, _form_border_thickness);
 				}
 
-				hr = p_render_target_->EndDraw();
+				hr = _p_render_target->EndDraw();
 			}
 
 			if (hr == D2DERR_RECREATE_TARGET) {

@@ -25,15 +25,15 @@ namespace liblec {
 				/// <summary>
 				/// Handler for resource creation. The pointers need to be cast back to their
 				/// Direct2D equivalents on the client side before they can be used. e.g.
-				/// ID2D1HwndRenderTarget_ can be cast using reinterpret_cast to a
+				/// _ID2D1HwndRenderTarget can be cast using reinterpret_cast to a
 				/// ID2D1HwndRenderTarget. This will be called internally by the library when
 				/// device-specific resources associated with the Direct3D device need to be
 				/// (re)created.
 				/// </summary>
 				std::function<void(
-					void* ID2D1HwndRenderTarget_,
-					void* IDWriteFactory_,
-					void* IWICImagingFactory_)>
+					void* _ID2D1HwndRenderTarget,
+					void* _IDWriteFactory,
+					void* _IWICImagingFactory)>
 					on_create_resources = nullptr;
 
 				/// <summary>
@@ -44,17 +44,17 @@ namespace liblec {
 
 				/// <summary>
 				/// Handler for rendering. All drawing should be done here. Information about
-				/// the widget status are provided through the parameters, e.g. selected_ is
+				/// the widget status are provided through the parameters, e.g. _selected is
 				/// true if the widget is currently selected in the user interface and
-				/// pressed_ is true if the left mouse button has not yet been released after
+				/// _pressed is true if the left mouse button has not yet been released after
 				/// it was pressed down while the cursor was within the widget.
 				/// </summary>
 				std::function<void(
-					void* D2D1_RECT_F_,
-					bool enabled_,
-					bool hit_,
-					bool pressed_,
-					bool selected_)>
+					void* _D2D1_RECT_F,
+					bool _enabled,
+					bool _hit,
+					bool _pressed,
+					bool _selected)>
 					on_render = nullptr;
 
 				bool operator==(const custom_specs&);
@@ -136,7 +136,7 @@ namespace liblec {
 
 			private:
 				class impl;
-				impl& d_;
+				impl& _d;
 
 				// Default constructor and copying an object of this class are not allowed
 				custom_builder() = delete;

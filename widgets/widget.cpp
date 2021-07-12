@@ -40,18 +40,18 @@ namespace liblec {
 			bool specs::operator==(const specs& param) {
 				return
 					/// Colors
-					(color_text_ == param.color_text_) &&
-					(color_fill_ == param.color_fill_) &&
-					(color_hot_ == param.color_hot_) &&
-					(color_selected_ == param.color_selected_) &&
-					(color_disabled_ == param.color_disabled_) &&
+					(_color_text == param._color_text) &&
+					(_color_fill == param._color_fill) &&
+					(_color_hot == param._color_hot) &&
+					(_color_selected == param._color_selected) &&
+					(_color_disabled == param._color_disabled) &&
 
 					/// Font
-					(font_ == param.font_) &&
-					(font_size_ == param.font_size_) &&
+					(_font == param._font) &&
+					(_font_size == param._font_size) &&
 
 					/// Cursor
-					(cursor_ == param.cursor_);
+					(_cursor == param._cursor);
 			}
 
 			bool specs::operator!=(const specs& param) {
@@ -62,40 +62,40 @@ namespace liblec {
 		class widget_manager::impl {
 		public:
 			impl(form& fm) :
-				fm_(fm) {}
-			form& fm_;
+				_fm(fm) {}
+			form& _fm;
 		};
 
 		widget_manager::widget_manager(form& fm) :
-			d_(*new impl(fm)) {}
+			_d(*new impl(fm)) {}
 		widget_manager::~widget_manager() {
-			delete& d_;
+			delete& _d;
 		}
 
 		void widget_manager::enable(const std::string& path, bool enable) {
-			d_.fm_.d_.enable(path, enable);
+			_d._fm._d.enable(path, enable);
 		}
 
 		void widget_manager::show(const std::string& path, bool show) {
-			d_.fm_.d_.show(path, show);
+			_d._fm._d.show(path, show);
 		}
 		void widget_manager::close(const std::string& path) {
 			// use timer in case a widget is closed from its own handler.
 			// this way the actual closing will be done (hopefully) outside the handler coz of async.
 			// the caller still has to exercise caution by avoiding such logical errors.
-			d_.fm_.d_.scheduled_for_closure_.push_back(path);
-			timer_manager(d_.fm_).add("close_widget_timer", 0,
+			_d._fm._d._scheduled_for_closure.push_back(path);
+			timer_manager(_d._fm).add("close_widget_timer", 0,
 				[&]() {
-					timer_manager(d_.fm_).stop("close_widget_timer");
-					for (const auto& it : d_.fm_.d_.scheduled_for_closure_)
-						d_.fm_.d_.close(it);
+					timer_manager(_d._fm).stop("close_widget_timer");
+					for (const auto& it : _d._fm._d._scheduled_for_closure)
+						_d._fm._d.close(it);
 
-					d_.fm_.d_.scheduled_for_closure_.clear();
+					_d._fm._d._scheduled_for_closure.clear();
 				});
 		}
 
 		void widget_manager::select(const std::string& path) {
-			d_.fm_.d_.select(path);
+			_d._fm._d.select(path);
 		}
 	}
 }

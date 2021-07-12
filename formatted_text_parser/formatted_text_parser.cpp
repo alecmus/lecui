@@ -68,18 +68,18 @@ formatted_text_parser::read(std::string formatted_text,
 		try {
 			data.clear();
 
-			std::string line_(line);
+			std::string _line(line);
 
 			while (true) {
-				auto idx = line_.find(seperator);
+				auto idx = _line.find(seperator);
 
 				if (idx == std::string::npos) {
-					add(line_);
+					add(_line);
 					break;
 				}
 
-				auto s = line_.substr(0, idx);
-				line_.erase(0, idx + 1);
+				auto s = _line.substr(0, idx);
+				_line.erase(0, idx + 1);
 				add(s);
 			}
 		}

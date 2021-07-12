@@ -17,17 +17,17 @@ namespace liblec {
 			ID2D1Factory* p_direct2d_factory,
 			IDWriteFactory* p_directwrite_factory) :
 			widget_impl(page, alias),
-			p_brush_(nullptr),
-			p_brush_check_(nullptr),
-			p_brush_border_(nullptr),
-			p_brush_fill_(nullptr),
-			p_brush_hot_(nullptr),
-			p_brush_disabled_(nullptr),
-			p_brush_selected_(nullptr),
-			p_text_format_(nullptr),
-			p_direct2d_factory_(p_direct2d_factory),
-			p_directwrite_factory_(p_directwrite_factory),
-			p_text_layout_(nullptr) {}
+			_p_brush(nullptr),
+			_p_brush_check(nullptr),
+			_p_brush_border(nullptr),
+			_p_brush_fill(nullptr),
+			_p_brush_hot(nullptr),
+			_p_brush_disabled(nullptr),
+			_p_brush_selected(nullptr),
+			_p_text_format(nullptr),
+			_p_direct2d_factory(p_direct2d_factory),
+			_p_directwrite_factory(p_directwrite_factory),
+			_p_text_layout(nullptr) {}
 
 		widgets::checkbox_impl::~checkbox_impl() { discard_resources(); }
 
@@ -38,120 +38,120 @@ namespace liblec {
 
 		HRESULT widgets::checkbox_impl::create_resources(
 			ID2D1HwndRenderTarget* p_render_target) {
-			specs_old_ = specs_;
-			is_static_ = (specs_.events().check == nullptr && specs_.events().click == nullptr && specs_.events().action == nullptr);
-			h_cursor_ = get_cursor(specs_.cursor());
+			_specs_old = _specs;
+			_is_static = (_specs.events().check == nullptr && _specs.events().click == nullptr && _specs.events().action == nullptr);
+			_h_cursor = get_cursor(_specs.cursor());
 
 			HRESULT hr = S_OK;
 
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_fill()),
-					&p_brush_fill_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_fill()),
+					&_p_brush_fill);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_check()),
-					&p_brush_check_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_check()),
+					&_p_brush_check);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_border()),
-					&p_brush_border_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_border()),
+					&_p_brush_border);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_hot()),
-					&p_brush_hot_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_hot()),
+					&_p_brush_hot);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_disabled()),
-					&p_brush_disabled_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_disabled()),
+					&_p_brush_disabled);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_selected()),
-					&p_brush_selected_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_selected()),
+					&_p_brush_selected);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_text()),
-					&p_brush_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_text()),
+					&_p_brush);
 			if (SUCCEEDED(hr)) {
 				// Create a DirectWrite text format object.
-				hr = p_directwrite_factory_->CreateTextFormat(
-					convert_string(specs_.font()).c_str(),
+				hr = _p_directwrite_factory->CreateTextFormat(
+					convert_string(_specs.font()).c_str(),
 					NULL,
 					DWRITE_FONT_WEIGHT_NORMAL,
 					DWRITE_FONT_STYLE_NORMAL,
 					DWRITE_FONT_STRETCH_NORMAL,
-					convert_fontsize_to_dip(specs_.font_size()),
+					convert_fontsize_to_dip(_specs.font_size()),
 					L"", //locale
-					&p_text_format_
+					&_p_text_format
 					);
 			}
 			if (SUCCEEDED(hr)) {
-				p_text_format_->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_LEADING);
-				p_text_format_->SetParagraphAlignment(DWRITE_PARAGRAPH_ALIGNMENT_NEAR);
-				make_single_line(p_directwrite_factory_, p_text_format_);
+				_p_text_format->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_LEADING);
+				_p_text_format->SetParagraphAlignment(DWRITE_PARAGRAPH_ALIGNMENT_NEAR);
+				make_single_line(_p_directwrite_factory, _p_text_format);
 			}
 
-			resources_created_ = true;
+			_resources_created = true;
 			return hr;
 		}
 
 		void widgets::checkbox_impl::discard_resources() {
-			resources_created_ = false;
-			safe_release(&p_brush_);
-			safe_release(&p_brush_check_);
-			safe_release(&p_brush_border_);
-			safe_release(&p_brush_fill_);
-			safe_release(&p_brush_hot_);
-			safe_release(&p_brush_disabled_);
-			safe_release(&p_brush_selected_);
-			safe_release(&p_text_format_);
+			_resources_created = false;
+			safe_release(&_p_brush);
+			safe_release(&_p_brush_check);
+			safe_release(&_p_brush_border);
+			safe_release(&_p_brush_fill);
+			safe_release(&_p_brush_hot);
+			safe_release(&_p_brush_disabled);
+			safe_release(&_p_brush_selected);
+			safe_release(&_p_text_format);
 		}
 
 		D2D1_RECT_F&
 			widgets::checkbox_impl::render(ID2D1HwndRenderTarget* p_render_target,
 				const D2D1_SIZE_F& change_in_size, const D2D1_POINT_2F& offset, const bool& render) {
-			if (specs_old_ != specs_) {
-				log("specs changed: " + alias_);
-				specs_old_ = specs_;
+			if (_specs_old != _specs) {
+				log("specs changed: " + _alias);
+				_specs_old = _specs;
 				discard_resources();
 			}
 
-			if (!resources_created_)
+			if (!_resources_created)
 				create_resources(p_render_target);
 
-			rect_ = position(specs_.rect(), specs_.on_resize(), change_in_size.width, change_in_size.height);
-			rect_.left -= offset.x;
-			rect_.right -= offset.x;
-			rect_.top -= offset.y;
-			rect_.bottom -= offset.y;
+			_rect = position(_specs.rect(), _specs.on_resize(), change_in_size.width, change_in_size.height);
+			_rect.left -= offset.x;
+			_rect.right -= offset.x;
+			_rect.top -= offset.y;
+			_rect.bottom -= offset.y;
 
-			if (!render || !visible_)
-				return rect_;
+			if (!render || !_visible)
+				return _rect;
 
-			auto rect_checkbox_ = rect_;
-			const auto side = smallest(rect_checkbox_.right - rect_checkbox_.left,
-				rect_checkbox_.bottom - rect_checkbox_.top);
-			rect_checkbox_.right = rect_checkbox_.left + side;
-			rect_checkbox_.bottom = rect_checkbox_.top + side;
-			pos_rect(rect_, rect_checkbox_, 0.f, 50.f);
+			auto _rect_checkbox = _rect;
+			const auto side = smallest(_rect_checkbox.right - _rect_checkbox.left,
+				_rect_checkbox.bottom - _rect_checkbox.top);
+			_rect_checkbox.right = _rect_checkbox.left + side;
+			_rect_checkbox.bottom = _rect_checkbox.top + side;
+			pos_rect(_rect, _rect_checkbox, 0.f, 50.f);
 
 			// draw rectangles
-			D2D1_ROUNDED_RECT rounded_rect{ rect_checkbox_,
+			D2D1_ROUNDED_RECT rounded_rect{ _rect_checkbox,
 				side / 4.f, side / 4.f };
 
-			p_render_target->FillRoundedRectangle(&rounded_rect, is_static_ ? p_brush_fill_ :
-				hit_ && pressed_ ? p_brush_fill_ :
-				hit_ ? p_brush_hot_ :
-				p_brush_fill_);
+			p_render_target->FillRoundedRectangle(&rounded_rect, _is_static ? _p_brush_fill :
+				_hit && _pressed ? _p_brush_fill :
+				_hit ? _p_brush_hot :
+				_p_brush_fill);
 
-			p_render_target->DrawRoundedRectangle(&rounded_rect, !is_enabled_ ? p_brush_disabled_ :
-				p_brush_border_, specs_.border());
+			p_render_target->DrawRoundedRectangle(&rounded_rect, !_is_enabled ? _p_brush_disabled :
+				_p_brush_border, _specs.border());
 
-			if (!is_static_ && is_enabled_ && selected_)
-				p_render_target->DrawRoundedRectangle(&rounded_rect, !is_enabled_ ? p_brush_disabled_ :
-					p_brush_selected_, pressed_ ? specs_.border() * 3.5f : specs_.border() * 2.f);
+			if (!_is_static && _is_enabled && _selected)
+				p_render_target->DrawRoundedRectangle(&rounded_rect, !_is_enabled ? _p_brush_disabled :
+					_p_brush_selected, _pressed ? _specs.border() * 3.5f : _specs.border() * 2.f);
 
 			// draw checkbox contents
 			std::string text;
-			switch (specs_.status()) {
+			switch (_specs.status()) {
 			case widgets::checkbox_specs::checkbox_status::checked: {
-				text = specs_.text();
+				text = _specs.text();
 				HRESULT hr = S_OK;
 				ID2D1PathGeometry* p_checkbox_geometry = nullptr;
-				hr = p_direct2d_factory_->CreatePathGeometry(&p_checkbox_geometry);
+				hr = _p_direct2d_factory->CreatePathGeometry(&p_checkbox_geometry);
 
 				if (SUCCEEDED(hr)) {
 					ID2D1GeometrySink* p_sink = nullptr;
@@ -159,13 +159,13 @@ namespace liblec {
 					if (SUCCEEDED(hr)) {
 						p_sink->SetFillMode(D2D1_FILL_MODE_WINDING);
 						p_sink->BeginFigure(
-							D2D1::Point2F(rect_checkbox_.left + (.1f * side), rect_checkbox_.top + (.5f * side)),
+							D2D1::Point2F(_rect_checkbox.left + (.1f * side), _rect_checkbox.top + (.5f * side)),
 							D2D1_FIGURE_BEGIN_FILLED
 							);
 						D2D1_POINT_2F points[] = {
-						   D2D1::Point2F(rect_checkbox_.left + (.4f * side), rect_checkbox_.top + (.7f * side)),
-						   D2D1::Point2F(rect_checkbox_.left + (.9f * side), rect_checkbox_.top + (.1f * side)),
-						   D2D1::Point2F(rect_checkbox_.left + (.4f * side), rect_checkbox_.top + (.9f * side)),
+						   D2D1::Point2F(_rect_checkbox.left + (.4f * side), _rect_checkbox.top + (.7f * side)),
+						   D2D1::Point2F(_rect_checkbox.left + (.9f * side), _rect_checkbox.top + (.1f * side)),
+						   D2D1::Point2F(_rect_checkbox.left + (.4f * side), _rect_checkbox.top + (.9f * side)),
 						};
 						p_sink->AddLines(points, ARRAYSIZE(points));
 						p_sink->EndFigure(D2D1_FIGURE_END_CLOSED);
@@ -174,112 +174,112 @@ namespace liblec {
 					}
 
 					// draw the geometry
-					p_render_target->FillGeometry(p_checkbox_geometry, p_brush_check_);
+					p_render_target->FillGeometry(p_checkbox_geometry, _p_brush_check);
 					safe_release(&p_checkbox_geometry);
 				}
 			} break;
 			case widgets::checkbox_specs::checkbox_status::unchecked:
-				text = specs_.text_unchecked();
+				text = _specs.text_unchecked();
 				break;
 			case widgets::checkbox_specs::checkbox_status::indeterminate: {
-				text = specs_.text_indeterminate();
+				text = _specs.text_indeterminate();
 				// draw a horizontal line to show indeterminate state
-				auto rect_indeterminate = rect_checkbox_;
+				auto rect_indeterminate = _rect_checkbox;
 				rect_indeterminate.left += (.2f * side);
 				rect_indeterminate.right -= (.2f * side);
 				rect_indeterminate.top += (.44f * side);
 				rect_indeterminate.bottom -= (.44f * side);
 
-				p_render_target->FillRectangle(rect_indeterminate, p_brush_check_);
+				p_render_target->FillRectangle(rect_indeterminate, _p_brush_check);
 			} break;
 			default:
 				break;
 			}
 
-			auto rect_text_ = rect_;
-			rect_text_.left = rect_checkbox_.right + (side / 3.f);
+			auto _rect_text = _rect;
+			_rect_text.left = _rect_checkbox.right + (side / 3.f);
 
 			// create a text layout
-			HRESULT hr = p_directwrite_factory_->CreateTextLayout(
+			HRESULT hr = _p_directwrite_factory->CreateTextLayout(
 				convert_string(text).c_str(),
 				(UINT32)text.length(),
-				p_text_format_,
-				rect_text_.right - rect_text_.left,
-				rect_text_.bottom - rect_text_.top,
-				&p_text_layout_);
+				_p_text_format,
+				_rect_text.right - _rect_text.left,
+				_rect_text.bottom - _rect_text.top,
+				&_p_text_layout);
 
 			if (SUCCEEDED(hr)) {
 				DWRITE_TEXT_METRICS textMetrics;
-				p_text_layout_->GetMetrics(&textMetrics);
+				_p_text_layout->GetMetrics(&textMetrics);
 
-				const auto rect_text_og = rect_text_;
-				rect_text_.left += textMetrics.left;
-				rect_text_.top += textMetrics.top;
-				rect_text_.right = smallest(rect_text_.left + textMetrics.width, rect_text_.right);
-				rect_text_.bottom = smallest(rect_text_.top + textMetrics.height, rect_text_.bottom);
+				const auto rect_text_og = _rect_text;
+				_rect_text.left += textMetrics.left;
+				_rect_text.top += textMetrics.top;
+				_rect_text.right = smallest(_rect_text.left + textMetrics.width, _rect_text.right);
+				_rect_text.bottom = smallest(_rect_text.top + textMetrics.height, _rect_text.bottom);
 
-				if (render && visible_)
+				if (render && _visible)
 					p_render_target->DrawTextLayout(D2D1_POINT_2F{ rect_text_og.left, rect_text_og.top },
-						p_text_layout_, p_brush_, D2D1_DRAW_TEXT_OPTIONS_CLIP);
+						_p_text_layout, _p_brush, D2D1_DRAW_TEXT_OPTIONS_CLIP);
 			}
 
 			// release the text layout
-			safe_release(&p_text_layout_);
+			safe_release(&_p_text_layout);
 
-			rect_ = rect_checkbox_;
-			rect_.right = rect_text_.right;
+			_rect = _rect_checkbox;
+			_rect.right = _rect_text.right;
 
-			return rect_;
+			return _rect;
 		}
 
 		void widgets::checkbox_impl::on_click() {
-			switch (specs_.status()) {
+			switch (_specs.status()) {
 			case widgets::checkbox_specs::checkbox_status::unchecked:
-				specs_.status(widgets::checkbox_specs::checkbox_status::checked);
+				_specs.status(widgets::checkbox_specs::checkbox_status::checked);
 				break;
 			case widgets::checkbox_specs::checkbox_status::checked:
 			case widgets::checkbox_specs::checkbox_status::indeterminate:
 			default:
-				specs_.status(widgets::checkbox_specs::checkbox_status::unchecked);
+				_specs.status(widgets::checkbox_specs::checkbox_status::unchecked);
 				break;
 			}
 
-			if (specs_.events().check)
-				specs_.events().check(specs_.status());
+			if (_specs.events().check)
+				_specs.events().check(_specs.status());
 
-			if (specs_.events().click)
-				specs_.events().click();
+			if (_specs.events().click)
+				_specs.events().click();
 
-			if (specs_.events().action)
-				specs_.events().action();
+			if (_specs.events().action)
+				_specs.events().action();
 		}
 
 		void widgets::checkbox_impl::on_action() {
-			switch (specs_.status()) {
+			switch (_specs.status()) {
 			case widgets::checkbox_specs::checkbox_status::unchecked:
-				specs_.status(widgets::checkbox_specs::checkbox_status::checked);
+				_specs.status(widgets::checkbox_specs::checkbox_status::checked);
 				break;
 			case widgets::checkbox_specs::checkbox_status::checked:
 			case widgets::checkbox_specs::checkbox_status::indeterminate:
 			default:
-				specs_.status(widgets::checkbox_specs::checkbox_status::unchecked);
+				_specs.status(widgets::checkbox_specs::checkbox_status::unchecked);
 				break;
 			}
 
-			if (specs_.events().check)
-				specs_.events().check(specs_.status());
+			if (_specs.events().check)
+				_specs.events().check(_specs.status());
 
-			if (specs_.events().action)
-				specs_.events().action();
+			if (_specs.events().action)
+				_specs.events().action();
 		}
 
 		void widgets::checkbox_impl::on_right_click() {
-			if (specs_.events().right_click)
-				specs_.events().right_click();
+			if (_specs.events().right_click)
+				_specs.events().right_click();
 		}
 
 		widgets::checkbox_specs&
-			widgets::checkbox_impl::specs() { return specs_; }
+			widgets::checkbox_impl::specs() { return _specs; }
 
 		widgets::checkbox_specs&
 			widgets::checkbox_impl::operator()() { return specs(); }

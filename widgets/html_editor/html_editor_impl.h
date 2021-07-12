@@ -25,7 +25,7 @@ namespace liblec {
 			class html_editor_impl : public widget_impl {
 				/// private virtual function overrides
 				widgets::specs& generic_specs() override {
-					return specs_;
+					return _specs;
 				}
 
 			public:
@@ -88,48 +88,48 @@ namespace liblec {
 				html_editor_impl& operator=(const html_editor_impl&) = delete;
 
 				/// Private variables
-				bool controls_initialized_;
-				widgets::html_editor_specs specs_, specs_old_;
-				ID2D1SolidColorBrush* p_brush_;
-				ID2D1SolidColorBrush* p_brush_caret_;
-				ID2D1SolidColorBrush* p_brush_border_;
-				ID2D1SolidColorBrush* p_brush_fill_;
-				ID2D1SolidColorBrush* p_brush_disabled_;
-				ID2D1SolidColorBrush* p_brush_selected_;
-				IDWriteTextFormat* p_text_format_;
+				bool _controls_initialized;
+				widgets::html_editor_specs _specs, _specs_old;
+				ID2D1SolidColorBrush* _p_brush;
+				ID2D1SolidColorBrush* _p_brush_caret;
+				ID2D1SolidColorBrush* _p_brush_border;
+				ID2D1SolidColorBrush* _p_brush_fill;
+				ID2D1SolidColorBrush* _p_brush_disabled;
+				ID2D1SolidColorBrush* _p_brush_selected;
+				IDWriteTextFormat* _p_text_format;
 
-				ID2D1Factory* p_direct2d_factory_;
-				IDWriteFactory* p_directwrite_factory_;
-				IDWriteTextLayout* p_text_layout_;
+				ID2D1Factory* _p_direct2d_factory;
+				IDWriteFactory* _p_directwrite_factory;
+				IDWriteTextLayout* _p_text_layout;
 
-				const float margin_x_;
-				const float margin_y_;
+				const float _margin_x;
+				const float _margin_y;
 				
-				const std::string caret_blink_timer_name_;
-				const std::string autoscroll_timer_name_;
-				UINT32 caret_position_;
-				bool caret_visible_;
-				bool skip_blink_;
-				bool is_selecting_;
-				bool is_selected_;
+				const std::string _caret_blink_timer_name;
+				const std::string _autoscroll_timer_name;
+				UINT32 _caret_position;
+				bool _caret_visible;
+				bool _skip_blink;
+				bool _is_selecting;
+				bool _is_selected;
 
-				bool key_up_scheduled_;
-				bool key_down_scheduled_;
+				bool _key_up_scheduled;
+				bool _key_down_scheduled;
 
 				struct selection_info {
 					UINT32 start = 0;
 					UINT32 end = 0;
-				} selection_info_;
+				} _selection_info;
 
-				color last_color_;
+				color _last_color;
 
-				float scroll_amount_;
+				float _scroll_amount;
 
-				std::vector<formatted_text_parser::text_range_properties> formatting_;
+				std::vector<formatted_text_parser::text_range_properties> _formatting;
 
 				std::optional<std::reference_wrapper<containers::pane_specs>>
-					html_control_pane_specs_,
-					html_pane_specs_;
+					_html_control_pane_specs,
+					_html_pane_specs;
 
 				/// Private methods.
 				void reset_selection();

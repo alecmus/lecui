@@ -33,10 +33,10 @@ namespace liblec {
 		widgets::icon_impl::icon_impl(containers::page& page,
 			const std::string& alias) :
 			widget_impl(page, alias),
-			p_brush_fill_(nullptr),
-			p_brush_hot_(nullptr),
-			p_brush_disabled_(nullptr),
-			p_brush_selected_(nullptr) {}
+			_p_brush_fill(nullptr),
+			_p_brush_hot(nullptr),
+			_p_brush_disabled(nullptr),
+			_p_brush_selected(nullptr) {}
 
 		widgets::icon_impl::~icon_impl() { discard_resources(); }
 
@@ -47,107 +47,107 @@ namespace liblec {
 
 		HRESULT widgets::icon_impl::create_resources(
 			ID2D1HwndRenderTarget* p_render_target) {
-			specs_old_ = specs_;
-			is_static_ = (specs_.events().click == nullptr && specs_.events().action == nullptr);
-			h_cursor_ = get_cursor(specs_.cursor());
+			_specs_old = _specs;
+			_is_static = (_specs.events().click == nullptr && _specs.events().action == nullptr);
+			_h_cursor = get_cursor(_specs.cursor());
 
 			HRESULT hr = S_OK;
 
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_fill()),
-					&p_brush_fill_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_fill()),
+					&_p_brush_fill);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_hot()),
-					&p_brush_hot_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_hot()),
+					&_p_brush_hot);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_disabled()),
-					&p_brush_disabled_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_disabled()),
+					&_p_brush_disabled);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_selected()),
-					&p_brush_selected_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_selected()),
+					&_p_brush_selected);
 
-			resources_created_ = true;
+			_resources_created = true;
 			return hr;
 		}
 
 		void widgets::icon_impl::discard_resources() {
-			resources_created_ = false;
-			safe_release(&p_brush_fill_);
-			safe_release(&p_brush_hot_);
-			safe_release(&p_brush_disabled_);
-			safe_release(&p_brush_selected_);
+			_resources_created = false;
+			safe_release(&_p_brush_fill);
+			safe_release(&_p_brush_hot);
+			safe_release(&_p_brush_disabled);
+			safe_release(&_p_brush_selected);
 		}
 
 		D2D1_RECT_F&
 			widgets::icon_impl::render(ID2D1HwndRenderTarget* p_render_target,
 				const D2D1_SIZE_F& change_in_size, const D2D1_POINT_2F& offset, const bool& render) {
-			if (specs_old_ != specs_) {
-				log("specs changed: " + alias_);
-				specs_old_ = specs_;
+			if (_specs_old != _specs) {
+				log("specs changed: " + _alias);
+				_specs_old = _specs;
 
 				try {
-					if (rectangle_specs_.has_value()) {
+					if (_rectangle_specs.has_value()) {
 						// update rectangle specs
-						rectangle_specs_.value().get()
-							.corner_radius_x(specs_.corner_radius_x())
-							.corner_radius_y(specs_.corner_radius_y())
-							.border(specs_.border())
-							.color_fill(specs_.color_fill())
-							.color_border(specs_.color_border())
-							.color_hot(specs_.color_hot());
+						_rectangle_specs.value().get()
+							.corner_radius_x(_specs.corner_radius_x())
+							.corner_radius_y(_specs.corner_radius_y())
+							.border(_specs.border())
+							.color_fill(_specs.color_fill())
+							.color_border(_specs.color_border())
+							.color_hot(_specs.color_hot());
 					}
 
-					if (image_view_specs_.has_value()) {
+					if (_image_view_specs.has_value()) {
 						// update image view specs
-						image_view_specs_.value().get()
-							.png_resource(specs_.png_resource())
-							.file(specs_.file());
+						_image_view_specs.value().get()
+							.png_resource(_specs.png_resource())
+							.file(_specs.file());
 					}
 
-					if (label_specs_.has_value()) {
+					if (_label_specs.has_value()) {
 						// update text specs
-						label_specs_.value().get()
-							.text(specs_.text())
-							.color_text(specs_.color_text())
-							.font(specs_.font())
-							.font_size(specs_.font_size());
+						_label_specs.value().get()
+							.text(_specs.text())
+							.color_text(_specs.color_text())
+							.font(_specs.font())
+							.font_size(_specs.font_size());
 					}
 
-					if (description_specs_.has_value()) {
+					if (_description_specs.has_value()) {
 						// update description specs
-						description_specs_.value().get()
-							.text(specs_.description())
-							.color_text(specs_.color_text_description())
-							.font(specs_.font())
-							.font_size(specs_.font_size_description());
+						_description_specs.value().get()
+							.text(_specs.description())
+							.color_text(_specs.color_text_description())
+							.font(_specs.font())
+							.font_size(_specs.font_size_description());
 					}
 
 					// schedule a refresh
-					page_.d_page_.get_form().d_.schedule_refresh_ = true;
+					_page._d_page.get_form()._d._schedule_refresh = true;
 				}
 				catch (const std::exception& e) { log(e.what()); }
 
 				discard_resources();
 			}
 
-			if (!resources_created_)
+			if (!_resources_created)
 				create_resources(p_render_target);
 
-			// use specs_.rect_ not specs_.rect() and specs_.on_resize_ not specs_.on_resize() due to redirection to special pane
-			rect_ = position(specs_.rect_, specs_.on_resize_, change_in_size.width, change_in_size.height);
-			rect_.left -= offset.x;
-			rect_.right -= offset.x;
-			rect_.top -= offset.y;
-			rect_.bottom -= offset.y;
+			// use _specs._rect not _specs.rect() and _specs._on_resize not _specs.on_resize() due to redirection to special pane
+			_rect = position(_specs._rect, _specs._on_resize, change_in_size.width, change_in_size.height);
+			_rect.left -= offset.x;
+			_rect.right -= offset.x;
+			_rect.top -= offset.y;
+			_rect.bottom -= offset.y;
 
-			if (!render || !visible_)
-				return rect_;
+			if (!render || !_visible)
+				return _rect;
 
-			return rect_;
+			return _rect;
 		}
 
 		widgets::icon_specs&
-			widgets::icon_impl::specs() { return specs_; }
+			widgets::icon_impl::specs() { return _specs; }
 
 		widgets::icon_specs&
 			widgets::icon_impl::operator()() { return specs(); }
@@ -155,10 +155,10 @@ namespace liblec {
 		void widgets::icon_impl::set_icon_specs(rectangle_specs& rectangle,
 			image_view_specs& image_view,
 			label_specs& label, label_specs& description) {
-			rectangle_specs_ = rectangle;
-			image_view_specs_ = image_view;
-			label_specs_ = label;
-			description_specs_ = description;
+			_rectangle_specs = rectangle;
+			_image_view_specs = image_view;
+			_label_specs = label;
+			_description_specs = description;
 		}
 	}
 }

@@ -19,191 +19,191 @@ namespace liblec {
 				specs::operator==(param) &&
 
 				// widget specific specs
-				(color_border_ == param.color_border_) &&
-				(file_ == param.file_) &&
-				(png_resource_ == param.png_resource_) &&
-				(quality_ == param.quality_) &&
-				(enlarge_if_smaller_ == param.enlarge_if_smaller_) &&
-				(keep_aspect_ratio_ == param.keep_aspect_ratio_);
+				(_color_border == param._color_border) &&
+				(_file == param._file) &&
+				(_png_resource == param._png_resource) &&
+				(_quality == param._quality) &&
+				(_enlarge_if_smaller == param._enlarge_if_smaller) &&
+				(_keep_aspect_ratio == param._keep_aspect_ratio);
 		}
 
 		bool widgets::image_view_specs::operator!=(const image_view_specs& param) {
 			return !operator==(param);
 		}
 
-		std::string& widgets::image_view_specs::text() { return text_; }
+		std::string& widgets::image_view_specs::text() { return _text; }
 
 		widgets::image_view_specs& widgets::image_view_specs::text(const std::string& text) {
-			text_ = text;
+			_text = text;
 			return *this;
 		}
 
-		std::string& widgets::image_view_specs::tooltip() { return tooltip_; }
+		std::string& widgets::image_view_specs::tooltip() { return _tooltip; }
 
 		widgets::image_view_specs& widgets::image_view_specs::tooltip(const std::string& tooltip) {
-			tooltip_ = tooltip;
+			_tooltip = tooltip;
 			return *this;
 		}
 
-		lecui::rect& widgets::image_view_specs::rect() { return rect_; }
+		lecui::rect& widgets::image_view_specs::rect() { return _rect; }
 
 		widgets::image_view_specs& widgets::image_view_specs::rect(const lecui::rect& rect) {
-			rect_ = rect;
+			_rect = rect;
 			return *this;
 		}
 
-		widgets::specs::resize_params& widgets::image_view_specs::on_resize() { return on_resize_; }
+		widgets::specs::resize_params& widgets::image_view_specs::on_resize() { return _on_resize; }
 
 		widgets::image_view_specs& widgets::image_view_specs::on_resize(const resize_params& on_resize) {
-			on_resize_ = on_resize;
+			_on_resize = on_resize;
 			return *this;
 		}
 
-		widgets::specs::cursor_type& widgets::image_view_specs::cursor() { return cursor_; }
+		widgets::specs::cursor_type& widgets::image_view_specs::cursor() { return _cursor; }
 
 		widgets::image_view_specs& widgets::image_view_specs::cursor(const cursor_type cursor) {
-			cursor_ = cursor;
+			_cursor = cursor;
 			return *this;
 		}
 
-		std::string& widgets::image_view_specs::font() { return font_; }
+		std::string& widgets::image_view_specs::font() { return _font; }
 
 		widgets::image_view_specs& widgets::image_view_specs::font(const std::string& font) {
-			font_ = font;
+			_font = font;
 			return *this;
 		}
 
-		float& widgets::image_view_specs::font_size() { return font_size_; }
+		float& widgets::image_view_specs::font_size() { return _font_size; }
 
 		widgets::image_view_specs& widgets::image_view_specs::font_size(const float& font_size) {
-			font_size_ = font_size;
+			_font_size = font_size;
 			return *this;
 		}
 
-		color& widgets::image_view_specs::color_text() { return color_text_; }
+		color& widgets::image_view_specs::color_text() { return _color_text; }
 
 		widgets::image_view_specs& widgets::image_view_specs::color_text(const color& color_text) {
-			color_text_ = color_text;
+			_color_text = color_text;
 			return *this;
 		}
 
-		color& widgets::image_view_specs::color_fill() { return color_fill_; }
+		color& widgets::image_view_specs::color_fill() { return _color_fill; }
 
 		widgets::image_view_specs& widgets::image_view_specs::color_fill(const color& color_fill) {
-			color_fill_ = color_fill;
+			_color_fill = color_fill;
 			return *this;
 		}
 
-		color& widgets::image_view_specs::color_hot() { return color_hot_; }
+		color& widgets::image_view_specs::color_hot() { return _color_hot; }
 
 		widgets::image_view_specs& widgets::image_view_specs::color_hot(const color& color_hot) {
-			color_hot_ = color_hot;
+			_color_hot = color_hot;
 			return *this;
 		}
 
-		color& widgets::image_view_specs::color_selected() { return color_selected_; }
+		color& widgets::image_view_specs::color_selected() { return _color_selected; }
 
 		widgets::image_view_specs& widgets::image_view_specs::color_selected(const color& color_selected) {
-			color_selected_ = color_selected;
+			_color_selected = color_selected;
 			return *this;
 		}
 
-		color& widgets::image_view_specs::color_disabled() { return color_disabled_; }
+		color& widgets::image_view_specs::color_disabled() { return _color_disabled; }
 
 		widgets::image_view_specs& widgets::image_view_specs::color_disabled(const color& color_disabled) {
-			color_disabled_ = color_disabled;
+			_color_disabled = color_disabled;
 			return *this;
 		}
 
-		float& widgets::image_view_specs::border() { return border_; }
+		float& widgets::image_view_specs::border() { return _border; }
 
 		widgets::image_view_specs& widgets::image_view_specs::border(const float& border) {
-			border_ = border;
+			_border = border;
 			return *this;
 		}
 
-		lecui::color& widgets::image_view_specs::color_border() { return color_border_; }
+		lecui::color& widgets::image_view_specs::color_border() { return _color_border; }
 
 		widgets::image_view_specs& widgets::image_view_specs::color_border(const color& color_border) {
-			color_border_ = color_border;
+			_color_border = color_border;
 			return *this;
 		}
 
-		float& widgets::image_view_specs::corner_radius_x() { return corner_radius_x_; }
+		float& widgets::image_view_specs::corner_radius_x() { return _corner_radius_x; }
 
 		widgets::image_view_specs& widgets::image_view_specs::corner_radius_x(const float& corner_radius_x) {
-			corner_radius_x_ = corner_radius_x;
+			_corner_radius_x = corner_radius_x;
 			return *this;
 		}
 
-		float& widgets::image_view_specs::corner_radius_y() { return corner_radius_y_; }
+		float& widgets::image_view_specs::corner_radius_y() { return _corner_radius_y; }
 
 		widgets::image_view_specs& widgets::image_view_specs::corner_radius_y(const float& corner_radius_y) {
-			corner_radius_y_ = corner_radius_y;
+			_corner_radius_y = corner_radius_y;
 			return *this;
 		}
 
-		int& widgets::image_view_specs::png_resource() { return png_resource_; }
+		int& widgets::image_view_specs::png_resource() { return _png_resource; }
 
 		widgets::image_view_specs& widgets::image_view_specs::png_resource(const int& png_resource) {
-			png_resource_ = png_resource;
+			_png_resource = png_resource;
 			return *this;
 		}
 
-		std::string& widgets::image_view_specs::file() { return file_; }
+		std::string& widgets::image_view_specs::file() { return _file; }
 
 		widgets::image_view_specs& widgets::image_view_specs::file(const std::string& file) {
-			file_ = file;
+			_file = file;
 			return *this;
 		}
 
-		lecui::image_quality& widgets::image_view_specs::quality() { return quality_; }
+		lecui::image_quality& widgets::image_view_specs::quality() { return _quality; }
 
 		widgets::image_view_specs& widgets::image_view_specs::quality(const image_quality& quality) {
-			quality_ = quality;
+			_quality = quality;
 			return *this;
 		}
 
-		bool& widgets::image_view_specs::enlarge_if_smaller() { return enlarge_if_smaller_; }
+		bool& widgets::image_view_specs::enlarge_if_smaller() { return _enlarge_if_smaller; }
 
 		widgets::image_view_specs& widgets::image_view_specs::enlarge_if_smaller(const bool& enlarge_if_smaller) {
-			enlarge_if_smaller_ = enlarge_if_smaller;
+			_enlarge_if_smaller = enlarge_if_smaller;
 			return *this;
 		}
 
-		bool& widgets::image_view_specs::keep_aspect_ratio() { return keep_aspect_ratio_; }
+		bool& widgets::image_view_specs::keep_aspect_ratio() { return _keep_aspect_ratio; }
 
 		widgets::image_view_specs& widgets::image_view_specs::keep_aspect_ratio(const bool& keep_aspect_ratio) {
-			keep_aspect_ratio_ = keep_aspect_ratio;
+			_keep_aspect_ratio = keep_aspect_ratio;
 			return *this;
 		}
 
 		class widgets::image_view_builder::impl {
 		public:
 			impl(containers::page& page, const std::string& alias) :
-				page_(page),
-				specs_(page_.d_page_.add_image_view(alias)) {
-				specs_
-					.color_fill(defaults::color(page_.d_page_.fm_.d_.theme_, item::image_view))
-					.color_border(defaults::color(page_.d_page_.fm_.d_.theme_, item::image_view_border))
-					.color_hot(defaults::color(page_.d_page_.fm_.d_.theme_, item::image_view_hover))
-					.color_selected(defaults::color(page_.d_page_.fm_.d_.theme_, item::image_view_selected));
+				_page(page),
+				_specs(_page._d_page.add_image_view(alias)) {
+				_specs
+					.color_fill(defaults::color(_page._d_page._fm._d._theme, item::image_view))
+					.color_border(defaults::color(_page._d_page._fm._d._theme, item::image_view_border))
+					.color_hot(defaults::color(_page._d_page._fm._d._theme, item::image_view_hover))
+					.color_selected(defaults::color(_page._d_page._fm._d._theme, item::image_view_selected));
 			}
-			containers::page& page_;
-			image_view_specs& specs_;
+			containers::page& _page;
+			image_view_specs& _specs;
 		};
 
 		widgets::image_view_builder::image_view_builder(containers::page& page) :
 			image_view_builder(page, "") {}
 
 		widgets::image_view_builder::image_view_builder(containers::page& page, const std::string& alias) :
-			d_(*(new impl(page, alias))) {}
+			_d(*(new impl(page, alias))) {}
 
-		widgets::image_view_builder::~image_view_builder() { delete& d_; }
+		widgets::image_view_builder::~image_view_builder() { delete& _d; }
 
 		widgets::image_view_specs&
 			widgets::image_view_builder::specs() {
-			return d_.specs_;
+			return _d._specs;
 		}
 
 		widgets::image_view_specs&
@@ -220,16 +220,16 @@ namespace liblec {
 				const auto path_remaining = path.substr(idx + 1);
 				try {
 					// check form pages
-					auto& page = fm.d_.p_pages_.at(page_alias);
-					auto results = fm.d_.find_widget(page, path_remaining);
-					return results.page.d_page_.get_image_view(results.widget.alias()).specs();
+					auto& page = fm._d._p_pages.at(page_alias);
+					auto results = fm._d.find_widget(page, path_remaining);
+					return results.page._d_page.get_image_view(results.widget.alias()).specs();
 				}
 				catch (const std::exception&) {}
 				try {
 					// check status panes
-					auto& page = fm.d_.p_status_panes_.at(page_alias);
-					auto results = fm.d_.find_widget(page, path_remaining);
-					return results.page.d_page_.get_image_view(results.widget.alias()).specs();
+					auto& page = fm._d._p_status_panes.at(page_alias);
+					auto results = fm._d.find_widget(page, path_remaining);
+					return results.page._d_page.get_image_view(results.widget.alias()).specs();
 				}
 				catch (const std::exception&) {}
 			}

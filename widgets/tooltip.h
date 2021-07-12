@@ -18,20 +18,20 @@ namespace liblec {
 	namespace lecui {
 		namespace widgets {
 			class tooltip_form : public form {
-				const std::string tooltip_text_;
-				const float margin_ = 5.f;
-				const std::string font_{ "Segoe UI" };
-				const float font_size_ = 9.f;
-				const lecui::size min_size_ = { 20.f, 20.f };
-				lecui::rect rect_;
-				lecui::size max_size_ = { 4200.f, 10000.f };
-				const std::string al_page_home_ = "home_page";
-				lecui::controls ctrls_{ *this };
-				lecui::dimensions dim_{ *this };
-				lecui::page_manager page_man_{ *this };
-				lecui::timer_manager timer_man_{ *this };
-				const unsigned long lifetime_;
-				lecui::form& parent_;
+				const std::string _tooltip_text;
+				const float _margin = 5.f;
+				const std::string _font{ "Segoe UI" };
+				const float _font_size = 9.f;
+				const lecui::size _min_size = { 20.f, 20.f };
+				lecui::rect _rect;
+				lecui::size _max_size = { 4200.f, 10000.f };
+				const std::string _al_page_home = "home_page";
+				lecui::controls _ctrls{ *this };
+				lecui::dimensions _dim{ *this };
+				lecui::page_manager _page_man{ *this };
+				lecui::timer_manager _timer_man{ *this };
+				const unsigned long _lifetime;
+				lecui::form& _parent;
 
 				bool on_initialize(std::string& error) override;
 				void on_start() override;

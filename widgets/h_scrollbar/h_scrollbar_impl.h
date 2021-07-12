@@ -20,16 +20,16 @@ namespace liblec {
 			class h_scrollbar_impl : public widget_impl {
 				/// private virtual function overrides
 				widgets::specs& generic_specs() override {
-					return specs_;
+					return _specs;
 				}
 
 			public:
-				float x_displacement_previous_;
-				float x_displacement_;
-				float x_off_set_;
-				float max_displacement_left_;
-				float max_displacement_right_;
-				bool force_translate_;
+				float _x_displacement_previous;
+				float _x_displacement;
+				float _x_off_set;
+				float _max_displacement_left;
+				float _max_displacement_right;
+				bool _force_translate;
 
 				/// constructor and destructor
 				h_scrollbar_impl(containers::page& page);
@@ -58,13 +58,13 @@ namespace liblec {
 				h_scrollbar_impl& operator=(const h_scrollbar_impl&) = delete;
 
 				/// Private variables
-				widgets::h_scrollbar_specs specs_;
-				ID2D1SolidColorBrush* p_brush_;
-				ID2D1SolidColorBrush* p_brush_border_;
-				ID2D1SolidColorBrush* p_brush_hot_;
-				ID2D1SolidColorBrush* p_brush_hot_pressed_;
-				ID2D1SolidColorBrush* p_brush_background_;
-				D2D1_RECT_F rectA_, rectB_, rectC_, rectD_;
+				widgets::h_scrollbar_specs _specs;
+				ID2D1SolidColorBrush* _p_brush;
+				ID2D1SolidColorBrush* _p_brush_border;
+				ID2D1SolidColorBrush* _p_brush_hot;
+				ID2D1SolidColorBrush* _p_brush_hot_pressed;
+				ID2D1SolidColorBrush* _p_brush_background;
+				D2D1_RECT_F _rectA, _rectB, _rectC, _rectD;
 			};
 		}
 	}

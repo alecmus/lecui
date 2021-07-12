@@ -49,7 +49,7 @@ namespace liblec {
 
 			private:
 				class impl;
-				impl& d_page_;
+				impl& _d_page;
 
 				// Default constructor and copying an object of this class are not allowed
 				page() = delete;
@@ -136,7 +136,7 @@ namespace liblec {
 
 		private:
 			class impl;
-			impl& d_;
+			impl& _d;
 
 			// Default constructor and copying an object of this class are not allowed
 			page_manager() = delete;

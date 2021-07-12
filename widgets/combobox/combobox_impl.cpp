@@ -21,51 +21,51 @@ namespace liblec {
 			const std::string& alias,
 			IDWriteFactory* p_directwrite_factory) :
 			widget_impl(page, alias),
-			p_brush_(nullptr),
-			p_brush_caret_(nullptr),
-			p_brush_fill_(nullptr),
-			p_brush_fill_editable_(nullptr),
-			p_brush_hot_(nullptr),
-			p_brush_disabled_(nullptr),
-			p_brush_selected_(nullptr),
-			p_brush_border_(nullptr),
-			p_brush_dropdown_(nullptr),
-			p_brush_dropdown_hot_(nullptr),
-			p_brush_dropdown_arrow_(nullptr),
-			p_brush_dropdown_arrow_hot_(nullptr),
-			p_text_format_(nullptr),
-			h_cursor_edit_(get_cursor(widgets::specs::cursor_type::caret)),
-			h_cursor_dropdown_(get_cursor(widgets::specs::cursor_type::arrow)),
-			p_directwrite_factory_(p_directwrite_factory),
-			rect_dropdown_({ 0.f, 0.f, 0.f, 0.f }),
-			rect_text_({ 0.f, 0.f, 0.f, 0.f }),
-			p_text_layout_(nullptr),
-			margin_x_(7.5f),
-			margin_y_(2.5f),
-			caret_blink_timer_name_("caret_blink_timer::combobox"),
-			caret_position_(0),
-			caret_visible_(true),
-			skip_blink_(false),
-			text_off_set_(0.f),
-			is_selecting_(false),
-			is_selected_(false),
-			dropdown_activated_(false),
-			skip_nextdropdown_(false),
-			selection_info_({ 0, 0 }) {}
+			_p_brush(nullptr),
+			_p_brush_caret(nullptr),
+			_p_brush_fill(nullptr),
+			_p_brush_fill_editable(nullptr),
+			_p_brush_hot(nullptr),
+			_p_brush_disabled(nullptr),
+			_p_brush_selected(nullptr),
+			_p_brush_border(nullptr),
+			_p_brush_dropdown(nullptr),
+			_p_brush_dropdown_hot(nullptr),
+			_p_brush_dropdown_arrow(nullptr),
+			_p_brush_dropdown_arrow_hot(nullptr),
+			_p_text_format(nullptr),
+			_h_cursor_edit(get_cursor(widgets::specs::cursor_type::caret)),
+			_h_cursor_dropdown(get_cursor(widgets::specs::cursor_type::arrow)),
+			_p_directwrite_factory(p_directwrite_factory),
+			_rect_dropdown({ 0.f, 0.f, 0.f, 0.f }),
+			_rect_text({ 0.f, 0.f, 0.f, 0.f }),
+			_p_text_layout(nullptr),
+			_margin_x(7.5f),
+			_margin_y(2.5f),
+			_caret_blink_timer_name("caret_blink_timer::combobox"),
+			_caret_position(0),
+			_caret_visible(true),
+			_skip_blink(false),
+			_text_off_set(0.f),
+			_is_selecting(false),
+			_is_selected(false),
+			_dropdown_activated(false),
+			_skip_nextdropdown(false),
+			_selection_info({ 0, 0 }) {}
 
 		widgets::combobox_impl::~combobox_impl() { discard_resources(); }
 
 		void widgets::combobox_impl::press(const bool& pressed) {
-			D2D1_RECT_F rect = specs_.editable() ? rect_dropdown_ : rect_combobox_;
+			D2D1_RECT_F rect = _specs.editable() ? _rect_dropdown : _rect_combobox;
 			scale_RECT(rect, get_dpi_scale());
 
-			if (point_.x >= rect.left && point_.x <= rect.right &&
-				point_.y >= rect.top && point_.y <= rect.bottom) {
-				if (dropdown_activated_)
-					skip_nextdropdown_ = true;
+			if (_point.x >= rect.left && _point.x <= rect.right &&
+				_point.y >= rect.top && _point.y <= rect.bottom) {
+				if (_dropdown_activated)
+					_skip_nextdropdown = true;
 			}
 			else
-				skip_nextdropdown_ = false;
+				_skip_nextdropdown = false;
 
 			return widgets::widget_impl::press(pressed);
 		}
@@ -77,13 +77,13 @@ namespace liblec {
 
 		HRESULT widgets::combobox_impl::create_resources(
 			ID2D1HwndRenderTarget* p_render_target) {
-			specs_old_ = specs_;
-			is_static_ = (specs_.events().click == nullptr && specs_.events().selection == nullptr && specs_.events().action == nullptr);
-			h_cursor_ = get_cursor(specs_.cursor());
+			_specs_old = _specs;
+			_is_static = (_specs.events().click == nullptr && _specs.events().selection == nullptr && _specs.events().action == nullptr);
+			_h_cursor = get_cursor(_specs.cursor());
 			
-			for (auto& item : specs_.items()) {
-				if (item.label == specs_.selected()) {
-					specs_.text(item.label);
+			for (auto& item : _specs.items()) {
+				if (item.label == _specs.selected()) {
+					_specs.text(item.label);
 					break;
 				}
 			}
@@ -93,197 +93,197 @@ namespace liblec {
 			HRESULT hr = S_OK;
 
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_fill()),
-					&p_brush_fill_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_fill()),
+					&_p_brush_fill);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_fill_editable()),
-					&p_brush_fill_editable_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_fill_editable()),
+					&_p_brush_fill_editable);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_hot()),
-					&p_brush_hot_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_hot()),
+					&_p_brush_hot);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_disabled()),
-					&p_brush_disabled_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_disabled()),
+					&_p_brush_disabled);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_selected()),
-					&p_brush_selected_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_selected()),
+					&_p_brush_selected);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_text()),
-					&p_brush_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_text()),
+					&_p_brush);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_caret()),
-					&p_brush_caret_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_caret()),
+					&_p_brush_caret);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_border()),
-					&p_brush_border_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_border()),
+					&_p_brush_border);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_dropdown()),
-					&p_brush_dropdown_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_dropdown()),
+					&_p_brush_dropdown);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_dropdown_hot()),
-					&p_brush_dropdown_hot_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_dropdown_hot()),
+					&_p_brush_dropdown_hot);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_dropdown_arrow()),
-					&p_brush_dropdown_arrow_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_dropdown_arrow()),
+					&_p_brush_dropdown_arrow);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_dropdown_arrow_hot()),
-					&p_brush_dropdown_arrow_hot_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_dropdown_arrow_hot()),
+					&_p_brush_dropdown_arrow_hot);
 
 			if (SUCCEEDED(hr)) {
 				// Create a DirectWrite text format object.
-				hr = p_directwrite_factory_->CreateTextFormat(
-					convert_string(specs_.font()).c_str(),
+				hr = _p_directwrite_factory->CreateTextFormat(
+					convert_string(_specs.font()).c_str(),
 					NULL,
 					DWRITE_FONT_WEIGHT_NORMAL,
 					DWRITE_FONT_STYLE_NORMAL,
 					DWRITE_FONT_STRETCH_NORMAL,
-					convert_fontsize_to_dip(specs_.font_size()),
+					convert_fontsize_to_dip(_specs.font_size()),
 					L"", //locale
-					&p_text_format_
+					&_p_text_format
 					);
 			}
 			if (SUCCEEDED(hr)) {
-				p_text_format_->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_LEADING);
-				p_text_format_->SetParagraphAlignment(DWRITE_PARAGRAPH_ALIGNMENT_CENTER);
-				make_single_line(p_directwrite_factory_, p_text_format_);
+				_p_text_format->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_LEADING);
+				_p_text_format->SetParagraphAlignment(DWRITE_PARAGRAPH_ALIGNMENT_CENTER);
+				make_single_line(_p_directwrite_factory, _p_text_format);
 			}
 
-			resources_created_ = true;
+			_resources_created = true;
 			return hr;
 		}
 
 		void widgets::combobox_impl::discard_resources() {
-			resources_created_ = false;
-			safe_release(&p_brush_);
-			safe_release(&p_brush_caret_);
-			safe_release(&p_brush_fill_);
-			safe_release(&p_brush_fill_editable_);
-			safe_release(&p_brush_hot_);
-			safe_release(&p_brush_disabled_);
-			safe_release(&p_brush_selected_);
-			safe_release(&p_brush_border_);
-			safe_release(&p_brush_dropdown_);
-			safe_release(&p_brush_dropdown_hot_);
-			safe_release(&p_brush_dropdown_arrow_);
-			safe_release(&p_brush_dropdown_arrow_hot_);
-			safe_release(&p_text_format_);
+			_resources_created = false;
+			safe_release(&_p_brush);
+			safe_release(&_p_brush_caret);
+			safe_release(&_p_brush_fill);
+			safe_release(&_p_brush_fill_editable);
+			safe_release(&_p_brush_hot);
+			safe_release(&_p_brush_disabled);
+			safe_release(&_p_brush_selected);
+			safe_release(&_p_brush_border);
+			safe_release(&_p_brush_dropdown);
+			safe_release(&_p_brush_dropdown_hot);
+			safe_release(&_p_brush_dropdown_arrow);
+			safe_release(&_p_brush_dropdown_arrow_hot);
+			safe_release(&_p_text_format);
 		}
 
 		D2D1_RECT_F&
 			widgets::combobox_impl::render(ID2D1HwndRenderTarget* p_render_target,
 				const D2D1_SIZE_F& change_in_size, const D2D1_POINT_2F& offset, const bool& render) {
-			if (specs_old_ != specs_) {
-				log("specs changed: " + alias_);
-				specs_old_ = specs_;
+			if (_specs_old != _specs) {
+				log("specs changed: " + _alias);
+				_specs_old = _specs;
 				discard_resources();
 			}
 
-			if (!resources_created_)
+			if (!_resources_created)
 				create_resources(p_render_target);
 
-			rect_combobox_ = position(specs_.rect(), specs_.on_resize(), change_in_size.width, change_in_size.height);
-			rect_combobox_.left -= offset.x;
-			rect_combobox_.right -= offset.x;
-			rect_combobox_.top -= offset.y;
-			rect_combobox_.bottom -= offset.y;
+			_rect_combobox = position(_specs.rect(), _specs.on_resize(), change_in_size.width, change_in_size.height);
+			_rect_combobox.left -= offset.x;
+			_rect_combobox.right -= offset.x;
+			_rect_combobox.top -= offset.y;
+			_rect_combobox.bottom -= offset.y;
 
-			if (!render || !visible_)
-				return rect_;
+			if (!render || !_visible)
+				return _rect;
 
-			if (!specs_.editable()) {
-				specs_.text().clear();
+			if (!_specs.editable()) {
+				_specs.text().clear();
 
-				for (auto& item : specs_.items()) {
-					if (item.label == specs_.selected()) {
-						specs_.text(item.label);
+				for (auto& item : _specs.items()) {
+					if (item.label == _specs.selected()) {
+						_specs.text(item.label);
 						break;
 					}
 				}
 			}
 
-			auto text_ = specs_.text();
+			auto _text = _specs.text();
 
 			// make sure caret is well positioned in case text has since been changed
-			caret_position_ = smallest(caret_position_, static_cast<UINT32>(specs_.text().length()));
+			_caret_position = smallest(_caret_position, static_cast<UINT32>(_specs.text().length()));
 
-			D2D1_ROUNDED_RECT rounded_rect{ rect_combobox_,
-				specs_.corner_radius_x(), specs_.corner_radius_y() };
+			D2D1_ROUNDED_RECT rounded_rect{ _rect_combobox,
+				_specs.corner_radius_x(), _specs.corner_radius_y() };
 
 			// draw background
-			if (render && visible_)
-				p_render_target->FillRoundedRectangle(&rounded_rect, !is_enabled_ ? p_brush_disabled_ :
-					specs_.editable() ? p_brush_fill_editable_ :
-					hit_ ? p_brush_hot_ : p_brush_fill_);
+			if (render && _visible)
+				p_render_target->FillRoundedRectangle(&rounded_rect, !_is_enabled ? _p_brush_disabled :
+					_specs.editable() ? _p_brush_fill_editable :
+					_hit ? _p_brush_hot : _p_brush_fill);
 
 			// draw dropdown rect
-			rect_dropdown_ = rect_combobox_;
+			_rect_dropdown = _rect_combobox;
 
 			// width 80% of height
-			rect_dropdown_.left = rect_dropdown_.right -
-				.8f * (rect_dropdown_.bottom - rect_dropdown_.top);
+			_rect_dropdown.left = _rect_dropdown.right -
+				.8f * (_rect_dropdown.bottom - _rect_dropdown.top);
 
-			D2D1_ROUNDED_RECT dropdown_rounded_rect{ rect_dropdown_,
-				specs_.corner_radius_x(), specs_.corner_radius_y() };
+			D2D1_ROUNDED_RECT dropdown_rounded_rect{ _rect_dropdown,
+				_specs.corner_radius_x(), _specs.corner_radius_y() };
 
 			// draw dropdown rectangle
-			if (render && visible_)
-				p_render_target->FillRoundedRectangle(&dropdown_rounded_rect, !is_enabled_ ?
-					p_brush_disabled_ : hit_ ? p_brush_dropdown_hot_ : p_brush_dropdown_);
+			if (render && _visible)
+				p_render_target->FillRoundedRectangle(&dropdown_rounded_rect, !_is_enabled ?
+					_p_brush_disabled : _hit ? _p_brush_dropdown_hot : _p_brush_dropdown);
 
 			// define dropdown confines
 			D2D1_POINT_2F top_left, top_right, bottom;
 
 			// width 40%
-			top_left.x = rect_dropdown_.left + .4f * (rect_dropdown_.right - rect_dropdown_.left) / 2.f;
-			top_right.x = rect_dropdown_.right - .4f * (rect_dropdown_.right - rect_dropdown_.left) / 2.f;
+			top_left.x = _rect_dropdown.left + .4f * (_rect_dropdown.right - _rect_dropdown.left) / 2.f;
+			top_right.x = _rect_dropdown.right - .4f * (_rect_dropdown.right - _rect_dropdown.left) / 2.f;
 
 			// height 25%
-			top_left.y = rect_dropdown_.top + .75f * (rect_dropdown_.bottom - rect_dropdown_.top) / 2.f;
+			top_left.y = _rect_dropdown.top + .75f * (_rect_dropdown.bottom - _rect_dropdown.top) / 2.f;
 			top_right.y = top_left.y;
 
 			bottom.x = (top_left.x + top_right.x) / 2.f;
-			bottom.y = rect_dropdown_.bottom - .75f * (rect_dropdown_.bottom - rect_dropdown_.top) / 2.f;
+			bottom.y = _rect_dropdown.bottom - .75f * (_rect_dropdown.bottom - _rect_dropdown.top) / 2.f;
 
-			if (render && visible_) {
+			if (render && _visible) {
 				// draw dropdown arrow
-				p_render_target->DrawLine(top_left, bottom, hit_ ?
-					p_brush_dropdown_arrow_hot_ : p_brush_dropdown_arrow_);
-				p_render_target->DrawLine(top_right, bottom, hit_ ?
-					p_brush_dropdown_arrow_hot_ : p_brush_dropdown_arrow_);
+				p_render_target->DrawLine(top_left, bottom, _hit ?
+					_p_brush_dropdown_arrow_hot : _p_brush_dropdown_arrow);
+				p_render_target->DrawLine(top_right, bottom, _hit ?
+					_p_brush_dropdown_arrow_hot : _p_brush_dropdown_arrow);
 
 				// draw combobox border
-				p_render_target->DrawRoundedRectangle(&rounded_rect, !is_enabled_ ? p_brush_disabled_ :
-					p_brush_border_);
+				p_render_target->DrawRoundedRectangle(&rounded_rect, !_is_enabled ? _p_brush_disabled :
+					_p_brush_border);
 
-				if (!is_static_ && is_enabled_ && selected_)
-					p_render_target->DrawRoundedRectangle(&rounded_rect, p_brush_selected_, 1.75f);
+				if (!_is_static && _is_enabled && _selected)
+					p_render_target->DrawRoundedRectangle(&rounded_rect, _p_brush_selected, 1.75f);
 			}
 
-			rect_text_ = rect_combobox_;
-			rect_text_.right = rect_dropdown_.left;
+			_rect_text = _rect_combobox;
+			_rect_text.right = _rect_dropdown.left;
 
-			rect_text_.left += margin_x_;
-			rect_text_.right -= margin_x_;
-			rect_text_.top += margin_y_;
-			rect_text_.bottom -= margin_y_;
+			_rect_text.left += _margin_x;
+			_rect_text.right -= _margin_x;
+			_rect_text.top += _margin_y;
+			_rect_text.bottom -= _margin_y;
 
 			// define rectangle for clipping text
-			auto rect_text_clip_ = rect_;
-			rect_text_clip_.left += (margin_x_ / 3.f);
-			rect_text_clip_.right -= (margin_x_ / 3.f);
-			rect_text_clip_.top += (margin_y_ / 3.f);
-			rect_text_clip_.bottom -= (margin_y_ / 3.f);
+			auto _rect_text_clip = _rect;
+			_rect_text_clip.left += (_margin_x / 3.f);
+			_rect_text_clip.right -= (_margin_x / 3.f);
+			_rect_text_clip.top += (_margin_y / 3.f);
+			_rect_text_clip.bottom -= (_margin_y / 3.f);
 
-			if (specs_.editable()) {
+			if (_specs.editable()) {
 				// define text box rect and actual text rect (with possible overflow)
-				const auto rect_text_box_ = rect_text_;
-				rect_text_ = measure_text(p_directwrite_factory_,
-					text_, specs_.font(), specs_.font_size(), false, true, true, false, rect_text_);
+				const auto _rect_text_box = _rect_text;
+				_rect_text = measure_text(_p_directwrite_factory,
+					_text, _specs.font(), _specs.font_size(), false, true, true, false, _rect_text);
 
 				// measure the text up to the caret position
-				const auto text_to_caret = text_.substr(0, caret_position_);
-				const auto rect_up_to_caret_ = measure_text(p_directwrite_factory_,
-					text_to_caret, specs_.font(), specs_.font_size(), false, true, true, false, rect_text_);
+				const auto text_to_caret = _text.substr(0, _caret_position);
+				const auto _rect_up_to_caret = measure_text(_p_directwrite_factory,
+					text_to_caret, _specs.font(), _specs.font_size(), false, true, true, false, _rect_text);
 
 				bool iterate = false;
 				do {
@@ -292,48 +292,48 @@ namespace liblec {
 					// compute offset
 					UINT32 hidden_left = 0;
 					UINT32 hidden_right = 0;
-					const float off_set_right = ((rect_text_.right - rect_text_.left) - (rect_text_box_.right - rect_text_box_.left)) + text_off_set_;
+					const float off_set_right = ((_rect_text.right - _rect_text.left) - (_rect_text_box.right - _rect_text_box.left)) + _text_off_set;
 					{
-						HRESULT hr = p_directwrite_factory_->CreateTextLayout(convert_string(text_).c_str(),
-							(UINT32)text_.length(), p_text_format_, rect_text_.right - rect_text_.left,
-							rect_text_.bottom - rect_text_.top, &p_text_layout_);
+						HRESULT hr = _p_directwrite_factory->CreateTextLayout(convert_string(_text).c_str(),
+							(UINT32)_text.length(), _p_text_format, _rect_text.right - _rect_text.left,
+							_rect_text.bottom - _rect_text.top, &_p_text_layout);
 
 						// characters hidden to the left of text box
-						const D2D1_POINT_2F pt_left = D2D1::Point2F(rect_text_.left - text_off_set_, rect_text_.top + (rect_text_.bottom - rect_text_.top) / 2.f);
-						hidden_left = count_characters(p_text_layout_, text_, rect_text_, pt_left, get_dpi_scale());
+						const D2D1_POINT_2F pt_left = D2D1::Point2F(_rect_text.left - _text_off_set, _rect_text.top + (_rect_text.bottom - _rect_text.top) / 2.f);
+						hidden_left = count_characters(_p_text_layout, _text, _rect_text, pt_left, get_dpi_scale());
 
 						// characters hidden to the right of text box
 
-						const D2D1_POINT_2F pt_right = D2D1::Point2F(rect_text_box_.left + off_set_right, rect_text_.top + (rect_text_.bottom - rect_text_.top) / 2.f);
-						hidden_right = count_characters(p_text_layout_, text_, rect_text_, pt_right, get_dpi_scale());
+						const D2D1_POINT_2F pt_right = D2D1::Point2F(_rect_text_box.left + off_set_right, _rect_text.top + (_rect_text.bottom - _rect_text.top) / 2.f);
+						hidden_right = count_characters(_p_text_layout, _text, _rect_text, pt_right, get_dpi_scale());
 
-						safe_release(&p_text_layout_);
+						safe_release(&_p_text_layout);
 					}
 
-					const auto text_field_width = rect_text_box_.right - rect_text_box_.left;
-					const auto distance_to_caret = rect_up_to_caret_.right - rect_up_to_caret_.left;
+					const auto text_field_width = _rect_text_box.right - _rect_text_box.left;
+					const auto distance_to_caret = _rect_up_to_caret.right - _rect_up_to_caret.left;
 					const auto off_set_left = text_field_width - distance_to_caret;
 
-					if (off_set_left < text_off_set_ || hidden_left == 0) {
+					if (off_set_left < _text_off_set || hidden_left == 0) {
 						// Either
 						// 1. caret has reached far right and text is being added
 						// 2. text hasn't filled text_field
 						//
 						// keep caret to the rightmost but within text_field (pin to the right if end is reached,
 						// pushing text to the left).
-						text_off_set_ = off_set_left;
+						_text_off_set = off_set_left;
 					}
 					else {
-						if (hidden_left >= caret_position_) {
+						if (hidden_left >= _caret_position) {
 							// caret has reached far left
 							// prevent caret from being hidden by off-setting text by up to 40px
-							text_off_set_ += 40.f;
+							_text_off_set += 40.f;
 							iterate = true;
 						}
 						else
 							if (hidden_right == 0) {
 								// keep text pinned to the right as we downsize while there's some hidden on the left
-								text_off_set_ -= off_set_right;
+								_text_off_set -= off_set_right;
 							}
 							else {
 								// do nothing under these circumstances
@@ -343,89 +343,89 @@ namespace liblec {
 					}
 
 					// this offset cannot be greater than zero or text will be indented!!!
-					text_off_set_ = smallest(text_off_set_, 0.f);
+					_text_off_set = smallest(_text_off_set, 0.f);
 				} while (iterate);
 
 				// apply offset to text rect to ensure visibility of caret
-				rect_text_.left += text_off_set_;
-				rect_text_.right += text_off_set_;
+				_rect_text.left += _text_off_set;
+				_rect_text.right += _text_off_set;
 			}
 
 			// create a text layout
-			HRESULT hr = p_directwrite_factory_->CreateTextLayout(convert_string(specs_.text()).c_str(),
-				(UINT32)specs_.text().length(), p_text_format_, rect_text_.right - rect_text_.left,
-				rect_text_.bottom - rect_text_.top, &p_text_layout_);
+			HRESULT hr = _p_directwrite_factory->CreateTextLayout(convert_string(_specs.text()).c_str(),
+				(UINT32)_specs.text().length(), _p_text_format, _rect_text.right - _rect_text.left,
+				_rect_text.bottom - _rect_text.top, &_p_text_layout);
 
-			if (SUCCEEDED(hr) && render && visible_) {
+			if (SUCCEEDED(hr) && render && _visible) {
 				// clip text
-				auto_clip clip(render, p_render_target, rect_text_clip_, 0.f);
+				auto_clip clip(render, p_render_target, _rect_text_clip, 0.f);
 
 				// draw the text layout
-				p_render_target->DrawTextLayout(D2D1_POINT_2F{ rect_text_.left, rect_text_.top },
-					p_text_layout_, p_brush_, D2D1_DRAW_TEXT_OPTIONS_CLIP);
+				p_render_target->DrawTextLayout(D2D1_POINT_2F{ _rect_text.left, _rect_text.top },
+					_p_text_layout, _p_brush, D2D1_DRAW_TEXT_OPTIONS_CLIP);
 			}
 
-			if (specs_.editable()) {
-				if (!is_static_ && is_enabled_ && selected_) {
-					if (hit_ && pressed_) {
+			if (_specs.editable()) {
+				if (!_is_static && _is_enabled && _selected) {
+					if (_hit && _pressed) {
 						reset_selection();
 
-						caret_position_ = get_caret_position(p_text_layout_, specs_.text(), rect_text_, point_, get_dpi_scale());
-						caret_visible_ = true;
+						_caret_position = get_caret_position(_p_text_layout, _specs.text(), _rect_text, _point, get_dpi_scale());
+						_caret_visible = true;
 
-						if (point_.x != point_on_press_.x || point_.y != point_on_press_.y) {
+						if (_point.x != _point_on_press.x || _point.y != _point_on_press.y) {
 							// user is making a selection
-							is_selecting_ = true;
+							_is_selecting = true;
 
-							auto selection_start_ = get_caret_position(p_text_layout_, specs_.text(), rect_text_, point_on_press_, get_dpi_scale());
-							auto selection_end_ = caret_position_;
+							auto _selection_start = get_caret_position(_p_text_layout, _specs.text(), _rect_text, _point_on_press, get_dpi_scale());
+							auto _selection_end = _caret_position;
 
-							auto rect_selection = get_selection_rect(p_text_layout_, rect_text_, selection_start_, selection_end_);
-							p_render_target->FillRectangle(rect_selection, p_brush_selected_);
+							auto rect_selection = get_selection_rect(_p_text_layout, _rect_text, _selection_start, _selection_end);
+							p_render_target->FillRectangle(rect_selection, _p_brush_selected);
 						}
 					}
 					else
-						if (!pressed_ && is_selecting_) {
+						if (!_pressed && _is_selecting) {
 							// user is done with the selection
-							is_selecting_ = false;
+							_is_selecting = false;
 
 							set_selection(
-								get_caret_position(p_text_layout_, specs_.text(), rect_text_, point_on_press_, get_dpi_scale()),
-								get_caret_position(p_text_layout_, specs_.text(), rect_text_, point_on_release_, get_dpi_scale()));
+								get_caret_position(_p_text_layout, _specs.text(), _rect_text, _point_on_press, get_dpi_scale()),
+								get_caret_position(_p_text_layout, _specs.text(), _rect_text, _point_on_release, get_dpi_scale()));
 						}
 				}
 
 				// draw selection rectangle
-				if (!is_static_ && is_enabled_ && is_selected_) {
-					auto rect_selection = get_selection_rect(p_text_layout_, rect_text_, selection_info_.start, selection_info_.end);
-					p_render_target->FillRectangle(rect_selection, p_brush_selected_);
+				if (!_is_static && _is_enabled && _is_selected) {
+					auto rect_selection = get_selection_rect(_p_text_layout, _rect_text, _selection_info.start, _selection_info.end);
+					p_render_target->FillRectangle(rect_selection, _p_brush_selected);
 				}
 
 				// draw caret
-				if (!is_static_ && is_enabled_ && selected_ && caret_visible_) {
-					const auto caret_rect = get_caret_rect(p_text_layout_, rect_text_, caret_position_);
-					p_render_target->FillRectangle(&caret_rect, p_brush_caret_);
+				if (!_is_static && _is_enabled && _selected && _caret_visible) {
+					const auto caret_rect = get_caret_rect(_p_text_layout, _rect_text, _caret_position);
+					p_render_target->FillRectangle(&caret_rect, _p_brush_caret);
 				}
 			}
 
 			// release the text layout
-			safe_release(&p_text_layout_);
+			safe_release(&_p_text_layout);
 
-			rect_ = rect_combobox_;
-			return rect_;
+			_rect = _rect_combobox;
+			return _rect;
 		}
 
 		void widgets::combobox_impl::on_click() {
 			bool drop_down = true;
 
-			if (!is_static_) {
-				D2D1_RECT_F rect = specs_.editable() ? rect_dropdown_ : rect_combobox_;
+			if (!_is_static) {
+				D2D1_RECT_F rect = _specs.editable() ? _rect_dropdown : _rect_combobox;
 				scale_RECT(rect, get_dpi_scale());
 
-				if (point_.x >= rect.left && point_.x <= rect.right &&
-					point_.y >= rect.top && point_.y <= rect.bottom) {
-					if (skip_nextdropdown_) {
-						skip_nextdropdown_ = false;
+				if (_point.x >= rect.left && _point.x <= rect.right &&
+					_point.y >= rect.top && _point.y <= rect.bottom) {
+					if (_skip_nextdropdown) {
+						_skip_nextdropdown = false;
 						drop_down = false;
 					}
 					else
@@ -437,122 +437,122 @@ namespace liblec {
 
 			if (drop_down) {
 				// check if any of the items have been clicked
-				std::string selected_previous = specs_.selected();
+				std::string selected_previous = _specs.selected();
 
-				if (specs_.editable())
-					selected_previous = specs_.text();
+				if (_specs.editable())
+					selected_previous = _specs.text();
 
-				dropdown_activated_ = true;
+				_dropdown_activated = true;
 
-				auto selected_new = dropdown(rect_);
+				auto selected_new = dropdown(_rect);
 
 				if (!selected_new.empty()) {
-					specs_.selected(selected_new);
+					_specs.selected(selected_new);
 
-					if (specs_.editable())
-						specs_.text(specs_.selected());
+					if (_specs.editable())
+						_specs.text(_specs.selected());
 
-					if (selected_previous != specs_.selected()) {
+					if (selected_previous != _specs.selected()) {
 						// move caret to the end
-						caret_position_ = static_cast<UINT32>(specs_.selected().length());
+						_caret_position = static_cast<UINT32>(_specs.selected().length());
 
-						if (specs_.events().selection)
-							specs_.events().selection(specs_.selected());
+						if (_specs.events().selection)
+							_specs.events().selection(_specs.selected());
 					}
 				}
 
-				dropdown_activated_ = false;
+				_dropdown_activated = false;
 			}
 		}
 
 		bool widgets::combobox_impl::hit(const bool& hit) {
-			if (!is_static_ && specs_.editable()) {
-				D2D1_RECT_F rect = rect_dropdown_;
+			if (!_is_static && _specs.editable()) {
+				D2D1_RECT_F rect = _rect_dropdown;
 				scale_RECT(rect, get_dpi_scale());
 
-				if (point_.x >= rect.left && point_.x <= rect.right &&
-					point_.y >= rect.top && point_.y <= rect.bottom)
-					h_cursor_ = h_cursor_dropdown_;
+				if (_point.x >= rect.left && _point.x <= rect.right &&
+					_point.y >= rect.top && _point.y <= rect.bottom)
+					_h_cursor = _h_cursor_dropdown;
 				else
-					h_cursor_ = h_cursor_edit_;
+					_h_cursor = _h_cursor_edit;
 			}
 
-			if (is_static_ || hit == hit_) {
-				if (hit || pressed_)
+			if (_is_static || hit == _hit) {
+				if (hit || _pressed)
 					return true;
 				else
 					return false;
 			}
 
-			hit_ = hit;
+			_hit = hit;
 			return true;
 		}
 
 		void widgets::combobox_impl::on_selection_change(const bool& selected) {
-			if (specs_.editable()) {
+			if (_specs.editable()) {
 				if (selected) {
 					// start blink timer
-					timer_manager(get_form()).add(caret_blink_timer_name_, 500,
+					timer_manager(get_form()).add(_caret_blink_timer_name, 500,
 						[&]() {
-							if (skip_blink_)
-								skip_blink_ = false;
+							if (_skip_blink)
+								_skip_blink = false;
 							else {
-								caret_visible_ = !caret_visible_;
+								_caret_visible = !_caret_visible;
 								get_form().update();
 							}
 						});
 				}
 				else {
 					// stop blink timer
-					timer_manager(get_form()).stop(caret_blink_timer_name_);
+					timer_manager(get_form()).stop(_caret_blink_timer_name);
 				}
 			}
 		}
 
 		void widgets::combobox_impl::on_right_click() {
-			if (specs_.events().right_click)
-				specs_.events().right_click();
+			if (_specs.events().right_click)
+				_specs.events().right_click();
 		}
 
 		widgets::combobox_specs&
-			widgets::combobox_impl::specs() { return specs_; }
+			widgets::combobox_impl::specs() { return _specs; }
 
 		void widgets::combobox_impl::insert_character(const char& c) {
 			try {
-				if (is_selected_) {
-					if (selection_info_.start > selection_info_.end)
-						swap(selection_info_.start, selection_info_.end);
+				if (_is_selected) {
+					if (_selection_info.start > _selection_info.end)
+						swap(_selection_info.start, _selection_info.end);
 
-					caret_position_ = selection_info_.start;
-					specs_.text().erase(selection_info_.start, selection_info_.end - selection_info_.start);
+					_caret_position = _selection_info.start;
+					_specs.text().erase(_selection_info.start, _selection_info.end - _selection_info.start);
 					reset_selection();
 				}
 
 				std::string s;
 				s += c;
-				specs_.text().insert(caret_position_, s);
-				caret_position_++;
-				caret_visible_ = true;
-				skip_blink_ = true;
+				_specs.text().insert(_caret_position, s);
+				_caret_position++;
+				_caret_visible = true;
+				_skip_blink = true;
 			}
 			catch (const std::exception& e) { log(e.what()); }
 		}
 
 		void widgets::combobox_impl::key_backspace() {
 			try {
-				if (is_selected_) {
-					if (selection_info_.start > selection_info_.end)
-						swap(selection_info_.start, selection_info_.end);
+				if (_is_selected) {
+					if (_selection_info.start > _selection_info.end)
+						swap(_selection_info.start, _selection_info.end);
 
-					caret_position_ = selection_info_.start;
-					specs_.text().erase(selection_info_.start, selection_info_.end - selection_info_.start);
+					_caret_position = _selection_info.start;
+					_specs.text().erase(_selection_info.start, _selection_info.end - _selection_info.start);
 					reset_selection();
 				}
 				else {
-					specs_.text().erase(caret_position_ - 1, 1);
-					caret_position_--;
-					caret_visible_ = true;
-					skip_blink_ = true;
+					_specs.text().erase(_caret_position - 1, 1);
+					_caret_position--;
+					_caret_visible = true;
+					_skip_blink = true;
 				}
 			}
 			catch (const std::exception& e) { log(e.what()); }
@@ -560,18 +560,18 @@ namespace liblec {
 
 		void widgets::combobox_impl::key_delete() {
 			try {
-				if (is_selected_) {
-					if (selection_info_.start > selection_info_.end)
-						swap(selection_info_.start, selection_info_.end);
+				if (_is_selected) {
+					if (_selection_info.start > _selection_info.end)
+						swap(_selection_info.start, _selection_info.end);
 
-					caret_position_ = selection_info_.start;
-					specs_.text().erase(selection_info_.start, selection_info_.end - selection_info_.start);
+					_caret_position = _selection_info.start;
+					_specs.text().erase(_selection_info.start, _selection_info.end - _selection_info.start);
 					reset_selection();
 				}
 				else {
-					specs_.text().erase(caret_position_, 1);
-					caret_visible_ = true;
-					skip_blink_ = true;
+					_specs.text().erase(_caret_position, 1);
+					_caret_visible = true;
+					_skip_blink = true;
 				}
 			}
 			catch (const std::exception& e) { log(e.what()); }
@@ -579,48 +579,48 @@ namespace liblec {
 
 		void widgets::combobox_impl::key_left() {
 			try {
-				if (is_selected_) {
-					if (selection_info_.start > selection_info_.end)
-						swap(selection_info_.start, selection_info_.end);
+				if (_is_selected) {
+					if (_selection_info.start > _selection_info.end)
+						swap(_selection_info.start, _selection_info.end);
 
-					caret_position_ = selection_info_.start + 1;
+					_caret_position = _selection_info.start + 1;
 					reset_selection();
 				}
 
-				if (caret_position_ > 0)
-					caret_position_--;
+				if (_caret_position > 0)
+					_caret_position--;
 
-				caret_visible_ = true;
-				skip_blink_ = true;
+				_caret_visible = true;
+				_skip_blink = true;
 			}
 			catch (const std::exception& e) { log(e.what()); }
 		}
 
 		void widgets::combobox_impl::key_right() {
 			try {
-				if (is_selected_) {
-					if (selection_info_.start > selection_info_.end)
-						swap(selection_info_.start, selection_info_.end);
+				if (_is_selected) {
+					if (_selection_info.start > _selection_info.end)
+						swap(_selection_info.start, _selection_info.end);
 
-					caret_position_ = selection_info_.end - 1;
+					_caret_position = _selection_info.end - 1;
 					reset_selection();
 				}
 
-				if (caret_position_ < specs_.text().length())
-					caret_position_++;
+				if (_caret_position < _specs.text().length())
+					_caret_position++;
 
-				caret_visible_ = true;
-				skip_blink_ = true;
+				_caret_visible = true;
+				_skip_blink = true;
 			}
 			catch (const std::exception& e) { log(e.what()); }
 		}
 
 		void widgets::combobox_impl::key_return() {
-			if (specs_.editable()) {
+			if (_specs.editable()) {
 				bool already_in_list = false;
 
-				for (const auto& item : specs_.items()) {
-					if (item.label == specs_.text()) {
+				for (const auto& item : _specs.items()) {
+					if (item.label == _specs.text()) {
 						already_in_list = true;
 						break;
 					}
@@ -629,27 +629,27 @@ namespace liblec {
 				if (!already_in_list) {
 					// add text to items list
 					widgets::combobox_specs::combobox_item item;
-					item.label = specs_.text();
+					item.label = _specs.text();
 
 					if (alias() == html_editor_impl::alias_font_size()) {
 						// special treatment for font size combobox
 
 						// make font size match the label
 						std::stringstream ss;
-						ss << specs_.text();
+						ss << _specs.text();
 						ss >> item.font_size;
 
 						// don't allow a font size less than 1 or greater than 180
 						if (item.font_size < 1.f || item.font_size > 180.f) {
-							specs_.text(specs_.selected());
+							_specs.text(_specs.selected());
 							return;
 						}
 					}
 
-					specs_.items().push_back(item);
+					_specs.items().push_back(item);
 				}
 
-				specs_.selected(specs_.text());
+				_specs.selected(_specs.text());
 				sort_items();
 			}
 		}
@@ -791,18 +791,18 @@ namespace liblec {
 			};
 
 			// sort the items
-			switch (specs_.sort()) {
+			switch (_specs.sort()) {
 			case sort_options::ascending:
-				if (specs_.force_numerical_sort() || is_numeric(specs_.items()))
-					std::sort(specs_.items().begin(), specs_.items().end(), sort_ascending_numeric);
+				if (_specs.force_numerical_sort() || is_numeric(_specs.items()))
+					std::sort(_specs.items().begin(), _specs.items().end(), sort_ascending_numeric);
 				else
-					std::sort(specs_.items().begin(), specs_.items().end(), sort_ascending);
+					std::sort(_specs.items().begin(), _specs.items().end(), sort_ascending);
 				break;
 			case sort_options::descending:
-				if (specs_.force_numerical_sort() || is_numeric(specs_.items()))
-					std::sort(specs_.items().begin(), specs_.items().end(), sort_descending_numeric);
+				if (_specs.force_numerical_sort() || is_numeric(_specs.items()))
+					std::sort(_specs.items().begin(), _specs.items().end(), sort_descending_numeric);
 				else
-					std::sort(specs_.items().begin(), specs_.items().end(), sort_descending);
+					std::sort(_specs.items().begin(), _specs.items().end(), sort_descending);
 				break;
 			case sort_options::none:
 			default:
@@ -814,9 +814,9 @@ namespace liblec {
 			widgets::combobox_impl::operator()() { return specs(); }
 		std::string widgets::combobox_impl::dropdown(D2D1_RECT_F rect) {
 			context_menu::specs menu_specs;
-			menu_specs.quality = specs_.quality();
+			menu_specs.quality = _specs.quality();
 
-			for (const auto& item : specs_.items()) {
+			for (const auto& item : _specs.items()) {
 				menu_item mi;
 				mi.label = item.label;
 				mi.font = item.font;
@@ -824,10 +824,10 @@ namespace liblec {
 				menu_specs.items.push_back(mi);
 			}
 
-			menu_specs.pin = convert_rect(rect_combobox_);
+			menu_specs.pin = convert_rect(_rect_combobox);
 
 			POINT pt = { 0, 0 };
-			ClientToScreen(get_form().d_.hWnd_, &pt);
+			ClientToScreen(get_form()._d._hWnd, &pt);
 
 			menu_specs.pin.left() += (pt.x / get_dpi_scale());
 			menu_specs.pin.right() += (pt.x / get_dpi_scale());

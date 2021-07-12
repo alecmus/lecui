@@ -40,10 +40,10 @@ namespace liblec {
 		widgets::time_impl::time_impl(containers::page& page,
 			const std::string& alias) :
 			widget_impl(page, alias),
-			p_brush_fill_(nullptr),
-			p_brush_hot_(nullptr),
-			p_brush_disabled_(nullptr),
-			p_brush_selected_(nullptr) {}
+			_p_brush_fill(nullptr),
+			_p_brush_hot(nullptr),
+			_p_brush_disabled(nullptr),
+			_p_brush_selected(nullptr) {}
 
 		widgets::time_impl::~time_impl() { discard_resources(); }
 
@@ -54,113 +54,113 @@ namespace liblec {
 
 		HRESULT widgets::time_impl::create_resources(
 			ID2D1HwndRenderTarget* p_render_target) {
-			specs_old_ = specs_;
-			is_static_ = (specs_.events().click == nullptr && specs_.events().action == nullptr);
-			h_cursor_ = get_cursor(specs_.cursor());
+			_specs_old = _specs;
+			_is_static = (_specs.events().click == nullptr && _specs.events().action == nullptr);
+			_h_cursor = get_cursor(_specs.cursor());
 
 			HRESULT hr = S_OK;
 
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_fill()),
-					&p_brush_fill_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_fill()),
+					&_p_brush_fill);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_hot()),
-					&p_brush_hot_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_hot()),
+					&_p_brush_hot);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_disabled()),
-					&p_brush_disabled_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_disabled()),
+					&_p_brush_disabled);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_selected()),
-					&p_brush_selected_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_selected()),
+					&_p_brush_selected);
 
-			resources_created_ = true;
+			_resources_created = true;
 			return hr;
 		}
 
 		void widgets::time_impl::discard_resources() {
-			resources_created_ = false;
-			safe_release(&p_brush_fill_);
-			safe_release(&p_brush_hot_);
-			safe_release(&p_brush_disabled_);
-			safe_release(&p_brush_selected_);
+			_resources_created = false;
+			safe_release(&_p_brush_fill);
+			safe_release(&_p_brush_hot);
+			safe_release(&_p_brush_disabled);
+			safe_release(&_p_brush_selected);
 		}
 
 		D2D1_RECT_F&
 			widgets::time_impl::render(ID2D1HwndRenderTarget* p_render_target,
 				const D2D1_SIZE_F& change_in_size, const D2D1_POINT_2F& offset, const bool& render) {
-			if (specs_old_ != specs_) {
-				log("specs changed: " + alias_);
-				specs_old_ = specs_;
+			if (_specs_old != _specs) {
+				log("specs changed: " + _alias);
+				_specs_old = _specs;
 
 				try {
 					// update label specs
-					if (hour_label_specs_.has_value())
-						hour_label_specs_.value().get().color_text() = specs_.color_text();
+					if (_hour_label_specs.has_value())
+						_hour_label_specs.value().get().color_text() = _specs.color_text();
 
-					if (seperator_1_specs_.has_value())
-						seperator_1_specs_.value().get().color_text() = specs_.color_text();
+					if (_seperator_1_specs.has_value())
+						_seperator_1_specs.value().get().color_text() = _specs.color_text();
 
-					if (minute_label_specs_.has_value())
-						minute_label_specs_.value().get().color_text() = specs_.color_text();
+					if (_minute_label_specs.has_value())
+						_minute_label_specs.value().get().color_text() = _specs.color_text();
 
-					if (seperator_2_specs_.has_value())
-						seperator_2_specs_.value().get().color_text() = specs_.color_text();
+					if (_seperator_2_specs.has_value())
+						_seperator_2_specs.value().get().color_text() = _specs.color_text();
 
-					if (second_label_specs_.has_value())
-						second_label_specs_.value().get().color_text() = specs_.color_text();
+					if (_second_label_specs.has_value())
+						_second_label_specs.value().get().color_text() = _specs.color_text();
 
 					// update border specs and background specs
-					if (hour_specs_.has_value()) {
-						hour_specs_.value().get().color_border() = specs_.color_border();
-						hour_specs_.value().get().color_fill() = specs_.color_fill();
+					if (_hour_specs.has_value()) {
+						_hour_specs.value().get().color_border() = _specs.color_border();
+						_hour_specs.value().get().color_fill() = _specs.color_fill();
 					}
 
-					if (minute_specs_.has_value()) {
-						minute_specs_.value().get().color_border() = specs_.color_border();
-						minute_specs_.value().get().color_fill() = specs_.color_fill();
+					if (_minute_specs.has_value()) {
+						_minute_specs.value().get().color_border() = _specs.color_border();
+						_minute_specs.value().get().color_fill() = _specs.color_fill();
 					}
 
-					if (second_specs_.has_value()) {
-						second_specs_.value().get().color_border() = specs_.color_border();
-						second_specs_.value().get().color_fill() = specs_.color_fill();
+					if (_second_specs.has_value()) {
+						_second_specs.value().get().color_border() = _specs.color_border();
+						_second_specs.value().get().color_fill() = _specs.color_fill();
 					}
 
 					// schedule a refresh
-					page_.d_page_.get_form().d_.schedule_refresh_ = true;
+					_page._d_page.get_form()._d._schedule_refresh = true;
 				}
 				catch (const std::exception& e) { log(e.what()); }
 
 				discard_resources();
 			}
 
-			if (!resources_created_)
+			if (!_resources_created)
 				create_resources(p_render_target);
 
-			// use specs_.rect_ not specs_.rect() and specs_.on_resize_ not specs_.on_resize() due to redirection to special pane
-			rect_ = position(specs_.rect_, specs_.on_resize_, change_in_size.width, change_in_size.height);
-			rect_.left -= offset.x;
-			rect_.right -= offset.x;
-			rect_.top -= offset.y;
-			rect_.bottom -= offset.y;
+			// use _specs._rect not _specs.rect() and _specs._on_resize not _specs.on_resize() due to redirection to special pane
+			_rect = position(_specs._rect, _specs._on_resize, change_in_size.width, change_in_size.height);
+			_rect.left -= offset.x;
+			_rect.right -= offset.x;
+			_rect.top -= offset.y;
+			_rect.bottom -= offset.y;
 
-			if (!render || !visible_)
-				return rect_;
+			if (!render || !_visible)
+				return _rect;
 
-			return rect_;
+			return _rect;
 		}
 
 		void widgets::time_impl::on_click() {
-			if (specs_.events().click)
-				specs_.events().click();
+			if (_specs.events().click)
+				_specs.events().click();
 		}
 
 		void widgets::time_impl::on_right_click() {
-			if (specs_.events().right_click)
-				specs_.events().right_click();
+			if (_specs.events().right_click)
+				_specs.events().right_click();
 		}
 
 		widgets::time_specs&
-			widgets::time_impl::specs() { return specs_; }
+			widgets::time_impl::specs() { return _specs; }
 
 		widgets::time_specs&
 			widgets::time_impl::operator()() { return specs(); }
@@ -170,19 +170,19 @@ namespace liblec {
 			widgets::label_specs& minute,
 			widgets::label_specs& seperator_2,
 			widgets::label_specs& second) {
-			hour_label_specs_ = hour;
-			seperator_1_specs_ = seperator_1;
-			minute_label_specs_ = minute;
-			seperator_2_specs_ = seperator_2;
-			second_label_specs_ = second;
+			_hour_label_specs = hour;
+			_seperator_1_specs = seperator_1;
+			_minute_label_specs = minute;
+			_seperator_2_specs = seperator_2;
+			_second_label_specs = second;
 		}
 
 		void widgets::time_impl::set_time_specs(widgets::rectangle_specs& hour,
 			widgets::rectangle_specs& minute,
 			widgets::rectangle_specs& second) {
-			hour_specs_ = hour;
-			minute_specs_ = minute;
-			second_specs_ = second;
+			_hour_specs = hour;
+			_minute_specs = minute;
+			_second_specs = second;
 		}
 	}
 }

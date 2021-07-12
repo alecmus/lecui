@@ -21,107 +21,107 @@ namespace liblec {
 	namespace lecui {
 		namespace widgets {
 			class scrollbar_specs : public specs {
-				color color_scrollbar_border_ = { 180, 180, 180, 255 };
-				color color_hot_pressed_ = { 221, 221, 221, 255 };
-				color color_background_ = { 0, 0, 0, 0 };
+				color _color_scrollbar_border = { 180, 180, 180, 255 };
+				color _color_hot_pressed = { 221, 221, 221, 255 };
+				color _color_background = { 0, 0, 0, 0 };
 
 			public:
 				scrollbar_specs() {
-					color_fill_ = { 241, 241, 241, 255 };
-					color_hot_ = { 231, 231, 231, 255 };
+					_color_fill = { 241, 241, 241, 255 };
+					_color_hot = { 231, 231, 231, 255 };
 				}
 
 				// generic specs
 
-				std::string& text() override { return text_; }
+				std::string& text() override { return _text; }
 				scrollbar_specs& text(const std::string& text) {
-					text_ = text;
+					_text = text;
 					return *this;
 				}
 
-				std::string& tooltip() override { return tooltip_; }
+				std::string& tooltip() override { return _tooltip; }
 				scrollbar_specs& tooltip(const std::string& tooltip) {
-					tooltip_ = tooltip;
+					_tooltip = tooltip;
 					return *this;
 				}
 
-				lecui::rect& rect() override { return rect_; }
+				lecui::rect& rect() override { return _rect; }
 				scrollbar_specs& rect(const lecui::rect& rect) {
-					rect_ = rect;
+					_rect = rect;
 					return *this;
 				}
 
-				resize_params& on_resize() override { return on_resize_; }
+				resize_params& on_resize() override { return _on_resize; }
 				scrollbar_specs& on_resize(const resize_params& on_resize) {
-					on_resize_ = on_resize;
+					_on_resize = on_resize;
 					return *this;
 				}
 
-				cursor_type& cursor() override { return cursor_; }
+				cursor_type& cursor() override { return _cursor; }
 				scrollbar_specs& cursor(const cursor_type cursor) {
-					cursor_ = cursor;
+					_cursor = cursor;
 					return *this;
 				}
 
-				std::string& font() override { return font_; }
+				std::string& font() override { return _font; }
 				scrollbar_specs& font(const std::string& font) {
-					font_ = font;
+					_font = font;
 					return *this;
 				}
 
-				float& font_size() override { return font_size_; }
+				float& font_size() override { return _font_size; }
 				scrollbar_specs& font_size(const float& font_size) {
-					font_size_ = font_size;
+					_font_size = font_size;
 					return *this;
 				}
 
-				color& color_text() override { return color_text_; }
+				color& color_text() override { return _color_text; }
 				scrollbar_specs& color_text(const color& color_text) {
-					color_text_ = color_text;
+					_color_text = color_text;
 					return *this;
 				}
 
-				color& color_fill() override { return color_fill_; }
+				color& color_fill() override { return _color_fill; }
 				scrollbar_specs& color_fill(const color& color_fill) {
-					color_fill_ = color_fill;
+					_color_fill = color_fill;
 					return *this;
 				}
 
-				color& color_hot() override { return color_hot_; }
+				color& color_hot() override { return _color_hot; }
 				scrollbar_specs& color_hot(const color& color_hot) {
-					color_hot_ = color_hot;
+					_color_hot = color_hot;
 					return *this;
 				}
 
-				color& color_selected() override { return color_selected_; }
+				color& color_selected() override { return _color_selected; }
 				scrollbar_specs& color_selected(const color& color_selected) {
-					color_selected_ = color_selected;
+					_color_selected = color_selected;
 					return *this;
 				}
 
-				color& color_disabled() override { return color_disabled_; }
+				color& color_disabled() override { return _color_disabled; }
 				scrollbar_specs& color_disabled(const color& color_disabled) {
-					color_disabled_ = color_disabled;
+					_color_disabled = color_disabled;
 					return *this;
 				}
 
 				// widget specific specs
 
-				color& color_scrollbar_border() { return color_scrollbar_border_; }
+				color& color_scrollbar_border() { return _color_scrollbar_border; }
 				scrollbar_specs& color_scrollbar_border(const color& color_scrollbar_border) {
-					color_scrollbar_border_ = color_scrollbar_border;
+					_color_scrollbar_border = color_scrollbar_border;
 					return *this;
 				}
 
-				color& color_hot_pressed() { return color_hot_pressed_; }
+				color& color_hot_pressed() { return _color_hot_pressed; }
 				scrollbar_specs& color_hot_pressed(const color& color_hot_pressed) {
-					color_hot_pressed_ = color_hot_pressed;
+					_color_hot_pressed = color_hot_pressed;
 					return *this;
 				}
 
-				color& color_background() { return color_background_; }
+				color& color_background() { return _color_background; }
 				scrollbar_specs& color_background(const color& color_background) {
-					color_background_ = color_background;
+					_color_background = color_background;
 					return *this;
 				}
 			};
@@ -242,29 +242,29 @@ namespace liblec {
 				/// <remarks>Useful for complex widgets with multiple hit points.</remarks>
 				virtual bool contains();
 
-				std::string alias_;
-				bool is_static_, hit_, pressed_;
-				D2D1_RECT_F rect_;
-				bool visible_, is_enabled_;
-				D2D1_POINT_2F point_;
-				bool selected_;
-				D2D1_POINT_2F point_on_press_, point_on_release_;
+				std::string _alias;
+				bool _is_static, _hit, _pressed;
+				D2D1_RECT_F _rect;
+				bool _visible, _is_enabled;
+				D2D1_POINT_2F _point;
+				bool _selected;
+				D2D1_POINT_2F _point_on_press, _point_on_release;
 
 				/// <summary>Flag to track the status of widget resources. Enables the creation of
 				/// widget resources on-the-fly and on-demand for best performance rather than
 				/// always creating resources for all page widgets in one batch.</summary>
-				bool resources_created_;
+				bool _resources_created;
 
 				/// <summary>The cursor to be displayed when the mouse is over the widget. When
 				/// equal to a nullptr the default cursor is used. It is recommended to set within
 				/// the widget's on_createresources() method as follows:
-				/// h_cursor_ = get_cursor(specs_.cursor);</summary>
-				HCURSOR h_cursor_;
+				/// _h_cursor = get_cursor(_specs.cursor);</summary>
+				HCURSOR _h_cursor;
 
-				containers::page& page_;
+				containers::page& _page;
 
-				std::string tooltip_text_;
-				bool tooltip_active_;
+				std::string _tooltip_text;
+				bool _tooltip_active;
 			};
 		}
 	}

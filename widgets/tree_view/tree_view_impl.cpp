@@ -20,15 +20,15 @@ namespace liblec {
 			ID2D1Factory* p_direct2d_factory,
 			IDWriteFactory* p_directwrite_factory) :
 			widget_impl(page, alias),
-			p_brush_(nullptr),
-			p_brush_hot_(nullptr),
-			p_brush_disabled_(nullptr),
-			p_brush_selected_(nullptr),
-			p_text_format_(nullptr),
-			p_direct2d_factory_(p_direct2d_factory),
-			p_directwrite_factory_(p_directwrite_factory),
-			p_text_layout_(nullptr),
-			margin_(0.f)	// the tree will be moved into a special tree pane. The pane will have a margin!
+			_p_brush(nullptr),
+			_p_brush_hot(nullptr),
+			_p_brush_disabled(nullptr),
+			_p_brush_selected(nullptr),
+			_p_text_format(nullptr),
+			_p_direct2d_factory(p_direct2d_factory),
+			_p_directwrite_factory(p_directwrite_factory),
+			_p_text_layout(nullptr),
+			_margin(0.f)	// the tree will be moved into a special tree pane. The pane will have a margin!
 		{}
 
 		widgets::tree_view_impl::~tree_view_impl() { discard_resources(); }
@@ -40,71 +40,71 @@ namespace liblec {
 
 		HRESULT widgets::tree_view_impl::create_resources(
 			ID2D1HwndRenderTarget* p_render_target) {
-			specs_old_ = specs_;
-			is_static_ = false;
-			h_cursor_ = get_cursor(specs_.cursor());
+			_specs_old = _specs;
+			_is_static = false;
+			_h_cursor = get_cursor(_specs.cursor());
 
 			HRESULT hr = S_OK;
 
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_hot()),
-					&p_brush_hot_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_hot()),
+					&_p_brush_hot);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_disabled()),
-					&p_brush_disabled_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_disabled()),
+					&_p_brush_disabled);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_selected()),
-					&p_brush_selected_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_selected()),
+					&_p_brush_selected);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_text()),
-					&p_brush_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_text()),
+					&_p_brush);
 			if (SUCCEEDED(hr)) {
 				// Create a DirectWrite text format object.
-				hr = p_directwrite_factory_->CreateTextFormat(
-					convert_string(specs_.font()).c_str(),
+				hr = _p_directwrite_factory->CreateTextFormat(
+					convert_string(_specs.font()).c_str(),
 					NULL,
 					DWRITE_FONT_WEIGHT_NORMAL,
 					DWRITE_FONT_STYLE_NORMAL,
 					DWRITE_FONT_STRETCH_NORMAL,
-					convert_fontsize_to_dip(specs_.font_size()),
+					convert_fontsize_to_dip(_specs.font_size()),
 					L"", //locale
-					&p_text_format_
+					&_p_text_format
 					);
 			}
 			if (SUCCEEDED(hr)) {
-				p_text_format_->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_LEADING);
-				p_text_format_->SetParagraphAlignment(DWRITE_PARAGRAPH_ALIGNMENT_CENTER);
-				make_single_line(p_directwrite_factory_, p_text_format_);
+				_p_text_format->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_LEADING);
+				_p_text_format->SetParagraphAlignment(DWRITE_PARAGRAPH_ALIGNMENT_CENTER);
+				make_single_line(_p_directwrite_factory, _p_text_format);
 			}
 
-			resources_created_ = true;
+			_resources_created = true;
 			return hr;
 		}
 
 		void widgets::tree_view_impl::discard_resources() {
-			resources_created_ = false;
-			safe_release(&p_brush_);
-			safe_release(&p_brush_hot_);
-			safe_release(&p_brush_disabled_);
-			safe_release(&p_brush_selected_);
-			safe_release(&p_text_format_);
+			_resources_created = false;
+			safe_release(&_p_brush);
+			safe_release(&_p_brush_hot);
+			safe_release(&_p_brush_disabled);
+			safe_release(&_p_brush_selected);
+			safe_release(&_p_text_format);
 		}
 
 		D2D1_RECT_F&
 			widgets::tree_view_impl::render(ID2D1HwndRenderTarget* p_render_target,
 				const D2D1_SIZE_F& change_in_size, const D2D1_POINT_2F& offset, const bool& render) {
-			if (specs_old_ != specs_) {
-				log("specs changed: " + alias_);
-				specs_old_ = specs_;
+			if (_specs_old != _specs) {
+				log("specs changed: " + _alias);
+				_specs_old = _specs;
 
 				try {
-					if (tree_pane_specs_.has_value()) {
+					if (_tree_pane_specs.has_value()) {
 						// update the special pane specs
-						tree_pane_specs_.value().get().color_fill() = specs_.color_fill();
-						tree_pane_specs_.value().get().color_border() = specs_.color_border();
+						_tree_pane_specs.value().get().color_fill() = _specs.color_fill();
+						_tree_pane_specs.value().get().color_border() = _specs.color_border();
 
 						// schedule a refresh
-						page_.d_page_.get_form().d_.schedule_refresh_ = true;
+						_page._d_page.get_form()._d._schedule_refresh = true;
 					}
 				}
 				catch (const std::exception& e) { log(e.what()); }
@@ -112,29 +112,29 @@ namespace liblec {
 				discard_resources();
 			}
 
-			if (!resources_created_)
+			if (!_resources_created)
 				create_resources(p_render_target);
 
-			// use specs_.rect_ not specs_.rect() and specs_.on_resize_ not specs_.on_resize() due to redirection to special pane
-			rect_ = position(specs_.rect_, specs_.on_resize_, change_in_size.width, change_in_size.height);
-			rect_.left -= offset.x;
-			rect_.right -= offset.x;
-			rect_.top -= offset.y;
-			rect_.bottom -= offset.y;
+			// use _specs._rect not _specs.rect() and _specs._on_resize not _specs.on_resize() due to redirection to special pane
+			_rect = position(_specs._rect, _specs._on_resize, change_in_size.width, change_in_size.height);
+			_rect.left -= offset.x;
+			_rect.right -= offset.x;
+			_rect.top -= offset.y;
+			_rect.bottom -= offset.y;
 
-			if (!render || !visible_)
-				return rect_;
+			if (!render || !_visible)
+				return _rect;
 
 			class helper {
 			public:
 				static void draw_level(ID2D1Factory* p_direct2d_factory,
 					ID2D1HwndRenderTarget* p_render_target, IDWriteFactory* p_directwrite_factory,
-					IDWriteTextFormat* p_text_format_, ID2D1SolidColorBrush* p_brush,
-					ID2D1SolidColorBrush* p_brush_selected, ID2D1SolidColorBrush* p_brush_hot_,
+					IDWriteTextFormat* _p_text_format, ID2D1SolidColorBrush* p_brush,
+					ID2D1SolidColorBrush* p_brush_selected, ID2D1SolidColorBrush* _p_brush_hot,
 					const std::string& font, const float& font_size, std::map<std::string,
 					widgets::tree_view_specs::node>& level, const D2D1_RECT_F& rect,
-					float& right_, float& bottom_, float& optimized_right_, float& optimized_bottom_, bool hit_, D2D1_POINT_2F point_,
-					float dpi_scale_) {
+					float& _right, float& _bottom, float& _optimized_right, float& _optimized_bottom, bool _hit, D2D1_POINT_2F _point,
+					float _dpi_scale) {
 					float bottom = rect.top;
 					float right = rect.right;
 
@@ -155,15 +155,15 @@ namespace liblec {
 						node.second.rc = convert_rect(rect_node);
 
 						// capture optimized dimensions
-						optimized_right_ = largest(optimized_right_, rect_node.right);
-						optimized_bottom_ = largest(optimized_bottom_, rect_node.bottom);
+						_optimized_right = largest(_optimized_right, rect_node.right);
+						_optimized_bottom = largest(_optimized_bottom, rect_node.bottom);
 
 						right = largest(right, rect_node.right);
 						bottom = largest(bottom, rect_node.bottom);
 
 						// make adjustments to global trackers
-						right_ = largest(right_, right);
-						bottom_ = largest(bottom_, bottom);
+						_right = largest(_right, right);
+						_bottom = largest(_bottom, bottom);
 
 						D2D1_RECT_F rect_marker = { 0.f, 0.f, 0.f, 0.f };
 						if (has_children) {
@@ -252,21 +252,21 @@ namespace liblec {
 						node.second.rc_expand = convert_rect(rect_marker);
 
 						// check if mouse is in rect
-						if (hit_) {
+						if (_hit) {
 							auto rc = rect_node;
-							scale_RECT(rc, dpi_scale_);
+							scale_RECT(rc, _dpi_scale);
 
 							// handle hit status
 							bool hot = false;
 							if (
-								point_.x >= rc.left && point_.x <= rc.right &&
-								point_.y >= rc.top && point_.y <= rc.bottom)
+								_point.x >= rc.left && _point.x <= rc.right &&
+								_point.y >= rc.top && _point.y <= rc.bottom)
 								hot = true;
 							else
 								hot = false;
 
 							if (hot)
-								p_render_target->FillRectangle(rect_node, p_brush_hot_);
+								p_render_target->FillRectangle(rect_node, _p_brush_hot);
 						}
 
 						if (node.second.selected) {
@@ -274,19 +274,19 @@ namespace liblec {
 						}
 
 						// create a text layout
-						IDWriteTextLayout* p_text_layout_ = nullptr;
+						IDWriteTextLayout* _p_text_layout = nullptr;
 						HRESULT hr = p_directwrite_factory->CreateTextLayout(convert_string(node.first).c_str(),
-							(UINT32)node.first.length(), p_text_format_, rect_node.right - rect_node.left,
-							rect_node.bottom - rect_node.top, &p_text_layout_);
+							(UINT32)node.first.length(), _p_text_format, rect_node.right - rect_node.left,
+							rect_node.bottom - rect_node.top, &_p_text_layout);
 
 						if (SUCCEEDED(hr)) {
 							// draw the text layout
 							p_render_target->DrawTextLayout(D2D1_POINT_2F{ rect_node.left, rect_node.top },
-								p_text_layout_, p_brush, D2D1_DRAW_TEXT_OPTIONS_CLIP);
+								_p_text_layout, p_brush, D2D1_DRAW_TEXT_OPTIONS_CLIP);
 						}
 
 						// release the text layout
-						safe_release(&p_text_layout_);
+						safe_release(&_p_text_layout);
 
 						bottom = rect_node.bottom;
 
@@ -298,12 +298,12 @@ namespace liblec {
 							rect_child.right += 10.f;
 
 							draw_level(p_direct2d_factory, p_render_target, p_directwrite_factory,
-								p_text_format_, p_brush, p_brush_selected, p_brush_hot_, font,
-								font_size, node.second.children, rect_child, right_, bottom_,
-								optimized_right_, optimized_bottom_, hit_, point_, dpi_scale_);	// recursion
+								_p_text_format, p_brush, p_brush_selected, _p_brush_hot, font,
+								font_size, node.second.children, rect_child, _right, _bottom,
+								_optimized_right, _optimized_bottom, _hit, _point, _dpi_scale);	// recursion
 
-							right = largest(right, right_);
-							bottom = largest(bottom, bottom_);
+							right = largest(right, _right);
+							bottom = largest(bottom, _bottom);
 						}
 					}
 
@@ -311,92 +311,92 @@ namespace liblec {
 			};
 
 			// draw the tree
-			auto right_ = rect_.right;
-			auto bottom_ = rect_.top + 20;
-			auto optimized_right_ = 0.f;
-			auto optimized_bottom_ = 0.f;
-			helper::draw_level(p_direct2d_factory_, p_render_target, p_directwrite_factory_,
-				p_text_format_, p_brush_, p_brush_selected_, p_brush_hot_, specs_.font(),
-				specs_.font_size(), specs_.root(), rect_, right_, bottom_, optimized_right_,
-				optimized_bottom_, hit_, point_, get_dpi_scale());
+			auto _right = _rect.right;
+			auto _bottom = _rect.top + 20;
+			auto _optimized_right = 0.f;
+			auto _optimized_bottom = 0.f;
+			helper::draw_level(_p_direct2d_factory, p_render_target, _p_directwrite_factory,
+				_p_text_format, _p_brush, _p_brush_selected, _p_brush_hot, _specs.font(),
+				_specs.font_size(), _specs.root(), _rect, _right, _bottom, _optimized_right,
+				_optimized_bottom, _hit, _point, get_dpi_scale());
 
-			const auto width = optimized_right_ - rect_.left;
-			const auto height = optimized_bottom_ - rect_.top;
+			const auto width = _optimized_right - _rect.left;
+			const auto height = _optimized_bottom - _rect.top;
 
 			// update widget rect
-			// use specs_.rect_ not specs_.rect() due to redirection to special pane
-			specs_.rect_.width(width);
-			specs_.rect_.height(height);
+			// use _specs._rect not _specs.rect() due to redirection to special pane
+			_specs._rect.width(width);
+			_specs._rect.height(height);
 
-			return rect_;
+			return _rect;
 		}
 
 		void widgets::tree_view_impl::on_click() {
 			class helper {
 			public:
-				static void check(std::map<std::string, widgets::tree_view_specs::node>& level, D2D1_POINT_2F point_, float dpi_scale_) {
+				static void check(std::map<std::string, widgets::tree_view_specs::node>& level, D2D1_POINT_2F _point, float _dpi_scale) {
 					for (auto& node : level) {
 						// check if marker has been clicked
 						auto rect_marker = convert_rect(node.second.rc_expand);
 						auto rect_node = convert_rect(node.second.rc);
-						scale_RECT(rect_marker, dpi_scale_);
-						scale_RECT(rect_node, dpi_scale_);
+						scale_RECT(rect_marker, _dpi_scale);
+						scale_RECT(rect_node, _dpi_scale);
 
-						if (point_.x >= rect_marker.left && point_.x <= rect_marker.right &&
-							point_.y >= rect_marker.top && point_.y <= rect_marker.bottom)
+						if (_point.x >= rect_marker.left && _point.x <= rect_marker.right &&
+							_point.y >= rect_marker.top && _point.y <= rect_marker.bottom)
 							node.second.expand = !node.second.expand;
 
-						if (point_.x >= rect_node.left && point_.x <= rect_node.right &&
-							point_.y >= rect_node.top && point_.y <= rect_node.bottom)
+						if (_point.x >= rect_node.left && _point.x <= rect_node.right &&
+							_point.y >= rect_node.top && _point.y <= rect_node.bottom)
 							node.second.selected = true;
 						else
 							node.second.selected = false;
 
-						check(node.second.children, point_, dpi_scale_);	// recursion
+						check(node.second.children, _point, _dpi_scale);	// recursion
 					}
 				}
 			};
 
 			// mark selected
-			helper::check(specs_.root(), point_, get_dpi_scale());
+			helper::check(_specs.root(), _point, get_dpi_scale());
 
 			// handle on_selection
-			if (specs_.events().selection)
+			if (_specs.events().selection)
 				on_selection();
 
 			// handle on_click
-			if (specs_.events().click)
-				specs_.events().click();
+			if (_specs.events().click)
+				_specs.events().click();
 
-			if (specs_.events().action)
-				specs_.events().action();
+			if (_specs.events().action)
+				_specs.events().action();
 		}
 
 		bool widgets::tree_view_impl::hit(const bool& hit) {
-			if (is_static_ || hit == hit_) {
-				if (hit || pressed_)
+			if (_is_static || hit == _hit) {
+				if (hit || _pressed)
 					return true;
 				else
 					return false;
 			}
 
-			hit_ = hit;
+			_hit = hit;
 			return true;
 		}
 
 		void widgets::tree_view_impl::on_right_click() {
-			if (specs_.events().right_click)
-				specs_.events().right_click();
+			if (_specs.events().right_click)
+				_specs.events().right_click();
 		}
 
 		widgets::tree_view_specs&
-			widgets::tree_view_impl::specs() { return specs_; }
+			widgets::tree_view_impl::specs() { return _specs; }
 
 		widgets::tree_view_specs&
 			widgets::tree_view_impl::operator()() { return specs(); }
 
 		void widgets::tree_view_impl::set_tree_pane_specs(containers::pane_specs& specs) {
-			tree_pane_specs_ = specs;
+			_tree_pane_specs = specs;
 		}
 
 		void widgets::tree_view_impl::on_selection() {
@@ -415,7 +415,7 @@ namespace liblec {
 				}
 			};
 
-			helper::check(specs_.root(), specs_.events().selection);
+			helper::check(_specs.root(), _specs.events().selection);
 		}
 	}
 }

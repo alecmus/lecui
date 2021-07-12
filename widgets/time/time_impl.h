@@ -22,7 +22,7 @@ namespace liblec {
 			class time_impl : public widget_impl {
 				/// private virtual function overrides
 				widgets::specs& generic_specs() override {
-					return specs_;
+					return _specs;
 				}
 
 			public:
@@ -67,17 +67,17 @@ namespace liblec {
 				time_impl& operator=(const time_impl&) = delete;
 
 				/// Private variables
-				widgets::time_specs specs_, specs_old_;
-				ID2D1SolidColorBrush* p_brush_fill_;
-				ID2D1SolidColorBrush* p_brush_hot_;
-				ID2D1SolidColorBrush* p_brush_disabled_;
-				ID2D1SolidColorBrush* p_brush_selected_;
+				widgets::time_specs _specs, _specs_old;
+				ID2D1SolidColorBrush* _p_brush_fill;
+				ID2D1SolidColorBrush* _p_brush_hot;
+				ID2D1SolidColorBrush* _p_brush_disabled;
+				ID2D1SolidColorBrush* _p_brush_selected;
 
 				std::optional<std::reference_wrapper<widgets::label_specs>>
-					hour_label_specs_, seperator_1_specs_, minute_label_specs_,
-					seperator_2_specs_, second_label_specs_;
+					_hour_label_specs, _seperator_1_specs, _minute_label_specs,
+					_seperator_2_specs, _second_label_specs;
 				std::optional<std::reference_wrapper<widgets::rectangle_specs>>
-					hour_specs_, minute_specs_, second_specs_;
+					_hour_specs, _minute_specs, _second_specs;
 			};
 		}
 	}

@@ -18,14 +18,14 @@ namespace liblec {
 		class splash::impl {
 		public:
 			impl(form& fm) :
-				fm_(fm) {}
-			form& fm_;
+				_fm(fm) {}
+			form& _fm;
 
 			// Window Class name
-			const TCHAR* splash_class_name_ = L"liblec::lecui::splash";
+			const TCHAR* _splash_class_name = L"liblec::lecui::splash";
 
-			HWND hWnd_splash_;
-			HBITMAP hbmp_splash_;
+			HWND _hWnd_splash;
+			HBITMAP _hbmp_splash;
 
 			/// Registers a window class for the splash and splash owner windows.
 			void register_window_class(int IDI_SPLASHICON) {
@@ -35,7 +35,7 @@ namespace liblec {
 				wc.hInstance = h_instance;
 				wc.hIcon = LoadIcon(h_instance, MAKEINTRESOURCE(IDI_SPLASHICON));
 				wc.hCursor = LoadCursor(nullptr, IDC_ARROW);
-				wc.lpszClassName = splash_class_name_;
+				wc.lpszClassName = _splash_class_name;
 
 				if (RegisterClass(&wc) == NULL) {
 					// splash window registration failed
@@ -48,7 +48,7 @@ namespace liblec {
 				register_window_class(IDI_SPLASHICON);
 
 				HINSTANCE h_instance = GetModuleHandle(NULL);
-				HWND hWnd_owner = CreateWindow(splash_class_name_, nullptr, WS_POPUP,
+				HWND hWnd_owner = CreateWindow(_splash_class_name, nullptr, WS_POPUP,
 					0, 0, 0, 0, nullptr, nullptr, h_instance, nullptr);
 
 				if (hWnd_owner == nullptr)
@@ -56,7 +56,7 @@ namespace liblec {
 
 				/// create the window
 				/// WS_EX_LAYERED flag for extended styles is crucial here
-				return CreateWindowEx(WS_EX_LAYERED, splash_class_name_, nullptr, WS_POPUP | WS_VISIBLE,
+				return CreateWindowEx(WS_EX_LAYERED, _splash_class_name, nullptr, WS_POPUP | WS_VISIBLE,
 					0, 0, 0, 0, hWnd_owner, nullptr, h_instance, nullptr);
 			}
 
@@ -106,33 +106,33 @@ namespace liblec {
 		};
 
 		splash::splash(form& fm) :
-			d_(*(new impl(fm))) {}
+			_d(*(new impl(fm))) {}
 
 		splash::~splash() {
 			remove();
-			delete& d_;
+			delete& _d;
 		}
 
 		bool splash::display(int png_resource, bool dpi_aware, std::string& error) {
-			if (!d_.hWnd_splash_) {		// failsafe
+			if (!_d._hWnd_splash) {		// failsafe
 				image_converter imgcv;
 
-				d_.hWnd_splash_ = d_.CreateSplashWindow(d_.fm_.d_.idi_icon_small_);
-				d_.hbmp_splash_ = imgcv.png_to_argb(d_.fm_.d_.resource_module_handle_,
-					png_resource, dpi_aware ? d_.fm_.d_.get_dpi_scale() : 1.f, error);
+				_d._hWnd_splash = _d.CreateSplashWindow(_d._fm._d._idi_icon_small);
+				_d._hbmp_splash = imgcv.png_to_argb(_d._fm._d._resource_module_handle,
+					png_resource, dpi_aware ? _d._fm._d.get_dpi_scale() : 1.f, error);
 
-				if (d_.hbmp_splash_ == nullptr)
+				if (_d._hbmp_splash == nullptr)
 					return false;	// error
 
-				d_.SetSplashImage(d_.hWnd_splash_, d_.hbmp_splash_);
+				_d.SetSplashImage(_d._hWnd_splash, _d._hbmp_splash);
 			}
 
 			return true;
 		}
 		void splash::remove() {
-			if (d_.hWnd_splash_) {
-				DestroyWindow(d_.hWnd_splash_);
-				d_.hWnd_splash_ = nullptr;
+			if (_d._hWnd_splash) {
+				DestroyWindow(_d._hWnd_splash);
+				_d._hWnd_splash = nullptr;
 			}
 		}
 	}

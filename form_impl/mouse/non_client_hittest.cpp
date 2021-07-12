@@ -23,11 +23,11 @@ namespace liblec {
 				::GetSystemMetrics(SM_CYFRAME)
 			};
 
-			border.x = static_cast<long>(.5f + dpi_scale_ * border.x);
-			border.y = static_cast<long>(.5f + dpi_scale_ * border.y);
+			border.x = static_cast<long>(.5f + _dpi_scale * border.x);
+			border.y = static_cast<long>(.5f + _dpi_scale * border.y);
 
 			RECT window;
-			if (!::GetWindowRect(hWnd_, &window))
+			if (!::GetWindowRect(_hWnd, &window))
 				return HTNOWHERE;
 
 			enum region_mask {
@@ -48,16 +48,16 @@ namespace liblec {
 			if (cursor.x >= (window.left + border.x) &&
 				cursor.x < (window.right - border.x) &&
 				cursor.y >= (window.top + border.y) &&
-				cursor.y < (window.top + static_cast<long>(.5f + dpi_scale_ * caption_bar_height_))) {
+				cursor.y < (window.top + static_cast<long>(.5f + _dpi_scale * _caption_bar_height))) {
 				POINT m_pt = { 0, 0 };
-				ScreenToClient(hWnd_, &m_pt);
+				ScreenToClient(_hWnd, &m_pt);
 
 				D2D1_POINT_2F point{ static_cast<float>(cursor.x + m_pt.x),
 					static_cast<float>(cursor.y + m_pt.y) };
 
 				// exclude page widgets
 				bool exclude = false;
-				for (auto& widget : widgets_) {
+				for (auto& widget : _widgets) {
 					if (widget.second.contains(point)) {
 						exclude = true;
 						break;
@@ -71,14 +71,14 @@ namespace liblec {
 			}
 
 			switch (result) {
-			case left: return allow_resizing_ ? HTLEFT : HTCLIENT;
-			case right: return allow_resizing_ ? HTRIGHT : HTCLIENT;
-			case top: return allow_resizing_ ? HTTOP : HTCLIENT;
-			case bottom: return allow_resizing_ ? HTBOTTOM : HTCLIENT;
-			case top | left: return allow_resizing_ ? HTTOPLEFT : HTCLIENT;
-			case top | right: return allow_resizing_ ? HTTOPRIGHT : HTCLIENT;
-			case bottom | left: return allow_resizing_ ? HTBOTTOMLEFT : HTCLIENT;
-			case bottom | right: return allow_resizing_ ? HTBOTTOMRIGHT : HTCLIENT;
+			case left: return _allow_resizing ? HTLEFT : HTCLIENT;
+			case right: return _allow_resizing ? HTRIGHT : HTCLIENT;
+			case top: return _allow_resizing ? HTTOP : HTCLIENT;
+			case bottom: return _allow_resizing ? HTBOTTOM : HTCLIENT;
+			case top | left: return _allow_resizing ? HTTOPLEFT : HTCLIENT;
+			case top | right: return _allow_resizing ? HTTOPRIGHT : HTCLIENT;
+			case bottom | left: return _allow_resizing ? HTBOTTOMLEFT : HTCLIENT;
+			case bottom | right: return _allow_resizing ? HTBOTTOMRIGHT : HTCLIENT;
 			case client: return HTCLIENT;
 			case caption: return HTCAPTION;
 			default: return HTNOWHERE;

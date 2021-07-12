@@ -36,17 +36,17 @@ namespace liblec {
 				};
 
 			private:
-				float border_ = .5f;
-				color color_border_;
-				std::string text_unchecked_;
-				std::string text_indeterminate_;
-				color color_check_;
-				checkbox_status status_ = checkbox_status::indeterminate;
+				float _border = .5f;
+				color _color_border;
+				std::string _text_unchecked;
+				std::string _text_indeterminate;
+				color _color_check;
+				checkbox_status _status = checkbox_status::indeterminate;
 
 			public:
 				checkbox_specs() {
-					cursor_ = cursor_type::hand;
-					rect_.size({ 20.f, 20.f });
+					_cursor = cursor_type::hand;
+					_rect.size({ 20.f, 20.f });
 				}
 
 				/// <summary>Events specific to this widget.</summary>
@@ -57,7 +57,7 @@ namespace liblec {
 				};
 
 				checkbox_events& events() {
-					return checkbox_events_;
+					return _checkbox_events;
 				}
 
 				bool operator==(const checkbox_specs&);
@@ -158,7 +158,7 @@ namespace liblec {
 				checkbox_specs& status(const checkbox_status& status);
 
 			private:
-				checkbox_events checkbox_events_;
+				checkbox_events _checkbox_events;
 			};
 
 			/// <summary>Checkbox widget builder.</summary>
@@ -198,7 +198,7 @@ namespace liblec {
 
 			private:
 				class impl;
-				impl& d_;
+				impl& _d;
 
 				// Default constructor and copying an object of this class are not allowed
 				checkbox_builder() = delete;

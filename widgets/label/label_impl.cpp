@@ -16,48 +16,48 @@ namespace liblec {
 	namespace lecui {
 		void widgets::parse_formatted_text(
 			const std::string& formatted_text,
-			std::string& plain_text_,
+			std::string& _plain_text,
 			D2D1_COLOR_F default_color,
-			std::vector<formatted_text_parser::text_range_properties>& formatting_) {
+			std::vector<formatted_text_parser::text_range_properties>& _formatting) {
 			const auto props = formatted_text_parser().read(formatted_text, default_color);
-			plain_text_ = props.xml.plain_text;
-			formatting_ = props.dwrite;
+			_plain_text = props.xml.plain_text;
+			_formatting = props.dwrite;
 		}
 
 		void widgets::apply_formatting(
-			const std::vector<formatted_text_parser::text_range_properties>& formatting_,
+			const std::vector<formatted_text_parser::text_range_properties>& _formatting,
 			ID2D1HwndRenderTarget* p_render_target,
-			IDWriteTextLayout* p_text_layout_,
+			IDWriteTextLayout* _p_text_layout,
 			bool is_enabled,
 			ID2D1SolidColorBrush* p_brush_disabled) {
 			// apply formatting
-			for (auto& properties : formatting_) {
+			for (auto& properties : _formatting) {
 				// apply font
 				if (!properties.font.empty())
-					p_text_layout_->SetFontFamilyName(convert_string(properties.font).c_str(),
+					_p_text_layout->SetFontFamilyName(convert_string(properties.font).c_str(),
 						properties.text_range);
 
 				// apply font size
 				if (properties.font_size)
-					p_text_layout_->SetFontSize(convert_fontsize_to_dip(properties.font_size),
+					_p_text_layout->SetFontSize(convert_fontsize_to_dip(properties.font_size),
 						properties.text_range);
 
 				// apply bold, italic, underline
 				if (properties.bold)
-					p_text_layout_->SetFontWeight(DWRITE_FONT_WEIGHT_BOLD, properties.text_range);
+					_p_text_layout->SetFontWeight(DWRITE_FONT_WEIGHT_BOLD, properties.text_range);
 				if (properties.italic)
-					p_text_layout_->SetFontStyle(DWRITE_FONT_STYLE_ITALIC, properties.text_range);
+					_p_text_layout->SetFontStyle(DWRITE_FONT_STYLE_ITALIC, properties.text_range);
 				if (properties.underline)
-					p_text_layout_->SetUnderline(TRUE, properties.text_range);
+					_p_text_layout->SetUnderline(TRUE, properties.text_range);
 				if (properties.strikethrough)
-					p_text_layout_->SetStrikethrough(TRUE, properties.text_range);
+					_p_text_layout->SetStrikethrough(TRUE, properties.text_range);
 
 				// apply color (-1.f for alpha indicates color has't been set)
 				if (p_render_target && properties.color.a != -1.f) {
 					ID2D1SolidColorBrush* p_brush;
 					HRESULT hr = p_render_target->CreateSolidColorBrush(properties.color, &p_brush);
 					if (SUCCEEDED(hr))
-						p_text_layout_->SetDrawingEffect(is_enabled ?
+						_p_text_layout->SetDrawingEffect(is_enabled ?
 							p_brush : p_brush_disabled, properties.text_range);
 					safe_release(&p_brush);
 				}
@@ -73,41 +73,41 @@ namespace liblec {
 				bool center_v,
 				const D2D1_RECT_F max_rect) {
 			// the default color doesn't matter here we're just measuring the text
-			std::string plain_text_;
-			std::vector<formatted_text_parser::text_range_properties> formatting_;
-			parse_formatted_text(formatted_text, plain_text_, D2D1::ColorF(D2D1::ColorF::Black), formatting_);
+			std::string _plain_text;
+			std::vector<formatted_text_parser::text_range_properties> _formatting;
+			parse_formatted_text(formatted_text, _plain_text, D2D1::ColorF(D2D1::ColorF::Black), _formatting);
 
 			D2D1_RECT_F rect = max_rect;
 
 			HRESULT hr = S_OK;
 
 			// Create a DirectWrite text format object.
-			IDWriteTextFormat* p_text_format_ = nullptr;
+			IDWriteTextFormat* _p_text_format = nullptr;
 			if (SUCCEEDED(hr)) {
 				hr = p_directwrite_factory->CreateTextFormat(convert_string(font).c_str(),
 					NULL, DWRITE_FONT_WEIGHT_NORMAL, DWRITE_FONT_STYLE_NORMAL, DWRITE_FONT_STRETCH_NORMAL,
 					convert_fontsize_to_dip(font_size), L"", //locale
-					&p_text_format_);
+					&_p_text_format);
 			}
 
-			IDWriteTextLayout* p_text_layout_ = nullptr;
+			IDWriteTextLayout* _p_text_layout = nullptr;
 			if (SUCCEEDED(hr)) {
-				p_text_format_->SetTextAlignment(center_h ?
+				_p_text_format->SetTextAlignment(center_h ?
 					DWRITE_TEXT_ALIGNMENT_CENTER : DWRITE_TEXT_ALIGNMENT_LEADING);
-				p_text_format_->SetParagraphAlignment(center_v ?
+				_p_text_format->SetParagraphAlignment(center_v ?
 					DWRITE_PARAGRAPH_ALIGNMENT_CENTER : DWRITE_PARAGRAPH_ALIGNMENT_NEAR);
 
 				// create a text layout
-				hr = p_directwrite_factory->CreateTextLayout(convert_string(plain_text_).c_str(),
-					(UINT32)plain_text_.length(), p_text_format_, rect.right - rect.left,
-					rect.bottom - rect.top, &p_text_layout_);
+				hr = p_directwrite_factory->CreateTextLayout(convert_string(_plain_text).c_str(),
+					(UINT32)_plain_text.length(), _p_text_format, rect.right - rect.left,
+					rect.bottom - rect.top, &_p_text_layout);
 			}
 
 			if (SUCCEEDED(hr)) {
-				apply_formatting(formatting_, nullptr, p_text_layout_, true, nullptr);
+				apply_formatting(_formatting, nullptr, _p_text_layout, true, nullptr);
 
 				DWRITE_TEXT_METRICS textMetrics;
-				p_text_layout_->GetMetrics(&textMetrics);
+				_p_text_layout->GetMetrics(&textMetrics);
 				rect.left += textMetrics.left;
 				rect.top += textMetrics.top;
 				rect.right = smallest(rect.left + textMetrics.width, rect.right);
@@ -115,8 +115,8 @@ namespace liblec {
 			}
 
 			// release the text layout
-			safe_release(&p_text_layout_);
-			safe_release(&p_text_format_);
+			safe_release(&_p_text_layout);
+			safe_release(&_p_text_format);
 			return rect;
 		}
 
@@ -131,46 +131,46 @@ namespace liblec {
 				bool allow_v_overflow,
 				const D2D1_RECT_F max_rect) {
 			// the default color doesn't matter here we're just measuring the text
-			std::string plain_text_;
-			std::vector<formatted_text_parser::text_range_properties> formatting_;
-			parse_formatted_text(formatted_text, plain_text_, D2D1::ColorF(D2D1::ColorF::Black), formatting_);
+			std::string _plain_text;
+			std::vector<formatted_text_parser::text_range_properties> _formatting;
+			parse_formatted_text(formatted_text, _plain_text, D2D1::ColorF(D2D1::ColorF::Black), _formatting);
 
 			D2D1_RECT_F rect = max_rect;
 
 			HRESULT hr = S_OK;
 
 			// Create a DirectWrite text format object.
-			IDWriteTextFormat* p_text_format_ = nullptr;
+			IDWriteTextFormat* _p_text_format = nullptr;
 			if (SUCCEEDED(hr)) {
 				hr = p_directwrite_factory->CreateTextFormat(convert_string(font).c_str(),
 					NULL, DWRITE_FONT_WEIGHT_NORMAL, DWRITE_FONT_STYLE_NORMAL, DWRITE_FONT_STRETCH_NORMAL,
 					convert_fontsize_to_dip(font_size), L"", //locale
-					&p_text_format_);
+					&_p_text_format);
 			}
 
 			if (SUCCEEDED(hr) && allow_h_overflow) {
 				// make text overflow layout rectangle
-				p_text_format_->SetWordWrapping(DWRITE_WORD_WRAPPING::DWRITE_WORD_WRAPPING_NO_WRAP);
+				_p_text_format->SetWordWrapping(DWRITE_WORD_WRAPPING::DWRITE_WORD_WRAPPING_NO_WRAP);
 			}
 
-			IDWriteTextLayout* p_text_layout_ = nullptr;
+			IDWriteTextLayout* _p_text_layout = nullptr;
 			if (SUCCEEDED(hr)) {
-				p_text_format_->SetTextAlignment(center_h ?
+				_p_text_format->SetTextAlignment(center_h ?
 					DWRITE_TEXT_ALIGNMENT_CENTER : DWRITE_TEXT_ALIGNMENT_LEADING);
-				p_text_format_->SetParagraphAlignment(center_v ?
+				_p_text_format->SetParagraphAlignment(center_v ?
 					DWRITE_PARAGRAPH_ALIGNMENT_CENTER : DWRITE_PARAGRAPH_ALIGNMENT_NEAR);
 
 				// create a text layout
-				hr = p_directwrite_factory->CreateTextLayout(convert_string(plain_text_).c_str(),
-					(UINT32)plain_text_.length(), p_text_format_, rect.right - rect.left,
-					rect.bottom - rect.top, &p_text_layout_);
+				hr = p_directwrite_factory->CreateTextLayout(convert_string(_plain_text).c_str(),
+					(UINT32)_plain_text.length(), _p_text_format, rect.right - rect.left,
+					rect.bottom - rect.top, &_p_text_layout);
 			}
 
 			if (SUCCEEDED(hr)) {
-				apply_formatting(formatting_, nullptr, p_text_layout_, true, nullptr);
+				apply_formatting(_formatting, nullptr, _p_text_layout, true, nullptr);
 
 				DWRITE_TEXT_METRICS textMetrics;
-				p_text_layout_->GetMetrics(&textMetrics);
+				_p_text_layout->GetMetrics(&textMetrics);
 				rect.left += textMetrics.left;
 				rect.top += textMetrics.top;
 
@@ -186,8 +186,8 @@ namespace liblec {
 			}
 
 			// release the text layout
-			safe_release(&p_text_layout_);
-			safe_release(&p_text_format_);
+			safe_release(&_p_text_layout);
+			safe_release(&_p_text_format);
 			return rect;
 		}
 
@@ -195,14 +195,14 @@ namespace liblec {
 			const std::string& alias,
 			IDWriteFactory* p_directwrite_factory) :
 			widget_impl(page, alias),
-			p_brush_(nullptr),
-			p_brush_hot_(nullptr),
-			p_brush_hot_pressed_(nullptr),
-			p_brush_disabled_(nullptr),
-			p_brush_selected_(nullptr),
-			p_text_format_(nullptr),
-			p_directwrite_factory_(p_directwrite_factory),
-			p_text_layout_(nullptr) {}
+			_p_brush(nullptr),
+			_p_brush_hot(nullptr),
+			_p_brush_hot_pressed(nullptr),
+			_p_brush_disabled(nullptr),
+			_p_brush_selected(nullptr),
+			_p_text_format(nullptr),
+			_p_directwrite_factory(p_directwrite_factory),
+			_p_text_layout(nullptr) {}
 
 		widgets::label_impl::~label_impl() { discard_resources(); }
 
@@ -213,123 +213,123 @@ namespace liblec {
 
 		HRESULT widgets::label_impl::create_resources(
 			ID2D1HwndRenderTarget* p_render_target) {
-			specs_old_ = specs_;
-			is_static_ = (specs_.events().click == nullptr && specs_.events().action == nullptr);
-			h_cursor_ = get_cursor(specs_.cursor());
+			_specs_old = _specs;
+			_is_static = (_specs.events().click == nullptr && _specs.events().action == nullptr);
+			_h_cursor = get_cursor(_specs.cursor());
 
-			parse_formatted_text(specs_.text(), text_, convert_color(specs_.color_text()), formatting_);
+			parse_formatted_text(_specs.text(), _text, convert_color(_specs.color_text()), _formatting);
 
 			HRESULT hr = S_OK;
 
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_text()),
-					&p_brush_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_text()),
+					&_p_brush);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_hot()),
-					&p_brush_hot_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_hot()),
+					&_p_brush_hot);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_hot_pressed()),
-					&p_brush_hot_pressed_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_hot_pressed()),
+					&_p_brush_hot_pressed);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_disabled()),
-					&p_brush_disabled_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_disabled()),
+					&_p_brush_disabled);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_selected()),
-					&p_brush_selected_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_selected()),
+					&_p_brush_selected);
 			if (SUCCEEDED(hr)) {
 				// Create a DirectWrite text format object.
-				hr = p_directwrite_factory_->CreateTextFormat(convert_string(specs_.font()).c_str(),
+				hr = _p_directwrite_factory->CreateTextFormat(convert_string(_specs.font()).c_str(),
 					NULL, DWRITE_FONT_WEIGHT_NORMAL, DWRITE_FONT_STYLE_NORMAL, DWRITE_FONT_STRETCH_NORMAL,
-					convert_fontsize_to_dip(specs_.font_size()), L"", //locale
-					&p_text_format_);
+					convert_fontsize_to_dip(_specs.font_size()), L"", //locale
+					&_p_text_format);
 			}
 			if (SUCCEEDED(hr)) {
-				p_text_format_->SetTextAlignment(specs_.center_h() ?
+				_p_text_format->SetTextAlignment(_specs.center_h() ?
 					DWRITE_TEXT_ALIGNMENT_CENTER : DWRITE_TEXT_ALIGNMENT_LEADING);
-				p_text_format_->SetParagraphAlignment(specs_.center_v() ?
+				_p_text_format->SetParagraphAlignment(_specs.center_v() ?
 					DWRITE_PARAGRAPH_ALIGNMENT_CENTER : DWRITE_PARAGRAPH_ALIGNMENT_NEAR);
 
-				if (!specs_.multiline())
-					make_single_line(p_directwrite_factory_, p_text_format_);
+				if (!_specs.multiline())
+					make_single_line(_p_directwrite_factory, _p_text_format);
 			}
 
-			resources_created_ = true;
+			_resources_created = true;
 			return hr;
 		}
 
 		void widgets::label_impl::discard_resources() {
-			resources_created_ = false;
-			safe_release(&p_brush_);
-			safe_release(&p_brush_hot_);
-			safe_release(&p_brush_hot_pressed_);
-			safe_release(&p_brush_disabled_);
-			safe_release(&p_brush_selected_);
-			safe_release(&p_text_format_);
+			_resources_created = false;
+			safe_release(&_p_brush);
+			safe_release(&_p_brush_hot);
+			safe_release(&_p_brush_hot_pressed);
+			safe_release(&_p_brush_disabled);
+			safe_release(&_p_brush_selected);
+			safe_release(&_p_text_format);
 		}
 
 		D2D1_RECT_F&
 			widgets::label_impl::render(ID2D1HwndRenderTarget* p_render_target,
 				const D2D1_SIZE_F& change_in_size, const D2D1_POINT_2F& offset, const bool& render) {
-			if (specs_old_ != specs_) {
-				log("specs changed: " + alias_);
-				specs_old_ = specs_;
+			if (_specs_old != _specs) {
+				log("specs changed: " + _alias);
+				_specs_old = _specs;
 				discard_resources();
 			}
 
-			if (!resources_created_)
+			if (!_resources_created)
 				create_resources(p_render_target);
 
-			rect_ = position(specs_.rect(), specs_.on_resize(), change_in_size.width, change_in_size.height);
-			rect_.left -= offset.x;
-			rect_.right -= offset.x;
-			rect_.top -= offset.y;
-			rect_.bottom -= offset.y;
+			_rect = position(_specs.rect(), _specs.on_resize(), change_in_size.width, change_in_size.height);
+			_rect.left -= offset.x;
+			_rect.right -= offset.x;
+			_rect.top -= offset.y;
+			_rect.bottom -= offset.y;
 
 			// create a text layout
-			HRESULT hr = p_directwrite_factory_->CreateTextLayout(convert_string(text_).c_str(),
-				(UINT32)text_.length(), p_text_format_, rect_.right - rect_.left,
-				rect_.bottom - rect_.top, &p_text_layout_);
+			HRESULT hr = _p_directwrite_factory->CreateTextLayout(convert_string(_text).c_str(),
+				(UINT32)_text.length(), _p_text_format, _rect.right - _rect.left,
+				_rect.bottom - _rect.top, &_p_text_layout);
 
 			DWRITE_TEXT_METRICS textMetrics;
 
 			if (SUCCEEDED(hr)) {
-				apply_formatting(formatting_, p_render_target, p_text_layout_, is_enabled_,
-					p_brush_disabled_);
+				apply_formatting(_formatting, p_render_target, _p_text_layout, _is_enabled,
+					_p_brush_disabled);
 
-				p_text_layout_->GetMetrics(&textMetrics);
-				const auto rect_text = rect_;
+				_p_text_layout->GetMetrics(&textMetrics);
+				const auto rect_text = _rect;
 
-				rect_.left += textMetrics.left;
-				rect_.top += textMetrics.top;
-				rect_.right = smallest(rect_.left + textMetrics.width, rect_.right);
-				rect_.bottom = smallest(rect_.top + textMetrics.height, rect_.bottom);
+				_rect.left += textMetrics.left;
+				_rect.top += textMetrics.top;
+				_rect.right = smallest(_rect.left + textMetrics.width, _rect.right);
+				_rect.bottom = smallest(_rect.top + textMetrics.height, _rect.bottom);
 
-				if (render && visible_) {
-					if (!is_static_ && is_enabled_) {
-						if (hit_ || pressed_)
-							p_render_target->FillRectangle(&rect_, pressed_ ?
-								p_brush_hot_pressed_ : p_brush_hot_);
+				if (render && _visible) {
+					if (!_is_static && _is_enabled) {
+						if (_hit || _pressed)
+							p_render_target->FillRectangle(&_rect, _pressed ?
+								_p_brush_hot_pressed : _p_brush_hot);
 
-						if (selected_)
-							p_render_target->FillRectangle(&rect_, p_brush_selected_);
+						if (_selected)
+							p_render_target->FillRectangle(&_rect, _p_brush_selected);
 					}
 
 					// draw the text layout
 					p_render_target->DrawTextLayout(D2D1_POINT_2F{ rect_text.left, rect_text.top },
-						p_text_layout_, is_enabled_ ?
-						p_brush_ : p_brush_disabled_, D2D1_DRAW_TEXT_OPTIONS_CLIP);
+						_p_text_layout, _is_enabled ?
+						_p_brush : _p_brush_disabled, D2D1_DRAW_TEXT_OPTIONS_CLIP);
 				}
 			}
 
 			// release the text layout
-			safe_release(&p_text_layout_);
+			safe_release(&_p_text_layout);
 
-			return rect_;
+			return _rect;
 		}
 
 		widgets::label_specs&
 			widgets::label_impl::specs() {
-			return specs_;
+			return _specs;
 		}
 
 		widgets::label_specs&

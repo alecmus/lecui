@@ -19,7 +19,7 @@ namespace liblec {
 			class pane_impl : public widget_impl {
 				/// private virtual function overrides
 				widgets::specs& generic_specs() override {
-					return specs_;
+					return _specs;
 				}
 
 			public:
@@ -55,8 +55,8 @@ namespace liblec {
 				static std::string table_pane_alias_prefix();
 
 				// pages <K = pane alias, T>
-				std::map<std::string, containers::page> p_panes_;
-				std::string current_pane_;
+				std::map<std::string, containers::page> _p_panes;
+				std::string _current_pane;
 
 				/// constructor and destructor
 				pane_impl(containers::page& page,
@@ -84,14 +84,14 @@ namespace liblec {
 				pane_impl& operator=(const pane_impl&) = delete;
 
 				/// Private variables
-				containers::pane_specs specs_, specs_old_;
-				ID2D1SolidColorBrush* p_brush_;
-				ID2D1SolidColorBrush* p_brush_fill_;
-				ID2D1SolidColorBrush* p_brush_border_;
-				ID2D1SolidColorBrush* p_brush_disabled_;
-				const float margin_;
-				D2D1_RECT_F rect_client_area_;
-				D2D1_RECT_F rect_pane_;
+				containers::pane_specs _specs, _specs_old;
+				ID2D1SolidColorBrush* _p_brush;
+				ID2D1SolidColorBrush* _p_brush_fill;
+				ID2D1SolidColorBrush* _p_brush_border;
+				ID2D1SolidColorBrush* _p_brush_disabled;
+				const float _margin;
+				D2D1_RECT_F _rect_client_area;
+				D2D1_RECT_F _rect_pane;
 
 				/// Important override for pane to work properly.
 				bool contains() override;

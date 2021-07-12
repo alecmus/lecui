@@ -183,47 +183,47 @@ namespace liblec {
 		private:
 			void check_alias(std::string& alias);
 
-			ID2D1Factory* p_direct2d_factory_;
-			IDWriteFactory* p_directwrite_factory_;
-			IWICImagingFactory* p_iwic_factory_;
-			std::string alias_;
-			lecui::size size_;
-			bool hit_;
-			bool scrollbar_set_;
+			ID2D1Factory* _p_direct2d_factory;
+			IDWriteFactory* _p_directwrite_factory;
+			IWICImagingFactory* _p_iwic_factory;
+			std::string _alias;
+			lecui::size _size;
+			bool _hit;
+			bool _scrollbar_set;
 
-			std::map<std::string, widgets::widget_impl&> widgets_;
-			std::vector<std::string> widgets_order_;
+			std::map<std::string, widgets::widget_impl&> _widgets;
+			std::vector<std::string> _widgets_order;
 
-			widgets::h_scrollbar_impl h_scrollbar_;
-			widgets::v_scrollbar_impl v_scrollbar_;
+			widgets::h_scrollbar_impl _h_scrollbar;
+			widgets::v_scrollbar_impl _v_scrollbar;
 
-			std::map<std::string, widgets::tab_pane_impl> tab_panes_;
-			std::map<std::string, widgets::pane_impl> panes_;
+			std::map<std::string, widgets::tab_pane_impl> _tab_panes;
+			std::map<std::string, widgets::pane_impl> _panes;
 
-			std::map<std::string, widgets::rectangle_impl> rectangles_;
-			std::map<std::string, widgets::label_impl> labels_;
-			std::map<std::string, widgets::group_impl> groups_;
-			std::map<std::string, widgets::button_impl> buttons_;
-			std::map<std::string, widgets::toggle_impl> toggles_;
-			std::map<std::string, widgets::table_view_impl> table_views_;
-			std::map<std::string, widgets::custom_impl> customs_;
-			std::map<std::string, widgets::image_view_impl> image_views_;
-			std::map<std::string, widgets::progress_indicator_impl> progress_indicators_;
-			std::map<std::string, widgets::progress_bar_impl> progress_bars_;
-			std::map<std::string, widgets::checkbox_impl> checkboxes_;
-			std::map<std::string, widgets::text_field_impl> text_fields_;
-			std::map<std::string, widgets::tree_view_impl> trees_;
-			std::map<std::string, widgets::slider_impl> sliders_;
-			std::map<std::string, widgets::html_editor_impl> html_editors_;
-			std::map<std::string, widgets::combobox_impl> comboboxes_;
-			std::map<std::string, widgets::line_impl> lines_;
-			std::map<std::string, widgets::time_impl> times_;
-			std::map<std::string, widgets::date_impl> dates_;
-			std::map<std::string, widgets::icon_impl> icons_;
+			std::map<std::string, widgets::rectangle_impl> _rectangles;
+			std::map<std::string, widgets::label_impl> _labels;
+			std::map<std::string, widgets::group_impl> _groups;
+			std::map<std::string, widgets::button_impl> _buttons;
+			std::map<std::string, widgets::toggle_impl> _toggles;
+			std::map<std::string, widgets::table_view_impl> _table_views;
+			std::map<std::string, widgets::custom_impl> _customs;
+			std::map<std::string, widgets::image_view_impl> _image_views;
+			std::map<std::string, widgets::progress_indicator_impl> _progress_indicators;
+			std::map<std::string, widgets::progress_bar_impl> _progress_bars;
+			std::map<std::string, widgets::checkbox_impl> _checkboxes;
+			std::map<std::string, widgets::text_field_impl> _text_fields;
+			std::map<std::string, widgets::tree_view_impl> _trees;
+			std::map<std::string, widgets::slider_impl> _sliders;
+			std::map<std::string, widgets::html_editor_impl> _html_editors;
+			std::map<std::string, widgets::combobox_impl> _comboboxes;
+			std::map<std::string, widgets::line_impl> _lines;
+			std::map<std::string, widgets::time_impl> _times;
+			std::map<std::string, widgets::date_impl> _dates;
+			std::map<std::string, widgets::icon_impl> _icons;
 
-			form& fm_;
-			containers::page& pg_;
-			std::optional<std::reference_wrapper<containers::page>> parent_;
+			form& _fm;
+			containers::page& _pg;
+			std::optional<std::reference_wrapper<containers::page>> _parent;
 
 			friend class form;
 			friend class containers::tab_pane_builder;

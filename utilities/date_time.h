@@ -91,7 +91,7 @@ namespace liblec {
 
 		private:
 			class impl;
-			impl& d_;
+			impl& _d;
 
 			// Copying an object of this class are not allowed
 			date_time(const date_time&);

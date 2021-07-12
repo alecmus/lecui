@@ -47,7 +47,7 @@ namespace liblec {
 
 		private:
 			class impl;
-			impl& d_;
+			impl& _d;
 
 			// Copying an object of this class are not allowed
 			splash(const splash&);

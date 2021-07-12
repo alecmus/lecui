@@ -22,33 +22,33 @@ namespace liblec {
 	namespace lecui {
 		// this is the constructor that all the others below call
 		form::form(const std::string& caption) :
-			d_(*new impl(*this, caption)) {}
+			_d(*new impl(*this, caption)) {}
 
 		form::form(const std::string& caption, form& parent) :
 			form::form(caption) {
 
 			// copy the parent's default theme setting
 			appearance aprnc(*this);
-			aprnc.theme(parent.d_.theme_);
+			aprnc.theme(parent._d._theme);
 
-			if (IsWindow(parent.d_.hWnd_)) {
+			if (IsWindow(parent._d._hWnd)) {
 				// capture parent
-				d_.p_parent_ = &parent;
-				d_.hWnd_parent_ = parent.d_.hWnd_;
+				_d._p_parent = &parent;
+				_d._hWnd_parent = parent._d._hWnd;
 
 				// this is a child window. add it to the parent's map of children.
-				parent.d_.m_children_.insert(std::make_pair(this, this));
+				parent._d._m_children.insert(std::make_pair(this, this));
 			}
 		}
 
 		form::~form() {
-			if (d_.hWnd_parent_ && d_.p_parent_) {
+			if (_d._hWnd_parent && _d._p_parent) {
 				// this is a child window. remove it from the parent's map of children
-				try { d_.p_parent_->d_.m_children_.erase(this); }
+				try { _d._p_parent->_d._m_children.erase(this); }
 				catch (const std::exception&) {}
 			}
 
-			delete& d_;
+			delete& _d;
 		}
 
 		std::string form::menu_form_caption() {
@@ -60,66 +60,66 @@ namespace liblec {
 		}
 
 		void form::move(const point& point) {
-			d_.user_pos_ = true;
-			d_.preset_pos_ = false;
-			d_.point_ = point;
+			_d._user_pos = true;
+			_d._preset_pos = false;
+			_d._point = point;
 		}
 
 		void form::move(const form_position& form_position) {
-			d_.user_pos_ = true;
-			d_.preset_pos_ = true;
-			d_.form_position_ = form_position;
+			_d._user_pos = true;
+			_d._preset_pos = true;
+			_d._form_position = form_position;
 		}
 
 		void form::force_instance() {
-			d_.force_instance_ = true;
+			_d._force_instance = true;
 		}
 
 		bool form::show(std::string& error) {
-			if (d_.show_called_) {
+			if (_d._show_called) {
 				error = "Library usage error: form::show";
 				return false;
 			}
 			else {
-				d_.show_called_ = true;
+				_d._show_called = true;
 
-				if (!d_.initialized_) {
+				if (!_d._initialized) {
 					error = "Library initialization error: form::show";
 					return false;
 				}
 			}
 
-			if (d_.p_instance_) {
-				if (d_.p_instance_->another_instance_running()) {
+			if (_d._p_instance) {
+				if (_d._p_instance->another_instance_running()) {
 					log("another instance running");
 
-					if (!d_.force_instance_) {
-						d_.open_existing_instance();
+					if (!_d._force_instance) {
+						_d.open_existing_instance();
 						return true;
 					}
 				}
 			}
 
 			// get resource module handle
-			if (!d_.resource_dll_filename_.empty()) {
-				d_.resource_module_handle_ =
-					LoadLibrary(convert_string(d_.resource_dll_filename_).c_str());
+			if (!_d._resource_dll_filename.empty()) {
+				_d._resource_module_handle =
+					LoadLibrary(convert_string(_d._resource_dll_filename).c_str());
 
-				if (!d_.resource_module_handle_) {
+				if (!_d._resource_module_handle) {
 					// LoadLibrary failed
-					error = "Loading " + d_.resource_dll_filename_ + " failed: " + get_last_error();
+					error = "Loading " + _d._resource_dll_filename + " failed: " + get_last_error();
 					return false;
 				}
 			}
 			else
-				d_.resource_module_handle_ = GetModuleHandle(nullptr);
+				_d._resource_module_handle = GetModuleHandle(nullptr);
 
 			// call the on_initialize virtual method
 			if (!on_initialize(error))
 				return false;
 
 			// check if close was called
-			if (d_.close_called_)
+			if (_d._close_called)
 				return true;
 
 			// call the on_layout virtual method
@@ -127,45 +127,45 @@ namespace liblec {
 				return false;
 
 			// handle menu form and tooltip form
-			if (d_.menu_form_ || d_.tooltip_form_) {
-				d_.allow_resizing_ = false;
-				d_.allow_minimize_ = false;
+			if (_d._menu_form || _d._tooltip_form) {
+				_d._allow_resizing = false;
+				_d._allow_minimize = false;
 
-				if (d_.tooltip_form_)
-					d_.activate_ = false;
+				if (_d._tooltip_form)
+					_d._activate = false;
 			}
 
 			// create form controls
-			if (!(d_.menu_form_ || d_.tooltip_form_)) {
-				d_.create_close_button([&]() { on_close(); });
+			if (!(_d._menu_form || _d._tooltip_form)) {
+				_d.create_close_button([&]() { on_close(); });
 
-				if (d_.allow_resizing_)
-					d_.create_maximize_button();
+				if (_d._allow_resizing)
+					_d.create_maximize_button();
 
-				if (d_.allow_minimize_)
-					d_.create_minimize_button();
+				if (_d._allow_minimize)
+					_d.create_minimize_button();
 
-				d_.create_form_caption();
-				d_.create_form_menu();
+				_d.create_form_caption();
+				_d.create_form_menu();
 			}
 
 			// register window class
 			WNDCLASSEX wcex = { 0 };
 			wcex.cbSize = sizeof(WNDCLASSEX);
-			wcex.lpfnWndProc = d_.window_procedure;
+			wcex.lpfnWndProc = _d.window_procedure;
 			wcex.cbClsExtra = 0;
 			wcex.cbWndExtra = 0;
 			wcex.style = CS_HREDRAW | CS_VREDRAW | CS_DBLCLKS;
 			wcex.hInstance = GetModuleHandle(nullptr);
 
 			// load main application icon
-			if (d_.idi_icon_)
-				wcex.hIcon = LoadIcon(d_.resource_module_handle_, MAKEINTRESOURCE(d_.idi_icon_));
+			if (_d._idi_icon)
+				wcex.hIcon = LoadIcon(_d._resource_module_handle, MAKEINTRESOURCE(_d._idi_icon));
 
 			// load small application icon
-			if (d_.idi_icon_small_)
-				wcex.hIconSm = (HICON)LoadImage(d_.resource_module_handle_,
-					MAKEINTRESOURCE(d_.idi_icon_small_),
+			if (_d._idi_icon_small)
+				wcex.hIconSm = (HICON)LoadImage(_d._resource_module_handle,
+					MAKEINTRESOURCE(_d._idi_icon_small),
 					IMAGE_ICON,
 					GetSystemMetrics(SM_CXSMICON), GetSystemMetrics(SM_CYSMICON),
 					LR_DEFAULTCOLOR
@@ -176,40 +176,40 @@ namespace liblec {
 			wcex.lpszClassName = L"liblec::lecui::form";
 			RegisterClassEx(&wcex);
 
-			if (d_.user_pos_) {
-				if (d_.preset_pos_)
-					d_.set_position(d_.form_position_, d_.size_.width, d_.size_.height);
+			if (_d._user_pos) {
+				if (_d._preset_pos)
+					_d.set_position(_d._form_position, _d._size.width, _d._size.height);
 				else
-					d_.set_position(d_.point_.x, d_.point_.y, d_.size_.width, d_.size_.height);
+					_d.set_position(_d._point.x, _d._point.y, _d._size.width, _d._size.height);
 			}
 			else {
-				if (IsWindow(d_.hWnd_parent_) && IsWindowEnabled(d_.hWnd_parent_))
-					d_.set_position(form_position::center_to_parent,
-						d_.size_.width, d_.size_.height);
+				if (IsWindow(_d._hWnd_parent) && IsWindowEnabled(_d._hWnd_parent))
+					_d.set_position(form_position::center_to_parent,
+						_d._size.width, _d._size.height);
 				else
-					d_.set_position(form_position::center_to_working_area,
-						d_.size_.width, d_.size_.height);
+					_d.set_position(form_position::center_to_working_area,
+						_d._size.width, _d._size.height);
 			}
 
 			// Register this instance so other instances can find this form and open it
-			if (!d_.guid_.empty() && !IsWindow(d_.hWnd_parent_))
-				d_.reg_id_ = RegisterWindowMessageA(d_.guid_.c_str());
+			if (!_d._guid.empty() && !IsWindow(_d._hWnd_parent))
+				_d._reg_id = RegisterWindowMessageA(_d._guid.c_str());
 
-			// perform initialization (d_.hWnd_ will be captured in WM_CREATE)
-			if (!CreateWindowEx(d_.tooltip_form_ ? NULL : d_.top_most_ == true ? WS_EX_TOPMOST : NULL, wcex.lpszClassName,
-				convert_string(d_.caption_plain_).c_str(),
-				d_.tooltip_form_ ? WS_POPUP : static_cast<DWORD>(form::impl::style::aero_borderless),
-				static_cast<int>(.5f + d_.point_.x * d_.dpi_scale_),
-				static_cast<int>(.5f + d_.point_.y * d_.dpi_scale_),
-				static_cast<int>(.5f + d_.size_.width * d_.dpi_scale_),
-				static_cast<int>(.5f + d_.size_.height * d_.dpi_scale_),
-				d_.hWnd_parent_, nullptr, wcex.hInstance, this)) {
+			// perform initialization (_d._hWnd will be captured in WM_CREATE)
+			if (!CreateWindowEx(_d._tooltip_form ? NULL : _d._top_most == true ? WS_EX_TOPMOST : NULL, wcex.lpszClassName,
+				convert_string(_d._caption_plain).c_str(),
+				_d._tooltip_form ? WS_POPUP : static_cast<DWORD>(form::impl::style::aero_borderless),
+				static_cast<int>(.5f + _d._point.x * _d._dpi_scale),
+				static_cast<int>(.5f + _d._point.y * _d._dpi_scale),
+				static_cast<int>(.5f + _d._size.width * _d._dpi_scale),
+				static_cast<int>(.5f + _d._size.height * _d._dpi_scale),
+				_d._hWnd_parent, nullptr, wcex.hInstance, this)) {
 				error = get_last_error();
 				return false;
 			}
 
-			ShowWindow(d_.hWnd_, d_.start_hidden_ ? SW_HIDE : (d_.activate_ ? SW_SHOW : SW_SHOWNA));
-			UpdateWindow(d_.hWnd_);
+			ShowWindow(_d._hWnd, _d._start_hidden ? SW_HIDE : (_d._activate ? SW_SHOW : SW_SHOWNA));
+			UpdateWindow(_d._hWnd);
 
 			// Update the user interface. This is important for widgets that are moved into
 			// special panes. If this is not done the widgets will not be drawn fully. One
@@ -218,15 +218,15 @@ namespace liblec {
 			// won't initially be displayed.
 			update();
 
-			if (d_.activate_ && !d_.start_hidden_ && !d_.tooltip_form_)
-				SetForegroundWindow(d_.hWnd_);
+			if (_d._activate && !_d._start_hidden && !_d._tooltip_form)
+				SetForegroundWindow(_d._hWnd);
 
 			// Disable parent if this is neither a menu form nor a tooltip form.
 			// If this is a menu form or tooltip form, do not disable parent because we will need to be
 			// able to click the parent. The parent, is responsible for ignoring mouse movements
 			// and such things when it detects that a child menu form is open
-			if (!(d_.menu_form_ || d_.tooltip_form_) && IsWindow(d_.hWnd_parent_) && IsWindowEnabled(d_.hWnd_parent_))
-				EnableWindow(d_.hWnd_parent_, FALSE);
+			if (!(_d._menu_form || _d._tooltip_form) && IsWindow(_d._hWnd_parent) && IsWindowEnabled(_d._hWnd_parent))
+				EnableWindow(_d._hWnd_parent, FALSE);
 
 			MSG msg = {};
 
@@ -236,28 +236,28 @@ namespace liblec {
 				DispatchMessage(&msg);
 			}
 
-			if (d_.parent_closing_)
+			if (_d._parent_closing)
 				PostQuitMessage(0);
 
 			return true;
 		}
 
 		void form::close() {
-			d_.close_called_ = true;
+			_d._close_called = true;
 
-			if (IsWindow(d_.hWnd_)) {
+			if (IsWindow(_d._hWnd)) {
 				// stop all timers
-				for (auto& it : d_.timers_)
+				for (auto& it : _d._timers)
 				{
 					timer_manager timer(*this);
 					if (timer.running(it.first))
 						timer.stop(it.first);
 				}
 
-				if (!d_.m_children_.empty()) {
+				if (!_d._m_children.empty()) {
 					// children exist, notify them the parent is closing and close them
-					for (auto& child : d_.m_children_) {
-						child.second->d_.parent_closing_ = true;
+					for (auto& child : _d._m_children) {
+						child.second->_d._parent_closing = true;
 						child.second->close();
 					}
 				}
@@ -265,10 +265,10 @@ namespace liblec {
 				// Enable parent if this is neither a menu form nor a tooltip form.
 				// If this is a menu form or a tooltip form, do not enable parent because the menu form is not
 				// responsible for disabling the parent (if it is disabled)
-				if (!(d_.menu_form_ || d_.tooltip_form_) && IsWindow(d_.hWnd_parent_) && !IsWindowEnabled(d_.hWnd_parent_))
-					EnableWindow(d_.hWnd_parent_, TRUE);
+				if (!(_d._menu_form || _d._tooltip_form) && IsWindow(_d._hWnd_parent) && !IsWindowEnabled(_d._hWnd_parent))
+					EnableWindow(_d._hWnd_parent, TRUE);
 
-				DestroyWindow(d_.hWnd_);
+				DestroyWindow(_d._hWnd);
 			}
 		}
 
@@ -280,38 +280,38 @@ namespace liblec {
 
 		bool form::prompt(const std::string& question) {
 			class prompt_form : public form {
-				const size min_size_ = { 220.f, 120.f };
-				const size max_size_ = { 420.f, 400.f };
-				const std::string question_;
-				const float margin_ = 10.f;
-				const size button_size_ = widgets::button_specs().rect().size();
-				bool& user_agreed_;
+				const size _min_size = { 220.f, 120.f };
+				const size _max_size = { 420.f, 400.f };
+				const std::string _question;
+				const float _margin = 10.f;
+				const size _button_size = widgets::button_specs().rect().size();
+				bool& _user_agreed;
 
 			public:
 				prompt_form(const std::string& title, const std::string& question, form& parent, bool& user_agreed) :
 					form(title, parent),
-					question_(question),
-					user_agreed_(user_agreed) {
+					_question(question),
+					_user_agreed(user_agreed) {
 					controls ctrls(*this);
 					ctrls
 						.allow_resize(false)
 						.allow_minimize(false);
 
 					// impose maximums
-					D2D1_RECT_F rect = D2D1::RectF(0.f, 0.f, max_size_.width, max_size_.height);
+					D2D1_RECT_F rect = D2D1::RectF(0.f, 0.f, _max_size.width, _max_size.height);
 
 					// measure the question
 					widgets::label_specs specs_lbl;
-					rect = widgets::measure_label(d_.p_directwrite_factory_, question,
+					rect = widgets::measure_label(_d._p_directwrite_factory, question,
 						specs_lbl.font(), specs_lbl.font_size(), false, false, rect);
 
-					auto width = (rect.right - rect.left) + 2 * margin_;
-					auto height = d_.caption_bar_height_ + margin_ + (rect.bottom - rect.top) +
-						margin_ + button_size_.height + margin_;
+					auto width = (rect.right - rect.left) + 2 * _margin;
+					auto height = _d._caption_bar_height + _margin + (rect.bottom - rect.top) +
+						_margin + _button_size.height + _margin;
 
 					// impose minimums
-					width = largest(width, min_size_.width);
-					height = largest(height, min_size_.height);
+					width = largest(width, _min_size.width);
+					height = largest(height, _min_size.height);
 
 					dimensions dim(*this);
 					dim.set_size({ width, height });
@@ -323,8 +323,8 @@ namespace liblec {
 
 					widgets::label_builder label(home_page);
 					label()
-						.text(question_).multiline(true)
-						.rect({ margin_, home_page.size().width, margin_, home_page.size().height - margin_ - button_size_.height - margin_ });
+						.text(_question).multiline(true)
+						.rect({ _margin, home_page.size().width, _margin, home_page.size().height - _margin - _button_size.height - _margin });
 
 					// add yes and no buttons, in that order for tab navigation
 					widgets::button_builder button_yes(home_page, "button_yes");
@@ -332,18 +332,18 @@ namespace liblec {
 
 					// position the no button on the bottom right
 					button_no().text("No")
-						.rect().place({ margin_, home_page.size().width - margin_, margin_, home_page.size().height - margin_ }, 100.f, 100.f);
+						.rect().place({ _margin, home_page.size().width - _margin, _margin, home_page.size().height - _margin }, 100.f, 100.f);
 					button_no().events().action = [&]() {
-						user_agreed_ = false;
+						_user_agreed = false;
 						close();
 					};
 
 					// snap the yes button to the no button
 					button_yes()
 						.text("Yes")
-						.rect().snap_to(button_no().rect(), lecui::rect::snap_type::left, margin_);
+						.rect().snap_to(button_no().rect(), lecui::rect::snap_type::left, _margin);
 					button_yes().events().action = [&]() {
-						user_agreed_ = true;
+						_user_agreed = true;
 						close();
 					};
 
@@ -357,7 +357,7 @@ namespace liblec {
 			// prompt the user
 			std::string error;
 			bool user_agreed = false;
-			if (!prompt_form(d_.caption_formatted_, question, *this, user_agreed).show(error))
+			if (!prompt_form(_d._caption_formatted, question, *this, user_agreed).show(error))
 				log(error);
 
 			return user_agreed;
@@ -366,36 +366,36 @@ namespace liblec {
 		void form::message(const std::string& message) {
 			if (!message.empty()) {
 				class message_form : public form {
-					const size min_size_ = { 220.f, 120.f };
-					const size max_size_ = { 420.f, 400.f };
-					const std::string message_;
-					const float margin_ = 10.f;
-					const size button_size_ = widgets::button_specs().rect().size();
+					const size _min_size = { 220.f, 120.f };
+					const size _max_size = { 420.f, 400.f };
+					const std::string _message;
+					const float _margin = 10.f;
+					const size _button_size = widgets::button_specs().rect().size();
 
 				public:
 					message_form(const std::string& title, const std::string& message, form& parent) :
 						form(title, parent),
-						message_(message) {
+						_message(message) {
 						controls ctrls(*this);
 						ctrls
 							.allow_resize(false)
 							.allow_minimize(false);
 
 						// impose maximums
-						D2D1_RECT_F rect = D2D1::RectF(0.f, 0.f, max_size_.width, max_size_.height);
+						D2D1_RECT_F rect = D2D1::RectF(0.f, 0.f, _max_size.width, _max_size.height);
 
 						// measure the message
 						widgets::label_specs specs_lbl;
-						rect = widgets::measure_label(d_.p_directwrite_factory_, message,
+						rect = widgets::measure_label(_d._p_directwrite_factory, message,
 							specs_lbl.font(), specs_lbl.font_size(), false, false, rect);
 
-						auto width = (rect.right - rect.left) + 2 * margin_;
-						auto height = d_.caption_bar_height_ + margin_ + (rect.bottom - rect.top) +
-							margin_ + button_size_.height + margin_;
+						auto width = (rect.right - rect.left) + 2 * _margin;
+						auto height = _d._caption_bar_height + _margin + (rect.bottom - rect.top) +
+							_margin + _button_size.height + _margin;
 
 						// impose minimums
-						width = largest(width, min_size_.width);
-						height = largest(height, min_size_.height);
+						width = largest(width, _min_size.width);
+						height = largest(height, _min_size.height);
 
 						dimensions dim(*this);
 						dim.set_size({ width, height });
@@ -407,14 +407,14 @@ namespace liblec {
 
 						widgets::label_builder label(home_page);
 						label()
-							.text(message_).multiline(true)
-							.rect({ margin_, home_page.size().width, margin_, home_page.size().height - margin_ - button_size_.height - margin_ });
+							.text(_message).multiline(true)
+							.rect({ _margin, home_page.size().width, _margin, home_page.size().height - _margin - _button_size.height - _margin });
 
 						// add the ok button on the bottom right
 						widgets::button_builder button(home_page, "button_ok");
 						button()
 							.text("Ok")
-							.rect().place({margin_, home_page.size().width - margin_, margin_, home_page.size().height - margin_ }, 100.f, 100.f);
+							.rect().place({_margin, home_page.size().width - _margin, _margin, home_page.size().height - _margin }, 100.f, 100.f);
 						button().events().action = [&]() { close(); };
 
 						page_man.show("home");
@@ -426,29 +426,29 @@ namespace liblec {
 
 				// display the message
 				std::string error;
-				if (!message_form(d_.caption_formatted_, message, *this).show(error))
+				if (!message_form(_d._caption_formatted, message, *this).show(error))
 					log(error);
 			}
 		}
 
-		void form::update() { d_.update(); }
+		void form::update() { _d.update(); }
 
 		// this is an expensive call. only use if update() doesn't get the job done.
-		void form::reload() { d_.discard_device_resources(); d_.update(); }
+		void form::reload() { _d.discard_device_resources(); _d.update(); }
 
 		void form::on_caption(std::function<void()> on_caption, const std::string& tooltip) {
-			d_.on_caption_ = on_caption;
-			d_.caption_tooltip_ = tooltip;
+			_d._on_caption = on_caption;
+			_d._caption_tooltip = tooltip;
 		}
 
 		void
 			form::on_drop_files(std::function<void(const std::string& file)> on_drop_files) {
-			d_.on_drop_files_ = on_drop_files;
-			DragAcceptFiles(d_.hWnd_, on_drop_files == nullptr ? FALSE : TRUE);
+			_d._on_drop_files = on_drop_files;
+			DragAcceptFiles(_d._hWnd, on_drop_files == nullptr ? FALSE : TRUE);
 		}
 
 		void form::on_receive_data(std::function<void(const std::string& data)> on_receive_data) {
-			d_.on_receive_data_ = on_receive_data;
+			_d._on_receive_data = on_receive_data;
 		}
 
 		bool form::keep_alive() {
@@ -469,39 +469,39 @@ namespace liblec {
 		}
 
 		float form::get_dpi_scale() {
-			return d_.get_dpi_scale();
+			return _d.get_dpi_scale();
 		}
 
 		void form::allow_minimize() {
-			if (!d_.allow_minimize_)
+			if (!_d._allow_minimize)
 				return;
 
-			if (IsWindow(d_.hWnd_))
-				ShowWindow(d_.hWnd_, SW_MINIMIZE);
+			if (IsWindow(_d._hWnd))
+				ShowWindow(_d._hWnd, SW_MINIMIZE);
 		}
 
 		void form::restore() {
-			if (IsWindow(d_.hWnd_)) {
-				if (!IsWindowVisible(d_.hWnd_))
-					ShowWindow(d_.hWnd_, SW_SHOW);
+			if (IsWindow(_d._hWnd)) {
+				if (!IsWindowVisible(_d._hWnd))
+					ShowWindow(_d._hWnd, SW_SHOW);
 				else
-					ShowWindow(d_.hWnd_, SW_RESTORE);
+					ShowWindow(_d._hWnd, SW_RESTORE);
 
-				SetForegroundWindow(d_.hWnd_);
+				SetForegroundWindow(_d._hWnd);
 			}
 		}
 
 		void form::maximize() {
-			if (!d_.allow_resizing_)
+			if (!_d._allow_resizing)
 				return;
 
-			if (IsWindow(d_.hWnd_))
-				ShowWindow(d_.hWnd_, SW_MAXIMIZE);
+			if (IsWindow(_d._hWnd))
+				ShowWindow(_d._hWnd, SW_MAXIMIZE);
 		}
 
 		void form::hide() {
-			if (IsWindow(d_.hWnd_))
-				ShowWindow(d_.hWnd_, SW_HIDE);
+			if (IsWindow(_d._hWnd))
+				ShowWindow(_d._hWnd, SW_HIDE);
 		}
 	}
 }

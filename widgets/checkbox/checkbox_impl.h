@@ -19,7 +19,7 @@ namespace liblec {
 			class checkbox_impl : public widget_impl {
 				/// private virtual function overrides
 				widgets::specs& generic_specs() override {
-					return specs_;
+					return _specs;
 				}
 
 			public:
@@ -52,19 +52,19 @@ namespace liblec {
 				checkbox_impl& operator=(const checkbox_impl&) = delete;
 
 				/// Private variables
-				widgets::checkbox_specs specs_, specs_old_;
-				ID2D1SolidColorBrush* p_brush_;
-				ID2D1SolidColorBrush* p_brush_check_;
-				ID2D1SolidColorBrush* p_brush_border_;
-				ID2D1SolidColorBrush* p_brush_fill_;
-				ID2D1SolidColorBrush* p_brush_hot_;
-				ID2D1SolidColorBrush* p_brush_disabled_;
-				ID2D1SolidColorBrush* p_brush_selected_;
-				IDWriteTextFormat* p_text_format_;
+				widgets::checkbox_specs _specs, _specs_old;
+				ID2D1SolidColorBrush* _p_brush;
+				ID2D1SolidColorBrush* _p_brush_check;
+				ID2D1SolidColorBrush* _p_brush_border;
+				ID2D1SolidColorBrush* _p_brush_fill;
+				ID2D1SolidColorBrush* _p_brush_hot;
+				ID2D1SolidColorBrush* _p_brush_disabled;
+				ID2D1SolidColorBrush* _p_brush_selected;
+				IDWriteTextFormat* _p_text_format;
 
-				ID2D1Factory* p_direct2d_factory_;
-				IDWriteFactory* p_directwrite_factory_;
-				IDWriteTextLayout* p_text_layout_;
+				ID2D1Factory* _p_direct2d_factory;
+				IDWriteFactory* _p_directwrite_factory;
+				IDWriteTextLayout* _p_text_layout;
 			};
 		}
 	}

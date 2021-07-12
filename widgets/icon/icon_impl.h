@@ -23,7 +23,7 @@ namespace liblec {
 			class icon_impl : public widget_impl {
 				/// private virtual function overrides
 				widgets::specs& generic_specs() override {
-					return specs_;
+					return _specs;
 				}
 
 			public:
@@ -59,15 +59,15 @@ namespace liblec {
 				icon_impl& operator=(const icon_impl&) = delete;
 
 				/// Private variables
-				widgets::icon_specs specs_, specs_old_;
-				ID2D1SolidColorBrush* p_brush_fill_;
-				ID2D1SolidColorBrush* p_brush_hot_;
-				ID2D1SolidColorBrush* p_brush_disabled_;
-				ID2D1SolidColorBrush* p_brush_selected_;
+				widgets::icon_specs _specs, _specs_old;
+				ID2D1SolidColorBrush* _p_brush_fill;
+				ID2D1SolidColorBrush* _p_brush_hot;
+				ID2D1SolidColorBrush* _p_brush_disabled;
+				ID2D1SolidColorBrush* _p_brush_selected;
 
-				std::optional<std::reference_wrapper<rectangle_specs>> rectangle_specs_;
-				std::optional<std::reference_wrapper<image_view_specs>> image_view_specs_;
-				std::optional<std::reference_wrapper<label_specs>> label_specs_, description_specs_;
+				std::optional<std::reference_wrapper<rectangle_specs>> _rectangle_specs;
+				std::optional<std::reference_wrapper<image_view_specs>> _image_view_specs;
+				std::optional<std::reference_wrapper<label_specs>> _label_specs, _description_specs;
 			};
 		}
 	}

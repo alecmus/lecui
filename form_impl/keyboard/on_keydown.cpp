@@ -25,7 +25,7 @@ namespace liblec {
 				class helper {
 				public:
 					static void check_widgets(containers::page& page, WPARAM wParam, bool& change) {
-						for (auto& widget : page.d_page_.widgets()) {
+						for (auto& widget : page._d_page.widgets()) {
 							// first things first
 							widget.second.hide_tooltip();
 
@@ -33,7 +33,7 @@ namespace liblec {
 								widgets::widget_type::text_field && widget.second.selected()) {
 								change = true;
 								try {
-									auto& text_field = page.d_page_.get_text_field(widget.first);
+									auto& text_field = page._d_page.get_text_field(widget.first);
 
 									switch (wParam) {
 									case VK_LEFT: text_field.key_left(); break;
@@ -52,7 +52,7 @@ namespace liblec {
 									widgets::widget_type::html_editor && widget.second.selected()) {
 									change = true;
 									try {
-										auto& html_editor = page.d_page_.get_html_editor(widget.first);
+										auto& html_editor = page._d_page.get_html_editor(widget.first);
 
 										switch (wParam) {
 										case VK_LEFT: html_editor.key_left(); break;
@@ -73,7 +73,7 @@ namespace liblec {
 										widgets::widget_type::combobox && widget.second.selected()) {
 										change = true;
 										try {
-											auto& combobox = page.d_page_.get_combobox(widget.first);
+											auto& combobox = page._d_page.get_combobox(widget.first);
 
 											if (combobox().editable()) {
 												switch (wParam) {
@@ -93,35 +93,35 @@ namespace liblec {
 										if (widget.second.type() ==
 											widgets::widget_type::tab_pane) {
 											// get this tab pane
-											auto& tab_pane = page.d_page_.get_tab_pane(widget.first);
+											auto& tab_pane = page._d_page.get_tab_pane(widget.first);
 
-											auto page_iterator = tab_pane.p_tabs_.find(tab_pane.current_tab_);
+											auto page_iterator = tab_pane._p_tabs.find(tab_pane._current_tab);
 
-											if (page_iterator != tab_pane.p_tabs_.end())
+											if (page_iterator != tab_pane._p_tabs.end())
 												helper::check_widgets(page_iterator->second, wParam, change);	// recursion
 										}
 										else
 											if (widget.second.type() ==
 												widgets::widget_type::pane) {
 												// get this pane
-												auto& pane = page.d_page_.get_pane(widget.first);
+												auto& pane = page._d_page.get_pane(widget.first);
 
-												auto page_iterator = pane.p_panes_.find(pane.current_pane_);
+												auto page_iterator = pane._p_panes.find(pane._current_pane);
 
-												if (page_iterator != pane.p_panes_.end())
+												if (page_iterator != pane._p_panes.end())
 													helper::check_widgets(page_iterator->second, wParam, change);	// recursion
 											}
 						}
 					}
 				};
 
-				for (auto& it : p_status_panes_)
+				for (auto& it : _p_status_panes)
 					helper::check_widgets(it.second, wParam, change);
 
 				// get current page
-				auto page_iterator = p_pages_.find(current_page_);
+				auto page_iterator = _p_pages.find(_current_page);
 
-				if (page_iterator != p_pages_.end())
+				if (page_iterator != _p_pages.end())
 					helper::check_widgets(page_iterator->second, wParam, change);
 
 				if (change)
@@ -129,19 +129,19 @@ namespace liblec {
 			} break;
 
 			case VK_SHIFT:
-				if (shift_pressed_)
+				if (_shift_pressed)
 					break;
-				shift_pressed_ = true;
-				reverse_tab_navigation_ = true;
+				_shift_pressed = true;
+				_reverse_tab_navigation = true;
 				break;
 
 			case VK_SPACE: {
-				if (space_pressed_)
+				if (_space_pressed)
 					break;
-				space_pressed_ = true;
+				_space_pressed = true;
 
 				// check form widgets
-				for (auto& widget : widgets_) {
+				for (auto& widget : _widgets) {
 					if (widget.second.is_static() || !widget.second.visible() || !widget.second.enabled())
 						continue;
 
@@ -161,7 +161,7 @@ namespace liblec {
 				public:
 					static void check_widgets(containers::page& page) {
 						// check widgets
-						for (auto& widget : page.d_page_.widgets()) {
+						for (auto& widget : page._d_page.widgets()) {
 							if (widget.second.is_static() || !widget.second.visible() || !widget.second.enabled())
 								continue;
 
@@ -178,34 +178,34 @@ namespace liblec {
 							if (widget.second.type() ==
 								widgets::widget_type::tab_pane) {
 								// get this tab pane
-								auto& tab_pane = page.d_page_.get_tab_pane(widget.first);
+								auto& tab_pane = page._d_page.get_tab_pane(widget.first);
 
-								auto page_iterator = tab_pane.p_tabs_.find(tab_pane.current_tab_);
+								auto page_iterator = tab_pane._p_tabs.find(tab_pane._current_tab);
 
-								if (page_iterator != tab_pane.p_tabs_.end())
+								if (page_iterator != tab_pane._p_tabs.end())
 									helper::check_widgets(page_iterator->second);
 							}
 							else
 								if (widget.second.type() ==
 									widgets::widget_type::pane) {
 									// get this pane
-									auto& pane = page.d_page_.get_pane(widget.first);
+									auto& pane = page._d_page.get_pane(widget.first);
 
-									auto page_iterator = pane.p_panes_.find(pane.current_pane_);
+									auto page_iterator = pane._p_panes.find(pane._current_pane);
 
-									if (page_iterator != pane.p_panes_.end())
+									if (page_iterator != pane._p_panes.end())
 										helper::check_widgets(page_iterator->second);
 								}
 						}
 					}
 				};
 
-				for (auto& it : p_status_panes_)
+				for (auto& it : _p_status_panes)
 					helper::check_widgets(it.second);
 
-				auto page_iterator = p_pages_.find(current_page_);
+				auto page_iterator = _p_pages.find(_current_page);
 
-				if (page_iterator != p_pages_.end())
+				if (page_iterator != _p_pages.end())
 					helper::check_widgets(page_iterator->second);
 
 				update();
@@ -217,7 +217,7 @@ namespace liblec {
 				std::function<void()> on_action_handler = nullptr;
 
 				// check form widgets
-				for (auto& widget : widgets_) {
+				for (auto& widget : _widgets) {
 					if (widget.second.is_static() || !widget.second.visible() || !widget.second.enabled())
 						continue;
 
@@ -241,7 +241,7 @@ namespace liblec {
 					static void check_widgets(containers::page& page,
 						WPARAM wParam, bool& update, std::function<void()>& on_action_handler) {
 						// check widgets
-						for (auto& widget : page.d_page_.widgets()) {
+						for (auto& widget : page._d_page.widgets()) {
 							if (widget.second.is_static() || !widget.second.visible() || !widget.second.enabled())
 								continue;
 
@@ -259,34 +259,34 @@ namespace liblec {
 								if (widget.second.type() ==
 									widgets::widget_type::tab_pane) {
 									// get this tab pane
-									auto& tab_pane = page.d_page_.get_tab_pane(widget.first);
+									auto& tab_pane = page._d_page.get_tab_pane(widget.first);
 
-									auto page_iterator = tab_pane.p_tabs_.find(tab_pane.current_tab_);
+									auto page_iterator = tab_pane._p_tabs.find(tab_pane._current_tab);
 
-									if (page_iterator != tab_pane.p_tabs_.end())
+									if (page_iterator != tab_pane._p_tabs.end())
 										helper::check_widgets(page_iterator->second, wParam, update, on_action_handler);
 								}
 								else
 									if (widget.second.type() ==
 										widgets::widget_type::pane) {
 										// get this pane
-										auto& pane = page.d_page_.get_pane(widget.first);
+										auto& pane = page._d_page.get_pane(widget.first);
 
-										auto page_iterator = pane.p_panes_.find(pane.current_pane_);
+										auto page_iterator = pane._p_panes.find(pane._current_pane);
 
-										if (page_iterator != pane.p_panes_.end())
+										if (page_iterator != pane._p_panes.end())
 											helper::check_widgets(page_iterator->second, wParam, update, on_action_handler);
 									}
 						}
 					}
 				};
 
-				for (auto& it : p_status_panes_)
+				for (auto& it : _p_status_panes)
 					helper::check_widgets(it.second, wParam, update, on_action_handler);
 
-				auto page_iterator = p_pages_.find(current_page_);
+				auto page_iterator = _p_pages.find(_current_page);
 
-				if (page_iterator != p_pages_.end())
+				if (page_iterator != _p_pages.end())
 					helper::check_widgets(page_iterator->second, wParam, update, on_action_handler);
 
 				if (update) {
@@ -306,7 +306,7 @@ namespace liblec {
 			std::function<void()> on_click_handler = nullptr; // to-do: what is this doing here? is it because of the broken table widget that's pending a revamp? Eliminate in time!!!!
 
 			// check form widgets
-			for (auto& widget : widgets_) {
+			for (auto& widget : _widgets) {
 				if (widget.second.is_static() || !widget.second.visible() || !widget.second.enabled())
 					continue;
 
@@ -331,7 +331,7 @@ namespace liblec {
 				static void check_widgets(containers::page& page,
 					WPARAM wParam, bool& update, std::function<void()>& on_click_handler) {
 					// check widgets
-					for (auto& widget : page.d_page_.widgets()) {
+					for (auto& widget : page._d_page.widgets()) {
 						if (widget.second.is_static() || !widget.second.visible() || !widget.second.enabled())
 							continue;
 
@@ -348,34 +348,34 @@ namespace liblec {
 							if (widget.second.type() ==
 								widgets::widget_type::tab_pane) {
 								// get this tab pane
-								auto& tab_pane = page.d_page_.get_tab_pane(widget.first);
+								auto& tab_pane = page._d_page.get_tab_pane(widget.first);
 
-								auto page_iterator = tab_pane.p_tabs_.find(tab_pane.current_tab_);
+								auto page_iterator = tab_pane._p_tabs.find(tab_pane._current_tab);
 
-								if (page_iterator != tab_pane.p_tabs_.end())
+								if (page_iterator != tab_pane._p_tabs.end())
 									helper::check_widgets(page_iterator->second, wParam, update, on_click_handler);
 							}
 							else
 								if (widget.second.type() ==
 									widgets::widget_type::pane) {
 									// get this pane
-									auto& pane = page.d_page_.get_pane(widget.first);
+									auto& pane = page._d_page.get_pane(widget.first);
 
-									auto page_iterator = pane.p_panes_.find(pane.current_pane_);
+									auto page_iterator = pane._p_panes.find(pane._current_pane);
 
-									if (page_iterator != pane.p_panes_.end())
+									if (page_iterator != pane._p_panes.end())
 										helper::check_widgets(page_iterator->second, wParam, update, on_click_handler);
 								}
 					}
 				}
 			};
 
-			for (auto& it : p_status_panes_)
+			for (auto& it : _p_status_panes)
 				helper::check_widgets(it.second, wParam, update, on_click_handler);
 
-			auto page_iterator = p_pages_.find(current_page_);
+			auto page_iterator = _p_pages.find(_current_page);
 
-			if (page_iterator != p_pages_.end())
+			if (page_iterator != _p_pages.end())
 				helper::check_widgets(page_iterator->second, wParam, update, on_click_handler);
 
 			if (update) {

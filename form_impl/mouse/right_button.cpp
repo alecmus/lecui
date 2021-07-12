@@ -13,8 +13,8 @@
 namespace liblec {
 	namespace lecui {
 		void form::impl::on_rbuttondown(const D2D1_POINT_2F& point) {
-			for (auto& [key, child] : m_children_) {
-				if (child && IsWindow(child->d_.hWnd_) && (child->d_.menu_form_ || child->d_.tooltip_form_)) {
+			for (auto& [key, child] : _m_children) {
+				if (child && IsWindow(child->_d._hWnd) && (child->_d._menu_form || child->_d._tooltip_form)) {
 					// close child menu forms and tooltip forms
 					child->close();
 				}
@@ -26,7 +26,7 @@ namespace liblec {
 			std::function<void()> on_right_click_handler = nullptr;
 
 			// check form widgets
-			for (auto& widget : widgets_) {
+			for (auto& widget : _widgets) {
 				if (widget.second.is_static() || !widget.second.visible() || !widget.second.enabled())
 					continue;
 
@@ -46,7 +46,7 @@ namespace liblec {
 					const D2D1_POINT_2F& point, bool& clicked,
 					std::function<void()>& on_right_click_handler) {
 					// check widgets
-					for (auto& widget : page.d_page_.widgets()) {
+					for (auto& widget : page._d_page.widgets()) {
 						if (widget.second.is_static() || !widget.second.visible() || !widget.second.enabled())
 							continue;
 
@@ -61,11 +61,11 @@ namespace liblec {
 						if (widget.second.type() ==
 							widgets::widget_type::tab_pane) {
 							// get this tab pane
-							auto& tab_pane = page.d_page_.get_tab_pane(widget.first);
+							auto& tab_pane = page._d_page.get_tab_pane(widget.first);
 
-							auto page_iterator = tab_pane.p_tabs_.find(tab_pane.current_tab_);
+							auto page_iterator = tab_pane._p_tabs.find(tab_pane._current_tab);
 
-							if (page_iterator != tab_pane.p_tabs_.end())
+							if (page_iterator != tab_pane._p_tabs.end())
 								check_widgets(page_iterator->second, point, clicked,
 									on_right_click_handler);
 						}
@@ -73,11 +73,11 @@ namespace liblec {
 							if (widget.second.type() ==
 								widgets::widget_type::pane) {
 								// get this pane
-								auto& pane = page.d_page_.get_pane(widget.first);
+								auto& pane = page._d_page.get_pane(widget.first);
 
-								auto page_iterator = pane.p_panes_.find(pane.current_pane_);
+								auto page_iterator = pane._p_panes.find(pane._current_pane);
 
-								if (page_iterator != pane.p_panes_.end())
+								if (page_iterator != pane._p_panes.end())
 									check_widgets(page_iterator->second, point, clicked,
 										on_right_click_handler);
 							}
@@ -85,13 +85,13 @@ namespace liblec {
 				}
 			};
 
-			for (auto& it : p_status_panes_)
+			for (auto& it : _p_status_panes)
 				helper::check_widgets(it.second, point, right_clicked,
 					on_right_click_handler);
 
-			auto page_iterator = p_pages_.find(current_page_);
+			auto page_iterator = _p_pages.find(_current_page);
 
-			if (page_iterator != p_pages_.end())
+			if (page_iterator != _p_pages.end())
 				helper::check_widgets(page_iterator->second, point, right_clicked,
 					on_right_click_handler);
 

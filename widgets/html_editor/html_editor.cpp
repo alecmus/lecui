@@ -19,215 +19,215 @@ namespace liblec {
 				specs::operator==(param) &&
 
 				// widget specific specs
-				(color_border_ == param.color_border_) &&
-				(color_caret_ == param.color_caret_) &&
-				(color_control_border_ == param.color_control_border_) &&
-				(color_control_fill_ == param.color_control_fill_);
+				(_color_border == param._color_border) &&
+				(_color_caret == param._color_caret) &&
+				(_color_control_border == param._color_control_border) &&
+				(_color_control_fill == param._color_control_fill);
 		}
 
 		bool widgets::html_editor_specs::operator!=(const html_editor_specs& param) {
 			return !operator==(param);
 		}
 
-		std::string& widgets::html_editor_specs::text() { return text_; }
+		std::string& widgets::html_editor_specs::text() { return _text; }
 
 		widgets::html_editor_specs& widgets::html_editor_specs::text(const std::string& text) {
-			text_ = text;
+			_text = text;
 			return *this;
 		}
 
-		std::string& widgets::html_editor_specs::tooltip() { return tooltip_; }
+		std::string& widgets::html_editor_specs::tooltip() { return _tooltip; }
 
 		widgets::html_editor_specs& widgets::html_editor_specs::tooltip(const std::string& tooltip) {
-			tooltip_ = tooltip;
+			_tooltip = tooltip;
 			return *this;
 		}
 
 		lecui::rect& widgets::html_editor_specs::rect() {
-			if (p_controls_pane_specs_ && p_html_pane_specs_)	// redirect to special rectangle
-				return rect_widget_overall_;	// to-do: how to transfer changes to special panes
+			if (_p_controls_pane_specs && _p_html_pane_specs)	// redirect to special rectangle
+				return _rect_widget_overall;	// to-do: how to transfer changes to special panes
 			else
-				return rect_;
+				return _rect;
 		}
 
 		widgets::html_editor_specs& widgets::html_editor_specs::rect(const lecui::rect& rect) {
-			if (p_controls_pane_specs_ && p_html_pane_specs_)	// redirect to special pane
-				rect_widget_overall_ = rect;	// to-do: how to transfer changes to special panes
+			if (_p_controls_pane_specs && _p_html_pane_specs)	// redirect to special pane
+				_rect_widget_overall = rect;	// to-do: how to transfer changes to special panes
 			else
-				rect_ = rect;
+				_rect = rect;
 
 			return *this;
 		}
 
 		widgets::specs::resize_params& widgets::html_editor_specs::on_resize() {
-			if (p_controls_pane_specs_ && p_html_pane_specs_)	// redirect to special pane
-				return on_resize_overall_;	// to-do: how to transfer changes to special panes
+			if (_p_controls_pane_specs && _p_html_pane_specs)	// redirect to special pane
+				return _on_resize_overall;	// to-do: how to transfer changes to special panes
 			else
-				return on_resize_;
+				return _on_resize;
 		}
 
 		widgets::html_editor_specs& widgets::html_editor_specs::on_resize(const resize_params& on_resize) {
-			if (p_controls_pane_specs_ && p_html_pane_specs_)	// redirect to special pane
-				on_resize_overall_ = on_resize;	// to-do: how to transfer changes to special panes
+			if (_p_controls_pane_specs && _p_html_pane_specs)	// redirect to special pane
+				_on_resize_overall = on_resize;	// to-do: how to transfer changes to special panes
 			else
-				on_resize_ = on_resize;
+				_on_resize = on_resize;
 
 			return *this;
 		}
 
-		widgets::specs::cursor_type& widgets::html_editor_specs::cursor() { return cursor_; }
+		widgets::specs::cursor_type& widgets::html_editor_specs::cursor() { return _cursor; }
 
 		widgets::html_editor_specs& widgets::html_editor_specs::cursor(const cursor_type cursor) {
-			cursor_ = cursor;
+			_cursor = cursor;
 			return *this;
 		}
 
-		std::string& widgets::html_editor_specs::font() { return font_; }
+		std::string& widgets::html_editor_specs::font() { return _font; }
 
 		widgets::html_editor_specs& widgets::html_editor_specs::font(const std::string& font) {
-			font_ = font;
+			_font = font;
 			return *this;
 		}
 
-		float& widgets::html_editor_specs::font_size() { return font_size_; }
+		float& widgets::html_editor_specs::font_size() { return _font_size; }
 
 		widgets::html_editor_specs& widgets::html_editor_specs::font_size(const float& font_size) {
-			font_size_ = font_size;
+			_font_size = font_size;
 			return *this;
 		}
 
-		color& widgets::html_editor_specs::color_text() { return color_text_; }
+		color& widgets::html_editor_specs::color_text() { return _color_text; }
 
 		widgets::html_editor_specs& widgets::html_editor_specs::color_text(const color& color_text) {
-			color_text_ = color_text;
+			_color_text = color_text;
 			return *this;
 		}
 
-		color& widgets::html_editor_specs::color_fill() { return color_fill_; }
+		color& widgets::html_editor_specs::color_fill() { return _color_fill; }
 
 		widgets::html_editor_specs& widgets::html_editor_specs::color_fill(const color& color_fill) {
-			color_fill_ = color_fill;
+			_color_fill = color_fill;
 			return *this;
 		}
 
-		color& widgets::html_editor_specs::color_hot() { return color_hot_; }
+		color& widgets::html_editor_specs::color_hot() { return _color_hot; }
 
 		widgets::html_editor_specs& widgets::html_editor_specs::color_hot(const color& color_hot) {
-			color_hot_ = color_hot;
+			_color_hot = color_hot;
 			return *this;
 		}
 
-		color& widgets::html_editor_specs::color_selected() { return color_selected_; }
+		color& widgets::html_editor_specs::color_selected() { return _color_selected; }
 
 		widgets::html_editor_specs& widgets::html_editor_specs::color_selected(const color& color_selected) {
-			color_selected_ = color_selected;
+			_color_selected = color_selected;
 			return *this;
 		}
 
-		color& widgets::html_editor_specs::color_disabled() { return color_disabled_; }
+		color& widgets::html_editor_specs::color_disabled() { return _color_disabled; }
 
 		widgets::html_editor_specs& widgets::html_editor_specs::color_disabled(const color& color_disabled) {
-			color_disabled_ = color_disabled;
+			_color_disabled = color_disabled;
 			return *this;
 		}
 
 		float& widgets::html_editor_specs::border() {
-			if (p_controls_pane_specs_ && p_html_pane_specs_)	// redirect to special pane
-				return reinterpret_cast<lecui::containers::pane_specs*>(p_html_pane_specs_)->border();
+			if (_p_controls_pane_specs && _p_html_pane_specs)	// redirect to special pane
+				return reinterpret_cast<lecui::containers::pane_specs*>(_p_html_pane_specs)->border();
 			else
-				return border_;
+				return _border;
 		}
 
 		widgets::html_editor_specs& widgets::html_editor_specs::border(const float& border) {
-			if (p_controls_pane_specs_ && p_html_pane_specs_)	// redirect to special pane
-				reinterpret_cast<lecui::containers::pane_specs*>(p_html_pane_specs_)->border(border);
+			if (_p_controls_pane_specs && _p_html_pane_specs)	// redirect to special pane
+				reinterpret_cast<lecui::containers::pane_specs*>(_p_html_pane_specs)->border(border);
 			else
-				border_ = border;
+				_border = border;
 
 			return *this;
 		}
 
 		float& widgets::html_editor_specs::control_border() {
-			if (p_controls_pane_specs_ && p_html_pane_specs_)	// redirect to special pane
-				return reinterpret_cast<lecui::containers::pane_specs*>(p_controls_pane_specs_)->border();
+			if (_p_controls_pane_specs && _p_html_pane_specs)	// redirect to special pane
+				return reinterpret_cast<lecui::containers::pane_specs*>(_p_controls_pane_specs)->border();
 			else
-				return control_border_;
+				return _control_border;
 		}
 
 		widgets::html_editor_specs& widgets::html_editor_specs::control_border(const float& control_border) {
-			if (p_controls_pane_specs_ && p_html_pane_specs_)	// redirect to special pane
-				reinterpret_cast<lecui::containers::pane_specs*>(p_controls_pane_specs_)->border(control_border);
+			if (_p_controls_pane_specs && _p_html_pane_specs)	// redirect to special pane
+				reinterpret_cast<lecui::containers::pane_specs*>(_p_controls_pane_specs)->border(control_border);
 			else
-				control_border_ = control_border;
+				_control_border = control_border;
 
 			return *this;
 		}
 
 		lecui::color& widgets::html_editor_specs::color_border() {
-			if (p_controls_pane_specs_ && p_html_pane_specs_)	// redirect to special pane
-				return reinterpret_cast<lecui::containers::pane_specs*>(p_html_pane_specs_)->color_border();
+			if (_p_controls_pane_specs && _p_html_pane_specs)	// redirect to special pane
+				return reinterpret_cast<lecui::containers::pane_specs*>(_p_html_pane_specs)->color_border();
 			else
-				return color_border_;
+				return _color_border;
 		}
 
 		widgets::html_editor_specs& widgets::html_editor_specs::color_border(const color& color_border) {
-			if (p_controls_pane_specs_ && p_html_pane_specs_)	// redirect to special pane
-				reinterpret_cast<lecui::containers::pane_specs*>(p_html_pane_specs_)->color_border(color_border);
+			if (_p_controls_pane_specs && _p_html_pane_specs)	// redirect to special pane
+				reinterpret_cast<lecui::containers::pane_specs*>(_p_html_pane_specs)->color_border(color_border);
 			else
-				color_border_ = color_border;
+				_color_border = color_border;
 
 			return *this;
 		}
 
-		float& widgets::html_editor_specs::corner_radius_x() { return corner_radius_x_; }
+		float& widgets::html_editor_specs::corner_radius_x() { return _corner_radius_x; }
 
 		widgets::html_editor_specs& widgets::html_editor_specs::corner_radius_x(const float& corner_radius_x) {
-			corner_radius_x_ = corner_radius_x;
+			_corner_radius_x = corner_radius_x;
 			return *this;
 		}
 
-		float& widgets::html_editor_specs::corner_radius_y() { return corner_radius_y_; }
+		float& widgets::html_editor_specs::corner_radius_y() { return _corner_radius_y; }
 
 		widgets::html_editor_specs& widgets::html_editor_specs::corner_radius_y(const float& corner_radius_y) {
-			corner_radius_y_ = corner_radius_y;
+			_corner_radius_y = corner_radius_y;
 			return *this;
 		}
 
-		lecui::color& widgets::html_editor_specs::color_caret() { return color_caret_; }
+		lecui::color& widgets::html_editor_specs::color_caret() { return _color_caret; }
 
 		widgets::html_editor_specs& widgets::html_editor_specs::color_caret(const color& color_caret) {
-			color_caret_ = color_caret;
+			_color_caret = color_caret;
 			return *this;
 		}
 
 		lecui::color& widgets::html_editor_specs::color_control_border() {
-			if (p_controls_pane_specs_ && p_html_pane_specs_)	// redirect to special pane
-				return reinterpret_cast<lecui::containers::pane_specs*>(p_controls_pane_specs_)->color_border();
+			if (_p_controls_pane_specs && _p_html_pane_specs)	// redirect to special pane
+				return reinterpret_cast<lecui::containers::pane_specs*>(_p_controls_pane_specs)->color_border();
 			else
-				return color_control_border_;
+				return _color_control_border;
 		}
 
 		widgets::html_editor_specs& widgets::html_editor_specs::color_control_border(const color& color_control_border) {
-			if (p_controls_pane_specs_ && p_html_pane_specs_)	// redirect to special pane
-				reinterpret_cast<lecui::containers::pane_specs*>(p_controls_pane_specs_)->color_border(color_control_border);
+			if (_p_controls_pane_specs && _p_html_pane_specs)	// redirect to special pane
+				reinterpret_cast<lecui::containers::pane_specs*>(_p_controls_pane_specs)->color_border(color_control_border);
 			else
-				color_control_border_ = color_control_border;
+				_color_control_border = color_control_border;
 
 			return *this;
 		}
 
 		lecui::color& widgets::html_editor_specs::color_control_fill() {
-			if (p_controls_pane_specs_ && p_html_pane_specs_)	// redirect to special pane
-				return reinterpret_cast<lecui::containers::pane_specs*>(p_controls_pane_specs_)->color_fill();
+			if (_p_controls_pane_specs && _p_html_pane_specs)	// redirect to special pane
+				return reinterpret_cast<lecui::containers::pane_specs*>(_p_controls_pane_specs)->color_fill();
 			else
-				return color_control_fill_;
+				return _color_control_fill;
 		}
 
 		widgets::html_editor_specs& widgets::html_editor_specs::color_control_fill(const color& color_control_fill) {
-			if (p_controls_pane_specs_ && p_html_pane_specs_)	// redirect to special pane
-				reinterpret_cast<lecui::containers::pane_specs*>(p_controls_pane_specs_)->color_fill(color_control_fill);
+			if (_p_controls_pane_specs && _p_html_pane_specs)	// redirect to special pane
+				reinterpret_cast<lecui::containers::pane_specs*>(_p_controls_pane_specs)->color_fill(color_control_fill);
 			else
-				color_control_fill_ = color_control_fill;
+				_color_control_fill = color_control_fill;
 
 			return *this;
 		}
@@ -235,35 +235,35 @@ namespace liblec {
 		class widgets::html_editor_builder::impl {
 		public:
 			impl(containers::page& page, const std::string& alias) :
-				page_(page),
-				specs_(page_.d_page_.add_html_editor(alias)) {
-				specs_
+				_page(page),
+				_specs(_page._d_page.add_html_editor(alias)) {
+				_specs
 					.font("Calibri")
 					.font_size(11.f)
-					.color_text(defaults::color(page_.d_page_.fm_.d_.theme_, item::label))
-					.color_fill(defaults::color(page_.d_page_.fm_.d_.theme_, item::html_editor))
-					.color_border(defaults::color(page_.d_page_.fm_.d_.theme_, item::html_editor_border))
-					.color_disabled(defaults::color(page_.d_page_.fm_.d_.theme_, item::html_editor_disabled))
-					.color_selected(defaults::color(page_.d_page_.fm_.d_.theme_, item::html_editor_selected))
-					.color_caret(defaults::color(page_.d_page_.fm_.d_.theme_, item::html_editor_caret))
-					.color_control_fill(defaults::color(page_.d_page_.fm_.d_.theme_, item::html_control))
-					.color_control_border(defaults::color(page_.d_page_.fm_.d_.theme_, item::html_control_border));
+					.color_text(defaults::color(_page._d_page._fm._d._theme, item::label))
+					.color_fill(defaults::color(_page._d_page._fm._d._theme, item::html_editor))
+					.color_border(defaults::color(_page._d_page._fm._d._theme, item::html_editor_border))
+					.color_disabled(defaults::color(_page._d_page._fm._d._theme, item::html_editor_disabled))
+					.color_selected(defaults::color(_page._d_page._fm._d._theme, item::html_editor_selected))
+					.color_caret(defaults::color(_page._d_page._fm._d._theme, item::html_editor_caret))
+					.color_control_fill(defaults::color(_page._d_page._fm._d._theme, item::html_control))
+					.color_control_border(defaults::color(_page._d_page._fm._d._theme, item::html_control_border));
 			}
-			containers::page& page_;
-			html_editor_specs& specs_;
+			containers::page& _page;
+			html_editor_specs& _specs;
 		};
 
 		widgets::html_editor_builder::html_editor_builder(containers::page& page) :
 			html_editor_builder(page, "") {}
 
 		widgets::html_editor_builder::html_editor_builder(containers::page& page, const std::string& alias) :
-			d_(*(new impl(page, alias))) {}
+			_d(*(new impl(page, alias))) {}
 
-		widgets::html_editor_builder::~html_editor_builder() { delete& d_; }
+		widgets::html_editor_builder::~html_editor_builder() { delete& _d; }
 
 		widgets::html_editor_specs&
 			widgets::html_editor_builder::specs() {
-			return d_.specs_;
+			return _d._specs;
 		}
 
 		widgets::html_editor_specs&
@@ -280,16 +280,16 @@ namespace liblec {
 				const auto path_remaining = path.substr(idx + 1);
 				try {
 					// check form pages
-					auto& page = fm.d_.p_pages_.at(page_alias);
-					auto results = fm.d_.find_widget(page, path_remaining);
-					return results.page.d_page_.get_html_editor(results.widget.alias()).specs();
+					auto& page = fm._d._p_pages.at(page_alias);
+					auto results = fm._d.find_widget(page, path_remaining);
+					return results.page._d_page.get_html_editor(results.widget.alias()).specs();
 				}
 				catch (const std::exception&) {}
 				try {
 					// check status panes
-					auto& page = fm.d_.p_status_panes_.at(page_alias);
-					auto results = fm.d_.find_widget(page, path_remaining);
-					return results.page.d_page_.get_html_editor(results.widget.alias()).specs();
+					auto& page = fm._d._p_status_panes.at(page_alias);
+					auto results = fm._d.find_widget(page, path_remaining);
+					return results.page._d_page.get_html_editor(results.widget.alias()).specs();
 				}
 				catch (const std::exception&) {}
 			}

@@ -19,14 +19,14 @@ namespace liblec {
 				specs::operator==(param) &&
 
 				// widget specific specs
-				(color_border_ == param.color_border_) &&
-				(color_grid_ == param.color_grid_) &&
-				(color_text_header_ == param.color_text_header_) &&
-				(color_text_header_hot_ == param.color_text_header_hot_) &&
-				(color_fill_header_ == param.color_fill_header_) &&
-				(color_fill_alternate_ == param.color_fill_alternate_) &&
-				(color_row_hot_ == param.color_row_hot_) &&
-				(color_row_selected_ == param.color_row_selected_);
+				(_color_border == param._color_border) &&
+				(_color_grid == param._color_grid) &&
+				(_color_text_header == param._color_text_header) &&
+				(_color_text_header_hot == param._color_text_header_hot) &&
+				(_color_fill_header == param._color_fill_header) &&
+				(_color_fill_alternate == param._color_fill_alternate) &&
+				(_color_row_hot == param._color_row_hot) &&
+				(_color_row_selected == param._color_row_selected);
 		}
 
 		bool widgets::table_view_specs::operator!=(const table_view_specs& param) {
@@ -35,44 +35,44 @@ namespace liblec {
 
 		widgets::table_view_specs& widgets::table_view_specs::operator=(const table_view_specs& right) {
 			// generic specs
-			text_ = right.text_;
-			tooltip_ = right.tooltip_;
-			rect_ = right.rect_;
-			on_resize_ = right.on_resize_;
-			cursor_ = right.cursor_;
-			font_ = right.font_;
-			font_size_ = right.font_size_;
-			color_text_ = right.color_text_;
-			color_fill_ = right.color_fill_;
-			color_hot_ = right.color_hot_;
-			color_selected_ = right.color_selected_;
-			color_disabled_ = right.color_disabled_;
+			_text = right._text;
+			_tooltip = right._tooltip;
+			_rect = right._rect;
+			_on_resize = right._on_resize;
+			_cursor = right._cursor;
+			_font = right._font;
+			_font_size = right._font_size;
+			_color_text = right._color_text;
+			_color_fill = right._color_fill;
+			_color_hot = right._color_hot;
+			_color_selected = right._color_selected;
+			_color_disabled = right._color_disabled;
 
 			// events
-			table_events_ = right.table_events_;
+			_table_events = right._table_events;
 
 			// widget specific specs
-			border_ = right.border_;
-			grid_line_ = right.grid_line_;
-			color_border_ = right.color_border_;
-			corner_radius_x_ = right.corner_radius_x_;
-			corner_radius_y_ = right.corner_radius_y_;
-			color_text_selected_ = right.color_text_selected_;
-			color_grid_ = right.color_grid_;
-			color_text_header_ = right.color_text_header_;
-			color_text_header_hot_ = right.color_text_header_hot_;
-			color_fill_header_ = right.color_fill_header_;
-			color_fill_alternate_ = right.color_fill_alternate_;
-			color_row_hot_ = right.color_row_hot_;
-			color_row_selected_ = right.color_row_selected_;
-			columns_ = right.columns_;
-			data_ = right.data_;
-			selected_ = right.selected_;
-			user_sort_ = right.user_sort_;
-			fixed_number_column_ = right.fixed_number_column_;
-			fixed_number_column_name_ = right.fixed_number_column_name_;
+			_border = right._border;
+			_grid_line = right._grid_line;
+			_color_border = right._color_border;
+			_corner_radius_x = right._corner_radius_x;
+			_corner_radius_y = right._corner_radius_y;
+			_color_text_selected = right._color_text_selected;
+			_color_grid = right._color_grid;
+			_color_text_header = right._color_text_header;
+			_color_text_header_hot = right._color_text_header_hot;
+			_color_fill_header = right._color_fill_header;
+			_color_fill_alternate = right._color_fill_alternate;
+			_color_row_hot = right._color_row_hot;
+			_color_row_selected = right._color_row_selected;
+			_columns = right._columns;
+			_data = right._data;
+			_selected = right._selected;
+			_user_sort = right._user_sort;
+			_fixed_number_column = right._fixed_number_column;
+			_fixed_number_column_name = right._fixed_number_column_name;
 
-			// NOT copied (alias_, p_special_pane_specs_)
+			// NOT copied (_alias, _p_special_pane_specs)
 
 			return *this;
 		}
@@ -81,301 +81,301 @@ namespace liblec {
 			*this = right;
 		}
 
-		std::string& widgets::table_view_specs::text() { return text_; }
+		std::string& widgets::table_view_specs::text() { return _text; }
 
 		widgets::table_view_specs& widgets::table_view_specs::text(const std::string& text) {
-			text_ = text;
+			_text = text;
 			return *this;
 		}
 
-		std::string& widgets::table_view_specs::tooltip() { return tooltip_; }
+		std::string& widgets::table_view_specs::tooltip() { return _tooltip; }
 
 		widgets::table_view_specs& widgets::table_view_specs::tooltip(const std::string& tooltip) {
-			tooltip_ = tooltip;
+			_tooltip = tooltip;
 			return *this;
 		}
 
 		lecui::rect& widgets::table_view_specs::rect() {
-			if (p_special_pane_specs_)	// redirect to special pane
-				return reinterpret_cast<lecui::containers::pane_specs*>(p_special_pane_specs_)->rect();
+			if (_p_special_pane_specs)	// redirect to special pane
+				return reinterpret_cast<lecui::containers::pane_specs*>(_p_special_pane_specs)->rect();
 			else
-				return rect_;
+				return _rect;
 		}
 
 		widgets::table_view_specs& widgets::table_view_specs::rect(const lecui::rect& rect) {
-			if (p_special_pane_specs_)	// redirect to special pane
-				reinterpret_cast<lecui::containers::pane_specs*>(p_special_pane_specs_)->rect(rect);
+			if (_p_special_pane_specs)	// redirect to special pane
+				reinterpret_cast<lecui::containers::pane_specs*>(_p_special_pane_specs)->rect(rect);
 			else
-				rect_ = rect;
+				_rect = rect;
 
 			return *this;
 		}
 
 		widgets::specs::resize_params& widgets::table_view_specs::on_resize() {
-			if (p_special_pane_specs_)	// redirect to special pane
-				return reinterpret_cast<lecui::containers::pane_specs*>(p_special_pane_specs_)->on_resize();
+			if (_p_special_pane_specs)	// redirect to special pane
+				return reinterpret_cast<lecui::containers::pane_specs*>(_p_special_pane_specs)->on_resize();
 			else
-				return on_resize_;
+				return _on_resize;
 		}
 
 		widgets::table_view_specs& widgets::table_view_specs::on_resize(const resize_params& on_resize) {
-			if (p_special_pane_specs_)	// redirect to special pane
-				reinterpret_cast<lecui::containers::pane_specs*>(p_special_pane_specs_)->on_resize(on_resize);
+			if (_p_special_pane_specs)	// redirect to special pane
+				reinterpret_cast<lecui::containers::pane_specs*>(_p_special_pane_specs)->on_resize(on_resize);
 			else
-				on_resize_ = on_resize;
+				_on_resize = on_resize;
 
 			return *this;
 		}
 
-		widgets::specs::cursor_type& widgets::table_view_specs::cursor() { return cursor_; }
+		widgets::specs::cursor_type& widgets::table_view_specs::cursor() { return _cursor; }
 
 		widgets::table_view_specs& widgets::table_view_specs::cursor(const cursor_type cursor) {
-			cursor_ = cursor;
+			_cursor = cursor;
 			return *this;
 		}
 
-		std::string& widgets::table_view_specs::font() { return font_; }
+		std::string& widgets::table_view_specs::font() { return _font; }
 
 		widgets::table_view_specs& widgets::table_view_specs::font(const std::string& font) {
-			font_ = font;
+			_font = font;
 			return *this;
 		}
 
-		float& widgets::table_view_specs::font_size() { return font_size_; }
+		float& widgets::table_view_specs::font_size() { return _font_size; }
 
 		widgets::table_view_specs& widgets::table_view_specs::font_size(const float& font_size) {
-			font_size_ = font_size;
+			_font_size = font_size;
 			return *this;
 		}
 
-		color& widgets::table_view_specs::color_text() { return color_text_; }
+		color& widgets::table_view_specs::color_text() { return _color_text; }
 
 		widgets::table_view_specs& widgets::table_view_specs::color_text(const color& color_text) {
-			color_text_ = color_text;
+			_color_text = color_text;
 			return *this;
 		}
 
 		color& widgets::table_view_specs::color_fill() {
-			if (p_special_pane_specs_)	// redirect to special pane
-				return reinterpret_cast<lecui::containers::pane_specs*>(p_special_pane_specs_)->color_fill();
+			if (_p_special_pane_specs)	// redirect to special pane
+				return reinterpret_cast<lecui::containers::pane_specs*>(_p_special_pane_specs)->color_fill();
 			else
-				return color_fill_;
+				return _color_fill;
 		}
 
 		widgets::table_view_specs& widgets::table_view_specs::color_fill(const color& color_fill) {
-			if (p_special_pane_specs_)	// redirect to special pane
-				reinterpret_cast<lecui::containers::pane_specs*>(p_special_pane_specs_)->color_fill(color_fill);
+			if (_p_special_pane_specs)	// redirect to special pane
+				reinterpret_cast<lecui::containers::pane_specs*>(_p_special_pane_specs)->color_fill(color_fill);
 			else
-				color_fill_ = color_fill;
+				_color_fill = color_fill;
 
 			return *this;
 		}
 
-		color& widgets::table_view_specs::color_hot() { return color_hot_; }
+		color& widgets::table_view_specs::color_hot() { return _color_hot; }
 
 		widgets::table_view_specs& widgets::table_view_specs::color_hot(const color& color_hot) {
-			color_hot_ = color_hot;
+			_color_hot = color_hot;
 			return *this;
 		}
 
-		color& widgets::table_view_specs::color_selected() { return color_selected_; }
+		color& widgets::table_view_specs::color_selected() { return _color_selected; }
 
 		widgets::table_view_specs& widgets::table_view_specs::color_selected(const color& color_selected) {
-			color_selected_ = color_selected;
+			_color_selected = color_selected;
 			return *this;
 		}
 
-		color& widgets::table_view_specs::color_disabled() { return color_disabled_; }
+		color& widgets::table_view_specs::color_disabled() { return _color_disabled; }
 
 		widgets::table_view_specs& widgets::table_view_specs::color_disabled(const color& color_disabled) {
-			color_disabled_ = color_disabled;
+			_color_disabled = color_disabled;
 			return *this;
 		}
 
 		float& widgets::table_view_specs::border() {
-			if (p_special_pane_specs_)	// redirect to special pane
-				return reinterpret_cast<lecui::containers::pane_specs*>(p_special_pane_specs_)->border();
+			if (_p_special_pane_specs)	// redirect to special pane
+				return reinterpret_cast<lecui::containers::pane_specs*>(_p_special_pane_specs)->border();
 			else
-				return border_;
+				return _border;
 		}
 
 		widgets::table_view_specs& widgets::table_view_specs::border(const float& border) {
-			if (p_special_pane_specs_)	// redirect to special pane
-				reinterpret_cast<lecui::containers::pane_specs*>(p_special_pane_specs_)->border(border);
+			if (_p_special_pane_specs)	// redirect to special pane
+				reinterpret_cast<lecui::containers::pane_specs*>(_p_special_pane_specs)->border(border);
 			else
-				border_ = border;
+				_border = border;
 
 			return *this;
 		}
 
-		float& widgets::table_view_specs::grid_line() { return grid_line_; }
+		float& widgets::table_view_specs::grid_line() { return _grid_line; }
 
 		widgets::table_view_specs& widgets::table_view_specs::grid_line(const float& grid_line) {
-			grid_line_ = grid_line;
+			_grid_line = grid_line;
 			return *this;
 		}
 
 		lecui::color& widgets::table_view_specs::color_border() {
-			if (p_special_pane_specs_)	// redirect to special pane
-				return reinterpret_cast<lecui::containers::pane_specs*>(p_special_pane_specs_)->color_border();
+			if (_p_special_pane_specs)	// redirect to special pane
+				return reinterpret_cast<lecui::containers::pane_specs*>(_p_special_pane_specs)->color_border();
 			else
-				return color_border_;
+				return _color_border;
 		}
 
 		widgets::table_view_specs& widgets::table_view_specs::color_border(const color& color_border) {
-			if (p_special_pane_specs_)	// redirect to special pane
-				reinterpret_cast<lecui::containers::pane_specs*>(p_special_pane_specs_)->color_border(color_border);
+			if (_p_special_pane_specs)	// redirect to special pane
+				reinterpret_cast<lecui::containers::pane_specs*>(_p_special_pane_specs)->color_border(color_border);
 			else
-				color_border_ = color_border;
+				_color_border = color_border;
 
 			return *this;
 		}
 
-		float& widgets::table_view_specs::corner_radius_x() { return corner_radius_x_; }
+		float& widgets::table_view_specs::corner_radius_x() { return _corner_radius_x; }
 
 		widgets::table_view_specs& widgets::table_view_specs::corner_radius_x(const float& corner_radius_x) {
-			corner_radius_x_ = corner_radius_x;
+			_corner_radius_x = corner_radius_x;
 			return *this;
 		}
 
-		float& widgets::table_view_specs::corner_radius_y() { return corner_radius_y_; }
+		float& widgets::table_view_specs::corner_radius_y() { return _corner_radius_y; }
 
 		widgets::table_view_specs& widgets::table_view_specs::corner_radius_y(const float& corner_radius_y) {
-			corner_radius_y_ = corner_radius_y;
+			_corner_radius_y = corner_radius_y;
 			return *this;
 		}
 
-		lecui::color& widgets::table_view_specs::color_text_selected() { return color_text_selected_; }
+		lecui::color& widgets::table_view_specs::color_text_selected() { return _color_text_selected; }
 
 		widgets::table_view_specs& widgets::table_view_specs::color_text_selected(const color& color_text_selected) {
-			color_text_selected_ = color_text_selected;
+			_color_text_selected = color_text_selected;
 			return *this;
 		}
 
-		color& widgets::table_view_specs::color_grid() { return color_grid_; }
+		color& widgets::table_view_specs::color_grid() { return _color_grid; }
 
 		widgets::table_view_specs& widgets::table_view_specs::color_grid(const color& color_grid) {
-			color_grid_ = color_grid;
+			_color_grid = color_grid;
 			return *this;
 		}
 
-		lecui::color& widgets::table_view_specs::color_text_header() { return color_text_header_; }
+		lecui::color& widgets::table_view_specs::color_text_header() { return _color_text_header; }
 
 		widgets::table_view_specs& widgets::table_view_specs::color_text_header(const color& color_text_header) {
-			color_text_header_ = color_text_header;
+			_color_text_header = color_text_header;
 			return *this;
 		}
 
-		lecui::color& widgets::table_view_specs::color_text_header_hot() { return color_text_header_hot_; }
+		lecui::color& widgets::table_view_specs::color_text_header_hot() { return _color_text_header_hot; }
 
 		widgets::table_view_specs& widgets::table_view_specs::color_text_header_hot(const color& color_text_header_hot) {
-			color_text_header_hot_ = color_text_header_hot;
+			_color_text_header_hot = color_text_header_hot;
 			return *this;
 		}
 
-		color& widgets::table_view_specs::color_fill_header() { return color_fill_header_; }
+		color& widgets::table_view_specs::color_fill_header() { return _color_fill_header; }
 
 		widgets::table_view_specs& widgets::table_view_specs::color_fill_header(const color& color_fill_header) {
-			color_fill_header_ = color_fill_header;
+			_color_fill_header = color_fill_header;
 			return *this;
 		}
 
-		lecui::color& widgets::table_view_specs::color_fill_alternate() { return color_fill_alternate_; }
+		lecui::color& widgets::table_view_specs::color_fill_alternate() { return _color_fill_alternate; }
 
 		widgets::table_view_specs& widgets::table_view_specs::color_fill_alternate(const color& color_fill_alternate) {
-			color_fill_alternate_ = color_fill_alternate;
+			_color_fill_alternate = color_fill_alternate;
 			return *this;
 		}
 
-		lecui::color& widgets::table_view_specs::color_row_hot() { return color_row_hot_; }
+		lecui::color& widgets::table_view_specs::color_row_hot() { return _color_row_hot; }
 
 		widgets::table_view_specs& widgets::table_view_specs::color_row_hot(const color& color_row_hot) {
-			color_row_hot_ = color_row_hot;
+			_color_row_hot = color_row_hot;
 			return *this;
 		}
 
-		lecui::color& widgets::table_view_specs::color_row_selected() { return color_row_selected_; }
+		lecui::color& widgets::table_view_specs::color_row_selected() { return _color_row_selected; }
 
 		widgets::table_view_specs& widgets::table_view_specs::color_row_selected(const color& color_row_selected) {
-			color_row_selected_ = color_row_selected;
+			_color_row_selected = color_row_selected;
 			return *this;
 		}
 
-		std::vector<lecui::table_column>& widgets::table_view_specs::columns() { return columns_; }
+		std::vector<lecui::table_column>& widgets::table_view_specs::columns() { return _columns; }
 
 		widgets::table_view_specs& widgets::table_view_specs::columns(const std::vector<table_column>& columns) {
-			columns_ = columns;
+			_columns = columns;
 			return *this;
 		}
 
-		std::vector<table_row>& widgets::table_view_specs::data() { return data_; }
+		std::vector<table_row>& widgets::table_view_specs::data() { return _data; }
 
 		widgets::table_view_specs& widgets::table_view_specs::data(const std::vector<table_row>& data) {
-			data_ = data;
+			_data = data;
 			return *this;
 		}
 
-		std::vector<long>& widgets::table_view_specs::selected() { return selected_; }
+		std::vector<long>& widgets::table_view_specs::selected() { return _selected; }
 
 		widgets::table_view_specs& widgets::table_view_specs::selected(const std::vector<long>& selected) {
-			selected_ = selected;
+			_selected = selected;
 			return *this;
 		}
 
-		bool& widgets::table_view_specs::user_sort() { return user_sort_; }
+		bool& widgets::table_view_specs::user_sort() { return _user_sort; }
 
 		widgets::table_view_specs& widgets::table_view_specs::user_sort(const bool& user_sort) {
-			user_sort_ = user_sort;
+			_user_sort = user_sort;
 			return *this;
 		}
 
-		bool& widgets::table_view_specs::fixed_number_column() { return fixed_number_column_; }
+		bool& widgets::table_view_specs::fixed_number_column() { return _fixed_number_column; }
 
 		widgets::table_view_specs& widgets::table_view_specs::fixed_number_column(const bool& fixed_number_column) {
-			fixed_number_column_ = fixed_number_column;
+			_fixed_number_column = fixed_number_column;
 			return *this;
 		}
 
-		std::string& widgets::table_view_specs::fixed_number_column_name() { return fixed_number_column_name_; }
+		std::string& widgets::table_view_specs::fixed_number_column_name() { return _fixed_number_column_name; }
 
 		widgets::table_view_specs& widgets::table_view_specs::fixed_number_column_name(const std::string& fixed_number_column_name) {
-			fixed_number_column_name_ = fixed_number_column_name;
+			_fixed_number_column_name = fixed_number_column_name;
 			return *this;
 		}
 
 		class widgets::table_view_builder::impl {
 		public:
 			impl(containers::page& page, const std::string& alias) :
-				page_(page),
-				specs_(page_.d_page_.add_table_view(alias)) {
-				specs_
-					.color_text(defaults::color(page_.d_page_.fm_.d_.theme_, item::label))
-					.color_text_selected(defaults::color(page_.d_page_.fm_.d_.theme_, item::table_view_text_selected))
-					.color_fill(defaults::color(page_.d_page_.fm_.d_.theme_, item::table_view))
-					.color_border(defaults::color(page_.d_page_.fm_.d_.theme_, item::table_view_border))
-					.color_fill_alternate(defaults::color(page_.d_page_.fm_.d_.theme_, item::table_view_alternate))
-					.color_row_hot(defaults::color(page_.d_page_.fm_.d_.theme_, item::table_view_row_hover))
-					.color_row_selected(defaults::color(page_.d_page_.fm_.d_.theme_, item::table_view_row_selected))
-					.color_text_header(defaults::color(page_.d_page_.fm_.d_.theme_, item::table_view_text_header))
-					.color_text_header_hot(defaults::color(page_.d_page_.fm_.d_.theme_, item::table_view_text_header_hot))
-					.color_fill_header(defaults::color(page_.d_page_.fm_.d_.theme_, item::table_view_header))
-					.color_grid(defaults::color(page_.d_page_.fm_.d_.theme_, item::table_view_grid));
+				_page(page),
+				_specs(_page._d_page.add_table_view(alias)) {
+				_specs
+					.color_text(defaults::color(_page._d_page._fm._d._theme, item::label))
+					.color_text_selected(defaults::color(_page._d_page._fm._d._theme, item::table_view_text_selected))
+					.color_fill(defaults::color(_page._d_page._fm._d._theme, item::table_view))
+					.color_border(defaults::color(_page._d_page._fm._d._theme, item::table_view_border))
+					.color_fill_alternate(defaults::color(_page._d_page._fm._d._theme, item::table_view_alternate))
+					.color_row_hot(defaults::color(_page._d_page._fm._d._theme, item::table_view_row_hover))
+					.color_row_selected(defaults::color(_page._d_page._fm._d._theme, item::table_view_row_selected))
+					.color_text_header(defaults::color(_page._d_page._fm._d._theme, item::table_view_text_header))
+					.color_text_header_hot(defaults::color(_page._d_page._fm._d._theme, item::table_view_text_header_hot))
+					.color_fill_header(defaults::color(_page._d_page._fm._d._theme, item::table_view_header))
+					.color_grid(defaults::color(_page._d_page._fm._d._theme, item::table_view_grid));
 			}
-			containers::page& page_;
-			table_view_specs& specs_;
+			containers::page& _page;
+			table_view_specs& _specs;
 		};
 
 		widgets::table_view_builder::table_view_builder(containers::page& page) :
 			table_view_builder(page, "") {}
 
 		widgets::table_view_builder::table_view_builder(containers::page& page, const std::string& alias) :
-			d_(*(new impl(page, alias))) {}
+			_d(*(new impl(page, alias))) {}
 
-		widgets::table_view_builder::~table_view_builder() { delete& d_; }
+		widgets::table_view_builder::~table_view_builder() { delete& _d; }
 
 		widgets::table_view_specs&
 			widgets::table_view_builder::specs() {
-			return d_.specs_;
+			return _d._specs;
 		}
 
 		widgets::table_view_specs&
@@ -392,16 +392,16 @@ namespace liblec {
 				const auto path_remaining = path.substr(idx + 1);
 				try {
 					// check form pages
-					auto& page = fm.d_.p_pages_.at(page_alias);
-					auto results = fm.d_.find_widget(page, path_remaining);
-					return results.page.d_page_.get_table_view(results.widget.alias()).specs();
+					auto& page = fm._d._p_pages.at(page_alias);
+					auto results = fm._d.find_widget(page, path_remaining);
+					return results.page._d_page.get_table_view(results.widget.alias()).specs();
 				}
 				catch (const std::exception&) {}
 				try {
 					// check status panes
-					auto& page = fm.d_.p_status_panes_.at(page_alias);
-					auto results = fm.d_.find_widget(page, path_remaining);
-					return results.page.d_page_.get_table_view(results.widget.alias()).specs();
+					auto& page = fm._d._p_status_panes.at(page_alias);
+					auto results = fm._d.find_widget(page, path_remaining);
+					return results.page._d_page.get_table_view(results.widget.alias()).specs();
 				}
 				catch (const std::exception&) {}
 			}

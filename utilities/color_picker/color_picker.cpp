@@ -18,14 +18,14 @@ namespace liblec {
 		class color_picker::impl {
 		public:
 			impl(form& fm) :
-				fm_(fm) {}
-			form& fm_;
+				_fm(fm) {}
+			form& _fm;
 		};
 
 		color_picker::color_picker(form& fm) :
-			d_(*(new impl(fm))) {}
+			_d(*(new impl(fm))) {}
 
-		color_picker::~color_picker() { delete& d_; }
+		color_picker::~color_picker() { delete& _d; }
 
 		bool color_picker::pick(color& picked_color) {
 			COLORREF crCustColor[] = {
@@ -49,7 +49,7 @@ namespace liblec {
 
 			CHOOSECOLOR cc;
 			cc.lStructSize = sizeof(CHOOSECOLOR);
-			cc.hwndOwner = d_.fm_.d_.hWnd_;
+			cc.hwndOwner = _d._fm._d._hWnd;
 			cc.hInstance = NULL;
 			cc.rgbResult = RGB(0x80, 0x80, 0x80);
 			cc.lpCustColors = crCustColor;

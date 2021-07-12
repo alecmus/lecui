@@ -48,10 +48,10 @@ namespace liblec {
 		widgets::date_impl::date_impl(containers::page& page,
 			const std::string& alias) :
 			widget_impl(page, alias),
-			p_brush_fill_(nullptr),
-			p_brush_hot_(nullptr),
-			p_brush_disabled_(nullptr),
-			p_brush_selected_(nullptr) {}
+			_p_brush_fill(nullptr),
+			_p_brush_hot(nullptr),
+			_p_brush_disabled(nullptr),
+			_p_brush_selected(nullptr) {}
 
 		widgets::date_impl::~date_impl() { discard_resources(); }
 
@@ -62,106 +62,106 @@ namespace liblec {
 
 		HRESULT widgets::date_impl::create_resources(
 			ID2D1HwndRenderTarget* p_render_target) {
-			specs_old_ = specs_;
-			is_static_ = (specs_.events().click == nullptr && specs_.events().action == nullptr);
-			h_cursor_ = get_cursor(specs_.cursor());
+			_specs_old = _specs;
+			_is_static = (_specs.events().click == nullptr && _specs.events().action == nullptr);
+			_h_cursor = get_cursor(_specs.cursor());
 
 			HRESULT hr = S_OK;
 
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_fill()),
-					&p_brush_fill_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_fill()),
+					&_p_brush_fill);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_hot()),
-					&p_brush_hot_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_hot()),
+					&_p_brush_hot);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_disabled()),
-					&p_brush_disabled_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_disabled()),
+					&_p_brush_disabled);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_selected()),
-					&p_brush_selected_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_selected()),
+					&_p_brush_selected);
 
-			resources_created_ = true;
+			_resources_created = true;
 			return hr;
 		}
 
 		void widgets::date_impl::discard_resources() {
-			resources_created_ = false;
-			safe_release(&p_brush_fill_);
-			safe_release(&p_brush_hot_);
-			safe_release(&p_brush_disabled_);
-			safe_release(&p_brush_selected_);
+			_resources_created = false;
+			safe_release(&_p_brush_fill);
+			safe_release(&_p_brush_hot);
+			safe_release(&_p_brush_disabled);
+			safe_release(&_p_brush_selected);
 		}
 
 		D2D1_RECT_F&
 			widgets::date_impl::render(ID2D1HwndRenderTarget* p_render_target,
 				const D2D1_SIZE_F& change_in_size, const D2D1_POINT_2F& offset, const bool& render) {
-			if (specs_old_ != specs_) {
-				log("specs changed: " + alias_);
-				specs_old_ = specs_;
+			if (_specs_old != _specs) {
+				log("specs changed: " + _alias);
+				_specs_old = _specs;
 
 				try {
 					// update label specs
-					if (weekday_label_specs_.has_value())
-						weekday_label_specs_.value().get().color_text() = specs_.color_text();
+					if (_weekday_label_specs.has_value())
+						_weekday_label_specs.value().get().color_text() = _specs.color_text();
 
-					if (seperator_1_specs_.has_value())
-						seperator_1_specs_.value().get().color_text() = specs_.color_text();
+					if (_seperator_1_specs.has_value())
+						_seperator_1_specs.value().get().color_text() = _specs.color_text();
 
-					if (day_label_specs_.has_value())
-						day_label_specs_.value().get().color_text() = specs_.color_text();
+					if (_day_label_specs.has_value())
+						_day_label_specs.value().get().color_text() = _specs.color_text();
 
-					if (month_label_specs_.has_value())
-						month_label_specs_.value().get().color_text() = specs_.color_text();
+					if (_month_label_specs.has_value())
+						_month_label_specs.value().get().color_text() = _specs.color_text();
 
-					if (seperator_2_specs_.has_value())
-						seperator_2_specs_.value().get().color_text() = specs_.color_text();
+					if (_seperator_2_specs.has_value())
+						_seperator_2_specs.value().get().color_text() = _specs.color_text();
 
-					if (year_label_specs_.has_value())
-						year_label_specs_.value().get().color_text() = specs_.color_text();
+					if (_year_label_specs.has_value())
+						_year_label_specs.value().get().color_text() = _specs.color_text();
 
 					// update border specs and background specs
-					if (day_specs_.has_value()) {
-						day_specs_.value().get().color_border() = specs_.color_border();
-						day_specs_.value().get().color_fill() = specs_.color_fill();
+					if (_day_specs.has_value()) {
+						_day_specs.value().get().color_border() = _specs.color_border();
+						_day_specs.value().get().color_fill() = _specs.color_fill();
 					}
 
-					if (month_specs_.has_value()) {
-						month_specs_.value().get().color_border() = specs_.color_border();
-						month_specs_.value().get().color_fill() = specs_.color_fill();
+					if (_month_specs.has_value()) {
+						_month_specs.value().get().color_border() = _specs.color_border();
+						_month_specs.value().get().color_fill() = _specs.color_fill();
 					}
 
-					if (year_specs_.has_value()) {
-						year_specs_.value().get().color_border() = specs_.color_border();
-						year_specs_.value().get().color_fill() = specs_.color_fill();
+					if (_year_specs.has_value()) {
+						_year_specs.value().get().color_border() = _specs.color_border();
+						_year_specs.value().get().color_fill() = _specs.color_fill();
 					}
 
 					// schedule a refresh
-					page_.d_page_.get_form().d_.schedule_refresh_ = true;
+					_page._d_page.get_form()._d._schedule_refresh = true;
 				}
 				catch (const std::exception& e) { log(e.what()); }
 
 				discard_resources();
 			}
 
-			if (!resources_created_)
+			if (!_resources_created)
 				create_resources(p_render_target);
 
-			// use specs_.rect_ not specs_.rect() and specs_.on_resize_ not specs_.on_resize() due to redirection to special pane
-			rect_ = position(specs_.rect_, specs_.on_resize_, change_in_size.width, change_in_size.height);
-			rect_.left -= offset.x;
-			rect_.right -= offset.x;
-			rect_.top -= offset.y;
-			rect_.bottom -= offset.y;
+			// use _specs._rect not _specs.rect() and _specs._on_resize not _specs.on_resize() due to redirection to special pane
+			_rect = position(_specs._rect, _specs._on_resize, change_in_size.width, change_in_size.height);
+			_rect.left -= offset.x;
+			_rect.right -= offset.x;
+			_rect.top -= offset.y;
+			_rect.bottom -= offset.y;
 
-			if (!render || !visible_)
-				return rect_;
+			if (!render || !_visible)
+				return _rect;
 
-			return rect_;
+			return _rect;
 		}
 
 		widgets::date_specs&
-			widgets::date_impl::specs() { return specs_; }
+			widgets::date_impl::specs() { return _specs; }
 
 		widgets::date_specs&
 			widgets::date_impl::operator()() { return specs(); }
@@ -172,19 +172,19 @@ namespace liblec {
 			widgets::label_specs& month,
 			widgets::label_specs& seperator_2,
 			widgets::label_specs& year) {
-			weekday_label_specs_ = weekday;
-			day_label_specs_ = day;
-			seperator_1_specs_ = seperator_1;
-			month_label_specs_ = month;
-			seperator_2_specs_ = seperator_2;
-			year_label_specs_ = year;
+			_weekday_label_specs = weekday;
+			_day_label_specs = day;
+			_seperator_1_specs = seperator_1;
+			_month_label_specs = month;
+			_seperator_2_specs = seperator_2;
+			_year_label_specs = year;
 		}
 
 		void widgets::date_impl::set_date_specs(widgets::rectangle_specs& day,
 			widgets::rectangle_specs& month, widgets::rectangle_specs& year) {
-			day_specs_ = day;
-			month_specs_ = month;
-			year_specs_ = year;
+			_day_specs = day;
+			_month_specs = month;
+			_year_specs = year;
 		}
 	}
 }

@@ -17,16 +17,16 @@ namespace liblec {
 		class tray_icon::impl {
 		public:
 			impl(form& fm) :
-				fm_(fm) {}
-			form& fm_;
+				_fm(fm) {}
+			form& _fm;
 
-			const unsigned int tray_icon_id_ = 1;
+			const unsigned int _tray_icon_id = 1;
 		};
 
-		tray_icon::tray_icon(form& fm) : d_(*new impl(fm)) {}
+		tray_icon::tray_icon(form& fm) : _d(*new impl(fm)) {}
 		tray_icon::~tray_icon() {
 			remove();
-			delete& d_;
+			delete& _d;
 		}
 
 		bool tray_icon::add(int png_resource, const std::string& title,
@@ -38,25 +38,25 @@ namespace liblec {
 			}
 
 			// do not allow more than one tray icon per form
-			if (d_.fm_.d_.tray_icon_present_)
+			if (_d._fm._d._tray_icon_present)
 				return true;
 
-			d_.fm_.d_.tray_icon_menu_items_ = items;
+			_d._fm._d._tray_icon_menu_items = items;
 
 			// parse the default item text
 			// the default color doesn't matter here we're just getting the plain text
 			std::vector<formatted_text_parser::text_range_properties> formatting;
-			widgets::parse_formatted_text(default_item, d_.fm_.d_.tray_item_default_,
+			widgets::parse_formatted_text(default_item, _d._fm._d._tray_item_default,
 				D2D1::ColorF(D2D1::ColorF::Black), formatting);
 
 			// create system tray icon
 			NOTIFYICONDATAA nid;
-			nid.hWnd = d_.fm_.d_.hWnd_;
-			nid.uID = d_.tray_icon_id_;
+			nid.hWnd = _d._fm._d._hWnd;
+			nid.uID = _d._tray_icon_id;
 			nid.uFlags = NIF_ICON | NIF_MESSAGE | NIF_TIP;
 			nid.uCallbackMessage = WM_APP;
 			nid.hIcon = (HICON)LoadImageA(
-				d_.fm_.d_.resource_module_handle_,
+				_d._fm._d._resource_module_handle,
 				MAKEINTRESOURCEA(png_resource),
 				IMAGE_ICON,
 				GetSystemMetrics(SM_CXSMICON), GetSystemMetrics(SM_CYSMICON),
@@ -65,7 +65,7 @@ namespace liblec {
 
 			// add the system tray icon
 			Shell_NotifyIconA(NIM_ADD, &nid);
-			d_.fm_.d_.tray_icon_present_ = true;
+			_d._fm._d._tray_icon_present = true;
 			return true;
 		}
 
@@ -76,19 +76,19 @@ namespace liblec {
 				return false;
 			}
 
-			if (!d_.fm_.d_.tray_icon_present_) {
+			if (!_d._fm._d._tray_icon_present) {
 				error = "No tray icon present";
 				return true;
 			}
 
 			// create system tray icon
 			NOTIFYICONDATAA nid;
-			nid.hWnd = d_.fm_.d_.hWnd_;
-			nid.uID = d_.tray_icon_id_;
+			nid.hWnd = _d._fm._d._hWnd;
+			nid.uID = _d._tray_icon_id;
 			nid.uFlags = NIF_ICON | NIF_MESSAGE | NIF_TIP;
 			nid.uCallbackMessage = WM_APP;
 			nid.hIcon = (HICON)LoadImageA(
-				d_.fm_.d_.resource_module_handle_,
+				_d._fm._d._resource_module_handle,
 				MAKEINTRESOURCEA(png_resource),
 				IMAGE_ICON,
 				GetSystemMetrics(SM_CXSMICON), GetSystemMetrics(SM_CYSMICON),
@@ -101,10 +101,10 @@ namespace liblec {
 		}
 
 		void tray_icon::remove() {
-			if (d_.fm_.d_.tray_icon_present_) {
+			if (_d._fm._d._tray_icon_present) {
 				NOTIFYICONDATA  nid;
-				nid.hWnd = d_.fm_.d_.hWnd_;
-				nid.uID = d_.tray_icon_id_;
+				nid.hWnd = _d._fm._d._hWnd;
+				nid.uID = _d._tray_icon_id;
 				Shell_NotifyIcon(NIM_DELETE, &nid);
 			}
 		}

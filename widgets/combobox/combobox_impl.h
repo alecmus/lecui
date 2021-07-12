@@ -19,7 +19,7 @@ namespace liblec {
 			class combobox_impl : public widget_impl {
 				/// private virtual function overrides
 				widgets::specs& generic_specs() override {
-					return specs_;
+					return _specs;
 				}
 
 			public:
@@ -59,56 +59,56 @@ namespace liblec {
 				combobox_impl& operator=(const combobox_impl&) = delete;
 
 				/// Private variables
-				widgets::combobox_specs specs_, specs_old_;
-				ID2D1SolidColorBrush* p_brush_;
-				ID2D1SolidColorBrush* p_brush_caret_;
-				ID2D1SolidColorBrush* p_brush_fill_;
-				ID2D1SolidColorBrush* p_brush_fill_editable_;
-				ID2D1SolidColorBrush* p_brush_hot_;
-				ID2D1SolidColorBrush* p_brush_disabled_;
-				ID2D1SolidColorBrush* p_brush_selected_;
-				ID2D1SolidColorBrush* p_brush_border_;
-				ID2D1SolidColorBrush* p_brush_dropdown_;
-				ID2D1SolidColorBrush* p_brush_dropdown_hot_;
-				ID2D1SolidColorBrush* p_brush_dropdown_arrow_;
-				ID2D1SolidColorBrush* p_brush_dropdown_arrow_hot_;
-				IDWriteTextFormat* p_text_format_;
+				widgets::combobox_specs _specs, _specs_old;
+				ID2D1SolidColorBrush* _p_brush;
+				ID2D1SolidColorBrush* _p_brush_caret;
+				ID2D1SolidColorBrush* _p_brush_fill;
+				ID2D1SolidColorBrush* _p_brush_fill_editable;
+				ID2D1SolidColorBrush* _p_brush_hot;
+				ID2D1SolidColorBrush* _p_brush_disabled;
+				ID2D1SolidColorBrush* _p_brush_selected;
+				ID2D1SolidColorBrush* _p_brush_border;
+				ID2D1SolidColorBrush* _p_brush_dropdown;
+				ID2D1SolidColorBrush* _p_brush_dropdown_hot;
+				ID2D1SolidColorBrush* _p_brush_dropdown_arrow;
+				ID2D1SolidColorBrush* _p_brush_dropdown_arrow_hot;
+				IDWriteTextFormat* _p_text_format;
 
-				IDWriteFactory* p_directwrite_factory_;
-				IDWriteTextLayout* p_text_layout_;
+				IDWriteFactory* _p_directwrite_factory;
+				IDWriteTextLayout* _p_text_layout;
 
-				D2D1_RECT_F rect_dropdown_, rect_text_, rect_combobox_;
+				D2D1_RECT_F _rect_dropdown, _rect_text, _rect_combobox;
 
-				HCURSOR h_cursor_edit_, h_cursor_dropdown_;
+				HCURSOR _h_cursor_edit, _h_cursor_dropdown;
 
-				const float margin_x_;
-				const float margin_y_;
+				const float _margin_x;
+				const float _margin_y;
 
-				const std::string caret_blink_timer_name_;
-				UINT32 caret_position_;
-				bool caret_visible_;
-				bool skip_blink_;
-				float text_off_set_;
-				bool is_selecting_;
-				bool is_selected_;
-				bool dropdown_activated_;
-				bool skip_nextdropdown_;
+				const std::string _caret_blink_timer_name;
+				UINT32 _caret_position;
+				bool _caret_visible;
+				bool _skip_blink;
+				float _text_off_set;
+				bool _is_selecting;
+				bool _is_selected;
+				bool _dropdown_activated;
+				bool _skip_nextdropdown;
 
 				struct selection_info {
 					UINT32 start = 0;
 					UINT32 end = 0;
-				} selection_info_;
+				} _selection_info;
 
 				/// Private methods.
 				void reset_selection() {
-					selection_info_ = { 0, 0 };
-					is_selected_ = false;
+					_selection_info = { 0, 0 };
+					_is_selected = false;
 				}
 
 				void set_selection(const UINT start, const UINT end) {
-					selection_info_.start = start;
-					selection_info_.end = end;
-					is_selected_ = true;
+					_selection_info.start = start;
+					_selection_info.end = end;
+					_is_selected = true;
 				}
 
 				static UINT32 count_characters(IDWriteTextLayout* p_text_layout,

@@ -19,7 +19,7 @@ namespace liblec {
 			class image_view_impl : public widget_impl {
 				/// private virtual function overrides
 				widgets::specs& generic_specs() override {
-					return specs_;
+					return _specs;
 				}
 
 			public:
@@ -48,16 +48,16 @@ namespace liblec {
 				image_view_impl& operator=(const image_view_impl&) = delete;
 
 				/// Private variables
-				widgets::image_view_specs specs_, specs_old_;
-				ID2D1SolidColorBrush* p_brush_fill_;
-				ID2D1SolidColorBrush* p_brush_border_;
-				ID2D1SolidColorBrush* p_brush_hot_;
-				ID2D1SolidColorBrush* p_brush_disabled_;
-				ID2D1SolidColorBrush* p_brush_selected_;
-				ID2D1Bitmap* p_bitmap_;
-				IWICImagingFactory* p_IWICFactory_;
+				widgets::image_view_specs _specs, _specs_old;
+				ID2D1SolidColorBrush* _p_brush_fill;
+				ID2D1SolidColorBrush* _p_brush_border;
+				ID2D1SolidColorBrush* _p_brush_hot;
+				ID2D1SolidColorBrush* _p_brush_disabled;
+				ID2D1SolidColorBrush* _p_brush_selected;
+				ID2D1Bitmap* _p_bitmap;
+				IWICImagingFactory* _p_IWICFactory;
 
-				size old_size_;
+				size _old_size;
 			};
 		}
 	}

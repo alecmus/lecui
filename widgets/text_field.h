@@ -22,18 +22,18 @@ namespace liblec {
 			/// <summary>Text field widget specifications.</summary>
 			/// <remarks>Recommended size with defaults is 200x25px</remarks>
 			class lecui_api text_field_specs : public specs {
-				float border_ = .5f;
-				color color_border_;
-				float corner_radius_x_ = 3.f;
-				float corner_radius_y_ = 3.f;
-				std::string prompt_ = "Enter text here";
-				color color_prompt_;
-				color color_caret_;
+				float _border = .5f;
+				color _color_border;
+				float _corner_radius_x = 3.f;
+				float _corner_radius_y = 3.f;
+				std::string _prompt = "Enter text here";
+				color _color_prompt;
+				color _color_caret;
 
 			public:
 				text_field_specs() {
-					cursor_ = cursor_type::caret;
-					rect_.size({ 200.f, 25.f });
+					_cursor = cursor_type::caret;
+					_rect.size({ 200.f, 25.f });
 				}
 
 				bool operator==(const text_field_specs&);
@@ -189,7 +189,7 @@ namespace liblec {
 
 			protected:
 				class impl;
-				impl& d_;
+				impl& _d;
 
 				class password_field_builder;
 				friend class password_field_builder;

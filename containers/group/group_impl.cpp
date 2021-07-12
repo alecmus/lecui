@@ -15,10 +15,10 @@ namespace liblec {
 		widgets::group_impl::group_impl(containers::page& page,
 			const std::string& alias) :
 			widget_impl(page, alias),
-			p_brush_fill_(nullptr),
-			p_brush_border_(nullptr),
-			p_brush_hot_(nullptr),
-			p_brush_disabled_(nullptr) {}
+			_p_brush_fill(nullptr),
+			_p_brush_border(nullptr),
+			_p_brush_hot(nullptr),
+			_p_brush_disabled(nullptr) {}
 
 		widgets::group_impl::~group_impl() { discard_resources(); }
 
@@ -29,69 +29,69 @@ namespace liblec {
 
 		HRESULT widgets::group_impl::create_resources(
 			ID2D1HwndRenderTarget* p_render_target) {
-			specs_old_ = specs_;
-			is_static_ = true;
+			_specs_old = _specs;
+			_is_static = true;
 
 			HRESULT hr = S_OK;
 
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_fill()),
-					&p_brush_fill_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_fill()),
+					&_p_brush_fill);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_border()),
-					&p_brush_border_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_border()),
+					&_p_brush_border);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_hot()),
-					&p_brush_hot_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_hot()),
+					&_p_brush_hot);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_disabled()),
-					&p_brush_disabled_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_disabled()),
+					&_p_brush_disabled);
 
-			resources_created_ = true;
+			_resources_created = true;
 			return hr;
 		}
 
 		void widgets::group_impl::discard_resources() {
-			resources_created_ = false;
-			safe_release(&p_brush_fill_);
-			safe_release(&p_brush_border_);
-			safe_release(&p_brush_hot_);
-			safe_release(&p_brush_disabled_);
+			_resources_created = false;
+			safe_release(&_p_brush_fill);
+			safe_release(&_p_brush_border);
+			safe_release(&_p_brush_hot);
+			safe_release(&_p_brush_disabled);
 		}
 
 		D2D1_RECT_F& widgets::group_impl::render(ID2D1HwndRenderTarget* p_render_target,
 			const D2D1_SIZE_F& change_in_size, const D2D1_POINT_2F& offset, const bool& render) {
-			if (specs_old_ != specs_) {
-				log("specs changed: " + alias_);
-				specs_old_ = specs_;
+			if (_specs_old != _specs) {
+				log("specs changed: " + _alias);
+				_specs_old = _specs;
 				discard_resources();
 			}
 
-			if (!resources_created_)
+			if (!_resources_created)
 				create_resources(p_render_target);
 
-			rect_ = convert_rect(specs_.rect());
+			_rect = convert_rect(_specs.rect());
 
-			if (!render || !visible_)
-				return rect_;
+			if (!render || !_visible)
+				return _rect;
 
-			D2D1_ROUNDED_RECT rounded_rect{ rect_,
-				specs_.corner_radius_x(), specs_.corner_radius_y() };
+			D2D1_ROUNDED_RECT rounded_rect{ _rect,
+				_specs.corner_radius_x(), _specs.corner_radius_y() };
 
-			p_render_target->FillRoundedRectangle(&rounded_rect, is_enabled_ ?
-				p_brush_fill_ : p_brush_disabled_);
-			p_render_target->DrawRoundedRectangle(&rounded_rect, is_enabled_ ?
-				p_brush_border_ : p_brush_disabled_, specs_.border());
+			p_render_target->FillRoundedRectangle(&rounded_rect, _is_enabled ?
+				_p_brush_fill : _p_brush_disabled);
+			p_render_target->DrawRoundedRectangle(&rounded_rect, _is_enabled ?
+				_p_brush_border : _p_brush_disabled, _specs.border());
 
-			if (!is_static_ && is_enabled_ && hit_)
-				p_render_target->DrawRoundedRectangle(&rounded_rect, p_brush_hot_, pressed_ ?
+			if (!_is_static && _is_enabled && _hit)
+				p_render_target->DrawRoundedRectangle(&rounded_rect, _p_brush_hot, _pressed ?
 					1.5f : 0.8f);
 
-			return rect_;
+			return _rect;
 		}
 
 		containers::group_specs&
-			widgets::group_impl::specs() { return specs_; }
+			widgets::group_impl::specs() { return _specs; }
 
 		containers::group_specs&
 			widgets::group_impl::operator()() { return specs(); }

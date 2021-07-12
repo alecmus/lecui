@@ -26,18 +26,18 @@ namespace liblec {
 			/// aesthetics and they don't "carry" the widgets that belong to them like other
 			/// containers.</remarks>
 			class lecui_api group_specs : public widgets::specs {
-				float border_ = .5f;
-				color color_border_;
-				float corner_radius_x_ = 5.f;
-				float corner_radius_y_ = 5.f;
-				float margin_ = 5.f;
-				std::vector<std::string> widgets_;
+				float _border = .5f;
+				color _color_border;
+				float _corner_radius_x = 5.f;
+				float _corner_radius_y = 5.f;
+				float _margin = 5.f;
+				std::vector<std::string> _widgets;
 
 			public:
 				group_specs() {
 					// rect is ignored. The group dynamically surrounds the widgets associated
 					// with it as they change location and size.
-					rect_ = { 0.f, 0.f, 0.f, 0.f };
+					_rect = { 0.f, 0.f, 0.f, 0.f };
 				}
 
 				bool operator==(const group_specs&);
@@ -177,7 +177,7 @@ namespace liblec {
 
 			private:
 				class impl;
-				impl& d_;
+				impl& _d;
 
 				// Default constructor and copying an object of this class are not allowed
 				group_builder() = delete;

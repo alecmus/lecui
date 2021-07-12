@@ -16,44 +16,44 @@ namespace liblec {
 		class containers::status_pane::impl {
 		public:
 			impl(form& fm, status_pane_specs::location location) :
-				fm_(fm),
-				location_(location) {
+				_fm(fm),
+				_location(location) {
 				switch (location) {
 				case containers::status_pane_specs::location::top: {
-					alias_ = "status::top";
+					_alias = "status::top";
 				} break;
 				case containers::status_pane_specs::location::left: {
-					alias_ = "status::left";
+					_alias = "status::left";
 				} break;
 				case containers::status_pane_specs::location::right: {
-					alias_ = "status::right";
+					_alias = "status::right";
 				} break;
 
 				case containers::status_pane_specs::location::bottom:
 				default: {
-					alias_ = "status::bottom";
+					_alias = "status::bottom";
 				} break;
 				}
 
-				if (fm_.d_.p_status_pane_specs_.find(alias_) == fm_.d_.p_status_pane_specs_.end()) {
+				if (_fm._d._p_status_pane_specs.find(_alias) == _fm._d._p_status_pane_specs.end()) {
 					status_pane_specs specs;
-					fm_.d_.p_status_pane_specs_.insert(std::make_pair(alias_, specs));
+					_fm._d._p_status_pane_specs.insert(std::make_pair(_alias, specs));
 				}
 			}
 
-			form& fm_;
-			std::string alias_;
-			status_pane_specs::location location_;
+			form& _fm;
+			std::string _alias;
+			status_pane_specs::location _location;
 		};
 
 		containers::status_pane::status_pane(form& fm, status_pane_specs::location location) :
-			d_(*new impl(fm, location)) {}
+			_d(*new impl(fm, location)) {}
 		containers::status_pane::~status_pane() {
-			delete& d_;
+			delete& _d;
 		}
 
 		containers::status_pane_specs& containers::status_pane::specs() {
-			return d_.fm_.d_.p_status_pane_specs_.at(d_.alias_);
+			return _d._fm._d._p_status_pane_specs.at(_d._alias);
 		}
 
 		containers::status_pane_specs& containers::status_pane::operator()() {
@@ -62,31 +62,31 @@ namespace liblec {
 
 		containers::status_pane_specs&
 			containers::status_pane::specs(form& fm, const std::string& alias) {
-			return fm.d_.p_status_pane_specs_.at(alias);
+			return fm._d._p_status_pane_specs.at(alias);
 		}
 
 		containers::page& containers::status_pane::get() {
-			if (d_.fm_.d_.p_status_panes_.count(d_.alias_)) {
+			if (_d._fm._d._p_status_panes.count(_d._alias)) {
 				log("library usage error page::add_status_bar");
 
 				/// to-do: find a mechanism that makes sense ...
-				return d_.fm_.d_.p_status_panes_.at(d_.alias_);
+				return _d._fm._d._p_status_panes.at(_d._alias);
 			}
 
-			d_.fm_.d_.p_status_panes_.try_emplace(d_.alias_, d_.fm_, d_.alias_);
-			auto& page_impl = d_.fm_.d_.p_status_panes_.at(d_.alias_).d_page_;
+			_d._fm._d._p_status_panes.try_emplace(_d._alias, _d._fm, _d._alias);
+			auto& page_impl = _d._fm._d._p_status_panes.at(_d._alias)._d_page;
 
 			lecui::rect rect_client;
-			rect_client.size(d_.fm_.d_.size_);
-			rect_client.width(rect_client.width() - (2.f * d_.fm_.d_.page_tolerance_));
-			rect_client.height(rect_client.height() - (2.f * d_.fm_.d_.page_tolerance_ + d_.fm_.d_.caption_bar_height_));
+			rect_client.size(_d._fm._d._size);
+			rect_client.width(rect_client.width() - (2.f * _d._fm._d._page_tolerance));
+			rect_client.height(rect_client.height() - (2.f * _d._fm._d._page_tolerance + _d._fm._d._caption_bar_height));
 
 			lecui::rect rect = rect_client;
 			lecui::widgets::specs::resize_params on_resize;
 
 			auto& specs = this->specs();
 
-			switch (d_.location_) {
+			switch (_d._location) {
 
 			case containers::status_pane_specs::location::top: {
 				rect.height(specs.thickness());
@@ -113,18 +113,18 @@ namespace liblec {
 			}
 
 			// specify direct2d factory (used internally for geometries and stuff)
-			page_impl.direct2d_factory(d_.fm_.d_.p_direct2d_factory_);
+			page_impl.direct2d_factory(_d._fm._d._p_direct2d_factory);
 
 			// specify directwrite factory (used internally for text rendering)
-			page_impl.directwrite_factory(d_.fm_.d_.p_directwrite_factory_);
+			page_impl.directwrite_factory(_d._fm._d._p_directwrite_factory);
 
 			// specify iwic imaging factory (used internally for image rendering)
-			page_impl.iwic_factory(d_.fm_.d_.p_iwic_factory_);
+			page_impl.iwic_factory(_d._fm._d._p_iwic_factory);
 
 			// set page size
 			page_impl.size(rect.size());
-			page_impl.width(page_impl.width() - (2.f * d_.fm_.d_.page_tolerance_));
-			page_impl.height(page_impl.height() - (2.f * d_.fm_.d_.page_tolerance_));
+			page_impl.width(page_impl.width() - (2.f * _d._fm._d._page_tolerance));
+			page_impl.height(page_impl.height() - (2.f * _d._fm._d._page_tolerance));
 
 			// add an invisible rect to bound the page. This is essential for scroll bars to work
 			// appropriately when contents don't reach the page borders
@@ -140,11 +140,11 @@ namespace liblec {
 				.rect().size(page_impl.size());
 
 			// return reference to page so caller can add widgets to it
-			return d_.fm_.d_.p_status_panes_.at(d_.alias_);
+			return _d._fm._d._p_status_panes.at(_d._alias);
 		}
 
 		containers::page& containers::status_pane::get(form& fm, const std::string& alias) {
-			return fm.d_.p_status_panes_.at(alias);
+			return fm._d._p_status_panes.at(alias);
 		}
 	}
 }

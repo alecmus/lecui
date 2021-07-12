@@ -15,10 +15,10 @@ namespace liblec {
 		widgets::line_impl::line_impl(containers::page& page,
 			const std::string& alias) :
 			widget_impl(page, alias),
-			p_brush_fill_(nullptr),
-			p_brush_hot_(nullptr),
-			p_brush_disabled_(nullptr),
-			p_brush_selected_(nullptr) {}
+			_p_brush_fill(nullptr),
+			_p_brush_hot(nullptr),
+			_p_brush_disabled(nullptr),
+			_p_brush_selected(nullptr) {}
 
 		widgets::line_impl::~line_impl() { discard_resources(); }
 
@@ -29,78 +29,78 @@ namespace liblec {
 
 		HRESULT widgets::line_impl::create_resources(
 			ID2D1HwndRenderTarget* p_render_target) {
-			specs_old_ = specs_;
-			is_static_ = (specs_.events().click == nullptr && specs_.events().action == nullptr);
-			h_cursor_ = get_cursor(specs_.cursor());
+			_specs_old = _specs;
+			_is_static = (_specs.events().click == nullptr && _specs.events().action == nullptr);
+			_h_cursor = get_cursor(_specs.cursor());
 
 			HRESULT hr = S_OK;
 
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_fill()),
-					&p_brush_fill_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_fill()),
+					&_p_brush_fill);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_hot()),
-					&p_brush_hot_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_hot()),
+					&_p_brush_hot);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_disabled()),
-					&p_brush_disabled_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_disabled()),
+					&_p_brush_disabled);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_selected()),
-					&p_brush_selected_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_selected()),
+					&_p_brush_selected);
 
-			resources_created_ = true;
+			_resources_created = true;
 			return hr;
 		}
 
 		void widgets::line_impl::discard_resources() {
-			resources_created_ = false;
-			safe_release(&p_brush_fill_);
-			safe_release(&p_brush_hot_);
-			safe_release(&p_brush_disabled_);
-			safe_release(&p_brush_selected_);
+			_resources_created = false;
+			safe_release(&_p_brush_fill);
+			safe_release(&_p_brush_hot);
+			safe_release(&_p_brush_disabled);
+			safe_release(&_p_brush_selected);
 		}
 
 		D2D1_RECT_F&
 			widgets::line_impl::render(ID2D1HwndRenderTarget* p_render_target,
 				const D2D1_SIZE_F& change_in_size, const D2D1_POINT_2F& offset, const bool& render) {
-			if (specs_old_ != specs_) {
-				log("specs changed: " + alias_);
-				specs_old_ = specs_;
+			if (_specs_old != _specs) {
+				log("specs changed: " + _alias);
+				_specs_old = _specs;
 				discard_resources();
 			}
 
-			if (!resources_created_)
+			if (!_resources_created)
 				create_resources(p_render_target);
 
-			rect_ = position(specs_.rect(), specs_.on_resize(), change_in_size.width, change_in_size.height);
-			rect_.left -= offset.x;
-			rect_.right -= offset.x;
-			rect_.top -= offset.y;
-			rect_.bottom -= offset.y;
+			_rect = position(_specs.rect(), _specs.on_resize(), change_in_size.width, change_in_size.height);
+			_rect.left -= offset.x;
+			_rect.right -= offset.x;
+			_rect.top -= offset.y;
+			_rect.bottom -= offset.y;
 
-			if (!render || !visible_)
-				return rect_;
+			if (!render || !_visible)
+				return _rect;
 
-			if (!specs_.points().empty()) {
-				D2D1_POINT_2F previous = { rect_.left + specs_.points()[0].x, rect_.top + specs_.points()[0].y };
-				for (auto& pt : specs_.points()) {
-					D2D1_POINT_2F current = { rect_.left + pt.x, rect_.top + pt.y };
+			if (!_specs.points().empty()) {
+				D2D1_POINT_2F previous = { _rect.left + _specs.points()[0].x, _rect.top + _specs.points()[0].y };
+				for (auto& pt : _specs.points()) {
+					D2D1_POINT_2F current = { _rect.left + pt.x, _rect.top + pt.y };
 
 					if (!(current.x == previous.x && current.y == previous.y))
-						p_render_target->DrawLine(previous, current, is_enabled_ ?
-							(hit_ ? p_brush_hot_ :
-								(selected_ ? p_brush_selected_ : p_brush_fill_)) : p_brush_disabled_,
-							specs_.thickness());
+						p_render_target->DrawLine(previous, current, _is_enabled ?
+							(_hit ? _p_brush_hot :
+								(_selected ? _p_brush_selected : _p_brush_fill)) : _p_brush_disabled,
+							_specs.thickness());
 
 					previous = current;
 				}
 			}
 
-			return rect_;
+			return _rect;
 		}
 
 		widgets::line_specs&
-			widgets::line_impl::specs() { return specs_; }
+			widgets::line_impl::specs() { return _specs; }
 
 		widgets::line_specs&
 			widgets::line_impl::operator()() { return specs(); }

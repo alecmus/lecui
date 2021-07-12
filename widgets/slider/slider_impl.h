@@ -19,7 +19,7 @@ namespace liblec {
 			class slider_impl : public widget_impl {
 				/// private virtual function overrides
 				widgets::specs& generic_specs() override {
-					return specs_;
+					return _specs;
 				}
 
 			public:
@@ -54,22 +54,22 @@ namespace liblec {
 				slider_impl& operator=(const slider_impl&) = delete;
 
 				/// Private variables
-				widgets::slider_specs specs_, specs_old_;
-				ID2D1SolidColorBrush* p_brush_;
-				ID2D1SolidColorBrush* p_brush_fill_;
-				ID2D1SolidColorBrush* p_brush_border_;
-				ID2D1SolidColorBrush* p_brush_knob_;
-				ID2D1SolidColorBrush* p_brush_knob_hot_;
-				ID2D1SolidColorBrush* p_brush_knob_border_;
-				ID2D1SolidColorBrush* p_brush_tick_;
-				ID2D1SolidColorBrush* p_brush_disabled_;
-				ID2D1SolidColorBrush* p_brush_selected_;
-				IDWriteTextFormat* p_text_format_;
+				widgets::slider_specs _specs, _specs_old;
+				ID2D1SolidColorBrush* _p_brush;
+				ID2D1SolidColorBrush* _p_brush_fill;
+				ID2D1SolidColorBrush* _p_brush_border;
+				ID2D1SolidColorBrush* _p_brush_knob;
+				ID2D1SolidColorBrush* _p_brush_knob_hot;
+				ID2D1SolidColorBrush* _p_brush_knob_border;
+				ID2D1SolidColorBrush* _p_brush_tick;
+				ID2D1SolidColorBrush* _p_brush_disabled;
+				ID2D1SolidColorBrush* _p_brush_selected;
+				IDWriteTextFormat* _p_text_format;
 
-				IDWriteFactory* p_directwrite_factory_;
-				IDWriteTextLayout* p_text_layout_;
-				D2D1_RECT_F rect_slider_;
-				float perc_along_;
+				IDWriteFactory* _p_directwrite_factory;
+				IDWriteTextLayout* _p_text_layout;
+				D2D1_RECT_F _rect_slider;
+				float _perc_along;
 			};
 		}
 	}

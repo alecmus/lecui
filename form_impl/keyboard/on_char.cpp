@@ -19,7 +19,7 @@ namespace liblec {
 			class helper {
 			public:
 				static void check_widgets(containers::page& page, const char& c, bool& change) {
-					for (auto& widget : page.d_page_.widgets()) {
+					for (auto& widget : page._d_page.widgets()) {
 						// failsafe: for good measure
 						widget.second.hide_tooltip();
 
@@ -34,7 +34,7 @@ namespace liblec {
 									break;
 
 								// insert character
-								auto& text_field = page.d_page_.get_text_field(widget.first);
+								auto& text_field = page._d_page.get_text_field(widget.first);
 								text_field.insert_character(c);
 							}
 							catch (const std::exception& e) { log(e.what()); }
@@ -52,7 +52,7 @@ namespace liblec {
 										break;
 
 									// insert character
-									auto& html_editor = page.d_page_.get_html_editor(widget.first);
+									auto& html_editor = page._d_page.get_html_editor(widget.first);
 									html_editor.insert_character(c);
 								}
 								catch (const std::exception& e) { log(e.what()); }
@@ -63,7 +63,7 @@ namespace liblec {
 									widgets::widget_type::combobox && widget.second.selected()) {
 									change = true;
 									try {
-										auto& combobox = page.d_page_.get_combobox(widget.first);
+										auto& combobox = page._d_page.get_combobox(widget.first);
 
 										// ignore backspace, tab and return
 										if (c == '\b' ||
@@ -88,35 +88,35 @@ namespace liblec {
 									if (widget.second.type() ==
 										widgets::widget_type::tab_pane) {
 										// get this tab pane
-										auto& tab_pane = page.d_page_.get_tab_pane(widget.first);
+										auto& tab_pane = page._d_page.get_tab_pane(widget.first);
 
-										auto page_iterator = tab_pane.p_tabs_.find(tab_pane.current_tab_);
+										auto page_iterator = tab_pane._p_tabs.find(tab_pane._current_tab);
 
-										if (page_iterator != tab_pane.p_tabs_.end())
+										if (page_iterator != tab_pane._p_tabs.end())
 											helper::check_widgets(page_iterator->second, c, change);	// recursion
 									}
 									else
 										if (widget.second.type() ==
 											widgets::widget_type::pane) {
 											// get this pane
-											auto& pane = page.d_page_.get_pane(widget.first);
+											auto& pane = page._d_page.get_pane(widget.first);
 
-											auto page_iterator = pane.p_panes_.find(pane.current_pane_);
+											auto page_iterator = pane._p_panes.find(pane._current_pane);
 
-											if (page_iterator != pane.p_panes_.end())
+											if (page_iterator != pane._p_panes.end())
 												helper::check_widgets(page_iterator->second, c, change);	// recursion
 										}
 					}
 				}
 			};
 
-			for (auto& it : p_status_panes_)
+			for (auto& it : _p_status_panes)
 				helper::check_widgets(it.second, c, change);
 
 			// get current page
-			auto page_iterator = p_pages_.find(current_page_);
+			auto page_iterator = _p_pages.find(_current_page);
 
-			if (page_iterator != p_pages_.end())
+			if (page_iterator != _p_pages.end())
 				helper::check_widgets(page_iterator->second, c, change);
 
 			if (change)

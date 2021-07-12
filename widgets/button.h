@@ -22,14 +22,14 @@ namespace liblec {
 			/// <summary>Button widget specifications.</summary>
 			/// <remarks>Recommended size with defaults is 80x25px.</remarks>
 			class lecui_api button_specs : public specs {
-				float border_ = .5f;
-				color color_border_;
-				float corner_radius_x_ = 5.f;
-				float corner_radius_y_ = 5.f;
+				float _border = .5f;
+				color _color_border;
+				float _corner_radius_x = 5.f;
+				float _corner_radius_y = 5.f;
 
 			public:
 				button_specs() {
-					rect_.size({ 80.f, 25.f });
+					_rect.size({ 80.f, 25.f });
 				}
 
 				bool operator==(const button_specs&);
@@ -149,7 +149,7 @@ namespace liblec {
 
 			private:
 				class impl;
-				impl& d_;
+				impl& _d;
 
 				// Default constructor and copying an object of this class are not allowed
 				button_builder() = delete;

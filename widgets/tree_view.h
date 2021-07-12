@@ -52,16 +52,16 @@ namespace liblec {
 				};
 
 			private:
-				float border_ = .5f;
-				color color_border_;
-				float corner_radius_x_ = 5.f;
-				float corner_radius_y_ = 5.f;
-				std::map<std::string, node> root_;
-				void* p_special_pane_specs_ = nullptr;
+				float _border = .5f;
+				color _color_border;
+				float _corner_radius_x = 5.f;
+				float _corner_radius_y = 5.f;
+				std::map<std::string, node> _root;
+				void* _p_special_pane_specs = nullptr;
 
 			public:
 				tree_view_specs() {
-					rect_.size({ 200.f, 200.f });
+					_rect.size({ 200.f, 200.f });
 				}
 
 				/// <summary>Helper for inserting a node.</summary>
@@ -82,7 +82,7 @@ namespace liblec {
 				};
 
 				tree_view_events& events() {
-					return tree_events_;
+					return _tree_events;
 				}
 
 				bool operator==(const tree_view_specs&);
@@ -177,7 +177,7 @@ namespace liblec {
 				tree_view_specs& root(const std::map<std::string, node>& root);
 
 			private:
-				tree_view_events tree_events_;
+				tree_view_events _tree_events;
 
 #if defined(LECUI_EXPORTS)
 				friend class form;
@@ -221,7 +221,7 @@ namespace liblec {
 
 			private:
 				class impl;
-				impl& d_;
+				impl& _d;
 
 				// Default constructor and copying an object of this class are not allowed
 				tree_view_builder() = delete;

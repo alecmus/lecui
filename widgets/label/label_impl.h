@@ -18,17 +18,17 @@ namespace liblec {
 	namespace lecui {
 		namespace widgets {
 			void parse_formatted_text(const std::string& formatted_text,
-				std::string& plain_text_,
+				std::string& _plain_text,
 				D2D1_COLOR_F default_color,
-				std::vector<formatted_text_parser::text_range_properties>& formatting_);
+				std::vector<formatted_text_parser::text_range_properties>& _formatting);
 
-			void apply_formatting(const std::vector<formatted_text_parser::text_range_properties>& formatting_,
+			void apply_formatting(const std::vector<formatted_text_parser::text_range_properties>& _formatting,
 				ID2D1HwndRenderTarget* p_render_target,
-				IDWriteTextLayout* p_text_layout_,
+				IDWriteTextLayout* _p_text_layout,
 				bool is_enabled,
 				ID2D1SolidColorBrush* p_brush_disabled);
 
-			D2D1_RECT_F measure_label(IDWriteFactory* p_directwrite_factory_,
+			D2D1_RECT_F measure_label(IDWriteFactory* _p_directwrite_factory,
 				const std::string& formatted_text,
 				const std::string& font,
 				const float font_size,
@@ -36,7 +36,7 @@ namespace liblec {
 				bool center_v,
 				const D2D1_RECT_F max_rect);
 
-			D2D1_RECT_F measure_text(IDWriteFactory* p_directwrite_factory_,
+			D2D1_RECT_F measure_text(IDWriteFactory* _p_directwrite_factory,
 				const std::string& formatted_text,
 				const std::string& font,
 				const float font_size,
@@ -49,7 +49,7 @@ namespace liblec {
 			class label_impl : public widget_impl {
 				/// private virtual function overrides
 				widgets::specs& generic_specs() override {
-					return specs_;
+					return _specs;
 				}
 
 			public:
@@ -78,19 +78,19 @@ namespace liblec {
 				label_impl& operator=(const label_impl&) = delete;
 
 				/// Private variables
-				widgets::label_specs specs_, specs_old_;
-				ID2D1SolidColorBrush* p_brush_;
-				ID2D1SolidColorBrush* p_brush_hot_;
-				ID2D1SolidColorBrush* p_brush_hot_pressed_;
-				ID2D1SolidColorBrush* p_brush_disabled_;
-				ID2D1SolidColorBrush* p_brush_selected_;
-				IDWriteTextFormat* p_text_format_;
+				widgets::label_specs _specs, _specs_old;
+				ID2D1SolidColorBrush* _p_brush;
+				ID2D1SolidColorBrush* _p_brush_hot;
+				ID2D1SolidColorBrush* _p_brush_hot_pressed;
+				ID2D1SolidColorBrush* _p_brush_disabled;
+				ID2D1SolidColorBrush* _p_brush_selected;
+				IDWriteTextFormat* _p_text_format;
 
-				IDWriteFactory* p_directwrite_factory_;
-				IDWriteTextLayout* p_text_layout_;
+				IDWriteFactory* _p_directwrite_factory;
+				IDWriteTextLayout* _p_text_layout;
 
-				std::string text_;
-				std::vector<formatted_text_parser::text_range_properties> formatting_;
+				std::string _text;
+				std::vector<formatted_text_parser::text_range_properties> _formatting;
 			};
 		}
 	}

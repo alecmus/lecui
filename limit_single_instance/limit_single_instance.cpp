@@ -58,32 +58,32 @@ void  limit_single_instance::impl::wait_for_other_instance() {
 }
 
 limit_single_instance::limit_single_instance(const std::string& mutex_name) :
-	d_(nullptr) {
+	_d(nullptr) {
 	if (!mutex_name.empty()) {
 		std::basic_string<TCHAR> mutex_name_w =
 			std::basic_string<TCHAR>(mutex_name.begin(), mutex_name.end());
 
-		d_ = new impl((TCHAR*)mutex_name_w.c_str());
+		_d = new impl((TCHAR*)mutex_name_w.c_str());
 	}
 }
 
 limit_single_instance::limit_single_instance() {}
 
 limit_single_instance::~limit_single_instance() {
-	if (d_) {
-		delete d_;
-		d_ = nullptr;
+	if (_d) {
+		delete _d;
+		_d = nullptr;
 	}
 }
 
 bool limit_single_instance::another_instance_running() {
-	if (d_)
-		return d_->another_instance_running();
+	if (_d)
+		return _d->another_instance_running();
 	else
 		return false;
 }
 
 void limit_single_instance::wait_for_other_instance() {
-	if (d_)
-		d_->wait_for_other_instance();
+	if (_d)
+		_d->wait_for_other_instance();
 }

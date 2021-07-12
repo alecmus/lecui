@@ -48,51 +48,51 @@ namespace liblec {
 			rect(0.f, 0.f, 0.f, 0.f) {}
 
 		rect::rect(const float left, const float right, const float top, const float bottom):
-			left_(left), right_(right), top_(top), bottom_(bottom) {}
+			_left(left), _right(right), _top(top), _bottom(bottom) {}
 
-		float& rect::left() { return left_; }
-		float rect::get_left() const { return left_; }
+		float& rect::left() { return _left; }
+		float rect::get_left() const { return _left; }
 
 		rect& rect::left(const float& left) {
-			left_ = left;
+			_left = left;
 			return *this;
 		}
 
-		float& rect::right() { return right_; }
-		float rect::get_right() const { return right_; }
+		float& rect::right() { return _right; }
+		float rect::get_right() const { return _right; }
 
 		rect& rect::right(const float& right) {
-			right_ = right;
+			_right = right;
 			return *this;
 		}
 
-		float& rect::top() { return top_; }
-		float rect::get_top() const { return top_; }
+		float& rect::top() { return _top; }
+		float rect::get_top() const { return _top; }
 
 		rect& rect::top(const float& top) {
-			top_ = top;
+			_top = top;
 			return *this;
 		}
 
-		float& rect::bottom() { return bottom_; }
-		float rect::get_bottom() const { return bottom_; }
+		float& rect::bottom() { return _bottom; }
+		float rect::get_bottom() const { return _bottom; }
 
 		rect& rect::bottom(const float& bottom) {
-			bottom_ = bottom;
+			_bottom = bottom;
 			return *this;
 		}
 
-		float rect::width() const { return right_ - left_; }
-		float rect::height() const { return bottom_ - top_; }
+		float rect::width() const { return _right - _left; }
+		float rect::height() const { return _bottom - _top; }
 		size rect::size() const { return { width(), height() }; }
 
 		rect& rect::width(float width) {
-			right_ = left_ + width;
+			_right = _left + width;
 			return *this;
 		}
 
 		rect& rect::height(float height) {
-			bottom_ = top_ + height;
+			_bottom = _top + height;
 			return *this;
 		}
 
@@ -103,13 +103,13 @@ namespace liblec {
 		}
 
 		rect& rect::size(float width, float height) {
-			right_ = left_ + width;
-			bottom_ = top_ + height;
+			_right = _left + width;
+			_bottom = _top + height;
 			return *this;
 		}
 
 		rect& rect::set(float x, float y, float cx, float cy) {
-			left_ = x; top_ = y; right_ = left_ + cx; bottom_ = top_ + cy;
+			_left = x; _top = y; _right = _left + cx; _bottom = _top + cy;
 			return *this;
 		}
 
@@ -128,72 +128,72 @@ namespace liblec {
 
 		rect& rect::snap_to(const rect& rect_reference, snap_type type, const float& clearance) {
 			auto& rect = *this;
-			const auto width_reference = rect_reference.right_ - rect_reference.left_;
-			const auto height_reference = rect_reference.bottom_ - rect_reference.top_;
+			const auto width_reference = rect_reference._right - rect_reference._left;
+			const auto height_reference = rect_reference._bottom - rect_reference._top;
 
 			const auto width = rect.width();
 			const auto height = rect.height();
 
 			switch (type) {
 			case snap_type::bottom:
-				rect.top_ = rect_reference.bottom_ + clearance;
-				rect.left_ = rect_reference.left_ + (width_reference - width) / 2.f;
+				rect._top = rect_reference._bottom + clearance;
+				rect._left = rect_reference._left + (width_reference - width) / 2.f;
 				break;
 
 			case snap_type::bottom_right:
-				rect.top_ = rect_reference.bottom_ + clearance;
-				rect.left_ = rect_reference.right_ - width;
+				rect._top = rect_reference._bottom + clearance;
+				rect._left = rect_reference._right - width;
 				break;
 
 			case snap_type::top_left:
-				rect.top_ = rect_reference.top_ - (height + clearance);
-				rect.left_ = rect_reference.left_;
+				rect._top = rect_reference._top - (height + clearance);
+				rect._left = rect_reference._left;
 				break;
 
 			case snap_type::top:
-				rect.top_ = rect_reference.top_ - (height + clearance);
-				rect.left_ = rect_reference.left_ + (width_reference - width) / 2.f;
+				rect._top = rect_reference._top - (height + clearance);
+				rect._left = rect_reference._left + (width_reference - width) / 2.f;
 				break;
 
 			case snap_type::top_right:
-				rect.top_ = rect_reference.top_ - (height + clearance);
-				rect.left_ = rect_reference.right_ - width;
+				rect._top = rect_reference._top - (height + clearance);
+				rect._left = rect_reference._right - width;
 				break;
 
 			case snap_type::right_top:
-				rect.left_ = rect_reference.right_ + clearance;
-				rect.top_ = rect_reference.top_;
+				rect._left = rect_reference._right + clearance;
+				rect._top = rect_reference._top;
 				break;
 
 			case snap_type::right:
-				rect.left_ = rect_reference.right_ + clearance;
-				rect.top_ = rect_reference.top_ + (height_reference - height) / 2.f;
+				rect._left = rect_reference._right + clearance;
+				rect._top = rect_reference._top + (height_reference - height) / 2.f;
 				break;
 
 			case snap_type::right_bottom:
-				rect.left_ = rect_reference.right_ + clearance;
-				rect.top_ = rect_reference.bottom_ - height;
+				rect._left = rect_reference._right + clearance;
+				rect._top = rect_reference._bottom - height;
 				break;
 
 			case snap_type::left_top:
-				rect.left_ = rect_reference.left_ - (width + clearance);
-				rect.top_ = rect_reference.top_;
+				rect._left = rect_reference._left - (width + clearance);
+				rect._top = rect_reference._top;
 				break;
 
 			case snap_type::left:
-				rect.left_ = rect_reference.left_ - (width + clearance);
-				rect.top_ = rect_reference.top_ + (height_reference - height) / 2.f;
+				rect._left = rect_reference._left - (width + clearance);
+				rect._top = rect_reference._top + (height_reference - height) / 2.f;
 				break;
 
 			case snap_type::left_bottom:
-				rect.left_ = rect_reference.left_ - (width + clearance);
-				rect.top_ = rect_reference.bottom_ - height;
+				rect._left = rect_reference._left - (width + clearance);
+				rect._top = rect_reference._bottom - height;
 				break;
 
 			case snap_type::bottom_left:
 			default:
-				rect.top_ = rect_reference.bottom_ + clearance;
-				rect.left_ = rect_reference.left_;
+				rect._top = rect_reference._bottom + clearance;
+				rect._left = rect_reference._left;
 				break;
 			}
 
@@ -204,10 +204,10 @@ namespace liblec {
 
 		bool rect::operator==(const rect& param) {
 			return
-				(left_ == param.left_) &&
-				(right_ == param.right_) &&
-				(top_ == param.top_) &&
-				(bottom_ == param.bottom_);
+				(_left == param._left) &&
+				(_right == param._right) &&
+				(_top == param._top) &&
+				(_bottom == param._bottom);
 		}
 
 		bool rect::operator!=(const rect& param) {
@@ -221,59 +221,59 @@ namespace liblec {
 			const unsigned short green,
 			const unsigned short blue,
 			const unsigned short alpha) :
-			red_(red), green_(green), blue_(blue), alpha_(alpha) {
-			red_ = smallest(red_, (unsigned short)255);
-			red_ = largest(red_, (unsigned short)0);
-			green_ = smallest(green_, (unsigned short)255);
-			green_ = largest(green_, (unsigned short)0);
-			blue_ = smallest(blue_, (unsigned short)255);
-			blue_ = largest(blue_, (unsigned short)0);
-			alpha_ = smallest(alpha_, (unsigned short)255);
-			alpha_ = largest(alpha_, (unsigned short)0);
+			_red(red), _green(green), _blue(blue), _alpha(alpha) {
+			_red = smallest(_red, (unsigned short)255);
+			_red = largest(_red, (unsigned short)0);
+			_green = smallest(_green, (unsigned short)255);
+			_green = largest(_green, (unsigned short)0);
+			_blue = smallest(_blue, (unsigned short)255);
+			_blue = largest(_blue, (unsigned short)0);
+			_alpha = smallest(_alpha, (unsigned short)255);
+			_alpha = largest(_alpha, (unsigned short)0);
 		}
 
-		unsigned short& color::red() { return red_; }
-		unsigned short color::get_red() const { return red_; }
+		unsigned short& color::red() { return _red; }
+		unsigned short color::get_red() const { return _red; }
 		color& color::red(const unsigned short& red) {
-			red_ = red;
-			red_ = smallest(red_, (unsigned short)255);
-			red_ = largest(red_, (unsigned short)0);
+			_red = red;
+			_red = smallest(_red, (unsigned short)255);
+			_red = largest(_red, (unsigned short)0);
 			return *this;
 		}
 
-		unsigned short& color::green() { return green_; }
-		unsigned short color::get_green() const { return green_; }
+		unsigned short& color::green() { return _green; }
+		unsigned short color::get_green() const { return _green; }
 		color& color::green(const unsigned short& green) {
-			green_ = green;
-			green_ = smallest(green_, (unsigned short)255);
-			green_ = largest(green_, (unsigned short)0);
+			_green = green;
+			_green = smallest(_green, (unsigned short)255);
+			_green = largest(_green, (unsigned short)0);
 			return *this;
 		}
 
-		unsigned short& color::blue() { return blue_; }
-		unsigned short color::get_blue() const { return blue_; }
+		unsigned short& color::blue() { return _blue; }
+		unsigned short color::get_blue() const { return _blue; }
 		color& color::blue(const unsigned short& blue) {
-			blue_ = blue;
-			blue_ = smallest(blue_, (unsigned short)255);
-			blue_ = largest(blue_, (unsigned short)0);
+			_blue = blue;
+			_blue = smallest(_blue, (unsigned short)255);
+			_blue = largest(_blue, (unsigned short)0);
 			return *this;
 		}
 
-		unsigned short& color::alpha() { return alpha_; }
-		unsigned short color::get_alpha() const { return alpha_; }
+		unsigned short& color::alpha() { return _alpha; }
+		unsigned short color::get_alpha() const { return _alpha; }
 		color& color::alpha(const unsigned short& alpha) {
-			alpha_ = alpha;
-			alpha_ = smallest(alpha_, (unsigned short)255);
-			alpha_ = largest(alpha_, (unsigned short)0);
+			_alpha = alpha;
+			_alpha = smallest(_alpha, (unsigned short)255);
+			_alpha = largest(_alpha, (unsigned short)0);
 			return *this;
 		}
 
 		bool color::operator==(const color& param) {
 			return
-				(red_ == param.red_) &&
-				(green_ == param.green_) &&
-				(blue_ == param.blue_) &&
-				(alpha_ == param.alpha_);
+				(_red == param._red) &&
+				(_green == param._green) &&
+				(_blue == param._blue) &&
+				(_alpha == param._alpha);
 		}
 
 		bool color::operator!=(const color& param) {

@@ -21,29 +21,29 @@
 namespace liblec {
 	namespace lecui {
         class context_menu::impl : public lecui::form {
-            const float margin_ = 5.f;
-            const lecui::size min_size_ = { 135.f, 20.f };
-            const float min_font_size_ = 6.f;
-            const float max_font_size_ = 72.f;
-            lecui::size max_size_ = { 4200.f, 10000.f };
-            const std::string al_page_home_ = "home_page";
-            lecui::page_manager page_man_{ *this };
-            const context_menu::specs& menu_specs_;
-            std::vector<lecui::rect> rects_;
-            bool images_ = false;
-            float image_size_ = 0.f;
-            float next_arrow_width_ = 0.f;
+            const float _margin = 5.f;
+            const lecui::size _min_size = { 135.f, 20.f };
+            const float _min_font_size = 6.f;
+            const float _max_font_size = 72.f;
+            lecui::size _max_size = { 4200.f, 10000.f };
+            const std::string _al_page_home = "home_page";
+            lecui::page_manager _page_man{ *this };
+            const context_menu::specs& _menu_specs;
+            std::vector<lecui::rect> _rects;
+            bool _images = false;
+            float _image_size = 0.f;
+            float _next_arrow_width = 0.f;
 
         public:
-            std::string acted_on_;
+            std::string _acted_on;
 
             impl(lecui::form& parent, const specs& menu_specs) :
                 form(menu_form_caption(), parent),
-                menu_specs_(menu_specs) {
+                _menu_specs(menu_specs) {
                 // determine whether any item has an image
-                for (const auto& item : menu_specs_.items)
+                for (const auto& item : _menu_specs.items)
                     if (!item.image_file.empty()) {
-                        images_ = true;
+                        _images = true;
                         break;
                     }
 
@@ -58,38 +58,38 @@ namespace liblec {
                 auto rect_wa = dim.working_area();
 
                 // add padding to working area
-                rect_wa.left() += margin_;
-                rect_wa.right() -= margin_;
-                rect_wa.top() += margin_;
-                rect_wa.bottom() -= margin_;
+                rect_wa.left() += _margin;
+                rect_wa.right() -= _margin;
+                rect_wa.top() += _margin;
+                rect_wa.bottom() -= _margin;
 
                 // set maximum size to working area
-                max_size_.width = smallest(max_size_.width, rect_wa.width());
-                max_size_.height = smallest(max_size_.height, rect_wa.height());
+                _max_size.width = smallest(_max_size.width, rect_wa.width());
+                _max_size.height = smallest(_max_size.height, rect_wa.height());
 
                 const auto cursor_rect = dim.cursor_rect();
 
                 // impose maximums
-                const lecui::rect max_rect = { margin_, max_size_.width, margin_, max_size_.height };
-                float bottom_ = 0.f;
-                float right_ = 0.f;
+                const lecui::rect max_rect = { _margin, _max_size.width, _margin, _max_size.height };
+                float _bottom = 0.f;
+                float _right = 0.f;
 
                 // compute rects
                 bool children = false;
-                for (auto& item : menu_specs_.items) {
+                for (auto& item : _menu_specs.items) {
                     auto rect = max_rect;
 
-                    if (!rects_.empty())
-                        rect.move(rect.left(), bottom_ + margin_);
+                    if (!_rects.empty())
+                        rect.move(rect.left(), _bottom + _margin);
 
                     // enforce limits on font size
                     auto font_size = item.font_size;
-                    font_size = largest(font_size, min_font_size_);
-                    font_size = smallest(font_size, max_font_size_);
+                    font_size = largest(font_size, _min_font_size);
+                    font_size = smallest(font_size, _max_font_size);
 
                     if (!item.label.empty()) {
                         rect = dim.measure_label(item.label, item.font, font_size, false, false, rect);
-                        rect.bottom() += (2 * margin_);   // padding
+                        rect.bottom() += (2 * _margin);   // padding
                     }
                     else {
                         // separator
@@ -97,11 +97,11 @@ namespace liblec {
                         rect.width(0.f);
                     }
 
-                    if (!item.label.empty() && images_)
-                        rect.right() += (rect.height() + (margin_ / 2.f)); // image
+                    if (!item.label.empty() && _images)
+                        rect.right() += (rect.height() + (_margin / 2.f)); // image
 
-                    bottom_ = rect.bottom();
-                    right_ = largest(right_, rect.right());
+                    _bottom = rect.bottom();
+                    _right = largest(_right, rect.right());
 
                     // separators cannot have children
                     if (!item.label.empty()) {
@@ -110,28 +110,28 @@ namespace liblec {
                             children = true;
                     }
 
-                    rects_.push_back(rect);
+                    _rects.push_back(rect);
                 }
 
                 // equate widths
-                for (auto& rect : rects_)
-                    rect.right() = right_;
+                for (auto& rect : _rects)
+                    rect.right() = _right;
 
-                auto width = right_ + margin_;
+                auto width = _right + _margin;
 
-                auto height = smallest(max_size_.height, bottom_ + margin_);
+                auto height = smallest(_max_size.height, _bottom + _margin);
 
                 if (children) {
-                    next_arrow_width_ = height / menu_specs_.items.size();
-                    width += next_arrow_width_;
+                    _next_arrow_width = height / _menu_specs.items.size();
+                    width += _next_arrow_width;
                 }
 
-                if ((menu_specs_.pin.get_right() - menu_specs_.pin.get_left()) > 0.f && menu_specs_.type == pin_type::bottom)
-                    width = largest(min_size_.width, menu_specs_.pin.get_right() - menu_specs_.pin.get_left());
+                if ((_menu_specs.pin.get_right() - _menu_specs.pin.get_left()) > 0.f && _menu_specs.type == pin_type::bottom)
+                    width = largest(_min_size.width, _menu_specs.pin.get_right() - _menu_specs.pin.get_left());
 
                 // impose minimums
-                width = largest(width, min_size_.width);
-                height = largest(height, min_size_.height);
+                width = largest(width, _min_size.width);
+                height = largest(height, _min_size.height);
 
                 auto set_size = [&]() {
                     dim.set_size({ width, height });
@@ -141,14 +141,14 @@ namespace liblec {
                 // default to top left corner of cursor rect
                 lecui::point top_left = { cursor_rect.get_left(), cursor_rect.get_top() };
 
-                if ((menu_specs_.pin.get_right() - menu_specs_.pin.get_left()) > 0.f) {
-                    if (menu_specs_.type == pin_type::bottom) {
+                if ((_menu_specs.pin.get_right() - _menu_specs.pin.get_left()) > 0.f) {
+                    if (_menu_specs.type == pin_type::bottom) {
                         // pin to the bottom if there is enough space, or if the area beneath is
                         // larger than that above, else pin above
 
                         // determine height using pin
-                        const auto space_above = menu_specs_.pin.get_top() - rect_wa.top();
-                        const auto space_below = rect_wa.bottom() - menu_specs_.pin.get_bottom();
+                        const auto space_above = _menu_specs.pin.get_top() - rect_wa.top();
+                        const auto space_below = rect_wa.bottom() - _menu_specs.pin.get_bottom();
 
                         // check if menu exceeds working area downwards when pinned
                         bool pin_below = true;
@@ -172,30 +172,30 @@ namespace liblec {
                         set_size();
 
                         if (pin_below)
-                            top_left = { menu_specs_.pin.get_left(), menu_specs_.pin.get_bottom() };
+                            top_left = { _menu_specs.pin.get_left(), _menu_specs.pin.get_bottom() };
                         else
-                            top_left = { menu_specs_.pin.get_left(), menu_specs_.pin.get_top() - height };
+                            top_left = { _menu_specs.pin.get_left(), _menu_specs.pin.get_top() - height };
                     }
                     else {
-                        const auto space_right = rect_wa.right() - menu_specs_.pin.get_right();
-                        const auto space_left = menu_specs_.pin.get_left() - rect_wa.left();
+                        const auto space_right = rect_wa.right() - _menu_specs.pin.get_right();
+                        const auto space_left = _menu_specs.pin.get_left() - rect_wa.left();
 
                         if (space_right > width) {
                             // pin to the right
-                            top_left.x = menu_specs_.pin.get_right();
+                            top_left.x = _menu_specs.pin.get_right();
                         }
                         else {
                             if (space_right > space_left) {
                                 width = smallest(space_right, width);
-                                top_left.x = menu_specs_.pin.get_right();
+                                top_left.x = _menu_specs.pin.get_right();
                             }
                             else {
                                 width = smallest(space_left, width);
-                                top_left.x = menu_specs_.pin.get_left() - width;
+                                top_left.x = _menu_specs.pin.get_left() - width;
                             }
                         }
 
-                        top_left.y = menu_specs_.pin.get_top();
+                        top_left.y = _menu_specs.pin.get_top();
 
                         set_size();
 
@@ -222,43 +222,43 @@ namespace liblec {
 
             bool on_layout(std::string& error) override {
                 // add home page
-                auto& home_page = page_man_.add(al_page_home_);
+                auto& home_page = _page_man.add(_al_page_home);
 
                 // add labels
                 int index = 0;
-                for (const auto& item : menu_specs_.items) {
-                    float left_most = rects_[index].left();
+                for (const auto& item : _menu_specs.items) {
+                    float left_most = _rects[index].left();
 
                     if (!item.label.empty()) {
                         // background
                         lecui::widgets::rectangle_builder rect(home_page, "");
-                        rect().rect(rects_[index]);
+                        rect().rect(_rects[index]);
                         rect().rect()
-                            .left(margin_ / 3.f)
-                            .right(home_page.size().width - margin_ / 3.f);
+                            .left(_margin / 3.f)
+                            .right(home_page.size().width - _margin / 3.f);
                         rect().color_fill().alpha(0);
                         rect().color_border().alpha(0);
                         rect().color_border_hot().alpha(0);
                         rect().color_hot().alpha(50);
                         rect().events().action = [&]() {
-                            acted_on_ = item.label;
+                            _acted_on = item.label;
                             close();
                         };
 
-                        if (images_) {
+                        if (_images) {
                             // image
                             lecui::widgets::image_view_builder image(home_page, "");
                             image()
-                                .rect(rects_[index])
+                                .rect(_rects[index])
                                 .rect().width(image().rect().height());    // make into a square
-                            image().file(item.image_file).quality(menu_specs_.quality);
-                            left_most = image().rect().right() + (margin_ / 2.f);
+                            image().file(item.image_file).quality(_menu_specs.quality);
+                            left_most = image().rect().right() + (_margin / 2.f);
 
                             // padding
-                            image().rect().left() += (margin_ / 1.5f);
-                            image().rect().top() += (margin_ / 1.5f);
-                            image().rect().right() -= (margin_ / 1.5f);
-                            image().rect().bottom() -= (margin_ / 1.5f);
+                            image().rect().left() += (_margin / 1.5f);
+                            image().rect().top() += (_margin / 1.5f);
+                            image().rect().right() -= (_margin / 1.5f);
+                            image().rect().bottom() -= (_margin / 1.5f);
                         }
 
                         // label
@@ -267,10 +267,10 @@ namespace liblec {
 
                         // enforce font size limits
                         label()
-                            .font_size(largest(label().font_size(), min_font_size_))
-                            .font_size(smallest(label().font_size(), max_font_size_))
+                            .font_size(largest(label().font_size(), _min_font_size))
+                            .font_size(smallest(label().font_size(), _max_font_size))
                             .center_v(true)
-                            .rect(rects_[index])
+                            .rect(_rects[index])
                             .rect().left(left_most);
 
                         if (!item.children.empty()) {
@@ -278,14 +278,14 @@ namespace liblec {
                             lecui::widgets::image_view_builder image(home_page, "");
                             image()
                                 .file("images\\menu_item_next.png")
-                                .rect(rects_[index])
-                                .rect().right(home_page.size().width).left(image().rect().right() - (next_arrow_width_));
+                                .rect(_rects[index])
+                                .rect().right(home_page.size().width).left(image().rect().right() - (_next_arrow_width));
 
                             // padding
-                            image().rect().left() += (margin_ / 1.5f);
-                            image().rect().top() += (margin_ / 1.5f);
-                            image().rect().right() -= (margin_ / 1.5f);
-                            image().rect().bottom() -= (margin_ / 1.5f);
+                            image().rect().left() += (_margin / 1.5f);
+                            image().rect().top() += (_margin / 1.5f);
+                            image().rect().right() -= (_margin / 1.5f);
+                            image().rect().bottom() -= (_margin / 1.5f);
 
                             rect().events().mouse_enter = [&]() {
                                 make_child();
@@ -300,8 +300,8 @@ namespace liblec {
                         lecui::widgets::line_builder line(home_page, "");
                         line().color_fill().alpha() /= 2;
                         line().thickness() /= 2.f;
-                        line().rect(rects_[index]);
-                        line().rect().left(margin_ / 3.f).right(home_page.size().width - margin_ / 3.f);
+                        line().rect(_rects[index]);
+                        line().rect().left(_margin / 3.f).right(home_page.size().width - _margin / 3.f);
                         line().points({ { 0.f, line().rect().height() / 2.f },
                             { line().rect().width(), line().rect().height() / 2.f } });
                     }
@@ -309,7 +309,7 @@ namespace liblec {
                     index++;
                 }
 
-                page_man_.show(al_page_home_);
+                _page_man.show(_al_page_home);
                 return true;
             }
 
@@ -331,7 +331,7 @@ namespace liblec {
             std::string error;
             if (!m.show(error))
                 log(error);
-            return m.acted_on_;
+            return m._acted_on;
 		}
 	}
 }

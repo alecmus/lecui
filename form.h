@@ -302,7 +302,7 @@ namespace liblec {
 
 		private:
 			class impl;
-			impl& d_;
+			impl& _d;
 
 			// Default constructor and copying an object of this class are not allowed
 			form() = delete;

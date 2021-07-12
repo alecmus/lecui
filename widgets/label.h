@@ -71,14 +71,14 @@ namespace liblec {
 			/// <summary>Label widget specifications.</summary>
 			/// <remarks>Recommended size with defaults is 200x20px.</remarks>
 			class lecui_api label_specs : public specs {
-				color color_hot_pressed_;
-				bool multiline_ = false;
-				bool center_h_ = false;
-				bool center_v_ = false;
+				color _color_hot_pressed;
+				bool _multiline = false;
+				bool _center_h = false;
+				bool _center_v = false;
 
 			public:
 				label_specs() {
-					rect_.size({ 200.f, 20.f });
+					_rect.size({ 200.f, 20.f });
 				};
 
 				bool operator==(const label_specs&);
@@ -198,7 +198,7 @@ namespace liblec {
 
 			private:
 				class impl;
-				impl& d_;
+				impl& _d;
 
 				// Default constructor and copying an object of this class are not allowed
 				label_builder() = delete;

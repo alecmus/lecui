@@ -19,229 +19,229 @@ namespace liblec {
 				specs::operator==(param) &&
 
 				// widget specific specs
-				(png_resource_ == param.png_resource_) &&
-				(file_ == param.file_) &&
-				(color_border_ == param.color_border_) &&
-				(color_text_description_ == param.color_text_description_);
+				(_png_resource == param._png_resource) &&
+				(_file == param._file) &&
+				(_color_border == param._color_border) &&
+				(_color_text_description == param._color_text_description);
 		}
 
 		bool widgets::icon_specs::operator!=(const icon_specs& param) {
 			return !operator==(param);
 		}
 
-		std::string& widgets::icon_specs::text() { return text_; }
+		std::string& widgets::icon_specs::text() { return _text; }
 
 		widgets::icon_specs& widgets::icon_specs::text(const std::string& text) {
-			text_ = text;
+			_text = text;
 			return *this;
 		}
 
-		std::string& widgets::icon_specs::tooltip() { return tooltip_; }
+		std::string& widgets::icon_specs::tooltip() { return _tooltip; }
 
 		widgets::icon_specs& widgets::icon_specs::tooltip(const std::string& tooltip) {
-			tooltip_ = tooltip;
+			_tooltip = tooltip;
 			return *this;
 		}
 
 		lecui::rect& widgets::icon_specs::rect() {
-			if (p_special_pane_specs_)	// redirect to special pane
-				return reinterpret_cast<lecui::containers::pane_specs*>(p_special_pane_specs_)->rect();
+			if (_p_special_pane_specs)	// redirect to special pane
+				return reinterpret_cast<lecui::containers::pane_specs*>(_p_special_pane_specs)->rect();
 			else
-				return rect_;
+				return _rect;
 		}
 
 		widgets::icon_specs& widgets::icon_specs::rect(const lecui::rect& rect) {
-			if (p_special_pane_specs_)	// redirect to special pane
-				reinterpret_cast<lecui::containers::pane_specs*>(p_special_pane_specs_)->rect(rect);
+			if (_p_special_pane_specs)	// redirect to special pane
+				reinterpret_cast<lecui::containers::pane_specs*>(_p_special_pane_specs)->rect(rect);
 			else
-				rect_ = rect;
+				_rect = rect;
 
 			return *this;
 		}
 
 		widgets::specs::resize_params& widgets::icon_specs::on_resize() {
-			if (p_special_pane_specs_)	// redirect to special pane
-				return reinterpret_cast<lecui::containers::pane_specs*>(p_special_pane_specs_)->on_resize();
+			if (_p_special_pane_specs)	// redirect to special pane
+				return reinterpret_cast<lecui::containers::pane_specs*>(_p_special_pane_specs)->on_resize();
 			else
-				return on_resize_;
+				return _on_resize;
 		}
 
 		widgets::icon_specs& widgets::icon_specs::on_resize(const resize_params& on_resize) {
-			if (p_special_pane_specs_)	// redirect to special pane
-				reinterpret_cast<lecui::containers::pane_specs*>(p_special_pane_specs_)->on_resize(on_resize);
+			if (_p_special_pane_specs)	// redirect to special pane
+				reinterpret_cast<lecui::containers::pane_specs*>(_p_special_pane_specs)->on_resize(on_resize);
 			else
-				on_resize_ = on_resize;
+				_on_resize = on_resize;
 
 			return *this;
 		}
 
-		widgets::specs::cursor_type& widgets::icon_specs::cursor() { return cursor_; }
+		widgets::specs::cursor_type& widgets::icon_specs::cursor() { return _cursor; }
 
 		widgets::icon_specs& widgets::icon_specs::cursor(const cursor_type cursor) {
-			cursor_ = cursor;
+			_cursor = cursor;
 			return *this;
 		}
 
-		std::string& widgets::icon_specs::font() { return font_; }
+		std::string& widgets::icon_specs::font() { return _font; }
 
 		widgets::icon_specs& widgets::icon_specs::font(const std::string& font) {
-			font_ = font;
+			_font = font;
 			return *this;
 		}
 
-		float& widgets::icon_specs::font_size() { return font_size_; }
+		float& widgets::icon_specs::font_size() { return _font_size; }
 
 		widgets::icon_specs& widgets::icon_specs::font_size(const float& font_size) {
-			font_size_ = font_size;
+			_font_size = font_size;
 			return *this;
 		}
 
-		color& widgets::icon_specs::color_text() { return color_text_; }
+		color& widgets::icon_specs::color_text() { return _color_text; }
 
 		widgets::icon_specs& widgets::icon_specs::color_text(const color& color_text) {
-			color_text_ = color_text;
+			_color_text = color_text;
 			return *this;
 		}
 
-		color& widgets::icon_specs::color_fill() { return color_fill_; }
+		color& widgets::icon_specs::color_fill() { return _color_fill; }
 
 		widgets::icon_specs& widgets::icon_specs::color_fill(const color& color_fill) {
-			color_fill_ = color_fill;
+			_color_fill = color_fill;
 			return *this;
 		}
 
-		color& widgets::icon_specs::color_hot() { return color_hot_; }
+		color& widgets::icon_specs::color_hot() { return _color_hot; }
 
 		widgets::icon_specs& widgets::icon_specs::color_hot(const color& color_hot) {
-			color_hot_ = color_hot;
+			_color_hot = color_hot;
 			return *this;
 		}
 
-		color& widgets::icon_specs::color_selected() { return color_selected_; }
+		color& widgets::icon_specs::color_selected() { return _color_selected; }
 
 		widgets::icon_specs& widgets::icon_specs::color_selected(const color& color_selected) {
-			color_selected_ = color_selected;
+			_color_selected = color_selected;
 			return *this;
 		}
 
-		color& widgets::icon_specs::color_disabled() { return color_disabled_; }
+		color& widgets::icon_specs::color_disabled() { return _color_disabled; }
 
 		widgets::icon_specs& widgets::icon_specs::color_disabled(const color& color_disabled) {
-			color_disabled_ = color_disabled;
+			_color_disabled = color_disabled;
 			return *this;
 		}
 
-		float& widgets::icon_specs::border() { return border_; }
+		float& widgets::icon_specs::border() { return _border; }
 
 		widgets::icon_specs& widgets::icon_specs::border(const float& border) {
-			border_ = border;
+			_border = border;
 			return *this;
 		}
 
-		lecui::color& widgets::icon_specs::color_border() { return color_border_; }
+		lecui::color& widgets::icon_specs::color_border() { return _color_border; }
 
 		widgets::icon_specs& widgets::icon_specs::color_border(const color& color_border) {
-			color_border_ = color_border;
+			_color_border = color_border;
 			return *this;
 		}
 
-		float& widgets::icon_specs::corner_radius_x() { return corner_radius_x_; }
+		float& widgets::icon_specs::corner_radius_x() { return _corner_radius_x; }
 
 		widgets::icon_specs& widgets::icon_specs::corner_radius_x(const float& corner_radius_x) {
-			corner_radius_x_ = corner_radius_x;
+			_corner_radius_x = corner_radius_x;
 			return *this;
 		}
 
-		float& widgets::icon_specs::corner_radius_y() { return corner_radius_y_; }
+		float& widgets::icon_specs::corner_radius_y() { return _corner_radius_y; }
 
 		widgets::icon_specs& widgets::icon_specs::corner_radius_y(const float& corner_radius_y) {
-			corner_radius_y_ = corner_radius_y;
+			_corner_radius_y = corner_radius_y;
 			return *this;
 		}
 
-		float& widgets::icon_specs::max_image_size() { return max_image_size_; }
+		float& widgets::icon_specs::max_image_size() { return _max_image_size; }
 
 		widgets::icon_specs& widgets::icon_specs::max_image_size(const float& max_image_size) {
-			max_image_size_ = max_image_size;
+			_max_image_size = max_image_size;
 			return *this;
 		}
 
-		lecui::color& widgets::icon_specs::color_text_description() { return color_text_description_; }
+		lecui::color& widgets::icon_specs::color_text_description() { return _color_text_description; }
 
 		widgets::icon_specs& widgets::icon_specs::color_text_description(const color& color_text_description) {
-			color_text_description_ = color_text_description;
+			_color_text_description = color_text_description;
 			return *this;
 		}
 
-		float& widgets::icon_specs::font_size_description() { return font_size_description_; }
+		float& widgets::icon_specs::font_size_description() { return _font_size_description; }
 
 		widgets::icon_specs& widgets::icon_specs::font_size_description(const float& font_size_description) {
-			font_size_description_ = font_size_description;
+			_font_size_description = font_size_description;
 			return *this;
 		}
 
-		int& widgets::icon_specs::png_resource() { return png_resource_; }
+		int& widgets::icon_specs::png_resource() { return _png_resource; }
 
 		widgets::icon_specs& widgets::icon_specs::png_resource(const int& png_resource) {
-			png_resource_ = png_resource;
+			_png_resource = png_resource;
 			return *this;
 		}
 
-		std::string& widgets::icon_specs::file() { return file_; }
+		std::string& widgets::icon_specs::file() { return _file; }
 
 		widgets::icon_specs& widgets::icon_specs::file(const std::string& file) {
-			file_ = file;
+			_file = file;
 			return *this;
 		}
 
-		liblec::lecui::image_quality& widgets::icon_specs::quality() { return quality_; }
+		liblec::lecui::image_quality& widgets::icon_specs::quality() { return _quality; }
 
 		widgets::icon_specs& widgets::icon_specs::quality(const image_quality& quality) {
-			quality_ = quality;
+			_quality = quality;
 			return *this;
 		}
 
-		std::string& widgets::icon_specs::description() { return description_; }
+		std::string& widgets::icon_specs::description() { return _description; }
 
 		widgets::icon_specs& widgets::icon_specs::description(const std::string& description) {
-			description_ = description;
+			_description = description;
 			return *this;
 		}
 
-		widgets::icon_specs::icon_text_position& widgets::icon_specs::text_position() { return text_position_; }
+		widgets::icon_specs::icon_text_position& widgets::icon_specs::text_position() { return _text_position; }
 
 		widgets::icon_specs& widgets::icon_specs::text_position(const icon_text_position& text_position) {
-			text_position_ = text_position;
+			_text_position = text_position;
 			return *this;
 		}
 
 		class widgets::icon_builder::impl {
 		public:
 			impl(containers::page& page, const std::string& alias) :
-				page_(page),
-				specs_(page_.d_page_.add_icon(alias)) {
-				specs_
-					.color_fill(defaults::color(page_.d_page_.fm_.d_.theme_, item::icon))
-					.color_border(defaults::color(page_.d_page_.fm_.d_.theme_, item::icon_border))
-					.color_hot(defaults::color(page_.d_page_.fm_.d_.theme_, item::icon_hot))
-					.color_text(defaults::color(page_.d_page_.fm_.d_.theme_, item::icon_text))
-					.color_text_description(defaults::color(page_.d_page_.fm_.d_.theme_, item::icon_description_text));
+				_page(page),
+				_specs(_page._d_page.add_icon(alias)) {
+				_specs
+					.color_fill(defaults::color(_page._d_page._fm._d._theme, item::icon))
+					.color_border(defaults::color(_page._d_page._fm._d._theme, item::icon_border))
+					.color_hot(defaults::color(_page._d_page._fm._d._theme, item::icon_hot))
+					.color_text(defaults::color(_page._d_page._fm._d._theme, item::icon_text))
+					.color_text_description(defaults::color(_page._d_page._fm._d._theme, item::icon_description_text));
 			}
-			containers::page& page_;
-			icon_specs& specs_;
+			containers::page& _page;
+			icon_specs& _specs;
 		};
 
 		widgets::icon_builder::icon_builder(containers::page& page) :
 			icon_builder(page, "") {}
 
 		widgets::icon_builder::icon_builder(containers::page& page, const std::string& alias) :
-			d_(*(new impl(page, alias))) {}
+			_d(*(new impl(page, alias))) {}
 
-		widgets::icon_builder::~icon_builder() { delete& d_; }
+		widgets::icon_builder::~icon_builder() { delete& _d; }
 
 		widgets::icon_specs&
 			widgets::icon_builder::specs() {
-			return d_.specs_;
+			return _d._specs;
 		}
 
 		widgets::icon_specs&
@@ -259,16 +259,16 @@ namespace liblec {
 				const auto path_remaining = path.substr(idx + 1);
 				try {
 					// check form pages
-					auto& page = fm.d_.p_pages_.at(page_alias);
-					auto results = fm.d_.find_widget(page, path_remaining);
-					return results.page.d_page_.get_icon(results.widget.alias()).specs();
+					auto& page = fm._d._p_pages.at(page_alias);
+					auto results = fm._d.find_widget(page, path_remaining);
+					return results.page._d_page.get_icon(results.widget.alias()).specs();
 				}
 				catch (const std::exception&) {}
 				try {
 					// check status panes
-					auto& page = fm.d_.p_status_panes_.at(page_alias);
-					auto results = fm.d_.find_widget(page, path_remaining);
-					return results.page.d_page_.get_icon(results.widget.alias()).specs();
+					auto& page = fm._d._p_status_panes.at(page_alias);
+					auto results = fm._d.find_widget(page, path_remaining);
+					return results.page._d_page.get_icon(results.widget.alias()).specs();
 				}
 				catch (const std::exception&) {}
 			}

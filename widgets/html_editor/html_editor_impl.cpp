@@ -56,39 +56,39 @@ namespace liblec {
 			const std::string& alias,
 			IDWriteFactory* p_directwrite_factory) :
 			widget_impl(page, alias),
-			controls_initialized_(false),
-			p_brush_(nullptr),
-			p_brush_caret_(nullptr),
-			p_brush_border_(nullptr),
-			p_brush_fill_(nullptr),
-			p_brush_disabled_(nullptr),
-			p_brush_selected_(nullptr),
-			p_text_format_(nullptr),
-			scroll_amount_(0.f),
-			p_directwrite_factory_(p_directwrite_factory),
-			p_text_layout_(nullptr),
-			margin_x_(7.5f),
-			margin_y_(2.5f),
-			caret_blink_timer_name_("caret_blink_timer::html_editor"),
-			autoscroll_timer_name_("autoscroll_timer::html_editor"),
-			caret_position_(0),
-			caret_visible_(true),
-			skip_blink_(false),
-			is_selecting_(false),
-			is_selected_(false),
-			key_up_scheduled_(false),
-			key_down_scheduled_(false),
-			selection_info_({ 0, 0 }),
-			last_color_({ 255, 0, 0, 255 }) {}
+			_controls_initialized(false),
+			_p_brush(nullptr),
+			_p_brush_caret(nullptr),
+			_p_brush_border(nullptr),
+			_p_brush_fill(nullptr),
+			_p_brush_disabled(nullptr),
+			_p_brush_selected(nullptr),
+			_p_text_format(nullptr),
+			_scroll_amount(0.f),
+			_p_directwrite_factory(p_directwrite_factory),
+			_p_text_layout(nullptr),
+			_margin_x(7.5f),
+			_margin_y(2.5f),
+			_caret_blink_timer_name("caret_blink_timer::html_editor"),
+			_autoscroll_timer_name("autoscroll_timer::html_editor"),
+			_caret_position(0),
+			_caret_visible(true),
+			_skip_blink(false),
+			_is_selecting(false),
+			_is_selected(false),
+			_key_up_scheduled(false),
+			_key_down_scheduled(false),
+			_selection_info({ 0, 0 }),
+			_last_color({ 255, 0, 0, 255 }) {}
 
 		widgets::html_editor_impl::~html_editor_impl() { discard_resources(); }
 
 		bool widgets::html_editor_impl::controls_initialized() {
-			return controls_initialized_;
+			return _controls_initialized;
 		}
 
 		void widgets::html_editor_impl::initialize_controls(bool init) {
-			controls_initialized_ = init;
+			_controls_initialized = init;
 		}
 
 		widgets::widget_type
@@ -98,140 +98,140 @@ namespace liblec {
 
 		HRESULT widgets::html_editor_impl::create_resources(
 			ID2D1HwndRenderTarget* p_render_target) {
-			specs_old_ = specs_;
-			is_static_ = false;
-			h_cursor_ = get_cursor(specs_.cursor());
+			_specs_old = _specs;
+			_is_static = false;
+			_h_cursor = get_cursor(_specs.cursor());
 
 			HRESULT hr = S_OK;
 
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_fill()),
-					&p_brush_fill_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_fill()),
+					&_p_brush_fill);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_border()),
-					&p_brush_border_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_border()),
+					&_p_brush_border);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_disabled()),
-					&p_brush_disabled_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_disabled()),
+					&_p_brush_disabled);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_selected()),
-					&p_brush_selected_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_selected()),
+					&_p_brush_selected);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_text()),
-					&p_brush_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_text()),
+					&_p_brush);
 			if (SUCCEEDED(hr))
-				hr = p_render_target->CreateSolidColorBrush(convert_color(specs_.color_caret()),
-					&p_brush_caret_);
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_caret()),
+					&_p_brush_caret);
 			if (SUCCEEDED(hr)) {
 				// Create a DirectWrite text format object.
-				hr = p_directwrite_factory_->CreateTextFormat(
-					convert_string(specs_.font()).c_str(),
+				hr = _p_directwrite_factory->CreateTextFormat(
+					convert_string(_specs.font()).c_str(),
 					NULL,
 					DWRITE_FONT_WEIGHT_NORMAL,
 					DWRITE_FONT_STYLE_NORMAL,
 					DWRITE_FONT_STRETCH_NORMAL,
-					convert_fontsize_to_dip(specs_.font_size()),
+					convert_fontsize_to_dip(_specs.font_size()),
 					L"", //locale
-					&p_text_format_
+					&_p_text_format
 					);
 			}
 			if (SUCCEEDED(hr)) {
-				p_text_format_->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_LEADING);
-				p_text_format_->SetParagraphAlignment(DWRITE_PARAGRAPH_ALIGNMENT_NEAR);
+				_p_text_format->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_LEADING);
+				_p_text_format->SetParagraphAlignment(DWRITE_PARAGRAPH_ALIGNMENT_NEAR);
 			}
 
-			resources_created_ = true;
+			_resources_created = true;
 			return hr;
 		}
 
 		void widgets::html_editor_impl::discard_resources() {
-			resources_created_ = false;
-			safe_release(&p_brush_);
-			safe_release(&p_brush_caret_);
-			safe_release(&p_brush_border_);
-			safe_release(&p_brush_fill_);
-			safe_release(&p_brush_disabled_);
-			safe_release(&p_brush_selected_);
-			safe_release(&p_text_format_);
+			_resources_created = false;
+			safe_release(&_p_brush);
+			safe_release(&_p_brush_caret);
+			safe_release(&_p_brush_border);
+			safe_release(&_p_brush_fill);
+			safe_release(&_p_brush_disabled);
+			safe_release(&_p_brush_selected);
+			safe_release(&_p_text_format);
 		}
 
 		D2D1_RECT_F&
 			widgets::html_editor_impl::render(ID2D1HwndRenderTarget* p_render_target,
 				const D2D1_SIZE_F& change_in_size, const D2D1_POINT_2F& offset, const bool& render) {
-			if (specs_old_ != specs_) {
-				log("specs changed: " + alias_);
-				specs_old_ = specs_;
+			if (_specs_old != _specs) {
+				log("specs changed: " + _alias);
+				_specs_old = _specs;
 
 				try {
-					if (html_pane_specs_.has_value()) {
+					if (_html_pane_specs.has_value()) {
 						// update the special pane specs
-						html_pane_specs_.value().get().color_fill() = specs_.color_fill();
-						html_pane_specs_.value().get().color_border() = specs_.color_border();
+						_html_pane_specs.value().get().color_fill() = _specs.color_fill();
+						_html_pane_specs.value().get().color_border() = _specs.color_border();
 					}
 
-					if (html_control_pane_specs_.has_value()) {
+					if (_html_control_pane_specs.has_value()) {
 						// update the special pane specs
-						html_control_pane_specs_.value().get().color_fill() = specs_.color_control_fill();
-						html_control_pane_specs_.value().get().color_border() = specs_.color_control_border();
+						_html_control_pane_specs.value().get().color_fill() = _specs.color_control_fill();
+						_html_control_pane_specs.value().get().color_border() = _specs.color_control_border();
 					}
 
 					// schedule a refresh
-					page_.d_page_.get_form().d_.schedule_refresh_ = true;
+					_page._d_page.get_form()._d._schedule_refresh = true;
 				}
 				catch (const std::exception& e) { log(e.what()); }
 
 				discard_resources();
 			}
 
-			if (!resources_created_)
+			if (!_resources_created)
 				create_resources(p_render_target);
 
-			// use specs_.rect_ not specs_.rect() and specs_.on_resize_ not specs_.on_resize() due to redirection to special pane
-			rect_ = position(specs_.rect_, specs_.on_resize_, change_in_size.width, change_in_size.height);
-			rect_.left -= offset.x;
-			rect_.right -= offset.x;
-			rect_.top -= offset.y;
-			rect_.bottom -= offset.y;
+			// use _specs._rect not _specs.rect() and _specs._on_resize not _specs.on_resize() due to redirection to special pane
+			_rect = position(_specs._rect, _specs._on_resize, change_in_size.width, change_in_size.height);
+			_rect.left -= offset.x;
+			_rect.right -= offset.x;
+			_rect.top -= offset.y;
+			_rect.bottom -= offset.y;
 
-			if (!render || !visible_)
-				return rect_;
+			if (!render || !_visible)
+				return _rect;
 
 			// make sure caret is well positioned in case text has since been changed
-			caret_position_ = smallest(caret_position_, static_cast<UINT32>(specs_.text().length()));
+			_caret_position = smallest(_caret_position, static_cast<UINT32>(_specs.text().length()));
 
-			D2D1_ROUNDED_RECT rounded_rect{ rect_,
-				specs_.corner_radius_x(), specs_.corner_radius_y() };
+			D2D1_ROUNDED_RECT rounded_rect{ _rect,
+				_specs.corner_radius_x(), _specs.corner_radius_y() };
 
 			// create a text layout
-			std::string text_ = specs_.text();
+			std::string _text = _specs.text();
 
-			auto rect_text_ = rect_;
+			auto _rect_text = _rect;
 
 			// measure the text
-			D2D1_RECT_F rect_optimal = rect_text_;
+			D2D1_RECT_F rect_optimal = _rect_text;
 
 			// get formatting
 
 			// to-do: performance issues ... only redo if there's been a change
 			if (true) {
-				parse_formatted_text(specs_.text(), text_, convert_color(specs_.color_text()), formatting_);
+				parse_formatted_text(_specs.text(), _text, convert_color(_specs.color_text()), _formatting);
 			}
 
-			HRESULT hr = p_directwrite_factory_->CreateTextLayout(convert_string(text_).c_str(),
-				(UINT32)text_.length(), p_text_format_, rect_text_.right - rect_text_.left,
-				rect_text_.bottom - rect_text_.top, &p_text_layout_);
+			HRESULT hr = _p_directwrite_factory->CreateTextLayout(convert_string(_text).c_str(),
+				(UINT32)_text.length(), _p_text_format, _rect_text.right - _rect_text.left,
+				_rect_text.bottom - _rect_text.top, &_p_text_layout);
 
 			DWRITE_TEXT_METRICS textMetrics;
 
 			if (SUCCEEDED(hr)) {
 				// apply formatting
-				apply_formatting(formatting_, p_render_target, p_text_layout_, is_enabled_,
-					p_brush_disabled_);
+				apply_formatting(_formatting, p_render_target, _p_text_layout, _is_enabled,
+					_p_brush_disabled);
 
-				p_text_layout_->GetMetrics(&textMetrics);
+				_p_text_layout->GetMetrics(&textMetrics);
 
 				DWRITE_TEXT_METRICS textMetrics;
-				p_text_layout_->GetMetrics(&textMetrics);
+				_p_text_layout->GetMetrics(&textMetrics);
 				rect_optimal.left += textMetrics.left;
 				rect_optimal.top += textMetrics.top;
 
@@ -242,56 +242,56 @@ namespace liblec {
 				rect_optimal.bottom = rect_optimal.top + textMetrics.height;
 
 				// draw the text layout
-				p_render_target->DrawTextLayout(D2D1_POINT_2F{ rect_text_.left, rect_text_.top },
-					p_text_layout_, p_brush_, D2D1_DRAW_TEXT_OPTIONS_CLIP);
+				p_render_target->DrawTextLayout(D2D1_POINT_2F{ _rect_text.left, _rect_text.top },
+					_p_text_layout, _p_brush, D2D1_DRAW_TEXT_OPTIONS_CLIP);
 			}
 
-			const auto optimized_bottom_ = rect_optimal.bottom + margin_y_;
+			const auto _optimized_bottom = rect_optimal.bottom + _margin_y;
 
-			if (!is_static_ && is_enabled_ && selected_) {
-				if (key_up_scheduled_ || key_down_scheduled_) {
+			if (!_is_static && _is_enabled && _selected) {
+				if (_key_up_scheduled || _key_down_scheduled) {
 					// get selection rects of entire text area
 					const UINT32 start = 0;
-					const UINT32 end = static_cast<UINT32>(text_.length());
+					const UINT32 end = static_cast<UINT32>(_text.length());
 
-					auto full_text_selection_rects = get_selection_rects(p_text_layout_,
-						rect_text_, start, end);
+					auto full_text_selection_rects = get_selection_rects(_p_text_layout,
+						_rect_text, start, end);
 
 					// get actual selection rects
 					std::vector<D2D1_RECT_F> selection_rects;
 
 					bool end_special_case = false;	// for handling end special case on key_up
 
-					if (is_selected_) {
-						selection_rects = get_selection_rects(p_text_layout_,
-							rect_text_, selection_info_.start, selection_info_.end);
+					if (_is_selected) {
+						selection_rects = get_selection_rects(_p_text_layout,
+							_rect_text, _selection_info.start, _selection_info.end);
 					}
 					else {
 						selection_info sel_info;
 
-						end_special_case = caret_position_ == text_.length();
+						end_special_case = _caret_position == _text.length();
 						
-						if (key_up_scheduled_) {
-							auto pos = caret_position_;
-							if (pos == text_.length())
+						if (_key_up_scheduled) {
+							auto pos = _caret_position;
+							if (pos == _text.length())
 								pos--;
 							sel_info.start = pos;
 							sel_info.end = sel_info.start + 1;
 						}
 						else {
 							// to-do: fix accordingly
-							auto pos = caret_position_;
+							auto pos = _caret_position;
 							if (pos > 0)
 								pos--;
 							sel_info.start = pos;
 							sel_info.end = sel_info.start + 1;
 						}
 
-						selection_rects = get_selection_rects(p_text_layout_,
-							rect_text_, sel_info.start, sel_info.end);
+						selection_rects = get_selection_rects(_p_text_layout,
+							_rect_text, sel_info.start, sel_info.end);
 					}
 
-					if (key_up_scheduled_) {
+					if (_key_up_scheduled) {
 						// move one line above
 						D2D1_RECT_F rect_above = full_text_selection_rects[0];
 
@@ -304,7 +304,7 @@ namespace liblec {
 
 						// find corresponding point within this line for caret
 						D2D1_POINT_2F pt = { (end_special_case ? selection_rects[0].right : selection_rects[0].left) * get_dpi_scale(), (rect_above.top + ((rect_above.bottom - rect_above.top) / 2.f)) * get_dpi_scale() };
-						caret_position_ = get_caret_position(p_text_layout_, text_, rect_text_,
+						_caret_position = get_caret_position(_p_text_layout, _text, _rect_text,
 							pt, get_dpi_scale());
 
 						reset_selection();
@@ -322,62 +322,62 @@ namespace liblec {
 
 						// find corresponding point within this line for caret
 						D2D1_POINT_2F pt = { selection_rects[selection_rects.size() - 1].right * get_dpi_scale(), (rect_below.top + ((rect_below.bottom - rect_below.top) / 2.f)) * get_dpi_scale() };
-						caret_position_ = get_caret_position(p_text_layout_, text_, rect_text_,
+						_caret_position = get_caret_position(_p_text_layout, _text, _rect_text,
 							pt, get_dpi_scale());
 
 						reset_selection();
 					}
 
-					key_up_scheduled_ = false;
-					key_down_scheduled_ = false;
+					_key_up_scheduled = false;
+					_key_down_scheduled = false;
 				}
 				else {
-					if (hit_ && pressed_) {
+					if (_hit && _pressed) {
 						reset_selection();
 
-						caret_position_ = get_caret_position(p_text_layout_, specs_.text(), rect_text_, point_, get_dpi_scale());
-						caret_visible_ = true;
+						_caret_position = get_caret_position(_p_text_layout, _specs.text(), _rect_text, _point, get_dpi_scale());
+						_caret_visible = true;
 
-						if (point_.x != point_on_press_.x || point_.y != point_on_press_.y) {
+						if (_point.x != _point_on_press.x || _point.y != _point_on_press.y) {
 							// user is making a selection
-							is_selecting_ = true;
+							_is_selecting = true;
 
-							auto selection_start_ = get_caret_position(p_text_layout_, specs_.text(), rect_text_, point_on_press_, get_dpi_scale());
-							auto selection_end_ = caret_position_;
+							auto _selection_start = get_caret_position(_p_text_layout, _specs.text(), _rect_text, _point_on_press, get_dpi_scale());
+							auto _selection_end = _caret_position;
 
-							auto selection_rects = get_selection_rects(p_text_layout_, rect_text_, selection_start_, selection_end_);
+							auto selection_rects = get_selection_rects(_p_text_layout, _rect_text, _selection_start, _selection_end);
 							for (auto selection_rect : selection_rects)
-								p_render_target->FillRectangle(selection_rect, p_brush_selected_);
+								p_render_target->FillRectangle(selection_rect, _p_brush_selected);
 						}
 					}
 					else
-						if (!pressed_ && is_selecting_) {
+						if (!_pressed && _is_selecting) {
 							// user is done with the selection
-							is_selecting_ = false;
+							_is_selecting = false;
 
 							set_selection(
-								get_caret_position(p_text_layout_, specs_.text(), rect_text_, point_on_press_, get_dpi_scale()),
-								get_caret_position(p_text_layout_, specs_.text(), rect_text_, point_on_release_, get_dpi_scale()));
+								get_caret_position(_p_text_layout, _specs.text(), _rect_text, _point_on_press, get_dpi_scale()),
+								get_caret_position(_p_text_layout, _specs.text(), _rect_text, _point_on_release, get_dpi_scale()));
 						}
 				}
 			}
 
 			// draw selection rectangles
-			if (!is_static_ && is_enabled_ && is_selected_) {
-				auto selection_rects = get_selection_rects(p_text_layout_, rect_text_, selection_info_.start, selection_info_.end);
+			if (!_is_static && _is_enabled && _is_selected) {
+				auto selection_rects = get_selection_rects(_p_text_layout, _rect_text, _selection_info.start, _selection_info.end);
 				for (auto selection_rect : selection_rects)
-					p_render_target->FillRectangle(selection_rect, p_brush_selected_);
+					p_render_target->FillRectangle(selection_rect, _p_brush_selected);
 			}
 
 			float move_v = 0.f;
 
 			// draw caret
-			if (!is_static_ && is_enabled_ && selected_ && caret_visible_) {
-				const auto caret_rect = get_caret_rect(p_text_layout_, rect_text_, caret_position_);
-				p_render_target->FillRectangle(&caret_rect, p_brush_caret_);
+			if (!_is_static && _is_enabled && _selected && _caret_visible) {
+				const auto caret_rect = get_caret_rect(_p_text_layout, _rect_text, _caret_position);
+				p_render_target->FillRectangle(&caret_rect, _p_brush_caret);
 
 				// figure out if caret is within visible area
-				const auto pg_rect = page_.d_page_.get_rect();
+				const auto pg_rect = _page._d_page.get_rect();
 
 				if (!(pg_rect.left <= caret_rect.right &&
 					pg_rect.top <= caret_rect.top &&
@@ -406,105 +406,105 @@ namespace liblec {
 			}
 
 			// release the text layout
-			safe_release(&p_text_layout_);
+			safe_release(&_p_text_layout);
 
-			const auto old_height = rect_.bottom - rect_.top;
-			const auto height = optimized_bottom_ - rect_.top;
+			const auto old_height = _rect.bottom - _rect.top;
+			const auto height = _optimized_bottom - _rect.top;
 
 			// update widget rect
-			specs_.rect_.height(height);
+			_specs._rect.height(height);
 
 			// move rect to ensure caret visibility
-			if (move_v && !timer_manager(get_form()).running(autoscroll_timer_name_)) {
+			if (move_v && !timer_manager(get_form()).running(_autoscroll_timer_name)) {
 				log("move_v: " + std::to_string(move_v));
-				scroll_amount_ = move_v;
+				_scroll_amount = move_v;
 
-				timer_manager(get_form()).add(autoscroll_timer_name_, 0,
+				timer_manager(get_form()).add(_autoscroll_timer_name, 0,
 					[&]() {
 						// scroll page to ensure caret visibility
-						page_.d_page_.scroll(scroll_amount_);
+						_page._d_page.scroll(_scroll_amount);
 						get_form().update();
 
 						// stop timer
-						timer_manager(get_form()).stop(autoscroll_timer_name_);
+						timer_manager(get_form()).stop(_autoscroll_timer_name);
 					});
 			}
 
-			return rect_;
+			return _rect;
 		}
 
 		void widgets::html_editor_impl::on_selection_change(const bool& selected) {
 			if (selected) {
 				// start blink timer
-				timer_manager(get_form()).add(caret_blink_timer_name_, 500,
+				timer_manager(get_form()).add(_caret_blink_timer_name, 500,
 					[&]() {
-						if (skip_blink_)
-							skip_blink_ = false;
+						if (_skip_blink)
+							_skip_blink = false;
 						else {
-							caret_visible_ = !caret_visible_;
+							_caret_visible = !_caret_visible;
 							get_form().update();
 						}
 					});
 			}
 			else {
 				// stop blink timer
-				timer_manager(get_form()).stop(caret_blink_timer_name_);
+				timer_manager(get_form()).stop(_caret_blink_timer_name);
 			}
 		}
 
 		widgets::html_editor_specs&
-			widgets::html_editor_impl::specs() { return specs_; }
+			widgets::html_editor_impl::specs() { return _specs; }
 
 		widgets::html_editor_specs&
 			widgets::html_editor_impl::operator()() { return specs(); }
 
 		void widgets::html_editor_impl::set_pane_specs(containers::pane_specs& html_control,
 			containers::pane_specs& html) {
-			html_control_pane_specs_ = html_control;
-			html_pane_specs_ = html;
+			_html_control_pane_specs = html_control;
+			_html_pane_specs = html;
 		}
 
 		// to-do: insertion mechanics for formatted text
 		void widgets::html_editor_impl::insert_character(const char& c) {
 			try {
 				unsigned long tag_number = 0;
-				if (is_selected_) {
-					if (selection_info_.start > selection_info_.end)
-						swap(selection_info_.start, selection_info_.end);
+				if (_is_selected) {
+					if (_selection_info.start > _selection_info.end)
+						swap(_selection_info.start, _selection_info.end);
 
-					caret_position_ = selection_info_.start;
-					tag_number = formatted_text_editor().erase(selection_info_.start, selection_info_.end, specs_.text());
+					_caret_position = _selection_info.start;
+					tag_number = formatted_text_editor().erase(_selection_info.start, _selection_info.end, _specs.text());
 					reset_selection();
 				}
 
-				formatted_text_editor().insert_character(c, caret_position_, tag_number, specs_.text());
-				caret_position_++;
-				caret_visible_ = true;
-				skip_blink_ = true;
+				formatted_text_editor().insert_character(c, _caret_position, tag_number, _specs.text());
+				_caret_position++;
+				_caret_visible = true;
+				_skip_blink = true;
 			}
 			catch (const std::exception& e) { log(e.what()); }
 
 			// force scroll bar to set, in case caret is now hidden
-			page_.d_page_.force_scrollbar_set();
+			_page._d_page.force_scrollbar_set();
 		}
 
 		// to-do: backspace mechanics for formatted text
 		void widgets::html_editor_impl::key_backspace() {
 			try {
 				unsigned long tag_number = 0;
-				if (is_selected_) {
-					if (selection_info_.start > selection_info_.end)
-						swap(selection_info_.start, selection_info_.end);
+				if (_is_selected) {
+					if (_selection_info.start > _selection_info.end)
+						swap(_selection_info.start, _selection_info.end);
 
-					caret_position_ = selection_info_.start;
-					tag_number = formatted_text_editor().erase(selection_info_.start, selection_info_.end, specs_.text());
+					_caret_position = _selection_info.start;
+					tag_number = formatted_text_editor().erase(_selection_info.start, _selection_info.end, _specs.text());
 					reset_selection();
 				}
 				else {
-					tag_number = formatted_text_editor().erase(caret_position_ - 1, caret_position_, specs_.text());
-					caret_position_--;
-					caret_visible_ = true;
-					skip_blink_ = true;
+					tag_number = formatted_text_editor().erase(_caret_position - 1, _caret_position, _specs.text());
+					_caret_position--;
+					_caret_visible = true;
+					_skip_blink = true;
 				}
 			}
 			catch (const std::exception& e) { log(e.what()); }
@@ -514,18 +514,18 @@ namespace liblec {
 		void widgets::html_editor_impl::key_delete() {
 			try {
 				unsigned long tag_number = 0;
-				if (is_selected_) {
-					if (selection_info_.start > selection_info_.end)
-						swap(selection_info_.start, selection_info_.end);
+				if (_is_selected) {
+					if (_selection_info.start > _selection_info.end)
+						swap(_selection_info.start, _selection_info.end);
 
-					caret_position_ = selection_info_.start;
-					tag_number = formatted_text_editor().erase(selection_info_.start, selection_info_.end, specs_.text());
+					_caret_position = _selection_info.start;
+					tag_number = formatted_text_editor().erase(_selection_info.start, _selection_info.end, _specs.text());
 					reset_selection();
 				}
 				else {
-					tag_number = formatted_text_editor().erase(caret_position_, caret_position_ + 1, specs_.text());
-					caret_visible_ = true;
-					skip_blink_ = true;
+					tag_number = formatted_text_editor().erase(_caret_position, _caret_position + 1, _specs.text());
+					_caret_visible = true;
+					_skip_blink = true;
 				}
 			}
 			catch (const std::exception& e) { log(e.what()); }
@@ -533,54 +533,54 @@ namespace liblec {
 
 		void widgets::html_editor_impl::key_left() {
 			try {
-				if (is_selected_) {
-					if (selection_info_.start > selection_info_.end)
-						swap(selection_info_.start, selection_info_.end);
+				if (_is_selected) {
+					if (_selection_info.start > _selection_info.end)
+						swap(_selection_info.start, _selection_info.end);
 
-					caret_position_ = selection_info_.start + 1;
+					_caret_position = _selection_info.start + 1;
 					reset_selection();
 				}
 
-				if (caret_position_ > 0)
-					caret_position_--;
+				if (_caret_position > 0)
+					_caret_position--;
 
-				caret_visible_ = true;
-				skip_blink_ = true;
+				_caret_visible = true;
+				_skip_blink = true;
 			}
 			catch (const std::exception& e) { log(e.what()); }
 		}
 
 		void widgets::html_editor_impl::key_right() {
 			try {
-				if (is_selected_) {
-					if (selection_info_.start > selection_info_.end)
-						swap(selection_info_.start, selection_info_.end);
+				if (_is_selected) {
+					if (_selection_info.start > _selection_info.end)
+						swap(_selection_info.start, _selection_info.end);
 
-					caret_position_ = selection_info_.end - 1;
+					_caret_position = _selection_info.end - 1;
 					reset_selection();
 				}
 
-				if (caret_position_ < specs_.text().length())
-					caret_position_++;
+				if (_caret_position < _specs.text().length())
+					_caret_position++;
 
-				caret_visible_ = true;
-				skip_blink_ = true;
+				_caret_visible = true;
+				_skip_blink = true;
 			}
 			catch (const std::exception& e) { log(e.what()); }
 		}
 
 		void widgets::html_editor_impl::key_up() {
-			key_up_scheduled_ = true;
+			_key_up_scheduled = true;
 
-			caret_visible_ = true;
-			skip_blink_ = true;
+			_caret_visible = true;
+			_skip_blink = true;
 		}
 
 		void widgets::html_editor_impl::key_down() {
-			key_down_scheduled_ = true;
+			_key_down_scheduled = true;
 
-			caret_visible_ = true;
-			skip_blink_ = true;
+			_caret_visible = true;
+			_skip_blink = true;
 		}
 
 		void widgets::html_editor_impl::selection_font(const std::string& font_name) {
@@ -590,7 +590,7 @@ namespace liblec {
 			tag_attribute.name = "style";
 			tag_attribute.value = "font-family: " + font_name + ";";
 			tag_attributes.push_back(tag_attribute);
-			formatted_text_editor().toggle_tag(specs_.text(), "span", tag_attributes, selection_info_.start, selection_info_.end);
+			formatted_text_editor().toggle_tag(_specs.text(), "span", tag_attributes, _selection_info.start, _selection_info.end);
 		}
 
 		void widgets::html_editor_impl::selection_font_size(const float& font_size) {
@@ -600,7 +600,7 @@ namespace liblec {
 			tag_attribute.name = "style";
 			tag_attribute.value = "font-size: " + std::to_string(font_size) + "pt;";
 			tag_attributes.push_back(tag_attribute);
-			formatted_text_editor().toggle_tag(specs_.text(), "span", tag_attributes, selection_info_.start, selection_info_.end);
+			formatted_text_editor().toggle_tag(_specs.text(), "span", tag_attributes, _selection_info.start, _selection_info.end);
 		}
 
 		void widgets::html_editor_impl::selection_bold() {
@@ -610,7 +610,7 @@ namespace liblec {
 			tag_attribute.name = "style";
 			tag_attribute.value = "font-weight: bold;";
 			tag_attributes.push_back(tag_attribute);
-			formatted_text_editor().toggle_tag(specs_.text(), "span", tag_attributes, selection_info_.start, selection_info_.end);
+			formatted_text_editor().toggle_tag(_specs.text(), "span", tag_attributes, _selection_info.start, _selection_info.end);
 		}
 
 		void widgets::html_editor_impl::selection_italic() {
@@ -620,7 +620,7 @@ namespace liblec {
 			tag_attribute.name = "style";
 			tag_attribute.value = "font-style: italic;";
 			tag_attributes.push_back(tag_attribute);
-			formatted_text_editor().toggle_tag(specs_.text(), "span", tag_attributes, selection_info_.start, selection_info_.end);
+			formatted_text_editor().toggle_tag(_specs.text(), "span", tag_attributes, _selection_info.start, _selection_info.end);
 		}
 
 		void widgets::html_editor_impl::selection_underline() {
@@ -632,10 +632,10 @@ namespace liblec {
 				tag_attribute.name = "style";
 				tag_attribute.value = "text-decoration: underline;";
 				tag_attributes.push_back(tag_attribute);
-				formatted_text_editor().toggle_tag(specs_.text(), "span", tag_attributes, selection_info_.start, selection_info_.end);
+				formatted_text_editor().toggle_tag(_specs.text(), "span", tag_attributes, _selection_info.start, _selection_info.end);
 			}
 			else
-				formatted_text_editor().toggle_tag(specs_.text(), "u", selection_info_.start, selection_info_.end);
+				formatted_text_editor().toggle_tag(_specs.text(), "u", _selection_info.start, _selection_info.end);
 		}
 
 		void widgets::html_editor_impl::selection_strikethrough() {
@@ -645,15 +645,15 @@ namespace liblec {
 			tag_attribute.name = "style";
 			tag_attribute.value = "text-decoration: line-through;";
 			tag_attributes.push_back(tag_attribute);
-			formatted_text_editor().toggle_tag(specs_.text(), "span", tag_attributes, selection_info_.start, selection_info_.end);
+			formatted_text_editor().toggle_tag(_specs.text(), "span", tag_attributes, _selection_info.start, _selection_info.end);
 		}
 
 		void widgets::html_editor_impl::selection_color() {
-			selection_color(last_color_);
+			selection_color(_last_color);
 		}
 
 		void widgets::html_editor_impl::selection_color(const color& font_color) {
-			last_color_ = font_color;
+			_last_color = font_color;
 
 			std::string color_string = "rgb(" +
 				std::to_string(font_color.get_red()) + ", "
@@ -665,22 +665,22 @@ namespace liblec {
 			tag_attribute.name = "style";
 			tag_attribute.value = "color: " + color_string + ";";
 			tag_attributes.push_back(tag_attribute);
-			formatted_text_editor().toggle_tag(specs_.text(), "span", tag_attributes, selection_info_.start, selection_info_.end);
+			formatted_text_editor().toggle_tag(_specs.text(), "span", tag_attributes, _selection_info.start, _selection_info.end);
 		}
 
 		color widgets::html_editor_impl::get_last_color() {
-			return last_color_;
+			return _last_color;
 		}
 
 		void widgets::html_editor_impl::reset_selection() {
-			selection_info_ = { 0, 0 };
-			is_selected_ = false;
+			_selection_info = { 0, 0 };
+			_is_selected = false;
 		}
 
 		void widgets::html_editor_impl::set_selection(const UINT start, const UINT end) {
-			selection_info_.start = start;
-			selection_info_.end = end;
-			is_selected_ = true;
+			_selection_info.start = start;
+			_selection_info.end = end;
+			_is_selected = true;
 		}
 
 		UINT32
@@ -734,12 +734,12 @@ namespace liblec {
 		std::vector<D2D1_RECT_F>
 			widgets::html_editor_impl::get_selection_rects(
 				IDWriteTextLayout* p_text_layout, const D2D1_RECT_F& rect_text,
-				const UINT32& selection_start_, const UINT32& selection_end_) {
+				const UINT32& _selection_start, const UINT32& _selection_end) {
 			std::vector<D2D1_RECT_F> selection_rects;
 			DWRITE_HIT_TEST_METRICS hit_metrics_start, hit_metrics_end;
 
-			UINT32 selection_start = smallest(selection_start_, selection_end_);
-			UINT32 selection_end = largest(selection_start_, selection_end_);
+			UINT32 selection_start = smallest(_selection_start, _selection_end);
+			UINT32 selection_end = largest(_selection_start, _selection_end);
 
 			// get metrics of selection start position
 			float p_x, p_y;

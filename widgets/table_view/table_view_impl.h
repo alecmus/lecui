@@ -19,7 +19,7 @@ namespace liblec {
 			class table_view_impl : public widget_impl {
 				/// private virtual function overrides
 				widgets::specs& generic_specs() override {
-					return specs_;
+					return _specs;
 				}
 
 			public:
@@ -52,36 +52,36 @@ namespace liblec {
 				table_view_impl& operator=(const table_view_impl&) = delete;
 
 				/// Private variables
-				widgets::table_view_specs specs_, specs_old_;
-				ID2D1SolidColorBrush* p_brush_;
-				ID2D1SolidColorBrush* p_brush_fill_;
-				ID2D1SolidColorBrush* p_brush_text_header_;
-				ID2D1SolidColorBrush* p_brush_text_header_hot_;
-				ID2D1SolidColorBrush* p_brush_text_selected_;
-				ID2D1SolidColorBrush* p_brush_fill_header_;
-				ID2D1SolidColorBrush* p_brush_fill_alternate_;
-				ID2D1SolidColorBrush* p_brush_hot_;
-				ID2D1SolidColorBrush* p_brush_disabled_;
-				ID2D1SolidColorBrush* p_brush_selected_;
-				ID2D1SolidColorBrush* p_brush_border_;
-				ID2D1SolidColorBrush* p_brush_grid_;
-				ID2D1SolidColorBrush* p_brush_row_hot_;
-				ID2D1SolidColorBrush* p_brush_row_selected_;
-				IDWriteTextFormat* p_text_format_;
+				widgets::table_view_specs _specs, _specs_old;
+				ID2D1SolidColorBrush* _p_brush;
+				ID2D1SolidColorBrush* _p_brush_fill;
+				ID2D1SolidColorBrush* _p_brush_text_header;
+				ID2D1SolidColorBrush* _p_brush_text_header_hot;
+				ID2D1SolidColorBrush* _p_brush_text_selected;
+				ID2D1SolidColorBrush* _p_brush_fill_header;
+				ID2D1SolidColorBrush* _p_brush_fill_alternate;
+				ID2D1SolidColorBrush* _p_brush_hot;
+				ID2D1SolidColorBrush* _p_brush_disabled;
+				ID2D1SolidColorBrush* _p_brush_selected;
+				ID2D1SolidColorBrush* _p_brush_border;
+				ID2D1SolidColorBrush* _p_brush_grid;
+				ID2D1SolidColorBrush* _p_brush_row_hot;
+				ID2D1SolidColorBrush* _p_brush_row_selected;
+				IDWriteTextFormat* _p_text_format;
 
-				IDWriteFactory* p_directwrite_factory_;
-				IDWriteTextLayout* p_text_layout_;
+				IDWriteFactory* _p_directwrite_factory;
+				IDWriteTextLayout* _p_text_layout;
 
-				D2D1_RECT_F rectA_, rectB_;
-				float row_height_;
-				float margin_;
-				D2D1_RECT_F rect_header_;
-				std::map<unsigned long, D2D1_RECT_F> hot_spots_;
-				std::map<std::string, D2D1_RECT_F> header_hot_spots_;
-				std::map<std::string, sort_options> header_sort_options_;
-				unsigned long last_selected_;
+				D2D1_RECT_F _rectA, _rectB;
+				float _row_height;
+				float _margin;
+				D2D1_RECT_F _rect_header;
+				std::map<unsigned long, D2D1_RECT_F> _hot_spots;
+				std::map<std::string, D2D1_RECT_F> _header_hot_spots;
+				std::map<std::string, sort_options> _header_sort_options;
+				unsigned long _last_selected;
 
-				bool book_on_selection_;
+				bool _book_on_selection;
 
 				/// Private methods
 				void on_selection();
