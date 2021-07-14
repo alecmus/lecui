@@ -76,6 +76,7 @@ namespace liblec {
 			class date_impl;
 			class icon_impl;
 			class pane_impl;
+			class tab_pane_impl;
 		}
 #endif
 

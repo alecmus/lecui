@@ -28,6 +28,10 @@ namespace liblec {
 				std::vector<std::string> _tab_order;
 				std::string _current_tab;
 
+				// pane rect and page
+				containers::page::impl* _p_page_impl = nullptr;
+				rect* _p_tab_pane_rect = nullptr;
+
 				/// constructor and destructor
 				tab_pane_impl(containers::page& page,
 					const std::string& alias,
@@ -88,6 +92,9 @@ namespace liblec {
 
 				// tab rectangles <K = tab name, T>
 				std::map<std::string, D2D1_RECT_F> _p_tab_rects;
+
+				bool _initial_capture_done = false;
+				rect _rect_previous = { 0.f, 0.f, 0.f, 0.f };
 
 				/// Important override for tab pane to work properly.
 				bool contains();

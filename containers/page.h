@@ -93,6 +93,7 @@ namespace liblec {
 				friend class widgets::date_impl;
 				friend class widgets::icon_impl;
 				friend class widgets::pane_impl;
+				friend class widgets::tab_pane_impl;
 #endif
 			};
 		}

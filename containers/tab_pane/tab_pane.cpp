@@ -268,6 +268,10 @@ namespace liblec {
 				rectangle.on_resize().perc_width = 100.f;
 				rectangle.on_resize().perc_height = 100.f;
 
+				// capture pointer to pane rect and page
+				_tab_pane._p_page_impl = &page_impl;
+				_tab_pane._p_tab_pane_rect = &rectangle.rect();
+
 				// return reference to page so caller can add widgets to it
 				return _tab_pane._p_tabs.at(tab_name);
 			}
