@@ -58,6 +58,10 @@ namespace liblec {
 				std::map<std::string, containers::page> _p_panes;
 				std::string _current_pane;
 
+				// pane rect and page
+				containers::page::impl* _p_page_impl = nullptr;
+				rect* _p_pane_rect = nullptr;
+
 				/// constructor and destructor
 				pane_impl(containers::page& page,
 					const std::string& alias);
@@ -92,6 +96,9 @@ namespace liblec {
 				const float _margin;
 				D2D1_RECT_F _rect_client_area;
 				D2D1_RECT_F _rect_pane;
+
+				bool _initial_capture_done = false;
+				rect _rect_previous = { 0.f, 0.f, 0.f, 0.f };
 
 				/// Important override for pane to work properly.
 				bool contains() override;

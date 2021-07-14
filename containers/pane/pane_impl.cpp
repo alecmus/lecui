@@ -100,6 +100,45 @@ namespace liblec {
 				discard_resources();
 			}
 
+			if (!_initial_capture_done) {
+				_rect_previous = _specs.rect();
+				_initial_capture_done = true;
+			}
+
+			if (_specs.rect() != _rect_previous && _p_page_impl && _p_pane_rect) {
+				log("rect changed: " + _alias);
+
+				// pane rect changed
+				const auto& width_change = _specs.rect().width() - _rect_previous.width();
+				const auto& height_change = _specs.rect().height() - _rect_previous.height();
+
+				_rect_previous = _specs.rect();
+
+				// adjust pane rect accordingly
+
+				// page dimensions
+				_p_page_impl->width(_p_page_impl->width() + width_change);
+				_p_page_impl->height(_p_page_impl->height() + height_change);
+
+				// pane dimensions
+				_p_pane_rect->width(_p_pane_rect->width() + width_change);
+				_p_pane_rect->height(_p_pane_rect->height() + height_change);
+
+				// scroll bars
+
+				// horizontal scrollbar
+				_p_page_impl->h_scrollbar().specs().rect().right(_p_page_impl->h_scrollbar().specs().rect().right() + width_change);
+
+				_p_page_impl->h_scrollbar().specs().rect().top(_p_page_impl->h_scrollbar().specs().rect().top() + height_change);
+				_p_page_impl->h_scrollbar().specs().rect().bottom(_p_page_impl->h_scrollbar().specs().rect().bottom() + height_change);
+
+				// vertical scrollbar
+				_p_page_impl->v_scrollbar().specs().rect().bottom(_p_page_impl->v_scrollbar().specs().rect().bottom() + height_change);
+
+				_p_page_impl->v_scrollbar().specs().rect().left(_p_page_impl->v_scrollbar().specs().rect().left() + width_change);
+				_p_page_impl->v_scrollbar().specs().rect().right(_p_page_impl->v_scrollbar().specs().rect().right() + width_change);
+			}
+
 			if (!_resources_created)
 				create_resources(p_render_target);
 
