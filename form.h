@@ -302,6 +302,10 @@ namespace liblec {
 			/// manipulate a form's visibility at creation time use the <see cref="controls::start_hidden"></see> method.</remarks>
 			void hide();
 
+			/// <summary>Check whether the form is visible.</summary>
+			/// <returns>Returns true if the form is visible, even if it's minimized or not in the foreground, else returns false.</returns>
+			bool visible();
+
 		private:
 			class impl;
 			impl& _d;

@@ -503,5 +503,12 @@ namespace liblec {
 			if (IsWindow(_d._hWnd))
 				ShowWindow(_d._hWnd, SW_HIDE);
 		}
+
+		bool form::visible() {
+			if (IsWindow(_d._hWnd))
+				return IsWindowVisible(_d._hWnd) == TRUE;
+			else
+				return false;
+		}
 	}
 }
