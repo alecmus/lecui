@@ -42,13 +42,14 @@ namespace liblec {
 		}
 
 		widgets::pane_impl::pane_impl(containers::page& page,
-			const std::string& alias) :
+			const std::string& alias, const float& content_margin) :
 			widget_impl(page, alias),
 			_p_brush(nullptr),
 			_p_brush_fill(nullptr),
 			_p_brush_border(nullptr),
 			_p_brush_disabled(nullptr),
 			_margin(12.f),
+			_content_margin(content_margin),
 			_rect_client_area({ 0.f, 0.f, 0.f, 0.f }),
 			_rect_pane({ 0.f, 0.f, 0.f, 0.f }) {}
 
@@ -174,13 +175,11 @@ namespace liblec {
 		containers::pane_specs&
 			widgets::pane_impl::operator()() { return specs(); }
 
-		const D2D1_RECT_F& widgets::pane_impl::client_area() {
-			return _rect_client_area;
-		}
+		const D2D1_RECT_F& widgets::pane_impl::client_area() { return _rect_client_area; }
 
-		const D2D1_RECT_F& widgets::pane_impl::pane_area() {
-			return _rect_pane;
-		}
+		const D2D1_RECT_F& widgets::pane_impl::pane_area() { return _rect_pane; }
+
+		const float& widgets::pane_impl::content_margin() { return _content_margin; }
 
 		bool widgets::pane_impl::contains() { return false; }
 	}

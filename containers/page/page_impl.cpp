@@ -111,9 +111,9 @@ namespace liblec {
 		}
 
 		containers::pane_specs&
-			containers::page::impl::add_pane(std::string alias) {
+			containers::page::impl::add_pane(std::string alias, const float& content_margin) {
 			check_alias(alias);
-			if (_panes.try_emplace(alias, _pg, alias).second) {
+			if (_panes.try_emplace(alias, _pg, alias, content_margin).second) {
 				_widgets.emplace(alias, _panes.at(alias));
 				_widgets_order.emplace_back(alias);
 			}

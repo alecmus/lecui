@@ -64,7 +64,7 @@ namespace liblec {
 
 				/// constructor and destructor
 				pane_impl(containers::page& page,
-					const std::string& alias);
+					const std::string& alias, const float& content_margin);
 				~pane_impl();
 
 				/// virtual function override
@@ -80,6 +80,7 @@ namespace liblec {
 				containers::pane_specs& operator()();
 				const D2D1_RECT_F& client_area();
 				const D2D1_RECT_F& pane_area();
+				const float& content_margin();
 
 			private:
 				// Default constructor and copying an object of this class are not allowed
@@ -94,6 +95,7 @@ namespace liblec {
 				ID2D1SolidColorBrush* _p_brush_border;
 				ID2D1SolidColorBrush* _p_brush_disabled;
 				const float _margin;
+				const float _content_margin;
 				D2D1_RECT_F _rect_client_area;
 				D2D1_RECT_F _rect_pane;
 

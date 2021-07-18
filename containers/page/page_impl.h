@@ -71,7 +71,7 @@ namespace liblec {
 			containers::tab_pane_specs&
 				add_tab_pane(std::string alias);
 			containers::pane_specs&
-				add_pane(std::string alias);
+				add_pane(std::string alias, const float& content_margin);
 
 			widgets::rectangle_specs&
 				add_rectangle(std::string alias);

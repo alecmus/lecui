@@ -333,12 +333,12 @@ namespace liblec {
 											};
 
 											for (auto& page : pane._p_panes) {
-												const float _page_tolerance = 10.f;
+												const float _content_margin = pane.content_margin();
 												D2D1_RECT_F rect_page = client_area;
-												rect_page.left += _page_tolerance;
-												rect_page.top += _page_tolerance;
-												rect_page.right -= _page_tolerance;
-												rect_page.bottom -= _page_tolerance;
+												rect_page.left += _content_margin;
+												rect_page.top += _content_margin;
+												rect_page.right -= _content_margin;
+												rect_page.bottom -= _content_margin;
 
 												render_page(render ? pane.visible() : false, page.first, pane._current_pane, page.second,
 													_p_render_target, rect_page, rect_page, change_in_size,

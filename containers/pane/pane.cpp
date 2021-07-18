@@ -27,12 +27,12 @@ namespace liblec {
 			containers::pane_specs& _specs;
 		};
 
-		containers::pane_builder::pane_builder(containers::page& page) :
-			pane_builder(page, "") {}
+		containers::pane_builder::pane_builder(containers::page& page, const float& content_margin) :
+			pane_builder(page, "", content_margin) {}
 
 		containers::pane_builder::pane_builder(containers::page& page,
-			const std::string& alias) :
-			_d(*(new impl(page, page._d_page.add_pane(alias), alias))) {}
+			const std::string& alias, const float& content_margin) :
+			_d(*(new impl(page, page._d_page.add_pane(alias, content_margin), alias))) {}
 
 		containers::pane_builder::~pane_builder() { delete& _d; }
 
@@ -94,9 +94,8 @@ namespace liblec {
 			// specify parent
 			page_impl.parent(_d._page);
 
-			const float thickness = 10.f;
-			const float margin = 10.f;
-			const float _page_tolerance = 10.f;
+			const float thickness = 10.f;	// thickness of scroll bars
+			const float _content_margin = _pane.content_margin();
 			rect rect_client_area = _pane().rect();
 
 			// initialize the page's horizontal scroll bar
@@ -106,9 +105,9 @@ namespace liblec {
 				_specs.on_resize().perc_y = 100.f;
 
 				_specs.rect()
-					.left(0.f)
-					.right((rect_client_area.right() - rect_client_area.left()) - (margin + thickness))
-					.bottom((rect_client_area.bottom() - rect_client_area.top()) - _page_tolerance)
+					.left(thickness)
+					.right((rect_client_area.right() - rect_client_area.left()) - thickness)
+					.bottom((rect_client_area.bottom() - rect_client_area.top()) - _content_margin)
 					.top(_specs.rect().bottom() - thickness);
 
 				_specs
@@ -125,9 +124,9 @@ namespace liblec {
 				_specs.on_resize().perc_x = 100.f;
 
 				_specs.rect()
-					.top(0)
-					.bottom((rect_client_area.bottom() - rect_client_area.top()) - (margin + thickness))
-					.right((rect_client_area.right() - rect_client_area.left()) - margin)
+					.top(thickness)
+					.bottom((rect_client_area.bottom() - rect_client_area.top()) - thickness)
+					.right(rect_client_area.right() - rect_client_area.left())
 					.left(_specs.rect().right() - thickness);
 
 				_specs
@@ -139,8 +138,8 @@ namespace liblec {
 
 			// set page size
 			page_impl.size({ rect_client_area.width(), rect_client_area.height() });
-			page_impl.width(page_impl.width() - (2.f * _page_tolerance));
-			page_impl.height(page_impl.height() - (2.f * _page_tolerance));
+			page_impl.width(page_impl.width() - (2.f * _content_margin));
+			page_impl.height(page_impl.height() - (2.f * _content_margin));
 
 			// add an invisible rect to bound the page. This is essential for scroll bars
 			// to work appropriately when contents don't reach the page borders
