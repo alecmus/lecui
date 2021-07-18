@@ -92,7 +92,7 @@ namespace liblec {
 			const float _caption_and_menu_gap;
 			const float _form_menu_margin;
 			const float _form_border_thickness;
-			const float _page_tolerance;
+			const float _content_margin;
 			const float _control_button_margin;
 			const std::string _receive_data_timer_alias;
 

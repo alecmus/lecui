@@ -78,8 +78,8 @@ namespace liblec {
 
 			lecui::rect rect_client;
 			rect_client.size(_d._fm._d._size);
-			rect_client.width(rect_client.width() - (2.f * _d._fm._d._page_tolerance));
-			rect_client.height(rect_client.height() - (2.f * _d._fm._d._page_tolerance + _d._fm._d._caption_bar_height));
+			rect_client.width(rect_client.width() - (2.f * _d._fm._d._content_margin));
+			rect_client.height(rect_client.height() - (2.f * _d._fm._d._content_margin + _d._fm._d._caption_bar_height));
 
 			lecui::rect rect = rect_client;
 			lecui::widgets::specs::resize_params on_resize;
@@ -123,8 +123,8 @@ namespace liblec {
 
 			// set page size
 			page_impl.size(rect.size());
-			page_impl.width(page_impl.width() - (2.f * _d._fm._d._page_tolerance));
-			page_impl.height(page_impl.height() - (2.f * _d._fm._d._page_tolerance));
+			page_impl.width(page_impl.width() - (2.f * _d._fm._d._content_margin));
+			page_impl.height(page_impl.height() - (2.f * _d._fm._d._content_margin));
 
 			// add an invisible rect to bound the page. This is essential for scroll bars to work
 			// appropriately when contents don't reach the page borders

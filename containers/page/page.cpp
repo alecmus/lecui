@@ -56,8 +56,8 @@ namespace liblec {
 
 			// set page size
 			page_impl.size(_d._fm._d._size);
-			page_impl.width(page_impl.width() - (2.f * _d._fm._d._page_tolerance));
-			page_impl.height(page_impl.height() - (2.f * _d._fm._d._page_tolerance + _d._fm._d._caption_bar_height));
+			page_impl.width(page_impl.width() - (2.f * _d._fm._d._content_margin));
+			page_impl.height(page_impl.height() - (2.f * _d._fm._d._content_margin + _d._fm._d._caption_bar_height));
 
 			// get status pane sizes
 			const auto rect_status_bottom = _d._fm._d.get_status_size(containers::status_pane_specs::location::bottom);
@@ -72,7 +72,7 @@ namespace liblec {
 			page_impl.width(page_impl.width() - rect_status_right.width);
 
 			const float thickness = 10.f;
-			const float margin = _d._fm._d._page_tolerance;
+			const float margin = _d._fm._d._content_margin;
 
 			// initialize the page's horizontal scroll bar
 			{
@@ -81,8 +81,8 @@ namespace liblec {
 				_specs.on_resize().perc_y = 100;
 
 				_specs.rect()
-					.left(margin + thickness - _d._fm._d._page_tolerance)
-					.right(page_impl.size().width - (margin + thickness) - _d._fm._d._page_tolerance)
+					.left(margin + thickness - _d._fm._d._content_margin)
+					.right(page_impl.size().width - (margin + thickness) - _d._fm._d._content_margin)
 					.bottom(page_impl.size().height - margin)
 					.top(_specs.rect().bottom() - thickness);
 
@@ -100,9 +100,9 @@ namespace liblec {
 				_specs.on_resize().perc_x = 100;
 
 				_specs.rect()
-					.top(margin + thickness - _d._fm._d._page_tolerance)
+					.top(margin + thickness - _d._fm._d._content_margin)
 					.bottom(page_impl.size().height - (margin + thickness))
-					.right(page_impl.size().width - margin - _d._fm._d._page_tolerance)
+					.right(page_impl.size().width - margin - _d._fm._d._content_margin)
 					.left(_specs.rect().right() - thickness);
 
 				_specs

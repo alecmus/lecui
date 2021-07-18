@@ -76,7 +76,7 @@ namespace liblec {
 			_caption_and_menu_gap(25.f),
 			_form_menu_margin(10.f),
 			_form_border_thickness(1.f),
-			_page_tolerance(_form_border_thickness / 2.f),
+			_content_margin(_form_border_thickness / 2.f),
 			_control_button_margin(2.f),
 			_receive_data_timer_alias("liblec::lecui::receive_data_timer"),
 			_resource_dll_filename(std::string()),

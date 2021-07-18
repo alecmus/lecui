@@ -382,9 +382,9 @@ namespace liblec {
 
 				// render page
 				for (auto& page : _p_pages) {
-					const D2D1_RECT_F rect_page = { _page_tolerance + status_left.width,
-						_caption_bar_height + _page_tolerance + status_top.height,
-						rtSize.width - _page_tolerance - status_right.width, rtSize.height - _page_tolerance - status_bottom.height };
+					const D2D1_RECT_F rect_page = { _content_margin + status_left.width,
+						_caption_bar_height + _content_margin + status_top.height,
+						rtSize.width - _content_margin - status_right.width, rtSize.height - _content_margin - status_bottom.height };
 
 					const D2D1_RECT_F client_area = rect_page;
 
@@ -396,9 +396,9 @@ namespace liblec {
 				// render status panes
 				for (auto& page : _p_status_panes) {
 					if (page.first == "status::bottom") {
-						const auto left = _page_tolerance;
-						const auto bottom = rtSize.height - _page_tolerance;
-						const auto right = rtSize.width - _page_tolerance;
+						const auto left = _content_margin;
+						const auto bottom = rtSize.height - _content_margin;
+						const auto right = rtSize.width - _content_margin;
 						const auto top = bottom - page.second.size().height;
 
 						const D2D1_RECT_F rect_page = { left, top, right, bottom };
@@ -410,10 +410,10 @@ namespace liblec {
 					}
 
 					if (page.first == "status::top") {
-						const auto left = _page_tolerance;
-						const auto top = _caption_bar_height + _page_tolerance;
+						const auto left = _content_margin;
+						const auto top = _caption_bar_height + _content_margin;
 						const auto bottom = top + page.second.size().height;
-						const auto right = rtSize.width - _page_tolerance;
+						const auto right = rtSize.width - _content_margin;
 
 						const D2D1_RECT_F rect_page = { left, top, right, bottom };
 						const D2D1_RECT_F client_area = rect_page;
@@ -424,9 +424,9 @@ namespace liblec {
 					}
 
 					if (page.first == "status::left") {
-						const auto left = _page_tolerance;
-						const auto top = _caption_bar_height + _page_tolerance;
-						const auto bottom = rtSize.height - _page_tolerance;
+						const auto left = _content_margin;
+						const auto top = _caption_bar_height + _content_margin;
+						const auto bottom = rtSize.height - _content_margin;
 						const auto right = left + page.second.size().width;
 
 						const D2D1_RECT_F rect_page = { left, top, right, bottom };
@@ -438,10 +438,10 @@ namespace liblec {
 					}
 
 					if (page.first == "status::right") {
-						const auto right = rtSize.width - _page_tolerance;
+						const auto right = rtSize.width - _content_margin;
 						const auto left = right - page.second.size().width;
-						const auto top = _caption_bar_height + _page_tolerance;
-						const auto bottom = rtSize.height - _page_tolerance;
+						const auto top = _caption_bar_height + _content_margin;
+						const auto bottom = rtSize.height - _content_margin;
 
 						const D2D1_RECT_F rect_page = { left, top, right, bottom };
 						const D2D1_RECT_F client_area = rect_page;

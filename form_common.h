@@ -362,11 +362,11 @@ namespace liblec {
 			auto_clip(bool render,
 				ID2D1HwndRenderTarget* p_render_target,
 				const D2D1_RECT_F& rect,
-				float tolerance) :
+				float content_margin) :
 				_render(render),
 				_p_render_target(p_render_target),
-				_rect({ rect.left - tolerance, rect.top - tolerance,
-					rect.right + tolerance, rect.bottom + tolerance }) {
+				_rect({ rect.left - content_margin, rect.top - content_margin,
+					rect.right + content_margin, rect.bottom + content_margin }) {
 				if (render)
 					_p_render_target->PushAxisAlignedClip(_rect,
 						D2D1_ANTIALIAS_MODE_PER_PRIMITIVE);
