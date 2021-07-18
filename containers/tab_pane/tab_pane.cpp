@@ -31,12 +31,12 @@ namespace liblec {
 			containers::tab_pane_specs& _specs;
 		};
 
-		containers::tab_pane_builder::tab_pane_builder(containers::page& page) :
-			tab_pane_builder(page, "") {}
+		containers::tab_pane_builder::tab_pane_builder(containers::page& page, const float& content_margin) :
+			tab_pane_builder(page, "", content_margin) {}
 
 		containers::tab_pane_builder::tab_pane_builder(containers::page& page,
-			const std::string& alias) :
-			_d(*(new impl(page, page._d_page.add_tab_pane(alias), alias))) {}
+			const std::string& alias, const float& content_margin) :
+			_d(*(new impl(page, page._d_page.add_tab_pane(alias, content_margin), alias))) {}
 
 		containers::tab_pane_builder::~tab_pane_builder() { delete& _d; }
 
@@ -114,9 +114,8 @@ namespace liblec {
 				// specify parent
 				page_impl.parent(tp._d._page);
 
-				const float thickness = 10.f;
-				const float margin = 10.f;
-				const float _page_tolerance = 10.f;
+				const float thickness = 10.f;	// thickness of scroll bars
+				const float _content_margin = _tab_pane.content_margin();
 				float _tab_height = _tab_pane.tab_height();
 				rect rect_client_area = _tab_pane().rect();
 
@@ -174,9 +173,9 @@ namespace liblec {
 					case tab_pane_specs::side::left:
 					case tab_pane_specs::side::right:
 						_specs.rect()
-							.left(0.f)
-							.right((rect_client_area.right() - rect_client_area.left()) - (margin + thickness) - _caption_bar_height)
-							.bottom((rect_client_area.bottom() - rect_client_area.top()) - _page_tolerance)
+							.left(thickness)
+							.right((rect_client_area.right() - rect_client_area.left()) - thickness - _caption_bar_height)
+							.bottom(rect_client_area.bottom() - rect_client_area.top())
 							.top(_specs.rect().bottom() - thickness);
 						break;
 
@@ -184,9 +183,9 @@ namespace liblec {
 					case tab_pane_specs::side::bottom:
 					default:
 						_specs.rect()
-							.left(0.f)
-							.right((rect_client_area.right() - rect_client_area.left()) - (margin + thickness))
-							.bottom((rect_client_area.bottom() - rect_client_area.top()) - (_caption_bar_height + _page_tolerance))
+							.left(thickness)
+							.right((rect_client_area.right() - rect_client_area.left()) - thickness)
+							.bottom((rect_client_area.bottom() - rect_client_area.top()) - _caption_bar_height)
 							.top(_specs.rect().bottom() - thickness);
 						break;
 					}
@@ -208,9 +207,9 @@ namespace liblec {
 					case tab_pane_specs::side::left:
 					case tab_pane_specs::side::right:
 						_specs.rect()
-							.top(0.f)
-							.bottom((rect_client_area.bottom() - rect_client_area.top()) - (margin + thickness))
-							.right((rect_client_area.right() - rect_client_area.left()) - margin - _caption_bar_height)
+							.top(thickness)
+							.bottom((rect_client_area.bottom() - rect_client_area.top()) - thickness)
+							.right((rect_client_area.right() - rect_client_area.left()) - _caption_bar_height)
 							.left(_specs.rect().right() - thickness);
 						break;
 
@@ -218,9 +217,9 @@ namespace liblec {
 					case tab_pane_specs::side::bottom:
 					default:
 						_specs.rect()
-							.top(0.f)
-							.bottom((rect_client_area.bottom() - rect_client_area.top()) - (margin + thickness) - _caption_bar_height)
-							.right((rect_client_area.right() - rect_client_area.left()) - margin)
+							.top(thickness)
+							.bottom((rect_client_area.bottom() - rect_client_area.top()) - thickness - _caption_bar_height)
+							.right(rect_client_area.right() - rect_client_area.left())
 							.left(_specs.rect().right() - thickness);
 						break;
 					}
@@ -238,15 +237,15 @@ namespace liblec {
 				switch (tp._d._specs.tab_side()) {
 				case tab_pane_specs::side::left:
 				case tab_pane_specs::side::right:
-					page_impl.width(page_impl.width() - (2.f * _page_tolerance + _caption_bar_height));
-					page_impl.height(page_impl.height() - (2.f * _page_tolerance));
+					page_impl.width(page_impl.width() - (2.f * _content_margin + _caption_bar_height));
+					page_impl.height(page_impl.height() - (2.f * _content_margin));
 					break;
 
 				case tab_pane_specs::side::top:
 				case tab_pane_specs::side::bottom:
 				default:
-					page_impl.width(page_impl.width() - (2.f * _page_tolerance));
-					page_impl.height(page_impl.height() - (2.f * _page_tolerance + _caption_bar_height));
+					page_impl.width(page_impl.width() - (2.f * _content_margin));
+					page_impl.height(page_impl.height() - (2.f * _content_margin + _caption_bar_height));
 					break;
 				}
 

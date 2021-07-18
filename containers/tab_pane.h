@@ -212,17 +212,18 @@ namespace liblec {
 			public:
 				/// <summary>Tab pane builder constructor.</summary>
 				/// <param name="page">A reference to the container to place the control in.</param>
+				/// <param name="content_margin">The margin to use inside the tabs.</param>
 				/// <remarks>This constructs the container with an internally generated random
 				/// alias.</remarks>
-				tab_pane_builder(containers::page& page);
+				tab_pane_builder(containers::page& page, const float& content_margin = 10.f);
 
 				/// <summary>Tab pane builder constructor.</summary>
 				/// <param name="page">A reference to the container to place the control in.</param>
-				/// <param name="alias">The in-page unique alias, e.g. "settings_tab_pane".
-				/// </param>
+				/// <param name="alias">The in-page unique alias, e.g. "settings_tab_pane".</param>
+				/// <param name="content_margin">The margin to use inside the tabs.</param>
 				/// <remarks>Ensure that the alias is unique within the page. Reusing an alias
 				/// in a tab pane leads to undefined behavior.</remarks>
-				tab_pane_builder(containers::page& page, const std::string& alias);
+				tab_pane_builder(containers::page& page, const std::string& alias, const float& content_margin = 10.f);
 				~tab_pane_builder();
 
 				/// <summary>Get the tab pane specifications.</summary>

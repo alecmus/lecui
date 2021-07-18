@@ -303,12 +303,12 @@ namespace liblec {
 										};
 
 										for (auto& tab : tab_pane._p_tabs) {
-											const float _page_tolerance = 10.f;
+											const float _content_margin = tab_pane.content_margin();
 											D2D1_RECT_F rect_page = client_area;
-											rect_page.left += _page_tolerance;
-											rect_page.top += _page_tolerance;
-											rect_page.right -= _page_tolerance;
-											rect_page.bottom -= _page_tolerance;
+											rect_page.left += _content_margin;
+											rect_page.top += _content_margin;
+											rect_page.right -= _content_margin;
+											rect_page.bottom -= _content_margin;
 
 											render_page(render ? tab_pane.visible() : false, tab.first, tab_pane._current_tab, tab.second,
 												_p_render_target, rect_page, rect_page, change_in_size,

@@ -15,6 +15,7 @@ namespace liblec {
 	namespace lecui {
 		widgets::tab_pane_impl::tab_pane_impl(containers::page& page,
 			const std::string& alias,
+			const float& content_margin,
 			IDWriteFactory* p_directwrite_factory) :
 			widget_impl(page, alias),
 			_p_brush(nullptr),
@@ -30,6 +31,7 @@ namespace liblec {
 			_p_text_layout(nullptr),
 			_margin(12.f),
 			_padding(5.f),	// used when caption orientation is perpendicular to the tab area
+			_content_margin(content_margin),
 			_tab_gap(10.f),
 			_tab_height(25.f),
 			_tab_height_set(false),
@@ -638,42 +640,28 @@ namespace liblec {
 		containers::tab_pane_specs&
 			widgets::tab_pane_impl::operator()() { return specs(); }
 
-		const D2D1_RECT_F& widgets::tab_pane_impl::client_area() {
-			return _rect_client_area;
-		}
+		const D2D1_RECT_F& widgets::tab_pane_impl::client_area() { return _rect_client_area; }
 
-		const D2D1_RECT_F& widgets::tab_pane_impl::tab_pane_area() {
-			return _rect_tab_pane;
-		}
+		const D2D1_RECT_F& widgets::tab_pane_impl::tab_pane_area() { return _rect_tab_pane; }
 
-		float widgets::tab_pane_impl::caption_bar_height() {
-			return (_tab_height + _bar_height);
-		}
+		const float& widgets::tab_pane_impl::content_margin() { return _content_margin; }
 
-		float widgets::tab_pane_impl::tab_height() {
-			return _tab_height;
-		}
+		float widgets::tab_pane_impl::caption_bar_height() { return (_tab_height + _bar_height); }
 
-		float widgets::tab_pane_impl::bar_height() {
-			return _bar_height;
-		}
+		float widgets::tab_pane_impl::tab_height() { return _tab_height; }
 
-		float widgets::tab_pane_impl::padding() {
-			return _padding;
-		}
+		float widgets::tab_pane_impl::bar_height() { return _bar_height; }
 
-		float widgets::tab_pane_impl::margin() {
-			return _margin;
-		}
+		float widgets::tab_pane_impl::padding() { return _padding; }
+
+		float widgets::tab_pane_impl::margin() { return _margin; }
 
 		void widgets::tab_pane_impl::set_tab_height(const float height) {
 			_tab_height_set = true;
 			_tab_height = height;
 		}
 
-		bool widgets::tab_pane_impl::tab_height_set() {
-			return _tab_height_set;
-		}
+		bool widgets::tab_pane_impl::tab_height_set() { return _tab_height_set; }
 
 		void widgets::tab_pane_impl::close_tab(const std::string& tab_name) {
 			try {

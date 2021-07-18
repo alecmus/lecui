@@ -35,6 +35,7 @@ namespace liblec {
 				/// constructor and destructor
 				tab_pane_impl(containers::page& page,
 					const std::string& alias,
+					const float& content_margin,
 					IDWriteFactory* p_directwrite_factory);
 				~tab_pane_impl();
 
@@ -52,6 +53,7 @@ namespace liblec {
 				containers::tab_pane_specs& operator()();
 				const D2D1_RECT_F& client_area();
 				const D2D1_RECT_F& tab_pane_area();
+				const float& content_margin();
 				float caption_bar_height();
 				float tab_height();
 				float bar_height();
@@ -81,7 +83,7 @@ namespace liblec {
 
 				IDWriteFactory* _p_directwrite_factory;
 				IDWriteTextLayout* _p_text_layout;
-				const float _margin, _padding;
+				const float _margin, _padding, _content_margin;
 				const float _tab_gap;
 				float _tab_height;
 				bool _tab_height_set;

@@ -100,9 +100,9 @@ namespace liblec {
 		}
 
 		containers::tab_pane_specs&
-			containers::page::impl::add_tab_pane(std::string alias) {
+			containers::page::impl::add_tab_pane(std::string alias, const float& content_margin) {
 			check_alias(alias);
-			if (_tab_panes.try_emplace(alias, _pg, alias, _p_directwrite_factory).second) {
+			if (_tab_panes.try_emplace(alias, _pg, alias, content_margin, _p_directwrite_factory).second) {
 				_widgets.emplace(alias, _tab_panes.at(alias));
 				_widgets_order.emplace_back(alias);
 			}
