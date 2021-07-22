@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">lecui
-   &#160;<span id="projectnumber">1.0.0-alpha.5</span>
+   &#160;<span id="projectnumber">1.0.0-alpha.6</span>
    </div>
    <div id="projectbrief">lecui C++ user interface library</div>
   </td>
@@ -94,8 +94,8 @@ $(function() {
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        <span class="keyword">namespace </span>containers {</div>
 <div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1containers_1_1status__pane__specs.html">   25</a></span>&#160;            <span class="keyword">class </span><a class="code" href="classliblec_1_1lecui_1_1containers_1_1status__pane__specs.html">status_pane_specs</a> {</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;            <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                <span class="keywordtype">float</span> thickness_ = 0.f;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                <span class="keywordtype">bool</span> floating_ = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                <span class="keywordtype">float</span> _thickness = 0.f;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                <span class="keywordtype">bool</span> _floating = <span class="keyword">false</span>;</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            <span class="keyword">public</span>:</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;                <span class="keyword">enum class</span> location {</div>
@@ -105,17 +105,17 @@ $(function() {
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;                    right,</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;                };</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
-<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1containers_1_1status__pane__specs.html#a7621d5a64fcda7c63764615ee8d04eec">   41</a></span>&#160;                <span class="keywordtype">float</span>&amp; <a class="code" href="classliblec_1_1lecui_1_1containers_1_1status__pane__specs.html#a7621d5a64fcda7c63764615ee8d04eec">thickness</a>() { <span class="keywordflow">return</span> thickness_; }</div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1containers_1_1status__pane__specs.html#a7621d5a64fcda7c63764615ee8d04eec">   41</a></span>&#160;                <span class="keywordtype">float</span>&amp; <a class="code" href="classliblec_1_1lecui_1_1containers_1_1status__pane__specs.html#a7621d5a64fcda7c63764615ee8d04eec">thickness</a>() { <span class="keywordflow">return</span> _thickness; }</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
 <div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1containers_1_1status__pane__specs.html#a1794205c86f9e48ccd12bb1ad8b0a558">   47</a></span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1containers_1_1status__pane__specs.html">status_pane_specs</a>&amp; <a class="code" href="classliblec_1_1lecui_1_1containers_1_1status__pane__specs.html#a1794205c86f9e48ccd12bb1ad8b0a558">thickness</a>(<span class="keyword">const</span> <span class="keywordtype">float</span>&amp; <a class="code" href="classliblec_1_1lecui_1_1containers_1_1status__pane__specs.html#a7621d5a64fcda7c63764615ee8d04eec">thickness</a>) {</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;                    thickness_ = <a class="code" href="classliblec_1_1lecui_1_1containers_1_1status__pane__specs.html#a7621d5a64fcda7c63764615ee8d04eec">thickness</a>;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;                    _thickness = <a class="code" href="classliblec_1_1lecui_1_1containers_1_1status__pane__specs.html#a7621d5a64fcda7c63764615ee8d04eec">thickness</a>;</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;                    <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                }</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
-<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1containers_1_1status__pane__specs.html#a816114602a20c42b683cadfeed1dd2fa">   56</a></span>&#160;                <span class="keywordtype">bool</span>&amp; <a class="code" href="classliblec_1_1lecui_1_1containers_1_1status__pane__specs.html#a816114602a20c42b683cadfeed1dd2fa">floating</a>() { <span class="keywordflow">return</span> floating_; }</div>
+<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1containers_1_1status__pane__specs.html#a816114602a20c42b683cadfeed1dd2fa">   56</a></span>&#160;                <span class="keywordtype">bool</span>&amp; <a class="code" href="classliblec_1_1lecui_1_1containers_1_1status__pane__specs.html#a816114602a20c42b683cadfeed1dd2fa">floating</a>() { <span class="keywordflow">return</span> _floating; }</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
 <div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1containers_1_1status__pane__specs.html#a0065296a61a45f8a15dd99b28f316beb">   63</a></span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1containers_1_1status__pane__specs.html">status_pane_specs</a>&amp; <a class="code" href="classliblec_1_1lecui_1_1containers_1_1status__pane__specs.html#a0065296a61a45f8a15dd99b28f316beb">floating</a>(<span class="keyword">const</span> <span class="keywordtype">bool</span>&amp; <a class="code" href="classliblec_1_1lecui_1_1containers_1_1status__pane__specs.html#a816114602a20c42b683cadfeed1dd2fa">floating</a>) {</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                    floating_ = <a class="code" href="classliblec_1_1lecui_1_1containers_1_1status__pane__specs.html#a816114602a20c42b683cadfeed1dd2fa">floating</a>;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                    _floating = <a class="code" href="classliblec_1_1lecui_1_1containers_1_1status__pane__specs.html#a816114602a20c42b683cadfeed1dd2fa">floating</a>;</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                    <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                }</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            };</div>
@@ -142,7 +142,7 @@ $(function() {
 <div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160; </div>
 <div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;            <span class="keyword">private</span>:</div>
 <div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;                <span class="keyword">class </span>impl;</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;                impl&amp; d_;</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;                impl&amp; _d;</div>
 <div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160; </div>
 <div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;                <span class="comment">// Default constructor and copying an object of this class are not allowed</span></div>
 <div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1containers_1_1status__pane.html">status_pane</a>() = <span class="keyword">delete</span>;</div>
@@ -165,7 +165,7 @@ $(function() {
 <div class="ttc" id="aclassliblec_1_1lecui_1_1containers_1_1status__pane_html_ad3022d11e5fbb58770a1d9934b10f879"><div class="ttname"><a href="classliblec_1_1lecui_1_1containers_1_1status__pane.html#ad3022d11e5fbb58770a1d9934b10f879">liblec::lecui::containers::status_pane::status_pane</a></div><div class="ttdeci">status_pane(form &amp;fm, status_pane_specs::location location)</div><div class="ttdoc">status_pane constructor.</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1containers_1_1status__pane_html_ad38d46aeb7b4d9b2fc8080636b6bb267"><div class="ttname"><a href="classliblec_1_1lecui_1_1containers_1_1status__pane.html#ad38d46aeb7b4d9b2fc8080636b6bb267">liblec::lecui::containers::status_pane::specs</a></div><div class="ttdeci">static status_pane_specs &amp; specs(form &amp;fm, const std::string &amp;alias)</div><div class="ttdoc">Get the specifications of a status pane.</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1containers_1_1status__pane_html_afffa90fb157c13b457f53bf7d6924680"><div class="ttname"><a href="classliblec_1_1lecui_1_1containers_1_1status__pane.html#afffa90fb157c13b457f53bf7d6924680">liblec::lecui::containers::status_pane::operator()</a></div><div class="ttdeci">status_pane_specs &amp; operator()()</div><div class="ttdoc">Get the status pane specifications.</div></div>
-<div class="ttc" id="aclassliblec_1_1lecui_1_1form_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1form.html">liblec::lecui::form</a></div><div class="ttdoc">Form base class. The user must inherit from this class and call one of the two constructors from its ...</div><div class="ttdef"><b>Definition:</b> form.h:99</div></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1form_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1form.html">liblec::lecui::form</a></div><div class="ttdoc">Form base class. The user must inherit from this class and call one of the two constructors from its ...</div><div class="ttdef"><b>Definition:</b> form.h:101</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

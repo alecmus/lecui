@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">lecui
-   &#160;<span id="projectnumber">1.0.0-alpha.5</span>
+   &#160;<span id="projectnumber">1.0.0-alpha.6</span>
    </div>
    <div id="projectbrief">lecui C++ user interface library</div>
   </td>
@@ -155,6 +155,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a9e113933e10a1aa1f66a5edfe8636d9d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classliblec_1_1lecui_1_1form.html#a9e113933e10a1aa1f66a5edfe8636d9d">hide</a> ()</td></tr>
 <tr class="memdesc:a9e113933e10a1aa1f66a5edfe8636d9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hide the form. Useful when using a system tray icon.  <a href="classliblec_1_1lecui_1_1form.html#a9e113933e10a1aa1f66a5edfe8636d9d">More...</a><br /></td></tr>
 <tr class="separator:a9e113933e10a1aa1f66a5edfe8636d9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aba58f74e51680cb2b08fcb3eca90673a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classliblec_1_1lecui_1_1form.html#aba58f74e51680cb2b08fcb3eca90673a">visible</a> ()</td></tr>
+<tr class="memdesc:aba58f74e51680cb2b08fcb3eca90673a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check whether the form is visible.  <a href="classliblec_1_1lecui_1_1form.html#aba58f74e51680cb2b08fcb3eca90673a">More...</a><br /></td></tr>
+<tr class="separator:aba58f74e51680cb2b08fcb3eca90673a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -884,6 +887,26 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Update the form. A low resource refresh of the current page. Typically necessary only after adding a new widget at runtime to the currently displayed page to avoid a situation whereby the widget is only displayed the next time the mouse moves or the next time the tab key is pressed. </p>
+
+</div>
+</div>
+<a id="aba58f74e51680cb2b08fcb3eca90673a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aba58f74e51680cb2b08fcb3eca90673a">&#9670;&nbsp;</a></span>visible()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool liblec::lecui::form::visible </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Check whether the form is visible. </p>
+<dl class="section return"><dt>Returns</dt><dd>Returns true if the form is visible, even if it's minimized or not in the foreground, else returns false.</dd></dl>
 
 </div>
 </div>

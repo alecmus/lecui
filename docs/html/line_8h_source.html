@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">lecui
-   &#160;<span id="projectnumber">1.0.0-alpha.5</span>
+   &#160;<span id="projectnumber">1.0.0-alpha.6</span>
    </div>
    <div id="projectbrief">lecui C++ user interface library</div>
   </td>
@@ -93,8 +93,8 @@ $(function() {
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keyword">namespace </span>lecui {</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        <span class="keyword">namespace </span>widgets {</div>
 <div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1widgets_1_1line__specs.html">   23</a></span>&#160;            <span class="keyword">class </span>lecui_api <a class="code" href="classliblec_1_1lecui_1_1widgets_1_1line__specs.html">line_specs</a> : <span class="keyword">public</span> <a class="code" href="classliblec_1_1lecui_1_1widgets_1_1specs.html">specs</a> {</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;                <span class="keywordtype">float</span> thickness_ = 1.f;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;                std::vector&lt;point&gt; points_;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;                <span class="keywordtype">float</span> _thickness = 1.f;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;                std::vector&lt;point&gt; _points;</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;            <span class="keyword">public</span>:</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1widgets_1_1line__specs.html">line_specs</a>() {}</div>
@@ -169,7 +169,7 @@ $(function() {
 <div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160; </div>
 <div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;            <span class="keyword">private</span>:</div>
 <div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;                <span class="keyword">class </span>impl;</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;                impl&amp; d_;</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;                impl&amp; _d;</div>
 <div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160; </div>
 <div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;                <span class="comment">// Default constructor and copying an object of this class are not allowed</span></div>
 <div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1widgets_1_1line__builder.html">line_builder</a>() = <span class="keyword">delete</span>;</div>
@@ -181,7 +181,7 @@ $(function() {
 <div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;}</div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1color_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1color.html">liblec::lecui::color</a></div><div class="ttdoc">RGBA color on a standard 0 to 255 scale. For the alpha channel 0 is transparent and 255 is opaque.</div><div class="ttdef"><b>Definition:</b> lecui.h:247</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1containers_1_1page_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1containers_1_1page.html">liblec::lecui::containers::page</a></div><div class="ttdoc">Page container.</div><div class="ttdef"><b>Definition:</b> page.h:31</div></div>
-<div class="ttc" id="aclassliblec_1_1lecui_1_1form_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1form.html">liblec::lecui::form</a></div><div class="ttdoc">Form base class. The user must inherit from this class and call one of the two constructors from its ...</div><div class="ttdef"><b>Definition:</b> form.h:99</div></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1form_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1form.html">liblec::lecui::form</a></div><div class="ttdoc">Form base class. The user must inherit from this class and call one of the two constructors from its ...</div><div class="ttdef"><b>Definition:</b> form.h:101</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1rect_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1rect.html">liblec::lecui::rect</a></div><div class="ttdef"><b>Definition:</b> lecui.h:87</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1line__builder_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1line__builder.html">liblec::lecui::widgets::line_builder</a></div><div class="ttdoc">Line widget builder.</div><div class="ttdef"><b>Definition:</b> line.h:96</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1line__builder_html_a4ae8582d54b3d549bad444fb0224503a"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1line__builder.html#a4ae8582d54b3d549bad444fb0224503a">liblec::lecui::widgets::line_builder::operator()</a></div><div class="ttdeci">line_specs &amp; operator()()</div><div class="ttdoc">Get the line specifications.</div></div>
@@ -207,7 +207,7 @@ $(function() {
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1line__specs_html_ae7afc8d2d13776969dc5135f48077ebc"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1line__specs.html#ae7afc8d2d13776969dc5135f48077ebc">liblec::lecui::widgets::line_specs::font_size</a></div><div class="ttdeci">float &amp; font_size() override</div><div class="ttdoc">Get or set the default widget font size in points, e.g. 9.0.</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1line__specs_html_af15eef43906e0c70fb95a140b1c9e301"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1line__specs.html#af15eef43906e0c70fb95a140b1c9e301">liblec::lecui::widgets::line_specs::text</a></div><div class="ttdeci">std::string &amp; text() override</div><div class="ttdoc">Get or set the widget text.</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1specs_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1specs.html">liblec::lecui::widgets::specs</a></div><div class="ttdoc">Base class for all widget specifications.</div><div class="ttdef"><b>Definition:</b> widget.h:24</div></div>
-<div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1specs_html_a3cba4c05a958d80dca72e4e9dd5360b1"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1specs.html#a3cba4c05a958d80dca72e4e9dd5360b1">liblec::lecui::widgets::specs::cursor_type</a></div><div class="ttdeci">cursor_type</div><div class="ttdoc">Mouse cursor type.</div><div class="ttdef"><b>Definition:</b> widget.h:72</div></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1specs_html_a3cba4c05a958d80dca72e4e9dd5360b1"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1specs.html#a3cba4c05a958d80dca72e4e9dd5360b1">liblec::lecui::widgets::specs::cursor_type</a></div><div class="ttdeci">cursor_type</div><div class="ttdoc">Mouse cursor type.</div><div class="ttdef"><b>Definition:</b> widget.h:80</div></div>
 <div class="ttc" id="astructliblec_1_1lecui_1_1widgets_1_1specs_1_1resize__params_html"><div class="ttname"><a href="structliblec_1_1lecui_1_1widgets_1_1specs_1_1resize__params.html">liblec::lecui::widgets::specs::resize_params</a></div><div class="ttdoc">Resize parameters.</div><div class="ttdef"><b>Definition:</b> widget.h:29</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">lecui
-   &#160;<span id="projectnumber">1.0.0-alpha.5</span>
+   &#160;<span id="projectnumber">1.0.0-alpha.6</span>
    </div>
    <div id="projectbrief">lecui C++ user interface library</div>
   </td>
@@ -94,14 +94,14 @@ $(function() {
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        <span class="keyword">namespace </span>widgets {</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            </div>
 <div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1widgets_1_1label__specs.html">   73</a></span>&#160;            <span class="keyword">class </span>lecui_api <a class="code" href="classliblec_1_1lecui_1_1widgets_1_1label__specs.html">label_specs</a> : <span class="keyword">public</span> <a class="code" href="classliblec_1_1lecui_1_1widgets_1_1specs.html">specs</a> {</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1color.html">color</a> color_hot_pressed_;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;                <span class="keywordtype">bool</span> multiline_ = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                <span class="keywordtype">bool</span> center_h_ = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                <span class="keywordtype">bool</span> center_v_ = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1color.html">color</a> _color_hot_pressed;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;                <span class="keywordtype">bool</span> _multiline = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                <span class="keywordtype">bool</span> _center_h = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                <span class="keywordtype">bool</span> _center_v = <span class="keyword">false</span>;</div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            <span class="keyword">public</span>:</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1widgets_1_1label__specs.html">label_specs</a>() {</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;                    rect_.size({ 200.f, 20.f });</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;                    _rect.size({ 200.f, 20.f });</div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;                };</div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;                <span class="keywordtype">bool</span> operator==(<span class="keyword">const</span> <a class="code" href="classliblec_1_1lecui_1_1widgets_1_1label__specs.html">label_specs</a>&amp;);</div>
@@ -182,7 +182,7 @@ $(function() {
 <div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160; </div>
 <div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;            <span class="keyword">private</span>:</div>
 <div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;                <span class="keyword">class </span>impl;</div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;                impl&amp; d_;</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;                impl&amp; _d;</div>
 <div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160; </div>
 <div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;                <span class="comment">// Default constructor and copying an object of this class are not allowed</span></div>
 <div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1widgets_1_1label__builder.html">label_builder</a>() = <span class="keyword">delete</span>;</div>
@@ -194,7 +194,7 @@ $(function() {
 <div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;}</div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1color_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1color.html">liblec::lecui::color</a></div><div class="ttdoc">RGBA color on a standard 0 to 255 scale. For the alpha channel 0 is transparent and 255 is opaque.</div><div class="ttdef"><b>Definition:</b> lecui.h:247</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1containers_1_1page_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1containers_1_1page.html">liblec::lecui::containers::page</a></div><div class="ttdoc">Page container.</div><div class="ttdef"><b>Definition:</b> page.h:31</div></div>
-<div class="ttc" id="aclassliblec_1_1lecui_1_1form_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1form.html">liblec::lecui::form</a></div><div class="ttdoc">Form base class. The user must inherit from this class and call one of the two constructors from its ...</div><div class="ttdef"><b>Definition:</b> form.h:99</div></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1form_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1form.html">liblec::lecui::form</a></div><div class="ttdoc">Form base class. The user must inherit from this class and call one of the two constructors from its ...</div><div class="ttdef"><b>Definition:</b> form.h:101</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1rect_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1rect.html">liblec::lecui::rect</a></div><div class="ttdef"><b>Definition:</b> lecui.h:87</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1label__builder_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1label__builder.html">liblec::lecui::widgets::label_builder</a></div><div class="ttdoc">Label widget builder.</div><div class="ttdef"><b>Definition:</b> label.h:165</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1label__builder_html_a0c38c8af3e60bd17587c12b85d1ded83"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1label__builder.html#a0c38c8af3e60bd17587c12b85d1ded83">liblec::lecui::widgets::label_builder::label_builder</a></div><div class="ttdeci">label_builder(containers::page &amp;page)</div><div class="ttdoc">Label builder constructor.</div></div>
@@ -224,7 +224,7 @@ $(function() {
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1label__specs_html_ae0bcefdfa52414e200103203446b61bc"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1label__specs.html#ae0bcefdfa52414e200103203446b61bc">liblec::lecui::widgets::label_specs::center_h</a></div><div class="ttdeci">bool &amp; center_h()</div><div class="ttdoc">Get or set the property for whether to center the text horizontally.</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1label__specs_html_aee012e0c1ec31d63c1b29bfb163feaad"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1label__specs.html#aee012e0c1ec31d63c1b29bfb163feaad">liblec::lecui::widgets::label_specs::color_hot_pressed</a></div><div class="ttdeci">color &amp; color_hot_pressed()</div><div class="ttdoc">Get or set the color used when the label is pressed and the mouse is over it.</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1specs_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1specs.html">liblec::lecui::widgets::specs</a></div><div class="ttdoc">Base class for all widget specifications.</div><div class="ttdef"><b>Definition:</b> widget.h:24</div></div>
-<div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1specs_html_a3cba4c05a958d80dca72e4e9dd5360b1"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1specs.html#a3cba4c05a958d80dca72e4e9dd5360b1">liblec::lecui::widgets::specs::cursor_type</a></div><div class="ttdeci">cursor_type</div><div class="ttdoc">Mouse cursor type.</div><div class="ttdef"><b>Definition:</b> widget.h:72</div></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1specs_html_a3cba4c05a958d80dca72e4e9dd5360b1"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1specs.html#a3cba4c05a958d80dca72e4e9dd5360b1">liblec::lecui::widgets::specs::cursor_type</a></div><div class="ttdeci">cursor_type</div><div class="ttdoc">Mouse cursor type.</div><div class="ttdef"><b>Definition:</b> widget.h:80</div></div>
 <div class="ttc" id="astructliblec_1_1lecui_1_1widgets_1_1specs_1_1resize__params_html"><div class="ttname"><a href="structliblec_1_1lecui_1_1widgets_1_1specs_1_1resize__params.html">liblec::lecui::widgets::specs::resize_params</a></div><div class="ttdoc">Resize parameters.</div><div class="ttdef"><b>Definition:</b> widget.h:29</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

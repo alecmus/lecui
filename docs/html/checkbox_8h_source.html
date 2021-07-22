@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">lecui
-   &#160;<span id="projectnumber">1.0.0-alpha.5</span>
+   &#160;<span id="projectnumber">1.0.0-alpha.6</span>
    </div>
    <div id="projectbrief">lecui C++ user interface library</div>
   </td>
@@ -103,17 +103,17 @@ $(function() {
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;                };</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;            <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;                <span class="keywordtype">float</span> border_ = .5f;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1color.html">color</a> color_border_;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;                std::string text_unchecked_;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                std::string text_indeterminate_;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1color.html">color</a> color_check_;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                checkbox_status status_ = checkbox_status::indeterminate;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;                <span class="keywordtype">float</span> _border = .5f;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1color.html">color</a> _color_border;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;                std::string _text_unchecked;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                std::string _text_indeterminate;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1color.html">color</a> _color_check;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                checkbox_status _status = checkbox_status::indeterminate;</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;            <span class="keyword">public</span>:</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1widgets_1_1checkbox__specs.html">checkbox_specs</a>() {</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;                    cursor_ = cursor_type::hand;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;                    rect_.size({ 20.f, 20.f });</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;                    _cursor = cursor_type::hand;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;                    _rect.size({ 20.f, 20.f });</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                }</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
 <div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="structliblec_1_1lecui_1_1widgets_1_1checkbox__specs_1_1checkbox__events.html">   53</a></span>&#160;                <span class="keyword">struct </span><a class="code" href="structliblec_1_1lecui_1_1widgets_1_1checkbox__specs_1_1checkbox__events.html">checkbox_events</a> : <a class="code" href="structliblec_1_1lecui_1_1widgets_1_1specs_1_1basic__events.html">basic_events</a> {</div>
@@ -121,7 +121,7 @@ $(function() {
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                };</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;                <a class="code" href="structliblec_1_1lecui_1_1widgets_1_1checkbox__specs_1_1checkbox__events.html">checkbox_events</a>&amp; events() {</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;                    <span class="keywordflow">return</span> checkbox_events_;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;                    <span class="keywordflow">return</span> _checkbox_events;</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;                }</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;                <span class="keywordtype">bool</span> operator==(<span class="keyword">const</span> <a class="code" href="classliblec_1_1lecui_1_1widgets_1_1checkbox__specs.html">checkbox_specs</a>&amp;);</div>
@@ -192,7 +192,7 @@ $(function() {
 <div class="line"><a name="l00158"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1widgets_1_1checkbox__specs.html#a92cecd1e47997fd3d032ed42c735d572">  158</a></span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1widgets_1_1checkbox__specs.html">checkbox_specs</a>&amp; <a class="code" href="classliblec_1_1lecui_1_1widgets_1_1checkbox__specs.html#a92cecd1e47997fd3d032ed42c735d572">status</a>(<span class="keyword">const</span> <a class="code" href="classliblec_1_1lecui_1_1widgets_1_1checkbox__specs.html#a314cf6327e18a379dc2cdee3f70c0cbb">checkbox_status</a>&amp; status);</div>
 <div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160; </div>
 <div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;            <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;                <a class="code" href="structliblec_1_1lecui_1_1widgets_1_1checkbox__specs_1_1checkbox__events.html">checkbox_events</a> checkbox_events_;</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;                <a class="code" href="structliblec_1_1lecui_1_1widgets_1_1checkbox__specs_1_1checkbox__events.html">checkbox_events</a> _checkbox_events;</div>
 <div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;            };</div>
 <div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160; </div>
 <div class="line"><a name="l00165"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1widgets_1_1checkbox__builder.html">  165</a></span>&#160;            <span class="keyword">class </span>lecui_api <a class="code" href="classliblec_1_1lecui_1_1widgets_1_1checkbox__builder.html">checkbox_builder</a> {</div>
@@ -213,7 +213,7 @@ $(function() {
 <div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160; </div>
 <div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;            <span class="keyword">private</span>:</div>
 <div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;                <span class="keyword">class </span>impl;</div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;                impl&amp; d_;</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;                impl&amp; _d;</div>
 <div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160; </div>
 <div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;                <span class="comment">// Default constructor and copying an object of this class are not allowed</span></div>
 <div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1widgets_1_1checkbox__builder.html">checkbox_builder</a>() = <span class="keyword">delete</span>;</div>
@@ -225,7 +225,7 @@ $(function() {
 <div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;}</div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1color_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1color.html">liblec::lecui::color</a></div><div class="ttdoc">RGBA color on a standard 0 to 255 scale. For the alpha channel 0 is transparent and 255 is opaque.</div><div class="ttdef"><b>Definition:</b> lecui.h:247</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1containers_1_1page_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1containers_1_1page.html">liblec::lecui::containers::page</a></div><div class="ttdoc">Page container.</div><div class="ttdef"><b>Definition:</b> page.h:31</div></div>
-<div class="ttc" id="aclassliblec_1_1lecui_1_1form_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1form.html">liblec::lecui::form</a></div><div class="ttdoc">Form base class. The user must inherit from this class and call one of the two constructors from its ...</div><div class="ttdef"><b>Definition:</b> form.h:99</div></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1form_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1form.html">liblec::lecui::form</a></div><div class="ttdoc">Form base class. The user must inherit from this class and call one of the two constructors from its ...</div><div class="ttdef"><b>Definition:</b> form.h:101</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1rect_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1rect.html">liblec::lecui::rect</a></div><div class="ttdef"><b>Definition:</b> lecui.h:87</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1checkbox__builder_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1checkbox__builder.html">liblec::lecui::widgets::checkbox_builder</a></div><div class="ttdoc">Checkbox widget builder.</div><div class="ttdef"><b>Definition:</b> checkbox.h:165</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1checkbox__builder_html_a134977c5bc5036d50c3b91d350fae030"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1checkbox__builder.html#a134977c5bc5036d50c3b91d350fae030">liblec::lecui::widgets::checkbox_builder::checkbox_builder</a></div><div class="ttdeci">checkbox_builder(containers::page &amp;page)</div><div class="ttdoc">Checkbox builder constructor.</div></div>
@@ -260,9 +260,9 @@ $(function() {
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1checkbox__specs_html_ad510d3818a800fc37f80fbc41797b2b7"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1checkbox__specs.html#ad510d3818a800fc37f80fbc41797b2b7">liblec::lecui::widgets::checkbox_specs::text_unchecked</a></div><div class="ttdeci">std::string &amp; text_unchecked()</div><div class="ttdoc">Get or set the text to display when the widget is unchecked.</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1checkbox__specs_html_af6b00aff88b94512f99a9c57623267a9"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1checkbox__specs.html#af6b00aff88b94512f99a9c57623267a9">liblec::lecui::widgets::checkbox_specs::font</a></div><div class="ttdeci">std::string &amp; font() override</div><div class="ttdoc">Get or set the default widget font, e.g. &quot;Georgia&quot;.</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1specs_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1specs.html">liblec::lecui::widgets::specs</a></div><div class="ttdoc">Base class for all widget specifications.</div><div class="ttdef"><b>Definition:</b> widget.h:24</div></div>
-<div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1specs_html_a3cba4c05a958d80dca72e4e9dd5360b1"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1specs.html#a3cba4c05a958d80dca72e4e9dd5360b1">liblec::lecui::widgets::specs::cursor_type</a></div><div class="ttdeci">cursor_type</div><div class="ttdoc">Mouse cursor type.</div><div class="ttdef"><b>Definition:</b> widget.h:72</div></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1specs_html_a3cba4c05a958d80dca72e4e9dd5360b1"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1specs.html#a3cba4c05a958d80dca72e4e9dd5360b1">liblec::lecui::widgets::specs::cursor_type</a></div><div class="ttdeci">cursor_type</div><div class="ttdoc">Mouse cursor type.</div><div class="ttdef"><b>Definition:</b> widget.h:80</div></div>
 <div class="ttc" id="astructliblec_1_1lecui_1_1widgets_1_1checkbox__specs_1_1checkbox__events_html"><div class="ttname"><a href="structliblec_1_1lecui_1_1widgets_1_1checkbox__specs_1_1checkbox__events.html">liblec::lecui::widgets::checkbox_specs::checkbox_events</a></div><div class="ttdoc">Events specific to this widget.</div><div class="ttdef"><b>Definition:</b> checkbox.h:53</div></div>
-<div class="ttc" id="astructliblec_1_1lecui_1_1widgets_1_1specs_1_1basic__events_html"><div class="ttname"><a href="structliblec_1_1lecui_1_1widgets_1_1specs_1_1basic__events.html">liblec::lecui::widgets::specs::basic_events</a></div><div class="ttdoc">Events common to all widgets.</div><div class="ttdef"><b>Definition:</b> widget.h:106</div></div>
+<div class="ttc" id="astructliblec_1_1lecui_1_1widgets_1_1specs_1_1basic__events_html"><div class="ttname"><a href="structliblec_1_1lecui_1_1widgets_1_1specs_1_1basic__events.html">liblec::lecui::widgets::specs::basic_events</a></div><div class="ttdoc">Events common to all widgets.</div><div class="ttdef"><b>Definition:</b> widget.h:113</div></div>
 <div class="ttc" id="astructliblec_1_1lecui_1_1widgets_1_1specs_1_1resize__params_html"><div class="ttname"><a href="structliblec_1_1lecui_1_1widgets_1_1specs_1_1resize__params.html">liblec::lecui::widgets::specs::resize_params</a></div><div class="ttdoc">Resize parameters.</div><div class="ttdef"><b>Definition:</b> widget.h:29</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

@@ -87,12 +87,12 @@ float \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1custom__specs_acc22
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-std\+::function$<$ void(void $\ast$ID2\+D1\+Hwnd\+Render\+Target\+\_\+, void $\ast$IDWrite\+Factory\+\_\+, void $\ast$IWICImaging\+Factory\+\_\+)$>$ \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1custom__specs_ab221f66cb37c211feb8cee231715fd66}{on\+\_\+create\+\_\+resources}} = nullptr
-\begin{DoxyCompactList}\small\item\em Handler for resource creation. The pointers need to be cast back to their Direct2D equivalents on the client side before they can be used. e.\+g. ID2\+D1\+Hwnd\+Render\+Target\+\_\+ can be cast using reinterpret\+\_\+cast to a ID2\+D1\+Hwnd\+Render\+Target. This will be called internally by the library when device-\/specific resources associated with the Direct3D device need to be (re)created. \end{DoxyCompactList}\item 
+std\+::function$<$ void(void $\ast$\+\_\+\+ID2\+D1\+Hwnd\+Render\+Target, void $\ast$\+\_\+\+IDWrite\+Factory, void $\ast$\+\_\+\+IWICImaging\+Factory)$>$ \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1custom__specs_a50c13d8fa7b9aba7b95019b2a8b865c8}{on\+\_\+create\+\_\+resources}} = nullptr
+\begin{DoxyCompactList}\small\item\em Handler for resource creation. The pointers need to be cast back to their Direct2D equivalents on the client side before they can be used. e.\+g. \+\_\+\+ID2\+D1\+Hwnd\+Render\+Target can be cast using reinterpret\+\_\+cast to a ID2\+D1\+Hwnd\+Render\+Target. This will be called internally by the library when device-\/specific resources associated with the Direct3D device need to be (re)created. \end{DoxyCompactList}\item 
 std\+::function$<$ void()$>$ \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1custom__specs_a3dffb94bb13c79b0f884582470ed5b84}{on\+\_\+discard\+\_\+resources}} = nullptr
 \begin{DoxyCompactList}\small\item\em Handler for discarding resources. This handler will be called internally by the library if the Direct3D device dissapears. \end{DoxyCompactList}\item 
-std\+::function$<$ void(void $\ast$D2\+D1\+\_\+\+RECT\+\_\+\+F\+\_\+, bool enabled\+\_\+, bool hit\+\_\+, bool pressed\+\_\+, bool selected\+\_\+)$>$ \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1custom__specs_a8d5a7a96aa6d3776b1bb1d5c2b546755}{on\+\_\+render}} = nullptr
-\begin{DoxyCompactList}\small\item\em Handler for rendering. All drawing should be done here. Information about the widget status are provided through the parameters, e.\+g. selected\+\_\+ is true if the widget is currently selected in the user interface and pressed\+\_\+ is true if the left mouse button has not yet been released after it was pressed down while the cursor was within the widget. \end{DoxyCompactList}\end{DoxyCompactItemize}
+std\+::function$<$ void(void $\ast$\+\_\+\+D2\+D1\+\_\+\+RECT\+\_\+F, bool \+\_\+enabled, bool \+\_\+hit, bool \+\_\+pressed, bool \+\_\+selected)$>$ \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1custom__specs_af54b22505ae235061e21674e67707ff6}{on\+\_\+render}} = nullptr
+\begin{DoxyCompactList}\small\item\em Handler for rendering. All drawing should be done here. Information about the widget status are provided through the parameters, e.\+g. \+\_\+selected is true if the widget is currently selected in the user interface and \+\_\+pressed is true if the left mouse button has not yet been released after it was pressed down while the cursor was within the widget. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
 
 
@@ -319,15 +319,15 @@ Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_af82deb362b
 
 
 \doxysubsection{Member Data Documentation}
-\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1custom__specs_ab221f66cb37c211feb8cee231715fd66}\label{classliblec_1_1lecui_1_1widgets_1_1custom__specs_ab221f66cb37c211feb8cee231715fd66}} 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1custom__specs_a50c13d8fa7b9aba7b95019b2a8b865c8}\label{classliblec_1_1lecui_1_1widgets_1_1custom__specs_a50c13d8fa7b9aba7b95019b2a8b865c8}} 
 \index{liblec::lecui::widgets::custom\_specs@{liblec::lecui::widgets::custom\_specs}!on\_create\_resources@{on\_create\_resources}}
 \index{on\_create\_resources@{on\_create\_resources}!liblec::lecui::widgets::custom\_specs@{liblec::lecui::widgets::custom\_specs}}
 \doxysubsubsection{\texorpdfstring{on\_create\_resources}{on\_create\_resources}}
-{\footnotesize\ttfamily std\+::function$<$void( void$\ast$ ID2\+D1\+Hwnd\+Render\+Target\+\_\+, void$\ast$ IDWrite\+Factory\+\_\+, void$\ast$ IWICImaging\+Factory\+\_\+)$>$ liblec\+::lecui\+::widgets\+::custom\+\_\+specs\+::on\+\_\+create\+\_\+resources = nullptr}
+{\footnotesize\ttfamily std\+::function$<$void( void$\ast$ \+\_\+\+ID2\+D1\+Hwnd\+Render\+Target, void$\ast$ \+\_\+\+IDWrite\+Factory, void$\ast$ \+\_\+\+IWICImaging\+Factory)$>$ liblec\+::lecui\+::widgets\+::custom\+\_\+specs\+::on\+\_\+create\+\_\+resources = nullptr}
 
 
 
-Handler for resource creation. The pointers need to be cast back to their Direct2D equivalents on the client side before they can be used. e.\+g. ID2\+D1\+Hwnd\+Render\+Target\+\_\+ can be cast using reinterpret\+\_\+cast to a ID2\+D1\+Hwnd\+Render\+Target. This will be called internally by the library when device-\/specific resources associated with the Direct3D device need to be (re)created. 
+Handler for resource creation. The pointers need to be cast back to their Direct2D equivalents on the client side before they can be used. e.\+g. \+\_\+\+ID2\+D1\+Hwnd\+Render\+Target can be cast using reinterpret\+\_\+cast to a ID2\+D1\+Hwnd\+Render\+Target. This will be called internally by the library when device-\/specific resources associated with the Direct3D device need to be (re)created. 
 
 \mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1custom__specs_a3dffb94bb13c79b0f884582470ed5b84}\label{classliblec_1_1lecui_1_1widgets_1_1custom__specs_a3dffb94bb13c79b0f884582470ed5b84}} 
 \index{liblec::lecui::widgets::custom\_specs@{liblec::lecui::widgets::custom\_specs}!on\_discard\_resources@{on\_discard\_resources}}
@@ -339,15 +339,15 @@ Handler for resource creation. The pointers need to be cast back to their Direct
 
 Handler for discarding resources. This handler will be called internally by the library if the Direct3D device dissapears. 
 
-\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1custom__specs_a8d5a7a96aa6d3776b1bb1d5c2b546755}\label{classliblec_1_1lecui_1_1widgets_1_1custom__specs_a8d5a7a96aa6d3776b1bb1d5c2b546755}} 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1custom__specs_af54b22505ae235061e21674e67707ff6}\label{classliblec_1_1lecui_1_1widgets_1_1custom__specs_af54b22505ae235061e21674e67707ff6}} 
 \index{liblec::lecui::widgets::custom\_specs@{liblec::lecui::widgets::custom\_specs}!on\_render@{on\_render}}
 \index{on\_render@{on\_render}!liblec::lecui::widgets::custom\_specs@{liblec::lecui::widgets::custom\_specs}}
 \doxysubsubsection{\texorpdfstring{on\_render}{on\_render}}
-{\footnotesize\ttfamily std\+::function$<$void( void$\ast$ D2\+D1\+\_\+\+RECT\+\_\+\+F\+\_\+, bool enabled\+\_\+, bool hit\+\_\+, bool pressed\+\_\+, bool selected\+\_\+)$>$ liblec\+::lecui\+::widgets\+::custom\+\_\+specs\+::on\+\_\+render = nullptr}
+{\footnotesize\ttfamily std\+::function$<$void( void$\ast$ \+\_\+\+D2\+D1\+\_\+\+RECT\+\_\+F, bool \+\_\+enabled, bool \+\_\+hit, bool \+\_\+pressed, bool \+\_\+selected)$>$ liblec\+::lecui\+::widgets\+::custom\+\_\+specs\+::on\+\_\+render = nullptr}
 
 
 
-Handler for rendering. All drawing should be done here. Information about the widget status are provided through the parameters, e.\+g. selected\+\_\+ is true if the widget is currently selected in the user interface and pressed\+\_\+ is true if the left mouse button has not yet been released after it was pressed down while the cursor was within the widget. 
+Handler for rendering. All drawing should be done here. Information about the widget status are provided through the parameters, e.\+g. \+\_\+selected is true if the widget is currently selected in the user interface and \+\_\+pressed is true if the left mouse button has not yet been released after it was pressed down while the cursor was within the widget. 
 
 
 

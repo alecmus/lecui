@@ -12,9 +12,9 @@ Pane container builder.
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1pane__builder_aba5e4fa6e378a01c1087d95972e011e9}{pane\+\_\+builder}} (\mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1page}{containers\+::page}} \&\mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1page}{page}})
+\mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1pane__builder_a940b4b1d1bc4857560c1d7b551278edc}{pane\+\_\+builder}} (\mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1page}{containers\+::page}} \&\mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1page}{page}}, const float \&content\+\_\+margin=10.f)
 \begin{DoxyCompactList}\small\item\em Pane builder constructor. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1pane__builder_a53819d115ab4989bfa62b1a46fc8cf75}{pane\+\_\+builder}} (\mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1page}{containers\+::page}} \&\mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1page}{page}}, const std\+::string \&alias)
+\mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1pane__builder_a84684f1ffbf28a5719089fcd692974b0}{pane\+\_\+builder}} (\mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1page}{containers\+::page}} \&\mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1page}{page}}, const std\+::string \&alias, const float \&content\+\_\+margin=10.f)
 \begin{DoxyCompactList}\small\item\em Pane builder constructor. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1pane__specs}{pane\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1pane__builder_ae87c961c6ea4ee1d0c925a462fa14bd2}{specs}} ()
 \begin{DoxyCompactList}\small\item\em Get the pane specifications. \end{DoxyCompactList}\item 
@@ -37,11 +37,11 @@ Pane container builder.
 Any widget can be added to this container. Consequently, recursion is fully supported, allowing panes within panes, to virtually any depth level that the memory of the computer the app is running on can permit.
 
 \doxysubsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1pane__builder_aba5e4fa6e378a01c1087d95972e011e9}\label{classliblec_1_1lecui_1_1containers_1_1pane__builder_aba5e4fa6e378a01c1087d95972e011e9}} 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1pane__builder_a940b4b1d1bc4857560c1d7b551278edc}\label{classliblec_1_1lecui_1_1containers_1_1pane__builder_a940b4b1d1bc4857560c1d7b551278edc}} 
 \index{liblec::lecui::containers::pane\_builder@{liblec::lecui::containers::pane\_builder}!pane\_builder@{pane\_builder}}
 \index{pane\_builder@{pane\_builder}!liblec::lecui::containers::pane\_builder@{liblec::lecui::containers::pane\_builder}}
 \doxysubsubsection{\texorpdfstring{pane\_builder()}{pane\_builder()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily liblec\+::lecui\+::containers\+::pane\+\_\+builder\+::pane\+\_\+builder (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1page}{containers\+::page}} \&}]{page }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily liblec\+::lecui\+::containers\+::pane\+\_\+builder\+::pane\+\_\+builder (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1page}{containers\+::page}} \&}]{page,  }\item[{const float \&}]{content\+\_\+margin = {\ttfamily 10.f} }\end{DoxyParamCaption})}
 
 
 
@@ -51,14 +51,16 @@ Pane builder constructor.
 \begin{DoxyParams}{Parameters}
 {\em page} & A reference to the container to place the pane in.\\
 \hline
+{\em content\+\_\+margin} & The margin to use inside the pane.\\
+\hline
 \end{DoxyParams}
 
 
-This constructs the container with an internally generated random alias.\mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1pane__builder_a53819d115ab4989bfa62b1a46fc8cf75}\label{classliblec_1_1lecui_1_1containers_1_1pane__builder_a53819d115ab4989bfa62b1a46fc8cf75}} 
+This constructs the container with an internally generated random alias.\mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1pane__builder_a84684f1ffbf28a5719089fcd692974b0}\label{classliblec_1_1lecui_1_1containers_1_1pane__builder_a84684f1ffbf28a5719089fcd692974b0}} 
 \index{liblec::lecui::containers::pane\_builder@{liblec::lecui::containers::pane\_builder}!pane\_builder@{pane\_builder}}
 \index{pane\_builder@{pane\_builder}!liblec::lecui::containers::pane\_builder@{liblec::lecui::containers::pane\_builder}}
 \doxysubsubsection{\texorpdfstring{pane\_builder()}{pane\_builder()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily liblec\+::lecui\+::containers\+::pane\+\_\+builder\+::pane\+\_\+builder (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1page}{containers\+::page}} \&}]{page,  }\item[{const std\+::string \&}]{alias }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily liblec\+::lecui\+::containers\+::pane\+\_\+builder\+::pane\+\_\+builder (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1page}{containers\+::page}} \&}]{page,  }\item[{const std\+::string \&}]{alias,  }\item[{const float \&}]{content\+\_\+margin = {\ttfamily 10.f} }\end{DoxyParamCaption})}
 
 
 
@@ -69,6 +71,8 @@ Pane builder constructor.
 {\em page} & A reference to the container to place the pane in.\\
 \hline
 {\em alias} & The in-\/page unique alias, e.\+g. \char`\"{}settings\+\_\+pane\char`\"{}.\\
+\hline
+{\em content\+\_\+margin} & The margin to use inside the pane.\\
 \hline
 \end{DoxyParams}
 

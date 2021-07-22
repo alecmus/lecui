@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">lecui
-   &#160;<span id="projectnumber">1.0.0-alpha.5</span>
+   &#160;<span id="projectnumber">1.0.0-alpha.6</span>
    </div>
    <div id="projectbrief">lecui C++ user interface library</div>
   </td>
@@ -93,16 +93,16 @@ $(function() {
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keyword">namespace </span>lecui {</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        <span class="keyword">namespace </span>widgets {</div>
 <div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1widgets_1_1toggle__specs.html">   25</a></span>&#160;            <span class="keyword">class </span>lecui_api <a class="code" href="classliblec_1_1lecui_1_1widgets_1_1toggle__specs.html">toggle_specs</a> : <span class="keyword">public</span> <a class="code" href="classliblec_1_1lecui_1_1widgets_1_1specs.html">specs</a> {</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;                std::string text_off_ = <span class="stringliteral">&quot;Off&quot;</span>;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1color.html">color</a> color_on_;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1color.html">color</a> color_off_;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                <span class="keywordtype">bool</span> on_ = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;                std::string _text_off = <span class="stringliteral">&quot;Off&quot;</span>;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1color.html">color</a> _color_on;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1color.html">color</a> _color_off;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                <span class="keywordtype">bool</span> _on = <span class="keyword">false</span>;</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;            <span class="keyword">public</span>:</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1widgets_1_1toggle__specs.html">toggle_specs</a>() {</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;                    cursor_ = cursor_type::hand;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;                    rect_.size({ 200.f, 20.f });</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;                    text_ = <span class="stringliteral">&quot;On&quot;</span>;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;                    _cursor = cursor_type::hand;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;                    _rect.size({ 200.f, 20.f });</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;                    _text = <span class="stringliteral">&quot;On&quot;</span>;</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;                }</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
 <div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="structliblec_1_1lecui_1_1widgets_1_1toggle__specs_1_1toggle__events.html">   39</a></span>&#160;                <span class="keyword">struct </span><a class="code" href="structliblec_1_1lecui_1_1widgets_1_1toggle__specs_1_1toggle__events.html">toggle_events</a> : <a class="code" href="structliblec_1_1lecui_1_1widgets_1_1specs_1_1basic__events.html">basic_events</a> {</div>
@@ -110,7 +110,7 @@ $(function() {
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                };</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                <a class="code" href="structliblec_1_1lecui_1_1widgets_1_1toggle__specs_1_1toggle__events.html">toggle_events</a>&amp; events() {</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;                    <span class="keywordflow">return</span> toggle_events_;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;                    <span class="keywordflow">return</span> _toggle_events;</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                }</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;                <span class="keywordtype">bool</span> operator==(<span class="keyword">const</span> <a class="code" href="classliblec_1_1lecui_1_1widgets_1_1toggle__specs.html">toggle_specs</a>&amp;);</div>
@@ -172,7 +172,7 @@ $(function() {
 <div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1widgets_1_1toggle__specs.html">toggle_specs</a>&amp; on(<span class="keyword">const</span> <span class="keywordtype">bool</span>&amp; on);</div>
 <div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160; </div>
 <div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;            <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;                <a class="code" href="structliblec_1_1lecui_1_1widgets_1_1toggle__specs_1_1toggle__events.html">toggle_events</a> toggle_events_;</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;                <a class="code" href="structliblec_1_1lecui_1_1widgets_1_1toggle__specs_1_1toggle__events.html">toggle_events</a> _toggle_events;</div>
 <div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;            };</div>
 <div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160; </div>
 <div class="line"><a name="l00129"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1widgets_1_1toggle__builder.html">  129</a></span>&#160;            <span class="keyword">class </span>lecui_api <a class="code" href="classliblec_1_1lecui_1_1widgets_1_1toggle__builder.html">toggle_builder</a> {</div>
@@ -193,7 +193,7 @@ $(function() {
 <div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160; </div>
 <div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;            <span class="keyword">private</span>:</div>
 <div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;                <span class="keyword">class </span>impl;</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;                impl&amp; d_;</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;                impl&amp; _d;</div>
 <div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160; </div>
 <div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;                <span class="comment">// Default constructor and copying an object of this class are not allowed</span></div>
 <div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1widgets_1_1toggle__builder.html">toggle_builder</a>() = <span class="keyword">delete</span>;</div>
@@ -205,10 +205,10 @@ $(function() {
 <div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;}</div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1color_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1color.html">liblec::lecui::color</a></div><div class="ttdoc">RGBA color on a standard 0 to 255 scale. For the alpha channel 0 is transparent and 255 is opaque.</div><div class="ttdef"><b>Definition:</b> lecui.h:247</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1containers_1_1page_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1containers_1_1page.html">liblec::lecui::containers::page</a></div><div class="ttdoc">Page container.</div><div class="ttdef"><b>Definition:</b> page.h:31</div></div>
-<div class="ttc" id="aclassliblec_1_1lecui_1_1form_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1form.html">liblec::lecui::form</a></div><div class="ttdoc">Form base class. The user must inherit from this class and call one of the two constructors from its ...</div><div class="ttdef"><b>Definition:</b> form.h:99</div></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1form_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1form.html">liblec::lecui::form</a></div><div class="ttdoc">Form base class. The user must inherit from this class and call one of the two constructors from its ...</div><div class="ttdef"><b>Definition:</b> form.h:101</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1rect_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1rect.html">liblec::lecui::rect</a></div><div class="ttdef"><b>Definition:</b> lecui.h:87</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1specs_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1specs.html">liblec::lecui::widgets::specs</a></div><div class="ttdoc">Base class for all widget specifications.</div><div class="ttdef"><b>Definition:</b> widget.h:24</div></div>
-<div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1specs_html_a3cba4c05a958d80dca72e4e9dd5360b1"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1specs.html#a3cba4c05a958d80dca72e4e9dd5360b1">liblec::lecui::widgets::specs::cursor_type</a></div><div class="ttdeci">cursor_type</div><div class="ttdoc">Mouse cursor type.</div><div class="ttdef"><b>Definition:</b> widget.h:72</div></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1specs_html_a3cba4c05a958d80dca72e4e9dd5360b1"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1specs.html#a3cba4c05a958d80dca72e4e9dd5360b1">liblec::lecui::widgets::specs::cursor_type</a></div><div class="ttdeci">cursor_type</div><div class="ttdoc">Mouse cursor type.</div><div class="ttdef"><b>Definition:</b> widget.h:80</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1toggle__builder_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1toggle__builder.html">liblec::lecui::widgets::toggle_builder</a></div><div class="ttdoc">Toggle widget builder.</div><div class="ttdef"><b>Definition:</b> toggle.h:129</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1toggle__builder_html_a0e80524a38c6b1f3ff002ad5d0ecd70a"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1toggle__builder.html#a0e80524a38c6b1f3ff002ad5d0ecd70a">liblec::lecui::widgets::toggle_builder::operator()</a></div><div class="ttdeci">toggle_specs &amp; operator()()</div><div class="ttdoc">Get the toggle specifications.</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1toggle__builder_html_a4a6d9e5b07b96347d0c69035171582b6"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1toggle__builder.html#a4a6d9e5b07b96347d0c69035171582b6">liblec::lecui::widgets::toggle_builder::toggle_builder</a></div><div class="ttdeci">toggle_builder(containers::page &amp;page)</div><div class="ttdoc">Toggle builder constructor.</div></div>
@@ -235,7 +235,7 @@ $(function() {
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1toggle__specs_html_ac5a796ee30446ce224c907ba0d2be74d"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1toggle__specs.html#ac5a796ee30446ce224c907ba0d2be74d">liblec::lecui::widgets::toggle_specs::rect</a></div><div class="ttdeci">lecui::rect &amp; rect() override</div><div class="ttdoc">Get or set the position and dimensions of the widget.</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1toggle__specs_html_adad40457db93e7797c3fc77f6e25f8b0"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1toggle__specs.html#adad40457db93e7797c3fc77f6e25f8b0">liblec::lecui::widgets::toggle_specs::font_size</a></div><div class="ttdeci">float &amp; font_size() override</div><div class="ttdoc">Get or set the default widget font size in points, e.g. 9.0.</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1toggle__specs_html_af5f17e3c9acbc0d5e7e0734b5a47fce8"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1toggle__specs.html#af5f17e3c9acbc0d5e7e0734b5a47fce8">liblec::lecui::widgets::toggle_specs::color_disabled</a></div><div class="ttdeci">color &amp; color_disabled() override</div><div class="ttdoc">Get or set the widget's color when it's disabled.</div></div>
-<div class="ttc" id="astructliblec_1_1lecui_1_1widgets_1_1specs_1_1basic__events_html"><div class="ttname"><a href="structliblec_1_1lecui_1_1widgets_1_1specs_1_1basic__events.html">liblec::lecui::widgets::specs::basic_events</a></div><div class="ttdoc">Events common to all widgets.</div><div class="ttdef"><b>Definition:</b> widget.h:106</div></div>
+<div class="ttc" id="astructliblec_1_1lecui_1_1widgets_1_1specs_1_1basic__events_html"><div class="ttname"><a href="structliblec_1_1lecui_1_1widgets_1_1specs_1_1basic__events.html">liblec::lecui::widgets::specs::basic_events</a></div><div class="ttdoc">Events common to all widgets.</div><div class="ttdef"><b>Definition:</b> widget.h:113</div></div>
 <div class="ttc" id="astructliblec_1_1lecui_1_1widgets_1_1specs_1_1resize__params_html"><div class="ttname"><a href="structliblec_1_1lecui_1_1widgets_1_1specs_1_1resize__params.html">liblec::lecui::widgets::specs::resize_params</a></div><div class="ttdoc">Resize parameters.</div><div class="ttdef"><b>Definition:</b> widget.h:29</div></div>
 <div class="ttc" id="astructliblec_1_1lecui_1_1widgets_1_1toggle__specs_1_1toggle__events_html"><div class="ttname"><a href="structliblec_1_1lecui_1_1widgets_1_1toggle__specs_1_1toggle__events.html">liblec::lecui::widgets::toggle_specs::toggle_events</a></div><div class="ttdoc">Events specific to this widget.</div><div class="ttdef"><b>Definition:</b> toggle.h:39</div></div>
 </div><!-- fragment --></div><!-- contents -->

@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">lecui
-   &#160;<span id="projectnumber">1.0.0-alpha.5</span>
+   &#160;<span id="projectnumber">1.0.0-alpha.6</span>
    </div>
    <div id="projectbrief">lecui C++ user interface library</div>
   </td>
@@ -119,16 +119,16 @@ $(function() {
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                };</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;            <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                <span class="keywordtype">float</span> border_ = .5f;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;                color color_border_;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                <span class="keywordtype">float</span> corner_radius_x_ = 5.f;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                <span class="keywordtype">float</span> corner_radius_y_ = 5.f;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;                std::map&lt;std::string, node&gt; root_;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;                <span class="keywordtype">void</span>* p_special_pane_specs_ = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                <span class="keywordtype">float</span> _border = .5f;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;                color _color_border;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                <span class="keywordtype">float</span> _corner_radius_x = 5.f;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                <span class="keywordtype">float</span> _corner_radius_y = 5.f;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;                std::map&lt;std::string, node&gt; _root;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;                <span class="keywordtype">void</span>* _p_special_pane_specs = <span class="keyword">nullptr</span>;</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            <span class="keyword">public</span>:</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;                tree_view_specs() {</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                    rect_.<a class="code" href="classliblec_1_1lecui_1_1rect.html#aa23ae9c2a0722c4bee246e8ae5542f15">size</a>({ 200.f, 200.f });</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                    _rect.<a class="code" href="classliblec_1_1lecui_1_1rect.html#aa23ae9c2a0722c4bee246e8ae5542f15">size</a>({ 200.f, 200.f });</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                }</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
 <div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1widgets_1_1tree__view__specs.html#a4d4ff134a2824758de888bea7268721c">   72</a></span>&#160;                <span class="keyword">static</span> <a class="code" href="classliblec_1_1lecui_1_1widgets_1_1tree__view__specs_1_1node.html">node</a>&amp; <a class="code" href="classliblec_1_1lecui_1_1widgets_1_1tree__view__specs.html#a4d4ff134a2824758de888bea7268721c">insert_node</a>(std::map&lt;std::string, node&gt;&amp; root,</div>
@@ -142,7 +142,7 @@ $(function() {
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;                };</div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;                <a class="code" href="structliblec_1_1lecui_1_1widgets_1_1tree__view__specs_1_1tree__view__events.html">tree_view_events</a>&amp; events() {</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;                    <span class="keywordflow">return</span> tree_events_;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;                    <span class="keywordflow">return</span> _tree_events;</div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;                }</div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;                <span class="keywordtype">bool</span> operator==(<span class="keyword">const</span> <a class="code" href="classliblec_1_1lecui_1_1widgets_1_1tree__view__specs.html">tree_view_specs</a>&amp;);</div>
@@ -211,7 +211,7 @@ $(function() {
 <div class="line"><a name="l00177"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1widgets_1_1tree__view__specs.html#ae48c720cc23ea56b12e7b17ab46798db">  177</a></span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1widgets_1_1tree__view__specs.html">tree_view_specs</a>&amp; <a class="code" href="classliblec_1_1lecui_1_1widgets_1_1tree__view__specs.html#ae48c720cc23ea56b12e7b17ab46798db">root</a>(<span class="keyword">const</span> std::map&lt;std::string, node&gt;&amp; root);</div>
 <div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160; </div>
 <div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;            <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;                <a class="code" href="structliblec_1_1lecui_1_1widgets_1_1tree__view__specs_1_1tree__view__events.html">tree_view_events</a> tree_events_;</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;                <a class="code" href="structliblec_1_1lecui_1_1widgets_1_1tree__view__specs_1_1tree__view__events.html">tree_view_events</a> _tree_events;</div>
 <div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160; </div>
 <div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;<span class="preprocessor">#if defined(LECUI_EXPORTS)</span></div>
 <div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;                <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classliblec_1_1lecui_1_1form.html">form</a>;</div>
@@ -236,7 +236,7 @@ $(function() {
 <div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160; </div>
 <div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;            <span class="keyword">private</span>:</div>
 <div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;                <span class="keyword">class </span>impl;</div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;                impl&amp; d_;</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;                impl&amp; _d;</div>
 <div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160; </div>
 <div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;                <span class="comment">// Default constructor and copying an object of this class are not allowed</span></div>
 <div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1widgets_1_1tree__view__builder.html">tree_view_builder</a>() = <span class="keyword">delete</span>;</div>
@@ -248,11 +248,11 @@ $(function() {
 <div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;}</div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1color_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1color.html">liblec::lecui::color</a></div><div class="ttdoc">RGBA color on a standard 0 to 255 scale. For the alpha channel 0 is transparent and 255 is opaque.</div><div class="ttdef"><b>Definition:</b> lecui.h:247</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1containers_1_1page_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1containers_1_1page.html">liblec::lecui::containers::page</a></div><div class="ttdoc">Page container.</div><div class="ttdef"><b>Definition:</b> page.h:31</div></div>
-<div class="ttc" id="aclassliblec_1_1lecui_1_1form_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1form.html">liblec::lecui::form</a></div><div class="ttdoc">Form base class. The user must inherit from this class and call one of the two constructors from its ...</div><div class="ttdef"><b>Definition:</b> form.h:99</div></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1form_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1form.html">liblec::lecui::form</a></div><div class="ttdoc">Form base class. The user must inherit from this class and call one of the two constructors from its ...</div><div class="ttdef"><b>Definition:</b> form.h:101</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1rect_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1rect.html">liblec::lecui::rect</a></div><div class="ttdef"><b>Definition:</b> lecui.h:87</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1rect_html_aa23ae9c2a0722c4bee246e8ae5542f15"><div class="ttname"><a href="classliblec_1_1lecui_1_1rect.html#aa23ae9c2a0722c4bee246e8ae5542f15">liblec::lecui::rect::size</a></div><div class="ttdeci">size size() const</div><div class="ttdoc">Get the rectangle's size.</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1specs_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1specs.html">liblec::lecui::widgets::specs</a></div><div class="ttdoc">Base class for all widget specifications.</div><div class="ttdef"><b>Definition:</b> widget.h:24</div></div>
-<div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1specs_html_a3cba4c05a958d80dca72e4e9dd5360b1"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1specs.html#a3cba4c05a958d80dca72e4e9dd5360b1">liblec::lecui::widgets::specs::cursor_type</a></div><div class="ttdeci">cursor_type</div><div class="ttdoc">Mouse cursor type.</div><div class="ttdef"><b>Definition:</b> widget.h:72</div></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1specs_html_a3cba4c05a958d80dca72e4e9dd5360b1"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1specs.html#a3cba4c05a958d80dca72e4e9dd5360b1">liblec::lecui::widgets::specs::cursor_type</a></div><div class="ttdeci">cursor_type</div><div class="ttdoc">Mouse cursor type.</div><div class="ttdef"><b>Definition:</b> widget.h:80</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1tree__view__builder_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1tree__view__builder.html">liblec::lecui::widgets::tree_view_builder</a></div><div class="ttdoc">Tree view widget builder.</div><div class="ttdef"><b>Definition:</b> tree_view.h:188</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1tree__view__builder_html_a06cb9ad6be3b82c21286ad60948fb7d6"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1tree__view__builder.html#a06cb9ad6be3b82c21286ad60948fb7d6">liblec::lecui::widgets::tree_view_builder::operator()</a></div><div class="ttdeci">tree_view_specs &amp; operator()()</div><div class="ttdoc">Get the tree view specifications.</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1tree__view__builder_html_a2cb1fdb7597b132bd133b1507f584cfd"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1tree__view__builder.html#a2cb1fdb7597b132bd133b1507f584cfd">liblec::lecui::widgets::tree_view_builder::tree_view_builder</a></div><div class="ttdeci">tree_view_builder(containers::page &amp;page, const std::string &amp;alias)</div><div class="ttdoc">Tree view builder constructor.</div></div>
@@ -286,7 +286,7 @@ $(function() {
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1tree__view__specs_html_adfa0cd2bd428c28b829e66b1140a6e3d"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1tree__view__specs.html#adfa0cd2bd428c28b829e66b1140a6e3d">liblec::lecui::widgets::tree_view_specs::rect</a></div><div class="ttdeci">lecui::rect &amp; rect() override</div><div class="ttdoc">Get or set the position and dimensions of the widget.</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1tree__view__specs_html_ae36addb74beacb219006b089dda47f9c"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1tree__view__specs.html#ae36addb74beacb219006b089dda47f9c">liblec::lecui::widgets::tree_view_specs::font</a></div><div class="ttdeci">std::string &amp; font() override</div><div class="ttdoc">Get or set the default widget font, e.g. &quot;Georgia&quot;.</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1tree__view__specs_html_ae48c720cc23ea56b12e7b17ab46798db"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1tree__view__specs.html#ae48c720cc23ea56b12e7b17ab46798db">liblec::lecui::widgets::tree_view_specs::root</a></div><div class="ttdeci">tree_view_specs &amp; root(const std::map&lt; std::string, node &gt; &amp;root)</div><div class="ttdoc">Set the root of the tree.</div></div>
-<div class="ttc" id="astructliblec_1_1lecui_1_1widgets_1_1specs_1_1basic__events_html"><div class="ttname"><a href="structliblec_1_1lecui_1_1widgets_1_1specs_1_1basic__events.html">liblec::lecui::widgets::specs::basic_events</a></div><div class="ttdoc">Events common to all widgets.</div><div class="ttdef"><b>Definition:</b> widget.h:106</div></div>
+<div class="ttc" id="astructliblec_1_1lecui_1_1widgets_1_1specs_1_1basic__events_html"><div class="ttname"><a href="structliblec_1_1lecui_1_1widgets_1_1specs_1_1basic__events.html">liblec::lecui::widgets::specs::basic_events</a></div><div class="ttdoc">Events common to all widgets.</div><div class="ttdef"><b>Definition:</b> widget.h:113</div></div>
 <div class="ttc" id="astructliblec_1_1lecui_1_1widgets_1_1specs_1_1resize__params_html"><div class="ttname"><a href="structliblec_1_1lecui_1_1widgets_1_1specs_1_1resize__params.html">liblec::lecui::widgets::specs::resize_params</a></div><div class="ttdoc">Resize parameters.</div><div class="ttdef"><b>Definition:</b> widget.h:29</div></div>
 <div class="ttc" id="astructliblec_1_1lecui_1_1widgets_1_1tree__view__specs_1_1tree__view__events_html"><div class="ttname"><a href="structliblec_1_1lecui_1_1widgets_1_1tree__view__specs_1_1tree__view__events.html">liblec::lecui::widgets::tree_view_specs::tree_view_events</a></div><div class="ttdef"><b>Definition:</b> tree_view.h:78</div></div>
 <div class="ttc" id="astructliblec_1_1lecui_1_1widgets_1_1tree__view__specs_1_1tree__view__events_html_a66386fc9d1958092590e12cc53161bc4"><div class="ttname"><a href="structliblec_1_1lecui_1_1widgets_1_1tree__view__specs_1_1tree__view__events.html#a66386fc9d1958092590e12cc53161bc4">liblec::lecui::widgets::tree_view_specs::tree_view_events::selection</a></div><div class="ttdeci">std::function&lt; void(node &amp;n)&gt; selection</div><div class="ttdoc">The handler to be called when the selection changes. The parameter will contain a reference to the ne...</div><div class="ttdef"><b>Definition:</b> tree_view.h:81</div></div>

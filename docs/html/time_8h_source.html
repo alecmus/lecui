@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">lecui
-   &#160;<span id="projectnumber">1.0.0-alpha.5</span>
+   &#160;<span id="projectnumber">1.0.0-alpha.6</span>
    </div>
    <div id="projectbrief">lecui C++ user interface library</div>
   </td>
@@ -93,16 +93,16 @@ $(function() {
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keyword">namespace </span>lecui {</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        <span class="keyword">namespace </span>widgets {</div>
 <div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1widgets_1_1time__specs.html">   24</a></span>&#160;            <span class="keyword">class </span>lecui_api <a class="code" href="classliblec_1_1lecui_1_1widgets_1_1time__specs.html">time_specs</a> : <span class="keyword">public</span> <a class="code" href="classliblec_1_1lecui_1_1widgets_1_1specs.html">specs</a> {</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;                <span class="keywordtype">float</span> border_ = .5f;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1color.html">color</a> color_border_;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                <span class="keywordtype">float</span> corner_radius_x_ = 2.f;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                <span class="keywordtype">float</span> corner_radius_y_ = 2.f;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1time.html">lecui::time</a> time_value_{};</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;                <span class="keywordtype">void</span>* p_special_pane_specs_ = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;                <span class="keywordtype">float</span> _border = .5f;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1color.html">color</a> _color_border;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                <span class="keywordtype">float</span> _corner_radius_x = 2.f;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                <span class="keywordtype">float</span> _corner_radius_y = 2.f;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1time.html">lecui::time</a> _time_value{};</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;                <span class="keywordtype">void</span>* _p_special_pane_specs = <span class="keyword">nullptr</span>;</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            <span class="keyword">public</span>:</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1widgets_1_1time__specs.html">time_specs</a>() {</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;                    rect_.size({ 90.f, 40.f });</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;                    _rect.size({ 90.f, 40.f });</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;                };</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
 <div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="structliblec_1_1lecui_1_1widgets_1_1time__specs_1_1time__events.html">   38</a></span>&#160;                <span class="keyword">struct </span><a class="code" href="structliblec_1_1lecui_1_1widgets_1_1time__specs_1_1time__events.html">time_events</a> : <a class="code" href="structliblec_1_1lecui_1_1widgets_1_1specs_1_1basic__events.html">basic_events</a> {</div>
@@ -110,7 +110,7 @@ $(function() {
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                };</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                <a class="code" href="structliblec_1_1lecui_1_1widgets_1_1time__specs_1_1time__events.html">time_events</a>&amp; events() {</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                    <span class="keywordflow">return</span> time_events_;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                    <span class="keywordflow">return</span> _time_events;</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;                }</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;                <span class="keywordtype">bool</span> operator==(<span class="keyword">const</span> <a class="code" href="classliblec_1_1lecui_1_1widgets_1_1time__specs.html">time_specs</a>&amp;);</div>
@@ -177,7 +177,7 @@ $(function() {
 <div class="line"><a name="l00134"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1widgets_1_1time__specs.html#a683fdab0e783aaef38218ba19828d0af">  134</a></span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1widgets_1_1time__specs.html">time_specs</a>&amp; <a class="code" href="classliblec_1_1lecui_1_1widgets_1_1time__specs.html#a683fdab0e783aaef38218ba19828d0af">time_value</a>(<span class="keyword">const</span> <a class="code" href="classliblec_1_1lecui_1_1time.html">lecui::time</a>&amp; time_value);</div>
 <div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160; </div>
 <div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;            <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;                <a class="code" href="structliblec_1_1lecui_1_1widgets_1_1time__specs_1_1time__events.html">time_events</a> time_events_;</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;                <a class="code" href="structliblec_1_1lecui_1_1widgets_1_1time__specs_1_1time__events.html">time_events</a> _time_events;</div>
 <div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160; </div>
 <div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;<span class="preprocessor">#if defined(LECUI_EXPORTS)</span></div>
 <div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;                <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classliblec_1_1lecui_1_1form.html">form</a>;</div>
@@ -202,7 +202,7 @@ $(function() {
 <div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160; </div>
 <div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;            <span class="keyword">private</span>:</div>
 <div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;                <span class="keyword">class </span>impl;</div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;                impl&amp; d_;</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;                impl&amp; _d;</div>
 <div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160; </div>
 <div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;                <span class="comment">// Default constructor and copying an object of this class are not allowed</span></div>
 <div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1widgets_1_1time__builder.html">time_builder</a>() = <span class="keyword">delete</span>;</div>
@@ -214,11 +214,11 @@ $(function() {
 <div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;}</div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1color_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1color.html">liblec::lecui::color</a></div><div class="ttdoc">RGBA color on a standard 0 to 255 scale. For the alpha channel 0 is transparent and 255 is opaque.</div><div class="ttdef"><b>Definition:</b> lecui.h:247</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1containers_1_1page_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1containers_1_1page.html">liblec::lecui::containers::page</a></div><div class="ttdoc">Page container.</div><div class="ttdef"><b>Definition:</b> page.h:31</div></div>
-<div class="ttc" id="aclassliblec_1_1lecui_1_1form_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1form.html">liblec::lecui::form</a></div><div class="ttdoc">Form base class. The user must inherit from this class and call one of the two constructors from its ...</div><div class="ttdef"><b>Definition:</b> form.h:99</div></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1form_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1form.html">liblec::lecui::form</a></div><div class="ttdoc">Form base class. The user must inherit from this class and call one of the two constructors from its ...</div><div class="ttdef"><b>Definition:</b> form.h:101</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1rect_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1rect.html">liblec::lecui::rect</a></div><div class="ttdef"><b>Definition:</b> lecui.h:87</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1time_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1time.html">liblec::lecui::time</a></div><div class="ttdoc">Time class.</div><div class="ttdef"><b>Definition:</b> lecui.h:392</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1specs_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1specs.html">liblec::lecui::widgets::specs</a></div><div class="ttdoc">Base class for all widget specifications.</div><div class="ttdef"><b>Definition:</b> widget.h:24</div></div>
-<div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1specs_html_a3cba4c05a958d80dca72e4e9dd5360b1"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1specs.html#a3cba4c05a958d80dca72e4e9dd5360b1">liblec::lecui::widgets::specs::cursor_type</a></div><div class="ttdeci">cursor_type</div><div class="ttdoc">Mouse cursor type.</div><div class="ttdef"><b>Definition:</b> widget.h:72</div></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1specs_html_a3cba4c05a958d80dca72e4e9dd5360b1"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1specs.html#a3cba4c05a958d80dca72e4e9dd5360b1">liblec::lecui::widgets::specs::cursor_type</a></div><div class="ttdeci">cursor_type</div><div class="ttdoc">Mouse cursor type.</div><div class="ttdef"><b>Definition:</b> widget.h:80</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1time__builder_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1time__builder.html">liblec::lecui::widgets::time_builder</a></div><div class="ttdoc">Time widget builder.</div><div class="ttdef"><b>Definition:</b> time.h:145</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1time__builder_html_a0920b23bd927dcc99e19573bf90fb5bc"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1time__builder.html#a0920b23bd927dcc99e19573bf90fb5bc">liblec::lecui::widgets::time_builder::operator()</a></div><div class="ttdeci">time_specs &amp; operator()()</div><div class="ttdoc">Get the time specifications.</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1time__builder_html_a28a50b5eb280ede3419789234705fd56"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1time__builder.html#a28a50b5eb280ede3419789234705fd56">liblec::lecui::widgets::time_builder::specs</a></div><div class="ttdeci">static time_specs &amp; specs(form &amp;fm, const std::string &amp;path)</div><div class="ttdoc">Get the specifications of a time.</div></div>
@@ -248,7 +248,7 @@ $(function() {
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1time__specs_html_ab1c89e00a94fe82b3cc78701a28cb8a9"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1time__specs.html#ab1c89e00a94fe82b3cc78701a28cb8a9">liblec::lecui::widgets::time_specs::border</a></div><div class="ttdeci">float &amp; border()</div><div class="ttdoc">Get or set the thickness of the border.</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1time__specs_html_abfdee25839eb31abed5a615cda90688d"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1time__specs.html#abfdee25839eb31abed5a615cda90688d">liblec::lecui::widgets::time_specs::tooltip</a></div><div class="ttdeci">std::string &amp; tooltip() override</div><div class="ttdoc">Get or set the widget's tooltip text.</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1time__specs_html_adaa695a6af4946c47a962282c7c928ed"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1time__specs.html#adaa695a6af4946c47a962282c7c928ed">liblec::lecui::widgets::time_specs::color_border</a></div><div class="ttdeci">time_specs &amp; color_border(const color &amp;color_border)</div><div class="ttdoc">Set the color of the border.</div></div>
-<div class="ttc" id="astructliblec_1_1lecui_1_1widgets_1_1specs_1_1basic__events_html"><div class="ttname"><a href="structliblec_1_1lecui_1_1widgets_1_1specs_1_1basic__events.html">liblec::lecui::widgets::specs::basic_events</a></div><div class="ttdoc">Events common to all widgets.</div><div class="ttdef"><b>Definition:</b> widget.h:106</div></div>
+<div class="ttc" id="astructliblec_1_1lecui_1_1widgets_1_1specs_1_1basic__events_html"><div class="ttname"><a href="structliblec_1_1lecui_1_1widgets_1_1specs_1_1basic__events.html">liblec::lecui::widgets::specs::basic_events</a></div><div class="ttdoc">Events common to all widgets.</div><div class="ttdef"><b>Definition:</b> widget.h:113</div></div>
 <div class="ttc" id="astructliblec_1_1lecui_1_1widgets_1_1specs_1_1resize__params_html"><div class="ttname"><a href="structliblec_1_1lecui_1_1widgets_1_1specs_1_1resize__params.html">liblec::lecui::widgets::specs::resize_params</a></div><div class="ttdoc">Resize parameters.</div><div class="ttdef"><b>Definition:</b> widget.h:29</div></div>
 <div class="ttc" id="astructliblec_1_1lecui_1_1widgets_1_1time__specs_1_1time__events_html"><div class="ttname"><a href="structliblec_1_1lecui_1_1widgets_1_1time__specs_1_1time__events.html">liblec::lecui::widgets::time_specs::time_events</a></div><div class="ttdoc">Events specific to this widget.</div><div class="ttdef"><b>Definition:</b> time.h:38</div></div>
 </div><!-- fragment --></div><!-- contents -->

@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">lecui
-   &#160;<span id="projectnumber">1.0.0-alpha.5</span>
+   &#160;<span id="projectnumber">1.0.0-alpha.6</span>
    </div>
    <div id="projectbrief">lecui C++ user interface library</div>
   </td>
@@ -103,26 +103,26 @@ $(function() {
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;                };</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;            <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;                <span class="keywordtype">bool</span> editable_ = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1color.html">color</a> color_fill_editable_;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1color.html">color</a> color_caret_;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1color.html">color</a> color_border_;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1color.html">color</a> color_dropdown_;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1color.html">color</a> color_dropdown_hot_;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1color.html">color</a> color_dropdown_arrow_;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1color.html">color</a> color_dropdown_arrow_hot_;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                <span class="keywordtype">float</span> border_ = .5f;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;                <span class="keywordtype">float</span> corner_radius_x_ = 2.f;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;                <span class="keywordtype">float</span> corner_radius_y_ = 2.f;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                std::vector&lt;combobox_item&gt; items_;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                image_quality quality_ = image_quality::high;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                sort_options sort_ = sort_options::ascending;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                <span class="keywordtype">bool</span> force_numerical_sort_ = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                std::string selected_;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;                <span class="keywordtype">bool</span> _editable = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1color.html">color</a> _color_fill_editable;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1color.html">color</a> _color_caret;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1color.html">color</a> _color_border;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1color.html">color</a> _color_dropdown;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1color.html">color</a> _color_dropdown_hot;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1color.html">color</a> _color_dropdown_arrow;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1color.html">color</a> _color_dropdown_arrow_hot;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                <span class="keywordtype">float</span> _border = .5f;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;                <span class="keywordtype">float</span> _corner_radius_x = 2.f;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;                <span class="keywordtype">float</span> _corner_radius_y = 2.f;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                std::vector&lt;combobox_item&gt; _items;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                image_quality _quality = image_quality::high;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                sort_options _sort = sort_options::ascending;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                <span class="keywordtype">bool</span> _force_numerical_sort = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                std::string _selected;</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            <span class="keyword">public</span>:</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1widgets_1_1combobox__specs.html">combobox_specs</a>() {</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                    rect_.size({ 200.f, 25.f });</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                    _rect.size({ 200.f, 25.f });</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;                }</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
 <div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="structliblec_1_1lecui_1_1widgets_1_1combobox__specs_1_1combobox__events.html">   62</a></span>&#160;                <span class="keyword">struct </span><a class="code" href="structliblec_1_1lecui_1_1widgets_1_1combobox__specs_1_1combobox__events.html">combobox_events</a> : <a class="code" href="structliblec_1_1lecui_1_1widgets_1_1specs_1_1basic__events.html">basic_events</a> {</div>
@@ -130,7 +130,7 @@ $(function() {
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                };</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;                <a class="code" href="structliblec_1_1lecui_1_1widgets_1_1combobox__specs_1_1combobox__events.html">combobox_events</a>&amp; events() {</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                    <span class="keywordflow">return</span> combobox_events_;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                    <span class="keywordflow">return</span> _combobox_events;</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;                }</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;                <span class="keywordtype">bool</span> operator==(<span class="keyword">const</span> <a class="code" href="classliblec_1_1lecui_1_1widgets_1_1combobox__specs.html">combobox_specs</a>&amp;);</div>
@@ -228,7 +228,7 @@ $(function() {
 <div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160; </div>
 <div class="line"><a name="l00229"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1widgets_1_1combobox__specs.html#a3d0bddb35e39b416419e50ef32ad410a">  229</a></span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1widgets_1_1combobox__specs.html">combobox_specs</a>&amp; <a class="code" href="classliblec_1_1lecui_1_1widgets_1_1combobox__specs.html#a3d0bddb35e39b416419e50ef32ad410a">quality</a>(<span class="keyword">const</span> image_quality&amp; quality);</div>
 <div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160; </div>
-<div class="line"><a name="l00233"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1widgets_1_1combobox__specs.html#a44700fe3b6e110dfe19a916436ac1754">  233</a></span>&#160;                sort_options&amp; <a class="code" href="classliblec_1_1lecui_1_1widgets_1_1combobox__specs.html#a44700fe3b6e110dfe19a916436ac1754">sort</a>() { <span class="keywordflow">return</span> sort_; }</div>
+<div class="line"><a name="l00233"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1widgets_1_1combobox__specs.html#a44700fe3b6e110dfe19a916436ac1754">  233</a></span>&#160;                sort_options&amp; <a class="code" href="classliblec_1_1lecui_1_1widgets_1_1combobox__specs.html#a44700fe3b6e110dfe19a916436ac1754">sort</a>() { <span class="keywordflow">return</span> _sort; }</div>
 <div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160; </div>
 <div class="line"><a name="l00238"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1widgets_1_1combobox__specs.html#aa0e5c5846df3f2613bdbeed02c9b7b68">  238</a></span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1widgets_1_1combobox__specs.html">combobox_specs</a>&amp; <a class="code" href="classliblec_1_1lecui_1_1widgets_1_1combobox__specs.html#aa0e5c5846df3f2613bdbeed02c9b7b68">sort</a>(<span class="keyword">const</span> sort_options&amp; sort);</div>
 <div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160; </div>
@@ -241,7 +241,7 @@ $(function() {
 <div class="line"><a name="l00270"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1widgets_1_1combobox__specs.html#aabd98b937e5ed4708ffebad880756293">  270</a></span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1widgets_1_1combobox__specs.html">combobox_specs</a>&amp; <a class="code" href="classliblec_1_1lecui_1_1widgets_1_1combobox__specs.html#aabd98b937e5ed4708ffebad880756293">selected</a>(<span class="keyword">const</span> std::string&amp; selected);</div>
 <div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160; </div>
 <div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;            <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;                <a class="code" href="structliblec_1_1lecui_1_1widgets_1_1combobox__specs_1_1combobox__events.html">combobox_events</a> combobox_events_;</div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;                <a class="code" href="structliblec_1_1lecui_1_1widgets_1_1combobox__specs_1_1combobox__events.html">combobox_events</a> _combobox_events;</div>
 <div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;            };</div>
 <div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160; </div>
 <div class="line"><a name="l00277"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1widgets_1_1combobox__builder.html">  277</a></span>&#160;            <span class="keyword">class </span>lecui_api <a class="code" href="classliblec_1_1lecui_1_1widgets_1_1combobox__builder.html">combobox_builder</a> {</div>
@@ -262,7 +262,7 @@ $(function() {
 <div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160; </div>
 <div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;            <span class="keyword">private</span>:</div>
 <div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;                <span class="keyword">class </span>impl;</div>
-<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;                impl&amp; d_;</div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;                impl&amp; _d;</div>
 <div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160; </div>
 <div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;                <span class="comment">// Default constructor and copying an object of this class are not allowed</span></div>
 <div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1widgets_1_1combobox__builder.html">combobox_builder</a>() = <span class="keyword">delete</span>;</div>
@@ -274,7 +274,7 @@ $(function() {
 <div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;}</div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1color_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1color.html">liblec::lecui::color</a></div><div class="ttdoc">RGBA color on a standard 0 to 255 scale. For the alpha channel 0 is transparent and 255 is opaque.</div><div class="ttdef"><b>Definition:</b> lecui.h:247</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1containers_1_1page_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1containers_1_1page.html">liblec::lecui::containers::page</a></div><div class="ttdoc">Page container.</div><div class="ttdef"><b>Definition:</b> page.h:31</div></div>
-<div class="ttc" id="aclassliblec_1_1lecui_1_1form_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1form.html">liblec::lecui::form</a></div><div class="ttdoc">Form base class. The user must inherit from this class and call one of the two constructors from its ...</div><div class="ttdef"><b>Definition:</b> form.h:99</div></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1form_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1form.html">liblec::lecui::form</a></div><div class="ttdoc">Form base class. The user must inherit from this class and call one of the two constructors from its ...</div><div class="ttdef"><b>Definition:</b> form.h:101</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1rect_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1rect.html">liblec::lecui::rect</a></div><div class="ttdef"><b>Definition:</b> lecui.h:87</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1combobox__builder_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1combobox__builder.html">liblec::lecui::widgets::combobox_builder</a></div><div class="ttdoc">Combobox widget builder.</div><div class="ttdef"><b>Definition:</b> combobox.h:277</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1combobox__builder_html_a1d445c7f62a5e6d92d62137314ae0f9f"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1combobox__builder.html#a1d445c7f62a5e6d92d62137314ae0f9f">liblec::lecui::widgets::combobox_builder::operator()</a></div><div class="ttdeci">combobox_specs &amp; operator()()</div><div class="ttdoc">Get the combobox specifications.</div></div>
@@ -328,11 +328,11 @@ $(function() {
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1combobox__specs_html_afdc617352fdbe3a1faac88b84c430463"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1combobox__specs.html#afdc617352fdbe3a1faac88b84c430463">liblec::lecui::widgets::combobox_specs::corner_radius_y</a></div><div class="ttdeci">combobox_specs &amp; corner_radius_y(const float &amp;corner_radius_y)</div><div class="ttdoc">Set the vertical radius of the corners.</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1combobox__specs_html_aff97950f85bafb7972807302c72d3897"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1combobox__specs.html#aff97950f85bafb7972807302c72d3897">liblec::lecui::widgets::combobox_specs::corner_radius_y</a></div><div class="ttdeci">float &amp; corner_radius_y()</div><div class="ttdoc">Get or set the vertical radius of the corners.</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1specs_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1specs.html">liblec::lecui::widgets::specs</a></div><div class="ttdoc">Base class for all widget specifications.</div><div class="ttdef"><b>Definition:</b> widget.h:24</div></div>
-<div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1specs_html_a3cba4c05a958d80dca72e4e9dd5360b1"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1specs.html#a3cba4c05a958d80dca72e4e9dd5360b1">liblec::lecui::widgets::specs::cursor_type</a></div><div class="ttdeci">cursor_type</div><div class="ttdoc">Mouse cursor type.</div><div class="ttdef"><b>Definition:</b> widget.h:72</div></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1specs_html_a3cba4c05a958d80dca72e4e9dd5360b1"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1specs.html#a3cba4c05a958d80dca72e4e9dd5360b1">liblec::lecui::widgets::specs::cursor_type</a></div><div class="ttdeci">cursor_type</div><div class="ttdoc">Mouse cursor type.</div><div class="ttdef"><b>Definition:</b> widget.h:80</div></div>
 <div class="ttc" id="astructliblec_1_1lecui_1_1widgets_1_1combobox__specs_1_1combobox__events_html"><div class="ttname"><a href="structliblec_1_1lecui_1_1widgets_1_1combobox__specs_1_1combobox__events.html">liblec::lecui::widgets::combobox_specs::combobox_events</a></div><div class="ttdoc">Events specific to this widget.</div><div class="ttdef"><b>Definition:</b> combobox.h:62</div></div>
 <div class="ttc" id="astructliblec_1_1lecui_1_1widgets_1_1combobox__specs_1_1combobox__item_html"><div class="ttname"><a href="structliblec_1_1lecui_1_1widgets_1_1combobox__specs_1_1combobox__item.html">liblec::lecui::widgets::combobox_specs::combobox_item</a></div><div class="ttdoc">A combobox item.</div><div class="ttdef"><b>Definition:</b> combobox.h:27</div></div>
 <div class="ttc" id="astructliblec_1_1lecui_1_1widgets_1_1combobox__specs_1_1combobox__item_html_a493a5c661e71ef0f0b570513a52188da"><div class="ttname"><a href="structliblec_1_1lecui_1_1widgets_1_1combobox__specs_1_1combobox__item.html#a493a5c661e71ef0f0b570513a52188da">liblec::lecui::widgets::combobox_specs::combobox_item::label</a></div><div class="ttdeci">std::string label</div><div class="ttdoc">The label of the item.</div><div class="ttdef"><b>Definition:</b> combobox.h:29</div></div>
-<div class="ttc" id="astructliblec_1_1lecui_1_1widgets_1_1specs_1_1basic__events_html"><div class="ttname"><a href="structliblec_1_1lecui_1_1widgets_1_1specs_1_1basic__events.html">liblec::lecui::widgets::specs::basic_events</a></div><div class="ttdoc">Events common to all widgets.</div><div class="ttdef"><b>Definition:</b> widget.h:106</div></div>
+<div class="ttc" id="astructliblec_1_1lecui_1_1widgets_1_1specs_1_1basic__events_html"><div class="ttname"><a href="structliblec_1_1lecui_1_1widgets_1_1specs_1_1basic__events.html">liblec::lecui::widgets::specs::basic_events</a></div><div class="ttdoc">Events common to all widgets.</div><div class="ttdef"><b>Definition:</b> widget.h:113</div></div>
 <div class="ttc" id="astructliblec_1_1lecui_1_1widgets_1_1specs_1_1resize__params_html"><div class="ttname"><a href="structliblec_1_1lecui_1_1widgets_1_1specs_1_1resize__params.html">liblec::lecui::widgets::specs::resize_params</a></div><div class="ttdoc">Resize parameters.</div><div class="ttdef"><b>Definition:</b> widget.h:29</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

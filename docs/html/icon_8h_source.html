@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">lecui
-   &#160;<span id="projectnumber">1.0.0-alpha.5</span>
+   &#160;<span id="projectnumber">1.0.0-alpha.6</span>
    </div>
    <div id="projectbrief">lecui C++ user interface library</div>
   </td>
@@ -102,24 +102,24 @@ $(function() {
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;                };</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;            <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;                <span class="keywordtype">float</span> border_ = .5f;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1color.html">color</a> color_border_;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;                <span class="keywordtype">float</span> corner_radius_x_ = 3.f;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;                <span class="keywordtype">float</span> corner_radius_y_ = 3.f;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;                <span class="keywordtype">float</span> max_image_size_ = 48.f;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1color.html">color</a> color_text_description_;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;                <span class="keywordtype">float</span> font_size_description_ = 8.5f;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                <span class="keywordtype">int</span> png_resource_ = 0;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                std::string file_;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                image_quality quality_ = image_quality::high;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                std::string description_;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;                icon_text_position text_position_ = icon_text_position::right;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                <span class="keywordtype">void</span>* p_special_pane_specs_ = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;                <span class="keywordtype">float</span> _border = .5f;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1color.html">color</a> _color_border;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;                <span class="keywordtype">float</span> _corner_radius_x = 3.f;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;                <span class="keywordtype">float</span> _corner_radius_y = 3.f;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;                <span class="keywordtype">float</span> _max_image_size = 48.f;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1color.html">color</a> _color_text_description;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;                <span class="keywordtype">float</span> _font_size_description = 8.5f;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                <span class="keywordtype">int</span> _png_resource = 0;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                std::string _file;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                image_quality _quality = image_quality::high;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                std::string _description;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;                icon_text_position _text_position = icon_text_position::right;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                <span class="keywordtype">void</span>* _p_special_pane_specs = <span class="keyword">nullptr</span>;</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            <span class="keyword">public</span>:</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1widgets_1_1icon__specs.html">icon_specs</a>() {</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                    rect_.size({ 180.f, 78.f });</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                    font_size_ = 11.f;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                    _rect.size({ 180.f, 78.f });</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                    _font_size = 11.f;</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                };</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                <span class="keywordtype">bool</span> operator==(<span class="keyword">const</span> icon_specs&amp;);</div>
@@ -237,7 +237,7 @@ $(function() {
 <div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160; </div>
 <div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;            <span class="keyword">private</span>:</div>
 <div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;                <span class="keyword">class </span>impl;</div>
-<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;                impl&amp; d_;</div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;                impl&amp; _d;</div>
 <div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160; </div>
 <div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;                <span class="comment">// Default constructor and copying an object of this class are not allowed</span></div>
 <div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1widgets_1_1icon__builder.html">icon_builder</a>() = <span class="keyword">delete</span>;</div>
@@ -249,7 +249,7 @@ $(function() {
 <div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;}</div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1color_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1color.html">liblec::lecui::color</a></div><div class="ttdoc">RGBA color on a standard 0 to 255 scale. For the alpha channel 0 is transparent and 255 is opaque.</div><div class="ttdef"><b>Definition:</b> lecui.h:247</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1containers_1_1page_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1containers_1_1page.html">liblec::lecui::containers::page</a></div><div class="ttdoc">Page container.</div><div class="ttdef"><b>Definition:</b> page.h:31</div></div>
-<div class="ttc" id="aclassliblec_1_1lecui_1_1form_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1form.html">liblec::lecui::form</a></div><div class="ttdoc">Form base class. The user must inherit from this class and call one of the two constructors from its ...</div><div class="ttdef"><b>Definition:</b> form.h:99</div></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1form_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1form.html">liblec::lecui::form</a></div><div class="ttdoc">Form base class. The user must inherit from this class and call one of the two constructors from its ...</div><div class="ttdef"><b>Definition:</b> form.h:101</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1rect_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1rect.html">liblec::lecui::rect</a></div><div class="ttdef"><b>Definition:</b> lecui.h:87</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1icon__builder_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1icon__builder.html">liblec::lecui::widgets::icon_builder</a></div><div class="ttdoc">Icon widget builder.</div><div class="ttdef"><b>Definition:</b> icon.h:221</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1icon__builder_html_a6ee5d0e86b9ca19874da20ceb4932bc1"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1icon__builder.html#a6ee5d0e86b9ca19874da20ceb4932bc1">liblec::lecui::widgets::icon_builder::icon_builder</a></div><div class="ttdeci">icon_builder(containers::page &amp;page, const std::string &amp;alias)</div><div class="ttdoc">Icon builder constructor.</div></div>
@@ -296,7 +296,7 @@ $(function() {
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1icon__specs_html_af96722102d6f002d4f86d017cd97896f"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1icon__specs.html#af96722102d6f002d4f86d017cd97896f">liblec::lecui::widgets::icon_specs::corner_radius_x</a></div><div class="ttdeci">icon_specs &amp; corner_radius_x(const float &amp;corner_radius_x)</div><div class="ttdoc">Set the horizontal radius of the corners.</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1icon__specs_html_affd931f28820eb64320d5c86b72ee0cf"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1icon__specs.html#affd931f28820eb64320d5c86b72ee0cf">liblec::lecui::widgets::icon_specs::text_position</a></div><div class="ttdeci">icon_text_position &amp; text_position()</div><div class="ttdoc">Get or set the position of the text.</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1specs_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1specs.html">liblec::lecui::widgets::specs</a></div><div class="ttdoc">Base class for all widget specifications.</div><div class="ttdef"><b>Definition:</b> widget.h:24</div></div>
-<div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1specs_html_a3cba4c05a958d80dca72e4e9dd5360b1"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1specs.html#a3cba4c05a958d80dca72e4e9dd5360b1">liblec::lecui::widgets::specs::cursor_type</a></div><div class="ttdeci">cursor_type</div><div class="ttdoc">Mouse cursor type.</div><div class="ttdef"><b>Definition:</b> widget.h:72</div></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1specs_html_a3cba4c05a958d80dca72e4e9dd5360b1"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1specs.html#a3cba4c05a958d80dca72e4e9dd5360b1">liblec::lecui::widgets::specs::cursor_type</a></div><div class="ttdeci">cursor_type</div><div class="ttdoc">Mouse cursor type.</div><div class="ttdef"><b>Definition:</b> widget.h:80</div></div>
 <div class="ttc" id="astructliblec_1_1lecui_1_1widgets_1_1specs_1_1resize__params_html"><div class="ttname"><a href="structliblec_1_1lecui_1_1widgets_1_1specs_1_1resize__params.html">liblec::lecui::widgets::specs::resize_params</a></div><div class="ttdoc">Resize parameters.</div><div class="ttdef"><b>Definition:</b> widget.h:29</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

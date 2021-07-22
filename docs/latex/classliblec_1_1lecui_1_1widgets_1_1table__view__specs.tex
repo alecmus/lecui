@@ -102,6 +102,10 @@ float \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_
 \begin{DoxyCompactList}\small\item\em Get or set the thickness of the border. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs}{table\+\_\+view\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a24f39a21861d3e126e84ad6afc2e9e34}{border}} (const float \&border)
 \begin{DoxyCompactList}\small\item\em Set the thickness of the border. \end{DoxyCompactList}\item 
+float \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a2a25c7ef6f5573971f3816101d98442a}{grid\+\_\+line}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the thickness of the grid-\/lines. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs}{table\+\_\+view\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a25bf69dd84aeb9d9af7cf751e1336aee}{grid\+\_\+line}} (const float \&grid\+\_\+line)
+\begin{DoxyCompactList}\small\item\em Set the thickness of the grid-\/line. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a0c26165ff80dd21c87ae4393e812f4ba}{color\+\_\+border}} ()
 \begin{DoxyCompactList}\small\item\em Get or set the color of the border. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs}{table\+\_\+view\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a77f32f8bd2edd72f410f3f14fc128f2d}{color\+\_\+border}} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&color\+\_\+border)
@@ -161,7 +165,15 @@ std\+::vector$<$ long $>$ \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_
 bool \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a281d025412677bc34265b05d99dce00c}{user\+\_\+sort}} ()
 \begin{DoxyCompactList}\small\item\em Get or set whether to allow sorting by clicking columns. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs}{table\+\_\+view\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_adf7abfa498c7b74e94b27fe94f7938ae}{user\+\_\+sort}} (const bool \&user\+\_\+sort)
-\begin{DoxyCompactList}\small\item\em Set whether to allow sorting by clicking columns. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Set whether to allow sorting by clicking columns. \end{DoxyCompactList}\item 
+bool \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a2b07a6afebafb349247840d2d8bacba3}{fixed\+\_\+number\+\_\+column}} ()
+\begin{DoxyCompactList}\small\item\em Get or set whether to add a fixed number column. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs}{table\+\_\+view\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a43ee0e800e0b54e943a772ea36d1a808}{fixed\+\_\+number\+\_\+column}} (const bool \&fixed\+\_\+number\+\_\+column)
+\begin{DoxyCompactList}\small\item\em Set whether to add a fixed number column. \end{DoxyCompactList}\item 
+std\+::string \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a61c13f3f3ff234a119d63d8026849f2a}{fixed\+\_\+number\+\_\+column\+\_\+name}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the name of the fixed number column. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs}{table\+\_\+view\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_ad004cc5827dab06bebb2525f8b761802}{fixed\+\_\+number\+\_\+column\+\_\+name}} (const std\+::string \&fixed\+\_\+number\+\_\+column\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Set the name of the fixed number column. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
 
 
@@ -721,7 +733,73 @@ A reference to the modified object.
 \end{DoxyReturn}
 
 
-A table with two columns \textquotesingle{}Name\textquotesingle{} and \textquotesingle{}Surname\textquotesingle{} can be populated as follows to a total of three rows\+: data = \{ \{ \{\char`\"{}\+Name\char`\"{}, \char`\"{}\+Emily Yolanda\char`\"{}\}, \{ \char`\"{}\+Surname\char`\"{}, \char`\"{}\+Moyo\char`\"{} \} \}, \{ \{\char`\"{}\+Name\char`\"{}, \char`\"{}\+Tanaka\char`\"{}\}, \{\char`\"{}\+Surname\char`\"{}, \char`\"{}\+Sibanda\char`\"{}\} \}, \{ \{\char`\"{}\+Name\char`\"{}, \char`\"{}\+Precious\char`\"{}\}, \{\char`\"{}\+Surname\char`\"{}, \char`\"{}\+Ncube\char`\"{}\} \} \mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_ab87e6d73f7ccff333a85e4cfb3ddc0db}\label{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_ab87e6d73f7ccff333a85e4cfb3ddc0db}} 
+A table with two columns \textquotesingle{}Name\textquotesingle{} and \textquotesingle{}Surname\textquotesingle{} can be populated as follows to a total of three rows\+: data = \{ \{ \{\char`\"{}\+Name\char`\"{}, \char`\"{}\+Emily Yolanda\char`\"{}\}, \{ \char`\"{}\+Surname\char`\"{}, \char`\"{}\+Moyo\char`\"{} \} \}, \{ \{\char`\"{}\+Name\char`\"{}, \char`\"{}\+Tanaka\char`\"{}\}, \{\char`\"{}\+Surname\char`\"{}, \char`\"{}\+Sibanda\char`\"{}\} \}, \{ \{\char`\"{}\+Name\char`\"{}, \char`\"{}\+Precious\char`\"{}\}, \{\char`\"{}\+Surname\char`\"{}, \char`\"{}\+Ncube\char`\"{}\} \} \mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a2b07a6afebafb349247840d2d8bacba3}\label{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a2b07a6afebafb349247840d2d8bacba3}} 
+\index{liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}!fixed\_number\_column@{fixed\_number\_column}}
+\index{fixed\_number\_column@{fixed\_number\_column}!liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}}
+\doxysubsubsection{\texorpdfstring{fixed\_number\_column()}{fixed\_number\_column()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool\& liblec\+::lecui\+::widgets\+::table\+\_\+view\+\_\+specs\+::fixed\+\_\+number\+\_\+column (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get or set whether to add a fixed number column. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the property.
+\end{DoxyReturn}
+
+
+Counts from 1 and is not sorted when the table\textquotesingle{}s columns are user sorted.\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a43ee0e800e0b54e943a772ea36d1a808}\label{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a43ee0e800e0b54e943a772ea36d1a808}} 
+\index{liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}!fixed\_number\_column@{fixed\_number\_column}}
+\index{fixed\_number\_column@{fixed\_number\_column}!liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}}
+\doxysubsubsection{\texorpdfstring{fixed\_number\_column()}{fixed\_number\_column()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs}{table\+\_\+view\+\_\+specs}}\& liblec\+::lecui\+::widgets\+::table\+\_\+view\+\_\+specs\+::fixed\+\_\+number\+\_\+column (\begin{DoxyParamCaption}\item[{const bool \&}]{fixed\+\_\+number\+\_\+column }\end{DoxyParamCaption})}
+
+
+
+Set whether to add a fixed number column. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fixed\+\_\+number\+\_\+column} & The property.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+
+
+Counts from 1 and is not sorted when the table\textquotesingle{}s columns are user sorted.\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a61c13f3f3ff234a119d63d8026849f2a}\label{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a61c13f3f3ff234a119d63d8026849f2a}} 
+\index{liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}!fixed\_number\_column\_name@{fixed\_number\_column\_name}}
+\index{fixed\_number\_column\_name@{fixed\_number\_column\_name}!liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}}
+\doxysubsubsection{\texorpdfstring{fixed\_number\_column\_name()}{fixed\_number\_column\_name()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily std\+::string\& liblec\+::lecui\+::widgets\+::table\+\_\+view\+\_\+specs\+::fixed\+\_\+number\+\_\+column\+\_\+name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get or set the name of the fixed number column. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the property.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_ad004cc5827dab06bebb2525f8b761802}\label{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_ad004cc5827dab06bebb2525f8b761802}} 
+\index{liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}!fixed\_number\_column\_name@{fixed\_number\_column\_name}}
+\index{fixed\_number\_column\_name@{fixed\_number\_column\_name}!liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}}
+\doxysubsubsection{\texorpdfstring{fixed\_number\_column\_name()}{fixed\_number\_column\_name()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs}{table\+\_\+view\+\_\+specs}}\& liblec\+::lecui\+::widgets\+::table\+\_\+view\+\_\+specs\+::fixed\+\_\+number\+\_\+column\+\_\+name (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{fixed\+\_\+number\+\_\+column\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+Set the name of the fixed number column. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fixed\+\_\+number\+\_\+column\+\_\+name} & The property.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_ab87e6d73f7ccff333a85e4cfb3ddc0db}\label{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_ab87e6d73f7ccff333a85e4cfb3ddc0db}} 
 \index{liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}!font@{font}}
 \index{font@{font}!liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}}
 \doxysubsubsection{\texorpdfstring{font()}{font()}}
@@ -755,6 +833,37 @@ A reference to the widget\textquotesingle{}s font size.
 
 Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a540bfa7642033966614ccfda7ecf1f25}{liblec\+::lecui\+::widgets\+::specs}}.
 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a2a25c7ef6f5573971f3816101d98442a}\label{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a2a25c7ef6f5573971f3816101d98442a}} 
+\index{liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}!grid\_line@{grid\_line}}
+\index{grid\_line@{grid\_line}!liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}}
+\doxysubsubsection{\texorpdfstring{grid\_line()}{grid\_line()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily float\& liblec\+::lecui\+::widgets\+::table\+\_\+view\+\_\+specs\+::grid\+\_\+line (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get or set the thickness of the grid-\/lines. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the line thickness, in pixels.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a25bf69dd84aeb9d9af7cf751e1336aee}\label{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a25bf69dd84aeb9d9af7cf751e1336aee}} 
+\index{liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}!grid\_line@{grid\_line}}
+\index{grid\_line@{grid\_line}!liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}}
+\doxysubsubsection{\texorpdfstring{grid\_line()}{grid\_line()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view__specs}{table\+\_\+view\+\_\+specs}}\& liblec\+::lecui\+::widgets\+::table\+\_\+view\+\_\+specs\+::grid\+\_\+line (\begin{DoxyParamCaption}\item[{const float \&}]{grid\+\_\+line }\end{DoxyParamCaption})}
+
+
+
+Set the thickness of the grid-\/line. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em grid\+\_\+line} & The line thickness, in pixels.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
 \mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a242ff583c5591d5fff4e87cc83fc20c1}\label{classliblec_1_1lecui_1_1widgets_1_1table__view__specs_a242ff583c5591d5fff4e87cc83fc20c1}} 
 \index{liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}!on\_resize@{on\_resize}}
 \index{on\_resize@{on\_resize}!liblec::lecui::widgets::table\_view\_specs@{liblec::lecui::widgets::table\_view\_specs}}

@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">lecui
-   &#160;<span id="projectnumber">1.0.0-alpha.5</span>
+   &#160;<span id="projectnumber">1.0.0-alpha.6</span>
    </div>
    <div id="projectbrief">lecui C++ user interface library</div>
   </td>
@@ -93,15 +93,15 @@ $(function() {
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keyword">namespace </span>lecui {</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        <span class="keyword">namespace </span>widgets {</div>
 <div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1widgets_1_1progress__indicator__specs.html">   24</a></span>&#160;            <span class="keyword">class </span>lecui_api <a class="code" href="classliblec_1_1lecui_1_1widgets_1_1progress__indicator__specs.html">progress_indicator_specs</a> : <span class="keyword">public</span> <a class="code" href="classliblec_1_1lecui_1_1widgets_1_1specs.html">specs</a> {</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1color.html">color</a> color_empty_;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;                <span class="keywordtype">float</span> line_thickness_empty_ = .5f;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                <span class="keywordtype">float</span> line_thickness_fill_ = 1.5f;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                <span class="keywordtype">float</span> percentage_ = 0.f;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                <span class="keywordtype">int</span> precision_ = 0;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1color.html">color</a> _color_empty;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;                <span class="keywordtype">float</span> _line_thickness_empty = .5f;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                <span class="keywordtype">float</span> _line_thickness_fill = 1.5f;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                <span class="keywordtype">float</span> _percentage = 0.f;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                <span class="keywordtype">int</span> _precision = 0;</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;            <span class="keyword">public</span>:</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1widgets_1_1progress__indicator__specs.html">progress_indicator_specs</a>() {</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;                    rect_.size({ 50.f, 50.f });</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;                    _rect.size({ 50.f, 50.f });</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;                }</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;                <span class="keywordtype">bool</span> operator==(<span class="keyword">const</span> <a class="code" href="classliblec_1_1lecui_1_1widgets_1_1progress__indicator__specs.html">progress_indicator_specs</a>&amp;);</div>
@@ -186,7 +186,7 @@ $(function() {
 <div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160; </div>
 <div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;            <span class="keyword">private</span>:</div>
 <div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;                <span class="keyword">class </span>impl;</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;                impl&amp; d_;</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;                impl&amp; _d;</div>
 <div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160; </div>
 <div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;                <span class="comment">// Default constructor and copying an object of this class are not allowed</span></div>
 <div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1widgets_1_1progress__indicator__builder.html">progress_indicator_builder</a>() = <span class="keyword">delete</span>;</div>
@@ -198,7 +198,7 @@ $(function() {
 <div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;}</div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1color_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1color.html">liblec::lecui::color</a></div><div class="ttdoc">RGBA color on a standard 0 to 255 scale. For the alpha channel 0 is transparent and 255 is opaque.</div><div class="ttdef"><b>Definition:</b> lecui.h:247</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1containers_1_1page_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1containers_1_1page.html">liblec::lecui::containers::page</a></div><div class="ttdoc">Page container.</div><div class="ttdef"><b>Definition:</b> page.h:31</div></div>
-<div class="ttc" id="aclassliblec_1_1lecui_1_1form_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1form.html">liblec::lecui::form</a></div><div class="ttdoc">Form base class. The user must inherit from this class and call one of the two constructors from its ...</div><div class="ttdef"><b>Definition:</b> form.h:99</div></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1form_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1form.html">liblec::lecui::form</a></div><div class="ttdoc">Form base class. The user must inherit from this class and call one of the two constructors from its ...</div><div class="ttdef"><b>Definition:</b> form.h:101</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1rect_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1rect.html">liblec::lecui::rect</a></div><div class="ttdef"><b>Definition:</b> lecui.h:87</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1progress__indicator__builder_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1progress__indicator__builder.html">liblec::lecui::widgets::progress_indicator_builder</a></div><div class="ttdoc">Progress indicator widget builder.</div><div class="ttdef"><b>Definition:</b> progress_indicator.h:126</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1progress__indicator__builder_html_a269d46abebb9e28ebee2fb730976b6e0"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1progress__indicator__builder.html#a269d46abebb9e28ebee2fb730976b6e0">liblec::lecui::widgets::progress_indicator_builder::specs</a></div><div class="ttdeci">progress_indicator_specs &amp; specs()</div><div class="ttdoc">Get the progress indicator specifications.</div></div>
@@ -230,7 +230,7 @@ $(function() {
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1progress__indicator__specs_html_ae9ba9282d1d9cc5357ae346eee16886c"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1progress__indicator__specs.html#ae9ba9282d1d9cc5357ae346eee16886c">liblec::lecui::widgets::progress_indicator_specs::precision</a></div><div class="ttdeci">progress_indicator_specs &amp; precision(const int &amp;precision)</div><div class="ttdoc">Set the precision to use for displaying the percentage.</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1progress__indicator__specs_html_aee44602a1f16cdd33ff7a3d527cd6302"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1progress__indicator__specs.html#aee44602a1f16cdd33ff7a3d527cd6302">liblec::lecui::widgets::progress_indicator_specs::tooltip</a></div><div class="ttdeci">std::string &amp; tooltip() override</div><div class="ttdoc">Get or set the widget's tooltip text.</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1specs_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1specs.html">liblec::lecui::widgets::specs</a></div><div class="ttdoc">Base class for all widget specifications.</div><div class="ttdef"><b>Definition:</b> widget.h:24</div></div>
-<div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1specs_html_a3cba4c05a958d80dca72e4e9dd5360b1"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1specs.html#a3cba4c05a958d80dca72e4e9dd5360b1">liblec::lecui::widgets::specs::cursor_type</a></div><div class="ttdeci">cursor_type</div><div class="ttdoc">Mouse cursor type.</div><div class="ttdef"><b>Definition:</b> widget.h:72</div></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1specs_html_a3cba4c05a958d80dca72e4e9dd5360b1"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1specs.html#a3cba4c05a958d80dca72e4e9dd5360b1">liblec::lecui::widgets::specs::cursor_type</a></div><div class="ttdeci">cursor_type</div><div class="ttdoc">Mouse cursor type.</div><div class="ttdef"><b>Definition:</b> widget.h:80</div></div>
 <div class="ttc" id="astructliblec_1_1lecui_1_1widgets_1_1specs_1_1resize__params_html"><div class="ttname"><a href="structliblec_1_1lecui_1_1widgets_1_1specs_1_1resize__params.html">liblec::lecui::widgets::specs::resize_params</a></div><div class="ttdoc">Resize parameters.</div><div class="ttdef"><b>Definition:</b> widget.h:29</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

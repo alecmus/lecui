@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">lecui
-   &#160;<span id="projectnumber">1.0.0-alpha.5</span>
+   &#160;<span id="projectnumber">1.0.0-alpha.6</span>
    </div>
    <div id="projectbrief">lecui C++ user interface library</div>
   </td>
@@ -101,26 +101,26 @@ $(function() {
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;                };</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;            <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;                <span class="keywordtype">float</span> border_ = 1.f;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1color.html">color</a> color_border_;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1color.html">color</a> color_knob_;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1color.html">color</a> color_knob_hot_;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1color.html">color</a> color_knob_border_;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1color.html">color</a> color_tick_;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;                <span class="keywordtype">bool</span> snap_to_ticks_ = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                <span class="keywordtype">bool</span> show_tick_marks_ = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;                <span class="keywordtype">bool</span> show_tick_labels_ = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;                <a class="code" href="structliblec_1_1lecui_1_1widgets_1_1slider__specs_1_1slider__range.html">slider_range</a> range_;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                <span class="keywordtype">float</span> knob_radius_ = 8.f;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                <span class="keywordtype">float</span> slide_thickness_ = 6.f;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                <span class="keywordtype">float</span> major_tick_unit_ = 25.f;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                <span class="keywordtype">long</span> minor_tick_count_ = 4;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                <span class="keywordtype">float</span> value_ = 0.f;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;                <span class="keywordtype">float</span> _border = 1.f;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1color.html">color</a> _color_border;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1color.html">color</a> _color_knob;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1color.html">color</a> _color_knob_hot;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1color.html">color</a> _color_knob_border;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1color.html">color</a> _color_tick;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;                <span class="keywordtype">bool</span> _snap_to_ticks = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                <span class="keywordtype">bool</span> _show_tick_marks = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;                <span class="keywordtype">bool</span> _show_tick_labels = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;                <a class="code" href="structliblec_1_1lecui_1_1widgets_1_1slider__specs_1_1slider__range.html">slider_range</a> _range;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                <span class="keywordtype">float</span> _knob_radius = 8.f;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                <span class="keywordtype">float</span> _slide_thickness = 6.f;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                <span class="keywordtype">float</span> _major_tick_unit = 25.f;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                <span class="keywordtype">long</span> _minor_tick_count = 4;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                <span class="keywordtype">float</span> _value = 0.f;</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            <span class="keyword">public</span>:</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1widgets_1_1slider__specs.html">slider_specs</a>() {</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                    cursor_ = cursor_type::hand;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;                    rect_.size({ 200.f, 35.f });</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                    _cursor = cursor_type::hand;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;                    _rect.size({ 200.f, 35.f });</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;                }</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
 <div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="structliblec_1_1lecui_1_1widgets_1_1slider__specs_1_1slider__events.html">   63</a></span>&#160;                <span class="keyword">struct </span><a class="code" href="structliblec_1_1lecui_1_1widgets_1_1slider__specs_1_1slider__events.html">slider_events</a> : <a class="code" href="structliblec_1_1lecui_1_1widgets_1_1specs_1_1basic__events.html">basic_events</a> {</div>
@@ -128,7 +128,7 @@ $(function() {
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;                };</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                <a class="code" href="structliblec_1_1lecui_1_1widgets_1_1slider__specs_1_1slider__events.html">slider_events</a>&amp; events() {</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;                    <span class="keywordflow">return</span> slider_events_;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;                    <span class="keywordflow">return</span> _slider_events;</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                }</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                <span class="keywordtype">bool</span> operator==(<span class="keyword">const</span> <a class="code" href="classliblec_1_1lecui_1_1widgets_1_1slider__specs.html">slider_specs</a>&amp;);</div>
@@ -235,7 +235,7 @@ $(function() {
 <div class="line"><a name="l00251"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1widgets_1_1slider__specs.html#ae23b49ed747c35dbba88b5ab2a14709e">  251</a></span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1widgets_1_1slider__specs.html">slider_specs</a>&amp; <a class="code" href="classliblec_1_1lecui_1_1widgets_1_1slider__specs.html#ae23b49ed747c35dbba88b5ab2a14709e">value</a>(<span class="keyword">const</span> <span class="keywordtype">float</span>&amp; value);</div>
 <div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160; </div>
 <div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;            <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;                <a class="code" href="structliblec_1_1lecui_1_1widgets_1_1slider__specs_1_1slider__events.html">slider_events</a> slider_events_;</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;                <a class="code" href="structliblec_1_1lecui_1_1widgets_1_1slider__specs_1_1slider__events.html">slider_events</a> _slider_events;</div>
 <div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;            };</div>
 <div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160; </div>
 <div class="line"><a name="l00258"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1widgets_1_1slider__builder.html">  258</a></span>&#160;            <span class="keyword">class </span>lecui_api <a class="code" href="classliblec_1_1lecui_1_1widgets_1_1slider__builder.html">slider_builder</a> {</div>
@@ -256,7 +256,7 @@ $(function() {
 <div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160; </div>
 <div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;            <span class="keyword">private</span>:</div>
 <div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;                <span class="keyword">class </span>impl;</div>
-<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;                impl&amp; d_;</div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;                impl&amp; _d;</div>
 <div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160; </div>
 <div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;                <span class="comment">// Default constructor and copying an object of this class are not allowed</span></div>
 <div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1widgets_1_1slider__builder.html">slider_builder</a>() = <span class="keyword">delete</span>;</div>
@@ -268,7 +268,7 @@ $(function() {
 <div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;}</div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1color_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1color.html">liblec::lecui::color</a></div><div class="ttdoc">RGBA color on a standard 0 to 255 scale. For the alpha channel 0 is transparent and 255 is opaque.</div><div class="ttdef"><b>Definition:</b> lecui.h:247</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1containers_1_1page_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1containers_1_1page.html">liblec::lecui::containers::page</a></div><div class="ttdoc">Page container.</div><div class="ttdef"><b>Definition:</b> page.h:31</div></div>
-<div class="ttc" id="aclassliblec_1_1lecui_1_1form_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1form.html">liblec::lecui::form</a></div><div class="ttdoc">Form base class. The user must inherit from this class and call one of the two constructors from its ...</div><div class="ttdef"><b>Definition:</b> form.h:99</div></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1form_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1form.html">liblec::lecui::form</a></div><div class="ttdoc">Form base class. The user must inherit from this class and call one of the two constructors from its ...</div><div class="ttdef"><b>Definition:</b> form.h:101</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1rect_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1rect.html">liblec::lecui::rect</a></div><div class="ttdef"><b>Definition:</b> lecui.h:87</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1slider__builder_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1slider__builder.html">liblec::lecui::widgets::slider_builder</a></div><div class="ttdoc">Slider widget builder.</div><div class="ttdef"><b>Definition:</b> slider.h:258</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1slider__builder_html_a2d1013c88e8c6dca5f259eecaabf7cf3"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1slider__builder.html#a2d1013c88e8c6dca5f259eecaabf7cf3">liblec::lecui::widgets::slider_builder::slider_builder</a></div><div class="ttdeci">slider_builder(containers::page &amp;page, const std::string &amp;alias)</div><div class="ttdoc">Slider constructor.</div></div>
@@ -320,10 +320,10 @@ $(function() {
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1slider__specs_html_afb930d35b8a401576897b1a14086c3e8"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1slider__specs.html#afb930d35b8a401576897b1a14086c3e8">liblec::lecui::widgets::slider_specs::text</a></div><div class="ttdeci">std::string &amp; text() override</div><div class="ttdoc">Get or set the widget text.</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1slider__specs_html_afd034ead72a1e1069562e4a2164b0819"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1slider__specs.html#afd034ead72a1e1069562e4a2164b0819">liblec::lecui::widgets::slider_specs::show_tick_marks</a></div><div class="ttdeci">slider_specs &amp; show_tick_marks(const bool &amp;show_tick_marks)</div><div class="ttdoc">Set the property for whether to show ticks marks on the slider.</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1specs_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1specs.html">liblec::lecui::widgets::specs</a></div><div class="ttdoc">Base class for all widget specifications.</div><div class="ttdef"><b>Definition:</b> widget.h:24</div></div>
-<div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1specs_html_a3cba4c05a958d80dca72e4e9dd5360b1"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1specs.html#a3cba4c05a958d80dca72e4e9dd5360b1">liblec::lecui::widgets::specs::cursor_type</a></div><div class="ttdeci">cursor_type</div><div class="ttdoc">Mouse cursor type.</div><div class="ttdef"><b>Definition:</b> widget.h:72</div></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1specs_html_a3cba4c05a958d80dca72e4e9dd5360b1"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1specs.html#a3cba4c05a958d80dca72e4e9dd5360b1">liblec::lecui::widgets::specs::cursor_type</a></div><div class="ttdeci">cursor_type</div><div class="ttdoc">Mouse cursor type.</div><div class="ttdef"><b>Definition:</b> widget.h:80</div></div>
 <div class="ttc" id="astructliblec_1_1lecui_1_1widgets_1_1slider__specs_1_1slider__events_html"><div class="ttname"><a href="structliblec_1_1lecui_1_1widgets_1_1slider__specs_1_1slider__events.html">liblec::lecui::widgets::slider_specs::slider_events</a></div><div class="ttdoc">Events specific to this widget.</div><div class="ttdef"><b>Definition:</b> slider.h:63</div></div>
 <div class="ttc" id="astructliblec_1_1lecui_1_1widgets_1_1slider__specs_1_1slider__range_html"><div class="ttname"><a href="structliblec_1_1lecui_1_1widgets_1_1slider__specs_1_1slider__range.html">liblec::lecui::widgets::slider_specs::slider_range</a></div><div class="ttdoc">Slider range.</div><div class="ttdef"><b>Definition:</b> slider.h:31</div></div>
-<div class="ttc" id="astructliblec_1_1lecui_1_1widgets_1_1specs_1_1basic__events_html"><div class="ttname"><a href="structliblec_1_1lecui_1_1widgets_1_1specs_1_1basic__events.html">liblec::lecui::widgets::specs::basic_events</a></div><div class="ttdoc">Events common to all widgets.</div><div class="ttdef"><b>Definition:</b> widget.h:106</div></div>
+<div class="ttc" id="astructliblec_1_1lecui_1_1widgets_1_1specs_1_1basic__events_html"><div class="ttname"><a href="structliblec_1_1lecui_1_1widgets_1_1specs_1_1basic__events.html">liblec::lecui::widgets::specs::basic_events</a></div><div class="ttdoc">Events common to all widgets.</div><div class="ttdef"><b>Definition:</b> widget.h:113</div></div>
 <div class="ttc" id="astructliblec_1_1lecui_1_1widgets_1_1specs_1_1resize__params_html"><div class="ttname"><a href="structliblec_1_1lecui_1_1widgets_1_1specs_1_1resize__params.html">liblec::lecui::widgets::specs::resize_params</a></div><div class="ttdoc">Resize parameters.</div><div class="ttdef"><b>Definition:</b> widget.h:29</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
