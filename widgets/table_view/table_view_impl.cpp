@@ -280,8 +280,9 @@ namespace liblec {
 					}
 
 					// draw the vertical divider
-					p_render_target->DrawLine(D2D1::Point2F(rect_header_cell.right, rect_header_cell.top),
-						D2D1::Point2F(rect_header_cell.right, rect_header_cell.bottom), _p_brush_grid, _specs.grid_line());
+					if (render && _visible)
+						p_render_target->DrawLine(D2D1::Point2F(rect_header_cell.right, rect_header_cell.top),
+							D2D1::Point2F(rect_header_cell.right, rect_header_cell.bottom), _p_brush_grid, _specs.grid_line());
 
 					auto right_limit = rect_header_cell.right;
 
@@ -312,8 +313,10 @@ namespace liblec {
 							top = { rect.left + (rect.right - rect.left) / 2.f, rect.top };
 
 							// draw arrow
-							p_render_target->DrawLine(bottom_left, top, hot ? _p_brush_text_header_hot : _p_brush_text_header);
-							p_render_target->DrawLine(bottom_right, top, hot ? _p_brush_text_header_hot : _p_brush_text_header);
+							if (render && _visible) {
+								p_render_target->DrawLine(bottom_left, top, hot ? _p_brush_text_header_hot : _p_brush_text_header);
+								p_render_target->DrawLine(bottom_right, top, hot ? _p_brush_text_header_hot : _p_brush_text_header);
+							}
 
 							right_limit = rect.left;
 						} break;
@@ -327,8 +330,10 @@ namespace liblec {
 							bottom = { rect.left + (rect.right - rect.left) / 2.f, rect.bottom };
 
 							// draw arrow
-							p_render_target->DrawLine(top_left, bottom, hot ? _p_brush_text_header_hot : _p_brush_text_header);
-							p_render_target->DrawLine(top_right, bottom, hot ? _p_brush_text_header_hot : _p_brush_text_header);
+							if (render && _visible) {
+								p_render_target->DrawLine(top_left, bottom, hot ? _p_brush_text_header_hot : _p_brush_text_header);
+								p_render_target->DrawLine(top_right, bottom, hot ? _p_brush_text_header_hot : _p_brush_text_header);
+							}
 
 							right_limit = rect.left;
 						} break;
@@ -364,8 +369,9 @@ namespace liblec {
 			}
 
 			// draw the horizontal divider
-			p_render_target->DrawLine(D2D1::Point2F(_rect_header.left, _rect_header.bottom),
-				D2D1::Point2F(_rect_header.right, _rect_header.bottom), _p_brush_grid, _specs.grid_line());
+			if (render && _visible)
+				p_render_target->DrawLine(D2D1::Point2F(_rect_header.left, _rect_header.bottom),
+					D2D1::Point2F(_rect_header.right, _rect_header.bottom), _p_brush_grid, _specs.grid_line());
 
 			// step11: draw table
 			{
