@@ -104,13 +104,16 @@ namespace liblec {
 				safe_release(&_p_bitmap);
 
 			if (!_p_bitmap) {
+				// make a dpi scaled target size
+				const size target_size{ current_size.width * get_dpi_scale(), current_size.height * get_dpi_scale() };
+
 				if (_specs.png_resource())	// png resource takes precedence
 					load_bitmap_resource(p_render_target, _p_IWICFactory,
 						_page._d_page.get_form()._d._resource_module_handle, _specs.png_resource(), "PNG",
-						&_p_bitmap, current_size, _specs.enlarge_if_smaller(), _specs.keep_aspect_ratio(), _specs.quality());
+						&_p_bitmap, target_size, _specs.enlarge_if_smaller(), _specs.keep_aspect_ratio(), _specs.quality());
 				if (!_specs.file().empty() && !_p_bitmap)
 					load_bitmap_file(p_render_target, _p_IWICFactory, convert_string(_specs.file()).c_str(),
-						&_p_bitmap, current_size, _specs.enlarge_if_smaller(), _specs.keep_aspect_ratio(), _specs.quality());
+						&_p_bitmap, target_size, _specs.enlarge_if_smaller(), _specs.keep_aspect_ratio(), _specs.quality());
 			}
 
 			if (_p_bitmap) {
