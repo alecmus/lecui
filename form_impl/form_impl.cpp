@@ -1451,7 +1451,7 @@ namespace liblec {
 								auto& date_specs = page._d_page.get_date(widget.first).specs();
 
 								// make pane whose alias is prefixed by the special string
-								containers::pane_builder pane(page, widgets::pane_impl::date_pane_alias_prefix() + widget.first);
+								containers::pane_builder pane(page, widgets::pane_impl::date_pane_alias_prefix() + widget.first, 0.f);
 
 								// clone essential properties to pane
 								pane()
