@@ -48,7 +48,7 @@ namespace liblec {
 
 			public:
 				icon_specs() {
-					_rect.size({ 180.f, 78.f });
+					_rect.size({ 160.f, 58.f });
 					_font_size = 11.f;
 				};
 
