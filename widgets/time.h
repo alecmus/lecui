@@ -31,7 +31,7 @@ namespace liblec {
 
 			public:
 				time_specs() {
-					_rect.size({ 90.f, 40.f });
+					_rect.size({ 70.f, 20.f });
 				};
 
 				/// <summary>Events specific to this widget.</summary>
