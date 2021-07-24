@@ -187,6 +187,8 @@ namespace liblec {
 			_rect_combobox.top -= offset.y;
 			_rect_combobox.bottom -= offset.y;
 
+			_rect = _rect_combobox;
+
 			if (!render || !_visible)
 				return _rect;
 
@@ -411,7 +413,6 @@ namespace liblec {
 			// release the text layout
 			safe_release(&_p_text_layout);
 
-			_rect = _rect_combobox;
 			return _rect;
 		}
 
