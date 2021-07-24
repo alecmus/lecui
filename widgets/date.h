@@ -31,7 +31,7 @@ namespace liblec {
 
 			public:
 				date_specs() {
-					_rect.size({ 110.f, 60.f });
+					_rect.size({ 90.f, 40.f });
 				};
 
 				/// <summary>Events specific to this widget.</summary>
