@@ -163,74 +163,6 @@ namespace liblec {
 
 				const auto _caption_bar_height = _tab_pane.caption_bar_height();
 
-				// initialize the page's horizontal scroll bar
-				{
-					auto& _specs = page_impl.h_scrollbar().specs();
-					_specs.on_resize().perc_width = 100.f;
-					_specs.on_resize().perc_y = 100.f;
-
-					switch (tp._d._specs.tab_side()) {
-					case tab_pane_specs::side::left:
-					case tab_pane_specs::side::right:
-						_specs.rect()
-							.left(thickness)
-							.right((rect_client_area.right() - rect_client_area.left()) - thickness - _caption_bar_height)
-							.bottom(rect_client_area.bottom() - rect_client_area.top())
-							.top(_specs.rect().bottom() - thickness);
-						break;
-
-					case tab_pane_specs::side::top:
-					case tab_pane_specs::side::bottom:
-					default:
-						_specs.rect()
-							.left(thickness)
-							.right((rect_client_area.right() - rect_client_area.left()) - thickness)
-							.bottom((rect_client_area.bottom() - rect_client_area.top()) - _caption_bar_height)
-							.top(_specs.rect().bottom() - thickness);
-						break;
-					}
-
-					_specs
-						.color_fill(defaults::color(tp._d._page._d_page._fm._d._theme, item::scrollbar))
-						.color_scrollbar_border(defaults::color(tp._d._page._d_page._fm._d._theme, item::scrollbar_border))
-						.color_hot(defaults::color(tp._d._page._d_page._fm._d._theme, item::scrollbar_hover))
-						.color_hot_pressed(defaults::color(tp._d._page._d_page._fm._d._theme, item::scrollbar_pressed));
-				}
-
-				// initialize the page's vertical scroll bar
-				{
-					auto& _specs = page_impl.v_scrollbar().specs();
-					_specs.on_resize().perc_height = 100.f;
-					_specs.on_resize().perc_x = 100.f;
-
-					switch (tp._d._specs.tab_side()) {
-					case tab_pane_specs::side::left:
-					case tab_pane_specs::side::right:
-						_specs.rect()
-							.top(thickness)
-							.bottom((rect_client_area.bottom() - rect_client_area.top()) - thickness)
-							.right((rect_client_area.right() - rect_client_area.left()) - _caption_bar_height)
-							.left(_specs.rect().right() - thickness);
-						break;
-
-					case tab_pane_specs::side::top:
-					case tab_pane_specs::side::bottom:
-					default:
-						_specs.rect()
-							.top(thickness)
-							.bottom((rect_client_area.bottom() - rect_client_area.top()) - thickness - _caption_bar_height)
-							.right(rect_client_area.right() - rect_client_area.left())
-							.left(_specs.rect().right() - thickness);
-						break;
-					}
-
-					_specs
-						.color_fill(defaults::color(tp._d._page._d_page._fm._d._theme, item::scrollbar))
-						.color_scrollbar_border(defaults::color(tp._d._page._d_page._fm._d._theme, item::scrollbar_border))
-						.color_hot(defaults::color(tp._d._page._d_page._fm._d._theme, item::scrollbar_hover))
-						.color_hot_pressed(defaults::color(tp._d._page._d_page._fm._d._theme, item::scrollbar_pressed));
-				}
-
 				// set page size
 				page_impl.size({ rect_client_area.width(), rect_client_area.height() });
 
@@ -270,6 +202,83 @@ namespace liblec {
 				// capture pointer to pane rect and page
 				_tab_pane._p_page_impl = &page_impl;
 				_tab_pane._p_tab_pane_rect = &rectangle.rect();
+
+				// define reference rect for scroll bars
+				lecui::rect ref_rect = rectangle.rect();
+				ref_rect.left() -= _content_margin;
+				ref_rect.right() += _content_margin;
+				ref_rect.top() -= _content_margin;
+				ref_rect.bottom() += _content_margin;
+
+				// initialize the page's horizontal scroll bar
+				{
+					auto& _specs = page_impl.h_scrollbar().specs();
+					_specs.on_resize().perc_width = 100.f;
+					_specs.on_resize().perc_y = 100.f;
+
+					auto width = rect_client_area.right() - rect_client_area.left() - 2.f * _content_margin;
+
+					switch (tp._d._specs.tab_side()) {
+					case tab_pane_specs::side::left:
+					case tab_pane_specs::side::right:
+						width -= _caption_bar_height;
+						break;
+
+					case tab_pane_specs::side::top:
+					case tab_pane_specs::side::bottom:
+					default:
+						break;
+					}
+
+					if (thickness > _content_margin)
+						width -= (thickness - _content_margin);
+
+					_specs.rect()
+						.width(width)
+						.height(thickness)
+						.place(ref_rect, 50.f, 100.f);
+
+					_specs
+						.color_fill(defaults::color(tp._d._page._d_page._fm._d._theme, item::scrollbar))
+						.color_scrollbar_border(defaults::color(tp._d._page._d_page._fm._d._theme, item::scrollbar_border))
+						.color_hot(defaults::color(tp._d._page._d_page._fm._d._theme, item::scrollbar_hover))
+						.color_hot_pressed(defaults::color(tp._d._page._d_page._fm._d._theme, item::scrollbar_pressed));
+				}
+
+				// initialize the page's vertical scroll bar
+				{
+					auto& _specs = page_impl.v_scrollbar().specs();
+					_specs.on_resize().perc_height = 100.f;
+					_specs.on_resize().perc_x = 100.f;
+
+					auto height = rect_client_area.bottom() - rect_client_area.top() - 2.f * _content_margin;
+
+					switch (tp._d._specs.tab_side()) {
+					case tab_pane_specs::side::left:
+					case tab_pane_specs::side::right:
+						break;
+
+					case tab_pane_specs::side::top:
+					case tab_pane_specs::side::bottom:
+					default:
+						height -= _caption_bar_height;
+						break;
+					}
+
+					if (thickness > _content_margin)
+						height -= (thickness - _content_margin);
+
+					_specs.rect()
+						.width(thickness)
+						.height(height)
+						.place(ref_rect, 100.f, 50.f);
+
+					_specs
+						.color_fill(defaults::color(tp._d._page._d_page._fm._d._theme, item::scrollbar))
+						.color_scrollbar_border(defaults::color(tp._d._page._d_page._fm._d._theme, item::scrollbar_border))
+						.color_hot(defaults::color(tp._d._page._d_page._fm._d._theme, item::scrollbar_hover))
+						.color_hot_pressed(defaults::color(tp._d._page._d_page._fm._d._theme, item::scrollbar_pressed));
+				}
 
 				// return reference to page so caller can add widgets to it
 				return _tab_pane._p_tabs.at(tab_name);
