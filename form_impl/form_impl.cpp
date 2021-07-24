@@ -1106,7 +1106,7 @@ namespace liblec {
 								auto& time_specs = page._d_page.get_time(widget.first).specs();
 
 								// make pane whose alias is prefixed by the special string
-								containers::pane_builder pane(page, widgets::pane_impl::time_pane_alias_prefix() + widget.first);
+								containers::pane_builder pane(page, widgets::pane_impl::time_pane_alias_prefix() + widget.first, 0.f);
 
 								// clone essential properties to pane
 								pane()
