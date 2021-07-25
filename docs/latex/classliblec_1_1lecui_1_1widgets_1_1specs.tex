@@ -19,9 +19,7 @@ Inheritance diagram for liblec\+::lecui\+::widgets\+::specs\+:\begin{figure}[H]
 \begin{DoxyCompactItemize}
 \item 
 struct \mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1specs_1_1basic__events}{basic\+\_\+events}}
-\begin{DoxyCompactList}\small\item\em Events common to all widgets. \end{DoxyCompactList}\item 
-struct \mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1specs_1_1resize__params}{resize\+\_\+params}}
-\begin{DoxyCompactList}\small\item\em Resize parameters. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Events common to all widgets. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Types}
 \begin{DoxyCompactItemize}
 \item 
@@ -45,7 +43,7 @@ virtual std\+::string \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1spe
 \begin{DoxyCompactList}\small\item\em Get or set the widget\textquotesingle{}s tooltip text. \end{DoxyCompactList}\item 
 virtual \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{lecui\+::rect}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a0d6cc5c9ed9591f2e8b306a18224f4d7}{rect}} ()=0
 \begin{DoxyCompactList}\small\item\em Get or set the position and dimensions of the widget. \end{DoxyCompactList}\item 
-virtual \mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1specs_1_1resize__params}{resize\+\_\+params}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a3f6021dcec6d7b6d846911956a6bff32}{on\+\_\+resize}} ()=0
+virtual \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params}{resize\+\_\+params}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a3f6021dcec6d7b6d846911956a6bff32}{on\+\_\+resize}} ()=0
 \begin{DoxyCompactList}\small\item\em Get or set the behaviour of the widget when its container is resized. \end{DoxyCompactList}\item 
 virtual \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a3cba4c05a958d80dca72e4e9dd5360b1}{cursor\+\_\+type}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a28e525ebd75d587b17592dba23f24081}{cursor}} ()=0
 \begin{DoxyCompactList}\small\item\em Get or set the mouse cursor to use then over the widget. \end{DoxyCompactList}\item 
@@ -80,7 +78,7 @@ std\+::string {\bfseries \+\_\+tooltip}
 \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{lecui\+::rect}} {\bfseries \+\_\+rect}
 \item 
 \mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1specs_a8c06d75f6e493b93c52a1f901e22c836}\label{classliblec_1_1lecui_1_1widgets_1_1specs_a8c06d75f6e493b93c52a1f901e22c836}} 
-\mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1specs_1_1resize__params}{resize\+\_\+params}} {\bfseries \+\_\+on\+\_\+resize} = \{ 0.f, 0.f, 0.f, 0.f \}
+\mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params}{resize\+\_\+params}} {\bfseries \+\_\+on\+\_\+resize} = \{ 0.f, 0.f, 0.f, 0.f \}
 \item 
 \mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1specs_ac5dc50faf2c0ad037efacfaa7c9e5c82}\label{classliblec_1_1lecui_1_1widgets_1_1specs_ac5dc50faf2c0ad037efacfaa7c9e5c82}} 
 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a3cba4c05a958d80dca72e4e9dd5360b1}{cursor\+\_\+type}} {\bfseries \+\_\+cursor} = \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a3cba4c05a958d80dca72e4e9dd5360b1a9022a153e6190f10d9b57aa4232b8aea}{cursor\+\_\+type\+::arrow}}
@@ -315,14 +313,14 @@ Implemented in \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view__s
 \index{liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}!on\_resize@{on\_resize}}
 \index{on\_resize@{on\_resize}!liblec::lecui::widgets::specs@{liblec::lecui::widgets::specs}}
 \doxysubsubsection{\texorpdfstring{on\_resize()}{on\_resize()}}
-{\footnotesize\ttfamily virtual \mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1specs_1_1resize__params}{resize\+\_\+params}}\& liblec\+::lecui\+::widgets\+::specs\+::on\+\_\+resize (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params}{resize\+\_\+params}}\& liblec\+::lecui\+::widgets\+::specs\+::on\+\_\+resize (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
 
 
 
 Get or set the behaviour of the widget when its container is resized. 
 
 \begin{DoxyReturn}{Returns}
-A reference to the resize parameters as defined in \mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1specs_1_1resize__params}{resize\+\_\+params}}.
+A reference to the resize parameters as defined in \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params}{resize\+\_\+params}}.
 \end{DoxyReturn}
 
 
