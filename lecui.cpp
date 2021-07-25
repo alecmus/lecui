@@ -217,59 +217,59 @@ namespace liblec {
 		resize_params::resize_params() :
 			resize_params(0.f, 0.f, 0.f, 0.f) {}
 
-		resize_params::resize_params(const float x_percentage,
-			const float y_percentage, const float width_percentage, const float height_percentage) :
-			_x_percentage(x_percentage), _y_percentage(y_percentage), _width_percentage(width_percentage), _height_percentage(height_percentage) {}
+		resize_params::resize_params(const float x_rate,
+			const float y_rate, const float width_rate, const float height_rate) :
+			_x_rate(x_rate), _y_rate(y_rate), _width_rate(width_rate), _height_rate(height_rate) {}
 
-		float& resize_params::x_percentage() {
-			return _x_percentage;
+		float& resize_params::x_rate() {
+			return _x_rate;
 		}
 
-		float resize_params::get_x_percentage() const {
-			return _x_percentage;
+		float resize_params::get_x_rate() const {
+			return _x_rate;
 		}
 
-		resize_params& resize_params::x_percentage(const float& x_percentage) {
-			_x_percentage = x_percentage;
+		resize_params& resize_params::x_rate(const float& x_rate) {
+			_x_rate = x_rate;
 			return *this;
 		}
 
-		float& resize_params::y_percentage() {
-			return _y_percentage;
+		float& resize_params::y_rate() {
+			return _y_rate;
 		}
 
-		float resize_params::get_y_percentage() const {
-			return _y_percentage;
+		float resize_params::get_y_rate() const {
+			return _y_rate;
 		}
 
-		resize_params& resize_params::y_percentage(const float& y_percentage) {
-			_y_percentage = y_percentage;
+		resize_params& resize_params::y_rate(const float& y_rate) {
+			_y_rate = y_rate;
 			return *this;
 		}
 
-		float& resize_params::width_percentage() {
-			return _width_percentage;
+		float& resize_params::width_rate() {
+			return _width_rate;
 		}
 
-		float resize_params::get_width_percentage() const {
-			return _width_percentage;
+		float resize_params::get_width_rate() const {
+			return _width_rate;
 		}
 
-		resize_params& resize_params::width_percentage(const float& width_percentage) {
-			_width_percentage = width_percentage;
+		resize_params& resize_params::width_rate(const float& width_rate) {
+			_width_rate = width_rate;
 			return *this;
 		}
 
-		float& resize_params::height_percentage() {
-			return _height_percentage;
+		float& resize_params::height_rate() {
+			return _height_rate;
 		}
 
-		float resize_params::get_height_percentage() const {
-			return _height_percentage;
+		float resize_params::get_height_rate() const {
+			return _height_rate;
 		}
 
-		resize_params& resize_params::height_percentage(const float& height_percentage) {
-			_height_percentage = height_percentage;
+		resize_params& resize_params::height_rate(const float& height_rate) {
+			_height_rate = height_rate;
 			return *this;
 		}
 
@@ -379,10 +379,10 @@ namespace liblec {
 
 		bool resize_params::operator==(const resize_params& param) {
 			return
-				(_x_percentage == param._x_percentage) &&
-				(_y_percentage == param._y_percentage) &&
-				(_width_percentage == param._width_percentage) &&
-				(_height_percentage == param._height_percentage) &&
+				(_x_rate == param._x_rate) &&
+				(_y_rate == param._y_rate) &&
+				(_width_rate == param._width_rate) &&
+				(_height_rate == param._height_rate) &&
 				(_min_x == param._min_x) &&
 				(_min_y == param._min_y) &&
 				(_max_x == param._max_x) &&

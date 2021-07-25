@@ -197,8 +197,8 @@ namespace liblec {
 					.rect().size(page_impl.size());
 
 				rectangle.on_resize()
-					.width_percentage(100.f)
-					.height_percentage(100.f);
+					.width_rate(100.f)
+					.height_rate(100.f);
 
 				// capture pointer to pane rect and page
 				_tab_pane._p_page_impl = &page_impl;
@@ -215,8 +215,8 @@ namespace liblec {
 				{
 					auto& _specs = page_impl.h_scrollbar().specs();
 					_specs.on_resize()
-						.width_percentage(100.f)
-						.y_percentage(100.f);
+						.width_rate(100.f)
+						.y_rate(100.f);
 
 					auto width = rect_client_area.right() - rect_client_area.left() - 2.f * _content_margin;
 
@@ -251,8 +251,8 @@ namespace liblec {
 				{
 					auto& _specs = page_impl.v_scrollbar().specs();
 					_specs.on_resize()
-						.height_percentage(100.f)
-						.x_percentage(100.f);
+						.height_rate(100.f)
+						.x_rate(100.f);
 
 					auto height = rect_client_area.bottom() - rect_client_area.top() - 2.f * _content_margin;
 

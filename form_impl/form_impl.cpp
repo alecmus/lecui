@@ -383,7 +383,7 @@ namespace liblec {
 				.color_fill(_clr_theme)
 				.color_hot(_clr_theme_hot)
 				.color_disabled(_clr_theme_disabled)
-				.on_resize().x_percentage(100.f);
+				.on_resize().x_rate(100.f);
 
 			_p_close_button->specs().rect()
 				.right(_size.width - _control_button_margin)
@@ -407,7 +407,7 @@ namespace liblec {
 				.color_fill(_clr_theme)
 				.color_hot(_clr_theme_hot)
 				.color_disabled(_clr_theme_disabled)
-				.on_resize().x_percentage(100.f);
+				.on_resize().x_rate(100.f);
 
 			const auto right_edge = _p_close_button->specs().rect().left();
 
@@ -431,7 +431,7 @@ namespace liblec {
 				.color_fill(_clr_theme)
 				.color_hot(_clr_theme_hot)
 				.color_disabled(_clr_theme_disabled)
-				.on_resize().x_percentage(100.f);
+				.on_resize().x_rate(100.f);
 
 			const auto right_edge = _allow_resizing ?
 				_p_maximize_button->specs().rect().left() : _p_close_button->specs().rect().left();
@@ -736,7 +736,7 @@ namespace liblec {
 									.color_border(html_editor_specs.color_control_border())
 									.border(html_editor_specs.control_border())
 									.on_resize(html_editor_specs.on_resize())
-									.on_resize().height_percentage(0.f).min_height(0.f);
+									.on_resize().height_rate(0.f).min_height(0.f);
 
 								// cause controls pane to be initialized by calling get()
 								auto& controls_pane_page = controls_pane.get();

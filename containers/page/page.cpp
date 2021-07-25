@@ -78,7 +78,7 @@ namespace liblec {
 			{
 				auto& _specs = page_impl.h_scrollbar().specs();
 				_specs.on_resize()
-					.width_percentage(100.f).y_percentage(100.f);
+					.width_rate(100.f).y_rate(100.f);
 
 				_specs.rect()
 					.left(margin + thickness - _d._fm._d._content_margin)
@@ -97,7 +97,7 @@ namespace liblec {
 			{
 				auto& _specs = page_impl.v_scrollbar().specs();
 				_specs.on_resize()
-					.height_percentage(100.f).x_percentage(100.f);
+					.height_rate(100.f).x_rate(100.f);
 
 				_specs.rect()
 					.top(margin + thickness - _d._fm._d._content_margin)
@@ -126,7 +126,7 @@ namespace liblec {
 				.rect().size(page_impl.size());
 
 			rectangle.on_resize()
-				.width_percentage(100.f).height_percentage(100.f);
+				.width_rate(100.f).height_rate(100.f);
 
 			// return reference to page so caller can add widgets to it
 			return _d._fm._d._p_pages.at(alias);
