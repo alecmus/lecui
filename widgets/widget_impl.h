@@ -231,7 +231,7 @@ namespace liblec {
 
 			protected:
 				D2D1_RECT_F position(const rect& rect,
-					const widgets::specs::resize_params& on_resize,
+					const widgets::resize_params& on_resize,
 					const float& change_in_width,
 					const float& change_in_height);
 

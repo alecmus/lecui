@@ -383,7 +383,7 @@ namespace liblec {
 				.color_fill(_clr_theme)
 				.color_hot(_clr_theme_hot)
 				.color_disabled(_clr_theme_disabled)
-				.on_resize().perc_x = 100;
+				.on_resize().perc_x(100.f);
 
 			_p_close_button->specs().rect()
 				.right(_size.width - _control_button_margin)
@@ -407,7 +407,7 @@ namespace liblec {
 				.color_fill(_clr_theme)
 				.color_hot(_clr_theme_hot)
 				.color_disabled(_clr_theme_disabled)
-				.on_resize().perc_x = 100;
+				.on_resize().perc_x(100.f);
 
 			const auto right_edge = _p_close_button->specs().rect().left();
 
@@ -431,7 +431,7 @@ namespace liblec {
 				.color_fill(_clr_theme)
 				.color_hot(_clr_theme_hot)
 				.color_disabled(_clr_theme_disabled)
-				.on_resize().perc_x = 100;
+				.on_resize().perc_x(100.f);
 
 			const auto right_edge = _allow_resizing ?
 				_p_maximize_button->specs().rect().left() : _p_close_button->specs().rect().left();
@@ -735,9 +735,8 @@ namespace liblec {
 									.color_fill(html_editor_specs.color_control_fill())
 									.color_border(html_editor_specs.color_control_border())
 									.border(html_editor_specs.control_border())
-									.on_resize(html_editor_specs.on_resize());
-								controls_pane().on_resize().perc_height = 0.f;
-								controls_pane().on_resize().min_height = 0.f;
+									.on_resize(html_editor_specs.on_resize())
+									.on_resize().perc_height(0.f).min_height(0.f);
 
 								// cause controls pane to be initialized by calling get()
 								auto& controls_pane_page = controls_pane.get();
@@ -754,8 +753,8 @@ namespace liblec {
 									.on_resize(html_editor_specs.on_resize())
 									.rect().top(controls_pane().rect().bottom());
 								
-								if (pane().on_resize().min_height)
-									pane().on_resize().min_height = largest(pane().on_resize().min_height - controls_pane().rect().height(), 0.f);
+								if (pane().on_resize().min_height())
+									pane().on_resize().min_height(largest(pane().on_resize().min_height() - controls_pane().rect().height(), 0.f));
 								
 								// save move info so we can move the tree into the pane later
 								// we cannot do it here because we're iterating

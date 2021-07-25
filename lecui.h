@@ -84,6 +84,7 @@ namespace liblec {
 			float height = 0.f;
 		};
 
+		/// <summary>Rectangle class.</summary>
 		class lecui_api rect {
 			float _left = 0.f;
 			float _right = 0.f;

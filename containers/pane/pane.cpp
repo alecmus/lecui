@@ -116,8 +116,8 @@ namespace liblec {
 				.corner_radius_y(15.f)
 				.rect().size(page_impl.size());
 
-			rectangle.on_resize().perc_width = 100.f;
-			rectangle.on_resize().perc_height = 100.f;
+			rectangle.on_resize()
+				.perc_width(100.f).perc_height(100.f);
 
 			// capture pointer to pane rect and page
 			_pane._p_page_impl = &page_impl;
@@ -133,8 +133,9 @@ namespace liblec {
 			// initialize the page's horizontal scroll bar
 			{
 				auto& _specs = page_impl.h_scrollbar().specs();
-				_specs.on_resize().perc_width = 100.f;
-				_specs.on_resize().perc_y = 100.f;
+				_specs.on_resize()
+					.perc_width(100.f)
+					.perc_y(100.f);
 
 				auto width = rect_client_area.right() - rect_client_area.left() - 2.f * _content_margin;
 
@@ -156,8 +157,9 @@ namespace liblec {
 			// initialize the page's vertical scroll bar
 			{
 				auto& _specs = page_impl.v_scrollbar().specs();
-				_specs.on_resize().perc_height = 100.f;
-				_specs.on_resize().perc_x = 100.f;
+				_specs.on_resize()
+					.perc_height(100.f)
+					.perc_x(100.f);
 
 				auto height = rect_client_area.bottom() - rect_client_area.top() - 2.f * _content_margin;
 
@@ -233,9 +235,9 @@ namespace liblec {
 			return *this;
 		}
 
-		widgets::specs::resize_params& containers::pane_specs::on_resize() { return _on_resize; }
+		widgets::resize_params& containers::pane_specs::on_resize() { return _on_resize; }
 
-		containers::pane_specs& containers::pane_specs::on_resize(const resize_params& on_resize) {
+		containers::pane_specs& containers::pane_specs::on_resize(const widgets::resize_params& on_resize) {
 			_on_resize = on_resize;
 			return *this;
 		}

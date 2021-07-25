@@ -44,7 +44,7 @@ namespace liblec {
 			return *this;
 		}
 
-		widgets::specs::resize_params& widgets::line_specs::on_resize() { return _on_resize; }
+		widgets::resize_params& widgets::line_specs::on_resize() { return _on_resize; }
 
 		widgets::line_specs& widgets::line_specs::on_resize(const resize_params& on_resize) {
 			_on_resize = on_resize;

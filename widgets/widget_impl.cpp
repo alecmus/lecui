@@ -174,14 +174,14 @@ namespace liblec {
 
 		D2D1_RECT_F
 			widgets::widget_impl::position(const rect& rect,
-				const widgets::specs::resize_params& on_resize,
+				const widgets::resize_params& on_resize,
 				const float& change_in_width, const float& change_in_height) {
-			auto x_change = change_in_width * on_resize.perc_x / 100.f;
-			auto y_change = change_in_height * on_resize.perc_y / 100.f;
+			auto x_change = change_in_width * on_resize.get_perc_x() / 100.f;
+			auto y_change = change_in_height * on_resize.get_perc_y() / 100.f;
 			auto width_change =
-				change_in_width * on_resize.perc_width / 100.f;
+				change_in_width * on_resize.get_perc_width() / 100.f;
 			auto height_change =
-				change_in_height * on_resize.perc_height / 100.f;
+				change_in_height * on_resize.get_perc_height() / 100.f;
 
 			auto left = rect.get_left() + x_change;
 			auto top = rect.get_top() + y_change;
@@ -191,20 +191,20 @@ namespace liblec {
 			// apply limits on width and height
 
 			// width
-			if ((right - left) < on_resize.min_width)
-				right = left + on_resize.min_width;
+			if ((right - left) < on_resize.get_min_width())
+				right = left + on_resize.get_min_width();
 
-			if (on_resize.max_width > on_resize.min_width)
-				if ((right - left) > on_resize.max_width)
-					right = left + on_resize.max_width;
+			if (on_resize.get_max_width() > on_resize.get_min_width())
+				if ((right - left) > on_resize.get_max_width())
+					right = left + on_resize.get_max_width();
 
 			// height
-			if ((bottom - top) < on_resize.min_height)
-				bottom = top + on_resize.min_height;
+			if ((bottom - top) < on_resize.get_min_height())
+				bottom = top + on_resize.get_min_height();
 
-			if (on_resize.max_height > on_resize.min_height)
-				if ((bottom - top) > on_resize.max_height)
-					bottom = top + on_resize.max_height;
+			if (on_resize.get_max_height() > on_resize.get_min_height())
+				if ((bottom - top) > on_resize.get_max_height())
+					bottom = top + on_resize.get_max_height();
 
 			const auto width = right - left;
 			const auto height = bottom - top;
@@ -213,28 +213,28 @@ namespace liblec {
 
 			// x
 
-			if (left < on_resize.min_x) {
-				left = on_resize.min_x;
+			if (left < on_resize.get_min_x()) {
+				left = on_resize.get_min_x();
 				right = left + width;
 			}
 
-			if (on_resize.max_x > on_resize.min_x) {
-				if (left > on_resize.max_x) {
-					left = on_resize.max_x;
+			if (on_resize.get_max_x() > on_resize.get_min_x()) {
+				if (left > on_resize.get_max_x()) {
+					left = on_resize.get_max_x();
 					right = left + width;
 				}
 			}
 
 			// y
 
-			if (top < on_resize.min_y) {
-				top = on_resize.min_y;
+			if (top < on_resize.get_min_y()) {
+				top = on_resize.get_min_y();
 				bottom = top + height;
 			}
 
-			if (on_resize.max_y > on_resize.min_y) {
-				if (top > on_resize.max_y) {
-					top = on_resize.max_y;
+			if (on_resize.get_max_y() > on_resize.get_min_y()) {
+				if (top > on_resize.get_max_y()) {
+					top = on_resize.get_max_y();
 					bottom = top + height;
 				}
 			}

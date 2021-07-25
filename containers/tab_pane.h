@@ -64,8 +64,8 @@ namespace liblec {
 				lecui::rect& rect() override;
 				tab_pane_specs& rect(const lecui::rect& rect);
 
-				resize_params& on_resize() override;
-				tab_pane_specs& on_resize(const resize_params& on_resize);
+				widgets::resize_params& on_resize() override;
+				tab_pane_specs& on_resize(const widgets::resize_params& on_resize);
 
 				cursor_type& cursor() override;
 				tab_pane_specs& cursor(const cursor_type cursor);

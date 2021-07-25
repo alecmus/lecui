@@ -59,7 +59,7 @@ namespace liblec {
 			return *this;
 		}
 
-		widgets::specs::resize_params& widgets::html_editor_specs::on_resize() {
+		widgets::resize_params& widgets::html_editor_specs::on_resize() {
 			if (_p_controls_pane_specs && _p_html_pane_specs)	// redirect to special pane
 				return _on_resize_overall;	// to-do: how to transfer changes to special panes
 			else
