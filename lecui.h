@@ -248,10 +248,10 @@ namespace liblec {
 		/// <remarks>Affects how the widget behaves when the immediate container's
 		/// dimensions change.</remarks>
 		class lecui_api resize_params {
-			float _perc_x = 0.f;
-			float _perc_y = 0.f;
-			float _perc_width = 0.f;
-			float _perc_height = 0.f;
+			float _x_percentage = 0.f;
+			float _y_percentage = 0.f;
+			float _width_percentage = 0.f;
+			float _height_percentage = 0.f;
 			float _min_x = 0.f;
 			float _min_y = 0.f;
 			float _max_x = 0.f;
@@ -267,89 +267,89 @@ namespace liblec {
 			resize_params();
 
 			/// <summary>Constructor that allows initializing the most important properties.</summary>
-			/// <param name="perc_x">The percentage rate for following the container's right border.</param>
-			/// <param name="perc_y">The percentage rate for following the container's bottom border.</param>
-			/// <param name="perc_width">The percentage rate for following the container's change in width.</param>
-			/// <param name="perc_height">The percentage rate for following the container's change in 
+			/// <param name="x_percentage">The percentage rate for following the container's right border.</param>
+			/// <param name="y_percentage">The percentage rate for following the container's bottom border.</param>
+			/// <param name="width_percentage">The percentage rate for following the container's change in width.</param>
+			/// <param name="height_percentage">The percentage rate for following the container's change in 
 			/// height.</param>
 			/// <remarks>Initializes the rest of the fields set to zero.</remarks>
-			resize_params(const float perc_x, const float perc_y, const float perc_width, const float perc_height);
+			resize_params(const float x_percentage, const float y_percentage, const float width_percentage, const float height_percentage);
 
 			/// <summary>Get or set the percentage rate for following the container's right border.
 			/// 0 = doesn't move horizontally, 100 = moves same number of pixels
 			/// horizontally that the container's right border has moved.</summary>
 			/// <returns>A reference to the property.</returns>
-			float& perc_x();
+			float& x_percentage();
 
 			/// <summary>Get the percentage rate for following the container's right border.
 			/// 0 = doesn't move horizontally, 100 = moves same number of pixels
 			/// horizontally that the container's right border has moved.</summary>
 			/// <returns>The value of the property.</returns>
-			float get_perc_x() const;
+			float get_x_percentage() const;
 
 			/// <summary>Set the percentage rate for following the container's right border.
 			/// 0 = doesn't move horizontally, 100 = moves same number of pixels
 			/// horizontally that the container's right border has moved.</summary>
-			/// <param name="perc_x">The value of the property.</param>
+			/// <param name="x_percentage">The value of the property.</param>
 			/// <returns>A reference to the modified object.</returns>
-			resize_params& perc_x(const float& perc_x);
+			resize_params& x_percentage(const float& x_percentage);
 
 			/// <summary>Get or set the percentage rate for following the container's bottom border.
 			/// 0 = doesn't move vertically, 100 = moves same number of pixels vertically
 			/// that the container's bottom border has moved.</summary>
 			/// <returns>A reference to the property.</returns>
-			float& perc_y();
+			float& y_percentage();
 
 			/// <summary>Get the percentage rate for following the container's bottom border.
 			/// 0 = doesn't move vertically, 100 = moves same number of pixels vertically
 			/// that the container's bottom border has moved.</summary>
 			/// <returns>The value of the property.</returns>
-			float get_perc_y() const;
+			float get_y_percentage() const;
 
 			/// <summary>Set the percentage rate for following the container's bottom border.
 			/// 0 = doesn't move vertically, 100 = moves same number of pixels vertically
 			/// that the container's bottom border has moved.</summary>
-			/// <param name="perc_y">The value of the property.</param>
+			/// <param name="y_percentage">The value of the property.</param>
 			/// <returns>A reference to the modified object.</returns>
-			resize_params& perc_y(const float& perc_y);
+			resize_params& y_percentage(const float& y_percentage);
 
 			/// <summary>Get or set the percentage rate for following the container's change in width.
 			/// 0 = doesn't follow change in container's width, 100 = width changes at 
 			/// same rate as that of container.</summary>
 			/// <returns>A reference to the property.</returns>
-			float& perc_width();
+			float& width_percentage();
 
 			/// <summary>Get the percentage rate for following the container's change in width.
 			/// 0 = doesn't follow change in container's width, 100 = width changes at 
 			/// same rate as that of container.</summary>
 			/// <returns>The value of the property.</returns>
-			float get_perc_width() const;
+			float get_width_percentage() const;
 
 			/// <summary>Set the percentage rate for following the container's change in width.
 			/// 0 = doesn't follow change in container's width, 100 = width changes at 
 			/// same rate as that of container.</summary>
-			/// <param name="perc_width">The value of the property.</param>
+			/// <param name="width_percentage">The value of the property.</param>
 			/// <returns>A reference to the modified object.</returns>
-			resize_params& perc_width(const float& perc_width);
+			resize_params& width_percentage(const float& width_percentage);
 
 			/// <summary>Get or set the percentage rate for following the container's change in 
 			/// height. 0 = doesn't follow change in container's height, 100 = height 
 			/// changes at same rate as that of container.</summary>
 			/// <returns>A reference to the property.</returns>
-			float& perc_height();
+			float& height_percentage();
 
 			/// <summary>Get the percentage rate for following the container's change in 
 			/// height. 0 = doesn't follow change in container's height, 100 = height 
 			/// changes at same rate as that of container.</summary>
 			/// <returns>The value of the property.</returns>
-			float get_perc_height() const;
+			float get_height_percentage() const;
 
 			/// <summary>Set the percentage rate for following the container's change in 
 			/// height. 0 = doesn't follow change in container's height, 100 = height 
 			/// changes at same rate as that of container.</summary>
-			/// <param name="perc_height">The value of the property.</param>
+			/// <param name="height_percentage">The value of the property.</param>
 			/// <returns>A reference to the modified object.</returns>
-			resize_params& perc_height(const float& perc_height);
+			resize_params& height_percentage(const float& height_percentage);
 
 			/// <summary>Get or set the minimum x-coordinate permitted as widget moves.</summary>
 			/// <returns>A reference to the property.</returns>

@@ -217,59 +217,59 @@ namespace liblec {
 		resize_params::resize_params() :
 			resize_params(0.f, 0.f, 0.f, 0.f) {}
 
-		resize_params::resize_params(const float perc_x,
-			const float perc_y, const float perc_width, const float perc_height) :
-			_perc_x(perc_x), _perc_y(perc_y), _perc_width(perc_width), _perc_height(perc_height) {}
+		resize_params::resize_params(const float x_percentage,
+			const float y_percentage, const float width_percentage, const float height_percentage) :
+			_x_percentage(x_percentage), _y_percentage(y_percentage), _width_percentage(width_percentage), _height_percentage(height_percentage) {}
 
-		float& resize_params::perc_x() {
-			return _perc_x;
+		float& resize_params::x_percentage() {
+			return _x_percentage;
 		}
 
-		float resize_params::get_perc_x() const {
-			return _perc_x;
+		float resize_params::get_x_percentage() const {
+			return _x_percentage;
 		}
 
-		resize_params& resize_params::perc_x(const float& perc_x) {
-			_perc_x = perc_x;
+		resize_params& resize_params::x_percentage(const float& x_percentage) {
+			_x_percentage = x_percentage;
 			return *this;
 		}
 
-		float& resize_params::perc_y() {
-			return _perc_y;
+		float& resize_params::y_percentage() {
+			return _y_percentage;
 		}
 
-		float resize_params::get_perc_y() const {
-			return _perc_y;
+		float resize_params::get_y_percentage() const {
+			return _y_percentage;
 		}
 
-		resize_params& resize_params::perc_y(const float& perc_y) {
-			_perc_y = perc_y;
+		resize_params& resize_params::y_percentage(const float& y_percentage) {
+			_y_percentage = y_percentage;
 			return *this;
 		}
 
-		float& resize_params::perc_width() {
-			return _perc_width;
+		float& resize_params::width_percentage() {
+			return _width_percentage;
 		}
 
-		float resize_params::get_perc_width() const {
-			return _perc_width;
+		float resize_params::get_width_percentage() const {
+			return _width_percentage;
 		}
 
-		resize_params& resize_params::perc_width(const float& perc_width) {
-			_perc_width = perc_width;
+		resize_params& resize_params::width_percentage(const float& width_percentage) {
+			_width_percentage = width_percentage;
 			return *this;
 		}
 
-		float& resize_params::perc_height() {
-			return _perc_height;
+		float& resize_params::height_percentage() {
+			return _height_percentage;
 		}
 
-		float resize_params::get_perc_height() const {
-			return _perc_height;
+		float resize_params::get_height_percentage() const {
+			return _height_percentage;
 		}
 
-		resize_params& resize_params::perc_height(const float& perc_height) {
-			_perc_height = perc_height;
+		resize_params& resize_params::height_percentage(const float& height_percentage) {
+			_height_percentage = height_percentage;
 			return *this;
 		}
 
@@ -379,10 +379,10 @@ namespace liblec {
 
 		bool resize_params::operator==(const resize_params& param) {
 			return
-				(_perc_x == param._perc_x) &&
-				(_perc_y == param._perc_y) &&
-				(_perc_width == param._perc_width) &&
-				(_perc_height == param._perc_height) &&
+				(_x_percentage == param._x_percentage) &&
+				(_y_percentage == param._y_percentage) &&
+				(_width_percentage == param._width_percentage) &&
+				(_height_percentage == param._height_percentage) &&
 				(_min_x == param._min_x) &&
 				(_min_y == param._min_y) &&
 				(_max_x == param._max_x) &&

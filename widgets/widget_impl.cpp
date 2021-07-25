@@ -176,12 +176,12 @@ namespace liblec {
 			widgets::widget_impl::position(const rect& rect,
 				const resize_params& on_resize,
 				const float& change_in_width, const float& change_in_height) {
-			auto x_change = change_in_width * on_resize.get_perc_x() / 100.f;
-			auto y_change = change_in_height * on_resize.get_perc_y() / 100.f;
+			auto x_change = change_in_width * on_resize.get_x_percentage() / 100.f;
+			auto y_change = change_in_height * on_resize.get_y_percentage() / 100.f;
 			auto width_change =
-				change_in_width * on_resize.get_perc_width() / 100.f;
+				change_in_width * on_resize.get_width_percentage() / 100.f;
 			auto height_change =
-				change_in_height * on_resize.get_perc_height() / 100.f;
+				change_in_height * on_resize.get_height_percentage() / 100.f;
 
 			auto left = rect.get_left() + x_change;
 			auto top = rect.get_top() + y_change;
