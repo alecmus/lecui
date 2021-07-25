@@ -235,9 +235,9 @@ namespace liblec {
 			return *this;
 		}
 
-		widgets::resize_params& containers::pane_specs::on_resize() { return _on_resize; }
+		resize_params& containers::pane_specs::on_resize() { return _on_resize; }
 
-		containers::pane_specs& containers::pane_specs::on_resize(const widgets::resize_params& on_resize) {
+		containers::pane_specs& containers::pane_specs::on_resize(const resize_params& on_resize) {
 			_on_resize = on_resize;
 			return *this;
 		}

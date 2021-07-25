@@ -47,7 +47,7 @@ namespace liblec {
 			return *this;
 		}
 
-		widgets::resize_params& widgets::progress_bar_specs::on_resize() { return _on_resize; }
+		resize_params& widgets::progress_bar_specs::on_resize() { return _on_resize; }
 
 		widgets::progress_bar_specs& widgets::progress_bar_specs::on_resize(const resize_params& on_resize) {
 			_on_resize = on_resize;

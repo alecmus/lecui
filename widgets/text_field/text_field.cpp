@@ -51,7 +51,7 @@ namespace liblec {
 			return *this;
 		}
 
-		widgets::resize_params& widgets::text_field_specs::on_resize() { return _on_resize; }
+		resize_params& widgets::text_field_specs::on_resize() { return _on_resize; }
 
 		widgets::text_field_specs& widgets::text_field_specs::on_resize(const resize_params& on_resize) {
 			_on_resize = on_resize;

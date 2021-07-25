@@ -111,7 +111,7 @@ namespace liblec {
 			return *this;
 		}
 
-		widgets::resize_params& widgets::table_view_specs::on_resize() {
+		resize_params& widgets::table_view_specs::on_resize() {
 			if (_p_special_pane_specs)	// redirect to special pane
 				return reinterpret_cast<lecui::containers::pane_specs*>(_p_special_pane_specs)->on_resize();
 			else

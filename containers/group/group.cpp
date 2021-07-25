@@ -47,9 +47,9 @@ namespace liblec {
 			return *this;
 		}
 
-		widgets::resize_params& containers::group_specs::on_resize() { return _on_resize; }
+		resize_params& containers::group_specs::on_resize() { return _on_resize; }
 
-		containers::group_specs& containers::group_specs::on_resize(const widgets::resize_params& on_resize) {
+		containers::group_specs& containers::group_specs::on_resize(const resize_params& on_resize) {
 			_on_resize = on_resize;
 			return *this;
 		}

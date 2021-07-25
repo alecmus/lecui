@@ -174,7 +174,7 @@ namespace liblec {
 
 		D2D1_RECT_F
 			widgets::widget_impl::position(const rect& rect,
-				const widgets::resize_params& on_resize,
+				const resize_params& on_resize,
 				const float& change_in_width, const float& change_in_height) {
 			auto x_change = change_in_width * on_resize.get_perc_x() / 100.f;
 			auto y_change = change_in_height * on_resize.get_perc_y() / 100.f;

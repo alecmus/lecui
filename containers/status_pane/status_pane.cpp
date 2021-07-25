@@ -82,7 +82,7 @@ namespace liblec {
 			rect_client.height(rect_client.height() - (2.f * _d._fm._d._content_margin + _d._fm._d._caption_bar_height));
 
 			lecui::rect rect = rect_client;
-			lecui::widgets::resize_params on_resize;
+			lecui::resize_params on_resize;
 
 			auto& specs = this->specs();
 
