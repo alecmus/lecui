@@ -121,7 +121,9 @@ namespace liblec {
 			/// <param name="fm">The form the page is in.</param>
 			/// <param name="alias">The in-form unique alias, e.g. "home_page".</param>
 			/// <returns>A reference to the page container.</returns>
-			/// <remarks>Throws on failure.</remarks>
+			/// <remarks>Throws on failure. For faster coding and more readable code consider
+			/// calling this static method through the helper macro provided (get_page), unless if already
+			/// using an in-class page_manager instance.</remarks>
 			[[nodiscard]] static containers::page&
 				get(form& fm, const std::string& alias);
 
@@ -147,3 +149,6 @@ namespace liblec {
 		};
 	}
 }
+
+/// Helper for getting a form's page. Builder documentation applies.
+#define get_page(path) liblec::lecui::page_manager::get(*this, path)

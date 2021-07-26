@@ -242,7 +242,8 @@ namespace liblec {
 				/// <param name="path">The full path to the control, e.g.
 				/// "sample_page/settings_tab_pane".</param>
 				/// <returns>A reference to the control specifications.</returns>
-				/// <remarks>Throws on failure.</remarks>
+				/// <remarks>Throws on failure. For faster coding and more readable code consider
+				/// calling this static method through the helper macro provided (get_tab_pane_specs).</remarks>
 				[[nodiscard]]
 				static tab_pane_specs& specs(form& fm, const std::string& path);
 
@@ -296,6 +297,8 @@ namespace liblec {
 				/// "sample_page/settings_tab_pane/Options".
 				/// </param>
 				/// <returns>A reference to the tab container page.</returns>
+				/// <remarks>Throws on failure. For faster coding and more readable code consider
+				/// calling this static method through the helper macro provided (get_tab_page).</remarks>
 				[[nodiscard]]
 				static containers::page& get(form& fm, const std::string& path);
 
@@ -311,3 +314,9 @@ namespace liblec {
 		}
 	}
 }
+
+/// Helper for getting tab pane specs. Builder documentation applies.
+#define get_tab_pane_specs(path) liblec::lecui::containers::tab_pane_builder::specs(*this, path)
+
+/// Helper for getting a tab's page. Builder documentation applies.
+#define get_tab_page(path) liblec::lecui::containers::tab_builder::get(*this, path)

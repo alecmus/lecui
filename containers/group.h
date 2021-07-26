@@ -171,7 +171,8 @@ namespace liblec {
 				/// <param name="path">The full path to the container, e.g.
 				/// "sample_page/left_group".</param>
 				/// <returns>A reference to the group specifications.</returns>
-				/// <remarks>Throws on failure.</remarks>
+				/// <remarks>Throws on failure. For faster coding and more readable code consider
+				/// calling this static method through the helper macro provided.</remarks>
 				[[nodiscard]]
 				static group_specs& specs(form& fm, const std::string& path);
 
@@ -187,3 +188,6 @@ namespace liblec {
 		}
 	}
 }
+
+/// Helper for getting group specs. Builder documentation applies.
+#define get_group_specs(path) liblec::lecui::containers::group_builder::specs(*this, path)

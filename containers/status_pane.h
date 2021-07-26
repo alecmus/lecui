@@ -106,7 +106,8 @@ namespace liblec {
 				/// <param name="alias">The status pane alias, e.g.
 				/// "status::bottom".</param>
 				/// <returns>A reference to the status pane specifications.</returns>
-				/// <remarks>Throws of failure.</remarks>
+				/// <remarks>Throws on failure. For faster coding and more readable code consider
+				/// calling this static method through the helper macro provided (get_status_pane_specs).</remarks>
 				[[nodiscard]]
 				static status_pane_specs& specs(form& fm, const std::string& alias);
 
@@ -124,6 +125,8 @@ namespace liblec {
 				/// <param name="fm">The form the container is in.</param>
 				/// <param name="alias">The status pane alias, e.g. "status::right".</param>
 				/// <returns>A reference to the status pane container page.</returns>
+				/// <remarks>Throws on failure. For faster coding and more readable code consider
+				/// calling this static method through the helper macro provided (get_status_pane_page).</remarks>
 				[[nodiscard]]
 				static containers::page& get(form& fm, const std::string& alias);
 
@@ -139,3 +142,9 @@ namespace liblec {
 		}
 	}
 }
+
+/// Helper for getting status pane specs. Builder documentation applies.
+#define get_status_pane_specs(path) liblec::lecui::containers::status_pane_builder::specs(*this, path)
+
+/// Helper for getting a status pane's page. Builder documentation applies.
+#define get_status_pane_page(path) liblec::lecui::containers::status_pane::get(*this, path)

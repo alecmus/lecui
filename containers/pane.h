@@ -144,6 +144,8 @@ namespace liblec {
 				/// <param name="path">The full path to the pane, e.g.
 				/// "sample_page/settings_pane".</param>
 				/// <returns>A reference to the pane specifications.</returns>
+				/// <remarks>Throws on failure. For faster coding and more readable code consider
+				/// calling this static method through the helper macro provided (get_pane_specs).</remarks>
 				[[nodiscard]]
 				static pane_specs& specs(form& fm, const std::string& path);
 
@@ -161,6 +163,8 @@ namespace liblec {
 				/// <param name="path">The full path to the pane, e.g.
 				/// "sample_page/settings_pane".</param>
 				/// <returns>A reference to the pane container page.</returns>
+				/// <remarks>Throws on failure. For faster coding and more readable code consider
+				/// calling this static method through the helper macro provided (get_pane_page).</remarks>
 				[[nodiscard]]
 				static containers::page& get(form& fm, const std::string& path);
 
@@ -176,3 +180,9 @@ namespace liblec {
 		}
 	}
 }
+
+/// Helper for getting pane specs. Builder documentation applies.
+#define get_pane_specs(path) liblec::lecui::containers::pane_builder::specs(*this, path)
+
+/// Helper for getting a pane's page. Builder documentation applies.
+#define get_pane_page(path) liblec::lecui::containers::pane_builder::get(*this, path)
