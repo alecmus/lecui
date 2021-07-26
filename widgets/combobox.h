@@ -304,7 +304,8 @@ namespace liblec {
 				/// <param name="path">The full path to the widget, e.g.
 				/// "sample_page/sample_tab_pane/tab_one/title".</param>
 				/// <returns>A reference to the combobox specifications.</returns>
-				/// <remarks>Throws on failure.</remarks>
+				/// <remarks>Throws on failure. For faster coding and more readable code consider
+				/// calling this static method through the helper macro provided.</remarks>
 				[[nodiscard]]
 				static combobox_specs& specs(form& fm, const std::string& path);
 
@@ -320,3 +321,6 @@ namespace liblec {
 		}
 	}
 }
+
+/// Helper for getting combobox specs. Builder documentation applies.
+#define get_combobox_specs(path) liblec::lecui::widgets::combobox_builder::specs(*this, path)

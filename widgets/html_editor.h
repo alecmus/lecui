@@ -196,7 +196,8 @@ namespace liblec {
 				/// <param name="path">The full path to the widget, e.g.
 				/// "login_page/credentials_pane/email_text".</param>
 				/// <returns>A reference to the html editor specifications.</returns>
-				/// <remarks>Throws on failure.</remarks>
+				/// <remarks>Throws on failure. For faster coding and more readable code consider
+				/// calling this static method through the helper macro provided.</remarks>
 				[[nodiscard]]
 				static html_editor_specs& specs(form& fm, const std::string& path);
 
@@ -212,3 +213,6 @@ namespace liblec {
 		}
 	}
 }
+
+/// Helper for getting html editor specs. Builder documentation applies.
+#define get_html_editor_specs(path) liblec::lecui::widgets::html_editor_builder::specs(*this, path)

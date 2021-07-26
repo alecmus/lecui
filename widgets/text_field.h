@@ -183,7 +183,8 @@ namespace liblec {
 				/// <param name="path">The full path to the widget, e.g.
 				/// "login_page/credentials_pane/username".</param>
 				/// <returns>A reference to the text_field specifications.</returns>
-				/// <remarks>Throws on failure.</remarks>
+				/// <remarks>Throws on failure. For faster coding and more readable code consider
+				/// calling this static method through the helper macro provided.</remarks>
 				[[nodiscard]]
 				static text_field_specs& specs(form& fm, const std::string& path);
 
@@ -202,3 +203,6 @@ namespace liblec {
 		}
 	}
 }
+
+/// Helper for getting text field specs. Builder documentation applies.
+#define get_text_field_specs(path) liblec::lecui::widgets::text_field_builder::specs(*this, path)

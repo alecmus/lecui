@@ -130,7 +130,8 @@ namespace liblec {
 				/// <param name="path">The full path to the widget, e.g.
 				/// "sample_page/right_pane/tab_pane/tab_two/diagram".</param>
 				/// <returns>A reference to the custom widget's specifications.</returns>
-				/// <remarks>Throws on failure.</remarks>
+				/// <remarks>Throws on failure. For faster coding and more readable code consider
+				/// calling this static method through the helper macro provided.</remarks>
 				[[nodiscard]]
 				static custom_specs& specs(form& fm, const std::string& path);
 
@@ -146,3 +147,6 @@ namespace liblec {
 		}
 	}
 }
+
+/// Helper for getting custom specs. Builder documentation applies.
+#define get_custom_specs(path) liblec::lecui::widgets::custom_builder::specs(*this, path)

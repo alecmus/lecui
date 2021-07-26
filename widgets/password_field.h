@@ -44,3 +44,6 @@ namespace liblec {
 		}
 	}
 }
+
+/// Helper for getting password field specs. Builder documentation applies.
+#define get_password_field_specs(path) liblec::lecui::widgets::password_field_builder::specs(*this, path)

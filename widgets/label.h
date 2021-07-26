@@ -192,7 +192,8 @@ namespace liblec {
 				/// <param name="path">The full path to the widget, e.g.
 				/// "sample_page/sample_pane/caption".</param>
 				/// <returns>A reference to the label specifications.</returns>
-				/// <remarks>Throws on failure.</remarks>
+				/// <remarks>Throws on failure. For faster coding and more readable code consider
+				/// calling this static method through the helper macro provided.</remarks>
 				[[nodiscard]]
 				static label_specs& specs(form& fm,const std::string& path);
 
@@ -208,3 +209,6 @@ namespace liblec {
 		}
 	}
 }
+
+/// Helper for getting label specs. Builder documentation applies.
+#define get_label_specs(path) liblec::lecui::widgets::label_builder::specs(*this, path)

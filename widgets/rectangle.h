@@ -153,7 +153,8 @@ namespace liblec {
 				/// <param name="path">The full path to the widget, e.g.
 				/// "sample_page/sample_tab_pane/tab_three/border_rect".</param>
 				/// <returns>A reference to the rectangle specifications.</returns>
-				/// <remarks>Throws on failure.</remarks>
+				/// <remarks>Throws on failure. For faster coding and more readable code consider
+				/// calling this static method through the helper macro provided.</remarks>
 				[[nodiscard]]
 				static rectangle_specs& specs(form& fm, const std::string& path);
 
@@ -169,3 +170,6 @@ namespace liblec {
 		}
 	}
 }
+
+/// Helper for getting rectangle specs. Builder documentation applies.
+#define get_rectangle_specs(path) liblec::lecui::widgets::rectangle_builder::specs(*this, path)

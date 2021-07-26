@@ -192,7 +192,8 @@ namespace liblec {
 				/// <param name="path">The full path to the widget, e.g.
 				/// "sample_page/sample_tab_pane/tab_one/employment_status".</param>
 				/// <returns>A reference to the checkbox specifications.</returns>
-				/// <remarks>Throws on failure.</remarks>
+				/// <remarks>Throws on failure. For faster coding and more readable code consider
+				/// calling this static method through the helper macro provided.</remarks>
 				[[nodiscard]]
 				static checkbox_specs& specs(form& fm, const std::string& path);
 
@@ -208,3 +209,6 @@ namespace liblec {
 		}
 	}
 }
+
+/// Helper for getting checkbox specs. Builder documentation applies.
+#define get_checkbox_specs(path) liblec::lecui::widgets::checkbox_builder::specs(*this, path)

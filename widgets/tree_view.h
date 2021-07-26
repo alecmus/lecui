@@ -215,7 +215,8 @@ namespace liblec {
 				/// <param name="path">The full path to the widget, e.g.
 				/// "admin_page/system_pane/database_browser".</param>
 				/// <returns>A reference to the tree specifications.</returns>
-				/// <remarks>Throws on failure.</remarks>
+				/// <remarks>Throws on failure. For faster coding and more readable code consider
+				/// calling this static method through the helper macro provided.</remarks>
 				[[nodiscard]]
 				static tree_view_specs& specs(form& fm, const std::string& path);
 
@@ -231,3 +232,6 @@ namespace liblec {
 		}
 	}
 }
+
+/// Helper for getting tree view specs. Builder documentation applies.
+#define get_tree_view_specs(path) liblec::lecui::widgets::tree_view_builder::specs(*this, path)

@@ -203,7 +203,8 @@ namespace liblec {
 				/// <param name="path">The full path to the widget, e.g.
 				/// "sample_page/sample_tab_pane/tab_three/pane_two/avatar".</param>
 				/// <returns>A reference to the image specifications.</returns>
-				/// <remarks>Throws on failure.</remarks>
+				/// <remarks>Throws on failure. For faster coding and more readable code consider
+				/// calling this static method through the helper macro provided.</remarks>
 				[[nodiscard]]
 				static image_view_specs& specs(form& fm, const std::string& path);
 
@@ -219,3 +220,6 @@ namespace liblec {
 		}
 	}
 }
+
+/// Helper for getting image view specs. Builder documentation applies.
+#define get_image_view_specs(path) liblec::lecui::widgets::image_view_builder::specs(*this, path)

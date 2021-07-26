@@ -133,7 +133,8 @@ namespace liblec {
 				/// <param name="path">The full path to the widget, e.g.
 				/// "sample_page/encryption_pane/encryption_status".</param>
 				/// <returns>A reference to the progress bar specifications.</returns>
-				/// <remarks>Throws on failure.</remarks>
+				/// <remarks>Throws on failure. For faster coding and more readable code consider
+				/// calling this static method through the helper macro provided.</remarks>
 				[[nodiscard]]
 				static progress_bar_specs& specs(form& fm, const std::string& path);
 
@@ -149,3 +150,6 @@ namespace liblec {
 		}
 	}
 }
+
+/// Helper for getting progress bar specs. Builder documentation applies.
+#define get_progress_bar_specs(path) liblec::lecui::widgets::progress_bar_builder::specs(*this, path)

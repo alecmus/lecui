@@ -153,7 +153,8 @@ namespace liblec {
 				/// <param name="path">The full path to the widget, e.g.
 				/// "sample_page/files/file_transfer".</param>
 				/// <returns>A reference to the progress indicator specifications.</returns>
-				/// <remarks>Throws on failure.</remarks>
+				/// <remarks>Throws on failure. For faster coding and more readable code consider
+				/// calling this static method through the helper macro provided.</remarks>
 				[[nodiscard]]
 				static progress_indicator_specs& specs(form& fm, const std::string& path);
 
@@ -169,3 +170,6 @@ namespace liblec {
 		}
 	}
 }
+
+/// Helper for getting progress indicator specs. Builder documentation applies.
+#define get_progress_indicator_specs(path) liblec::lecui::widgets::progress_indicator_builder::specs(*this, path)

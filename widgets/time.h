@@ -172,7 +172,8 @@ namespace liblec {
 				/// <param name="path">The full path to the widget, e.g.
 				/// "sample_page/sample_pane/end_time".</param>
 				/// <returns>A reference to the time specifications.</returns>
-				/// <remarks>Throws on failure.</remarks>
+				/// <remarks>Throws on failure. For faster coding and more readable code consider
+				/// calling this static method through the helper macro provided.</remarks>
 				[[nodiscard]]
 				static time_specs& specs(form& fm, const std::string& path);
 
@@ -188,3 +189,6 @@ namespace liblec {
 		}
 	}
 }
+
+/// Helper for getting time specs. Builder documentation applies.
+#define get_time_specs(path) liblec::lecui::widgets::time_builder::specs(*this, path)
