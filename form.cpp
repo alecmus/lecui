@@ -180,7 +180,7 @@ namespace liblec {
 				if (_d._preset_pos)
 					_d.set_position(_d._form_position, _d._size.get_width(), _d._size.get_height());
 				else
-					_d.set_position(_d._point.x, _d._point.y, _d._size.get_width(), _d._size.get_height());
+					_d.set_position(_d._point.get_x(), _d._point.get_y(), _d._size.get_width(), _d._size.get_height());
 			}
 			else {
 				if (IsWindow(_d._hWnd_parent) && IsWindowEnabled(_d._hWnd_parent))
@@ -199,8 +199,8 @@ namespace liblec {
 			if (!CreateWindowEx(_d._tooltip_form ? NULL : _d._top_most == true ? WS_EX_TOPMOST : NULL, wcex.lpszClassName,
 				convert_string(_d._caption_plain).c_str(),
 				_d._tooltip_form ? WS_POPUP : static_cast<DWORD>(form::impl::style::aero_borderless),
-				static_cast<int>(.5f + _d._point.x * _d._dpi_scale),
-				static_cast<int>(.5f + _d._point.y * _d._dpi_scale),
+				static_cast<int>(.5f + _d._point.get_x() * _d._dpi_scale),
+				static_cast<int>(.5f + _d._point.get_y() * _d._dpi_scale),
 				static_cast<int>(.5f + _d._size.get_width() * _d._dpi_scale),
 				static_cast<int>(.5f + _d._size.get_height() * _d._dpi_scale),
 				_d._hWnd_parent, nullptr, wcex.hInstance, this)) {

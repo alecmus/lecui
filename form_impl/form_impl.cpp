@@ -2230,8 +2230,8 @@ namespace liblec {
 			_size.height(icy);
 
 			// ensure visibility of top left
-			_point.x = largest(ix, 0.f);
-			_point.y = largest(iy, 0.f);
+			_point.x(largest(ix, 0.f));
+			_point.y(largest(iy, 0.f));
 		}
 
 		void form::impl::set_position(const form_position& wndPos,
@@ -2267,8 +2267,8 @@ namespace liblec {
 					const float ix = rcParent.left + ((user_width - icx) / 2.f);
 					const float iy = rcParent.top + ((user_height - icy) / 2.f);
 
-					_point.x = ix;
-					_point.y = iy;
+					_point.x(ix);
+					_point.y(iy);
 					_size.width(icx);
 					_size.height(icy);
 
@@ -2286,80 +2286,80 @@ namespace liblec {
 				const float ix = rcWork.left + ((user_width - icx) / 2.f);
 				const float iy = rcWork.top + ((user_height - icy) / 2.f);
 
-				_point.x = ix;
-				_point.y = iy;
+				_point.x(ix);
+				_point.y(iy);
 				_size.width(icx);
 				_size.height(icy);
 			} break;
 
 			case form_position::top_left: {
-				_point.x = rcWork.left + 0.f;
-				_point.y = rcWork.top + 0.f;
+				_point.x(rcWork.left + 0.f);
+				_point.y(rcWork.top + 0.f);
 				_size.width(icx);
 				_size.height(icy);
 			} break;
 
 			case form_position::top_left_offset: {
-				_point.x = rcWork.left + offset;
-				_point.y = rcWork.top + offset;
+				_point.x(rcWork.left + offset);
+				_point.y(rcWork.top + offset);
 				_size.width(icx);
 				_size.height(icy);
 			} break;
 
 			case form_position::top_right: {
-				_point.x = rcWork.right - icx;
-				_point.y = rcWork.top + 0.f;
+				_point.x(rcWork.right - icx);
+				_point.y(rcWork.top + 0.f);
 				_size.width(icx);
 				_size.height(icy);
 			} break;
 
 			case form_position::top_right_offset: {
-				_point.x = rcWork.right - icx - offset;
-				_point.y = rcWork.top + offset;
+				_point.x(rcWork.right - icx - offset);
+				_point.y(rcWork.top + offset);
 				_size.width(icx);
 				_size.height(icy);
 			} break;
 
 			case form_position::bottom_right: {
-				_point.x = rcWork.right - icx;
-				_point.y = rcWork.bottom - icy;
+				_point.x(rcWork.right - icx);
+				_point.y(rcWork.bottom - icy);
 				_size.width(icx);
 				_size.height(icy);
 			} break;
 
 			case form_position::bottom_right_offset: {
-				_point.x = rcWork.right - icx - offset;
-				_point.y = rcWork.bottom - icy - offset;
+				_point.x(rcWork.right - icx - offset);
+				_point.y(rcWork.bottom - icy - offset);
 				_size.width(icx);
 				_size.height(icy);
 			} break;
 
 			case form_position::bottom_left: {
-				_point.x = rcWork.left + 0.f;
-				_point.y = rcWork.bottom - icy;
+				_point.x(rcWork.left + 0.f);
+				_point.y(rcWork.bottom - icy);
 				_size.width(icx);
 				_size.height(icy);
 			} break;
 
 			case form_position::bottom_left_offset: {
-				_point.x = rcWork.left + offset;
-				_point.y = rcWork.bottom - icy - offset;
+				_point.x(rcWork.left + offset);
+				_point.y(rcWork.bottom - icy - offset);
 				_size.width(icx);
 				_size.height(icy);
 			} break;
 
 			default: {
 				// default to top left
-				_point.x = rcWork.left + 0.f;
-				_point.y = rcWork.top + 0.f;
+				_point.x(rcWork.left + 0.f);
+				_point.y(rcWork.top + 0.f);
 				_size.width(icx);
 				_size.height(icy);
 			} break;
 			}
 
 			// ensure visibility of top left
-			_point.x = largest(_point.x, 0.f);
-			_point.y = largest(_point.y, 0.f);
+			_point.x(largest(_point.get_x(), 0.f));
+			_point.y(largest(_point.get_y(), 0.f));
 		}
 
 		bool form::impl::composition_enabled() {

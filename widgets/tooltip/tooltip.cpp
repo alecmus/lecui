@@ -23,7 +23,7 @@ bool liblec::lecui::widgets::tooltip_form::on_initialize(std::string& error) {
 
 	// prevent from overlapping the right border of the parent form
 	dimensions _dim_parent(_parent);
-	const auto parent_right = _dim_parent.get_position().x + _dim_parent.get_size().get_width();
+	const auto parent_right = _dim_parent.get_position().get_x() + _dim_parent.get_size().get_width();
 	rect_wa.right(smallest(rect_wa.right(), parent_right));
 
 	// add padding
@@ -77,12 +77,12 @@ bool liblec::lecui::widgets::tooltip_form::on_initialize(std::string& error) {
 	set_size();
 
 	// prevent from getting hidden at the bottom
-	if ((top_left.y + height) > rect_wa.bottom())
-		top_left.y -= (top_left.y + height - rect_wa.bottom());
+	if ((top_left.get_y() + height) > rect_wa.bottom())
+		top_left.y() -= (top_left.get_y() + height - rect_wa.bottom());
 
 	// prevent from getting hidden on the right
-	if ((top_left.x + width) > rect_wa.right())
-		top_left.x -= (top_left.x + width - rect_wa.right());
+	if ((top_left.get_x() + width) > rect_wa.right())
+		top_left.x() -= (top_left.get_x() + width - rect_wa.right());
 
 	// move this form to the cursor position
 	move(top_left);

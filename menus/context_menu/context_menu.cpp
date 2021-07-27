@@ -186,38 +186,38 @@ namespace liblec {
 
                         if (space_right > width) {
                             // pin to the right
-                            top_left.x = _menu_specs.pin.get_right();
+                            top_left.x(_menu_specs.pin.get_right());
                         }
                         else {
                             if (space_right > space_left) {
                                 width = smallest(space_right, width);
-                                top_left.x = _menu_specs.pin.get_right();
+                                top_left.x(_menu_specs.pin.get_right());
                             }
                             else {
                                 width = smallest(space_left, width);
-                                top_left.x = _menu_specs.pin.get_left() - width;
+                                top_left.x(_menu_specs.pin.get_left() - width);
                             }
                         }
 
-                        top_left.y = _menu_specs.pin.get_top();
+                        top_left.y(_menu_specs.pin.get_top());
 
                         set_size();
 
                         // prevent from getting hidden at the bottom
-                        if ((top_left.y + height) > rect_wa.bottom())
-                            top_left.y -= (top_left.y + height - rect_wa.bottom());
+                        if ((top_left.get_y() + height) > rect_wa.bottom())
+                            top_left.y() -= (top_left.get_y() + height - rect_wa.bottom());
                     }
                 }
                 else {
                     set_size();
 
                     // prevent from getting hidden at the bottom
-                    if ((top_left.y + height) > rect_wa.bottom())
-                        top_left.y -= (top_left.y + height - rect_wa.bottom());
+                    if ((top_left.get_y() + height) > rect_wa.bottom())
+                        top_left.y() -= (top_left.get_y() + height - rect_wa.bottom());
 
                     // prevent from getting hidden on the right
-                    if ((top_left.x + width) > rect_wa.right())
-                        top_left.x -= (top_left.x + width - rect_wa.right());
+                    if ((top_left.get_x() + width) > rect_wa.right())
+                        top_left.x() -= (top_left.get_x() + width - rect_wa.right());
                 }
 
                 // move this form to the cursor position

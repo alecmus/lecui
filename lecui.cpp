@@ -44,6 +44,28 @@ namespace liblec {
 			return lecuiname + std::string(" ") + lecuiversion + std::string(" ") + lecuidate;
 		}
 
+		point::point() :
+			point(0.f, 0.f) {}
+
+		point::point(const float x, const float y) :
+			_x(x), _y(y) {}
+
+		float& point::x() { return _x; }
+		float point::get_x() const { return _x; }
+
+		point& point::x(const float& x) {
+			_x = x;
+			return *this;
+		}
+
+		float& point::y() { return _y; }
+		float point::get_y() const { return _y; }
+
+		point& point::y(const float& y) {
+			_y = y;
+			return *this;
+		}
+
 		size::size() :
 			size(0.f, 0.f) {}
 
@@ -51,7 +73,6 @@ namespace liblec {
 			_width(width), _height(height) {}
 
 		float& size::width() { return _width; }
-
 		float size::get_width() const { return _width; }
 
 		size& size::width(const float& width) {
@@ -60,7 +81,6 @@ namespace liblec {
 		}
 
 		float& size::height() { return _height; }
-
 		float size::get_height() const { return _height; }
 
 		size& size::height(const float& height) {
@@ -245,156 +265,96 @@ namespace liblec {
 			const float y_rate, const float width_rate, const float height_rate) :
 			_x_rate(x_rate), _y_rate(y_rate), _width_rate(width_rate), _height_rate(height_rate) {}
 
-		float& resize_params::x_rate() {
-			return _x_rate;
-		}
-
-		float resize_params::get_x_rate() const {
-			return _x_rate;
-		}
+		float& resize_params::x_rate() { return _x_rate; }
+		float resize_params::get_x_rate() const { return _x_rate; }
 
 		resize_params& resize_params::x_rate(const float& x_rate) {
 			_x_rate = x_rate;
 			return *this;
 		}
 
-		float& resize_params::y_rate() {
-			return _y_rate;
-		}
-
-		float resize_params::get_y_rate() const {
-			return _y_rate;
-		}
+		float& resize_params::y_rate() { return _y_rate; }
+		float resize_params::get_y_rate() const { return _y_rate; }
 
 		resize_params& resize_params::y_rate(const float& y_rate) {
 			_y_rate = y_rate;
 			return *this;
 		}
 
-		float& resize_params::width_rate() {
-			return _width_rate;
-		}
-
-		float resize_params::get_width_rate() const {
-			return _width_rate;
-		}
+		float& resize_params::width_rate() { return _width_rate; }
+		float resize_params::get_width_rate() const { return _width_rate; }
 
 		resize_params& resize_params::width_rate(const float& width_rate) {
 			_width_rate = width_rate;
 			return *this;
 		}
 
-		float& resize_params::height_rate() {
-			return _height_rate;
-		}
-
-		float resize_params::get_height_rate() const {
-			return _height_rate;
-		}
+		float& resize_params::height_rate() { return _height_rate; }
+		float resize_params::get_height_rate() const { return _height_rate; }
 
 		resize_params& resize_params::height_rate(const float& height_rate) {
 			_height_rate = height_rate;
 			return *this;
 		}
 
-		float& resize_params::min_x() {
-			return _min_x;
-		}
-
-		const float resize_params::get_min_x() const {
-			return _min_x;
-		}
+		float& resize_params::min_x() { return _min_x; }
+		const float resize_params::get_min_x() const { return _min_x; }
 
 		resize_params& resize_params::min_x(const float& min_x) {
 			_min_x = min_x;
 			return *this;
 		}
 
-		float& resize_params::min_y() {
-			return _min_y;
-		}
-
-		float resize_params::get_min_y() const {
-			return _min_y;
-		}
+		float& resize_params::min_y() { return _min_y; }
+		float resize_params::get_min_y() const { return _min_y; }
 
 		resize_params& resize_params::min_y(const float& min_y) {
 			_min_y = min_y;
 			return *this;
 		}
 
-		float& resize_params::max_x() {
-			return _max_x;
-		}
-
-		float resize_params::get_max_x() const {
-			return _max_x;
-		}
+		float& resize_params::max_x() { return _max_x; }
+		float resize_params::get_max_x() const { return _max_x; }
 
 		resize_params& resize_params::max_x(const float& max_x) {
 			_max_x = max_x;
 			return *this;
 		}
 
-		float& resize_params::max_y() {
-			return _max_y;
-		}
-
-		float resize_params::get_max_y() const {
-			return _max_y;
-		}
+		float& resize_params::max_y() { return _max_y; }
+		float resize_params::get_max_y() const { return _max_y; }
 
 		resize_params& resize_params::max_y(const float& max_y) {
 			_max_y = max_y;
 			return *this;
 		}
 
-		float& resize_params::min_width() {
-			return _min_width;
-		}
-
-		float resize_params::get_min_width() const {
-			return _min_width;
-		}
+		float& resize_params::min_width() { return _min_width; }
+		float resize_params::get_min_width() const { return _min_width; }
 
 		resize_params& resize_params::min_width(const float& min_width) {
 			_min_width = min_width;
 			return *this;
 		}
 
-		float& resize_params::min_height() {
-			return _min_height;
-		}
-
-		float resize_params::get_min_height() const {
-			return _min_height;
-		}
+		float& resize_params::min_height() { return _min_height; }
+		float resize_params::get_min_height() const { return _min_height; }
 
 		resize_params& resize_params::min_height(const float& min_height) {
 			_min_height = min_height;
 			return *this;
 		}
 
-		float& resize_params::max_width() {
-			return _max_width;
-		}
-
-		float resize_params::get_max_width() const {
-			return _max_width;
-		}
+		float& resize_params::max_width() { return _max_width; }
+		float resize_params::get_max_width() const { return _max_width; }
 
 		resize_params& resize_params::max_width(const float& max_width) {
 			_max_width = max_width;
 			return *this;
 		}
 
-		float& resize_params::max_height() {
-			return _max_height;
-		}
-
-		float resize_params::get_max_height() const {
-			return _max_height;
-		}
+		float& resize_params::max_height() { return _max_height; }
+		float resize_params::get_max_height() const { return _max_height; }
 
 		resize_params& resize_params::max_height(const float& max_height) {
 			_max_height = max_height;

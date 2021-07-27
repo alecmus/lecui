@@ -82,9 +82,9 @@ namespace liblec {
 				return _rect;
 
 			if (!_specs.points().empty()) {
-				D2D1_POINT_2F previous = { _rect.left + _specs.points()[0].x, _rect.top + _specs.points()[0].y };
+				D2D1_POINT_2F previous = { _rect.left + _specs.points()[0].get_x(), _rect.top + _specs.points()[0].get_y() };
 				for (auto& pt : _specs.points()) {
-					D2D1_POINT_2F current = { _rect.left + pt.x, _rect.top + pt.y };
+					D2D1_POINT_2F current = { _rect.left + pt.get_x(), _rect.top + pt.get_y() };
 
 					if (!(current.x == previous.x && current.y == previous.y))
 						p_render_target->DrawLine(previous, current, _is_enabled ?

@@ -67,12 +67,45 @@ namespace liblec {
 		std::string lecui_api unique_string_short();
 
 		/// <summary>A point.</summary>
-		struct point {
-			/// <summary>The x-coordinate of the point, from the top-left.</summary>
-			float x = 0.f;
+		/// <remarks>Coordinates are referenced from the top left towards the bottom right.</remarks>
+		class lecui_api point {
+			float _x = 0.f;
+			float _y = 0.f;
 
-			/// <summary>The y-coordinate of the point, from the top-left.</summary>
-			float y = 0.f;
+		public:
+			/// <summary>Point constructor. Initializes at the origin (0.f, 0.f).</summary>
+			point();
+
+			/// <summary>Point constructor.</summary>
+			/// <param name="x">The value of the x-coordinate, in pixels.</param>
+			/// <param name="y">The value of the y-coordinate, in pixels.</param>
+			point(const float x, const float y);
+
+			/// <summary>Get or set the x-coordinate, in pixels.</summary>
+			/// <returns>A reference to the property.</returns>
+			float& x();
+
+			/// <summary>Get the x-coordinate, in pixels.</summary>
+			/// <returns>The value of the x-coordinate, in pixels.</returns>
+			float get_x() const;
+
+			/// <summary>Set the x-coordinate, in pixels.</summary>
+			/// <param name="x">The x-coordinate, in pixels.</param>
+			/// <returns>A reference to the modified object.</returns>
+			point& x(const float& x);
+
+			/// <summary>Get or set the y-coordinate, in pixels.</summary>
+			/// <returns>A reference to the property.</returns>
+			float& y();
+
+			/// <summary>Get the y-coordinate, in pixels.</summary>
+			/// <returns>The value of the y-coordinate, in pixels.</returns>
+			float get_y() const;
+
+			/// <summary>Set the y-coordinate, in pixels.</summary>
+			/// <param name="y">The y-coordinate, in pixels.</param>
+			/// <returns>A reference to the modified object.</returns>
+			point& y(const float& y);
 		};
 
 		/// <summary>Size of a rectangular structure.</summary>
