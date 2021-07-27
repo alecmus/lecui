@@ -70,6 +70,7 @@ namespace liblec {
 			text_field_prompt,
 			text_field_selected,
 			text_field_caret,
+			text_field_input_error,
 
 			table_view,
 			table_view_border,

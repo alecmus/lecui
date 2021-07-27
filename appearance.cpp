@@ -59,6 +59,7 @@ namespace liblec {
 				case item::text_field_prompt: return { 180, 180, 180, 255 };
 				case item::text_field_selected: return { 0, 120, 170, 100 };
 				case item::text_field_caret: return { 50, 50, 50, 255 };
+				case item::text_field_input_error: return { 255, 0, 0, 150 };
 
 				case item::table_view: return { 255, 255, 255, 255 };
 				case item::table_view_border: return { 150, 150, 150, 255 };
@@ -187,6 +188,7 @@ namespace liblec {
 				case item::text_field_prompt: return { 70, 75, 80, 255 };
 				case item::text_field_selected: return { 60, 190, 175, 150 };
 				case item::text_field_caret: return { 60, 190, 175, 255 };
+				case item::text_field_input_error: return { 255, 0, 0, 220 };
 
 				case item::table_view: return { 16, 29, 36, 255 };
 				case item::table_view_border: return { 150, 150, 150, 255 };

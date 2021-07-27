@@ -62,6 +62,7 @@ namespace liblec {
 				ID2D1SolidColorBrush* _p_brush_fill;
 				ID2D1SolidColorBrush* _p_brush_disabled;
 				ID2D1SolidColorBrush* _p_brush_selected;
+				ID2D1SolidColorBrush* _p_brush_input_error;
 				IDWriteTextFormat* _p_text_format;
 
 				ID2D1Factory* _p_direct2d_factory;
@@ -78,6 +79,7 @@ namespace liblec {
 				float _text_off_set;
 				bool _is_selecting;
 				bool _is_selected;
+				bool _input_error;
 
 				struct selection_info {
 					UINT32 start = 0;

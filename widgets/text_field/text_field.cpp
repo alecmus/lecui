@@ -23,7 +23,8 @@ namespace liblec {
 				// widget specific specs
 				(_color_border == param._color_border) &&
 				(_color_prompt == param._color_prompt) &&
-				(_color_caret == param._color_caret);
+				(_color_caret == param._color_caret) &&
+				(_color_input_error == param._color_input_error);
 		}
 
 		bool widgets::text_field_specs::operator!=(const text_field_specs& param) {
@@ -163,6 +164,27 @@ namespace liblec {
 			return *this;
 		}
 
+		color& widgets::text_field_specs::color_input_error() { return _color_input_error; }
+
+		widgets::text_field_specs& widgets::text_field_specs::color_input_error(const color& color_input_error) {
+			_color_input_error = color_input_error;
+			return *this;
+		}
+
+		std::set<char>& widgets::text_field_specs::allowed_characters() { return _allowed_characters; }
+
+		widgets::text_field_specs& widgets::text_field_specs::allowed_characters(const std::set<char>& allowed_characters) {
+			_allowed_characters = allowed_characters;
+			return *this;
+		}
+
+		std::set<char>& widgets::text_field_specs::forbidden_characters() { return _forbidden_characters; }
+
+		widgets::text_field_specs& widgets::text_field_specs::forbidden_characters(const std::set<char>& forbidden_characters) {
+			_forbidden_characters = forbidden_characters;
+			return *this;
+		}
+
 		class widgets::text_field_builder::impl {
 		public:
 			impl(containers::page& page, const std::string& alias) :
@@ -175,7 +197,8 @@ namespace liblec {
 					.color_border(defaults::color(_page._d_page._fm._d._theme, item::text_field_border))
 					.color_disabled(defaults::color(_page._d_page._fm._d._theme, item::text_field_disabled))
 					.color_selected(defaults::color(_page._d_page._fm._d._theme, item::text_field_selected))
-					.color_caret(defaults::color(_page._d_page._fm._d._theme, item::text_field_caret));
+					.color_caret(defaults::color(_page._d_page._fm._d._theme, item::text_field_caret))
+					.color_input_error(defaults::color(_page._d_page._fm._d._theme, item::text_field_input_error));
 			}
 			containers::page& _page;
 			text_field_specs& _specs;

@@ -16,6 +16,8 @@
 #include <liblec/lecui/widgets/widget.h>
 #endif
 
+#include <set>
+
 namespace liblec {
 	namespace lecui {
 		namespace widgets {
@@ -29,6 +31,9 @@ namespace liblec {
 				std::string _prompt = "Enter text here";
 				color _color_prompt;
 				color _color_caret;
+				color _color_input_error;
+				std::set<char> _allowed_characters;
+				std::set<char> _forbidden_characters;
 
 			public:
 				text_field_specs() {
@@ -141,6 +146,36 @@ namespace liblec {
 				/// <param name="color_caret">The color of to use for the caret.</param>
 				/// <returns>A reference to the modified object.</returns>
 				text_field_specs& color_caret(const color& color_caret);
+
+				/// <summary>Get or set the color to show that there has been an input error.</summary>
+				/// <returns>A reference to the color.</returns>
+				color& color_input_error();
+
+				/// <summary>Set the color to show that there has been an input error.</summary>
+				/// <param name="color_input_error">The color to show that there has been an input error.</param>
+				/// <returns>A reference to the modified object.</returns>
+				text_field_specs& color_input_error(const color& color_input_error);
+
+				/// <summary>Get or set the character set to limit input to.</summary>
+				/// <returns>A reference to the character set.</returns>
+				/// <remarks>An empty character set means there is no limit.</remarks>
+				std::set<char>& allowed_characters();
+
+				/// <summary>Set the character set to limit input to.</summary>
+				/// <param name="allowed_characters">The character set. An empty character set means there is no limit.</param>
+				/// <returns>A reference to the modified object.</returns>
+				text_field_specs& allowed_characters(const std::set<char>& allowed_characters);
+
+				/// <summary>Get or set the set of characters to prevent from being typed in.</summary>
+				/// <returns>A reference to the character set.</returns>
+				/// <remarks>An empty character set means all characters are permitted. Takes precedence over the allowed character set.</remarks>
+				std::set<char>& forbidden_characters();
+
+				/// <summary>Set the set of characters to prevent from being typed in.</summary>
+				/// <param name="forbidden_characters">The character set. An empty character set means all characters are permitted.</param>
+				/// <returns>A reference to the modified object.</returns>
+				/// <remarks>Takes precedence over the allowed character set.</remarks>
+				text_field_specs& forbidden_characters(const std::set<char>& forbidden_characters);
 
 			private:
 				/// <summary>The character to use for masking the text.</summary>

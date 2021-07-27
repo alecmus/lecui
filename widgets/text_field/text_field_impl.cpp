@@ -25,6 +25,7 @@ namespace liblec {
 			_p_brush_fill(nullptr),
 			_p_brush_disabled(nullptr),
 			_p_brush_selected(nullptr),
+			_p_brush_input_error(nullptr),
 			_p_text_format(nullptr),
 			_p_directwrite_factory(p_directwrite_factory),
 			_p_text_layout(nullptr),
@@ -37,6 +38,7 @@ namespace liblec {
 			_text_off_set(0.f),
 			_is_selecting(false),
 			_is_selected(false),
+			_input_error(false),
 			_selection_info({ 0, 0 }) {}
 
 		widgets::text_field_impl::~text_field_impl() { discard_resources(); }
@@ -66,6 +68,9 @@ namespace liblec {
 			if (SUCCEEDED(hr))
 				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_selected()),
 					&_p_brush_selected);
+			if (SUCCEEDED(hr))
+				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_input_error()),
+					&_p_brush_input_error);
 			if (SUCCEEDED(hr))
 				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_text()),
 					&_p_brush);
@@ -107,6 +112,7 @@ namespace liblec {
 			safe_release(&_p_brush_fill);
 			safe_release(&_p_brush_disabled);
 			safe_release(&_p_brush_selected);
+			safe_release(&_p_brush_input_error);
 			safe_release(&_p_text_format);
 		}
 
@@ -144,7 +150,7 @@ namespace liblec {
 			p_render_target->DrawRoundedRectangle(&rounded_rect, _p_brush_border, .5f);
 
 			if (!_is_static && _is_enabled && _selected)
-				p_render_target->DrawRoundedRectangle(&rounded_rect, _p_brush_selected, 1.75f);
+				p_render_target->DrawRoundedRectangle(&rounded_rect, _input_error ? _p_brush_input_error : _p_brush_selected, 1.75f);
 
 			// create a text layout
 			std::string _text = !_specs.text().empty() ?
@@ -333,6 +339,20 @@ namespace liblec {
 
 		void widgets::text_field_impl::insert_character(const char& c) {
 			try {
+				// check forbidden character set
+				if (_specs.forbidden_characters().count(c)) {
+					_input_error = true;
+					return;
+				}
+
+				// check allowed character set
+				if (!_specs.allowed_characters().empty() && !_specs.allowed_characters().count(c)) {
+					_input_error = true;
+					return;
+				}
+
+				_input_error = false;
+
 				if (_is_selected) {
 					if (_selection_info.start > _selection_info.end)
 						swap(_selection_info.start, _selection_info.end);
@@ -353,6 +373,8 @@ namespace liblec {
 		}
 
 		void widgets::text_field_impl::key_backspace() {
+			_input_error = false;
+
 			try {
 				if (_is_selected) {
 					if (_selection_info.start > _selection_info.end)
@@ -373,6 +395,8 @@ namespace liblec {
 		}
 
 		void widgets::text_field_impl::key_delete() {
+			_input_error = false;
+
 			try {
 				if (_is_selected) {
 					if (_selection_info.start > _selection_info.end)
@@ -392,6 +416,8 @@ namespace liblec {
 		}
 
 		void widgets::text_field_impl::key_left() {
+			_input_error = false;
+
 			try {
 				if (_is_selected) {
 					if (_selection_info.start > _selection_info.end)
@@ -411,6 +437,8 @@ namespace liblec {
 		}
 
 		void widgets::text_field_impl::key_right() {
+			_input_error = false;
+
 			try {
 				if (_is_selected) {
 					if (_selection_info.start > _selection_info.end)
