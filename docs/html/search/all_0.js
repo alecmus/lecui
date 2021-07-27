@@ -6,7 +6,8 @@ var searchData=
   ['alias_3',['alias',['../classliblec_1_1lecui_1_1widgets_1_1specs.html#a4cf700d870204dcc7b32ce6f87e51951',1,'liblec::lecui::widgets::specs']]],
   ['allow_5fminimize_4',['allow_minimize',['../classliblec_1_1lecui_1_1controls.html#aa5df4cdd75371adf0ecb5aba293fd18d',1,'liblec::lecui::controls::allow_minimize()'],['../classliblec_1_1lecui_1_1form.html#a5047dd2b740499e48f13dd73747056f7',1,'liblec::lecui::form::allow_minimize()']]],
   ['allow_5fresize_5',['allow_resize',['../classliblec_1_1lecui_1_1controls.html#a9d2c1d2a58124855d6044a27b7bdc977',1,'liblec::lecui::controls']]],
-  ['alpha_6',['alpha',['../classliblec_1_1lecui_1_1color.html#adad6a355b30375cc97c2d96fd6789054',1,'liblec::lecui::color::alpha()'],['../classliblec_1_1lecui_1_1color.html#aa7a7da3fd986a16182d39bfa9521bc48',1,'liblec::lecui::color::alpha(const unsigned short &amp;alpha)']]],
-  ['appearance_7',['appearance',['../classliblec_1_1lecui_1_1appearance.html',1,'liblec::lecui']]],
-  ['arrow_8',['arrow',['../classliblec_1_1lecui_1_1widgets_1_1specs.html#a3cba4c05a958d80dca72e4e9dd5360b1a9022a153e6190f10d9b57aa4232b8aea',1,'liblec::lecui::widgets::specs']]]
+  ['allowed_5fcharacters_6',['allowed_characters',['../classliblec_1_1lecui_1_1widgets_1_1text__field__specs.html#a91afff1e10fb5de27050a2bb1fbfe0c0',1,'liblec::lecui::widgets::text_field_specs::allowed_characters()'],['../classliblec_1_1lecui_1_1widgets_1_1text__field__specs.html#a74d2fface7d91cc303dfe20a74f012ea',1,'liblec::lecui::widgets::text_field_specs::allowed_characters(const std::set&lt; char &gt; &amp;allowed_characters)']]],
+  ['alpha_7',['alpha',['../classliblec_1_1lecui_1_1color.html#adad6a355b30375cc97c2d96fd6789054',1,'liblec::lecui::color::alpha()'],['../classliblec_1_1lecui_1_1color.html#aa7a7da3fd986a16182d39bfa9521bc48',1,'liblec::lecui::color::alpha(const unsigned short &amp;alpha)']]],
+  ['appearance_8',['appearance',['../classliblec_1_1lecui_1_1appearance.html',1,'liblec::lecui']]],
+  ['arrow_9',['arrow',['../classliblec_1_1lecui_1_1widgets_1_1specs.html#a3cba4c05a958d80dca72e4e9dd5360b1a9022a153e6190f10d9b57aa4232b8aea',1,'liblec::lecui::widgets::specs']]]
 ];

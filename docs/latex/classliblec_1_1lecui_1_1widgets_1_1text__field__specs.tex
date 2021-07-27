@@ -111,7 +111,23 @@ std\+::string \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1text__field
 \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1text__field__specs_a8b21c68e07f7331c4107a91c244d8219}{color\+\_\+caret}} ()
 \begin{DoxyCompactList}\small\item\em Get or set the color of the caret. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1text__field__specs}{text\+\_\+field\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1text__field__specs_aa073959ca9467135126ec36327780394}{color\+\_\+caret}} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&color\+\_\+caret)
-\begin{DoxyCompactList}\small\item\em Set the color of the caret. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Set the color of the caret. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1text__field__specs_a2dfb13a733a01d71236df5c9aba898fe}{color\+\_\+input\+\_\+error}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the color to show that there has been an input error. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1text__field__specs}{text\+\_\+field\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1text__field__specs_a902794a8ea0ba536cc3b40273168521b}{color\+\_\+input\+\_\+error}} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&color\+\_\+input\+\_\+error)
+\begin{DoxyCompactList}\small\item\em Set the color to show that there has been an input error. \end{DoxyCompactList}\item 
+std\+::set$<$ char $>$ \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1text__field__specs_a91afff1e10fb5de27050a2bb1fbfe0c0}{allowed\+\_\+characters}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the character set to limit input to. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1text__field__specs}{text\+\_\+field\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1text__field__specs_a74d2fface7d91cc303dfe20a74f012ea}{allowed\+\_\+characters}} (const std\+::set$<$ char $>$ \&allowed\+\_\+characters)
+\begin{DoxyCompactList}\small\item\em Set the character set to limit input to. \end{DoxyCompactList}\item 
+std\+::set$<$ char $>$ \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1text__field__specs_a924d7013b99eeb4dbfa07f5fdbf3eb95}{forbidden\+\_\+characters}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the set of characters to prevent from being typed in. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1text__field__specs}{text\+\_\+field\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1text__field__specs_a4a0d7ceff3ef3613be8e3ff303affbe9}{forbidden\+\_\+characters}} (const std\+::set$<$ char $>$ \&forbidden\+\_\+characters)
+\begin{DoxyCompactList}\small\item\em Set the set of characters to prevent from being typed in. \end{DoxyCompactList}\item 
+int \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1text__field__specs_ae5a45390191514f0516eccd3fbffbccf}{maximum\+\_\+length}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the maximum length of the input string. 0 means unlimited length. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1text__field__specs}{text\+\_\+field\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1text__field__specs_a78d008488388de728f1dd88f39709726}{maximum\+\_\+length}} (const int \&maximum\+\_\+length)
+\begin{DoxyCompactList}\small\item\em Set the maximum length of the input string. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
 
 
@@ -121,6 +137,39 @@ Text field widget specifications.
 Recommended size with defaults is 200x25px
 
 \doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1text__field__specs_a91afff1e10fb5de27050a2bb1fbfe0c0}\label{classliblec_1_1lecui_1_1widgets_1_1text__field__specs_a91afff1e10fb5de27050a2bb1fbfe0c0}} 
+\index{liblec::lecui::widgets::text\_field\_specs@{liblec::lecui::widgets::text\_field\_specs}!allowed\_characters@{allowed\_characters}}
+\index{allowed\_characters@{allowed\_characters}!liblec::lecui::widgets::text\_field\_specs@{liblec::lecui::widgets::text\_field\_specs}}
+\doxysubsubsection{\texorpdfstring{allowed\_characters()}{allowed\_characters()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily std\+::set$<$char$>$\& liblec\+::lecui\+::widgets\+::text\+\_\+field\+\_\+specs\+::allowed\+\_\+characters (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get or set the character set to limit input to. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the character set.
+\end{DoxyReturn}
+
+
+An empty character set means there is no limit.\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1text__field__specs_a74d2fface7d91cc303dfe20a74f012ea}\label{classliblec_1_1lecui_1_1widgets_1_1text__field__specs_a74d2fface7d91cc303dfe20a74f012ea}} 
+\index{liblec::lecui::widgets::text\_field\_specs@{liblec::lecui::widgets::text\_field\_specs}!allowed\_characters@{allowed\_characters}}
+\index{allowed\_characters@{allowed\_characters}!liblec::lecui::widgets::text\_field\_specs@{liblec::lecui::widgets::text\_field\_specs}}
+\doxysubsubsection{\texorpdfstring{allowed\_characters()}{allowed\_characters()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1text__field__specs}{text\+\_\+field\+\_\+specs}}\& liblec\+::lecui\+::widgets\+::text\+\_\+field\+\_\+specs\+::allowed\+\_\+characters (\begin{DoxyParamCaption}\item[{const std\+::set$<$ char $>$ \&}]{allowed\+\_\+characters }\end{DoxyParamCaption})}
+
+
+
+Set the character set to limit input to. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em allowed\+\_\+characters} & The character set. An empty character set means there is no limit.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
 \mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1text__field__specs_a49d5681e7936f98a331171a95d90973d}\label{classliblec_1_1lecui_1_1widgets_1_1text__field__specs_a49d5681e7936f98a331171a95d90973d}} 
 \index{liblec::lecui::widgets::text\_field\_specs@{liblec::lecui::widgets::text\_field\_specs}!border@{border}}
 \index{border@{border}!liblec::lecui::widgets::text\_field\_specs@{liblec::lecui::widgets::text\_field\_specs}}
@@ -269,6 +318,37 @@ The use of the hover color varies from widget to widget. Refer to the specific w
 
 Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a1fe7b1fe9f05604c6ab54696a1dc3d04}{liblec\+::lecui\+::widgets\+::specs}}.
 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1text__field__specs_a2dfb13a733a01d71236df5c9aba898fe}\label{classliblec_1_1lecui_1_1widgets_1_1text__field__specs_a2dfb13a733a01d71236df5c9aba898fe}} 
+\index{liblec::lecui::widgets::text\_field\_specs@{liblec::lecui::widgets::text\_field\_specs}!color\_input\_error@{color\_input\_error}}
+\index{color\_input\_error@{color\_input\_error}!liblec::lecui::widgets::text\_field\_specs@{liblec::lecui::widgets::text\_field\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_input\_error()}{color\_input\_error()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::widgets\+::text\+\_\+field\+\_\+specs\+::color\+\_\+input\+\_\+error (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get or set the color to show that there has been an input error. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the color.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1text__field__specs_a902794a8ea0ba536cc3b40273168521b}\label{classliblec_1_1lecui_1_1widgets_1_1text__field__specs_a902794a8ea0ba536cc3b40273168521b}} 
+\index{liblec::lecui::widgets::text\_field\_specs@{liblec::lecui::widgets::text\_field\_specs}!color\_input\_error@{color\_input\_error}}
+\index{color\_input\_error@{color\_input\_error}!liblec::lecui::widgets::text\_field\_specs@{liblec::lecui::widgets::text\_field\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_input\_error()}{color\_input\_error()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1text__field__specs}{text\+\_\+field\+\_\+specs}}\& liblec\+::lecui\+::widgets\+::text\+\_\+field\+\_\+specs\+::color\+\_\+input\+\_\+error (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&}]{color\+\_\+input\+\_\+error }\end{DoxyParamCaption})}
+
+
+
+Set the color to show that there has been an input error. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em color\+\_\+input\+\_\+error} & The color to show that there has been an input error.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
 \mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1text__field__specs_a408a0915f8f15f93904181e91f43b6b8}\label{classliblec_1_1lecui_1_1widgets_1_1text__field__specs_a408a0915f8f15f93904181e91f43b6b8}} 
 \index{liblec::lecui::widgets::text\_field\_specs@{liblec::lecui::widgets::text\_field\_specs}!color\_prompt@{color\_prompt}}
 \index{color\_prompt@{color\_prompt}!liblec::lecui::widgets::text\_field\_specs@{liblec::lecui::widgets::text\_field\_specs}}
@@ -449,6 +529,72 @@ A reference to the widget\textquotesingle{}s font size.
 
 Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1specs_a540bfa7642033966614ccfda7ecf1f25}{liblec\+::lecui\+::widgets\+::specs}}.
 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1text__field__specs_a924d7013b99eeb4dbfa07f5fdbf3eb95}\label{classliblec_1_1lecui_1_1widgets_1_1text__field__specs_a924d7013b99eeb4dbfa07f5fdbf3eb95}} 
+\index{liblec::lecui::widgets::text\_field\_specs@{liblec::lecui::widgets::text\_field\_specs}!forbidden\_characters@{forbidden\_characters}}
+\index{forbidden\_characters@{forbidden\_characters}!liblec::lecui::widgets::text\_field\_specs@{liblec::lecui::widgets::text\_field\_specs}}
+\doxysubsubsection{\texorpdfstring{forbidden\_characters()}{forbidden\_characters()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily std\+::set$<$char$>$\& liblec\+::lecui\+::widgets\+::text\+\_\+field\+\_\+specs\+::forbidden\+\_\+characters (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get or set the set of characters to prevent from being typed in. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the character set.
+\end{DoxyReturn}
+
+
+An empty character set means all characters are permitted. Takes precedence over the allowed character set.\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1text__field__specs_a4a0d7ceff3ef3613be8e3ff303affbe9}\label{classliblec_1_1lecui_1_1widgets_1_1text__field__specs_a4a0d7ceff3ef3613be8e3ff303affbe9}} 
+\index{liblec::lecui::widgets::text\_field\_specs@{liblec::lecui::widgets::text\_field\_specs}!forbidden\_characters@{forbidden\_characters}}
+\index{forbidden\_characters@{forbidden\_characters}!liblec::lecui::widgets::text\_field\_specs@{liblec::lecui::widgets::text\_field\_specs}}
+\doxysubsubsection{\texorpdfstring{forbidden\_characters()}{forbidden\_characters()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1text__field__specs}{text\+\_\+field\+\_\+specs}}\& liblec\+::lecui\+::widgets\+::text\+\_\+field\+\_\+specs\+::forbidden\+\_\+characters (\begin{DoxyParamCaption}\item[{const std\+::set$<$ char $>$ \&}]{forbidden\+\_\+characters }\end{DoxyParamCaption})}
+
+
+
+Set the set of characters to prevent from being typed in. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em forbidden\+\_\+characters} & The character set. An empty character set means all characters are permitted.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+
+
+Takes precedence over the allowed character set.\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1text__field__specs_ae5a45390191514f0516eccd3fbffbccf}\label{classliblec_1_1lecui_1_1widgets_1_1text__field__specs_ae5a45390191514f0516eccd3fbffbccf}} 
+\index{liblec::lecui::widgets::text\_field\_specs@{liblec::lecui::widgets::text\_field\_specs}!maximum\_length@{maximum\_length}}
+\index{maximum\_length@{maximum\_length}!liblec::lecui::widgets::text\_field\_specs@{liblec::lecui::widgets::text\_field\_specs}}
+\doxysubsubsection{\texorpdfstring{maximum\_length()}{maximum\_length()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily int\& liblec\+::lecui\+::widgets\+::text\+\_\+field\+\_\+specs\+::maximum\+\_\+length (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get or set the maximum length of the input string. 0 means unlimited length. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the maximum length.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1text__field__specs_a78d008488388de728f1dd88f39709726}\label{classliblec_1_1lecui_1_1widgets_1_1text__field__specs_a78d008488388de728f1dd88f39709726}} 
+\index{liblec::lecui::widgets::text\_field\_specs@{liblec::lecui::widgets::text\_field\_specs}!maximum\_length@{maximum\_length}}
+\index{maximum\_length@{maximum\_length}!liblec::lecui::widgets::text\_field\_specs@{liblec::lecui::widgets::text\_field\_specs}}
+\doxysubsubsection{\texorpdfstring{maximum\_length()}{maximum\_length()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1text__field__specs}{text\+\_\+field\+\_\+specs}}\& liblec\+::lecui\+::widgets\+::text\+\_\+field\+\_\+specs\+::maximum\+\_\+length (\begin{DoxyParamCaption}\item[{const int \&}]{maximum\+\_\+length }\end{DoxyParamCaption})}
+
+
+
+Set the maximum length of the input string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em maximum\+\_\+length} & The maximum length of the input string. 0 means unlimited length.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
 \mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1text__field__specs_a1a37df42f916d1e6bb77b8e3c0347f9b}\label{classliblec_1_1lecui_1_1widgets_1_1text__field__specs_a1a37df42f916d1e6bb77b8e3c0347f9b}} 
 \index{liblec::lecui::widgets::text\_field\_specs@{liblec::lecui::widgets::text\_field\_specs}!on\_resize@{on\_resize}}
 \index{on\_resize@{on\_resize}!liblec::lecui::widgets::text\_field\_specs@{liblec::lecui::widgets::text\_field\_specs}}
