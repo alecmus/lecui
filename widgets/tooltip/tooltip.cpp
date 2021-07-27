@@ -23,7 +23,7 @@ bool liblec::lecui::widgets::tooltip_form::on_initialize(std::string& error) {
 
 	// prevent from overlapping the right border of the parent form
 	dimensions _dim_parent(_parent);
-	const auto parent_right = _dim_parent.get_position().x + _dim_parent.get_size().width;
+	const auto parent_right = _dim_parent.get_position().x + _dim_parent.get_size().get_width();
 	rect_wa.right(smallest(rect_wa.right(), parent_right));
 
 	// add padding
@@ -33,13 +33,18 @@ bool liblec::lecui::widgets::tooltip_form::on_initialize(std::string& error) {
 	rect_wa.bottom() -= _margin;
 
 	// set maximum size to the computed area
-	_max_size.width = smallest(_max_size.width, rect_wa.width());
-	_max_size.height = smallest(_max_size.height, rect_wa.height());
+	_max_size.width(smallest(_max_size.get_width(), rect_wa.width()));
+	_max_size.height(smallest(_max_size.get_height(), rect_wa.height()));
 
 	const auto cursor_rect = _dim.cursor_rect();
 
 	// impose maximums
-	const lecui::rect max_rect = { _margin, _max_size.width, _margin, _max_size.height };
+	const lecui::rect max_rect = rect()
+		.left(_margin)
+		.right(_max_size.get_width())
+		.top(_margin)
+		.bottom(_max_size.get_height());
+
 	float _bottom = 0.f;
 	float _right = 0.f;
 
@@ -52,11 +57,11 @@ bool liblec::lecui::widgets::tooltip_form::on_initialize(std::string& error) {
 	_right = _rect.right();
 
 	auto width = _right + _margin;
-	auto height = smallest(_max_size.height, _bottom + _margin);
+	auto height = smallest(_max_size.get_height(), _bottom + _margin);
 
 	// impose minimums
-	width = largest(width, _min_size.width);
-	height = largest(height, _min_size.height);
+	width = largest(width, _min_size.get_width());
+	height = largest(height, _min_size.get_height());
 
 	auto set_size = [&]() {
 		_dim.set_size({ width, height });

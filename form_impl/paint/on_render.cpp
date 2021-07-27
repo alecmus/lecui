@@ -378,13 +378,13 @@ namespace liblec {
 				const auto status_left = get_status_size(containers::status_pane_specs::location::left);
 				const auto status_right = get_status_size(containers::status_pane_specs::location::right);
 
-				const D2D1_SIZE_F change_in_size = { rtSize.width - _size.width, rtSize.height - _size.height };
+				const D2D1_SIZE_F change_in_size = { rtSize.width - _size.get_width(), rtSize.height - _size.get_height() };
 
 				// render page
 				for (auto& page : _p_pages) {
-					const D2D1_RECT_F rect_page = { _content_margin + status_left.width,
-						_caption_bar_height + _content_margin + status_top.height,
-						rtSize.width - _content_margin - status_right.width, rtSize.height - _content_margin - status_bottom.height };
+					const D2D1_RECT_F rect_page = { _content_margin + status_left.get_width(),
+						_caption_bar_height + _content_margin + status_top.get_height(),
+						rtSize.width - _content_margin - status_right.get_width(), rtSize.height - _content_margin - status_bottom.get_height() };
 
 					const D2D1_RECT_F client_area = rect_page;
 
@@ -399,7 +399,7 @@ namespace liblec {
 						const auto left = _content_margin;
 						const auto bottom = rtSize.height - _content_margin;
 						const auto right = rtSize.width - _content_margin;
-						const auto top = bottom - page.second.size().height;
+						const auto top = bottom - page.second.size().get_height();
 
 						const D2D1_RECT_F rect_page = { left, top, right, bottom };
 						const D2D1_RECT_F client_area = rect_page;
@@ -412,7 +412,7 @@ namespace liblec {
 					if (page.first == "status::top") {
 						const auto left = _content_margin;
 						const auto top = _caption_bar_height + _content_margin;
-						const auto bottom = top + page.second.size().height;
+						const auto bottom = top + page.second.size().get_height();
 						const auto right = rtSize.width - _content_margin;
 
 						const D2D1_RECT_F rect_page = { left, top, right, bottom };
@@ -427,7 +427,7 @@ namespace liblec {
 						const auto left = _content_margin;
 						const auto top = _caption_bar_height + _content_margin;
 						const auto bottom = rtSize.height - _content_margin;
-						const auto right = left + page.second.size().width;
+						const auto right = left + page.second.size().get_width();
 
 						const D2D1_RECT_F rect_page = { left, top, right, bottom };
 						const D2D1_RECT_F client_area = rect_page;
@@ -439,7 +439,7 @@ namespace liblec {
 
 					if (page.first == "status::right") {
 						const auto right = rtSize.width - _content_margin;
-						const auto left = right - page.second.size().width;
+						const auto left = right - page.second.size().get_width();
 						const auto top = _caption_bar_height + _content_margin;
 						const auto bottom = rtSize.height - _content_margin;
 

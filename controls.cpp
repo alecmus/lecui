@@ -86,18 +86,18 @@ namespace liblec {
 		}
 
 		dimensions& dimensions::set_size(const lecui::size& size) {
-			if (size.width) {
-				_d._fm._d._size.width = size.width;
+			if (size.get_width()) {
+				_d._fm._d._size.width(size.get_width());
 
 				// force minimum width to conform (it cannot be greater)
-				_d._fm._d._min_size.width = smallest(_d._fm._d._size.width, _d._fm._d._min_size.width);
+				_d._fm._d._min_size.width(smallest(_d._fm._d._size.get_width(), _d._fm._d._min_size.get_width()));
 			}
 
-			if (size.height) {
-				_d._fm._d._size.height = size.height;
+			if (size.get_height()) {
+				_d._fm._d._size.height(size.get_height());
 
 				// force minimum height to conform (it cannot be greater)
-				_d._fm._d._min_size.height = smallest(_d._fm._d._size.height, _d._fm._d._min_size.height);
+				_d._fm._d._min_size.height(smallest(_d._fm._d._size.get_height(), _d._fm._d._min_size.height()));
 			}
 
 			return *this;
@@ -127,11 +127,11 @@ namespace liblec {
 		}
 
 		dimensions& dimensions::set_minimum(const lecui::size& size) {
-			if (size.width)		// do not allow minimum width to be greater than current window width
-				_d._fm._d._min_size.width = smallest(size.width, _d._fm._d._size.width);
+			if (size.get_width())		// do not allow minimum width to be greater than current window width
+				_d._fm._d._min_size.width(smallest(size.get_width(), _d._fm._d._size.get_width()));
 
-			if (size.height)	// do not allow minimum height to be greater than current window height
-				_d._fm._d._min_size.height = smallest(size.height, _d._fm._d._size.height);
+			if (size.get_height())	// do not allow minimum height to be greater than current window height
+				_d._fm._d._min_size.height(smallest(size.get_height(), _d._fm._d._size.get_height()));
 
 			return *this;
 		}

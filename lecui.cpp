@@ -44,6 +44,30 @@ namespace liblec {
 			return lecuiname + std::string(" ") + lecuiversion + std::string(" ") + lecuidate;
 		}
 
+		size::size() :
+			size(0.f, 0.f) {}
+
+		size::size(const float width, const float height) :
+			_width(width), _height(height) {}
+
+		float& size::width() { return _width; }
+
+		float size::get_width() const { return _width; }
+
+		size& size::width(const float& width) {
+			_width = width;
+			return *this;
+		}
+
+		float& size::height() { return _height; }
+
+		float size::get_height() const { return _height; }
+
+		size& size::height(const float& height) {
+			_height = height;
+			return *this;
+		}
+
 		rect::rect() :
 			rect(0.f, 0.f, 0.f, 0.f) {}
 
@@ -97,8 +121,8 @@ namespace liblec {
 		}
 
 		rect& rect::size(lecui::size size) {
-			width(size.width);
-			height(size.height);
+			width(size.width());
+			height(size.height());
 			return *this;
 		}
 
@@ -531,5 +555,5 @@ namespace liblec {
 			else
 				return std::any_cast<std::string>(value);
 		}
-}
+	}
 }

@@ -76,12 +76,44 @@ namespace liblec {
 		};
 
 		/// <summary>Size of a rectangular structure.</summary>
-		struct size {
-			/// <summary>The width of the structure.</summary>
-			float width = 0.f;
+		class lecui_api size {
+			float _width = 0.f;
+			float _height = 0.f;
 
-			/// <summary>The height of the structure.</summary>
-			float height = 0.f;
+		public:
+			/// <summary>Size constructor. Initializes with a size of 0.f x 0.f.</summary>
+			size();
+
+			/// <summary>Size constructor.</summary>
+			/// <param name="width">The width of the rectangular structure, in pixels.</param>
+			/// <param name="height">The height of the rectangular structure, in pixels.</param>
+			size(const float width, const float height);
+
+			/// <summary>Get or set the width of the rectangular structure, in pixels.</summary>
+			/// <returns>A reference to the property.</returns>
+			float& width();
+
+			/// <summary>Get or set the width of the rectangular structure, in pixels.</summary>
+			/// <returns>The width, in pixels.</returns>
+			float get_width() const;
+
+			/// <summary>Set the width of a rectangular structure, in pixels.</summary>
+			/// <param name="width">The width, in pixels.</param>
+			/// <returns>A reference to the modified object.</returns>
+			size& width(const float& width);
+
+			/// <summary>Get or set the height of the rectangular structure, in pixels.</summary>
+			/// <returns>A reference to the property.</returns>
+			float& height();
+
+			/// <summary>Get or set the height of the rectangular structure, in pixels.</summary>
+			/// <returns>The height, in pixels.</returns>
+			float get_height() const;
+
+			/// <summary>Set the height of a rectangular structure, in pixels.</summary>
+			/// <param name="height">The height, in pixels.</param>
+			/// <returns>A reference to the modified object.</returns>
+			size& height(const float& height);
 		};
 
 		/// <summary>Rectangle class.</summary>

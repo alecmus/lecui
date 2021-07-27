@@ -178,17 +178,17 @@ namespace liblec {
 
 			if (_d._user_pos) {
 				if (_d._preset_pos)
-					_d.set_position(_d._form_position, _d._size.width, _d._size.height);
+					_d.set_position(_d._form_position, _d._size.get_width(), _d._size.get_height());
 				else
-					_d.set_position(_d._point.x, _d._point.y, _d._size.width, _d._size.height);
+					_d.set_position(_d._point.x, _d._point.y, _d._size.get_width(), _d._size.get_height());
 			}
 			else {
 				if (IsWindow(_d._hWnd_parent) && IsWindowEnabled(_d._hWnd_parent))
 					_d.set_position(form_position::center_to_parent,
-						_d._size.width, _d._size.height);
+						_d._size.get_width(), _d._size.get_height());
 				else
 					_d.set_position(form_position::center_to_working_area,
-						_d._size.width, _d._size.height);
+						_d._size.get_width(), _d._size.get_height());
 			}
 
 			// Register this instance so other instances can find this form and open it
@@ -201,8 +201,8 @@ namespace liblec {
 				_d._tooltip_form ? WS_POPUP : static_cast<DWORD>(form::impl::style::aero_borderless),
 				static_cast<int>(.5f + _d._point.x * _d._dpi_scale),
 				static_cast<int>(.5f + _d._point.y * _d._dpi_scale),
-				static_cast<int>(.5f + _d._size.width * _d._dpi_scale),
-				static_cast<int>(.5f + _d._size.height * _d._dpi_scale),
+				static_cast<int>(.5f + _d._size.get_width() * _d._dpi_scale),
+				static_cast<int>(.5f + _d._size.get_height() * _d._dpi_scale),
 				_d._hWnd_parent, nullptr, wcex.hInstance, this)) {
 				error = get_last_error();
 				return false;
@@ -298,7 +298,7 @@ namespace liblec {
 						.allow_minimize(false);
 
 					// impose maximums
-					D2D1_RECT_F rect = D2D1::RectF(0.f, 0.f, _max_size.width, _max_size.height);
+					D2D1_RECT_F rect = D2D1::RectF(0.f, 0.f, _max_size.get_width(), _max_size.get_height());
 
 					// measure the question
 					widgets::label_specs specs_lbl;
@@ -307,11 +307,11 @@ namespace liblec {
 
 					auto width = (rect.right - rect.left) + 2 * _margin;
 					auto height = _d._caption_bar_height + _margin + (rect.bottom - rect.top) +
-						_margin + _button_size.height + _margin;
+						_margin + _button_size.get_height() + _margin;
 
 					// impose minimums
-					width = largest(width, _min_size.width);
-					height = largest(height, _min_size.height);
+					width = largest(width, _min_size.get_width());
+					height = largest(height, _min_size.get_height());
 
 					dimensions dim(*this);
 					dim.set_size({ width, height });
@@ -324,7 +324,11 @@ namespace liblec {
 					widgets::label_builder label(home_page);
 					label()
 						.text(_question).multiline(true)
-						.rect({ _margin, home_page.size().width, _margin, home_page.size().height - _margin - _button_size.height - _margin });
+						.rect(rect()
+							.left(_margin)
+							.right(home_page.size().get_width())
+							.top(_margin)
+							.bottom(home_page.size().get_height() - _margin - _button_size.get_height() - _margin));
 
 					// add yes and no buttons, in that order for tab navigation
 					widgets::button_builder button_yes(home_page, "button_yes");
@@ -332,7 +336,12 @@ namespace liblec {
 
 					// position the no button on the bottom right
 					button_no().text("No")
-						.rect().place({ _margin, home_page.size().width - _margin, _margin, home_page.size().height - _margin }, 100.f, 100.f);
+						.rect().place(rect()
+							.left(_margin)
+							.right(home_page.size().get_width() - _margin)
+							.top(_margin)
+							.bottom(home_page.size().get_height() - _margin),
+							100.f, 100.f);
 					button_no().events().action = [&]() {
 						_user_agreed = false;
 						close();
@@ -382,7 +391,7 @@ namespace liblec {
 							.allow_minimize(false);
 
 						// impose maximums
-						D2D1_RECT_F rect = D2D1::RectF(0.f, 0.f, _max_size.width, _max_size.height);
+						D2D1_RECT_F rect = D2D1::RectF(0.f, 0.f, _max_size.get_width(), _max_size.get_height());
 
 						// measure the message
 						widgets::label_specs specs_lbl;
@@ -391,11 +400,11 @@ namespace liblec {
 
 						auto width = (rect.right - rect.left) + 2 * _margin;
 						auto height = _d._caption_bar_height + _margin + (rect.bottom - rect.top) +
-							_margin + _button_size.height + _margin;
+							_margin + _button_size.get_height() + _margin;
 
 						// impose minimums
-						width = largest(width, _min_size.width);
-						height = largest(height, _min_size.height);
+						width = largest(width, _min_size.get_width());
+						height = largest(height, _min_size.get_height());
 
 						dimensions dim(*this);
 						dim.set_size({ width, height });
@@ -408,13 +417,22 @@ namespace liblec {
 						widgets::label_builder label(home_page);
 						label()
 							.text(_message).multiline(true)
-							.rect({ _margin, home_page.size().width, _margin, home_page.size().height - _margin - _button_size.height - _margin });
+							.rect(rect()
+								.left(_margin)
+								.right(home_page.size().get_width())
+								.top(_margin)
+								.bottom(home_page.size().get_height() - _margin - _button_size.get_height() - _margin));
 
 						// add the ok button on the bottom right
 						widgets::button_builder button(home_page, "button_ok");
 						button()
 							.text("Ok")
-							.rect().place({_margin, home_page.size().width - _margin, _margin, home_page.size().height - _margin }, 100.f, 100.f);
+							.rect().place(rect()
+								.left(_margin)
+								.right(home_page.size().get_width() - _margin)
+								.top(_margin)
+								.bottom(home_page.size().get_height() - _margin),
+								100.f, 100.f);
 						button().events().action = [&]() { close(); };
 
 						page_man.show("home");

@@ -66,10 +66,10 @@ namespace liblec {
 			const auto rect_status_right = _d._fm._d.get_status_size(containers::status_pane_specs::location::right);
 
 			// adjust for status panes
-			page_impl.height(page_impl.height() - rect_status_bottom.height);
-			page_impl.height(page_impl.height() - rect_status_top.height);
-			page_impl.width(page_impl.width() - rect_status_left.width);
-			page_impl.width(page_impl.width() - rect_status_right.width);
+			page_impl.height(page_impl.height() - rect_status_bottom.get_height());
+			page_impl.height(page_impl.height() - rect_status_top.get_height());
+			page_impl.width(page_impl.width() - rect_status_left.get_width());
+			page_impl.width(page_impl.width() - rect_status_right.get_width());
 
 			const float thickness = 10.f;
 			const float margin = _d._fm._d._content_margin;
@@ -82,8 +82,8 @@ namespace liblec {
 
 				_specs.rect()
 					.left(margin + thickness - _d._fm._d._content_margin)
-					.right(page_impl.size().width - (margin + thickness) - _d._fm._d._content_margin)
-					.bottom(page_impl.size().height - margin)
+					.right(page_impl.size().get_width() - (margin + thickness) - _d._fm._d._content_margin)
+					.bottom(page_impl.size().get_height() - margin)
 					.top(_specs.rect().bottom() - thickness);
 
 				_specs
@@ -101,8 +101,8 @@ namespace liblec {
 
 				_specs.rect()
 					.top(margin + thickness - _d._fm._d._content_margin)
-					.bottom(page_impl.size().height - (margin + thickness))
-					.right(page_impl.size().width - margin - _d._fm._d._content_margin)
+					.bottom(page_impl.size().get_height() - (margin + thickness))
+					.right(page_impl.size().get_width() - margin - _d._fm._d._content_margin)
 					.left(_specs.rect().right() - thickness);
 
 				_specs

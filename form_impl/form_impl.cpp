@@ -386,7 +386,7 @@ namespace liblec {
 				.on_resize().x_rate(100.f);
 
 			_p_close_button->specs().rect()
-				.right(_size.width - _control_button_margin)
+				.right(_size.get_width() - _control_button_margin)
 				.top(_control_button_margin)
 				.left(_p_close_button->specs().rect().right() - (_caption_bar_height - 2.f * _control_button_margin))
 				.bottom(_p_close_button->specs().rect().top() + (_caption_bar_height - 2.f * _control_button_margin));
@@ -663,8 +663,12 @@ namespace liblec {
 
 						// adjust specs
 						tree()
-							.rect({ 0, it.destination.size().width, 0, it.destination.size().height })
-							.on_resize({ 0, 0, 0, 0 });	// critical because tree will change size as tree is browsed or changed. the pane scroll bars will do the job.
+							.rect(rect()
+								.left(0.f)
+								.right(it.destination.size().get_width())
+								.top(0.f)
+								.bottom(it.destination.size().get_height()))
+							.on_resize({ 0.f, 0.f, 0.f, 0.f });	// critical because tree will change size as tree is browsed or changed. the pane scroll bars will do the job.
 
 						// capture tree pane specs
 						it.destination._d_page.get_tree(it.alias).set_tree_pane_specs(it.destination_specs);
@@ -797,7 +801,11 @@ namespace liblec {
 
 						// adjust specs
 						html_editor()
-							.rect({ 0, it.destination.size().width, 0, it.destination.size().height })
+							.rect(rect()
+								.left(0.f)
+								.right(it.destination.size().get_width())
+								.top(0.f)
+								.bottom(it.destination.size().get_height()))
 							.on_resize({ 0.f, 0.f, 100.f, 0.f });	// critical because html_editor will change height as user types or contents are changed. the pane scroll bars will do the job.
 
 						// capture html pane specs
@@ -1155,8 +1163,12 @@ namespace liblec {
 
 						// adjust specs
 						time()
-							.rect({ 0, it.destination.size().width, 0, it.destination.size().height })
-							.on_resize({ 0, 0, 0, 0 });
+							.rect(rect()
+								.left(0.f)
+								.right(it.destination.size().get_width())
+								.top(0.f)
+								.bottom(it.destination.size().get_height()))
+							.on_resize({ 0.f, 0.f, 0.f, 0.f });
 
 						// add hour destination
 						widgets::rectangle_builder hour(it.destination, widgets::time_impl::alias_hour());
@@ -1502,8 +1514,12 @@ namespace liblec {
 						date().date_value().year = largest(date().date_value().year, (unsigned short)1970);
 
 						// adjust specs
-						date().rect({ 0, it.destination.size().width, 0, it.destination.size().height });
-						date().on_resize({ 0, 0, 0, 0 });
+						date().rect(rect()
+							.left(0.f)
+							.right(it.destination.size().get_width())
+							.top(0.f)
+							.bottom(it.destination.size().get_height()));
+						date().on_resize({ 0.f, 0.f, 0.f, 0.f });
 						date().color_fill().alpha(0);
 
 						// add week day to destination
@@ -1882,8 +1898,12 @@ namespace liblec {
 
 						// adjust specs
 						icon()
-							.rect({ 0, it.destination.size().width, 0, it.destination.size().height })
-							.on_resize({ 0, 0, 0, 0 });
+							.rect(rect()
+								.left(0.f)
+								.right(it.destination.size().get_width())
+								.top(0.f)
+								.bottom(it.destination.size().get_height()))
+							.on_resize({ 0.f, 0.f, 0.f, 0.f });
 
 						const float _gap = 5.f;
 						const float _padding = 5.f;
@@ -1898,7 +1918,7 @@ namespace liblec {
 							.color_border(icon().color_border())
 							.color_hot(icon().color_hot())
 							.cursor(widgets::specs::cursor_type::hand)
-							.rect().size(it.destination.size().width, it.destination.size().height);
+							.rect().size(it.destination.size());
 
 						// move the click and action handler from the icon to the rectangle
 						icn().events().action = icon().events().action;
@@ -1907,7 +1927,7 @@ namespace liblec {
 						icon().events().click = nullptr;
 
 						// compute size of image side
-						auto image_side = smallest(it.destination.size().width, it.destination.size().height) - 2 * _padding;
+						auto image_side = smallest(it.destination.size().get_width(), it.destination.size().get_height()) - 2.f * _padding;
 						if (icon().max_image_size() > 0.f)
 							image_side = smallest(image_side, icon().max_image_size());
 
@@ -1915,22 +1935,24 @@ namespace liblec {
 						widgets::image_view_builder image(it.destination, widgets::icon_impl::alias_image());
 						image().rect({ 0, image_side, 0, image_side });
 
+						const auto ref_rect = rect()
+							.left(_padding)
+							.right(it.destination.size().get_width() - _padding)
+							.top(_padding)
+							.bottom(it.destination.size().get_height() - _padding);
+
 						switch (icon().text_position()) {
 						case widgets::icon_specs::icon_text_position::right:
-							image().rect().place({ _padding, it.destination.size().width - _padding, _padding, it.destination.size().height - _padding },
-								0.f, 0.f);
+							image().rect().place(ref_rect, 0.f, 0.f);
 							break;
 						case widgets::icon_specs::icon_text_position::left:
-							image().rect().place({ _padding, it.destination.size().width - _padding, _padding, it.destination.size().height - _padding },
-								100.f, 0.f);
+							image().rect().place(ref_rect, 100.f, 0.f);
 							break;
 						case widgets::icon_specs::icon_text_position::top:
-							image().rect().place({ _padding, it.destination.size().width - _padding, _padding, it.destination.size().height - _padding },
-								50.f, 100.f);
+							image().rect().place(ref_rect, 50.f, 100.f);
 							break;
 						case widgets::icon_specs::icon_text_position::bottom:
-							image().rect().place({ _padding, it.destination.size().width - _padding, _padding, it.destination.size().height - _padding },
-								50.f, 0.f);
+							image().rect().place(ref_rect, 50.f, 0.f);
 							break;
 						default:
 							break;
@@ -1949,7 +1971,11 @@ namespace liblec {
 
 						switch (icon().text_position()) {
 						case widgets::icon_specs::icon_text_position::right: {
-							text().rect({ 0, it.destination.size().width - (image_side + _gap) - _padding, 0, it.destination.size().height });
+							text().rect(rect()
+								.left(0.f)
+								.right(it.destination.size().get_width() - (image_side + _gap) - _padding)
+								.top(0.f)
+								.bottom(it.destination.size().get_height()));
 							const auto ideal_rect = widgets::measure_label(_p_directwrite_factory, text().text(), text().font(), text().font_size(),
 								false, false, convert_rect(text().rect()));
 							text().rect().height(ideal_rect.bottom - ideal_rect.top);
@@ -1957,7 +1983,11 @@ namespace liblec {
 						}
 							break;
 						case widgets::icon_specs::icon_text_position::left: {
-							text().rect({ _padding, it.destination.size().width - (image_side + _gap) - _padding, _padding, it.destination.size().height });
+							text().rect(rect()
+								.left(_padding)
+								.right(it.destination.size().get_width() - (image_side + _gap) - _padding)
+								.top(_padding)
+								.bottom(it.destination.size().get_height()));
 							const auto ideal_rect = widgets::measure_label(_p_directwrite_factory, text().text(), text().font(), text().font_size(),
 								false, false, convert_rect(text().rect()));
 							text().rect().height(ideal_rect.bottom - ideal_rect.top);
@@ -1965,7 +1995,11 @@ namespace liblec {
 						}
 							break;
 						case widgets::icon_specs::icon_text_position::top: {
-							text().rect({ _padding, it.destination.size().width - _padding, 0, it.destination.size().height - _padding });
+							text().rect(rect()
+								.left(_padding)
+								.right(it.destination.size().get_width() - _padding)
+								.top(0.f)
+								.bottom(it.destination.size().get_height() - _padding));
 							const auto ideal_rect = widgets::measure_label(_p_directwrite_factory, text().text(), text().font(), text().font_size(),
 								false, false, convert_rect(text().rect()));
 							text().rect().height(ideal_rect.bottom - ideal_rect.top);
@@ -1973,7 +2007,11 @@ namespace liblec {
 						}
 							break;
 						case widgets::icon_specs::icon_text_position::bottom: {
-							text().rect({ _padding, it.destination.size().width - _padding, 0, it.destination.size().height - _padding });
+							text().rect(rect()
+								.left(_padding)
+								.right(it.destination.size().get_width() - _padding)
+								.top(0.f)
+								.bottom(it.destination.size().get_height() - _padding));
 							const auto ideal_rect = widgets::measure_label(_p_directwrite_factory, text().text(), text().font(), text().font_size(),
 								false, false, convert_rect(text().rect()));
 							text().rect().height(ideal_rect.bottom - ideal_rect.top);
@@ -1994,23 +2032,39 @@ namespace liblec {
 
 						switch (icon().text_position()) {
 						case widgets::icon_specs::icon_text_position::right: {
-							description().rect({ _padding, text().rect().width(), _padding, it.destination.size().height - text().rect().height() });
+							description().rect(rect()
+								.left(_padding)
+								.right(text().rect().width())
+								.top(_padding)
+								.bottom(it.destination.size().get_height() - text().rect().height()));
 							description().rect().snap_to(text().rect(), rect::snap_type::bottom_left, 0.f);
 						}
 																				 break;
 						case widgets::icon_specs::icon_text_position::left: {
-							description().rect({ _padding, text().rect().width(), _padding, it.destination.size().height - text().rect().height() });
+							description().rect(rect()
+								.left(_padding)
+								.right(text().rect().width())
+								.top(_padding)
+								.bottom(it.destination.size().get_height() - text().rect().height()));
 							description().rect().snap_to(text().rect(), rect::snap_type::bottom_left, 0.f);
 						}
 							break;
 						case widgets::icon_specs::icon_text_position::top: {
-							description().rect({ _padding, text().rect().width(), 0, it.destination.size().height - text().rect().height() });
+							description().rect(rect()
+								.left(_padding)
+								.right(text().rect().width())
+								.top(0.f)
+								.bottom(it.destination.size().get_height() - text().rect().height()));
 							description().rect().snap_to(text().rect(), rect::snap_type::bottom, 0.f);
 							description().center_h(true);
 						}
 							break;
 						case widgets::icon_specs::icon_text_position::bottom: {
-							description().rect({ _padding, text().rect().width(), 0, it.destination.size().height - text().rect().height() });
+							description().rect(rect()
+								.left(_padding)
+								.right(text().rect().width())
+								.top(0.f)
+								.bottom(it.destination.size().get_height() - text().rect().height()));
 							description().rect().snap_to(text().rect(), rect::snap_type::bottom, 0.f);
 							description().center_h(true);
 						}
@@ -2126,8 +2180,12 @@ namespace liblec {
 
 						// adjust specs
 						table()
-							.rect({ 0, it.destination.size().width, 0, it.destination.size().height })
-							.on_resize({ 0, 0, 0, 0 });	// critical because table will change size as table is browsed or changed. the pane scroll bars will do the job.
+							.rect(rect()
+								.left(0.f)
+								.right(it.destination.size().get_width())
+								.top(0.f)
+								.bottom(it.destination.size().get_height()))
+							.on_resize({ 0.f, 0.f, 0.f, 0.f });	// critical because table will change size as table is browsed or changed. the pane scroll bars will do the job.
 
 						// copy pointer to pane specs so we can return the pane specs for those properties that are handled by the pane, like the bounding rectangle
 						table()._p_special_pane_specs = &it.destination_specs;
@@ -2168,8 +2226,8 @@ namespace liblec {
 
 		void form::impl::set_position(const float& ix, const float& iy,
 			const float& icx, const float& icy) {
-			_size.width = icx;
-			_size.height = icy;
+			_size.width(icx);
+			_size.height(icy);
 
 			// ensure visibility of top left
 			_point.x = largest(ix, 0.f);
@@ -2211,8 +2269,8 @@ namespace liblec {
 
 					_point.x = ix;
 					_point.y = iy;
-					_size.width = icx;
-					_size.height = icy;
+					_size.width(icx);
+					_size.height(icy);
 
 					break;
 				}
@@ -2230,72 +2288,72 @@ namespace liblec {
 
 				_point.x = ix;
 				_point.y = iy;
-				_size.width = icx;
-				_size.height = icy;
+				_size.width(icx);
+				_size.height(icy);
 			} break;
 
 			case form_position::top_left: {
 				_point.x = rcWork.left + 0.f;
 				_point.y = rcWork.top + 0.f;
-				_size.width = icx;
-				_size.height = icy;
+				_size.width(icx);
+				_size.height(icy);
 			} break;
 
 			case form_position::top_left_offset: {
 				_point.x = rcWork.left + offset;
 				_point.y = rcWork.top + offset;
-				_size.width = icx;
-				_size.height = icy;
+				_size.width(icx);
+				_size.height(icy);
 			} break;
 
 			case form_position::top_right: {
 				_point.x = rcWork.right - icx;
 				_point.y = rcWork.top + 0.f;
-				_size.width = icx;
-				_size.height = icy;
+				_size.width(icx);
+				_size.height(icy);
 			} break;
 
 			case form_position::top_right_offset: {
 				_point.x = rcWork.right - icx - offset;
 				_point.y = rcWork.top + offset;
-				_size.width = icx;
-				_size.height = icy;
+				_size.width(icx);
+				_size.height(icy);
 			} break;
 
 			case form_position::bottom_right: {
 				_point.x = rcWork.right - icx;
 				_point.y = rcWork.bottom - icy;
-				_size.width = icx;
-				_size.height = icy;
+				_size.width(icx);
+				_size.height(icy);
 			} break;
 
 			case form_position::bottom_right_offset: {
 				_point.x = rcWork.right - icx - offset;
 				_point.y = rcWork.bottom - icy - offset;
-				_size.width = icx;
-				_size.height = icy;
+				_size.width(icx);
+				_size.height(icy);
 			} break;
 
 			case form_position::bottom_left: {
 				_point.x = rcWork.left + 0.f;
 				_point.y = rcWork.bottom - icy;
-				_size.width = icx;
-				_size.height = icy;
+				_size.width(icx);
+				_size.height(icy);
 			} break;
 
 			case form_position::bottom_left_offset: {
 				_point.x = rcWork.left + offset;
 				_point.y = rcWork.bottom - icy - offset;
-				_size.width = icx;
-				_size.height = icy;
+				_size.width(icx);
+				_size.height(icy);
 			} break;
 
 			default: {
 				// default to top left
 				_point.x = rcWork.left + 0.f;
 				_point.y = rcWork.top + 0.f;
-				_size.width = icx;
-				_size.height = icy;
+				_size.width(icx);
+				_size.height(icy);
 			} break;
 			}
 
@@ -3205,9 +3263,9 @@ namespace liblec {
 				// set lower limits to window size
 				MINMAXINFO* p_minmaxinfo = (MINMAXINFO*)lParam;
 				p_minmaxinfo->ptMinTrackSize.x = static_cast<LONG>(.5f +
-					_form._d._min_size.width * _form._d._dpi_scale);
+					_form._d._min_size.get_width() * _form._d._dpi_scale);
 				p_minmaxinfo->ptMinTrackSize.y = static_cast<LONG>(.5f +
-					_form._d._min_size.height * _form._d._dpi_scale);
+					_form._d._min_size.get_height() * _form._d._dpi_scale);
 			} break;
 
 			case WM_TIMER: {

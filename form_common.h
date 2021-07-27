@@ -483,8 +483,8 @@ namespace liblec {
 				hr = pSource->GetSize(&original_width, &original_height);
 				if (SUCCEEDED(hr)) {
 					D2D1_RECT_F rect_container = { 0, 0, 0, 0 };
-					rect_container.right = rect_container.left + target_size.width;
-					rect_container.bottom = rect_container.top + target_size.height;
+					rect_container.right = rect_container.left + target_size.width();
+					rect_container.bottom = rect_container.top + target_size.height();
 					D2D1_RECT_F rect = { 0, 0, 0, 0 };
 					rect.right = rect.left + static_cast<float>(original_width);
 					rect.bottom = rect.top + static_cast<float>(original_height);

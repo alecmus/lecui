@@ -99,13 +99,13 @@ namespace liblec {
 
 			const size current_size = { _rect.right - _rect.left, _rect.bottom - _rect.top };
 
-			if ((current_size.width != _old_size.width) ||
-				current_size.height != _old_size.height)
+			if ((current_size.get_width() != _old_size.get_width()) ||
+				current_size.get_height() != _old_size.get_height())
 				safe_release(&_p_bitmap);
 
 			if (!_p_bitmap) {
 				// make a dpi scaled target size
-				const size target_size{ current_size.width * get_dpi_scale(), current_size.height * get_dpi_scale() };
+				const size target_size{ current_size.get_width() * get_dpi_scale(), current_size.get_height() * get_dpi_scale() };
 
 				if (_specs.png_resource())	// png resource takes precedence
 					load_bitmap_resource(p_render_target, _p_IWICFactory,

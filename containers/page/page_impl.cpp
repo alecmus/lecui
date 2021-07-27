@@ -76,10 +76,10 @@ namespace liblec {
 
 		void containers::page::impl::size(const lecui::size& size) { _size = size; }
 		const size& containers::page::impl::size() { return _size; }
-		void containers::page::impl::width(const float& width) { _size.width = width; }
-		const float containers::page::impl::width() { return _size.width; }
-		void containers::page::impl::height(const float& height) { _size.height = height; }
-		const float containers::page::impl::height() { return _size.height; }
+		void containers::page::impl::width(const float& width) { _size.width(width); }
+		const float containers::page::impl::width() { return _size.get_width(); }
+		void containers::page::impl::height(const float& height) { _size.height(height); }
+		const float containers::page::impl::height() { return _size.get_height(); }
 
 		bool containers::page::impl::contains(const D2D1_POINT_2F& point) {
 			bool _contains = false;
