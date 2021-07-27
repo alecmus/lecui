@@ -185,6 +185,13 @@ namespace liblec {
 			return *this;
 		}
 
+		int& widgets::text_field_specs::maximum_length() { return _maximum_length; }
+
+		widgets::text_field_specs& widgets::text_field_specs::maximum_length(const int& maximum_length) {
+			_maximum_length = maximum_length;
+			return *this;
+		}
+
 		class widgets::text_field_builder::impl {
 		public:
 			impl(containers::page& page, const std::string& alias) :

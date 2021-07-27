@@ -339,6 +339,14 @@ namespace liblec {
 
 		void widgets::text_field_impl::insert_character(const char& c) {
 			try {
+				if (_specs.maximum_length() > 0) {
+					// limit length
+					if (_specs.text().length() >= _specs.maximum_length()) {
+						_input_error = true;
+						return;
+					}
+				}
+
 				// check forbidden character set
 				if (_specs.forbidden_characters().count(c)) {
 					_input_error = true;

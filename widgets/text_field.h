@@ -34,6 +34,7 @@ namespace liblec {
 				color _color_input_error;
 				std::set<char> _allowed_characters;
 				std::set<char> _forbidden_characters;
+				int _maximum_length;
 
 			public:
 				text_field_specs() {
@@ -176,6 +177,15 @@ namespace liblec {
 				/// <returns>A reference to the modified object.</returns>
 				/// <remarks>Takes precedence over the allowed character set.</remarks>
 				text_field_specs& forbidden_characters(const std::set<char>& forbidden_characters);
+
+				/// <summary>Get or set the maximum length of the input string. 0 means unlimited length.</summary>
+				/// <returns>A reference to the maximum length.</returns>
+				int& maximum_length();
+
+				/// <summary>Set the maximum length of the input string.</summary>
+				/// <param name="maximum_length">The maximum length of the input string. 0 means unlimited length.</param>
+				/// <returns>A reference to the modified object.</returns>
+				text_field_specs& maximum_length(const int& maximum_length);
 
 			private:
 				/// <summary>The character to use for masking the text.</summary>
