@@ -48,9 +48,9 @@ namespace liblec {
 			impl& _d;
 
 			// Default constructor and copying an object of this class are not allowed
-			filesystem();
-			filesystem(const filesystem&);
-			filesystem& operator=(const filesystem&);
+			filesystem() = delete;
+			filesystem(const filesystem&) = delete;
+			filesystem& operator=(const filesystem&) = delete;
 		};
 	}
 }
