@@ -50,8 +50,8 @@ namespace liblec {
 			impl& _d;
 
 			// Copying an object of this class are not allowed
-			splash(const splash&);
-			splash& operator=(const splash&);
+			splash(const splash&) = delete;
+			splash& operator=(const splash&) = delete;
 		};
 	}
 }
