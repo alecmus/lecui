@@ -94,8 +94,8 @@ namespace liblec {
 			impl& _d;
 
 			// Copying an object of this class are not allowed
-			date_time(const date_time&);
-			date_time& operator=(const date_time&);
+			date_time(const date_time&) = delete;
+			date_time& operator=(const date_time&) = delete;
 		};
 	}
 }
