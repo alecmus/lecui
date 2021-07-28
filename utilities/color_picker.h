@@ -35,9 +35,9 @@ namespace liblec {
 			impl& _d;
 
 			// Default constructor and copying an object of this class are not allowed
-			color_picker();
-			color_picker(const color_picker&);
-			color_picker& operator=(const color_picker&);
+			color_picker() = delete;
+			color_picker(const color_picker&) = delete;
+			color_picker& operator=(const color_picker&) = delete;
 		};
 	}
 }
