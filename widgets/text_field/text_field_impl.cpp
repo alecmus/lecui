@@ -341,7 +341,7 @@ namespace liblec {
 			try {
 				if (_specs.maximum_length() > 0) {
 					// limit length
-					if (_specs.text().length() >= _specs.maximum_length()) {
+					if (_specs.text().length() >= static_cast<size_t>(largest(_specs.maximum_length(), 0))) {
 						_input_error = true;
 						return;
 					}
