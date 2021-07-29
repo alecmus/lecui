@@ -20,7 +20,7 @@ namespace liblec {
 		namespace widgets {
 			class tree_view_impl : public widget_impl {
 				/// private virtual function overrides
-				widgets::specs& generic_specs() override {
+				widgets::widget& generic_specs() override {
 					return _specs;
 				}
 
@@ -44,8 +44,8 @@ namespace liblec {
 				void on_right_click() override;
 
 				/// widget specific methods
-				widgets::tree_view_specs& specs();
-				widgets::tree_view_specs& operator()();
+				widgets::tree_view& specs();
+				widgets::tree_view& operator()();
 				void set_tree_pane_specs(containers::pane_specs& specs);
 
 			private:
@@ -55,7 +55,7 @@ namespace liblec {
 				tree_view_impl& operator=(const tree_view_impl&) = delete;
 
 				/// Private variables
-				widgets::tree_view_specs _specs, _specs_old;
+				widgets::tree_view _specs, _specs_old;
 				ID2D1SolidColorBrush* _p_brush;
 				ID2D1SolidColorBrush* _p_brush_hot;
 				ID2D1SolidColorBrush* _p_brush_disabled;

@@ -17,7 +17,7 @@ namespace liblec {
 		namespace widgets {
 			/// This operator is for determining whether to recreate widget resources. It doesn't
 			/// represent equality in the sense of widgets having the same characteristics!
-			bool specs::operator==(const specs& param) {
+			bool widget::operator==(const widget& param) {
 				return
 					/// Colors
 					(_color_text == param._color_text) &&
@@ -34,7 +34,7 @@ namespace liblec {
 					(_cursor == param._cursor);
 			}
 
-			bool specs::operator!=(const specs& param) {
+			bool widget::operator!=(const widget& param) {
 				return !operator==(param);
 			}
 		}

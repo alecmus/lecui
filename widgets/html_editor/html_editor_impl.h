@@ -24,7 +24,7 @@ namespace liblec {
 
 			class html_editor_impl : public widget_impl {
 				/// private virtual function overrides
-				widgets::specs& generic_specs() override {
+				widgets::widget& generic_specs() override {
 					return _specs;
 				}
 
@@ -57,8 +57,8 @@ namespace liblec {
 				void on_selection_change(const bool& selected) override;
 
 				/// widget specific methods
-				widgets::html_editor_specs& specs();
-				widgets::html_editor_specs& operator()();
+				widgets::html_editor& specs();
+				widgets::html_editor& operator()();
 				void set_pane_specs(containers::pane_specs& html_control,
 					containers::pane_specs& html);
 				void insert_character(const char& c);
@@ -89,7 +89,7 @@ namespace liblec {
 
 				/// Private variables
 				bool _controls_initialized;
-				widgets::html_editor_specs _specs, _specs_old;
+				widgets::html_editor _specs, _specs_old;
 				ID2D1SolidColorBrush* _p_brush;
 				ID2D1SolidColorBrush* _p_brush_caret;
 				ID2D1SolidColorBrush* _p_brush_border;

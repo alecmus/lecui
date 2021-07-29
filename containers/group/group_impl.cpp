@@ -90,10 +90,10 @@ namespace liblec {
 			return _rect;
 		}
 
-		containers::group_specs&
+		containers::group&
 			widgets::group_impl::specs() { return _specs; }
 
-		containers::group_specs&
+		containers::group&
 			widgets::group_impl::operator()() { return specs(); }
 	}
 }

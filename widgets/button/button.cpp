@@ -13,129 +13,177 @@
 
 namespace liblec {
 	namespace lecui {
-		bool widgets::button_specs::operator==(const button_specs& param) {
+		bool widgets::button::operator==(const button& param) {
 			return
-				// generic specs
-				specs::operator==(param) &&
+				// generic widget
+				widget::operator==(param) &&
 
-				// widget specific specs
+				// widget specific widget
 				(_color_border == param._color_border);
 		}
 
-		bool widgets::button_specs::operator!=(const button_specs& param) {
+		bool widgets::button::operator!=(const button& param) {
 			return !operator==(param);
 		}
 
-		std::string& widgets::button_specs::text() { return _text; }
+		std::string& widgets::button::text() { return _text; }
 
-		widgets::button_specs& widgets::button_specs::text(const std::string& text) {
+		widgets::button& widgets::button::text(const std::string& text) {
 			_text = text;
 			return *this;
 		}
 
-		std::string& widgets::button_specs::tooltip() { return _tooltip; }
+		std::string& widgets::button::tooltip() { return _tooltip; }
 
-		widgets::button_specs& widgets::button_specs::tooltip(const std::string& tooltip) {
+		widgets::button& widgets::button::tooltip(const std::string& tooltip) {
 			_tooltip = tooltip;
 			return *this;
 		}
 
-		lecui::rect& widgets::button_specs::rect() { return _rect; }
+		lecui::rect& widgets::button::rect() { return _rect; }
 
-		widgets::button_specs& widgets::button_specs::rect(const lecui::rect& rect) {
+		widgets::button& widgets::button::rect(const lecui::rect& rect) {
 			_rect = rect;
 			return *this;
 		}
 
-		resize_params& widgets::button_specs::on_resize() { return _on_resize; }
+		resize_params& widgets::button::on_resize() { return _on_resize; }
 
-		widgets::button_specs& widgets::button_specs::on_resize(const resize_params& on_resize) {
+		widgets::button& widgets::button::on_resize(const resize_params& on_resize) {
 			_on_resize = on_resize;
 			return *this;
 		}
 
-		widgets::specs::cursor_type& widgets::button_specs::cursor() { return _cursor; }
+		widgets::widget::cursor_type& widgets::button::cursor() { return _cursor; }
 
-		widgets::button_specs& widgets::button_specs::cursor(const cursor_type cursor) {
+		widgets::button& widgets::button::cursor(const cursor_type cursor) {
 			_cursor = cursor;
 			return *this;
 		}
 
-		std::string& widgets::button_specs::font() { return _font; }
+		std::string& widgets::button::font() { return _font; }
 
-		widgets::button_specs& widgets::button_specs::font(const std::string& font) {
+		widgets::button& widgets::button::font(const std::string& font) {
 			_font = font;
 			return *this;
 		}
 
-		float& widgets::button_specs::font_size() { return _font_size; }
+		float& widgets::button::font_size() { return _font_size; }
 
-		widgets::button_specs& widgets::button_specs::font_size(const float& font_size) {
+		widgets::button& widgets::button::font_size(const float& font_size) {
 			_font_size = font_size;
 			return *this;
 		}
 
-		color& widgets::button_specs::color_text() { return _color_text; }
+		color& widgets::button::color_text() { return _color_text; }
 
-		widgets::button_specs& widgets::button_specs::color_text(const color& color_text) {
+		widgets::button& widgets::button::color_text(const color& color_text) {
 			_color_text = color_text;
 			return *this;
 		}
 
-		color& widgets::button_specs::color_fill() { return _color_fill; }
+		color& widgets::button::color_fill() { return _color_fill; }
 
-		widgets::button_specs& widgets::button_specs::color_fill(const color& color_fill) {
+		widgets::button& widgets::button::color_fill(const color& color_fill) {
 			_color_fill = color_fill;
 			return *this;
 		}
 
-		color& widgets::button_specs::color_hot() { return _color_hot; }
+		color& widgets::button::color_hot() { return _color_hot; }
 
-		widgets::button_specs& widgets::button_specs::color_hot(const color& color_hot) {
+		widgets::button& widgets::button::color_hot(const color& color_hot) {
 			_color_hot = color_hot;
 			return *this;
 		}
 
-		color& widgets::button_specs::color_selected() { return _color_selected; }
+		color& widgets::button::color_selected() { return _color_selected; }
 
-		widgets::button_specs& widgets::button_specs::color_selected(const color& color_selected) {
+		widgets::button& widgets::button::color_selected(const color& color_selected) {
 			_color_selected = color_selected;
 			return *this;
 		}
 
-		color& widgets::button_specs::color_disabled() { return _color_disabled; }
+		color& widgets::button::color_disabled() { return _color_disabled; }
 
-		widgets::button_specs& widgets::button_specs::color_disabled(const color& color_disabled) {
+		widgets::button& widgets::button::color_disabled(const color& color_disabled) {
 			_color_disabled = color_disabled;
 			return *this;
 		}
 
-		float& widgets::button_specs::border() { return _border; }
+		float& widgets::button::border() { return _border; }
 
-		widgets::button_specs& widgets::button_specs::border(const float& border) {
+		widgets::button& widgets::button::border(const float& border) {
 			_border = border;
 			return *this;
 		}
 
-		lecui::color& widgets::button_specs::color_border() { return _color_border; }
+		lecui::color& widgets::button::color_border() { return _color_border; }
 
-		widgets::button_specs& widgets::button_specs::color_border(const color& color_border) {
+		widgets::button& widgets::button::color_border(const color& color_border) {
 			_color_border = color_border;
 			return *this;
 		}
 
-		float& widgets::button_specs::corner_radius_x() { return _corner_radius_x; }
+		float& widgets::button::corner_radius_x() { return _corner_radius_x; }
 
-		widgets::button_specs& widgets::button_specs::corner_radius_x(const float& corner_radius_x) {
+		widgets::button& widgets::button::corner_radius_x(const float& corner_radius_x) {
 			_corner_radius_x = corner_radius_x;
 			return *this;
 		}
 
-		float& widgets::button_specs::corner_radius_y() { return _corner_radius_y; }
+		float& widgets::button::corner_radius_y() { return _corner_radius_y; }
 
-		widgets::button_specs& widgets::button_specs::corner_radius_y(const float& corner_radius_y) {
+		widgets::button& widgets::button::corner_radius_y(const float& corner_radius_y) {
 			_corner_radius_y = corner_radius_y;
 			return *this;
+		}
+
+		namespace widgets {
+			/// <summary>Button widget builder.</summary>
+			class button_builder {
+			public:
+				/// <summary>Button builder constructor.</summary>
+				/// <param name="page">The container to place the widget in.</param>
+				/// <remarks>This constructs the widget with an internally generated random
+				/// alias.</remarks>
+				button_builder(containers::page& page);
+
+				/// <summary>Button builder constructor.</summary>
+				/// <param name="page">The container to place the widget in.</param>
+				/// <param name="alias">The in-page unique alias of the button, e.g. "next_button".</param>
+				button_builder(containers::page& page, const std::string& alias);
+				~button_builder();
+
+				/// <summary>Get the button specifications.</summary>
+				/// <returns>A reference to the button specifications.</returns>
+				[[nodiscard]]
+				button& specs();
+
+				/// <summary>Get the button specifications.</summary>
+				/// <returns>A reference to the button specifications.</returns>
+				/// <remarks>Alternative to widget() for more terse code.</remarks>
+				[[nodiscard]]
+				button& operator()();
+
+				/// <summary>Get the specifications of a button.</summary>
+				/// <param name="fm">The form containing the button.</param>
+				/// <param name="path">The full path to the widget, e.g.
+				/// "sample_page/sample_pane/next_button".</param>
+				/// <returns>A reference to the button specifications.</returns>
+				/// <remarks>Throws on failure. For faster coding and more readable code consider
+				/// calling this static method through the helper macro provided.</remarks>
+				[[nodiscard]]
+				static button& specs(form& fm, const std::string& path);
+
+			private:
+				class impl;
+				impl& _d;
+
+				// Default constructor and copying an object of this class are not allowed
+				button_builder() = delete;
+				button_builder(const button_builder&) = delete;
+				button_builder& operator=(const button_builder&) = delete;
+			};
 		}
 
 		class widgets::button_builder::impl {
@@ -151,7 +199,7 @@ namespace liblec {
 					.color_selected(defaults::color(_page._d_page._fm._d._theme, item::button_selected));
 			}
 			containers::page& _page;
-			button_specs& _specs;
+			button& _specs;
 		};
 
 		widgets::button_builder::button_builder(containers::page& page) :
@@ -162,17 +210,17 @@ namespace liblec {
 
 		widgets::button_builder::~button_builder() { delete& _d; }
 
-		widgets::button_specs&
+		widgets::button&
 			widgets::button_builder::specs() {
 			return _d._specs;
 		}
 
-		widgets::button_specs&
+		widgets::button&
 			widgets::button_builder::operator()() {
 			return specs();
 		}
 
-		widgets::button_specs&
+		widgets::button&
 			widgets::button_builder::specs(form& fm, const std::string& path) {
 			const auto idx = path.find("/");
 
@@ -183,19 +231,27 @@ namespace liblec {
 					// check form pages
 					auto& page = fm._d._p_pages.at(page_alias);
 					auto results = fm._d.find_widget(page, path_remaining);
-					return results.page._d_page.get_button(results.widget.alias()).specs();
+					return results.page._d_page.get_button_impl(results.widget.alias()).specs();
 				}
 				catch (const std::exception&) {}
 				try {
 					// check status panes
 					auto& page = fm._d._p_status_panes.at(page_alias);
 					auto results = fm._d.find_widget(page, path_remaining);
-					return results.page._d_page.get_button(results.widget.alias()).specs();
+					return results.page._d_page.get_button_impl(results.widget.alias()).specs();
 				}
 				catch (const std::exception&) {}
 			}
 
 			throw std::invalid_argument("Invalid path");
+		}
+
+		widgets::button& liblec::lecui::widgets::button::add(containers::page& page, const std::string& alias) {
+			return button_builder(page, alias).specs();
+		}
+
+		widgets::button& widgets::button::get(form& fm, const std::string& path) {
+			return button_builder::specs(fm, path);
 		}
 	}
 }

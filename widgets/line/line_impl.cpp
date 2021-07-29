@@ -99,10 +99,10 @@ namespace liblec {
 			return _rect;
 		}
 
-		widgets::line_specs&
+		widgets::line&
 			widgets::line_impl::specs() { return _specs; }
 
-		widgets::line_specs&
+		widgets::line&
 			widgets::line_impl::operator()() { return specs(); }
 	}
 }

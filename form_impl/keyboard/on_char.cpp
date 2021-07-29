@@ -34,7 +34,7 @@ namespace liblec {
 									break;
 
 								// insert character
-								auto& text_field = page._d_page.get_text_field(widget.first);
+								auto& text_field = page._d_page.get_text_field_impl(widget.first);
 								text_field.insert_character(c);
 							}
 							catch (const std::exception& e) { log(e.what()); }
@@ -52,7 +52,7 @@ namespace liblec {
 										break;
 
 									// insert character
-									auto& html_editor = page._d_page.get_html_editor(widget.first);
+									auto& html_editor = page._d_page.get_html_editor_impl(widget.first);
 									html_editor.insert_character(c);
 								}
 								catch (const std::exception& e) { log(e.what()); }
@@ -63,7 +63,7 @@ namespace liblec {
 									widgets::widget_type::combobox && widget.second.selected()) {
 									change = true;
 									try {
-										auto& combobox = page._d_page.get_combobox(widget.first);
+										auto& combobox = page._d_page.get_combobox_impl(widget.first);
 
 										// ignore backspace, tab and return
 										if (c == '\b' ||
@@ -88,7 +88,7 @@ namespace liblec {
 									if (widget.second.type() ==
 										widgets::widget_type::tab_pane) {
 										// get this tab pane
-										auto& tab_pane = page._d_page.get_tab_pane(widget.first);
+										auto& tab_pane = page._d_page.get_tab_pane_impl(widget.first);
 
 										auto page_iterator = tab_pane._p_tabs.find(tab_pane._current_tab);
 
@@ -99,7 +99,7 @@ namespace liblec {
 										if (widget.second.type() ==
 											widgets::widget_type::pane) {
 											// get this pane
-											auto& pane = page._d_page.get_pane(widget.first);
+											auto& pane = page._d_page.get_pane_impl(widget.first);
 
 											auto page_iterator = pane._p_panes.find(pane._current_pane);
 

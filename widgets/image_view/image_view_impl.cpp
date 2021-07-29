@@ -143,10 +143,10 @@ namespace liblec {
 			return _rect;
 		}
 
-		widgets::image_view_specs&
+		widgets::image_view&
 			widgets::image_view_impl::specs() { return _specs; }
 
-		widgets::image_view_specs&
+		widgets::image_view&
 			widgets::image_view_impl::operator()() { return specs(); }
 	}
 }

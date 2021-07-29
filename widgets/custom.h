@@ -20,7 +20,7 @@ namespace liblec {
 	namespace lecui {
 		namespace widgets {
 			/// <summary>Custom widget specifications.</summary>
-			class lecui_api custom_specs : public specs {
+			class lecui_api custom : public widget {
 			public:
 				/// <summary>
 				/// Handler for resource creation. The pointers need to be cast back to their
@@ -57,96 +57,69 @@ namespace liblec {
 					bool _selected)>
 					on_render = nullptr;
 
-				bool operator==(const custom_specs&);
-				bool operator!=(const custom_specs&);
+				bool operator==(const custom&);
+				bool operator!=(const custom&);
 
-				// generic specs
+				// generic widget
 
 				std::string& text() override;
-				custom_specs& text(const std::string& text);
+				custom& text(const std::string& text);
 
 				std::string& tooltip() override;
-				custom_specs& tooltip(const std::string& tooltip);
+				custom& tooltip(const std::string& tooltip);
 
 				lecui::rect& rect() override;
-				custom_specs& rect(const lecui::rect& rect);
+				custom& rect(const lecui::rect& rect);
 
 				resize_params& on_resize() override;
-				custom_specs& on_resize(const resize_params& on_resize);
+				custom& on_resize(const resize_params& on_resize);
 
 				cursor_type& cursor() override;
-				custom_specs& cursor(const cursor_type cursor);
+				custom& cursor(const cursor_type cursor);
 
 				std::string& font() override;
-				custom_specs& font(const std::string& font);
+				custom& font(const std::string& font);
 
 				float& font_size() override;
-				custom_specs& font_size(const float& font_size);
+				custom& font_size(const float& font_size);
 
 				color& color_text() override;
-				custom_specs& color_text(const color& color_text);
+				custom& color_text(const color& color_text);
 
 				color& color_fill() override;
-				custom_specs& color_fill(const color& color_fill);
+				custom& color_fill(const color& color_fill);
 
 				color& color_hot() override;
-				custom_specs& color_hot(const color& color_hot);
+				custom& color_hot(const color& color_hot);
 
 				color& color_selected() override;
-				custom_specs& color_selected(const color& color_selected);
+				custom& color_selected(const color& color_selected);
 
 				color& color_disabled() override;
-				custom_specs& color_disabled(const color& color_disabled);
-			};
+				custom& color_disabled(const color& color_disabled);
 
-			/// <summary>Custom widget builder.</summary>
-			class lecui_api custom_builder {
 			public:
-				/// <summary>Custom widget builder constructor.</summary>
-				/// <param name="page">The container to place the widget in.</param>
-				/// <remarks>This constructs the widget with an internally generated random
-				/// alias.</remarks>
-				custom_builder(containers::page& page);
-
-				/// <summary>Custom widget builder constructor.</summary>
+				/// <summary>Add a custom widget to a container.</summary>
 				/// <param name="page">The container to place the widget in.</param>
 				/// <param name="alias">The in-page unique alias, e.g. "diagram".</param>
-				custom_builder(containers::page& page, const std::string& alias);
-				~custom_builder();
-
-				/// <summary>Get the custom widget specifications.</summary>
-				/// <returns>A reference to the custom widget's specifications.</returns>
+				/// <returns>A reference to the widget specifications.</returns>
+				/// <remarks>If an empty alias is given an internally generated random
+				/// alias will be assigned.</remarks>
 				[[nodiscard]]
-				custom_specs& specs();
-
-				/// <summary>Get the custom widget specifications.</summary>
-				/// <returns>A reference to the custom widget's specifications.</returns>
-				/// <remarks>Alternative to specs() for more terse code.</remarks>
-				[[nodiscard]]
-				custom_specs& operator()();
+				static custom& add(containers::page& page, const std::string& alias = std::string());
 
 				/// <summary>Get the specifications of a custom widget.</summary>
-				/// <param name="fm">The form containing the widget.</param>
-				/// <param name="path">The full path to the widget, e.g.
-				/// "sample_page/right_pane/tab_pane/tab_two/diagram".</param>
-				/// <returns>A reference to the custom widget's specifications.</returns>
+				/// <param name="fm"></param>
+				/// <param name="path">The full path to the widget, e.g. "sample_page/right_pane/tab_pane/tab_two/diagram".</param>
+				/// <returns>A reference to the widget specifications.</returns>
 				/// <remarks>Throws on failure. For faster coding and more readable code consider
 				/// calling this static method through the helper macro provided.</remarks>
 				[[nodiscard]]
-				static custom_specs& specs(form& fm, const std::string& path);
-
-			private:
-				class impl;
-				impl& _d;
-
-				// Default constructor and copying an object of this class are not allowed
-				custom_builder() = delete;
-				custom_builder(const custom_builder&) = delete;
-				custom_builder& operator=(const custom_builder&) = delete;
+				static custom& get(form& fm, const std::string& path);
 			};
 		}
 	}
 }
 
-/// Helper for getting custom specs. Builder documentation applies.
-#define get_custom_specs(path) liblec::lecui::widgets::custom_builder::specs(*this, path)
+/// Helper for getting custom widget. Builder documentation applies.
+#define get_custom(path) liblec::lecui::widgets::custom::get(*this, path)

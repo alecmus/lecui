@@ -22,7 +22,7 @@ namespace liblec {
 			class tab_builder;
 
 			/// <summary>Tab pane specifications.</summary>
-			class lecui_api tab_pane_specs : public widgets::specs {
+			class lecui_api tab_pane_specs : public widgets::widget {
 			public:
 				enum class side {
 					left,
@@ -53,7 +53,7 @@ namespace liblec {
 					_cursor = cursor_type::hand;
 				}
 
-				// generic specs
+				// generic widget
 
 				std::string& text() override;
 				tab_pane_specs& text(const std::string& text);
@@ -91,7 +91,7 @@ namespace liblec {
 				color& color_disabled() override;
 				tab_pane_specs& color_disabled(const color& color_disabled);
 
-				// widget specific specs
+				// widget specific widget
 
 				/// <summary>Get or set the thickness of the border.</summary>
 				/// <returns>A reference to the border thickness, in pixels.</returns>
@@ -233,7 +233,7 @@ namespace liblec {
 
 				/// <summary>Get the tab pane specifications.</summary>
 				/// <returns>A reference to the control specifications.</returns>
-				/// <remarks>Alternative to specs() for more terse code.</remarks>
+				/// <remarks>Alternative to widget() for more terse code.</remarks>
 				[[nodiscard]]
 				tab_pane_specs& operator()();
 
@@ -315,7 +315,7 @@ namespace liblec {
 	}
 }
 
-/// Helper for getting tab pane specs. Builder documentation applies.
+/// Helper for getting tab pane widget. Builder documentation applies.
 #define get_tab_pane_specs(path) liblec::lecui::containers::tab_pane_builder::specs(*this, path)
 
 /// Helper for getting a tab's page. Builder documentation applies.

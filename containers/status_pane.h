@@ -20,7 +20,7 @@ namespace liblec {
 	namespace lecui {
 		namespace containers {
 			/// <summary>Status pane container specifications.</summary>
-			/// <remarks>Note that this does not inherit from widget::specs as regular
+			/// <remarks>Note that this does not inherit from widget::widget as regular
 			/// panes do. This is by design because of the nature of the status pane.</remarks>
 			class status_pane_specs {
 			private:
@@ -97,7 +97,7 @@ namespace liblec {
 
 				/// <summary>Get the status pane specifications.</summary>
 				/// <returns>A reference to the status pane specifications.</returns>
-				/// <remarks>Alternative to specs() for more terse code.</remarks>
+				/// <remarks>Alternative to widget() for more terse code.</remarks>
 				[[nodiscard]]
 				status_pane_specs& operator()();
 
@@ -143,7 +143,7 @@ namespace liblec {
 	}
 }
 
-/// Helper for getting status pane specs. Builder documentation applies.
+/// Helper for getting status pane widget. Builder documentation applies.
 #define get_status_pane_specs(path) liblec::lecui::containers::status_pane_builder::specs(*this, path)
 
 /// Helper for getting a status pane's page. Builder documentation applies.

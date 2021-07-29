@@ -289,10 +289,10 @@ namespace liblec {
 			return true;
 		}
 
-		widgets::toggle_specs&
+		widgets::toggle&
 			widgets::toggle_impl::specs() { return _specs; }
 
-		widgets::toggle_specs&
+		widgets::toggle&
 			widgets::toggle_impl::operator()() { return specs(); }
 	}
 }

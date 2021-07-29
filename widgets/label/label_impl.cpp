@@ -327,12 +327,12 @@ namespace liblec {
 			return _rect;
 		}
 
-		widgets::label_specs&
+		widgets::label&
 			widgets::label_impl::specs() {
 			return _specs;
 		}
 
-		widgets::label_specs&
+		widgets::label&
 			widgets::label_impl::operator()() {
 			return specs();
 		}

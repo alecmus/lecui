@@ -467,10 +467,10 @@ namespace liblec {
 			return true;
 		}
 
-		widgets::slider_specs&
+		widgets::slider&
 			widgets::slider_impl::specs() { return _specs; }
 
-		widgets::slider_specs&
+		widgets::slider&
 			widgets::slider_impl::operator()() { return specs(); }
 	}
 }

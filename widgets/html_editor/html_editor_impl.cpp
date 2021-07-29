@@ -164,13 +164,13 @@ namespace liblec {
 
 				try {
 					if (_html_pane_specs.has_value()) {
-						// update the special pane specs
+						// update the special pane widget
 						_html_pane_specs.value().get().color_fill() = _specs.color_fill();
 						_html_pane_specs.value().get().color_border() = _specs.color_border();
 					}
 
 					if (_html_control_pane_specs.has_value()) {
-						// update the special pane specs
+						// update the special pane widget
 						_html_control_pane_specs.value().get().color_fill() = _specs.color_control_fill();
 						_html_control_pane_specs.value().get().color_border() = _specs.color_control_border();
 					}
@@ -452,10 +452,10 @@ namespace liblec {
 			}
 		}
 
-		widgets::html_editor_specs&
+		widgets::html_editor&
 			widgets::html_editor_impl::specs() { return _specs; }
 
-		widgets::html_editor_specs&
+		widgets::html_editor&
 			widgets::html_editor_impl::operator()() { return specs(); }
 
 		void widgets::html_editor_impl::set_pane_specs(containers::pane_specs& html_control,

@@ -73,45 +73,45 @@ namespace liblec {
 			containers::pane_specs&
 				add_pane(std::string alias, const float& content_margin);
 
-			widgets::rectangle_specs&
+			widgets::rectangle&
 				add_rectangle(std::string alias);
-			widgets::label_specs&
+			widgets::label&
 				add_label(std::string alias);
-			containers::group_specs&
+			containers::group&
 				add_group(std::string alias);
-			widgets::button_specs&
+			widgets::button&
 				add_button(std::string alias);
-			widgets::toggle_specs&
+			widgets::toggle&
 				add_toggle(std::string alias);
-			widgets::table_view_specs&
+			widgets::table_view&
 				add_table_view(std::string alias);
-			widgets::custom_specs&
+			widgets::custom&
 				add_custom(std::string alias);
-			widgets::image_view_specs&
+			widgets::image_view&
 				add_image_view(std::string alias);
-			widgets::progress_indicator_specs&
+			widgets::progress_indicator&
 				add_progress_indicator(std::string alias);
-			widgets::progress_bar_specs&
+			widgets::progress_bar&
 				add_progress_bar(std::string alias);
-			widgets::checkbox_specs&
+			widgets::checkbox&
 				add_checkbox(std::string alias);
-			widgets::text_field_specs&
+			widgets::text_field&
 				add_text_field(std::string alias);
-			widgets::tree_view_specs&
+			widgets::tree_view&
 				add_tree(std::string alias);
-			widgets::slider_specs&
+			widgets::slider&
 				add_slider(std::string alias);
-			widgets::html_editor_specs&
+			widgets::html_editor&
 				add_html_editor(std::string alias);
-			widgets::combobox_specs&
+			widgets::combobox&
 				add_combobox(std::string alias);
-			widgets::line_specs&
+			widgets::line&
 				add_line(std::string alias);
-			widgets::time_specs&
+			widgets::time&
 				add_time(std::string alias);
-			widgets::date_specs&
+			widgets::date&
 				add_date(std::string alias);
-			widgets::icon_specs&
+			widgets::icon&
 				add_icon(std::string alias);
 
 			std::map<std::string,
@@ -125,50 +125,50 @@ namespace liblec {
 				v_scrollbar();
 
 			widgets::tab_pane_impl&
-				get_tab_pane(const std::string& alias);
+				get_tab_pane_impl(const std::string& alias);
 			widgets::pane_impl&
-				get_pane(const std::string& alias);
+				get_pane_impl(const std::string& alias);
 
 			widgets::rectangle_impl&
-				get_rectangle(const std::string& alias);
+				get_rectangle_impl(const std::string& alias);
 			widgets::button_impl&
-				get_button(const std::string& alias);
+				get_button_impl(const std::string& alias);
 			widgets::label_impl&
-				get_label(const std::string& alias);
+				get_label_impl(const std::string& alias);
 			widgets::group_impl&
-				get_group(const std::string& alias);
+				get_group_impl(const std::string& alias);
 			widgets::toggle_impl&
-				get_toggle(const std::string& alias);
+				get_toggle_impl(const std::string& alias);
 			widgets::table_view_impl&
-				get_table_view(const std::string& alias);
+				get_table_view_impl(const std::string& alias);
 			widgets::custom_impl&
-				get_custom(const std::string& alias);
+				get_custom_impl(const std::string& alias);
 			widgets::image_view_impl&
-				get_image_view(const std::string& alias);
+				get_image_view_impl(const std::string& alias);
 			widgets::progress_indicator_impl&
-				get_progress_indicator(const std::string& alias);
+				get_progress_indicator_impl(const std::string& alias);
 			widgets::progress_bar_impl&
-				get_progress_bar(const std::string& alias);
+				get_progress_bar_impl(const std::string& alias);
 			widgets::checkbox_impl&
-				get_checkbox(const std::string& alias);
+				get_checkbox_impl(const std::string& alias);
 			widgets::text_field_impl&
-				get_text_field(const std::string& alias);
+				get_text_field_impl(const std::string& alias);
 			widgets::tree_view_impl&
-				get_tree(const std::string& alias);
+				get_tree_view_impl(const std::string& alias);
 			widgets::slider_impl&
-				get_slider(const std::string& alias);
+				get_slider_impl(const std::string& alias);
 			widgets::html_editor_impl&
-				get_html_editor(const std::string& alias);
+				get_html_editor_impl(const std::string& alias);
 			widgets::combobox_impl&
-				get_combobox(const std::string& alias);
+				get_combobox_impl(const std::string& alias);
 			widgets::line_impl&
-				get_line(const std::string& alias);
+				get_line_impl(const std::string& alias);
 			widgets::time_impl&
-				get_time(const std::string& alias);
+				get_time_impl(const std::string& alias);
 			widgets::date_impl&
-				get_date(const std::string& alias);
+				get_date_impl(const std::string& alias);
 			widgets::icon_impl&
-				get_icon(const std::string& alias);
+				get_icon_impl(const std::string& alias);
 
 			bool close_widget(const std::string& alias,
 				widgets::widget_type type, std::string& error);

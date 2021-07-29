@@ -21,7 +21,7 @@ namespace liblec {
 		namespace widgets {
 			/// <summary>Time widget specifications.</summary>
 			/// <remarks>Recommended size with defaults is 90x40px.</remarks>
-			class lecui_api time_specs : public specs {
+			class lecui_api time : public widget {
 				float _border = .5f;
 				color _color_border;
 				float _corner_radius_x = 2.f;
@@ -30,7 +30,7 @@ namespace liblec {
 				void* _p_special_pane_specs = nullptr;
 
 			public:
-				time_specs() {
+				time() {
 					_rect.size({ 70.f, 20.f });
 				};
 
@@ -45,48 +45,48 @@ namespace liblec {
 					return _time_events;
 				}
 
-				bool operator==(const time_specs&);
-				bool operator!=(const time_specs&);
+				bool operator==(const time&);
+				bool operator!=(const time&);
 
-				// generic specs
+				// generic widget
 
 				std::string& text() override;
-				time_specs& text(const std::string& text);
+				time& text(const std::string& text);
 
 				std::string& tooltip() override;
-				time_specs& tooltip(const std::string& tooltip);
+				time& tooltip(const std::string& tooltip);
 
 				lecui::rect& rect() override;
-				time_specs& rect(const lecui::rect& rect);
+				time& rect(const lecui::rect& rect);
 
 				resize_params& on_resize() override;
-				time_specs& on_resize(const resize_params& on_resize);
+				time& on_resize(const resize_params& on_resize);
 
 				cursor_type& cursor() override;
-				time_specs& cursor(const cursor_type cursor);
+				time& cursor(const cursor_type cursor);
 
 				std::string& font() override;
-				time_specs& font(const std::string& font);
+				time& font(const std::string& font);
 
 				float& font_size() override;
-				time_specs& font_size(const float& font_size);
+				time& font_size(const float& font_size);
 
 				color& color_text() override;
-				time_specs& color_text(const color& color_text);
+				time& color_text(const color& color_text);
 
 				color& color_fill() override;
-				time_specs& color_fill(const color& color_fill);
+				time& color_fill(const color& color_fill);
 
 				color& color_hot() override;
-				time_specs& color_hot(const color& color_hot);
+				time& color_hot(const color& color_hot);
 
 				color& color_selected() override;
-				time_specs& color_selected(const color& color_selected);
+				time& color_selected(const color& color_selected);
 
 				color& color_disabled() override;
-				time_specs& color_disabled(const color& color_disabled);
+				time& color_disabled(const color& color_disabled);
 
-				// widget specific specs
+				// widget specific widget
 
 				/// <summary>Get or set the thickness of the border.</summary>
 				/// <returns>A reference to the border thickness, in pixels.</returns>
@@ -95,7 +95,7 @@ namespace liblec {
 				/// <summary>Set the thickness of the border.</summary>
 				/// <param name="border">The border thickness, in pixels.</param>
 				/// <returns>A reference to the modified object.</returns>
-				time_specs& border(const float& border);
+				time& border(const float& border);
 
 				/// <summary>Get or set the color of the border.</summary>
 				/// <returns>A reference to the border color, as defined in <see cref="color"></see>.</returns>
@@ -104,7 +104,7 @@ namespace liblec {
 				/// <summary>Set the color of the border.</summary>
 				/// <param name="color_border">The border color, as defined in <see cref="color"></see>.</param>
 				/// <returns>A reference to the modified object.</returns>
-				time_specs& color_border(const color& color_border);
+				time& color_border(const color& color_border);
 
 				/// <summary>Get or set the horizontal radius of the corners.</summary>
 				/// <returns>A reference to the radius, in pixels.</returns>
@@ -113,7 +113,7 @@ namespace liblec {
 				/// <summary>Set the horizontal radius of the corners.</summary>
 				/// <param name="corner_radius_x">The horizontal radius of the corner, in pixels.</param>
 				/// <returns>A reference to the modified object.</returns>
-				time_specs& corner_radius_x(const float& corner_radius_x);
+				time& corner_radius_x(const float& corner_radius_x);
 
 				/// <summary>Get or set the vertical radius of the corners.</summary>
 				/// <returns>A reference to the radius, in pixels.</returns>
@@ -122,7 +122,7 @@ namespace liblec {
 				/// <summary>Set the vertical radius of the corners.</summary>
 				/// <param name="corner_radius_y">The horizontal radius of the corner, in pixels.</param>
 				/// <returns>A reference to the modified object.</returns>
-				time_specs& corner_radius_y(const float& corner_radius_y);
+				time& corner_radius_y(const float& corner_radius_y);
 
 				/// <summary>Get or set the time.</summary>
 				/// <returns>A reference to the time value.</returns>
@@ -131,7 +131,26 @@ namespace liblec {
 				/// <summary>Set the time.</summary>
 				/// <param name="time_value">The time to set the widget to.</param>
 				/// <returns>A reference to the modified object.</returns>
-				time_specs& time_value(const lecui::time& time_value);
+				time& time_value(const lecui::time& time_value);
+
+			public:
+				/// <summary>Add a time widget to a container.</summary>
+				/// <param name="page">The container to place the widget in.</param>
+				/// <param name="alias">The in-page unique alias, e.g. "end_time".</param>
+				/// <returns>A reference to the widget specifications.</returns>
+				/// <remarks>If an empty alias is given an internally generated random
+				/// alias will be assigned.</remarks>
+				[[nodiscard]]
+				static time& add(containers::page& page, const std::string& alias = std::string());
+
+				/// <summary>Get the specifications of a time widget.</summary>
+				/// <param name="fm"></param>
+				/// <param name="path">The full path to the widget, e.g. "sample_page/sample_pane/end_time".</param>
+				/// <returns>A reference to the widget specifications.</returns>
+				/// <remarks>Throws on failure. For faster coding and more readable code consider
+				/// calling this static method through the helper macro provided.</remarks>
+				[[nodiscard]]
+				static time& get(form& fm, const std::string& path);
 
 			private:
 				time_events _time_events;
@@ -140,55 +159,9 @@ namespace liblec {
 				friend class form;
 #endif
 			};
-
-			/// <summary>Time widget builder.</summary>
-			class lecui_api time_builder {
-			public:
-				/// <summary>Time builder constructor.</summary>
-				/// <param name="page">The container to place the widget in.</param>
-				/// <remarks>This constructs the widget with an internally generated random
-				/// alias.</remarks>
-				time_builder(containers::page& page);
-
-				/// <summary>Time builder constructor.</summary>
-				/// <param name="page">The container to place the widget in.</param>
-				/// <param name="alias">The in-page unique alias, e.g. "end_time".</param>
-				time_builder(containers::page& page, const std::string& alias);
-				~time_builder();
-
-				/// <summary>Get the time specifications.</summary>
-				/// <returns>A reference to the time specifications.</returns>
-				[[nodiscard]]
-				time_specs& specs();
-
-				/// <summary>Get the time specifications.</summary>
-				/// <returns>A reference to the time specifications.</returns>
-				/// <remarks>Alternative to specs() for more terse code.</remarks>
-				[[nodiscard]]
-				time_specs& operator()();
-
-				/// <summary>Get the specifications of a time.</summary>
-				/// <param name="fm">The form containing the time.</param>
-				/// <param name="path">The full path to the widget, e.g.
-				/// "sample_page/sample_pane/end_time".</param>
-				/// <returns>A reference to the time specifications.</returns>
-				/// <remarks>Throws on failure. For faster coding and more readable code consider
-				/// calling this static method through the helper macro provided.</remarks>
-				[[nodiscard]]
-				static time_specs& specs(form& fm, const std::string& path);
-
-			private:
-				class impl;
-				impl& _d;
-
-				// Default constructor and copying an object of this class are not allowed
-				time_builder() = delete;
-				time_builder(const time_builder&) = delete;
-				time_builder& operator=(const time_builder&) = delete;
-			};
 		}
 	}
 }
 
-/// Helper for getting time specs. Builder documentation applies.
-#define get_time_specs(path) liblec::lecui::widgets::time_builder::specs(*this, path)
+/// Helper for getting time widget. Builder documentation applies.
+#define get_time(path) liblec::lecui::widgets::time::get(*this, path)

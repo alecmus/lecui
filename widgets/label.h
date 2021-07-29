@@ -70,59 +70,59 @@ namespace liblec {
 			
 			/// <summary>Label widget specifications.</summary>
 			/// <remarks>Recommended size with defaults is 200x20px.</remarks>
-			class lecui_api label_specs : public specs {
+			class lecui_api label : public widget {
 				color _color_hot_pressed;
 				bool _multiline = false;
 				bool _center_h = false;
 				bool _center_v = false;
 
 			public:
-				label_specs() {
+				label() {
 					_rect.size({ 200.f, 20.f });
 				};
 
-				bool operator==(const label_specs&);
-				bool operator!=(const label_specs&);
+				bool operator==(const label&);
+				bool operator!=(const label&);
 
-				// generic specs
+				// generic widget
 
 				std::string& text() override;
-				label_specs& text(const std::string& text);
+				label& text(const std::string& text);
 
 				std::string& tooltip() override;
-				label_specs& tooltip(const std::string& tooltip);
+				label& tooltip(const std::string& tooltip);
 
 				lecui::rect& rect() override;
-				label_specs& rect(const lecui::rect& rect);
+				label& rect(const lecui::rect& rect);
 
 				resize_params& on_resize() override;
-				label_specs& on_resize(const resize_params& on_resize);
+				label& on_resize(const resize_params& on_resize);
 
 				cursor_type& cursor() override;
-				label_specs& cursor(const cursor_type cursor);
+				label& cursor(const cursor_type cursor);
 
 				std::string& font() override;
-				label_specs& font(const std::string& font);
+				label& font(const std::string& font);
 
 				float& font_size() override;
-				label_specs& font_size(const float& font_size);
+				label& font_size(const float& font_size);
 
 				color& color_text() override;
-				label_specs& color_text(const color& color_text);
+				label& color_text(const color& color_text);
 
 				color& color_fill() override;
-				label_specs& color_fill(const color& color_fill);
+				label& color_fill(const color& color_fill);
 
 				color& color_hot() override;
-				label_specs& color_hot(const color& color_hot);
+				label& color_hot(const color& color_hot);
 
 				color& color_selected() override;
-				label_specs& color_selected(const color& color_selected);
+				label& color_selected(const color& color_selected);
 
 				color& color_disabled() override;
-				label_specs& color_disabled(const color& color_disabled);
+				label& color_disabled(const color& color_disabled);
 
-				// widget specific specs
+				// widget specific widget
 
 				/// <summary>Get or set the color used when the label is pressed and the mouse is over it.</summary>
 				/// <returns>A reference to the color.</returns>
@@ -131,7 +131,7 @@ namespace liblec {
 				/// <summary>Set the color used when the label is pressed and the mouse is over it.</summary>
 				/// <param name="color_hot_pressed">The color.</param>
 				/// <returns>A reference to the modified object.</returns>
-				label_specs& color_hot_pressed(const color& color_hot_pressed);
+				label& color_hot_pressed(const color& color_hot_pressed);
 
 				/// <summary>Get or set the property for whether to allow multiple lines.</summary>
 				/// <returns>A reference to the property.</returns>
@@ -140,7 +140,7 @@ namespace liblec {
 				/// <summary>Set the property for whether to allow multiple lines.</summary>
 				/// <param name="multiline">Whether to allow multiple lines.</param>
 				/// <returns>A reference to the modified object.</returns>
-				label_specs& multiline(const bool& multiline);
+				label& multiline(const bool& multiline);
 
 				/// <summary>Get or set the property for whether to center the text horizontally.</summary>
 				/// <returns>A reference to the property.</returns>
@@ -149,7 +149,7 @@ namespace liblec {
 				/// <summary>Set the property for whether to center the text horizontally.</summary>
 				/// <param name="center_h">Whether to center the text horizontally.</param>
 				/// <returns>A reference to the modified object.</returns>
-				label_specs& center_h(const bool& center_h);
+				label& center_h(const bool& center_h);
 
 				/// <summary>Get or set the property for whether to center the text vertically.</summary>
 				/// <returns>A reference to the property.</returns>
@@ -158,57 +158,30 @@ namespace liblec {
 				/// <summary>Set the property for whether to center the text vertically.</summary>
 				/// <param name="center_h">Whether to center the text vertically.</param>
 				/// <returns>A reference to the modified object.</returns>
-				label_specs& center_v(const bool& center_v);
-			};
+				label& center_v(const bool& center_v);
 
-			/// <summary>Label widget builder.</summary>
-			class lecui_api label_builder {
 			public:
-				/// <summary>Label builder constructor.</summary>
-				/// <param name="page">The container to place the widget in.</param>
-				/// <remarks>This constructs the widget with an internally generated random
-				/// alias.</remarks>
-				label_builder(containers::page& page);
-
-				/// <summary>Label builder constructor.</summary>
+				/// <summary>Add a label to a container.</summary>
 				/// <param name="page">The container to place the widget in.</param>
 				/// <param name="alias">The in-page unique alias, e.g. "caption".</param>
-				label_builder(containers::page& page, const std::string& alias);
-				~label_builder();
-
-				/// <summary>Get the label specifications.</summary>
-				/// <returns>A reference to the label specifications.</returns>
+				/// <returns>A reference to the widget specifications.</returns>
+				/// <remarks>If an empty alias is given an internally generated random
+				/// alias will be assigned.</remarks>
 				[[nodiscard]]
-				label_specs& specs();
-
-				/// <summary>Get the label specifications.</summary>
-				/// <returns>A reference to the label specifications.</returns>
-				/// <remarks>Alternative to specs() for more terse code.</remarks>
-				[[nodiscard]]
-				label_specs& operator()();
+				static label& add(containers::page& page, const std::string& alias = std::string());
 
 				/// <summary>Get the specifications of a label.</summary>
-				/// <param name="fm">The form containing the label.</param>
-				/// <param name="path">The full path to the widget, e.g.
-				/// "sample_page/sample_pane/caption".</param>
-				/// <returns>A reference to the label specifications.</returns>
+				/// <param name="fm"></param>
+				/// <param name="path">The full path to the widget, e.g. "sample_page/sample_pane/caption".</param>
+				/// <returns>A reference to the widget specifications.</returns>
 				/// <remarks>Throws on failure. For faster coding and more readable code consider
-				/// calling this static method through the helper macro provided.</remarks>
+			/// calling this static method through the helper macro provided.</remarks>
 				[[nodiscard]]
-				static label_specs& specs(form& fm,const std::string& path);
-
-			private:
-				class impl;
-				impl& _d;
-
-				// Default constructor and copying an object of this class are not allowed
-				label_builder() = delete;
-				label_builder(const label_builder&) = delete;
-				label_builder& operator=(const label_builder&) = delete;
+				static label& get(form& fm, const std::string& path);
 			};
 		}
 	}
 }
 
-/// Helper for getting label specs. Builder documentation applies.
-#define get_label_specs(path) liblec::lecui::widgets::label_builder::specs(*this, path)
+/// Helper for getting label widget. Builder documentation applies.
+#define get_label(path) liblec::lecui::widgets::label::get(*this, path)

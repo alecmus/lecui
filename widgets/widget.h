@@ -21,7 +21,7 @@ namespace liblec {
 	namespace lecui {
 		namespace widgets {
 			/// <summary>Base class for all widget specifications.</summary>
-			class lecui_api specs {
+			class lecui_api widget {
 			public:
 				/// <summary>Mouse cursor type.</summary>
 				enum class cursor_type {
@@ -50,11 +50,11 @@ namespace liblec {
 				color _color_disabled = { 180, 180, 180, 255 };
 
 			public:
-				specs() {};
-				virtual ~specs() {};
+				widget() {};
+				virtual ~widget() {};
 
-				bool operator==(const specs&);
-				bool operator!=(const specs&);
+				bool operator==(const widget&);
+				bool operator!=(const widget&);
 
 				/// <summary>Events common to all widgets.</summary>
 				struct basic_events {

@@ -18,7 +18,7 @@ namespace liblec {
 		namespace widgets {
 			class progress_indicator_impl : public widget_impl {
 				/// private virtual function overrides
-				widgets::specs& generic_specs() override {
+				widgets::widget& generic_specs() override {
 					return _specs;
 				}
 
@@ -39,8 +39,8 @@ namespace liblec {
 					const bool& render) override;
 
 				/// widget specific methods
-				widgets::progress_indicator_specs& specs();
-				widgets::progress_indicator_specs& operator()();
+				widgets::progress_indicator& specs();
+				widgets::progress_indicator& operator()();
 
 			private:
 				// Default constructor and copying an object of this class are not allowed
@@ -49,7 +49,7 @@ namespace liblec {
 				progress_indicator_impl& operator=(const progress_indicator_impl&) = delete;
 
 				/// Private variables
-				widgets::progress_indicator_specs _specs, _specs_old;
+				widgets::progress_indicator _specs, _specs_old;
 				ID2D1SolidColorBrush* _p_brush;
 				ID2D1SolidColorBrush* _p_brush_empty;
 				ID2D1SolidColorBrush* _p_brush_fill;

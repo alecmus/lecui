@@ -18,7 +18,7 @@ namespace liblec {
 		namespace widgets {
 			class checkbox_impl : public widget_impl {
 				/// private virtual function overrides
-				widgets::specs& generic_specs() override {
+				widgets::widget& generic_specs() override {
 					return _specs;
 				}
 
@@ -42,8 +42,8 @@ namespace liblec {
 				void on_right_click() override;
 
 				/// widget specific methods
-				widgets::checkbox_specs& specs();
-				widgets::checkbox_specs& operator()();
+				widgets::checkbox& specs();
+				widgets::checkbox& operator()();
 
 			private:
 				// Default constructor and copying an object of this class are not allowed
@@ -52,7 +52,7 @@ namespace liblec {
 				checkbox_impl& operator=(const checkbox_impl&) = delete;
 
 				/// Private variables
-				widgets::checkbox_specs _specs, _specs_old;
+				widgets::checkbox _specs, _specs_old;
 				ID2D1SolidColorBrush* _p_brush;
 				ID2D1SolidColorBrush* _p_brush_check;
 				ID2D1SolidColorBrush* _p_brush_border;

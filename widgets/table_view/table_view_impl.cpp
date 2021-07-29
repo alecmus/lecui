@@ -837,10 +837,10 @@ namespace liblec {
 				_specs.events().right_click();
 		}
 
-		widgets::table_view_specs&
+		widgets::table_view&
 			widgets::table_view_impl::specs() { return _specs; }
 
-		widgets::table_view_specs&
+		widgets::table_view&
 			widgets::table_view_impl::operator()() { return specs(); }
 
 		void widgets::table_view_impl::on_selection() {

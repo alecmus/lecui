@@ -99,7 +99,7 @@ namespace liblec {
 
 				try {
 					if (_tree_pane_specs.has_value()) {
-						// update the special pane specs
+						// update the special pane widget
 						_tree_pane_specs.value().get().color_fill() = _specs.color_fill();
 						_tree_pane_specs.value().get().color_border() = _specs.color_border();
 
@@ -132,7 +132,7 @@ namespace liblec {
 					IDWriteTextFormat* _p_text_format, ID2D1SolidColorBrush* p_brush,
 					ID2D1SolidColorBrush* p_brush_selected, ID2D1SolidColorBrush* _p_brush_hot,
 					const std::string& font, const float& font_size, std::map<std::string,
-					widgets::tree_view_specs::node>& level, const D2D1_RECT_F& rect,
+					widgets::tree_view::node>& level, const D2D1_RECT_F& rect,
 					float& _right, float& _bottom, float& _optimized_right, float& _optimized_bottom, bool _hit, D2D1_POINT_2F _point,
 					float _dpi_scale) {
 					float bottom = rect.top;
@@ -334,7 +334,7 @@ namespace liblec {
 		void widgets::tree_view_impl::on_click() {
 			class helper {
 			public:
-				static void check(std::map<std::string, widgets::tree_view_specs::node>& level, D2D1_POINT_2F _point, float _dpi_scale) {
+				static void check(std::map<std::string, widgets::tree_view::node>& level, D2D1_POINT_2F _point, float _dpi_scale) {
 					for (auto& node : level) {
 						// check if marker has been clicked
 						auto rect_marker = convert_rect(node.second.rc_expand);
@@ -389,10 +389,10 @@ namespace liblec {
 				_specs.events().right_click();
 		}
 
-		widgets::tree_view_specs&
+		widgets::tree_view&
 			widgets::tree_view_impl::specs() { return _specs; }
 
-		widgets::tree_view_specs&
+		widgets::tree_view&
 			widgets::tree_view_impl::operator()() { return specs(); }
 
 		void widgets::tree_view_impl::set_tree_pane_specs(containers::pane_specs& specs) {
@@ -402,8 +402,8 @@ namespace liblec {
 		void widgets::tree_view_impl::on_selection() {
 			class helper {
 			public:
-				static void check(std::map<std::string, widgets::tree_view_specs::node>& level,
-					std::function<void(widgets::tree_view_specs::node& n)> selection) {
+				static void check(std::map<std::string, widgets::tree_view::node>& level,
+					std::function<void(widgets::tree_view::node& n)> selection) {
 					for (auto& node : level) {
 						if (node.second.selected) {
 							if (selection)

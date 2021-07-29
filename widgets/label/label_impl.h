@@ -48,7 +48,7 @@ namespace liblec {
 
 			class label_impl : public widget_impl {
 				/// private virtual function overrides
-				widgets::specs& generic_specs() override {
+				widgets::widget& generic_specs() override {
 					return _specs;
 				}
 
@@ -68,8 +68,8 @@ namespace liblec {
 					const bool& render) override;
 
 				/// widget specific methods
-				widgets::label_specs& specs();
-				widgets::label_specs& operator()();
+				widgets::label& specs();
+				widgets::label& operator()();
 
 			private:
 				// Default constructor and copying an object of this class are not allowed
@@ -78,7 +78,7 @@ namespace liblec {
 				label_impl& operator=(const label_impl&) = delete;
 
 				/// Private variables
-				widgets::label_specs _specs, _specs_old;
+				widgets::label _specs, _specs_old;
 				ID2D1SolidColorBrush* _p_brush;
 				ID2D1SolidColorBrush* _p_brush_hot;
 				ID2D1SolidColorBrush* _p_brush_hot_pressed;

@@ -147,7 +147,7 @@ namespace liblec {
 			// draw checkbox contents
 			std::string text;
 			switch (_specs.status()) {
-			case widgets::checkbox_specs::checkbox_status::checked: {
+			case widgets::checkbox::checkbox_status::checked: {
 				text = _specs.text();
 				HRESULT hr = S_OK;
 				ID2D1PathGeometry* p_checkbox_geometry = nullptr;
@@ -178,10 +178,10 @@ namespace liblec {
 					safe_release(&p_checkbox_geometry);
 				}
 			} break;
-			case widgets::checkbox_specs::checkbox_status::unchecked:
+			case widgets::checkbox::checkbox_status::unchecked:
 				text = _specs.text_unchecked();
 				break;
-			case widgets::checkbox_specs::checkbox_status::indeterminate: {
+			case widgets::checkbox::checkbox_status::indeterminate: {
 				text = _specs.text_indeterminate();
 				// draw a horizontal line to show indeterminate state
 				auto rect_indeterminate = _rect_checkbox;
@@ -234,13 +234,13 @@ namespace liblec {
 
 		void widgets::checkbox_impl::on_click() {
 			switch (_specs.status()) {
-			case widgets::checkbox_specs::checkbox_status::unchecked:
-				_specs.status(widgets::checkbox_specs::checkbox_status::checked);
+			case widgets::checkbox::checkbox_status::unchecked:
+				_specs.status(widgets::checkbox::checkbox_status::checked);
 				break;
-			case widgets::checkbox_specs::checkbox_status::checked:
-			case widgets::checkbox_specs::checkbox_status::indeterminate:
+			case widgets::checkbox::checkbox_status::checked:
+			case widgets::checkbox::checkbox_status::indeterminate:
 			default:
-				_specs.status(widgets::checkbox_specs::checkbox_status::unchecked);
+				_specs.status(widgets::checkbox::checkbox_status::unchecked);
 				break;
 			}
 
@@ -256,13 +256,13 @@ namespace liblec {
 
 		void widgets::checkbox_impl::on_action() {
 			switch (_specs.status()) {
-			case widgets::checkbox_specs::checkbox_status::unchecked:
-				_specs.status(widgets::checkbox_specs::checkbox_status::checked);
+			case widgets::checkbox::checkbox_status::unchecked:
+				_specs.status(widgets::checkbox::checkbox_status::checked);
 				break;
-			case widgets::checkbox_specs::checkbox_status::checked:
-			case widgets::checkbox_specs::checkbox_status::indeterminate:
+			case widgets::checkbox::checkbox_status::checked:
+			case widgets::checkbox::checkbox_status::indeterminate:
 			default:
-				_specs.status(widgets::checkbox_specs::checkbox_status::unchecked);
+				_specs.status(widgets::checkbox::checkbox_status::unchecked);
 				break;
 			}
 
@@ -278,10 +278,10 @@ namespace liblec {
 				_specs.events().right_click();
 		}
 
-		widgets::checkbox_specs&
+		widgets::checkbox&
 			widgets::checkbox_impl::specs() { return _specs; }
 
-		widgets::checkbox_specs&
+		widgets::checkbox&
 			widgets::checkbox_impl::operator()() { return specs(); }
 	}
 }

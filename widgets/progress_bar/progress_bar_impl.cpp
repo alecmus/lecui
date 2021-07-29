@@ -150,10 +150,10 @@ namespace liblec {
 			return _rect;
 		}
 
-		widgets::progress_bar_specs&
+		widgets::progress_bar&
 			widgets::progress_bar_impl::specs() { return _specs; }
 
-		widgets::progress_bar_specs&
+		widgets::progress_bar&
 			widgets::progress_bar_impl::operator()() { return specs(); }
 	}
 }

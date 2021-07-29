@@ -93,7 +93,7 @@ namespace liblec {
 				_specs_old = _specs;
 
 				try {
-					// update label specs
+					// update label widget
 					if (_hour_label_specs.has_value())
 						_hour_label_specs.value().get().color_text() = _specs.color_text();
 
@@ -109,7 +109,7 @@ namespace liblec {
 					if (_second_label_specs.has_value())
 						_second_label_specs.value().get().color_text() = _specs.color_text();
 
-					// update border specs and background specs
+					// update border widget and background widget
 					if (_hour_specs.has_value()) {
 						_hour_specs.value().get().color_border() = _specs.color_border();
 						_hour_specs.value().get().color_fill() = _specs.color_fill();
@@ -159,17 +159,17 @@ namespace liblec {
 				_specs.events().right_click();
 		}
 
-		widgets::time_specs&
+		widgets::time&
 			widgets::time_impl::specs() { return _specs; }
 
-		widgets::time_specs&
+		widgets::time&
 			widgets::time_impl::operator()() { return specs(); }
 
-		void widgets::time_impl::set_time_label_specs(widgets::label_specs& hour,
-			widgets::label_specs& seperator_1,
-			widgets::label_specs& minute,
-			widgets::label_specs& seperator_2,
-			widgets::label_specs& second) {
+		void widgets::time_impl::set_time_label_specs(widgets::label& hour,
+			widgets::label& seperator_1,
+			widgets::label& minute,
+			widgets::label& seperator_2,
+			widgets::label& second) {
 			_hour_label_specs = hour;
 			_seperator_1_specs = seperator_1;
 			_minute_label_specs = minute;
@@ -177,9 +177,9 @@ namespace liblec {
 			_second_label_specs = second;
 		}
 
-		void widgets::time_impl::set_time_specs(widgets::rectangle_specs& hour,
-			widgets::rectangle_specs& minute,
-			widgets::rectangle_specs& second) {
+		void widgets::time_impl::set_time_specs(widgets::rectangle& hour,
+			widgets::rectangle& minute,
+			widgets::rectangle& second) {
 			_hour_specs = hour;
 			_minute_specs = minute;
 			_second_specs = second;

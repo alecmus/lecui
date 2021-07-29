@@ -63,7 +63,7 @@ namespace liblec {
 								if (widget.second.type() ==
 									widgets::widget_type::tab_pane) {
 									// get this tab pane
-									auto& tab_pane = page._d_page.get_tab_pane(widget.first);
+									auto& tab_pane = page._d_page.get_tab_pane_impl(widget.first);
 
 									auto page_iterator = tab_pane._p_tabs.find(tab_pane._current_tab);
 
@@ -74,7 +74,7 @@ namespace liblec {
 									if (widget.second.type() ==
 										widgets::widget_type::pane) {
 										// get this pane
-										auto& pane = page._d_page.get_pane(widget.first);
+										auto& pane = page._d_page.get_pane_impl(widget.first);
 
 										auto page_iterator = pane._p_panes.find(pane._current_pane);
 
@@ -136,7 +136,7 @@ namespace liblec {
 									}
 
 									// get this tab pane
-									auto& tab_pane = page._d_page.get_tab_pane(alias);
+									auto& tab_pane = page._d_page.get_tab_pane_impl(alias);
 
 									auto page_iterator = tab_pane._p_tabs.find(tab_pane._current_tab);
 
@@ -148,7 +148,7 @@ namespace liblec {
 									if (widget.type() ==
 										widgets::widget_type::pane) {
 										// get this pane
-										auto& pane = page._d_page.get_pane(alias);
+										auto& pane = page._d_page.get_pane_impl(alias);
 
 										auto page_iterator = pane._p_panes.find(pane._current_pane);
 

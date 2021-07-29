@@ -208,12 +208,12 @@ namespace liblec {
 									continue;
 
 								try {
-									// get the groupbox specs
-									auto& specs = page._d_page.get_group(widget.first).specs();
+									// get the groupbox widget
+									auto& specs = page._d_page.get_group_impl(widget.first).specs();
 
 									bool groupbox_initialized = false;
 									for (auto& widget_alias :
-										page._d_page.get_group(widget.first).specs().widgets()) {
+										page._d_page.get_group_impl(widget.first).specs().widgets()) {
 										try {
 											// get the rect for this widget
 											const auto& _rect =
@@ -257,7 +257,7 @@ namespace liblec {
 
 								try {
 									// check if groupbox has widgets
-									if (page._d_page.get_group(widget.first).specs().widgets().empty())
+									if (page._d_page.get_group_impl(widget.first).specs().widgets().empty())
 										continue;
 
 									// to-do: check if widgets actually exist and discontinue if they dont
@@ -292,7 +292,7 @@ namespace liblec {
 									widgets::widget_type::tab_pane) {
 									try {
 										// get this tab pane
-										auto& tab_pane = page._d_page.get_tab_pane(widget.first);
+										auto& tab_pane = page._d_page.get_tab_pane_impl(widget.first);
 
 										// get client area for this tab pane
 										const auto& client_area = tab_pane.client_area();
@@ -322,7 +322,7 @@ namespace liblec {
 										widgets::widget_type::pane) {
 										try {
 											// get this pane
-											auto& pane = page._d_page.get_pane(widget.first);
+											auto& pane = page._d_page.get_pane_impl(widget.first);
 
 											// get client area for this pane
 											const auto& client_area = pane.client_area();

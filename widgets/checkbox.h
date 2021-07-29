@@ -21,7 +21,7 @@ namespace liblec {
 		namespace widgets {
 			/// <summary>Checkbox widget specifications.</summary>
 			/// <remarks>Recommended size with defaults is 20x20px.</remarks>
-			class lecui_api checkbox_specs : public specs {
+			class lecui_api checkbox : public widget {
 			public:
 				/// <summary>Checkbox status.</summary>
 				enum class checkbox_status {
@@ -44,7 +44,7 @@ namespace liblec {
 				checkbox_status _status = checkbox_status::indeterminate;
 
 			public:
-				checkbox_specs() {
+				checkbox() {
 					_cursor = cursor_type::hand;
 					_rect.size({ 20.f, 20.f });
 				}
@@ -60,48 +60,48 @@ namespace liblec {
 					return _checkbox_events;
 				}
 
-				bool operator==(const checkbox_specs&);
-				bool operator!=(const checkbox_specs&);
+				bool operator==(const checkbox&);
+				bool operator!=(const checkbox&);
 
-				// generic specs
+				// generic widget
 
 				std::string& text() override;
-				checkbox_specs& text(const std::string& text);
+				checkbox& text(const std::string& text);
 
 				std::string& tooltip() override;
-				checkbox_specs& tooltip(const std::string& tooltip);
+				checkbox& tooltip(const std::string& tooltip);
 
 				lecui::rect& rect() override;
-				checkbox_specs& rect(const lecui::rect& rect);
+				checkbox& rect(const lecui::rect& rect);
 
 				resize_params& on_resize() override;
-				checkbox_specs& on_resize(const resize_params& on_resize);
+				checkbox& on_resize(const resize_params& on_resize);
 
 				cursor_type& cursor() override;
-				checkbox_specs& cursor(const cursor_type cursor);
+				checkbox& cursor(const cursor_type cursor);
 
 				std::string& font() override;
-				checkbox_specs& font(const std::string& font);
+				checkbox& font(const std::string& font);
 
 				float& font_size() override;
-				checkbox_specs& font_size(const float& font_size);
+				checkbox& font_size(const float& font_size);
 
 				color& color_text() override;
-				checkbox_specs& color_text(const color& color_text);
+				checkbox& color_text(const color& color_text);
 
 				color& color_fill() override;
-				checkbox_specs& color_fill(const color& color_fill);
+				checkbox& color_fill(const color& color_fill);
 
 				color& color_hot() override;
-				checkbox_specs& color_hot(const color& color_hot);
+				checkbox& color_hot(const color& color_hot);
 
 				color& color_selected() override;
-				checkbox_specs& color_selected(const color& color_selected);
+				checkbox& color_selected(const color& color_selected);
 
 				color& color_disabled() override;
-				checkbox_specs& color_disabled(const color& color_disabled);
+				checkbox& color_disabled(const color& color_disabled);
 
-				// widget specific specs
+				// widget specific widget
 
 				/// <summary>Get or set the thickness of the border.</summary>
 				/// <returns>A reference to the border thickness, in pixels.</returns>
@@ -110,7 +110,7 @@ namespace liblec {
 				/// <summary>Set the thickness of the border.</summary>
 				/// <param name="border">The border thickness, in pixels.</param>
 				/// <returns>A reference to the modified object.</returns>
-				checkbox_specs& border(const float& border);
+				checkbox& border(const float& border);
 
 				/// <summary>Get or set the color of the border.</summary>
 				/// <returns>A reference to the border color, as defined in <see cref="color"></see>.</returns>
@@ -119,7 +119,7 @@ namespace liblec {
 				/// <summary>Set the color of the border.</summary>
 				/// <param name="color_border">The border color, as defined in <see cref="color"></see>.</param>
 				/// <returns>A reference to the modified object.</returns>
-				checkbox_specs& color_border(const color& color_border);
+				checkbox& color_border(const color& color_border);
 
 				/// <summary>Get or set the text to display when the widget is unchecked.</summary>
 				/// <returns>A reference to the text.</returns>
@@ -128,7 +128,7 @@ namespace liblec {
 				/// <summary>Set the text to display when the widget is unchecked.</summary>
 				/// <param name="text_unchecked">The text.</param>
 				/// <returns>A reference to the modified object.</returns>
-				checkbox_specs& text_unchecked(const std::string& text_unchecked);
+				checkbox& text_unchecked(const std::string& text_unchecked);
 
 				/// <summary>Get or set the text to display when the widget's check status has not been explicitly set.</summary>
 				/// <returns>A reference to the text.</returns>
@@ -137,7 +137,7 @@ namespace liblec {
 				/// <summary>Set the text to display when the widget's check status has not been explicitly set.</summary>
 				/// <param name="text_unchecked">The text.</param>
 				/// <returns>A reference to the modified object.</returns>
-				checkbox_specs& text_indeterminate(const std::string& text_indeterminate);
+				checkbox& text_indeterminate(const std::string& text_indeterminate);
 
 				/// <summary>Get or set the color to use for the check symbol.</summary>
 				/// <returns>A reference to the color.</returns>
@@ -146,7 +146,7 @@ namespace liblec {
 				/// <summary>Set the color to use for the check symbol.</summary>
 				/// <param name="color_check">The color.</param>
 				/// <returns>A reference to the modified object.</returns>
-				checkbox_specs& color_check(const color& color_check);
+				checkbox& color_check(const color& color_check);
 
 				/// <summary>Get or set the status of the checkbox widget.</summary>
 				/// <returns>The status of the widget as defined in <see cref="checkbox_status"></see>.</returns>
@@ -155,60 +155,33 @@ namespace liblec {
 				/// <summary>Set the status of the checkbox widget.</summary>
 				/// <param name="status">The status of the widget as defined in <see cref="checkbox_status"></see>.</param>
 				/// <returns></returns>
-				checkbox_specs& status(const checkbox_status& status);
+				checkbox& status(const checkbox_status& status);
 
-			private:
-				checkbox_events _checkbox_events;
-			};
-
-			/// <summary>Checkbox widget builder.</summary>
-			class lecui_api checkbox_builder {
 			public:
-				/// <summary>Checkbox builder constructor.</summary>
-				/// <param name="page">The container to place the widget in.</param>
-				/// <remarks>This constructs the widget with an internally generated random
-				/// alias.</remarks>
-				checkbox_builder(containers::page& page);
-
-				/// <summary>Checkbox builder constructor.</summary>
+				/// <summary>Add a checkbox to a container.</summary>
 				/// <param name="page">The container to place the widget in.</param>
 				/// <param name="alias">The in-page unique alias, e.g. "employment_status".</param>
-				checkbox_builder(containers::page& page, const std::string& alias);
-				~checkbox_builder();
-
-				/// <summary>Get the checkbox specifications.</summary>
-				/// <returns>A reference to the checkbox specifications.</returns>
+				/// <returns>A reference to the widget specifications.</returns>
+				/// <remarks>If an empty alias is given an internally generated random
+				/// alias will be assigned.</remarks>
 				[[nodiscard]]
-				checkbox_specs& specs();
-
-				/// <summary>Get the checkbox specifications.</summary>
-				/// <returns>A reference to the checkbox specifications.</returns>
-				/// <remarks>Alternative to specs() for more terse code.</remarks>
-				[[nodiscard]]
-				checkbox_specs& operator()();
+				static checkbox& add(containers::page& page, const std::string& alias = std::string());
 
 				/// <summary>Get the specifications of a checkbox.</summary>
-				/// <param name="fm">The form containing the checkbox.</param>
-				/// <param name="path">The full path to the widget, e.g.
-				/// "sample_page/sample_tab_pane/tab_one/employment_status".</param>
-				/// <returns>A reference to the checkbox specifications.</returns>
+				/// <param name="fm"></param>
+				/// <param name="path">The full path to the widget, e.g. "sample_page/sample_tab_pane/tab_one/employment_status".</param>
+				/// <returns>A reference to the widget specifications.</returns>
 				/// <remarks>Throws on failure. For faster coding and more readable code consider
 				/// calling this static method through the helper macro provided.</remarks>
 				[[nodiscard]]
-				static checkbox_specs& specs(form& fm, const std::string& path);
+				static checkbox& get(form& fm, const std::string& path);
 
 			private:
-				class impl;
-				impl& _d;
-
-				// Default constructor and copying an object of this class are not allowed
-				checkbox_builder() = delete;
-				checkbox_builder(const checkbox_builder&) = delete;
-				checkbox_builder& operator=(const checkbox_builder&) = delete;
+				checkbox_events _checkbox_events;
 			};
 		}
 	}
 }
 
-/// Helper for getting checkbox specs. Builder documentation applies.
-#define get_checkbox_specs(path) liblec::lecui::widgets::checkbox_builder::specs(*this, path)
+/// Helper for getting checkbox widget. Builder documentation applies.
+#define get_checkbox(path) liblec::lecui::widgets::checkbox::get(*this, path)

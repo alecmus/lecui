@@ -33,7 +33,7 @@ namespace liblec {
 								widgets::widget_type::text_field && widget.second.selected()) {
 								change = true;
 								try {
-									auto& text_field = page._d_page.get_text_field(widget.first);
+									auto& text_field = page._d_page.get_text_field_impl(widget.first);
 
 									switch (wParam) {
 									case VK_LEFT: text_field.key_left(); break;
@@ -52,7 +52,7 @@ namespace liblec {
 									widgets::widget_type::html_editor && widget.second.selected()) {
 									change = true;
 									try {
-										auto& html_editor = page._d_page.get_html_editor(widget.first);
+										auto& html_editor = page._d_page.get_html_editor_impl(widget.first);
 
 										switch (wParam) {
 										case VK_LEFT: html_editor.key_left(); break;
@@ -73,7 +73,7 @@ namespace liblec {
 										widgets::widget_type::combobox && widget.second.selected()) {
 										change = true;
 										try {
-											auto& combobox = page._d_page.get_combobox(widget.first);
+											auto& combobox = page._d_page.get_combobox_impl(widget.first);
 
 											if (combobox().editable()) {
 												switch (wParam) {
@@ -93,7 +93,7 @@ namespace liblec {
 										if (widget.second.type() ==
 											widgets::widget_type::tab_pane) {
 											// get this tab pane
-											auto& tab_pane = page._d_page.get_tab_pane(widget.first);
+											auto& tab_pane = page._d_page.get_tab_pane_impl(widget.first);
 
 											auto page_iterator = tab_pane._p_tabs.find(tab_pane._current_tab);
 
@@ -104,7 +104,7 @@ namespace liblec {
 											if (widget.second.type() ==
 												widgets::widget_type::pane) {
 												// get this pane
-												auto& pane = page._d_page.get_pane(widget.first);
+												auto& pane = page._d_page.get_pane_impl(widget.first);
 
 												auto page_iterator = pane._p_panes.find(pane._current_pane);
 
@@ -178,7 +178,7 @@ namespace liblec {
 							if (widget.second.type() ==
 								widgets::widget_type::tab_pane) {
 								// get this tab pane
-								auto& tab_pane = page._d_page.get_tab_pane(widget.first);
+								auto& tab_pane = page._d_page.get_tab_pane_impl(widget.first);
 
 								auto page_iterator = tab_pane._p_tabs.find(tab_pane._current_tab);
 
@@ -189,7 +189,7 @@ namespace liblec {
 								if (widget.second.type() ==
 									widgets::widget_type::pane) {
 									// get this pane
-									auto& pane = page._d_page.get_pane(widget.first);
+									auto& pane = page._d_page.get_pane_impl(widget.first);
 
 									auto page_iterator = pane._p_panes.find(pane._current_pane);
 
@@ -259,7 +259,7 @@ namespace liblec {
 								if (widget.second.type() ==
 									widgets::widget_type::tab_pane) {
 									// get this tab pane
-									auto& tab_pane = page._d_page.get_tab_pane(widget.first);
+									auto& tab_pane = page._d_page.get_tab_pane_impl(widget.first);
 
 									auto page_iterator = tab_pane._p_tabs.find(tab_pane._current_tab);
 
@@ -270,7 +270,7 @@ namespace liblec {
 									if (widget.second.type() ==
 										widgets::widget_type::pane) {
 										// get this pane
-										auto& pane = page._d_page.get_pane(widget.first);
+										auto& pane = page._d_page.get_pane_impl(widget.first);
 
 										auto page_iterator = pane._p_panes.find(pane._current_pane);
 
@@ -348,7 +348,7 @@ namespace liblec {
 							if (widget.second.type() ==
 								widgets::widget_type::tab_pane) {
 								// get this tab pane
-								auto& tab_pane = page._d_page.get_tab_pane(widget.first);
+								auto& tab_pane = page._d_page.get_tab_pane_impl(widget.first);
 
 								auto page_iterator = tab_pane._p_tabs.find(tab_pane._current_tab);
 
@@ -359,7 +359,7 @@ namespace liblec {
 								if (widget.second.type() ==
 									widgets::widget_type::pane) {
 									// get this pane
-									auto& pane = page._d_page.get_pane(widget.first);
+									auto& pane = page._d_page.get_pane_impl(widget.first);
 
 									auto page_iterator = pane._p_panes.find(pane._current_pane);
 

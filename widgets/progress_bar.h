@@ -21,58 +21,58 @@ namespace liblec {
 		namespace widgets {
 			/// <summary>Progress bar widget specifications.</summary>
 			/// <remarks>Recommended size with defaults is 200x12px</remarks>
-			class lecui_api progress_bar_specs : public specs {
+			class lecui_api progress_bar : public widget {
 				float _border = 1.f;
 				color _color_border;
 				float _percentage = 0.f;
 
 			public:
-				progress_bar_specs() {
+				progress_bar() {
 					_rect.size({ 200.f, 12.f });
 				}
 
-				bool operator==(const progress_bar_specs&);
-				bool operator!=(const progress_bar_specs&);
+				bool operator==(const progress_bar&);
+				bool operator!=(const progress_bar&);
 
-				// generic specs
+				// generic widget
 
 				std::string& text() override;
-				progress_bar_specs& text(const std::string& text);
+				progress_bar& text(const std::string& text);
 
 				std::string& tooltip() override;
-				progress_bar_specs& tooltip(const std::string& tooltip);
+				progress_bar& tooltip(const std::string& tooltip);
 
 				lecui::rect& rect() override;
-				progress_bar_specs& rect(const lecui::rect& rect);
+				progress_bar& rect(const lecui::rect& rect);
 
 				resize_params& on_resize() override;
-				progress_bar_specs& on_resize(const resize_params& on_resize);
+				progress_bar& on_resize(const resize_params& on_resize);
 
 				cursor_type& cursor() override;
-				progress_bar_specs& cursor(const cursor_type cursor);
+				progress_bar& cursor(const cursor_type cursor);
 
 				std::string& font() override;
-				progress_bar_specs& font(const std::string& font);
+				progress_bar& font(const std::string& font);
 
 				float& font_size() override;
-				progress_bar_specs& font_size(const float& font_size);
+				progress_bar& font_size(const float& font_size);
 
 				color& color_text() override;
-				progress_bar_specs& color_text(const color& color_text);
+				progress_bar& color_text(const color& color_text);
 
 				color& color_fill() override;
-				progress_bar_specs& color_fill(const color& color_fill);
+				progress_bar& color_fill(const color& color_fill);
 
 				color& color_hot() override;
-				progress_bar_specs& color_hot(const color& color_hot);
+				progress_bar& color_hot(const color& color_hot);
 
 				color& color_selected() override;
-				progress_bar_specs& color_selected(const color& color_selected);
+				progress_bar& color_selected(const color& color_selected);
 
 				color& color_disabled() override;
-				progress_bar_specs& color_disabled(const color& color_disabled);
+				progress_bar& color_disabled(const color& color_disabled);
 
-				// widget specific specs
+				// widget specific widget
 
 				/// <summary>Get or set the thickness of the border.</summary>
 				/// <returns>A reference to the border thickness, in pixels.</returns>
@@ -81,7 +81,7 @@ namespace liblec {
 				/// <summary>Set the thickness of the border.</summary>
 				/// <param name="border">The border thickness, in pixels.</param>
 				/// <returns>A reference to the modified object.</returns>
-				progress_bar_specs& border(const float& border);
+				progress_bar& border(const float& border);
 
 				/// <summary>Get or set the color of the border.</summary>
 				/// <returns>A reference to the border color, as defined in <see cref="color"></see>.</returns>
@@ -90,7 +90,7 @@ namespace liblec {
 				/// <summary>Set the color of the border.</summary>
 				/// <param name="color_border">The border color, as defined in <see cref="color"></see>.</param>
 				/// <returns>A reference to the modified object.</returns>
-				progress_bar_specs& color_border(const color& color_border);
+				progress_bar& color_border(const color& color_border);
 
 				/// <summary>Get or set the percentage of the progress bar (0.f - 100.f).</summary>
 				/// <returns>A reference to the percentage.</returns>
@@ -99,57 +99,30 @@ namespace liblec {
 				/// <summary>Set the percentage of the progress bar (0.f - 100.f).</summary>
 				/// <param name="percentage">The percentage.</param>
 				/// <returns>A reference to the modified object.</returns>
-				progress_bar_specs& percentage(const float& percentage);
-			};
+				progress_bar& percentage(const float& percentage);
 
-			/// <summary>Progress bar widget builder.</summary>
-			class lecui_api progress_bar_builder {
 			public:
-				/// <summary>Progress bar builder constructor.</summary>
-				/// <param name="page">The container to place the widget in.</param>
-				/// <remarks>This constructs the widget with an internally generated random
-				/// alias.</remarks>
-				progress_bar_builder(containers::page& page);
-
-				/// <summary>Progress bar builder constructor.</summary>
+				/// <summary>Add a progress bar to a container.</summary>
 				/// <param name="page">The container to place the widget in.</param>
 				/// <param name="alias">The in-page unique alias, e.g. "encryption_status".</param>
-				progress_bar_builder(containers::page& page, const std::string& alias);
-				~progress_bar_builder();
-
-				/// <summary>Get the progress bar specifications.</summary>
-				/// <returns>A reference to the progress bar specifications.</returns>
+				/// <returns>A reference to the widget specifications.</returns>
+				/// <remarks>If an empty alias is given an internally generated random
+				/// alias will be assigned.</remarks>
 				[[nodiscard]]
-				progress_bar_specs& specs();
-
-				/// <summary>Get the progress bar specifications.</summary>
-				/// <returns>A reference to the progress bar specifications.</returns>
-				/// <remarks>Alternative to specs() for more terse code.</remarks>
-				[[nodiscard]]
-				progress_bar_specs& operator()();
+				static progress_bar& add(containers::page& page, const std::string& alias = std::string());
 
 				/// <summary>Get the specifications of a progress bar.</summary>
-				/// <param name="fm">The form containing the progress bar.</param>
-				/// <param name="path">The full path to the widget, e.g.
-				/// "sample_page/encryption_pane/encryption_status".</param>
-				/// <returns>A reference to the progress bar specifications.</returns>
+				/// <param name="fm"></param>
+				/// <param name="path">The full path to the widget, e.g. "sample_page/encryption_pane/encryption_status".</param>
+				/// <returns>A reference to the widget specifications.</returns>
 				/// <remarks>Throws on failure. For faster coding and more readable code consider
 				/// calling this static method through the helper macro provided.</remarks>
 				[[nodiscard]]
-				static progress_bar_specs& specs(form& fm, const std::string& path);
-
-			private:
-				class impl;
-				impl& _d;
-
-				// Default constructor and copying an object of this class are not allowed
-				progress_bar_builder() = delete;
-				progress_bar_builder(const progress_bar_builder&) = delete;
-				progress_bar_builder& operator=(const progress_bar_builder&) = delete;
+				static progress_bar& get(form& fm, const std::string& path);
 			};
 		}
 	}
 }
 
-/// Helper for getting progress bar specs. Builder documentation applies.
-#define get_progress_bar_specs(path) liblec::lecui::widgets::progress_bar_builder::specs(*this, path)
+/// Helper for getting progress bar widget. Builder documentation applies.
+#define get_progress_bar(path) liblec::lecui::widgets::progress_bar::get(*this, path)

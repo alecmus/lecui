@@ -18,7 +18,7 @@ namespace liblec {
 		namespace widgets {
 			class table_view_impl : public widget_impl {
 				/// private virtual function overrides
-				widgets::specs& generic_specs() override {
+				widgets::widget& generic_specs() override {
 					return _specs;
 				}
 
@@ -42,8 +42,8 @@ namespace liblec {
 				void on_right_click() override;
 
 				/// widget specific methods
-				widgets::table_view_specs& specs();
-				widgets::table_view_specs& operator()();
+				widgets::table_view& specs();
+				widgets::table_view& operator()();
 
 			private:
 				// Default constructor and copying an object of this class are not allowed
@@ -52,7 +52,7 @@ namespace liblec {
 				table_view_impl& operator=(const table_view_impl&) = delete;
 
 				/// Private variables
-				widgets::table_view_specs _specs, _specs_old;
+				widgets::table_view _specs, _specs_old;
 				ID2D1SolidColorBrush* _p_brush;
 				ID2D1SolidColorBrush* _p_brush_fill;
 				ID2D1SolidColorBrush* _p_brush_text_header;

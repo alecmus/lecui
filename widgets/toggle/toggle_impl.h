@@ -18,7 +18,7 @@ namespace liblec {
 		namespace widgets {
 			class toggle_impl : public widget_impl {
 				/// private virtual function overrides
-				widgets::specs& generic_specs() override {
+				widgets::widget& generic_specs() override {
 					return _specs;
 				}
 
@@ -44,8 +44,8 @@ namespace liblec {
 				bool hit(const bool& hit) override;
 
 				/// widget specific methods
-				widgets::toggle_specs& specs();
-				widgets::toggle_specs& operator()();
+				widgets::toggle& specs();
+				widgets::toggle& operator()();
 
 			private:
 				// Default constructor and copying an object of this class are not allowed
@@ -54,7 +54,7 @@ namespace liblec {
 				toggle_impl& operator=(const toggle_impl&) = delete;
 
 				/// Private variables
-				widgets::toggle_specs _specs, _specs_old;
+				widgets::toggle _specs, _specs_old;
 				ID2D1SolidColorBrush* _p_brush;
 				ID2D1SolidColorBrush* _p_brush_fill;
 				ID2D1SolidColorBrush* _p_brush_on;

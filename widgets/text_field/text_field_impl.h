@@ -18,7 +18,7 @@ namespace liblec {
 		namespace widgets {
 			class text_field_impl : public widget_impl {
 				/// private virtual function overrides
-				widgets::specs& generic_specs() override {
+				widgets::widget& generic_specs() override {
 					return _specs;
 				}
 
@@ -39,8 +39,8 @@ namespace liblec {
 				void on_selection_change(const bool& selected) override;
 
 				/// widget specific methods
-				widgets::text_field_specs& specs();
-				widgets::text_field_specs& operator()();
+				widgets::text_field& specs();
+				widgets::text_field& operator()();
 				void insert_character(const char& c);
 				void key_backspace();
 				void key_delete();
@@ -54,7 +54,7 @@ namespace liblec {
 				text_field_impl& operator=(const text_field_impl&) = delete;
 
 				/// Private variables
-				widgets::text_field_specs _specs, _specs_old;
+				widgets::text_field _specs, _specs_old;
 				ID2D1SolidColorBrush* _p_brush;
 				ID2D1SolidColorBrush* _p_brush_caret;
 				ID2D1SolidColorBrush* _p_brush_prompt;

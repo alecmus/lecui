@@ -18,7 +18,7 @@ namespace liblec {
 		namespace widgets {
 			class combobox_impl : public widget_impl {
 				/// private virtual function overrides
-				widgets::specs& generic_specs() override {
+				widgets::widget& generic_specs() override {
 					return _specs;
 				}
 
@@ -43,8 +43,8 @@ namespace liblec {
 				void on_right_click() override;
 
 				/// widget specific methods
-				widgets::combobox_specs& specs();
-				widgets::combobox_specs& operator()();
+				widgets::combobox& specs();
+				widgets::combobox& operator()();
 				void insert_character(const char& c);
 				void key_backspace();
 				void key_delete();
@@ -59,7 +59,7 @@ namespace liblec {
 				combobox_impl& operator=(const combobox_impl&) = delete;
 
 				/// Private variables
-				widgets::combobox_specs _specs, _specs_old;
+				widgets::combobox _specs, _specs_old;
 				ID2D1SolidColorBrush* _p_brush;
 				ID2D1SolidColorBrush* _p_brush_caret;
 				ID2D1SolidColorBrush* _p_brush_fill;
@@ -129,7 +129,7 @@ namespace liblec {
 					const D2D1_RECT_F& rect_text, const UINT32& caret_position);
 
 				static bool is_numeric(const std::string& text);
-				static bool is_numeric(const std::vector<widgets::combobox_specs::combobox_item>& items);
+				static bool is_numeric(const std::vector<widgets::combobox::combobox_item>& items);
 				void sort_items();
 
 				std::string dropdown(D2D1_RECT_F rect);

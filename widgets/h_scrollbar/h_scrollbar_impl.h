@@ -19,7 +19,7 @@ namespace liblec {
 
 			class h_scrollbar_impl : public widget_impl {
 				/// private virtual function overrides
-				widgets::specs& generic_specs() override {
+				widgets::widget& generic_specs() override {
 					return _specs;
 				}
 

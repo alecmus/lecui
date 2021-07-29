@@ -18,7 +18,7 @@ namespace liblec {
 		namespace widgets {
 			class group_impl : public widget_impl {
 				/// private virtual function overrides
-				widgets::specs& generic_specs() override {
+				widgets::widget& generic_specs() override {
 					return _specs;
 				}
 
@@ -37,8 +37,8 @@ namespace liblec {
 					const bool& render) override;
 
 				/// widget specific methods
-				containers::group_specs& specs();
-				containers::group_specs& operator()();
+				containers::group& specs();
+				containers::group& operator()();
 
 			private:
 				// Default constructor and copying an object of this class are not allowed
@@ -47,7 +47,7 @@ namespace liblec {
 				group_impl& operator=(const group_impl&) = delete;
 
 				/// Private variables
-				containers::group_specs _specs, _specs_old;
+				containers::group _specs, _specs_old;
 				ID2D1SolidColorBrush* _p_brush_fill;
 				ID2D1SolidColorBrush* _p_brush_border;
 				ID2D1SolidColorBrush* _p_brush_hot;

@@ -126,7 +126,7 @@ namespace liblec {
 						for (auto& widget : page._d_page.widgets()) {
 							if (widget.second.type() == widgets::widget_type::tab_pane) {
 								// get this tab pane
-								auto& tab_pane = page._d_page.get_tab_pane(widget.first);
+								auto& tab_pane = page._d_page.get_tab_pane_impl(widget.first);
 
 								for (auto& tab : tab_pane._p_tabs)
 									helper::check_page(tab.second, change_in_width, change_in_height, system_resizing);	// recursion
@@ -134,7 +134,7 @@ namespace liblec {
 							else
 								if (widget.second.type() == widgets::widget_type::pane) {
 									// get this pane
-									auto& pane = page._d_page.get_pane(widget.first);
+									auto& pane = page._d_page.get_pane_impl(widget.first);
 
 									for (auto& page : pane._p_panes)
 										helper::check_page(page.second, change_in_width, change_in_height, system_resizing);	// recursion

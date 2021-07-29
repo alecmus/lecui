@@ -155,10 +155,10 @@ namespace liblec {
 				_specs.events().action();
 		}
 
-		widgets::button_specs&
+		widgets::button&
 			widgets::button_impl::specs() { return _specs; }
 
-		widgets::button_specs&
+		widgets::button&
 			widgets::button_impl::operator()() { return specs(); }
 	}
 }

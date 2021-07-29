@@ -21,7 +21,7 @@ namespace liblec {
 		namespace widgets {
 			/// <summary>Table view widget specifications.</summary>
 			/// <remarks>Default size is 200x200px.</remarks>
-			class lecui_api table_view_specs : public specs {
+			class lecui_api table_view : public widget {
 				float _border = .5f;
 				float _grid_line = .5f;
 				color _color_border;
@@ -44,7 +44,7 @@ namespace liblec {
 				void* _p_special_pane_specs = nullptr;
 
 			public:
-				table_view_specs() {
+				table_view() {
 					_rect.size({ 200.f, 200.f });
 				}
 
@@ -67,50 +67,50 @@ namespace liblec {
 					return _table_events;
 				}
 
-				bool operator==(const table_view_specs&);
-				bool operator!=(const table_view_specs&);
-				table_view_specs& operator=(const table_view_specs&);
-				table_view_specs(const table_view_specs&);
+				bool operator==(const table_view&);
+				bool operator!=(const table_view&);
+				table_view& operator=(const table_view&);
+				table_view(const table_view&);
 
-				// generic specs
+				// generic widget
 
 				std::string& text() override;
-				table_view_specs& text(const std::string& text);
+				table_view& text(const std::string& text);
 
 				std::string& tooltip() override;
-				table_view_specs& tooltip(const std::string& tooltip);
+				table_view& tooltip(const std::string& tooltip);
 
 				lecui::rect& rect() override;
-				table_view_specs& rect(const lecui::rect& rect);
+				table_view& rect(const lecui::rect& rect);
 
 				resize_params& on_resize() override;
-				table_view_specs& on_resize(const resize_params& on_resize);
+				table_view& on_resize(const resize_params& on_resize);
 
 				cursor_type& cursor() override;
-				table_view_specs& cursor(const cursor_type cursor);
+				table_view& cursor(const cursor_type cursor);
 
 				std::string& font() override;
-				table_view_specs& font(const std::string& font);
+				table_view& font(const std::string& font);
 
 				float& font_size() override;
-				table_view_specs& font_size(const float& font_size);
+				table_view& font_size(const float& font_size);
 
 				color& color_text() override;
-				table_view_specs& color_text(const color& color_text);
+				table_view& color_text(const color& color_text);
 
 				color& color_fill() override;
-				table_view_specs& color_fill(const color& color_fill);
+				table_view& color_fill(const color& color_fill);
 
 				color& color_hot() override;
-				table_view_specs& color_hot(const color& color_hot);
+				table_view& color_hot(const color& color_hot);
 
 				color& color_selected() override;
-				table_view_specs& color_selected(const color& color_selected);
+				table_view& color_selected(const color& color_selected);
 
 				color& color_disabled() override;
-				table_view_specs& color_disabled(const color& color_disabled);
+				table_view& color_disabled(const color& color_disabled);
 
-				// widget specific specs
+				// widget specific widget
 
 				/// <summary>Get or set the thickness of the border.</summary>
 				/// <returns>A reference to the border thickness, in pixels.</returns>
@@ -119,7 +119,7 @@ namespace liblec {
 				/// <summary>Set the thickness of the border.</summary>
 				/// <param name="border">The border thickness, in pixels.</param>
 				/// <returns>A reference to the modified object.</returns>
-				table_view_specs& border(const float& border);
+				table_view& border(const float& border);
 
 				/// <summary>Get or set the thickness of the grid-lines.</summary>
 				/// <returns>A reference to the line thickness, in pixels.</returns>
@@ -128,7 +128,7 @@ namespace liblec {
 				/// <summary>Set the thickness of the grid-line.</summary>
 				/// <param name="grid_line">The line thickness, in pixels.</param>
 				/// <returns>A reference to the modified object.</returns>
-				table_view_specs& grid_line(const float& grid_line);
+				table_view& grid_line(const float& grid_line);
 
 				/// <summary>Get or set the color of the border.</summary>
 				/// <returns>A reference to the border color, as defined in <see cref="color"></see>.</returns>
@@ -137,7 +137,7 @@ namespace liblec {
 				/// <summary>Set the color of the border.</summary>
 				/// <param name="color_border">The border color, as defined in <see cref="color"></see>.</param>
 				/// <returns>A reference to the modified object.</returns>
-				table_view_specs& color_border(const color& color_border);
+				table_view& color_border(const color& color_border);
 
 				/// <summary>Get or set the horizontal radius of the corners.</summary>
 				/// <returns>A reference to the radius, in pixels.</returns>
@@ -146,7 +146,7 @@ namespace liblec {
 				/// <summary>Set the horizontal radius of the corners.</summary>
 				/// <param name="corner_radius_x">The horizontal radius of the corner, in pixels.</param>
 				/// <returns>A reference to the modified object.</returns>
-				table_view_specs& corner_radius_x(const float& corner_radius_x);
+				table_view& corner_radius_x(const float& corner_radius_x);
 
 				/// <summary>Get or set the vertical radius of the corners.</summary>
 				/// <returns>A reference to the radius, in pixels.</returns>
@@ -155,7 +155,7 @@ namespace liblec {
 				/// <summary>Set the vertical radius of the corners.</summary>
 				/// <param name="corner_radius_y">The horizontal radius of the corner, in pixels.</param>
 				/// <returns>A reference to the modified object.</returns>
-				table_view_specs& corner_radius_y(const float& corner_radius_y);
+				table_view& corner_radius_y(const float& corner_radius_y);
 
 				/// <summary>Get or set the color of the text in a selected row.</summary>
 				/// <returns>A reference to the color.</returns>
@@ -164,7 +164,7 @@ namespace liblec {
 				/// <summary>Set the color of the text in a selected row.</summary>
 				/// <param name="color_text_selected">The color.</param>
 				/// <returns>A reference to the modified object.</returns>
-				table_view_specs& color_text_selected(const color& color_text_selected);
+				table_view& color_text_selected(const color& color_text_selected);
 
 				/// <summary>Get or set the color of the grid lines.</summary>
 				/// <returns>A reference to the color.</returns>
@@ -173,7 +173,7 @@ namespace liblec {
 				/// <summary>Set the color of the grid lines.</summary>
 				/// <param name="color_grid">The color.</param>
 				/// <returns>A reference to the modified object.</returns>
-				table_view_specs& color_grid(const color& color_grid);
+				table_view& color_grid(const color& color_grid);
 
 				/// <summary>Get or set the color of the header text.</summary>
 				/// <returns>A reference to the color.</returns>
@@ -182,7 +182,7 @@ namespace liblec {
 				/// <summary>Set the color of the header text.</summary>
 				/// <param name="color_text_header">The color.</param>
 				/// <returns>A reference to the modified object.</returns>
-				table_view_specs& color_text_header(const color& color_text_header);
+				table_view& color_text_header(const color& color_text_header);
 
 				/// <summary>Get or set the color of the header text when the mouse is over it (if user sorting is allowed).</summary>
 				/// <returns>A reference to the color.</returns>
@@ -191,7 +191,7 @@ namespace liblec {
 				/// <summary>Set the color of the header text when the mouse is over it (if user sorting is allowed).</summary>
 				/// <param name="color_text_header_hot">The color.</param>
 				/// <returns>A reference to the modified object.</returns>
-				table_view_specs& color_text_header_hot(const color& color_text_header_hot);
+				table_view& color_text_header_hot(const color& color_text_header_hot);
 
 				/// <summary>Get or set the table header's fill color.</summary>
 				/// <returns>A reference to the color.</returns>
@@ -200,7 +200,7 @@ namespace liblec {
 				/// <summary>Set the table header's fill color.</summary>
 				/// <param name="color_fill_header">The color.</param>
 				/// <returns>A reference to the modified object.</returns>
-				table_view_specs& color_fill_header(const color& color_fill_header);
+				table_view& color_fill_header(const color& color_fill_header);
 
 				/// <summary>Get or set the table's alternate row color (used for the
 				/// background of even rows).</summary>
@@ -211,7 +211,7 @@ namespace liblec {
 				/// even rows).</summary>
 				/// <param name="color_fill_alternate"></param>
 				/// <returns>A reference to the modified object.</returns>
-				table_view_specs& color_fill_alternate(const color& color_fill_alternate);
+				table_view& color_fill_alternate(const color& color_fill_alternate);
 
 				/// <summary>Get or set the background color of a row when the mouse is over it.</summary>
 				/// <returns>A reference to the color.</returns>
@@ -220,7 +220,7 @@ namespace liblec {
 				/// <summary>Set the background color of a row when the mouse is over it.</summary>
 				/// <param name="color_row_hot">The color.</param>
 				/// <returns>A reference to the modified object.</returns>
-				table_view_specs& color_row_hot(const color& color_row_hot);
+				table_view& color_row_hot(const color& color_row_hot);
 
 				/// <summary>Get or set the background color of a selected row.</summary>
 				/// <returns>A reference to the color.</returns>
@@ -229,7 +229,7 @@ namespace liblec {
 				/// <summary>Set the background color of a selected row.</summary>
 				/// <param name="color_row_selected">The color.</param>
 				/// <returns>A reference to the modified object.</returns>
-				table_view_specs& color_row_selected(const color& color_row_selected);
+				table_view& color_row_selected(const color& color_row_selected);
 
 				/// <summary>Get or set the table view columns.</summary>
 				/// <returns>A reference to the list of the table view's columns.</returns>
@@ -246,7 +246,7 @@ namespace liblec {
 				/// Two columns can be defined as follows:
 				/// columns = { { "Name", 130 }, { "Surname", 210 } };
 				/// </example>
-				table_view_specs& columns(const std::vector<table_column>& columns);
+				table_view& columns(const std::vector<table_column>& columns);
 
 				/// <summary>Get or set the table's data. Each entry of the vector (a map) is a
 				/// row and should mirror the column structure. The key is the column name and
@@ -279,7 +279,7 @@ namespace liblec {
 				/// { {"Name", "Tanaka"}, {"Surname", "Sibanda"} },
 				/// { {"Name", "Precious"}, {"Surname", "Ncube"} }
 				/// </example>
-				table_view_specs& data(const std::vector<table_row>& data);
+				table_view& data(const std::vector<table_row>& data);
 
 				/// <summary>Get or set the rows to select by default, numbered from 0.</summary>
 				/// <returns>A reference to the selected rows.</returns>
@@ -288,7 +288,7 @@ namespace liblec {
 				/// <summary>Set the rows to select by default, numbered from 0.</summary>
 				/// <param name="selected">The selected rows.</param>
 				/// <returns>A reference to the modified object.</returns>
-				table_view_specs& selected(const std::vector<long>& selected);
+				table_view& selected(const std::vector<long>& selected);
 
 				/// <summary>Get or set whether to allow sorting by clicking columns.</summary>
 				/// <returns>A reference to the property.</returns>
@@ -297,7 +297,7 @@ namespace liblec {
 				/// <summary>Set whether to allow sorting by clicking columns.</summary>
 				/// <param name="user_sort">The property.</param>
 				/// <returns>A reference to the modified object.</returns>
-				table_view_specs& user_sort(const bool& user_sort);
+				table_view& user_sort(const bool& user_sort);
 
 				/// <summary>Get or set whether to add a fixed number column.</summary>
 				/// <returns>A reference to the property.</returns>
@@ -310,7 +310,7 @@ namespace liblec {
 				/// <returns>A reference to the modified object.</returns>
 				/// <remarks>Counts from 1 and is not sorted when the table's columns
 				/// are user sorted.</remarks>
-				table_view_specs& fixed_number_column(const bool& fixed_number_column);
+				table_view& fixed_number_column(const bool& fixed_number_column);
 
 				/// <summary>Get or set the name of the fixed number column.</summary>
 				/// <returns>A reference to the property.</returns>
@@ -319,7 +319,26 @@ namespace liblec {
 				/// <summary>Set the name of the fixed number column.</summary>
 				/// <param name="fixed_number_column_name">The property.</param>
 				/// <returns>A reference to the modified object.</returns>
-				table_view_specs& fixed_number_column_name(const std::string& fixed_number_column_name);
+				table_view& fixed_number_column_name(const std::string& fixed_number_column_name);
+
+			public:
+				/// <summary>Add a table_view to a container.</summary>
+				/// <param name="page">The container to place the widget in.</param>
+				/// <param name="alias">The in-page unique alias, e.g. "debtors".</param>
+				/// <returns>A reference to the widget specifications.</returns>
+				/// <remarks>If an empty alias is given an internally generated random
+				/// alias will be assigned.</remarks>
+				[[nodiscard]]
+				static table_view& add(containers::page& page, const std::string& alias = std::string());
+
+				/// <summary>Get the specifications of a table_view.</summary>
+				/// <param name="fm"></param>
+				/// <param name="path">The full path to the widget, e.g. "sample_page/sample_pane/debtors".</param>
+				/// <returns>A reference to the widget specifications.</returns>
+				/// <remarks>Throws on failure. For faster coding and more readable code consider
+				/// calling this static method through the helper macro provided.</remarks>
+				[[nodiscard]]
+				static table_view& get(form& fm, const std::string& path);
 
 			private:
 				table_view_events _table_events;
@@ -328,55 +347,9 @@ namespace liblec {
 				friend class form;
 #endif
 			};
-
-			/// <summary>Table view widget builder.</summary>
-			class lecui_api table_view_builder {
-			public:
-				/// <summary>Table view builder constructor.</summary>
-				/// <param name="page">The container to place the widget in.</param>
-				/// <remarks>This constructs the widget with an internally generated random
-				/// alias.</remarks>
-				table_view_builder(containers::page& page);
-
-				/// <summary>Table view builder constructor.</summary>
-				/// <param name="page">The container to place the widget in.</param>
-				/// <param name="alias">The in-page unique alias, e.g. "debtors".</param>
-				table_view_builder(containers::page& page, const std::string& alias);
-				~table_view_builder();
-
-				/// <summary>Get the table view specifications.</summary>
-				/// <returns>A reference to the table view specifications.</returns>
-				[[nodiscard]]
-				table_view_specs& specs();
-
-				/// <summary>Get the table view specifications.</summary>
-				/// <returns>A reference to the table view specifications.</returns>
-				/// <remarks>Alternative to specs() for more terse code.</remarks>
-				[[nodiscard]]
-				table_view_specs& operator()();
-
-				/// <summary>Get the specifications of a table view.</summary>
-				/// <param name="fm">The form containing the table view.</param>
-				/// <param name="path">The full path to the widget, e.g.
-				/// "sample_page/sample_pane/debtors".</param>
-				/// <returns>A reference to the table view specifications.</returns>
-				/// <remarks>Throws on failure. For faster coding and more readable code consider
-				/// calling this static method through the helper macro provided.</remarks>
-				[[nodiscard]]
-				static table_view_specs& specs(form& fm, const std::string& path);
-
-			private:
-				class impl;
-				impl& _d;
-
-				// Default constructor and copying an object of this class are not allowed
-				table_view_builder() = delete;
-				table_view_builder(const table_view_builder&) = delete;
-				table_view_builder& operator=(const table_view_builder&) = delete;
-			};
 		}
 	}
 }
 
-/// Helper for getting table view specs. Builder documentation applies.
-#define get_table_view_specs(path) liblec::lecui::widgets::table_view_builder::specs(*this, path)
+/// Helper for getting table view widget. Builder documentation applies.
+#define get_table_view(path) liblec::lecui::widgets::table_view::get(*this, path)

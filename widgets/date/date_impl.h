@@ -21,7 +21,7 @@ namespace liblec {
 		namespace widgets {
 			class date_impl : public widget_impl {
 				/// private virtual function overrides
-				widgets::specs& generic_specs() override {
+				widgets::widget& generic_specs() override {
 					return _specs;
 				}
 
@@ -49,17 +49,17 @@ namespace liblec {
 					const bool& render) override;
 
 				/// widget specific methods
-				widgets::date_specs& specs();
-				widgets::date_specs& operator()();
-				void set_date_label_specs(widgets::label_specs& weekday,
-					widgets::label_specs& day,
-					widgets::label_specs& seperator_1,
-					widgets::label_specs& month,
-					widgets::label_specs& seperator_2,
-					widgets::label_specs& year);
-				void set_date_specs(widgets::rectangle_specs& day,
-					widgets::rectangle_specs& month,
-					widgets::rectangle_specs& year);
+				widgets::date& specs();
+				widgets::date& operator()();
+				void set_date_label_specs(widgets::label& weekday,
+					widgets::label& day,
+					widgets::label& seperator_1,
+					widgets::label& month,
+					widgets::label& seperator_2,
+					widgets::label& year);
+				void set_date_specs(widgets::rectangle& day,
+					widgets::rectangle& month,
+					widgets::rectangle& year);
 
 			private:
 				// Default constructor and copying an object of this class are not allowed
@@ -68,16 +68,16 @@ namespace liblec {
 				date_impl& operator=(const date_impl&) = delete;
 
 				/// Private variables
-				widgets::date_specs _specs, _specs_old;
+				widgets::date _specs, _specs_old;
 				ID2D1SolidColorBrush* _p_brush_fill;
 				ID2D1SolidColorBrush* _p_brush_hot;
 				ID2D1SolidColorBrush* _p_brush_disabled;
 				ID2D1SolidColorBrush* _p_brush_selected;
 
-				std::optional<std::reference_wrapper<widgets::label_specs>>
+				std::optional<std::reference_wrapper<widgets::label>>
 					_weekday_label_specs, _day_label_specs, _seperator_1_specs,
 					_month_label_specs, _seperator_2_specs, _year_label_specs;
-				std::optional<std::reference_wrapper<widgets::rectangle_specs>>
+				std::optional<std::reference_wrapper<widgets::rectangle>>
 					_day_specs, _month_specs, _year_specs;
 			};
 		}

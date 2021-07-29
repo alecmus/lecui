@@ -60,14 +60,14 @@ namespace liblec {
 					// check form pages
 					auto& page = fm._d._p_pages.at(page_alias);
 					auto results = fm._d.find_widget(page, path_remaining);
-					return results.page._d_page.get_tab_pane(results.widget.alias()).specs();
+					return results.page._d_page.get_tab_pane_impl(results.widget.alias()).specs();
 				}
 				catch (const std::exception&) {}
 				try {
 					// check status panes
 					auto& page = fm._d._p_status_panes.at(page_alias);
 					auto results = fm._d.find_widget(page, path_remaining);
-					return results.page._d_page.get_tab_pane(results.widget.alias()).specs();
+					return results.page._d_page.get_tab_pane_impl(results.widget.alias()).specs();
 				}
 				catch (const std::exception&) {}
 			}
@@ -76,7 +76,7 @@ namespace liblec {
 		}
 
 		void containers::tab_pane_builder::select(const std::string& tab_name) {
-			auto& _tab_pane = _d._page._d_page.get_tab_pane(_d._specs.alias());
+			auto& _tab_pane = _d._page._d_page.get_tab_pane_impl(_d._specs.alias());
 			_tab_pane._current_tab = tab_name;
 		}
 
@@ -89,7 +89,7 @@ namespace liblec {
 			containers::page& _page;
 
 			static containers::page& add(tab_pane_builder& tp, const std::string& tab_name) {
-				auto& _tab_pane = tp._d._page._d_page.get_tab_pane(tp._d._specs.alias());
+				auto& _tab_pane = tp._d._page._d_page.get_tab_pane_impl(tp._d._specs.alias());
 
 				if (_tab_pane._p_tabs.count(tab_name)) {
 					log("library usage error containers::tab::impl::add");
@@ -357,7 +357,7 @@ namespace liblec {
 			return *this;
 		}
 
-		widgets::specs::cursor_type& containers::tab_pane_specs::cursor() { return _cursor; }
+		widgets::widget::cursor_type& containers::tab_pane_specs::cursor() { return _cursor; }
 
 		containers::tab_pane_specs& containers::tab_pane_specs::cursor(const cursor_type cursor) {
 			_cursor = cursor;

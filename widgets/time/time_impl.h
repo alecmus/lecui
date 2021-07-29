@@ -21,7 +21,7 @@ namespace liblec {
 		namespace widgets {
 			class time_impl : public widget_impl {
 				/// private virtual function overrides
-				widgets::specs& generic_specs() override {
+				widgets::widget& generic_specs() override {
 					return _specs;
 				}
 
@@ -49,16 +49,16 @@ namespace liblec {
 				void on_right_click() override;
 
 				/// widget specific methods
-				widgets::time_specs& specs();
-				widgets::time_specs& operator()();
-				void set_time_label_specs(widgets::label_specs& hour,
-					widgets::label_specs& seperator_1,
-					widgets::label_specs& minute,
-					widgets::label_specs& seperator_2,
-					widgets::label_specs& second);
-				void set_time_specs(widgets::rectangle_specs& hour,
-					widgets::rectangle_specs& minute,
-					widgets::rectangle_specs& second);
+				widgets::time& specs();
+				widgets::time& operator()();
+				void set_time_label_specs(widgets::label& hour,
+					widgets::label& seperator_1,
+					widgets::label& minute,
+					widgets::label& seperator_2,
+					widgets::label& second);
+				void set_time_specs(widgets::rectangle& hour,
+					widgets::rectangle& minute,
+					widgets::rectangle& second);
 
 			private:
 				// Default constructor and copying an object of this class are not allowed
@@ -67,16 +67,16 @@ namespace liblec {
 				time_impl& operator=(const time_impl&) = delete;
 
 				/// Private variables
-				widgets::time_specs _specs, _specs_old;
+				widgets::time _specs, _specs_old;
 				ID2D1SolidColorBrush* _p_brush_fill;
 				ID2D1SolidColorBrush* _p_brush_hot;
 				ID2D1SolidColorBrush* _p_brush_disabled;
 				ID2D1SolidColorBrush* _p_brush_selected;
 
-				std::optional<std::reference_wrapper<widgets::label_specs>>
+				std::optional<std::reference_wrapper<widgets::label>>
 					_hour_label_specs, _seperator_1_specs, _minute_label_specs,
 					_seperator_2_specs, _second_label_specs;
-				std::optional<std::reference_wrapper<widgets::rectangle_specs>>
+				std::optional<std::reference_wrapper<widgets::rectangle>>
 					_hour_specs, _minute_specs, _second_specs;
 			};
 		}

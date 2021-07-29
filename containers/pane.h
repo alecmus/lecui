@@ -20,7 +20,7 @@ namespace liblec {
 	namespace lecui {
 		namespace containers {
 			/// <summary>Pane container specifications.</summary>
-			class lecui_api pane_specs : public widgets::specs {
+			class lecui_api pane_specs : public widgets::widget {
 				float _border = .5f;
 				color _color_border;
 				float _corner_radius_x = 5.f;
@@ -29,7 +29,7 @@ namespace liblec {
 			public:
 				pane_specs() {}
 
-				// generic specs
+				// generic widget
 
 				std::string& text() override;
 				pane_specs& text(const std::string& text);
@@ -67,7 +67,7 @@ namespace liblec {
 				color& color_disabled() override;
 				pane_specs& color_disabled(const color& color_disabled);
 
-				// widget specific specs
+				// widget specific widget
 
 				/// <summary>Get or set the thickness of the border.</summary>
 				/// <returns>A reference to the border thickness, in pixels.</returns>
@@ -135,7 +135,7 @@ namespace liblec {
 
 				/// <summary>Get the pane specifications.</summary>
 				/// <returns>A reference to the pane specifications.</returns>
-				/// <remarks>Alternative to specs() for more terse code.</remarks>
+				/// <remarks>Alternative to widget() for more terse code.</remarks>
 				[[nodiscard]]
 				pane_specs& operator()();
 
@@ -181,7 +181,7 @@ namespace liblec {
 	}
 }
 
-/// Helper for getting pane specs. Builder documentation applies.
+/// Helper for getting pane widget. Builder documentation applies.
 #define get_pane_specs(path) liblec::lecui::containers::pane_builder::specs(*this, path)
 
 /// Helper for getting a pane's page. Builder documentation applies.

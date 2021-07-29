@@ -331,10 +331,10 @@ namespace liblec {
 			}
 		}
 
-		widgets::text_field_specs&
+		widgets::text_field&
 			widgets::text_field_impl::specs() { return _specs; }
 
-		widgets::text_field_specs&
+		widgets::text_field&
 			widgets::text_field_impl::operator()() { return specs(); }
 
 		void widgets::text_field_impl::insert_character(const char& c) {

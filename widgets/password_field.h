@@ -19,31 +19,29 @@
 namespace liblec {
 	namespace lecui {
 		namespace widgets {
-			/// <summary>Password field widget builder.</summary>
-			/// <remarks>Recommended default size is the same as the text_field widget.</remarks>
-			class lecui_api password_field_builder : public text_field_builder {
+			class lecui_api password_field : public text_field {
 			public:
-				/// <summary>Password field builder constructor.</summary>
-				/// <param name="page">The container to place the widget in.</param>
-				/// <remarks>This constructs the widget with an internally generated random
-				/// alias.</remarks>
-				password_field_builder(containers::page& page);
-
-				/// <summary>Password field builder constructor.</summary>
+				/// <summary>Add a password field to a container.</summary>
 				/// <param name="page">The container to place the widget in.</param>
 				/// <param name="alias">The in-page unique alias, e.g. "password".</param>
-				password_field_builder(containers::page& page, const std::string& alias);
-				~password_field_builder();
+				/// <returns>A reference to the widget specifications.</returns>
+				/// <remarks>If an empty alias is given an internally generated random
+				/// alias will be assigned.</remarks>
+				[[nodiscard]]
+				static text_field& add(containers::page& page, const std::string& alias = std::string());
 
-			private:
-				// Default constructor and copying an object of this class are not allowed
-				password_field_builder() = delete;
-				password_field_builder(const password_field_builder&) = delete;
-				password_field_builder& operator=(const password_field_builder&) = delete;
+				/// <summary>Get the specifications of a password field.</summary>
+				/// <param name="fm"></param>
+				/// <param name="path">The full path to the widget, e.g. "login_page/credentials_pane/password".</param>
+				/// <returns>A reference to the widget specifications.</returns>
+				/// <remarks>Throws on failure. For faster coding and more readable code consider
+			/// calling this static method through the helper macro provided.</remarks>
+				[[nodiscard]]
+				static text_field& get(form& fm, const std::string& path);
 			};
 		}
 	}
 }
 
-/// Helper for getting password field specs. Builder documentation applies.
-#define get_password_field_specs(path) liblec::lecui::widgets::password_field_builder::specs(*this, path)
+/// Helper for getting password field widget. Builder documentation applies.
+#define get_password_field(path) liblec::lecui::widgets::password_field::get(*this, path)

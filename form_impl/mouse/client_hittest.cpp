@@ -55,7 +55,7 @@ namespace liblec {
 							if (widget.second.type() ==
 								widgets::widget_type::tab_pane) {
 								// get this tab pane
-								auto& tab_pane = page._d_page.get_tab_pane(widget.first);
+								auto& tab_pane = page._d_page.get_tab_pane_impl(widget.first);
 
 								for (auto& tab : tab_pane._p_tabs)
 									hittest_hscrollbar(tab.first, tab_pane._current_tab, tab.second,
@@ -65,7 +65,7 @@ namespace liblec {
 								if (widget.second.type() ==
 									widgets::widget_type::pane) {
 									// get this pane
-									auto& pane = page._d_page.get_pane(widget.first);
+									auto& pane = page._d_page.get_pane_impl(widget.first);
 
 									for (auto& page : pane._p_panes)
 										hittest_hscrollbar(page.first, pane._current_pane, page.second,
@@ -103,7 +103,7 @@ namespace liblec {
 							if (widget.second.type() ==
 								widgets::widget_type::tab_pane) {
 								// get this tab pane
-								auto& tab_pane = page._d_page.get_tab_pane(widget.first);
+								auto& tab_pane = page._d_page.get_tab_pane_impl(widget.first);
 
 								for (auto& tab : tab_pane._p_tabs)
 									hittest_vscrollbar(tab.first, tab_pane._current_tab, tab.second,
@@ -113,7 +113,7 @@ namespace liblec {
 								if (widget.second.type() ==
 									widgets::widget_type::pane) {
 									// get this pane
-									auto& pane = page._d_page.get_pane(widget.first);
+									auto& pane = page._d_page.get_pane_impl(widget.first);
 
 									for (auto& page : pane._p_panes)
 										hittest_vscrollbar(page.first, pane._current_pane, page.second,
@@ -164,7 +164,7 @@ namespace liblec {
 						if (widget.second.type() ==
 							widgets::widget_type::tab_pane) {
 							// get this tab pane
-							auto& tab_pane = page._d_page.get_tab_pane(widget.first);
+							auto& tab_pane = page._d_page.get_tab_pane_impl(widget.first);
 
 							auto page_iterator = tab_pane._p_tabs.find(tab_pane._current_tab);
 
@@ -176,7 +176,7 @@ namespace liblec {
 							if (widget.second.type() ==
 								widgets::widget_type::pane) {
 								// get this pane
-								auto& pane = page._d_page.get_pane(widget.first);
+								auto& pane = page._d_page.get_pane_impl(widget.first);
 
 								auto page_iterator = pane._p_panes.find(pane._current_pane);
 

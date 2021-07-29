@@ -87,7 +87,7 @@ namespace liblec {
 
 				try {
 					if (_rectangle_specs.has_value()) {
-						// update rectangle specs
+						// update rectangle widget
 						_rectangle_specs.value().get()
 							.corner_radius_x(_specs.corner_radius_x())
 							.corner_radius_y(_specs.corner_radius_y())
@@ -98,14 +98,14 @@ namespace liblec {
 					}
 
 					if (_image_view_specs.has_value()) {
-						// update image view specs
+						// update image view widget
 						_image_view_specs.value().get()
 							.png_resource(_specs.png_resource())
 							.file(_specs.file());
 					}
 
 					if (_label_specs.has_value()) {
-						// update text specs
+						// update text widget
 						_label_specs.value().get()
 							.text(_specs.text())
 							.color_text(_specs.color_text())
@@ -114,7 +114,7 @@ namespace liblec {
 					}
 
 					if (_description_specs.has_value()) {
-						// update description specs
+						// update description widget
 						_description_specs.value().get()
 							.text(_specs.description())
 							.color_text(_specs.color_text_description())
@@ -146,18 +146,18 @@ namespace liblec {
 			return _rect;
 		}
 
-		widgets::icon_specs&
+		widgets::icon&
 			widgets::icon_impl::specs() { return _specs; }
 
-		widgets::icon_specs&
+		widgets::icon&
 			widgets::icon_impl::operator()() { return specs(); }
 
-		void widgets::icon_impl::set_icon_specs(rectangle_specs& rectangle,
-			image_view_specs& image_view,
-			label_specs& label, label_specs& description) {
+		void widgets::icon_impl::set_icon_specs(rectangle& rectangle,
+			image_view& image_view,
+			label& text, label& description) {
 			_rectangle_specs = rectangle;
 			_image_view_specs = image_view;
-			_label_specs = label;
+			_label_specs = text;
 			_description_specs = description;
 		}
 	}

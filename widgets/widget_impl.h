@@ -20,7 +20,7 @@
 namespace liblec {
 	namespace lecui {
 		namespace widgets {
-			class scrollbar_specs : public specs {
+			class scrollbar_specs : public widget {
 				color _color_scrollbar_border = { 180, 180, 180, 255 };
 				color _color_hot_pressed = { 221, 221, 221, 255 };
 				color _color_background = { 0, 0, 0, 0 };
@@ -31,7 +31,7 @@ namespace liblec {
 					_color_hot = { 231, 231, 231, 255 };
 				}
 
-				// generic specs
+				// generic widget
 
 				std::string& text() override { return _text; }
 				scrollbar_specs& text(const std::string& text) {
@@ -105,7 +105,7 @@ namespace liblec {
 					return *this;
 				}
 
-				// widget specific specs
+				// widget specific widget
 
 				color& color_scrollbar_border() { return _color_scrollbar_border; }
 				scrollbar_specs& color_scrollbar_border(const color& color_scrollbar_border) {
@@ -158,15 +158,15 @@ namespace liblec {
 				icon,
 			};
 
-			static HCURSOR get_cursor(widgets::specs::cursor_type type) {
+			static HCURSOR get_cursor(widgets::widget::cursor_type type) {
 				switch (type) {
-				case liblec::lecui::widgets::specs::cursor_type::arrow:
+				case liblec::lecui::widgets::widget::cursor_type::arrow:
 					return nullptr;
 					break;
-				case liblec::lecui::widgets::specs::cursor_type::hand:
+				case liblec::lecui::widgets::widget::cursor_type::hand:
 					return LoadCursor(nullptr, IDC_HAND);
 					break;
-				case liblec::lecui::widgets::specs::cursor_type::caret:
+				case liblec::lecui::widgets::widget::cursor_type::caret:
 					return LoadCursor(nullptr, IDC_IBEAM);
 					break;
 				default:
@@ -176,7 +176,7 @@ namespace liblec {
 			}
 
 			class widget_impl {
-				virtual widgets::specs& generic_specs() = 0;
+				virtual widgets::widget& generic_specs() = 0;
 
 			public:
 				widget_impl() = delete;

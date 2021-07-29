@@ -21,7 +21,7 @@ namespace liblec {
 		namespace widgets {
 			/// <summary>Progress indicator widget specifications.</summary>
 				/// <remarks>Recommended size with defaults is 50x50px</remarks>
-			class lecui_api progress_indicator_specs : public specs {
+			class lecui_api progress_indicator : public widget {
 				color _color_empty;
 				float _line_thickness_empty = .5f;
 				float _line_thickness_fill = 1.5f;
@@ -29,52 +29,52 @@ namespace liblec {
 				int _precision = 0;
 
 			public:
-				progress_indicator_specs() {
+				progress_indicator() {
 					_rect.size({ 50.f, 50.f });
 				}
 
-				bool operator==(const progress_indicator_specs&);
-				bool operator!=(const progress_indicator_specs&);
+				bool operator==(const progress_indicator&);
+				bool operator!=(const progress_indicator&);
 
-				// generic specs
+				// generic widget
 
 				std::string& text() override;
-				progress_indicator_specs& text(const std::string& text);
+				progress_indicator& text(const std::string& text);
 
 				std::string& tooltip() override;
-				progress_indicator_specs& tooltip(const std::string& tooltip);
+				progress_indicator& tooltip(const std::string& tooltip);
 
 				lecui::rect& rect() override;
-				progress_indicator_specs& rect(const lecui::rect& rect);
+				progress_indicator& rect(const lecui::rect& rect);
 
 				resize_params& on_resize() override;
-				progress_indicator_specs& on_resize(const resize_params& on_resize);
+				progress_indicator& on_resize(const resize_params& on_resize);
 
 				cursor_type& cursor() override;
-				progress_indicator_specs& cursor(const cursor_type cursor);
+				progress_indicator& cursor(const cursor_type cursor);
 
 				std::string& font() override;
-				progress_indicator_specs& font(const std::string& font);
+				progress_indicator& font(const std::string& font);
 
 				float& font_size() override;
-				progress_indicator_specs& font_size(const float& font_size);
+				progress_indicator& font_size(const float& font_size);
 
 				color& color_text() override;
-				progress_indicator_specs& color_text(const color& color_text);
+				progress_indicator& color_text(const color& color_text);
 
 				color& color_fill() override;
-				progress_indicator_specs& color_fill(const color& color_fill);
+				progress_indicator& color_fill(const color& color_fill);
 
 				color& color_hot() override;
-				progress_indicator_specs& color_hot(const color& color_hot);
+				progress_indicator& color_hot(const color& color_hot);
 
 				color& color_selected() override;
-				progress_indicator_specs& color_selected(const color& color_selected);
+				progress_indicator& color_selected(const color& color_selected);
 
 				color& color_disabled() override;
-				progress_indicator_specs& color_disabled(const color& color_disabled);
+				progress_indicator& color_disabled(const color& color_disabled);
 
-				// widget specific specs
+				// widget specific widget
 
 				/// <summary>Get or set the color to use for the empty portion of the indicator.</summary>
 				/// <returns>A reference to the color.</returns>
@@ -83,7 +83,7 @@ namespace liblec {
 				/// <summary>Set the color to use for the empty portion of the indicator</summary>
 				/// <param name="color_empty">The color.</param>
 				/// <returns>A reference to the modified object.</returns>
-				progress_indicator_specs& color_empty(const color& color_empty);
+				progress_indicator& color_empty(const color& color_empty);
 
 				/// <summary>Get or set the line thickness of the empty portion of the indicator.</summary>
 				/// <returns>A reference to the line's thickness, in pixels.</returns>
@@ -92,7 +92,7 @@ namespace liblec {
 				/// <summary>Set the line thickness of the empty portion of the indicator.</summary>
 				/// <param name="line_thickness_empty">The line's thickness, in pixels.</param>
 				/// <returns>A reference to the modified object.</returns>
-				progress_indicator_specs& line_thickness_empty(const float& line_thickness_empty);
+				progress_indicator& line_thickness_empty(const float& line_thickness_empty);
 
 				/// <summary>Get or set the line thickness of the filled portion of the indicator.</summary>
 				/// <returns>A reference to the line's thickness, in pixels.</returns>
@@ -101,7 +101,7 @@ namespace liblec {
 				/// <summary>Set the line thickness of the filled portion of the indicator.</summary>
 				/// <param name="line_thickness_fill">The line's thickness, in pixels.</param>
 				/// <returns>A reference to the modified object.</returns>
-				progress_indicator_specs& line_thickness_fill(const float& line_thickness_fill);
+				progress_indicator& line_thickness_fill(const float& line_thickness_fill);
 
 				/// <summary>Get or set the percentage of the progress indicator (0.f - 100.f).</summary>
 				/// <returns>A reference to the percentage.</returns>
@@ -110,7 +110,7 @@ namespace liblec {
 				/// <summary>Set the percentage of the progress indicator (0.f - 100.f).</summary>
 				/// <param name="percentage">The percentage.</param>
 				/// <returns>A reference to the modified object.</returns>
-				progress_indicator_specs& percentage(const float& percentage);
+				progress_indicator& percentage(const float& percentage);
 
 				/// <summary>Get or set the precision to use for displaying the percentage.</summary>
 				/// <returns>A reference to the precision.</returns>
@@ -119,57 +119,30 @@ namespace liblec {
 				/// <summary>Set the precision to use for displaying the percentage.</summary>
 				/// <param name="precision">The percentage.</param>
 				/// <returns>A reference to the modified object.</returns>
-				progress_indicator_specs& precision(const int& precision);
-			};
+				progress_indicator& precision(const int& precision);
 
-			/// <summary>Progress indicator widget builder.</summary>
-			class lecui_api progress_indicator_builder {
 			public:
-				/// <summary>Progress indicator builder constructor.</summary>
-				/// <param name="page">The container to place the widget in.</param>
-				/// <remarks>This constructs the widget with an internally generated random
-				/// alias.</remarks>
-				progress_indicator_builder(containers::page& page);
-
-				/// <summary>Progress indicator builder constructor.</summary>
+				/// <summary>Add a progress indicator to a container.</summary>
 				/// <param name="page">The container to place the widget in.</param>
 				/// <param name="alias">The in-page unique alias, e.g. "file_transfer".</param>
-				progress_indicator_builder(containers::page& page, const std::string& alias);
-				~progress_indicator_builder();
-
-				/// <summary>Get the progress indicator specifications.</summary>
-				/// <returns>A reference to the progress indicator specifications.</returns>
+				/// <returns>A reference to the widget specifications.</returns>
+				/// <remarks>If an empty alias is given an internally generated random
+				/// alias will be assigned.</remarks>
 				[[nodiscard]]
-				progress_indicator_specs& specs();
-
-				/// <summary>Get the progress indicator specifications.</summary>
-				/// <returns>A reference to the progress indicator specifications.</returns>
-				/// <remarks>Alternative to specs() for more terse code.</remarks>
-				[[nodiscard]]
-				progress_indicator_specs& operator()();
+				static progress_indicator& add(containers::page& page, const std::string& alias = std::string());
 
 				/// <summary>Get the specifications of a progress indicator.</summary>
-				/// <param name="fm">The form containing the progress indicator.</param>
-				/// <param name="path">The full path to the widget, e.g.
-				/// "sample_page/files/file_transfer".</param>
-				/// <returns>A reference to the progress indicator specifications.</returns>
+				/// <param name="fm"></param>
+				/// <param name="path">The full path to the widget, e.g. "sample_page/files/file_transfer".</param>
+				/// <returns>A reference to the widget specifications.</returns>
 				/// <remarks>Throws on failure. For faster coding and more readable code consider
 				/// calling this static method through the helper macro provided.</remarks>
 				[[nodiscard]]
-				static progress_indicator_specs& specs(form& fm, const std::string& path);
-
-			private:
-				class impl;
-				impl& _d;
-
-				// Default constructor and copying an object of this class are not allowed
-				progress_indicator_builder() = delete;
-				progress_indicator_builder(const progress_indicator_builder&) = delete;
-				progress_indicator_builder& operator=(const progress_indicator_builder&) = delete;
+				static progress_indicator& get(form& fm, const std::string& path);
 			};
 		}
 	}
 }
 
-/// Helper for getting progress indicator specs. Builder documentation applies.
-#define get_progress_indicator_specs(path) liblec::lecui::widgets::progress_indicator_builder::specs(*this, path)
+/// Helper for getting progress indicator widget. Builder documentation applies.
+#define get_progress_indicator(path) liblec::lecui::widgets::progress_indicator::get(*this, path)

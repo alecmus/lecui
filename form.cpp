@@ -284,7 +284,7 @@ namespace liblec {
 				const size _max_size = { 420.f, 400.f };
 				const std::string _question;
 				const float _margin = 10.f;
-				const size _button_size = widgets::button_specs().rect().size();
+				const size _button_size = widgets::button().rect().size();
 				bool& _user_agreed;
 
 			public:
@@ -301,7 +301,7 @@ namespace liblec {
 					D2D1_RECT_F rect = D2D1::RectF(0.f, 0.f, _max_size.get_width(), _max_size.get_height());
 
 					// measure the question
-					widgets::label_specs specs_lbl;
+					widgets::label specs_lbl;
 					rect = widgets::measure_label(_d._p_directwrite_factory, question,
 						specs_lbl.font(), specs_lbl.font_size(), false, false, rect);
 
@@ -321,8 +321,8 @@ namespace liblec {
 					page_manager page_man(*this);
 					auto& home_page = page_man.add("home");
 
-					widgets::label_builder label(home_page);
-					label()
+					auto& label = widgets::label::add(home_page);
+					label
 						.text(_question).multiline(true)
 						.rect(rect()
 							.left(_margin)
@@ -331,27 +331,27 @@ namespace liblec {
 							.bottom(home_page.size().get_height() - _margin - _button_size.get_height() - _margin));
 
 					// add yes and no buttons, in that order for tab navigation
-					widgets::button_builder button_yes(home_page, "button_yes");
-					widgets::button_builder button_no(home_page, "button_no");
+					auto& button_yes = widgets::button::add(home_page, "button_yes");
+					auto& button_no = widgets::button::add(home_page, "button_no");
 
 					// position the no button on the bottom right
-					button_no().text("No")
+					button_no.text("No")
 						.rect().place(rect()
 							.left(_margin)
 							.right(home_page.size().get_width() - _margin)
 							.top(_margin)
 							.bottom(home_page.size().get_height() - _margin),
 							100.f, 100.f);
-					button_no().events().action = [&]() {
+					button_no.events().action = [&]() {
 						_user_agreed = false;
 						close();
 					};
 
 					// snap the yes button to the no button
-					button_yes()
+					button_yes
 						.text("Yes")
-						.rect().snap_to(button_no().rect(), lecui::rect::snap_type::left, _margin);
-					button_yes().events().action = [&]() {
+						.rect().snap_to(button_no.rect(), lecui::rect::snap_type::left, _margin);
+					button_yes.events().action = [&]() {
 						_user_agreed = true;
 						close();
 					};
@@ -379,7 +379,7 @@ namespace liblec {
 					const size _max_size = { 420.f, 400.f };
 					const std::string _message;
 					const float _margin = 10.f;
-					const size _button_size = widgets::button_specs().rect().size();
+					const size _button_size = widgets::button().rect().size();
 
 				public:
 					message_form(const std::string& title, const std::string& message, form& parent) :
@@ -394,7 +394,7 @@ namespace liblec {
 						D2D1_RECT_F rect = D2D1::RectF(0.f, 0.f, _max_size.get_width(), _max_size.get_height());
 
 						// measure the message
-						widgets::label_specs specs_lbl;
+						widgets::label specs_lbl;
 						rect = widgets::measure_label(_d._p_directwrite_factory, message,
 							specs_lbl.font(), specs_lbl.font_size(), false, false, rect);
 
@@ -414,8 +414,8 @@ namespace liblec {
 						page_manager page_man(*this);
 						auto& home_page = page_man.add("home");
 
-						widgets::label_builder label(home_page);
-						label()
+						auto& label = widgets::label::add(home_page);
+						label
 							.text(_message).multiline(true)
 							.rect(rect()
 								.left(_margin)
@@ -424,8 +424,8 @@ namespace liblec {
 								.bottom(home_page.size().get_height() - _margin - _button_size.get_height() - _margin));
 
 						// add the ok button on the bottom right
-						widgets::button_builder button(home_page, "button_ok");
-						button()
+						auto& button = widgets::button::add(home_page, "button_ok");
+						button
 							.text("Ok")
 							.rect().place(rect()
 								.left(_margin)
@@ -433,7 +433,7 @@ namespace liblec {
 								.top(_margin)
 								.bottom(home_page.size().get_height() - _margin),
 								100.f, 100.f);
-						button().events().action = [&]() { close(); };
+						button.events().action = [&]() { close(); };
 
 						page_man.show("home");
 						widget_manager widget_man(*this);

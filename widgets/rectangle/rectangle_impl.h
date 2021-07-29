@@ -21,7 +21,7 @@ namespace liblec {
 		namespace widgets {
 			class rectangle_impl : public widget_impl {
 				/// private virtual function overrides
-				widgets::specs& generic_specs() override {
+				widgets::widget& generic_specs() override {
 					return _specs;
 				}
 
@@ -50,8 +50,8 @@ namespace liblec {
 				D2D1_POINT_2F get_scrollbar_offset();
 
 				/// widget specific methods
-				widgets::rectangle_specs& specs();
-				widgets::rectangle_specs& operator()();
+				widgets::rectangle& specs();
+				widgets::rectangle& operator()();
 
 			private:
 				// Default constructor and copying an object of this class are not allowed
@@ -60,7 +60,7 @@ namespace liblec {
 				rectangle_impl& operator=(const rectangle_impl&) = delete;
 
 				/// Private variables
-				widgets::rectangle_specs _specs, _specs_old;
+				widgets::rectangle _specs, _specs_old;
 				ID2D1SolidColorBrush* _p_brush_fill;
 				ID2D1SolidColorBrush* _p_brush_border;
 				ID2D1SolidColorBrush* _p_brush_border_hot;

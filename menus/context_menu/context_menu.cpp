@@ -15,6 +15,12 @@
 #include "../../widgets/label.h"
 #include "../../widgets/rectangle.h"
 #include "../../widgets/line.h"
+
+#ifdef get_line
+// prevent conflict with msxml.h
+#undef get_line
+#endif
+
 #include "../../widgets/image_view.h"
 #include "../../form_common.h"
 
@@ -235,79 +241,79 @@ namespace liblec {
 
                     if (!item.label.empty()) {
                         // background
-                        lecui::widgets::rectangle_builder rect(home_page, "");
-                        rect().rect(_rects[index]);
-                        rect().rect()
+                        auto& rect = lecui::widgets::rectangle::add(home_page);
+                        rect.rect(_rects[index]);
+                        rect.rect()
                             .left(_margin / 3.f)
                             .right(home_page.size().get_width() - _margin / 3.f);
-                        rect().color_fill().alpha(0);
-                        rect().color_border().alpha(0);
-                        rect().color_border_hot().alpha(0);
-                        rect().color_hot().alpha(50);
-                        rect().events().action = [&]() {
+                        rect.color_fill().alpha(0);
+                        rect.color_border().alpha(0);
+                        rect.color_border_hot().alpha(0);
+                        rect.color_hot().alpha(50);
+                        rect.events().action = [&]() {
                             _acted_on = item.label;
                             close();
                         };
 
                         if (_images) {
                             // image
-                            lecui::widgets::image_view_builder image(home_page, "");
-                            image()
+                            auto& image = lecui::widgets::image_view::add(home_page);
+                            image
                                 .rect(_rects[index])
-                                .rect().width(image().rect().height());    // make into a square
-                            image().file(item.image_file).quality(_menu_specs.quality);
-                            left_most = image().rect().right() + (_margin / 2.f);
+                                .rect().width(image.rect().height());    // make into a square
+                            image.file(item.image_file).quality(_menu_specs.quality);
+                            left_most = image.rect().right() + (_margin / 2.f);
 
                             // padding
-                            image().rect().left() += (_margin / 1.5f);
-                            image().rect().top() += (_margin / 1.5f);
-                            image().rect().right() -= (_margin / 1.5f);
-                            image().rect().bottom() -= (_margin / 1.5f);
+                            image.rect().left() += (_margin / 1.5f);
+                            image.rect().top() += (_margin / 1.5f);
+                            image.rect().right() -= (_margin / 1.5f);
+                            image.rect().bottom() -= (_margin / 1.5f);
                         }
 
                         // label
-                        lecui::widgets::label_builder label(home_page, "");
-                        label().text(item.label).font(item.font).font_size(item.font_size);
+                        auto& label = lecui::widgets::label::add(home_page);
+                        label.text(item.label).font(item.font).font_size(item.font_size);
 
                         // enforce font size limits
-                        label()
-                            .font_size(largest(label().font_size(), _min_font_size))
-                            .font_size(smallest(label().font_size(), _max_font_size))
+                        label
+                            .font_size(largest(label.font_size(), _min_font_size))
+                            .font_size(smallest(label.font_size(), _max_font_size))
                             .center_v(true)
                             .rect(_rects[index])
                             .rect().left(left_most);
 
                         if (!item.children.empty()) {
                             // draw expansion arrow
-                            lecui::widgets::image_view_builder image(home_page, "");
-                            image()
+                            auto& image = lecui::widgets::image_view::add(home_page);
+                            image
                                 .file("images\\menu_item_next.png")
                                 .rect(_rects[index])
-                                .rect().right(home_page.size().get_width()).left(image().rect().right() - (_next_arrow_width));
+                                .rect().right(home_page.size().get_width()).left(image.rect().right() - (_next_arrow_width));
 
                             // padding
-                            image().rect().left() += (_margin / 1.5f);
-                            image().rect().top() += (_margin / 1.5f);
-                            image().rect().right() -= (_margin / 1.5f);
-                            image().rect().bottom() -= (_margin / 1.5f);
+                            image.rect().left() += (_margin / 1.5f);
+                            image.rect().top() += (_margin / 1.5f);
+                            image.rect().right() -= (_margin / 1.5f);
+                            image.rect().bottom() -= (_margin / 1.5f);
 
-                            rect().events().mouse_enter = [&]() {
+                            rect.events().mouse_enter = [&]() {
                                 make_child();
                             };
-                            rect().events().mouse_leave = [&]() {
+                            rect.events().mouse_leave = [&]() {
                                 destroy_child();
                             };
                         }
                     }
                     else {
                         // line
-                        lecui::widgets::line_builder line(home_page, "");
-                        line().color_fill().alpha() /= 2;
-                        line().thickness() /= 2.f;
-                        line().rect(_rects[index]);
-                        line().rect().left(_margin / 3.f).right(home_page.size().get_width() - _margin / 3.f);
-                        line().points({ { 0.f, line().rect().height() / 2.f },
-                            { line().rect().width(), line().rect().height() / 2.f } });
+                        auto& line = lecui::widgets::line::add(home_page);
+                        line.color_fill().alpha() /= 2;
+                        line.thickness() /= 2.f;
+                        line.rect(_rects[index]);
+                        line.rect().left(_margin / 3.f).right(home_page.size().get_width() - _margin / 3.f);
+                        line.points({ { 0.f, line.rect().height() / 2.f },
+                            { line.rect().width(), line.rect().height() / 2.f } });
                     }
 
                     index++;

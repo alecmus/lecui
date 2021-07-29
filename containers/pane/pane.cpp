@@ -55,14 +55,14 @@ namespace liblec {
 					// check form pages
 					auto& page = fm._d._p_pages.at(page_alias);
 					auto results = fm._d.find_widget(page, path_remaining);
-					return results.page._d_page.get_pane(results.widget.alias()).specs();
+					return results.page._d_page.get_pane_impl(results.widget.alias()).specs();
 				}
 				catch (const std::exception&) {}
 				try {
 					// check status panes
 					auto& page = fm._d._p_status_panes.at(page_alias);
 					auto results = fm._d.find_widget(page, path_remaining);
-					return results.page._d_page.get_pane(results.widget.alias()).specs();
+					return results.page._d_page.get_pane_impl(results.widget.alias()).specs();
 				}
 				catch (const std::exception&) {}
 			}
@@ -71,7 +71,7 @@ namespace liblec {
 		}
 
 		containers::page& containers::pane_builder::get() {
-			auto& _pane = _d._page._d_page.get_pane(_d._specs.alias());
+			auto& _pane = _d._page._d_page.get_pane_impl(_d._specs.alias());
 
 			const std::string pane_name = "pane";
 
@@ -242,7 +242,7 @@ namespace liblec {
 			return *this;
 		}
 
-		widgets::specs::cursor_type& containers::pane_specs::cursor() { return _cursor; }
+		widgets::widget::cursor_type& containers::pane_specs::cursor() { return _cursor; }
 
 		containers::pane_specs& containers::pane_specs::cursor(const cursor_type cursor) {
 			_cursor = cursor;

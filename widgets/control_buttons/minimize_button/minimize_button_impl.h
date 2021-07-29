@@ -15,9 +15,9 @@
 namespace liblec {
 	namespace lecui {
 		namespace widgets {
-			class minimize_button_specs : public specs {
+			class minimize_button_specs : public widget {
 			public:
-				// generic specs
+				// generic widget
 
 				std::string& text() override { return _text; }
 				minimize_button_specs& text(const std::string& text) {
@@ -91,13 +91,13 @@ namespace liblec {
 					return *this;
 				}
 
-				// widget specific specs
+				// widget specific widget
 
 			};
 
 			class minimize_button_impl : public widget_impl {
 				/// private virtual function overrides
-				widgets::specs& generic_specs() override {
+				widgets::widget& generic_specs() override {
 					return _specs;
 				}
 

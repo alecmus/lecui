@@ -212,10 +212,10 @@ namespace liblec {
 			return _rect;
 		}
 
-		widgets::progress_indicator_specs&
+		widgets::progress_indicator&
 			widgets::progress_indicator_impl::specs() { return _specs; }
 
-		widgets::progress_indicator_specs&
+		widgets::progress_indicator&
 			widgets::progress_indicator_impl::operator()() { return specs(); }
 	}
 }
