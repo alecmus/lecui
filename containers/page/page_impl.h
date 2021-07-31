@@ -70,7 +70,7 @@ namespace liblec {
 
 			containers::tab_pane_specs&
 				add_tab_pane(std::string alias, const float& content_margin);
-			containers::pane_specs&
+			containers::pane&
 				add_pane(std::string alias, const float& content_margin);
 
 			widgets::rectangle&
@@ -179,6 +179,8 @@ namespace liblec {
 			bool on_mousewheel(float units);
 			void scroll(float pixels);
 			void force_scrollbar_set();
+
+			float _content_margin = 0.f;
 
 		private:
 			void check_alias(std::string& alias);

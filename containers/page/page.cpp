@@ -54,10 +54,13 @@ namespace liblec {
 			// specify iwic imaging factory (used internally for image rendering)
 			page_impl.iwic_factory(_d._fm._d._p_iwic_factory);
 
+			// get page content margin from form
+			page_impl._content_margin = _d._fm._d._content_margin;
+
 			// set page size
 			page_impl.size(_d._fm._d._size);
-			page_impl.width(page_impl.width() - (2.f * _d._fm._d._content_margin));
-			page_impl.height(page_impl.height() - (2.f * _d._fm._d._content_margin + _d._fm._d._caption_bar_height));
+			page_impl.width(page_impl.width() - (2.f * page_impl._content_margin));
+			page_impl.height(page_impl.height() - (2.f * page_impl._content_margin + _d._fm._d._caption_bar_height));
 
 			// get status pane sizes
 			const auto rect_status_bottom = _d._fm._d.get_status_size(containers::status_pane_specs::location::bottom);
@@ -72,7 +75,7 @@ namespace liblec {
 			page_impl.width(page_impl.width() - rect_status_right.get_width());
 
 			const float thickness = 10.f;
-			const float margin = _d._fm._d._content_margin;
+			const float margin = page_impl._content_margin;
 
 			// initialize the page's horizontal scroll bar
 			{
@@ -81,8 +84,8 @@ namespace liblec {
 					.width_rate(100.f).y_rate(100.f);
 
 				_specs.rect()
-					.left(margin + thickness - _d._fm._d._content_margin)
-					.right(page_impl.size().get_width() - (margin + thickness) - _d._fm._d._content_margin)
+					.left(margin + thickness - page_impl._content_margin)
+					.right(page_impl.size().get_width() - (margin + thickness) - page_impl._content_margin)
 					.bottom(page_impl.size().get_height() - margin)
 					.top(_specs.rect().bottom() - thickness);
 
@@ -100,9 +103,9 @@ namespace liblec {
 					.height_rate(100.f).x_rate(100.f);
 
 				_specs.rect()
-					.top(margin + thickness - _d._fm._d._content_margin)
+					.top(margin + thickness - page_impl._content_margin)
 					.bottom(page_impl.size().get_height() - (margin + thickness))
-					.right(page_impl.size().get_width() - margin - _d._fm._d._content_margin)
+					.right(page_impl.size().get_width() - margin - page_impl._content_margin)
 					.left(_specs.rect().right() - thickness);
 
 				_specs

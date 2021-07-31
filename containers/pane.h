@@ -106,83 +106,48 @@ namespace liblec {
 				pane_specs& corner_radius_y(const float& corner_radius_y);
 			};
 
-			/// <summary>Pane container builder.</summary>
+			/// <summary>Pane container.</summary>
 			/// <remarks>Any widget can be added to this container. Consequently, recursion is
 			/// fully supported, allowing panes within panes, to virtually any depth level that
 			/// the memory of the computer the app is running on can permit.</remarks>
-			class lecui_api pane_builder {
+			class lecui_api pane :
+				public pane_specs, public containers::page {
 			public:
-				/// <summary>Pane builder constructor.</summary>
-				/// <param name="page">A reference to the container to place the pane in.</param>
-				/// <param name="content_margin">The margin to use inside the pane.</param>
-				/// <remarks>This constructs the container with an internally generated random
-				/// alias.</remarks>
-				pane_builder(containers::page& page, const float& content_margin = 10.f);
+				/// <summary>Pane constructor.</summary>
+				/// <param name="fm">The form the container is in.</param>
+				/// <param name="alias">The in-page unique alias of the pane, e.g. "settings_pane".</param>
+				pane(form& fm, const std::string& alias);
 
-				/// <summary>Pane builder constructor.</summary>
+				/// <summary>Get the size of the pane's page.</summary>
+				/// <returns>The size, in pixels.</returns>
+				/// <remarks>The size is automatically determined by the library. It is important
+				/// to note that any widgets added to a page, and any other container for that
+				/// matter, only see the dimensions and coordinates of that container not those
+				/// of the form or another container higher up the hierarchy. Dimensions and
+				/// coordinates are local to a container.</remarks>
+				[[nodiscard]] const lecui::size size() override;
+
+				/// <summary>Make a pane.</summary>
 				/// <param name="page">A reference to the container to place the pane in.</param>
 				/// <param name="alias">The in-page unique alias, e.g. "settings_pane".</param>
-				/// <param name="content_margin">The margin to use inside the pane.</param>
-				/// <remarks>Ensure that the alias is unique within the page. Reusing an alias
-				/// in a pane leads to undefined behavior.</remarks>
-				pane_builder(containers::page& page, const std::string& alias, const float& content_margin = 10.f);
-				~pane_builder();
-
-				/// <summary>Get the pane specifications.</summary>
 				/// <returns>A reference to the pane specifications.</returns>
+				/// <remarks>If an empty alias is given an internally generated random
+				/// alias will be assigned.</remarks>
 				[[nodiscard]]
-				pane_specs& specs();
-
-				/// <summary>Get the pane specifications.</summary>
-				/// <returns>A reference to the pane specifications.</returns>
-				/// <remarks>Alternative to widget() for more terse code.</remarks>
-				[[nodiscard]]
-				pane_specs& operator()();
+				static pane& add(containers::page& page, const std::string& alias = std::string(), const float& content_margin = 10.f);
 
 				/// <summary>Get the specifications of a pane.</summary>
-				/// <param name="fm">The form the container is in.</param>
-				/// <param name="path">The full path to the pane, e.g.
-				/// "sample_page/settings_pane".</param>
+				/// <param name="fm"></param>
+				/// <param name="path">The full path to the pane, e.g. "sample_page/settings_pane".</param>
 				/// <returns>A reference to the pane specifications.</returns>
 				/// <remarks>Throws on failure. For faster coding and more readable code consider
-				/// calling this static method through the helper macro provided (get_pane_specs).</remarks>
+				/// calling this static method through the helper macro provided.</remarks>
 				[[nodiscard]]
-				static pane_specs& specs(form& fm, const std::string& path);
-
-				/// <summary>Get the pane container page.</summary>
-				/// <returns>A reference to the pane container page.</returns>
-				/// <remarks>Note that this is a container of type 'page', hence anything that can
-				/// be added to a regular page can be added here as well. The page comes fully
-				/// featured with scroll bars when widgets exceed the dimensions of the pane, just
-				/// like a regular page.</remarks>
-				[[nodiscard]]
-				containers::page& get();
-
-				/// <summary>Get the pane container page of an existing pane.</summary>
-				/// <param name="fm">The form the container is in.</param>
-				/// <param name="path">The full path to the pane, e.g.
-				/// "sample_page/settings_pane".</param>
-				/// <returns>A reference to the pane container page.</returns>
-				/// <remarks>Throws on failure. For faster coding and more readable code consider
-				/// calling this static method through the helper macro provided (get_pane_page).</remarks>
-				[[nodiscard]]
-				static containers::page& get(form& fm, const std::string& path);
-
-			private:
-				class impl;
-				impl& _d;
-
-				// Default constructor and copying an object of this class are not allowed
-				pane_builder() = delete;
-				pane_builder(const pane_builder&) = delete;
-				pane_builder& operator=(const pane_builder&) = delete;
+				static pane& get(form& fm, const std::string& path);
 			};
 		}
 	}
 }
 
 /// Helper for getting pane widget. Builder documentation applies.
-#define get_pane_specs(path) liblec::lecui::containers::pane_builder::specs(*this, path)
-
-/// Helper for getting a pane's page. Builder documentation applies.
-#define get_pane_page(path) liblec::lecui::containers::pane_builder::get(*this, path)
+#define get_pane(path) liblec::lecui::containers::pane::get(*this, path)

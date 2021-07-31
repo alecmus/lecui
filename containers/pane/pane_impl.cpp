@@ -10,6 +10,7 @@
 
 #include "pane_impl.h"
 #include "../../containers/page/page_impl.h"
+#include "../../appearance.h"
 
 namespace liblec {
 	namespace lecui {
@@ -51,7 +52,117 @@ namespace liblec {
 			_margin(12.f),
 			_content_margin(content_margin),
 			_rect_client_area({ 0.f, 0.f, 0.f, 0.f }),
-			_rect_pane({ 0.f, 0.f, 0.f, 0.f }) {}
+			_rect_pane({ 0.f, 0.f, 0.f, 0.f }) {
+			try {
+				const std::string pane_name = "pane";
+				_p_panes.try_emplace(pane_name, page._d_page.get_form(), pane_name);
+				_current_pane = pane_name;
+				auto& page_impl = _p_panes.at(pane_name)._d_page;
+
+				// specify direct2d factory (used internally for geometries and stuff)
+				page_impl.direct2d_factory(page._d_page.direct2d_factory());
+
+				// specify directwrite factory (used internally for text rendering)
+				page_impl.directwrite_factory(page._d_page.directwrite_factory());
+
+				// specify iwic imaging factory (used internally for image rendering)
+				page_impl.iwic_factory(page._d_page.iwic_factory());
+
+				// set pane content margin
+				page_impl._content_margin = _content_margin;
+
+				// specify parent
+				page_impl.parent(page);
+
+				const float thickness = 10.f;	// thickness of scroll bars
+				rect rect_client_area = { 0.f, 100.f, 0.f, 100.f };	// to-do: find a solution to this (coz at this point the user hasn't specified the size)
+
+				// set page size
+				page_impl.size({ rect_client_area.width(), rect_client_area.height() });
+				page_impl.width(page_impl.width() - (2.f * _content_margin));
+				page_impl.height(page_impl.height() - (2.f * _content_margin));
+
+				// add an invisible rect to bound the page. This is essential for scroll bars
+				// to work appropriately when contents don't reach the page borders
+				auto& rectangle = page_impl.add_rectangle(widgets::rectangle_impl::page_rect_alias());
+				rectangle.color_fill().alpha(0);
+
+				// make it transparent
+				rectangle.color_border({ 255, 0, 0, 0 }).color_hot({ 255, 0, 0, 0 })
+
+					// set its dimensions to exactly match the page
+					.corner_radius_x(15.f)
+					.corner_radius_y(15.f)
+					.rect().size(page_impl.size());
+
+				rectangle.on_resize()
+					.width_rate(100.f).height_rate(100.f);
+
+				// capture pointer to pane rect and page
+				_p_page_impl = &page_impl;
+				_p_pane_rect = &rectangle.rect();
+
+				// define reference rect for scroll bars
+				lecui::rect ref_rect = rectangle.rect();
+				ref_rect.left() -= _content_margin;
+				ref_rect.right() += _content_margin;
+				ref_rect.top() -= _content_margin;
+				ref_rect.bottom() += _content_margin;
+
+				appearance _apprnc(page._d_page.get_form());
+
+				// initialize the page's horizontal scroll bar
+				{
+					auto& _specs = page_impl.h_scrollbar().specs();
+					_specs.on_resize()
+						.width_rate(100.f)
+						.y_rate(100.f);
+
+					auto width = rect_client_area.right() - rect_client_area.left() - 2.f * _content_margin;
+
+					if (thickness > _content_margin)
+						width -= (thickness - _content_margin);
+
+					_specs.rect()
+						.width(width)
+						.height(thickness)
+						.place(ref_rect, 50.f, 100.f);
+
+					_specs
+						.color_fill(defaults::color(_apprnc.theme(), item::scrollbar))
+						.color_scrollbar_border(defaults::color(_apprnc.theme(), item::scrollbar_border))
+						.color_hot(defaults::color(_apprnc.theme(), item::scrollbar_hover))
+						.color_hot_pressed(defaults::color(_apprnc.theme(), item::scrollbar_pressed));
+				}
+
+				// initialize the page's vertical scroll bar
+				{
+					auto& _specs = page_impl.v_scrollbar().specs();
+					_specs.on_resize()
+						.height_rate(100.f)
+						.x_rate(100.f);
+
+					auto height = rect_client_area.bottom() - rect_client_area.top() - 2.f * _content_margin;
+
+					if (thickness > _content_margin)
+						height -= (thickness - _content_margin);
+
+					_specs.rect()
+						.width(thickness)
+						.height(height)
+						.place(ref_rect, 100.f, 50.f);
+
+					_specs
+						.color_fill(defaults::color(_apprnc.theme(), item::scrollbar))
+						.color_scrollbar_border(defaults::color(_apprnc.theme(), item::scrollbar_border))
+						.color_hot(defaults::color(_apprnc.theme(), item::scrollbar_hover))
+						.color_hot_pressed(defaults::color(_apprnc.theme(), item::scrollbar_pressed));
+				}
+			}
+			catch (const std::exception& e) {
+				log(e.what());	// this should never happen, but added as a failsafe anyway
+			}
+		}
 
 		widgets::pane_impl::~pane_impl() { discard_resources(); }
 
@@ -62,6 +173,46 @@ namespace liblec {
 
 		HRESULT widgets::pane_impl::create_resources(
 			ID2D1HwndRenderTarget* p_render_target) {
+			auto& _specs = _p_panes.at(_current_pane);
+
+			if (!_size_initialized) {
+				if (_p_page_impl) {
+					lecui::size s;
+					s.width(_specs.rect().width() - 2.f * _content_margin);
+					s.height(_specs.rect().height() - 2.f * _content_margin);
+
+					// pane rect changed
+					const auto& width_change = - (_p_page_impl->width() - s.width());
+					const auto& height_change = -(_p_page_impl->height() - s.height());
+
+					// adjust pane rect accordingly
+
+					// page dimensions
+					_p_page_impl->width(_p_page_impl->width() + width_change);
+					_p_page_impl->height(_p_page_impl->height() + height_change);
+
+					// pane dimensions
+					_p_pane_rect->width(_p_pane_rect->width() + width_change);
+					_p_pane_rect->height(_p_pane_rect->height() + height_change);
+
+					// scroll bars
+
+					// horizontal scrollbar
+					_p_page_impl->h_scrollbar().specs().rect().right(_p_page_impl->h_scrollbar().specs().rect().right() + width_change);
+
+					_p_page_impl->h_scrollbar().specs().rect().top(_p_page_impl->h_scrollbar().specs().rect().top() + height_change);
+					_p_page_impl->h_scrollbar().specs().rect().bottom(_p_page_impl->h_scrollbar().specs().rect().bottom() + height_change);
+
+					// vertical scrollbar
+					_p_page_impl->v_scrollbar().specs().rect().bottom(_p_page_impl->v_scrollbar().specs().rect().bottom() + height_change);
+
+					_p_page_impl->v_scrollbar().specs().rect().left(_p_page_impl->v_scrollbar().specs().rect().left() + width_change);
+					_p_page_impl->v_scrollbar().specs().rect().right(_p_page_impl->v_scrollbar().specs().rect().right() + width_change);
+				}
+
+				_size_initialized = true;
+			}
+
 			_specs_old = _specs;
 			_is_static = false;
 
@@ -95,6 +246,7 @@ namespace liblec {
 		D2D1_RECT_F&
 			widgets::pane_impl::render(ID2D1HwndRenderTarget* p_render_target,
 				const D2D1_SIZE_F& change_in_size, const D2D1_POINT_2F& offset, const bool& render) {
+			auto& _specs = _p_panes.at(_current_pane);
 			if (_specs_old != _specs) {
 				log("specs changed: " + _alias);
 				_specs_old = _specs;
@@ -170,7 +322,7 @@ namespace liblec {
 		}
 
 		containers::pane_specs&
-			widgets::pane_impl::specs() { return _specs; }
+			widgets::pane_impl::specs() { return _p_panes.at(_current_pane);; }
 
 		containers::pane_specs&
 			widgets::pane_impl::operator()() { return specs(); }

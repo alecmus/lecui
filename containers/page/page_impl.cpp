@@ -110,7 +110,7 @@ namespace liblec {
 			return _tab_panes.at(alias).specs();
 		}
 
-		containers::pane_specs&
+		containers::pane&
 			containers::page::impl::add_pane(std::string alias, const float& content_margin) {
 			check_alias(alias);
 			if (_panes.try_emplace(alias, _pg, alias, content_margin).second) {
@@ -118,7 +118,7 @@ namespace liblec {
 				_widgets_order.emplace_back(alias);
 			}
 			_panes.at(alias).specs().alias(alias);
-			return _panes.at(alias).specs();
+			return _panes.at(alias)._p_panes.at(_panes.at(alias)._current_pane);
 		}
 
 		widgets::rectangle&

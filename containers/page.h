@@ -36,7 +36,7 @@ namespace liblec {
 				/// <remarks>Ensure that the alias is unique within the form. Reusing an alias
 				/// in a form leads to undefined behavior.</remarks>
 				page(form& fm, const std::string& alias);
-				~page();
+				virtual ~page();
 
 				/// <summary>Get the size of the page.</summary>
 				/// <returns>The size, in pixels.</returns>
@@ -45,9 +45,9 @@ namespace liblec {
 				/// matter, only see the dimensions and coordinates of that container not those
 				/// of the form or another container higher up the hierarchy. Dimensions and
 				/// coordinates are local to a container.</remarks>
-				[[nodiscard]] const size size();
+				[[nodiscard]] virtual const size size();
 
-			private:
+			protected:
 				class impl;
 				impl& _d_page;
 

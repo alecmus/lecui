@@ -612,10 +612,10 @@ namespace liblec {
 								auto& tree_specs = page._d_page.get_tree_view_impl(widget.first).specs();
 
 								// make pane whose alias is prefixed by the special string
-								containers::pane_builder pane(page, widgets::pane_impl::tree_pane_alias_prefix() + widget.first);
+								auto& pane = containers::pane::add(page, widgets::pane_impl::tree_pane_alias_prefix() + widget.first);
 
 								// clone essential properties to pane
-								pane()
+								pane
 									.rect(tree_specs.rect())
 									.on_resize(tree_specs.on_resize())
 									.color_fill(tree_specs.color_fill())
@@ -624,7 +624,7 @@ namespace liblec {
 
 								// save move info so we can move the tree into the pane later
 								// we cannot do it here because we're iterating
-								trees.push_back({ widget.first, tree_specs, page, pane.get(), pane() });
+								trees.push_back({ widget.first, tree_specs, page, pane, pane });
 								break;
 							}
 
@@ -728,14 +728,14 @@ namespace liblec {
 								auto& html_editor_specs = page._d_page.get_html_editor_impl(widget.first).specs();
 
 								// make controls pane in source (predefined, fixed height)
-								containers::pane_builder controls_pane(page, widgets::pane_impl::html_controls_pane_alias_prefix() + widget.first);
-								controls_pane().rect(html_editor_specs.rect());
-								controls_pane().rect().height(
+								auto& controls_pane = containers::pane::add(page, widgets::pane_impl::html_controls_pane_alias_prefix() + widget.first);
+								controls_pane.rect(html_editor_specs.rect());
+								controls_pane.rect().height(
 									(10.f * 2) +	// top and bottom margin
 									25.f +			// first row (font name, font size ...)
 									5.f + 20.f		// seond row (bold, italic ...)
 									);
-								controls_pane()
+								controls_pane
 									.color_fill(html_editor_specs.color_control_fill())
 									.color_border(html_editor_specs.color_control_border())
 									.border(html_editor_specs.control_border())
@@ -743,26 +743,26 @@ namespace liblec {
 									.on_resize().height_rate(0.f).min_height(0.f);
 
 								// cause controls pane to be initialized by calling get()
-								auto& controls_pane_page = controls_pane.get();
+								containers::page& controls_pane_page = controls_pane;
 
 								// make pane whose alias is prefixed by the special string
-								containers::pane_builder pane(page, widgets::pane_impl::html_pane_alias_prefix() + widget.first);
+								auto& pane = containers::pane::add(page, widgets::pane_impl::html_pane_alias_prefix() + widget.first);
 
 								// clone essential properties to pane
-								pane()
+								pane
 									.color_fill(html_editor_specs.color_fill())
 									.color_border(html_editor_specs.color_border())
 									.border(html_editor_specs.border())
 									.rect(html_editor_specs.rect())
 									.on_resize(html_editor_specs.on_resize())
-									.rect().top(controls_pane().rect().bottom());
+									.rect().top(controls_pane.rect().bottom());
 								
-								if (pane().on_resize().min_height())
-									pane().on_resize().min_height(largest(pane().on_resize().min_height() - controls_pane().rect().height(), 0.f));
+								if (pane.on_resize().min_height())
+									pane.on_resize().min_height(largest(pane.on_resize().min_height() - controls_pane.rect().height(), 0.f));
 								
 								// save move info so we can move the tree into the pane later
 								// we cannot do it here because we're iterating
-								trees.push_back({ widget.first, html_editor_specs, page, pane.get(), controls_pane(), pane() });
+								trees.push_back({ widget.first, html_editor_specs, page, pane, controls_pane, pane });
 								break;
 							}
 
@@ -1113,18 +1113,18 @@ namespace liblec {
 								auto& time = page._d_page.get_time_impl(widget.first).specs();
 
 								// make pane whose alias is prefixed by the special string
-								containers::pane_builder pane(page, widgets::pane_impl::time_pane_alias_prefix() + widget.first, 0.f);
+								auto& pane = containers::pane::add(page, widgets::pane_impl::time_pane_alias_prefix() + widget.first, 0.f);
 
 								// clone essential properties to pane
-								pane()
+								pane
 									.rect(time.rect())
 									.on_resize(time.on_resize());
-								pane().color_fill().alpha(0);
-								pane().color_border().alpha(0);
+								pane.color_fill().alpha(0);
+								pane.color_border().alpha(0);
 
 								// save move info so we can move the tree into the pane later
 								// we cannot do it here because we're iterating
-								times.push_back({ widget.first, time, page, pane.get(), pane() });
+								times.push_back({ widget.first, time, page, pane, pane });
 								break;
 							}
 
@@ -1461,18 +1461,18 @@ namespace liblec {
 								auto& date_specs = page._d_page.get_date_impl(widget.first).specs();
 
 								// make pane whose alias is prefixed by the special string
-								containers::pane_builder pane(page, widgets::pane_impl::date_pane_alias_prefix() + widget.first, 0.f);
+								auto& pane = containers::pane::add(page, widgets::pane_impl::date_pane_alias_prefix() + widget.first, 0.f);
 
 								// clone essential properties to pane
-								pane()
+								pane
 									.rect(date_specs.rect())
 									.on_resize(date_specs.on_resize());
-								pane().color_fill().alpha(0);
-								pane().color_border().alpha(0);
+								pane.color_fill().alpha(0);
+								pane.color_border().alpha(0);
 
 								// save move info so we can move the tree into the pane later
 								// we cannot do it here because we're iterating
-								dates.push_back({ widget.first, date_specs, page, pane.get(), pane() });
+								dates.push_back({ widget.first, date_specs, page, pane, pane });
 								break;
 							}
 
@@ -1846,18 +1846,18 @@ namespace liblec {
 								auto& icon_specs = page._d_page.get_icon_impl(widget.first).specs();
 
 								// make pane whose alias is prefixed by the special string
-								containers::pane_builder pane(page, widgets::pane_impl::icon_pane_alias_prefix() + widget.first, 0.f);
+								auto& pane = containers::pane::add(page, widgets::pane_impl::icon_pane_alias_prefix() + widget.first, 0.f);
 
 								// clone essential properties to pane
-								pane()
+								pane
 									.rect(icon_specs.rect())
 									.on_resize(icon_specs.on_resize());
-								pane().color_fill().alpha(0);
-								pane().color_border().alpha(0);
+								pane.color_fill().alpha(0);
+								pane.color_border().alpha(0);
 
 								// save move info so we can move the tree into the pane later
 								// we cannot do it here because we're iterating
-								icons.push_back({ widget.first, icon_specs, page, pane.get(), pane() });
+								icons.push_back({ widget.first, icon_specs, page, pane, pane });
 								break;
 							}
 
@@ -2126,10 +2126,10 @@ namespace liblec {
 								auto& table_specs = page._d_page.get_table_view_impl(widget.first).specs();
 
 								// make pane whose alias is prefixed by the special string
-								containers::pane_builder pane(page, widgets::pane_impl::table_pane_alias_prefix() + widget.first);
+								auto& pane = containers::pane::add(page, widgets::pane_impl::table_pane_alias_prefix() + widget.first);
 
 								// clone essential properties to pane (the pane will handle these and all later calls to this widget's widget will be redirected to the pane)
-								pane()
+								pane
 									.rect(table_specs.rect())
 									.on_resize(table_specs.on_resize())
 									.color_fill(table_specs.color_fill())
@@ -2138,7 +2138,7 @@ namespace liblec {
 
 								// save move info so we can move the table into the pane later
 								// we cannot do it here because we're iterating
-								tables.push_back({ widget.first, table_specs, page, pane.get(), pane() });
+								tables.push_back({ widget.first, table_specs, page, pane, pane });
 								break;
 							}
 

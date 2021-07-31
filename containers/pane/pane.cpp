@@ -13,18 +13,55 @@
 
 namespace liblec {
 	namespace lecui {
+		namespace containers {
+			/// <summary>Pane container builder.</summary>
+			class pane_builder {
+			public:
+				/// <summary>Pane builder constructor.</summary>
+				/// <param name="page">A reference to the container to place the pane in.</param>
+				/// <param name="content_margin">The margin to use inside the pane.</param>
+				/// <remarks>This constructs the container with an internally generated random
+				/// alias.</remarks>
+				pane_builder(containers::page& page, const float& content_margin = 10.f);
+
+				/// <summary>Pane builder constructor.</summary>
+				/// <param name="page">A reference to the container to place the pane in.</param>
+				/// <param name="alias">The in-page unique alias, e.g. "settings_pane".</param>
+				/// <param name="content_margin">The margin to use inside the pane.</param>
+				/// <remarks>Ensure that the alias is unique within the page. Reusing an alias
+				/// in a pane leads to undefined behavior.</remarks>
+				pane_builder(containers::page& page, const std::string& alias, const float& content_margin = 10.f);
+				~pane_builder();
+
+				[[nodiscard]]
+				pane& get();
+
+				[[nodiscard]]
+				static pane& get(form& fm, const std::string& path);
+
+			private:
+				class impl;
+				impl& _d;
+
+				// Default constructor and copying an object of this class are not allowed
+				pane_builder() = delete;
+				pane_builder(const pane_builder&) = delete;
+				pane_builder& operator=(const pane_builder&) = delete;
+			};
+		}
+
 		class containers::pane_builder::impl {
 		public:
 			impl(containers::page& page,
-				containers::pane_specs& specs,
+				containers::pane& p,
 				const std::string& alias) :
-				_page(page), _specs(specs) {
-				_specs
+				_page(page), _p(p) {
+				_p
 					.color_fill(defaults::color(_page._d_page._fm._d._theme, item::pane))
 					.color_border(defaults::color(_page._d_page._fm._d._theme, item::pane_border));
 			}
 			containers::page& _page;
-			containers::pane_specs& _specs;
+			containers::pane& _p;
 		};
 
 		containers::pane_builder::pane_builder(containers::page& page, const float& content_margin) :
@@ -36,16 +73,11 @@ namespace liblec {
 
 		containers::pane_builder::~pane_builder() { delete& _d; }
 
-		containers::pane_specs& containers::pane_builder::specs() {
-			return _d._specs;
+		containers::pane& containers::pane_builder::get() {
+			return _d._p;
 		}
 
-		containers::pane_specs& containers::pane_builder::operator()() {
-			return specs();
-		}
-
-		containers::pane_specs&
-			containers::pane_builder::specs(form& fm, const std::string& path) {
+		containers::pane& containers::pane_builder::get(form& fm, const std::string& path) {
 			const auto idx = path.find("/");
 
 			if (idx != std::string::npos) {
@@ -55,161 +87,20 @@ namespace liblec {
 					// check form pages
 					auto& page = fm._d._p_pages.at(page_alias);
 					auto results = fm._d.find_widget(page, path_remaining);
-					return results.page._d_page.get_pane_impl(results.widget.alias()).specs();
+
+					auto& impl = results.page._d_page.get_pane_impl(results.widget.alias());
+					return impl._p_panes.at(impl._current_pane);
 				}
 				catch (const std::exception&) {}
 				try {
 					// check status panes
 					auto& page = fm._d._p_status_panes.at(page_alias);
 					auto results = fm._d.find_widget(page, path_remaining);
-					return results.page._d_page.get_pane_impl(results.widget.alias()).specs();
+					auto& impl = results.page._d_page.get_pane_impl(results.widget.alias());
+					return impl._p_panes.at(impl._current_pane);
 				}
 				catch (const std::exception&) {}
 			}
-
-			throw std::invalid_argument("Invalid path");
-		}
-
-		containers::page& containers::pane_builder::get() {
-			auto& _pane = _d._page._d_page.get_pane_impl(_d._specs.alias());
-
-			const std::string pane_name = "pane";
-
-			if (_pane._p_panes.count(pane_name))
-				return _pane._p_panes.at(pane_name);
-
-			_pane._p_panes.try_emplace(pane_name, _d._page._d_page._fm, pane_name);
-			_pane._current_pane = pane_name;
-			auto& page_impl = _pane._p_panes.at(pane_name)._d_page;
-
-			// specify direct2d factory (used internally for geometries and stuff)
-			page_impl.direct2d_factory(_d._page._d_page.direct2d_factory());
-
-			// specify directwrite factory (used internally for text rendering)
-			page_impl.directwrite_factory(_d._page._d_page.directwrite_factory());
-
-			// specify iwic imaging factory (used internally for image rendering)
-			page_impl.iwic_factory(_d._page._d_page.iwic_factory());
-
-			// specify parent
-			page_impl.parent(_d._page);
-
-			const float thickness = 10.f;	// thickness of scroll bars
-			const float _content_margin = _pane.content_margin();
-			rect rect_client_area = _pane().rect();
-
-			// set page size
-			page_impl.size({ rect_client_area.width(), rect_client_area.height() });
-			page_impl.width(page_impl.width() - (2.f * _content_margin));
-			page_impl.height(page_impl.height() - (2.f * _content_margin));
-
-			// add an invisible rect to bound the page. This is essential for scroll bars
-			// to work appropriately when contents don't reach the page borders
-			auto& rectangle = page_impl.add_rectangle(widgets::rectangle_impl::page_rect_alias());
-			rectangle.color_fill().alpha(0);
-
-			// make it transparent
-			rectangle.color_border({ 255, 0, 0, 0 }).color_hot({ 255, 0, 0, 0 })
-
-				// set its dimensions to exactly match the page
-				.corner_radius_x(15.f)
-				.corner_radius_y(15.f)
-				.rect().size(page_impl.size());
-
-			rectangle.on_resize()
-				.width_rate(100.f).height_rate(100.f);
-
-			// capture pointer to pane rect and page
-			_pane._p_page_impl = &page_impl;
-			_pane._p_pane_rect = &rectangle.rect();
-
-			// define reference rect for scroll bars
-			lecui::rect ref_rect = rectangle.rect();
-			ref_rect.left() -= _content_margin;
-			ref_rect.right() += _content_margin;
-			ref_rect.top() -= _content_margin;
-			ref_rect.bottom() += _content_margin;
-
-			// initialize the page's horizontal scroll bar
-			{
-				auto& _specs = page_impl.h_scrollbar().specs();
-				_specs.on_resize()
-					.width_rate(100.f)
-					.y_rate(100.f);
-
-				auto width = rect_client_area.right() - rect_client_area.left() - 2.f * _content_margin;
-
-				if (thickness > _content_margin)
-					width -= (thickness - _content_margin);
-
-				_specs.rect()
-					.width(width)
-					.height(thickness)
-					.place(ref_rect, 50.f, 100.f);
-
-				_specs
-					.color_fill(defaults::color(_d._page._d_page._fm._d._theme, item::scrollbar))
-					.color_scrollbar_border(defaults::color(_d._page._d_page._fm._d._theme, item::scrollbar_border))
-					.color_hot(defaults::color(_d._page._d_page._fm._d._theme, item::scrollbar_hover))
-					.color_hot_pressed(defaults::color(_d._page._d_page._fm._d._theme, item::scrollbar_pressed));
-			}
-
-			// initialize the page's vertical scroll bar
-			{
-				auto& _specs = page_impl.v_scrollbar().specs();
-				_specs.on_resize()
-					.height_rate(100.f)
-					.x_rate(100.f);
-
-				auto height = rect_client_area.bottom() - rect_client_area.top() - 2.f * _content_margin;
-
-				if (thickness > _content_margin)
-					height -= (thickness - _content_margin);
-
-				_specs.rect()
-					.width(thickness)
-					.height(height)
-					.place(ref_rect, 100.f, 50.f);
-
-				_specs
-					.color_fill(defaults::color(_d._page._d_page._fm._d._theme, item::scrollbar))
-					.color_scrollbar_border(defaults::color(_d._page._d_page._fm._d._theme, item::scrollbar_border))
-					.color_hot(defaults::color(_d._page._d_page._fm._d._theme, item::scrollbar_hover))
-					.color_hot_pressed(defaults::color(_d._page._d_page._fm._d._theme, item::scrollbar_pressed));
-			}
-
-			// return reference to page so caller can add widgets to it
-			return _pane._p_panes.at(pane_name);
-		}
-
-		containers::page&
-			containers::pane_builder::get(form& fm, const std::string& path) {
-			const auto idx = path.find("/");
-
-			try {
-				// check form pages
-				if (idx == std::string::npos)
-					return fm._d._p_pages.at(path);
-				else {
-					const auto page_alias = path.substr(0, idx);
-					const auto path_remaining = path.substr(idx + 1);
-					auto& page = fm._d._p_pages.at(page_alias);
-					return fm._d.find_page(page, path_remaining);
-				}
-			}
-			catch (const std::exception&) {}
-			try {
-				// check status panes
-				if (idx == std::string::npos)
-					return fm._d._p_status_panes.at(path);
-				else {
-					const auto page_alias = path.substr(0, idx);
-					const auto path_remaining = path.substr(idx + 1);
-					auto& page = fm._d._p_status_panes.at(page_alias);
-					return fm._d.find_page(page, path_remaining);
-				}
-			}
-			catch (const std::exception&) {}
 
 			throw std::invalid_argument("Invalid path");
 		}
@@ -324,6 +215,24 @@ namespace liblec {
 		containers::pane_specs& containers::pane_specs::corner_radius_y(const float& corner_radius_y) {
 			_corner_radius_y = corner_radius_y;
 			return *this;
+		}
+
+		containers::pane::pane(form& fm, const std::string& alias) :
+			page(fm, alias) {}
+
+		const lecui::size containers::pane::size() {
+			lecui::size s;
+			s.width(rect().width() - 2.f * _d_page._content_margin);
+			s.height(rect().height() - 2.f * _d_page._content_margin);
+			return s;
+		}
+
+		containers::pane& liblec::lecui::containers::pane::add(containers::page& page, const std::string& alias, const float& content_margin) {
+			return containers::pane_builder(page, alias, content_margin).get();
+		}
+
+		containers::pane& containers::pane::get(form& fm, const std::string& path) {
+			return containers::pane_builder::get(fm, path);
 		}
 	}
 }
