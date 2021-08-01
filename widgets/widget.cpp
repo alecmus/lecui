@@ -52,13 +52,22 @@ namespace liblec {
 			delete& _d;
 		}
 
-		void widget_manager::enable(const std::string& path, bool enable) {
-			_d._fm._d.enable(path, enable);
+		bool widget_manager::enable(const std::string& path, std::string& error) {
+			return _d._fm._d.enable(path, true, error);
 		}
 
-		void widget_manager::show(const std::string& path, bool show) {
-			_d._fm._d.show(path, show);
+		bool widget_manager::disable(const std::string& path, std::string& error) {
+			return _d._fm._d.enable(path, false, error);
 		}
+
+		bool widget_manager::show(const std::string& path, std::string& error) {
+			return _d._fm._d.show(path, true, error);
+		}
+
+		bool widget_manager::hide(const std::string& path, std::string& error) {
+			return _d._fm._d.show(path, false, error);
+		}
+
 		void widget_manager::close(const std::string& path) {
 			// use timer in case a widget is closed from its own handler.
 			// this way the actual closing will be done (hopefully) outside the handler coz of async.

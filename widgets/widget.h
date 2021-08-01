@@ -168,17 +168,25 @@ namespace liblec {
 			widget_manager(form& fm);
 			~widget_manager();
 
-			/// <summary>Enable or disable a widget.</summary>
+			/// <summary>Enable a widget.</summary>
 			/// <param name="path">The full path to the widget, e.g. "home_page/username".</param>
-			/// <param name="enable">Set to true to enable the widget, and false to disable it.
-			/// </param>
-			void enable(const std::string& path, bool enable);
+			/// <returns>Returns true if successful, else false.</returns>
+			bool enable(const std::string& path, std::string& error);
 
-			/// <summary>Show or hide a widget.</summary>
+			/// <summary>Disable a widget.</summary>
 			/// <param name="path">The full path to the widget, e.g. "home_page/username".</param>
-			/// <param name="show">Set to true to make the widget visible, and false to hide it.
-			/// </param>
-			void show(const std::string& path, bool show);
+			/// <returns>Returns true if successful, else false.</returns>
+			bool disable(const std::string& path, std::string& error);
+
+			/// <summary>Show a widget.</summary>
+			/// <param name="path">The full path to the widget, e.g. "home_page/username".</param>
+			/// <returns>Returns true if successful, else false.</returns>
+			bool show(const std::string& path, std::string& error);
+
+			/// <summary>Hide a widget.</summary>
+			/// <param name="path">The full path to the widget, e.g. "home_page/username".</param>
+			/// <returns>Returns true if successful, else false.</returns>
+			bool hide(const std::string& path, std::string& error);
 
 			/// <summary>Close a widget.</summary>
 			/// <param name="path">The full path to the widget, e.g. "home_page/username".</param>

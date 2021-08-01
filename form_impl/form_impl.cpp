@@ -2649,7 +2649,9 @@ namespace liblec {
 			}
 		}
 
-		void form::impl::enable(const std::string& path, bool enable) {
+		bool form::impl::enable(const std::string& path, bool enable, std::string& error) {
+			bool success = false;
+
 			try {
 				// get the page alias
 				const auto idx = path.find("/");
@@ -2663,19 +2665,23 @@ namespace liblec {
 						auto result = find_widget(_p_pages.at(page_alias), path_remaining);
 						result.widget.enable(enable);
 						update();
+						success = true;
 					}
-					catch (const std::exception&) {}
+					catch (const std::exception& e) { error = e.what(); }
 
-					try {
-						// check status panes
-						auto result = find_widget(_p_status_panes.at(page_alias), path_remaining);
-						result.widget.enable(enable);
-						update();
+					if (!success) {
+						try {
+							// check status panes
+							auto result = find_widget(_p_status_panes.at(page_alias), path_remaining);
+							result.widget.enable(enable);
+							update();
+							success = true;
+						}
+						catch (const std::exception& e) { error = e.what(); }
 					}
-					catch (const std::exception&) {}
 				}
 			}
-			catch (const std::exception&) {}
+			catch (const std::exception& e) { error = e.what(); }
 
 			bool _allow_resizing_before = _allow_resizing;
 
@@ -2700,9 +2706,16 @@ namespace liblec {
 			else
 				SetWindowLong(_hWnd, GWL_STYLE,
 					GetWindowLong(_hWnd, GWL_STYLE) & ~WS_MINIMIZEBOX);
+
+			if (success)
+				error.clear();
+
+			return success;
 		}
 
-		void form::impl::show(const std::string& path, bool show) {
+		bool form::impl::show(const std::string& path, bool show, std::string& error) {
+			bool success = false;
+
 			try {
 				// get the page alias
 				const auto idx = path.find("/");
@@ -2716,19 +2729,28 @@ namespace liblec {
 						auto result = find_widget(_p_pages.at(page_alias), path_remaining);
 						result.widget.show(show);
 						update();
+						success = true;
 					}
-					catch (const std::exception&) {}
+					catch (const std::exception& e) { error = e.what(); }
 
-					try {
-						// check status pages
-						auto result = find_widget(_p_status_panes.at(page_alias), path_remaining);
-						result.widget.show(show);
-						update();
+					if (!success) {
+						try {
+							// check status pages
+							auto result = find_widget(_p_status_panes.at(page_alias), path_remaining);
+							result.widget.show(show);
+							update();
+							success = true;
+						}
+						catch (const std::exception& e) { error = e.what(); }
 					}
-					catch (const std::exception&) {}
 				}
 			}
-			catch (const std::exception&) {}
+			catch (const std::exception& e) { error = e.what(); }
+
+			if (success)
+				error.clear();
+
+			return success;
 		}
 
 		void form::impl::close(const std::string& path) {

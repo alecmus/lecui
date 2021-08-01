@@ -353,8 +353,8 @@ namespace liblec {
 			widget_search_results find_widget(containers::page& container, const std::string& path);
 			containers::page& find_page(containers::page& container, const std::string& path);
 
-			void enable(const std::string& path, bool enable);
-			void show(const std::string& path, bool show);
+			bool enable(const std::string& path, bool enable, std::string& error);
+			bool show(const std::string& path, bool show, std::string& error);
 			void close(const std::string& path);
 			void close_container(const std::string& path);
 			void clear_selection(containers::page& container);
