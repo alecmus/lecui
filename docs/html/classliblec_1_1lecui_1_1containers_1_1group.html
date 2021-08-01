@@ -76,7 +76,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>Group container specifications.  
+<p>Group container. To instantiate and add to a container use the <a class="el" href="classliblec_1_1lecui_1_1containers_1_1group.html#a13274867e3f4d2efed4ad42e1ecb1488">add</a> static method.  
  <a href="classliblec_1_1lecui_1_1containers_1_1group.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="group_8h_source.html">group.h</a>&gt;</code></p>
@@ -86,7 +86,7 @@ Inheritance diagram for liblec::lecui::containers::group:</div>
  <div class="center">
   <img src="classliblec_1_1lecui_1_1containers_1_1group.png" usemap="#liblec::lecui::containers::group_map" alt=""/>
   <map id="liblec::lecui::containers::group_map" name="liblec::lecui::containers::group_map">
-<area href="classliblec_1_1lecui_1_1widgets_1_1widget.html" title="Base class for all widget specifications." alt="liblec::lecui::widgets::widget" shape="rect" coords="0,0,179,24"/>
+<area href="classliblec_1_1lecui_1_1widgets_1_1widget.html" title="Base class for all widgets." alt="liblec::lecui::widgets::widget" shape="rect" coords="0,0,179,24"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -223,7 +223,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator!=</b> (const
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a13274867e3f4d2efed4ad42e1ecb1488"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classliblec_1_1lecui_1_1containers_1_1group.html">group</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classliblec_1_1lecui_1_1containers_1_1group.html#a13274867e3f4d2efed4ad42e1ecb1488">add</a> (<a class="el" href="classliblec_1_1lecui_1_1containers_1_1page.html">containers::page</a> &amp;<a class="el" href="classliblec_1_1lecui_1_1containers_1_1page.html">page</a>, const std::string &amp;<a class="el" href="classliblec_1_1lecui_1_1widgets_1_1widget.html#aeb6b16e5467ea7576f7859296ec93112">alias</a>=std::string())</td></tr>
-<tr class="memdesc:a13274867e3f4d2efed4ad42e1ecb1488"><td class="mdescLeft">&#160;</td><td class="mdescRight">Make a group.  <a href="classliblec_1_1lecui_1_1containers_1_1group.html#a13274867e3f4d2efed4ad42e1ecb1488">More...</a><br /></td></tr>
+<tr class="memdesc:a13274867e3f4d2efed4ad42e1ecb1488"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a group.  <a href="classliblec_1_1lecui_1_1containers_1_1group.html#a13274867e3f4d2efed4ad42e1ecb1488">More...</a><br /></td></tr>
 <tr class="separator:a13274867e3f4d2efed4ad42e1ecb1488"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:accd7b9434f96aace4dc3391e1f6270a8"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classliblec_1_1lecui_1_1containers_1_1group.html">group</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classliblec_1_1lecui_1_1containers_1_1group.html#accd7b9434f96aace4dc3391e1f6270a8">get</a> (<a class="el" href="classliblec_1_1lecui_1_1form.html">form</a> &amp;fm, const std::string &amp;path)</td></tr>
 <tr class="memdesc:accd7b9434f96aace4dc3391e1f6270a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the specifications of a group.  <a href="classliblec_1_1lecui_1_1containers_1_1group.html#accd7b9434f96aace4dc3391e1f6270a8">More...</a><br /></td></tr>
@@ -277,7 +277,7 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>_font_size</b> = 9.f
 <tr class="separator:a5c8e5dd935405be7b6225a2cb2db52a3 inherit pro_attribs_classliblec_1_1lecui_1_1widgets_1_1widget"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Group container specifications. </p>
+<div class="textblock"><p>Group container. To instantiate and add to a container use the <a class="el" href="classliblec_1_1lecui_1_1containers_1_1group.html#a13274867e3f4d2efed4ad42e1ecb1488">add</a> static method. </p>
 <p>A group does not change the widget path, e.g. A widget located at "home_page/tab_pane/tab three/pane_two/label" keeps that location even after being added to a group. Never add a group name to a path. Groups are strictly for aesthetics and they don't "carry" the widgets that belong to them like other containers.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a13274867e3f4d2efed4ad42e1ecb1488"></a>
@@ -314,7 +314,7 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>_font_size</b> = 9.f
 </table>
 </div><div class="memdoc">
 
-<p>Make a group. </p>
+<p>Create a group. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">page</td><td>The container to make the group in.</td></tr>

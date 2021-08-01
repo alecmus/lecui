@@ -86,17 +86,17 @@ Inheritance diagram for liblec::lecui::containers::pane:</div>
  <div class="center">
   <img src="classliblec_1_1lecui_1_1containers_1_1pane.png" usemap="#liblec::lecui::containers::pane_map" alt=""/>
   <map id="liblec::lecui::containers::pane_map" name="liblec::lecui::containers::pane_map">
-<area href="classliblec_1_1lecui_1_1containers_1_1pane__specs.html" title="Pane container specifications." alt="liblec::lecui::containers::pane_specs" shape="rect" coords="0,56,214,80"/>
+<area href="classliblec_1_1lecui_1_1containers_1_1pane__specs.html" title="Pane container. To create an instance use the add static method." alt="liblec::lecui::containers::pane_specs" shape="rect" coords="0,56,214,80"/>
 <area href="classliblec_1_1lecui_1_1containers_1_1page.html" title="Page container." alt="liblec::lecui::containers::page" shape="rect" coords="224,56,438,80"/>
-<area href="classliblec_1_1lecui_1_1widgets_1_1widget.html" title="Base class for all widget specifications." alt="liblec::lecui::widgets::widget" shape="rect" coords="0,0,214,24"/>
+<area href="classliblec_1_1lecui_1_1widgets_1_1widget.html" title="Base class for all widgets." alt="liblec::lecui::widgets::widget" shape="rect" coords="0,0,214,24"/>
   </map>
 </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a6559109fd2a99b1fb02c3c319fcd1bc7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classliblec_1_1lecui_1_1containers_1_1pane.html#a6559109fd2a99b1fb02c3c319fcd1bc7">pane</a> (<a class="el" href="classliblec_1_1lecui_1_1form.html">form</a> &amp;fm, const std::string &amp;<a class="el" href="classliblec_1_1lecui_1_1widgets_1_1widget.html#aeb6b16e5467ea7576f7859296ec93112">alias</a>)</td></tr>
-<tr class="memdesc:a6559109fd2a99b1fb02c3c319fcd1bc7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pane constructor.  <a href="classliblec_1_1lecui_1_1containers_1_1pane.html#a6559109fd2a99b1fb02c3c319fcd1bc7">More...</a><br /></td></tr>
-<tr class="separator:a6559109fd2a99b1fb02c3c319fcd1bc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aedc615782f56659620ed1b5ad5ac2bfc"><td class="memItemLeft" align="right" valign="top"><a id="aedc615782f56659620ed1b5ad5ac2bfc"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>pane</b> (<a class="el" href="classliblec_1_1lecui_1_1form.html">form</a> &amp;, const std::string &amp;)</td></tr>
+<tr class="separator:aedc615782f56659620ed1b5ad5ac2bfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5f5ee97f86cc085fd005c208c60892e0"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classliblec_1_1lecui_1_1size.html">lecui::size</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classliblec_1_1lecui_1_1containers_1_1pane.html#a5f5ee97f86cc085fd005c208c60892e0">size</a> () override</td></tr>
 <tr class="memdesc:a5f5ee97f86cc085fd005c208c60892e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the size of the pane's page.  <a href="classliblec_1_1lecui_1_1containers_1_1pane.html#a5f5ee97f86cc085fd005c208c60892e0">More...</a><br /></td></tr>
 <tr class="separator:a5f5ee97f86cc085fd005c208c60892e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -285,45 +285,7 @@ impl &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>_d_page</b></td
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Pane container. </p>
 <p>Any widget can be added to this container. Consequently, recursion is fully supported, allowing panes within panes, to virtually any depth level that the memory of the computer the app is running on can permit.</p>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a6559109fd2a99b1fb02c3c319fcd1bc7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6559109fd2a99b1fb02c3c319fcd1bc7">&#9670;&nbsp;</a></span>pane()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">liblec::lecui::containers::pane::pane </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classliblec_1_1lecui_1_1form.html">form</a> &amp;&#160;</td>
-          <td class="paramname"><em>fm</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>alias</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Pane constructor. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">fm</td><td>The form the container is in.</td></tr>
-    <tr><td class="paramname">alias</td><td>The in-page unique alias of the pane, e.g. "settings_pane".</td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<h2 class="groupheader">Member Function Documentation</h2>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="aa261b24c1171a1309ac1f3b2ddfac8d9"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa261b24c1171a1309ac1f3b2ddfac8d9">&#9670;&nbsp;</a></span>add()</h2>
 

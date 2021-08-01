@@ -2,7 +2,7 @@
 \label{classliblec_1_1lecui_1_1containers_1_1status__pane}\index{liblec::lecui::containers::status\_pane@{liblec::lecui::containers::status\_pane}}
 
 
-Status pane container.  
+Status pane container. To instantiate and add to a container use the \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane_a711d27fe92af50cae0ecae372bab61e4}{add}} static method.  
 
 
 
@@ -18,44 +18,23 @@ Inheritance diagram for liblec\+::lecui\+::containers\+::status\+\_\+pane\+:\beg
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane_a614fdbb797c98ed34a430dc8f198bad5}{status\+\_\+pane}} (\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}} \&fm, \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane__specs}{status\+\_\+pane\+\_\+specs}} specs)
-\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane}{status\+\_\+pane}} constructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1status__pane_aa2ab4ac930a5d700505857c73a48fe01}\label{classliblec_1_1lecui_1_1containers_1_1status__pane_aa2ab4ac930a5d700505857c73a48fe01}} 
+{\bfseries status\+\_\+pane} (\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}} \&, \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane__specs}{status\+\_\+pane\+\_\+specs}})
+\end{DoxyCompactItemize}
 \doxysubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 static \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane}{status\+\_\+pane}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane_a711d27fe92af50cae0ecae372bab61e4}{add}} (\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}} \&fm, \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane__specs}{status\+\_\+pane\+\_\+specs}} specs)
-\begin{DoxyCompactList}\small\item\em Add a status pane to a form. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Create a status pane. \end{DoxyCompactList}\item 
 static \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane}{containers\+::status\+\_\+pane}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane_aeea81e296b62dafb12543559c2f8844d}{get}} (\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}} \&fm, const std\+::string \&alias)
 \begin{DoxyCompactList}\small\item\em Get the status pane container page of an existing status pane. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
 
 
 \doxysubsection{Detailed Description}
-Status pane container. 
+Status pane container. To instantiate and add to a container use the \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane_a711d27fe92af50cae0ecae372bab61e4}{add}} static method. 
 
 Any widget can be added to this container. Consequently, recursion is fully supported, allowing status panes within status panes, to virtually any depth level that the memory of the computer the app is running on can permit. However, it is recommended to limit the number of widgets within status panes as these panes persist throughout the runtime of the app, and are visible in all pages. Keep the contents of status panes minimal and straightforward as a good gui design principle.
-
-\doxysubsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1status__pane_a614fdbb797c98ed34a430dc8f198bad5}\label{classliblec_1_1lecui_1_1containers_1_1status__pane_a614fdbb797c98ed34a430dc8f198bad5}} 
-\index{liblec::lecui::containers::status\_pane@{liblec::lecui::containers::status\_pane}!status\_pane@{status\_pane}}
-\index{status\_pane@{status\_pane}!liblec::lecui::containers::status\_pane@{liblec::lecui::containers::status\_pane}}
-\doxysubsubsection{\texorpdfstring{status\_pane()}{status\_pane()}}
-{\footnotesize\ttfamily liblec\+::lecui\+::containers\+::status\+\_\+pane\+::status\+\_\+pane (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}} \&}]{fm,  }\item[{\mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane__specs}{status\+\_\+pane\+\_\+specs}}}]{specs }\end{DoxyParamCaption})}
-
-
-
-\mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane}{status\+\_\+pane}} constructor. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em fm} & The form to place it in.\\
-\hline
-{\em specs} & The specifications of the status pane.\\
-\hline
-\end{DoxyParams}
-
-
-Status panes are transparent by default, and have no scroll bars. A background can be added by using a rectangle widget. Ensure that there is a maximum of one pane per location. Readding a status pane in a given location leads to undefined behavior, i.\+e. a maximum of one left, one right, one top and one bottom status pane. If you need to split the content of a given pane simply add regular panes within it like you with any other container. However, keep in mind that regular panes come with scroll bars. In fact, if you need a status pane with scroll bars you can simply add a single pane that fills the status pane entirely and you will have the desired effect.
 
 \doxysubsection{Member Function Documentation}
 \mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1status__pane_a711d27fe92af50cae0ecae372bab61e4}\label{classliblec_1_1lecui_1_1containers_1_1status__pane_a711d27fe92af50cae0ecae372bab61e4}} 
@@ -66,7 +45,7 @@ Status panes are transparent by default, and have no scroll bars. A background c
 
 
 
-Add a status pane to a form. 
+Create a status pane. 
 
 
 \begin{DoxyParams}{Parameters}
@@ -76,9 +55,11 @@ Add a status pane to a form.
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-
+A reference to the status pane.
 \end{DoxyReturn}
-\mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1status__pane_aeea81e296b62dafb12543559c2f8844d}\label{classliblec_1_1lecui_1_1containers_1_1status__pane_aeea81e296b62dafb12543559c2f8844d}} 
+
+
+Status panes are transparent by default, and have no scroll bars. A background can be added by using a rectangle widget. Ensure that there is a maximum of one pane per location. Readding a status pane in a given location leads to undefined behavior, i.\+e. a maximum of one left, one right, one top and one bottom status pane. If you need to split the content of a given pane simply add regular panes within it like you with any other container. However, keep in mind that regular panes come with scroll bars. In fact, if you need a status pane with scroll bars you can simply add a single pane that fills the status pane entirely and you will have the desired effect.\mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1status__pane_aeea81e296b62dafb12543559c2f8844d}\label{classliblec_1_1lecui_1_1containers_1_1status__pane_aeea81e296b62dafb12543559c2f8844d}} 
 \index{liblec::lecui::containers::status\_pane@{liblec::lecui::containers::status\_pane}!get@{get}}
 \index{get@{get}!liblec::lecui::containers::status\_pane@{liblec::lecui::containers::status\_pane}}
 \doxysubsubsection{\texorpdfstring{get()}{get()}}

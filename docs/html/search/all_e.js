@@ -2,7 +2,7 @@ var searchData=
 [
   ['page_226',['page',['../classliblec_1_1lecui_1_1containers_1_1page.html',1,'liblec::lecui::containers::page'],['../classliblec_1_1lecui_1_1containers_1_1page.html#a47e4257dba4434a89319d0fc32a140f6',1,'liblec::lecui::containers::page::page()']]],
   ['page_5fmanager_227',['page_manager',['../classliblec_1_1lecui_1_1page__manager.html',1,'liblec::lecui']]],
-  ['pane_228',['pane',['../classliblec_1_1lecui_1_1containers_1_1pane.html',1,'liblec::lecui::containers::pane'],['../classliblec_1_1lecui_1_1containers_1_1pane.html#a6559109fd2a99b1fb02c3c319fcd1bc7',1,'liblec::lecui::containers::pane::pane()']]],
+  ['pane_228',['pane',['../classliblec_1_1lecui_1_1containers_1_1pane.html',1,'liblec::lecui::containers']]],
   ['pane_5fspecs_229',['pane_specs',['../classliblec_1_1lecui_1_1containers_1_1pane__specs.html',1,'liblec::lecui::containers']]],
   ['password_5ffield_230',['password_field',['../classliblec_1_1lecui_1_1widgets_1_1password__field.html',1,'liblec::lecui::widgets']]],
   ['percentage_231',['percentage',['../classliblec_1_1lecui_1_1widgets_1_1progress__bar.html#ad2e37ba9e9c8cbe006dc46414a144f5d',1,'liblec::lecui::widgets::progress_bar::percentage()'],['../classliblec_1_1lecui_1_1widgets_1_1progress__bar.html#aa84f05f5867a19dd3210196ff22626e8',1,'liblec::lecui::widgets::progress_bar::percentage(const float &amp;percentage)'],['../classliblec_1_1lecui_1_1widgets_1_1progress__indicator.html#a0acbae13faf72e3f0134a9e6ddf00839',1,'liblec::lecui::widgets::progress_indicator::percentage()'],['../classliblec_1_1lecui_1_1widgets_1_1progress__indicator.html#a460fecaeed856abaa262ebac646db107',1,'liblec::lecui::widgets::progress_indicator::percentage(const float &amp;percentage)']]],
