@@ -122,7 +122,7 @@ namespace liblec {
 				static button& add(containers::page& page, const std::string& alias = std::string());
 
 				/// <summary>Get the specifications of a button.</summary>
-				/// <param name="fm"></param>
+				/// <param name="fm">A reference to the form.</param>
 				/// <param name="path">The full path to the widget, e.g. "sample_page/sample_pane/next_button".</param>
 				/// <returns>A reference to the widget specifications.</returns>
 				/// <remarks>Throws on failure. For faster coding and more readable code consider

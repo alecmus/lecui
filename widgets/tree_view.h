@@ -65,7 +65,7 @@ namespace liblec {
 				}
 
 				/// <summary>Helper for inserting a node.</summary>
-				/// <param name="parent">A reference to the root.</param>
+				/// <param name="root">A reference to the root.</param>
 				/// <param name="name">The name of the node being added.</param>
 				/// <returns>A reference to the node that's been added.</returns>
 				/// <remarks>Throws on failure.</remarks>
@@ -187,7 +187,7 @@ namespace liblec {
 				static tree_view& add(containers::page& page, const std::string& alias = std::string());
 
 				/// <summary>Get the specifications of a tree view.</summary>
-				/// <param name="fm"></param>
+				/// <param name="fm">A reference to the form.</param>
 				/// <param name="path">The full path to the widget, e.g. admin_page/system_pane/database_browser.</param>
 				/// <returns>A reference to the widget specifications.</returns>
 				/// <remarks>Throws on failure. For faster coding and more readable code consider

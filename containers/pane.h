@@ -19,7 +19,7 @@
 namespace liblec {
 	namespace lecui {
 		namespace containers {
-			/// <summary>Pane container. To create an instance use the <see cref="add"></see> static method.</summary>
+			/// <summary>Pane container specifications.</summary>
 			class lecui_api pane_specs : public widgets::widget {
 				float _border = .5f;
 				color _color_border;
@@ -106,7 +106,7 @@ namespace liblec {
 				pane_specs& corner_radius_y(const float& corner_radius_y);
 			};
 
-			/// <summary>Pane container.</summary>
+			/// <summary>Pane container. To create an instance use the <see cref="add"></see> static method.</summary>
 			/// <remarks>Any widget can be added to this container. Consequently, recursion is
 			/// fully supported, allowing panes within panes, to virtually any depth level that
 			/// the memory of the computer the app is running on can permit.</remarks>
@@ -134,7 +134,7 @@ namespace liblec {
 				static pane& add(containers::page& page, const std::string& alias = std::string(), const float& content_margin = 10.f);
 
 				/// <summary>Get the specifications of a pane.</summary>
-				/// <param name="fm"></param>
+				/// <param name="fm">A reference to the form.</param>
 				/// <param name="path">The full path to the pane, e.g. "sample_page/settings_pane".</param>
 				/// <returns>A reference to the pane specifications.</returns>
 				/// <remarks>Throws on failure. For faster coding and more readable code consider

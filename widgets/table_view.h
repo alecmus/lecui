@@ -332,7 +332,7 @@ namespace liblec {
 				static table_view& add(containers::page& page, const std::string& alias = std::string());
 
 				/// <summary>Get the specifications of a table_view.</summary>
-				/// <param name="fm"></param>
+				/// <param name="fm">A reference to the form.</param>
 				/// <param name="path">The full path to the widget, e.g. "sample_page/sample_pane/debtors".</param>
 				/// <returns>A reference to the widget specifications.</returns>
 				/// <remarks>Throws on failure. For faster coding and more readable code consider

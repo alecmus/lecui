@@ -99,7 +99,7 @@ namespace liblec {
 				color& color_border_hot();
 
 				/// <summary>Set the color of the border when the mouse is over the widget.</summary>
-				/// <param name="color_border">The color, as defined in <see cref="color"></see>.</param>
+				/// <param name="color_border_hot">The color, as defined in <see cref="color"></see>.</param>
 				/// <returns>A reference to the modified object.</returns>
 				rectangle& color_border_hot(const color& color_border_hot);
 
@@ -132,7 +132,7 @@ namespace liblec {
 				static rectangle& add(containers::page& page, const std::string& alias = std::string());
 
 				/// <summary>Get the specifications of a rectangle.</summary>
-				/// <param name="fm"></param>
+				/// <param name="fm">A reference to the form.</param>
 				/// <param name="path">The full path to the widget, e.g. "sample_page/sample_tab_pane/tab_three/border_rect".</param>
 				/// <returns>A reference to the widget specifications.</returns>
 				/// <remarks>Throws on failure. For faster coding and more readable code consider
