@@ -9,13 +9,34 @@ Page container.
 
 {\ttfamily \#include $<$page.\+h$>$}
 
+Inheritance diagram for liblec\+::lecui\+::containers\+::page\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.689291cm]{classliblec_1_1lecui_1_1containers_1_1page}
+\end{center}
+\end{figure}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1page_a47e4257dba4434a89319d0fc32a140f6}{page}} (\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}} \&fm, const std\+::string \&alias)
 \begin{DoxyCompactList}\small\item\em Page constructor. \end{DoxyCompactList}\item 
-const \mbox{\hyperlink{classliblec_1_1lecui_1_1size}{size}} \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1page_a3761d97df9965dcce7659599d673735f}{size}} ()
+virtual const \mbox{\hyperlink{classliblec_1_1lecui_1_1size}{size}} \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1page_ab32a8edb06befdd4a57f76fe7187fd86}{size}} ()
 \begin{DoxyCompactList}\small\item\em Get the size of the page. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1page_a59d223f014d5d37366203cfb72d3d6e8}\label{classliblec_1_1lecui_1_1containers_1_1page_a59d223f014d5d37366203cfb72d3d6e8}} 
+{\bfseries page} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1page}{page}} \&)=delete
+\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1page_a00c60c7b697e3b5c5474f85b80108ea7}\label{classliblec_1_1lecui_1_1containers_1_1page_a00c60c7b697e3b5c5474f85b80108ea7}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1page}{page}} \& {\bfseries operator=} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1page}{page}} \&)=delete
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1page_a4f0c954a62eb467fce4f5e8b88a3bb44}\label{classliblec_1_1lecui_1_1containers_1_1page_a4f0c954a62eb467fce4f5e8b88a3bb44}} 
+impl \& {\bfseries \+\_\+d\+\_\+page}
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -46,11 +67,11 @@ Page constructor.
 Ensure that the alias is unique within the form. Reusing an alias in a form leads to undefined behavior.
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1page_a3761d97df9965dcce7659599d673735f}\label{classliblec_1_1lecui_1_1containers_1_1page_a3761d97df9965dcce7659599d673735f}} 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1page_ab32a8edb06befdd4a57f76fe7187fd86}\label{classliblec_1_1lecui_1_1containers_1_1page_ab32a8edb06befdd4a57f76fe7187fd86}} 
 \index{liblec::lecui::containers::page@{liblec::lecui::containers::page}!size@{size}}
 \index{size@{size}!liblec::lecui::containers::page@{liblec::lecui::containers::page}}
 \doxysubsubsection{\texorpdfstring{size()}{size()}}
-{\footnotesize\ttfamily const \mbox{\hyperlink{classliblec_1_1lecui_1_1size}{size}} liblec\+::lecui\+::containers\+::page\+::size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily virtual const \mbox{\hyperlink{classliblec_1_1lecui_1_1size}{size}} liblec\+::lecui\+::containers\+::page\+::size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
 
 
 
@@ -62,6 +83,10 @@ The size, in pixels.
 
 
 The size is automatically determined by the library. It is important to note that any widgets added to a page, and any other container for that matter, only see the dimensions and coordinates of that container not those of the form or another container higher up the hierarchy. Dimensions and coordinates are local to a container.
+
+Reimplemented in \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1pane_a5f5ee97f86cc085fd005c208c60892e0}{liblec\+::lecui\+::containers\+::pane}}, and \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1tab_a5ce8ba7ab1cfaa36253b540e2738a400}{liblec\+::lecui\+::containers\+::tab}}.
+
+
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 

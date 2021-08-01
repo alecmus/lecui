@@ -15,10 +15,14 @@ Widget manager class.
 \mbox{\Hypertarget{classliblec_1_1lecui_1_1widget__manager_a6e880bd91770daea7f396afa45e4b36f}\label{classliblec_1_1lecui_1_1widget__manager_a6e880bd91770daea7f396afa45e4b36f}} 
 {\bfseries widget\+\_\+manager} (\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}} \&fm)
 \item 
-void \mbox{\hyperlink{classliblec_1_1lecui_1_1widget__manager_ac4d80310ad3e52fc54979598129423e6}{enable}} (const std\+::string \&path, bool enable)
-\begin{DoxyCompactList}\small\item\em Enable or disable a widget. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classliblec_1_1lecui_1_1widget__manager_a8d87e61291d62bde3ecc42f5dbebe398}{show}} (const std\+::string \&path, bool show)
-\begin{DoxyCompactList}\small\item\em Show or hide a widget. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classliblec_1_1lecui_1_1widget__manager_a86083e220464ab7e456b7f0c25cd03ec}{enable}} (const std\+::string \&path, std\+::string \&error)
+\begin{DoxyCompactList}\small\item\em Enable a widget. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classliblec_1_1lecui_1_1widget__manager_ac6d227bdd289530c80e232df5a7127fe}{disable}} (const std\+::string \&path, std\+::string \&error)
+\begin{DoxyCompactList}\small\item\em Disable a widget. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classliblec_1_1lecui_1_1widget__manager_a80a5601975650f0ea9801a114e52644f}{show}} (const std\+::string \&path, std\+::string \&error)
+\begin{DoxyCompactList}\small\item\em Show a widget. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classliblec_1_1lecui_1_1widget__manager_aa73af230f550ebf5c52a8015107de7eb}{hide}} (const std\+::string \&path, std\+::string \&error)
+\begin{DoxyCompactList}\small\item\em Hide a widget. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classliblec_1_1lecui_1_1widget__manager_a878389752aaeb56ae7c94b04883d34e8}{close}} (const std\+::string \&path)
 \begin{DoxyCompactList}\small\item\em Close a widget. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classliblec_1_1lecui_1_1widget__manager_ac92befb57b4658047f0534fd37ab83c7}{select}} (const std\+::string \&path)
@@ -48,23 +52,60 @@ Close a widget.
 \end{DoxyParams}
 
 
-Avoid closing a widget from within its own handler to avoid access violation errors. Also make sure to never keep \textquotesingle{}dangling widget references\textquotesingle{} because attempting to use those references after this method is called will result in access violation errors as well. Make sure to employ proper logic. As a failsafe, the widget is not closed immediately when this method is called. Rather a special timer is scheduled internally to close the widget. After this, the widget is closed as soon as possible, typically soon after the current handler exits. \mbox{\Hypertarget{classliblec_1_1lecui_1_1widget__manager_ac4d80310ad3e52fc54979598129423e6}\label{classliblec_1_1lecui_1_1widget__manager_ac4d80310ad3e52fc54979598129423e6}} 
-\index{liblec::lecui::widget\_manager@{liblec::lecui::widget\_manager}!enable@{enable}}
-\index{enable@{enable}!liblec::lecui::widget\_manager@{liblec::lecui::widget\_manager}}
-\doxysubsubsection{\texorpdfstring{enable()}{enable()}}
-{\footnotesize\ttfamily void liblec\+::lecui\+::widget\+\_\+manager\+::enable (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{path,  }\item[{bool}]{enable }\end{DoxyParamCaption})}
+Avoid closing a widget from within its own handler to avoid access violation errors. Also make sure to never keep \textquotesingle{}dangling widget references\textquotesingle{} because attempting to use those references after this method is called will result in access violation errors as well. Make sure to employ proper logic. As a failsafe, the widget is not closed immediately when this method is called. Rather a special timer is scheduled internally to close the widget. After this, the widget is closed as soon as possible, typically soon after the current handler exits. \mbox{\Hypertarget{classliblec_1_1lecui_1_1widget__manager_ac6d227bdd289530c80e232df5a7127fe}\label{classliblec_1_1lecui_1_1widget__manager_ac6d227bdd289530c80e232df5a7127fe}} 
+\index{liblec::lecui::widget\_manager@{liblec::lecui::widget\_manager}!disable@{disable}}
+\index{disable@{disable}!liblec::lecui::widget\_manager@{liblec::lecui::widget\_manager}}
+\doxysubsubsection{\texorpdfstring{disable()}{disable()}}
+{\footnotesize\ttfamily bool liblec\+::lecui\+::widget\+\_\+manager\+::disable (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{path,  }\item[{std\+::string \&}]{error }\end{DoxyParamCaption})}
 
 
 
-Enable or disable a widget. 
+Disable a widget. 
 
 
 \begin{DoxyParams}{Parameters}
 {\em path} & The full path to the widget, e.\+g. \char`\"{}home\+\_\+page/username\char`\"{}.\\
 \hline
-{\em enable} & Set to true to enable the widget, and false to disable it. \\
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if successful, else false.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widget__manager_a86083e220464ab7e456b7f0c25cd03ec}\label{classliblec_1_1lecui_1_1widget__manager_a86083e220464ab7e456b7f0c25cd03ec}} 
+\index{liblec::lecui::widget\_manager@{liblec::lecui::widget\_manager}!enable@{enable}}
+\index{enable@{enable}!liblec::lecui::widget\_manager@{liblec::lecui::widget\_manager}}
+\doxysubsubsection{\texorpdfstring{enable()}{enable()}}
+{\footnotesize\ttfamily bool liblec\+::lecui\+::widget\+\_\+manager\+::enable (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{path,  }\item[{std\+::string \&}]{error }\end{DoxyParamCaption})}
+
+
+
+Enable a widget. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & The full path to the widget, e.\+g. \char`\"{}home\+\_\+page/username\char`\"{}.\\
 \hline
 \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if successful, else false.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widget__manager_aa73af230f550ebf5c52a8015107de7eb}\label{classliblec_1_1lecui_1_1widget__manager_aa73af230f550ebf5c52a8015107de7eb}} 
+\index{liblec::lecui::widget\_manager@{liblec::lecui::widget\_manager}!hide@{hide}}
+\index{hide@{hide}!liblec::lecui::widget\_manager@{liblec::lecui::widget\_manager}}
+\doxysubsubsection{\texorpdfstring{hide()}{hide()}}
+{\footnotesize\ttfamily bool liblec\+::lecui\+::widget\+\_\+manager\+::hide (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{path,  }\item[{std\+::string \&}]{error }\end{DoxyParamCaption})}
+
+
+
+Hide a widget. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & The full path to the widget, e.\+g. \char`\"{}home\+\_\+page/username\char`\"{}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if successful, else false.
+\end{DoxyReturn}
 \mbox{\Hypertarget{classliblec_1_1lecui_1_1widget__manager_ac92befb57b4658047f0534fd37ab83c7}\label{classliblec_1_1lecui_1_1widget__manager_ac92befb57b4658047f0534fd37ab83c7}} 
 \index{liblec::lecui::widget\_manager@{liblec::lecui::widget\_manager}!select@{select}}
 \index{select@{select}!liblec::lecui::widget\_manager@{liblec::lecui::widget\_manager}}
@@ -82,23 +123,24 @@ Select a widget.
 \end{DoxyParams}
 
 
-Any previous selection within the page is removed.\mbox{\Hypertarget{classliblec_1_1lecui_1_1widget__manager_a8d87e61291d62bde3ecc42f5dbebe398}\label{classliblec_1_1lecui_1_1widget__manager_a8d87e61291d62bde3ecc42f5dbebe398}} 
+Any previous selection within the page is removed.\mbox{\Hypertarget{classliblec_1_1lecui_1_1widget__manager_a80a5601975650f0ea9801a114e52644f}\label{classliblec_1_1lecui_1_1widget__manager_a80a5601975650f0ea9801a114e52644f}} 
 \index{liblec::lecui::widget\_manager@{liblec::lecui::widget\_manager}!show@{show}}
 \index{show@{show}!liblec::lecui::widget\_manager@{liblec::lecui::widget\_manager}}
 \doxysubsubsection{\texorpdfstring{show()}{show()}}
-{\footnotesize\ttfamily void liblec\+::lecui\+::widget\+\_\+manager\+::show (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{path,  }\item[{bool}]{show }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool liblec\+::lecui\+::widget\+\_\+manager\+::show (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{path,  }\item[{std\+::string \&}]{error }\end{DoxyParamCaption})}
 
 
 
-Show or hide a widget. 
+Show a widget. 
 
 
 \begin{DoxyParams}{Parameters}
 {\em path} & The full path to the widget, e.\+g. \char`\"{}home\+\_\+page/username\char`\"{}.\\
 \hline
-{\em show} & Set to true to make the widget visible, and false to hide it. \\
-\hline
 \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if successful, else false.
+\end{DoxyReturn}
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

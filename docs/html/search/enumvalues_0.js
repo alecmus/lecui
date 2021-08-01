@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['arrow_764',['arrow',['../classliblec_1_1lecui_1_1widgets_1_1specs.html#a3cba4c05a958d80dca72e4e9dd5360b1a9022a153e6190f10d9b57aa4232b8aea',1,'liblec::lecui::widgets::specs']]]
+  ['arrow_698',['arrow',['../classliblec_1_1lecui_1_1widgets_1_1widget.html#a893d9dfd53890f3faf6829a6c02aca84a9022a153e6190f10d9b57aa4232b8aea',1,'liblec::lecui::widgets::widget']]]
 ];

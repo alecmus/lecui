@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['on_5fcreate_5fresources_745',['on_create_resources',['../classliblec_1_1lecui_1_1widgets_1_1custom__specs.html#a50c13d8fa7b9aba7b95019b2a8b865c8',1,'liblec::lecui::widgets::custom_specs']]],
-  ['on_5fdiscard_5fresources_746',['on_discard_resources',['../classliblec_1_1lecui_1_1widgets_1_1custom__specs.html#a3dffb94bb13c79b0f884582470ed5b84',1,'liblec::lecui::widgets::custom_specs']]],
-  ['on_5frender_747',['on_render',['../classliblec_1_1lecui_1_1widgets_1_1custom__specs.html#af54b22505ae235061e21674e67707ff6',1,'liblec::lecui::widgets::custom_specs']]]
+  ['on_5fcreate_5fresources_679',['on_create_resources',['../classliblec_1_1lecui_1_1widgets_1_1custom.html#a979374e006649b40ab1e2671f36ed61b',1,'liblec::lecui::widgets::custom']]],
+  ['on_5fdiscard_5fresources_680',['on_discard_resources',['../classliblec_1_1lecui_1_1widgets_1_1custom.html#a1ce92742c4a02288fc9e0c4c25cf1a10',1,'liblec::lecui::widgets::custom']]],
+  ['on_5frender_681',['on_render',['../classliblec_1_1lecui_1_1widgets_1_1custom.html#aa4f49774761dbc9cea48331d00b9616c',1,'liblec::lecui::widgets::custom']]]
 ];

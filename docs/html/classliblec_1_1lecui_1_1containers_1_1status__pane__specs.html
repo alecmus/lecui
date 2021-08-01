@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">lecui
-   &#160;<span id="projectnumber">1.0.0-alpha.9</span>
+   &#160;<span id="projectnumber">1.0.0-alpha.10</span>
    </div>
    <div id="projectbrief">lecui C++ user interface library</div>
   </td>
@@ -83,12 +83,12 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a5dd93ef087b6179f91762f339eb9e294"><td class="memItemLeft" align="right" valign="top"><a id="a5dd93ef087b6179f91762f339eb9e294"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><b>location</b> { <b>bottom</b>
+<tr class="memitem:a495ebd899da33867c942c707f9135e14"><td class="memItemLeft" align="right" valign="top"><a id="a495ebd899da33867c942c707f9135e14"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><b>pane_location</b> { <b>bottom</b>
 , <b>top</b>
 , <b>left</b>
 , <b>right</b>
  }</td></tr>
-<tr class="separator:a5dd93ef087b6179f91762f339eb9e294"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:a495ebd899da33867c942c707f9135e14"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -104,19 +104,22 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a0065296a61a45f8a15dd99b28f316beb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classliblec_1_1lecui_1_1containers_1_1status__pane__specs.html">status_pane_specs</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classliblec_1_1lecui_1_1containers_1_1status__pane__specs.html#a0065296a61a45f8a15dd99b28f316beb">floating</a> (const bool &amp;floating)</td></tr>
 <tr class="memdesc:a0065296a61a45f8a15dd99b28f316beb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the floating property.  <a href="classliblec_1_1lecui_1_1containers_1_1status__pane__specs.html#a0065296a61a45f8a15dd99b28f316beb">More...</a><br /></td></tr>
 <tr class="separator:a0065296a61a45f8a15dd99b28f316beb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf385cca90593eace613319e5521e6dd"><td class="memItemLeft" align="right" valign="top">pane_location &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classliblec_1_1lecui_1_1containers_1_1status__pane__specs.html#abf385cca90593eace613319e5521e6dd">location</a> ()</td></tr>
+<tr class="memdesc:abf385cca90593eace613319e5521e6dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get or set the location of the status pane.  <a href="classliblec_1_1lecui_1_1containers_1_1status__pane__specs.html#abf385cca90593eace613319e5521e6dd">More...</a><br /></td></tr>
+<tr class="separator:abf385cca90593eace613319e5521e6dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad27670f6d1d392f3f388c9d5c8c73e42"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classliblec_1_1lecui_1_1containers_1_1status__pane__specs.html">status_pane_specs</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classliblec_1_1lecui_1_1containers_1_1status__pane__specs.html#ad27670f6d1d392f3f388c9d5c8c73e42">location</a> (const status_pane_specs::pane_location location)</td></tr>
+<tr class="memdesc:ad27670f6d1d392f3f388c9d5c8c73e42"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the location of the status pane.  <a href="classliblec_1_1lecui_1_1containers_1_1status__pane__specs.html#ad27670f6d1d392f3f388c9d5c8c73e42">More...</a><br /></td></tr>
+<tr class="separator:ad27670f6d1d392f3f388c9d5c8c73e42"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Status pane container specifications. </p>
-<p>Note that this does not inherit from widget::specs as regular panes do. This is by design because of the nature of the status pane.</p>
+<p>Note that this does not inherit from widget::widget as regular panes do. This is by design because of the nature of the status pane.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a816114602a20c42b683cadfeed1dd2fa"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a816114602a20c42b683cadfeed1dd2fa">&#9670;&nbsp;</a></span>floating() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">bool&amp; liblec::lecui::containers::status_pane_specs::floating </td>
@@ -125,11 +128,6 @@ Public Member Functions</h2></td></tr>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>Get or set the floating property. </p>
@@ -143,9 +141,6 @@ Public Member Functions</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classliblec_1_1lecui_1_1containers_1_1status__pane__specs.html">status_pane_specs</a>&amp; liblec::lecui::containers::status_pane_specs::floating </td>
@@ -155,11 +150,6 @@ Public Member Functions</h2></td></tr>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>Set the floating property. </p>
@@ -174,14 +164,58 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="abf385cca90593eace613319e5521e6dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abf385cca90593eace613319e5521e6dd">&#9670;&nbsp;</a></span>location() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">pane_location&amp; liblec::lecui::containers::status_pane_specs::location </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get or set the location of the status pane. </p>
+<dl class="section return"><dt>Returns</dt><dd>A reference to the property.</dd></dl>
+
+</div>
+</div>
+<a id="ad27670f6d1d392f3f388c9d5c8c73e42"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad27670f6d1d392f3f388c9d5c8c73e42">&#9670;&nbsp;</a></span>location() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classliblec_1_1lecui_1_1containers_1_1status__pane__specs.html">status_pane_specs</a>&amp; liblec::lecui::containers::status_pane_specs::location </td>
+          <td>(</td>
+          <td class="paramtype">const status_pane_specs::pane_location&#160;</td>
+          <td class="paramname"><em>location</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set the location of the status pane. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">location</td><td>The location of the status pane.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A reference to the modified object.</dd></dl>
+
+</div>
+</div>
 <a id="a7621d5a64fcda7c63764615ee8d04eec"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7621d5a64fcda7c63764615ee8d04eec">&#9670;&nbsp;</a></span>thickness() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">float&amp; liblec::lecui::containers::status_pane_specs::thickness </td>
@@ -190,11 +224,6 @@ Public Member Functions</h2></td></tr>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>Get or set the pane's thickness. This will be a height for top and bottom panes, and a width for left and right panes. </p>
@@ -207,9 +236,6 @@ Public Member Functions</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classliblec_1_1lecui_1_1containers_1_1status__pane__specs.html">status_pane_specs</a>&amp; liblec::lecui::containers::status_pane_specs::thickness </td>
@@ -219,11 +245,6 @@ Public Member Functions</h2></td></tr>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>Set the pane's thickness. This will be a height for top and bottom panes, and a width for left and right panes. </p>

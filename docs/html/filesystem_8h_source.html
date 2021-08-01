@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">lecui
-   &#160;<span id="projectnumber">1.0.0-alpha.9</span>
+   &#160;<span id="projectnumber">1.0.0-alpha.10</span>
    </div>
    <div id="projectbrief">lecui C++ user interface library</div>
   </td>
@@ -108,9 +108,9 @@ $(function() {
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            impl&amp; _d;</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;            <span class="comment">// Default constructor and copying an object of this class are not allowed</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;            <a class="code" href="classliblec_1_1lecui_1_1filesystem.html">filesystem</a>();</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            <a class="code" href="classliblec_1_1lecui_1_1filesystem.html">filesystem</a>(<span class="keyword">const</span> <a class="code" href="classliblec_1_1lecui_1_1filesystem.html">filesystem</a>&amp;);</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            <a class="code" href="classliblec_1_1lecui_1_1filesystem.html">filesystem</a>&amp; operator=(<span class="keyword">const</span> <a class="code" href="classliblec_1_1lecui_1_1filesystem.html">filesystem</a>&amp;);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;            <a class="code" href="classliblec_1_1lecui_1_1filesystem.html">filesystem</a>() = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            <a class="code" href="classliblec_1_1lecui_1_1filesystem.html">filesystem</a>(<span class="keyword">const</span> <a class="code" href="classliblec_1_1lecui_1_1filesystem.html">filesystem</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            <a class="code" href="classliblec_1_1lecui_1_1filesystem.html">filesystem</a>&amp; operator=(<span class="keyword">const</span> <a class="code" href="classliblec_1_1lecui_1_1filesystem.html">filesystem</a>&amp;) = <span class="keyword">delete</span>;</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        };</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    }</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;}</div>

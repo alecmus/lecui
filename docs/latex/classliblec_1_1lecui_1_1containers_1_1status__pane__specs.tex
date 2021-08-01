@@ -12,8 +12,8 @@ Status pane container specifications.
 \doxysubsection*{Public Types}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1status__pane__specs_a5dd93ef087b6179f91762f339eb9e294}\label{classliblec_1_1lecui_1_1containers_1_1status__pane__specs_a5dd93ef087b6179f91762f339eb9e294}} 
-enum class {\bfseries location} \{ {\bfseries bottom}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1status__pane__specs_a495ebd899da33867c942c707f9135e14}\label{classliblec_1_1lecui_1_1containers_1_1status__pane__specs_a495ebd899da33867c942c707f9135e14}} 
+enum class {\bfseries pane\+\_\+location} \{ {\bfseries bottom}
 , {\bfseries top}
 , {\bfseries left}
 , {\bfseries right}
@@ -29,20 +29,24 @@ float \& \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane__sp
 bool \& \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane__specs_a816114602a20c42b683cadfeed1dd2fa}{floating}} ()
 \begin{DoxyCompactList}\small\item\em Get or set the floating property. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane__specs}{status\+\_\+pane\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane__specs_a0065296a61a45f8a15dd99b28f316beb}{floating}} (const bool \&floating)
-\begin{DoxyCompactList}\small\item\em Set the floating property. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Set the floating property. \end{DoxyCompactList}\item 
+pane\+\_\+location \& \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane__specs_abf385cca90593eace613319e5521e6dd}{location}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the location of the status pane. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane__specs}{status\+\_\+pane\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane__specs_ad27670f6d1d392f3f388c9d5c8c73e42}{location}} (const status\+\_\+pane\+\_\+specs\+::pane\+\_\+location location)
+\begin{DoxyCompactList}\small\item\em Set the location of the status pane. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 Status pane container specifications. 
 
-Note that this does not inherit from widget\+::specs as regular panes do. This is by design because of the nature of the status pane.
+Note that this does not inherit from widget\+::widget as regular panes do. This is by design because of the nature of the status pane.
 
 \doxysubsection{Member Function Documentation}
 \mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1status__pane__specs_a816114602a20c42b683cadfeed1dd2fa}\label{classliblec_1_1lecui_1_1containers_1_1status__pane__specs_a816114602a20c42b683cadfeed1dd2fa}} 
 \index{liblec::lecui::containers::status\_pane\_specs@{liblec::lecui::containers::status\_pane\_specs}!floating@{floating}}
 \index{floating@{floating}!liblec::lecui::containers::status\_pane\_specs@{liblec::lecui::containers::status\_pane\_specs}}
 \doxysubsubsection{\texorpdfstring{floating()}{floating()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily bool\& liblec\+::lecui\+::containers\+::status\+\_\+pane\+\_\+specs\+::floating (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily bool\& liblec\+::lecui\+::containers\+::status\+\_\+pane\+\_\+specs\+::floating (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 
 
@@ -57,7 +61,7 @@ The floating property determines whether the pane should just float above the fo
 \index{liblec::lecui::containers::status\_pane\_specs@{liblec::lecui::containers::status\_pane\_specs}!floating@{floating}}
 \index{floating@{floating}!liblec::lecui::containers::status\_pane\_specs@{liblec::lecui::containers::status\_pane\_specs}}
 \doxysubsubsection{\texorpdfstring{floating()}{floating()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane__specs}{status\+\_\+pane\+\_\+specs}}\& liblec\+::lecui\+::containers\+::status\+\_\+pane\+\_\+specs\+::floating (\begin{DoxyParamCaption}\item[{const bool \&}]{floating }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane__specs}{status\+\_\+pane\+\_\+specs}}\& liblec\+::lecui\+::containers\+::status\+\_\+pane\+\_\+specs\+::floating (\begin{DoxyParamCaption}\item[{const bool \&}]{floating }\end{DoxyParamCaption})}
 
 
 
@@ -73,11 +77,42 @@ A reference to the modified object.
 \end{DoxyReturn}
 
 
-The floating property determines whether the pane should just float above the form without eating into the client area.\mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1status__pane__specs_a7621d5a64fcda7c63764615ee8d04eec}\label{classliblec_1_1lecui_1_1containers_1_1status__pane__specs_a7621d5a64fcda7c63764615ee8d04eec}} 
+The floating property determines whether the pane should just float above the form without eating into the client area.\mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1status__pane__specs_abf385cca90593eace613319e5521e6dd}\label{classliblec_1_1lecui_1_1containers_1_1status__pane__specs_abf385cca90593eace613319e5521e6dd}} 
+\index{liblec::lecui::containers::status\_pane\_specs@{liblec::lecui::containers::status\_pane\_specs}!location@{location}}
+\index{location@{location}!liblec::lecui::containers::status\_pane\_specs@{liblec::lecui::containers::status\_pane\_specs}}
+\doxysubsubsection{\texorpdfstring{location()}{location()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily pane\+\_\+location\& liblec\+::lecui\+::containers\+::status\+\_\+pane\+\_\+specs\+::location (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get or set the location of the status pane. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the property.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1status__pane__specs_ad27670f6d1d392f3f388c9d5c8c73e42}\label{classliblec_1_1lecui_1_1containers_1_1status__pane__specs_ad27670f6d1d392f3f388c9d5c8c73e42}} 
+\index{liblec::lecui::containers::status\_pane\_specs@{liblec::lecui::containers::status\_pane\_specs}!location@{location}}
+\index{location@{location}!liblec::lecui::containers::status\_pane\_specs@{liblec::lecui::containers::status\_pane\_specs}}
+\doxysubsubsection{\texorpdfstring{location()}{location()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane__specs}{status\+\_\+pane\+\_\+specs}}\& liblec\+::lecui\+::containers\+::status\+\_\+pane\+\_\+specs\+::location (\begin{DoxyParamCaption}\item[{const status\+\_\+pane\+\_\+specs\+::pane\+\_\+location}]{location }\end{DoxyParamCaption})}
+
+
+
+Set the location of the status pane. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em location} & The location of the status pane.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1status__pane__specs_a7621d5a64fcda7c63764615ee8d04eec}\label{classliblec_1_1lecui_1_1containers_1_1status__pane__specs_a7621d5a64fcda7c63764615ee8d04eec}} 
 \index{liblec::lecui::containers::status\_pane\_specs@{liblec::lecui::containers::status\_pane\_specs}!thickness@{thickness}}
 \index{thickness@{thickness}!liblec::lecui::containers::status\_pane\_specs@{liblec::lecui::containers::status\_pane\_specs}}
 \doxysubsubsection{\texorpdfstring{thickness()}{thickness()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily float\& liblec\+::lecui\+::containers\+::status\+\_\+pane\+\_\+specs\+::thickness (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily float\& liblec\+::lecui\+::containers\+::status\+\_\+pane\+\_\+specs\+::thickness (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 
 
@@ -90,7 +125,7 @@ A reference to the thickness, in pixels.
 \index{liblec::lecui::containers::status\_pane\_specs@{liblec::lecui::containers::status\_pane\_specs}!thickness@{thickness}}
 \index{thickness@{thickness}!liblec::lecui::containers::status\_pane\_specs@{liblec::lecui::containers::status\_pane\_specs}}
 \doxysubsubsection{\texorpdfstring{thickness()}{thickness()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane__specs}{status\+\_\+pane\+\_\+specs}}\& liblec\+::lecui\+::containers\+::status\+\_\+pane\+\_\+specs\+::thickness (\begin{DoxyParamCaption}\item[{const float \&}]{thickness }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane__specs}{status\+\_\+pane\+\_\+specs}}\& liblec\+::lecui\+::containers\+::status\+\_\+pane\+\_\+specs\+::thickness (\begin{DoxyParamCaption}\item[{const float \&}]{thickness }\end{DoxyParamCaption})}
 
 
 

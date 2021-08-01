@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['checkbox_5fstatus_760',['checkbox_status',['../classliblec_1_1lecui_1_1widgets_1_1checkbox__specs.html#a314cf6327e18a379dc2cdee3f70c0cbb',1,'liblec::lecui::widgets::checkbox_specs']]],
-  ['cursor_5ftype_761',['cursor_type',['../classliblec_1_1lecui_1_1widgets_1_1specs.html#a3cba4c05a958d80dca72e4e9dd5360b1',1,'liblec::lecui::widgets::specs']]]
+  ['checkbox_5fstatus_694',['checkbox_status',['../classliblec_1_1lecui_1_1widgets_1_1checkbox.html#ad27a58a80b79651e2c22f061de921bed',1,'liblec::lecui::widgets::checkbox']]],
+  ['cursor_5ftype_695',['cursor_type',['../classliblec_1_1lecui_1_1widgets_1_1widget.html#a893d9dfd53890f3faf6829a6c02aca84',1,'liblec::lecui::widgets::widget']]]
 ];

@@ -1,0 +1,900 @@
+\hypertarget{classliblec_1_1lecui_1_1widgets_1_1slider}{}\doxysection{liblec\+::lecui\+::widgets\+::slider Class Reference}
+\label{classliblec_1_1lecui_1_1widgets_1_1slider}\index{liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}}
+
+
+Slider widget specifications.  
+
+
+
+
+{\ttfamily \#include $<$slider.\+h$>$}
+
+Inheritance diagram for liblec\+::lecui\+::widgets\+::slider\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classliblec_1_1lecui_1_1widgets_1_1slider}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1slider_1_1slider__events}{slider\+\_\+events}}
+\begin{DoxyCompactList}\small\item\em Events specific to this widget. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1slider_1_1slider__range}{slider\+\_\+range}}
+\begin{DoxyCompactList}\small\item\em Slider range. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1slider_a87b05f5c1f41fbe3b85c776963fdc761}\label{classliblec_1_1lecui_1_1widgets_1_1slider_a87b05f5c1f41fbe3b85c776963fdc761}} 
+\mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1slider_1_1slider__events}{slider\+\_\+events}} \& {\bfseries events} ()
+\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1slider_aed49c43ffe51699972878037e0e122b8}\label{classliblec_1_1lecui_1_1widgets_1_1slider_aed49c43ffe51699972878037e0e122b8}} 
+bool {\bfseries operator==} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider}{slider}} \&)
+\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1slider_a89734a24c8c76113f151ea3c8457cbad}\label{classliblec_1_1lecui_1_1widgets_1_1slider_a89734a24c8c76113f151ea3c8457cbad}} 
+bool {\bfseries operator!=} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider}{slider}} \&)
+\item 
+std\+::string \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider_ad334499cda439873490fd683f65a6286}{text}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the widget text. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1slider_a981e222d10146a70f0d3bd9a2decbcf9}\label{classliblec_1_1lecui_1_1widgets_1_1slider_a981e222d10146a70f0d3bd9a2decbcf9}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider}{slider}} \& {\bfseries text} (const std\+::string \&text)
+\item 
+std\+::string \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider_adfd8846edaf59eb875ae9dd64ba178e1}{tooltip}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the widget\textquotesingle{}s tooltip text. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1slider_aae26e1462691dc64a02b4f28cf41eeaf}\label{classliblec_1_1lecui_1_1widgets_1_1slider_aae26e1462691dc64a02b4f28cf41eeaf}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider}{slider}} \& {\bfseries tooltip} (const std\+::string \&tooltip)
+\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{lecui\+::rect}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider_a1eb81578637a31632fa076e4970ae7f3}{rect}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the position and dimensions of the widget. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1slider_aa1518365a4f78a84930f215bfe65b894}\label{classliblec_1_1lecui_1_1widgets_1_1slider_aa1518365a4f78a84930f215bfe65b894}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider}{slider}} \& {\bfseries rect} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{lecui\+::rect}} \&\mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{rect}})
+\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params}{resize\+\_\+params}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider_a6fbef2c8c7edc1ee7564ef14b9bc5721}{on\+\_\+resize}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the behaviour of the widget when its container is resized. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1slider_a40e6af10b6dc5d19427ce497bf788412}\label{classliblec_1_1lecui_1_1widgets_1_1slider_a40e6af10b6dc5d19427ce497bf788412}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider}{slider}} \& {\bfseries on\+\_\+resize} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params}{resize\+\_\+params}} \&on\+\_\+resize)
+\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1widget_a893d9dfd53890f3faf6829a6c02aca84}{cursor\+\_\+type}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider_a2e0ad1c3adc9c6d48c06340f93f996a6}{cursor}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the mouse cursor to use then over the widget. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1slider_acfc0f50ba66a6a8f905ae77c31620276}\label{classliblec_1_1lecui_1_1widgets_1_1slider_acfc0f50ba66a6a8f905ae77c31620276}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider}{slider}} \& {\bfseries cursor} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1widget_a893d9dfd53890f3faf6829a6c02aca84}{cursor\+\_\+type}} cursor)
+\item 
+std\+::string \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider_a0c8320367269157f6483038202874b21}{font}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the default widget font, e.\+g. \char`\"{}\+Georgia\char`\"{}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1slider_a43ee60bf6227517153e795887dcabb47}\label{classliblec_1_1lecui_1_1widgets_1_1slider_a43ee60bf6227517153e795887dcabb47}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider}{slider}} \& {\bfseries font} (const std\+::string \&font)
+\item 
+float \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider_af344d9897f57f7a0cefe8fc108664b7b}{font\+\_\+size}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the default widget font size in points, e.\+g. 9.\+0. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1slider_a61542b1c4875302749a980e49ead6074}\label{classliblec_1_1lecui_1_1widgets_1_1slider_a61542b1c4875302749a980e49ead6074}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider}{slider}} \& {\bfseries font\+\_\+size} (const float \&font\+\_\+size)
+\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider_ae8e86fcd17fc9ce79bce15506c73e2f7}{color\+\_\+text}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the color of the widget\textquotesingle{}s text. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1slider_abca3710ed98feb1659d58154d415e990}\label{classliblec_1_1lecui_1_1widgets_1_1slider_abca3710ed98feb1659d58154d415e990}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider}{slider}} \& {\bfseries color\+\_\+text} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&color\+\_\+text)
+\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider_a1d4eb669d7e1a155999f529c848ea396}{color\+\_\+fill}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the fill color of the widget. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1slider_a4708fc1801824d34014f1c2eb52952fc}\label{classliblec_1_1lecui_1_1widgets_1_1slider_a4708fc1801824d34014f1c2eb52952fc}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider}{slider}} \& {\bfseries color\+\_\+fill} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&color\+\_\+fill)
+\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider_a594dfdcd16395556c03f36af6f6de9cf}{color\+\_\+hot}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the widget\textquotesingle{}s color when the mouse is hovered over it. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1slider_a65e68d42fc96c20ff4293ceb6e140531}\label{classliblec_1_1lecui_1_1widgets_1_1slider_a65e68d42fc96c20ff4293ceb6e140531}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider}{slider}} \& {\bfseries color\+\_\+hot} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&color\+\_\+hot)
+\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider_adf020e4dfc05728dcbc416033c6defe4}{color\+\_\+selected}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the widget\textquotesingle{}s color when selected. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1slider_a2393f1a6c2a8ee4c783484408ce49527}\label{classliblec_1_1lecui_1_1widgets_1_1slider_a2393f1a6c2a8ee4c783484408ce49527}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider}{slider}} \& {\bfseries color\+\_\+selected} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&color\+\_\+selected)
+\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider_a7c4b22fe367b7016f111dfb3a54bafc7}{color\+\_\+disabled}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the widget\textquotesingle{}s color when it\textquotesingle{}s disabled. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1slider_a506f3b78659738490c6b5c925b70f61b}\label{classliblec_1_1lecui_1_1widgets_1_1slider_a506f3b78659738490c6b5c925b70f61b}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider}{slider}} \& {\bfseries color\+\_\+disabled} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&color\+\_\+disabled)
+\item 
+float \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider_a2f6b7560e147e1be3cd378ef2c6e9dd2}{border}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the thickness of the border. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider}{slider}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider_a5e6b3fcb12336206369950db7b257297}{border}} (const float \&border)
+\begin{DoxyCompactList}\small\item\em Set the thickness of the border. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider_ab39a2354995a3d7f2b5110ce1c8a60bd}{color\+\_\+border}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the color of the border. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider}{slider}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider_a4630f4c2adb85c25367aba2cb93ac66c}{color\+\_\+border}} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&color\+\_\+border)
+\begin{DoxyCompactList}\small\item\em Set the color of the border. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider_a8aba4c2c3cc6740191351ef9be49908f}{color\+\_\+knob}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the color of the knob. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider}{slider}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider_a7cae942ea04fad14ba25eed1e361c755}{color\+\_\+knob}} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&color\+\_\+knob)
+\begin{DoxyCompactList}\small\item\em Set the color of the knob. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider_a436925cda52bd705ceb8b950c52df521}{color\+\_\+knob\+\_\+hot}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the color of the knob when the mouse is over the slider. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider}{slider}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider_a93bb36877db4a4229f1379758005ae86}{color\+\_\+knob\+\_\+hot}} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&color\+\_\+knob\+\_\+hot)
+\begin{DoxyCompactList}\small\item\em Set the color of the knob when the mouse is over the slider. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider_aafe61d085cae00169b9a5cf7f6b79898}{color\+\_\+knob\+\_\+border}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the color of the knob\textquotesingle{}s border. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider}{slider}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider_a88f3827faf7f3af0a49d79aee09da6f6}{color\+\_\+knob\+\_\+border}} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&color\+\_\+knob\+\_\+border)
+\begin{DoxyCompactList}\small\item\em Set the color of the knob\textquotesingle{}s border. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider_ab599eeaf3c4c10d9f95df3a7e194b6d8}{color\+\_\+tick}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the color of the slider ticks. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider}{slider}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider_aa3708bc97a3ba8e8399db8a11ade74c9}{color\+\_\+tick}} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&color\+\_\+tick)
+\begin{DoxyCompactList}\small\item\em Set the color of the slider ticks. \end{DoxyCompactList}\item 
+bool \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider_a865d3db277c71920c5d402659ff53e28}{snap\+\_\+to\+\_\+ticks}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the property for whether to snap slider movements to the ticks. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider}{slider}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider_a141db84f2078564a7a7932dd44bfc301}{snap\+\_\+to\+\_\+ticks}} (const bool \&snap\+\_\+to\+\_\+ticks)
+\begin{DoxyCompactList}\small\item\em Set the property for whether to snap slider movements to the ticks. \end{DoxyCompactList}\item 
+bool \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider_aae0c3ff5efe736f295a498c96c6c662c}{show\+\_\+tick\+\_\+marks}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the property for whether to show ticks marks on the slider. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider}{slider}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider_aae1067d9282a0ef6e2c8a0df980fee35}{show\+\_\+tick\+\_\+marks}} (const bool \&show\+\_\+tick\+\_\+marks)
+\begin{DoxyCompactList}\small\item\em Set the property for whether to show ticks marks on the slider. \end{DoxyCompactList}\item 
+bool \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider_ab3eb1607ce71a2ecdba9dd78dfa57358}{show\+\_\+tick\+\_\+labels}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the property for whether to show tick labels on the slider. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider}{slider}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider_a13ed1fe7d66d56e0d2569ead5d0688e4}{show\+\_\+tick\+\_\+labels}} (const bool \&show\+\_\+tick\+\_\+labels)
+\begin{DoxyCompactList}\small\item\em Set the property for whether to show tick labels on the slider. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1slider_1_1slider__range}{slider\+\_\+range}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider_a153493c3771b5fea044f5cb60638f6bd}{range}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the slider\textquotesingle{}s range. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider}{slider}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider_ac6f18263d17f8c78fc4bc61dbe6700c4}{range}} (const \mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1slider_1_1slider__range}{slider\+\_\+range}} \&range)
+\begin{DoxyCompactList}\small\item\em Set the slider\textquotesingle{}s range. \end{DoxyCompactList}\item 
+float \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider_ae6209a3871a951c33fe7601ddc98a0a7}{knob\+\_\+radius}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the radius of the knob. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider}{slider}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider_a78c061911413b8d52fc507282bac77e0}{knob\+\_\+radius}} (const float \&knob\+\_\+radius)
+\begin{DoxyCompactList}\small\item\em Set the radius of the knob. \end{DoxyCompactList}\item 
+float \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider_aa82efc107dc5f9e911edfe026e7530d0}{slide\+\_\+thickness}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the thickness of the slide. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider}{slider}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider_a0dd225e2c83158af7e876faa4f4a898c}{slide\+\_\+thickness}} (const float \&slide\+\_\+thickness)
+\begin{DoxyCompactList}\small\item\em Set the thickness of the slide. \end{DoxyCompactList}\item 
+float \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider_a872ea8067dc8d9765471264fd2bb7feb}{major\+\_\+tick\+\_\+unit}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the unit intervals for placing major ticks. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider}{slider}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider_a6ea836edaa9baa46bb8b9fbf82f2edb4}{major\+\_\+tick\+\_\+unit}} (const float \&major\+\_\+tick\+\_\+unit)
+\begin{DoxyCompactList}\small\item\em Set the unit intervals for placing major ticks, e.\+g. 25.\+f. \end{DoxyCompactList}\item 
+long \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider_ae37c89948989f167a355d38d781cb3be}{minor\+\_\+tick\+\_\+count}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the number of minor ticks to place between successive major ticks. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider}{slider}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider_aa9ea41a21cf08f56d90b332679803081}{minor\+\_\+tick\+\_\+count}} (const long \&minor\+\_\+tick\+\_\+count)
+\begin{DoxyCompactList}\small\item\em Set the number of minor ticks to place between successive major ticks, e.\+g. 4. \end{DoxyCompactList}\item 
+float \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider_ad0fad18f482c67437459a011b08d8e71}{value}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the position of the knob along the slide. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider}{slider}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider_aeef14fabcc574c7d0a25e2f791301c1b}{value}} (const float \&value)
+\begin{DoxyCompactList}\small\item\em Set the position of the knob along the slide, e.\+g. 63.\+5f. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider}{slider}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider_ad92ffccaf8060400d13630a46ea55728}{add}} (\mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1page}{containers\+::page}} \&page, const std\+::string \&\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1widget_aeb6b16e5467ea7576f7859296ec93112}{alias}}=std\+::string())
+\begin{DoxyCompactList}\small\item\em Add a slider to a container. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider}{slider}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider_a520b34f37efdc2be1441cb7ffe7f0ae9}{get}} (\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}} \&fm, const std\+::string \&path)
+\begin{DoxyCompactList}\small\item\em Get the specifications of a slider. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+Slider widget specifications. 
+
+The slider\textquotesingle{}s orientation is computed automatically based on the its size. If the width is greater than the height it\textquotesingle{}s oriented horizontally, else vertically. With the defaults, the recommended minimum height for horizontal orientation is 35px and the recommended minimum with for vertical orientation is 40px.
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1slider_ad92ffccaf8060400d13630a46ea55728}\label{classliblec_1_1lecui_1_1widgets_1_1slider_ad92ffccaf8060400d13630a46ea55728}} 
+\index{liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}!add@{add}}
+\index{add@{add}!liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}}
+\doxysubsubsection{\texorpdfstring{add()}{add()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider}{slider}}\& liblec\+::lecui\+::widgets\+::slider\+::add (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1page}{containers\+::page}} \&}]{page,  }\item[{const std\+::string \&}]{alias = {\ttfamily std\+:\+:string()} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Add a slider to a container. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em page} & The container to place the widget in.\\
+\hline
+{\em alias} & The in-\/page unique alias, e.\+g. \char`\"{}volume\char`\"{}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the widget specifications.
+\end{DoxyReturn}
+
+
+If an empty alias is given an internally generated random alias will be assigned.\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1slider_a2f6b7560e147e1be3cd378ef2c6e9dd2}\label{classliblec_1_1lecui_1_1widgets_1_1slider_a2f6b7560e147e1be3cd378ef2c6e9dd2}} 
+\index{liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}!border@{border}}
+\index{border@{border}!liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}}
+\doxysubsubsection{\texorpdfstring{border()}{border()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily float\& liblec\+::lecui\+::widgets\+::slider\+::border (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get or set the thickness of the border. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the border thickness, in pixels.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1slider_a5e6b3fcb12336206369950db7b257297}\label{classliblec_1_1lecui_1_1widgets_1_1slider_a5e6b3fcb12336206369950db7b257297}} 
+\index{liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}!border@{border}}
+\index{border@{border}!liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}}
+\doxysubsubsection{\texorpdfstring{border()}{border()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider}{slider}}\& liblec\+::lecui\+::widgets\+::slider\+::border (\begin{DoxyParamCaption}\item[{const float \&}]{border }\end{DoxyParamCaption})}
+
+
+
+Set the thickness of the border. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em border} & The border thickness, in pixels.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1slider_ab39a2354995a3d7f2b5110ce1c8a60bd}\label{classliblec_1_1lecui_1_1widgets_1_1slider_ab39a2354995a3d7f2b5110ce1c8a60bd}} 
+\index{liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}!color\_border@{color\_border}}
+\index{color\_border@{color\_border}!liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}}
+\doxysubsubsection{\texorpdfstring{color\_border()}{color\_border()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::widgets\+::slider\+::color\+\_\+border (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get or set the color of the border. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the border color, as defined in \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1slider_a4630f4c2adb85c25367aba2cb93ac66c}\label{classliblec_1_1lecui_1_1widgets_1_1slider_a4630f4c2adb85c25367aba2cb93ac66c}} 
+\index{liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}!color\_border@{color\_border}}
+\index{color\_border@{color\_border}!liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}}
+\doxysubsubsection{\texorpdfstring{color\_border()}{color\_border()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider}{slider}}\& liblec\+::lecui\+::widgets\+::slider\+::color\+\_\+border (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&}]{color\+\_\+border }\end{DoxyParamCaption})}
+
+
+
+Set the color of the border. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em color\+\_\+border} & The border color, as defined in \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1slider_a7c4b22fe367b7016f111dfb3a54bafc7}\label{classliblec_1_1lecui_1_1widgets_1_1slider_a7c4b22fe367b7016f111dfb3a54bafc7}} 
+\index{liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}!color\_disabled@{color\_disabled}}
+\index{color\_disabled@{color\_disabled}!liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}}
+\doxysubsubsection{\texorpdfstring{color\_disabled()}{color\_disabled()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::widgets\+::slider\+::color\+\_\+disabled (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the widget\textquotesingle{}s color when it\textquotesingle{}s disabled. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget\textquotesingle{}s color when disabled.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1widget_aed33e8cba2b610f55c02d8c8aab6d1b3}{liblec\+::lecui\+::widgets\+::widget}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1slider_a1d4eb669d7e1a155999f529c848ea396}\label{classliblec_1_1lecui_1_1widgets_1_1slider_a1d4eb669d7e1a155999f529c848ea396}} 
+\index{liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}!color\_fill@{color\_fill}}
+\index{color\_fill@{color\_fill}!liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}}
+\doxysubsubsection{\texorpdfstring{color\_fill()}{color\_fill()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::widgets\+::slider\+::color\+\_\+fill (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the fill color of the widget. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget\textquotesingle{}s fill color.
+\end{DoxyReturn}
+
+
+The use of the fill color varies from widget to widget. Refer to the specific widget\textquotesingle{}s documentation for details.
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1widget_a5d4cc22930d187caf2490b691fbc15c1}{liblec\+::lecui\+::widgets\+::widget}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1slider_a594dfdcd16395556c03f36af6f6de9cf}\label{classliblec_1_1lecui_1_1widgets_1_1slider_a594dfdcd16395556c03f36af6f6de9cf}} 
+\index{liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}!color\_hot@{color\_hot}}
+\index{color\_hot@{color\_hot}!liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}}
+\doxysubsubsection{\texorpdfstring{color\_hot()}{color\_hot()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::widgets\+::slider\+::color\+\_\+hot (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the widget\textquotesingle{}s color when the mouse is hovered over it. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget\textquotesingle{}s hover color.
+\end{DoxyReturn}
+
+
+The use of the hover color varies from widget to widget. Refer to the specific widget\textquotesingle{}s documentation for details.
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1widget_ab14bf73991b82c7e752a88c0e17a8177}{liblec\+::lecui\+::widgets\+::widget}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1slider_a8aba4c2c3cc6740191351ef9be49908f}\label{classliblec_1_1lecui_1_1widgets_1_1slider_a8aba4c2c3cc6740191351ef9be49908f}} 
+\index{liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}!color\_knob@{color\_knob}}
+\index{color\_knob@{color\_knob}!liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}}
+\doxysubsubsection{\texorpdfstring{color\_knob()}{color\_knob()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::widgets\+::slider\+::color\+\_\+knob (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get or set the color of the knob. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the color.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1slider_a7cae942ea04fad14ba25eed1e361c755}\label{classliblec_1_1lecui_1_1widgets_1_1slider_a7cae942ea04fad14ba25eed1e361c755}} 
+\index{liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}!color\_knob@{color\_knob}}
+\index{color\_knob@{color\_knob}!liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}}
+\doxysubsubsection{\texorpdfstring{color\_knob()}{color\_knob()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider}{slider}}\& liblec\+::lecui\+::widgets\+::slider\+::color\+\_\+knob (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&}]{color\+\_\+knob }\end{DoxyParamCaption})}
+
+
+
+Set the color of the knob. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em color\+\_\+knob} & The color.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1slider_aafe61d085cae00169b9a5cf7f6b79898}\label{classliblec_1_1lecui_1_1widgets_1_1slider_aafe61d085cae00169b9a5cf7f6b79898}} 
+\index{liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}!color\_knob\_border@{color\_knob\_border}}
+\index{color\_knob\_border@{color\_knob\_border}!liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}}
+\doxysubsubsection{\texorpdfstring{color\_knob\_border()}{color\_knob\_border()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::widgets\+::slider\+::color\+\_\+knob\+\_\+border (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get or set the color of the knob\textquotesingle{}s border. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the color.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1slider_a88f3827faf7f3af0a49d79aee09da6f6}\label{classliblec_1_1lecui_1_1widgets_1_1slider_a88f3827faf7f3af0a49d79aee09da6f6}} 
+\index{liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}!color\_knob\_border@{color\_knob\_border}}
+\index{color\_knob\_border@{color\_knob\_border}!liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}}
+\doxysubsubsection{\texorpdfstring{color\_knob\_border()}{color\_knob\_border()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider}{slider}}\& liblec\+::lecui\+::widgets\+::slider\+::color\+\_\+knob\+\_\+border (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&}]{color\+\_\+knob\+\_\+border }\end{DoxyParamCaption})}
+
+
+
+Set the color of the knob\textquotesingle{}s border. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em color\+\_\+knob\+\_\+border} & The color.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1slider_a436925cda52bd705ceb8b950c52df521}\label{classliblec_1_1lecui_1_1widgets_1_1slider_a436925cda52bd705ceb8b950c52df521}} 
+\index{liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}!color\_knob\_hot@{color\_knob\_hot}}
+\index{color\_knob\_hot@{color\_knob\_hot}!liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}}
+\doxysubsubsection{\texorpdfstring{color\_knob\_hot()}{color\_knob\_hot()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::widgets\+::slider\+::color\+\_\+knob\+\_\+hot (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get or set the color of the knob when the mouse is over the slider. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the color.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1slider_a93bb36877db4a4229f1379758005ae86}\label{classliblec_1_1lecui_1_1widgets_1_1slider_a93bb36877db4a4229f1379758005ae86}} 
+\index{liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}!color\_knob\_hot@{color\_knob\_hot}}
+\index{color\_knob\_hot@{color\_knob\_hot}!liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}}
+\doxysubsubsection{\texorpdfstring{color\_knob\_hot()}{color\_knob\_hot()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider}{slider}}\& liblec\+::lecui\+::widgets\+::slider\+::color\+\_\+knob\+\_\+hot (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&}]{color\+\_\+knob\+\_\+hot }\end{DoxyParamCaption})}
+
+
+
+Set the color of the knob when the mouse is over the slider. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em color\+\_\+knob\+\_\+hot} & The color.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1slider_adf020e4dfc05728dcbc416033c6defe4}\label{classliblec_1_1lecui_1_1widgets_1_1slider_adf020e4dfc05728dcbc416033c6defe4}} 
+\index{liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}!color\_selected@{color\_selected}}
+\index{color\_selected@{color\_selected}!liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}}
+\doxysubsubsection{\texorpdfstring{color\_selected()}{color\_selected()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::widgets\+::slider\+::color\+\_\+selected (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the widget\textquotesingle{}s color when selected. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget\textquotesingle{}s color when selected.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1widget_a68f260b635ab19b0c4610abe126221a7}{liblec\+::lecui\+::widgets\+::widget}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1slider_ae8e86fcd17fc9ce79bce15506c73e2f7}\label{classliblec_1_1lecui_1_1widgets_1_1slider_ae8e86fcd17fc9ce79bce15506c73e2f7}} 
+\index{liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}!color\_text@{color\_text}}
+\index{color\_text@{color\_text}!liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}}
+\doxysubsubsection{\texorpdfstring{color\_text()}{color\_text()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::widgets\+::slider\+::color\+\_\+text (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the color of the widget\textquotesingle{}s text. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget\textquotesingle{}s text color.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1widget_a79bba8a9e25bca2f375e1a990c0947e3}{liblec\+::lecui\+::widgets\+::widget}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1slider_ab599eeaf3c4c10d9f95df3a7e194b6d8}\label{classliblec_1_1lecui_1_1widgets_1_1slider_ab599eeaf3c4c10d9f95df3a7e194b6d8}} 
+\index{liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}!color\_tick@{color\_tick}}
+\index{color\_tick@{color\_tick}!liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}}
+\doxysubsubsection{\texorpdfstring{color\_tick()}{color\_tick()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::widgets\+::slider\+::color\+\_\+tick (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get or set the color of the slider ticks. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the color.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1slider_aa3708bc97a3ba8e8399db8a11ade74c9}\label{classliblec_1_1lecui_1_1widgets_1_1slider_aa3708bc97a3ba8e8399db8a11ade74c9}} 
+\index{liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}!color\_tick@{color\_tick}}
+\index{color\_tick@{color\_tick}!liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}}
+\doxysubsubsection{\texorpdfstring{color\_tick()}{color\_tick()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider}{slider}}\& liblec\+::lecui\+::widgets\+::slider\+::color\+\_\+tick (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&}]{color\+\_\+tick }\end{DoxyParamCaption})}
+
+
+
+Set the color of the slider ticks. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em color\+\_\+tick} & The color.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1slider_a2e0ad1c3adc9c6d48c06340f93f996a6}\label{classliblec_1_1lecui_1_1widgets_1_1slider_a2e0ad1c3adc9c6d48c06340f93f996a6}} 
+\index{liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}!cursor@{cursor}}
+\index{cursor@{cursor}!liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}}
+\doxysubsubsection{\texorpdfstring{cursor()}{cursor()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1widget_a893d9dfd53890f3faf6829a6c02aca84}{cursor\+\_\+type}}\& liblec\+::lecui\+::widgets\+::slider\+::cursor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the mouse cursor to use then over the widget. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the cursor type as defined in \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1widget_a893d9dfd53890f3faf6829a6c02aca84}{cursor\+\_\+type}}.
+\end{DoxyReturn}
+
+
+This is only used if the widget is non-\/static.
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1widget_ad3711cbb2056fccc53eafffa58dceea1}{liblec\+::lecui\+::widgets\+::widget}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1slider_a0c8320367269157f6483038202874b21}\label{classliblec_1_1lecui_1_1widgets_1_1slider_a0c8320367269157f6483038202874b21}} 
+\index{liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}!font@{font}}
+\index{font@{font}!liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}}
+\doxysubsubsection{\texorpdfstring{font()}{font()}}
+{\footnotesize\ttfamily std\+::string\& liblec\+::lecui\+::widgets\+::slider\+::font (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the default widget font, e.\+g. \char`\"{}\+Georgia\char`\"{}. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget\textquotesingle{}s font name.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1widget_ae6dfde2207d094a43086d0649d03c273}{liblec\+::lecui\+::widgets\+::widget}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1slider_af344d9897f57f7a0cefe8fc108664b7b}\label{classliblec_1_1lecui_1_1widgets_1_1slider_af344d9897f57f7a0cefe8fc108664b7b}} 
+\index{liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}!font\_size@{font\_size}}
+\index{font\_size@{font\_size}!liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}}
+\doxysubsubsection{\texorpdfstring{font\_size()}{font\_size()}}
+{\footnotesize\ttfamily float\& liblec\+::lecui\+::widgets\+::slider\+::font\+\_\+size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the default widget font size in points, e.\+g. 9.\+0. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget\textquotesingle{}s font size.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1widget_a70aa8c71d0fb4968ec4f2652ab3057b9}{liblec\+::lecui\+::widgets\+::widget}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1slider_a520b34f37efdc2be1441cb7ffe7f0ae9}\label{classliblec_1_1lecui_1_1widgets_1_1slider_a520b34f37efdc2be1441cb7ffe7f0ae9}} 
+\index{liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}!get@{get}}
+\index{get@{get}!liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}}
+\doxysubsubsection{\texorpdfstring{get()}{get()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider}{slider}}\& liblec\+::lecui\+::widgets\+::slider\+::get (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}} \&}]{fm,  }\item[{const std\+::string \&}]{path }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Get the specifications of a slider. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fm} & \\
+\hline
+{\em path} & The full path to the widget, e.\+g. \char`\"{}sample\+\_\+page/tools\+\_\+tab\+\_\+pane/options\+\_\+tab/volume\char`\"{}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the widget specifications.
+\end{DoxyReturn}
+
+
+Throws on failure. For faster coding and more readable code consider calling this static method through the helper macro provided.\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1slider_ae6209a3871a951c33fe7601ddc98a0a7}\label{classliblec_1_1lecui_1_1widgets_1_1slider_ae6209a3871a951c33fe7601ddc98a0a7}} 
+\index{liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}!knob\_radius@{knob\_radius}}
+\index{knob\_radius@{knob\_radius}!liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}}
+\doxysubsubsection{\texorpdfstring{knob\_radius()}{knob\_radius()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily float\& liblec\+::lecui\+::widgets\+::slider\+::knob\+\_\+radius (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get or set the radius of the knob. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the radius, in pixels.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1slider_a78c061911413b8d52fc507282bac77e0}\label{classliblec_1_1lecui_1_1widgets_1_1slider_a78c061911413b8d52fc507282bac77e0}} 
+\index{liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}!knob\_radius@{knob\_radius}}
+\index{knob\_radius@{knob\_radius}!liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}}
+\doxysubsubsection{\texorpdfstring{knob\_radius()}{knob\_radius()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider}{slider}}\& liblec\+::lecui\+::widgets\+::slider\+::knob\+\_\+radius (\begin{DoxyParamCaption}\item[{const float \&}]{knob\+\_\+radius }\end{DoxyParamCaption})}
+
+
+
+Set the radius of the knob. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em knob\+\_\+radius} & The knob\textquotesingle{}s radius, in pixels.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1slider_a872ea8067dc8d9765471264fd2bb7feb}\label{classliblec_1_1lecui_1_1widgets_1_1slider_a872ea8067dc8d9765471264fd2bb7feb}} 
+\index{liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}!major\_tick\_unit@{major\_tick\_unit}}
+\index{major\_tick\_unit@{major\_tick\_unit}!liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}}
+\doxysubsubsection{\texorpdfstring{major\_tick\_unit()}{major\_tick\_unit()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily float\& liblec\+::lecui\+::widgets\+::slider\+::major\+\_\+tick\+\_\+unit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get or set the unit intervals for placing major ticks. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the unit interval property.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1slider_a6ea836edaa9baa46bb8b9fbf82f2edb4}\label{classliblec_1_1lecui_1_1widgets_1_1slider_a6ea836edaa9baa46bb8b9fbf82f2edb4}} 
+\index{liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}!major\_tick\_unit@{major\_tick\_unit}}
+\index{major\_tick\_unit@{major\_tick\_unit}!liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}}
+\doxysubsubsection{\texorpdfstring{major\_tick\_unit()}{major\_tick\_unit()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider}{slider}}\& liblec\+::lecui\+::widgets\+::slider\+::major\+\_\+tick\+\_\+unit (\begin{DoxyParamCaption}\item[{const float \&}]{major\+\_\+tick\+\_\+unit }\end{DoxyParamCaption})}
+
+
+
+Set the unit intervals for placing major ticks, e.\+g. 25.\+f. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em major\+\_\+tick\+\_\+unit} & The unit interval.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1slider_ae37c89948989f167a355d38d781cb3be}\label{classliblec_1_1lecui_1_1widgets_1_1slider_ae37c89948989f167a355d38d781cb3be}} 
+\index{liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}!minor\_tick\_count@{minor\_tick\_count}}
+\index{minor\_tick\_count@{minor\_tick\_count}!liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}}
+\doxysubsubsection{\texorpdfstring{minor\_tick\_count()}{minor\_tick\_count()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily long\& liblec\+::lecui\+::widgets\+::slider\+::minor\+\_\+tick\+\_\+count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get or set the number of minor ticks to place between successive major ticks. 
+
+\begin{DoxyReturn}{Returns}
+The number of ticks.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1slider_aa9ea41a21cf08f56d90b332679803081}\label{classliblec_1_1lecui_1_1widgets_1_1slider_aa9ea41a21cf08f56d90b332679803081}} 
+\index{liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}!minor\_tick\_count@{minor\_tick\_count}}
+\index{minor\_tick\_count@{minor\_tick\_count}!liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}}
+\doxysubsubsection{\texorpdfstring{minor\_tick\_count()}{minor\_tick\_count()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider}{slider}}\& liblec\+::lecui\+::widgets\+::slider\+::minor\+\_\+tick\+\_\+count (\begin{DoxyParamCaption}\item[{const long \&}]{minor\+\_\+tick\+\_\+count }\end{DoxyParamCaption})}
+
+
+
+Set the number of minor ticks to place between successive major ticks, e.\+g. 4. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em minor\+\_\+tick\+\_\+count} & The number of ticks.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1slider_a6fbef2c8c7edc1ee7564ef14b9bc5721}\label{classliblec_1_1lecui_1_1widgets_1_1slider_a6fbef2c8c7edc1ee7564ef14b9bc5721}} 
+\index{liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}!on\_resize@{on\_resize}}
+\index{on\_resize@{on\_resize}!liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}}
+\doxysubsubsection{\texorpdfstring{on\_resize()}{on\_resize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params}{resize\+\_\+params}}\& liblec\+::lecui\+::widgets\+::slider\+::on\+\_\+resize (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the behaviour of the widget when its container is resized. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the resize parameters as defined in \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params}{resize\+\_\+params}}.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1widget_a84b52067a0acffc3ae7d459ab7960c91}{liblec\+::lecui\+::widgets\+::widget}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1slider_a153493c3771b5fea044f5cb60638f6bd}\label{classliblec_1_1lecui_1_1widgets_1_1slider_a153493c3771b5fea044f5cb60638f6bd}} 
+\index{liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}!range@{range}}
+\index{range@{range}!liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}}
+\doxysubsubsection{\texorpdfstring{range()}{range()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1slider_1_1slider__range}{slider\+\_\+range}}\& liblec\+::lecui\+::widgets\+::slider\+::range (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get or set the slider\textquotesingle{}s range. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the range, as defined in \mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1slider_1_1slider__range}{slider\+\_\+range}}.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1slider_ac6f18263d17f8c78fc4bc61dbe6700c4}\label{classliblec_1_1lecui_1_1widgets_1_1slider_ac6f18263d17f8c78fc4bc61dbe6700c4}} 
+\index{liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}!range@{range}}
+\index{range@{range}!liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}}
+\doxysubsubsection{\texorpdfstring{range()}{range()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider}{slider}}\& liblec\+::lecui\+::widgets\+::slider\+::range (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1slider_1_1slider__range}{slider\+\_\+range}} \&}]{range }\end{DoxyParamCaption})}
+
+
+
+Set the slider\textquotesingle{}s range. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em range} & The range.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1slider_a1eb81578637a31632fa076e4970ae7f3}\label{classliblec_1_1lecui_1_1widgets_1_1slider_a1eb81578637a31632fa076e4970ae7f3}} 
+\index{liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}!rect@{rect}}
+\index{rect@{rect}!liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}}
+\doxysubsubsection{\texorpdfstring{rect()}{rect()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{lecui\+::rect}}\& liblec\+::lecui\+::widgets\+::slider\+::rect (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the position and dimensions of the widget. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget rectangle.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1widget_aa5ccbf49d20e0ca703296bcae881fecd}{liblec\+::lecui\+::widgets\+::widget}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1slider_ab3eb1607ce71a2ecdba9dd78dfa57358}\label{classliblec_1_1lecui_1_1widgets_1_1slider_ab3eb1607ce71a2ecdba9dd78dfa57358}} 
+\index{liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}!show\_tick\_labels@{show\_tick\_labels}}
+\index{show\_tick\_labels@{show\_tick\_labels}!liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}}
+\doxysubsubsection{\texorpdfstring{show\_tick\_labels()}{show\_tick\_labels()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool\& liblec\+::lecui\+::widgets\+::slider\+::show\+\_\+tick\+\_\+labels (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get or set the property for whether to show tick labels on the slider. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the property.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1slider_a13ed1fe7d66d56e0d2569ead5d0688e4}\label{classliblec_1_1lecui_1_1widgets_1_1slider_a13ed1fe7d66d56e0d2569ead5d0688e4}} 
+\index{liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}!show\_tick\_labels@{show\_tick\_labels}}
+\index{show\_tick\_labels@{show\_tick\_labels}!liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}}
+\doxysubsubsection{\texorpdfstring{show\_tick\_labels()}{show\_tick\_labels()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider}{slider}}\& liblec\+::lecui\+::widgets\+::slider\+::show\+\_\+tick\+\_\+labels (\begin{DoxyParamCaption}\item[{const bool \&}]{show\+\_\+tick\+\_\+labels }\end{DoxyParamCaption})}
+
+
+
+Set the property for whether to show tick labels on the slider. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em show\+\_\+tick\+\_\+labels} & Whether to show tick labels on the slider.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1slider_aae0c3ff5efe736f295a498c96c6c662c}\label{classliblec_1_1lecui_1_1widgets_1_1slider_aae0c3ff5efe736f295a498c96c6c662c}} 
+\index{liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}!show\_tick\_marks@{show\_tick\_marks}}
+\index{show\_tick\_marks@{show\_tick\_marks}!liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}}
+\doxysubsubsection{\texorpdfstring{show\_tick\_marks()}{show\_tick\_marks()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool\& liblec\+::lecui\+::widgets\+::slider\+::show\+\_\+tick\+\_\+marks (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get or set the property for whether to show ticks marks on the slider. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the property.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1slider_aae1067d9282a0ef6e2c8a0df980fee35}\label{classliblec_1_1lecui_1_1widgets_1_1slider_aae1067d9282a0ef6e2c8a0df980fee35}} 
+\index{liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}!show\_tick\_marks@{show\_tick\_marks}}
+\index{show\_tick\_marks@{show\_tick\_marks}!liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}}
+\doxysubsubsection{\texorpdfstring{show\_tick\_marks()}{show\_tick\_marks()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider}{slider}}\& liblec\+::lecui\+::widgets\+::slider\+::show\+\_\+tick\+\_\+marks (\begin{DoxyParamCaption}\item[{const bool \&}]{show\+\_\+tick\+\_\+marks }\end{DoxyParamCaption})}
+
+
+
+Set the property for whether to show ticks marks on the slider. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em show\+\_\+tick\+\_\+marks} & Whether to show tick marks on the slider.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1slider_aa82efc107dc5f9e911edfe026e7530d0}\label{classliblec_1_1lecui_1_1widgets_1_1slider_aa82efc107dc5f9e911edfe026e7530d0}} 
+\index{liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}!slide\_thickness@{slide\_thickness}}
+\index{slide\_thickness@{slide\_thickness}!liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}}
+\doxysubsubsection{\texorpdfstring{slide\_thickness()}{slide\_thickness()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily float\& liblec\+::lecui\+::widgets\+::slider\+::slide\+\_\+thickness (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get or set the thickness of the slide. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the thickness, in pixels.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1slider_a0dd225e2c83158af7e876faa4f4a898c}\label{classliblec_1_1lecui_1_1widgets_1_1slider_a0dd225e2c83158af7e876faa4f4a898c}} 
+\index{liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}!slide\_thickness@{slide\_thickness}}
+\index{slide\_thickness@{slide\_thickness}!liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}}
+\doxysubsubsection{\texorpdfstring{slide\_thickness()}{slide\_thickness()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider}{slider}}\& liblec\+::lecui\+::widgets\+::slider\+::slide\+\_\+thickness (\begin{DoxyParamCaption}\item[{const float \&}]{slide\+\_\+thickness }\end{DoxyParamCaption})}
+
+
+
+Set the thickness of the slide. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em slide\+\_\+thickness} & The thickness of the slide, in pixels.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1slider_a865d3db277c71920c5d402659ff53e28}\label{classliblec_1_1lecui_1_1widgets_1_1slider_a865d3db277c71920c5d402659ff53e28}} 
+\index{liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}!snap\_to\_ticks@{snap\_to\_ticks}}
+\index{snap\_to\_ticks@{snap\_to\_ticks}!liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}}
+\doxysubsubsection{\texorpdfstring{snap\_to\_ticks()}{snap\_to\_ticks()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool\& liblec\+::lecui\+::widgets\+::slider\+::snap\+\_\+to\+\_\+ticks (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get or set the property for whether to snap slider movements to the ticks. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the property.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1slider_a141db84f2078564a7a7932dd44bfc301}\label{classliblec_1_1lecui_1_1widgets_1_1slider_a141db84f2078564a7a7932dd44bfc301}} 
+\index{liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}!snap\_to\_ticks@{snap\_to\_ticks}}
+\index{snap\_to\_ticks@{snap\_to\_ticks}!liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}}
+\doxysubsubsection{\texorpdfstring{snap\_to\_ticks()}{snap\_to\_ticks()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider}{slider}}\& liblec\+::lecui\+::widgets\+::slider\+::snap\+\_\+to\+\_\+ticks (\begin{DoxyParamCaption}\item[{const bool \&}]{snap\+\_\+to\+\_\+ticks }\end{DoxyParamCaption})}
+
+
+
+Set the property for whether to snap slider movements to the ticks. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em snap\+\_\+to\+\_\+ticks} & Whether to snap slider movements to the ticks.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1slider_ad334499cda439873490fd683f65a6286}\label{classliblec_1_1lecui_1_1widgets_1_1slider_ad334499cda439873490fd683f65a6286}} 
+\index{liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}!text@{text}}
+\index{text@{text}!liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}}
+\doxysubsubsection{\texorpdfstring{text()}{text()}}
+{\footnotesize\ttfamily std\+::string\& liblec\+::lecui\+::widgets\+::slider\+::text (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the widget text. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget text.
+\end{DoxyReturn}
+
+
+The use of the text varies from widget to widget. Some widgets don\textquotesingle{}t use this field.
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1widget_a71f2bbb6be5f74f34c4efabaf4f4fd25}{liblec\+::lecui\+::widgets\+::widget}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1slider_adfd8846edaf59eb875ae9dd64ba178e1}\label{classliblec_1_1lecui_1_1widgets_1_1slider_adfd8846edaf59eb875ae9dd64ba178e1}} 
+\index{liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}!tooltip@{tooltip}}
+\index{tooltip@{tooltip}!liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}}
+\doxysubsubsection{\texorpdfstring{tooltip()}{tooltip()}}
+{\footnotesize\ttfamily std\+::string\& liblec\+::lecui\+::widgets\+::slider\+::tooltip (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the widget\textquotesingle{}s tooltip text. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the tooltip text.
+\end{DoxyReturn}
+
+
+The tooltip text is displayed when the mouse is hovered over the widget.
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1widget_a8f958587c92d93405c083d9c42bd2e8e}{liblec\+::lecui\+::widgets\+::widget}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1slider_ad0fad18f482c67437459a011b08d8e71}\label{classliblec_1_1lecui_1_1widgets_1_1slider_ad0fad18f482c67437459a011b08d8e71}} 
+\index{liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}!value@{value}}
+\index{value@{value}!liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}}
+\doxysubsubsection{\texorpdfstring{value()}{value()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily float\& liblec\+::lecui\+::widgets\+::slider\+::value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get or set the position of the knob along the slide. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the position.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1slider_aeef14fabcc574c7d0a25e2f791301c1b}\label{classliblec_1_1lecui_1_1widgets_1_1slider_aeef14fabcc574c7d0a25e2f791301c1b}} 
+\index{liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}!value@{value}}
+\index{value@{value}!liblec::lecui::widgets::slider@{liblec::lecui::widgets::slider}}
+\doxysubsubsection{\texorpdfstring{value()}{value()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1slider}{slider}}\& liblec\+::lecui\+::widgets\+::slider\+::value (\begin{DoxyParamCaption}\item[{const float \&}]{value }\end{DoxyParamCaption})}
+
+
+
+Set the position of the knob along the slide, e.\+g. 63.\+5f. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The position of the knob.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+widgets/slider.\+h\end{DoxyCompactItemize}
