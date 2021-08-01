@@ -283,7 +283,7 @@ namespace liblec {
 }
 
 /// Helper for getting tab pane widget. Builder documentation applies.
-#define get_tab_pane_specs(path) liblec::lecui::containers::tab_pane_builder::specs(*this, path)
+#define get_tab_pane(path) liblec::lecui::containers::tab_pane::get(*this, path)
 
 /// Helper for getting a tab's page. Builder documentation applies.
-#define get_tab_page(path) liblec::lecui::containers::tab_builder::get(*this, path)
+#define get_tab(path) liblec::lecui::containers::tab::get(*this, path)
