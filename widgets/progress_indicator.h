@@ -19,8 +19,8 @@
 namespace liblec {
 	namespace lecui {
 		namespace widgets {
-			/// <summary>Progress indicator widget specifications.</summary>
-				/// <remarks>Recommended size with defaults is 50x50px</remarks>
+			/// <summary>Progress indicator widget. To instantiate and add to a container use the <see cref="add"></see> static method.</summary>
+			/// <remarks>Recommended size with defaults is 50x50px</remarks>
 			class lecui_api progress_indicator : public widget {
 				color _color_empty;
 				float _line_thickness_empty = .5f;

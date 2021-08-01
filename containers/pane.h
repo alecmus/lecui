@@ -19,7 +19,7 @@
 namespace liblec {
 	namespace lecui {
 		namespace containers {
-			/// <summary>Pane container specifications.</summary>
+			/// <summary>Pane container. To create an instance use the <see cref="add"></see> static method.</summary>
 			class lecui_api pane_specs : public widgets::widget {
 				float _border = .5f;
 				color _color_border;
@@ -113,10 +113,7 @@ namespace liblec {
 			class lecui_api pane :
 				public pane_specs, public containers::page {
 			public:
-				/// <summary>Pane constructor.</summary>
-				/// <param name="fm">The form the container is in.</param>
-				/// <param name="alias">The in-page unique alias of the pane, e.g. "settings_pane".</param>
-				pane(form& fm, const std::string& alias);
+				pane(form&, const std::string&);
 
 				/// <summary>Get the size of the pane's page.</summary>
 				/// <returns>The size, in pixels.</returns>

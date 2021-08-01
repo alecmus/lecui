@@ -20,7 +20,7 @@ namespace liblec {
 	namespace lecui {
 		namespace containers {
 			/// <summary>Status pane container specifications.</summary>
-			/// <remarks>Note that this does not inherit from widget::widget as regular
+			/// <remarks>Note that this does not inherit from widgets::widget as regular
 			/// panes do. This is by design because of the nature of the status pane.</remarks>
 			class lecui_api status_pane_specs {
 			public:
@@ -71,7 +71,7 @@ namespace liblec {
 				status_pane_specs& location(const status_pane_specs::pane_location location);
 			};
 
-			/// <summary>Status pane container.</summary>
+			/// <summary>Status pane container. To instantiate and add to a container use the <see cref="add"></see> static method.</summary>
 			/// <remarks>Any widget can be added to this container. Consequently, recursion is
 			/// fully supported, allowing status panes within status panes, to virtually any depth level that
 			/// the memory of the computer the app is running on can permit. However, it is recommended to
@@ -80,9 +80,13 @@ namespace liblec {
 			/// minimal and straightforward as a good gui design principle.</remarks>
 			class lecui_api status_pane : public containers::page {
 			public:
-				/// <summary>status_pane constructor.</summary>
+				status_pane(form&, status_pane_specs);
+
+				[[nodiscard]]
+				/// <summary>Create a status pane.</summary>
 				/// <param name="fm">The form to place it in.</param>
 				/// <param name="specs">The specifications of the status pane.</param>
+				/// <returns>A reference to the status pane.</returns>
 				/// <remarks>Status panes are transparent by default, and have no scroll bars.
 				/// A background can be added by using a rectangle widget. Ensure that there is a
 				/// maximum of one pane per location. Readding a status pane in a given location
@@ -92,13 +96,6 @@ namespace liblec {
 				/// keep in mind that regular panes come with scroll bars. In fact, if you need a
 				/// status pane with scroll bars you can simply add a single pane that fills the
 				/// status pane entirely and you will have the desired effect.</remarks>
-				status_pane(form& fm, status_pane_specs specs);
-
-				[[nodiscard]]
-				/// <summary>Add a status pane to a form.</summary>
-				/// <param name="fm">The form to place it in.</param>
-				/// <param name="specs">The specifications of the status pane.</param>
-				/// <returns></returns>
 				static status_pane& add(form& fm, status_pane_specs specs);
 
 				/// <summary>Get the status pane container page of an existing status pane.</summary>

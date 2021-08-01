@@ -19,7 +19,7 @@
 namespace liblec {
 	namespace lecui {
 		namespace widgets {
-			/// <summary>Button widget specifications.</summary>
+			/// <summary>Button widget. To instantiate and add to a container use the <see cref="add"></see> static method.</summary>
 			/// <remarks>Recommended size with defaults is 80x25px.</remarks>
 			class lecui_api button : public widget {
 				float _border = .5f;

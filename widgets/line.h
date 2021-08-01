@@ -19,7 +19,7 @@
 namespace liblec {
 	namespace lecui {
 		namespace widgets {
-			/// <summary>Line widget specifications.</summary>
+			/// <summary>Line widget. To instantiate and add to a container use the <see cref="add"></see> static method.</summary>
 			class lecui_api line : public widget {
 				float _thickness = 1.f;
 				std::vector<point> _points;
@@ -92,7 +92,7 @@ namespace liblec {
 				line& points(const std::vector<point>& points);
 
 			public:
-				/// <summary>Add a line to a container.</summary>
+				/// <summary>Add a line widget to a container.</summary>
 				/// <param name="page">The container to place the widget in.</param>
 				/// <param name="alias">The in-page unique alias, e.g. "border_line".</param>
 				/// <returns>A reference to the widget specifications.</returns>

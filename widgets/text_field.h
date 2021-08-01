@@ -21,7 +21,7 @@
 namespace liblec {
 	namespace lecui {
 		namespace widgets {
-			/// <summary>Text field widget specifications.</summary>
+			/// <summary>Text field widget. To instantiate and add to a container use the <see cref="add"></see> static method.</summary>
 			/// <remarks>Recommended size with defaults is 200x25px</remarks>
 			class lecui_api text_field : public widget {
 				float _border = .5f;
@@ -34,7 +34,7 @@ namespace liblec {
 				color _color_input_error;
 				std::set<char> _allowed_characters;
 				std::set<char> _forbidden_characters;
-				int _maximum_length;
+				int _maximum_length = 0;
 
 			public:
 				text_field() {

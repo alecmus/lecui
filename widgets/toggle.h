@@ -19,7 +19,7 @@
 namespace liblec {
 	namespace lecui {
 		namespace widgets {
-			/// <summary>Toggle widget specifications.</summary>
+			/// <summary>Toggle widget. To instantiate and add to a container use the <see cref="add"></see> static method.</summary>
 			/// <remarks>Recommended height with defaults is 20px. Recommended minimum
 			/// width with defaults is 100px. Default size is 200x20px.</remarks>
 			class lecui_api toggle : public widget {

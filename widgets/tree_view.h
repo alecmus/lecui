@@ -19,7 +19,7 @@
 namespace liblec {
 	namespace lecui {
 		namespace widgets {
-			/// <summary>Tree view widget specifications.</summary>
+			/// <summary>Tree view widget. To create an instance use the <see cref="add"></see> static method.</summary>
 			/// <remarks>Default size is 200x200px.</remarks>
 			class lecui_api tree_view : public widget {
 			public:

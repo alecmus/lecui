@@ -19,6 +19,7 @@
 namespace liblec {
 	namespace lecui {
 		namespace widgets {
+			/// <summary>Password field widget. To instantiate and add to a container use the <see cref="add"></see> static method.</summary>
 			class lecui_api password_field : public text_field {
 			public:
 				/// <summary>Add a password field to a container.</summary>
@@ -35,7 +36,7 @@ namespace liblec {
 				/// <param name="path">The full path to the widget, e.g. "login_page/credentials_pane/password".</param>
 				/// <returns>A reference to the widget specifications.</returns>
 				/// <remarks>Throws on failure. For faster coding and more readable code consider
-			/// calling this static method through the helper macro provided.</remarks>
+				/// calling this static method through the helper macro provided.</remarks>
 				[[nodiscard]]
 				static text_field& get(form& fm, const std::string& path);
 			};

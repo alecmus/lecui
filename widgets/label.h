@@ -68,7 +68,7 @@ namespace liblec {
 			/// of the text will use the widget specifications.
 			/// 
 			
-			/// <summary>Label widget specifications.</summary>
+			/// <summary>Label widget. To instantiate and add to a container use the <see cref="add"></see> static method.</summary>
 			/// <remarks>Recommended size with defaults is 200x20px.</remarks>
 			class lecui_api label : public widget {
 				color _color_hot_pressed;
@@ -175,7 +175,7 @@ namespace liblec {
 				/// <param name="path">The full path to the widget, e.g. "sample_page/sample_pane/caption".</param>
 				/// <returns>A reference to the widget specifications.</returns>
 				/// <remarks>Throws on failure. For faster coding and more readable code consider
-			/// calling this static method through the helper macro provided.</remarks>
+				/// calling this static method through the helper macro provided.</remarks>
 				[[nodiscard]]
 				static label& get(form& fm, const std::string& path);
 			};

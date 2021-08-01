@@ -19,7 +19,7 @@
 namespace liblec {
 	namespace lecui {
 		namespace widgets {
-			/// <summary>Custom widget specifications.</summary>
+			/// <summary>Custom widget. To instantiate and add to a container use the <see cref="add"></see> static method.</summary>
 			class lecui_api custom : public widget {
 			public:
 				/// <summary>

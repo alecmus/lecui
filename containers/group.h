@@ -19,7 +19,7 @@
 namespace liblec {
 	namespace lecui {
 		namespace containers {
-			/// <summary>Group container specifications.</summary>
+			/// <summary>Group container. To instantiate and add to a container use the <see cref="add"></see> static method.</summary>
 			/// <remarks>A group does not change the widget path, e.g. A widget located at
 			/// "home_page/tab_pane/tab three/pane_two/label" keeps that location even after
 			/// being added to a group. Never add a group name to a path. Groups are strictly for
@@ -34,6 +34,7 @@ namespace liblec {
 				std::vector<std::string> _widgets;
 
 			public:
+
 				group() {
 					// rect is ignored. The group dynamically surrounds the widgets associated
 					// with it as they change location and size.
@@ -140,7 +141,7 @@ namespace liblec {
 				group& widgets(const std::vector<std::string>& widgets);
 
 			public:
-				/// <summary>Make a group.</summary>
+				/// <summary>Create a group.</summary>
 				/// <param name="page">The container to make the group in.</param>
 				/// <param name="alias">The in-page unique alias, e.g. "left_group".</param>
 				/// <returns>A reference to the widget specifications.</returns>
@@ -154,7 +155,7 @@ namespace liblec {
 				/// <param name="path">The full path to the group, e.g. "sample_page/left_group".</param>
 				/// <returns>A reference to the group specifications.</returns>
 				/// <remarks>Throws on failure. For faster coding and more readable code consider
-			/// calling this static method through the helper macro provided.</remarks>
+				/// calling this static method through the helper macro provided.</remarks>
 				[[nodiscard]]
 				static group& get(form& fm, const std::string& path);
 			};

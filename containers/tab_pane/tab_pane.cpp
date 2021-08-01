@@ -419,10 +419,6 @@ namespace liblec {
 			throw std::invalid_argument("Invalid path");
 		}
 
-		containers::tab_pane::tab_pane() {
-			_cursor = cursor_type::hand;
-		}
-
 		bool containers::tab_pane::operator==(const tab_pane& param) {
 			return
 				// generic widget

@@ -19,7 +19,7 @@
 namespace liblec {
 	namespace lecui {
 		namespace widgets {
-			/// <summary>HTML editor widget specifications.</summary>
+			/// <summary>HTML editor widget. To instantiate and add to a container use the <see cref="add"></see> static method.</summary>
 			/// <remarks>Recommended size with defaults is a minimum of 320x215px.</remarks>
 			class lecui_api html_editor : public widget {
 				float _border = .5f;
@@ -39,6 +39,7 @@ namespace liblec {
 				resize_params _on_resize_overall = { 0.f, 0.f, 0.f, 0.f };
 
 			public:
+
 				html_editor() {
 					_cursor = cursor_type::caret;
 					_rect.size({ 320.f, 215.f });
@@ -174,7 +175,7 @@ namespace liblec {
 				/// <param name="path">The full path to the widget, e.g. "login_page/credentials_pane/email_text".</param>
 				/// <returns>A reference to the widget specifications.</returns>
 				/// <remarks>Throws on failure. For faster coding and more readable code consider
-			/// calling this static method through the helper macro provided.</remarks>
+				/// calling this static method through the helper macro provided.</remarks>
 				[[nodiscard]]
 				static html_editor& get(form& fm, const std::string& path);
 

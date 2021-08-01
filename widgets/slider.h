@@ -19,7 +19,7 @@
 namespace liblec {
 	namespace lecui {
 		namespace widgets {
-			/// <summary>Slider widget specifications.</summary>
+			/// <summary>Slider widget. To instantiate and add to a container use the <see cref="add"></see> static method.</summary>
 			/// <remarks>The slider's orientation is computed automatically based on the its
 			/// size. If the width is greater than the height it's oriented horizontally, else
 			/// vertically. With the defaults, the recommended minimum height for horizontal

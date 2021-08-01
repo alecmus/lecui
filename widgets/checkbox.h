@@ -19,7 +19,7 @@
 namespace liblec {
 	namespace lecui {
 		namespace widgets {
-			/// <summary>Checkbox widget specifications.</summary>
+			/// <summary>Checkbox widget. To instantiate and add to a container use the <see cref="add"></see> static method.</summary>
 			/// <remarks>Recommended size with defaults is 20x20px.</remarks>
 			class lecui_api checkbox : public widget {
 			public:

@@ -19,7 +19,7 @@
 namespace liblec {
 	namespace lecui {
 		namespace widgets {
-			/// <summary>Date widget specifications.</summary>
+			/// <summary>Date widget. To instantiate and add to a container use the <see cref="add"></see> static method.</summary>
 			/// <remarks>Recommended size with defaults is 110x60px.</remarks>
 			class lecui_api date : public widget {
 				float _border = .5f;
@@ -134,7 +134,7 @@ namespace liblec {
 				widgets::date& date_value(const lecui::date& date_value);
 
 			public:
-				/// <summary>Add a date to a container.</summary>
+				/// <summary>Add a date widget to a container.</summary>
 				/// <param name="page">The container to place the widget in.</param>
 				/// <param name="alias">The in-page unique alias, e.g. "last_saved".</param>
 				/// <returns>A reference to the widget specifications.</returns>

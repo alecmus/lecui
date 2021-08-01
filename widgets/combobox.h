@@ -19,7 +19,7 @@
 namespace liblec {
 	namespace lecui {
 		namespace widgets {
-			/// <summary>Combobox widget specifications.</summary>
+			/// <summary>Combobox widget. To instantiate and add to a container use the <see cref="add"></see> static method.</summary>
 			/// <remarks>Recommended height with defaults is 25px</remarks>
 			class lecui_api combobox : public widget {
 			public:

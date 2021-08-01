@@ -20,7 +20,7 @@
 namespace liblec {
 	namespace lecui {
 		namespace widgets {
-			/// <summary>Base class for all widget specifications.</summary>
+			/// <summary>Base class for all widgets.</summary>
 			class lecui_api widget {
 			public:
 				/// <summary>Mouse cursor type.</summary>

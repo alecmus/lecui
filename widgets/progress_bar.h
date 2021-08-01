@@ -19,7 +19,7 @@
 namespace liblec {
 	namespace lecui {
 		namespace widgets {
-			/// <summary>Progress bar widget specifications.</summary>
+			/// <summary>Progress bar widget. To instantiate and add to a container use the <see cref="add"></see> static method.</summary>
 			/// <remarks>Recommended size with defaults is 200x12px</remarks>
 			class lecui_api progress_bar : public widget {
 				float _border = 1.f;

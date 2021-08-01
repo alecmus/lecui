@@ -19,7 +19,7 @@
 namespace liblec {
 	namespace lecui {
 		namespace widgets {
-			/// <summary>Time widget specifications.</summary>
+			/// <summary>Time widget. To instantiate and add to a container use the <see cref="add"></see> static method.</summary>
 			/// <remarks>Recommended size with defaults is 90x40px.</remarks>
 			class lecui_api time : public widget {
 				float _border = .5f;

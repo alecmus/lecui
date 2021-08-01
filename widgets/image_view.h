@@ -19,7 +19,7 @@
 namespace liblec {
 	namespace lecui {
 		namespace widgets {
-			/// <summary>Image view widget specifications.</summary>
+			/// <summary>Image view widget. To instantiate and add to a container use the <see cref="add"></see> static method.</summary>
 			/// <remarks>Default size is 200x200px.</remarks>
 			class lecui_api image_view : public widget {
 				float _border = .5f;
@@ -186,7 +186,7 @@ namespace liblec {
 				/// <param name="path">The full path to the widget, e.g. "sample_page/sample_tab_pane/tab_three/pane_two/avatar".</param>
 				/// <returns>A reference to the widget specifications.</returns>
 				/// <remarks>Throws on failure. For faster coding and more readable code consider
-			/// calling this static method through the helper macro provided.</remarks>
+				/// calling this static method through the helper macro provided.</remarks>
 				[[nodiscard]]
 				static image_view& get(form& fm, const std::string& path);
 			};

@@ -19,7 +19,7 @@
 namespace liblec {
 	namespace lecui {
 		namespace widgets {
-			/// <summary>Table view widget specifications.</summary>
+			/// <summary>Table view widget. To instantiate and add to a container use the <see cref="add"></see> static method.</summary>
 			/// <remarks>Default size is 200x200px.</remarks>
 			class lecui_api table_view : public widget {
 				float _border = .5f;

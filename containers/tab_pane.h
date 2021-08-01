@@ -24,7 +24,7 @@ namespace liblec {
 			class tab_builder;
 #endif
 
-			/// <summary>Tab pane specifications.</summary>
+			/// <summary>Tab pane. To instantiate and add to a container use the <see cref="add"></see> static method.</summary>
 			class lecui_api tab_pane : public widgets::widget {
 			public:
 				enum class side {
@@ -57,10 +57,11 @@ namespace liblec {
 				friend class tab_pane_builder;
 				friend class tab_builder;
 #endif
-
 			public:
-				tab_pane();
-
+				tab_pane() {
+					_cursor = cursor_type::hand;
+				}
+				
 				bool operator==(const tab_pane&);
 				bool operator!=(const tab_pane&);
 
@@ -246,23 +247,25 @@ namespace liblec {
 				static tab_pane& get(form& fm, const std::string& path);
 			};
 
-			/// <summary>Tab container.</summary>
+			/// <summary>Tab container. To instantiate and add to a tab pane use the <see cref="add"></see> static method.</summary>
 			/// <remarks>Any widget can be added to this container. Consequently, recursion is
 			/// fully supported, allowing tab panes within tabs that are themselves in another
 			/// tab pane, to virtually any depth level that the memory of the computer the app
 			/// is running on can permit.</remarks>
 			class lecui_api tab : public containers::page {
 			public:
-				/// <summary>Tab constructor.</summary>
-				/// <param name="fm">The form the container is in.</param>
-				/// <param name="tab_name">The in-tab_pane unique name of the tab,
-				/// e.g. "Options".</param>
-				tab(form& fm, const std::string& tab_name);
+				tab(form&, const std::string&);
 
-				// override
+				/// <summary>Get the size of the tab's page.</summary>
+				/// <returns>The size, in pixels.</returns>
+				/// <remarks>The size is automatically determined by the library. It is important
+				/// to note that any widgets added to a page, and any other container for that
+				/// matter, only see the dimensions and coordinates of that container not those
+				/// of the form or another container higher up the hierarchy. Dimensions and
+				/// coordinates are local to a container.</remarks>
 				[[nodiscard]] const lecui::size size();
 
-				/// <summary>Make a pane.</summary>
+				/// <summary>Create a pane.</summary>
 				/// <param name="tp">A reference to the tab pane to place the tab in.</param>
 				/// <param name="alias">The in-page unique alias, e.g. "settings_pane".</param>
 				/// <returns>A reference to the pane specifications.</returns>
