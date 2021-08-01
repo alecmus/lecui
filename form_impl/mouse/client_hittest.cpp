@@ -58,7 +58,7 @@ namespace liblec {
 								auto& tab_pane = page._d_page.get_tab_pane_impl(widget.first);
 
 								for (auto& tab : tab_pane._p_tabs)
-									hittest_hscrollbar(tab.first, tab_pane._current_tab, tab.second,
+									hittest_hscrollbar(tab.first, tab_pane.specs().selected(), tab.second,
 										point, point_before, contains, change, scroll_bar_hit);	// recursion
 							}
 							else
@@ -106,7 +106,7 @@ namespace liblec {
 								auto& tab_pane = page._d_page.get_tab_pane_impl(widget.first);
 
 								for (auto& tab : tab_pane._p_tabs)
-									hittest_vscrollbar(tab.first, tab_pane._current_tab, tab.second,
+									hittest_vscrollbar(tab.first, tab_pane.specs().selected(), tab.second,
 										point, point_before, contains, change, scroll_bar_hit);	// recursion
 							}
 							else
@@ -166,7 +166,7 @@ namespace liblec {
 							// get this tab pane
 							auto& tab_pane = page._d_page.get_tab_pane_impl(widget.first);
 
-							auto page_iterator = tab_pane._p_tabs.find(tab_pane._current_tab);
+							auto page_iterator = tab_pane._p_tabs.find(tab_pane.specs().selected());
 
 							if (page_iterator != tab_pane._p_tabs.end())
 								helper::hittest_widgets(page_iterator->second, point, contains, change, lbutton_pressed, h_cursor,

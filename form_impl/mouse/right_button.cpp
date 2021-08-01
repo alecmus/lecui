@@ -63,7 +63,7 @@ namespace liblec {
 							// get this tab pane
 							auto& tab_pane = page._d_page.get_tab_pane_impl(widget.first);
 
-							auto page_iterator = tab_pane._p_tabs.find(tab_pane._current_tab);
+							auto page_iterator = tab_pane._p_tabs.find(tab_pane.specs().selected());
 
 							if (page_iterator != tab_pane._p_tabs.end())
 								check_widgets(page_iterator->second, point, clicked,

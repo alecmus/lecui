@@ -24,9 +24,8 @@ namespace liblec {
 
 			public:
 				// pages <K = tab name, T>
-				std::map<std::string, containers::page> _p_tabs;
+				std::map<std::string, containers::tab> _p_tabs;
 				std::vector<std::string> _tab_order;
-				std::string _current_tab;
 
 				// pane rect and page
 				containers::page::impl* _p_page_impl = nullptr;
@@ -49,8 +48,8 @@ namespace liblec {
 				void on_click() override;
 
 				/// widget specific methods
-				containers::tab_pane_specs& specs();
-				containers::tab_pane_specs& operator()();
+				containers::tab_pane& specs();
+				containers::tab_pane& operator()();
 				const D2D1_RECT_F& client_area();
 				const D2D1_RECT_F& tab_pane_area();
 				const float& content_margin();
@@ -70,7 +69,7 @@ namespace liblec {
 				tab_pane_impl& operator=(const tab_pane_impl&) = delete;
 
 				/// Private variables
-				containers::tab_pane_specs _specs, _specs_old;
+				containers::tab_pane _specs, _specs_old;
 				ID2D1SolidColorBrush* _p_brush;
 				ID2D1SolidColorBrush* _p_brush_fill;
 				ID2D1SolidColorBrush* _p_brush_border;

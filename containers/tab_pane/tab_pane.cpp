@@ -13,12 +13,62 @@
 
 namespace liblec {
 	namespace lecui {
+		namespace containers {
+			/// <summary>Tab pane container builder.</summary>
+			/// <remarks>Only tab containers can be added to the tab pane container.</remarks>
+			class tab_pane_builder {
+			public:
+				/// <summary>Tab pane builder constructor.</summary>
+				/// <param name="page">A reference to the container to place the control in.</param>
+				/// <param name="content_margin">The margin to use inside the tabs.</param>
+				/// <remarks>This constructs the container with an internally generated random
+				/// alias.</remarks>
+				tab_pane_builder(containers::page& page, const float& content_margin = 10.f);
+
+				/// <summary>Tab pane builder constructor.</summary>
+				/// <param name="page">A reference to the container to place the control in.</param>
+				/// <param name="alias">The in-page unique alias, e.g. "settings_tab_pane".</param>
+				/// <param name="content_margin">The margin to use inside the tabs.</param>
+				/// <remarks>Ensure that the alias is unique within the page. Reusing an alias
+				/// in a tab pane leads to undefined behavior.</remarks>
+				tab_pane_builder(containers::page& page, const std::string& alias, const float& content_margin = 10.f);
+				~tab_pane_builder();
+
+				/// <summary>Get the tab pane specifications.</summary>
+				/// <returns>A reference to the control specifications.</returns>
+				[[nodiscard]]
+				tab_pane& get();
+
+				/// <summary>Get the specifications of a tab pane.</summary>
+				/// <param name="fm">The form the control is in.</param>
+				/// <param name="path">The full path to the control, e.g.
+				/// "sample_page/settings_tab_pane".</param>
+				/// <returns>A reference to the control specifications.</returns>
+				/// <remarks>Throws on failure. For faster coding and more readable code consider
+				/// calling this static method through the helper macro provided (get_tab_pane_specs).</remarks>
+				[[nodiscard]]
+				static tab_pane& get(form& fm, const std::string& path);
+
+			private:
+				class impl;
+				impl& _d;
+
+				// Default constructor and copying an object of this class are not allowed
+				tab_pane_builder() = delete;
+				tab_pane_builder(const tab_pane_builder&) = delete;
+				tab_pane_builder& operator=(const tab_pane_builder&) = delete;
+
+				friend class tab_builder;
+			};
+		}
+
 		class containers::tab_pane_builder::impl {
 		public:
 			impl(containers::page& page,
-				containers::tab_pane_specs& specs,
+				containers::tab_pane& specs,
 				const std::string& alias) :
 				_page(page), _specs(specs) {
+				specs._p_page = &page;
 				_specs
 					.color_text(defaults::color(_page._d_page._fm._d._theme, item::label))
 					.color_fill(defaults::color(_page._d_page._fm._d._theme, item::tab_pane))
@@ -28,7 +78,7 @@ namespace liblec {
 					.color_selected(defaults::color(_page._d_page._fm._d._theme, item::tab_selected));
 			}
 			containers::page& _page;
-			containers::tab_pane_specs& _specs;
+			containers::tab_pane& _specs;
 		};
 
 		containers::tab_pane_builder::tab_pane_builder(containers::page& page, const float& content_margin) :
@@ -40,16 +90,12 @@ namespace liblec {
 
 		containers::tab_pane_builder::~tab_pane_builder() { delete& _d; }
 
-		containers::tab_pane_specs& containers::tab_pane_builder::specs() {
+		containers::tab_pane& containers::tab_pane_builder::get() {
 			return _d._specs;
 		}
 
-		containers::tab_pane_specs& containers::tab_pane_builder::operator()() {
-			return specs();
-		}
-
-		containers::tab_pane_specs&
-			containers::tab_pane_builder::specs(form& fm,
+		containers::tab_pane&
+			containers::tab_pane_builder::get(form& fm,
 				const std::string& path) {
 			const auto idx = path.find("/");
 
@@ -75,21 +121,59 @@ namespace liblec {
 			throw std::invalid_argument("Invalid path");
 		}
 
-		void containers::tab_pane_builder::select(const std::string& tab_name) {
-			auto& _tab_pane = _d._page._d_page.get_tab_pane_impl(_d._specs.alias());
-			_tab_pane._current_tab = tab_name;
+		namespace containers {
+			/// <summary>Tab container builder.</summary>
+			class tab_builder {
+			public:
+				/// <summary>Tab builder constructor.</summary>
+				/// <param name="tp">The tab pane to place it in.</param>
+				/// <param name="tab_name">The in-tab_pane unique name of the tab,
+				/// e.g. "Options".</param>
+				tab_builder(tab_pane& tp, const std::string& tab_name);
+				~tab_builder();
+
+				/// <summary>Get the tab container page.</summary>
+				/// <returns>A reference to the tab container page.</returns>
+				/// <remarks>Note that this is a container of type 'page', hence anything that can
+				/// be added to a regular page can be added here as well. The page comes fully
+				/// featured with scroll bars when widgets exceed the dimensions of the tab, just
+				/// like a regular page.</remarks>
+				[[nodiscard]]
+				containers::tab& get();
+
+				/// <summary>Get the tab container page of an existing tab.</summary>
+				/// <param name="fm">The form the container is in.</param>
+				/// <param name="path">The full path to the tab, e.g.
+				/// "sample_page/settings_tab_pane/Options".
+				/// </param>
+				/// <returns>A reference to the tab container page.</returns>
+				/// <remarks>Throws on failure. For faster coding and more readable code consider
+				/// calling this static method through the helper macro provided (get_tab_page).</remarks>
+				[[nodiscard]]
+				static containers::tab& get(form& fm, const std::string& path);
+
+			private:
+				class impl;
+				impl& _d;
+
+				// Default constructor and copying an object of this class are not allowed
+				tab_builder() = delete;
+				tab_builder(const tab_builder&) = delete;
+				tab_builder& operator=(const tab_builder&) = delete;
+			};
 		}
 
 		class containers::tab_builder::impl {
 		public:
-			impl(containers::tab_pane_builder& tp, const std::string& tab_name) :
+			impl(containers::tab_pane& tp, const std::string& tab_name) :
 				_tp(tp),
 				_page(add(tp, tab_name)) {}
-			containers::tab_pane_builder& _tp;
-			containers::page& _page;
+			containers::tab_pane& _tp;
+			containers::tab& _page;
 
-			static containers::page& add(tab_pane_builder& tp, const std::string& tab_name) {
-				auto& _tab_pane = tp._d._page._d_page.get_tab_pane_impl(tp._d._specs.alias());
+			static containers::tab& add(tab_pane& tp, const std::string& tab_name) {
+				containers::page& _page = *tp._p_page;
+				auto& _tab_pane = _page._d_page.get_tab_pane_impl(tp.alias());
 
 				if (_tab_pane._p_tabs.count(tab_name)) {
 					log("library usage error containers::tab::impl::add");
@@ -98,21 +182,21 @@ namespace liblec {
 					return _tab_pane._p_tabs.at(tab_name);
 				}
 
-				_tab_pane._p_tabs.try_emplace(tab_name, tp._d._page._d_page._fm, tab_name);
+				_tab_pane._p_tabs.try_emplace(tab_name, _page._d_page._fm, tab_name);
 				_tab_pane._tab_order.push_back(tab_name);
 				auto& page_impl = _tab_pane._p_tabs.at(tab_name)._d_page;
 
 				// specify direct2d factory (used internally for geometries and stuff)
-				page_impl.direct2d_factory(tp._d._page._d_page.direct2d_factory());
+				page_impl.direct2d_factory(_page._d_page.direct2d_factory());
 
 				// specify directwrite factory (used internally for text rendering)
-				page_impl.directwrite_factory(tp._d._page._d_page.directwrite_factory());
+				page_impl.directwrite_factory(_page._d_page.directwrite_factory());
 
 				// specify iwic imaging factory (used internally for image rendering)
-				page_impl.iwic_factory(tp._d._page._d_page.iwic_factory());
+				page_impl.iwic_factory(_page._d_page.iwic_factory());
 
 				// specify parent
-				page_impl.parent(tp._d._page);
+				page_impl.parent(_page);
 
 				const float thickness = 10.f;	// thickness of scroll bars
 				const float _content_margin = _tab_pane.content_margin();
@@ -121,17 +205,17 @@ namespace liblec {
 
 				bool tabs_perpendicular = false;
 
-				switch (tp._d._specs.tab_side()) {
-				case tab_pane_specs::side::left:
-				case tab_pane_specs::side::right:
-					if (tp._d._specs.caption_orientation() == tab_pane_specs::orientation::horizontal)
+				switch (tp.tab_side()) {
+				case tab_pane::side::left:
+				case tab_pane::side::right:
+					if (tp.caption_orientation() == tab_pane::orientation::horizontal)
 						tabs_perpendicular = true;
 					break;
 
-				case tab_pane_specs::side::top:
-				case tab_pane_specs::side::bottom:
+				case tab_pane::side::top:
+				case tab_pane::side::bottom:
 				default: 
-					if (tp._d._specs.caption_orientation() == tab_pane_specs::orientation::vertical)
+					if (tp.caption_orientation() == tab_pane::orientation::vertical)
 						tabs_perpendicular = true;
 					break;
 				}
@@ -142,7 +226,7 @@ namespace liblec {
 						// compute the longest tab caption in the reserve
 						for (const auto& alias : _tab_pane.specs().caption_reserve()) {
 							D2D1_RECT_F max_rect = { 0.f, 0.f, _tab_pane.specs().rect().height(), _tab_pane.caption_bar_height() };
-							auto caption_rect = widgets::measure_label(tp._d._page._d_page._p_directwrite_factory, alias, _tab_pane.specs().font(),
+							auto caption_rect = widgets::measure_label(_page._d_page._p_directwrite_factory, alias, _tab_pane.specs().font(),
 								_tab_pane.specs().font_size(), false, true, max_rect);
 
 							_tab_height = largest(_tab_height, caption_rect.right - caption_rect.left + 3.f * _tab_pane.padding());
@@ -152,7 +236,7 @@ namespace liblec {
 						log(tab_name + ": WARNING - no caption reserve for perpendicular tab captions!");
 						// use current caption to set tab height
 						D2D1_RECT_F max_rect = { 0.f, 0.f, _tab_pane.specs().rect().height(), _tab_pane.caption_bar_height() };
-						auto caption_rect = widgets::measure_label(tp._d._page._d_page._p_directwrite_factory, tab_name, _tab_pane.specs().font(),
+						auto caption_rect = widgets::measure_label(_page._d_page._p_directwrite_factory, tab_name, _tab_pane.specs().font(),
 							_tab_pane.specs().font_size(), false, true, max_rect);
 
 						_tab_height = largest(_tab_height, caption_rect.right - caption_rect.left + 3.f * _tab_pane.padding());
@@ -166,15 +250,15 @@ namespace liblec {
 				// set page size
 				page_impl.size({ rect_client_area.width(), rect_client_area.height() });
 
-				switch (tp._d._specs.tab_side()) {
-				case tab_pane_specs::side::left:
-				case tab_pane_specs::side::right:
+				switch (tp.tab_side()) {
+				case tab_pane::side::left:
+				case tab_pane::side::right:
 					page_impl.width(page_impl.width() - (2.f * _content_margin + _caption_bar_height));
 					page_impl.height(page_impl.height() - (2.f * _content_margin));
 					break;
 
-				case tab_pane_specs::side::top:
-				case tab_pane_specs::side::bottom:
+				case tab_pane::side::top:
+				case tab_pane::side::bottom:
 				default:
 					page_impl.width(page_impl.width() - (2.f * _content_margin));
 					page_impl.height(page_impl.height() - (2.f * _content_margin + _caption_bar_height));
@@ -220,14 +304,14 @@ namespace liblec {
 
 					auto width = rect_client_area.right() - rect_client_area.left() - 2.f * _content_margin;
 
-					switch (tp._d._specs.tab_side()) {
-					case tab_pane_specs::side::left:
-					case tab_pane_specs::side::right:
+					switch (tp.tab_side()) {
+					case tab_pane::side::left:
+					case tab_pane::side::right:
 						width -= _caption_bar_height;
 						break;
 
-					case tab_pane_specs::side::top:
-					case tab_pane_specs::side::bottom:
+					case tab_pane::side::top:
+					case tab_pane::side::bottom:
 					default:
 						break;
 					}
@@ -241,10 +325,10 @@ namespace liblec {
 						.place(ref_rect, 50.f, 100.f);
 
 					_specs
-						.color_fill(defaults::color(tp._d._page._d_page._fm._d._theme, item::scrollbar))
-						.color_scrollbar_border(defaults::color(tp._d._page._d_page._fm._d._theme, item::scrollbar_border))
-						.color_hot(defaults::color(tp._d._page._d_page._fm._d._theme, item::scrollbar_hover))
-						.color_hot_pressed(defaults::color(tp._d._page._d_page._fm._d._theme, item::scrollbar_pressed));
+						.color_fill(defaults::color(_page._d_page._fm._d._theme, item::scrollbar))
+						.color_scrollbar_border(defaults::color(_page._d_page._fm._d._theme, item::scrollbar_border))
+						.color_hot(defaults::color(_page._d_page._fm._d._theme, item::scrollbar_hover))
+						.color_hot_pressed(defaults::color(_page._d_page._fm._d._theme, item::scrollbar_pressed));
 				}
 
 				// initialize the page's vertical scroll bar
@@ -256,13 +340,13 @@ namespace liblec {
 
 					auto height = rect_client_area.bottom() - rect_client_area.top() - 2.f * _content_margin;
 
-					switch (tp._d._specs.tab_side()) {
-					case tab_pane_specs::side::left:
-					case tab_pane_specs::side::right:
+					switch (tp.tab_side()) {
+					case tab_pane::side::left:
+					case tab_pane::side::right:
 						break;
 
-					case tab_pane_specs::side::top:
-					case tab_pane_specs::side::bottom:
+					case tab_pane::side::top:
+					case tab_pane::side::bottom:
 					default:
 						height -= _caption_bar_height;
 						break;
@@ -277,10 +361,10 @@ namespace liblec {
 						.place(ref_rect, 100.f, 50.f);
 
 					_specs
-						.color_fill(defaults::color(tp._d._page._d_page._fm._d._theme, item::scrollbar))
-						.color_scrollbar_border(defaults::color(tp._d._page._d_page._fm._d._theme, item::scrollbar_border))
-						.color_hot(defaults::color(tp._d._page._d_page._fm._d._theme, item::scrollbar_hover))
-						.color_hot_pressed(defaults::color(tp._d._page._d_page._fm._d._theme, item::scrollbar_pressed));
+						.color_fill(defaults::color(_page._d_page._fm._d._theme, item::scrollbar))
+						.color_scrollbar_border(defaults::color(_page._d_page._fm._d._theme, item::scrollbar_border))
+						.color_hot(defaults::color(_page._d_page._fm._d._theme, item::scrollbar_hover))
+						.color_hot_pressed(defaults::color(_page._d_page._fm._d._theme, item::scrollbar_pressed));
 				}
 
 				// return reference to page so caller can add widgets to it
@@ -288,199 +372,248 @@ namespace liblec {
 			}
 		};
 
-		containers::tab_builder::tab_builder(containers::tab_pane_builder& tp, const std::string& tab_name) :
+		containers::tab_builder::tab_builder(containers::tab_pane& tp, const std::string& tab_name) :
 			_d(*(new impl(tp, tab_name))) {}
 
 		containers::tab_builder::~tab_builder() { delete& _d; }
 
-		containers::page& containers::tab_builder::get() {
+		containers::tab& containers::tab_builder::get() {
 			return _d._page;
 		}
 
-		containers::page&
+		containers::tab&
 			containers::tab_builder::get(form& fm, const std::string& path) {
 			const auto idx = path.find("/");
 
-			try {
-				// check form pages
-				if (idx == std::string::npos)
-					return fm._d._p_pages.at(path);
-				else {
-					const auto page_alias = path.substr(0, idx);
-					const auto path_remaining = path.substr(idx + 1);
-					auto& page = fm._d._p_pages.at(page_alias);
-					return fm._d.find_page(page, path_remaining);
-				}
-			}
-			catch (const std::exception&) {}
-			try {
-				// check status panes
-				if (idx == std::string::npos)
-					return fm._d._p_status_panes.at(path);
-				else {
-					const auto page_alias = path.substr(0, idx);
-					const auto path_remaining = path.substr(idx + 1);
-					auto& page = fm._d._p_status_panes.at(page_alias);
-					return fm._d.find_page(page, path_remaining);
-				}
-			}
-			catch (const std::exception&) {}
+			//try {
+			//	// check form pages
+			//	if (idx == std::string::npos)
+			//		return fm._d._p_pages.at(path);
+			//	else {
+			//		const auto page_alias = path.substr(0, idx);
+			//		const auto path_remaining = path.substr(idx + 1);
+			//		auto& page = fm._d._p_pages.at(page_alias);
+			//		return fm._d.find_page(page, path_remaining);
+			//	}
+			//}
+			//catch (const std::exception&) {}
+			//try {
+			//	// check status panes
+			//	if (idx == std::string::npos)
+			//		return fm._d._p_status_panes.at(path);
+			//	else {
+			//		const auto page_alias = path.substr(0, idx);
+			//		const auto path_remaining = path.substr(idx + 1);
+			//		auto& page = fm._d._p_status_panes.at(page_alias);
+			//		return fm._d.find_page(page, path_remaining);
+			//	}
+			//}
+			//catch (const std::exception&) {}
 
 			throw std::invalid_argument("Invalid path");
 		}
 
-		std::string& containers::tab_pane_specs::text() { return _text; }
+		containers::tab_pane::tab_pane() {
+			_cursor = cursor_type::hand;
+		}
 
-		containers::tab_pane_specs& containers::tab_pane_specs::text(const std::string& text) {
+		bool containers::tab_pane::operator==(const tab_pane& param) {
+			return
+				// generic widget
+				widget::operator==(param) &&
+
+				// widget specific widget
+				(_color_border == param._color_border) &&
+				(_color_tabs == param._color_tabs) &&
+				(_color_tabs_border == param._color_tabs_border);
+		}
+
+		bool containers::tab_pane::operator!=(const tab_pane& param) {
+			return !operator==(param);
+		}
+
+		std::string& containers::tab_pane::text() { return _text; }
+
+		containers::tab_pane& containers::tab_pane::text(const std::string& text) {
 			_text = text;
 			return *this;
 		}
 
-		std::string& containers::tab_pane_specs::tooltip() { return _tooltip; }
+		std::string& containers::tab_pane::tooltip() { return _tooltip; }
 
-		containers::tab_pane_specs& containers::tab_pane_specs::tooltip(const std::string& tooltip) {
+		containers::tab_pane& containers::tab_pane::tooltip(const std::string& tooltip) {
 			_tooltip = tooltip;
 			return *this;
 		}
 
-		lecui::rect& containers::tab_pane_specs::rect() { return _rect; }
+		lecui::rect& containers::tab_pane::rect() { return _rect; }
 
-		containers::tab_pane_specs& containers::tab_pane_specs::rect(const lecui::rect& rect) {
+		containers::tab_pane& containers::tab_pane::rect(const lecui::rect& rect) {
 			_rect = rect;
 			return *this;
 		}
 
-		resize_params& containers::tab_pane_specs::on_resize() { return _on_resize; }
+		resize_params& containers::tab_pane::on_resize() { return _on_resize; }
 
-		containers::tab_pane_specs& containers::tab_pane_specs::on_resize(const resize_params& on_resize) {
+		containers::tab_pane& containers::tab_pane::on_resize(const resize_params& on_resize) {
 			_on_resize = on_resize;
 			return *this;
 		}
 
-		widgets::widget::cursor_type& containers::tab_pane_specs::cursor() { return _cursor; }
+		widgets::widget::cursor_type& containers::tab_pane::cursor() { return _cursor; }
 
-		containers::tab_pane_specs& containers::tab_pane_specs::cursor(const cursor_type cursor) {
+		containers::tab_pane& containers::tab_pane::cursor(const cursor_type cursor) {
 			_cursor = cursor;
 			return *this;
 		}
 
-		std::string& containers::tab_pane_specs::font() { return _font; }
+		std::string& containers::tab_pane::font() { return _font; }
 
-		containers::tab_pane_specs& containers::tab_pane_specs::font(const std::string& font) {
+		containers::tab_pane& containers::tab_pane::font(const std::string& font) {
 			_font = font;
 			return *this;
 		}
 
-		float& containers::tab_pane_specs::font_size() { return _font_size; }
+		float& containers::tab_pane::font_size() { return _font_size; }
 
-		containers::tab_pane_specs& containers::tab_pane_specs::font_size(const float& font_size) {
+		containers::tab_pane& containers::tab_pane::font_size(const float& font_size) {
 			_font_size = font_size;
 			return *this;
 		}
 
-		color& containers::tab_pane_specs::color_text() { return _color_text; }
+		color& containers::tab_pane::color_text() { return _color_text; }
 
-		containers::tab_pane_specs& containers::tab_pane_specs::color_text(const color& color_text) {
+		containers::tab_pane& containers::tab_pane::color_text(const color& color_text) {
 			_color_text = color_text;
 			return *this;
 		}
 
-		color& containers::tab_pane_specs::color_fill() { return _color_fill; }
+		color& containers::tab_pane::color_fill() { return _color_fill; }
 
-		containers::tab_pane_specs& containers::tab_pane_specs::color_fill(const color& color_fill) {
+		containers::tab_pane& containers::tab_pane::color_fill(const color& color_fill) {
 			_color_fill = color_fill;
 			return *this;
 		}
 
-		color& containers::tab_pane_specs::color_hot() { return _color_hot; }
+		color& containers::tab_pane::color_hot() { return _color_hot; }
 
-		containers::tab_pane_specs& containers::tab_pane_specs::color_hot(const color& color_hot) {
+		containers::tab_pane& containers::tab_pane::color_hot(const color& color_hot) {
 			_color_hot = color_hot;
 			return *this;
 		}
 
-		color& containers::tab_pane_specs::color_selected() { return _color_selected; }
+		color& containers::tab_pane::color_selected() { return _color_selected; }
 
-		containers::tab_pane_specs& containers::tab_pane_specs::color_selected(const color& color_selected) {
+		containers::tab_pane& containers::tab_pane::color_selected(const color& color_selected) {
 			_color_selected = color_selected;
 			return *this;
 		}
 
-		color& containers::tab_pane_specs::color_disabled() { return _color_disabled; }
+		color& containers::tab_pane::color_disabled() { return _color_disabled; }
 
-		containers::tab_pane_specs& containers::tab_pane_specs::color_disabled(const color& color_disabled) {
+		containers::tab_pane& containers::tab_pane::color_disabled(const color& color_disabled) {
 			_color_disabled = color_disabled;
 			return *this;
 		}
 
-		float& containers::tab_pane_specs::border() { return _border; }
+		float& containers::tab_pane::border() { return _border; }
 
-		containers::tab_pane_specs& containers::tab_pane_specs::border(const float& border) {
+		containers::tab_pane& containers::tab_pane::border(const float& border) {
 			_border = border;
 			return *this;
 		}
 
-		lecui::color& containers::tab_pane_specs::color_border() { return _color_border; }
+		lecui::color& containers::tab_pane::color_border() { return _color_border; }
 
-		containers::tab_pane_specs& containers::tab_pane_specs::color_border(const color& color_border) {
+		containers::tab_pane& containers::tab_pane::color_border(const color& color_border) {
 			_color_border = color_border;
 			return *this;
 		}
 
-		float& containers::tab_pane_specs::corner_radius_x() { return _corner_radius_x; }
+		float& containers::tab_pane::corner_radius_x() { return _corner_radius_x; }
 
-		containers::tab_pane_specs& containers::tab_pane_specs::corner_radius_x(const float& corner_radius_x) {
+		containers::tab_pane& containers::tab_pane::corner_radius_x(const float& corner_radius_x) {
 			_corner_radius_x = corner_radius_x;
 			return *this;
 		}
 
-		float& containers::tab_pane_specs::corner_radius_y() { return _corner_radius_y; }
+		float& containers::tab_pane::corner_radius_y() { return _corner_radius_y; }
 
-		containers::tab_pane_specs& containers::tab_pane_specs::corner_radius_y(const float& corner_radius_y) {
+		containers::tab_pane& containers::tab_pane::corner_radius_y(const float& corner_radius_y) {
 			_corner_radius_y = corner_radius_y;
 			return *this;
 		}
 
-		containers::tab_pane_specs::side& containers::tab_pane_specs::tab_side() { return _tab_side; }
+		containers::tab_pane::side& containers::tab_pane::tab_side() { return _tab_side; }
 
-		containers::tab_pane_specs& containers::tab_pane_specs::tab_side(const side& tab_side) {
+		containers::tab_pane& containers::tab_pane::tab_side(const side& tab_side) {
 			_tab_side = tab_side;
 			return *this;
 		}
 
-		std::vector<std::string>& containers::tab_pane_specs::caption_reserve() { return _caption_reserve; }
+		std::vector<std::string>& containers::tab_pane::caption_reserve() { return _caption_reserve; }
 
-		containers::tab_pane_specs& containers::tab_pane_specs::caption_reserve(const std::vector<std::string>& caption_reserve) {
+		containers::tab_pane& containers::tab_pane::caption_reserve(const std::vector<std::string>& caption_reserve) {
 			_caption_reserve = caption_reserve;
 			return *this;
 		}
 
-		containers::tab_pane_specs::orientation& containers::tab_pane_specs::caption_orientation() { return _caption_orientation; }
+		containers::tab_pane::orientation& containers::tab_pane::caption_orientation() { return _caption_orientation; }
 
-		containers::tab_pane_specs& containers::tab_pane_specs::caption_orientation(const orientation& caption_orientation) {
+		containers::tab_pane& containers::tab_pane::caption_orientation(const orientation& caption_orientation) {
 			_caption_orientation = caption_orientation;
 			return *this;
 		}
 
-		lecui::color& containers::tab_pane_specs::color_tabs() { return _color_tabs; }
+		lecui::color& containers::tab_pane::color_tabs() { return _color_tabs; }
 
-		containers::tab_pane_specs& containers::tab_pane_specs::color_tabs(const color& color_tabs) {
+		containers::tab_pane& containers::tab_pane::color_tabs(const color& color_tabs) {
 			_color_tabs = color_tabs;
 			return *this;
 		}
 
-		lecui::color& containers::tab_pane_specs::color_tabs_border() { return _color_tabs_border; }
+		lecui::color& containers::tab_pane::color_tabs_border() { return _color_tabs_border; }
 
-		containers::tab_pane_specs& containers::tab_pane_specs::color_tabs_border(const color& color_tabs_border) {
+		containers::tab_pane& containers::tab_pane::color_tabs_border(const color& color_tabs_border) {
 			_color_tabs_border = color_tabs_border;
 			return *this;
 		}
 
-		float& containers::tab_pane_specs::tabs_border() { return _tabs_border; }
+		float& containers::tab_pane::tabs_border() { return _tabs_border; }
 
-		containers::tab_pane_specs& containers::tab_pane_specs::tabs_border(const float& tabs_border) {
+		containers::tab_pane& containers::tab_pane::tabs_border(const float& tabs_border) {
 			_tabs_border = tabs_border;
 			return *this;
+		}
+
+		std::string& containers::tab_pane::selected() { return _selected; }
+
+		containers::tab_pane& containers::tab_pane::selected(const std::string& selected) {
+			_selected = selected;
+			return *this;
+		}
+
+		containers::tab_pane& containers::tab_pane::add(containers::page& page, const std::string& alias, const float& content_margin) {
+			return containers::tab_pane_builder(page, alias, content_margin).get();
+		}
+
+		containers::tab_pane& containers::tab_pane::get(form& fm, const std::string& path) {
+			return containers::tab_pane_builder::get(fm, path);
+		}
+
+		containers::tab::tab(form& fm, const std::string& tab_name) :
+			page(fm, tab_name) {}
+
+		const lecui::size containers::tab::size() {
+			return page::size();
+		}
+
+		containers::tab& containers::tab::add(containers::tab_pane& tp, const std::string& alias) {
+			return containers::tab_builder(tp, alias).get();
+		}
+
+		containers::tab& containers::tab::get(form& fm, const std::string& path) {
+			return containers::tab_builder::get(fm, path);
 		}
 	}
 }

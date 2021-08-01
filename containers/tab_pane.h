@@ -19,10 +19,11 @@
 namespace liblec {
 	namespace lecui {
 		namespace containers {
+			class tab_pane_builder;
 			class tab_builder;
 
 			/// <summary>Tab pane specifications.</summary>
-			class lecui_api tab_pane_specs : public widgets::widget {
+			class lecui_api tab_pane : public widgets::widget {
 			public:
 				enum class side {
 					left,
@@ -47,49 +48,55 @@ namespace liblec {
 				color _color_tabs;
 				color _color_tabs_border;
 				float _tabs_border = .5f;
+				std::string _selected;
+				containers::page* _p_page = nullptr;
+
+				friend class tab_pane_builder;
+				friend class tab_builder;
 
 			public:
-				tab_pane_specs() {
-					_cursor = cursor_type::hand;
-				}
+				tab_pane();
+
+				bool operator==(const tab_pane&);
+				bool operator!=(const tab_pane&);
 
 				// generic widget
 
 				std::string& text() override;
-				tab_pane_specs& text(const std::string& text);
+				tab_pane& text(const std::string& text);
 
 				std::string& tooltip() override;
-				tab_pane_specs& tooltip(const std::string& tooltip);
+				tab_pane& tooltip(const std::string& tooltip);
 
 				lecui::rect& rect() override;
-				tab_pane_specs& rect(const lecui::rect& rect);
+				tab_pane& rect(const lecui::rect& rect);
 
 				resize_params& on_resize() override;
-				tab_pane_specs& on_resize(const resize_params& on_resize);
+				tab_pane& on_resize(const resize_params& on_resize);
 
 				cursor_type& cursor() override;
-				tab_pane_specs& cursor(const cursor_type cursor);
+				tab_pane& cursor(const cursor_type cursor);
 
 				std::string& font() override;
-				tab_pane_specs& font(const std::string& font);
+				tab_pane& font(const std::string& font);
 
 				float& font_size() override;
-				tab_pane_specs& font_size(const float& font_size);
+				tab_pane& font_size(const float& font_size);
 
 				color& color_text() override;
-				tab_pane_specs& color_text(const color& color_text);
+				tab_pane& color_text(const color& color_text);
 
 				color& color_fill() override;
-				tab_pane_specs& color_fill(const color& color_fill);
+				tab_pane& color_fill(const color& color_fill);
 
 				color& color_hot() override;
-				tab_pane_specs& color_hot(const color& color_hot);
+				tab_pane& color_hot(const color& color_hot);
 
 				color& color_selected() override;
-				tab_pane_specs& color_selected(const color& color_selected);
+				tab_pane& color_selected(const color& color_selected);
 
 				color& color_disabled() override;
-				tab_pane_specs& color_disabled(const color& color_disabled);
+				tab_pane& color_disabled(const color& color_disabled);
 
 				// widget specific widget
 
@@ -100,7 +107,7 @@ namespace liblec {
 				/// <summary>Set the thickness of the border.</summary>
 				/// <param name="border">The border thickness, in pixels.</param>
 				/// <returns>A reference to the modified object.</returns>
-				tab_pane_specs& border(const float& border);
+				tab_pane& border(const float& border);
 
 				/// <summary>Get or set the color of the border.</summary>
 				/// <returns>A reference to the border color, as defined in <see cref="color"></see>.</returns>
@@ -109,7 +116,7 @@ namespace liblec {
 				/// <summary>Set the color of the border.</summary>
 				/// <param name="color_border">The border color, as defined in <see cref="color"></see>.</param>
 				/// <returns>A reference to the modified object.</returns>
-				tab_pane_specs& color_border(const color& color_border);
+				tab_pane& color_border(const color& color_border);
 
 				/// <summary>Get or set the horizontal radius of the corners.</summary>
 				/// <returns>A reference to the radius, in pixels.</returns>
@@ -118,7 +125,7 @@ namespace liblec {
 				/// <summary>Set the horizontal radius of the corners.</summary>
 				/// <param name="corner_radius_x">The horizontal radius of the corner, in pixels.</param>
 				/// <returns>A reference to the modified object.</returns>
-				tab_pane_specs& corner_radius_x(const float& corner_radius_x);
+				tab_pane& corner_radius_x(const float& corner_radius_x);
 
 				/// <summary>Get or set the vertical radius of the corners.</summary>
 				/// <returns>A reference to the radius, in pixels.</returns>
@@ -127,7 +134,7 @@ namespace liblec {
 				/// <summary>Set the vertical radius of the corners.</summary>
 				/// <param name="corner_radius_y">The horizontal radius of the corner, in pixels.</param>
 				/// <returns>A reference to the modified object.</returns>
-				tab_pane_specs& corner_radius_y(const float& corner_radius_y);
+				tab_pane& corner_radius_y(const float& corner_radius_y);
 
 				/// <summary>Get or set the side on which to place the tab.</summary>
 				/// <returns>A reference to the property, as defined in <see cref="side"></see>.</returns>
@@ -136,7 +143,7 @@ namespace liblec {
 				/// <summary>Set the side on which to place the tab.</summary>
 				/// <param name="tab_side">The property, as defined in <see cref="side"></see>.</param>
 				/// <returns>A reference to the modified object.</returns>
-				tab_pane_specs& tab_side(const side& tab_side);
+				tab_pane& tab_side(const side& tab_side);
 
 				/// <summary>Get or set the caption reserve property.</summary>
 				/// <returns>A reference to the list of tab captions.</returns>
@@ -167,7 +174,7 @@ namespace liblec {
 				/// pane. Failure to do this will result in the thickness of the tab area being
 				/// clipped to the size of the first tab's caption. This, however, won't be an
 				/// issue if the rest of the tab captions are shorter than the first.</remarks>
-				tab_pane_specs& caption_reserve(const std::vector<std::string>& caption_reserve);
+				tab_pane& caption_reserve(const std::vector<std::string>& caption_reserve);
 
 				/// <summary>Get or set the orientation of the caption text.</summary>
 				/// <returns>A reference to the property, as defined in <see cref="orientation"></see>.</returns>
@@ -176,7 +183,7 @@ namespace liblec {
 				/// <summary>Set the orientation of the caption text.</summary>
 				/// <param name="caption_orientation">The caption orientation, as defined in <see cref="orientation"></see>.</param>
 				/// <returns>A reference to the modified object.</returns>
-				tab_pane_specs& caption_orientation(const orientation& caption_orientation);
+				tab_pane& caption_orientation(const orientation& caption_orientation);
 
 				/// <summary>Get or set the fill color of the tabs.</summary>
 				/// <returns>A reference to the color.</returns>
@@ -185,7 +192,7 @@ namespace liblec {
 				/// <summary>Set the fill color of the tabs.</summary>
 				/// <param name="color_tabs">The color.</param>
 				/// <returns>A reference to the modified object.</returns>
-				tab_pane_specs& color_tabs(const color& color_tabs);
+				tab_pane& color_tabs(const color& color_tabs);
 
 				/// <summary>Get or set the color of the tab borders.</summary>
 				/// <returns>A reference to the color.</returns>
@@ -194,7 +201,7 @@ namespace liblec {
 				/// <summary>Set the color of the tab borders.</summary>
 				/// <param name="color_tabs_border">The color.</param>
 				/// <returns>A reference to the modified object.</returns>
-				tab_pane_specs& color_tabs_border(const color& color_tabs_border);
+				tab_pane& color_tabs_border(const color& color_tabs_border);
 
 				/// <summary>Get or set the thickness of the tab borders.</summary>
 				/// <returns>A reference to the thickness, in pixels.</returns>
@@ -203,93 +210,62 @@ namespace liblec {
 				/// <summary>Set the thickness of the tab borders.</summary>
 				/// <param name="tabs_border">The thickness, in pixels.</param>
 				/// <returns>A reference to the modified object.</returns>
-				tab_pane_specs& tabs_border(const float& tabs_border);
-			};
+				tab_pane& tabs_border(const float& tabs_border);
 
-			/// <summary>Tab pane container builder.</summary>
-			/// <remarks>Only tab containers can be added to the tab pane container.</remarks>
-			class lecui_api tab_pane_builder {
+				/// <summary>Get or set the selected tab.</summary>
+				/// <returns>A reference to the property.</returns>
+				std::string& selected();
+
+				/// <summary>Set the selected tab.</summary>
+				/// <param name="selected">The name of the tab.</param>
+				/// <returns>A reference to the modified object.</returns>
+				tab_pane& selected(const std::string& selected);
+
 			public:
-				/// <summary>Tab pane builder constructor.</summary>
-				/// <param name="page">A reference to the container to place the control in.</param>
-				/// <param name="content_margin">The margin to use inside the tabs.</param>
-				/// <remarks>This constructs the container with an internally generated random
-				/// alias.</remarks>
-				tab_pane_builder(containers::page& page, const float& content_margin = 10.f);
-
-				/// <summary>Tab pane builder constructor.</summary>
-				/// <param name="page">A reference to the container to place the control in.</param>
+				/// <summary>Make a tab pane.</summary>
+				/// <param name="page">A reference to the container to place the tab pane in.</param>
 				/// <param name="alias">The in-page unique alias, e.g. "settings_tab_pane".</param>
 				/// <param name="content_margin">The margin to use inside the tabs.</param>
+				/// <returns>A reference to the tab pane specifications.</returns>
 				/// <remarks>Ensure that the alias is unique within the page. Reusing an alias
 				/// in a tab pane leads to undefined behavior.</remarks>
-				tab_pane_builder(containers::page& page, const std::string& alias, const float& content_margin = 10.f);
-				~tab_pane_builder();
-
-				/// <summary>Get the tab pane specifications.</summary>
-				/// <returns>A reference to the control specifications.</returns>
 				[[nodiscard]]
-				tab_pane_specs& specs();
+				static tab_pane& add(containers::page& page, const std::string& alias = std::string(), const float& content_margin = 10.f);
 
-				/// <summary>Get the tab pane specifications.</summary>
-				/// <returns>A reference to the control specifications.</returns>
-				/// <remarks>Alternative to widget() for more terse code.</remarks>
-				[[nodiscard]]
-				tab_pane_specs& operator()();
-
-				/// <summary>Get the specifications of a tab pane.</summary>
-				/// <param name="fm">The form the control is in.</param>
-				/// <param name="path">The full path to the control, e.g.
-				/// "sample_page/settings_tab_pane".</param>
-				/// <returns>A reference to the control specifications.</returns>
+				/// <summary>Get the specifications of a pane.</summary>
+				/// <param name="fm"></param>
+				/// <param name="path">The full path to the pane, e.g. "sample_page/settings_pane".</param>
+				/// <returns>A reference to the pane specifications.</returns>
 				/// <remarks>Throws on failure. For faster coding and more readable code consider
-				/// calling this static method through the helper macro provided (get_tab_pane_specs).</remarks>
+				/// calling this static method through the helper macro provided.</remarks>
 				[[nodiscard]]
-				static tab_pane_specs& specs(form& fm, const std::string& path);
-
-				/// <summary>Select the visible tab in the tab pane.</summary>
-				/// <param name="tab_name">The in-control unique name of the tab, e.g. "Options".
-				/// </param>
-				/// <remarks>By default none of the tabs is selected if this method is
-				/// never called and the tab pane will load empty. The first selection will
-				/// happen when the user clicks a tab, at which point the contents of that tab
-				/// will be displayed.</remarks>
-				void select(const std::string& tab_name);
-
-			private:
-				class impl;
-				impl& _d;
-
-				// Default constructor and copying an object of this class are not allowed
-				tab_pane_builder() = delete;
-				tab_pane_builder(const tab_pane_builder&) = delete;
-				tab_pane_builder& operator=(const tab_pane_builder&) = delete;
-
-				friend class tab_builder;
+				static tab_pane& get(form& fm, const std::string& path);
 			};
 
-			/// <summary>Tab container builder.</summary>
+			/// <summary>Tab container.</summary>
 			/// <remarks>Any widget can be added to this container. Consequently, recursion is
 			/// fully supported, allowing tab panes within tabs that are themselves in another
 			/// tab pane, to virtually any depth level that the memory of the computer the app
 			/// is running on can permit.</remarks>
-			class lecui_api tab_builder {
+			class lecui_api tab : public containers::page {
 			public:
-				/// <summary>Tab builder constructor.</summary>
-				/// <param name="tp">The tab pane to place it in.</param>
+				/// <summary>Tab constructor.</summary>
+				/// <param name="fm">The form the container is in.</param>
 				/// <param name="tab_name">The in-tab_pane unique name of the tab,
 				/// e.g. "Options".</param>
-				tab_builder(tab_pane_builder& tp, const std::string& tab_name);
-				~tab_builder();
+				tab(form& fm, const std::string& tab_name);
 
-				/// <summary>Get the tab container page.</summary>
-				/// <returns>A reference to the tab container page.</returns>
-				/// <remarks>Note that this is a container of type 'page', hence anything that can
-				/// be added to a regular page can be added here as well. The page comes fully
-				/// featured with scroll bars when widgets exceed the dimensions of the tab, just
-				/// like a regular page.</remarks>
+				// override
+				[[nodiscard]] const lecui::size size();
+
+				/// <summary>Make a pane.</summary>
+				/// <param name="tp">A reference to the tab pane to place the tab in.</param>
+				/// <param name="alias">The in-page unique alias, e.g. "settings_pane".</param>
+				/// <returns>A reference to the pane specifications.</returns>
+				/// <remarks>If an empty alias is given an internally generated random
+				/// alias will be assigned.</remarks>
 				[[nodiscard]]
-				containers::page& get();
+				static tab& add(containers::tab_pane& tp, const std::string& tab_name);
 
 				/// <summary>Get the tab container page of an existing tab.</summary>
 				/// <param name="fm">The form the container is in.</param>
@@ -300,16 +276,7 @@ namespace liblec {
 				/// <remarks>Throws on failure. For faster coding and more readable code consider
 				/// calling this static method through the helper macro provided (get_tab_page).</remarks>
 				[[nodiscard]]
-				static containers::page& get(form& fm, const std::string& path);
-
-			private:
-				class impl;
-				impl& _d;
-
-				// Default constructor and copying an object of this class are not allowed
-				tab_builder() = delete;
-				tab_builder(const tab_builder&) = delete;
-				tab_builder& operator=(const tab_builder&) = delete;
+				static tab& get(form& fm, const std::string& path);
 			};
 		}
 	}

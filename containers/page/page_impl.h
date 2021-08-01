@@ -68,7 +68,7 @@ namespace liblec {
 			const float height();
 			bool contains(const D2D1_POINT_2F& point);
 
-			containers::tab_pane_specs&
+			containers::tab_pane&
 				add_tab_pane(std::string alias, const float& content_margin);
 			containers::pane&
 				add_pane(std::string alias, const float& content_margin);

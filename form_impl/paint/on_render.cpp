@@ -310,7 +310,7 @@ namespace liblec {
 											rect_page.right -= _content_margin;
 											rect_page.bottom -= _content_margin;
 
-											render_page(render ? tab_pane.visible() : false, tab.first, tab_pane._current_tab, tab.second,
+											render_page(render ? tab_pane.visible() : false, tab.first, tab_pane.specs().selected(), tab.second,
 												_p_render_target, rect_page, rect_page, change_in_size,
 												_dpi_scale, _p_brush_theme, _p_brush_theme_hot, lbutton_pressed);	// recursion
 										}
