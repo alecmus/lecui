@@ -59,7 +59,7 @@ namespace liblec {
 #if defined(LECUI_EXPORTS)
 				friend class form;
 				friend class page_manager;
-				friend class containers::status_pane;
+				friend class containers::status_pane_builder;
 				friend class containers::tab_pane_builder;
 				friend class containers::tab_builder;
 				friend class containers::pane_builder;

@@ -373,10 +373,10 @@ namespace liblec {
 				};
 
 				// get status pane sizes
-				const auto status_bottom = get_status_size(containers::status_pane_specs::location::bottom);
-				const auto status_top = get_status_size(containers::status_pane_specs::location::top);
-				const auto status_left = get_status_size(containers::status_pane_specs::location::left);
-				const auto status_right = get_status_size(containers::status_pane_specs::location::right);
+				const auto status_bottom = get_status_size(containers::status_pane_specs::pane_location::bottom);
+				const auto status_top = get_status_size(containers::status_pane_specs::pane_location::top);
+				const auto status_left = get_status_size(containers::status_pane_specs::pane_location::left);
+				const auto status_right = get_status_size(containers::status_pane_specs::pane_location::right);
 
 				const D2D1_SIZE_F change_in_size = { rtSize.width - _size.get_width(), rtSize.height - _size.get_height() };
 

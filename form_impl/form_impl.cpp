@@ -2905,13 +2905,13 @@ namespace liblec {
 			catch (const std::exception&) {}
 		}
 
-		lecui::size form::impl::get_status_size(containers::status_pane_specs::location type) {
+		lecui::size form::impl::get_status_size(containers::status_pane_specs::pane_location type) {
 			std::string alias;
 			switch (type) {
-			case containers::status_pane_specs::location::top: alias = "status::top"; break;
-			case containers::status_pane_specs::location::left: alias = "status::left"; break;
-			case containers::status_pane_specs::location::right: alias = "status::right"; break;
-			case containers::status_pane_specs::location::bottom:
+			case containers::status_pane_specs::pane_location::top: alias = "status::top"; break;
+			case containers::status_pane_specs::pane_location::left: alias = "status::left"; break;
+			case containers::status_pane_specs::pane_location::right: alias = "status::right"; break;
+			case containers::status_pane_specs::pane_location::bottom:
 			default: alias = "status::bottom"; break;
 			}
 

@@ -141,7 +141,7 @@ namespace liblec {
 			ID2D1SolidColorBrush* _p_brush_titlebar;
 
 			// pages <K = page alias, T>
-			std::map<std::string, containers::page> _p_status_panes;
+			std::map<std::string, containers::status_pane> _p_status_panes;
 			std::map<std::string, containers::status_pane_specs> _p_status_pane_specs;
 			std::map<std::string, containers::page> _p_pages;
 			std::string _current_page;
@@ -249,7 +249,7 @@ namespace liblec {
 			friend class instance_manager;
 			friend class form_menu;
 			friend class tray_icon;
-			friend class containers::status_pane;
+			friend class containers::status_pane_builder;
 			friend class containers::tab_pane_builder;
 			friend class containers::tab_builder;
 			friend class containers::pane_builder;
@@ -360,7 +360,7 @@ namespace liblec {
 			void clear_selection(containers::page& container);
 			void select(const std::string& path);
 
-			lecui::size get_status_size(containers::status_pane_specs::location type);
+			lecui::size get_status_size(containers::status_pane_specs::pane_location type);
 			HWND find_native_handle(const std::string& guid);
 			void open_existing_instance();
 

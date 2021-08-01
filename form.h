@@ -36,7 +36,7 @@ namespace liblec {
 
 		namespace containers {
 			class page;
-			class status_pane;
+			class status_pane_builder;
 			class tab_pane_builder;
 			class tab_builder;
 			class pane_builder;
@@ -330,7 +330,7 @@ namespace liblec {
 			friend class tray_icon;
 
 			friend class containers::page;
-			friend class containers::status_pane;
+			friend class containers::status_pane_builder;
 			friend class containers::tab_pane_builder;
 			friend class containers::tab_builder;
 			friend class containers::pane_builder;

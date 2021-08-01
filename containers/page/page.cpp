@@ -63,10 +63,10 @@ namespace liblec {
 			page_impl.height(page_impl.height() - (2.f * page_impl._content_margin + _d._fm._d._caption_bar_height));
 
 			// get status pane sizes
-			const auto rect_status_bottom = _d._fm._d.get_status_size(containers::status_pane_specs::location::bottom);
-			const auto rect_status_top = _d._fm._d.get_status_size(containers::status_pane_specs::location::top);
-			const auto rect_status_left = _d._fm._d.get_status_size(containers::status_pane_specs::location::left);
-			const auto rect_status_right = _d._fm._d.get_status_size(containers::status_pane_specs::location::right);
+			const auto rect_status_bottom = _d._fm._d.get_status_size(containers::status_pane_specs::pane_location::bottom);
+			const auto rect_status_top = _d._fm._d.get_status_size(containers::status_pane_specs::pane_location::top);
+			const auto rect_status_left = _d._fm._d.get_status_size(containers::status_pane_specs::pane_location::left);
+			const auto rect_status_right = _d._fm._d.get_status_size(containers::status_pane_specs::pane_location::right);
 
 			// adjust for status panes
 			page_impl.height(page_impl.height() - rect_status_bottom.get_height());
