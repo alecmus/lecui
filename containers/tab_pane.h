@@ -19,8 +19,10 @@
 namespace liblec {
 	namespace lecui {
 		namespace containers {
+#if defined(LECUI_EXPORTS)
 			class tab_pane_builder;
 			class tab_builder;
+#endif
 
 			/// <summary>Tab pane specifications.</summary>
 			class lecui_api tab_pane : public widgets::widget {
@@ -51,8 +53,10 @@ namespace liblec {
 				std::string _selected;
 				containers::page* _p_page = nullptr;
 
+#if defined(LECUI_EXPORTS)
 				friend class tab_pane_builder;
 				friend class tab_builder;
+#endif
 
 			public:
 				tab_pane();
