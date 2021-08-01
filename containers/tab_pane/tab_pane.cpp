@@ -383,32 +383,38 @@ namespace liblec {
 
 		containers::tab&
 			containers::tab_builder::get(form& fm, const std::string& path) {
-			const auto idx = path.find("/");
+			auto idx = path.find("/");
 
-			//try {
-			//	// check form pages
-			//	if (idx == std::string::npos)
-			//		return fm._d._p_pages.at(path);
-			//	else {
-			//		const auto page_alias = path.substr(0, idx);
-			//		const auto path_remaining = path.substr(idx + 1);
-			//		auto& page = fm._d._p_pages.at(page_alias);
-			//		return fm._d.find_page(page, path_remaining);
-			//	}
-			//}
-			//catch (const std::exception&) {}
-			//try {
-			//	// check status panes
-			//	if (idx == std::string::npos)
-			//		return fm._d._p_status_panes.at(path);
-			//	else {
-			//		const auto page_alias = path.substr(0, idx);
-			//		const auto path_remaining = path.substr(idx + 1);
-			//		auto& page = fm._d._p_status_panes.at(page_alias);
-			//		return fm._d.find_page(page, path_remaining);
-			//	}
-			//}
-			//catch (const std::exception&) {}
+			if (idx != std::string::npos) {
+				const auto page_alias = path.substr(0, idx);
+				const auto path_remaining = path.substr(idx + 1);
+
+				std::string tab_name, tab_pane_path;
+				idx = path_remaining.find_last_of("/");
+				if (idx != std::string::npos) {
+					tab_name = path_remaining.substr(idx + 1, path_remaining.length() - idx);
+					tab_pane_path = path_remaining.substr(0, idx);
+				}
+
+				try {
+					// check form pages
+					auto& page = fm._d._p_pages.at(page_alias);
+					auto results = fm._d.find_widget(page, tab_pane_path);
+
+					auto& impl = results.page._d_page.get_tab_pane_impl(results.widget.alias());
+					return impl._p_tabs.at(tab_name);
+				}
+				catch (const std::exception&) {}
+				try {
+					// check status panes
+					auto& page = fm._d._p_status_panes.at(page_alias);
+					auto results = fm._d.find_widget(page, tab_pane_path);
+
+					auto& impl = results.page._d_page.get_tab_pane_impl(results.widget.alias());
+					return impl._p_tabs.at(tab_name);
+				}
+				catch (const std::exception&) {}
+			}
 
 			throw std::invalid_argument("Invalid path");
 		}

@@ -96,6 +96,7 @@ namespace liblec {
 					// check status panes
 					auto& page = fm._d._p_status_panes.at(page_alias);
 					auto results = fm._d.find_widget(page, path_remaining);
+
 					auto& impl = results.page._d_page.get_pane_impl(results.widget.alias());
 					return impl._p_panes.at(impl._current_pane);
 				}
