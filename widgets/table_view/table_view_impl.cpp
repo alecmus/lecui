@@ -480,7 +480,7 @@ namespace liblec {
 									text = std::to_string(row_number + 1);
 								}
 								else {
-									auto value = _specs.data().at(row_number).at(it.name);
+									const auto& value = _specs.data().at(row_number).at(it.name);
 									if (value.has_value()) {
 										// integer
 										if (value.type() == typeid(int))
@@ -572,7 +572,7 @@ namespace liblec {
 
 				// check if any of the rows have been clicked
 				bool selection_made = false;
-				auto selected_previous = _specs.selected();
+				const auto& selected_previous = _specs.selected();
 				_specs.selected().clear();
 
 				for (auto& it : _hot_spots) {
@@ -648,7 +648,7 @@ namespace liblec {
 					if (_specs.fixed_number_column() && name == _specs.fixed_number_column_name())
 						continue;	// failsafe ... shouldn't be in _header_hot_spots anyway
 
-					auto rect = rectangle;
+					D2D1_RECT_F rect = rectangle;
 					scale_RECT(rect, get_dpi_scale());
 
 					if (_point.x >= rect.left && _point.x <= rect.right &&
