@@ -83,7 +83,7 @@ namespace liblec {
 				IDWriteFactory* _p_directwrite_factory;
 				IDWriteTextLayout* _p_text_layout;
 				const float _margin, _padding, _content_margin;
-				const float _tab_gap;
+				const float _tab_gap, _tab_text_toggle;
 				float _tab_height;
 				bool _tab_height_set;
 				const float _bar_height;

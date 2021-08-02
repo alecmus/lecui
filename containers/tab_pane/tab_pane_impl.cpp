@@ -33,6 +33,7 @@ namespace liblec {
 			_padding(5.f),	// used when caption orientation is perpendicular to the tab area
 			_content_margin(content_margin),
 			_tab_gap(10.f),
+			_tab_text_toggle(1.5f),
 			_tab_height(25.f),
 			_tab_height_set(false),
 			_bar_height(2.f),
@@ -425,24 +426,24 @@ namespace liblec {
 							// move text a little (visual effect)
 							switch (_specs.tab_side()) {
 							case containers::tab_pane::side::left:
-								_rect_text.right += 2.5f;
-								_rect_text.left += 2.5f;
+								_rect_text.right += _tab_text_toggle;
+								_rect_text.left += _tab_text_toggle;
 								break;
 
 							case containers::tab_pane::side::right:
-								_rect_text.left += 2.5f;
-								_rect_text.right += 2.5f;
+								_rect_text.left += _tab_text_toggle;
+								_rect_text.right += _tab_text_toggle;
 								break;
 
 							case containers::tab_pane::side::bottom:
-								_rect_text.top += 2.5f;
-								_rect_text.bottom += 2.5f;
+								_rect_text.top += _tab_text_toggle;
+								_rect_text.bottom += _tab_text_toggle;
 								break;
 
 							case containers::tab_pane::side::top:
 							default:
-								_rect_text.bottom -= 2.5f;
-								_rect_text.top -= 2.5f;
+								_rect_text.bottom -= _tab_text_toggle;
+								_rect_text.top -= _tab_text_toggle;
 								break;
 							}
 						}
