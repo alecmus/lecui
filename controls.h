@@ -98,7 +98,7 @@ namespace liblec {
 			/// <summary>Set the form's size.</summary>
 			/// <param name="size">The size, in pixels.</param>
 			/// <returns>A reference to the modified object.</returns>
-			/// <remarks>This manipulation should be done in the form's layout method.</remarks>
+			/// <remarks>To pre-set the form's size before it's created, this manipulation should be done in the form's on_initialize method.</remarks>
 			dimensions& set_size(const lecui::size& size);
 
 			/// <summary>Get the form's size.</summary>

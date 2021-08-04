@@ -86,6 +86,8 @@ namespace liblec {
 		}
 
 		dimensions& dimensions::set_size(const lecui::size& size) {
+			auto old_size = _d._fm._d._size;
+
 			if (size.get_width()) {
 				_d._fm._d._size.width(size.get_width());
 
@@ -98,6 +100,41 @@ namespace liblec {
 
 				// force minimum height to conform (it cannot be greater)
 				_d._fm._d._min_size.height(smallest(_d._fm._d._size.get_height(), _d._fm._d._min_size.height()));
+			}
+
+			if (IsWindow(_d._fm._d._hWnd)) {
+				RECT rc;
+				GetWindowRect(_d._fm._d._hWnd, &rc);
+
+				MoveWindow(_d._fm._d._hWnd, rc.left, rc.top,
+					static_cast<LONG>(size.get_width() * _d._fm._d._dpi_scale),
+					static_cast<LONG>(size.get_height() * _d._fm._d._dpi_scale),
+					TRUE);
+
+				// move the control buttons
+				const auto change_in_width = _d._fm._d._size.width() - old_size.width();
+				const auto change_in_height = _d._fm._d._size.height() - old_size.height();
+
+				if (_d._fm._d._p_close_button.get()) {
+					_d._fm._d._p_close_button->specs().rect().left() += change_in_width;
+					_d._fm._d._p_close_button->specs().rect().right() += change_in_width;
+					_d._fm._d._p_close_button->specs().rect().top() += change_in_height;
+					_d._fm._d._p_close_button->specs().rect().bottom() += change_in_height;
+				}
+
+				if (_d._fm._d._p_maximize_button.get()) {
+					_d._fm._d._p_maximize_button->specs().rect().left() += change_in_width;
+					_d._fm._d._p_maximize_button->specs().rect().right() += change_in_width;
+					_d._fm._d._p_maximize_button->specs().rect().top() += change_in_height;
+					_d._fm._d._p_maximize_button->specs().rect().bottom() += change_in_height;
+				}
+
+				if (_d._fm._d._p_minimize_button.get()) {
+					_d._fm._d._p_minimize_button->specs().rect().left() += change_in_width;
+					_d._fm._d._p_minimize_button->specs().rect().right() += change_in_width;
+					_d._fm._d._p_minimize_button->specs().rect().top() += change_in_height;
+					_d._fm._d._p_minimize_button->specs().rect().bottom() += change_in_height;
+				}
 			}
 
 			return *this;
