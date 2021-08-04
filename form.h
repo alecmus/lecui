@@ -306,6 +306,14 @@ namespace liblec {
 			/// <returns>Returns true if the form is visible, even if it's minimized or not in the foreground, else returns false.</returns>
 			bool visible();
 
+			/// <summary>Show the form.</summary>
+			/// <remarks>Neccessary to display a form that was hidden through a call to <see cref="hide"></see>.</remarks>
+			void show();
+
+			/// <summary>Check whether the form is minimized.</summary>
+			/// <returns>Returns true if the form is minimized, else returns false.</returns>
+			bool minimized();
+
 		private:
 			class impl;
 			impl& _d;

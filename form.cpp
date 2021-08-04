@@ -528,5 +528,19 @@ namespace liblec {
 			else
 				return false;
 		}
+
+		void form::show() {
+			if (IsWindow(_d._hWnd)) {
+				ShowWindow(_d._hWnd, SW_SHOW);
+				SetForegroundWindow(_d._hWnd);
+			}
+		}
+
+		bool form::minimized() {
+			if (IsWindow(_d._hWnd))
+				return IsIconic(_d._hWnd) == TRUE;
+			else
+				return false;
+		}
 	}
 }
