@@ -339,7 +339,7 @@ namespace liblec {
         std::string context_menu::operator()(form& fm, const specs& menu_specs) {
             impl m(fm, menu_specs);
             std::string error;
-            if (!m.show(error))
+            if (!m.create(error))
                 log(error);
             return m._acted_on;
 		}

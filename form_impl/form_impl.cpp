@@ -68,7 +68,7 @@ namespace liblec {
 			_menu_form(caption_formatted == form::menu_form_caption()),
 			_tooltip_form(caption_formatted == form::tooltip_form_caption()),
 			_parent_closing(false),
-			_show_called(false),
+			_create_called(false),
 			_reg_id(0),
 			_receiving(false),
 			_data_received(std::string()),

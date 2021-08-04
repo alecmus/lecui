@@ -81,7 +81,7 @@ namespace liblec {
 			bool _tooltip_form;	// like a menu form but specifically designed for tooltips
 			bool _parent_closing;
 			std::map<form*, form*> _m_children;
-			bool _show_called;
+			bool _create_called;
 			std::string _guid;
 			UINT _reg_id;
 			bool _receiving;	// for preventing multiple concurrent receiving operations

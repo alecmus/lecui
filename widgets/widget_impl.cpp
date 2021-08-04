@@ -120,7 +120,7 @@ namespace liblec {
 
 			// display the tooltip
 			std::string error;
-			if (!get_form()._d._p_tooltip_form->show(error)) {}
+			if (!get_form()._d._p_tooltip_form->create(error)) {}
 
 			// delete tooltip object
 			get_form()._d._p_tooltip_form.reset(nullptr);

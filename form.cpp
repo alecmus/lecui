@@ -75,16 +75,16 @@ namespace liblec {
 			_d._force_instance = true;
 		}
 
-		bool form::show(std::string& error) {
-			if (_d._show_called) {
-				error = "Library usage error: form::show";
+		bool form::create(std::string& error) {
+			if (_d._create_called) {
+				error = "Library usage error: form::create";
 				return false;
 			}
 			else {
-				_d._show_called = true;
+				_d._create_called = true;
 
 				if (!_d._initialized) {
-					error = "Library initialization error: form::show";
+					error = "Library initialization error: form::create";
 					return false;
 				}
 			}
@@ -366,7 +366,7 @@ namespace liblec {
 			// prompt the user
 			std::string error;
 			bool user_agreed = false;
-			if (!prompt_form(_d._caption_formatted, question, *this, user_agreed).show(error))
+			if (!prompt_form(_d._caption_formatted, question, *this, user_agreed).create(error))
 				log(error);
 
 			return user_agreed;
@@ -444,7 +444,7 @@ namespace liblec {
 
 				// display the message
 				std::string error;
-				if (!message_form(_d._caption_formatted, message, *this).show(error))
+				if (!message_form(_d._caption_formatted, message, *this).create(error))
 					log(error);
 			}
 		}

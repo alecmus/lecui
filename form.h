@@ -145,7 +145,7 @@ namespace liblec {
 			void move(const form_position& form_position);
 
 			/// <summary>Force this instance to run even if an existing instance is found.</summary>
-			/// <remarks>This method causes the <see cref="show"></see> method to continue execution
+			/// <remarks>This method causes the <see cref="create"></see> method to continue execution
 			/// regardless of whether an existing instance is present. You would typically do this if you
 			/// need your app to reach the <see cref="initialize"></see> method without the intention of
 			/// allowing it to go as far as <see cref="on_layout"></see>, in which case you would call
@@ -156,13 +156,13 @@ namespace liblec {
 			/// method is in the constructor of the class that inherits from this base class.</remarks>
 			void force_instance();
 
-			/// <summary>Show the form.</summary>
+			/// <summary>Create the form.</summary>
 			/// <param name="error">Error information on fail.</param>
 			/// <returns>True if successful, else false. If false, error information will be
 			/// written to the error reference.</returns>
 			/// <remarks>This is a blocking function and will only return when either the form is
 			/// closed or in the event of an error during form creation.</remarks>
-			[[nodiscard]] bool show(std::string& error);
+			[[nodiscard]] bool create(std::string& error);
 
 			/// <summary>Close the form. When this is called all activity is stopped and the form
 			/// is closed.</summary>
@@ -184,7 +184,7 @@ namespace liblec {
 			/// <summary>For defining the form's layout.</summary>
 			/// <param name="error">If there's an error in the layout function's implementation
 			/// write that error information to this reference, and return false. This information
-			/// will be internally passed to the blocking show() method.</param>
+			/// will be internally passed to the blocking create() method.</param>
 			/// <returns>Return true if the layout is successful, else false.</returns>
 			/// <remarks>It is recommended to add at least one page container to the form in this
 			/// method and show it before returning from this method. This becomes the home page.
