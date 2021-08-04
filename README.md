@@ -23,8 +23,8 @@ lecui user interface library
 ### About the Library
 The lecui user interface library is designed for the rapid development of modern, efficient and
 easy to maintain C++ applications with a graphical user interface (gui). It is part of the
-[liblec libraries](https://github.com/alecmus/liblec). It enabled you to make a simple gui app
-with minimal code but also give you the power to build a marvel if you need to.
+[liblec libraries](https://github.com/alecmus/liblec). It enables you to make a simple gui app
+with minimal code but also gives you the power to build a marvel if you need to.
 
 ### Wiki
 The library has a wiki available [here](https://github.com/alecmus/lecui/wiki). The wiki has details about how to use the library, examples, guidelines and more.
