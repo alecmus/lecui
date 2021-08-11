@@ -151,19 +151,17 @@ namespace liblec {
 			corner_radius = smallest((rect_subject.bottom - rect_subject.top) / 3.f,
 				(rect_subject.right - rect_subject.left) / 3.f);
 
+			// fill
 			{
-				// define rectangle that should contain fill
-				auto rect_fill = rect_subject;
-
 				// clip
-				auto_clip clip(render, p_render_target, rect_fill, 0.f);
+				auto_clip clip(render, p_render_target, rect_subject, 0.f);
 
 				D2D1_ROUNDED_RECT filled_rect{ rect_subject, corner_radius, corner_radius };
 				p_render_target->FillRoundedRectangle(filled_rect, _p_brush_fill);
 			}
 
+			// levels
 			float previous_level = 0.f;
-
 			for (auto& [level, p_brush] : _fill_brushes) {
 				float perc = smallest(level, _specs.percentage());
 
