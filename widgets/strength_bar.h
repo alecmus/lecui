@@ -46,8 +46,9 @@ namespace liblec {
 					_rect.size({ 200.f, 12.f });
 				}
 
-				bool operator==(const strength_bar&);
-				bool operator!=(const strength_bar&);
+				// not using const here because of the need to compare the _levels vector
+				bool operator==(strength_bar&);
+				bool operator!=(strength_bar&);
 
 				// generic widget
 

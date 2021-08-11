@@ -13,16 +13,17 @@
 
 namespace liblec {
 	namespace lecui {
-		bool widgets::strength_bar::operator==(const strength_bar& param) {
+		bool widgets::strength_bar::operator==(strength_bar& param) {
 			return
 				// generic widget
 				widget::operator==(param) &&
 
 				// widget specific widget
-				(_color_border == param._color_border);;
+				(_color_border == param._color_border) &&
+				is_equal(_levels, param._levels);
 		}
 
-		bool widgets::strength_bar::operator!=(const strength_bar& param) {
+		bool widgets::strength_bar::operator!=(strength_bar& param) {
 			return !operator==(param);
 		}
 

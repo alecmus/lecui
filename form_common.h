@@ -643,5 +643,16 @@ namespace liblec {
 			trim_left(s);
 			trim_right(s);
 		}
+
+		/// <summary>Check if two vectors are equal.</summary>
+		/// <typeparam name="T">The typename.</typeparam>
+		/// <param name="v1">The first vector.</param>
+		/// <param name="v2">The second vector.</param>
+		/// <returns>Returns true if the vectors are the same, else false.</returns>
+		template<typename T>
+		static inline bool is_equal(std::vector<T>& v1, std::vector<T>& v2) {
+			return (v1.size() == v2.size() &&
+				std::equal(v1.begin(), v1.end(), v2.begin()));
+		}
 	}
 }
