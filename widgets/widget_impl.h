@@ -156,6 +156,7 @@ namespace liblec {
 				time,
 				date,
 				icon,
+				strength_bar,
 			};
 
 			static HCURSOR get_cursor(widgets::widget::cursor_type type) {

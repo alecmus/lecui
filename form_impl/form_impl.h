@@ -273,6 +273,7 @@ namespace liblec {
 			friend class widgets::time_builder;
 			friend class widgets::date_builder;
 			friend class widgets::icon_builder;
+			friend class widgets::strength_bar_builder;
 
 			friend class widgets::widget_impl;
 			friend class widgets::combobox_impl;

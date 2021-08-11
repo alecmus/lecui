@@ -39,6 +39,7 @@
 #include "../../widgets/time/time_impl.h"
 #include "../../widgets/date/date_impl.h"
 #include "../../widgets/icon/icon_impl.h"
+#include "../../widgets/strength_bar/strength_bar_impl.h"
 
 namespace liblec {
 	namespace lecui {
@@ -113,6 +114,8 @@ namespace liblec {
 				add_date(std::string alias);
 			widgets::icon&
 				add_icon(std::string alias);
+			widgets::strength_bar&
+				add_strength_bar(std::string alias);
 
 			std::map<std::string,
 				widgets::widget_impl&>&
@@ -169,6 +172,8 @@ namespace liblec {
 				get_date_impl(const std::string& alias);
 			widgets::icon_impl&
 				get_icon_impl(const std::string& alias);
+			widgets::strength_bar_impl&
+				get_strength_bar_impl(const std::string& alias);
 
 			bool close_widget(const std::string& alias,
 				widgets::widget_type type, std::string& error);
@@ -222,6 +227,7 @@ namespace liblec {
 			std::map<std::string, widgets::time_impl> _times;
 			std::map<std::string, widgets::date_impl> _dates;
 			std::map<std::string, widgets::icon_impl> _icons;
+			std::map<std::string, widgets::strength_bar_impl> _strength_bars;
 
 			form& _fm;
 			containers::page& _pg;
@@ -251,6 +257,7 @@ namespace liblec {
 			friend class widgets::time_builder;
 			friend class widgets::date_builder;
 			friend class widgets::icon_builder;
+			friend class widgets::strength_bar_builder;
 
 			friend class widgets::html_editor_impl;
 			friend class widgets::tree_view_impl;

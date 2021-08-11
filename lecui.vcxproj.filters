@@ -176,6 +176,9 @@
     <Filter Include="lecui\utilities\timer">
       <UniqueIdentifier>{c15ed7e7-185d-4594-875e-f2c9297858ee}</UniqueIdentifier>
     </Filter>
+    <Filter Include="lecui\widgets\strength_bar">
+      <UniqueIdentifier>{eed2677e-32c3-42a6-8fe6-b45d151a8a37}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="error\win_error.h">
@@ -418,6 +421,12 @@
     </ClInclude>
     <ClInclude Include="utilities\timer.h">
       <Filter>lecui\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="widgets\strength_bar.h">
+      <Filter>lecui\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="widgets\strength_bar\strength_bar_impl.h">
+      <Filter>lecui\widgets\strength_bar</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -691,6 +700,12 @@
     </ClCompile>
     <ClCompile Include="utilities\timer\timer.cpp">
       <Filter>lecui\utilities\timer</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\strength_bar\strength_bar.cpp">
+      <Filter>lecui\widgets\strength_bar</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\strength_bar\strength_bar_impl.cpp">
+      <Filter>lecui\widgets\strength_bar</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

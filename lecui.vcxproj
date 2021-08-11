@@ -79,6 +79,8 @@
     <ClInclude Include="widgets\password_field.h" />
     <ClInclude Include="widgets\slider.h" />
     <ClInclude Include="widgets\slider\slider_impl.h" />
+    <ClInclude Include="widgets\strength_bar.h" />
+    <ClInclude Include="widgets\strength_bar\strength_bar_impl.h" />
     <ClInclude Include="widgets\table_view.h" />
     <ClInclude Include="widgets\progress_bar.h" />
     <ClInclude Include="widgets\progress_bar\progress_bar_impl.h" />
@@ -177,6 +179,8 @@
     <ClCompile Include="widgets\rectangle\rectangle_impl.cpp" />
     <ClCompile Include="widgets\slider\slider.cpp" />
     <ClCompile Include="widgets\slider\slider_impl.cpp" />
+    <ClCompile Include="widgets\strength_bar\strength_bar.cpp" />
+    <ClCompile Include="widgets\strength_bar\strength_bar_impl.cpp" />
     <ClCompile Include="widgets\table_view\table_view.cpp" />
     <ClCompile Include="widgets\table_view\table_view_impl.cpp" />
     <ClCompile Include="widgets\text_field\text_field.cpp" />
@@ -333,6 +337,7 @@ xcopy "$(ProjectDir)widgets\line.h" "$(SolutionDir)..\include\liblec\$(ProjectNa
 xcopy "$(ProjectDir)widgets\time.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\date.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\icon.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+xcopy "$(ProjectDir)widgets\strength_bar.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 
 xcopy "$(ProjectDir)menus\context_menu.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\menus\" /F /R /Y /I
 xcopy "$(ProjectDir)menus\form_menu.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\menus\" /F /R /Y /I
@@ -399,6 +404,7 @@ xcopy "$(ProjectDir)widgets\line.h" "$(SolutionDir)..\include\liblec\$(ProjectNa
 xcopy "$(ProjectDir)widgets\time.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\date.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\icon.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+xcopy "$(ProjectDir)widgets\strength_bar.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 
 xcopy "$(ProjectDir)menus\context_menu.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\menus\" /F /R /Y /I
 xcopy "$(ProjectDir)menus\form_menu.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\menus\" /F /R /Y /I
@@ -469,6 +475,7 @@ xcopy "$(ProjectDir)widgets\line.h" "$(SolutionDir)..\include\liblec\$(ProjectNa
 xcopy "$(ProjectDir)widgets\time.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\date.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\icon.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+xcopy "$(ProjectDir)widgets\strength_bar.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 
 xcopy "$(ProjectDir)menus\context_menu.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\menus\" /F /R /Y /I
 xcopy "$(ProjectDir)menus\form_menu.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\menus\" /F /R /Y /I
@@ -539,6 +546,7 @@ xcopy "$(ProjectDir)widgets\line.h" "$(SolutionDir)..\include\liblec\$(ProjectNa
 xcopy "$(ProjectDir)widgets\time.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\date.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 xcopy "$(ProjectDir)widgets\icon.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
+xcopy "$(ProjectDir)widgets\strength_bar.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\widgets\" /F /R /Y /I
 
 xcopy "$(ProjectDir)menus\context_menu.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\menus\" /F /R /Y /I
 xcopy "$(ProjectDir)menus\form_menu.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\menus\" /F /R /Y /I

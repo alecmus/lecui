@@ -341,6 +341,17 @@ namespace liblec {
 			return _icons.at(alias).specs();
 		}
 
+		widgets::strength_bar&
+			containers::page::impl::add_strength_bar(std::string alias) {
+			check_alias(alias);
+			if (_strength_bars.try_emplace(alias, _pg, alias, _p_direct2d_factory, _p_directwrite_factory).second) {
+				_widgets.emplace(alias, _strength_bars.at(alias));
+				_widgets_order.emplace_back(alias);
+			}
+			_strength_bars.at(alias).specs().alias(alias);
+			return _strength_bars.at(alias).specs();
+		}
+
 		std::map<std::string, widgets::widget_impl&>&
 			containers::page::impl::widgets() { return _widgets; }
 
@@ -417,6 +428,9 @@ namespace liblec {
 
 		widgets::icon_impl&
 			containers::page::impl::get_icon_impl(const std::string& alias) { return _icons.at(alias); }
+
+		widgets::strength_bar_impl&
+			containers::page::impl::get_strength_bar_impl(const std::string& alias) { return _strength_bars.at(alias); }
 
 		bool
 			containers::page::impl::close_widget(const std::string& alias,
@@ -505,6 +519,9 @@ namespace liblec {
 					break;
 				case widgets::widget_type::icon:
 					_icons.erase(_alias);
+					break;
+				case widgets::widget_type::strength_bar:
+					_strength_bars.erase(_alias);
 					break;
 				case widgets::widget_type::close_button:
 				case widgets::widget_type::maximize_button:

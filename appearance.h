@@ -151,6 +151,9 @@ namespace liblec {
 			icon_hot,
 			icon_text,
 			icon_description_text,
+
+			strength_bar,
+			strength_bar_border,
 		};
 
 		class lecui_api defaults {

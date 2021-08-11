@@ -1,5 +1,5 @@
 //
-// progress_bar_impl.h - progress_bar_impl interface
+// strength_bar_impl.h - strength_bar_impl interface
 //
 // lecui user interface library, part of the liblec library
 // Copyright (c) 2019 Alec Musasa (alecmus at live dot com)
@@ -11,12 +11,12 @@
 #pragma once
 
 #include "../widget_impl.h"
-#include "../progress_bar.h"
+#include "../strength_bar.h"
 
 namespace liblec {
 	namespace lecui {
 		namespace widgets {
-			class progress_bar_impl : public widget_impl {
+			class strength_bar_impl : public widget_impl {
 				/// private virtual function overrides
 				widgets::widget& generic_specs() override {
 					return _specs;
@@ -24,11 +24,11 @@ namespace liblec {
 
 			public:
 				/// constructor and destructor
-				progress_bar_impl(containers::page& page,
+				strength_bar_impl(containers::page& page,
 					const std::string& alias,
 					ID2D1Factory* p_direct2d_factory,
 					IDWriteFactory* p_directwrite_factory);
-				~progress_bar_impl();
+				~strength_bar_impl();
 
 				/// virtual function overrides
 				widget_type type() override;
@@ -39,20 +39,21 @@ namespace liblec {
 					const bool& render) override;
 
 				/// widget specific methods
-				widgets::progress_bar& specs();
-				widgets::progress_bar& operator()();
+				widgets::strength_bar& specs();
+				widgets::strength_bar& operator()();
 
 			private:
 				// Default constructor and copying an object of this class are not allowed
-				progress_bar_impl() = delete;
-				progress_bar_impl(const progress_bar_impl&) = delete;
-				progress_bar_impl& operator=(const progress_bar_impl&) = delete;
+				strength_bar_impl() = delete;
+				strength_bar_impl(const strength_bar_impl&) = delete;
+				strength_bar_impl& operator=(const strength_bar_impl&) = delete;
 
 				/// Private variables
-				widgets::progress_bar _specs, _specs_old;
+				widgets::strength_bar _specs, _specs_old;
 				ID2D1SolidColorBrush* _p_brush;
 				ID2D1SolidColorBrush* _p_brush_border;
 				ID2D1SolidColorBrush* _p_brush_fill;
+				std::map<float, ID2D1SolidColorBrush*> _fill_brushes;	// key is level
 				ID2D1SolidColorBrush* _p_brush_hot;
 				ID2D1SolidColorBrush* _p_brush_disabled;
 				ID2D1SolidColorBrush* _p_brush_selected;
