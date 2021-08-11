@@ -53,6 +53,7 @@ namespace liblec {
 				ID2D1SolidColorBrush* _p_brush;
 				ID2D1SolidColorBrush* _p_brush_border;
 				ID2D1SolidColorBrush* _p_brush_fill;
+				ID2D1SolidColorBrush* _p_brush_empty;
 				ID2D1SolidColorBrush* _p_brush_hot;
 				ID2D1SolidColorBrush* _p_brush_disabled;
 				ID2D1SolidColorBrush* _p_brush_selected;

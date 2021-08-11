@@ -24,6 +24,7 @@ namespace liblec {
 			class lecui_api progress_bar : public widget {
 				float _border = 1.f;
 				color _color_border;
+				color _color_empty;
 				float _percentage = 0.f;
 
 			public:
@@ -91,6 +92,15 @@ namespace liblec {
 				/// <param name="color_border">The border color, as defined in <see cref="color"></see>.</param>
 				/// <returns>A reference to the modified object.</returns>
 				progress_bar& color_border(const color& color_border);
+
+				/// <summary>Get or set the color to use for the empty portion of the indicator.</summary>
+				/// <returns>A reference to the color.</returns>
+				color& color_empty();
+
+				/// <summary>Set the color to use for the empty portion of the indicator</summary>
+				/// <param name="color_empty">The color.</param>
+				/// <returns>A reference to the modified object.</returns>
+				progress_bar& color_empty(const color& color_empty);
 
 				/// <summary>Get or set the percentage of the progress bar (0.f - 100.f).</summary>
 				/// <returns>A reference to the percentage.</returns>

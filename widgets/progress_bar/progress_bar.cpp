@@ -19,7 +19,8 @@ namespace liblec {
 				widget::operator==(param) &&
 
 				// widget specific widget
-				(_color_border == param._color_border);
+				(_color_border == param._color_border) &&
+				(_color_empty == param._color_empty);
 		}
 
 		bool widgets::progress_bar::operator!=(const progress_bar& param) {
@@ -124,6 +125,13 @@ namespace liblec {
 			return *this;
 		}
 
+		color& widgets::progress_bar::color_empty() { return _color_empty; }
+
+		widgets::progress_bar& widgets::progress_bar::color_empty(const color& color_empty) {
+			_color_empty = color_empty;
+			return *this;
+		}
+
 		float& widgets::progress_bar::percentage() { return _percentage; }
 
 		widgets::progress_bar& widgets::progress_bar::percentage(const float& percentage) {
@@ -186,7 +194,8 @@ namespace liblec {
 				_specs(_page._d_page.add_progress_bar(alias)) {
 				_specs
 					.color_fill(defaults::color(_page._d_page._fm._d._theme, item::progress_bar))
-					.color_border(defaults::color(_page._d_page._fm._d._theme, item::progress_bar_border));
+					.color_border(defaults::color(_page._d_page._fm._d._theme, item::progress_bar_border))
+					.color_empty(defaults::color(_page._d_page._fm._d._theme, item::progress_bar_unfilled));
 			}
 			containers::page& _page;
 			progress_bar& _specs;

@@ -48,6 +48,7 @@ namespace liblec {
 
 				case item::progress_bar: return { 0, 120, 170, 255 };
 				case item::progress_bar_border: return { 200, 200, 200, 255 };
+				case item::progress_bar_unfilled: return { 234, 234, 234, 255 };
 
 				case item::progress_indicator: return { 0, 120, 170, 255 };
 				case item::progress_indicator_text: return { 0, 120, 170, 255 };
@@ -180,6 +181,7 @@ namespace liblec {
 
 				case item::progress_bar: return { 60, 190, 175, 255 };
 				case item::progress_bar_border: return { 85, 95, 100, 255 };
+				case item::progress_bar_unfilled: return { 26, 39, 46, 255 };
 
 				case item::progress_indicator: return { 60, 190, 175, 255 };
 				case item::progress_indicator_text: return { 60, 190, 175, 255 };

@@ -59,6 +59,7 @@ namespace liblec {
 
 			progress_bar,
 			progress_bar_border,
+			progress_bar_unfilled,
 
 			progress_indicator,
 			progress_indicator_text,
