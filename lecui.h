@@ -50,7 +50,7 @@ namespace liblec {
 	namespace lecui {
 		/// <summary>Get the version of the lecui library.</summary>
 		/// <returns>Returns the version number as a string in the form
-		/// "lecui 1.0.0 04 Jan 2019".</returns>
+		/// "lecui 1.0.0, 04 Jan 2019".</returns>
 		std::string lecui_api version();
 
 		/// <summary>Make a unique string.</summary>

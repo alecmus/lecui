@@ -41,7 +41,7 @@ BOOL APIENTRY DllMain(HMODULE hModule,
 namespace liblec {
 	namespace lecui {
 		std::string version() {
-			return lecuiname + std::string(" ") + lecuiversion + std::string(" ") + lecuidate;
+			return lecuiname + std::string(" ") + lecuiversion + std::string(", ") + lecuidate;
 		}
 
 		point::point() :
