@@ -53,7 +53,7 @@ scrollbars are automatically triggered to permit the user to scroll. These scrol
 supported for all containers.
 
 ### Usage Examples
-The library is used in the [pc_info](https://github.com/alecmus/pc_info) app and
+The library is used in the [pc_info](https://github.com/alecmus/pc_info) and [spotlight_images](https://github.com/alecmus/spotlight_images) apps and
 various useful usage examples are available in the
 [lecui demo](https://github.com/alecmus/lecui_demo) repository. These range from minimalist hello world
 examples all the way up to advanced multi-page and multi-layer apps.
