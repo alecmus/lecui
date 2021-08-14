@@ -77,7 +77,8 @@ namespace liblec {
 			/// the memory of the computer the app is running on can permit. However, it is recommended to
 			/// limit the number of widgets within status panes as these panes persist throughout the
 			/// runtime of the app, and are visible in all pages. Keep the contents of status panes
-			/// minimal and straightforward as a good gui design principle.</remarks>
+			/// minimal and straightforward as a good gui design principle. Note that it is recommended to add all status panes
+			/// before adding any pages so that the pages can return dimensions that factor for the status panes.</remarks>
 			class lecui_api status_pane : public containers::page {
 			public:
 				status_pane(form&, status_pane_specs);
