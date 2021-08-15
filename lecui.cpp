@@ -246,6 +246,41 @@ namespace liblec {
 			return *this;
 		}
 
+		rect& rect::clip_to(const rect& rect_reference, const float& clearance) {
+			auto& rect = *this;
+
+			const auto left = rect_reference.get_left() + clearance;
+			const auto right = rect_reference.get_right() - clearance;
+			const auto top = rect_reference.get_top() + clearance;
+			const auto bottom = rect_reference.get_bottom() - clearance;
+
+			if (rect._left < left)
+				rect._left = left;
+
+			if (rect._left > right)
+				rect._left = right;
+
+			if (rect._right > right)
+				rect._right = right;
+
+			if (rect._right < left)
+				rect._right = left;
+
+			if (rect._top < top)
+				rect._top = top;
+
+			if (rect._top > bottom)
+				rect._top = bottom;
+
+			if (rect._bottom > bottom)
+				rect._bottom = bottom;
+
+			if (rect._bottom < top)
+				rect._bottom = top;
+
+			return *this;
+		}
+
 		bool rect::operator==(const rect& param) {
 			return
 				(_left == param._left) &&

@@ -2084,6 +2084,10 @@ namespace liblec {
 							break;
 						}
 
+						// prevent overlap
+						text.rect().clip_to(icn.rect(), _padding);
+						description.rect().clip_to(icn.rect(), _padding);
+
 						// capture image view widget
 						it.destination._d_page.get_icon_impl(it.alias).set_icon_specs(icn, image, text, description);
 

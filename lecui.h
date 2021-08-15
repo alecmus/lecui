@@ -305,6 +305,14 @@ namespace liblec {
 			/// <remarks>This is a handy method for faster coding and easier maintenance.</remarks>
 			rect& snap_to(const rect& rect_reference, snap_type type, const float& clearance);
 
+			/// <summary>Clip a rectangle within another, to prevent a rectangle going beyond stipulated confines.</summary>
+			/// <param name="rect_reference">The rectangle to clip to.</param>
+			/// <param name="clearance">The clearance to use in the clipping operation.</param>
+			/// <returns>A reference to the modified object.</returns>
+			/// <remarks>This is a handy method for simpler failsafe coding. Note that if any clipping occurs the dimensions of
+			/// the rectangle will get smaller.</remarks>
+			rect& clip_to(const rect& rect_reference, const float& clearance);
+
 			bool operator==(const rect&);
 			bool operator!=(const rect&);
 		};
