@@ -138,7 +138,7 @@ namespace liblec {
 
 				case item::icon: return { 100, 100, 100, 0 };
 				case item::icon_border: return { 0, 120, 170, 0 };
-				case item::icon_hot: return { 0, 120, 170, 100 };
+				case item::icon_hot: return { 0, 120, 170, 60 };
 				case item::icon_text: return defaults::color(theme, item::label);
 				case item::icon_description_text: return { 150, 150, 150, 255 };
 
@@ -271,7 +271,7 @@ namespace liblec {
 
 				case item::icon: return { 100, 100, 100, 0 };
 				case item::icon_border: return { 0, 120, 170, 0 };
-				case item::icon_hot: return { 60, 190, 175, 100 };
+				case item::icon_hot: return { 60, 190, 175, 60 };
 				case item::icon_text: return defaults::color(theme, item::label);
 				case item::icon_description_text: return { 125, 125, 125, 255 };
 
