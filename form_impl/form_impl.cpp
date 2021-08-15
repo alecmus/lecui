@@ -1916,9 +1916,6 @@ namespace liblec {
 								.bottom(it.destination.size().get_height()))
 							.on_resize({ 0.f, 0.f, 0.f, 0.f });
 
-						const float _gap = 5.f;
-						const float _padding = 5.f;
-
 						// add rectangle to destination (for hit-testing)
 						auto& icn = widgets::rectangle::add(it.destination, widgets::icon_impl::alias_icon());
 						icn
@@ -1938,7 +1935,7 @@ namespace liblec {
 						icon.events().click = nullptr;
 
 						// compute size of image side
-						auto image_side = smallest(it.destination.size().get_width(), it.destination.size().get_height()) - 2.f * _padding;
+						auto image_side = smallest(it.destination.size().get_width(), it.destination.size().get_height()) - 2.f * icon._padding;
 						if (icon.max_image_size() > 0.f)
 							image_side = smallest(image_side, icon.max_image_size());
 
@@ -1947,10 +1944,10 @@ namespace liblec {
 						image.rect({ 0, image_side, 0, image_side });
 
 						const auto ref_rect = rect()
-							.left(_padding)
-							.right(it.destination.size().get_width() - _padding)
-							.top(_padding)
-							.bottom(it.destination.size().get_height() - _padding);
+							.left(icon._padding)
+							.right(it.destination.size().get_width() - icon._padding)
+							.top(icon._padding)
+							.bottom(it.destination.size().get_height() - icon._padding);
 
 						switch (icon.text_position()) {
 						case widgets::icon::icon_text_position::right:
@@ -1984,33 +1981,33 @@ namespace liblec {
 						case widgets::icon::icon_text_position::right: {
 							text.rect(rect()
 								.left(0.f)
-								.right(it.destination.size().get_width() - (image_side + _gap) - _padding)
+								.right(it.destination.size().get_width() - (image_side + icon._gap) - icon._padding)
 								.top(0.f)
 								.bottom(it.destination.size().get_height()));
 							const auto ideal_rect = widgets::measure_label(_p_directwrite_factory, text.text(), text.font(), text.font_size(),
 								false, false, convert_rect(text.rect()));
 							text.rect().height(ideal_rect.bottom - ideal_rect.top);
-							text.rect().snap_to(image.rect(), rect::snap_type::right_top, _gap);
+							text.rect().snap_to(image.rect(), rect::snap_type::right_top, icon._gap);
 						}
 																	 break;
 						case widgets::icon::icon_text_position::left: {
 							text.rect(rect()
-								.left(_padding)
-								.right(it.destination.size().get_width() - (image_side + _gap) - _padding)
-								.top(_padding)
+								.left(icon._padding)
+								.right(it.destination.size().get_width() - (image_side + icon._gap) - icon._padding)
+								.top(icon._padding)
 								.bottom(it.destination.size().get_height()));
 							const auto ideal_rect = widgets::measure_label(_p_directwrite_factory, text.text(), text.font(), text.font_size(),
 								false, false, convert_rect(text.rect()));
 							text.rect().height(ideal_rect.bottom - ideal_rect.top);
-							text.rect().snap_to(image.rect(), rect::snap_type::left_top, _gap);
+							text.rect().snap_to(image.rect(), rect::snap_type::left_top, icon._gap);
 						}
 																	break;
 						case widgets::icon::icon_text_position::top: {
 							text.rect(rect()
-								.left(_padding)
-								.right(it.destination.size().get_width() - _padding)
+								.left(icon._padding)
+								.right(it.destination.size().get_width() - icon._padding)
 								.top(0.f)
-								.bottom(it.destination.size().get_height() - _padding));
+								.bottom(it.destination.size().get_height() - icon._padding));
 							const auto ideal_rect = widgets::measure_label(_p_directwrite_factory, text.text(), text.font(), text.font_size(),
 								false, false, convert_rect(text.rect()));
 							text.rect().height(ideal_rect.bottom - ideal_rect.top);
@@ -2019,15 +2016,15 @@ namespace liblec {
 																   break;
 						case widgets::icon::icon_text_position::bottom: {
 							text.rect(rect()
-								.left(_padding)
-								.right(it.destination.size().get_width() - _padding)
+								.left(icon._padding)
+								.right(it.destination.size().get_width() - icon._padding)
 								.top(0.f)
-								.bottom(it.destination.size().get_height() - _padding));
+								.bottom(it.destination.size().get_height() - icon._padding));
 							const auto ideal_rect = widgets::measure_label(_p_directwrite_factory, text.text(), text.font(), text.font_size(),
 								false, false, convert_rect(text.rect()));
 							text.rect().height(ideal_rect.bottom - ideal_rect.top);
 							text.center_h(true);
-							text.rect().snap_to(image.rect(), rect::snap_type::bottom, _gap);
+							text.rect().snap_to(image.rect(), rect::snap_type::bottom, icon._gap);
 						}
 																	  break;
 						default:
@@ -2044,25 +2041,25 @@ namespace liblec {
 						switch (icon.text_position()) {
 						case widgets::icon::icon_text_position::right: {
 							description.rect(rect()
-								.left(_padding)
+								.left(icon._padding)
 								.right(text.rect().width())
-								.top(_padding)
+								.top(icon._padding)
 								.bottom(it.destination.size().get_height() - text.rect().height()));
 							description.rect().snap_to(text.rect(), rect::snap_type::bottom_left, 0.f);
 						}
 																	 break;
 						case widgets::icon::icon_text_position::left: {
 							description.rect(rect()
-								.left(_padding)
+								.left(icon._padding)
 								.right(text.rect().width())
-								.top(_padding)
+								.top(icon._padding)
 								.bottom(it.destination.size().get_height() - text.rect().height()));
 							description.rect().snap_to(text.rect(), rect::snap_type::bottom_left, 0.f);
 						}
 																	break;
 						case widgets::icon::icon_text_position::top: {
 							description.rect(rect()
-								.left(_padding)
+								.left(icon._padding)
 								.right(text.rect().width())
 								.top(0.f)
 								.bottom(it.destination.size().get_height() - text.rect().height()));
@@ -2072,7 +2069,7 @@ namespace liblec {
 																   break;
 						case widgets::icon::icon_text_position::bottom: {
 							description.rect(rect()
-								.left(_padding)
+								.left(icon._padding)
 								.right(text.rect().width())
 								.top(0.f)
 								.bottom(it.destination.size().get_height() - text.rect().height()));
@@ -2085,8 +2082,8 @@ namespace liblec {
 						}
 
 						// prevent overlap
-						text.rect().clip_to(icn.rect(), _padding);
-						description.rect().clip_to(icn.rect(), _padding);
+						text.rect().clip_to(icn.rect(), icon._padding);
+						description.rect().clip_to(icn.rect(), icon._padding);
 
 						// capture image view widget
 						it.destination._d_page.get_icon_impl(it.alias).set_icon_specs(icn, image, text, description);

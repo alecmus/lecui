@@ -44,6 +44,8 @@ namespace liblec {
 				image_quality _quality = image_quality::high;
 				std::string _description;
 				icon_text_position _text_position = icon_text_position::right;
+				float _gap = 5.f;
+				float _padding = 5.f;
 				void* _p_special_pane_specs = nullptr;
 
 			public:
@@ -210,6 +212,24 @@ namespace liblec {
 				/// <param name="text_position">The position of the text as defined in <see cref="icon_text_position"></see>.</param>
 				/// <returns>A reference to the modified object.</returns>
 				icon& text_position(const icon_text_position& text_position);
+
+				/// <summary>Get or set the gap between the text and the image and the text.</summary>
+				/// <returns>A reference to the property, in pixels.</returns>
+				float& gap();
+
+				/// <summary>Set the gap between the text and the image and the text.</summary>
+				/// <param name="border">The gap, in pixels.</param>
+				/// <returns>A reference to the modified object.</returns>
+				icon& gap(const float& gap);
+
+				/// <summary>Get or set the padding to use around the icon.</summary>
+				/// <returns>A reference to the property, in pixels.</returns>
+				float& padding();
+
+				/// <summary>Set the padding to use around the icon.</summary>
+				/// <param name="border">The padding, in pixels.</param>
+				/// <returns>A reference to the modified object.</returns>
+				icon& padding(const float& padding);
 
 			public:
 				/// <summary>Add an icon to a container.</summary>

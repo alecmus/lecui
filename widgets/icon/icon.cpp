@@ -215,6 +215,20 @@ namespace liblec {
 			return *this;
 		}
 
+		float& widgets::icon::gap() { return _gap; }
+
+		widgets::icon& widgets::icon::gap(const float& gap) {
+			_gap = gap;
+			return *this;
+		}
+
+		float& widgets::icon::padding() { return _padding; }
+
+		widgets::icon& widgets::icon::padding(const float& padding) {
+			_padding = padding;
+			return *this;
+		}
+
 		namespace widgets {
 			/// <summary>Icon widget builder.</summary>
 			class icon_builder {
