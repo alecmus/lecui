@@ -17,6 +17,13 @@ namespace liblec {
 		/// This method discards device-specific resources if the Direct3D device dissapears during
 		/// execution and recreates the resources the next time it's invoked
 		HRESULT form::impl::on_render() {
+			// check if shadow setting has changed
+			if (_previous_shadow_setting != _borderless_shadow) {
+				// implement new shadow setting
+				set_borderless_shadow(_hWnd, _borderless_shadow);
+				_previous_shadow_setting = _borderless_shadow;
+			}
+
 			HRESULT hr = S_OK;
 
 			hr = create_device_resources();

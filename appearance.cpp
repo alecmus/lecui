@@ -299,21 +299,21 @@ namespace liblec {
 
 		appearance::~appearance() { delete& _d; }
 
-		appearance& appearance::shadow(const bool& enable) {
-			if (IsWindow(_d._fm._d._hWnd))
-				_d._fm._d.set_borderless_shadow(_d._fm._d._hWnd, enable);
-			else
-				_d._fm._d._borderless_shadow = enable;
+		bool& appearance::shadow() { return _d._fm._d._borderless_shadow; }
+		bool appearance::get_shadow() const { return _d._fm._d._borderless_shadow; }
 
+		appearance& appearance::shadow(const bool& enable) {
+			_d._fm._d._borderless_shadow = enable;
 			return *this;
 		}
 
 		appearance& appearance::theme(themes theme) {
 			_d._fm._d._theme = theme;
 
-			// change the background color
-			background(defaults::color(theme, item::form),
-				defaults::color(theme, item::titlebar));
+			// change the background color of the form and title bar
+			(*this)
+				.background(defaults::color(theme, item::form))
+				.title_bar(defaults::color(theme, item::titlebar));
 
 			// change the theme colors
 			appearance::theme(defaults::color(theme, item::accent),
@@ -340,19 +340,35 @@ namespace liblec {
 			return *this;
 		}
 
-		appearance& appearance::background(const lecui::color& color,
-			const lecui::color& color_titlebar) {
-			_d._fm._d._clr_background = color;
-			_d._fm._d._clr_titlebar_background = color_titlebar;
+		lecui::color& appearance::background() { return _d._fm._d._clr_background; }
+		lecui::color appearance::get_background() const { return _d._fm._d._clr_background; }
 
+		appearance& appearance::background(const lecui::color& color) {
+			_d._fm._d._clr_background = color;
 			return *this;
 		}
 
-		appearance& appearance::set_icons(int icon_resource,
-			int small_icon_resource) {
-			_d._fm._d._idi_icon = icon_resource;
-			_d._fm._d._idi_icon_small = small_icon_resource;
+		lecui::color& appearance::title_bar() { return _d._fm._d._clr_titlebar_background; }
+		lecui::color appearance::title_bar() const { return _d._fm._d._clr_titlebar_background; }
 
+		appearance& appearance::title_bar(const lecui::color& color) {
+			_d._fm._d._clr_titlebar_background = color;
+			return *this;
+		}
+
+		int& appearance::main_icon() { return _d._fm._d._idi_icon; }
+		int appearance::get_main_icon() const { return _d._fm._d._idi_icon; }
+
+		appearance& appearance::main_icon(const int& main_icon) {
+			_d._fm._d._idi_icon = main_icon;
+			return *this;
+		}
+
+		int& appearance::mini_icon() { return _d._fm._d._idi_icon_small; }
+		int appearance::get_mini_icon() const { return _d._fm._d._idi_icon_small; }
+
+		appearance& appearance::mini_icon(const int& mini_icon) {
+			_d._fm._d._idi_icon_small = mini_icon;
 			return *this;
 		}
 	}

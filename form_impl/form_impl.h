@@ -131,6 +131,7 @@ namespace liblec {
 
 			bool _borderless;			// should the window be borderless
 			bool _borderless_shadow;	// should the window display a native aero shadow while borderless
+			bool _previous_shadow_setting;
 			bool _shadow_setting_before_maximize;
 
 			// Direct2D resources

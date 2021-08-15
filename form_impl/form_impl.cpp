@@ -106,6 +106,7 @@ namespace liblec {
 			_dpi_scale(get_process_dpi()),
 			_borderless(true),
 			_borderless_shadow(true),
+			_previous_shadow_setting(_borderless_shadow),
 			_shadow_setting_before_maximize(_borderless_shadow),
 			_p_render_target(nullptr),
 			_p_brush_theme(nullptr),

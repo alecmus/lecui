@@ -168,12 +168,6 @@ namespace liblec {
 			appearance(form& fm);
 			~appearance();
 
-			/// <summary>Whether to add a shadow to the form.</summary>
-			/// <param name="enable">Set to false to disable the shadow.</param>
-			/// <returns>A reference to the modified object.</returns>
-			/// <remarks>The shadow is enabled by default if this method is never called.</remarks>
-			appearance& shadow(const bool& enable);
-
 			/// <summary>Set a preset theme.</summary>
 			/// <param name="theme">The theme to set.</param>
 			/// <returns>A reference to the modified object.</returns>
@@ -197,19 +191,71 @@ namespace liblec {
 				const lecui::color& color_disabled,
 				const lecui::color& color_text);
 
+			/// <summary>Set or get the form shadow property.</summary>
+			/// <returns>A reference to the property.</returns>
+			bool& shadow();
+
+			/// <summary>Get the status of the form shadow.</summary>
+			/// <returns>The status of the form shadow.</returns>
+			bool get_shadow() const;
+
+			/// <summary>Set the form shadow property.</summary>
+			/// <param name="enable">Set to false to disable the shadow.</param>
+			/// <returns>A reference to the modified object.</returns>
+			/// <remarks>The shadow is enabled by default if this method is never called.</remarks>
+			appearance& shadow(const bool& enable);
+
+			/// <summary>Get or set the form's background color.</summary>
+			/// <returns>Returns a reference to the property.</returns>
+			lecui::color& background();
+
+			/// <summary>Get or the form's background color.</summary>
+			/// <returns>The value of the property.</returns>
+			lecui::color get_background() const;
+
 			/// <summary>Set the form's background colors.</summary>
 			/// <param name="color">The background color of the entire form.</param>
-			/// <param name="color_titlebar">The background color of the titlebar.</param>
 			/// <returns>A reference to the modified object.</returns>
-			appearance& background(const lecui::color& color,
-				const lecui::color& color_titlebar);
+			appearance& background(const lecui::color& color);
 
-			/// <summary>Set the application icon resources.</summary>
-			/// <param name="icon_resource">The ID of the main .ico resource.</param>
-			/// <param name="small_icon_resource">The ID os the small .ico resource.</param>
+			/// <summary>Get or set the background color of the title bar.</summary>
+			/// <returns>A reference to the property.</returns>
+			lecui::color& title_bar();
+
+			/// <summary>Get the background color of the title bar.</summary>
+			/// <returns>The value of the property.</returns>
+			lecui::color title_bar() const;
+
+			/// <summary>Set the background color of the titlebar.</summary>
+			/// <param name="color">The background color of the titlebar.</param>
 			/// <returns>A reference to the modified object.</returns>
-			appearance& set_icons(int icon_resource,
-				int small_icon_resource);
+			appearance& title_bar(const lecui::color& color);
+
+			/// <summary>Get or set the ID of the main icon resource.</summary>
+			/// <returns>A reference to the main .ico resource ID.</returns>
+			int& main_icon();
+
+			/// <summary>Get the ID of the main icon resource.</summary>
+			/// <returns>The resource ID of the main .ico.</returns>
+			int get_main_icon() const;
+
+			/// <summary>Set the ID of the main .ico resource.</summary>
+			/// <param name="main_icon">The ID of the main .ico resource.</param>
+			/// <returns>A reference to the modified object.</returns>
+			appearance& main_icon(const int& main_icon);
+
+			/// <summary>Get or set the ID of the small icon resource.</summary>
+			/// <returns>A reference to the small .ico resource ID.</returns>
+			int& mini_icon();
+
+			/// <summary>Get the ID of the small icon resource.</summary>
+			/// <returns>The resource ID of the small .ico.</returns>
+			int get_mini_icon() const;
+
+			/// <summary>Set the ID of the small .ico resource.</summary>
+			/// <param name="mini_icon">The ID of the small .ico resource.</param>
+			/// <returns>A reference to the modified object.</returns>
+			appearance& mini_icon(const int& mini_icon);
 
 		private:
 			class impl;
