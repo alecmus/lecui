@@ -693,9 +693,6 @@ namespace liblec {
 		/// 3. The html widget is moved into the html container
 		/// 4. Control widgets are added to the control pane
 		void form::impl::move_html_editors() {
-			// check if this page has an html widget
-			auto page_iterator = _p_pages.find(_current_page);
-
 			struct html_editor_info {
 				std::string alias;
 
@@ -707,11 +704,7 @@ namespace liblec {
 				containers::pane_specs& html_pane_specs;
 			};
 
-			std::vector<html_editor_info> html_editors;
-
-			if (page_iterator != _p_pages.end()) {
-				auto& page = page_iterator->second;
-
+			auto do_move_html_editors = [this](containers::page& page) {
 				class move_helper {
 				public:
 					static void find_html_editors_to_move(lecui::containers::page& page,
@@ -735,7 +728,7 @@ namespace liblec {
 									(10.f * 2) +	// top and bottom margin
 									25.f +			// first row (font name, font size ...)
 									5.f + 20.f		// seond row (bold, italic ...)
-									);
+								);
 								controls_pane
 									.color_fill(html_editor_specs.color_control_fill())
 									.color_border(html_editor_specs.color_control_border())
@@ -757,10 +750,10 @@ namespace liblec {
 									.rect(html_editor_specs.rect())
 									.on_resize(html_editor_specs.on_resize())
 									.rect().top(controls_pane.rect().bottom());
-								
+
 								if (pane.on_resize().min_height())
 									pane.on_resize().min_height(largest(pane.on_resize().min_height() - controls_pane.rect().height(), 0.f));
-								
+
 								// save move info so we can move the tree into the pane later
 								// we cannot do it here because we're iterating
 								trees.push_back({ widget.first, html_editor_specs, page, pane, controls_pane, pane });
@@ -788,6 +781,7 @@ namespace liblec {
 					}
 				};
 
+				std::vector<html_editor_info> html_editors;
 				move_helper::find_html_editors_to_move(page, html_editors);
 
 				// move the html editors
@@ -854,9 +848,9 @@ namespace liblec {
 
 										if (!html_editor.controls_initialized()) {
 											/// add controls to controls pane
-											
+
 											/// add basic font formatting
-											
+
 											/// add font selection combobox
 											auto& font = widgets::combobox::add(html_controls_page, html_editor.alias_font());
 											font.rect({ 0.f, 150.f, 0.f, 25.f })
@@ -877,7 +871,7 @@ namespace liblec {
 												.events().selection = [&](const std::string& font_name) {
 												html_editor.selection_font(font_name);
 											};
-											
+
 											/// add bold control
 											auto& bold = widgets::rectangle::add(html_controls_page, html_editor.alias_bold());
 											bold.rect().size(20.f, 20.f);
@@ -978,7 +972,7 @@ namespace liblec {
 											font_color_bar.rect().bottom() -= 1.f;
 											font_color_bar.rect().left() += 2.f;
 											font_color_bar.rect().right() -= 2.f;
-											
+
 
 											auto& font_color_menu = widgets::rectangle::add(html_controls_page);
 											font_color_menu.rect().size(10.f, 20.f);
@@ -1066,7 +1060,19 @@ namespace liblec {
 				};
 
 				controls_helper::add_html_controls(page);
+			};
+
+			// check if this page has html widgets and move them if they exist
+			auto page_iterator = _p_pages.find(_current_page);
+
+			if (page_iterator != _p_pages.end()) {
+				auto& page = page_iterator->second;
+				do_move_html_editors(page);
 			}
+
+			// check if status panes have html editors and move them if they exist
+			for (auto& [alias, page] : _p_status_panes)
+				do_move_html_editors(page);
 		}
 
 		/// The time widget is constructed as follows:
@@ -1079,9 +1085,6 @@ namespace liblec {
 		/// 5. The rectangles are used for hit testing, and each has a handler that brings up a
 		/// context menu for editing the corresponding time component
 		void form::impl::move_times() {
-			// check if this page has a time widget
-			auto page_iterator = _p_pages.find(_current_page);
-
 			struct time_info {
 				std::string alias;
 
@@ -1092,11 +1095,7 @@ namespace liblec {
 				lecui::containers::pane_specs& destination_specs;
 			};
 
-			std::vector<time_info> times;
-
-			if (page_iterator != _p_pages.end()) {
-				auto& page = page_iterator->second;
-
+			auto do_move_times = [this](containers::page& page) {
 				class helper {
 				public:
 					static void find_times_to_move(lecui::containers::page& page,
@@ -1150,6 +1149,7 @@ namespace liblec {
 					}
 				};
 
+				std::vector<time_info> times;
 				helper::find_times_to_move(page, times);
 
 				// move times
@@ -1192,7 +1192,7 @@ namespace liblec {
 							.on_resize({ 0, 0, 0, 0 })
 							.color_text(time.color_text())
 							.text(time.time_value().hour < 10 ? "0" + std::to_string(time.time_value().hour) :
-							std::to_string(time.time_value().hour));
+								std::to_string(time.time_value().hour));
 
 						// add seperator to destination
 						auto& seperator_1 = widgets::label::add(it.destination);
@@ -1225,7 +1225,7 @@ namespace liblec {
 							.on_resize({ 0, 0, 0, 0 })
 							.color_text(time.color_text())
 							.text(time.time_value().minute < 10 ? "0" + std::to_string(time.time_value().minute) :
-							std::to_string(time.time_value().minute));
+								std::to_string(time.time_value().minute));
 
 						// add seperator to destination
 						auto& seperator_2 = widgets::label::add(it.destination);
@@ -1259,7 +1259,7 @@ namespace liblec {
 							.on_resize({ 0, 0, 0, 0 })
 							.color_text(time.color_text())
 							.text(time.time_value().second < 10 ? "0" + std::to_string(time.time_value().second) :
-							std::to_string(time.time_value().second));
+								std::to_string(time.time_value().second));
 
 						// capture time label widget
 						it.destination._d_page.get_time_impl(it.alias).set_time_label_specs(
@@ -1413,7 +1413,19 @@ namespace liblec {
 				};
 
 				controls_helper::add_times(page);
+			};
+
+			// check if this page has time widgets and move them if they exist
+			auto page_iterator = _p_pages.find(_current_page);
+
+			if (page_iterator != _p_pages.end()) {
+				auto& page = page_iterator->second;
+				do_move_times(page);
 			}
+
+			// check if status panes have time widgets and move them if they exist
+			for (auto& [alias, page] : _p_status_panes)
+				do_move_times(page);
 		}
 
 		/// The date widget is constructed as follows:
@@ -1427,9 +1439,6 @@ namespace liblec {
 		/// 6. The rectangles are used for hit testing, and each has a handler that brings up a
 		/// context menu for editing the corresponding date component
 		void form::impl::move_dates() {
-			// check if this page has a date widget
-			auto page_iterator = _p_pages.find(_current_page);
-
 			struct date_info {
 				std::string alias;
 
@@ -1440,11 +1449,7 @@ namespace liblec {
 				lecui::containers::pane_specs& destination_specs;
 			};
 
-			std::vector<date_info> dates;
-
-			if (page_iterator != _p_pages.end()) {
-				auto& page = page_iterator->second;
-
+			auto do_move_dates = [this](lecui::containers::page& page) {
 				class helper {
 				public:
 					static void find_dates_to_move(lecui::containers::page& page,
@@ -1498,6 +1503,7 @@ namespace liblec {
 					}
 				};
 
+				std::vector<date_info> dates;
 				helper::find_dates_to_move(page, dates);
 
 				// move dates
@@ -1552,7 +1558,7 @@ namespace liblec {
 							.on_resize({ 0, 0, 0, 0 })
 							.color_text(date.color_text())
 							.text(date.date_value().day < 10 ? "0" + std::to_string(date.date_value().day) :
-							std::to_string(date.date_value().day));
+								std::to_string(date.date_value().day));
 
 						// add seperator to destination
 						auto& seperator_1 = widgets::label::add(it.destination);
@@ -1610,7 +1616,7 @@ namespace liblec {
 							.color_selected(date.color_selected())
 							.rect({ 0, 31, 0, 20 })
 							.rect().snap_to(seperator_2.rect(), rect::snap_type::right, 0.f);
-						
+
 
 						auto& year_label = widgets::label::add(it.destination, widgets::date_impl::alias_year_label());
 						year_label
@@ -1802,7 +1808,19 @@ namespace liblec {
 				};
 
 				controls_helper::add_dates(page);
+			};
+
+			// check if this page has a date widget
+			auto page_iterator = _p_pages.find(_current_page);
+
+			if (page_iterator != _p_pages.end()) {
+				auto& page = page_iterator->second;
+				do_move_dates(page);
 			}
+
+			// check if status panes have date widgets and move them if they exist
+			for (auto& [alias, page] : _p_status_panes)
+				do_move_dates(page);
 		}
 
 		/// The icon widget is constructed as follows:
@@ -1812,9 +1830,6 @@ namespace liblec {
 		/// 4. Two labels are added beside the image view, one is the icon text and the other is
 		/// the descriptive text
 		void form::impl::move_icons() {
-			// check if this page has a icon widget
-			auto page_iterator = _p_pages.find(_current_page);
-
 			struct icon_info {
 				std::string alias;
 
@@ -1825,11 +1840,7 @@ namespace liblec {
 				lecui::containers::pane_specs& destination_specs;
 			};
 
-			std::vector<icon_info> icons;
-
-			if (page_iterator != _p_pages.end()) {
-				auto& page = page_iterator->second;
-
+			auto do_move_icons = [this](lecui::containers::page& page) {
 				class helper {
 				public:
 					static void find_icons_to_move(lecui::containers::page& page,
@@ -1883,6 +1894,7 @@ namespace liblec {
 					}
 				};
 
+				std::vector<icon_info> icons;
 				helper::find_icons_to_move(page, icons);
 
 				// move icons
@@ -1956,7 +1968,7 @@ namespace liblec {
 						default:
 							break;
 						}
-						
+
 						image.file(icon.file());
 						image.png_resource(icon.png_resource());
 						image.quality(icon.quality());
@@ -1980,7 +1992,7 @@ namespace liblec {
 							text.rect().height(ideal_rect.bottom - ideal_rect.top);
 							text.rect().snap_to(image.rect(), rect::snap_type::right_top, _gap);
 						}
-							break;
+																	 break;
 						case widgets::icon::icon_text_position::left: {
 							text.rect(rect()
 								.left(_padding)
@@ -1992,7 +2004,7 @@ namespace liblec {
 							text.rect().height(ideal_rect.bottom - ideal_rect.top);
 							text.rect().snap_to(image.rect(), rect::snap_type::left_top, _gap);
 						}
-							break;
+																	break;
 						case widgets::icon::icon_text_position::top: {
 							text.rect(rect()
 								.left(_padding)
@@ -2004,7 +2016,7 @@ namespace liblec {
 							text.rect().height(ideal_rect.bottom - ideal_rect.top);
 							text.center_h(true);
 						}
-							break;
+																   break;
 						case widgets::icon::icon_text_position::bottom: {
 							text.rect(rect()
 								.left(_padding)
@@ -2017,7 +2029,7 @@ namespace liblec {
 							text.center_h(true);
 							text.rect().snap_to(image.rect(), rect::snap_type::bottom, _gap);
 						}
-							break;
+																	  break;
 						default:
 							break;
 						}
@@ -2038,7 +2050,7 @@ namespace liblec {
 								.bottom(it.destination.size().get_height() - text.rect().height()));
 							description.rect().snap_to(text.rect(), rect::snap_type::bottom_left, 0.f);
 						}
-																				 break;
+																	 break;
 						case widgets::icon::icon_text_position::left: {
 							description.rect(rect()
 								.left(_padding)
@@ -2047,7 +2059,7 @@ namespace liblec {
 								.bottom(it.destination.size().get_height() - text.rect().height()));
 							description.rect().snap_to(text.rect(), rect::snap_type::bottom_left, 0.f);
 						}
-							break;
+																	break;
 						case widgets::icon::icon_text_position::top: {
 							description.rect(rect()
 								.left(_padding)
@@ -2057,7 +2069,7 @@ namespace liblec {
 							description.rect().snap_to(text.rect(), rect::snap_type::bottom, 0.f);
 							description.center_h(true);
 						}
-							break;
+																   break;
 						case widgets::icon::icon_text_position::bottom: {
 							description.rect(rect()
 								.left(_padding)
@@ -2067,7 +2079,7 @@ namespace liblec {
 							description.rect().snap_to(text.rect(), rect::snap_type::bottom, 0.f);
 							description.center_h(true);
 						}
-							break;
+																	  break;
 						default:
 							break;
 						}
@@ -2085,16 +2097,25 @@ namespace liblec {
 					}
 					catch (const std::exception& e) { log("moving " + it.alias + " failed: " + e.what()); }
 				}
+			};
+
+			// check if this page has icon widgets and move them if they exist
+			auto page_iterator = _p_pages.find(_current_page);
+
+			if (_p_pages.count(_current_page)) {
+				auto& page = page_iterator->second;
+				do_move_icons(page);
 			}
+
+			// check if status panes have icon widgets and move them if they exist
+			for (auto& [alias, page] : _p_status_panes)
+				do_move_icons(page);
 		}
 
 		/// The table view widget is constructed as follows:
 		/// 1. A special pane is made
 		/// 2. The table view is moved into the pane
 		void form::impl::move_tables() {
-			// check if this page has a table pane
-			auto page_iterator = _p_pages.find(_current_page);
-
 			struct table_info {
 				std::string alias;
 
@@ -2105,11 +2126,7 @@ namespace liblec {
 				lecui::containers::pane_specs& destination_specs;
 			};
 
-			std::vector<table_info> tables;
-
-			if (page_iterator != _p_pages.end()) {
-				auto& page = page_iterator->second;
-
+			auto do_move_tables = [this](lecui::containers::page& page) {
 				class helper {
 				public:
 					static void find_tables_to_move(lecui::containers::page& page,
@@ -2164,6 +2181,7 @@ namespace liblec {
 					}
 				};
 
+				std::vector<table_info> tables;
 				helper::find_tables_to_move(page, tables);
 
 				// move the tables
@@ -2195,7 +2213,19 @@ namespace liblec {
 					}
 					catch (const std::exception& e) { log("moving " + it.alias + " failed: " + e.what()); }
 				}
+			};
+
+			// check if this page has tables to move and move them if they exist
+			auto page_iterator = _p_pages.find(_current_page);
+
+			if (page_iterator != _p_pages.end()) {
+				auto& page = page_iterator->second;
+				do_move_tables(page);
 			}
+
+			// check if status panes have tables and move them if they exist
+			for (auto& [alias, page] : _p_status_panes)
+				do_move_tables(page);
 		}
 
 		/// If the application receives a WM_SIZE message, this method resizes the render target
