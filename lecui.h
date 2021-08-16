@@ -605,6 +605,16 @@ namespace liblec {
 			/// <returns>A reference to the modified object.</returns>
 			color& alpha(const unsigned short& alpha);
 
+			/// <summary>Darken the color.</summary>
+			/// <param name="percentage">The percentage to darken by.</param>
+			/// <returns>A reference to the modified object.</returns>
+			color& darken(const float& percentage);
+
+			/// <summary>Lighten the color.</summary>
+			/// <param name="percentage">The percentage to lighten by.</param>
+			/// <returns>A reference to the modified object.</returns>
+			color& lighten(const float& percentage);
+
 			bool operator==(const color&);
 			bool operator!=(const color&);
 		};

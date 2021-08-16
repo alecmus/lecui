@@ -221,6 +221,9 @@ namespace liblec {
 
 			std::unique_ptr<widgets::tooltip_form> _p_tooltip_form = nullptr;
 
+			bool _side_pane_present;
+			float _side_pane_thickness;
+
 			/// we cannot just use WS_POPUP style
 			/// WS_THICKFRAME: without this the window cannot be resized and so aero snap, de-maximizing
 			///  and minimizing won't work

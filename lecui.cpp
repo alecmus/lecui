@@ -470,6 +470,30 @@ namespace liblec {
 			return *this;
 		}
 
+		color& color::darken(const float& percentage) {
+			const unsigned short r_target = 0;
+			const unsigned short g_target = 0;
+			const unsigned short b_target = 0;
+
+			_red = unsigned short((float)(_red - r_target) * (100.f - percentage) / 100.f);
+			_green = unsigned short((float)(_green - g_target) * (100.f - percentage) / 100.f);
+			_blue = unsigned short((float)(_blue - b_target) * (100.f - percentage) / 100.f);
+
+			return *this;
+		}
+
+		color& color::lighten(const float& percentage) {
+			const unsigned short r_target = 255;
+			const unsigned short g_target = 255;
+			const unsigned short b_target = 255;
+
+			_red = _red + int((double)(r_target - _red) * percentage / 100.f);
+			_green = _green + int((double)(g_target - _green) * percentage / 100.f);
+			_blue = _blue + int((double)(b_target - _blue) * percentage / 100.f);
+
+			return *this;
+		}
+
 		bool color::operator==(const color& param) {
 			return
 				(_red == param._red) &&

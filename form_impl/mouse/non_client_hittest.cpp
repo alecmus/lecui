@@ -64,6 +64,16 @@ namespace liblec {
 					}
 				}
 
+				// exclude side pane
+				if (_side_pane_present) {
+					try {
+						auto& side_pane = _p_status_panes.at("status::left");
+						if (side_pane._d_page.contains(point))
+							exclude = true;
+					}
+					catch (const std::exception&) {}
+				}
+
 				if (exclude)
 					result = client;
 				else

@@ -9,6 +9,7 @@
 //
 
 #include "../status_pane.h"
+#include "../side_pane.h"
 #include "../../form_impl/form_impl.h"
 
 namespace liblec {
@@ -91,6 +92,9 @@ namespace liblec {
 				_location = location;
 				return *this;
 			}
+			status_pane_base::status_pane_base(form& fm, const std::string& alias) :
+				page(fm, alias) {}
+			status_pane_base::~status_pane_base() {}
 		}
 
 		class containers::status_pane_builder::impl {
@@ -124,13 +128,18 @@ namespace liblec {
 
 			auto& specs = _d._fm._d._p_status_pane_specs.at(_d._alias);
 
+			if (specs._side_pane) {
+				_d._fm._d._side_pane_present = true;
+				_d._fm._d._side_pane_thickness = specs.thickness();
+			}
+
 			_d._fm._d._p_status_panes.try_emplace(_d._alias, _d._fm, specs);
 			auto& page_impl = _d._fm._d._p_status_panes.at(_d._alias)._d_page;
 
 			lecui::rect rect_client;
 			rect_client.size(_d._fm._d._size);
 			rect_client.width(rect_client.width() - (2.f * _d._fm._d._content_margin));
-			rect_client.height(rect_client.height() - (2.f * _d._fm._d._content_margin + _d._fm._d._caption_bar_height));
+			rect_client.height(rect_client.height() - (2.f * _d._fm._d._content_margin + (specs._side_pane ? 0.f : _d._fm._d._caption_bar_height)));
 
 			lecui::rect rect = rect_client;
 			lecui::resize_params on_resize;
@@ -196,8 +205,10 @@ namespace liblec {
 			return fm._d._p_status_panes.at(alias);
 		}
 
+		// status pane
+
 		containers::status_pane::status_pane(form& fm, status_pane_specs specs) :
-			page(fm, status_pane_alias(specs.location())) {}
+			status_pane_base(fm, status_pane_alias(specs.location())) {}
 
 		containers::status_pane& containers::status_pane::add(form& fm, status_pane_specs specs) {
 			return containers::status_pane_builder(fm, specs).get();
@@ -205,6 +216,28 @@ namespace liblec {
 
 		containers::status_pane& containers::status_pane::get(form& fm, const std::string& alias) {
 			return containers::status_pane_builder::get(fm, alias);
+		}
+
+		// side pane
+
+		containers::side_pane::side_pane(form& fm, const float& thickness) :
+			status_pane_base(fm, status_pane_alias(status_pane_specs::pane_location::left)) {}
+
+		containers::status_pane& containers::side_pane::add(form& fm, const float& thickness) {
+			status_pane_specs specs;
+			specs
+				.floating(false)
+				.location(containers::status_pane_specs::pane_location::left)
+				.thickness(thickness);
+
+			// the magic line
+			specs._side_pane = true;
+
+			return containers::status_pane_builder(fm, specs).get();
+		}
+
+		containers::status_pane& containers::side_pane::get(form& fm) {
+			return containers::status_pane_builder::get(fm, status_pane_alias(status_pane_specs::pane_location::left));
 		}
 	}
 }

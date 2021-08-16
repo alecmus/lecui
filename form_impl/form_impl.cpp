@@ -132,7 +132,9 @@ namespace liblec {
 			_schedule_refresh(false),
 			_close_called(false),
 			_force_instance(false),
-			_tray_icon_present(false) {
+			_tray_icon_present(false),
+			_side_pane_present(false),
+			_side_pane_thickness(0.f) {
 			++_instances;	// increment instances count
 
 			/// Use HeapSetInformation to specify that the process should terminate if the heap manager
@@ -471,7 +473,7 @@ namespace liblec {
 				(_allow_resizing ? _p_maximize_button->specs().rect().left() : _p_close_button->specs().rect().left());
 
 			// determine the largest rect that the caption can occupy
-			const D2D1_RECT_F max_rect = D2D1::RectF(10.f, _control_button_margin,
+			const D2D1_RECT_F max_rect = D2D1::RectF(10.f + (_side_pane_present ? _side_pane_thickness : 0.f), _control_button_margin,
 				right_edge - _control_button_margin, _caption_bar_height - _control_button_margin);
 
 			// determine the optimal rect for the caption

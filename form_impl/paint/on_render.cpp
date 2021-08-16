@@ -432,7 +432,7 @@ namespace liblec {
 
 					if (page.first == "status::left") {
 						const auto left = _content_margin;
-						const auto top = _caption_bar_height + _content_margin;
+						const auto top = (_side_pane_present ? 0.f : _caption_bar_height) + _content_margin;
 						const auto bottom = rtSize.height - _content_margin;
 						const auto right = left + page.second.size().get_width();
 

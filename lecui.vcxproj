@@ -27,6 +27,7 @@
     <ClInclude Include="containers\page\page_impl.h" />
     <ClInclude Include="containers\pane.h" />
     <ClInclude Include="containers\pane\pane_impl.h" />
+    <ClInclude Include="containers\side_pane.h" />
     <ClInclude Include="containers\status_pane.h" />
     <ClInclude Include="containers\tab_pane.h" />
     <ClInclude Include="containers\tab_pane\tab_pane_impl.h" />
@@ -313,6 +314,7 @@ xcopy "$(ProjectDir)widgets\widget.h" "$(SolutionDir)..\include\liblec\$(Project
 
 xcopy "$(ProjectDir)containers\page.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\containers\" /F /R /Y /I
 xcopy "$(ProjectDir)containers\status_pane.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\containers\" /F /R /Y /I
+xcopy "$(ProjectDir)containers\side_pane.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\containers\" /F /R /Y /I
 xcopy "$(ProjectDir)containers\tab_pane.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\containers\" /F /R /Y /I
 xcopy "$(ProjectDir)containers\pane.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\containers\" /F /R /Y /I
 xcopy "$(ProjectDir)containers\group.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\containers\" /F /R /Y /I
@@ -380,6 +382,7 @@ xcopy "$(ProjectDir)widgets\widget.h" "$(SolutionDir)..\include\liblec\$(Project
 
 xcopy "$(ProjectDir)containers\page.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\containers\" /F /R /Y /I
 xcopy "$(ProjectDir)containers\status_pane.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\containers\" /F /R /Y /I
+xcopy "$(ProjectDir)containers\side_pane.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\containers\" /F /R /Y /I
 xcopy "$(ProjectDir)containers\tab_pane.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\containers\" /F /R /Y /I
 xcopy "$(ProjectDir)containers\pane.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\containers\" /F /R /Y /I
 xcopy "$(ProjectDir)containers\group.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\containers\" /F /R /Y /I
@@ -451,6 +454,7 @@ xcopy "$(ProjectDir)widgets\widget.h" "$(SolutionDir)..\include\liblec\$(Project
 
 xcopy "$(ProjectDir)containers\page.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\containers\" /F /R /Y /I
 xcopy "$(ProjectDir)containers\status_pane.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\containers\" /F /R /Y /I
+xcopy "$(ProjectDir)containers\side_pane.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\containers\" /F /R /Y /I
 xcopy "$(ProjectDir)containers\tab_pane.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\containers\" /F /R /Y /I
 xcopy "$(ProjectDir)containers\pane.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\containers\" /F /R /Y /I
 xcopy "$(ProjectDir)containers\group.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\containers\" /F /R /Y /I
@@ -522,6 +526,7 @@ xcopy "$(ProjectDir)widgets\widget.h" "$(SolutionDir)..\include\liblec\$(Project
 
 xcopy "$(ProjectDir)containers\page.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\containers\" /F /R /Y /I
 xcopy "$(ProjectDir)containers\status_pane.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\containers\" /F /R /Y /I
+xcopy "$(ProjectDir)containers\side_pane.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\containers\" /F /R /Y /I
 xcopy "$(ProjectDir)containers\tab_pane.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\containers\" /F /R /Y /I
 xcopy "$(ProjectDir)containers\pane.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\containers\" /F /R /Y /I
 xcopy "$(ProjectDir)containers\group.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\containers\" /F /R /Y /I
