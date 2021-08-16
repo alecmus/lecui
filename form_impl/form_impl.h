@@ -146,6 +146,7 @@ namespace liblec {
 			std::map<std::string, containers::status_pane_specs> _p_status_pane_specs;
 			std::map<std::string, containers::page> _p_pages;
 			std::string _current_page;
+			std::vector<std::string> _page_list;	// for managing pages
 
 			mouse_track _mouse_track;
 

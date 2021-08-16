@@ -139,6 +139,18 @@ namespace liblec {
 			/// <param name="path">The full path to the container, e.g. "home_page/task_pane".</param>
 			void close(const std::string& path);
 
+			/// <summary>Get the name of the currently displayed page.</summary>
+			/// <returns>The name of the page that is currently displayed, and an empty string
+			/// if there is no page displayed.</returns>
+			[[nodiscard]]
+			std::string current();
+
+			/// <summary>Get the name of the page that was displayed before the current page.</summary>
+			/// <returns>The name of the page that was displayed before the current one, and
+			/// an empty string if the current page is the root.</returns>
+			[[nodiscard]]
+			std::string previous();
+
 		private:
 			class impl;
 			impl& _d;

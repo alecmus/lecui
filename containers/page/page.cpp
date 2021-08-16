@@ -152,6 +152,29 @@ namespace liblec {
 		}
 
 		void page_manager::show(const std::string& alias) {
+			if (!_d._fm._d._p_pages.count(alias))
+				return;	// page doesn't exist
+
+			std::string current_page = _d._fm._d._current_page;
+			std::string new_page = alias;
+
+			try {
+				if (previous() != alias) {
+					if (current_page == new_page) {
+						// same page is "refresing", return without doing anything
+						return;
+					}
+
+					// opening a new page, add page to end of page list
+					_d._fm._d._page_list.push_back(new_page);
+				}
+				else {
+					// switching back to previous page, remove last page in page list
+					_d._fm._d._page_list.pop_back();
+				}
+			}
+			catch (const std::exception&) {}
+
 			_d._fm._d._current_page = alias;
 
 			if (IsWindow(_d._fm._d._hWnd))
@@ -160,6 +183,31 @@ namespace liblec {
 
 		void page_manager::close(const std::string& path) {
 			_d._fm._d.close_container(path);
+		}
+
+		std::string page_manager::current() {
+			return _d._fm._d._current_page;
+		}
+
+		std::string page_manager::previous() {
+			std::string previous_page;
+
+			try {
+				if (!_d._fm._d._page_list.empty()) {
+					auto size = _d._fm._d._page_list.size();
+
+					if (size > 1) {
+						// the current page has a previous page
+						previous_page = _d._fm._d._page_list[size - 2];
+					}
+					else {
+						// the current page is the root page (no previous page)
+					}
+				}
+			}
+			catch (const std::exception&) {}
+
+			return previous_page;
 		}
 	}
 }
