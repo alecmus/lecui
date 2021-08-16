@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">lecui
-   &#160;<span id="projectnumber">1.0.0-alpha.11</span>
+   &#160;<span id="projectnumber">1.0.0-alpha.12</span>
    </div>
    <div id="projectbrief">lecui C++ user interface library</div>
   </td>
@@ -179,6 +179,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a9ff53eef3ae3043647beaaee47ce7ede"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classliblec_1_1lecui_1_1rect.html">rect</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classliblec_1_1lecui_1_1rect.html#a9ff53eef3ae3043647beaaee47ce7ede">snap_to</a> (const <a class="el" href="classliblec_1_1lecui_1_1rect.html">rect</a> &amp;rect_reference, snap_type type, const float &amp;clearance)</td></tr>
 <tr class="memdesc:a9ff53eef3ae3043647beaaee47ce7ede"><td class="mdescLeft">&#160;</td><td class="mdescRight">Snap this rectangle to another, for quick positioning.  <a href="classliblec_1_1lecui_1_1rect.html#a9ff53eef3ae3043647beaaee47ce7ede">More...</a><br /></td></tr>
 <tr class="separator:a9ff53eef3ae3043647beaaee47ce7ede"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abfbd420e25b675b5b84f05ec1a5505ea"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classliblec_1_1lecui_1_1rect.html">rect</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classliblec_1_1lecui_1_1rect.html#abfbd420e25b675b5b84f05ec1a5505ea">clip_to</a> (const <a class="el" href="classliblec_1_1lecui_1_1rect.html">rect</a> &amp;rect_reference, const float &amp;clearance)</td></tr>
+<tr class="memdesc:abfbd420e25b675b5b84f05ec1a5505ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clip a rectangle within another, to prevent a rectangle going beyond stipulated confines.  <a href="classliblec_1_1lecui_1_1rect.html#abfbd420e25b675b5b84f05ec1a5505ea">More...</a><br /></td></tr>
+<tr class="separator:abfbd420e25b675b5b84f05ec1a5505ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7d316190ece4977df36c5161549f9e7d"><td class="memItemLeft" align="right" valign="top"><a id="a7d316190ece4977df36c5161549f9e7d"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const <a class="el" href="classliblec_1_1lecui_1_1rect.html">rect</a> &amp;)</td></tr>
 <tr class="separator:a7d316190ece4977df36c5161549f9e7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -304,6 +307,45 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator!=</b> (const
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the modified object.</dd></dl>
+
+</div>
+</div>
+<a id="abfbd420e25b675b5b84f05ec1a5505ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abfbd420e25b675b5b84f05ec1a5505ea">&#9670;&nbsp;</a></span>clip_to()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classliblec_1_1lecui_1_1rect.html">rect</a>&amp; liblec::lecui::rect::clip_to </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classliblec_1_1lecui_1_1rect.html">rect</a> &amp;&#160;</td>
+          <td class="paramname"><em>rect_reference</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float &amp;&#160;</td>
+          <td class="paramname"><em>clearance</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Clip a rectangle within another, to prevent a rectangle going beyond stipulated confines. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rect_reference</td><td>The rectangle to clip to.</td></tr>
+    <tr><td class="paramname">clearance</td><td>The clearance to use in the clipping operation.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A reference to the modified object.</dd></dl>
+<p>This is a handy method for simpler failsafe coding. Note that if any clipping occurs the dimensions of the rectangle will get smaller.</p>
 
 </div>
 </div>

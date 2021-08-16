@@ -40,6 +40,10 @@ unsigned short \mbox{\hyperlink{classliblec_1_1lecui_1_1color_abc9e7b373fd4842fa
 \begin{DoxyCompactList}\small\item\em Get the alpha property. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1color_aa7a7da3fd986a16182d39bfa9521bc48}{alpha}} (const unsigned short \&alpha)
 \begin{DoxyCompactList}\small\item\em Set the alpha property. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1color_aa2bceb82d4863da0b9cc62064918f583}{darken}} (const float \&percentage)
+\begin{DoxyCompactList}\small\item\em Darken the color. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1color_afc6d03f8baccfeccb2a303e1a9534616}{lighten}} (const float \&percentage)
+\begin{DoxyCompactList}\small\item\em Lighten the color. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classliblec_1_1lecui_1_1color_ad4bc9df370bbd5428935e55b1024a54f}\label{classliblec_1_1lecui_1_1color_ad4bc9df370bbd5428935e55b1024a54f}} 
 bool {\bfseries operator==} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \&)
 \item 
@@ -150,6 +154,24 @@ Set the blue property.
 \begin{DoxyReturn}{Returns}
 A reference to the modified object.
 \end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1color_aa2bceb82d4863da0b9cc62064918f583}\label{classliblec_1_1lecui_1_1color_aa2bceb82d4863da0b9cc62064918f583}} 
+\index{liblec::lecui::color@{liblec::lecui::color}!darken@{darken}}
+\index{darken@{darken}!liblec::lecui::color@{liblec::lecui::color}}
+\doxysubsubsection{\texorpdfstring{darken()}{darken()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::color\+::darken (\begin{DoxyParamCaption}\item[{const float \&}]{percentage }\end{DoxyParamCaption})}
+
+
+
+Darken the color. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em percentage} & The percentage to darken by.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
 \mbox{\Hypertarget{classliblec_1_1lecui_1_1color_abc9e7b373fd4842fa970b40d10bdd699}\label{classliblec_1_1lecui_1_1color_abc9e7b373fd4842fa970b40d10bdd699}} 
 \index{liblec::lecui::color@{liblec::lecui::color}!get\_alpha@{get\_alpha}}
 \index{get\_alpha@{get\_alpha}!liblec::lecui::color@{liblec::lecui::color}}
@@ -228,6 +250,24 @@ Set the green property.
 
 \begin{DoxyParams}{Parameters}
 {\em green} & The property, from 0 to 255 inclusive.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1color_afc6d03f8baccfeccb2a303e1a9534616}\label{classliblec_1_1lecui_1_1color_afc6d03f8baccfeccb2a303e1a9534616}} 
+\index{liblec::lecui::color@{liblec::lecui::color}!lighten@{lighten}}
+\index{lighten@{lighten}!liblec::lecui::color@{liblec::lecui::color}}
+\doxysubsubsection{\texorpdfstring{lighten()}{lighten()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& liblec\+::lecui\+::color\+::lighten (\begin{DoxyParamCaption}\item[{const float \&}]{percentage }\end{DoxyParamCaption})}
+
+
+
+Lighten the color. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em percentage} & The percentage to lighten by.\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}

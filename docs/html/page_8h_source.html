@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">lecui
-   &#160;<span id="projectnumber">1.0.0-alpha.11</span>
+   &#160;<span id="projectnumber">1.0.0-alpha.12</span>
    </div>
    <div id="projectbrief">lecui C++ user interface library</div>
   </td>
@@ -135,57 +135,66 @@ $(function() {
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;                <span class="keyword">friend</span> <span class="keyword">class </span>widgets::time_builder;</div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;                <span class="keyword">friend</span> <span class="keyword">class </span>widgets::date_builder;</div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;                <span class="keyword">friend</span> <span class="keyword">class </span>widgets::icon_builder;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;                <span class="keyword">friend</span> <span class="keyword">class </span>widgets::widget_impl;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;                <span class="keyword">friend</span> <span class="keyword">class </span>widgets::html_editor_impl;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;                <span class="keyword">friend</span> <span class="keyword">class </span>widgets::image_view_impl;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;                <span class="keyword">friend</span> <span class="keyword">class </span>widgets::table_view_impl;</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;                <span class="keyword">friend</span> <span class="keyword">class </span>widgets::tree_view_impl;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;                <span class="keyword">friend</span> <span class="keyword">class </span>widgets::time_impl;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                <span class="keyword">friend</span> <span class="keyword">class </span>widgets::date_impl;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;                <span class="keyword">friend</span> <span class="keyword">class </span>widgets::icon_impl;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;                <span class="keyword">friend</span> <span class="keyword">class </span>widgets::pane_impl;</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;                <span class="keyword">friend</span> <span class="keyword">class </span>widgets::tab_pane_impl;</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;            };</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        }</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160; </div>
-<div class="line"><a name="l00102"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1page__manager.html">  102</a></span>&#160;        <span class="keyword">class </span>lecui_api <a class="code" href="classliblec_1_1lecui_1_1page__manager.html">page_manager</a> {</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;            <a class="code" href="classliblec_1_1lecui_1_1page__manager.html">page_manager</a>(<a class="code" href="classliblec_1_1lecui_1_1form.html">form</a>&amp; fm);</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;            ~<a class="code" href="classliblec_1_1lecui_1_1page__manager.html">page_manager</a>();</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160; </div>
-<div class="line"><a name="l00110"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1page__manager.html#ad871d2b763d30faf369064101a8ed351">  110</a></span>&#160;            [[nodiscard]] <span class="keywordtype">bool</span> <a class="code" href="classliblec_1_1lecui_1_1page__manager.html#ad871d2b763d30faf369064101a8ed351">exists</a>(<span class="keyword">const</span> std::string&amp; alias);</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160; </div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;            [[nodiscard]] <a class="code" href="classliblec_1_1lecui_1_1containers_1_1page.html">containers::page</a>&amp;</div>
-<div class="line"><a name="l00118"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1page__manager.html#a909d686ce0ca791c20e8f31c1bc6a1d8">  118</a></span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1page__manager.html#a909d686ce0ca791c20e8f31c1bc6a1d8">add</a>(<span class="keyword">const</span> std::string&amp; alias);</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160; </div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;            [[nodiscard]] <span class="keyword">static</span> <a class="code" href="classliblec_1_1lecui_1_1containers_1_1page.html">containers::page</a>&amp;</div>
-<div class="line"><a name="l00128"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1page__manager.html#ae57ce519cec2f8a458011813c4c00184">  128</a></span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1page__manager.html#ae57ce519cec2f8a458011813c4c00184">get</a>(<a class="code" href="classliblec_1_1lecui_1_1form.html">form</a>&amp; fm, <span class="keyword">const</span> std::string&amp; alias);</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160; </div>
-<div class="line"><a name="l00135"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1page__manager.html#a24bd295fbcd6c8734b1b6bc4eeaf2716">  135</a></span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classliblec_1_1lecui_1_1page__manager.html#a24bd295fbcd6c8734b1b6bc4eeaf2716">show</a>(<span class="keyword">const</span> std::string&amp; alias);</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160; </div>
-<div class="line"><a name="l00139"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1page__manager.html#a7963e1c4e36279f7d800eddf1807c073">  139</a></span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classliblec_1_1lecui_1_1page__manager.html#a7963e1c4e36279f7d800eddf1807c073">close</a>(<span class="keyword">const</span> std::string&amp; path);</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160; </div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;        <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;            <span class="keyword">class </span>impl;</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;            impl&amp; _d;</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160; </div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;            <span class="comment">// Default constructor and copying an object of this class are not allowed</span></div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;            <a class="code" href="classliblec_1_1lecui_1_1page__manager.html">page_manager</a>() = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;            <a class="code" href="classliblec_1_1lecui_1_1page__manager.html">page_manager</a>(<span class="keyword">const</span> <a class="code" href="classliblec_1_1lecui_1_1page__manager.html">page_manager</a>&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;            <a class="code" href="classliblec_1_1lecui_1_1page__manager.html">page_manager</a>&amp; operator=(<span class="keyword">const</span> <a class="code" href="classliblec_1_1lecui_1_1page__manager.html">page_manager</a>&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;        };</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    }</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;}</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160; </div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;<span class="preprocessor">#define get_page(path) liblec::lecui::page_manager::get(*this, path)</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;                <span class="keyword">friend</span> <span class="keyword">class </span>widgets::strength_bar_builder;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;                <span class="keyword">friend</span> <span class="keyword">class </span>widgets::widget_impl;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;                <span class="keyword">friend</span> <span class="keyword">class </span>widgets::html_editor_impl;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;                <span class="keyword">friend</span> <span class="keyword">class </span>widgets::image_view_impl;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;                <span class="keyword">friend</span> <span class="keyword">class </span>widgets::table_view_impl;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;                <span class="keyword">friend</span> <span class="keyword">class </span>widgets::tree_view_impl;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                <span class="keyword">friend</span> <span class="keyword">class </span>widgets::time_impl;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;                <span class="keyword">friend</span> <span class="keyword">class </span>widgets::date_impl;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;                <span class="keyword">friend</span> <span class="keyword">class </span>widgets::icon_impl;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;                <span class="keyword">friend</span> <span class="keyword">class </span>widgets::pane_impl;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;                <span class="keyword">friend</span> <span class="keyword">class </span>widgets::tab_pane_impl;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;            };</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        }</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160; </div>
+<div class="line"><a name="l00103"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1page__manager.html">  103</a></span>&#160;        <span class="keyword">class </span>lecui_api <a class="code" href="classliblec_1_1lecui_1_1page__manager.html">page_manager</a> {</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;            <a class="code" href="classliblec_1_1lecui_1_1page__manager.html">page_manager</a>(<a class="code" href="classliblec_1_1lecui_1_1form.html">form</a>&amp; fm);</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;            ~<a class="code" href="classliblec_1_1lecui_1_1page__manager.html">page_manager</a>();</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160; </div>
+<div class="line"><a name="l00111"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1page__manager.html#ad871d2b763d30faf369064101a8ed351">  111</a></span>&#160;            [[nodiscard]] <span class="keywordtype">bool</span> <a class="code" href="classliblec_1_1lecui_1_1page__manager.html#ad871d2b763d30faf369064101a8ed351">exists</a>(<span class="keyword">const</span> std::string&amp; alias);</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160; </div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;            [[nodiscard]] <a class="code" href="classliblec_1_1lecui_1_1containers_1_1page.html">containers::page</a>&amp;</div>
+<div class="line"><a name="l00119"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1page__manager.html#a909d686ce0ca791c20e8f31c1bc6a1d8">  119</a></span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1page__manager.html#a909d686ce0ca791c20e8f31c1bc6a1d8">add</a>(<span class="keyword">const</span> std::string&amp; alias);</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160; </div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;            [[nodiscard]] <span class="keyword">static</span> <a class="code" href="classliblec_1_1lecui_1_1containers_1_1page.html">containers::page</a>&amp;</div>
+<div class="line"><a name="l00129"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1page__manager.html#ae57ce519cec2f8a458011813c4c00184">  129</a></span>&#160;                <a class="code" href="classliblec_1_1lecui_1_1page__manager.html#ae57ce519cec2f8a458011813c4c00184">get</a>(<a class="code" href="classliblec_1_1lecui_1_1form.html">form</a>&amp; fm, <span class="keyword">const</span> std::string&amp; alias);</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160; </div>
+<div class="line"><a name="l00136"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1page__manager.html#a24bd295fbcd6c8734b1b6bc4eeaf2716">  136</a></span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classliblec_1_1lecui_1_1page__manager.html#a24bd295fbcd6c8734b1b6bc4eeaf2716">show</a>(<span class="keyword">const</span> std::string&amp; alias);</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160; </div>
+<div class="line"><a name="l00140"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1page__manager.html#a7963e1c4e36279f7d800eddf1807c073">  140</a></span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classliblec_1_1lecui_1_1page__manager.html#a7963e1c4e36279f7d800eddf1807c073">close</a>(<span class="keyword">const</span> std::string&amp; path);</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160; </div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;            [[nodiscard]]</div>
+<div class="line"><a name="l00146"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1page__manager.html#a4266077a489fa8dbced5029c1d444626">  146</a></span>&#160;            std::string <a class="code" href="classliblec_1_1lecui_1_1page__manager.html#a4266077a489fa8dbced5029c1d444626">current</a>();</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160; </div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;            [[nodiscard]]</div>
+<div class="line"><a name="l00152"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1page__manager.html#a53e12f3b54b5886101ff3ba6a2573db6">  152</a></span>&#160;            std::string <a class="code" href="classliblec_1_1lecui_1_1page__manager.html#a53e12f3b54b5886101ff3ba6a2573db6">previous</a>();</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160; </div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;        <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;            <span class="keyword">class </span>impl;</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;            impl&amp; _d;</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160; </div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;            <span class="comment">// Default constructor and copying an object of this class are not allowed</span></div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;            <a class="code" href="classliblec_1_1lecui_1_1page__manager.html">page_manager</a>() = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;            <a class="code" href="classliblec_1_1lecui_1_1page__manager.html">page_manager</a>(<span class="keyword">const</span> <a class="code" href="classliblec_1_1lecui_1_1page__manager.html">page_manager</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;            <a class="code" href="classliblec_1_1lecui_1_1page__manager.html">page_manager</a>&amp; operator=(<span class="keyword">const</span> <a class="code" href="classliblec_1_1lecui_1_1page__manager.html">page_manager</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;        };</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;    }</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;}</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160; </div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;<span class="preprocessor">#define get_page(path) liblec::lecui::page_manager::get(*this, path)</span></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1containers_1_1page_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1containers_1_1page.html">liblec::lecui::containers::page</a></div><div class="ttdoc">Page container.</div><div class="ttdef"><b>Definition:</b> page.h:31</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1containers_1_1page_html_a47e4257dba4434a89319d0fc32a140f6"><div class="ttname"><a href="classliblec_1_1lecui_1_1containers_1_1page.html#a47e4257dba4434a89319d0fc32a140f6">liblec::lecui::containers::page::page</a></div><div class="ttdeci">page(form &amp;fm, const std::string &amp;alias)</div><div class="ttdoc">Page constructor.</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1containers_1_1page_html_ab32a8edb06befdd4a57f76fe7187fd86"><div class="ttname"><a href="classliblec_1_1lecui_1_1containers_1_1page.html#ab32a8edb06befdd4a57f76fe7187fd86">liblec::lecui::containers::page::size</a></div><div class="ttdeci">virtual const size size()</div><div class="ttdoc">Get the size of the page.</div></div>
-<div class="ttc" id="aclassliblec_1_1lecui_1_1form_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1form.html">liblec::lecui::form</a></div><div class="ttdoc">Form base class. The user must inherit from this class and call one of the two constructors from its ...</div><div class="ttdef"><b>Definition:</b> form.h:101</div></div>
-<div class="ttc" id="aclassliblec_1_1lecui_1_1page__manager_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1page__manager.html">liblec::lecui::page_manager</a></div><div class="ttdoc">Page manager class.</div><div class="ttdef"><b>Definition:</b> page.h:102</div></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1form_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1form.html">liblec::lecui::form</a></div><div class="ttdoc">Form base class. The user must inherit from this class and call one of the two constructors from its ...</div><div class="ttdef"><b>Definition:</b> form.h:102</div></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1page__manager_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1page__manager.html">liblec::lecui::page_manager</a></div><div class="ttdoc">Page manager class.</div><div class="ttdef"><b>Definition:</b> page.h:103</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1page__manager_html_a24bd295fbcd6c8734b1b6bc4eeaf2716"><div class="ttname"><a href="classliblec_1_1lecui_1_1page__manager.html#a24bd295fbcd6c8734b1b6bc4eeaf2716">liblec::lecui::page_manager::show</a></div><div class="ttdeci">void show(const std::string &amp;alias)</div><div class="ttdoc">Show a page.</div></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1page__manager_html_a4266077a489fa8dbced5029c1d444626"><div class="ttname"><a href="classliblec_1_1lecui_1_1page__manager.html#a4266077a489fa8dbced5029c1d444626">liblec::lecui::page_manager::current</a></div><div class="ttdeci">std::string current()</div><div class="ttdoc">Get the name of the currently displayed page.</div></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1page__manager_html_a53e12f3b54b5886101ff3ba6a2573db6"><div class="ttname"><a href="classliblec_1_1lecui_1_1page__manager.html#a53e12f3b54b5886101ff3ba6a2573db6">liblec::lecui::page_manager::previous</a></div><div class="ttdeci">std::string previous()</div><div class="ttdoc">Get the name of the page that was displayed before the current page.</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1page__manager_html_a7963e1c4e36279f7d800eddf1807c073"><div class="ttname"><a href="classliblec_1_1lecui_1_1page__manager.html#a7963e1c4e36279f7d800eddf1807c073">liblec::lecui::page_manager::close</a></div><div class="ttdeci">void close(const std::string &amp;path)</div><div class="ttdoc">Close a container.</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1page__manager_html_a909d686ce0ca791c20e8f31c1bc6a1d8"><div class="ttname"><a href="classliblec_1_1lecui_1_1page__manager.html#a909d686ce0ca791c20e8f31c1bc6a1d8">liblec::lecui::page_manager::add</a></div><div class="ttdeci">containers::page &amp; add(const std::string &amp;alias)</div><div class="ttdoc">Add a page to the form.</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1page__manager_html_ad871d2b763d30faf369064101a8ed351"><div class="ttname"><a href="classliblec_1_1lecui_1_1page__manager.html#ad871d2b763d30faf369064101a8ed351">liblec::lecui::page_manager::exists</a></div><div class="ttdeci">bool exists(const std::string &amp;alias)</div><div class="ttdoc">Check if a page exists.</div></div>

@@ -83,6 +83,8 @@ float \mbox{\hyperlink{classliblec_1_1lecui_1_1rect_ad98aa9e4bf165f7c062423c3e17
 \begin{DoxyCompactList}\small\item\em Place this rectangle within or over another. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{rect}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1rect_a9ff53eef3ae3043647beaaee47ce7ede}{snap\+\_\+to}} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{rect}} \&rect\+\_\+reference, snap\+\_\+type type, const float \&clearance)
 \begin{DoxyCompactList}\small\item\em Snap this rectangle to another, for quick positioning. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{rect}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1rect_abfbd420e25b675b5b84f05ec1a5505ea}{clip\+\_\+to}} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{rect}} \&rect\+\_\+reference, const float \&clearance)
+\begin{DoxyCompactList}\small\item\em Clip a rectangle within another, to prevent a rectangle going beyond stipulated confines. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classliblec_1_1lecui_1_1rect_a7d316190ece4977df36c5161549f9e7d}\label{classliblec_1_1lecui_1_1rect_a7d316190ece4977df36c5161549f9e7d}} 
 bool {\bfseries operator==} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{rect}} \&)
 \item 
@@ -162,7 +164,29 @@ Set the bottom coordinate.
 \begin{DoxyReturn}{Returns}
 A reference to the modified object.
 \end{DoxyReturn}
-\mbox{\Hypertarget{classliblec_1_1lecui_1_1rect_ae28fbccede541de335ad4b5eefd137a0}\label{classliblec_1_1lecui_1_1rect_ae28fbccede541de335ad4b5eefd137a0}} 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1rect_abfbd420e25b675b5b84f05ec1a5505ea}\label{classliblec_1_1lecui_1_1rect_abfbd420e25b675b5b84f05ec1a5505ea}} 
+\index{liblec::lecui::rect@{liblec::lecui::rect}!clip\_to@{clip\_to}}
+\index{clip\_to@{clip\_to}!liblec::lecui::rect@{liblec::lecui::rect}}
+\doxysubsubsection{\texorpdfstring{clip\_to()}{clip\_to()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{rect}}\& liblec\+::lecui\+::rect\+::clip\+\_\+to (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{rect}} \&}]{rect\+\_\+reference,  }\item[{const float \&}]{clearance }\end{DoxyParamCaption})}
+
+
+
+Clip a rectangle within another, to prevent a rectangle going beyond stipulated confines. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rect\+\_\+reference} & The rectangle to clip to.\\
+\hline
+{\em clearance} & The clearance to use in the clipping operation.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+
+
+This is a handy method for simpler failsafe coding. Note that if any clipping occurs the dimensions of the rectangle will get smaller.\mbox{\Hypertarget{classliblec_1_1lecui_1_1rect_ae28fbccede541de335ad4b5eefd137a0}\label{classliblec_1_1lecui_1_1rect_ae28fbccede541de335ad4b5eefd137a0}} 
 \index{liblec::lecui::rect@{liblec::lecui::rect}!get\_bottom@{get\_bottom}}
 \index{get\_bottom@{get\_bottom}!liblec::lecui::rect@{liblec::lecui::rect}}
 \doxysubsubsection{\texorpdfstring{get\_bottom()}{get\_bottom()}}

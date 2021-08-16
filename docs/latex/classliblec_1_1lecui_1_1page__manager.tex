@@ -22,7 +22,11 @@ bool \mbox{\hyperlink{classliblec_1_1lecui_1_1page__manager_ad871d2b763d30faf369
 void \mbox{\hyperlink{classliblec_1_1lecui_1_1page__manager_a24bd295fbcd6c8734b1b6bc4eeaf2716}{show}} (const std\+::string \&alias)
 \begin{DoxyCompactList}\small\item\em Show a page. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classliblec_1_1lecui_1_1page__manager_a7963e1c4e36279f7d800eddf1807c073}{close}} (const std\+::string \&path)
-\begin{DoxyCompactList}\small\item\em Close a container. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Close a container. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classliblec_1_1lecui_1_1page__manager_a4266077a489fa8dbced5029c1d444626}{current}} ()
+\begin{DoxyCompactList}\small\item\em Get the name of the currently displayed page. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classliblec_1_1lecui_1_1page__manager_a53e12f3b54b5886101ff3ba6a2573db6}{previous}} ()
+\begin{DoxyCompactList}\small\item\em Get the name of the page that was displayed before the current page. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -71,6 +75,19 @@ Close a container.
 {\em path} & The full path to the container, e.\+g. \char`\"{}home\+\_\+page/task\+\_\+pane\char`\"{}.\\
 \hline
 \end{DoxyParams}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1page__manager_a4266077a489fa8dbced5029c1d444626}\label{classliblec_1_1lecui_1_1page__manager_a4266077a489fa8dbced5029c1d444626}} 
+\index{liblec::lecui::page\_manager@{liblec::lecui::page\_manager}!current@{current}}
+\index{current@{current}!liblec::lecui::page\_manager@{liblec::lecui::page\_manager}}
+\doxysubsubsection{\texorpdfstring{current()}{current()}}
+{\footnotesize\ttfamily std\+::string liblec\+::lecui\+::page\+\_\+manager\+::current (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the name of the currently displayed page. 
+
+\begin{DoxyReturn}{Returns}
+The name of the page that is currently displayed, and an empty string if there is no page displayed.
+\end{DoxyReturn}
 \mbox{\Hypertarget{classliblec_1_1lecui_1_1page__manager_ad871d2b763d30faf369064101a8ed351}\label{classliblec_1_1lecui_1_1page__manager_ad871d2b763d30faf369064101a8ed351}} 
 \index{liblec::lecui::page\_manager@{liblec::lecui::page\_manager}!exists@{exists}}
 \index{exists@{exists}!liblec::lecui::page\_manager@{liblec::lecui::page\_manager}}
@@ -111,7 +128,20 @@ A reference to the page container.
 \end{DoxyReturn}
 
 
-Throws on failure. For faster coding and more readable code consider calling this static method through the helper macro provided (get\+\_\+page), unless if already using an in-\/class \mbox{\hyperlink{classliblec_1_1lecui_1_1page__manager}{page\+\_\+manager}} instance.\mbox{\Hypertarget{classliblec_1_1lecui_1_1page__manager_a24bd295fbcd6c8734b1b6bc4eeaf2716}\label{classliblec_1_1lecui_1_1page__manager_a24bd295fbcd6c8734b1b6bc4eeaf2716}} 
+Throws on failure. For faster coding and more readable code consider calling this static method through the helper macro provided (get\+\_\+page), unless if already using an in-\/class \mbox{\hyperlink{classliblec_1_1lecui_1_1page__manager}{page\+\_\+manager}} instance.\mbox{\Hypertarget{classliblec_1_1lecui_1_1page__manager_a53e12f3b54b5886101ff3ba6a2573db6}\label{classliblec_1_1lecui_1_1page__manager_a53e12f3b54b5886101ff3ba6a2573db6}} 
+\index{liblec::lecui::page\_manager@{liblec::lecui::page\_manager}!previous@{previous}}
+\index{previous@{previous}!liblec::lecui::page\_manager@{liblec::lecui::page\_manager}}
+\doxysubsubsection{\texorpdfstring{previous()}{previous()}}
+{\footnotesize\ttfamily std\+::string liblec\+::lecui\+::page\+\_\+manager\+::previous (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the name of the page that was displayed before the current page. 
+
+\begin{DoxyReturn}{Returns}
+The name of the page that was displayed before the current one, and an empty string if the current page is the root.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1page__manager_a24bd295fbcd6c8734b1b6bc4eeaf2716}\label{classliblec_1_1lecui_1_1page__manager_a24bd295fbcd6c8734b1b6bc4eeaf2716}} 
 \index{liblec::lecui::page\_manager@{liblec::lecui::page\_manager}!show@{show}}
 \index{show@{show}!liblec::lecui::page\_manager@{liblec::lecui::page\_manager}}
 \doxysubsubsection{\texorpdfstring{show()}{show()}}

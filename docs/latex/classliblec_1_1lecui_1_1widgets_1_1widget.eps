@@ -5,7 +5,7 @@
 %%For: 
 %Magnification: 1.00
 %%Orientation: Portrait
-%%BoundingBox: 0 0 500 946.502075
+%%BoundingBox: 0 0 500 987.654297
 %%Pages: 0
 %%BeginSetup
 %%EndSetup
@@ -19,12 +19,12 @@
 /marginwidth 10 def
 /distx 20 def
 /disty 40 def
-/boundaspect 0.528261 def  % aspect ratio of the BoundingBox (width/height)
+/boundaspect 0.506250 def  % aspect ratio of the BoundingBox (width/height)
 /boundx 500 def
 /boundy boundx boundaspect div def
 /xspacing 0 def
 /yspacing 0 def
-/rows 23 def
+/rows 24 def
 /cols 2 def
 /scalefactor 0 def
 /boxfont /Times-Roman findfont fontheight scalefont def
@@ -191,6 +191,7 @@ boxfont setfont
 (liblec::lecui::widgets::progress_indicator) cw
 (liblec::lecui::widgets::rectangle) cw
 (liblec::lecui::widgets::slider) cw
+(liblec::lecui::widgets::strength_bar) cw
 (liblec::lecui::widgets::table_view) cw
 (liblec::lecui::widgets::text_field) cw
 (liblec::lecui::widgets::time) cw
@@ -207,25 +208,26 @@ boundx scalefactor div boundy scalefactor div scale
 
 % ----- classes -----
 
- (liblec::lecui::widgets::widget) 0.000000 22.000000 box
- (liblec::lecui::containers::group) 1.000000 21.000000 box
- (liblec::lecui::containers::pane_specs) 1.000000 20.000000 box
-1.000000 20.000000 mark
- (liblec::lecui::containers::tab_pane) 1.000000 19.000000 box
- (liblec::lecui::widgets::button) 1.000000 18.000000 box
- (liblec::lecui::widgets::checkbox) 1.000000 17.000000 box
- (liblec::lecui::widgets::combobox) 1.000000 16.000000 box
- (liblec::lecui::widgets::custom) 1.000000 15.000000 box
- (liblec::lecui::widgets::date) 1.000000 14.000000 box
- (liblec::lecui::widgets::html_editor) 1.000000 13.000000 box
- (liblec::lecui::widgets::icon) 1.000000 12.000000 box
- (liblec::lecui::widgets::image_view) 1.000000 11.000000 box
- (liblec::lecui::widgets::label) 1.000000 10.000000 box
- (liblec::lecui::widgets::line) 1.000000 9.000000 box
- (liblec::lecui::widgets::progress_bar) 1.000000 8.000000 box
- (liblec::lecui::widgets::progress_indicator) 1.000000 7.000000 box
- (liblec::lecui::widgets::rectangle) 1.000000 6.000000 box
- (liblec::lecui::widgets::slider) 1.000000 5.000000 box
+ (liblec::lecui::widgets::widget) 0.000000 23.000000 box
+ (liblec::lecui::containers::group) 1.000000 22.000000 box
+ (liblec::lecui::containers::pane_specs) 1.000000 21.000000 box
+1.000000 21.000000 mark
+ (liblec::lecui::containers::tab_pane) 1.000000 20.000000 box
+ (liblec::lecui::widgets::button) 1.000000 19.000000 box
+ (liblec::lecui::widgets::checkbox) 1.000000 18.000000 box
+ (liblec::lecui::widgets::combobox) 1.000000 17.000000 box
+ (liblec::lecui::widgets::custom) 1.000000 16.000000 box
+ (liblec::lecui::widgets::date) 1.000000 15.000000 box
+ (liblec::lecui::widgets::html_editor) 1.000000 14.000000 box
+ (liblec::lecui::widgets::icon) 1.000000 13.000000 box
+ (liblec::lecui::widgets::image_view) 1.000000 12.000000 box
+ (liblec::lecui::widgets::label) 1.000000 11.000000 box
+ (liblec::lecui::widgets::line) 1.000000 10.000000 box
+ (liblec::lecui::widgets::progress_bar) 1.000000 9.000000 box
+ (liblec::lecui::widgets::progress_indicator) 1.000000 8.000000 box
+ (liblec::lecui::widgets::rectangle) 1.000000 7.000000 box
+ (liblec::lecui::widgets::slider) 1.000000 6.000000 box
+ (liblec::lecui::widgets::strength_bar) 1.000000 5.000000 box
  (liblec::lecui::widgets::table_view) 1.000000 4.000000 box
  (liblec::lecui::widgets::text_field) 1.000000 3.000000 box
 1.000000 3.000000 mark
@@ -236,7 +238,9 @@ boundx scalefactor div boundy scalefactor div scale
 % ----- relations -----
 
 solid
-1 0.000000 21.250000 out
+1 0.000000 22.250000 out
+solid
+0 0.000000 22.500000 hedge
 solid
 0 0.000000 21.500000 hedge
 solid
@@ -282,4 +286,4 @@ solid
 solid
 0 0.000000 0.500000 hedge
 solid
-0.000000 22.000000 0.500000 vedge
+0.000000 23.000000 0.500000 vedge

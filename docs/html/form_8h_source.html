@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">lecui
-   &#160;<span id="projectnumber">1.0.0-alpha.11</span>
+   &#160;<span id="projectnumber">1.0.0-alpha.12</span>
    </div>
    <div id="projectbrief">lecui C++ user interface library</div>
   </td>
@@ -133,171 +133,173 @@ $(function() {
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            <span class="keyword">class </span>time_builder;</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            <span class="keyword">class </span>date_builder;</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;            <span class="keyword">class </span>icon_builder;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;            <span class="keyword">class </span>widget_impl;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            <span class="keyword">class </span>combobox_impl;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            <span class="keyword">class </span>html_editor_impl;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            <span class="keyword">class </span>text_field_impl;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            <span class="keyword">class </span>tree_view_impl;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;            <span class="keyword">class </span>image_view_impl;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            <span class="keyword">class </span>table_view_impl;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            <span class="keyword">class </span>time_impl;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;            <span class="keyword">class </span>date_impl;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;            <span class="keyword">class </span>icon_impl;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;            <span class="keyword">class </span>pane_impl;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            <span class="keyword">class </span>tab_pane_impl;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        }</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        <span class="keyword">enum class</span> form_position {</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;            center_to_working_area,</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;            center_to_parent,</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;            top_left,</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;            top_left_offset,</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;            bottom_left,</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;            bottom_left_offset,</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;            top_right,</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;            top_right_offset,</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;            bottom_right,</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;            bottom_right_offset,</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        };</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160; </div>
-<div class="line"><a name="l00101"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1form.html">  101</a></span>&#160;        <span class="keyword">class </span>lecui_api <a class="code" href="classliblec_1_1lecui_1_1form.html">form</a> {</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00110"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1form.html#a5e8d85dd0feab388c6a5de92e54b4539">  110</a></span>&#160;            <a class="code" href="classliblec_1_1lecui_1_1form.html#a5e8d85dd0feab388c6a5de92e54b4539">form</a>(<span class="keyword">const</span> std::string&amp; caption);</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160; </div>
-<div class="line"><a name="l00125"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1form.html#ab37322096b8c365efa7427c7229b6c12">  125</a></span>&#160;            <a class="code" href="classliblec_1_1lecui_1_1form.html#ab37322096b8c365efa7427c7229b6c12">form</a>(<span class="keyword">const</span> std::string&amp; caption, <a class="code" href="classliblec_1_1lecui_1_1form.html">form</a>&amp; parent);</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;            ~<a class="code" href="classliblec_1_1lecui_1_1form.html">form</a>();</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160; </div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;            [[nodiscard]]</div>
-<div class="line"><a name="l00131"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1form.html#ac4bd8d0b31ed1a0cc19c2960fe2899fb">  131</a></span>&#160;            <span class="keyword">static</span> std::string <a class="code" href="classliblec_1_1lecui_1_1form.html#ac4bd8d0b31ed1a0cc19c2960fe2899fb">menu_form_caption</a>();</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160; </div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;            [[nodiscard]]</div>
-<div class="line"><a name="l00136"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1form.html#ae46009d2c64c15324241ad39c349ebee">  136</a></span>&#160;            <span class="keyword">static</span> std::string <a class="code" href="classliblec_1_1lecui_1_1form.html#ae46009d2c64c15324241ad39c349ebee">tooltip_form_caption</a>();</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160; </div>
-<div class="line"><a name="l00141"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1form.html#abf87c84254489bf207145dbcb8d9dc03">  141</a></span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classliblec_1_1lecui_1_1form.html#abf87c84254489bf207145dbcb8d9dc03">move</a>(<span class="keyword">const</span> <a class="code" href="classliblec_1_1lecui_1_1point.html">point</a>&amp; <a class="code" href="classliblec_1_1lecui_1_1point.html">point</a>);</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160; </div>
-<div class="line"><a name="l00145"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1form.html#a8dcfa7376585537c1439cb79992e4c78">  145</a></span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classliblec_1_1lecui_1_1form.html#a8dcfa7376585537c1439cb79992e4c78">move</a>(<span class="keyword">const</span> form_position&amp; form_position);</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160; </div>
-<div class="line"><a name="l00157"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1form.html#a7dc5f9275022a0c260bccdf9c2ffb567">  157</a></span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classliblec_1_1lecui_1_1form.html#a7dc5f9275022a0c260bccdf9c2ffb567">force_instance</a>();</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160; </div>
-<div class="line"><a name="l00165"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1form.html#a54ba88558be331b76724721055130beb">  165</a></span>&#160;            [[nodiscard]] <span class="keywordtype">bool</span> <a class="code" href="classliblec_1_1lecui_1_1form.html#a54ba88558be331b76724721055130beb">create</a>(std::string&amp; error);</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160; </div>
-<div class="line"><a name="l00171"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1form.html#ab2331a6e572e672d4e875302da594666">  171</a></span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classliblec_1_1lecui_1_1form.html#ab2331a6e572e672d4e875302da594666">close</a>();</div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160; </div>
-<div class="line"><a name="l00182"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1form.html#a50ea7e5b9915f781f1d298cff2f37a85">  182</a></span>&#160;            <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classliblec_1_1lecui_1_1form.html#a50ea7e5b9915f781f1d298cff2f37a85">on_initialize</a>(std::string&amp; error);</div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160; </div>
-<div class="line"><a name="l00196"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1form.html#a4e2e100ef451160db1cb71453bb19eed">  196</a></span>&#160;            [[nodiscard]] <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classliblec_1_1lecui_1_1form.html#a4e2e100ef451160db1cb71453bb19eed">on_layout</a>(std::string&amp; error);</div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160; </div>
-<div class="line"><a name="l00201"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1form.html#a7644f0c8d1bc55b11a7bd0e884b84e25">  201</a></span>&#160;            <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classliblec_1_1lecui_1_1form.html#a7644f0c8d1bc55b11a7bd0e884b84e25">on_start</a>();</div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160; </div>
-<div class="line"><a name="l00208"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1form.html#a108d0c9b7d47cfd1a808cb47ebfe176d">  208</a></span>&#160;            <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classliblec_1_1lecui_1_1form.html#a108d0c9b7d47cfd1a808cb47ebfe176d">on_close</a>();</div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160; </div>
-<div class="line"><a name="l00213"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1form.html#a977a34d040d594164edcda08b8cb565d">  213</a></span>&#160;            <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classliblec_1_1lecui_1_1form.html#a977a34d040d594164edcda08b8cb565d">on_shutdown</a>();</div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160; </div>
-<div class="line"><a name="l00220"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1form.html#a3477fae3ae3d391f62c1d0e04cf0e1af">  220</a></span>&#160;            [[nodiscard]] <span class="keywordtype">bool</span> <a class="code" href="classliblec_1_1lecui_1_1form.html#a3477fae3ae3d391f62c1d0e04cf0e1af">prompt</a>(<span class="keyword">const</span> std::string&amp; question);</div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160; </div>
-<div class="line"><a name="l00226"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1form.html#ae4b44163b6dc7684f0192343d203c7fe">  226</a></span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classliblec_1_1lecui_1_1form.html#ae4b44163b6dc7684f0192343d203c7fe">message</a>(<span class="keyword">const</span> std::string&amp; message);</div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160; </div>
-<div class="line"><a name="l00233"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1form.html#a144e42ae28a7c24d470d5b9b147efebd">  233</a></span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classliblec_1_1lecui_1_1form.html#a144e42ae28a7c24d470d5b9b147efebd">update</a>();</div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160; </div>
-<div class="line"><a name="l00251"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1form.html#ae2a0525beb9d780abd15a9baa54ac3f7">  251</a></span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classliblec_1_1lecui_1_1form.html#ae2a0525beb9d780abd15a9baa54ac3f7">reload</a>();</div>
-<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160; </div>
-<div class="line"><a name="l00259"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1form.html#a1a9fc229d83e98928bf2b47bf5f186fc">  259</a></span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classliblec_1_1lecui_1_1form.html#a1a9fc229d83e98928bf2b47bf5f186fc">on_caption</a>(std::function&lt;<span class="keywordtype">void</span>()&gt;on_caption, <span class="keyword">const</span> std::string&amp; tooltip);</div>
-<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160; </div>
-<div class="line"><a name="l00266"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1form.html#a4e99b2e92968755f60f112bdf2a86650">  266</a></span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classliblec_1_1lecui_1_1form.html#a4e99b2e92968755f60f112bdf2a86650">on_drop_files</a>(std::function&lt;<span class="keywordtype">void</span>(<span class="keyword">const</span> std::string&amp; file)&gt;on_drop_files);</div>
-<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160; </div>
-<div class="line"><a name="l00271"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1form.html#aca1171d5db45597a569f7ec7e592eb37">  271</a></span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classliblec_1_1lecui_1_1form.html#aca1171d5db45597a569f7ec7e592eb37">on_receive_data</a>(std::function&lt;<span class="keywordtype">void</span>(<span class="keyword">const</span> std::string&amp; data)&gt;on_receive_data);</div>
-<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160; </div>
-<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;            [[nodiscard]]</div>
-<div class="line"><a name="l00278"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1form.html#a69b445cd2e22e5bb90f46f081499e7a8">  278</a></span>&#160;            <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code" href="classliblec_1_1lecui_1_1form.html#a69b445cd2e22e5bb90f46f081499e7a8">keep_alive</a>();</div>
-<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160; </div>
-<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;            [[nodiscard]]</div>
-<div class="line"><a name="l00283"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1form.html#a045f0d9eed1c1ede57fa9618b49fdbea">  283</a></span>&#160;            <span class="keywordtype">float</span> <a class="code" href="classliblec_1_1lecui_1_1form.html#a045f0d9eed1c1ede57fa9618b49fdbea">get_dpi_scale</a>();</div>
-<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160; </div>
-<div class="line"><a name="l00287"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1form.html#a5047dd2b740499e48f13dd73747056f7">  287</a></span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classliblec_1_1lecui_1_1form.html#a5047dd2b740499e48f13dd73747056f7">allow_minimize</a>();</div>
-<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160; </div>
-<div class="line"><a name="l00293"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1form.html#ace55cac000c3c24063d5e4e278054c4d">  293</a></span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classliblec_1_1lecui_1_1form.html#ace55cac000c3c24063d5e4e278054c4d">restore</a>();</div>
-<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160; </div>
-<div class="line"><a name="l00297"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1form.html#a24aed3ecd75221fefebf159b7329ed75">  297</a></span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classliblec_1_1lecui_1_1form.html#a24aed3ecd75221fefebf159b7329ed75">maximize</a>();</div>
-<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160; </div>
-<div class="line"><a name="l00303"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1form.html#a9e113933e10a1aa1f66a5edfe8636d9d">  303</a></span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classliblec_1_1lecui_1_1form.html#a9e113933e10a1aa1f66a5edfe8636d9d">hide</a>();</div>
-<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160; </div>
-<div class="line"><a name="l00307"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1form.html#aba58f74e51680cb2b08fcb3eca90673a">  307</a></span>&#160;            <span class="keywordtype">bool</span> <a class="code" href="classliblec_1_1lecui_1_1form.html#aba58f74e51680cb2b08fcb3eca90673a">visible</a>();</div>
-<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160; </div>
-<div class="line"><a name="l00311"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1form.html#a885976c337b0419d38f1b1eeb51d33ae">  311</a></span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classliblec_1_1lecui_1_1form.html#a885976c337b0419d38f1b1eeb51d33ae">show</a>();</div>
-<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160; </div>
-<div class="line"><a name="l00315"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1form.html#a545210f3ab728635216caeab49efd949">  315</a></span>&#160;            <span class="keywordtype">bool</span> <a class="code" href="classliblec_1_1lecui_1_1form.html#a545210f3ab728635216caeab49efd949">minimized</a>();</div>
-<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160; </div>
-<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;        <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;            <span class="keyword">class </span>impl;</div>
-<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;            impl&amp; _d;</div>
-<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160; </div>
-<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;            <span class="comment">// Default constructor and copying an object of this class are not allowed</span></div>
-<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;            <a class="code" href="classliblec_1_1lecui_1_1form.html">form</a>() = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;            <a class="code" href="classliblec_1_1lecui_1_1form.html">form</a>(<span class="keyword">const</span> <a class="code" href="classliblec_1_1lecui_1_1form.html">form</a>&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;            <a class="code" href="classliblec_1_1lecui_1_1form.html">form</a>&amp; operator=(<span class="keyword">const</span> <a class="code" href="classliblec_1_1lecui_1_1form.html">form</a>&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160; </div>
-<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;<span class="preprocessor">#if defined(LECUI_EXPORTS)</span></div>
-<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classliblec_1_1lecui_1_1page__manager.html">page_manager</a>;</div>
-<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classliblec_1_1lecui_1_1widget__manager.html">widget_manager</a>;</div>
-<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classliblec_1_1lecui_1_1timer__manager.html">timer_manager</a>;</div>
-<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classliblec_1_1lecui_1_1dimensions.html">dimensions</a>;</div>
-<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classliblec_1_1lecui_1_1appearance.html">appearance</a>;</div>
-<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classliblec_1_1lecui_1_1controls.html">controls</a>;</div>
-<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classliblec_1_1lecui_1_1filesystem.html">filesystem</a>;</div>
-<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classliblec_1_1lecui_1_1color__picker.html">color_picker</a>;</div>
-<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classliblec_1_1lecui_1_1splash.html">splash</a>;</div>
-<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classliblec_1_1lecui_1_1instance__manager.html">instance_manager</a>;</div>
-<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classliblec_1_1lecui_1_1form__menu.html">form_menu</a>;</div>
-<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classliblec_1_1lecui_1_1tray__icon.html">tray_icon</a>;</div>
-<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160; </div>
-<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classliblec_1_1lecui_1_1containers_1_1page.html">containers::page</a>;</div>
-<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span>containers::status_pane_builder;</div>
-<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span>containers::tab_pane_builder;</div>
-<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span>containers::tab_builder;</div>
-<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span>containers::pane_builder;</div>
-<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span>containers::group_builder;</div>
-<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span>widgets::label_builder;</div>
-<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span>widgets::image_view_builder;</div>
-<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span>widgets::button_builder;</div>
-<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span>widgets::custom_builder;</div>
-<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span>widgets::table_view_builder;</div>
-<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span>widgets::rectangle_builder;</div>
-<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span>widgets::toggle_builder;</div>
-<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span>widgets::progress_indicator_builder;</div>
-<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span>widgets::progress_bar_builder;</div>
-<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span>widgets::checkbox_builder;</div>
-<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span>widgets::text_field_builder;</div>
-<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span>widgets::tree_view_builder;</div>
-<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span>widgets::slider_builder;</div>
-<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span>widgets::html_editor_builder;</div>
-<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span>widgets::combobox_builder;</div>
-<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span>widgets::line_builder;</div>
-<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span>widgets::time_builder;</div>
-<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span>widgets::date_builder;</div>
-<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span>widgets::icon_builder;</div>
-<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160; </div>
-<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span>widgets::widget_impl;</div>
-<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span>widgets::combobox_impl;</div>
-<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span>widgets::image_view_impl;</div>
-<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span>widgets::tree_view_impl;</div>
-<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span>widgets::time_impl;</div>
-<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span>widgets::date_impl;</div>
-<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span>widgets::html_editor_impl;</div>
-<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span>widgets::icon_impl;</div>
-<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;        };</div>
-<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;    }</div>
-<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;}</div>
-<div class="ttc" id="aclassliblec_1_1lecui_1_1appearance_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1appearance.html">liblec::lecui::appearance</a></div><div class="ttdoc">Manipulate the form's appearance.</div><div class="ttdef"><b>Definition:</b> appearance.h:162</div></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            <span class="keyword">class </span>strength_bar_builder;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            <span class="keyword">class </span>widget_impl;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            <span class="keyword">class </span>combobox_impl;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            <span class="keyword">class </span>html_editor_impl;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            <span class="keyword">class </span>text_field_impl;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;            <span class="keyword">class </span>tree_view_impl;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            <span class="keyword">class </span>image_view_impl;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            <span class="keyword">class </span>table_view_impl;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;            <span class="keyword">class </span>time_impl;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;            <span class="keyword">class </span>date_impl;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;            <span class="keyword">class </span>icon_impl;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            <span class="keyword">class </span>pane_impl;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;            <span class="keyword">class </span>tab_pane_impl;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        }</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        <span class="keyword">enum class</span> form_position {</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;            center_to_working_area,</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;            center_to_parent,</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;            top_left,</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;            top_left_offset,</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;            bottom_left,</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;            bottom_left_offset,</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;            top_right,</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;            top_right_offset,</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;            bottom_right,</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;            bottom_right_offset,</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        };</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160; </div>
+<div class="line"><a name="l00102"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1form.html">  102</a></span>&#160;        <span class="keyword">class </span>lecui_api <a class="code" href="classliblec_1_1lecui_1_1form.html">form</a> {</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00111"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1form.html#a5e8d85dd0feab388c6a5de92e54b4539">  111</a></span>&#160;            <a class="code" href="classliblec_1_1lecui_1_1form.html#a5e8d85dd0feab388c6a5de92e54b4539">form</a>(<span class="keyword">const</span> std::string&amp; caption);</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160; </div>
+<div class="line"><a name="l00126"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1form.html#ab37322096b8c365efa7427c7229b6c12">  126</a></span>&#160;            <a class="code" href="classliblec_1_1lecui_1_1form.html#ab37322096b8c365efa7427c7229b6c12">form</a>(<span class="keyword">const</span> std::string&amp; caption, <a class="code" href="classliblec_1_1lecui_1_1form.html">form</a>&amp; parent);</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;            ~<a class="code" href="classliblec_1_1lecui_1_1form.html">form</a>();</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160; </div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;            [[nodiscard]]</div>
+<div class="line"><a name="l00132"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1form.html#ac4bd8d0b31ed1a0cc19c2960fe2899fb">  132</a></span>&#160;            <span class="keyword">static</span> std::string <a class="code" href="classliblec_1_1lecui_1_1form.html#ac4bd8d0b31ed1a0cc19c2960fe2899fb">menu_form_caption</a>();</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160; </div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;            [[nodiscard]]</div>
+<div class="line"><a name="l00137"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1form.html#ae46009d2c64c15324241ad39c349ebee">  137</a></span>&#160;            <span class="keyword">static</span> std::string <a class="code" href="classliblec_1_1lecui_1_1form.html#ae46009d2c64c15324241ad39c349ebee">tooltip_form_caption</a>();</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160; </div>
+<div class="line"><a name="l00142"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1form.html#abf87c84254489bf207145dbcb8d9dc03">  142</a></span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classliblec_1_1lecui_1_1form.html#abf87c84254489bf207145dbcb8d9dc03">move</a>(<span class="keyword">const</span> <a class="code" href="classliblec_1_1lecui_1_1point.html">point</a>&amp; <a class="code" href="classliblec_1_1lecui_1_1point.html">point</a>);</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160; </div>
+<div class="line"><a name="l00146"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1form.html#a8dcfa7376585537c1439cb79992e4c78">  146</a></span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classliblec_1_1lecui_1_1form.html#a8dcfa7376585537c1439cb79992e4c78">move</a>(<span class="keyword">const</span> form_position&amp; form_position);</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160; </div>
+<div class="line"><a name="l00158"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1form.html#a7dc5f9275022a0c260bccdf9c2ffb567">  158</a></span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classliblec_1_1lecui_1_1form.html#a7dc5f9275022a0c260bccdf9c2ffb567">force_instance</a>();</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160; </div>
+<div class="line"><a name="l00166"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1form.html#a54ba88558be331b76724721055130beb">  166</a></span>&#160;            [[nodiscard]] <span class="keywordtype">bool</span> <a class="code" href="classliblec_1_1lecui_1_1form.html#a54ba88558be331b76724721055130beb">create</a>(std::string&amp; error);</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160; </div>
+<div class="line"><a name="l00172"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1form.html#ab2331a6e572e672d4e875302da594666">  172</a></span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classliblec_1_1lecui_1_1form.html#ab2331a6e572e672d4e875302da594666">close</a>();</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160; </div>
+<div class="line"><a name="l00183"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1form.html#a50ea7e5b9915f781f1d298cff2f37a85">  183</a></span>&#160;            <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classliblec_1_1lecui_1_1form.html#a50ea7e5b9915f781f1d298cff2f37a85">on_initialize</a>(std::string&amp; error);</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160; </div>
+<div class="line"><a name="l00197"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1form.html#a4e2e100ef451160db1cb71453bb19eed">  197</a></span>&#160;            [[nodiscard]] <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classliblec_1_1lecui_1_1form.html#a4e2e100ef451160db1cb71453bb19eed">on_layout</a>(std::string&amp; error);</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160; </div>
+<div class="line"><a name="l00202"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1form.html#a7644f0c8d1bc55b11a7bd0e884b84e25">  202</a></span>&#160;            <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classliblec_1_1lecui_1_1form.html#a7644f0c8d1bc55b11a7bd0e884b84e25">on_start</a>();</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160; </div>
+<div class="line"><a name="l00209"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1form.html#a108d0c9b7d47cfd1a808cb47ebfe176d">  209</a></span>&#160;            <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classliblec_1_1lecui_1_1form.html#a108d0c9b7d47cfd1a808cb47ebfe176d">on_close</a>();</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160; </div>
+<div class="line"><a name="l00214"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1form.html#a977a34d040d594164edcda08b8cb565d">  214</a></span>&#160;            <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classliblec_1_1lecui_1_1form.html#a977a34d040d594164edcda08b8cb565d">on_shutdown</a>();</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160; </div>
+<div class="line"><a name="l00221"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1form.html#a3477fae3ae3d391f62c1d0e04cf0e1af">  221</a></span>&#160;            [[nodiscard]] <span class="keywordtype">bool</span> <a class="code" href="classliblec_1_1lecui_1_1form.html#a3477fae3ae3d391f62c1d0e04cf0e1af">prompt</a>(<span class="keyword">const</span> std::string&amp; question);</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160; </div>
+<div class="line"><a name="l00227"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1form.html#ae4b44163b6dc7684f0192343d203c7fe">  227</a></span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classliblec_1_1lecui_1_1form.html#ae4b44163b6dc7684f0192343d203c7fe">message</a>(<span class="keyword">const</span> std::string&amp; message);</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160; </div>
+<div class="line"><a name="l00234"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1form.html#a144e42ae28a7c24d470d5b9b147efebd">  234</a></span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classliblec_1_1lecui_1_1form.html#a144e42ae28a7c24d470d5b9b147efebd">update</a>();</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160; </div>
+<div class="line"><a name="l00252"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1form.html#ae2a0525beb9d780abd15a9baa54ac3f7">  252</a></span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classliblec_1_1lecui_1_1form.html#ae2a0525beb9d780abd15a9baa54ac3f7">reload</a>();</div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160; </div>
+<div class="line"><a name="l00260"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1form.html#a1a9fc229d83e98928bf2b47bf5f186fc">  260</a></span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classliblec_1_1lecui_1_1form.html#a1a9fc229d83e98928bf2b47bf5f186fc">on_caption</a>(std::function&lt;<span class="keywordtype">void</span>()&gt;on_caption, <span class="keyword">const</span> std::string&amp; tooltip);</div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160; </div>
+<div class="line"><a name="l00267"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1form.html#a4e99b2e92968755f60f112bdf2a86650">  267</a></span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classliblec_1_1lecui_1_1form.html#a4e99b2e92968755f60f112bdf2a86650">on_drop_files</a>(std::function&lt;<span class="keywordtype">void</span>(<span class="keyword">const</span> std::string&amp; file)&gt;on_drop_files);</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160; </div>
+<div class="line"><a name="l00272"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1form.html#aca1171d5db45597a569f7ec7e592eb37">  272</a></span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classliblec_1_1lecui_1_1form.html#aca1171d5db45597a569f7ec7e592eb37">on_receive_data</a>(std::function&lt;<span class="keywordtype">void</span>(<span class="keyword">const</span> std::string&amp; data)&gt;on_receive_data);</div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160; </div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;            [[nodiscard]]</div>
+<div class="line"><a name="l00279"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1form.html#a69b445cd2e22e5bb90f46f081499e7a8">  279</a></span>&#160;            <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code" href="classliblec_1_1lecui_1_1form.html#a69b445cd2e22e5bb90f46f081499e7a8">keep_alive</a>();</div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160; </div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;            [[nodiscard]]</div>
+<div class="line"><a name="l00284"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1form.html#a045f0d9eed1c1ede57fa9618b49fdbea">  284</a></span>&#160;            <span class="keywordtype">float</span> <a class="code" href="classliblec_1_1lecui_1_1form.html#a045f0d9eed1c1ede57fa9618b49fdbea">get_dpi_scale</a>();</div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160; </div>
+<div class="line"><a name="l00288"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1form.html#a5047dd2b740499e48f13dd73747056f7">  288</a></span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classliblec_1_1lecui_1_1form.html#a5047dd2b740499e48f13dd73747056f7">allow_minimize</a>();</div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160; </div>
+<div class="line"><a name="l00294"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1form.html#ace55cac000c3c24063d5e4e278054c4d">  294</a></span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classliblec_1_1lecui_1_1form.html#ace55cac000c3c24063d5e4e278054c4d">restore</a>();</div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160; </div>
+<div class="line"><a name="l00298"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1form.html#a24aed3ecd75221fefebf159b7329ed75">  298</a></span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classliblec_1_1lecui_1_1form.html#a24aed3ecd75221fefebf159b7329ed75">maximize</a>();</div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160; </div>
+<div class="line"><a name="l00304"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1form.html#a9e113933e10a1aa1f66a5edfe8636d9d">  304</a></span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classliblec_1_1lecui_1_1form.html#a9e113933e10a1aa1f66a5edfe8636d9d">hide</a>();</div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160; </div>
+<div class="line"><a name="l00308"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1form.html#aba58f74e51680cb2b08fcb3eca90673a">  308</a></span>&#160;            <span class="keywordtype">bool</span> <a class="code" href="classliblec_1_1lecui_1_1form.html#aba58f74e51680cb2b08fcb3eca90673a">visible</a>();</div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160; </div>
+<div class="line"><a name="l00312"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1form.html#a885976c337b0419d38f1b1eeb51d33ae">  312</a></span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classliblec_1_1lecui_1_1form.html#a885976c337b0419d38f1b1eeb51d33ae">show</a>();</div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160; </div>
+<div class="line"><a name="l00316"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1form.html#a545210f3ab728635216caeab49efd949">  316</a></span>&#160;            <span class="keywordtype">bool</span> <a class="code" href="classliblec_1_1lecui_1_1form.html#a545210f3ab728635216caeab49efd949">minimized</a>();</div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160; </div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;        <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;            <span class="keyword">class </span>impl;</div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;            impl&amp; _d;</div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160; </div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;            <span class="comment">// Default constructor and copying an object of this class are not allowed</span></div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;            <a class="code" href="classliblec_1_1lecui_1_1form.html">form</a>() = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;            <a class="code" href="classliblec_1_1lecui_1_1form.html">form</a>(<span class="keyword">const</span> <a class="code" href="classliblec_1_1lecui_1_1form.html">form</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;            <a class="code" href="classliblec_1_1lecui_1_1form.html">form</a>&amp; operator=(<span class="keyword">const</span> <a class="code" href="classliblec_1_1lecui_1_1form.html">form</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160; </div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;<span class="preprocessor">#if defined(LECUI_EXPORTS)</span></div>
+<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classliblec_1_1lecui_1_1page__manager.html">page_manager</a>;</div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classliblec_1_1lecui_1_1widget__manager.html">widget_manager</a>;</div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classliblec_1_1lecui_1_1timer__manager.html">timer_manager</a>;</div>
+<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classliblec_1_1lecui_1_1dimensions.html">dimensions</a>;</div>
+<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classliblec_1_1lecui_1_1appearance.html">appearance</a>;</div>
+<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classliblec_1_1lecui_1_1controls.html">controls</a>;</div>
+<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classliblec_1_1lecui_1_1filesystem.html">filesystem</a>;</div>
+<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classliblec_1_1lecui_1_1color__picker.html">color_picker</a>;</div>
+<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classliblec_1_1lecui_1_1splash.html">splash</a>;</div>
+<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classliblec_1_1lecui_1_1instance__manager.html">instance_manager</a>;</div>
+<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classliblec_1_1lecui_1_1form__menu.html">form_menu</a>;</div>
+<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classliblec_1_1lecui_1_1tray__icon.html">tray_icon</a>;</div>
+<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160; </div>
+<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classliblec_1_1lecui_1_1containers_1_1page.html">containers::page</a>;</div>
+<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span>containers::status_pane_builder;</div>
+<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span>containers::tab_pane_builder;</div>
+<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span>containers::tab_builder;</div>
+<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span>containers::pane_builder;</div>
+<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span>containers::group_builder;</div>
+<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span>widgets::label_builder;</div>
+<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span>widgets::image_view_builder;</div>
+<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span>widgets::button_builder;</div>
+<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span>widgets::custom_builder;</div>
+<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span>widgets::table_view_builder;</div>
+<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span>widgets::rectangle_builder;</div>
+<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span>widgets::toggle_builder;</div>
+<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span>widgets::progress_indicator_builder;</div>
+<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span>widgets::progress_bar_builder;</div>
+<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span>widgets::checkbox_builder;</div>
+<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span>widgets::text_field_builder;</div>
+<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span>widgets::tree_view_builder;</div>
+<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span>widgets::slider_builder;</div>
+<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span>widgets::html_editor_builder;</div>
+<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span>widgets::combobox_builder;</div>
+<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span>widgets::line_builder;</div>
+<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span>widgets::time_builder;</div>
+<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span>widgets::date_builder;</div>
+<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span>widgets::icon_builder;</div>
+<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span>widgets::strength_bar_builder;</div>
+<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160; </div>
+<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span>widgets::widget_impl;</div>
+<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span>widgets::combobox_impl;</div>
+<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span>widgets::image_view_impl;</div>
+<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span>widgets::tree_view_impl;</div>
+<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span>widgets::time_impl;</div>
+<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span>widgets::date_impl;</div>
+<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span>widgets::html_editor_impl;</div>
+<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span>widgets::icon_impl;</div>
+<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;        };</div>
+<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;    }</div>
+<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;}</div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1appearance_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1appearance.html">liblec::lecui::appearance</a></div><div class="ttdoc">Manipulate the form's appearance.</div><div class="ttdef"><b>Definition:</b> appearance.h:166</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1color__picker_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1color__picker.html">liblec::lecui::color_picker</a></div><div class="ttdoc">Color picker.</div><div class="ttdef"><b>Definition:</b> color_picker.h:22</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1containers_1_1page_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1containers_1_1page.html">liblec::lecui::containers::page</a></div><div class="ttdoc">Page container.</div><div class="ttdef"><b>Definition:</b> page.h:31</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1controls_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1controls.html">liblec::lecui::controls</a></div><div class="ttdoc">Manipulate a form's controls.</div><div class="ttdef"><b>Definition:</b> controls.h:23</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1dimensions_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1dimensions.html">liblec::lecui::dimensions</a></div><div class="ttdoc">Manipulate a form's dimensions.</div><div class="ttdef"><b>Definition:</b> controls.h:70</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1filesystem_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1filesystem.html">liblec::lecui::filesystem</a></div><div class="ttdoc">Interact with the OS file system.</div><div class="ttdef"><b>Definition:</b> filesystem.h:22</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1form__menu_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1form__menu.html">liblec::lecui::form_menu</a></div><div class="ttdoc">Form menu.</div><div class="ttdef"><b>Definition:</b> form_menu.h:44</div></div>
-<div class="ttc" id="aclassliblec_1_1lecui_1_1form_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1form.html">liblec::lecui::form</a></div><div class="ttdoc">Form base class. The user must inherit from this class and call one of the two constructors from its ...</div><div class="ttdef"><b>Definition:</b> form.h:101</div></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1form_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1form.html">liblec::lecui::form</a></div><div class="ttdoc">Form base class. The user must inherit from this class and call one of the two constructors from its ...</div><div class="ttdef"><b>Definition:</b> form.h:102</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1form_html_a045f0d9eed1c1ede57fa9618b49fdbea"><div class="ttname"><a href="classliblec_1_1lecui_1_1form.html#a045f0d9eed1c1ede57fa9618b49fdbea">liblec::lecui::form::get_dpi_scale</a></div><div class="ttdeci">float get_dpi_scale()</div><div class="ttdoc">Get the current DPI scale.</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1form_html_a108d0c9b7d47cfd1a808cb47ebfe176d"><div class="ttname"><a href="classliblec_1_1lecui_1_1form.html#a108d0c9b7d47cfd1a808cb47ebfe176d">liblec::lecui::form::on_close</a></div><div class="ttdeci">virtual void on_close()</div><div class="ttdoc">Called when either the close button on the top right is clicked, or when Alt+F4 is pressed on the key...</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1form_html_a144e42ae28a7c24d470d5b9b147efebd"><div class="ttname"><a href="classliblec_1_1lecui_1_1form.html#a144e42ae28a7c24d470d5b9b147efebd">liblec::lecui::form::update</a></div><div class="ttdeci">void update()</div><div class="ttdoc">Update the form. A low resource refresh of the current page. Typically necessary only after adding a ...</div></div>
@@ -329,7 +331,7 @@ $(function() {
 <div class="ttc" id="aclassliblec_1_1lecui_1_1form_html_ae46009d2c64c15324241ad39c349ebee"><div class="ttname"><a href="classliblec_1_1lecui_1_1form.html#ae46009d2c64c15324241ad39c349ebee">liblec::lecui::form::tooltip_form_caption</a></div><div class="ttdeci">static std::string tooltip_form_caption()</div><div class="ttdoc">A special caption used to make a tooltip form.</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1form_html_ae4b44163b6dc7684f0192343d203c7fe"><div class="ttname"><a href="classliblec_1_1lecui_1_1form.html#ae4b44163b6dc7684f0192343d203c7fe">liblec::lecui::form::message</a></div><div class="ttdeci">void message(const std::string &amp;message)</div><div class="ttdoc">Display a message to the user in the form of a small modal message box with an ok button.</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1instance__manager_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1instance__manager.html">liblec::lecui::instance_manager</a></div><div class="ttdoc">Manage application instances.</div><div class="ttdef"><b>Definition:</b> instance.h:22</div></div>
-<div class="ttc" id="aclassliblec_1_1lecui_1_1page__manager_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1page__manager.html">liblec::lecui::page_manager</a></div><div class="ttdoc">Page manager class.</div><div class="ttdef"><b>Definition:</b> page.h:102</div></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1page__manager_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1page__manager.html">liblec::lecui::page_manager</a></div><div class="ttdoc">Page manager class.</div><div class="ttdef"><b>Definition:</b> page.h:103</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1point_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1point.html">liblec::lecui::point</a></div><div class="ttdoc">A point.</div><div class="ttdef"><b>Definition:</b> lecui.h:71</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1splash_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1splash.html">liblec::lecui::splash</a></div><div class="ttdoc">Splash screen class. Useful for displaying graphics while app is loading.</div><div class="ttdef"><b>Definition:</b> splash.h:23</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1timer__manager_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1timer__manager.html">liblec::lecui::timer_manager</a></div><div class="ttdoc">Timer manager class.</div><div class="ttdef"><b>Definition:</b> timer.h:22</div></div>

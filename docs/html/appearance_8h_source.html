@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">lecui
-   &#160;<span id="projectnumber">1.0.0-alpha.11</span>
+   &#160;<span id="projectnumber">1.0.0-alpha.12</span>
    </div>
    <div id="projectbrief">lecui C++ user interface library</div>
   </td>
@@ -124,149 +124,187 @@ $(function() {
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;            progress_bar,</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;            progress_bar_border,</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            progress_indicator,</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            progress_indicator_text,</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            progress_indicator_unfilled,</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            text_field,</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;            text_field_border,</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            text_field_disabled,</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            text_field_prompt,</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            text_field_selected,</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            text_field_caret,</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;            text_field_input_error,</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            table_view,</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;            table_view_border,</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;            table_view_alternate,</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;            table_view_row_hover,</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            table_view_row_selected,</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;            table_view_text_header,</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;            table_view_text_header_hot,</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;            table_view_text_selected,</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;            table_view_header,</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;            table_view_grid,</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;            toggle,</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;            toggle_on,</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;            toggle_off,</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;            toggle_selected,</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;            tree_view,</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;            tree_view_border,</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;            tree_view_hover,</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;            tree_view_selected,</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160; </div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;            tab_pane,</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;            tab_pane_border,</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;            tab_bar,</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;            tab_selected,</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160; </div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;            pane,</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;            pane_border,</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;            image_view,</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;            image_view_border,</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;            image_view_hover,</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;            image_view_selected,</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160; </div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;            rectangle,</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;            rectangle_border,</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;            rectangle_border_hot,</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;            rectangle_hover,</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;            rectangle_selected,</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160; </div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;            group,</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;            group_border,</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160; </div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;            slider,</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;            slider_border,</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;            slider_knob,</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;            slider_knob_hot,</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;            slider_knob_border,</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;            slider_tick,</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;            slider_selected,</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160; </div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;            html_editor,</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;            html_editor_border,</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;            html_editor_disabled,</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;            html_editor_selected,</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;            html_editor_caret,</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;            html_control,</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;            html_control_border,</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160; </div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;            combobox,</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;            combobox_editable,</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;            combobox_caret,</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;            combobox_border,</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;            combobox_hover,</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;            combobox_selected,</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;            combobox_dropdown,</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;            combobox_dropdown_hot,</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;            combobox_dropdown_arrow,</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;            combobox_dropdown_arrow_hot,</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;            </div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;            line,</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;            line_hover,</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;            line_selected,</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160; </div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;            icon,</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;            icon_border,</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;            icon_hot,</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;            icon_text,</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;            icon_description_text,</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;        };</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            progress_bar_unfilled,</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            progress_indicator,</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            progress_indicator_text,</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;            progress_indicator_unfilled,</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;            text_field,</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            text_field_border,</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            text_field_disabled,</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            text_field_prompt,</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            text_field_selected,</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;            text_field_caret,</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            text_field_input_error,</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;            table_view,</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;            table_view_border,</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;            table_view_alternate,</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            table_view_row_hover,</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;            table_view_row_selected,</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;            table_view_text_header,</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;            table_view_text_header_hot,</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;            table_view_text_selected,</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;            table_view_header,</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;            table_view_grid,</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;            toggle,</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;            toggle_on,</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;            toggle_off,</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;            toggle_selected,</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160; </div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;            tree_view,</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;            tree_view_border,</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;            tree_view_hover,</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;            tree_view_selected,</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160; </div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;            tab_pane,</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;            tab_pane_border,</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;            tab_bar,</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;            tab_selected,</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160; </div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;            pane,</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;            pane_border,</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160; </div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;            image_view,</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;            image_view_border,</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;            image_view_hover,</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;            image_view_selected,</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160; </div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;            rectangle,</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;            rectangle_border,</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;            rectangle_border_hot,</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;            rectangle_hover,</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;            rectangle_selected,</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160; </div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;            group,</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;            group_border,</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160; </div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;            slider,</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;            slider_border,</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;            slider_knob,</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;            slider_knob_hot,</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;            slider_knob_border,</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;            slider_tick,</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;            slider_selected,</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160; </div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;            html_editor,</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;            html_editor_border,</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;            html_editor_disabled,</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;            html_editor_selected,</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;            html_editor_caret,</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;            html_control,</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;            html_control_border,</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160; </div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;            combobox,</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;            combobox_editable,</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;            combobox_caret,</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;            combobox_border,</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;            combobox_hover,</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;            combobox_selected,</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;            combobox_dropdown,</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;            combobox_dropdown_hot,</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;            combobox_dropdown_arrow,</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;            combobox_dropdown_arrow_hot,</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;            </div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;            line,</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;            line_hover,</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;            line_selected,</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160; </div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;            icon,</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;            icon_border,</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;            icon_hot,</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;            icon_text,</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;            icon_description_text,</div>
 <div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160; </div>
-<div class="line"><a name="l00156"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1defaults.html">  156</a></span>&#160;        <span class="keyword">class </span>lecui_api <a class="code" href="classliblec_1_1lecui_1_1defaults.html">defaults</a> {</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;        <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;            <span class="keyword">static</span> <a class="code" href="classliblec_1_1lecui_1_1color.html">lecui::color</a> <a class="code" href="classliblec_1_1lecui_1_1color.html">color</a>(themes theme, item wc);</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;        };</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160; </div>
-<div class="line"><a name="l00162"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1appearance.html">  162</a></span>&#160;        <span class="keyword">class </span>lecui_api <a class="code" href="classliblec_1_1lecui_1_1appearance.html">appearance</a> {</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;        <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;            <a class="code" href="classliblec_1_1lecui_1_1appearance.html">appearance</a>(<a class="code" href="classliblec_1_1lecui_1_1form.html">form</a>&amp; fm);</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;            ~<a class="code" href="classliblec_1_1lecui_1_1appearance.html">appearance</a>();</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160; </div>
-<div class="line"><a name="l00171"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1appearance.html#a323e33e7762748b9dde4e3d83412683b">  171</a></span>&#160;            <a class="code" href="classliblec_1_1lecui_1_1appearance.html">appearance</a>&amp; <a class="code" href="classliblec_1_1lecui_1_1appearance.html#a323e33e7762748b9dde4e3d83412683b">shadow</a>(<span class="keyword">const</span> <span class="keywordtype">bool</span>&amp; enable);</div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160; </div>
-<div class="line"><a name="l00178"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1appearance.html#a6808b7e3fa3cfbee6c94c0a6e61aa8c1">  178</a></span>&#160;            <a class="code" href="classliblec_1_1lecui_1_1appearance.html">appearance</a>&amp; <a class="code" href="classliblec_1_1lecui_1_1appearance.html#a6808b7e3fa3cfbee6c94c0a6e61aa8c1">theme</a>(themes theme);</div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160; </div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;            [[nodiscard]]</div>
-<div class="line"><a name="l00183"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1appearance.html#a941ae6fa59f4c4b14f024e9276634e07">  183</a></span>&#160;            themes <a class="code" href="classliblec_1_1lecui_1_1appearance.html#a941ae6fa59f4c4b14f024e9276634e07">theme</a>();</div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160; </div>
-<div class="line"><a name="l00191"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1appearance.html#ac5ab021f878c87cae1e18ce160bae770">  191</a></span>&#160;            <a class="code" href="classliblec_1_1lecui_1_1appearance.html">appearance</a>&amp; <a class="code" href="classliblec_1_1lecui_1_1appearance.html#ac5ab021f878c87cae1e18ce160bae770">theme</a>(<span class="keyword">const</span> <a class="code" href="classliblec_1_1lecui_1_1color.html">lecui::color</a>&amp; <a class="code" href="classliblec_1_1lecui_1_1color.html">color</a>,</div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;                <span class="keyword">const</span> <a class="code" href="classliblec_1_1lecui_1_1color.html">lecui::color</a>&amp; color_hot,</div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;                <span class="keyword">const</span> <a class="code" href="classliblec_1_1lecui_1_1color.html">lecui::color</a>&amp; color_disabled,</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;                <span class="keyword">const</span> <a class="code" href="classliblec_1_1lecui_1_1color.html">lecui::color</a>&amp; color_text);</div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160; </div>
-<div class="line"><a name="l00200"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1appearance.html#a9aec86bb218cc71b87242bba21f0e9c9">  200</a></span>&#160;            <a class="code" href="classliblec_1_1lecui_1_1appearance.html">appearance</a>&amp; <a class="code" href="classliblec_1_1lecui_1_1appearance.html#a9aec86bb218cc71b87242bba21f0e9c9">background</a>(<span class="keyword">const</span> <a class="code" href="classliblec_1_1lecui_1_1color.html">lecui::color</a>&amp; <a class="code" href="classliblec_1_1lecui_1_1color.html">color</a>,</div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;                <span class="keyword">const</span> <a class="code" href="classliblec_1_1lecui_1_1color.html">lecui::color</a>&amp; color_titlebar);</div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160; </div>
-<div class="line"><a name="l00207"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1appearance.html#afb5ac2324f3223aba16c891710009578">  207</a></span>&#160;            <a class="code" href="classliblec_1_1lecui_1_1appearance.html">appearance</a>&amp; <a class="code" href="classliblec_1_1lecui_1_1appearance.html#afb5ac2324f3223aba16c891710009578">set_icons</a>(<span class="keywordtype">int</span> icon_resource,</div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;                <span class="keywordtype">int</span> small_icon_resource);</div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160; </div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;        <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;            <span class="keyword">class </span>impl;</div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;            impl&amp; _d;</div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160; </div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;            <span class="comment">// Default constructor and copying an object of this class are not allowed</span></div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;            <a class="code" href="classliblec_1_1lecui_1_1appearance.html">appearance</a>() = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;            <a class="code" href="classliblec_1_1lecui_1_1appearance.html">appearance</a>(<span class="keyword">const</span> <a class="code" href="classliblec_1_1lecui_1_1appearance.html">appearance</a>&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;            <a class="code" href="classliblec_1_1lecui_1_1appearance.html">appearance</a>&amp; operator=(<span class="keyword">const</span> <a class="code" href="classliblec_1_1lecui_1_1appearance.html">appearance</a>&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;        };</div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;    }</div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;}</div>
-<div class="ttc" id="aclassliblec_1_1lecui_1_1appearance_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1appearance.html">liblec::lecui::appearance</a></div><div class="ttdoc">Manipulate the form's appearance.</div><div class="ttdef"><b>Definition:</b> appearance.h:162</div></div>
-<div class="ttc" id="aclassliblec_1_1lecui_1_1appearance_html_a323e33e7762748b9dde4e3d83412683b"><div class="ttname"><a href="classliblec_1_1lecui_1_1appearance.html#a323e33e7762748b9dde4e3d83412683b">liblec::lecui::appearance::shadow</a></div><div class="ttdeci">appearance &amp; shadow(const bool &amp;enable)</div><div class="ttdoc">Whether to add a shadow to the form.</div></div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;            strength_bar,</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;            strength_bar_border,</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;        };</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160; </div>
+<div class="line"><a name="l00160"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1defaults.html">  160</a></span>&#160;        <span class="keyword">class </span>lecui_api <a class="code" href="classliblec_1_1lecui_1_1defaults.html">defaults</a> {</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;        <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;            <span class="keyword">static</span> <a class="code" href="classliblec_1_1lecui_1_1color.html">lecui::color</a> <a class="code" href="classliblec_1_1lecui_1_1color.html">color</a>(themes theme, item wc);</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;        };</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160; </div>
+<div class="line"><a name="l00166"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1appearance.html">  166</a></span>&#160;        <span class="keyword">class </span>lecui_api <a class="code" href="classliblec_1_1lecui_1_1appearance.html">appearance</a> {</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;        <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;            <a class="code" href="classliblec_1_1lecui_1_1appearance.html">appearance</a>(<a class="code" href="classliblec_1_1lecui_1_1form.html">form</a>&amp; fm);</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;            ~<a class="code" href="classliblec_1_1lecui_1_1appearance.html">appearance</a>();</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160; </div>
+<div class="line"><a name="l00176"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1appearance.html#a6808b7e3fa3cfbee6c94c0a6e61aa8c1">  176</a></span>&#160;            <a class="code" href="classliblec_1_1lecui_1_1appearance.html">appearance</a>&amp; <a class="code" href="classliblec_1_1lecui_1_1appearance.html#a6808b7e3fa3cfbee6c94c0a6e61aa8c1">theme</a>(themes theme);</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160; </div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;            [[nodiscard]]</div>
+<div class="line"><a name="l00181"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1appearance.html#a941ae6fa59f4c4b14f024e9276634e07">  181</a></span>&#160;            themes <a class="code" href="classliblec_1_1lecui_1_1appearance.html#a941ae6fa59f4c4b14f024e9276634e07">theme</a>();</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160; </div>
+<div class="line"><a name="l00189"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1appearance.html#ac5ab021f878c87cae1e18ce160bae770">  189</a></span>&#160;            <a class="code" href="classliblec_1_1lecui_1_1appearance.html">appearance</a>&amp; <a class="code" href="classliblec_1_1lecui_1_1appearance.html#ac5ab021f878c87cae1e18ce160bae770">theme</a>(<span class="keyword">const</span> <a class="code" href="classliblec_1_1lecui_1_1color.html">lecui::color</a>&amp; <a class="code" href="classliblec_1_1lecui_1_1color.html">color</a>,</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;                <span class="keyword">const</span> <a class="code" href="classliblec_1_1lecui_1_1color.html">lecui::color</a>&amp; color_hot,</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;                <span class="keyword">const</span> <a class="code" href="classliblec_1_1lecui_1_1color.html">lecui::color</a>&amp; color_disabled,</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;                <span class="keyword">const</span> <a class="code" href="classliblec_1_1lecui_1_1color.html">lecui::color</a>&amp; color_text);</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160; </div>
+<div class="line"><a name="l00196"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1appearance.html#a599da25c3bf4b8b1973b9bbc1fc0a1db">  196</a></span>&#160;            <span class="keywordtype">bool</span>&amp; <a class="code" href="classliblec_1_1lecui_1_1appearance.html#a599da25c3bf4b8b1973b9bbc1fc0a1db">shadow</a>();</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160; </div>
+<div class="line"><a name="l00200"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1appearance.html#ac2c4033ff11c8feb597798278bc8b8dd">  200</a></span>&#160;            <span class="keywordtype">bool</span> <a class="code" href="classliblec_1_1lecui_1_1appearance.html#ac2c4033ff11c8feb597798278bc8b8dd">get_shadow</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160; </div>
+<div class="line"><a name="l00206"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1appearance.html#a323e33e7762748b9dde4e3d83412683b">  206</a></span>&#160;            <a class="code" href="classliblec_1_1lecui_1_1appearance.html">appearance</a>&amp; <a class="code" href="classliblec_1_1lecui_1_1appearance.html#a323e33e7762748b9dde4e3d83412683b">shadow</a>(<span class="keyword">const</span> <span class="keywordtype">bool</span>&amp; enable);</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160; </div>
+<div class="line"><a name="l00210"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1appearance.html#ad4076f751461ce8d0c053b66b8371ecf">  210</a></span>&#160;            <a class="code" href="classliblec_1_1lecui_1_1color.html">lecui::color</a>&amp; <a class="code" href="classliblec_1_1lecui_1_1appearance.html#ad4076f751461ce8d0c053b66b8371ecf">background</a>();</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160; </div>
+<div class="line"><a name="l00214"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1appearance.html#a9d85aa21a7f86a7801d9e83e008cb12e">  214</a></span>&#160;            <a class="code" href="classliblec_1_1lecui_1_1color.html">lecui::color</a> <a class="code" href="classliblec_1_1lecui_1_1appearance.html#a9d85aa21a7f86a7801d9e83e008cb12e">get_background</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160; </div>
+<div class="line"><a name="l00219"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1appearance.html#a1520a6f6a94c5c55a8c6ef57b411108f">  219</a></span>&#160;            <a class="code" href="classliblec_1_1lecui_1_1appearance.html">appearance</a>&amp; <a class="code" href="classliblec_1_1lecui_1_1appearance.html#a1520a6f6a94c5c55a8c6ef57b411108f">background</a>(<span class="keyword">const</span> <a class="code" href="classliblec_1_1lecui_1_1color.html">lecui::color</a>&amp; <a class="code" href="classliblec_1_1lecui_1_1color.html">color</a>);</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160; </div>
+<div class="line"><a name="l00223"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1appearance.html#af9a0aa9d41068a2c637066006c33c68f">  223</a></span>&#160;            <a class="code" href="classliblec_1_1lecui_1_1color.html">lecui::color</a>&amp; <a class="code" href="classliblec_1_1lecui_1_1appearance.html#af9a0aa9d41068a2c637066006c33c68f">title_bar</a>();</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160; </div>
+<div class="line"><a name="l00227"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1appearance.html#ac133451b5a79427b252f37c068d136ca">  227</a></span>&#160;            <a class="code" href="classliblec_1_1lecui_1_1color.html">lecui::color</a> <a class="code" href="classliblec_1_1lecui_1_1appearance.html#ac133451b5a79427b252f37c068d136ca">title_bar</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160; </div>
+<div class="line"><a name="l00232"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1appearance.html#ac78d21c5e2f37a521b12e67a3f990384">  232</a></span>&#160;            <a class="code" href="classliblec_1_1lecui_1_1appearance.html">appearance</a>&amp; <a class="code" href="classliblec_1_1lecui_1_1appearance.html#ac78d21c5e2f37a521b12e67a3f990384">title_bar</a>(<span class="keyword">const</span> <a class="code" href="classliblec_1_1lecui_1_1color.html">lecui::color</a>&amp; <a class="code" href="classliblec_1_1lecui_1_1color.html">color</a>);</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160; </div>
+<div class="line"><a name="l00236"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1appearance.html#a719d4d3e92aaf7fe733ab3006b0bcb95">  236</a></span>&#160;            <span class="keywordtype">int</span>&amp; <a class="code" href="classliblec_1_1lecui_1_1appearance.html#a719d4d3e92aaf7fe733ab3006b0bcb95">main_icon</a>();</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160; </div>
+<div class="line"><a name="l00240"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1appearance.html#a8488efdc7beb10580c3e436fe46e525e">  240</a></span>&#160;            <span class="keywordtype">int</span> <a class="code" href="classliblec_1_1lecui_1_1appearance.html#a8488efdc7beb10580c3e436fe46e525e">get_main_icon</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160; </div>
+<div class="line"><a name="l00245"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1appearance.html#a2b97563706edb487fe43c00100aaf6a5">  245</a></span>&#160;            <a class="code" href="classliblec_1_1lecui_1_1appearance.html">appearance</a>&amp; <a class="code" href="classliblec_1_1lecui_1_1appearance.html#a2b97563706edb487fe43c00100aaf6a5">main_icon</a>(<span class="keyword">const</span> <span class="keywordtype">int</span>&amp; main_icon);</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160; </div>
+<div class="line"><a name="l00249"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1appearance.html#ae9c33aa947b0fddb5c6d30fa9f50cc72">  249</a></span>&#160;            <span class="keywordtype">int</span>&amp; <a class="code" href="classliblec_1_1lecui_1_1appearance.html#ae9c33aa947b0fddb5c6d30fa9f50cc72">mini_icon</a>();</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160; </div>
+<div class="line"><a name="l00253"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1appearance.html#a3d608e782404f9d41e60d1cf1bd6c699">  253</a></span>&#160;            <span class="keywordtype">int</span> <a class="code" href="classliblec_1_1lecui_1_1appearance.html#a3d608e782404f9d41e60d1cf1bd6c699">get_mini_icon</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160; </div>
+<div class="line"><a name="l00258"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1appearance.html#a48efe254942561eb9cda5ba7db4afc22">  258</a></span>&#160;            <a class="code" href="classliblec_1_1lecui_1_1appearance.html">appearance</a>&amp; <a class="code" href="classliblec_1_1lecui_1_1appearance.html#a48efe254942561eb9cda5ba7db4afc22">mini_icon</a>(<span class="keyword">const</span> <span class="keywordtype">int</span>&amp; mini_icon);</div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160; </div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;        <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;            <span class="keyword">class </span>impl;</div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;            impl&amp; _d;</div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160; </div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;            <span class="comment">// Default constructor and copying an object of this class are not allowed</span></div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;            <a class="code" href="classliblec_1_1lecui_1_1appearance.html">appearance</a>() = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;            <a class="code" href="classliblec_1_1lecui_1_1appearance.html">appearance</a>(<span class="keyword">const</span> <a class="code" href="classliblec_1_1lecui_1_1appearance.html">appearance</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;            <a class="code" href="classliblec_1_1lecui_1_1appearance.html">appearance</a>&amp; operator=(<span class="keyword">const</span> <a class="code" href="classliblec_1_1lecui_1_1appearance.html">appearance</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;        };</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;    }</div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;}</div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1appearance_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1appearance.html">liblec::lecui::appearance</a></div><div class="ttdoc">Manipulate the form's appearance.</div><div class="ttdef"><b>Definition:</b> appearance.h:166</div></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1appearance_html_a1520a6f6a94c5c55a8c6ef57b411108f"><div class="ttname"><a href="classliblec_1_1lecui_1_1appearance.html#a1520a6f6a94c5c55a8c6ef57b411108f">liblec::lecui::appearance::background</a></div><div class="ttdeci">appearance &amp; background(const lecui::color &amp;color)</div><div class="ttdoc">Set the form's background colors.</div></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1appearance_html_a2b97563706edb487fe43c00100aaf6a5"><div class="ttname"><a href="classliblec_1_1lecui_1_1appearance.html#a2b97563706edb487fe43c00100aaf6a5">liblec::lecui::appearance::main_icon</a></div><div class="ttdeci">appearance &amp; main_icon(const int &amp;main_icon)</div><div class="ttdoc">Set the ID of the main .ico resource.</div></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1appearance_html_a323e33e7762748b9dde4e3d83412683b"><div class="ttname"><a href="classliblec_1_1lecui_1_1appearance.html#a323e33e7762748b9dde4e3d83412683b">liblec::lecui::appearance::shadow</a></div><div class="ttdeci">appearance &amp; shadow(const bool &amp;enable)</div><div class="ttdoc">Set the form shadow property.</div></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1appearance_html_a3d608e782404f9d41e60d1cf1bd6c699"><div class="ttname"><a href="classliblec_1_1lecui_1_1appearance.html#a3d608e782404f9d41e60d1cf1bd6c699">liblec::lecui::appearance::get_mini_icon</a></div><div class="ttdeci">int get_mini_icon() const</div><div class="ttdoc">Get the ID of the small icon resource.</div></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1appearance_html_a48efe254942561eb9cda5ba7db4afc22"><div class="ttname"><a href="classliblec_1_1lecui_1_1appearance.html#a48efe254942561eb9cda5ba7db4afc22">liblec::lecui::appearance::mini_icon</a></div><div class="ttdeci">appearance &amp; mini_icon(const int &amp;mini_icon)</div><div class="ttdoc">Set the ID of the small .ico resource.</div></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1appearance_html_a599da25c3bf4b8b1973b9bbc1fc0a1db"><div class="ttname"><a href="classliblec_1_1lecui_1_1appearance.html#a599da25c3bf4b8b1973b9bbc1fc0a1db">liblec::lecui::appearance::shadow</a></div><div class="ttdeci">bool &amp; shadow()</div><div class="ttdoc">Set or get the form shadow property.</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1appearance_html_a6808b7e3fa3cfbee6c94c0a6e61aa8c1"><div class="ttname"><a href="classliblec_1_1lecui_1_1appearance.html#a6808b7e3fa3cfbee6c94c0a6e61aa8c1">liblec::lecui::appearance::theme</a></div><div class="ttdeci">appearance &amp; theme(themes theme)</div><div class="ttdoc">Set a preset theme.</div></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1appearance_html_a719d4d3e92aaf7fe733ab3006b0bcb95"><div class="ttname"><a href="classliblec_1_1lecui_1_1appearance.html#a719d4d3e92aaf7fe733ab3006b0bcb95">liblec::lecui::appearance::main_icon</a></div><div class="ttdeci">int &amp; main_icon()</div><div class="ttdoc">Get or set the ID of the main icon resource.</div></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1appearance_html_a8488efdc7beb10580c3e436fe46e525e"><div class="ttname"><a href="classliblec_1_1lecui_1_1appearance.html#a8488efdc7beb10580c3e436fe46e525e">liblec::lecui::appearance::get_main_icon</a></div><div class="ttdeci">int get_main_icon() const</div><div class="ttdoc">Get the ID of the main icon resource.</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1appearance_html_a941ae6fa59f4c4b14f024e9276634e07"><div class="ttname"><a href="classliblec_1_1lecui_1_1appearance.html#a941ae6fa59f4c4b14f024e9276634e07">liblec::lecui::appearance::theme</a></div><div class="ttdeci">themes theme()</div><div class="ttdoc">Get the preset theme.</div></div>
-<div class="ttc" id="aclassliblec_1_1lecui_1_1appearance_html_a9aec86bb218cc71b87242bba21f0e9c9"><div class="ttname"><a href="classliblec_1_1lecui_1_1appearance.html#a9aec86bb218cc71b87242bba21f0e9c9">liblec::lecui::appearance::background</a></div><div class="ttdeci">appearance &amp; background(const lecui::color &amp;color, const lecui::color &amp;color_titlebar)</div><div class="ttdoc">Set the form's background colors.</div></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1appearance_html_a9d85aa21a7f86a7801d9e83e008cb12e"><div class="ttname"><a href="classliblec_1_1lecui_1_1appearance.html#a9d85aa21a7f86a7801d9e83e008cb12e">liblec::lecui::appearance::get_background</a></div><div class="ttdeci">lecui::color get_background() const</div><div class="ttdoc">Get or the form's background color.</div></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1appearance_html_ac133451b5a79427b252f37c068d136ca"><div class="ttname"><a href="classliblec_1_1lecui_1_1appearance.html#ac133451b5a79427b252f37c068d136ca">liblec::lecui::appearance::title_bar</a></div><div class="ttdeci">lecui::color title_bar() const</div><div class="ttdoc">Get the background color of the title bar.</div></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1appearance_html_ac2c4033ff11c8feb597798278bc8b8dd"><div class="ttname"><a href="classliblec_1_1lecui_1_1appearance.html#ac2c4033ff11c8feb597798278bc8b8dd">liblec::lecui::appearance::get_shadow</a></div><div class="ttdeci">bool get_shadow() const</div><div class="ttdoc">Get the status of the form shadow.</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1appearance_html_ac5ab021f878c87cae1e18ce160bae770"><div class="ttname"><a href="classliblec_1_1lecui_1_1appearance.html#ac5ab021f878c87cae1e18ce160bae770">liblec::lecui::appearance::theme</a></div><div class="ttdeci">appearance &amp; theme(const lecui::color &amp;color, const lecui::color &amp;color_hot, const lecui::color &amp;color_disabled, const lecui::color &amp;color_text)</div><div class="ttdoc">Set the theme color.</div></div>
-<div class="ttc" id="aclassliblec_1_1lecui_1_1appearance_html_afb5ac2324f3223aba16c891710009578"><div class="ttname"><a href="classliblec_1_1lecui_1_1appearance.html#afb5ac2324f3223aba16c891710009578">liblec::lecui::appearance::set_icons</a></div><div class="ttdeci">appearance &amp; set_icons(int icon_resource, int small_icon_resource)</div><div class="ttdoc">Set the application icon resources.</div></div>
-<div class="ttc" id="aclassliblec_1_1lecui_1_1color_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1color.html">liblec::lecui::color</a></div><div class="ttdoc">RGBA color on a standard 0 to 255 scale. For the alpha channel 0 is transparent and 255 is opaque.</div><div class="ttdef"><b>Definition:</b> lecui.h:528</div></div>
-<div class="ttc" id="aclassliblec_1_1lecui_1_1defaults_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1defaults.html">liblec::lecui::defaults</a></div><div class="ttdef"><b>Definition:</b> appearance.h:156</div></div>
-<div class="ttc" id="aclassliblec_1_1lecui_1_1form_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1form.html">liblec::lecui::form</a></div><div class="ttdoc">Form base class. The user must inherit from this class and call one of the two constructors from its ...</div><div class="ttdef"><b>Definition:</b> form.h:101</div></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1appearance_html_ac78d21c5e2f37a521b12e67a3f990384"><div class="ttname"><a href="classliblec_1_1lecui_1_1appearance.html#ac78d21c5e2f37a521b12e67a3f990384">liblec::lecui::appearance::title_bar</a></div><div class="ttdeci">appearance &amp; title_bar(const lecui::color &amp;color)</div><div class="ttdoc">Set the background color of the titlebar.</div></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1appearance_html_ad4076f751461ce8d0c053b66b8371ecf"><div class="ttname"><a href="classliblec_1_1lecui_1_1appearance.html#ad4076f751461ce8d0c053b66b8371ecf">liblec::lecui::appearance::background</a></div><div class="ttdeci">lecui::color &amp; background()</div><div class="ttdoc">Get or set the form's background color.</div></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1appearance_html_ae9c33aa947b0fddb5c6d30fa9f50cc72"><div class="ttname"><a href="classliblec_1_1lecui_1_1appearance.html#ae9c33aa947b0fddb5c6d30fa9f50cc72">liblec::lecui::appearance::mini_icon</a></div><div class="ttdeci">int &amp; mini_icon()</div><div class="ttdoc">Get or set the ID of the small icon resource.</div></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1appearance_html_af9a0aa9d41068a2c637066006c33c68f"><div class="ttname"><a href="classliblec_1_1lecui_1_1appearance.html#af9a0aa9d41068a2c637066006c33c68f">liblec::lecui::appearance::title_bar</a></div><div class="ttdeci">lecui::color &amp; title_bar()</div><div class="ttdoc">Get or set the background color of the title bar.</div></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1color_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1color.html">liblec::lecui::color</a></div><div class="ttdoc">RGBA color on a standard 0 to 255 scale. For the alpha channel 0 is transparent and 255 is opaque.</div><div class="ttdef"><b>Definition:</b> lecui.h:536</div></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1defaults_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1defaults.html">liblec::lecui::defaults</a></div><div class="ttdef"><b>Definition:</b> appearance.h:160</div></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1form_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1form.html">liblec::lecui::form</a></div><div class="ttdoc">Form base class. The user must inherit from this class and call one of the two constructors from its ...</div><div class="ttdef"><b>Definition:</b> form.h:102</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

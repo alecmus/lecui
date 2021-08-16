@@ -1,0 +1,86 @@
+\hypertarget{classliblec_1_1lecui_1_1containers_1_1side__pane}{}\doxysection{liblec\+::lecui\+::containers\+::side\+\_\+pane Class Reference}
+\label{classliblec_1_1lecui_1_1containers_1_1side__pane}\index{liblec::lecui::containers::side\_pane@{liblec::lecui::containers::side\_pane}}
+
+
+Side pane container. To instantiate and add to a container use the \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1side__pane_a5989d8e99da34397a3affad9a27268f5}{add}} static method.  
+
+
+
+
+{\ttfamily \#include $<$side\+\_\+pane.\+h$>$}
+
+Inheritance diagram for liblec\+::lecui\+::containers\+::side\+\_\+pane\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classliblec_1_1lecui_1_1containers_1_1side__pane}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1side__pane_aacd5b8426e3d5507c005e2b55d525808}\label{classliblec_1_1lecui_1_1containers_1_1side__pane_aacd5b8426e3d5507c005e2b55d525808}} 
+{\bfseries side\+\_\+pane} (\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}} \&, const float \&)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane}{status\+\_\+pane}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1side__pane_a5989d8e99da34397a3affad9a27268f5}{add}} (\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}} \&fm, const float \&thickness)
+\begin{DoxyCompactList}\small\item\em Create a side pane. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane}{containers\+::status\+\_\+pane}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1side__pane_ab1448d635cc581238cd4a2ff9dee8343}{get}} (\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}} \&fm)
+\begin{DoxyCompactList}\small\item\em Get a reference to an existing side pane. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+Side pane container. To instantiate and add to a container use the \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1side__pane_a5989d8e99da34397a3affad9a27268f5}{add}} static method. 
+
+The side pane is essentially a special left side pane that extends into the title bar. Hence, refer to the status pane documentation remarks for additional information relating to all side panes.
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1side__pane_a5989d8e99da34397a3affad9a27268f5}\label{classliblec_1_1lecui_1_1containers_1_1side__pane_a5989d8e99da34397a3affad9a27268f5}} 
+\index{liblec::lecui::containers::side\_pane@{liblec::lecui::containers::side\_pane}!add@{add}}
+\index{add@{add}!liblec::lecui::containers::side\_pane@{liblec::lecui::containers::side\_pane}}
+\doxysubsubsection{\texorpdfstring{add()}{add()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane}{status\+\_\+pane}}\& liblec\+::lecui\+::containers\+::side\+\_\+pane\+::add (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}} \&}]{fm,  }\item[{const float \&}]{thickness }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Create a side pane. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fm} & The form to place it in.\\
+\hline
+{\em thickness} & The thickness of the side pane.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the status pane.
+\end{DoxyReturn}
+
+
+Side panes are transparent by default, and have no scroll bars. A background can be added by using a rectangle widget. Ensure that there is a maximum of one side pane per form and that there isn\textquotesingle{}t a left status pane. Adding more than one side pane leads to undefined behavior, same with adding a left status pane together with a side pane since a side pane is really a special left side pane.\mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1side__pane_ab1448d635cc581238cd4a2ff9dee8343}\label{classliblec_1_1lecui_1_1containers_1_1side__pane_ab1448d635cc581238cd4a2ff9dee8343}} 
+\index{liblec::lecui::containers::side\_pane@{liblec::lecui::containers::side\_pane}!get@{get}}
+\index{get@{get}!liblec::lecui::containers::side\_pane@{liblec::lecui::containers::side\_pane}}
+\doxysubsubsection{\texorpdfstring{get()}{get()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane}{containers\+::status\+\_\+pane}}\& liblec\+::lecui\+::containers\+::side\+\_\+pane\+::get (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}} \&}]{fm }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Get a reference to an existing side pane. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fm} & The form the container is in.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the status pane.
+\end{DoxyReturn}
+
+
+Throws on failure. For faster coding and more readable code consider calling this static method through the helper macro provided (get\+\_\+side\+\_\+pane).
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+containers/side\+\_\+pane.\+h\end{DoxyCompactItemize}

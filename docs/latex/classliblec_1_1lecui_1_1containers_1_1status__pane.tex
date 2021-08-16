@@ -12,7 +12,7 @@ Status pane container. To instantiate and add to a container use the \mbox{\hype
 Inheritance diagram for liblec\+::lecui\+::containers\+::status\+\_\+pane\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=2.000000cm]{classliblec_1_1lecui_1_1containers_1_1status__pane}
+\includegraphics[height=3.000000cm]{classliblec_1_1lecui_1_1containers_1_1status__pane}
 \end{center}
 \end{figure}
 \doxysubsection*{Public Member Functions}
@@ -27,14 +27,14 @@ Inheritance diagram for liblec\+::lecui\+::containers\+::status\+\_\+pane\+:\beg
 static \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane}{status\+\_\+pane}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane_a711d27fe92af50cae0ecae372bab61e4}{add}} (\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}} \&fm, \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane__specs}{status\+\_\+pane\+\_\+specs}} specs)
 \begin{DoxyCompactList}\small\item\em Create a status pane. \end{DoxyCompactList}\item 
 static \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane}{containers\+::status\+\_\+pane}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane_aeea81e296b62dafb12543559c2f8844d}{get}} (\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}} \&fm, const std\+::string \&alias)
-\begin{DoxyCompactList}\small\item\em Get the status pane container page of an existing status pane. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Get a reference to an existing status pane. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
 
 
 \doxysubsection{Detailed Description}
 Status pane container. To instantiate and add to a container use the \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane_a711d27fe92af50cae0ecae372bab61e4}{add}} static method. 
 
-Any widget can be added to this container. Consequently, recursion is fully supported, allowing status panes within status panes, to virtually any depth level that the memory of the computer the app is running on can permit. However, it is recommended to limit the number of widgets within status panes as these panes persist throughout the runtime of the app, and are visible in all pages. Keep the contents of status panes minimal and straightforward as a good gui design principle.
+Any widget can be added to this container. Consequently, recursion is fully supported, allowing other containers to be added to status panes, to virtually any depth level that the memory of the computer the app is running on can permit. However, it is recommended to limit the number of widgets within status panes as these panes persist throughout the runtime of the app, and are visible in all pages. Keep the contents of status panes minimal and straightforward as a good gui design principle. Note that it is recommended to add all status panes before adding any pages so that the pages can return dimensions that factor for the status panes.
 
 \doxysubsection{Member Function Documentation}
 \mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1status__pane_a711d27fe92af50cae0ecae372bab61e4}\label{classliblec_1_1lecui_1_1containers_1_1status__pane_a711d27fe92af50cae0ecae372bab61e4}} 
@@ -67,7 +67,7 @@ Status panes are transparent by default, and have no scroll bars. A background c
 
 
 
-Get the status pane container page of an existing status pane. 
+Get a reference to an existing status pane. 
 
 
 \begin{DoxyParams}{Parameters}
@@ -77,11 +77,11 @@ Get the status pane container page of an existing status pane.
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-A reference to the status pane container page.
+A reference to the status pane.
 \end{DoxyReturn}
 
 
-Throws on failure. For faster coding and more readable code consider calling this static method through the helper macro provided (get\+\_\+status\+\_\+pane\+\_\+page).
+Throws on failure. For faster coding and more readable code consider calling this static method through the helper macro provided (get\+\_\+status\+\_\+pane).
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
