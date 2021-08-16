@@ -1176,6 +1176,7 @@ namespace liblec {
 						// add hour destination
 						auto& hour = widgets::rectangle::add(it.destination, widgets::time_impl::alias_hour());
 						hour
+							.tooltip(time.tooltip())
 							.rect({ 0, 18, 0, 20 })
 							.on_resize({ 0, 0, 0, 0 })
 							.corner_radius_x(time.corner_radius_x())
@@ -1209,7 +1210,9 @@ namespace liblec {
 
 						// add minute to destination
 						auto& minute = widgets::rectangle::add(it.destination, widgets::time_impl::alias_minute());
-						minute.corner_radius_x(time.corner_radius_x())
+						minute
+							.tooltip(time.tooltip())
+							.corner_radius_x(time.corner_radius_x())
 							.corner_radius_y(time.corner_radius_y())
 							.border(time.border())
 							.color_fill(time.color_fill())
@@ -1243,6 +1246,7 @@ namespace liblec {
 						// add second to destination
 						auto& second = widgets::rectangle::add(it.destination, widgets::time_impl::alias_second());
 						second
+							.tooltip(time.tooltip())
 							.corner_radius_x(time.corner_radius_x())
 							.corner_radius_y(time.corner_radius_y())
 							.border(time.border())
@@ -1542,6 +1546,7 @@ namespace liblec {
 						// add day to destination
 						auto& day = widgets::rectangle::add(it.destination, widgets::date_impl::alias_day());
 						day
+							.tooltip(date.tooltip())
 							.rect({ 0, 18, 20, 20 + 20 })
 							.on_resize({ 0, 0, 0, 0 })
 							.corner_radius_x(date.corner_radius_x())
@@ -1576,6 +1581,7 @@ namespace liblec {
 						// add month to destination
 						auto& month = widgets::rectangle::add(it.destination, widgets::date_impl::alias_month());
 						month
+							.tooltip(date.tooltip())
 							.corner_radius_x(date.corner_radius_x())
 							.corner_radius_y(date.corner_radius_y())
 							.border(date.border())
@@ -1609,6 +1615,7 @@ namespace liblec {
 						// add year to destination
 						auto& year = widgets::rectangle::add(it.destination, widgets::date_impl::alias_year());
 						year
+							.tooltip(date.tooltip())
 							.corner_radius_x(date.corner_radius_x())
 							.corner_radius_y(date.corner_radius_y())
 							.border(date.border())
@@ -1921,6 +1928,7 @@ namespace liblec {
 						// add rectangle to destination (for hit-testing)
 						auto& icn = widgets::rectangle::add(it.destination, widgets::icon_impl::alias_icon());
 						icn
+							.tooltip(icon.tooltip())
 							.corner_radius_x(icon.corner_radius_x())
 							.corner_radius_y(icon.corner_radius_y())
 							.border(icon.border())
