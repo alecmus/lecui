@@ -32,6 +32,9 @@ namespace liblec {
 			aprnc.theme(parent._d._theme);
 
 			if (IsWindow(parent._d._hWnd)) {
+				// close the parent's tooltips
+				parent._d.close_tooltips();
+
 				// capture parent
 				_d._p_parent = &parent;
 				_d._hWnd_parent = parent._d._hWnd;
@@ -96,6 +99,17 @@ namespace liblec {
 					if (!_d._force_instance) {
 						_d.open_existing_instance();
 						return true;
+					}
+				}
+			}
+
+			// don't allow a parent to have more than one modal form
+			if (IsWindow(_d._hWnd_parent)) {
+				if (_d._p_parent) {
+					if (_d._p_parent->_d._m_children.size() > 1) {
+						log("Another modal form is open");
+						error = "Another modal form is open";
+						return false;
 					}
 				}
 			}

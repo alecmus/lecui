@@ -34,6 +34,8 @@ namespace liblec {
 				if (widget.second.selected())
 					update_anyway = true;
 
+				widget.second.hide_tooltip();
+
 				if (!pressed) {
 					// pressed widget not yet found
 					pressed = widget.second.contains(point);

@@ -113,6 +113,8 @@ namespace liblec {
 			if (get_form()._d._p_tooltip_form.get())
 				return;
 
+			log("show_tooltip: " + _tooltip_text);
+
 			_tooltip_active = true;
 
 			// create tooltip object
@@ -131,6 +133,8 @@ namespace liblec {
 		void widgets::widget_impl::hide_tooltip() {
 			// close the tooltip
 			if (_tooltip_active) {
+				log("hide_tooltip: " + _tooltip_text);
+
 				// deletion of the tooltip object will be done after the blocking show method returns
 				if (get_form()._d._p_tooltip_form.get())
 					get_form()._d._p_tooltip_form->close();

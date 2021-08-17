@@ -370,6 +370,8 @@ namespace liblec {
 			HWND find_native_handle(const std::string& guid);
 			void open_existing_instance();
 
+			void close_tooltips();
+
 			static LRESULT CALLBACK window_procedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 		};
 	}

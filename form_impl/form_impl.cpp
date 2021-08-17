@@ -3103,6 +3103,73 @@ namespace liblec {
 			}
 		}
 
+		void form::impl::close_tooltips() {
+			class helper {
+			public:
+				static void check_widgets(containers::page& page) {
+					// check widgets
+					for (auto& widget : page._d_page.widgets()) {
+						bool is_scroll_bar = (widget.second.type() ==
+							widgets::widget_type::h_scrollbar) ||
+							(widget.second.type() ==
+								widgets::widget_type::v_scrollbar);
+
+						if (widget.second.is_static() || !widget.second.visible() || !widget.second.enabled())
+							continue;
+
+						widget.second.hide_tooltip();
+					}
+
+					for (auto& widget : page._d_page.widgets()) {
+						if (widget.second.type() ==
+							widgets::widget_type::tab_pane) {
+							// get this tab pane
+							auto& tab_pane = page._d_page.get_tab_pane_impl(widget.first);
+
+							auto page_iterator = tab_pane._p_tabs.find(tab_pane.specs().selected());
+
+							if (page_iterator != tab_pane._p_tabs.end())
+								helper::check_widgets(page_iterator->second);	// recursion
+						}
+						else
+							if (widget.second.type() ==
+								widgets::widget_type::pane) {
+								// get this pane
+								auto& pane = page._d_page.get_pane_impl(widget.first);
+
+								auto page_iterator = pane._p_panes.find(pane._current_pane);
+
+								if (page_iterator != pane._p_panes.end())
+									helper::check_widgets(page_iterator->second);	// recursion
+							}
+					}
+				}
+			};
+
+			// form widgets
+			for (auto& widget : _widgets) {
+				bool is_scroll_bar = (widget.second.type() ==
+					widgets::widget_type::h_scrollbar) ||
+					(widget.second.type() ==
+						widgets::widget_type::v_scrollbar);
+
+				if (widget.second.is_static() || !widget.second.visible() || !widget.second.enabled())
+					continue;
+
+				widget.second.hide_tooltip();
+			}
+
+			// pages
+			auto page_iterator = _p_pages.find(_current_page);
+
+			if (page_iterator != _p_pages.end())
+				helper::check_widgets(page_iterator->second);
+
+			// status panes
+			for (auto& it : _p_status_panes)
+				helper::check_widgets(it.second);
+		}
+
 		LRESULT CALLBACK form::impl::window_procedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
 			auto get_form = [&]() {
 				form* p_form = nullptr;
