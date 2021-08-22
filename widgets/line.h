@@ -79,7 +79,7 @@ namespace liblec {
 				/// <returns>A reference to the modified object.</returns>
 				line& thickness(const float& thickness);
 
-				/// <summary>Get or set the points, in order, for the line line to go through.
+				/// <summary>Get or set the points, in order, for the line to go through.
 				/// These are relative to the top left corner of the line's bounding rectangle.
 				/// </summary>
 				/// <returns>A reference to the list of points.</returns>
