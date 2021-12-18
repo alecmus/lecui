@@ -712,13 +712,14 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="LICENSE.txt">
-      <Filter>lecui</Filter>
-    </Text>
-  </ItemGroup>
-  <ItemGroup>
     <ResourceCompile Include="versioninfo.rc">
       <Filter>lecui</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="LICENSE.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="README.md" />
   </ItemGroup>
 </Project>

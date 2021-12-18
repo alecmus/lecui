@@ -205,6 +205,9 @@
   <ItemGroup>
     <ResourceCompile Include="versioninfo.rc" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="README.md" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{704F2071-38A4-4B4D-AFB8-39DDA0F6C7CC}</ProjectGuid>
