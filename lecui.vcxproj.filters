@@ -712,11 +712,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="LICENSE.md">
-      <Filter>lecui</Filter>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <Text Include="LICENSE.txt">
       <Filter>lecui</Filter>
     </Text>

@@ -200,9 +200,6 @@
     <ClCompile Include="xml_parser\xml_writer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="LICENSE.md" />
-  </ItemGroup>
-  <ItemGroup>
     <Text Include="LICENSE.txt" />
   </ItemGroup>
   <ItemGroup>
