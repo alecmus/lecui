@@ -2,7 +2,7 @@
 \label{classliblec_1_1lecui_1_1containers_1_1page}\index{liblec::lecui::containers::page@{liblec::lecui::containers::page}}
 
 
-Page container.  
+Page container. 
 
 
 
@@ -19,16 +19,16 @@ Inheritance diagram for liblec\+::lecui\+::containers\+::page\+:\begin{figure}[H
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1page_a47e4257dba4434a89319d0fc32a140f6}{page}} (\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}} \&fm, const std\+::string \&alias)
-\begin{DoxyCompactList}\small\item\em Page constructor. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Page constructor.\end{DoxyCompactList}\item 
 virtual const \mbox{\hyperlink{classliblec_1_1lecui_1_1size}{size}} \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1page_ab32a8edb06befdd4a57f76fe7187fd86}{size}} ()
-\begin{DoxyCompactList}\small\item\em Get the size of the page. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Get the size of the page.\end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1page_a59d223f014d5d37366203cfb72d3d6e8}\label{classliblec_1_1lecui_1_1containers_1_1page_a59d223f014d5d37366203cfb72d3d6e8}} 
 {\bfseries page} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1page}{page}} \&)=delete
 \item 
-\mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1page_a00c60c7b697e3b5c5474f85b80108ea7}\label{classliblec_1_1lecui_1_1containers_1_1page_a00c60c7b697e3b5c5474f85b80108ea7}} 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1page_a8574ef4ff3febdf3d0b180533d5770b8}\label{classliblec_1_1lecui_1_1containers_1_1page_a8574ef4ff3febdf3d0b180533d5770b8}} 
 \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1page}{page}} \& {\bfseries operator=} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1page}{page}} \&)=delete
 \end{DoxyCompactItemize}
 \doxysubsection*{Protected Attributes}
@@ -40,7 +40,7 @@ impl \& {\bfseries \+\_\+d\+\_\+page}
 
 
 \doxysubsection{Detailed Description}
-Page container. 
+Page container.
 
 This is the generic container type, and is the only one of the containers that can be added directly to a form. Any widget and any container can be added to it. It comes full featured with scroll bars that appear if anything within it exceeds it\textquotesingle{}s dimensions. It covers the entire form save for the border and the titlebar. It\textquotesingle{}s size is tightly coupled to the form, and is resized automatically as the form is resized. As such, it\textquotesingle{}s size cannot be directly manipulated. Other container types, however, can be resized directly, e.\+g. panes, but then they cannot be added directly to a form.
 
@@ -53,7 +53,7 @@ This is the generic container type, and is the only one of the containers that c
 
 
 
-Page constructor. 
+Page constructor.
 
 
 \begin{DoxyParams}{Parameters}
@@ -75,7 +75,7 @@ Ensure that the alias is unique within the form. Reusing an alias in a form lead
 
 
 
-Get the size of the page. 
+Get the size of the page.
 
 \begin{DoxyReturn}{Returns}
 The size, in pixels.
@@ -84,7 +84,7 @@ The size, in pixels.
 
 The size is automatically determined by the library. It is important to note that any widgets added to a page, and any other container for that matter, only see the dimensions and coordinates of that container not those of the form or another container higher up the hierarchy. Dimensions and coordinates are local to a container.
 
-Reimplemented in \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1pane_a5f5ee97f86cc085fd005c208c60892e0}{liblec\+::lecui\+::containers\+::pane}}, and \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1tab_a5ce8ba7ab1cfaa36253b540e2738a400}{liblec\+::lecui\+::containers\+::tab}}.
+Reimplemented in \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1tab_a5ce8ba7ab1cfaa36253b540e2738a400}{liblec\+::lecui\+::containers\+::tab}}, and \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1pane_a5f5ee97f86cc085fd005c208c60892e0}{liblec\+::lecui\+::containers\+::pane}}.
 
 
 

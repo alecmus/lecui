@@ -1,0 +1,190 @@
+\hypertarget{combobox_8h_source}{}\doxysection{combobox.\+h}
+\label{combobox_8h_source}\index{widgets/combobox.h@{widgets/combobox.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{//}}
+\DoxyCodeLine{2 \textcolor{comment}{// combobox.h -\/ combobox widget interface}}
+\DoxyCodeLine{3 \textcolor{comment}{//}}
+\DoxyCodeLine{4 \textcolor{comment}{// lecui user interface library, part of the liblec library}}
+\DoxyCodeLine{5 \textcolor{comment}{// Copyright (c) 2019 Alec Musasa (alecmus at live dot com)}}
+\DoxyCodeLine{6 \textcolor{comment}{//}}
+\DoxyCodeLine{7 \textcolor{comment}{// Released under the MIT license. For full details see the}}
+\DoxyCodeLine{8 \textcolor{comment}{// file LICENSE.txt}}
+\DoxyCodeLine{9 \textcolor{comment}{//}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#if defined(LECUI\_EXPORTS)}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include "{}widget.h"{}}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <liblec/lecui/widgets/widget.h>}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{keyword}{namespace }liblec \{}
+\DoxyCodeLine{20     \textcolor{keyword}{namespace }lecui \{}
+\DoxyCodeLine{21         \textcolor{keyword}{namespace }widgets \{}
+\DoxyCodeLine{24             \textcolor{keyword}{class }lecui\_api \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox}{combobox}} : \textcolor{keyword}{public} \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1widget}{widget}} \{}
+\DoxyCodeLine{25             \textcolor{keyword}{public}:}
+\DoxyCodeLine{27                 \textcolor{keyword}{struct }\mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1combobox_1_1combobox__item}{combobox\_item}} \{}
+\DoxyCodeLine{29                     std::string \mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1combobox_1_1combobox__item_ab0c57f054cc895d44458a44af1c348ea}{label}};}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{32                     std::string font = \textcolor{stringliteral}{"{}Segoe UI"{}};}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{35                     \textcolor{keywordtype}{float} font\_size = 9.f;}
+\DoxyCodeLine{36                 \};}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38             \textcolor{keyword}{private}:}
+\DoxyCodeLine{39                 \textcolor{keywordtype}{bool} \_editable = \textcolor{keyword}{false};}
+\DoxyCodeLine{40                 \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \_color\_fill\_editable;}
+\DoxyCodeLine{41                 \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \_color\_caret;}
+\DoxyCodeLine{42                 \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \_color\_border;}
+\DoxyCodeLine{43                 \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \_color\_dropdown;}
+\DoxyCodeLine{44                 \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \_color\_dropdown\_hot;}
+\DoxyCodeLine{45                 \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \_color\_dropdown\_arrow;}
+\DoxyCodeLine{46                 \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \_color\_dropdown\_arrow\_hot;}
+\DoxyCodeLine{47                 \textcolor{keywordtype}{float} \_border = .5f;}
+\DoxyCodeLine{48                 \textcolor{keywordtype}{float} \_corner\_radius\_x = 2.f;}
+\DoxyCodeLine{49                 \textcolor{keywordtype}{float} \_corner\_radius\_y = 2.f;}
+\DoxyCodeLine{50                 std::vector<combobox\_item> \_items;}
+\DoxyCodeLine{51                 image\_quality \_quality = image\_quality::high;}
+\DoxyCodeLine{52                 sort\_options \_sort = sort\_options::ascending;}
+\DoxyCodeLine{53                 \textcolor{keywordtype}{bool} \_force\_numerical\_sort = \textcolor{keyword}{false};}
+\DoxyCodeLine{54                 std::string \_selected;}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56             \textcolor{keyword}{public}:}
+\DoxyCodeLine{57                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox}{combobox}}() \{}
+\DoxyCodeLine{58                     \_rect.size(\{ 200.f, 25.f \});}
+\DoxyCodeLine{59                 \}}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{62                 \textcolor{keyword}{struct }\mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1combobox_1_1combobox__events}{combobox\_events}} : \mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1widget_1_1basic__events}{basic\_events}} \{}
+\DoxyCodeLine{65                     std::function<void(\textcolor{keyword}{const} std::string\&)> selection = \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{66                 \};}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{68                 \mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1combobox_1_1combobox__events}{combobox\_events}}\& events() \{}
+\DoxyCodeLine{69                     \textcolor{keywordflow}{return} \_combobox\_events;}
+\DoxyCodeLine{70                 \}}
+\DoxyCodeLine{71 }
+\DoxyCodeLine{72                 \textcolor{keywordtype}{bool} operator==(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox}{combobox}}\&);}
+\DoxyCodeLine{73                 \textcolor{keywordtype}{bool} operator!=(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox}{combobox}}\&);}
+\DoxyCodeLine{74 }
+\DoxyCodeLine{75                 \textcolor{comment}{// generic widget}}
+\DoxyCodeLine{76 }
+\DoxyCodeLine{77                 std::string\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox_ae5adbb9e0b019dfdce775f30acb56c8c}{text}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{78                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox}{combobox}}\& text(\textcolor{keyword}{const} std::string\& text);}
+\DoxyCodeLine{79 }
+\DoxyCodeLine{80                 std::string\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox_ad324dbd9c41688675ddf784322073f46}{tooltip}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{81                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox}{combobox}}\& tooltip(\textcolor{keyword}{const} std::string\& tooltip);}
+\DoxyCodeLine{82 }
+\DoxyCodeLine{83                 \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{lecui::rect}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox_a09737bcad8deb627c75f7355cfb37a15}{rect}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{84                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox}{combobox}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{rect}}(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{lecui::rect}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{rect}});}
+\DoxyCodeLine{85 }
+\DoxyCodeLine{86                 \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params}{resize\_params}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox_a46112581d78be540d3e55d20f67f7a03}{on\_resize}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{87                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox}{combobox}}\& on\_resize(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params}{resize\_params}}\& on\_resize);}
+\DoxyCodeLine{88 }
+\DoxyCodeLine{89                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1widget_a893d9dfd53890f3faf6829a6c02aca84}{cursor\_type}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox_aa3a54501e2e6fb8a1be5ffd9373b9f12}{cursor}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{90                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox}{combobox}}\& cursor(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1widget_a893d9dfd53890f3faf6829a6c02aca84}{cursor\_type}} cursor);}
+\DoxyCodeLine{91 }
+\DoxyCodeLine{92                 std::string\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox_ae6edad3ebea9e2f83a28f4fc4a72869a}{font}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{93                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox}{combobox}}\& font(\textcolor{keyword}{const} std::string\& font);}
+\DoxyCodeLine{94 }
+\DoxyCodeLine{95                 \textcolor{keywordtype}{float}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox_a5e6627e9130b79a95aed91c198166f8d}{font\_size}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{96                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox}{combobox}}\& font\_size(\textcolor{keyword}{const} \textcolor{keywordtype}{float}\& font\_size);}
+\DoxyCodeLine{97 }
+\DoxyCodeLine{98                 \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox_a48b34da3c06c6d38ba6088bd12fe8eb4}{color\_text}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{99                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox}{combobox}}\& color\_text(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& color\_text);}
+\DoxyCodeLine{100 }
+\DoxyCodeLine{101                 \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox_ac920c5a742b7da0ff039377ff2a36e7c}{color\_fill}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{102                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox}{combobox}}\& color\_fill(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& color\_fill);}
+\DoxyCodeLine{103 }
+\DoxyCodeLine{104                 \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox_a2c504758677717d5ec238b840d21b4b1}{color\_hot}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{105                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox}{combobox}}\& color\_hot(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& color\_hot);}
+\DoxyCodeLine{106 }
+\DoxyCodeLine{107                 \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox_a9d9261d15562d750bc07659dfd6b0195}{color\_selected}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{108                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox}{combobox}}\& color\_selected(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& color\_selected);}
+\DoxyCodeLine{109 }
+\DoxyCodeLine{110                 \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox_abb69a197e2b7ad0299e17c3b94c2801d}{color\_disabled}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{111                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox}{combobox}}\& color\_disabled(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& color\_disabled);}
+\DoxyCodeLine{112 }
+\DoxyCodeLine{113                 \textcolor{comment}{// widget specific widget}}
+\DoxyCodeLine{114 }
+\DoxyCodeLine{117                 \textcolor{keywordtype}{float}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox_a0558ffce22fe7db03afa4d60cf7f9590}{border}}();}
+\DoxyCodeLine{118 }
+\DoxyCodeLine{122                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox}{combobox}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox_a7804ab4d1eb08c3dc798e489e039d80b}{border}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float}\& border);}
+\DoxyCodeLine{123 }
+\DoxyCodeLine{126                 \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox_a3bac37f935b0f8b4376d1e085b8acce7}{color\_border}}();}
+\DoxyCodeLine{127 }
+\DoxyCodeLine{131                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox}{combobox}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox_a144abe8490725af0f7472aa09787ec68}{color\_border}}(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& color\_border);}
+\DoxyCodeLine{132 }
+\DoxyCodeLine{135                 \textcolor{keywordtype}{float}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox_acb0dfccf0629a0bd02ba7e016726a42d}{corner\_radius\_x}}();}
+\DoxyCodeLine{136 }
+\DoxyCodeLine{140                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox}{combobox}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox_a10dfa45aba9dda192dcdb2a4b5d431a4}{corner\_radius\_x}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float}\& corner\_radius\_x);}
+\DoxyCodeLine{141 }
+\DoxyCodeLine{144                 \textcolor{keywordtype}{float}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox_ad63a980d81faeca5ae9a4bc72691b125}{corner\_radius\_y}}();}
+\DoxyCodeLine{145 }
+\DoxyCodeLine{149                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox}{combobox}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox_a3fd7e57b62763599f482d57563a7625b}{corner\_radius\_y}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float}\& corner\_radius\_y);}
+\DoxyCodeLine{150 }
+\DoxyCodeLine{153                 \textcolor{keywordtype}{bool}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox_a03da467ae809e527dfee4939d0975272}{editable}}();}
+\DoxyCodeLine{154 }
+\DoxyCodeLine{158                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox}{combobox}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox_a251a1e87294780e9654f6f50f6c61036}{editable}}(\textcolor{keyword}{const} \textcolor{keywordtype}{bool}\& editable);}
+\DoxyCodeLine{159 }
+\DoxyCodeLine{162                 \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox_a08d1196f5f5750521341cbc4b5e80cd0}{color\_fill\_editable}}();}
+\DoxyCodeLine{163 }
+\DoxyCodeLine{166                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox}{combobox}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox_aeffa6789000e178464d4423d585af0ae}{color\_fill\_editable}}(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& color\_fill\_editable);}
+\DoxyCodeLine{167 }
+\DoxyCodeLine{170                 \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox_a7e466d40915c9efb644c03ff422e90f2}{color\_caret}}();}
+\DoxyCodeLine{171 }
+\DoxyCodeLine{175                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox}{combobox}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox_a350d50bf954b21ed639ef4a21ce9fb0b}{color\_caret}}(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& color\_caret);}
+\DoxyCodeLine{176 }
+\DoxyCodeLine{179                 \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox_afcb83e47bb4f3bd9da532fc868298c70}{color\_dropdown}}();}
+\DoxyCodeLine{180 }
+\DoxyCodeLine{184                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox}{combobox}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox_a629b284b37c7239f08ccb361c28e9411}{color\_dropdown}}(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& color\_dropdown);}
+\DoxyCodeLine{185 }
+\DoxyCodeLine{188                 \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox_abd9d4f1868456d7d7f77f89f8986e80d}{color\_dropdown\_hot}}();}
+\DoxyCodeLine{189 }
+\DoxyCodeLine{193                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox}{combobox}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox_aa8524b283bb6d8884c19611732dc8862}{color\_dropdown\_hot}}(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& color\_dropdown\_hot);}
+\DoxyCodeLine{194 }
+\DoxyCodeLine{197                 \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox_a18c2f0da969be232bbf4bcbefc9a298d}{color\_dropdown\_arrow}}();}
+\DoxyCodeLine{198 }
+\DoxyCodeLine{202                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox}{combobox}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox_aa505f0b4a69d63394c623290376be329}{color\_dropdown\_arrow}}(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& color\_dropdown\_arrow);}
+\DoxyCodeLine{203 }
+\DoxyCodeLine{206                 \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox_a451e93c78c7f9ade99029674a644c4df}{color\_dropdown\_arrow\_hot}}();}
+\DoxyCodeLine{207 }
+\DoxyCodeLine{211                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox}{combobox}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox_a34d2c32b42201852f9d34f49d7837fc8}{color\_dropdown\_arrow\_hot}}(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& color\_dropdown\_arrow\_hot);}
+\DoxyCodeLine{212 }
+\DoxyCodeLine{215                 std::vector<combobox\_item>\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox_aefe1a9e51b01b2b87a655a13a42c3ffa}{items}}();}
+\DoxyCodeLine{216 }
+\DoxyCodeLine{220                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox}{combobox}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox_a6726b67f065d0427cd3fada61cae9b2b}{items}}(\textcolor{keyword}{const} std::vector<combobox\_item>\& items);}
+\DoxyCodeLine{221 }
+\DoxyCodeLine{224                 image\_quality\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox_aca315f77e3e19967b684113f03508105}{quality}}();}
+\DoxyCodeLine{225 }
+\DoxyCodeLine{229                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox}{combobox}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox_a538856ecade53bbb954126baef96d925}{quality}}(\textcolor{keyword}{const} image\_quality\& quality);}
+\DoxyCodeLine{230 }
+\DoxyCodeLine{233                 sort\_options\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox_ab750f473cb907d42753ff3ec9094ee91}{sort}}() \{ \textcolor{keywordflow}{return} \_sort; \}}
+\DoxyCodeLine{234 }
+\DoxyCodeLine{238                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox}{combobox}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox_abb4e814d217432a4b19c8504752280ac}{sort}}(\textcolor{keyword}{const} sort\_options\& sort);}
+\DoxyCodeLine{239 }
+\DoxyCodeLine{247                 \textcolor{keywordtype}{bool}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox_ad08d7337afaea540b393942594263095}{force\_numerical\_sort}}();}
+\DoxyCodeLine{248 }
+\DoxyCodeLine{257                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox}{combobox}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox_ab07e986565e0613645bf9e917a2e1b76}{force\_numerical\_sort}}(\textcolor{keyword}{const} \textcolor{keywordtype}{bool}\& force\_numerical\_sort);}
+\DoxyCodeLine{258 }
+\DoxyCodeLine{265                 std::string\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox_a5d8d17eda60686368302f0c6d5ba2107}{selected}}();}
+\DoxyCodeLine{266 }
+\DoxyCodeLine{270                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox}{combobox}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox_afd0fc1c40e02d7382e7bf7cee4147d3d}{selected}}(\textcolor{keyword}{const} std::string\& selected);}
+\DoxyCodeLine{271 }
+\DoxyCodeLine{272             \textcolor{keyword}{public}:}
+\DoxyCodeLine{279                 [[nodiscard]]}
+\DoxyCodeLine{280                 \textcolor{keyword}{static} \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox}{combobox}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox_a989f2bed9d40f1283910e785a95a133c}{add}}(\mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1page}{containers::page}}\& page, \textcolor{keyword}{const} std::string\& alias = std::string());}
+\DoxyCodeLine{281 }
+\DoxyCodeLine{288                 [[nodiscard]]}
+\DoxyCodeLine{289                 \textcolor{keyword}{static} \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox}{combobox}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1combobox_ad026041cc4b843bcb1263e50e89fb8e0}{get}}(\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}}\& fm, \textcolor{keyword}{const} std::string\& path);}
+\DoxyCodeLine{290 }
+\DoxyCodeLine{291             \textcolor{keyword}{private}:}
+\DoxyCodeLine{292                 \mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1combobox_1_1combobox__events}{combobox\_events}} \_combobox\_events;}
+\DoxyCodeLine{293             \};}
+\DoxyCodeLine{294         \}}
+\DoxyCodeLine{295     \}}
+\DoxyCodeLine{296 \}}
+\DoxyCodeLine{297 }
+\DoxyCodeLine{299 \textcolor{preprocessor}{\#define get\_combobox(path) liblec::lecui::widgets::combobox::get(*this, path)}}
+
+\end{DoxyCode}

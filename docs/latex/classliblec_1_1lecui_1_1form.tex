@@ -2,7 +2,7 @@
 \label{classliblec_1_1lecui_1_1form}\index{liblec::lecui::form@{liblec::lecui::form}}
 
 
-Form base class. The user must inherit from this class and call one of the two constructors from its own constructor.  
+Form base class. The user must inherit from this class and call one of the two constructors from its own constructor. 
 
 
 
@@ -13,72 +13,74 @@ Form base class. The user must inherit from this class and call one of the two c
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a5e8d85dd0feab388c6a5de92e54b4539}{form}} (const std\+::string \&caption)
-\begin{DoxyCompactList}\small\item\em Make a form with no parent. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Make a form with no parent.\end{DoxyCompactList}\item 
 \mbox{\hyperlink{classliblec_1_1lecui_1_1form_ab37322096b8c365efa7427c7229b6c12}{form}} (const std\+::string \&caption, \mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}} \&parent)
-\begin{DoxyCompactList}\small\item\em Make a modal form. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Make a modal form.\end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classliblec_1_1lecui_1_1form_abf87c84254489bf207145dbcb8d9dc03}{move}} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1point}{point}} \&\mbox{\hyperlink{classliblec_1_1lecui_1_1point}{point}})
-\begin{DoxyCompactList}\small\item\em Move the form. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Move the form.\end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a8dcfa7376585537c1439cb79992e4c78}{move}} (const form\+\_\+position \&form\+\_\+position)
-\begin{DoxyCompactList}\small\item\em Move the form. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Move the form.\end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a7dc5f9275022a0c260bccdf9c2ffb567}{force\+\_\+instance}} ()
-\begin{DoxyCompactList}\small\item\em Force this instance to run even if an existing instance is found. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Force this instance to run even if an existing instance is found.\end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a54ba88558be331b76724721055130beb}{create}} (std\+::string \&error)
-\begin{DoxyCompactList}\small\item\em Create the form. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Create the form.\end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classliblec_1_1lecui_1_1form_ab2331a6e572e672d4e875302da594666}{close}} ()
-\begin{DoxyCompactList}\small\item\em Close the form. When this is called all activity is stopped and the form is closed. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Close the form. When this is called all activity is stopped and the form is closed.\end{DoxyCompactList}\item 
 virtual bool \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a50ea7e5b9915f781f1d298cff2f37a85}{on\+\_\+initialize}} (std\+::string \&error)
 \begin{DoxyCompactList}\small\item\em Called before \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a4e2e100ef451160db1cb71453bb19eed}{on\+\_\+layout()}}. This is a good place to create the splash screen and do all essential app initilization like reading registry settings etc. \end{DoxyCompactList}\item 
 virtual bool \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a4e2e100ef451160db1cb71453bb19eed}{on\+\_\+layout}} (std\+::string \&error)
-\begin{DoxyCompactList}\small\item\em For defining the form\textquotesingle{}s layout. \end{DoxyCompactList}\item 
-virtual void \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a7644f0c8d1bc55b11a7bd0e884b84e25}{on\+\_\+start}} ()
-\begin{DoxyCompactList}\small\item\em Called after \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a4e2e100ef451160db1cb71453bb19eed}{on\+\_\+layout()}} just before the form is displayed. This is a good place to close the splash screen. The splash screen itself is best created in \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a50ea7e5b9915f781f1d298cff2f37a85}{on\+\_\+initialize}}. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em For defining the form\textquotesingle{}s layout.\end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1form_a7644f0c8d1bc55b11a7bd0e884b84e25}\label{classliblec_1_1lecui_1_1form_a7644f0c8d1bc55b11a7bd0e884b84e25}} 
+virtual void {\bfseries on\+\_\+start} ()
+\begin{DoxyCompactList}\small\item\em Called after \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a4e2e100ef451160db1cb71453bb19eed}{on\+\_\+layout()}} just before the form is displayed. This is a good place to close the splash screen. The splash screen itself is best created in \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a50ea7e5b9915f781f1d298cff2f37a85}{on\+\_\+initialize}}.\end{DoxyCompactList}\item 
 virtual void \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a108d0c9b7d47cfd1a808cb47ebfe176d}{on\+\_\+close}} ()
-\begin{DoxyCompactList}\small\item\em Called when either the close button on the top right is clicked, or when Alt+\+F4 is pressed on the keyboard. This is a good place to ask the user if they really wish to close the form, and then call \mbox{\hyperlink{classliblec_1_1lecui_1_1form_ab2331a6e572e672d4e875302da594666}{close()}} if they confirm. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Called when either the close button on the top right is clicked, or when Alt+\+F4 is pressed on the keyboard. This is a good place to ask the user if they really wish to close the form, and then call \mbox{\hyperlink{classliblec_1_1lecui_1_1form_ab2331a6e572e672d4e875302da594666}{close()}} if they confirm.\end{DoxyCompactList}\item 
 virtual void \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a977a34d040d594164edcda08b8cb565d}{on\+\_\+shutdown}} ()
-\begin{DoxyCompactList}\small\item\em Called after closing is confirmed, before the form\textquotesingle{}s destructor is called. This is a good place to save user settings. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Called after closing is confirmed, before the form\textquotesingle{}s destructor is called. This is a good place to save user settings.\end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a3477fae3ae3d391f62c1d0e04cf0e1af}{prompt}} (const std\+::string \&question)
-\begin{DoxyCompactList}\small\item\em Prompt the user for confirmation of an action. Displays a small modal message box with yes-\/no buttons. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Prompt the user for confirmation of an action. Displays a small modal message box with yes-\/no buttons.\end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classliblec_1_1lecui_1_1form_ae4b44163b6dc7684f0192343d203c7fe}{message}} (const std\+::string \&message)
-\begin{DoxyCompactList}\small\item\em Display a message to the user in the form of a small modal message box with an ok button. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a144e42ae28a7c24d470d5b9b147efebd}{update}} ()
+\begin{DoxyCompactList}\small\item\em Display a message to the user in the form of a small modal message box with an ok button.\end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1form_a144e42ae28a7c24d470d5b9b147efebd}\label{classliblec_1_1lecui_1_1form_a144e42ae28a7c24d470d5b9b147efebd}} 
+void {\bfseries update} ()
 \begin{DoxyCompactList}\small\item\em Update the form. A low resource refresh of the current page. Typically necessary only after adding a new widget at runtime to the currently displayed page to avoid a situation whereby the widget is only displayed the next time the mouse moves or the next time the tab key is pressed. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classliblec_1_1lecui_1_1form_ae2a0525beb9d780abd15a9baa54ac3f7}{reload}} ()
 \begin{DoxyCompactList}\small\item\em Reload the form and all its widgets. A high resource reload of the entire form\textquotesingle{}s graphic resources. The following things happen when this method is called\+: \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a1a9fc229d83e98928bf2b47bf5f186fc}{on\+\_\+caption}} (std\+::function$<$ void()$>$on\+\_\+caption, const std\+::string \&tooltip)
-\begin{DoxyCompactList}\small\item\em Set the handler to be called when the form\textquotesingle{}s caption is clicked. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Set the handler to be called when the form\textquotesingle{}s caption is clicked.\end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a4e99b2e92968755f60f112bdf2a86650}{on\+\_\+drop\+\_\+files}} (std\+::function$<$ void(const std\+::string \&file)$>$on\+\_\+drop\+\_\+files)
-\begin{DoxyCompactList}\small\item\em Set the handler to be called when files are dropped on the form. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Set the handler to be called when files are dropped on the form.\end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classliblec_1_1lecui_1_1form_aca1171d5db45597a569f7ec7e592eb37}{on\+\_\+receive\+\_\+data}} (std\+::function$<$ void(const std\+::string \&data)$>$on\+\_\+receive\+\_\+data)
-\begin{DoxyCompactList}\small\item\em Set the handler to be called when data is received from another instance. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Set the handler to be called when data is received from another instance.\end{DoxyCompactList}\item 
 float \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a045f0d9eed1c1ede57fa9618b49fdbea}{get\+\_\+dpi\+\_\+scale}} ()
-\begin{DoxyCompactList}\small\item\em Get the current DPI scale. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Get the current DPI scale.\end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a5047dd2b740499e48f13dd73747056f7}{allow\+\_\+minimize}} ()
-\begin{DoxyCompactList}\small\item\em Minimize the form. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Minimize the form.\end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classliblec_1_1lecui_1_1form_ace55cac000c3c24063d5e4e278054c4d}{restore}} ()
-\begin{DoxyCompactList}\small\item\em Restore the form. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Restore the form.\end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a24aed3ecd75221fefebf159b7329ed75}{maximize}} ()
-\begin{DoxyCompactList}\small\item\em Maximize the form. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Maximize the form.\end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a9e113933e10a1aa1f66a5edfe8636d9d}{hide}} ()
-\begin{DoxyCompactList}\small\item\em Hide the form. Useful when using a system tray icon. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Hide the form. Useful when using a system tray icon.\end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classliblec_1_1lecui_1_1form_aba58f74e51680cb2b08fcb3eca90673a}{visible}} ()
-\begin{DoxyCompactList}\small\item\em Check whether the form is visible. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Check whether the form is visible.\end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a885976c337b0419d38f1b1eeb51d33ae}{show}} ()
-\begin{DoxyCompactList}\small\item\em Show the form. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Show the form.\end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a545210f3ab728635216caeab49efd949}{minimized}} ()
-\begin{DoxyCompactList}\small\item\em Check whether the form is minimized. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Check whether the form is minimized.\end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 static std\+::string \mbox{\hyperlink{classliblec_1_1lecui_1_1form_ac4bd8d0b31ed1a0cc19c2960fe2899fb}{menu\+\_\+form\+\_\+caption}} ()
-\begin{DoxyCompactList}\small\item\em A special caption used to make a menu form. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em A special caption used to make a menu form.\end{DoxyCompactList}\item 
 static std\+::string \mbox{\hyperlink{classliblec_1_1lecui_1_1form_ae46009d2c64c15324241ad39c349ebee}{tooltip\+\_\+form\+\_\+caption}} ()
-\begin{DoxyCompactList}\small\item\em A special caption used to make a tooltip form. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em A special caption used to make a tooltip form.\end{DoxyCompactList}\item 
 static bool \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a69b445cd2e22e5bb90f46f081499e7a8}{keep\+\_\+alive}} ()
-\begin{DoxyCompactList}\small\item\em Keep UI responsive during lengthy calls. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Keep UI responsive during lengthy calls.\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-Form base class. The user must inherit from this class and call one of the two constructors from its own constructor. 
+Form base class. The user must inherit from this class and call one of the two constructors from its own constructor.
 
 Fully DPI aware, but needs to be recreated if the system DPI changes while already open to rescale properly.
 
@@ -91,7 +93,7 @@ Fully DPI aware, but needs to be recreated if the system DPI changes while alrea
 
 
 
-Make a form with no parent. 
+Make a form with no parent.
 
 
 \begin{DoxyParams}{Parameters}
@@ -106,7 +108,7 @@ Make a form with no parent.
 
 
 
-Make a modal form. 
+Make a modal form.
 
 
 \begin{DoxyParams}{Parameters}
@@ -128,7 +130,7 @@ The parent form remains active in the background, with all timers running. If it
 
 
 
-Minimize the form. 
+Minimize the form.
 
 This method does nothing if the form is already minimized or if it doesn\textquotesingle{}t have the minimize button.\mbox{\Hypertarget{classliblec_1_1lecui_1_1form_ab2331a6e572e672d4e875302da594666}\label{classliblec_1_1lecui_1_1form_ab2331a6e572e672d4e875302da594666}} 
 \index{liblec::lecui::form@{liblec::lecui::form}!close@{close}}
@@ -138,7 +140,7 @@ This method does nothing if the form is already minimized or if it doesn\textquo
 
 
 
-Close the form. When this is called all activity is stopped and the form is closed. 
+Close the form. When this is called all activity is stopped and the form is closed.
 
 If called in \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a50ea7e5b9915f781f1d298cff2f37a85}{on\+\_\+initialize}} then on\+\_\+layout is never called and the app is terminated gracefully.\mbox{\Hypertarget{classliblec_1_1lecui_1_1form_a54ba88558be331b76724721055130beb}\label{classliblec_1_1lecui_1_1form_a54ba88558be331b76724721055130beb}} 
 \index{liblec::lecui::form@{liblec::lecui::form}!create@{create}}
@@ -148,7 +150,7 @@ If called in \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a50ea7e5b9915f781f1d2
 
 
 
-Create the form. 
+Create the form.
 
 
 \begin{DoxyParams}{Parameters}
@@ -168,7 +170,7 @@ This is a blocking function and will only return when either the form is closed 
 
 
 
-Force this instance to run even if an existing instance is found. 
+Force this instance to run even if an existing instance is found.
 
 This method causes the \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a54ba88558be331b76724721055130beb}{create}} method to continue execution regardless of whether an existing instance is present. You would typically do this if you need your app to reach the \mbox{\hyperlink{}{initialize}} method without the intention of allowing it to go as far as \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a4e2e100ef451160db1cb71453bb19eed}{on\+\_\+layout}}, in which case you would call the \mbox{\hyperlink{classliblec_1_1lecui_1_1form_ab2331a6e572e672d4e875302da594666}{close}} method within \mbox{\hyperlink{}{initialize}}. A typical use-\/case is when the app is calling itself during an update process. Not calling this method would mean the spawning of the new instance is not guaranteed since the previous may still be running when the new one reaches the instance checking logic. The best place to call this method is in the constructor of the class that inherits from this base class.\mbox{\Hypertarget{classliblec_1_1lecui_1_1form_a045f0d9eed1c1ede57fa9618b49fdbea}\label{classliblec_1_1lecui_1_1form_a045f0d9eed1c1ede57fa9618b49fdbea}} 
 \index{liblec::lecui::form@{liblec::lecui::form}!get\_dpi\_scale@{get\_dpi\_scale}}
@@ -178,7 +180,7 @@ This method causes the \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a54ba88558b
 
 
 
-Get the current DPI scale. 
+Get the current DPI scale.
 
 \begin{DoxyReturn}{Returns}
 The current DPI scale.
@@ -191,9 +193,9 @@ The current DPI scale.
 
 
 
-Hide the form. Useful when using a system tray icon. 
+Hide the form. Useful when using a system tray icon.
 
-Note that once called the form can only be restored through a call to the \mbox{\hyperlink{classliblec_1_1lecui_1_1form_ace55cac000c3c24063d5e4e278054c4d}{restore}} method. Besides that there will be no other means to make the form visible again. To manipulate a form\textquotesingle{}s visibility at creation time use the \mbox{\hyperlink{classliblec_1_1lecui_1_1controls_a2a8d288d9690dd1fa9ac20456dc9eedf}{controls\+::start\+\_\+hidden}} method.\mbox{\Hypertarget{classliblec_1_1lecui_1_1form_a69b445cd2e22e5bb90f46f081499e7a8}\label{classliblec_1_1lecui_1_1form_a69b445cd2e22e5bb90f46f081499e7a8}} 
+Note that once called the form can only be restored through a call to the \mbox{\hyperlink{classliblec_1_1lecui_1_1form_ace55cac000c3c24063d5e4e278054c4d}{restore}} method. Besides that there will be no other means to make the form visible again. To manipulate a form\textquotesingle{}s visibility at creation time use the \mbox{\hyperlink{classliblec_1_1lecui_1_1controls_a278096b6679a0c5e4368656f973c5bcb}{controls\+::start\+\_\+hidden}} method.\mbox{\Hypertarget{classliblec_1_1lecui_1_1form_a69b445cd2e22e5bb90f46f081499e7a8}\label{classliblec_1_1lecui_1_1form_a69b445cd2e22e5bb90f46f081499e7a8}} 
 \index{liblec::lecui::form@{liblec::lecui::form}!keep\_alive@{keep\_alive}}
 \index{keep\_alive@{keep\_alive}!liblec::lecui::form@{liblec::lecui::form}}
 \doxysubsubsection{\texorpdfstring{keep\_alive()}{keep\_alive()}}
@@ -201,7 +203,7 @@ Note that once called the form can only be restored through a call to the \mbox{
 
 
 
-Keep UI responsive during lengthy calls. 
+Keep UI responsive during lengthy calls.
 
 \begin{DoxyReturn}{Returns}
 Returns true to continue operation, and false to quit immediately.
@@ -216,7 +218,7 @@ In lengthy operations it is useful to call this method between successive steps 
 
 
 
-Maximize the form. 
+Maximize the form.
 
 This method does nothing if the form is already maximized or if it doesn\textquotesingle{}t have the maximize button.\mbox{\Hypertarget{classliblec_1_1lecui_1_1form_ac4bd8d0b31ed1a0cc19c2960fe2899fb}\label{classliblec_1_1lecui_1_1form_ac4bd8d0b31ed1a0cc19c2960fe2899fb}} 
 \index{liblec::lecui::form@{liblec::lecui::form}!menu\_form\_caption@{menu\_form\_caption}}
@@ -226,7 +228,7 @@ This method does nothing if the form is already maximized or if it doesn\textquo
 
 
 
-A special caption used to make a menu form. 
+A special caption used to make a menu form.
 
 \begin{DoxyReturn}{Returns}
 The internally reserved caption for menu forms.
@@ -239,7 +241,7 @@ The internally reserved caption for menu forms.
 
 
 
-Display a message to the user in the form of a small modal message box with an ok button. 
+Display a message to the user in the form of a small modal message box with an ok button.
 
 
 \begin{DoxyParams}{Parameters}
@@ -256,7 +258,7 @@ Is centered to the form, and inherits the caption from the form.\mbox{\Hypertarg
 
 
 
-Check whether the form is minimized. 
+Check whether the form is minimized.
 
 \begin{DoxyReturn}{Returns}
 Returns true if the form is minimized, else returns false.
@@ -269,7 +271,7 @@ Returns true if the form is minimized, else returns false.
 
 
 
-Move the form. 
+Move the form.
 
 
 \begin{DoxyParams}{Parameters}
@@ -284,7 +286,7 @@ Move the form.
 
 
 
-Move the form. 
+Move the form.
 
 
 \begin{DoxyParams}{Parameters}
@@ -299,7 +301,7 @@ Move the form.
 
 
 
-Set the handler to be called when the form\textquotesingle{}s caption is clicked. 
+Set the handler to be called when the form\textquotesingle{}s caption is clicked.
 
 
 \begin{DoxyParams}{Parameters}
@@ -318,7 +320,7 @@ The handler has to be set in \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a4e2e
 
 
 
-Called when either the close button on the top right is clicked, or when Alt+\+F4 is pressed on the keyboard. This is a good place to ask the user if they really wish to close the form, and then call \mbox{\hyperlink{classliblec_1_1lecui_1_1form_ab2331a6e572e672d4e875302da594666}{close()}} if they confirm. 
+Called when either the close button on the top right is clicked, or when Alt+\+F4 is pressed on the keyboard. This is a good place to ask the user if they really wish to close the form, and then call \mbox{\hyperlink{classliblec_1_1lecui_1_1form_ab2331a6e572e672d4e875302da594666}{close()}} if they confirm.
 
 \mbox{\hyperlink{classliblec_1_1lecui_1_1form_ab2331a6e572e672d4e875302da594666}{close()}} is called internally if this virtual method is never overriden. \mbox{\Hypertarget{classliblec_1_1lecui_1_1form_a4e99b2e92968755f60f112bdf2a86650}\label{classliblec_1_1lecui_1_1form_a4e99b2e92968755f60f112bdf2a86650}} 
 \index{liblec::lecui::form@{liblec::lecui::form}!on\_drop\_files@{on\_drop\_files}}
@@ -328,7 +330,7 @@ Called when either the close button on the top right is clicked, or when Alt+\+F
 
 
 
-Set the handler to be called when files are dropped on the form. 
+Set the handler to be called when files are dropped on the form.
 
 
 \begin{DoxyParams}{Parameters}
@@ -365,7 +367,7 @@ Return false if you want to discountinue application initialization. This means 
 
 
 
-For defining the form\textquotesingle{}s layout. 
+For defining the form\textquotesingle{}s layout.
 
 
 \begin{DoxyParams}{Parameters}
@@ -385,7 +387,7 @@ It is recommended to add at least one page container to the form in this method 
 
 
 
-Set the handler to be called when data is received from another instance. 
+Set the handler to be called when data is received from another instance.
 
 
 \begin{DoxyParams}{Parameters}
@@ -400,19 +402,9 @@ Set the handler to be called when data is received from another instance.
 
 
 
-Called after closing is confirmed, before the form\textquotesingle{}s destructor is called. This is a good place to save user settings. 
+Called after closing is confirmed, before the form\textquotesingle{}s destructor is called. This is a good place to save user settings.
 
-Avoid such logic errors as attempting to create widgets here.\mbox{\Hypertarget{classliblec_1_1lecui_1_1form_a7644f0c8d1bc55b11a7bd0e884b84e25}\label{classliblec_1_1lecui_1_1form_a7644f0c8d1bc55b11a7bd0e884b84e25}} 
-\index{liblec::lecui::form@{liblec::lecui::form}!on\_start@{on\_start}}
-\index{on\_start@{on\_start}!liblec::lecui::form@{liblec::lecui::form}}
-\doxysubsubsection{\texorpdfstring{on\_start()}{on\_start()}}
-{\footnotesize\ttfamily virtual void liblec\+::lecui\+::form\+::on\+\_\+start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
-
-
-
-Called after \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a4e2e100ef451160db1cb71453bb19eed}{on\+\_\+layout()}} just before the form is displayed. This is a good place to close the splash screen. The splash screen itself is best created in \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a50ea7e5b9915f781f1d298cff2f37a85}{on\+\_\+initialize}}. 
-
-\mbox{\Hypertarget{classliblec_1_1lecui_1_1form_a3477fae3ae3d391f62c1d0e04cf0e1af}\label{classliblec_1_1lecui_1_1form_a3477fae3ae3d391f62c1d0e04cf0e1af}} 
+Avoid such logic errors as attempting to create widgets here.\mbox{\Hypertarget{classliblec_1_1lecui_1_1form_a3477fae3ae3d391f62c1d0e04cf0e1af}\label{classliblec_1_1lecui_1_1form_a3477fae3ae3d391f62c1d0e04cf0e1af}} 
 \index{liblec::lecui::form@{liblec::lecui::form}!prompt@{prompt}}
 \index{prompt@{prompt}!liblec::lecui::form@{liblec::lecui::form}}
 \doxysubsubsection{\texorpdfstring{prompt()}{prompt()}}
@@ -420,7 +412,7 @@ Called after \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a4e2e100ef451160db1cb
 
 
 
-Prompt the user for confirmation of an action. Displays a small modal message box with yes-\/no buttons. 
+Prompt the user for confirmation of an action. Displays a small modal message box with yes-\/no buttons.
 
 
 \begin{DoxyParams}{Parameters}
@@ -446,7 +438,7 @@ Reload the form and all its widgets. A high resource reload of the entire form\t
 \begin{DoxyEnumerate}
 \item The form\textquotesingle{}s graphic resources are all recreated.
 \item The graphic resources for the currently displayed page are all recreated.
-\item The graphic resources of all pages that have been added to the form but are not currently displayed are all recreated.
+\item The graphic resources of all pages that have been added to the form but are not currently displayed are all recreated. 
 \end{DoxyEnumerate}
 
 Depending on the computing platform, this can take a considerable amount of time in a large app, ranging from milliseconds to actual seconds. The better the app is designed the less time it will take, as such applications typically only create pages on-\/demand. However, even in a well designed app the difference with \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a144e42ae28a7c24d470d5b9b147efebd}{update()}} will be obvious if many pages are currently open. Note\+: this doesn\textquotesingle{}t change the form\textquotesingle{}s \textquotesingle{}state\textquotesingle{}, e.\+g. if a widget was closed it won\textquotesingle{}t magically reappear. This reloads the current \textquotesingle{}state\textquotesingle{}. \mbox{\Hypertarget{classliblec_1_1lecui_1_1form_ace55cac000c3c24063d5e4e278054c4d}\label{classliblec_1_1lecui_1_1form_ace55cac000c3c24063d5e4e278054c4d}} 
@@ -457,7 +449,7 @@ Depending on the computing platform, this can take a considerable amount of time
 
 
 
-Restore the form. 
+Restore the form.
 
 If the form is minimized it will be restored. If it is maximized it will also be restored to normal size. If the form is already in normal form nothing will be done (except bring it to the foreground if it isn\textquotesingle{}t already). If the form was hidded it will be shown.\mbox{\Hypertarget{classliblec_1_1lecui_1_1form_a885976c337b0419d38f1b1eeb51d33ae}\label{classliblec_1_1lecui_1_1form_a885976c337b0419d38f1b1eeb51d33ae}} 
 \index{liblec::lecui::form@{liblec::lecui::form}!show@{show}}
@@ -467,7 +459,7 @@ If the form is minimized it will be restored. If it is maximized it will also be
 
 
 
-Show the form. 
+Show the form.
 
 Neccessary to display a form that was hidden through a call to \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a9e113933e10a1aa1f66a5edfe8636d9d}{hide}}.\mbox{\Hypertarget{classliblec_1_1lecui_1_1form_ae46009d2c64c15324241ad39c349ebee}\label{classliblec_1_1lecui_1_1form_ae46009d2c64c15324241ad39c349ebee}} 
 \index{liblec::lecui::form@{liblec::lecui::form}!tooltip\_form\_caption@{tooltip\_form\_caption}}
@@ -477,21 +469,11 @@ Neccessary to display a form that was hidden through a call to \mbox{\hyperlink{
 
 
 
-A special caption used to make a tooltip form. 
+A special caption used to make a tooltip form.
 
 \begin{DoxyReturn}{Returns}
 The internally reserved caption for tooltip forms.
 \end{DoxyReturn}
-\mbox{\Hypertarget{classliblec_1_1lecui_1_1form_a144e42ae28a7c24d470d5b9b147efebd}\label{classliblec_1_1lecui_1_1form_a144e42ae28a7c24d470d5b9b147efebd}} 
-\index{liblec::lecui::form@{liblec::lecui::form}!update@{update}}
-\index{update@{update}!liblec::lecui::form@{liblec::lecui::form}}
-\doxysubsubsection{\texorpdfstring{update()}{update()}}
-{\footnotesize\ttfamily void liblec\+::lecui\+::form\+::update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
-
-
-
-Update the form. A low resource refresh of the current page. Typically necessary only after adding a new widget at runtime to the currently displayed page to avoid a situation whereby the widget is only displayed the next time the mouse moves or the next time the tab key is pressed. 
-
 \mbox{\Hypertarget{classliblec_1_1lecui_1_1form_aba58f74e51680cb2b08fcb3eca90673a}\label{classliblec_1_1lecui_1_1form_aba58f74e51680cb2b08fcb3eca90673a}} 
 \index{liblec::lecui::form@{liblec::lecui::form}!visible@{visible}}
 \index{visible@{visible}!liblec::lecui::form@{liblec::lecui::form}}
@@ -500,7 +482,7 @@ Update the form. A low resource refresh of the current page. Typically necessary
 
 
 
-Check whether the form is visible. 
+Check whether the form is visible.
 
 \begin{DoxyReturn}{Returns}
 Returns true if the form is visible, even if it\textquotesingle{}s minimized or not in the foreground, else returns false.

@@ -1,0 +1,109 @@
+\hypertarget{progress__bar_8h_source}{}\doxysection{progress\+\_\+bar.\+h}
+\label{progress__bar_8h_source}\index{widgets/progress\_bar.h@{widgets/progress\_bar.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{//}}
+\DoxyCodeLine{2 \textcolor{comment}{// progress\_bar.h -\/ progress bar widget interface}}
+\DoxyCodeLine{3 \textcolor{comment}{//}}
+\DoxyCodeLine{4 \textcolor{comment}{// lecui user interface library, part of the liblec library}}
+\DoxyCodeLine{5 \textcolor{comment}{// Copyright (c) 2019 Alec Musasa (alecmus at live dot com)}}
+\DoxyCodeLine{6 \textcolor{comment}{//}}
+\DoxyCodeLine{7 \textcolor{comment}{// Released under the MIT license. For full details see the}}
+\DoxyCodeLine{8 \textcolor{comment}{// file LICENSE.txt}}
+\DoxyCodeLine{9 \textcolor{comment}{//}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#if defined(LECUI\_EXPORTS)}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include "{}widget.h"{}}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <liblec/lecui/widgets/widget.h>}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{keyword}{namespace }liblec \{}
+\DoxyCodeLine{20     \textcolor{keyword}{namespace }lecui \{}
+\DoxyCodeLine{21         \textcolor{keyword}{namespace }widgets \{}
+\DoxyCodeLine{24             \textcolor{keyword}{class }lecui\_api \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1progress__bar}{progress\_bar}} : \textcolor{keyword}{public} \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1widget}{widget}} \{}
+\DoxyCodeLine{25                 \textcolor{keywordtype}{float} \_border = 1.f;}
+\DoxyCodeLine{26                 \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \_color\_border;}
+\DoxyCodeLine{27                 \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \_color\_empty;}
+\DoxyCodeLine{28                 \textcolor{keywordtype}{float} \_percentage = 0.f;}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30             \textcolor{keyword}{public}:}
+\DoxyCodeLine{31                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1progress__bar}{progress\_bar}}() \{}
+\DoxyCodeLine{32                     \_rect.size(\{ 200.f, 12.f \});}
+\DoxyCodeLine{33                 \}}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35                 \textcolor{keywordtype}{bool} operator==(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1progress__bar}{progress\_bar}}\&);}
+\DoxyCodeLine{36                 \textcolor{keywordtype}{bool} operator!=(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1progress__bar}{progress\_bar}}\&);}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38                 \textcolor{comment}{// generic widget}}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40                 std::string\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1progress__bar_a0a33c0b1518cdaf9a0f27ca5d44d1356}{text}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{41                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1progress__bar}{progress\_bar}}\& text(\textcolor{keyword}{const} std::string\& text);}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43                 std::string\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1progress__bar_a1cb7e650bcf5b25a7dee34bc1f4de6f8}{tooltip}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{44                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1progress__bar}{progress\_bar}}\& tooltip(\textcolor{keyword}{const} std::string\& tooltip);}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46                 \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{lecui::rect}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1progress__bar_a1cc16bcd375fd00d2d1638af0b4c3ca5}{rect}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{47                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1progress__bar}{progress\_bar}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{rect}}(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{lecui::rect}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{rect}});}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{49                 \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params}{resize\_params}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1progress__bar_a93d6804220357ffb6fb3d1f152ce0940}{on\_resize}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{50                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1progress__bar}{progress\_bar}}\& on\_resize(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params}{resize\_params}}\& on\_resize);}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{52                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1widget_a893d9dfd53890f3faf6829a6c02aca84}{cursor\_type}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1progress__bar_a1a26d83272bc37a0953b480732391896}{cursor}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{53                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1progress__bar}{progress\_bar}}\& cursor(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1widget_a893d9dfd53890f3faf6829a6c02aca84}{cursor\_type}} cursor);}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55                 std::string\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1progress__bar_ab61808b65446144abeda2140fef51344}{font}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{56                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1progress__bar}{progress\_bar}}\& font(\textcolor{keyword}{const} std::string\& font);}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58                 \textcolor{keywordtype}{float}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1progress__bar_a50b67e9951a96d182baa2d081cc0d06a}{font\_size}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{59                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1progress__bar}{progress\_bar}}\& font\_size(\textcolor{keyword}{const} \textcolor{keywordtype}{float}\& font\_size);}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61                 \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1progress__bar_ac3b1b13e1a74d25571d4dcd3e0ba2488}{color\_text}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{62                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1progress__bar}{progress\_bar}}\& color\_text(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& color\_text);}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{64                 \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1progress__bar_a9cb374444f0ea9116b003fab902749db}{color\_fill}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{65                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1progress__bar}{progress\_bar}}\& color\_fill(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& color\_fill);}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{67                 \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1progress__bar_aa5b5fb4ba8aa17ca9582b80bad5cbaed}{color\_hot}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{68                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1progress__bar}{progress\_bar}}\& color\_hot(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& color\_hot);}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{70                 \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1progress__bar_a2170d956099d9eaaf138163f6f186658}{color\_selected}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{71                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1progress__bar}{progress\_bar}}\& color\_selected(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& color\_selected);}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73                 \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1progress__bar_ab1c2ba63b4795ef4458e714514cbc23f}{color\_disabled}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{74                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1progress__bar}{progress\_bar}}\& color\_disabled(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& color\_disabled);}
+\DoxyCodeLine{75 }
+\DoxyCodeLine{76                 \textcolor{comment}{// widget specific widget}}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{80                 \textcolor{keywordtype}{float}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1progress__bar_af5c4679240bab5972f76b4578c3d3a3f}{border}}();}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{85                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1progress__bar}{progress\_bar}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1progress__bar_a69a956d3d0e7cfa1d6e3fd382c134865}{border}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float}\& border);}
+\DoxyCodeLine{86 }
+\DoxyCodeLine{89                 \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1progress__bar_a799b9cd64fb851a004a49cbf3c5817b9}{color\_border}}();}
+\DoxyCodeLine{90 }
+\DoxyCodeLine{94                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1progress__bar}{progress\_bar}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1progress__bar_a17352225fd3517a72988277b0b3ed493}{color\_border}}(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& color\_border);}
+\DoxyCodeLine{95 }
+\DoxyCodeLine{98                 \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1progress__bar_a26c8130a49fb599a2fb8f6461f936875}{color\_empty}}();}
+\DoxyCodeLine{99 }
+\DoxyCodeLine{103                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1progress__bar}{progress\_bar}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1progress__bar_ae5be1345950f045d6609c04d2e2e3b37}{color\_empty}}(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& color\_empty);}
+\DoxyCodeLine{104 }
+\DoxyCodeLine{107                 \textcolor{keywordtype}{float}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1progress__bar_aabe559455db0035825f3b97f2f2e2d79}{percentage}}();}
+\DoxyCodeLine{108 }
+\DoxyCodeLine{112                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1progress__bar}{progress\_bar}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1progress__bar_a619ee3ef499fd4a2028b9ee20b15b248}{percentage}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float}\& percentage);}
+\DoxyCodeLine{113 }
+\DoxyCodeLine{114             \textcolor{keyword}{public}:}
+\DoxyCodeLine{121                 [[nodiscard]]}
+\DoxyCodeLine{122                 \textcolor{keyword}{static} \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1progress__bar}{progress\_bar}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1progress__bar_a35048d85012b36ae8077508124d53647}{add}}(\mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1page}{containers::page}}\& page, \textcolor{keyword}{const} std::string\& alias = std::string());}
+\DoxyCodeLine{123 }
+\DoxyCodeLine{130                 [[nodiscard]]}
+\DoxyCodeLine{131                 \textcolor{keyword}{static} \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1progress__bar}{progress\_bar}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1progress__bar_a24aa38e695a5b8ddd0104629aa759beb}{get}}(\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}}\& fm, \textcolor{keyword}{const} std::string\& path);}
+\DoxyCodeLine{132             \};}
+\DoxyCodeLine{133         \}}
+\DoxyCodeLine{134     \}}
+\DoxyCodeLine{135 \}}
+\DoxyCodeLine{136 }
+\DoxyCodeLine{138 \textcolor{preprocessor}{\#define get\_progress\_bar(path) liblec::lecui::widgets::progress\_bar::get(*this, path)}}
+
+\end{DoxyCode}

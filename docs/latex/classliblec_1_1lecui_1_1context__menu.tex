@@ -4,21 +4,22 @@
 \begin{DoxyCompactItemize}
 \item 
 struct \mbox{\hyperlink{structliblec_1_1lecui_1_1context__menu_1_1specs}{specs}}
-\begin{DoxyCompactList}\small\item\em The context menu specifications. By default the menu is pinned to the top left corner of the mouse cursor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em The context menu specifications. By default the menu is pinned to the top left corner of the mouse cursor.\end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Types}
 \begin{DoxyCompactItemize}
 \item 
 enum class \mbox{\hyperlink{classliblec_1_1lecui_1_1context__menu_aaf13a430f41f8011377d77f46076871f}{pin\+\_\+type}} \{ \mbox{\hyperlink{classliblec_1_1lecui_1_1context__menu_aaf13a430f41f8011377d77f46076871fa71f262d796bed1ab30e8a2d5a8ddee6f}{bottom}}
 , \mbox{\hyperlink{classliblec_1_1lecui_1_1context__menu_aaf13a430f41f8011377d77f46076871fa7c4f29407893c334a6cb7a87bf045c0d}{right}}
  \}
-\begin{DoxyCompactList}\small\item\em Pin type. Used to determine the position of the context menu with respect to the pin rectangle. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Pin type. Used to determine the position of the context menu with respect to the pin rectangle.\end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classliblec_1_1lecui_1_1context__menu_a7003bf3c5877a532943fecb9f780f192}{context\+\_\+menu}} ()
-\begin{DoxyCompactList}\small\item\em Context menu constructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1context__menu_a7003bf3c5877a532943fecb9f780f192}\label{classliblec_1_1lecui_1_1context__menu_a7003bf3c5877a532943fecb9f780f192}} 
+{\bfseries context\+\_\+menu} ()
+\begin{DoxyCompactList}\small\item\em Context menu constructor.\end{DoxyCompactList}\item 
 std\+::string \mbox{\hyperlink{classliblec_1_1lecui_1_1context__menu_a20b6afe50b3a8c99cc12d0d4392ae6c4}{operator()}} (\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}} \&fm, const \mbox{\hyperlink{structliblec_1_1lecui_1_1context__menu_1_1specs}{specs}} \&menu\+\_\+specs)
-\begin{DoxyCompactList}\small\item\em Display a context menu. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Display a context menu.\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Member Enumeration Documentation}
@@ -26,35 +27,22 @@ std\+::string \mbox{\hyperlink{classliblec_1_1lecui_1_1context__menu_a20b6afe50b
 \index{liblec::lecui::context\_menu@{liblec::lecui::context\_menu}!pin\_type@{pin\_type}}
 \index{pin\_type@{pin\_type}!liblec::lecui::context\_menu@{liblec::lecui::context\_menu}}
 \doxysubsubsection{\texorpdfstring{pin\_type}{pin\_type}}
-{\footnotesize\ttfamily enum \mbox{\hyperlink{classliblec_1_1lecui_1_1context__menu_aaf13a430f41f8011377d77f46076871f}{liblec\+::lecui\+::context\+\_\+menu\+::pin\+\_\+type}}\hspace{0.3cm}{\ttfamily [strong]}}
+{\footnotesize\ttfamily enum class \mbox{\hyperlink{classliblec_1_1lecui_1_1context__menu_aaf13a430f41f8011377d77f46076871f}{liblec\+::lecui\+::context\+\_\+menu\+::pin\+\_\+type}}\hspace{0.3cm}{\ttfamily [strong]}}
 
 
 
-Pin type. Used to determine the position of the context menu with respect to the pin rectangle. 
+Pin type. Used to determine the position of the context menu with respect to the pin rectangle.
 
 \begin{DoxyEnumFields}{Enumerator}
 \raisebox{\heightof{T}}[0pt][0pt]{\index{bottom@{bottom}!liblec::lecui::context\_menu@{liblec::lecui::context\_menu}}\index{liblec::lecui::context\_menu@{liblec::lecui::context\_menu}!bottom@{bottom}}}\mbox{\Hypertarget{classliblec_1_1lecui_1_1context__menu_aaf13a430f41f8011377d77f46076871fa71f262d796bed1ab30e8a2d5a8ddee6f}\label{classliblec_1_1lecui_1_1context__menu_aaf13a430f41f8011377d77f46076871fa71f262d796bed1ab30e8a2d5a8ddee6f}} 
-bottom&If there is enough room below the pin rectangle, or if the area below is larger than the area above, the menu will be pinned at the bottom, otherwise it will be pinned at the top. The width of the menu will be equal to the width of the pin rectangle. \\
+bottom&If there is enough room below the pin rectangle, or if the area below is larger than the area above, the menu will be pinned at the bottom, otherwise it will be pinned at the top. The width of the menu will be equal to the width of the pin rectangle.\\
 \hline
 
 \raisebox{\heightof{T}}[0pt][0pt]{\index{right@{right}!liblec::lecui::context\_menu@{liblec::lecui::context\_menu}}\index{liblec::lecui::context\_menu@{liblec::lecui::context\_menu}!right@{right}}}\mbox{\Hypertarget{classliblec_1_1lecui_1_1context__menu_aaf13a430f41f8011377d77f46076871fa7c4f29407893c334a6cb7a87bf045c0d}\label{classliblec_1_1lecui_1_1context__menu_aaf13a430f41f8011377d77f46076871fa7c4f29407893c334a6cb7a87bf045c0d}} 
-right&If there is enough room on the right of the pin rectangle, or if the area on the right is larger than the area on the left, the menu will be pinned to the right, otherwise it will be pinned to the left. \\
+right&If there is enough room on the right of the pin rectangle, or if the area on the right is larger than the area on the left, the menu will be pinned to the right, otherwise it will be pinned to the left.\\
 \hline
 
 \end{DoxyEnumFields}
-
-
-\doxysubsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{classliblec_1_1lecui_1_1context__menu_a7003bf3c5877a532943fecb9f780f192}\label{classliblec_1_1lecui_1_1context__menu_a7003bf3c5877a532943fecb9f780f192}} 
-\index{liblec::lecui::context\_menu@{liblec::lecui::context\_menu}!context\_menu@{context\_menu}}
-\index{context\_menu@{context\_menu}!liblec::lecui::context\_menu@{liblec::lecui::context\_menu}}
-\doxysubsubsection{\texorpdfstring{context\_menu()}{context\_menu()}}
-{\footnotesize\ttfamily liblec\+::lecui\+::context\+\_\+menu\+::context\+\_\+menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
-
-
-
-Context menu constructor. 
-
 
 
 \doxysubsection{Member Function Documentation}
@@ -66,7 +54,7 @@ Context menu constructor.
 
 
 
-Display a context menu. 
+Display a context menu.
 
 
 \begin{DoxyParams}{Parameters}

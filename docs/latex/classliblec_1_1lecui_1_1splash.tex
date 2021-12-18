@@ -2,7 +2,7 @@
 \label{classliblec_1_1lecui_1_1splash}\index{liblec::lecui::splash@{liblec::lecui::splash}}
 
 
-Splash screen class. Useful for displaying graphics while app is loading.  
+Splash screen class. Useful for displaying graphics while app is loading. 
 
 
 
@@ -16,15 +16,14 @@ Splash screen class. Useful for displaying graphics while app is loading.
 {\bfseries splash} (\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}} \&fm)
 \item 
 bool \mbox{\hyperlink{classliblec_1_1lecui_1_1splash_af0489764cd75f58d372509433beef140}{display}} (int png\+\_\+resource, bool dpi\+\_\+aware, std\+::string \&error)
-\begin{DoxyCompactList}\small\item\em Display splash screen image. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classliblec_1_1lecui_1_1splash_aa97d29ad159e313a7baa214b3a234c48}{remove}} ()
-\begin{DoxyCompactList}\small\item\em Remove splash screen image. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Display splash screen image.\end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1splash_aa97d29ad159e313a7baa214b3a234c48}\label{classliblec_1_1lecui_1_1splash_aa97d29ad159e313a7baa214b3a234c48}} 
+void {\bfseries remove} ()
+\begin{DoxyCompactList}\small\item\em Remove splash screen image.\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-Splash screen class. Useful for displaying graphics while app is loading. 
-
-
+Splash screen class. Useful for displaying graphics while app is loading.
 
 \doxysubsection{Member Function Documentation}
 \mbox{\Hypertarget{classliblec_1_1lecui_1_1splash_af0489764cd75f58d372509433beef140}\label{classliblec_1_1lecui_1_1splash_af0489764cd75f58d372509433beef140}} 
@@ -35,7 +34,7 @@ Splash screen class. Useful for displaying graphics while app is loading.
 
 
 
-Display splash screen image. 
+Display splash screen image.
 
 
 \begin{DoxyParams}{Parameters}
@@ -51,17 +50,7 @@ Returns true if successful, else false (in which case error information if writt
 \end{DoxyReturn}
 
 
-To use the same image and have it appear the same size on screens with different DPI settings set the \mbox{\hyperlink{}{dpi\+\_\+aware}} flag to true. However, if you would like to have only a sharp, pixel-\/perfect splash screen it is recommended to set the flag to false and (optionally) load a different resource based on the dpi scale reported through the \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a045f0d9eed1c1ede57fa9618b49fdbea}{form\+::get\+\_\+dpi\+\_\+scale()}} method. For example, you may have three different images\+: one for 1.\+0 up to 1.\+5 scale, another for 1.\+75 to 2.\+25 and then another for 2.\+50 and beyond. \mbox{\Hypertarget{classliblec_1_1lecui_1_1splash_aa97d29ad159e313a7baa214b3a234c48}\label{classliblec_1_1lecui_1_1splash_aa97d29ad159e313a7baa214b3a234c48}} 
-\index{liblec::lecui::splash@{liblec::lecui::splash}!remove@{remove}}
-\index{remove@{remove}!liblec::lecui::splash@{liblec::lecui::splash}}
-\doxysubsubsection{\texorpdfstring{remove()}{remove()}}
-{\footnotesize\ttfamily void liblec\+::lecui\+::splash\+::remove (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
-
-
-
-Remove splash screen image. 
-
-
+To use the same image and have it appear the same size on screens with different DPI settings set the \mbox{\hyperlink{}{dpi\+\_\+aware}} flag to true. However, if you would like to have only a sharp, pixel-\/perfect splash screen it is recommended to set the flag to false and (optionally) load a different resource based on the dpi scale reported through the \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a045f0d9eed1c1ede57fa9618b49fdbea}{form\+::get\+\_\+dpi\+\_\+scale()}} method. For example, you may have three different images\+: one for 1.\+0 up to 1.\+5 scale, another for 1.\+75 to 2.\+25 and then another for 2.\+50 and beyond. 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 

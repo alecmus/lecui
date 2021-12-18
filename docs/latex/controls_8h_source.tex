@@ -1,0 +1,82 @@
+\hypertarget{controls_8h_source}{}\doxysection{controls.\+h}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{//}}
+\DoxyCodeLine{2 \textcolor{comment}{// controls.h -\/ controls interface}}
+\DoxyCodeLine{3 \textcolor{comment}{//}}
+\DoxyCodeLine{4 \textcolor{comment}{// lecui user interface library, part of the liblec library}}
+\DoxyCodeLine{5 \textcolor{comment}{// Copyright (c) 2019 Alec Musasa (alecmus at live dot com)}}
+\DoxyCodeLine{6 \textcolor{comment}{//}}
+\DoxyCodeLine{7 \textcolor{comment}{// Released under the MIT license. For full details see the}}
+\DoxyCodeLine{8 \textcolor{comment}{// file LICENSE.txt}}
+\DoxyCodeLine{9 \textcolor{comment}{//}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#if defined(LECUI\_EXPORTS)}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include "{}form.h"{}}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <liblec/lecui/form.h>}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{keyword}{namespace }liblec \{}
+\DoxyCodeLine{20     \textcolor{keyword}{namespace }lecui \{}
+\DoxyCodeLine{23         \textcolor{keyword}{class }lecui\_api \mbox{\hyperlink{classliblec_1_1lecui_1_1controls}{controls}} \{}
+\DoxyCodeLine{24         \textcolor{keyword}{public}:}
+\DoxyCodeLine{25             \mbox{\hyperlink{classliblec_1_1lecui_1_1controls}{controls}}(\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}}\& fm);}
+\DoxyCodeLine{26             \mbox{\hyperlink{classliblec_1_1lecui_1_1controls}{\string~controls}}();}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{33             \mbox{\hyperlink{classliblec_1_1lecui_1_1controls}{controls}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1controls_aa8e909e105e67b7b784b934a9506783f}{allow\_resize}}(\textcolor{keywordtype}{bool} enable);}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{40             \mbox{\hyperlink{classliblec_1_1lecui_1_1controls}{controls}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1controls_ae18d607d1838992a22c41fe91297f7b9}{allow\_minimize}}(\textcolor{keywordtype}{bool} enable);}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{46             \mbox{\hyperlink{classliblec_1_1lecui_1_1controls}{controls}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1controls_af832e75a743615eae76232bc5091a9a3}{make\_top\_most}}(\textcolor{keywordtype}{bool} enable);}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{56             \mbox{\hyperlink{classliblec_1_1lecui_1_1controls}{controls}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1controls_a278096b6679a0c5e4368656f973c5bcb}{start\_hidden}}(\textcolor{keywordtype}{bool} hidden);}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58         \textcolor{keyword}{private}:}
+\DoxyCodeLine{59             \textcolor{keyword}{class }impl;}
+\DoxyCodeLine{60             impl\& \_d;}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{62             \textcolor{comment}{// Default constructor and copying an object of this class are not allowed}}
+\DoxyCodeLine{63             \mbox{\hyperlink{classliblec_1_1lecui_1_1controls}{controls}}() = \textcolor{keyword}{delete};}
+\DoxyCodeLine{64             \mbox{\hyperlink{classliblec_1_1lecui_1_1controls}{controls}}(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1controls}{controls}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{65             \mbox{\hyperlink{classliblec_1_1lecui_1_1controls}{controls}}\& operator=(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1controls}{controls}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{66         \};}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{70         \textcolor{keyword}{class }lecui\_api \mbox{\hyperlink{classliblec_1_1lecui_1_1dimensions}{dimensions}} \{}
+\DoxyCodeLine{71         \textcolor{keyword}{public}:}
+\DoxyCodeLine{72             \mbox{\hyperlink{classliblec_1_1lecui_1_1dimensions}{dimensions}}(\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}}\& fm);}
+\DoxyCodeLine{73             \mbox{\hyperlink{classliblec_1_1lecui_1_1dimensions}{\string~dimensions}}();}
+\DoxyCodeLine{74 }
+\DoxyCodeLine{83             \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{lecui::rect}} \mbox{\hyperlink{classliblec_1_1lecui_1_1dimensions_a5068e51fd7ab831a5b14ff7231892985}{measure\_label}}(\textcolor{keyword}{const} std::string\& formatted\_text,}
+\DoxyCodeLine{84                 \textcolor{keyword}{const} std::string\& font, \textcolor{keyword}{const} \textcolor{keywordtype}{float} font\_size,}
+\DoxyCodeLine{85                 \textcolor{keywordtype}{bool} center\_h, \textcolor{keywordtype}{bool} center\_v, \textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{lecui::rect}} max\_rect);}
+\DoxyCodeLine{86 }
+\DoxyCodeLine{91             [[nodiscard]] \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{lecui::rect}} \mbox{\hyperlink{classliblec_1_1lecui_1_1dimensions_a10cc9e17ca3f39afdb667b1d72c480fe}{working\_area}}();}
+\DoxyCodeLine{92 }
+\DoxyCodeLine{96             [[nodiscard]] \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{lecui::rect}} \mbox{\hyperlink{classliblec_1_1lecui_1_1dimensions_a4993995cddd9e36239188c695f6ba3cb}{cursor\_rect}}();}
+\DoxyCodeLine{97 }
+\DoxyCodeLine{102             \mbox{\hyperlink{classliblec_1_1lecui_1_1dimensions}{dimensions}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1dimensions_a8b063035ea89e34f03446c4989f296a6}{set\_size}}(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1size}{lecui::size}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1size}{size}});}
+\DoxyCodeLine{103 }
+\DoxyCodeLine{112             [[nodiscard]] \textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1size}{lecui::size}} \mbox{\hyperlink{classliblec_1_1lecui_1_1dimensions_abaa0cdd9cf20f0e2ddd99ac40dfc489c}{get\_size}}();}
+\DoxyCodeLine{113 }
+\DoxyCodeLine{116             [[nodiscard]] \textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1point}{lecui::point}} \mbox{\hyperlink{classliblec_1_1lecui_1_1dimensions_a7b0ec34b8a98123f355afcfb1f15b2b4}{get\_position}}();}
+\DoxyCodeLine{117 }
+\DoxyCodeLine{122             \mbox{\hyperlink{classliblec_1_1lecui_1_1dimensions}{dimensions}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1dimensions_a822a90ca35ea35d13315183a7441dc42}{set\_minimum}}(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1size}{lecui::size}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1size}{size}});}
+\DoxyCodeLine{123 }
+\DoxyCodeLine{126             [[nodiscard]] \textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1size}{lecui::size}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1dimensions_ae44fec70638d3f6221bbeae8d2fc34b3}{get\_minimum}}();}
+\DoxyCodeLine{127 }
+\DoxyCodeLine{128         \textcolor{keyword}{private}:}
+\DoxyCodeLine{129             \textcolor{keyword}{class }impl;}
+\DoxyCodeLine{130             impl\& \_d;}
+\DoxyCodeLine{131 }
+\DoxyCodeLine{132             \textcolor{comment}{// Default constructor and copying an object of this class are not allowed}}
+\DoxyCodeLine{133             \mbox{\hyperlink{classliblec_1_1lecui_1_1dimensions}{dimensions}}() = \textcolor{keyword}{delete};}
+\DoxyCodeLine{134             \mbox{\hyperlink{classliblec_1_1lecui_1_1dimensions}{dimensions}}(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1dimensions}{dimensions}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{135             \mbox{\hyperlink{classliblec_1_1lecui_1_1dimensions}{dimensions}}\& operator=(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1dimensions}{dimensions}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{136         \};}
+\DoxyCodeLine{137     \}}
+\DoxyCodeLine{138 \}}
+
+\end{DoxyCode}

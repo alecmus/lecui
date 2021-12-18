@@ -1,0 +1,42 @@
+\hypertarget{side__pane_8h_source}{}\doxysection{side\+\_\+pane.\+h}
+\label{side__pane_8h_source}\index{containers/side\_pane.h@{containers/side\_pane.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{//}}
+\DoxyCodeLine{2 \textcolor{comment}{// side\_pane.h -\/ side\_pane container interface}}
+\DoxyCodeLine{3 \textcolor{comment}{//}}
+\DoxyCodeLine{4 \textcolor{comment}{// lecui user interface library, part of the liblec library}}
+\DoxyCodeLine{5 \textcolor{comment}{// Copyright (c) 2019 Alec Musasa (alecmus at live dot com)}}
+\DoxyCodeLine{6 \textcolor{comment}{//}}
+\DoxyCodeLine{7 \textcolor{comment}{// Released under the MIT license. For full details see the}}
+\DoxyCodeLine{8 \textcolor{comment}{// file LICENSE.txt}}
+\DoxyCodeLine{9 \textcolor{comment}{//}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#if defined(LECUI\_EXPORTS)}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include "{}status\_pane.h"{}}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <liblec/lecui/containers/status\_pane.h>}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{keyword}{namespace }liblec \{}
+\DoxyCodeLine{20     \textcolor{keyword}{namespace }lecui \{}
+\DoxyCodeLine{21         \textcolor{keyword}{namespace }containers \{}
+\DoxyCodeLine{25             \textcolor{keyword}{class }lecui\_api \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1side__pane}{side\_pane}} : \textcolor{keyword}{public} \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane__base}{status\_pane\_base}} \{}
+\DoxyCodeLine{26             \textcolor{keyword}{public}:}
+\DoxyCodeLine{27                 \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1side__pane}{side\_pane}}(\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}}\&, \textcolor{keyword}{const} \textcolor{keywordtype}{float}\&);}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29                 [[nodiscard]]}
+\DoxyCodeLine{39                 \textcolor{keyword}{static} \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane}{status\_pane}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1side__pane_a589d221fbb9b1211bed4d62e2371b5a7}{add}}(\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}}\& fm, \textcolor{keyword}{const} \textcolor{keywordtype}{float}\& thickness);}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{46                 [[nodiscard]]}
+\DoxyCodeLine{47                 \textcolor{keyword}{static} \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1status__pane}{containers::status\_pane}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1side__pane_a0cbe5c4f237bec8386fea368737ce32e}{get}}(\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}}\& fm);}
+\DoxyCodeLine{48             \};}
+\DoxyCodeLine{49         \}}
+\DoxyCodeLine{50     \}}
+\DoxyCodeLine{51 \}}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{54 \textcolor{preprocessor}{\#define get\_side\_pane() liblec::lecui::containers::side\_pane::get(*this)}}
+
+\end{DoxyCode}

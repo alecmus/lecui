@@ -1,0 +1,64 @@
+\hypertarget{date__time_8h_source}{}\doxysection{date\+\_\+time.\+h}
+\label{date__time_8h_source}\index{utilities/date\_time.h@{utilities/date\_time.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{//}}
+\DoxyCodeLine{2 \textcolor{comment}{// date\_time.h -\/ date/time interface}}
+\DoxyCodeLine{3 \textcolor{comment}{//}}
+\DoxyCodeLine{4 \textcolor{comment}{// lecui user interface library, part of the liblec library}}
+\DoxyCodeLine{5 \textcolor{comment}{// Copyright (c) 2019 Alec Musasa (alecmus at live dot com)}}
+\DoxyCodeLine{6 \textcolor{comment}{//}}
+\DoxyCodeLine{7 \textcolor{comment}{// Released under the MIT license. For full details see the}}
+\DoxyCodeLine{8 \textcolor{comment}{// file LICENSE.txt}}
+\DoxyCodeLine{9 \textcolor{comment}{//}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#if defined(LECUI\_EXPORTS)}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include "{}../form.h"{}}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <liblec/lecui/form.h>}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{keyword}{namespace }liblec \{}
+\DoxyCodeLine{20     \textcolor{keyword}{namespace }lecui \{}
+\DoxyCodeLine{22         \textcolor{keyword}{class }lecui\_api \mbox{\hyperlink{classliblec_1_1lecui_1_1date__time}{date\_time}} \{}
+\DoxyCodeLine{23         \textcolor{keyword}{public}:}
+\DoxyCodeLine{27             \textcolor{keyword}{static} std::string \mbox{\hyperlink{classliblec_1_1lecui_1_1date__time_a99b49d683a5096b193101f88ae7878d1}{time\_stamp}}();}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{32             \textcolor{keyword}{static} std::string \mbox{\hyperlink{classliblec_1_1lecui_1_1date__time_abefacac64fd135a2bdc925988c6f47d7}{weekday\_to\_string}}(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} d);}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{37             \textcolor{keyword}{static} std::string \mbox{\hyperlink{classliblec_1_1lecui_1_1date__time_a21d2ae3d66f6fe08c1483f8db36cb0b6}{month\_to\_string}}(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} m);}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{42             \textcolor{keyword}{static} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} \mbox{\hyperlink{classliblec_1_1lecui_1_1date__time_a0f3c6a591a7eafff81306683089bc866}{month\_from\_string}}(std::string m);}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{47             \textcolor{keyword}{static} std::string \mbox{\hyperlink{classliblec_1_1lecui_1_1date__time_a5d9bc6a4255241610d57a9c2ea2092bd}{to\_string}}(\mbox{\hyperlink{structliblec_1_1lecui_1_1date}{date}} dt);}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{52             \textcolor{keyword}{static} \mbox{\hyperlink{structliblec_1_1lecui_1_1date}{date}} \mbox{\hyperlink{classliblec_1_1lecui_1_1date__time_aaa1b9d3e6a48edfc7992406aed964a17}{from\_string}}(\textcolor{keyword}{const} std::string\& dt);}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{56             \textcolor{keyword}{static} \mbox{\hyperlink{structliblec_1_1lecui_1_1date}{date}} \mbox{\hyperlink{classliblec_1_1lecui_1_1date__time_abf6dd338ce45b9934abc4d05a4e5357e}{today}}();}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{61             \textcolor{keyword}{static} \mbox{\hyperlink{structliblec_1_1lecui_1_1date}{date}} \mbox{\hyperlink{classliblec_1_1lecui_1_1date__time_a6f4bbdc696ca9fcd99efdc638b248da0}{last\_day\_of\_month}}(\textcolor{keyword}{const} \mbox{\hyperlink{structliblec_1_1lecui_1_1date}{date}}\& dt);}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{66             \textcolor{keyword}{static} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} \mbox{\hyperlink{classliblec_1_1lecui_1_1date__time_a8ba73e2a9e929682801cccfde72bf6c7}{day\_of\_week}}(\mbox{\hyperlink{structliblec_1_1lecui_1_1date}{date}} dt);}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{72             \textcolor{keyword}{static} \mbox{\hyperlink{structliblec_1_1lecui_1_1date}{date}} \mbox{\hyperlink{classliblec_1_1lecui_1_1date__time_af74472d89534faa9e512c7985a1a6f0c}{add\_days}}(\mbox{\hyperlink{structliblec_1_1lecui_1_1date}{date}} dt, \textcolor{keywordtype}{int} n);}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{78             \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{classliblec_1_1lecui_1_1date__time_a412c24931677db09f1c0a99c43459fe4}{get\_week}}(\textcolor{keyword}{const} \mbox{\hyperlink{structliblec_1_1lecui_1_1date}{date}} dt, \mbox{\hyperlink{structliblec_1_1lecui_1_1date}{date}}\& start, \mbox{\hyperlink{structliblec_1_1lecui_1_1date}{date}}\& end);}
+\DoxyCodeLine{79 }
+\DoxyCodeLine{84             \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{classliblec_1_1lecui_1_1date__time_aeba3fd3376752e0580bb2356b43937b7}{get\_month}}(\textcolor{keyword}{const} \mbox{\hyperlink{structliblec_1_1lecui_1_1date}{date}} dt, \mbox{\hyperlink{structliblec_1_1lecui_1_1date}{date}}\& start, \mbox{\hyperlink{structliblec_1_1lecui_1_1date}{date}}\& end);}
+\DoxyCodeLine{85 }
+\DoxyCodeLine{90             \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{classliblec_1_1lecui_1_1date__time_a95b0a27c94980c194b6855bc4b972860}{get\_year}}(\textcolor{keyword}{const} \mbox{\hyperlink{structliblec_1_1lecui_1_1date}{date}} dt, \mbox{\hyperlink{structliblec_1_1lecui_1_1date}{date}}\& start, \mbox{\hyperlink{structliblec_1_1lecui_1_1date}{date}}\& end);}
+\DoxyCodeLine{91 }
+\DoxyCodeLine{92         \textcolor{keyword}{private}:}
+\DoxyCodeLine{93             \textcolor{keyword}{class }impl;}
+\DoxyCodeLine{94             impl\& \_d;}
+\DoxyCodeLine{95 }
+\DoxyCodeLine{96             \textcolor{comment}{// Copying an object of this class are not allowed}}
+\DoxyCodeLine{97             \mbox{\hyperlink{classliblec_1_1lecui_1_1date__time}{date\_time}}(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1date__time}{date\_time}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{98             \mbox{\hyperlink{classliblec_1_1lecui_1_1date__time}{date\_time}}\& operator=(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1date__time}{date\_time}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{99         \};}
+\DoxyCodeLine{100     \}}
+\DoxyCodeLine{101 \}}
+
+\end{DoxyCode}

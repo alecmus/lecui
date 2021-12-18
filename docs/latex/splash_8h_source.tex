@@ -1,0 +1,47 @@
+\hypertarget{splash_8h_source}{}\doxysection{splash.\+h}
+\label{splash_8h_source}\index{utilities/splash.h@{utilities/splash.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{//}}
+\DoxyCodeLine{2 \textcolor{comment}{// splash.h -\/ splash screen interface}}
+\DoxyCodeLine{3 \textcolor{comment}{//}}
+\DoxyCodeLine{4 \textcolor{comment}{// lecui user interface library, part of the liblec library}}
+\DoxyCodeLine{5 \textcolor{comment}{// Copyright (c) 2019 Alec Musasa (alecmus at live dot com)}}
+\DoxyCodeLine{6 \textcolor{comment}{//}}
+\DoxyCodeLine{7 \textcolor{comment}{// Released under the MIT license. For full details see the}}
+\DoxyCodeLine{8 \textcolor{comment}{// file LICENSE.txt}}
+\DoxyCodeLine{9 \textcolor{comment}{//}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#if defined(LECUI\_EXPORTS)}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include "{}../form.h"{}}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <liblec/lecui/form.h>}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{keyword}{namespace }liblec \{}
+\DoxyCodeLine{20     \textcolor{keyword}{namespace }lecui \{}
+\DoxyCodeLine{23         \textcolor{keyword}{class }lecui\_api \mbox{\hyperlink{classliblec_1_1lecui_1_1splash}{splash}} \{}
+\DoxyCodeLine{24         \textcolor{keyword}{public}:}
+\DoxyCodeLine{25             \mbox{\hyperlink{classliblec_1_1lecui_1_1splash}{splash}}() = \textcolor{keyword}{delete};}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27             \mbox{\hyperlink{classliblec_1_1lecui_1_1splash}{splash}}(\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}}\& fm);}
+\DoxyCodeLine{28             \mbox{\hyperlink{classliblec_1_1lecui_1_1splash}{\string~splash}}();}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{43             \textcolor{keywordtype}{bool} \mbox{\hyperlink{classliblec_1_1lecui_1_1splash_af0489764cd75f58d372509433beef140}{display}}(\textcolor{keywordtype}{int} png\_resource, \textcolor{keywordtype}{bool} dpi\_aware, std::string\& error);}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{46             \textcolor{keywordtype}{void} \mbox{\hyperlink{classliblec_1_1lecui_1_1splash_aa97d29ad159e313a7baa214b3a234c48}{remove}}();}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48         \textcolor{keyword}{private}:}
+\DoxyCodeLine{49             \textcolor{keyword}{class }impl;}
+\DoxyCodeLine{50             impl\& \_d;}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{52             \textcolor{comment}{// Copying an object of this class are not allowed}}
+\DoxyCodeLine{53             \mbox{\hyperlink{classliblec_1_1lecui_1_1splash}{splash}}(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1splash}{splash}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{54             \mbox{\hyperlink{classliblec_1_1lecui_1_1splash}{splash}}\& operator=(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1splash}{splash}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{55         \};}
+\DoxyCodeLine{56     \}}
+\DoxyCodeLine{57 \}}
+
+\end{DoxyCode}

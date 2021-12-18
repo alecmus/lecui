@@ -1,0 +1,130 @@
+\hypertarget{time_8h_source}{}\doxysection{time.\+h}
+\label{time_8h_source}\index{widgets/time.h@{widgets/time.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{//}}
+\DoxyCodeLine{2 \textcolor{comment}{// time.h -\/ time widget interface}}
+\DoxyCodeLine{3 \textcolor{comment}{//}}
+\DoxyCodeLine{4 \textcolor{comment}{// lecui user interface library, part of the liblec library}}
+\DoxyCodeLine{5 \textcolor{comment}{// Copyright (c) 2019 Alec Musasa (alecmus at live dot com)}}
+\DoxyCodeLine{6 \textcolor{comment}{//}}
+\DoxyCodeLine{7 \textcolor{comment}{// Released under the MIT license. For full details see the}}
+\DoxyCodeLine{8 \textcolor{comment}{// file LICENSE.txt}}
+\DoxyCodeLine{9 \textcolor{comment}{//}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#if defined(LECUI\_EXPORTS)}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include "{}widget.h"{}}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <liblec/lecui/widgets/widget.h>}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{keyword}{namespace }liblec \{}
+\DoxyCodeLine{20     \textcolor{keyword}{namespace }lecui \{}
+\DoxyCodeLine{21         \textcolor{keyword}{namespace }widgets \{}
+\DoxyCodeLine{24             \textcolor{keyword}{class }lecui\_api \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1time}{time}} : \textcolor{keyword}{public} \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1widget}{widget}} \{}
+\DoxyCodeLine{25                 \textcolor{keywordtype}{float} \_border = .5f;}
+\DoxyCodeLine{26                 \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \_color\_border;}
+\DoxyCodeLine{27                 \textcolor{keywordtype}{float} \_corner\_radius\_x = 2.f;}
+\DoxyCodeLine{28                 \textcolor{keywordtype}{float} \_corner\_radius\_y = 2.f;}
+\DoxyCodeLine{29                 \mbox{\hyperlink{classliblec_1_1lecui_1_1time}{lecui::time}} \_time\_value\{\};}
+\DoxyCodeLine{30                 \textcolor{keywordtype}{void}* \_p\_special\_pane\_specs = \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32             \textcolor{keyword}{public}:}
+\DoxyCodeLine{33                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1time}{time}}() \{}
+\DoxyCodeLine{34                     \_rect.size(\{ 70.f, 20.f \});}
+\DoxyCodeLine{35                 \};}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{38                 \textcolor{keyword}{struct }\mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1time_1_1time__events}{time\_events}} : \mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1widget_1_1basic__events}{basic\_events}} \{}
+\DoxyCodeLine{41                     std::function<void(\mbox{\hyperlink{classliblec_1_1lecui_1_1time}{lecui::time}})> change = \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{42                 \};}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44                 \mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1time_1_1time__events}{time\_events}}\& events() \{}
+\DoxyCodeLine{45                     \textcolor{keywordflow}{return} \_time\_events;}
+\DoxyCodeLine{46                 \}}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48                 \textcolor{keywordtype}{bool} operator==(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1time}{time}}\&);}
+\DoxyCodeLine{49                 \textcolor{keywordtype}{bool} operator!=(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1time}{time}}\&);}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51                 \textcolor{comment}{// generic widget}}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53                 std::string\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1time_a9435ace18a9e2bf07c853981e07900a8}{text}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{54                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1time}{time}}\& text(\textcolor{keyword}{const} std::string\& text);}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56                 std::string\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1time_a0bda1832d7a6e5fdfe1d6a954807f9c5}{tooltip}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{57                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1time}{time}}\& tooltip(\textcolor{keyword}{const} std::string\& tooltip);}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59                 \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{lecui::rect}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1time_a80a92f01cec0ad6bcc539f6ccba981f0}{rect}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{60                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1time}{time}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{rect}}(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{lecui::rect}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{rect}});}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{62                 \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params}{resize\_params}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1time_a5e2dcd81725a9d9097996161a0771441}{on\_resize}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{63                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1time}{time}}\& on\_resize(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params}{resize\_params}}\& on\_resize);}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{65                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1widget_a893d9dfd53890f3faf6829a6c02aca84}{cursor\_type}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1time_a5692d71e4926d9b411923b320ae4f35b}{cursor}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{66                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1time}{time}}\& cursor(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1widget_a893d9dfd53890f3faf6829a6c02aca84}{cursor\_type}} cursor);}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{68                 std::string\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1time_a949a334529c6c8a58afa9e199f01ed31}{font}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{69                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1time}{time}}\& font(\textcolor{keyword}{const} std::string\& font);}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{71                 \textcolor{keywordtype}{float}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1time_a47d4ea071d78a2760d64cbf4e63c9dd5}{font\_size}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{72                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1time}{time}}\& font\_size(\textcolor{keyword}{const} \textcolor{keywordtype}{float}\& font\_size);}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{74                 \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1time_a5a683988f1d9994adad02772104d4ecb}{color\_text}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{75                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1time}{time}}\& color\_text(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& color\_text);}
+\DoxyCodeLine{76 }
+\DoxyCodeLine{77                 \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1time_a9d1614960cedcedaea116816c9411891}{color\_fill}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{78                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1time}{time}}\& color\_fill(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& color\_fill);}
+\DoxyCodeLine{79 }
+\DoxyCodeLine{80                 \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1time_a134a59220a41fcc019ddfc4a8f4991a2}{color\_hot}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{81                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1time}{time}}\& color\_hot(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& color\_hot);}
+\DoxyCodeLine{82 }
+\DoxyCodeLine{83                 \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1time_adf79c9d32d1d20185081229b1843dcbe}{color\_selected}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{84                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1time}{time}}\& color\_selected(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& color\_selected);}
+\DoxyCodeLine{85 }
+\DoxyCodeLine{86                 \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1time_ac7946143bb0d20534095cf23277cea79}{color\_disabled}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{87                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1time}{time}}\& color\_disabled(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& color\_disabled);}
+\DoxyCodeLine{88 }
+\DoxyCodeLine{89                 \textcolor{comment}{// widget specific widget}}
+\DoxyCodeLine{90 }
+\DoxyCodeLine{93                 \textcolor{keywordtype}{float}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1time_a34b28fe6b357899223ffebd1187cd8e0}{border}}();}
+\DoxyCodeLine{94 }
+\DoxyCodeLine{98                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1time}{time}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1time_a1f8161844fd9103d1b770d07b8fcd98e}{border}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float}\& border);}
+\DoxyCodeLine{99 }
+\DoxyCodeLine{102                 \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1time_ad7045576ed6c4ed540c201691b03f68b}{color\_border}}();}
+\DoxyCodeLine{103 }
+\DoxyCodeLine{107                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1time}{time}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1time_a81625a2dbafe02490b98a44e5c64a787}{color\_border}}(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& color\_border);}
+\DoxyCodeLine{108 }
+\DoxyCodeLine{111                 \textcolor{keywordtype}{float}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1time_a5ea56f0ec1fe297cd25d77aa92aabc53}{corner\_radius\_x}}();}
+\DoxyCodeLine{112 }
+\DoxyCodeLine{116                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1time}{time}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1time_a3834e4e05efe9820421680542c7ac35f}{corner\_radius\_x}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float}\& corner\_radius\_x);}
+\DoxyCodeLine{117 }
+\DoxyCodeLine{120                 \textcolor{keywordtype}{float}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1time_a81fb381bc03e398fb009def2cf9a328e}{corner\_radius\_y}}();}
+\DoxyCodeLine{121 }
+\DoxyCodeLine{125                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1time}{time}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1time_a7d51a12b885a501e1627ed828f8c6b33}{corner\_radius\_y}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float}\& corner\_radius\_y);}
+\DoxyCodeLine{126 }
+\DoxyCodeLine{129                 \mbox{\hyperlink{classliblec_1_1lecui_1_1time}{lecui::time}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1time_a8c82aa9b949d08f33ca945e465aba593}{time\_value}}();}
+\DoxyCodeLine{130 }
+\DoxyCodeLine{134                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1time}{time}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1time_ad867ae1633f3c886bccced95a9efd8b3}{time\_value}}(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1time}{lecui::time}}\& time\_value);}
+\DoxyCodeLine{135 }
+\DoxyCodeLine{136             \textcolor{keyword}{public}:}
+\DoxyCodeLine{143                 [[nodiscard]]}
+\DoxyCodeLine{144                 \textcolor{keyword}{static} \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1time}{time}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1time_a12416fde68845bf88a4d3bb2d7afc1d7}{add}}(\mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1page}{containers::page}}\& page, \textcolor{keyword}{const} std::string\& alias = std::string());}
+\DoxyCodeLine{145 }
+\DoxyCodeLine{152                 [[nodiscard]]}
+\DoxyCodeLine{153                 \textcolor{keyword}{static} \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1time}{time}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1time_a6b6be1a07c8496d39e9bfa8ec435980b}{get}}(\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}}\& fm, \textcolor{keyword}{const} std::string\& path);}
+\DoxyCodeLine{154 }
+\DoxyCodeLine{155             \textcolor{keyword}{private}:}
+\DoxyCodeLine{156                 \mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1time_1_1time__events}{time\_events}} \_time\_events;}
+\DoxyCodeLine{157 }
+\DoxyCodeLine{158 \textcolor{preprocessor}{\#if defined(LECUI\_EXPORTS)}}
+\DoxyCodeLine{159                 \textcolor{keyword}{friend} \textcolor{keyword}{class }\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}};}
+\DoxyCodeLine{160 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{161             \};}
+\DoxyCodeLine{162         \}}
+\DoxyCodeLine{163     \}}
+\DoxyCodeLine{164 \}}
+\DoxyCodeLine{165 }
+\DoxyCodeLine{167 \textcolor{preprocessor}{\#define get\_time(path) liblec::lecui::widgets::time::get(*this, path)}}
+
+\end{DoxyCode}

@@ -1,0 +1,61 @@
+\hypertarget{form__menu_8h_source}{}\doxysection{form\+\_\+menu.\+h}
+\label{form__menu_8h_source}\index{menus/form\_menu.h@{menus/form\_menu.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{//}}
+\DoxyCodeLine{2 \textcolor{comment}{// form\_menu.h -\/ form menu interface}}
+\DoxyCodeLine{3 \textcolor{comment}{//}}
+\DoxyCodeLine{4 \textcolor{comment}{// lecui user interface library, part of the liblec library}}
+\DoxyCodeLine{5 \textcolor{comment}{// Copyright (c) 2019 Alec Musasa (alecmus at live dot com)}}
+\DoxyCodeLine{6 \textcolor{comment}{//}}
+\DoxyCodeLine{7 \textcolor{comment}{// Released under the MIT license. For full details see the}}
+\DoxyCodeLine{8 \textcolor{comment}{// file LICENSE.txt}}
+\DoxyCodeLine{9 \textcolor{comment}{//}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#if defined(LECUI\_EXPORTS)}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include "{}../form.h"{}}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <liblec/lecui/form.h>}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{keyword}{namespace }liblec \{}
+\DoxyCodeLine{20     \textcolor{keyword}{namespace }lecui \{}
+\DoxyCodeLine{22         \textcolor{keyword}{struct }\mbox{\hyperlink{structliblec_1_1lecui_1_1form__menu__item}{form\_menu\_item}} \{}
+\DoxyCodeLine{24             std::string \mbox{\hyperlink{structliblec_1_1lecui_1_1form__menu__item_aa2c93f5713cd3e840a08f18b8ff0ea20}{label}};}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{27             std::function<void()> \mbox{\hyperlink{structliblec_1_1lecui_1_1form__menu__item_a00c14840fac5032b2e3e00d1f5004fab}{action}} = \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{30             std::vector<form\_menu\_item> \mbox{\hyperlink{structliblec_1_1lecui_1_1form__menu__item_aeb80fee2770a0b9a04ad9ab6673994d6}{children}};}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{33             std::string \mbox{\hyperlink{structliblec_1_1lecui_1_1form__menu__item_af91470b2e24847b8a51ea3da59d95b63}{image\_file}};}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{36             std::string \mbox{\hyperlink{structliblec_1_1lecui_1_1form__menu__item_afec4225c61e228cec06047b32a26f892}{font}} = \textcolor{stringliteral}{"{}Segoe UI"{}};}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{39             \textcolor{keywordtype}{float} \mbox{\hyperlink{structliblec_1_1lecui_1_1form__menu__item_a5d56610e5956fefe906c6a0cb969e078}{font\_size}} = 9.f;}
+\DoxyCodeLine{40         \};}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{44         \textcolor{keyword}{class }lecui\_api \mbox{\hyperlink{classliblec_1_1lecui_1_1form__menu}{form\_menu}} \{}
+\DoxyCodeLine{45         \textcolor{keyword}{public}:}
+\DoxyCodeLine{46             \mbox{\hyperlink{classliblec_1_1lecui_1_1form__menu}{form\_menu}}(\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}}\& fm);}
+\DoxyCodeLine{47             \mbox{\hyperlink{classliblec_1_1lecui_1_1form__menu}{\string~form\_menu}}();}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{56             \textcolor{keywordtype}{bool} \mbox{\hyperlink{classliblec_1_1lecui_1_1form__menu_a6e6edeb9527a16ca01c621e0dfc58bdb}{add}}(\textcolor{keyword}{const} std::string\& text,}
+\DoxyCodeLine{57                 \textcolor{keyword}{const} std::string\& tooltip,}
+\DoxyCodeLine{58                 \textcolor{keyword}{const} std::vector<form\_menu\_item>\& items,}
+\DoxyCodeLine{59                 std::string\& error);}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61         \textcolor{keyword}{private}:}
+\DoxyCodeLine{62             \textcolor{keyword}{class }impl;}
+\DoxyCodeLine{63             impl\& \_d;}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{65             \textcolor{comment}{// Default constructor and copying an object of this class are not allowed}}
+\DoxyCodeLine{66             \mbox{\hyperlink{classliblec_1_1lecui_1_1form__menu}{form\_menu}}() = \textcolor{keyword}{delete};}
+\DoxyCodeLine{67             \mbox{\hyperlink{classliblec_1_1lecui_1_1form__menu}{form\_menu}}(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1form__menu}{form\_menu}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{68             \mbox{\hyperlink{classliblec_1_1lecui_1_1form__menu}{form\_menu}}\& operator=(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1form__menu}{form\_menu}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{69         \};}
+\DoxyCodeLine{70     \}}
+\DoxyCodeLine{71 \}}
+
+\end{DoxyCode}

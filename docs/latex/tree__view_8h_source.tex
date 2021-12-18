@@ -1,0 +1,164 @@
+\hypertarget{tree__view_8h_source}{}\doxysection{tree\+\_\+view.\+h}
+\label{tree__view_8h_source}\index{widgets/tree\_view.h@{widgets/tree\_view.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{//}}
+\DoxyCodeLine{2 \textcolor{comment}{// tree\_view.h -\/ tree view widget interface}}
+\DoxyCodeLine{3 \textcolor{comment}{//}}
+\DoxyCodeLine{4 \textcolor{comment}{// lecui user interface library, part of the liblec library}}
+\DoxyCodeLine{5 \textcolor{comment}{// Copyright (c) 2019 Alec Musasa (alecmus at live dot com)}}
+\DoxyCodeLine{6 \textcolor{comment}{//}}
+\DoxyCodeLine{7 \textcolor{comment}{// Released under the MIT license. For full details see the}}
+\DoxyCodeLine{8 \textcolor{comment}{// file LICENSE.txt}}
+\DoxyCodeLine{9 \textcolor{comment}{//}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#if defined(LECUI\_EXPORTS)}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include "{}widget.h"{}}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <liblec/lecui/widgets/widget.h>}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{keyword}{namespace }liblec \{}
+\DoxyCodeLine{20     \textcolor{keyword}{namespace }lecui \{}
+\DoxyCodeLine{21         \textcolor{keyword}{namespace }widgets \{}
+\DoxyCodeLine{24             \textcolor{keyword}{class }lecui\_api \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view}{tree\_view}} : \textcolor{keyword}{public} \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1widget}{widget}} \{}
+\DoxyCodeLine{25             \textcolor{keyword}{public}:}
+\DoxyCodeLine{27                 \textcolor{keyword}{class }\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view_1_1node}{node}} \{}
+\DoxyCodeLine{28                 \textcolor{keyword}{public}:}
+\DoxyCodeLine{30                     std::string \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view_1_1node_acda9f5bbcc8080539190078c12d96668}{name}};}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{33                     \textcolor{keywordtype}{bool} expand = \textcolor{keyword}{false};}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{36                     std::map<std::string, node> \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view_1_1node_a1b5a850b363fb1d525ae6cb919befbc2}{children}};}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38                     \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view_1_1node}{node}}(std::string name) :}
+\DoxyCodeLine{39                         name(name) \{\}}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41                 \textcolor{keyword}{private}:}
+\DoxyCodeLine{42                     \textcolor{comment}{// Default constructor not allowed}}
+\DoxyCodeLine{43                     \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view_1_1node}{node}}() \{\}}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45                     \textcolor{keywordtype}{bool} selected = \textcolor{keyword}{false};}
+\DoxyCodeLine{46                     \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{lecui::rect}} rc = \{ 0.f, 0.f, 0.f, 0.f \};}
+\DoxyCodeLine{47                     \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{lecui::rect}} rc\_expand = \{ 0.f, 0.f, 0.f, 0.f \};}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{49 \textcolor{preprocessor}{\#if defined(LECUI\_EXPORTS)}}
+\DoxyCodeLine{50                     \textcolor{keyword}{friend} \textcolor{keyword}{class }widgets::tree\_view\_impl;}
+\DoxyCodeLine{51 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{52                 \};}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{54             \textcolor{keyword}{private}:}
+\DoxyCodeLine{55                 \textcolor{keywordtype}{float} \_border = .5f;}
+\DoxyCodeLine{56                 color \_color\_border;}
+\DoxyCodeLine{57                 \textcolor{keywordtype}{float} \_corner\_radius\_x = 5.f;}
+\DoxyCodeLine{58                 \textcolor{keywordtype}{float} \_corner\_radius\_y = 5.f;}
+\DoxyCodeLine{59                 std::map<std::string, node> \_root;}
+\DoxyCodeLine{60                 \textcolor{keywordtype}{void}* \_p\_special\_pane\_specs = \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{62             \textcolor{keyword}{public}:}
+\DoxyCodeLine{63                 tree\_view() \{}
+\DoxyCodeLine{64                     \_rect.size(\{ 200.f, 200.f \});}
+\DoxyCodeLine{65                 \}}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{72                 \textcolor{keyword}{static} \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view_1_1node}{node}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view_a113eeb50f4683fef9a609df25ea823c1}{insert\_node}}(std::map<std::string, node>\& root,}
+\DoxyCodeLine{73                     std::string name) \{}
+\DoxyCodeLine{74                     root.insert(std::make\_pair(name, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view_1_1node}{node}}(name)));}
+\DoxyCodeLine{75                     \textcolor{keywordflow}{return} root.at(name);}
+\DoxyCodeLine{76                 \}}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{78                 \textcolor{keyword}{struct }\mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1tree__view_1_1tree__view__events}{tree\_view\_events}} : \mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1widget_1_1basic__events}{basic\_events}} \{}
+\DoxyCodeLine{81                     std::function<void(\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view_1_1node}{node}}\& n)> \mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1tree__view_1_1tree__view__events_a56d5200846aee9364343741e925e6ac6}{selection}};}
+\DoxyCodeLine{82                 \};}
+\DoxyCodeLine{83 }
+\DoxyCodeLine{84                 \mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1tree__view_1_1tree__view__events}{tree\_view\_events}}\& events() \{}
+\DoxyCodeLine{85                     \textcolor{keywordflow}{return} \_tree\_events;}
+\DoxyCodeLine{86                 \}}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{88                 \textcolor{keywordtype}{bool} operator==(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view}{tree\_view}}\&);}
+\DoxyCodeLine{89                 \textcolor{keywordtype}{bool} operator!=(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view}{tree\_view}}\&);}
+\DoxyCodeLine{90                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view}{tree\_view}}\& operator=(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view}{tree\_view}}\&);}
+\DoxyCodeLine{91                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view}{tree\_view}}(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view}{tree\_view}}\&);}
+\DoxyCodeLine{92 }
+\DoxyCodeLine{93                 \textcolor{comment}{// generic widget}}
+\DoxyCodeLine{94 }
+\DoxyCodeLine{95                 std::string\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view_a7fc330b92e59dab0c5e434b2c4c82536}{text}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{96                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view}{tree\_view}}\& text(\textcolor{keyword}{const} std::string\& text);}
+\DoxyCodeLine{97 }
+\DoxyCodeLine{98                 std::string\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view_ab58b1a81b29dd682d2d6518d4b01891b}{tooltip}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{99                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view}{tree\_view}}\& tooltip(\textcolor{keyword}{const} std::string\& tooltip);}
+\DoxyCodeLine{100 }
+\DoxyCodeLine{101                 \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{lecui::rect}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view_a7bef6e4c041a7187c6be0d61e237fcd5}{rect}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{102                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view}{tree\_view}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{rect}}(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{lecui::rect}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{rect}});}
+\DoxyCodeLine{103 }
+\DoxyCodeLine{104                 \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params}{resize\_params}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view_a309407ff62586ba0f166de97bc44a601}{on\_resize}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{105                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view}{tree\_view}}\& on\_resize(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params}{resize\_params}}\& on\_resize);}
+\DoxyCodeLine{106 }
+\DoxyCodeLine{107                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1widget_a893d9dfd53890f3faf6829a6c02aca84}{cursor\_type}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view_a0bf2d77910e3906ff87acb254179b29b}{cursor}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{108                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view}{tree\_view}}\& cursor(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1widget_a893d9dfd53890f3faf6829a6c02aca84}{cursor\_type}} cursor);}
+\DoxyCodeLine{109 }
+\DoxyCodeLine{110                 std::string\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view_a8288fdee543263c4b55858d40c549008}{font}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{111                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view}{tree\_view}}\& font(\textcolor{keyword}{const} std::string\& font);}
+\DoxyCodeLine{112 }
+\DoxyCodeLine{113                 \textcolor{keywordtype}{float}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view_a7669eee6aca5e5708fc745f08fb646e9}{font\_size}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{114                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view}{tree\_view}}\& font\_size(\textcolor{keyword}{const} \textcolor{keywordtype}{float}\& font\_size);}
+\DoxyCodeLine{115 }
+\DoxyCodeLine{116                 \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view_a87622cd4beaf5ec1108fb1281ec29f26}{color\_text}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{117                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view}{tree\_view}}\& color\_text(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& color\_text);}
+\DoxyCodeLine{118 }
+\DoxyCodeLine{119                 \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view_a83d5a15f1b322d76dbf4597bd446d385}{color\_fill}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{120                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view}{tree\_view}}\& color\_fill(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& color\_fill);}
+\DoxyCodeLine{121 }
+\DoxyCodeLine{122                 \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view_a6be269f9e08ec888777bcfa117368af7}{color\_hot}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{123                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view}{tree\_view}}\& color\_hot(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& color\_hot);}
+\DoxyCodeLine{124 }
+\DoxyCodeLine{125                 \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view_a2b88bc52cb025fc06da6c8d7b7d93d36}{color\_selected}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{126                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view}{tree\_view}}\& color\_selected(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& color\_selected);}
+\DoxyCodeLine{127 }
+\DoxyCodeLine{128                 \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view_a36f21dbf78e7018d259c805ba1e1405d}{color\_disabled}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{129                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view}{tree\_view}}\& color\_disabled(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& color\_disabled);}
+\DoxyCodeLine{130 }
+\DoxyCodeLine{131                 \textcolor{comment}{// widget specific widget}}
+\DoxyCodeLine{132 }
+\DoxyCodeLine{135                 \textcolor{keywordtype}{float}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view_ae24de5ddd1a064df73a45e0e7a93254b}{border}}();}
+\DoxyCodeLine{136 }
+\DoxyCodeLine{140                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view}{tree\_view}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view_aa8d513ee3b4b389e6dad3b34c54b939f}{border}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float}\& border);}
+\DoxyCodeLine{141 }
+\DoxyCodeLine{144                 \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view_a1eba288fcb1ced504bad8a8dfbc6144d}{color\_border}}();}
+\DoxyCodeLine{145 }
+\DoxyCodeLine{149                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view}{tree\_view}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view_a6632987729ac50df99d56dcf16656bf2}{color\_border}}(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& color\_border);}
+\DoxyCodeLine{150 }
+\DoxyCodeLine{153                 \textcolor{keywordtype}{float}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view_a127abb7ef31a78e6515519b6428db1a6}{corner\_radius\_x}}();}
+\DoxyCodeLine{154 }
+\DoxyCodeLine{158                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view}{tree\_view}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view_a65e66be89c8fdc2ea049192528f6ca95}{corner\_radius\_x}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float}\& corner\_radius\_x);}
+\DoxyCodeLine{159 }
+\DoxyCodeLine{162                 \textcolor{keywordtype}{float}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view_a8b8e093ddf3aa890d39bf00e2e78b579}{corner\_radius\_y}}();}
+\DoxyCodeLine{163 }
+\DoxyCodeLine{167                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view}{tree\_view}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view_aeecc04994af1a11a1b6eaf8e0ee69486}{corner\_radius\_y}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float}\& corner\_radius\_y);}
+\DoxyCodeLine{168 }
+\DoxyCodeLine{172                 std::map<std::string, node>\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view_a77779e039258414ecf798401f47679a8}{root}}();}
+\DoxyCodeLine{173 }
+\DoxyCodeLine{177                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view}{tree\_view}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view_ae72900b9d65bde0626ddb3ce5a933165}{root}}(\textcolor{keyword}{const} std::map<std::string, node>\& root);}
+\DoxyCodeLine{178 }
+\DoxyCodeLine{179             \textcolor{keyword}{public}:}
+\DoxyCodeLine{186                 [[nodiscard]]}
+\DoxyCodeLine{187                 \textcolor{keyword}{static} \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view}{tree\_view}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view_acda036290fb637d22807afc2d5f9bc37}{add}}(\mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1page}{containers::page}}\& page, \textcolor{keyword}{const} std::string\& alias = std::string());}
+\DoxyCodeLine{188 }
+\DoxyCodeLine{195                 [[nodiscard]]}
+\DoxyCodeLine{196                 \textcolor{keyword}{static} \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view}{tree\_view}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1tree__view_acef4a74b550a62e3b957cae2c5fe7801}{get}}(\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}}\& fm, \textcolor{keyword}{const} std::string\& path);}
+\DoxyCodeLine{197 }
+\DoxyCodeLine{198             \textcolor{keyword}{private}:}
+\DoxyCodeLine{199                 \mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1tree__view_1_1tree__view__events}{tree\_view\_events}} \_tree\_events;}
+\DoxyCodeLine{200 }
+\DoxyCodeLine{201 \textcolor{preprocessor}{\#if defined(LECUI\_EXPORTS)}}
+\DoxyCodeLine{202                 \textcolor{keyword}{friend} \textcolor{keyword}{class }\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}};}
+\DoxyCodeLine{203 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{204             \};}
+\DoxyCodeLine{205         \}}
+\DoxyCodeLine{206     \}}
+\DoxyCodeLine{207 \}}
+\DoxyCodeLine{208 }
+\DoxyCodeLine{210 \textcolor{preprocessor}{\#define get\_tree\_view(path) liblec::lecui::widgets::tree\_view::get(*this, path)}}
+
+\end{DoxyCode}

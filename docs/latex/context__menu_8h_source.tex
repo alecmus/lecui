@@ -1,0 +1,69 @@
+\hypertarget{context__menu_8h_source}{}\doxysection{context\+\_\+menu.\+h}
+\label{context__menu_8h_source}\index{menus/context\_menu.h@{menus/context\_menu.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{//}}
+\DoxyCodeLine{2 \textcolor{comment}{// context\_menu.h -\/ context menu interface}}
+\DoxyCodeLine{3 \textcolor{comment}{//}}
+\DoxyCodeLine{4 \textcolor{comment}{// lecui user interface library, part of the liblec library}}
+\DoxyCodeLine{5 \textcolor{comment}{// Copyright (c) 2019 Alec Musasa (alecmus at live dot com)}}
+\DoxyCodeLine{6 \textcolor{comment}{//}}
+\DoxyCodeLine{7 \textcolor{comment}{// Released under the MIT license. For full details see the}}
+\DoxyCodeLine{8 \textcolor{comment}{// file LICENSE.txt}}
+\DoxyCodeLine{9 \textcolor{comment}{//}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#if defined(LECUI\_EXPORTS)}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include "{}../form.h"{}}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <liblec/lecui/form.h>}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{keyword}{namespace }liblec \{}
+\DoxyCodeLine{20     \textcolor{keyword}{namespace }lecui \{}
+\DoxyCodeLine{22         \textcolor{keyword}{struct }\mbox{\hyperlink{structliblec_1_1lecui_1_1menu__item}{menu\_item}} \{}
+\DoxyCodeLine{24             std::string \mbox{\hyperlink{structliblec_1_1lecui_1_1menu__item_afb0ebb3e77d4be07def969f26742e6ad}{label}};}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{27             std::string \mbox{\hyperlink{structliblec_1_1lecui_1_1menu__item_a964b76ce4e3757ba0c7203d49d6d6fe1}{image\_file}};}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{30             std::string \mbox{\hyperlink{structliblec_1_1lecui_1_1menu__item_a5f572a917fbbc2a765a59dcbe6504a21}{font}} = \textcolor{stringliteral}{"{}Segoe UI"{}};}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{33             \textcolor{keywordtype}{float} \mbox{\hyperlink{structliblec_1_1lecui_1_1menu__item_a0bf2ee7747a6f1d495162cd6fab5c28a}{font\_size}} = 9.f;}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{38             std::vector<menu\_item> \mbox{\hyperlink{structliblec_1_1lecui_1_1menu__item_aa9dd0a8d48b40224793e7efed439429b}{children}};}
+\DoxyCodeLine{39         \};}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41         \textcolor{keyword}{class }lecui\_api \mbox{\hyperlink{classliblec_1_1lecui_1_1context__menu}{context\_menu}} \{}
+\DoxyCodeLine{42         \textcolor{keyword}{public}:}
+\DoxyCodeLine{45             \textcolor{keyword}{enum class} \mbox{\hyperlink{classliblec_1_1lecui_1_1context__menu_aaf13a430f41f8011377d77f46076871f}{pin\_type}} \{}
+\DoxyCodeLine{50                 bottom,}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{55                 right,}
+\DoxyCodeLine{56             \};}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{60             \textcolor{keyword}{struct }\mbox{\hyperlink{structliblec_1_1lecui_1_1context__menu_1_1specs}{specs}} \{}
+\DoxyCodeLine{62                 std::vector<menu\_item> \mbox{\hyperlink{structliblec_1_1lecui_1_1context__menu_1_1specs_a60f2f921b07061a19e9bc60fb4637fe2}{items}};}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{66                 \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{lecui::rect}} pin = \{ 0.f, 0.f, 0.f, 0.f \};}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{70                 \mbox{\hyperlink{classliblec_1_1lecui_1_1context__menu_aaf13a430f41f8011377d77f46076871f}{pin\_type}} type = pin\_type::bottom;}
+\DoxyCodeLine{71 }
+\DoxyCodeLine{75                 image\_quality quality = image\_quality::high;}
+\DoxyCodeLine{76             \};}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{79             \mbox{\hyperlink{classliblec_1_1lecui_1_1context__menu_a7003bf3c5877a532943fecb9f780f192}{context\_menu}}();}
+\DoxyCodeLine{80 }
+\DoxyCodeLine{86             std::string operator() (\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}}\& fm, \textcolor{keyword}{const} \mbox{\hyperlink{structliblec_1_1lecui_1_1context__menu_1_1specs}{specs}}\& menu\_specs);}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{88         \textcolor{keyword}{private}:}
+\DoxyCodeLine{89             \textcolor{keyword}{class }impl;}
+\DoxyCodeLine{90 }
+\DoxyCodeLine{91             \textcolor{comment}{// Copying an object of this class are not allowed}}
+\DoxyCodeLine{92             \mbox{\hyperlink{classliblec_1_1lecui_1_1context__menu}{context\_menu}}(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1context__menu}{context\_menu}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{93             \mbox{\hyperlink{classliblec_1_1lecui_1_1context__menu}{context\_menu}}\& operator=(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1context__menu}{context\_menu}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{94         \};}
+\DoxyCodeLine{95     \}}
+\DoxyCodeLine{96 \}}
+
+\end{DoxyCode}

@@ -1,0 +1,230 @@
+\hypertarget{form_8h_source}{}\doxysection{form.\+h}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{//}}
+\DoxyCodeLine{2 \textcolor{comment}{// form.h -\/ form interface}}
+\DoxyCodeLine{3 \textcolor{comment}{//}}
+\DoxyCodeLine{4 \textcolor{comment}{// lecui user interface library, part of the liblec library}}
+\DoxyCodeLine{5 \textcolor{comment}{// Copyright (c) 2019 Alec Musasa (alecmus at live dot com)}}
+\DoxyCodeLine{6 \textcolor{comment}{//}}
+\DoxyCodeLine{7 \textcolor{comment}{// Released under the MIT license. For full details see the}}
+\DoxyCodeLine{8 \textcolor{comment}{// file LICENSE.txt}}
+\DoxyCodeLine{9 \textcolor{comment}{//}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#if defined(LECUI\_EXPORTS)}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include "{}lecui.h"{}}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <liblec/lecui.h>}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#include <functional>}}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21 \textcolor{keyword}{namespace }liblec \{}
+\DoxyCodeLine{22     \textcolor{keyword}{namespace }lecui \{}
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#if defined(LECUI\_EXPORTS)}}
+\DoxyCodeLine{24         \textcolor{keyword}{class }page\_manager;}
+\DoxyCodeLine{25         \textcolor{keyword}{class }widget\_manager;}
+\DoxyCodeLine{26         \textcolor{keyword}{class }timer\_manager;}
+\DoxyCodeLine{27         \textcolor{keyword}{class }dimensions;}
+\DoxyCodeLine{28         \textcolor{keyword}{class }appearance;}
+\DoxyCodeLine{29         \textcolor{keyword}{class }controls;}
+\DoxyCodeLine{30         \textcolor{keyword}{class }filesystem;}
+\DoxyCodeLine{31         \textcolor{keyword}{class }color\_picker;}
+\DoxyCodeLine{32         \textcolor{keyword}{class }splash;}
+\DoxyCodeLine{33         \textcolor{keyword}{class }instance\_manager;}
+\DoxyCodeLine{34         \textcolor{keyword}{class }form\_menu;}
+\DoxyCodeLine{35         \textcolor{keyword}{class }tray\_icon;}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37         \textcolor{keyword}{namespace }containers \{}
+\DoxyCodeLine{38             \textcolor{keyword}{class }page;}
+\DoxyCodeLine{39             \textcolor{keyword}{class }status\_pane\_builder;}
+\DoxyCodeLine{40             \textcolor{keyword}{class }tab\_pane\_builder;}
+\DoxyCodeLine{41             \textcolor{keyword}{class }tab\_builder;}
+\DoxyCodeLine{42             \textcolor{keyword}{class }pane\_builder;}
+\DoxyCodeLine{43             \textcolor{keyword}{class }group\_builder;}
+\DoxyCodeLine{44         \}}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46         \textcolor{keyword}{namespace }widgets \{}
+\DoxyCodeLine{47             \textcolor{keyword}{class }label\_builder;}
+\DoxyCodeLine{48             \textcolor{keyword}{class }image\_view\_builder;}
+\DoxyCodeLine{49             \textcolor{keyword}{class }button\_builder;}
+\DoxyCodeLine{50             \textcolor{keyword}{class }custom\_builder;}
+\DoxyCodeLine{51             \textcolor{keyword}{class }table\_view\_builder;}
+\DoxyCodeLine{52             \textcolor{keyword}{class }rectangle\_builder;}
+\DoxyCodeLine{53             \textcolor{keyword}{class }toggle\_builder;}
+\DoxyCodeLine{54             \textcolor{keyword}{class }progress\_indicator\_builder;}
+\DoxyCodeLine{55             \textcolor{keyword}{class }progress\_bar\_builder;}
+\DoxyCodeLine{56             \textcolor{keyword}{class }checkbox\_builder;}
+\DoxyCodeLine{57             \textcolor{keyword}{class }text\_field\_builder;}
+\DoxyCodeLine{58             \textcolor{keyword}{class }password\_field\_builder;}
+\DoxyCodeLine{59             \textcolor{keyword}{class }tree\_view\_builder;}
+\DoxyCodeLine{60             \textcolor{keyword}{class }slider\_builder;}
+\DoxyCodeLine{61             \textcolor{keyword}{class }html\_editor\_builder;}
+\DoxyCodeLine{62             \textcolor{keyword}{class }combobox\_builder;}
+\DoxyCodeLine{63             \textcolor{keyword}{class }line\_builder;}
+\DoxyCodeLine{64             \textcolor{keyword}{class }time\_builder;}
+\DoxyCodeLine{65             \textcolor{keyword}{class }date\_builder;}
+\DoxyCodeLine{66             \textcolor{keyword}{class }icon\_builder;}
+\DoxyCodeLine{67             \textcolor{keyword}{class }strength\_bar\_builder;}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{69             \textcolor{keyword}{class }widget\_impl;}
+\DoxyCodeLine{70             \textcolor{keyword}{class }combobox\_impl;}
+\DoxyCodeLine{71             \textcolor{keyword}{class }html\_editor\_impl;}
+\DoxyCodeLine{72             \textcolor{keyword}{class }text\_field\_impl;}
+\DoxyCodeLine{73             \textcolor{keyword}{class }tree\_view\_impl;}
+\DoxyCodeLine{74             \textcolor{keyword}{class }image\_view\_impl;}
+\DoxyCodeLine{75             \textcolor{keyword}{class }table\_view\_impl;}
+\DoxyCodeLine{76             \textcolor{keyword}{class }time\_impl;}
+\DoxyCodeLine{77             \textcolor{keyword}{class }date\_impl;}
+\DoxyCodeLine{78             \textcolor{keyword}{class }icon\_impl;}
+\DoxyCodeLine{79             \textcolor{keyword}{class }pane\_impl;}
+\DoxyCodeLine{80             \textcolor{keyword}{class }tab\_pane\_impl;}
+\DoxyCodeLine{81         \}}
+\DoxyCodeLine{82 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{83 }
+\DoxyCodeLine{84         \textcolor{keyword}{enum class} form\_position \{}
+\DoxyCodeLine{86             center\_to\_working\_area,}
+\DoxyCodeLine{87             center\_to\_parent,}
+\DoxyCodeLine{88             top\_left,}
+\DoxyCodeLine{89             top\_left\_offset,}
+\DoxyCodeLine{90             bottom\_left,}
+\DoxyCodeLine{91             bottom\_left\_offset,}
+\DoxyCodeLine{92             top\_right,}
+\DoxyCodeLine{93             top\_right\_offset,}
+\DoxyCodeLine{94             bottom\_right,}
+\DoxyCodeLine{95             bottom\_right\_offset,}
+\DoxyCodeLine{96         \};}
+\DoxyCodeLine{97 }
+\DoxyCodeLine{102         \textcolor{keyword}{class }lecui\_api \mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}} \{}
+\DoxyCodeLine{103         \textcolor{keyword}{public}:}
+\DoxyCodeLine{111             \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a5e8d85dd0feab388c6a5de92e54b4539}{form}}(\textcolor{keyword}{const} std::string\& caption);}
+\DoxyCodeLine{112 }
+\DoxyCodeLine{126             \mbox{\hyperlink{classliblec_1_1lecui_1_1form_ab37322096b8c365efa7427c7229b6c12}{form}}(\textcolor{keyword}{const} std::string\& caption, \mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}}\& parent);}
+\DoxyCodeLine{127             \mbox{\hyperlink{classliblec_1_1lecui_1_1form}{\string~form}}();}
+\DoxyCodeLine{128 }
+\DoxyCodeLine{131             [[nodiscard]]}
+\DoxyCodeLine{132             \textcolor{keyword}{static} std::string \mbox{\hyperlink{classliblec_1_1lecui_1_1form_ac4bd8d0b31ed1a0cc19c2960fe2899fb}{menu\_form\_caption}}();}
+\DoxyCodeLine{133 }
+\DoxyCodeLine{136             [[nodiscard]]}
+\DoxyCodeLine{137             \textcolor{keyword}{static} std::string \mbox{\hyperlink{classliblec_1_1lecui_1_1form_ae46009d2c64c15324241ad39c349ebee}{tooltip\_form\_caption}}();}
+\DoxyCodeLine{138 }
+\DoxyCodeLine{142             \textcolor{keywordtype}{void} \mbox{\hyperlink{classliblec_1_1lecui_1_1form_abf87c84254489bf207145dbcb8d9dc03}{move}}(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1point}{point}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1point}{point}});}
+\DoxyCodeLine{143 }
+\DoxyCodeLine{146             \textcolor{keywordtype}{void} \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a8dcfa7376585537c1439cb79992e4c78}{move}}(\textcolor{keyword}{const} form\_position\& form\_position);}
+\DoxyCodeLine{147 }
+\DoxyCodeLine{158             \textcolor{keywordtype}{void} \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a7dc5f9275022a0c260bccdf9c2ffb567}{force\_instance}}();}
+\DoxyCodeLine{159 }
+\DoxyCodeLine{166             [[nodiscard]] \textcolor{keywordtype}{bool} \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a54ba88558be331b76724721055130beb}{create}}(std::string\& error);}
+\DoxyCodeLine{167 }
+\DoxyCodeLine{172             \textcolor{keywordtype}{void} \mbox{\hyperlink{classliblec_1_1lecui_1_1form_ab2331a6e572e672d4e875302da594666}{close}}();}
+\DoxyCodeLine{173 }
+\DoxyCodeLine{183             \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a50ea7e5b9915f781f1d298cff2f37a85}{on\_initialize}}(std::string\& error);}
+\DoxyCodeLine{184 }
+\DoxyCodeLine{197             [[nodiscard]] \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a4e2e100ef451160db1cb71453bb19eed}{on\_layout}}(std::string\& error);}
+\DoxyCodeLine{198 }
+\DoxyCodeLine{202             \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a7644f0c8d1bc55b11a7bd0e884b84e25}{on\_start}}();}
+\DoxyCodeLine{203 }
+\DoxyCodeLine{209             \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a108d0c9b7d47cfd1a808cb47ebfe176d}{on\_close}}();}
+\DoxyCodeLine{210 }
+\DoxyCodeLine{214             \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a977a34d040d594164edcda08b8cb565d}{on\_shutdown}}();}
+\DoxyCodeLine{215 }
+\DoxyCodeLine{221             [[nodiscard]] \textcolor{keywordtype}{bool} \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a3477fae3ae3d391f62c1d0e04cf0e1af}{prompt}}(\textcolor{keyword}{const} std::string\& question);}
+\DoxyCodeLine{222 }
+\DoxyCodeLine{227             \textcolor{keywordtype}{void} \mbox{\hyperlink{classliblec_1_1lecui_1_1form_ae4b44163b6dc7684f0192343d203c7fe}{message}}(\textcolor{keyword}{const} std::string\& message);}
+\DoxyCodeLine{228 }
+\DoxyCodeLine{234             \textcolor{keywordtype}{void} \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a144e42ae28a7c24d470d5b9b147efebd}{update}}();}
+\DoxyCodeLine{235 }
+\DoxyCodeLine{252             \textcolor{keywordtype}{void} \mbox{\hyperlink{classliblec_1_1lecui_1_1form_ae2a0525beb9d780abd15a9baa54ac3f7}{reload}}();}
+\DoxyCodeLine{253 }
+\DoxyCodeLine{260             \textcolor{keywordtype}{void} \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a1a9fc229d83e98928bf2b47bf5f186fc}{on\_caption}}(std::function<\textcolor{keywordtype}{void}()>on\_caption, \textcolor{keyword}{const} std::string\& tooltip);}
+\DoxyCodeLine{261 }
+\DoxyCodeLine{267             \textcolor{keywordtype}{void} \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a4e99b2e92968755f60f112bdf2a86650}{on\_drop\_files}}(std::function<\textcolor{keywordtype}{void}(\textcolor{keyword}{const} std::string\& file)>on\_drop\_files);}
+\DoxyCodeLine{268 }
+\DoxyCodeLine{272             \textcolor{keywordtype}{void} \mbox{\hyperlink{classliblec_1_1lecui_1_1form_aca1171d5db45597a569f7ec7e592eb37}{on\_receive\_data}}(std::function<\textcolor{keywordtype}{void}(\textcolor{keyword}{const} std::string\& data)>on\_receive\_data);}
+\DoxyCodeLine{273 }
+\DoxyCodeLine{278             [[nodiscard]]}
+\DoxyCodeLine{279             \textcolor{keyword}{static} \textcolor{keywordtype}{bool} \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a69b445cd2e22e5bb90f46f081499e7a8}{keep\_alive}}();}
+\DoxyCodeLine{280 }
+\DoxyCodeLine{283             [[nodiscard]]}
+\DoxyCodeLine{284             \textcolor{keywordtype}{float} \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a045f0d9eed1c1ede57fa9618b49fdbea}{get\_dpi\_scale}}();}
+\DoxyCodeLine{285 }
+\DoxyCodeLine{288             \textcolor{keywordtype}{void} \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a5047dd2b740499e48f13dd73747056f7}{allow\_minimize}}();}
+\DoxyCodeLine{289 }
+\DoxyCodeLine{294             \textcolor{keywordtype}{void} \mbox{\hyperlink{classliblec_1_1lecui_1_1form_ace55cac000c3c24063d5e4e278054c4d}{restore}}();}
+\DoxyCodeLine{295 }
+\DoxyCodeLine{298             \textcolor{keywordtype}{void} \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a24aed3ecd75221fefebf159b7329ed75}{maximize}}();}
+\DoxyCodeLine{299 }
+\DoxyCodeLine{304             \textcolor{keywordtype}{void} \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a9e113933e10a1aa1f66a5edfe8636d9d}{hide}}();}
+\DoxyCodeLine{305 }
+\DoxyCodeLine{308             \textcolor{keywordtype}{bool} \mbox{\hyperlink{classliblec_1_1lecui_1_1form_aba58f74e51680cb2b08fcb3eca90673a}{visible}}();}
+\DoxyCodeLine{309 }
+\DoxyCodeLine{312             \textcolor{keywordtype}{void} \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a885976c337b0419d38f1b1eeb51d33ae}{show}}();}
+\DoxyCodeLine{313 }
+\DoxyCodeLine{316             \textcolor{keywordtype}{bool} \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a545210f3ab728635216caeab49efd949}{minimized}}();}
+\DoxyCodeLine{317 }
+\DoxyCodeLine{318         \textcolor{keyword}{private}:}
+\DoxyCodeLine{319             \textcolor{keyword}{class }impl;}
+\DoxyCodeLine{320             impl\& \_d;}
+\DoxyCodeLine{321 }
+\DoxyCodeLine{322             \textcolor{comment}{// Default constructor and copying an object of this class are not allowed}}
+\DoxyCodeLine{323             \mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}}() = \textcolor{keyword}{delete};}
+\DoxyCodeLine{324             \mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}}(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{325             \mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}}\& operator=(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{326 }
+\DoxyCodeLine{327 \textcolor{preprocessor}{\#if defined(LECUI\_EXPORTS)}}
+\DoxyCodeLine{328             \textcolor{keyword}{friend} \textcolor{keyword}{class }\mbox{\hyperlink{classliblec_1_1lecui_1_1page__manager}{page\_manager}};}
+\DoxyCodeLine{329             \textcolor{keyword}{friend} \textcolor{keyword}{class }\mbox{\hyperlink{classliblec_1_1lecui_1_1widget__manager}{widget\_manager}};}
+\DoxyCodeLine{330             \textcolor{keyword}{friend} \textcolor{keyword}{class }\mbox{\hyperlink{classliblec_1_1lecui_1_1timer__manager}{timer\_manager}};}
+\DoxyCodeLine{331             \textcolor{keyword}{friend} \textcolor{keyword}{class }\mbox{\hyperlink{classliblec_1_1lecui_1_1dimensions}{dimensions}};}
+\DoxyCodeLine{332             \textcolor{keyword}{friend} \textcolor{keyword}{class }\mbox{\hyperlink{classliblec_1_1lecui_1_1appearance}{appearance}};}
+\DoxyCodeLine{333             \textcolor{keyword}{friend} \textcolor{keyword}{class }\mbox{\hyperlink{classliblec_1_1lecui_1_1controls}{controls}};}
+\DoxyCodeLine{334             \textcolor{keyword}{friend} \textcolor{keyword}{class }\mbox{\hyperlink{classliblec_1_1lecui_1_1filesystem}{filesystem}};}
+\DoxyCodeLine{335             \textcolor{keyword}{friend} \textcolor{keyword}{class }\mbox{\hyperlink{classliblec_1_1lecui_1_1color__picker}{color\_picker}};}
+\DoxyCodeLine{336             \textcolor{keyword}{friend} \textcolor{keyword}{class }\mbox{\hyperlink{classliblec_1_1lecui_1_1splash}{splash}};}
+\DoxyCodeLine{337             \textcolor{keyword}{friend} \textcolor{keyword}{class }\mbox{\hyperlink{classliblec_1_1lecui_1_1instance__manager}{instance\_manager}};}
+\DoxyCodeLine{338             \textcolor{keyword}{friend} \textcolor{keyword}{class }\mbox{\hyperlink{classliblec_1_1lecui_1_1form__menu}{form\_menu}};}
+\DoxyCodeLine{339             \textcolor{keyword}{friend} \textcolor{keyword}{class }\mbox{\hyperlink{classliblec_1_1lecui_1_1tray__icon}{tray\_icon}};}
+\DoxyCodeLine{340 }
+\DoxyCodeLine{341             \textcolor{keyword}{friend} \textcolor{keyword}{class }\mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1page}{containers::page}};}
+\DoxyCodeLine{342             \textcolor{keyword}{friend} \textcolor{keyword}{class }containers::status\_pane\_builder;}
+\DoxyCodeLine{343             \textcolor{keyword}{friend} \textcolor{keyword}{class }containers::tab\_pane\_builder;}
+\DoxyCodeLine{344             \textcolor{keyword}{friend} \textcolor{keyword}{class }containers::tab\_builder;}
+\DoxyCodeLine{345             \textcolor{keyword}{friend} \textcolor{keyword}{class }containers::pane\_builder;}
+\DoxyCodeLine{346             \textcolor{keyword}{friend} \textcolor{keyword}{class }containers::group\_builder;}
+\DoxyCodeLine{347             \textcolor{keyword}{friend} \textcolor{keyword}{class }widgets::label\_builder;}
+\DoxyCodeLine{348             \textcolor{keyword}{friend} \textcolor{keyword}{class }widgets::image\_view\_builder;}
+\DoxyCodeLine{349             \textcolor{keyword}{friend} \textcolor{keyword}{class }widgets::button\_builder;}
+\DoxyCodeLine{350             \textcolor{keyword}{friend} \textcolor{keyword}{class }widgets::custom\_builder;}
+\DoxyCodeLine{351             \textcolor{keyword}{friend} \textcolor{keyword}{class }widgets::table\_view\_builder;}
+\DoxyCodeLine{352             \textcolor{keyword}{friend} \textcolor{keyword}{class }widgets::rectangle\_builder;}
+\DoxyCodeLine{353             \textcolor{keyword}{friend} \textcolor{keyword}{class }widgets::toggle\_builder;}
+\DoxyCodeLine{354             \textcolor{keyword}{friend} \textcolor{keyword}{class }widgets::progress\_indicator\_builder;}
+\DoxyCodeLine{355             \textcolor{keyword}{friend} \textcolor{keyword}{class }widgets::progress\_bar\_builder;}
+\DoxyCodeLine{356             \textcolor{keyword}{friend} \textcolor{keyword}{class }widgets::checkbox\_builder;}
+\DoxyCodeLine{357             \textcolor{keyword}{friend} \textcolor{keyword}{class }widgets::text\_field\_builder;}
+\DoxyCodeLine{358             \textcolor{keyword}{friend} \textcolor{keyword}{class }widgets::tree\_view\_builder;}
+\DoxyCodeLine{359             \textcolor{keyword}{friend} \textcolor{keyword}{class }widgets::slider\_builder;}
+\DoxyCodeLine{360             \textcolor{keyword}{friend} \textcolor{keyword}{class }widgets::html\_editor\_builder;}
+\DoxyCodeLine{361             \textcolor{keyword}{friend} \textcolor{keyword}{class }widgets::combobox\_builder;}
+\DoxyCodeLine{362             \textcolor{keyword}{friend} \textcolor{keyword}{class }widgets::line\_builder;}
+\DoxyCodeLine{363             \textcolor{keyword}{friend} \textcolor{keyword}{class }widgets::time\_builder;}
+\DoxyCodeLine{364             \textcolor{keyword}{friend} \textcolor{keyword}{class }widgets::date\_builder;}
+\DoxyCodeLine{365             \textcolor{keyword}{friend} \textcolor{keyword}{class }widgets::icon\_builder;}
+\DoxyCodeLine{366             \textcolor{keyword}{friend} \textcolor{keyword}{class }widgets::strength\_bar\_builder;}
+\DoxyCodeLine{367 }
+\DoxyCodeLine{368             \textcolor{keyword}{friend} \textcolor{keyword}{class }widgets::widget\_impl;}
+\DoxyCodeLine{369             \textcolor{keyword}{friend} \textcolor{keyword}{class }widgets::combobox\_impl;}
+\DoxyCodeLine{370             \textcolor{keyword}{friend} \textcolor{keyword}{class }widgets::image\_view\_impl;}
+\DoxyCodeLine{371             \textcolor{keyword}{friend} \textcolor{keyword}{class }widgets::tree\_view\_impl;}
+\DoxyCodeLine{372             \textcolor{keyword}{friend} \textcolor{keyword}{class }widgets::time\_impl;}
+\DoxyCodeLine{373             \textcolor{keyword}{friend} \textcolor{keyword}{class }widgets::date\_impl;}
+\DoxyCodeLine{374             \textcolor{keyword}{friend} \textcolor{keyword}{class }widgets::html\_editor\_impl;}
+\DoxyCodeLine{375             \textcolor{keyword}{friend} \textcolor{keyword}{class }widgets::icon\_impl;}
+\DoxyCodeLine{376 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{377         \};}
+\DoxyCodeLine{378     \}}
+\DoxyCodeLine{379 \}}
+
+\end{DoxyCode}

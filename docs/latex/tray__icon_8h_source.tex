@@ -1,0 +1,68 @@
+\hypertarget{tray__icon_8h_source}{}\doxysection{tray\+\_\+icon.\+h}
+\label{tray__icon_8h_source}\index{utilities/tray\_icon.h@{utilities/tray\_icon.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{//}}
+\DoxyCodeLine{2 \textcolor{comment}{// tray\_icon.h -\/ tray icon interface}}
+\DoxyCodeLine{3 \textcolor{comment}{//}}
+\DoxyCodeLine{4 \textcolor{comment}{// lecui user interface library, part of the liblec library}}
+\DoxyCodeLine{5 \textcolor{comment}{// Copyright (c) 2019 Alec Musasa (alecmus at live dot com)}}
+\DoxyCodeLine{6 \textcolor{comment}{//}}
+\DoxyCodeLine{7 \textcolor{comment}{// Released under the MIT license. For full details see the}}
+\DoxyCodeLine{8 \textcolor{comment}{// file LICENSE.txt}}
+\DoxyCodeLine{9 \textcolor{comment}{//}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#if defined(LECUI\_EXPORTS)}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include "{}../form.h"{}}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <liblec/lecui/form.h>}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{keyword}{namespace }liblec \{}
+\DoxyCodeLine{20     \textcolor{keyword}{namespace }lecui \{}
+\DoxyCodeLine{22         \textcolor{keyword}{struct }\mbox{\hyperlink{structliblec_1_1lecui_1_1tray__menu__item}{tray\_menu\_item}} \{}
+\DoxyCodeLine{24             std::string \mbox{\hyperlink{structliblec_1_1lecui_1_1tray__menu__item_a3dbd0046c36e4147e91bc866ea0e61f4}{label}};}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{27             std::function<void()> \mbox{\hyperlink{structliblec_1_1lecui_1_1tray__menu__item_a5c354cea94de1721af1b7ac9ee38e32d}{action}} = \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{30             std::vector<tray\_menu\_item> \mbox{\hyperlink{structliblec_1_1lecui_1_1tray__menu__item_a464052d8f8cae6fbe42e7cb2c00c1f77}{children}};}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{33             std::string \mbox{\hyperlink{structliblec_1_1lecui_1_1tray__menu__item_a1bf58bf2773cc294bcdca03824a6953f}{image\_file}};}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{36             std::string \mbox{\hyperlink{structliblec_1_1lecui_1_1tray__menu__item_a1fd4a393f3a5601d7f73c361448bcae8}{font}} = \textcolor{stringliteral}{"{}Segoe UI"{}};}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{39             \textcolor{keywordtype}{float} \mbox{\hyperlink{structliblec_1_1lecui_1_1tray__menu__item_aafed54617b821f8c36dc61b656f0503e}{font\_size}} = 9.f;}
+\DoxyCodeLine{40         \};}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{45         \textcolor{keyword}{class }lecui\_api \mbox{\hyperlink{classliblec_1_1lecui_1_1tray__icon}{tray\_icon}} \{}
+\DoxyCodeLine{46         \textcolor{keyword}{public}:}
+\DoxyCodeLine{49             \mbox{\hyperlink{classliblec_1_1lecui_1_1tray__icon_a340729769e6574c2fdfe8f982a85c4e6}{tray\_icon}}(\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}}\& fm);}
+\DoxyCodeLine{50             \mbox{\hyperlink{classliblec_1_1lecui_1_1tray__icon}{\string~tray\_icon}}();}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{62             \textcolor{keywordtype}{bool} \mbox{\hyperlink{classliblec_1_1lecui_1_1tray__icon_a22ba346996ec33fbaf0ced84189ac3b7}{add}}(\textcolor{keywordtype}{int} png\_resource,}
+\DoxyCodeLine{63                 \textcolor{keyword}{const} std::string\& title,}
+\DoxyCodeLine{64                 \textcolor{keyword}{const} std::vector<tray\_menu\_item>\& items,}
+\DoxyCodeLine{65                 \textcolor{keyword}{const} std::string\& default\_item,}
+\DoxyCodeLine{66                 std::string\& error);}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{74             \textcolor{keywordtype}{bool} \mbox{\hyperlink{classliblec_1_1lecui_1_1tray__icon_ae26e93f1fd8c0309ad21a554cd86da1b}{change}}(\textcolor{keywordtype}{int} png\_resource,}
+\DoxyCodeLine{75                 \textcolor{keyword}{const} std::string\& title,}
+\DoxyCodeLine{76                 std::string\& error);}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{81             \textcolor{keywordtype}{void} \mbox{\hyperlink{classliblec_1_1lecui_1_1tray__icon_acb95b7b05bae681ce5085f415d743689}{remove}}();}
+\DoxyCodeLine{82 }
+\DoxyCodeLine{83         \textcolor{keyword}{private}:}
+\DoxyCodeLine{84             \textcolor{keyword}{class }impl;}
+\DoxyCodeLine{85             impl\& \_d;}
+\DoxyCodeLine{86 }
+\DoxyCodeLine{87             \textcolor{comment}{// Default constructor and copying an object of this class are not allowed}}
+\DoxyCodeLine{88             \mbox{\hyperlink{classliblec_1_1lecui_1_1tray__icon}{tray\_icon}}() = \textcolor{keyword}{delete};}
+\DoxyCodeLine{89             \mbox{\hyperlink{classliblec_1_1lecui_1_1tray__icon}{tray\_icon}}(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1tray__icon}{tray\_icon}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{90             \mbox{\hyperlink{classliblec_1_1lecui_1_1tray__icon}{tray\_icon}}\& operator=(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1tray__icon}{tray\_icon}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{91         \};}
+\DoxyCodeLine{92     \}}
+\DoxyCodeLine{93 \}}
+
+\end{DoxyCode}

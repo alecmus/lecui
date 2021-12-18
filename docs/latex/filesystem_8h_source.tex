@@ -1,0 +1,49 @@
+\hypertarget{filesystem_8h_source}{}\doxysection{filesystem.\+h}
+\label{filesystem_8h_source}\index{utilities/filesystem.h@{utilities/filesystem.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{//}}
+\DoxyCodeLine{2 \textcolor{comment}{// filesystem.h -\/ filesystem interface}}
+\DoxyCodeLine{3 \textcolor{comment}{//}}
+\DoxyCodeLine{4 \textcolor{comment}{// lecui user interface library, part of the liblec library}}
+\DoxyCodeLine{5 \textcolor{comment}{// Copyright (c) 2019 Alec Musasa (alecmus at live dot com)}}
+\DoxyCodeLine{6 \textcolor{comment}{//}}
+\DoxyCodeLine{7 \textcolor{comment}{// Released under the MIT license. For full details see the}}
+\DoxyCodeLine{8 \textcolor{comment}{// file LICENSE.txt}}
+\DoxyCodeLine{9 \textcolor{comment}{//}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#if defined(LECUI\_EXPORTS)}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include "{}../form.h"{}}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <liblec/lecui/form.h>}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{keyword}{namespace }liblec \{}
+\DoxyCodeLine{20     \textcolor{keyword}{namespace }lecui \{}
+\DoxyCodeLine{22         \textcolor{keyword}{class }lecui\_api \mbox{\hyperlink{classliblec_1_1lecui_1_1filesystem}{filesystem}} \{}
+\DoxyCodeLine{23         \textcolor{keyword}{public}:}
+\DoxyCodeLine{24             \mbox{\hyperlink{classliblec_1_1lecui_1_1filesystem}{filesystem}}(\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}}\& fm);}
+\DoxyCodeLine{25             \mbox{\hyperlink{classliblec_1_1lecui_1_1filesystem}{\string~filesystem}}();}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{30             [[nodiscard]] std::string \mbox{\hyperlink{classliblec_1_1lecui_1_1filesystem_a069948b5528a180066abdff4b9002be2}{select\_folder}}(\textcolor{keyword}{const} std::string\& title);}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{35             [[nodiscard]] std::string \mbox{\hyperlink{classliblec_1_1lecui_1_1filesystem_a33560a6d8e08f4d92c7284c132ac69c6}{open\_file}}(\textcolor{keyword}{const} \mbox{\hyperlink{structliblec_1_1lecui_1_1open__file__params}{open\_file\_params}}\& params);}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{43             [[nodiscard]] std::string \mbox{\hyperlink{classliblec_1_1lecui_1_1filesystem_aa669ceee5e0eca15a41029d4bb59ea9c}{save\_file}}(\textcolor{keyword}{const} std::string\& file,}
+\DoxyCodeLine{44                 \textcolor{keyword}{const} \mbox{\hyperlink{structliblec_1_1lecui_1_1save__file__params}{save\_file\_params}}\& params);}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46         \textcolor{keyword}{private}:}
+\DoxyCodeLine{47             \textcolor{keyword}{class }impl;}
+\DoxyCodeLine{48             impl\& \_d;}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50             \textcolor{comment}{// Default constructor and copying an object of this class are not allowed}}
+\DoxyCodeLine{51             \mbox{\hyperlink{classliblec_1_1lecui_1_1filesystem}{filesystem}}() = \textcolor{keyword}{delete};}
+\DoxyCodeLine{52             \mbox{\hyperlink{classliblec_1_1lecui_1_1filesystem}{filesystem}}(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1filesystem}{filesystem}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{53             \mbox{\hyperlink{classliblec_1_1lecui_1_1filesystem}{filesystem}}\& operator=(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1filesystem}{filesystem}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{54         \};}
+\DoxyCodeLine{55     \}}
+\DoxyCodeLine{56 \}}
+
+\end{DoxyCode}
