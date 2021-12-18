@@ -384,14 +384,16 @@ namespace liblec {
 			_p_close_button->specs()
 				.tooltip("Close")
 				.color_fill(_clr_theme)
-				.color_hot(_clr_theme_hot)
+				.color_hot(_theme == themes::dark ?
+					defaults::color(_theme, item::form).lighten(5.f) :
+					defaults::color(_theme, item::form).darken(5.f))
 				.color_disabled(_clr_theme_disabled)
 				.on_resize().x_rate(100.f);
 
 			_p_close_button->specs().rect()
 				.right(_size.get_width() - _control_button_margin)
 				.top(_control_button_margin)
-				.left(_p_close_button->specs().rect().right() - (_caption_bar_height - 2.f * _control_button_margin))
+				.left(_p_close_button->specs().rect().right() - (1.5f * _caption_bar_height - 2.f * _control_button_margin))
 				.bottom(_p_close_button->specs().rect().top() + (_caption_bar_height - 2.f * _control_button_margin));
 
 			_p_close_button->specs().events().click = on_click;
@@ -408,7 +410,9 @@ namespace liblec {
 			_p_maximize_button->specs()
 				.tooltip("Maximize")
 				.color_fill(_clr_theme)
-				.color_hot(_clr_theme_hot)
+				.color_hot(_theme == themes::dark ?
+					defaults::color(_theme, item::form).lighten(5.f) :
+					defaults::color(_theme, item::form).darken(5.f))
 				.color_disabled(_clr_theme_disabled)
 				.on_resize().x_rate(100.f);
 
@@ -417,7 +421,7 @@ namespace liblec {
 			_p_maximize_button->specs().rect()
 				.right(right_edge - _control_button_margin)
 				.top(_control_button_margin)
-				.left(_p_maximize_button->specs().rect().right() - (_caption_bar_height - 2.f * _control_button_margin))
+				.left(_p_maximize_button->specs().rect().right() - (1.5f * _caption_bar_height - 2.f * _control_button_margin))
 				.bottom(_p_maximize_button->specs().rect().top() + (_caption_bar_height - 2.f * _control_button_margin));
 		}
 
@@ -432,7 +436,9 @@ namespace liblec {
 			_p_minimize_button->specs()
 				.tooltip("Minimize")
 				.color_fill(_clr_theme)
-				.color_hot(_clr_theme_hot)
+				.color_hot(_theme == themes::dark ?
+					defaults::color(_theme, item::form).lighten(5.f) :
+					defaults::color(_theme, item::form).darken(5.f))
 				.color_disabled(_clr_theme_disabled)
 				.on_resize().x_rate(100.f);
 
@@ -442,7 +448,7 @@ namespace liblec {
 			_p_minimize_button->specs().rect()
 				.right(right_edge - _control_button_margin)
 				.top(_control_button_margin)
-				.left(_p_minimize_button->specs().rect().right() - (_caption_bar_height - 2.f * _control_button_margin))
+				.left(_p_minimize_button->specs().rect().right() - (1.5f* _caption_bar_height - 2.f * _control_button_margin))
 				.bottom(_p_minimize_button->specs().rect().top() + (_caption_bar_height - 2.f * _control_button_margin));
 		}
 
