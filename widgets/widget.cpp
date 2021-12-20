@@ -38,6 +38,8 @@ namespace liblec {
 				return !operator==(param);
 			}
 
+			/// This operator is for determining whether to recreate badge resources. It doesn't
+			/// represent equality in the sense of badges having the same characteristics!
 			bool badge_specs::operator==(const badge_specs& param) {
 				return
 					/// Colors

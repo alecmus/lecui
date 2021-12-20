@@ -25,7 +25,7 @@ namespace liblec {
 #endif
 
 			/// <summary>Tab pane. To instantiate and add to a container use the <see cref="add"></see> static method.</summary>
-			class lecui_api tab_pane : public widgets::widget, public widgets::badge_widget {
+			class lecui_api tab_pane : public widgets::widget {
 			public:
 				enum class side {
 					left,
@@ -72,9 +72,6 @@ namespace liblec {
 
 				std::string& tooltip() override;
 				tab_pane& tooltip(const std::string& tooltip);
-
-				widgets::badge_specs& badge() override;
-				tab_pane& badge(const widgets::badge_specs& badge);
 
 				lecui::rect& rect() override;
 				tab_pane& rect(const lecui::rect& rect);
@@ -255,9 +252,15 @@ namespace liblec {
 			/// fully supported, allowing tab panes within tabs that are themselves in another
 			/// tab pane, to virtually any depth level that the memory of the computer the app
 			/// is running on can permit.</remarks>
-			class lecui_api tab : public containers::page {
+			class lecui_api tab : public containers::page, public widgets::badge_widget {
 			public:
 				tab(form&, const std::string&);
+
+				bool operator==(const tab&);
+				bool operator!=(const tab&);
+
+				widgets::badge_specs& badge() override;
+				tab& badge(const widgets::badge_specs& badge);
 
 				/// <summary>Get the size of the tab's page.</summary>
 				/// <returns>The size, in pixels.</returns>

@@ -448,13 +448,6 @@ namespace liblec {
 			return *this;
 		}
 
-		widgets::badge_specs& containers::tab_pane::badge() { return _badge; }
-
-		containers::tab_pane& containers::tab_pane::badge(const widgets::badge_specs& badge) {
-			_badge = badge;
-			return *this;
-		}
-
 		lecui::rect& containers::tab_pane::rect() { return _rect; }
 
 		containers::tab_pane& containers::tab_pane::rect(const lecui::rect& rect) {
@@ -612,6 +605,22 @@ namespace liblec {
 
 		containers::tab::tab(form& fm, const std::string& tab_name) :
 			page(fm, tab_name) {}
+
+		bool containers::tab::operator==(const tab& param) {
+			return
+				_badge == param._badge;
+		}
+
+		bool containers::tab::operator!=(const tab& param) {
+			return !operator==(param);
+		}
+
+		widgets::badge_specs& containers::tab::badge() { return _badge; }
+
+		containers::tab& containers::tab::badge(const widgets::badge_specs& badge) {
+			_badge = badge;
+			return *this;
+		}
 
 		const lecui::size containers::tab::size() {
 			return page::size();
