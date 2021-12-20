@@ -73,6 +73,9 @@ namespace liblec {
 				std::string& tooltip() override;
 				tab_pane& tooltip(const std::string& tooltip);
 
+				badge_specs& badge() override;
+				tab_pane& badge(const badge_specs& badge);
+
 				lecui::rect& rect() override;
 				tab_pane& rect(const lecui::rect& rect);
 

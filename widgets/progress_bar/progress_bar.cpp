@@ -41,6 +41,13 @@ namespace liblec {
 			return *this;
 		}
 
+		widgets::widget::badge_specs& widgets::progress_bar::badge() { return _badge; }
+
+		widgets::progress_bar& widgets::progress_bar::badge(const badge_specs& badge) {
+			_badge = badge;
+			return *this;
+		}
+
 		lecui::rect& widgets::progress_bar::rect() { return _rect; }
 
 		widgets::progress_bar& widgets::progress_bar::rect(const lecui::rect& rect) {

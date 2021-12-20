@@ -31,11 +31,71 @@ namespace liblec {
 					(_font_size == param._font_size) &&
 
 					/// Cursor
-					(_cursor == param._cursor);
+					(_cursor == param._cursor) &&
+					
+					/// Badge
+					(_badge == param._badge);
 			}
 
 			bool widget::operator!=(const widget& param) {
 				return !operator==(param);
+			}
+
+			bool widget::badge_specs::operator==(const badge_specs& param) {
+				return
+					/// Colors
+					(_color == param._color) &&
+					(_color_text == param._color_text) &&
+
+					/// Font
+					(_font == param._font) &&
+					(_font_size == param._font_size);
+			}
+
+			bool widget::badge_specs::operator!=(const badge_specs& param) {
+				return !operator==(param);
+			}
+
+			std::string& widget::badge_specs::text() { return _text; }
+
+			widget::badge_specs& widget::badge_specs::text(const std::string& text) {
+				_text = text;
+				return *this;
+			}
+
+			std::string& widget::badge_specs::font() { return _font; }
+
+			widget::badge_specs& widget::badge_specs::font(const std::string& font) {
+				_font = font;
+				return *this;
+			}
+
+			float& widget::badge_specs::font_size() { return _font_size; }
+
+			widget::badge_specs& widget::badge_specs::font_size(const float& font_size) {
+				_font_size = font_size;
+				return *this;
+			}
+
+			lecui::color& widget::badge_specs::color() { return _color; }
+
+			widget::badge_specs& widget::badge_specs::color(const lecui::color& color) {
+				_color = color;
+				return *this;
+			}
+
+			lecui::color& widget::badge_specs::color_text() { return _color_text; }
+
+			widget::badge_specs& widget::badge_specs::color_text(const lecui::color& color_text) {
+				_color_text = color_text;
+				return *this;
+			}
+
+			widget::badge_specs::badge_position& widget::badge_specs::position() { return _position; }
+
+			widget::badge_specs& widget::badge_specs::position(const badge_position& position) {
+				_position = position;
+				return *this;
 			}
 		}
 

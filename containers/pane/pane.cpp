@@ -120,6 +120,13 @@ namespace liblec {
 			return *this;
 		}
 
+		widgets::widget::badge_specs& containers::pane_specs::badge() { return _badge; }
+
+		containers::pane_specs& containers::pane_specs::badge(const badge_specs& badge) {
+			_badge = badge;
+			return *this;
+		}
+
 		lecui::rect& containers::pane_specs::rect() { return _rect; }
 
 		containers::pane_specs& containers::pane_specs::rect(const lecui::rect& rect) {

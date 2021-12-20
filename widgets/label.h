@@ -92,6 +92,9 @@ namespace liblec {
 				std::string& tooltip() override;
 				label& tooltip(const std::string& tooltip);
 
+				badge_specs& badge() override;
+				label& badge(const badge_specs& badge);
+
 				lecui::rect& rect() override;
 				label& rect(const lecui::rect& rect);
 

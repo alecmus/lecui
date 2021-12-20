@@ -35,9 +35,86 @@ namespace liblec {
 					caret,
 				};
 
+				class lecui_api badge_specs {
+				public:
+					enum class badge_position {
+						top_left,
+						top_right,
+						bottom_left,
+						bottom_right,
+					};
+
+				protected:
+					std::string _text;
+					std::string _font = "Segoe UI";
+					float _font_size = 8.f;
+					color _color = { 255, 0, 0, 180 };
+					color _color_text = { 255, 255, 255, 255 };
+					badge_position _position = badge_position::bottom_right;
+
+				public:
+					bool operator==(const badge_specs&);
+					bool operator!=(const badge_specs&);
+
+					/// <summary>Get or set the badge text.</summary>
+					/// <returns>A reference to the badge text.</returns>
+					std::string& text();
+
+					/// <summary>Set the badge text.</summary>
+					/// <param name="text">The badge text.</param>
+					/// <returns>A reference to the modified object.</returns>
+					badge_specs& text(const std::string& text);
+
+					/// <summary>Get or set the default badge font, e.g. "Georgia".</summary>
+					/// <returns>A reference to the badge's font name.</returns>
+					std::string& font();
+
+					/// <summary>Set the badge font.</summary>
+					/// <param name="font">The name of the font, e.g. "Georgia".</param>
+					/// <returns>A reference to the modified object.</returns>
+					badge_specs& font(const std::string& font);
+
+					/// <summary>Get or set the badge's font size in points, e.g. 9.0f.</summary>
+					/// <returns>A reference to the widget's font size.</returns>
+					float& font_size();
+
+					/// <summary>Set the badge's font size.</summary>
+					/// <param name="font_size">The font size in points, e.g. 9.0f.</param>
+					/// <returns>A reference to the modified object.</returns>
+					badge_specs& font_size(const float& font_size);
+
+					/// <summary>Get or set the color of the badge.</summary>
+					/// <returns>A reference to the badge's color.</returns>
+					lecui::color& color();
+
+					/// <summary>Set the color of the badge.</summary>
+					/// <param name="color">The color of the badge, as defined in <see cref="lecui::color"></see>.</param>
+					/// <returns>A reference to the modified object.</returns>
+					badge_specs& color(const lecui::color& color);
+
+					/// <summary>Get or set the color of the badge's text.</summary>
+					/// <returns>A reference to the badge's text color.</returns>
+					lecui::color& color_text();
+
+					/// <summary>Set the color of the badge's text.</summary>
+					/// <param name="color_text">The color of the badge's text, as defined in <see cref="lecui::color"></see>.</param>
+					/// <returns>A reference to the modified object.</returns>
+					badge_specs& color_text(const lecui::color& color_text);
+
+					/// <summary>Get or set the badge's position.</summary>
+					/// <returns>A reference to the badge's position.</returns>
+					badge_position& position();
+
+					/// <summary>Set the badge's position.</summary>
+					/// <param name="position">The position of the badge, as defined in <see cref="badge_position"></see></param>
+					/// <returns>A reference to the modified object.</returns>
+					badge_specs& position(const badge_position& position);
+				};
+
 			protected:
 				std::string _text;
 				std::string _tooltip;
+				badge_specs _badge;
 				lecui::rect _rect;
 				resize_params _on_resize = { 0.f, 0.f, 0.f, 0.f };
 				cursor_type _cursor = cursor_type::arrow;
@@ -86,6 +163,12 @@ namespace liblec {
 				/// <remarks>The tooltip text is displayed when the mouse is hovered over the widget.</remarks>
 				virtual std::string& tooltip() = 0;
 
+				/// <summary>Get or set the widget's badge.</summary>
+				/// <returns>A reference to the badge specs.</returns>
+				/// <remarks>The badge is useful in indicating when something requires user attention, e.g., for
+				/// showing how many unread messages the user has or for indicating when an update is available.</remarks>
+				virtual badge_specs& badge() = 0;
+
 				/// <summary>Get or set the position and dimensions of the widget.</summary>
 				/// <returns>A reference to the widget rectangle.</returns>
 				virtual lecui::rect& rect() = 0;
@@ -103,7 +186,7 @@ namespace liblec {
 				/// <returns>A reference to the widget's font name.</returns>
 				virtual std::string& font() = 0;
 
-				/// <summary>Get or set the default widget font size in points, e.g. 9.0.</summary>
+				/// <summary>Get or set the default widget font size in points, e.g. 9.0f.</summary>
 				/// <returns>A reference to the widget's font size.</returns>
 				virtual float& font_size() = 0;
 

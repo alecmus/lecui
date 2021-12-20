@@ -40,6 +40,13 @@ namespace liblec {
 			return *this;
 		}
 
+		widgets::widget::badge_specs& widgets::button::badge() { return _badge; }
+
+		widgets::button& widgets::button::badge(const badge_specs& badge) {
+			_badge = badge;
+			return *this;
+		}
+
 		lecui::rect& widgets::button::rect() { return _rect; }
 
 		widgets::button& widgets::button::rect(const lecui::rect& rect) {
