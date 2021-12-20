@@ -74,13 +74,6 @@ namespace liblec {
 			return *this;
 		}
 
-		widgets::widget::badge_specs& widgets::tree_view::badge() { return _badge; }
-
-		widgets::tree_view& widgets::tree_view::badge(const badge_specs& badge) {
-			_badge = badge;
-			return *this;
-		}
-
 		lecui::rect& widgets::tree_view::rect() {
 			if (_p_special_pane_specs)	// redirect to special pane
 				return reinterpret_cast<lecui::containers::pane_specs*>(_p_special_pane_specs)->rect();

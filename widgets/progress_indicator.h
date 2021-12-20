@@ -44,9 +44,6 @@ namespace liblec {
 				std::string& tooltip() override;
 				progress_indicator& tooltip(const std::string& tooltip);
 
-				badge_specs& badge() override;
-				progress_indicator& badge(const badge_specs& badge);
-
 				lecui::rect& rect() override;
 				progress_indicator& rect(const lecui::rect& rect);
 

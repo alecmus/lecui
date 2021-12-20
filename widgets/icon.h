@@ -21,7 +21,7 @@ namespace liblec {
 		namespace widgets {
 			/// <summary>Icon widget. To instantiate and add to a container use the <see cref="add"></see> static method.</summary>
 			/// <remarks>Recommended size with defaults is 180x78px.</remarks>
-			class lecui_api icon : public widget {
+			class lecui_api icon : public widget, public badge_widget {
 			public:
 				/// <summary>Text position in icon.</summary>
 				enum class icon_text_position {

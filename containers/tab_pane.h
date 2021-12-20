@@ -25,7 +25,7 @@ namespace liblec {
 #endif
 
 			/// <summary>Tab pane. To instantiate and add to a container use the <see cref="add"></see> static method.</summary>
-			class lecui_api tab_pane : public widgets::widget {
+			class lecui_api tab_pane : public widgets::widget, public widgets::badge_widget {
 			public:
 				enum class side {
 					left,
@@ -73,8 +73,8 @@ namespace liblec {
 				std::string& tooltip() override;
 				tab_pane& tooltip(const std::string& tooltip);
 
-				badge_specs& badge() override;
-				tab_pane& badge(const badge_specs& badge);
+				widgets::badge_specs& badge() override;
+				tab_pane& badge(const widgets::badge_specs& badge);
 
 				lecui::rect& rect() override;
 				tab_pane& rect(const lecui::rect& rect);

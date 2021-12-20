@@ -80,9 +80,6 @@ namespace liblec {
 				std::string& tooltip() override;
 				table_view& tooltip(const std::string& tooltip);
 
-				badge_specs& badge() override;
-				table_view& badge(const badge_specs& badge);
-
 				lecui::rect& rect() override;
 				table_view& rect(const lecui::rect& rect);
 

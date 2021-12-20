@@ -40,7 +40,7 @@ namespace liblec {
 			return *this;
 		}
 
-		widgets::widget::badge_specs& widgets::custom::badge() { return _badge; }
+		widgets::badge_specs& widgets::custom::badge() { return _badge; }
 
 		widgets::custom& widgets::custom::badge(const badge_specs& badge) {
 			_badge = badge;

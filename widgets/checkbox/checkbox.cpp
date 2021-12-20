@@ -41,13 +41,6 @@ namespace liblec {
 			return *this;
 		}
 
-		widgets::widget::badge_specs& widgets::checkbox::badge() { return _badge; }
-
-		widgets::checkbox& widgets::checkbox::badge(const badge_specs& badge) {
-			_badge = badge;
-			return *this;
-		}
-
 		lecui::rect& widgets::checkbox::rect() { return _rect; }
 
 		widgets::checkbox& widgets::checkbox::rect(const lecui::rect& rect) {

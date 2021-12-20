@@ -45,13 +45,6 @@ namespace liblec {
 					return *this;
 				}
 
-				badge_specs& badge() { return _badge; }
-
-				scrollbar_specs& badge(const badge_specs& badge) {
-					_badge = badge;
-					return *this;
-				}
-
 				lecui::rect& rect() override { return _rect; }
 				scrollbar_specs& rect(const lecui::rect& rect) {
 					_rect = rect;

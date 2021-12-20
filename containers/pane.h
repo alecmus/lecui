@@ -20,7 +20,7 @@ namespace liblec {
 	namespace lecui {
 		namespace containers {
 			/// <summary>Pane container specifications.</summary>
-			class lecui_api pane_specs : public widgets::widget {
+			class lecui_api pane_specs : public widgets::widget, public widgets::badge_widget {
 				float _border = .5f;
 				color _color_border;
 				float _corner_radius_x = 5.f;
@@ -28,6 +28,9 @@ namespace liblec {
 
 			public:
 				pane_specs() {}
+
+				bool operator==(const pane_specs&);
+				bool operator!=(const pane_specs&);
 
 				// generic widget
 
@@ -37,8 +40,8 @@ namespace liblec {
 				std::string& tooltip() override;
 				pane_specs& tooltip(const std::string& tooltip);
 
-				badge_specs& badge() override;
-				pane_specs& badge(const badge_specs& badge);
+				widgets::badge_specs& badge() override;
+				pane_specs& badge(const widgets::badge_specs& badge);
 
 				lecui::rect& rect() override;
 				pane_specs& rect(const lecui::rect& rect);

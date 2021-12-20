@@ -43,13 +43,6 @@ namespace liblec {
 			return *this;
 		}
 
-		widgets::widget::badge_specs& widgets::html_editor::badge() { return _badge; }
-
-		widgets::html_editor& widgets::html_editor::badge(const badge_specs& badge) {
-			_badge = badge;
-			return *this;
-		}
-
 		lecui::rect& widgets::html_editor::rect() {
 			if (_p_controls_pane_specs && _p_html_pane_specs)	// redirect to special rectangle
 				return _rect_widget_overall;	// to-do: how to transfer changes to special panes

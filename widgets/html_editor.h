@@ -56,9 +56,6 @@ namespace liblec {
 				std::string& tooltip() override;
 				html_editor& tooltip(const std::string& tooltip);
 
-				badge_specs& badge() override;
-				html_editor& badge(const badge_specs& badge);
-
 				lecui::rect& rect() override;
 				html_editor& rect(const lecui::rect& rect);
 

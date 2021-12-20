@@ -448,9 +448,9 @@ namespace liblec {
 			return *this;
 		}
 
-		widgets::widget::badge_specs& containers::tab_pane::badge() { return _badge; }
+		widgets::badge_specs& containers::tab_pane::badge() { return _badge; }
 
-		containers::tab_pane& containers::tab_pane::badge(const badge_specs& badge) {
+		containers::tab_pane& containers::tab_pane::badge(const widgets::badge_specs& badge) {
 			_badge = badge;
 			return *this;
 		}

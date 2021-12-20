@@ -31,13 +31,6 @@ namespace liblec {
 					return *this;
 				}
 
-				badge_specs& badge() { return _badge; }
-
-				close_button_specs& badge(const badge_specs& badge) {
-					_badge = badge;
-					return *this;
-				}
-
 				lecui::rect& rect() override { return _rect; }
 				close_button_specs& rect(const lecui::rect& rect) {
 					_rect = rect;

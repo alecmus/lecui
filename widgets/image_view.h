@@ -21,7 +21,7 @@ namespace liblec {
 		namespace widgets {
 			/// <summary>Image view widget. To instantiate and add to a container use the <see cref="add"></see> static method.</summary>
 			/// <remarks>Default size is 200x200px.</remarks>
-			class lecui_api image_view : public widget {
+			class lecui_api image_view : public widget, public badge_widget {
 				float _border = .5f;
 				color _color_border;
 				float _corner_radius_x = .0f;
