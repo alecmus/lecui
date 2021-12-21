@@ -183,7 +183,9 @@ namespace liblec {
 				std::string _text;
 				std::string _font = "Segoe UI";
 				float _font_size = 8.f;
+				float _border = .5f;
 				color _color = { 255, 0, 0, 180 };
+				color _color_border = { 255, 255, 255, 180 };
 				color _color_text = { 255, 255, 255, 255 };
 				badge_position _position = badge_position::bottom_right;
 
@@ -218,6 +220,15 @@ namespace liblec {
 				/// <returns>A reference to the modified object.</returns>
 				badge_specs& font_size(const float& font_size);
 
+				/// <summary>Get or set the thickness of the border.</summary>
+				/// <returns>A reference to the border thickness, in pixels.</returns>
+				float& border();
+
+				/// <summary>Set the thickness of the border.</summary>
+				/// <param name="border">The border thickness, in pixels.</param>
+				/// <returns>A reference to the modified object.</returns>
+				badge_specs& border(const float& border);
+
 				/// <summary>Get or set the color of the badge.</summary>
 				/// <returns>A reference to the badge's color.</returns>
 				lecui::color& color();
@@ -226,6 +237,15 @@ namespace liblec {
 				/// <param name="color">The color of the badge, as defined in <see cref="lecui::color"></see>.</param>
 				/// <returns>A reference to the modified object.</returns>
 				badge_specs& color(const lecui::color& color);
+
+				/// <summary>Get or set the color of the badge's border.</summary>
+				/// <returns>A reference to the badge's border color.</returns>
+				lecui::color& color_border();
+
+				/// <summary>Set the color of the badge's border.</summary>
+				/// <param name="color_border">The color of the badge's border, as defined in <see cref="lecui::color"></see>.</param>
+				/// <returns>A reference to the modified object.</returns>
+				badge_specs& color_border(const lecui::color& color_border);
 
 				/// <summary>Get or set the color of the badge's text.</summary>
 				/// <returns>A reference to the badge's text color.</returns>

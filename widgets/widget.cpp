@@ -44,6 +44,7 @@ namespace liblec {
 				return
 					/// Colors
 					(_color == param._color) &&
+					(_color_border == param._color_border) &&
 					(_color_text == param._color_text) &&
 
 					/// Font
@@ -76,10 +77,24 @@ namespace liblec {
 				return *this;
 			}
 
+			float& badge_specs::border() { return _border; }
+
+			badge_specs& badge_specs::border(const float& border) {
+				_border = border;
+				return *this;
+			}
+
 			lecui::color& badge_specs::color() { return _color; }
 
 			badge_specs& badge_specs::color(const lecui::color& color) {
 				_color = color;
+				return *this;
+			}
+
+			lecui::color& badge_specs::color_border() { return _color_border; }
+
+			badge_specs& badge_specs::color_border(const lecui::color& color_border) {
+				_color_border = color_border;
 				return *this;
 			}
 

@@ -149,10 +149,13 @@ namespace liblec {
 
 			if (SUCCEEDED(hr))
 				hr = p_render_target->CreateSolidColorBrush(convert_color(badge.color()),
-					&resources._p_brush_badge);
+					&resources.p_brush_badge);
+			if (SUCCEEDED(hr))
+				hr = p_render_target->CreateSolidColorBrush(convert_color(badge.color_border()),
+					&resources.p_brush_badge_border);
 			if (SUCCEEDED(hr))
 				hr = p_render_target->CreateSolidColorBrush(convert_color(badge.color_text()),
-					&resources._p_brush_badge_text);
+					&resources.p_brush_badge_text);
 			if (SUCCEEDED(hr)) {
 				// Create a DirectWrite text format object.
 				hr = p_directwrite_factory->CreateTextFormat(
@@ -163,13 +166,13 @@ namespace liblec {
 					DWRITE_FONT_STRETCH_NORMAL,
 					convert_fontsize_to_dip(badge.font_size()),
 					L"", //locale
-					&resources._p_text_format_badge
+					&resources.p_text_format_badge
 				);
 			}
 			if (SUCCEEDED(hr)) {
-				resources._p_text_format_badge->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_CENTER);
-				resources._p_text_format_badge->SetParagraphAlignment(DWRITE_PARAGRAPH_ALIGNMENT_CENTER);
-				make_single_line(p_directwrite_factory, resources._p_text_format_badge);
+				resources.p_text_format_badge->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_CENTER);
+				resources.p_text_format_badge->SetParagraphAlignment(DWRITE_PARAGRAPH_ALIGNMENT_CENTER);
+				make_single_line(p_directwrite_factory, resources.p_text_format_badge);
 			}
 		}
 
@@ -226,28 +229,34 @@ namespace liblec {
 					height / 2.f, height / 2.f };
 
 				// draw the badge background
-				p_render_target->FillRoundedRectangle(_rect_badge_rounded, resources._p_brush_badge);
+				p_render_target->FillRoundedRectangle(_rect_badge_rounded, resources.p_brush_badge);
 
 				// create a text layout
+				IDWriteTextLayout* p_text_layout_badge = nullptr;
+
 				HRESULT hr = p_directwrite_factory->CreateTextLayout(convert_string(badge.text()).c_str(),
-					(UINT32)badge.text().length(), resources._p_text_format_badge, _rect_badge.right - _rect_badge.left,
-					_rect_badge.bottom - _rect_badge.top, &resources._p_text_layout_badge);
+					(UINT32)badge.text().length(), resources.p_text_format_badge, _rect_badge.right - _rect_badge.left,
+					_rect_badge.bottom - _rect_badge.top, &p_text_layout_badge);
 
 				if (SUCCEEDED(hr)) {
 					// draw the text layout
 					p_render_target->DrawTextLayout(D2D1_POINT_2F{ _rect_badge.left, _rect_badge.top },
-						resources._p_text_layout_badge, resources._p_brush_badge_text, D2D1_DRAW_TEXT_OPTIONS_CLIP);
+						p_text_layout_badge, resources.p_brush_badge_text, D2D1_DRAW_TEXT_OPTIONS_CLIP);
 				}
 
 				// release the text layout
-				safe_release(&resources._p_text_layout_badge);
+				safe_release(&p_text_layout_badge);
+
+				// draw the badge border
+				p_render_target->DrawRoundedRectangle(_rect_badge_rounded, resources.p_brush_badge_border, badge.border());
 			}
 		}
 
 		void widgets::widget_impl::discard_badge_resources(badge_resources& resources) {
-			safe_release(&resources._p_brush_badge);
-			safe_release(&resources._p_brush_badge_text);
-			safe_release(&resources._p_text_format_badge);
+			safe_release(&resources.p_brush_badge);
+			safe_release(&resources.p_brush_badge_border);
+			safe_release(&resources.p_brush_badge_text);
+			safe_release(&resources.p_text_format_badge);
 		}
 
 		void widgets::widget_impl::on_click() {

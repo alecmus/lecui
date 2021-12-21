@@ -177,10 +177,10 @@ namespace liblec {
 			}
 
 			struct badge_resources {
-				ID2D1SolidColorBrush* _p_brush_badge = nullptr;
-				ID2D1SolidColorBrush* _p_brush_badge_text = nullptr;
-				IDWriteTextFormat* _p_text_format_badge = nullptr;
-				IDWriteTextLayout* _p_text_layout_badge = nullptr;
+				ID2D1SolidColorBrush* p_brush_badge = nullptr;
+				ID2D1SolidColorBrush* p_brush_badge_border = nullptr;
+				ID2D1SolidColorBrush* p_brush_badge_text = nullptr;
+				IDWriteTextFormat* p_text_format_badge = nullptr;
 			};
 
 			class widget_impl {
