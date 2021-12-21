@@ -266,7 +266,8 @@ namespace liblec {
 				badge_specs& position(const badge_position& position);
 			};
 
-			/// <summary>Base class of all widgets with badges.</summary>
+			/// <summary>Base class for all widgets with badges.</summary>
+			/// <remarks>Widgets that use badges inherit from both this class and the <see cref="widget"></see> class.</remarks>
 			class lecui_api badge_widget {
 			protected:
 				badge_specs _badge;
