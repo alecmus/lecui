@@ -60,6 +60,8 @@ namespace liblec {
 
 				IDWriteFactory* _p_directwrite_factory;
 				IDWriteTextLayout* _p_text_layout;
+
+				badge_resources _badge_resources;
 			};
 		}
 	}

@@ -36,7 +36,8 @@ namespace liblec {
 				rectangle_impl(containers::page& page,
 					const std::string& alias,
 					widgets::h_scrollbar_impl& h_scrollbar,
-					widgets::v_scrollbar_impl& v_scrollbar);
+					widgets::v_scrollbar_impl& v_scrollbar,
+					IDWriteFactory* p_directwrite_factory);
 				~rectangle_impl();
 
 				/// virtual function overrides
@@ -67,6 +68,10 @@ namespace liblec {
 				ID2D1SolidColorBrush* _p_brush_hot;
 				ID2D1SolidColorBrush* _p_brush_disabled;
 				ID2D1SolidColorBrush* _p_brush_selected;
+
+				IDWriteFactory* _p_directwrite_factory;
+
+				badge_resources _badge_resources;
 
 				/// page scroll bars
 				widgets::h_scrollbar_impl& _h_scrollbar;

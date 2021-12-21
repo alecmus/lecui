@@ -78,6 +78,9 @@ namespace liblec {
 				make_single_line(_p_directwrite_factory, _p_text_format);
 			}
 
+			// create badge resources
+			create_badge_resources(_specs.badge(), p_render_target, _p_directwrite_factory, _badge_resources);
+
 			_resources_created = true;
 			return hr;
 		}
@@ -91,6 +94,9 @@ namespace liblec {
 			safe_release(&_p_brush_disabled);
 			safe_release(&_p_brush_selected);
 			safe_release(&_p_text_format);
+
+			// discard badge resources
+			discard_badge_resources(_badge_resources);
 		}
 
 		D2D1_RECT_F&
@@ -143,6 +149,9 @@ namespace liblec {
 
 			// release the text layout
 			safe_release(&_p_text_layout);
+
+			// draw the badge
+			draw_badge(_specs.badge(), _rect, p_render_target, _p_directwrite_factory, _badge_resources);
 
 			return _rect;
 		}

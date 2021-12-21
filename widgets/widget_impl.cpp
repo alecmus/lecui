@@ -141,6 +141,115 @@ namespace liblec {
 			}
 		}
 
+		void widgets::widget_impl::create_badge_resources(badge_specs& badge,
+			ID2D1HwndRenderTarget* p_render_target,
+			IDWriteFactory* p_directwrite_factory,
+			badge_resources& resources) {
+			HRESULT hr = S_OK;
+
+			if (SUCCEEDED(hr))
+				hr = p_render_target->CreateSolidColorBrush(convert_color(badge.color()),
+					&resources._p_brush_badge);
+			if (SUCCEEDED(hr))
+				hr = p_render_target->CreateSolidColorBrush(convert_color(badge.color_text()),
+					&resources._p_brush_badge_text);
+			if (SUCCEEDED(hr)) {
+				// Create a DirectWrite text format object.
+				hr = p_directwrite_factory->CreateTextFormat(
+					convert_string(badge.font()).c_str(),
+					NULL,
+					DWRITE_FONT_WEIGHT_NORMAL,
+					DWRITE_FONT_STYLE_NORMAL,
+					DWRITE_FONT_STRETCH_NORMAL,
+					convert_fontsize_to_dip(badge.font_size()),
+					L"", //locale
+					&resources._p_text_format_badge
+				);
+			}
+			if (SUCCEEDED(hr)) {
+				resources._p_text_format_badge->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_CENTER);
+				resources._p_text_format_badge->SetParagraphAlignment(DWRITE_PARAGRAPH_ALIGNMENT_CENTER);
+				make_single_line(p_directwrite_factory, resources._p_text_format_badge);
+			}
+		}
+
+		void widgets::widget_impl::draw_badge(badge_specs& badge,
+			D2D1_RECT_F rect,
+			ID2D1HwndRenderTarget* p_render_target,
+			IDWriteFactory* p_directwrite_factory,
+			badge_resources& resources) {
+			if (!badge.text().empty()) {
+				// draw badge
+
+				// measure size of badge text
+				auto _rect_badge = measure_text(p_directwrite_factory, badge.text(), badge.font(),
+					badge.font_size(), true, true, true, false, rect);
+
+				// add padding
+				const float padding = (_rect_badge.bottom - _rect_badge.top) / 4.f;
+				_rect_badge.left -= padding;
+				_rect_badge.right += padding;
+
+				// force width to be at least as great as the height
+				auto width = _rect_badge.right - _rect_badge.left;
+				auto height = _rect_badge.bottom - _rect_badge.top;
+
+				if (width < height)
+					_rect_badge.right = _rect_badge.left + height;
+
+				// don't allow width and height to be greater than the widget
+				if (width > rect.right - rect.left)
+					_rect_badge.right = _rect_badge.left + (rect.right - rect.left);
+
+				if (height > rect.bottom - rect.top)
+					_rect_badge.bottom = _rect_badge.top + (rect.bottom - rect.top);
+
+				// position badge rectangle
+				switch (badge.position()) {
+				case widgets::badge_specs::badge_position::top_left:
+					pos_rect(rect, _rect_badge, 0.f, 0.f);
+					break;
+				case widgets::badge_specs::badge_position::top_right:
+					pos_rect(rect, _rect_badge, 100.f, 0.f);
+					break;
+				case widgets::badge_specs::badge_position::bottom_left:
+					pos_rect(rect, _rect_badge, 0.f, 100.f);
+					break;
+				default:
+				case widgets::badge_specs::badge_position::bottom_right:
+					pos_rect(rect, _rect_badge, 100.f, 100.f);
+					break;
+				}
+
+				// make sides rounded enough to turn a square into a circle
+				D2D1_ROUNDED_RECT _rect_badge_rounded{ _rect_badge,
+					height / 2.f, height / 2.f };
+
+				// draw the badge background
+				p_render_target->FillRoundedRectangle(_rect_badge_rounded, resources._p_brush_badge);
+
+				// create a text layout
+				HRESULT hr = p_directwrite_factory->CreateTextLayout(convert_string(badge.text()).c_str(),
+					(UINT32)badge.text().length(), resources._p_text_format_badge, _rect_badge.right - _rect_badge.left,
+					_rect_badge.bottom - _rect_badge.top, &resources._p_text_layout_badge);
+
+				if (SUCCEEDED(hr)) {
+					// draw the text layout
+					p_render_target->DrawTextLayout(D2D1_POINT_2F{ _rect_badge.left, _rect_badge.top },
+						resources._p_text_layout_badge, resources._p_brush_badge_text, D2D1_DRAW_TEXT_OPTIONS_CLIP);
+				}
+
+				// release the text layout
+				safe_release(&resources._p_text_layout_badge);
+			}
+		}
+
+		void widgets::widget_impl::discard_badge_resources(badge_resources& resources) {
+			safe_release(&resources._p_brush_badge);
+			safe_release(&resources._p_brush_badge_text);
+			safe_release(&resources._p_text_format_badge);
+		}
+
 		void widgets::widget_impl::on_click() {
 			if (generic_specs().events().click)
 				generic_specs().events().click();

@@ -113,7 +113,7 @@ namespace liblec {
 		containers::pane&
 			containers::page::impl::add_pane(std::string alias, const float& content_margin) {
 			check_alias(alias);
-			if (_panes.try_emplace(alias, _pg, alias, content_margin).second) {
+			if (_panes.try_emplace(alias, _pg, alias, content_margin, _p_directwrite_factory).second) {
 				_widgets.emplace(alias, _panes.at(alias));
 				_widgets_order.emplace_back(alias);
 			}
@@ -124,7 +124,7 @@ namespace liblec {
 		widgets::rectangle&
 			containers::page::impl::add_rectangle(std::string alias) {
 			check_alias(alias);
-			if (_rectangles.try_emplace(alias, _pg, alias, _h_scrollbar, _v_scrollbar).second) {
+			if (_rectangles.try_emplace(alias, _pg, alias, _h_scrollbar, _v_scrollbar, _p_directwrite_factory).second) {
 				_widgets.emplace(alias, _rectangles.at(alias));
 				_widgets_order.emplace_back(alias);
 			}
@@ -201,7 +201,7 @@ namespace liblec {
 		widgets::image_view&
 			containers::page::impl::add_image_view(std::string alias) {
 			check_alias(alias);
-			if (_image_views.try_emplace(alias, _pg, alias, _p_iwic_factory).second) {
+			if (_image_views.try_emplace(alias, _pg, alias, _p_iwic_factory, _p_directwrite_factory).second) {
 				_widgets.emplace(alias, _image_views.at(alias));
 				_widgets_order.emplace_back(alias);
 			}
@@ -333,7 +333,7 @@ namespace liblec {
 		widgets::icon&
 			containers::page::impl::add_icon(std::string alias) {
 			check_alias(alias);
-			if (_icons.try_emplace(alias, _pg, alias).second) {
+			if (_icons.try_emplace(alias, _pg, alias, _p_directwrite_factory).second) {
 				_widgets.emplace(alias, _icons.at(alias));
 				_widgets_order.emplace_back(alias);
 			}

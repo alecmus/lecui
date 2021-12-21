@@ -34,7 +34,8 @@ namespace liblec {
 
 				/// constructor and destructor
 				icon_impl(containers::page& page,
-					const std::string& alias);
+					const std::string& alias,
+					IDWriteFactory* p_directwrite_factory);
 				~icon_impl();
 
 				/// virtual function overrides
@@ -68,6 +69,10 @@ namespace liblec {
 				std::optional<std::reference_wrapper<rectangle>> _rectangle_specs;
 				std::optional<std::reference_wrapper<image_view>> _image_view_specs;
 				std::optional<std::reference_wrapper<label>> _label_specs, _description_specs;
+
+				IDWriteFactory* _p_directwrite_factory;
+
+				badge_resources _badge_resources;
 			};
 		}
 	}

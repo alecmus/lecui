@@ -15,7 +15,8 @@
 namespace liblec {
 	namespace lecui {
 		widgets::image_view_impl::image_view_impl(containers::page& page,
-			const std::string& alias, IWICImagingFactory* p_IWICFactory) :
+			const std::string& alias, IWICImagingFactory* p_IWICFactory,
+			IDWriteFactory* p_directwrite_factory) :
 			widget_impl(page, alias),
 			_p_brush_fill(nullptr),
 			_p_brush_border(nullptr),
@@ -24,7 +25,8 @@ namespace liblec {
 			_p_brush_selected(nullptr),
 			_p_bitmap(nullptr),
 			_p_IWICFactory(p_IWICFactory),
-			_old_size({ 0.f, 0.f })	{}
+			_old_size({ 0.f, 0.f }),
+			_p_directwrite_factory(p_directwrite_factory) {}
 
 		widgets::image_view_impl::~image_view_impl() { discard_resources(); }
 
@@ -57,6 +59,9 @@ namespace liblec {
 				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_selected()),
 					&_p_brush_selected);
 
+			// create badge resources
+			create_badge_resources(_specs.badge(), p_render_target, _p_directwrite_factory, _badge_resources);
+
 			_resources_created = true;
 			return hr;
 		}
@@ -69,6 +74,9 @@ namespace liblec {
 			safe_release(&_p_brush_disabled);
 			safe_release(&_p_brush_selected);
 			safe_release(&_p_bitmap);
+
+			// discard badge resources
+			discard_badge_resources(_badge_resources);
 		}
 
 		D2D1_RECT_F&
@@ -139,6 +147,9 @@ namespace liblec {
 			}
 
 			_old_size = current_size;
+
+			// draw the badge
+			draw_badge(_specs.badge(), _rect, p_render_target, _p_directwrite_factory, _badge_resources);
 
 			return _rect;
 		}

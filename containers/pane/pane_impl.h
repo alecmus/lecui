@@ -65,7 +65,8 @@ namespace liblec {
 
 				/// constructor and destructor
 				pane_impl(containers::page& page,
-					const std::string& alias, const float& content_margin);
+					const std::string& alias, const float& content_margin,
+					IDWriteFactory* p_directwrite_factory);
 				~pane_impl();
 
 				/// virtual function override
@@ -105,6 +106,10 @@ namespace liblec {
 
 				/// Important override for pane to work properly.
 				bool contains() override;
+
+				IDWriteFactory* _p_directwrite_factory;
+
+				badge_resources _badge_resources;
 			};
 		}
 	}

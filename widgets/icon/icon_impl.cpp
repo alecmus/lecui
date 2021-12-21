@@ -31,12 +31,14 @@ namespace liblec {
 		}
 
 		widgets::icon_impl::icon_impl(containers::page& page,
-			const std::string& alias) :
+			const std::string& alias,
+			IDWriteFactory* p_directwrite_factory) :
 			widget_impl(page, alias),
 			_p_brush_fill(nullptr),
 			_p_brush_hot(nullptr),
 			_p_brush_disabled(nullptr),
-			_p_brush_selected(nullptr) {}
+			_p_brush_selected(nullptr),
+			_p_directwrite_factory(p_directwrite_factory) {}
 
 		widgets::icon_impl::~icon_impl() { discard_resources(); }
 
@@ -66,6 +68,9 @@ namespace liblec {
 				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_selected()),
 					&_p_brush_selected);
 
+			// create badge resources
+			create_badge_resources(_specs.badge(), p_render_target, _p_directwrite_factory, _badge_resources);
+
 			_resources_created = true;
 			return hr;
 		}
@@ -76,6 +81,9 @@ namespace liblec {
 			safe_release(&_p_brush_hot);
 			safe_release(&_p_brush_disabled);
 			safe_release(&_p_brush_selected);
+
+			// discard badge resources
+			discard_badge_resources(_badge_resources);
 		}
 
 		D2D1_RECT_F&
@@ -142,6 +150,9 @@ namespace liblec {
 
 			if (!render || !_visible)
 				return _rect;
+
+			// draw the badge
+			draw_badge(_specs.badge(), _rect, p_render_target, _p_directwrite_factory, _badge_resources);
 
 			return _rect;
 		}

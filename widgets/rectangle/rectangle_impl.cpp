@@ -19,7 +19,8 @@ namespace liblec {
 		widgets::rectangle_impl::rectangle_impl(containers::page& page,
 			const std::string& alias,
 			widgets::h_scrollbar_impl& h_scrollbar,
-			widgets::v_scrollbar_impl& v_scrollbar) :
+			widgets::v_scrollbar_impl& v_scrollbar,
+			IDWriteFactory* p_directwrite_factory) :
 			widget_impl(page, alias),
 			_p_brush_fill(nullptr),
 			_p_brush_border(nullptr),
@@ -28,7 +29,8 @@ namespace liblec {
 			_p_brush_disabled(nullptr),
 			_p_brush_selected(nullptr),
 			_h_scrollbar(h_scrollbar),
-			_v_scrollbar(v_scrollbar) {}
+			_v_scrollbar(v_scrollbar),
+			_p_directwrite_factory(p_directwrite_factory) {}
 
 		widgets::rectangle_impl::~rectangle_impl() { discard_resources(); }
 
@@ -64,6 +66,9 @@ namespace liblec {
 				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_selected()),
 					&_p_brush_selected);
 
+			// create badge resources
+			create_badge_resources(_specs.badge(), p_render_target, _p_directwrite_factory, _badge_resources);
+
 			_resources_created = true;
 			return hr;
 		}
@@ -76,6 +81,9 @@ namespace liblec {
 			safe_release(&_p_brush_hot);
 			safe_release(&_p_brush_disabled);
 			safe_release(&_p_brush_selected);
+
+			// discard badge resources
+			discard_badge_resources(_badge_resources);
 		}
 
 		D2D1_RECT_F&
@@ -115,6 +123,9 @@ namespace liblec {
 					p_render_target->DrawRoundedRectangle(&rounded_rect, _p_brush_selected, _pressed ?
 						1.75f : 1.f);
 			}
+
+			// draw the badge
+			draw_badge(_specs.badge(), _rect, p_render_target, _p_directwrite_factory, _badge_resources);
 
 			return _rect;
 		}

@@ -1917,8 +1917,21 @@ namespace liblec {
 					log("moving icon: " + it.alias + " from " + it.source._d_page.alias() + " to " + it.destination._d_page.alias());
 
 					try {
-						// clone into destination
+						// add rectangle (for hit-testing)
+						auto& icn = widgets::rectangle::add(it.destination, widgets::icon_impl::alias_icon());
+
+						// add image
+						auto& image = widgets::image_view::add(it.destination, widgets::icon_impl::alias_image());
+
+						// add text
+						auto& text = widgets::label::add(it.destination, widgets::icon_impl::alias_text());
+
+						// add description
+						auto& description = widgets::label::add(it.destination, widgets::icon_impl::alias_description());
+
+						// clone into destination (do this last so badge will be on top since badge is the only thing that remains)
 						auto& icon = widgets::icon::add(it.destination, it.alias);
+
 						// copy widget
 						icon = it.icon;
 
@@ -1931,8 +1944,7 @@ namespace liblec {
 								.bottom(it.destination.size().get_height()))
 							.on_resize({ 0.f, 0.f, 0.f, 0.f });
 
-						// add rectangle to destination (for hit-testing)
-						auto& icn = widgets::rectangle::add(it.destination, widgets::icon_impl::alias_icon());
+						// rectangle specs
 						icn
 							.tooltip(icon.tooltip())
 							.corner_radius_x(icon.corner_radius_x())
@@ -1955,9 +1967,9 @@ namespace liblec {
 						if (icon.max_image_size() > 0.f)
 							image_side = smallest(image_side, icon.max_image_size());
 
-						// add image to destination
-						auto& image = widgets::image_view::add(it.destination, widgets::icon_impl::alias_image());
-						image.rect({ 0, image_side, 0, image_side });
+						// image specs
+						image
+							.rect({ 0, image_side, 0, image_side });
 
 						const auto ref_rect = rect()
 							.left(icon._padding)
@@ -1986,8 +1998,7 @@ namespace liblec {
 						image.png_resource(icon.png_resource());
 						image.quality(icon.quality());
 
-						// add text to destination
-						auto& text = widgets::label::add(it.destination, widgets::icon_impl::alias_text());
+						// text specs
 						text
 							.text(icon.text())
 							.color_text(icon.color_text())
@@ -2047,8 +2058,7 @@ namespace liblec {
 							break;
 						}
 
-						// add description to destination
-						auto& description = widgets::label::add(it.destination, widgets::icon_impl::alias_description());
+						// description specs
 						description.text(icon.description())
 							.color_text(icon.color_text_description())
 							.font_size(icon.font_size_description())

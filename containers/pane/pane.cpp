@@ -106,6 +106,19 @@ namespace liblec {
 			throw std::invalid_argument("Invalid path");
 		}
 
+		bool containers::pane_specs::operator==(const pane_specs& param) {
+			return
+				// generic widget
+				widget::operator==(param) &&
+
+				// widget specific widget
+				(_color_border == param._color_border);
+		}
+
+		bool containers::pane_specs::operator!=(const pane_specs& param) {
+			return !operator==(param);
+		}
+
 		std::string& containers::pane_specs::text() { return _text; }
 
 		containers::pane_specs& containers::pane_specs::text(const std::string& text) {

@@ -182,7 +182,11 @@ namespace liblec {
 					return _tab_pane._p_tabs.at(tab_name);
 				}
 
+				// set the tabs change flag
+				_tab_pane._tabs_changed = true;
+
 				_tab_pane._p_tabs.try_emplace(tab_name, _page._d_page._fm, tab_name);
+				_tab_pane._tab_badge_resources.try_emplace(tab_name, widgets::badge_resources());
 				_tab_pane._tab_order.push_back(tab_name);
 				auto& page_impl = _tab_pane._p_tabs.at(tab_name)._d_page;
 

@@ -27,6 +27,16 @@ namespace liblec {
 				std::map<std::string, containers::tab> _p_tabs;
 				std::vector<std::string> _tab_order;
 
+				std::map<std::string, badge_resources> _tab_badge_resources;
+				std::map<std::string, widgets::badge_specs> _badge_specs_old;
+
+				// for ensuring tab resources are recreated when there's any changes in the tabs,
+				// i.e. either deletion or removal (using a flag is more efficient than checking in
+				// every loop if there's a change in the _p_tabs map, but this calls for
+				// greater care as we have to remember to toggle this flag or introduce null
+				// reference bugs especially relating to the badges
+				bool _tabs_changed;
+
 				// pane rect and page
 				containers::page::impl* _p_page_impl = nullptr;
 				rect* _p_tab_pane_rect = nullptr;

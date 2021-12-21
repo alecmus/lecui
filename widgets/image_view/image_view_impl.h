@@ -26,7 +26,8 @@ namespace liblec {
 				/// constructor and destructor
 				image_view_impl(containers::page& page,
 					const std::string& alias,
-					IWICImagingFactory* p_IWICFactory);
+					IWICImagingFactory* p_IWICFactory,
+					IDWriteFactory* p_directwrite_factory);
 				~image_view_impl();
 
 				/// virtual function overrides
@@ -56,6 +57,10 @@ namespace liblec {
 				ID2D1SolidColorBrush* _p_brush_selected;
 				ID2D1Bitmap* _p_bitmap;
 				IWICImagingFactory* _p_IWICFactory;
+
+				IDWriteFactory* _p_directwrite_factory;
+
+				badge_resources _badge_resources;
 
 				size _old_size;
 			};

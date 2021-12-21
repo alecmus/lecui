@@ -176,6 +176,13 @@ namespace liblec {
 				}
 			}
 
+			struct badge_resources {
+				ID2D1SolidColorBrush* _p_brush_badge = nullptr;
+				ID2D1SolidColorBrush* _p_brush_badge_text = nullptr;
+				IDWriteTextFormat* _p_text_format_badge = nullptr;
+				IDWriteTextLayout* _p_text_layout_badge = nullptr;
+			};
+
 			class widget_impl {
 				virtual widgets::widget& generic_specs() = 0;
 
@@ -200,6 +207,19 @@ namespace liblec {
 				form& get_form();
 				void show_tooltip();
 				void hide_tooltip();
+
+				void create_badge_resources(badge_specs& badge,
+					ID2D1HwndRenderTarget* p_render_target,
+					IDWriteFactory* p_directwrite_factory,
+					badge_resources& resources);
+
+				void draw_badge(badge_specs& badge,
+					D2D1_RECT_F rect,
+					ID2D1HwndRenderTarget* p_render_target,
+					IDWriteFactory* p_directwrite_factory,
+					badge_resources& resources);
+
+				void discard_badge_resources(badge_resources& resources);
 
 				virtual void press(const bool& pressed);
 

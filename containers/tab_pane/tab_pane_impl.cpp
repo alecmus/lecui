@@ -39,7 +39,8 @@ namespace liblec {
 			_bar_height(2.f),
 			_rect_tabs({ 0.f, 0.f, 0.f, 0.f }),
 			_rect_client_area({ 0.f, 0.f, 0.f, 0.f }),
-			_rect_tab_pane({ 0.f, 0.f, 0.f, 0.f }) {}
+			_rect_tab_pane({ 0.f, 0.f, 0.f, 0.f }),
+			_tabs_changed(false) {}
 
 		widgets::tab_pane_impl::~tab_pane_impl() { discard_resources(); }
 
@@ -99,6 +100,15 @@ namespace liblec {
 				make_single_line(_p_directwrite_factory, _p_text_format);
 			}
 
+			// create badge resources
+			for (auto& [tab_name, tab] : _p_tabs) {
+				try {
+					auto& resources = _tab_badge_resources[tab_name];
+					create_badge_resources(tab.badge(), p_render_target, _p_directwrite_factory, resources);
+				}
+				catch (const std::exception&) {}
+			}
+
 			_resources_created = true;
 			return hr;
 		}
@@ -114,14 +124,45 @@ namespace liblec {
 			safe_release(&_p_brush_tabs_border);
 			safe_release(&_p_brush_selected);
 			safe_release(&_p_text_format);
+
+			// discard badge resources
+			for (auto& [tab_name, tab] : _p_tabs) {
+				try {
+					auto& resources = _tab_badge_resources[tab_name];
+					discard_badge_resources(resources);
+				}
+				catch (const std::exception&) {}
+			}
 		}
 
 		D2D1_RECT_F&
 			widgets::tab_pane_impl::render(ID2D1HwndRenderTarget* p_render_target,
 				const D2D1_SIZE_F& change_in_size, const D2D1_POINT_2F& offset, const bool& render) {
-			if (_specs_old != _specs) {
+
+			bool tab_badge_change = false;
+
+			for (auto& [tab_name, tab] : _p_tabs) {
+				try {
+					if (_badge_specs_old[tab_name] != tab.badge()) {
+						tab_badge_change = true;
+						log("tab badge specs changed: " + tab_name);
+						break;
+					}
+				}
+				catch (const std::exception&) {}
+			}
+
+			if (_specs_old != _specs || tab_badge_change || _tabs_changed) {
+				// reset tabs change flag
+				_tabs_changed = false;
+
 				log("specs changed: " + _alias);
 				_specs_old = _specs;
+
+				_badge_specs_old.clear();
+				for (auto& [tab_name, tab] : _p_tabs)
+					_badge_specs_old[tab_name] = tab.badge();
+
 				discard_resources();
 			}
 
@@ -621,6 +662,16 @@ namespace liblec {
 				}
 			}
 
+			// draw badges
+			for (auto& [tab_name, tab] : _p_tabs) {
+				try {
+					auto& tab_rect = _p_tab_rects[tab_name];
+					auto& resources = _tab_badge_resources[tab_name];
+					draw_badge(tab.badge(), tab_rect, p_render_target, _p_directwrite_factory, resources);
+				}
+				catch (const std::exception&) {}
+			}
+
 			return _rect_tab_pane;
 		}
 
@@ -666,11 +717,20 @@ namespace liblec {
 
 		void widgets::tab_pane_impl::close_tab(const std::string& tab_name) {
 			try {
+				// set the tabs change flag
+				_tabs_changed = true;
+
 				// erase from tabs (all widgets within this tab are deleted immediately)
 				_p_tabs.erase(tab_name);
 
 				// erase from tab rects
 				_p_tab_rects.erase(tab_name);
+
+				// discard tab badge resources
+				discard_badge_resources(_tab_badge_resources[tab_name]);
+
+				// erase from tab badge resources
+				_tab_badge_resources.erase(tab_name);
 
 				// skip in tabs order
 				std::vector<std::string> temp_tab_order;

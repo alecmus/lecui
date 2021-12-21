@@ -43,7 +43,8 @@ namespace liblec {
 		}
 
 		widgets::pane_impl::pane_impl(containers::page& page,
-			const std::string& alias, const float& content_margin) :
+			const std::string& alias, const float& content_margin,
+			IDWriteFactory* p_directwrite_factory) :
 			widget_impl(page, alias),
 			_p_brush(nullptr),
 			_p_brush_fill(nullptr),
@@ -52,7 +53,8 @@ namespace liblec {
 			_margin(12.f),
 			_content_margin(content_margin),
 			_rect_client_area({ 0.f, 0.f, 0.f, 0.f }),
-			_rect_pane({ 0.f, 0.f, 0.f, 0.f }) {
+			_rect_pane({ 0.f, 0.f, 0.f, 0.f }),
+			_p_directwrite_factory(p_directwrite_factory) {
 			try {
 				const std::string pane_name = "pane";
 				_p_panes.try_emplace(pane_name, page._d_page.get_form(), pane_name);
@@ -231,6 +233,9 @@ namespace liblec {
 				hr = p_render_target->CreateSolidColorBrush(convert_color(_specs.color_disabled()),
 					&_p_brush_disabled);
 
+			// create badge resources
+			create_badge_resources(_specs.badge(), p_render_target, _p_directwrite_factory, _badge_resources);
+
 			_resources_created = true;
 			return hr;
 		}
@@ -241,6 +246,9 @@ namespace liblec {
 			safe_release(&_p_brush_fill);
 			safe_release(&_p_brush_border);
 			safe_release(&_p_brush_disabled);
+
+			// discard badge resources
+			discard_badge_resources(_badge_resources);
 		}
 
 		D2D1_RECT_F&
@@ -317,6 +325,9 @@ namespace liblec {
 				_is_enabled ? _p_brush_fill : _p_brush_disabled);
 			p_render_target->DrawRoundedRectangle(&rounded_rect, _is_enabled ?
 				_p_brush_border : _p_brush_disabled, _specs.border());
+
+			// draw the badge
+			draw_badge(_specs.badge(), _rect_pane, p_render_target, _p_directwrite_factory, _badge_resources);
 
 			return _rect_pane;
 		}
