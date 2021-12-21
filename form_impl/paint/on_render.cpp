@@ -143,16 +143,17 @@ namespace liblec {
 								// measure widgets
 								bool initialized = false;
 								D2D1_RECT_F _rect_widgets = { 0.f, 0.f, 0.f, 0.f };
-								for (auto& widget : page._d_page.widgets()) {
-									if (widget.second.type() ==
+								for (auto& [alias, widget] : page._d_page.widgets()) {
+
+									if (widget.type() ==
 										widgets::widget_type::h_scrollbar ||
-										widget.second.type() ==
+										widget.type() ==
 										widgets::widget_type::v_scrollbar ||
-										widget.second.type() ==
+										widget.type() ==
 										widgets::widget_type::group)
 										continue;
 
-									_rect_widgets = widget.second.render(_p_render_target,
+									_rect_widgets = widget.render(_p_render_target,
 										change_in_size,
 										{ (page._d_page.h_scrollbar()._x_off_set / _dpi_scale) - client_area.left,
 										(page._d_page.v_scrollbar()._y_off_set / _dpi_scale) - client_area.top },
@@ -209,18 +210,19 @@ namespace liblec {
 							} while (true);
 
 							// resize groupboxes
-							for (auto& widget : page._d_page.widgets()) {
-								if (widget.second.type() !=
+							for (auto& [alias, widget] : page._d_page.widgets()) {
+
+								if (widget.type() !=
 									widgets::widget_type::group)
 									continue;
 
 								try {
 									// get the groupbox widget
-									auto& specs = page._d_page.get_group_impl(widget.first).specs();
+									auto& specs = page._d_page.get_group_impl(alias).specs();
 
 									bool groupbox_initialized = false;
 									for (auto& widget_alias :
-										page._d_page.get_group_impl(widget.first).specs().widgets()) {
+										page._d_page.get_group_impl(alias).specs().widgets()) {
 										try {
 											// get the rect for this widget
 											const auto& _rect =
@@ -256,15 +258,17 @@ namespace liblec {
 
 							}
 
-							// render groupboxes
-							for (auto& widget : page._d_page.widgets()) {
-								if (widget.second.type() !=
+							// render groupboxes (in order)
+							for (auto& alias : page._d_page.widgets_order()) {
+								auto& widget = page._d_page.widgets().at(alias);
+
+								if (widget.type() !=
 									widgets::widget_type::group)
 									continue;
 
 								try {
 									// check if groupbox has widgets
-									if (page._d_page.get_group_impl(widget.first).specs().widgets().empty())
+									if (page._d_page.get_group_impl(alias).specs().widgets().empty())
 										continue;
 
 									// to-do: check if widgets actually exist and discontinue if they dont
@@ -275,31 +279,33 @@ namespace liblec {
 
 								// render with no resizing or offset parameters because the rect for the
 								// group is already properly set
-								widget.second.render(_p_render_target,
+								widget.render(_p_render_target,
 									{ 0.f, 0.f }, { 0.f, 0.f }, render);
 							}
 
-							// render widgets
-							for (auto& widget : page._d_page.widgets()) {
-								if (widget.second.type() ==
+							// render widgets (in order)
+							for (auto& alias : page._d_page.widgets_order()) {
+								auto& widget = page._d_page.widgets().at(alias);
+
+								if (widget.type() ==
 									widgets::widget_type::h_scrollbar ||
-									widget.second.type() ==
+									widget.type() ==
 									widgets::widget_type::v_scrollbar ||
-									widget.second.type() ==
+									widget.type() ==
 									widgets::widget_type::group)
 									continue;
 
-								widget.second.render(_p_render_target,
+								widget.render(_p_render_target,
 									change_in_size,
 									{ (page._d_page.h_scrollbar()._x_off_set / _dpi_scale) - client_area.left,
 									(page._d_page.v_scrollbar()._y_off_set / _dpi_scale) - client_area.top },
 									render);
 
-								if (widget.second.type() ==
+								if (widget.type() ==
 									widgets::widget_type::tab_pane) {
 									try {
 										// get this tab pane
-										auto& tab_pane = page._d_page.get_tab_pane_impl(widget.first);
+										auto& tab_pane = page._d_page.get_tab_pane_impl(alias);
 
 										// get client area for this tab pane
 										const auto& client_area = tab_pane.client_area();
@@ -325,11 +331,11 @@ namespace liblec {
 									catch (const std::exception&) {}
 								}
 								else
-									if (widget.second.type() ==
+									if (widget.type() ==
 										widgets::widget_type::pane) {
 										try {
 											// get this pane
-											auto& pane = page._d_page.get_pane_impl(widget.first);
+											auto& pane = page._d_page.get_pane_impl(alias);
 
 											// get client area for this pane
 											const auto& client_area = pane.client_area();
@@ -459,10 +465,13 @@ namespace liblec {
 					}
 				}
 
-				// render form widgets
-				for (auto& widget : _widgets)
-					widget.second.render(_p_render_target,
+				// render form widgets (in order)
+				for (auto& alias : _widgets_order) {
+					auto& widget = _widgets.at(alias);
+
+					widget.render(_p_render_target,
 						change_in_size, { 0.f, 0.f }, true);
+				}
 
 				// render form border
 				if (!maximized(_hWnd)) {
