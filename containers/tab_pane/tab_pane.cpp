@@ -188,6 +188,13 @@ namespace liblec {
 				_tab_pane._p_tabs.try_emplace(tab_name, _page._d_page._fm, tab_name);
 				_tab_pane._tab_badge_resources.try_emplace(tab_name, widgets::badge_resources());
 				_tab_pane._tab_order.push_back(tab_name);
+
+				// set the badge defaults
+				_tab_pane._p_tabs.at(tab_name).badge()
+					.color(defaults::color(_page._d_page._fm._d._theme, item::badge))
+					.color_border(defaults::color(_page._d_page._fm._d._theme, item::badge_border))
+					.color_text(defaults::color(_page._d_page._fm._d._theme, item::badge_text));
+
 				auto& page_impl = _tab_pane._p_tabs.at(tab_name)._d_page;
 
 				// specify direct2d factory (used internally for geometries and stuff)

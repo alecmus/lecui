@@ -295,6 +295,11 @@ namespace liblec {
 					.color_hot(defaults::color(_page._d_page._fm._d._theme, item::icon_hot))
 					.color_text(defaults::color(_page._d_page._fm._d._theme, item::icon_text))
 					.color_text_description(defaults::color(_page._d_page._fm._d._theme, item::icon_description_text));
+
+				_specs.badge()
+					.color(defaults::color(_page._d_page._fm._d._theme, item::badge))
+					.color_border(defaults::color(_page._d_page._fm._d._theme, item::badge_border))
+					.color_text(defaults::color(_page._d_page._fm._d._theme, item::badge_text));
 			}
 			containers::page& _page;
 			icon& _specs;

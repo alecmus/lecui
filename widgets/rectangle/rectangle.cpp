@@ -213,6 +213,11 @@ namespace liblec {
 					.color_hot(defaults::color(_page._d_page._fm._d._theme, item::rectangle_hover))
 					.color_selected(defaults::color(_page._d_page._fm._d._theme, item::rectangle_selected));
 
+				_specs.badge()
+					.color(defaults::color(_page._d_page._fm._d._theme, item::badge))
+					.color_border(defaults::color(_page._d_page._fm._d._theme, item::badge_border))
+					.color_text(defaults::color(_page._d_page._fm._d._theme, item::badge_text));
+
 			}
 			containers::page& _page;
 			rectangle& _specs;

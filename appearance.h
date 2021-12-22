@@ -155,6 +155,10 @@ namespace liblec {
 
 			strength_bar,
 			strength_bar_border,
+
+			badge,
+			badge_border,
+			badge_text,
 		};
 
 		class lecui_api defaults {

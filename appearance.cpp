@@ -144,6 +144,10 @@ namespace liblec {
 
 				case item::strength_bar: return { 234, 234, 234, 255 };
 				case item::strength_bar_border: return { 200, 200, 200, 255 };
+
+				case item::badge: return { 255, 0, 0, 180 };
+				case item::badge_border: return { 255, 255, 255, 180 };
+				case item::badge_text: return { 255, 255, 255, 255 };
 				default: break;
 				}
 			} break;
@@ -277,6 +281,10 @@ namespace liblec {
 
 				case item::strength_bar: return { 26, 39, 46, 255 };
 				case item::strength_bar_border: return { 85, 95, 100, 255 };
+
+				case item::badge: return { 255, 0, 0, 180 };
+				case item::badge_border: return { 255, 255, 255, 180 };
+				case item::badge_text: return { 255, 255, 255, 255 };
 				default: break;
 				}
 			} break;
