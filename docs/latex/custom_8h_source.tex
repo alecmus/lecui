@@ -23,7 +23,7 @@
 \DoxyCodeLine{19 \textcolor{keyword}{namespace }liblec \{}
 \DoxyCodeLine{20     \textcolor{keyword}{namespace }lecui \{}
 \DoxyCodeLine{21         \textcolor{keyword}{namespace }widgets \{}
-\DoxyCodeLine{23             \textcolor{keyword}{class }lecui\_api \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1custom}{custom}} : \textcolor{keyword}{public} \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1widget}{widget}} \{}
+\DoxyCodeLine{23             \textcolor{keyword}{class }lecui\_api \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1custom}{custom}} : \textcolor{keyword}{public} \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1widget}{widget}}, \textcolor{keyword}{public} \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__widget}{badge\_widget}} \{}
 \DoxyCodeLine{24             \textcolor{keyword}{public}:}
 \DoxyCodeLine{33                 std::function<void(}
 \DoxyCodeLine{34                     \textcolor{keywordtype}{void}* \_ID2D1HwndRenderTarget,}
@@ -52,47 +52,50 @@
 \DoxyCodeLine{68                 std::string\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1custom_ac92179bd60863b710f02106ad45a03bd}{tooltip}}() \textcolor{keyword}{override};}
 \DoxyCodeLine{69                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1custom}{custom}}\& tooltip(\textcolor{keyword}{const} std::string\& tooltip);}
 \DoxyCodeLine{70 }
-\DoxyCodeLine{71                 \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{lecui::rect}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1custom_aae2860256c11767ad5ee7c180aeca378}{rect}}() \textcolor{keyword}{override};}
-\DoxyCodeLine{72                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1custom}{custom}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{rect}}(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{lecui::rect}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{rect}});}
+\DoxyCodeLine{71                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs}{badge\_specs}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1custom_ae09be15425cc7329bedd23286dabe512}{badge}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{72                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1custom}{custom}}\& badge(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs}{badge\_specs}}\& badge);}
 \DoxyCodeLine{73 }
-\DoxyCodeLine{74                 \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params}{resize\_params}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1custom_a9164124e220d90764a7a5a1504dfaab3}{on\_resize}}() \textcolor{keyword}{override};}
-\DoxyCodeLine{75                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1custom}{custom}}\& on\_resize(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params}{resize\_params}}\& on\_resize);}
+\DoxyCodeLine{74                 \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{lecui::rect}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1custom_aae2860256c11767ad5ee7c180aeca378}{rect}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{75                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1custom}{custom}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{rect}}(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{lecui::rect}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{rect}});}
 \DoxyCodeLine{76 }
-\DoxyCodeLine{77                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1widget_a893d9dfd53890f3faf6829a6c02aca84}{cursor\_type}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1custom_a7b7f30c4fb51f4a7d347ee598cfcb92a}{cursor}}() \textcolor{keyword}{override};}
-\DoxyCodeLine{78                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1custom}{custom}}\& cursor(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1widget_a893d9dfd53890f3faf6829a6c02aca84}{cursor\_type}} cursor);}
+\DoxyCodeLine{77                 \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params}{resize\_params}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1custom_a9164124e220d90764a7a5a1504dfaab3}{on\_resize}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{78                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1custom}{custom}}\& on\_resize(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params}{resize\_params}}\& on\_resize);}
 \DoxyCodeLine{79 }
-\DoxyCodeLine{80                 std::string\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1custom_a3f5907879b30f0bf14c9e9d46cefee96}{font}}() \textcolor{keyword}{override};}
-\DoxyCodeLine{81                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1custom}{custom}}\& font(\textcolor{keyword}{const} std::string\& font);}
+\DoxyCodeLine{80                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1widget_a893d9dfd53890f3faf6829a6c02aca84}{cursor\_type}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1custom_a7b7f30c4fb51f4a7d347ee598cfcb92a}{cursor}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{81                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1custom}{custom}}\& cursor(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1widget_a893d9dfd53890f3faf6829a6c02aca84}{cursor\_type}} cursor);}
 \DoxyCodeLine{82 }
-\DoxyCodeLine{83                 \textcolor{keywordtype}{float}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1custom_abb78273fa7220e34b412f3901560c357}{font\_size}}() \textcolor{keyword}{override};}
-\DoxyCodeLine{84                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1custom}{custom}}\& font\_size(\textcolor{keyword}{const} \textcolor{keywordtype}{float}\& font\_size);}
+\DoxyCodeLine{83                 std::string\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1custom_a3f5907879b30f0bf14c9e9d46cefee96}{font}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{84                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1custom}{custom}}\& font(\textcolor{keyword}{const} std::string\& font);}
 \DoxyCodeLine{85 }
-\DoxyCodeLine{86                 \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1custom_af95e83c199c32d8b0f558dd0e0c3706c}{color\_text}}() \textcolor{keyword}{override};}
-\DoxyCodeLine{87                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1custom}{custom}}\& color\_text(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& color\_text);}
+\DoxyCodeLine{86                 \textcolor{keywordtype}{float}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1custom_abb78273fa7220e34b412f3901560c357}{font\_size}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{87                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1custom}{custom}}\& font\_size(\textcolor{keyword}{const} \textcolor{keywordtype}{float}\& font\_size);}
 \DoxyCodeLine{88 }
-\DoxyCodeLine{89                 \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1custom_a2fab1218177e31096227e58c26e11f68}{color\_fill}}() \textcolor{keyword}{override};}
-\DoxyCodeLine{90                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1custom}{custom}}\& color\_fill(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& color\_fill);}
+\DoxyCodeLine{89                 \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1custom_af95e83c199c32d8b0f558dd0e0c3706c}{color\_text}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{90                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1custom}{custom}}\& color\_text(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& color\_text);}
 \DoxyCodeLine{91 }
-\DoxyCodeLine{92                 \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1custom_ae0afd017746dbf0f20ab764ecfd63d4f}{color\_hot}}() \textcolor{keyword}{override};}
-\DoxyCodeLine{93                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1custom}{custom}}\& color\_hot(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& color\_hot);}
+\DoxyCodeLine{92                 \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1custom_a2fab1218177e31096227e58c26e11f68}{color\_fill}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{93                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1custom}{custom}}\& color\_fill(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& color\_fill);}
 \DoxyCodeLine{94 }
-\DoxyCodeLine{95                 \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1custom_a4f2064efc426cf9a21bb78df399f6f7f}{color\_selected}}() \textcolor{keyword}{override};}
-\DoxyCodeLine{96                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1custom}{custom}}\& color\_selected(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& color\_selected);}
+\DoxyCodeLine{95                 \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1custom_ae0afd017746dbf0f20ab764ecfd63d4f}{color\_hot}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{96                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1custom}{custom}}\& color\_hot(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& color\_hot);}
 \DoxyCodeLine{97 }
-\DoxyCodeLine{98                 \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1custom_a009c71d1c372a9cdf748ccb14b5bbb71}{color\_disabled}}() \textcolor{keyword}{override};}
-\DoxyCodeLine{99                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1custom}{custom}}\& color\_disabled(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& color\_disabled);}
+\DoxyCodeLine{98                 \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1custom_a4f2064efc426cf9a21bb78df399f6f7f}{color\_selected}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{99                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1custom}{custom}}\& color\_selected(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& color\_selected);}
 \DoxyCodeLine{100 }
-\DoxyCodeLine{101             \textcolor{keyword}{public}:}
-\DoxyCodeLine{108                 [[nodiscard]]}
-\DoxyCodeLine{109                 \textcolor{keyword}{static} \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1custom}{custom}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1custom_a32dc159ceebc4ad617ef3d2a803805f2}{add}}(\mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1page}{containers::page}}\& page, \textcolor{keyword}{const} std::string\& alias = std::string());}
-\DoxyCodeLine{110 }
-\DoxyCodeLine{117                 [[nodiscard]]}
-\DoxyCodeLine{118                 \textcolor{keyword}{static} \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1custom}{custom}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1custom_afedd60fa2dbac85296c386f17e50babc}{get}}(\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}}\& fm, \textcolor{keyword}{const} std::string\& path);}
-\DoxyCodeLine{119             \};}
-\DoxyCodeLine{120         \}}
-\DoxyCodeLine{121     \}}
-\DoxyCodeLine{122 \}}
-\DoxyCodeLine{123 }
-\DoxyCodeLine{125 \textcolor{preprocessor}{\#define get\_custom(path) liblec::lecui::widgets::custom::get(*this, path)}}
+\DoxyCodeLine{101                 \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1custom_a009c71d1c372a9cdf748ccb14b5bbb71}{color\_disabled}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{102                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1custom}{custom}}\& color\_disabled(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& color\_disabled);}
+\DoxyCodeLine{103 }
+\DoxyCodeLine{104             \textcolor{keyword}{public}:}
+\DoxyCodeLine{111                 [[nodiscard]]}
+\DoxyCodeLine{112                 \textcolor{keyword}{static} \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1custom}{custom}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1custom_a32dc159ceebc4ad617ef3d2a803805f2}{add}}(\mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1page}{containers::page}}\& page, \textcolor{keyword}{const} std::string\& alias = std::string());}
+\DoxyCodeLine{113 }
+\DoxyCodeLine{120                 [[nodiscard]]}
+\DoxyCodeLine{121                 \textcolor{keyword}{static} \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1custom}{custom}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1custom_afedd60fa2dbac85296c386f17e50babc}{get}}(\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}}\& fm, \textcolor{keyword}{const} std::string\& path);}
+\DoxyCodeLine{122             \};}
+\DoxyCodeLine{123         \}}
+\DoxyCodeLine{124     \}}
+\DoxyCodeLine{125 \}}
+\DoxyCodeLine{126 }
+\DoxyCodeLine{128 \textcolor{preprocessor}{\#define get\_custom(path) liblec::lecui::widgets::custom::get(*this, path)}}
 
 \end{DoxyCode}

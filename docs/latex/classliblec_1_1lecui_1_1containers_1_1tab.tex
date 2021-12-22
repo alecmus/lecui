@@ -21,6 +21,17 @@ Inheritance diagram for liblec\+::lecui\+::containers\+::tab\+:\begin{figure}[H]
 \mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1tab_abc0990c8e6193dfa3c49bac462b9cab6}\label{classliblec_1_1lecui_1_1containers_1_1tab_abc0990c8e6193dfa3c49bac462b9cab6}} 
 {\bfseries tab} (\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}} \&, const std\+::string \&)
 \item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1tab_abb5a995a2ff741df66ae911ec766b733}\label{classliblec_1_1lecui_1_1containers_1_1tab_abb5a995a2ff741df66ae911ec766b733}} 
+bool {\bfseries operator==} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1tab}{tab}} \&)
+\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1tab_a675b28da868368e30bcf55700445b931}\label{classliblec_1_1lecui_1_1containers_1_1tab_a675b28da868368e30bcf55700445b931}} 
+bool {\bfseries operator!=} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1tab}{tab}} \&)
+\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs}{widgets\+::badge\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1tab_acfdb095af51542cf508780235e597809}{badge}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the widget\textquotesingle{}s badge.\end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1tab_ae1f463dfa44647b8657bd3f1955a2aed}\label{classliblec_1_1lecui_1_1containers_1_1tab_ae1f463dfa44647b8657bd3f1955a2aed}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1tab}{tab}} \& {\bfseries badge} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs}{widgets\+::badge\+\_\+specs}} \&badge)
+\item 
 const \mbox{\hyperlink{classliblec_1_1lecui_1_1size}{lecui\+::size}} \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1tab_a5ce8ba7ab1cfaa36253b540e2738a400}{size}} ()
 \begin{DoxyCompactList}\small\item\em Get the size of the tab\textquotesingle{}s page.\end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Static Public Member Functions}
@@ -61,7 +72,26 @@ A reference to the pane specifications.
 \end{DoxyReturn}
 
 
-If an empty alias is given an internally generated random alias will be assigned.\mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1tab_a59949f457ee3d48ac5ca328b07fa29f0}\label{classliblec_1_1lecui_1_1containers_1_1tab_a59949f457ee3d48ac5ca328b07fa29f0}} 
+If an empty alias is given an internally generated random alias will be assigned.\mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1tab_acfdb095af51542cf508780235e597809}\label{classliblec_1_1lecui_1_1containers_1_1tab_acfdb095af51542cf508780235e597809}} 
+\index{liblec::lecui::containers::tab@{liblec::lecui::containers::tab}!badge@{badge}}
+\index{badge@{badge}!liblec::lecui::containers::tab@{liblec::lecui::containers::tab}}
+\doxysubsubsection{\texorpdfstring{badge()}{badge()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs}{widgets\+::badge\+\_\+specs}} \& liblec\+::lecui\+::containers\+::tab\+::badge (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the widget\textquotesingle{}s badge.
+
+\begin{DoxyReturn}{Returns}
+A reference to the badge specs.
+\end{DoxyReturn}
+
+
+The badge is useful in indicating when something requires user attention, e.\+g., for showing how many unread messages the user has or for indicating when an update is available.
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__widget_ab09d1819eb8c8b392cc6da233d4da537}{liblec\+::lecui\+::widgets\+::badge\+\_\+widget}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1tab_a59949f457ee3d48ac5ca328b07fa29f0}\label{classliblec_1_1lecui_1_1containers_1_1tab_a59949f457ee3d48ac5ca328b07fa29f0}} 
 \index{liblec::lecui::containers::tab@{liblec::lecui::containers::tab}!get@{get}}
 \index{get@{get}!liblec::lecui::containers::tab@{liblec::lecui::containers::tab}}
 \doxysubsubsection{\texorpdfstring{get()}{get()}}

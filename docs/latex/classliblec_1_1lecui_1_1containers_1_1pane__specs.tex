@@ -18,6 +18,12 @@ Inheritance diagram for liblec\+::lecui\+::containers\+::pane\+\_\+specs\+:\begi
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1pane__specs_a5308ad151aa9a4d057e0ea5e7c26d55e}\label{classliblec_1_1lecui_1_1containers_1_1pane__specs_a5308ad151aa9a4d057e0ea5e7c26d55e}} 
+bool {\bfseries operator==} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1pane__specs}{pane\+\_\+specs}} \&)
+\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1pane__specs_ae9be9e2919ff80c869c04de1a7fe07f5}\label{classliblec_1_1lecui_1_1containers_1_1pane__specs_ae9be9e2919ff80c869c04de1a7fe07f5}} 
+bool {\bfseries operator!=} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1pane__specs}{pane\+\_\+specs}} \&)
+\item 
 std\+::string \& \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1pane__specs_a2278319f3223c13720c9ce9c27f2d302}{text}} () override
 \begin{DoxyCompactList}\small\item\em Get or set the widget text.\end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1pane__specs_aa210c7bbae43b07a5d5e68c06ac66374}\label{classliblec_1_1lecui_1_1containers_1_1pane__specs_aa210c7bbae43b07a5d5e68c06ac66374}} 
@@ -27,6 +33,11 @@ std\+::string \& \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1pane__sp
 \begin{DoxyCompactList}\small\item\em Get or set the widget\textquotesingle{}s tooltip text.\end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1pane__specs_a16dff315b0f28453ea6c5e5160d35958}\label{classliblec_1_1lecui_1_1containers_1_1pane__specs_a16dff315b0f28453ea6c5e5160d35958}} 
 \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1pane__specs}{pane\+\_\+specs}} \& {\bfseries tooltip} (const std\+::string \&tooltip)
+\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs}{widgets\+::badge\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1pane__specs_aa283d9db675090a913188ec4785974cb}{badge}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the widget\textquotesingle{}s badge.\end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1pane__specs_a92944dbd37ff2f301403a0f18d7c4122}\label{classliblec_1_1lecui_1_1containers_1_1pane__specs_a92944dbd37ff2f301403a0f18d7c4122}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1pane__specs}{pane\+\_\+specs}} \& {\bfseries badge} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs}{widgets\+::badge\+\_\+specs}} \&badge)
 \item 
 \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{lecui\+::rect}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1pane__specs_a3acbda2684b514cd246d598240b51396}{rect}} () override
 \begin{DoxyCompactList}\small\item\em Get or set the position and dimensions of the widget.\end{DoxyCompactList}\item 
@@ -49,7 +60,7 @@ std\+::string \& \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1pane__sp
 \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1pane__specs}{pane\+\_\+specs}} \& {\bfseries font} (const std\+::string \&font)
 \item 
 float \& \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1pane__specs_adc275d887fb3c56fdc661d35112f605b}{font\+\_\+size}} () override
-\begin{DoxyCompactList}\small\item\em Get or set the default widget font size in points, e.\+g. 9.\+0.\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Get or set the default widget font size in points, e.\+g. 9.\+0f.\end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1pane__specs_afca496e6acfca68cdd5581e089ae24f0}\label{classliblec_1_1lecui_1_1containers_1_1pane__specs_afca496e6acfca68cdd5581e089ae24f0}} 
 \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1pane__specs}{pane\+\_\+specs}} \& {\bfseries font\+\_\+size} (const float \&font\+\_\+size)
 \item 
@@ -101,6 +112,25 @@ float \& \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1pane__specs_a715
 Pane container specifications.
 
 \doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1pane__specs_aa283d9db675090a913188ec4785974cb}\label{classliblec_1_1lecui_1_1containers_1_1pane__specs_aa283d9db675090a913188ec4785974cb}} 
+\index{liblec::lecui::containers::pane\_specs@{liblec::lecui::containers::pane\_specs}!badge@{badge}}
+\index{badge@{badge}!liblec::lecui::containers::pane\_specs@{liblec::lecui::containers::pane\_specs}}
+\doxysubsubsection{\texorpdfstring{badge()}{badge()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs}{widgets\+::badge\+\_\+specs}} \& liblec\+::lecui\+::containers\+::pane\+\_\+specs\+::badge (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the widget\textquotesingle{}s badge.
+
+\begin{DoxyReturn}{Returns}
+A reference to the badge specs.
+\end{DoxyReturn}
+
+
+The badge is useful in indicating when something requires user attention, e.\+g., for showing how many unread messages the user has or for indicating when an update is available.
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__widget_ab09d1819eb8c8b392cc6da233d4da537}{liblec\+::lecui\+::widgets\+::badge\+\_\+widget}}.
+
 \mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1pane__specs_a6b8f775f8877e77ea5f525c6476f1ed1}\label{classliblec_1_1lecui_1_1containers_1_1pane__specs_a6b8f775f8877e77ea5f525c6476f1ed1}} 
 \index{liblec::lecui::containers::pane\_specs@{liblec::lecui::containers::pane\_specs}!border@{border}}
 \index{border@{border}!liblec::lecui::containers::pane\_specs@{liblec::lecui::containers::pane\_specs}}
@@ -358,7 +388,7 @@ Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1widget_afe2f9d2ba
 
 
 
-Get or set the default widget font size in points, e.\+g. 9.\+0.
+Get or set the default widget font size in points, e.\+g. 9.\+0f.
 
 \begin{DoxyReturn}{Returns}
 A reference to the widget\textquotesingle{}s font size.

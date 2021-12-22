@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['checkbox_5fstatus_0',['checkbox_status',['../classliblec_1_1lecui_1_1widgets_1_1checkbox.html#ad27a58a80b79651e2c22f061de921bed',1,'liblec::lecui::widgets::checkbox']]],
-  ['cursor_5ftype_1',['cursor_type',['../classliblec_1_1lecui_1_1widgets_1_1widget.html#a893d9dfd53890f3faf6829a6c02aca84',1,'liblec::lecui::widgets::widget']]]
+  ['badge_5fposition_0',['badge_position',['../classliblec_1_1lecui_1_1widgets_1_1badge__specs.html#a2c253945fbfdfa22df9d920074737d8c',1,'liblec::lecui::widgets::badge_specs']]]
 ];

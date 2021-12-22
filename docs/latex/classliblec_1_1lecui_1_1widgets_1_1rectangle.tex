@@ -34,6 +34,11 @@ std\+::string \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1rectangle_a
 \mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1rectangle_a7a45fa07fd76aed73553d2ee612fc18a}\label{classliblec_1_1lecui_1_1widgets_1_1rectangle_a7a45fa07fd76aed73553d2ee612fc18a}} 
 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1rectangle}{rectangle}} \& {\bfseries tooltip} (const std\+::string \&tooltip)
 \item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs}{badge\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1rectangle_ae7f5bddb26db2b209622bb7844bf6bb8}{badge}} () override
+\begin{DoxyCompactList}\small\item\em Get or set the widget\textquotesingle{}s badge.\end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1rectangle_ad83f12d6577ae7a97ac2714a13b32cc4}\label{classliblec_1_1lecui_1_1widgets_1_1rectangle_ad83f12d6577ae7a97ac2714a13b32cc4}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1rectangle}{rectangle}} \& {\bfseries badge} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs}{badge\+\_\+specs}} \&badge)
+\item 
 \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{lecui\+::rect}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1rectangle_aa9b369b0ce3a1e58d3b103280d645afc}{rect}} () override
 \begin{DoxyCompactList}\small\item\em Get or set the position and dimensions of the widget.\end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1rectangle_a96fb21ef4f151f185c223dca7b89aea1}\label{classliblec_1_1lecui_1_1widgets_1_1rectangle_a96fb21ef4f151f185c223dca7b89aea1}} 
@@ -55,7 +60,7 @@ std\+::string \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1rectangle_a
 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1rectangle}{rectangle}} \& {\bfseries font} (const std\+::string \&font)
 \item 
 float \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1rectangle_adfef9a3a047409870937af108fe4a4cd}{font\+\_\+size}} () override
-\begin{DoxyCompactList}\small\item\em Get or set the default widget font size in points, e.\+g. 9.\+0.\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Get or set the default widget font size in points, e.\+g. 9.\+0f.\end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1rectangle_ad9f70368a2dabe59abc363e49de281af}\label{classliblec_1_1lecui_1_1widgets_1_1rectangle_ad9f70368a2dabe59abc363e49de281af}} 
 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1rectangle}{rectangle}} \& {\bfseries font\+\_\+size} (const float \&font\+\_\+size)
 \item 
@@ -142,7 +147,26 @@ A reference to the widget specifications.
 \end{DoxyReturn}
 
 
-If an empty alias is given an internally generated random alias will be assigned.\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1rectangle_a0815363d33410a2c70f075a955eae71e}\label{classliblec_1_1lecui_1_1widgets_1_1rectangle_a0815363d33410a2c70f075a955eae71e}} 
+If an empty alias is given an internally generated random alias will be assigned.\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1rectangle_ae7f5bddb26db2b209622bb7844bf6bb8}\label{classliblec_1_1lecui_1_1widgets_1_1rectangle_ae7f5bddb26db2b209622bb7844bf6bb8}} 
+\index{liblec::lecui::widgets::rectangle@{liblec::lecui::widgets::rectangle}!badge@{badge}}
+\index{badge@{badge}!liblec::lecui::widgets::rectangle@{liblec::lecui::widgets::rectangle}}
+\doxysubsubsection{\texorpdfstring{badge()}{badge()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs}{badge\+\_\+specs}} \& liblec\+::lecui\+::widgets\+::rectangle\+::badge (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get or set the widget\textquotesingle{}s badge.
+
+\begin{DoxyReturn}{Returns}
+A reference to the badge specs.
+\end{DoxyReturn}
+
+
+The badge is useful in indicating when something requires user attention, e.\+g., for showing how many unread messages the user has or for indicating when an update is available.
+
+Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__widget_ab09d1819eb8c8b392cc6da233d4da537}{liblec\+::lecui\+::widgets\+::badge\+\_\+widget}}.
+
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1rectangle_a0815363d33410a2c70f075a955eae71e}\label{classliblec_1_1lecui_1_1widgets_1_1rectangle_a0815363d33410a2c70f075a955eae71e}} 
 \index{liblec::lecui::widgets::rectangle@{liblec::lecui::widgets::rectangle}!border@{border}}
 \index{border@{border}!liblec::lecui::widgets::rectangle@{liblec::lecui::widgets::rectangle}}
 \doxysubsubsection{\texorpdfstring{border()}{border()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
@@ -430,7 +454,7 @@ Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1widget_afe2f9d2ba
 
 
 
-Get or set the default widget font size in points, e.\+g. 9.\+0.
+Get or set the default widget font size in points, e.\+g. 9.\+0f.
 
 \begin{DoxyReturn}{Returns}
 A reference to the widget\textquotesingle{}s font size.

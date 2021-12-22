@@ -115,35 +115,105 @@
 \DoxyCodeLine{160                 \textcolor{keyword}{friend} \textcolor{keyword}{class }icon\_impl;}
 \DoxyCodeLine{161 \textcolor{preprocessor}{\#endif}}
 \DoxyCodeLine{162             \};}
-\DoxyCodeLine{163         \}}
-\DoxyCodeLine{164 }
-\DoxyCodeLine{166         \textcolor{keyword}{class }lecui\_api \mbox{\hyperlink{classliblec_1_1lecui_1_1widget__manager}{widget\_manager}} \{}
-\DoxyCodeLine{167         \textcolor{keyword}{public}:}
-\DoxyCodeLine{168             \mbox{\hyperlink{classliblec_1_1lecui_1_1widget__manager}{widget\_manager}}(\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}}\& fm);}
-\DoxyCodeLine{169             \mbox{\hyperlink{classliblec_1_1lecui_1_1widget__manager}{\string~widget\_manager}}();}
-\DoxyCodeLine{170 }
-\DoxyCodeLine{174             \textcolor{keywordtype}{bool} \mbox{\hyperlink{classliblec_1_1lecui_1_1widget__manager_a86083e220464ab7e456b7f0c25cd03ec}{enable}}(\textcolor{keyword}{const} std::string\& path, std::string\& error);}
-\DoxyCodeLine{175 }
-\DoxyCodeLine{179             \textcolor{keywordtype}{bool} \mbox{\hyperlink{classliblec_1_1lecui_1_1widget__manager_ac6d227bdd289530c80e232df5a7127fe}{disable}}(\textcolor{keyword}{const} std::string\& path, std::string\& error);}
-\DoxyCodeLine{180 }
-\DoxyCodeLine{184             \textcolor{keywordtype}{bool} \mbox{\hyperlink{classliblec_1_1lecui_1_1widget__manager_a80a5601975650f0ea9801a114e52644f}{show}}(\textcolor{keyword}{const} std::string\& path, std::string\& error);}
-\DoxyCodeLine{185 }
-\DoxyCodeLine{189             \textcolor{keywordtype}{bool} \mbox{\hyperlink{classliblec_1_1lecui_1_1widget__manager_aa73af230f550ebf5c52a8015107de7eb}{hide}}(\textcolor{keyword}{const} std::string\& path, std::string\& error);}
-\DoxyCodeLine{190 }
-\DoxyCodeLine{201             \textcolor{keywordtype}{void} \mbox{\hyperlink{classliblec_1_1lecui_1_1widget__manager_a878389752aaeb56ae7c94b04883d34e8}{close}}(\textcolor{keyword}{const} std::string\& path);}
-\DoxyCodeLine{202 }
-\DoxyCodeLine{206             \textcolor{keywordtype}{void} \mbox{\hyperlink{classliblec_1_1lecui_1_1widget__manager_ac92befb57b4658047f0534fd37ab83c7}{select}}(\textcolor{keyword}{const} std::string\& path);}
-\DoxyCodeLine{207 }
-\DoxyCodeLine{208         \textcolor{keyword}{private}:}
-\DoxyCodeLine{209             \textcolor{keyword}{class }impl;}
-\DoxyCodeLine{210             impl\& \_d;}
-\DoxyCodeLine{211 }
-\DoxyCodeLine{212             \textcolor{comment}{// Default constructor and copying an object of this class are not allowed}}
-\DoxyCodeLine{213             \mbox{\hyperlink{classliblec_1_1lecui_1_1widget__manager}{widget\_manager}}() = \textcolor{keyword}{delete};}
-\DoxyCodeLine{214             \mbox{\hyperlink{classliblec_1_1lecui_1_1widget__manager}{widget\_manager}}(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1widget__manager}{widget\_manager}}\&) = \textcolor{keyword}{delete};}
-\DoxyCodeLine{215             \mbox{\hyperlink{classliblec_1_1lecui_1_1widget__manager}{widget\_manager}}\& operator=(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1widget__manager}{widget\_manager}}\&) = \textcolor{keyword}{delete};}
-\DoxyCodeLine{216         \};}
-\DoxyCodeLine{217     \}}
-\DoxyCodeLine{218 \}}
+\DoxyCodeLine{163 }
+\DoxyCodeLine{165             \textcolor{keyword}{class }lecui\_api \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs}{badge\_specs}} \{}
+\DoxyCodeLine{166             \textcolor{keyword}{public}:}
+\DoxyCodeLine{168                 \textcolor{keyword}{enum class} \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs_a2c253945fbfdfa22df9d920074737d8c}{badge\_position}} \{}
+\DoxyCodeLine{170                     top\_left,}
+\DoxyCodeLine{171 }
+\DoxyCodeLine{173                     top\_right,}
+\DoxyCodeLine{174 }
+\DoxyCodeLine{176                     bottom\_left,}
+\DoxyCodeLine{177 }
+\DoxyCodeLine{179                     bottom\_right,}
+\DoxyCodeLine{180                 \};}
+\DoxyCodeLine{181 }
+\DoxyCodeLine{182             \textcolor{keyword}{protected}:}
+\DoxyCodeLine{183                 std::string \_text;}
+\DoxyCodeLine{184                 std::string \_font = \textcolor{stringliteral}{"{}Segoe UI"{}};}
+\DoxyCodeLine{185                 \textcolor{keywordtype}{float} \_font\_size = 8.f;}
+\DoxyCodeLine{186                 \textcolor{keywordtype}{float} \_border = .5f;}
+\DoxyCodeLine{187                 \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \_color = \{ 255, 0, 0, 180 \};}
+\DoxyCodeLine{188                 \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \_color\_border = \{ 255, 255, 255, 180 \};}
+\DoxyCodeLine{189                 color \_color\_text = \{ 255, 255, 255, 255 \};}
+\DoxyCodeLine{190                 badge\_position \_position = badge\_position::bottom\_right;}
+\DoxyCodeLine{191 }
+\DoxyCodeLine{192             \textcolor{keyword}{public}:}
+\DoxyCodeLine{193                 \textcolor{keywordtype}{bool} operator==(\textcolor{keyword}{const} badge\_specs\&);}
+\DoxyCodeLine{194                 \textcolor{keywordtype}{bool} operator!=(\textcolor{keyword}{const} badge\_specs\&);}
+\DoxyCodeLine{195 }
+\DoxyCodeLine{198                 std::string\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs_a9386173002bb8698505accffc5b42e92}{text}}();}
+\DoxyCodeLine{199 }
+\DoxyCodeLine{203                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs}{badge\_specs}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs_a44715f99a7ff3a85ab63d33f16936247}{text}}(\textcolor{keyword}{const} std::string\& text);}
+\DoxyCodeLine{204 }
+\DoxyCodeLine{207                 std::string\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs_afeaac724fff9bdf3cfa123dfe1712191}{font}}();}
+\DoxyCodeLine{208 }
+\DoxyCodeLine{212                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs}{badge\_specs}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs_a7152514a034a95743900a09213b0cabd}{font}}(\textcolor{keyword}{const} std::string\& font);}
+\DoxyCodeLine{213 }
+\DoxyCodeLine{216                 \textcolor{keywordtype}{float}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs_ab0d65d8763006dc0b046915bc30711a4}{font\_size}}();}
+\DoxyCodeLine{217 }
+\DoxyCodeLine{221                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs}{badge\_specs}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs_ad71db58359a97ac20fb8cfed11d2aa1e}{font\_size}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float}\& font\_size);}
+\DoxyCodeLine{222 }
+\DoxyCodeLine{225                 \textcolor{keywordtype}{float}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs_ab7c1f0313a654fb04e06049102a80271}{border}}();}
+\DoxyCodeLine{226 }
+\DoxyCodeLine{230                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs}{badge\_specs}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs_a8ace53f9b5c22e00a47c6b60c7345168}{border}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float}\& border);}
+\DoxyCodeLine{231 }
+\DoxyCodeLine{234                 \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{lecui::color}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs_a83a259e5c94c8a3b9c504efb4db39158}{color}}();}
+\DoxyCodeLine{235 }
+\DoxyCodeLine{239                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs}{badge\_specs}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs_a0998d6f857da4b4a181fa3cdccb40c79}{color}}(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{lecui::color}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}});}
+\DoxyCodeLine{240 }
+\DoxyCodeLine{243                 \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{lecui::color}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs_a9e9cc10f71f0ef03a9d555988d8d9ef4}{color\_border}}();}
+\DoxyCodeLine{244 }
+\DoxyCodeLine{248                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs}{badge\_specs}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs_a2fb5503dd3fcf36de0cbcfe961c14d45}{color\_border}}(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{lecui::color}}\& color\_border);}
+\DoxyCodeLine{249 }
+\DoxyCodeLine{252                 \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{lecui::color}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs_afb33f58c1ce8fb05267163bf2137dc3a}{color\_text}}();}
+\DoxyCodeLine{253 }
+\DoxyCodeLine{257                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs}{badge\_specs}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs_a964708afb467f1a6a159d71fb4f96617}{color\_text}}(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{lecui::color}}\& color\_text);}
+\DoxyCodeLine{258 }
+\DoxyCodeLine{261                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs_a2c253945fbfdfa22df9d920074737d8c}{badge\_position}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs_abc286a4d84897ccc0f89717fe84ebe98}{position}}();}
+\DoxyCodeLine{262 }
+\DoxyCodeLine{266                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs}{badge\_specs}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs_acd52f5ccf9a2f04721b2b6e4eaff5a99}{position}}(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs_a2c253945fbfdfa22df9d920074737d8c}{badge\_position}}\& position);}
+\DoxyCodeLine{267             \};}
+\DoxyCodeLine{268 }
+\DoxyCodeLine{271             \textcolor{keyword}{class }lecui\_api \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__widget}{badge\_widget}} \{}
+\DoxyCodeLine{272             \textcolor{keyword}{protected}:}
+\DoxyCodeLine{273                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs}{badge\_specs}} \_badge;}
+\DoxyCodeLine{274 }
+\DoxyCodeLine{275             \textcolor{keyword}{public}:}
+\DoxyCodeLine{276                 \textcolor{keywordtype}{bool} operator==(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__widget}{badge\_widget}}\&);}
+\DoxyCodeLine{277                 \textcolor{keywordtype}{bool} operator!=(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__widget}{badge\_widget}}\&);}
+\DoxyCodeLine{278 }
+\DoxyCodeLine{283                 \textcolor{keyword}{virtual} \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs}{badge\_specs}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__widget_ab09d1819eb8c8b392cc6da233d4da537}{badge}}() = 0;}
+\DoxyCodeLine{284             \};}
+\DoxyCodeLine{285         \}}
+\DoxyCodeLine{286 }
+\DoxyCodeLine{288         \textcolor{keyword}{class }lecui\_api \mbox{\hyperlink{classliblec_1_1lecui_1_1widget__manager}{widget\_manager}} \{}
+\DoxyCodeLine{289         \textcolor{keyword}{public}:}
+\DoxyCodeLine{290             \mbox{\hyperlink{classliblec_1_1lecui_1_1widget__manager}{widget\_manager}}(\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}}\& fm);}
+\DoxyCodeLine{291             \mbox{\hyperlink{classliblec_1_1lecui_1_1widget__manager}{\string~widget\_manager}}();}
+\DoxyCodeLine{292 }
+\DoxyCodeLine{296             \textcolor{keywordtype}{bool} \mbox{\hyperlink{classliblec_1_1lecui_1_1widget__manager_a86083e220464ab7e456b7f0c25cd03ec}{enable}}(\textcolor{keyword}{const} std::string\& path, std::string\& error);}
+\DoxyCodeLine{297 }
+\DoxyCodeLine{301             \textcolor{keywordtype}{bool} \mbox{\hyperlink{classliblec_1_1lecui_1_1widget__manager_ac6d227bdd289530c80e232df5a7127fe}{disable}}(\textcolor{keyword}{const} std::string\& path, std::string\& error);}
+\DoxyCodeLine{302 }
+\DoxyCodeLine{306             \textcolor{keywordtype}{bool} \mbox{\hyperlink{classliblec_1_1lecui_1_1widget__manager_a80a5601975650f0ea9801a114e52644f}{show}}(\textcolor{keyword}{const} std::string\& path, std::string\& error);}
+\DoxyCodeLine{307 }
+\DoxyCodeLine{311             \textcolor{keywordtype}{bool} \mbox{\hyperlink{classliblec_1_1lecui_1_1widget__manager_aa73af230f550ebf5c52a8015107de7eb}{hide}}(\textcolor{keyword}{const} std::string\& path, std::string\& error);}
+\DoxyCodeLine{312 }
+\DoxyCodeLine{323             \textcolor{keywordtype}{void} \mbox{\hyperlink{classliblec_1_1lecui_1_1widget__manager_a878389752aaeb56ae7c94b04883d34e8}{close}}(\textcolor{keyword}{const} std::string\& path);}
+\DoxyCodeLine{324 }
+\DoxyCodeLine{328             \textcolor{keywordtype}{void} \mbox{\hyperlink{classliblec_1_1lecui_1_1widget__manager_ac92befb57b4658047f0534fd37ab83c7}{select}}(\textcolor{keyword}{const} std::string\& path);}
+\DoxyCodeLine{329 }
+\DoxyCodeLine{330         \textcolor{keyword}{private}:}
+\DoxyCodeLine{331             \textcolor{keyword}{class }impl;}
+\DoxyCodeLine{332             impl\& \_d;}
+\DoxyCodeLine{333 }
+\DoxyCodeLine{334             \textcolor{comment}{// Default constructor and copying an object of this class are not allowed}}
+\DoxyCodeLine{335             \mbox{\hyperlink{classliblec_1_1lecui_1_1widget__manager}{widget\_manager}}() = \textcolor{keyword}{delete};}
+\DoxyCodeLine{336             \mbox{\hyperlink{classliblec_1_1lecui_1_1widget__manager}{widget\_manager}}(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1widget__manager}{widget\_manager}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{337             \mbox{\hyperlink{classliblec_1_1lecui_1_1widget__manager}{widget\_manager}}\& operator=(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1widget__manager}{widget\_manager}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{338         \};}
+\DoxyCodeLine{339     \}}
+\DoxyCodeLine{340 \}}
 
 \end{DoxyCode}

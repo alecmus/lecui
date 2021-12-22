@@ -1,0 +1,378 @@
+\hypertarget{classliblec_1_1lecui_1_1widgets_1_1badge__specs}{}\doxysection{liblec\+::lecui\+::widgets\+::badge\+\_\+specs Class Reference}
+\label{classliblec_1_1lecui_1_1widgets_1_1badge__specs}\index{liblec::lecui::widgets::badge\_specs@{liblec::lecui::widgets::badge\_specs}}
+
+
+Badge specifications. 
+
+
+
+
+{\ttfamily \#include $<$widget.\+h$>$}
+
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum class \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs_a2c253945fbfdfa22df9d920074737d8c}{badge\+\_\+position}} \{ \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs_a2c253945fbfdfa22df9d920074737d8ca46d3836487c2110c695e52750c5d76e4}{top\+\_\+left}}
+, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs_a2c253945fbfdfa22df9d920074737d8caf12ea736b05cb6002f1ebf1b8c052676}{top\+\_\+right}}
+, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs_a2c253945fbfdfa22df9d920074737d8ca369408ec984d94fb270ae125c6de1a5b}{bottom\+\_\+left}}
+, \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs_a2c253945fbfdfa22df9d920074737d8cab88b8c9790136e01b8dfce869959cea3}{bottom\+\_\+right}}
+ \}
+\begin{DoxyCompactList}\small\item\em Badge position within the widget.\end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1badge__specs_a3e123e89c94862fff38f99f4ef4dce0d}\label{classliblec_1_1lecui_1_1widgets_1_1badge__specs_a3e123e89c94862fff38f99f4ef4dce0d}} 
+bool {\bfseries operator==} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs}{badge\+\_\+specs}} \&)
+\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1badge__specs_abb0d8fdd15ad3dfa85094122a0dc8fe8}\label{classliblec_1_1lecui_1_1widgets_1_1badge__specs_abb0d8fdd15ad3dfa85094122a0dc8fe8}} 
+bool {\bfseries operator!=} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs}{badge\+\_\+specs}} \&)
+\item 
+std\+::string \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs_a9386173002bb8698505accffc5b42e92}{text}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the badge text.\end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs}{badge\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs_a44715f99a7ff3a85ab63d33f16936247}{text}} (const std\+::string \&text)
+\begin{DoxyCompactList}\small\item\em Set the badge text.\end{DoxyCompactList}\item 
+std\+::string \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs_afeaac724fff9bdf3cfa123dfe1712191}{font}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the default badge font, e.\+g. \char`\"{}\+Georgia\char`\"{}.\end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs}{badge\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs_a7152514a034a95743900a09213b0cabd}{font}} (const std\+::string \&font)
+\begin{DoxyCompactList}\small\item\em Set the badge font.\end{DoxyCompactList}\item 
+float \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs_ab0d65d8763006dc0b046915bc30711a4}{font\+\_\+size}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the badge\textquotesingle{}s font size in points, e.\+g. 9.\+0f.\end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs}{badge\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs_ad71db58359a97ac20fb8cfed11d2aa1e}{font\+\_\+size}} (const float \&font\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Set the badge\textquotesingle{}s font size.\end{DoxyCompactList}\item 
+float \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs_ab7c1f0313a654fb04e06049102a80271}{border}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the thickness of the border.\end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs}{badge\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs_a8ace53f9b5c22e00a47c6b60c7345168}{border}} (const float \&border)
+\begin{DoxyCompactList}\small\item\em Set the thickness of the border.\end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{lecui\+::color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs_a83a259e5c94c8a3b9c504efb4db39158}{color}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the color of the badge.\end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs}{badge\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs_a0998d6f857da4b4a181fa3cdccb40c79}{color}} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{lecui\+::color}} \&\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}})
+\begin{DoxyCompactList}\small\item\em Set the color of the badge.\end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{lecui\+::color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs_a9e9cc10f71f0ef03a9d555988d8d9ef4}{color\+\_\+border}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the color of the badge\textquotesingle{}s border.\end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs}{badge\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs_a2fb5503dd3fcf36de0cbcfe961c14d45}{color\+\_\+border}} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{lecui\+::color}} \&color\+\_\+border)
+\begin{DoxyCompactList}\small\item\em Set the color of the badge\textquotesingle{}s border.\end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{lecui\+::color}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs_afb33f58c1ce8fb05267163bf2137dc3a}{color\+\_\+text}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the color of the badge\textquotesingle{}s text.\end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs}{badge\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs_a964708afb467f1a6a159d71fb4f96617}{color\+\_\+text}} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{lecui\+::color}} \&color\+\_\+text)
+\begin{DoxyCompactList}\small\item\em Set the color of the badge\textquotesingle{}s text.\end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs_a2c253945fbfdfa22df9d920074737d8c}{badge\+\_\+position}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs_abc286a4d84897ccc0f89717fe84ebe98}{position}} ()
+\begin{DoxyCompactList}\small\item\em Get or set the badge\textquotesingle{}s position.\end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs}{badge\+\_\+specs}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs_acd52f5ccf9a2f04721b2b6e4eaff5a99}{position}} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs_a2c253945fbfdfa22df9d920074737d8c}{badge\+\_\+position}} \&position)
+\begin{DoxyCompactList}\small\item\em Set the badge\textquotesingle{}s position.\end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1badge__specs_ae99bac033ee672e99504bb9e2bd8ae70}\label{classliblec_1_1lecui_1_1widgets_1_1badge__specs_ae99bac033ee672e99504bb9e2bd8ae70}} 
+std\+::string {\bfseries \+\_\+text}
+\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1badge__specs_a763c34e38bcb3edcb652c96a72247a94}\label{classliblec_1_1lecui_1_1widgets_1_1badge__specs_a763c34e38bcb3edcb652c96a72247a94}} 
+std\+::string {\bfseries \+\_\+font} = \char`\"{}Segoe UI\char`\"{}
+\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1badge__specs_a5b3e4f199659a8af58f0005c74180105}\label{classliblec_1_1lecui_1_1widgets_1_1badge__specs_a5b3e4f199659a8af58f0005c74180105}} 
+float {\bfseries \+\_\+font\+\_\+size} = 8.f
+\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1badge__specs_a8645521c69853c8f48b53c9ac74e9346}\label{classliblec_1_1lecui_1_1widgets_1_1badge__specs_a8645521c69853c8f48b53c9ac74e9346}} 
+float {\bfseries \+\_\+border} = .\+5f
+\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1badge__specs_ad49264814e66368a49bc011b6ff0acb1}\label{classliblec_1_1lecui_1_1widgets_1_1badge__specs_ad49264814e66368a49bc011b6ff0acb1}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} {\bfseries \+\_\+color} = \{ 255, 0, 0, 180 \}
+\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1badge__specs_aa4a434fc5f33b95a6347e6847d4ff1a8}\label{classliblec_1_1lecui_1_1widgets_1_1badge__specs_aa4a434fc5f33b95a6347e6847d4ff1a8}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} {\bfseries \+\_\+color\+\_\+border} = \{ 255, 255, 255, 180 \}
+\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1badge__specs_a9ce7af6f898e708f2a7de5cafbe76e15}\label{classliblec_1_1lecui_1_1widgets_1_1badge__specs_a9ce7af6f898e708f2a7de5cafbe76e15}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} {\bfseries \+\_\+color\+\_\+text} = \{ 255, 255, 255, 255 \}
+\item 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1badge__specs_a74ff46026ebb971b44e1a2c77a8eec17}\label{classliblec_1_1lecui_1_1widgets_1_1badge__specs_a74ff46026ebb971b44e1a2c77a8eec17}} 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs_a2c253945fbfdfa22df9d920074737d8c}{badge\+\_\+position}} {\bfseries \+\_\+position} = \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs_a2c253945fbfdfa22df9d920074737d8cab88b8c9790136e01b8dfce869959cea3}{badge\+\_\+position\+::bottom\+\_\+right}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Badge specifications.
+
+\doxysubsection{Member Enumeration Documentation}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1badge__specs_a2c253945fbfdfa22df9d920074737d8c}\label{classliblec_1_1lecui_1_1widgets_1_1badge__specs_a2c253945fbfdfa22df9d920074737d8c}} 
+\index{liblec::lecui::widgets::badge\_specs@{liblec::lecui::widgets::badge\_specs}!badge\_position@{badge\_position}}
+\index{badge\_position@{badge\_position}!liblec::lecui::widgets::badge\_specs@{liblec::lecui::widgets::badge\_specs}}
+\doxysubsubsection{\texorpdfstring{badge\_position}{badge\_position}}
+{\footnotesize\ttfamily enum class \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs_a2c253945fbfdfa22df9d920074737d8c}{liblec\+::lecui\+::widgets\+::badge\+\_\+specs\+::badge\+\_\+position}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+
+
+Badge position within the widget.
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{top\_left@{top\_left}!liblec::lecui::widgets::badge\_specs@{liblec::lecui::widgets::badge\_specs}}\index{liblec::lecui::widgets::badge\_specs@{liblec::lecui::widgets::badge\_specs}!top\_left@{top\_left}}}\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1badge__specs_a2c253945fbfdfa22df9d920074737d8ca46d3836487c2110c695e52750c5d76e4}\label{classliblec_1_1lecui_1_1widgets_1_1badge__specs_a2c253945fbfdfa22df9d920074737d8ca46d3836487c2110c695e52750c5d76e4}} 
+top\+\_\+left&Badget on the top left of the widget.\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{top\_right@{top\_right}!liblec::lecui::widgets::badge\_specs@{liblec::lecui::widgets::badge\_specs}}\index{liblec::lecui::widgets::badge\_specs@{liblec::lecui::widgets::badge\_specs}!top\_right@{top\_right}}}\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1badge__specs_a2c253945fbfdfa22df9d920074737d8caf12ea736b05cb6002f1ebf1b8c052676}\label{classliblec_1_1lecui_1_1widgets_1_1badge__specs_a2c253945fbfdfa22df9d920074737d8caf12ea736b05cb6002f1ebf1b8c052676}} 
+top\+\_\+right&Badget on the top right of the widget.\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{bottom\_left@{bottom\_left}!liblec::lecui::widgets::badge\_specs@{liblec::lecui::widgets::badge\_specs}}\index{liblec::lecui::widgets::badge\_specs@{liblec::lecui::widgets::badge\_specs}!bottom\_left@{bottom\_left}}}\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1badge__specs_a2c253945fbfdfa22df9d920074737d8ca369408ec984d94fb270ae125c6de1a5b}\label{classliblec_1_1lecui_1_1widgets_1_1badge__specs_a2c253945fbfdfa22df9d920074737d8ca369408ec984d94fb270ae125c6de1a5b}} 
+bottom\+\_\+left&Badget on the bottom left of the widget.\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{bottom\_right@{bottom\_right}!liblec::lecui::widgets::badge\_specs@{liblec::lecui::widgets::badge\_specs}}\index{liblec::lecui::widgets::badge\_specs@{liblec::lecui::widgets::badge\_specs}!bottom\_right@{bottom\_right}}}\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1badge__specs_a2c253945fbfdfa22df9d920074737d8cab88b8c9790136e01b8dfce869959cea3}\label{classliblec_1_1lecui_1_1widgets_1_1badge__specs_a2c253945fbfdfa22df9d920074737d8cab88b8c9790136e01b8dfce869959cea3}} 
+bottom\+\_\+right&Badget on the bottom right of the widget.\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1badge__specs_ab7c1f0313a654fb04e06049102a80271}\label{classliblec_1_1lecui_1_1widgets_1_1badge__specs_ab7c1f0313a654fb04e06049102a80271}} 
+\index{liblec::lecui::widgets::badge\_specs@{liblec::lecui::widgets::badge\_specs}!border@{border}}
+\index{border@{border}!liblec::lecui::widgets::badge\_specs@{liblec::lecui::widgets::badge\_specs}}
+\doxysubsubsection{\texorpdfstring{border()}{border()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily float \& liblec\+::lecui\+::widgets\+::badge\+\_\+specs\+::border (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get or set the thickness of the border.
+
+\begin{DoxyReturn}{Returns}
+A reference to the border thickness, in pixels.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1badge__specs_a8ace53f9b5c22e00a47c6b60c7345168}\label{classliblec_1_1lecui_1_1widgets_1_1badge__specs_a8ace53f9b5c22e00a47c6b60c7345168}} 
+\index{liblec::lecui::widgets::badge\_specs@{liblec::lecui::widgets::badge\_specs}!border@{border}}
+\index{border@{border}!liblec::lecui::widgets::badge\_specs@{liblec::lecui::widgets::badge\_specs}}
+\doxysubsubsection{\texorpdfstring{border()}{border()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs}{badge\+\_\+specs}} \& liblec\+::lecui\+::widgets\+::badge\+\_\+specs\+::border (\begin{DoxyParamCaption}\item[{const float \&}]{border }\end{DoxyParamCaption})}
+
+
+
+Set the thickness of the border.
+
+
+\begin{DoxyParams}{Parameters}
+{\em border} & The border thickness, in pixels.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1badge__specs_a83a259e5c94c8a3b9c504efb4db39158}\label{classliblec_1_1lecui_1_1widgets_1_1badge__specs_a83a259e5c94c8a3b9c504efb4db39158}} 
+\index{liblec::lecui::widgets::badge\_specs@{liblec::lecui::widgets::badge\_specs}!color@{color}}
+\index{color@{color}!liblec::lecui::widgets::badge\_specs@{liblec::lecui::widgets::badge\_specs}}
+\doxysubsubsection{\texorpdfstring{color()}{color()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{lecui\+::color}} \& liblec\+::lecui\+::widgets\+::badge\+\_\+specs\+::color (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get or set the color of the badge.
+
+\begin{DoxyReturn}{Returns}
+A reference to the badge\textquotesingle{}s color.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1badge__specs_a0998d6f857da4b4a181fa3cdccb40c79}\label{classliblec_1_1lecui_1_1widgets_1_1badge__specs_a0998d6f857da4b4a181fa3cdccb40c79}} 
+\index{liblec::lecui::widgets::badge\_specs@{liblec::lecui::widgets::badge\_specs}!color@{color}}
+\index{color@{color}!liblec::lecui::widgets::badge\_specs@{liblec::lecui::widgets::badge\_specs}}
+\doxysubsubsection{\texorpdfstring{color()}{color()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs}{badge\+\_\+specs}} \& liblec\+::lecui\+::widgets\+::badge\+\_\+specs\+::color (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{lecui\+::color}} \&}]{color }\end{DoxyParamCaption})}
+
+
+
+Set the color of the badge.
+
+
+\begin{DoxyParams}{Parameters}
+{\em color} & The color of the badge, as defined in \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{lecui\+::color}}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1badge__specs_a9e9cc10f71f0ef03a9d555988d8d9ef4}\label{classliblec_1_1lecui_1_1widgets_1_1badge__specs_a9e9cc10f71f0ef03a9d555988d8d9ef4}} 
+\index{liblec::lecui::widgets::badge\_specs@{liblec::lecui::widgets::badge\_specs}!color\_border@{color\_border}}
+\index{color\_border@{color\_border}!liblec::lecui::widgets::badge\_specs@{liblec::lecui::widgets::badge\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_border()}{color\_border()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{lecui\+::color}} \& liblec\+::lecui\+::widgets\+::badge\+\_\+specs\+::color\+\_\+border (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get or set the color of the badge\textquotesingle{}s border.
+
+\begin{DoxyReturn}{Returns}
+A reference to the badge\textquotesingle{}s border color.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1badge__specs_a2fb5503dd3fcf36de0cbcfe961c14d45}\label{classliblec_1_1lecui_1_1widgets_1_1badge__specs_a2fb5503dd3fcf36de0cbcfe961c14d45}} 
+\index{liblec::lecui::widgets::badge\_specs@{liblec::lecui::widgets::badge\_specs}!color\_border@{color\_border}}
+\index{color\_border@{color\_border}!liblec::lecui::widgets::badge\_specs@{liblec::lecui::widgets::badge\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_border()}{color\_border()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs}{badge\+\_\+specs}} \& liblec\+::lecui\+::widgets\+::badge\+\_\+specs\+::color\+\_\+border (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{lecui\+::color}} \&}]{color\+\_\+border }\end{DoxyParamCaption})}
+
+
+
+Set the color of the badge\textquotesingle{}s border.
+
+
+\begin{DoxyParams}{Parameters}
+{\em color\+\_\+border} & The color of the badge\textquotesingle{}s border, as defined in \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{lecui\+::color}}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1badge__specs_afb33f58c1ce8fb05267163bf2137dc3a}\label{classliblec_1_1lecui_1_1widgets_1_1badge__specs_afb33f58c1ce8fb05267163bf2137dc3a}} 
+\index{liblec::lecui::widgets::badge\_specs@{liblec::lecui::widgets::badge\_specs}!color\_text@{color\_text}}
+\index{color\_text@{color\_text}!liblec::lecui::widgets::badge\_specs@{liblec::lecui::widgets::badge\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_text()}{color\_text()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{lecui\+::color}} \& liblec\+::lecui\+::widgets\+::badge\+\_\+specs\+::color\+\_\+text (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get or set the color of the badge\textquotesingle{}s text.
+
+\begin{DoxyReturn}{Returns}
+A reference to the badge\textquotesingle{}s text color.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1badge__specs_a964708afb467f1a6a159d71fb4f96617}\label{classliblec_1_1lecui_1_1widgets_1_1badge__specs_a964708afb467f1a6a159d71fb4f96617}} 
+\index{liblec::lecui::widgets::badge\_specs@{liblec::lecui::widgets::badge\_specs}!color\_text@{color\_text}}
+\index{color\_text@{color\_text}!liblec::lecui::widgets::badge\_specs@{liblec::lecui::widgets::badge\_specs}}
+\doxysubsubsection{\texorpdfstring{color\_text()}{color\_text()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs}{badge\+\_\+specs}} \& liblec\+::lecui\+::widgets\+::badge\+\_\+specs\+::color\+\_\+text (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{lecui\+::color}} \&}]{color\+\_\+text }\end{DoxyParamCaption})}
+
+
+
+Set the color of the badge\textquotesingle{}s text.
+
+
+\begin{DoxyParams}{Parameters}
+{\em color\+\_\+text} & The color of the badge\textquotesingle{}s text, as defined in \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{lecui\+::color}}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1badge__specs_afeaac724fff9bdf3cfa123dfe1712191}\label{classliblec_1_1lecui_1_1widgets_1_1badge__specs_afeaac724fff9bdf3cfa123dfe1712191}} 
+\index{liblec::lecui::widgets::badge\_specs@{liblec::lecui::widgets::badge\_specs}!font@{font}}
+\index{font@{font}!liblec::lecui::widgets::badge\_specs@{liblec::lecui::widgets::badge\_specs}}
+\doxysubsubsection{\texorpdfstring{font()}{font()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily std\+::string \& liblec\+::lecui\+::widgets\+::badge\+\_\+specs\+::font (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get or set the default badge font, e.\+g. \char`\"{}\+Georgia\char`\"{}.
+
+\begin{DoxyReturn}{Returns}
+A reference to the badge\textquotesingle{}s font name.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1badge__specs_a7152514a034a95743900a09213b0cabd}\label{classliblec_1_1lecui_1_1widgets_1_1badge__specs_a7152514a034a95743900a09213b0cabd}} 
+\index{liblec::lecui::widgets::badge\_specs@{liblec::lecui::widgets::badge\_specs}!font@{font}}
+\index{font@{font}!liblec::lecui::widgets::badge\_specs@{liblec::lecui::widgets::badge\_specs}}
+\doxysubsubsection{\texorpdfstring{font()}{font()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs}{badge\+\_\+specs}} \& liblec\+::lecui\+::widgets\+::badge\+\_\+specs\+::font (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{font }\end{DoxyParamCaption})}
+
+
+
+Set the badge font.
+
+
+\begin{DoxyParams}{Parameters}
+{\em font} & The name of the font, e.\+g. \char`\"{}\+Georgia\char`\"{}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1badge__specs_ab0d65d8763006dc0b046915bc30711a4}\label{classliblec_1_1lecui_1_1widgets_1_1badge__specs_ab0d65d8763006dc0b046915bc30711a4}} 
+\index{liblec::lecui::widgets::badge\_specs@{liblec::lecui::widgets::badge\_specs}!font\_size@{font\_size}}
+\index{font\_size@{font\_size}!liblec::lecui::widgets::badge\_specs@{liblec::lecui::widgets::badge\_specs}}
+\doxysubsubsection{\texorpdfstring{font\_size()}{font\_size()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily float \& liblec\+::lecui\+::widgets\+::badge\+\_\+specs\+::font\+\_\+size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get or set the badge\textquotesingle{}s font size in points, e.\+g. 9.\+0f.
+
+\begin{DoxyReturn}{Returns}
+A reference to the widget\textquotesingle{}s font size.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1badge__specs_ad71db58359a97ac20fb8cfed11d2aa1e}\label{classliblec_1_1lecui_1_1widgets_1_1badge__specs_ad71db58359a97ac20fb8cfed11d2aa1e}} 
+\index{liblec::lecui::widgets::badge\_specs@{liblec::lecui::widgets::badge\_specs}!font\_size@{font\_size}}
+\index{font\_size@{font\_size}!liblec::lecui::widgets::badge\_specs@{liblec::lecui::widgets::badge\_specs}}
+\doxysubsubsection{\texorpdfstring{font\_size()}{font\_size()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs}{badge\+\_\+specs}} \& liblec\+::lecui\+::widgets\+::badge\+\_\+specs\+::font\+\_\+size (\begin{DoxyParamCaption}\item[{const float \&}]{font\+\_\+size }\end{DoxyParamCaption})}
+
+
+
+Set the badge\textquotesingle{}s font size.
+
+
+\begin{DoxyParams}{Parameters}
+{\em font\+\_\+size} & The font size in points, e.\+g. 9.\+0f.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1badge__specs_abc286a4d84897ccc0f89717fe84ebe98}\label{classliblec_1_1lecui_1_1widgets_1_1badge__specs_abc286a4d84897ccc0f89717fe84ebe98}} 
+\index{liblec::lecui::widgets::badge\_specs@{liblec::lecui::widgets::badge\_specs}!position@{position}}
+\index{position@{position}!liblec::lecui::widgets::badge\_specs@{liblec::lecui::widgets::badge\_specs}}
+\doxysubsubsection{\texorpdfstring{position()}{position()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs_a2c253945fbfdfa22df9d920074737d8c}{badge\+\_\+position}} \& liblec\+::lecui\+::widgets\+::badge\+\_\+specs\+::position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get or set the badge\textquotesingle{}s position.
+
+\begin{DoxyReturn}{Returns}
+A reference to the badge\textquotesingle{}s position.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1badge__specs_acd52f5ccf9a2f04721b2b6e4eaff5a99}\label{classliblec_1_1lecui_1_1widgets_1_1badge__specs_acd52f5ccf9a2f04721b2b6e4eaff5a99}} 
+\index{liblec::lecui::widgets::badge\_specs@{liblec::lecui::widgets::badge\_specs}!position@{position}}
+\index{position@{position}!liblec::lecui::widgets::badge\_specs@{liblec::lecui::widgets::badge\_specs}}
+\doxysubsubsection{\texorpdfstring{position()}{position()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs}{badge\+\_\+specs}} \& liblec\+::lecui\+::widgets\+::badge\+\_\+specs\+::position (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs_a2c253945fbfdfa22df9d920074737d8c}{badge\+\_\+position}} \&}]{position }\end{DoxyParamCaption})}
+
+
+
+Set the badge\textquotesingle{}s position.
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & The position of the badge, as defined in \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs_a2c253945fbfdfa22df9d920074737d8c}{badge\+\_\+position}}\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1badge__specs_a9386173002bb8698505accffc5b42e92}\label{classliblec_1_1lecui_1_1widgets_1_1badge__specs_a9386173002bb8698505accffc5b42e92}} 
+\index{liblec::lecui::widgets::badge\_specs@{liblec::lecui::widgets::badge\_specs}!text@{text}}
+\index{text@{text}!liblec::lecui::widgets::badge\_specs@{liblec::lecui::widgets::badge\_specs}}
+\doxysubsubsection{\texorpdfstring{text()}{text()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily std\+::string \& liblec\+::lecui\+::widgets\+::badge\+\_\+specs\+::text (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get or set the badge text.
+
+\begin{DoxyReturn}{Returns}
+A reference to the badge text.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1badge__specs_a44715f99a7ff3a85ab63d33f16936247}\label{classliblec_1_1lecui_1_1widgets_1_1badge__specs_a44715f99a7ff3a85ab63d33f16936247}} 
+\index{liblec::lecui::widgets::badge\_specs@{liblec::lecui::widgets::badge\_specs}!text@{text}}
+\index{text@{text}!liblec::lecui::widgets::badge\_specs@{liblec::lecui::widgets::badge\_specs}}
+\doxysubsubsection{\texorpdfstring{text()}{text()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs}{badge\+\_\+specs}} \& liblec\+::lecui\+::widgets\+::badge\+\_\+specs\+::text (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{text }\end{DoxyParamCaption})}
+
+
+
+Set the badge text.
+
+
+\begin{DoxyParams}{Parameters}
+{\em text} & The badge text.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the modified object.
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+widgets/widget.\+h\end{DoxyCompactItemize}

@@ -160,24 +160,30 @@
 \DoxyCodeLine{247                 \textcolor{keyword}{static} \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1tab__pane}{tab\_pane}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1tab__pane_adb0fd158073e19bee2bac0d13601d132}{get}}(\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}}\& fm, \textcolor{keyword}{const} std::string\& path);}
 \DoxyCodeLine{248             \};}
 \DoxyCodeLine{249 }
-\DoxyCodeLine{255             \textcolor{keyword}{class }lecui\_api \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1tab}{tab}} : \textcolor{keyword}{public} \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1page}{containers::page}} \{}
+\DoxyCodeLine{255             \textcolor{keyword}{class }lecui\_api \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1tab}{tab}} : \textcolor{keyword}{public} \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1page}{containers::page}}, \textcolor{keyword}{public} \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__widget}{widgets::badge\_widget}} \{}
 \DoxyCodeLine{256             \textcolor{keyword}{public}:}
 \DoxyCodeLine{257                 \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1tab}{tab}}(\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}}\&, \textcolor{keyword}{const} std::string\&);}
 \DoxyCodeLine{258 }
-\DoxyCodeLine{266                 [[nodiscard]] \textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1size}{lecui::size}} \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1tab_a5ce8ba7ab1cfaa36253b540e2738a400}{size}}();}
-\DoxyCodeLine{267 }
-\DoxyCodeLine{274                 [[nodiscard]]}
-\DoxyCodeLine{275                 \textcolor{keyword}{static} \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1tab}{tab}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1tab_afb5a784d363672eb83fd478a4e504b6d}{add}}(\mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1tab__pane}{containers::tab\_pane}}\& tp, \textcolor{keyword}{const} std::string\& tab\_name);}
-\DoxyCodeLine{276 }
-\DoxyCodeLine{285                 [[nodiscard]]}
-\DoxyCodeLine{286                 \textcolor{keyword}{static} \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1tab}{tab}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1tab_a59949f457ee3d48ac5ca328b07fa29f0}{get}}(\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}}\& fm, \textcolor{keyword}{const} std::string\& path);}
-\DoxyCodeLine{287             \};}
-\DoxyCodeLine{288         \}}
-\DoxyCodeLine{289     \}}
-\DoxyCodeLine{290 \}}
-\DoxyCodeLine{291 }
-\DoxyCodeLine{293 \textcolor{preprocessor}{\#define get\_tab\_pane(path) liblec::lecui::containers::tab\_pane::get(*this, path)}}
-\DoxyCodeLine{294 }
-\DoxyCodeLine{296 \textcolor{preprocessor}{\#define get\_tab(path) liblec::lecui::containers::tab::get(*this, path)}}
+\DoxyCodeLine{259                 \textcolor{keywordtype}{bool} operator==(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1tab}{tab}}\&);}
+\DoxyCodeLine{260                 \textcolor{keywordtype}{bool} operator!=(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1tab}{tab}}\&);}
+\DoxyCodeLine{261 }
+\DoxyCodeLine{262                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs}{widgets::badge\_specs}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1tab_acfdb095af51542cf508780235e597809}{badge}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{263                 \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1tab}{tab}}\& badge(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1badge__specs}{widgets::badge\_specs}}\& badge);}
+\DoxyCodeLine{264 }
+\DoxyCodeLine{272                 [[nodiscard]] \textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1size}{lecui::size}} \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1tab_a5ce8ba7ab1cfaa36253b540e2738a400}{size}}();}
+\DoxyCodeLine{273 }
+\DoxyCodeLine{280                 [[nodiscard]]}
+\DoxyCodeLine{281                 \textcolor{keyword}{static} \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1tab}{tab}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1tab_afb5a784d363672eb83fd478a4e504b6d}{add}}(\mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1tab__pane}{containers::tab\_pane}}\& tp, \textcolor{keyword}{const} std::string\& tab\_name);}
+\DoxyCodeLine{282 }
+\DoxyCodeLine{291                 [[nodiscard]]}
+\DoxyCodeLine{292                 \textcolor{keyword}{static} \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1tab}{tab}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1tab_a59949f457ee3d48ac5ca328b07fa29f0}{get}}(\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}}\& fm, \textcolor{keyword}{const} std::string\& path);}
+\DoxyCodeLine{293             \};}
+\DoxyCodeLine{294         \}}
+\DoxyCodeLine{295     \}}
+\DoxyCodeLine{296 \}}
+\DoxyCodeLine{297 }
+\DoxyCodeLine{299 \textcolor{preprocessor}{\#define get\_tab\_pane(path) liblec::lecui::containers::tab\_pane::get(*this, path)}}
+\DoxyCodeLine{300 }
+\DoxyCodeLine{302 \textcolor{preprocessor}{\#define get\_tab(path) liblec::lecui::containers::tab::get(*this, path)}}
 
 \end{DoxyCode}
