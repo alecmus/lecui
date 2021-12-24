@@ -94,6 +94,8 @@ namespace liblec {
 			const float _form_border_thickness;
 			const float _content_margin;
 			const float _control_button_margin;
+			const float _caption_icon_minimum_margin;
+			const float _caption_icon_maximum_size;
 			const std::string _receive_data_timer_alias;
 
 			// name of dll containing resources like PNGs etc
