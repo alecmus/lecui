@@ -261,6 +261,19 @@ namespace liblec {
 			/// <returns>A reference to the modified object.</returns>
 			appearance& mini_icon(const int& mini_icon);
 
+			/// <summary>Get or set the ID of the caption icon resource.</summary>
+			/// <returns>A reference to the caption icon .png resource ID.</returns>
+			int& caption_icon();
+
+			/// <summary>Get the ID of the caption icon resource.</summary>
+			/// <returns>The resource ID of the caption icon .png.</returns>
+			int get_caption_icon() const;
+
+			/// <summary>Set the ID of the caption icon resource.</summary>
+			/// <param name="caption_icon">The resource ID of the caption icon .png.</param>
+			/// <returns>A reference to the modified object.</returns>
+			appearance& caption_icon(const int& caption_icon);
+
 		private:
 			class impl;
 			impl& _d;

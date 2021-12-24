@@ -115,6 +115,7 @@ namespace liblec {
 			_p_brush_titlebar(nullptr),
 			_current_page(std::string()),
 			_controls_page(fm, ""),
+			_p_caption_icon(nullptr),
 			_p_caption(nullptr),
 			_p_close_button(nullptr),
 			_p_maximize_button(nullptr),
@@ -134,7 +135,8 @@ namespace liblec {
 			_force_instance(false),
 			_tray_icon_present(false),
 			_side_pane_present(false),
-			_side_pane_thickness(0.f) {
+			_side_pane_thickness(0.f),
+			_png_caption_icon(0) {
 			++_instances;	// increment instances count
 
 			/// Use HeapSetInformation to specify that the process should terminate if the heap manager
@@ -479,8 +481,45 @@ namespace liblec {
 				(_allow_resizing ? _p_maximize_button->specs().rect().left() : _p_close_button->specs().rect().left());
 
 			// determine the largest rect that the caption can occupy
-			const D2D1_RECT_F max_rect = D2D1::RectF(10.f + (_side_pane_present ? _side_pane_thickness : 0.f), _control_button_margin,
+			D2D1_RECT_F max_rect = D2D1::RectF(10.f + (_side_pane_present ? _side_pane_thickness : 0.f), _control_button_margin,
 				right_edge - _control_button_margin, _caption_bar_height - _control_button_margin);
+
+			const float caption_icon_size = smallest(_caption_bar_height - 2.f * 5.f, 24.f);
+
+			if (_png_caption_icon) {
+				const float vertical_margin = (_caption_bar_height - caption_icon_size) / 2.f;
+				const float horizontal_margin = vertical_margin;
+
+				// form caption icon
+				D2D1_RECT_F _caption_icon = D2D1::RectF(horizontal_margin, vertical_margin, horizontal_margin + caption_icon_size, vertical_margin + caption_icon_size);
+
+				_p_caption_icon =
+					std::unique_ptr<widgets::image_view_impl>(new
+						widgets::image_view_impl(_controls_page, "form_caption_icon",
+							_p_iwic_factory, _p_directwrite_factory));
+				_widgets.emplace(_p_caption_icon->alias(), *_p_caption_icon);
+				_widgets_order.emplace_back(_p_caption_icon->alias());
+
+				_p_caption_icon->specs()
+					.rect(convert_rect(_caption_icon))
+					.png_resource(_png_caption_icon)
+					.quality(image_quality::high)
+					
+					// load image settings
+					.color_fill(defaults::color(_theme, item::image_view))
+					.color_border(defaults::color(_theme, item::image_view_border))
+					.color_hot(defaults::color(_theme, item::image_view_hover))
+					.color_selected(defaults::color(_theme, item::image_view_selected));
+
+				_p_caption_icon->specs().badge()
+					.color(defaults::color(_theme, item::badge))
+					.color_border(defaults::color(_theme, item::badge_border))
+					.color_text(defaults::color(_theme, item::badge_text));
+					;
+
+				// adjust max_rect to factor in for the space taken by the icon
+				max_rect.left = _caption_icon.right + horizontal_margin / 2.f;
+			}
 
 			// determine the optimal rect for the caption
 			const auto rect = widgets::measure_label(_p_directwrite_factory,

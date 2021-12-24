@@ -379,5 +379,13 @@ namespace liblec {
 			_d._fm._d._idi_icon_small = mini_icon;
 			return *this;
 		}
+
+		int& appearance::caption_icon() { return _d._fm._d._png_caption_icon; }
+		int appearance::get_caption_icon() const { return _d._fm._d._png_caption_icon; }
+
+		appearance& appearance::caption_icon(const int& caption_icon) {
+			_d._fm._d._png_caption_icon = caption_icon;
+			return *this;
+		}
 	}
 }

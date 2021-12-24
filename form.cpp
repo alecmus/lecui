@@ -311,6 +311,10 @@ namespace liblec {
 						.allow_resize(false)
 						.allow_minimize(false);
 
+					appearance apprnc(*this);
+					apprnc
+						.caption_icon(parent._d._png_caption_icon);
+
 					// impose maximums
 					D2D1_RECT_F rect = D2D1::RectF(0.f, 0.f, _max_size.get_width(), _max_size.get_height());
 
@@ -403,6 +407,10 @@ namespace liblec {
 						ctrls
 							.allow_resize(false)
 							.allow_minimize(false);
+
+						appearance apprnc(*this);
+						apprnc
+							.caption_icon(parent._d._png_caption_icon);
 
 						// impose maximums
 						D2D1_RECT_F rect = D2D1::RectF(0.f, 0.f, _max_size.get_width(), _max_size.get_height());

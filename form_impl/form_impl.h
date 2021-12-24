@@ -157,6 +157,7 @@ namespace liblec {
 			std::unique_ptr<widgets::close_button_impl> _p_close_button;
 			std::unique_ptr<widgets::maximize_button_impl> _p_maximize_button;
 			std::unique_ptr<widgets::minimize_button_impl> _p_minimize_button;
+			std::unique_ptr<widgets::image_view_impl> _p_caption_icon;
 			std::unique_ptr<widgets::label_impl> _p_caption;
 			std::vector<std::unique_ptr<widgets::label_impl>> _p_menu;
 
@@ -224,6 +225,7 @@ namespace liblec {
 
 			bool _side_pane_present;
 			float _side_pane_thickness;
+			int _png_caption_icon;
 
 			/// we cannot just use WS_POPUP style
 			/// WS_THICKFRAME: without this the window cannot be resized and so aero snap, de-maximizing
