@@ -409,7 +409,7 @@ namespace liblec {
 				// render status panes
 				for (auto& page : _p_status_panes) {
 					if (page.first == "status::bottom") {
-						const auto left = _content_margin;
+						const auto left = _content_margin + (_side_pane_present ? _side_pane_thickness : 0.f);
 						const auto bottom = rtSize.height - _content_margin;
 						const auto right = rtSize.width - _content_margin;
 						const auto top = bottom - page.second.size().get_height();
@@ -423,7 +423,7 @@ namespace liblec {
 					}
 
 					if (page.first == "status::top") {
-						const auto left = _content_margin;
+						const auto left = _content_margin + (_side_pane_present ? _side_pane_thickness : 0.f);
 						const auto top = _caption_bar_height + _content_margin;
 						const auto bottom = top + page.second.size().get_height();
 						const auto right = rtSize.width - _content_margin;

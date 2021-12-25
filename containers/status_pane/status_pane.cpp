@@ -141,6 +141,9 @@ namespace liblec {
 			rect_client.width(rect_client.width() - (2.f * _d._fm._d._content_margin));
 			rect_client.height(rect_client.height() - (2.f * _d._fm._d._content_margin + (specs._side_pane ? 0.f : _d._fm._d._caption_bar_height)));
 
+			if (_d._fm._d._side_pane_present)
+				rect_client.left(_d._fm._d._side_pane_thickness);
+
 			lecui::rect rect = rect_client;
 			lecui::resize_params on_resize;
 
