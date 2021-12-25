@@ -27,7 +27,8 @@ namespace liblec {
 				image_view_impl(containers::page& page,
 					const std::string& alias,
 					IWICImagingFactory* p_IWICFactory,
-					IDWriteFactory* p_directwrite_factory);
+					IDWriteFactory* p_directwrite_factory,
+					ID2D1Factory* p_direct2d_factory);
 				~image_view_impl();
 
 				/// virtual function overrides
@@ -59,6 +60,7 @@ namespace liblec {
 				IWICImagingFactory* _p_IWICFactory;
 
 				IDWriteFactory* _p_directwrite_factory;
+				ID2D1Factory* _p_direct2d_factory;
 
 				badge_resources _badge_resources;
 

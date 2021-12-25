@@ -16,7 +16,8 @@ namespace liblec {
 	namespace lecui {
 		widgets::image_view_impl::image_view_impl(containers::page& page,
 			const std::string& alias, IWICImagingFactory* p_IWICFactory,
-			IDWriteFactory* p_directwrite_factory) :
+			IDWriteFactory* p_directwrite_factory,
+			ID2D1Factory* p_direct2d_factory) :
 			widget_impl(page, alias),
 			_p_brush_fill(nullptr),
 			_p_brush_border(nullptr),
@@ -26,7 +27,8 @@ namespace liblec {
 			_p_bitmap(nullptr),
 			_p_IWICFactory(p_IWICFactory),
 			_old_size({ 0.f, 0.f }),
-			_p_directwrite_factory(p_directwrite_factory) {}
+			_p_directwrite_factory(p_directwrite_factory),
+			_p_direct2d_factory(p_direct2d_factory) {}
 
 		widgets::image_view_impl::~image_view_impl() { discard_resources(); }
 
@@ -100,6 +102,10 @@ namespace liblec {
 			if (!render || !_visible)
 				return _rect;
 
+			// sanity check
+			_specs.corner_radius_x() = smallest(_specs.corner_radius_x(), (_rect.right - _rect.left) / 2.f);
+			_specs.corner_radius_y() = smallest(_specs.corner_radius_y(), (_rect.bottom - _rect.top) / 2.f);
+
 			D2D1_ROUNDED_RECT rounded_rect{ _rect,
 				_specs.corner_radius_x(), _specs.corner_radius_y() };
 
@@ -130,8 +136,97 @@ namespace liblec {
 				auto rect_image = D2D1::RectF(0, 0, size.width, size.height);
 				fit_rect(_rect, rect_image, false, true, true);
 
-				// draw the bitmap
-				p_render_target->DrawBitmap(_p_bitmap, rect_image);
+				if (_specs.corner_radius_x() == 0.f && _specs.corner_radius_y() == 0.f) {
+					// draw the bitmap as-is
+					p_render_target->DrawBitmap(_p_bitmap, rect_image);
+				}
+				else {
+					// draw the bitmap clipped in a rounded rectangle
+
+					// create a path geometry so we can use it as a geometric mask
+					HRESULT hr = S_OK;
+					ID2D1PathGeometry* p_path_geometry = nullptr;
+					hr = _p_direct2d_factory->CreatePathGeometry(&p_path_geometry);
+
+					if (SUCCEEDED(hr)) {
+						ID2D1GeometrySink* p_sink = nullptr;
+						hr = p_path_geometry->Open(&p_sink);
+
+						if (SUCCEEDED(hr)) {
+							p_sink->SetFillMode(D2D1_FILL_MODE_WINDING);
+
+							// top line (towards the right)
+							D2D1_POINT_2F start = D2D1::Point2F(_rect.left + _specs.corner_radius_x(), _rect.top);
+							p_sink->BeginFigure(start, D2D1_FIGURE_BEGIN_FILLED);
+							p_sink->AddLine(D2D1::Point2F(_rect.right - _specs.corner_radius_x(), _rect.top));
+
+							// top right corner (clockwise)
+							p_sink->AddArc(
+								D2D1::ArcSegment(D2D1::Point2F(_rect.right, _rect.top + _specs.corner_radius_y()),
+									D2D1::SizeF(_specs.corner_radius_x(), _specs.corner_radius_y()),
+									0.f, D2D1_SWEEP_DIRECTION_CLOCKWISE, D2D1_ARC_SIZE_SMALL)
+							);
+
+							// right line (downwards)
+							p_sink->AddLine(D2D1::Point2F(_rect.right, _rect.bottom - _specs.corner_radius_y()));
+
+							// bottom right corner (clockwise)
+							p_sink->AddArc(
+								D2D1::ArcSegment(D2D1::Point2F(_rect.right - _specs.corner_radius_x(), _rect.bottom),
+									D2D1::SizeF(_specs.corner_radius_x(), _specs.corner_radius_y()),
+									0.f, D2D1_SWEEP_DIRECTION_CLOCKWISE, D2D1_ARC_SIZE_SMALL)
+							);
+
+							// bottom line (towards the left)
+							p_sink->AddLine(D2D1::Point2F(_rect.left + _specs.corner_radius_x(), _rect.bottom));
+
+							// bottom left corner (clockwise)
+							p_sink->AddArc(
+								D2D1::ArcSegment(D2D1::Point2F(_rect.left, _rect.bottom - _specs.corner_radius_y()),
+									D2D1::SizeF(_specs.corner_radius_x(), _specs.corner_radius_y()),
+									0.f, D2D1_SWEEP_DIRECTION_CLOCKWISE, D2D1_ARC_SIZE_SMALL)
+							);
+
+							// left line (upwards)
+							p_sink->AddLine(D2D1::Point2F(_rect.left, _rect.top + _specs.corner_radius_y()));
+
+							// top left corner (clockwise)
+							p_sink->AddArc(
+								D2D1::ArcSegment(start,
+									D2D1::SizeF(_specs.corner_radius_x(), _specs.corner_radius_y()),
+									0.f, D2D1_SWEEP_DIRECTION_CLOCKWISE, D2D1_ARC_SIZE_SMALL)
+							);
+
+							p_sink->EndFigure(D2D1_FIGURE_END_CLOSED);
+
+							hr = p_sink->Close();
+							safe_release(&p_sink);
+						}
+
+						// create a layer
+						ID2D1Layer* p_layer = nullptr;
+						hr = p_render_target->CreateLayer(nullptr, &p_layer);
+
+						if (SUCCEEDED(hr)) {
+							p_render_target->SetTransform(D2D1::Matrix3x2F::Identity());
+
+							// push the layer with the geometric mask
+							p_render_target->PushLayer(
+								D2D1::LayerParameters(D2D1::InfiniteRect(), p_path_geometry),
+								p_layer
+							);
+
+							// draw the bitmap (clipped)
+							p_render_target->DrawBitmap(_p_bitmap, rect_image);
+
+							// pop the layer
+							p_render_target->PopLayer();
+						}
+
+						safe_release(&p_layer);
+						safe_release(&p_path_geometry);
+					}
+				}
 			}
 
 			p_render_target->DrawRoundedRectangle(&rounded_rect, _p_brush_border, _specs.border());

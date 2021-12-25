@@ -499,7 +499,7 @@ namespace liblec {
 				_p_caption_icon =
 					std::unique_ptr<widgets::image_view_impl>(new
 						widgets::image_view_impl(_controls_page, "form_caption_icon",
-							_p_iwic_factory, _p_directwrite_factory));
+							_p_iwic_factory, _p_directwrite_factory, _p_direct2d_factory));
 				_widgets.emplace(_p_caption_icon->alias(), *_p_caption_icon);
 				_widgets_order.emplace_back(_p_caption_icon->alias());
 

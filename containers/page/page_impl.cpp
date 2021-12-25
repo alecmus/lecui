@@ -201,7 +201,7 @@ namespace liblec {
 		widgets::image_view&
 			containers::page::impl::add_image_view(std::string alias) {
 			check_alias(alias);
-			if (_image_views.try_emplace(alias, _pg, alias, _p_iwic_factory, _p_directwrite_factory).second) {
+			if (_image_views.try_emplace(alias, _pg, alias, _p_iwic_factory, _p_directwrite_factory, _p_direct2d_factory).second) {
 				_widgets.emplace(alias, _image_views.at(alias));
 				_widgets_order.emplace_back(alias);
 			}
