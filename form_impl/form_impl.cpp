@@ -407,7 +407,7 @@ namespace liblec {
 		void form::impl::create_maximize_button() {
 			_p_maximize_button =
 				std::unique_ptr<widgets::maximize_button_impl>(new
-					widgets::maximize_button_impl(_controls_page));
+					widgets::maximize_button_impl(_controls_page, _p_direct2d_factory));
 			_widgets.emplace(_p_maximize_button->alias(), *_p_maximize_button);
 			_widgets_order.emplace_back(_p_maximize_button->alias());
 

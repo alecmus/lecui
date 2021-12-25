@@ -102,7 +102,8 @@ namespace liblec {
 				}
 
 			public:
-				maximize_button_impl(containers::page& page);
+				maximize_button_impl(containers::page& page,
+					ID2D1Factory* p_direct2d_factory);
 				~maximize_button_impl();
 
 				/// virtual function overrides
@@ -131,6 +132,8 @@ namespace liblec {
 				ID2D1SolidColorBrush* _p_brush;
 				ID2D1SolidColorBrush* _p_brush_hot;
 				ID2D1SolidColorBrush* _p_brush_disabled;
+
+				ID2D1Factory* _p_direct2d_factory;
 
 				/// Private methods
 				bool maximized(HWND hwnd);

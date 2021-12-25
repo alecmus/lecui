@@ -12,8 +12,10 @@
 
 namespace liblec {
 	namespace lecui {
-		widgets::maximize_button_impl::maximize_button_impl(containers::page& page) :
+		widgets::maximize_button_impl::maximize_button_impl(containers::page& page,
+			ID2D1Factory* p_direct2d_factory) :
 			widget_impl(page, "maximize_button"),
+			_p_direct2d_factory(p_direct2d_factory),
 			_hWnd(nullptr),
 			_p_brush(nullptr),
 			_p_brush_hot(nullptr),
@@ -86,25 +88,68 @@ namespace liblec {
 			_specs.bottom -= _margin;
 
 			if (maximized(_hWnd)) {
-				p_render_target->DrawLine(
-					D2D1_POINT_2F{ _specs.left, _specs.top },
-					D2D1_POINT_2F{ _specs.right, _specs.top },
-					(!_is_static && _hit && _pressed) ? _p_brush_hot : _p_brush_current, 1.f);
-				p_render_target->DrawLine(
-					D2D1_POINT_2F{ _specs.right, _specs.top },
-					D2D1_POINT_2F{ _specs.right, _specs.bottom },
-					(!_is_static && _hit && _pressed) ? _p_brush_hot : _p_brush_current, 1.f);
+				HRESULT hr = S_OK;
+				ID2D1PathGeometry* p_arc_geometry = nullptr;
+				hr = _p_direct2d_factory->CreatePathGeometry(&p_arc_geometry);
 
+				if (SUCCEEDED(hr)) {
+					ID2D1GeometrySink* p_sink = nullptr;
+					hr = p_arc_geometry->Open(&p_sink);
+					if (SUCCEEDED(hr)) {
+						p_sink->SetFillMode(D2D1_FILL_MODE_WINDING);
+
+						// horizontal line
+						p_sink->BeginFigure(D2D1::Point2F(_specs.left, _specs.top),
+							D2D1_FIGURE_BEGIN_HOLLOW);
+						p_sink->AddLine(D2D1::Point2F(_specs.right - (_specs.right - _specs.left) / 2.5f, _specs.top));
+						p_sink->EndFigure(D2D1_FIGURE_END_OPEN);
+
+						// arc (top right corner)
+						p_sink->BeginFigure(D2D1::Point2F(_specs.right - (_specs.right - _specs.left) / 2.5f, _specs.top),
+							D2D1_FIGURE_BEGIN_HOLLOW);
+						p_sink->AddArc(
+							D2D1::ArcSegment(D2D1::Point2F(_specs.right, _specs.top + (_specs.bottom - _specs.top) / 2.5f),
+								D2D1::SizeF((_specs.right - _specs.left) / 2.5f, (_specs.bottom - _specs.top) / 2.5f),
+								0.f,
+								D2D1_SWEEP_DIRECTION_CLOCKWISE,
+								D2D1_ARC_SIZE_SMALL)
+						);
+						p_sink->EndFigure(D2D1_FIGURE_END_OPEN);
+
+						// vertical line
+						p_sink->BeginFigure(D2D1::Point2F(_specs.right, _specs.top + (_specs.bottom - _specs.top) / 2.5f),
+							D2D1_FIGURE_BEGIN_HOLLOW);
+						p_sink->AddLine(D2D1::Point2F(_specs.right, _specs.bottom));
+						p_sink->EndFigure(D2D1_FIGURE_END_OPEN);
+
+						hr = p_sink->Close();
+						safe_release(&p_sink);
+					}
+
+					// draw the geometry
+					p_render_target->DrawGeometry(p_arc_geometry, (!_is_static && _hit && _pressed) ? _p_brush_hot : _p_brush_current, 1.f);
+					safe_release(&p_arc_geometry);
+				}
+
+				// small rounded rectangle
 				D2D1_RECT_F _specs_fore(_specs);
 				float _margin = (_specs_fore.right - _specs_fore.left) * .25f;
 
 				_specs_fore.right -= _margin;
 				_specs_fore.top += _margin;
 
-				p_render_target->DrawRectangle(&_specs_fore, (!_is_static && _hit && _pressed) ? _p_brush_hot : _p_brush_current, 1.f);
+				const D2D1_ROUNDED_RECT rounded_rect{ _specs_fore,
+				(_specs_fore.right - _specs_fore.left) / 5.f, (_specs_fore.bottom - _specs_fore.top) / 5.f };
+
+				p_render_target->DrawRoundedRectangle(&rounded_rect, (!_is_static && _hit && _pressed) ? _p_brush_hot : _p_brush_current, 1.f);
 			}
-			else
-				p_render_target->DrawRectangle(&_specs, (!_is_static && _hit && _pressed) ? _p_brush_hot : _p_brush_current, 1.f);
+			else {
+				// large rounded rectangle
+				const D2D1_ROUNDED_RECT rounded_rect{ _specs,
+				(_specs.right - _specs.left) / 5.f, (_specs.bottom - _specs.top) / 5.f };
+
+				p_render_target->DrawRoundedRectangle(&rounded_rect, (!_is_static && _hit && _pressed) ? _p_brush_hot : _p_brush_current, 1.f);
+			}
 
 			return _rect;
 		}
