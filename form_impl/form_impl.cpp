@@ -652,30 +652,32 @@ namespace liblec {
 						std::vector<tree_info>& trees) {
 						std::string booked;
 
-						for (auto& widget : page._d_page.widgets()) {
+						for (const auto& alias : page._d_page.widgets_order()) {
+							auto& widget = page._d_page.widgets().at(alias);
+
 							// check if this is a tree pane
-							if (widget.first.find(widgets::pane_impl::tree_pane_alias_prefix()) != std::string::npos)
+							if (alias.find(widgets::pane_impl::tree_pane_alias_prefix()) != std::string::npos)
 								continue;	// this is a tree pane (it has a tree inside. move was already done), continue to next widget
 
 							// check if this is a tree
-							if (widget.second.type() == widgets::widget_type::tree_view) {
+							if (widget.type() == widgets::widget_type::tree_view) {
 								// book move so we don't modify the page widgets while iterating through them
-								booked = widget.first;
+								booked = alias;
 								break;
 							}
 
-							if (widget.second.type() == widgets::widget_type::tab_pane) {
+							if (widget.type() == widgets::widget_type::tab_pane) {
 								// get this tab pane
-								auto& tab_pane = page._d_page.get_tab_pane_impl(widget.first);
+								auto& tab_pane = page._d_page.get_tab_pane_impl(alias);
 
 								// initialize tabs
 								for (auto& tab : tab_pane._p_tabs)
 									find_trees_to_move(tab.second, trees);	// recursion
 							}
 							else
-								if (widget.second.type() == widgets::widget_type::pane) {
+								if (widget.type() == widgets::widget_type::pane) {
 									// get this pane
-									auto& pane = page._d_page.get_pane_impl(widget.first);
+									auto& pane = page._d_page.get_pane_impl(alias);
 
 									// initialize panes
 									for (auto& page : pane._p_panes)
@@ -768,30 +770,32 @@ namespace liblec {
 						std::vector<html_editor_info>& trees) {
 						std::string booked;
 
-						for (auto& widget : page._d_page.widgets()) {
+						for (const auto& alias : page._d_page.widgets_order()) {
+							auto& widget = page._d_page.widgets().at(alias);
+
 							// check if this is an html pane
-							if (widget.first.find(widgets::pane_impl::html_pane_alias_prefix()) != std::string::npos)
+							if (alias.find(widgets::pane_impl::html_pane_alias_prefix()) != std::string::npos)
 								continue;	// this is an html pane (it has an html widget inside. move was already done), continue to next widget
 
 							// check if this is an html editor
-							if (widget.second.type() == widgets::widget_type::html_editor) {
+							if (widget.type() == widgets::widget_type::html_editor) {
 								// book move so we don't modify the page widgets while iterating through them
-								booked = widget.first;
+								booked = alias;
 								break;
 							}
 
-							if (widget.second.type() == widgets::widget_type::tab_pane) {
+							if (widget.type() == widgets::widget_type::tab_pane) {
 								// get this tab pane
-								auto& tab_pane = page._d_page.get_tab_pane_impl(widget.first);
+								auto& tab_pane = page._d_page.get_tab_pane_impl(alias);
 
 								// initialize tabs
 								for (auto& tab : tab_pane._p_tabs)
 									find_html_editors_to_move(tab.second, trees);	// recursion
 							}
 							else
-								if (widget.second.type() == widgets::widget_type::pane) {
+								if (widget.type() == widgets::widget_type::pane) {
 									// get this pane
-									auto& pane = page._d_page.get_pane_impl(widget.first);
+									auto& pane = page._d_page.get_pane_impl(alias);
 
 									// initialize panes
 									for (auto& page : pane._p_panes)
@@ -1166,30 +1170,32 @@ namespace liblec {
 						std::vector<time_info>& times) {
 						std::string booked;
 
-						for (auto& widget : page._d_page.widgets()) {
+						for (const auto& alias : page._d_page.widgets_order()) {
+							auto& widget = page._d_page.widgets().at(alias);
+
 							// check if this is a time pane
-							if (widget.first.find(widgets::pane_impl::time_pane_alias_prefix()) != std::string::npos)
+							if (alias.find(widgets::pane_impl::time_pane_alias_prefix()) != std::string::npos)
 								continue;	// this is a time pane (it has a time widget inside. move was already done), continue to next widget
 
 							// check if this is a time widget
-							if (widget.second.type() == widgets::widget_type::time) {
+							if (widget.type() == widgets::widget_type::time) {
 								// book move so we don't modify the page widgets while iterating through them
-								booked = widget.first;
+								booked = alias;
 								break;
 							}
 
-							if (widget.second.type() == widgets::widget_type::tab_pane) {
+							if (widget.type() == widgets::widget_type::tab_pane) {
 								// get this tab pane
-								auto& tab_pane = page._d_page.get_tab_pane_impl(widget.first);
+								auto& tab_pane = page._d_page.get_tab_pane_impl(alias);
 
 								// initialize tabs
 								for (auto& tab : tab_pane._p_tabs)
 									find_times_to_move(tab.second, times);	// recursion
 							}
 							else
-								if (widget.second.type() == widgets::widget_type::pane) {
+								if (widget.type() == widgets::widget_type::pane) {
 									// get this pane
-									auto& pane = page._d_page.get_pane_impl(widget.first);
+									auto& pane = page._d_page.get_pane_impl(alias);
 
 									// initialize panes
 									for (auto& page : pane._p_panes)
@@ -1531,30 +1537,32 @@ namespace liblec {
 						std::vector<date_info>& dates) {
 						std::string booked;
 
-						for (auto& widget : page._d_page.widgets()) {
+						for (const auto& alias : page._d_page.widgets_order()) {
+							auto& widget = page._d_page.widgets().at(alias);
+
 							// check if this is a date pane
-							if (widget.first.find(widgets::pane_impl::date_pane_alias_prefix()) != std::string::npos)
+							if (alias.find(widgets::pane_impl::date_pane_alias_prefix()) != std::string::npos)
 								continue;	// this is a date pane (it has a date widget inside. move was already done), continue to next widget
 
 							// check if this is a date widget
-							if (widget.second.type() == widgets::widget_type::date) {
+							if (widget.type() == widgets::widget_type::date) {
 								// book move so we don't modify the page widgets while iterating through them
-								booked = widget.first;
+								booked = alias;
 								break;
 							}
 
-							if (widget.second.type() == widgets::widget_type::tab_pane) {
+							if (widget.type() == widgets::widget_type::tab_pane) {
 								// get this tab pane
-								auto& tab_pane = page._d_page.get_tab_pane_impl(widget.first);
+								auto& tab_pane = page._d_page.get_tab_pane_impl(alias);
 
 								// initialize tabs
 								for (auto& tab : tab_pane._p_tabs)
 									find_dates_to_move(tab.second, dates);	// recursion
 							}
 							else
-								if (widget.second.type() == widgets::widget_type::pane) {
+								if (widget.type() == widgets::widget_type::pane) {
 									// get this pane
-									auto& pane = page._d_page.get_pane_impl(widget.first);
+									auto& pane = page._d_page.get_pane_impl(alias);
 
 									// initialize panes
 									for (auto& page : pane._p_panes)
@@ -1932,30 +1940,32 @@ namespace liblec {
 						std::vector<icon_info>& icons) {
 						std::string booked;
 
-						for (auto& widget : page._d_page.widgets()) {
+						for (const auto& alias : page._d_page.widgets_order()) {
+							auto& widget = page._d_page.widgets().at(alias);
+
 							// check if this is a icon pane
-							if (widget.first.find(widgets::pane_impl::icon_pane_alias_prefix()) != std::string::npos)
+							if (alias.find(widgets::pane_impl::icon_pane_alias_prefix()) != std::string::npos)
 								continue;	// this is a icon pane (it has a icon widget inside. move was already done), continue to next widget
 
 							// check if this is a icon widget
-							if (widget.second.type() == widgets::widget_type::icon) {
+							if (widget.type() == widgets::widget_type::icon) {
 								// book move so we don't modify the page widgets while iterating through them
-								booked = widget.first;
+								booked = alias;
 								break;
 							}
 
-							if (widget.second.type() == widgets::widget_type::tab_pane) {
+							if (widget.type() == widgets::widget_type::tab_pane) {
 								// get this tab pane
-								auto& tab_pane = page._d_page.get_tab_pane_impl(widget.first);
+								auto& tab_pane = page._d_page.get_tab_pane_impl(alias);
 
 								// initialize tabs
 								for (auto& tab : tab_pane._p_tabs)
 									find_icons_to_move(tab.second, icons);	// recursion
 							}
 							else
-								if (widget.second.type() == widgets::widget_type::pane) {
+								if (widget.type() == widgets::widget_type::pane) {
 									// get this pane
-									auto& pane = page._d_page.get_pane_impl(widget.first);
+									auto& pane = page._d_page.get_pane_impl(alias);
 
 									// initialize panes
 									for (auto& page : pane._p_panes)
@@ -2238,30 +2248,32 @@ namespace liblec {
 						std::vector<table_info>& tables) {
 						std::string booked;
 
-						for (auto& widget : page._d_page.widgets()) {
+						for (const auto& alias : page._d_page.widgets_order()) {
+							auto& widget = page._d_page.widgets().at(alias);
+
 							// check if this is a table pane
-							if (widget.first.find(widgets::pane_impl::table_pane_alias_prefix()) != std::string::npos)
+							if (alias.find(widgets::pane_impl::table_pane_alias_prefix()) != std::string::npos)
 								continue;	// this is a table pane (it has a table inside. move was already done), continue to next widget
 
 							// check if this is a table
-							if (widget.second.type() == widgets::widget_type::table_view) {
+							if (widget.type() == widgets::widget_type::table_view) {
 								// book move so we don't modify the page widgets while iterating through them
-								booked = widget.first;
+								booked = alias;
 								break;
 							}
 
-							if (widget.second.type() == widgets::widget_type::tab_pane) {
+							if (widget.type() == widgets::widget_type::tab_pane) {
 								// get this tab pane
-								auto& tab_pane = page._d_page.get_tab_pane_impl(widget.first);
+								auto& tab_pane = page._d_page.get_tab_pane_impl(alias);
 
 								// initialize tabs
 								for (auto& tab : tab_pane._p_tabs)
 									find_tables_to_move(tab.second, tables);	// recursion
 							}
 							else
-								if (widget.second.type() == widgets::widget_type::pane) {
+								if (widget.type() == widgets::widget_type::pane) {
 									// get this pane
-									auto& pane = page._d_page.get_pane_impl(widget.first);
+									auto& pane = page._d_page.get_pane_impl(alias);
 
 									// initialize panes
 									for (auto& page : pane._p_panes)
