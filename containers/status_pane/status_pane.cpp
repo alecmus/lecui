@@ -152,24 +152,27 @@ namespace liblec {
 			case containers::status_pane_specs::pane_location::top: {
 				rect.height(specs.thickness());
 				rect.place(rect_client, 50.f, 0.f);
-				on_resize = { 0, 0, 100, 0 };
+				on_resize = resize_params()
+					.width_rate(100.f);
 			} break;
 			case containers::status_pane_specs::pane_location::left: {
 				rect.width(specs.thickness());
 				rect.place(rect_client, 0.f, 50.f);
-				on_resize = { 0, 0, 0, 100 };
+				on_resize = resize_params()
+					.height_rate(100.f);
 			} break;
 			case containers::status_pane_specs::pane_location::right: {
 				rect.width(specs.thickness());
 				rect.place(rect_client, 100.f, 50.f);
-				on_resize = { 100, 0, 0, 100 };
+				on_resize = resize_params()
+					.height_rate(100.f);
 			} break;
 
 			case containers::status_pane_specs::pane_location::bottom:
 			default: {
 				rect.height(specs.thickness());
-				rect.place(rect_client, 50.f, 100.f);
-				on_resize = { 0, 100, 100, 0 };
+				on_resize = resize_params()
+					.width_rate(100.f);
 			} break;
 			}
 
@@ -196,7 +199,7 @@ namespace liblec {
 			rectangle.color_border({ 255, 0, 0, 0 }).color_hot({ 255, 0, 0, 0 })
 
 				// set its dimensions to exactly match the page
-				.corner_radius_x(15.f).corner_radius_y(15.f)
+				.corner_radius_x(0.f).corner_radius_y(0.f)
 				.on_resize(on_resize)
 				.rect().size(page_impl.size());
 
