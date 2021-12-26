@@ -31,6 +31,7 @@ namespace liblec {
 				image_quality _quality = image_quality::medium;
 				bool _enlarge_if_smaller = false;
 				bool _keep_aspect_ratio = true;
+				float _opacity = 100.f;
 
 			public:
 				image_view() {
@@ -173,6 +174,15 @@ namespace liblec {
 				/// <param name="keep_aspect_ratio">Whether to keep the image aspect ratio.</param>
 				/// <returns>A reference to the modified object.</returns>
 				image_view& keep_aspect_ratio(const bool& keep_aspect_ratio);
+
+				/// <summary>Get or set the opacity of the image.</summary>
+				/// <returns>A reference to the opacity, as a percentage.</returns>
+				float& opacity();
+
+				/// <summary>Set the opacity of the image.</summary>
+				/// <param name="border">The opacity of the image, as a percentage.</param>
+				/// <returns>A reference to the modified object.</returns>
+				image_view& opacity(const float& opacity);
 
 			public:
 				/// <summary>Add an image view to a container.</summary>

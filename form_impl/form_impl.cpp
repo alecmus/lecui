@@ -2050,6 +2050,10 @@ namespace liblec {
 						icon.events().action = nullptr;
 						icon.events().click = nullptr;
 
+						// move the opacity from the icon to the image
+						image.opacity(icon.opacity());
+						icon.opacity(100.f);
+
 						// compute size of image side
 						auto image_side = smallest(it.destination.size().get_width(), it.destination.size().get_height()) - 2.f * icon._padding;
 						if (icon.max_image_size() > 0.f)
@@ -2204,6 +2208,9 @@ namespace liblec {
 
 						// copy pointer to pane widget so we can return the pane widget for those properties that are handled by the pane, like the bounding rectangle
 						icon._p_special_pane_specs = &it.destination_specs;
+
+						// copy pointer to image widget so we can return the image widget for those properties that pertain to the image, like the opacity
+						icon._p_image_specs = &image;
 
 						// close widget
 						std::string error;

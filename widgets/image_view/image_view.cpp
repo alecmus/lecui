@@ -185,6 +185,13 @@ namespace liblec {
 			return *this;
 		}
 
+		float& widgets::image_view::opacity() { return _opacity; }
+
+		widgets::image_view& widgets::image_view::opacity(const float& opacity) {
+			_opacity = opacity;
+			return *this;
+		}
+
 		namespace widgets {
 			/// <summary>Image view widget builder.</summary>
 			class image_view_builder {

@@ -20,7 +20,7 @@ namespace liblec {
 	namespace lecui {
 		namespace widgets {
 			/// <summary>Icon widget. To instantiate and add to a container use the <see cref="add"></see> static method.</summary>
-			/// <remarks>Recommended size with defaults is 180x78px.</remarks>
+			/// <remarks>Recommended size with defaults is 180x58px.</remarks>
 			class lecui_api icon : public widget, public badge_widget {
 			public:
 				/// <summary>Text position in icon.</summary>
@@ -46,7 +46,9 @@ namespace liblec {
 				icon_text_position _text_position = icon_text_position::right;
 				float _gap = 5.f;
 				float _padding = 5.f;
+				float _opacity = 100.f;
 				void* _p_special_pane_specs = nullptr;
+				void* _p_image_specs = nullptr;
 
 			public:
 				icon() {
@@ -233,6 +235,15 @@ namespace liblec {
 				/// <param name="border">The padding, in pixels.</param>
 				/// <returns>A reference to the modified object.</returns>
 				icon& padding(const float& padding);
+
+				/// <summary>Get or set the opacity of the image.</summary>
+				/// <returns>A reference to the opacity, as a percentage.</returns>
+				float& opacity();
+
+				/// <summary>Set the opacity of the image.</summary>
+				/// <param name="border">The opacity of the image, as a percentage.</param>
+				/// <returns>A reference to the modified object.</returns>
+				icon& opacity(const float& opacity);
 
 			public:
 				/// <summary>Add an icon to a container.</summary>

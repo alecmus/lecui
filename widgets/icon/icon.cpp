@@ -236,6 +236,22 @@ namespace liblec {
 			return *this;
 		}
 
+		float& widgets::icon::opacity() {
+			if (_p_image_specs)	// redirect to image in special pane
+				return reinterpret_cast<lecui::widgets::image_view*>(_p_image_specs)->opacity();
+			else
+				return _opacity;
+		}
+
+		widgets::icon& widgets::icon::opacity(const float& opacity) {
+			if (_p_image_specs)	// redirect to special pane
+				reinterpret_cast<lecui::widgets::image_view*>(_p_image_specs)->opacity(opacity);
+			else
+				_opacity = opacity;
+
+			return *this;
+		}
+
 		namespace widgets {
 			/// <summary>Icon widget builder.</summary>
 			class icon_builder {

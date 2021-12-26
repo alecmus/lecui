@@ -105,6 +105,8 @@ namespace liblec {
 			// sanity check
 			_specs.corner_radius_x() = smallest(_specs.corner_radius_x(), (_rect.right - _rect.left) / 2.f);
 			_specs.corner_radius_y() = smallest(_specs.corner_radius_y(), (_rect.bottom - _rect.top) / 2.f);
+			_specs.opacity() = smallest(_specs.opacity(), 100.f);
+			_specs.opacity() = largest(_specs.opacity(), 0.f);
 
 			D2D1_ROUNDED_RECT rounded_rect{ _rect,
 				_specs.corner_radius_x(), _specs.corner_radius_y() };
@@ -138,7 +140,7 @@ namespace liblec {
 
 				if (_specs.corner_radius_x() == 0.f && _specs.corner_radius_y() == 0.f) {
 					// draw the bitmap as-is
-					p_render_target->DrawBitmap(_p_bitmap, rect_image);
+					p_render_target->DrawBitmap(_p_bitmap, rect_image, _specs.opacity() / 100.f);
 				}
 				else {
 					// draw the bitmap clipped in a rounded rectangle
@@ -217,7 +219,7 @@ namespace liblec {
 							);
 
 							// draw the bitmap (clipped)
-							p_render_target->DrawBitmap(_p_bitmap, rect_image);
+							p_render_target->DrawBitmap(_p_bitmap, rect_image, _specs.opacity() / 100.f);
 
 							// pop the layer
 							p_render_target->PopLayer();
