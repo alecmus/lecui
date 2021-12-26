@@ -650,6 +650,8 @@ namespace liblec {
 				public:
 					static void find_trees_to_move(lecui::containers::page& page,
 						std::vector<tree_info>& trees) {
+						std::string booked;
+
 						for (auto& widget : page._d_page.widgets()) {
 							// check if this is a tree pane
 							if (widget.first.find(widgets::pane_impl::tree_pane_alias_prefix()) != std::string::npos)
@@ -657,25 +659,8 @@ namespace liblec {
 
 							// check if this is a tree
 							if (widget.second.type() == widgets::widget_type::tree_view) {
-								// this is a tree, we need to "move" it into a special pane
-
-								// get the tree widget
-								auto& tree_specs = page._d_page.get_tree_view_impl(widget.first).specs();
-
-								// make pane whose alias is prefixed by the special string
-								auto& pane = containers::pane::add(page, widgets::pane_impl::tree_pane_alias_prefix() + widget.first);
-
-								// clone essential properties to pane
-								pane
-									.rect(tree_specs.rect())
-									.on_resize(tree_specs.on_resize())
-									.color_fill(tree_specs.color_fill())
-									.color_border(tree_specs.color_border())
-									.border(tree_specs.border());
-
-								// save move info so we can move the tree into the pane later
-								// we cannot do it here because we're iterating
-								trees.push_back({ widget.first, tree_specs, page, pane, pane });
+								// book move so we don't modify the page widgets while iterating through them
+								booked = widget.first;
 								break;
 							}
 
@@ -696,6 +681,28 @@ namespace liblec {
 									for (auto& page : pane._p_panes)
 										find_trees_to_move(page.second, trees);	// recursion
 								}
+						}
+
+						if (!booked.empty()) {
+							// this is a tree, we need to "move" it into a special pane
+
+							// get the tree widget
+							auto& tree_specs = page._d_page.get_tree_view_impl(booked).specs();
+
+							// make pane whose alias is prefixed by the special string
+							auto& pane = containers::pane::add(page, widgets::pane_impl::tree_pane_alias_prefix() + booked);
+
+							// clone essential properties to pane
+							pane
+								.rect(tree_specs.rect())
+								.on_resize(tree_specs.on_resize())
+								.color_fill(tree_specs.color_fill())
+								.color_border(tree_specs.color_border())
+								.border(tree_specs.border());
+
+							// save move info so we can move the tree into the pane later
+							// we cannot do it here because we're iterating
+							trees.push_back({ booked, tree_specs, page, pane, pane });
 						}
 					}
 				};
@@ -759,6 +766,8 @@ namespace liblec {
 				public:
 					static void find_html_editors_to_move(lecui::containers::page& page,
 						std::vector<html_editor_info>& trees) {
+						std::string booked;
+
 						for (auto& widget : page._d_page.widgets()) {
 							// check if this is an html pane
 							if (widget.first.find(widgets::pane_impl::html_pane_alias_prefix()) != std::string::npos)
@@ -766,47 +775,8 @@ namespace liblec {
 
 							// check if this is an html editor
 							if (widget.second.type() == widgets::widget_type::html_editor) {
-								// this is an html editor, we need to "move" it into a special pane
-
-								// get the html editor widget
-								auto& html_editor_specs = page._d_page.get_html_editor_impl(widget.first).specs();
-
-								// make controls pane in source (predefined, fixed height)
-								auto& controls_pane = containers::pane::add(page, widgets::pane_impl::html_controls_pane_alias_prefix() + widget.first);
-								controls_pane.rect(html_editor_specs.rect());
-								controls_pane.rect().height(
-									(10.f * 2) +	// top and bottom margin
-									25.f +			// first row (font name, font size ...)
-									5.f + 20.f		// seond row (bold, italic ...)
-								);
-								controls_pane
-									.color_fill(html_editor_specs.color_control_fill())
-									.color_border(html_editor_specs.color_control_border())
-									.border(html_editor_specs.control_border())
-									.on_resize(html_editor_specs.on_resize())
-									.on_resize().height_rate(0.f).min_height(0.f);
-
-								// cause controls pane to be initialized by calling get()
-								containers::page& controls_pane_page = controls_pane;
-
-								// make pane whose alias is prefixed by the special string
-								auto& pane = containers::pane::add(page, widgets::pane_impl::html_pane_alias_prefix() + widget.first);
-
-								// clone essential properties to pane
-								pane
-									.color_fill(html_editor_specs.color_fill())
-									.color_border(html_editor_specs.color_border())
-									.border(html_editor_specs.border())
-									.rect(html_editor_specs.rect())
-									.on_resize(html_editor_specs.on_resize())
-									.rect().top(controls_pane.rect().bottom());
-
-								if (pane.on_resize().min_height())
-									pane.on_resize().min_height(largest(pane.on_resize().min_height() - controls_pane.rect().height(), 0.f));
-
-								// save move info so we can move the tree into the pane later
-								// we cannot do it here because we're iterating
-								trees.push_back({ widget.first, html_editor_specs, page, pane, controls_pane, pane });
+								// book move so we don't modify the page widgets while iterating through them
+								booked = widget.first;
 								break;
 							}
 
@@ -827,6 +797,50 @@ namespace liblec {
 									for (auto& page : pane._p_panes)
 										find_html_editors_to_move(page.second, trees);	// recursion
 								}
+						}
+
+						if (!booked.empty()) {
+							// this is an html editor, we need to "move" it into a special pane
+
+							// get the html editor widget
+							auto& html_editor_specs = page._d_page.get_html_editor_impl(booked).specs();
+
+							// make controls pane in source (predefined, fixed height)
+							auto& controls_pane = containers::pane::add(page, widgets::pane_impl::html_controls_pane_alias_prefix() + booked);
+							controls_pane.rect(html_editor_specs.rect());
+							controls_pane.rect().height(
+								(10.f * 2) +	// top and bottom margin
+								25.f +			// first row (font name, font size ...)
+								5.f + 20.f		// seond row (bold, italic ...)
+							);
+							controls_pane
+								.color_fill(html_editor_specs.color_control_fill())
+								.color_border(html_editor_specs.color_control_border())
+								.border(html_editor_specs.control_border())
+								.on_resize(html_editor_specs.on_resize())
+								.on_resize().height_rate(0.f).min_height(0.f);
+
+							// cause controls pane to be initialized by calling get()
+							containers::page& controls_pane_page = controls_pane;
+
+							// make pane whose alias is prefixed by the special string
+							auto& pane = containers::pane::add(page, widgets::pane_impl::html_pane_alias_prefix() + booked);
+
+							// clone essential properties to pane
+							pane
+								.color_fill(html_editor_specs.color_fill())
+								.color_border(html_editor_specs.color_border())
+								.border(html_editor_specs.border())
+								.rect(html_editor_specs.rect())
+								.on_resize(html_editor_specs.on_resize())
+								.rect().top(controls_pane.rect().bottom());
+
+							if (pane.on_resize().min_height())
+								pane.on_resize().min_height(largest(pane.on_resize().min_height() - controls_pane.rect().height(), 0.f));
+
+							// save move info so we can move the tree into the pane later
+							// we cannot do it here because we're iterating
+							trees.push_back({ booked, html_editor_specs, page, pane, controls_pane, pane });
 						}
 					}
 				};
@@ -1150,6 +1164,8 @@ namespace liblec {
 				public:
 					static void find_times_to_move(lecui::containers::page& page,
 						std::vector<time_info>& times) {
+						std::string booked;
+
 						for (auto& widget : page._d_page.widgets()) {
 							// check if this is a time pane
 							if (widget.first.find(widgets::pane_impl::time_pane_alias_prefix()) != std::string::npos)
@@ -1157,24 +1173,8 @@ namespace liblec {
 
 							// check if this is a time widget
 							if (widget.second.type() == widgets::widget_type::time) {
-								// this is a time widget, we need to "move" it into a special pane
-
-								// get the time widget
-								auto& time = page._d_page.get_time_impl(widget.first).specs();
-
-								// make pane whose alias is prefixed by the special string
-								auto& pane = containers::pane::add(page, widgets::pane_impl::time_pane_alias_prefix() + widget.first, 0.f);
-
-								// clone essential properties to pane
-								pane
-									.rect(time.rect())
-									.on_resize(time.on_resize());
-								pane.color_fill().alpha(0);
-								pane.color_border().alpha(0);
-
-								// save move info so we can move the tree into the pane later
-								// we cannot do it here because we're iterating
-								times.push_back({ widget.first, time, page, pane, pane });
+								// book move so we don't modify the page widgets while iterating through them
+								booked = widget.first;
 								break;
 							}
 
@@ -1195,6 +1195,27 @@ namespace liblec {
 									for (auto& page : pane._p_panes)
 										find_times_to_move(page.second, times);	// recursion
 								}
+						}
+
+						if (!booked.empty()) {
+							// this is a time widget, we need to "move" it into a special pane
+
+							// get the time widget
+							auto& time = page._d_page.get_time_impl(booked).specs();
+
+							// make pane whose alias is prefixed by the special string
+							auto& pane = containers::pane::add(page, widgets::pane_impl::time_pane_alias_prefix() + booked, 0.f);
+
+							// clone essential properties to pane
+							pane
+								.rect(time.rect())
+								.on_resize(time.on_resize());
+							pane.color_fill().alpha(0);
+							pane.color_border().alpha(0);
+
+							// save move info so we can move the tree into the pane later
+							// we cannot do it here because we're iterating
+							times.push_back({ booked, time, page, pane, pane });
 						}
 					}
 				};
@@ -1508,6 +1529,8 @@ namespace liblec {
 				public:
 					static void find_dates_to_move(lecui::containers::page& page,
 						std::vector<date_info>& dates) {
+						std::string booked;
+
 						for (auto& widget : page._d_page.widgets()) {
 							// check if this is a date pane
 							if (widget.first.find(widgets::pane_impl::date_pane_alias_prefix()) != std::string::npos)
@@ -1515,24 +1538,8 @@ namespace liblec {
 
 							// check if this is a date widget
 							if (widget.second.type() == widgets::widget_type::date) {
-								// this is a date widget, we need to "move" it into a special pane
-
-								// get the date widget
-								auto& date_specs = page._d_page.get_date_impl(widget.first).specs();
-
-								// make pane whose alias is prefixed by the special string
-								auto& pane = containers::pane::add(page, widgets::pane_impl::date_pane_alias_prefix() + widget.first, 0.f);
-
-								// clone essential properties to pane
-								pane
-									.rect(date_specs.rect())
-									.on_resize(date_specs.on_resize());
-								pane.color_fill().alpha(0);
-								pane.color_border().alpha(0);
-
-								// save move info so we can move the tree into the pane later
-								// we cannot do it here because we're iterating
-								dates.push_back({ widget.first, date_specs, page, pane, pane });
+								// book move so we don't modify the page widgets while iterating through them
+								booked = widget.first;
 								break;
 							}
 
@@ -1553,6 +1560,27 @@ namespace liblec {
 									for (auto& page : pane._p_panes)
 										find_dates_to_move(page.second, dates);	// recursion
 								}
+						}
+
+						if (!booked.empty()) {
+							// this is a date widget, we need to "move" it into a special pane
+
+							// get the date widget
+							auto& date_specs = page._d_page.get_date_impl(booked).specs();
+
+							// make pane whose alias is prefixed by the special string
+							auto& pane = containers::pane::add(page, widgets::pane_impl::date_pane_alias_prefix() + booked, 0.f);
+
+							// clone essential properties to pane
+							pane
+								.rect(date_specs.rect())
+								.on_resize(date_specs.on_resize());
+							pane.color_fill().alpha(0);
+							pane.color_border().alpha(0);
+
+							// save move info so we can move the tree into the pane later
+							// we cannot do it here because we're iterating
+							dates.push_back({ booked, date_specs, page, pane, pane });
 						}
 					}
 				};
@@ -1902,6 +1930,8 @@ namespace liblec {
 				public:
 					static void find_icons_to_move(lecui::containers::page& page,
 						std::vector<icon_info>& icons) {
+						std::string booked;
+
 						for (auto& widget : page._d_page.widgets()) {
 							// check if this is a icon pane
 							if (widget.first.find(widgets::pane_impl::icon_pane_alias_prefix()) != std::string::npos)
@@ -1909,24 +1939,8 @@ namespace liblec {
 
 							// check if this is a icon widget
 							if (widget.second.type() == widgets::widget_type::icon) {
-								// this is a icon widget, we need to "move" it into a special pane
-
-								// get the icon widget
-								auto& icon_specs = page._d_page.get_icon_impl(widget.first).specs();
-
-								// make pane whose alias is prefixed by the special string
-								auto& pane = containers::pane::add(page, widgets::pane_impl::icon_pane_alias_prefix() + widget.first, 0.f);
-
-								// clone essential properties to pane
-								pane
-									.rect(icon_specs.rect())
-									.on_resize(icon_specs.on_resize());
-								pane.color_fill().alpha(0);
-								pane.color_border().alpha(0);
-
-								// save move info so we can move the tree into the pane later
-								// we cannot do it here because we're iterating
-								icons.push_back({ widget.first, icon_specs, page, pane, pane });
+								// book move so we don't modify the page widgets while iterating through them
+								booked = widget.first;
 								break;
 							}
 
@@ -1947,6 +1961,28 @@ namespace liblec {
 									for (auto& page : pane._p_panes)
 										find_icons_to_move(page.second, icons);	// recursion
 								}
+						}
+
+						// do booked move
+						if (!booked.empty()) {
+							// this is a icon widget, we need to "move" it into a special pane
+
+							// get the icon widget
+							auto& icon_specs = page._d_page.get_icon_impl(booked).specs();
+
+							// make pane whose alias is prefixed by the special string
+							auto& pane = containers::pane::add(page, widgets::pane_impl::icon_pane_alias_prefix() + booked, 0.f);
+
+							// clone essential properties to pane
+							pane
+								.rect(icon_specs.rect())
+								.on_resize(icon_specs.on_resize());
+							pane.color_fill().alpha(0);
+							pane.color_border().alpha(0);
+
+							// save move info so we can move the tree into the pane later
+							// we cannot do it here because we're iterating
+							icons.push_back({ booked, icon_specs, page, pane, pane });
 						}
 					}
 				};
@@ -2200,6 +2236,8 @@ namespace liblec {
 				public:
 					static void find_tables_to_move(lecui::containers::page& page,
 						std::vector<table_info>& tables) {
+						std::string booked;
+
 						for (auto& widget : page._d_page.widgets()) {
 							// check if this is a table pane
 							if (widget.first.find(widgets::pane_impl::table_pane_alias_prefix()) != std::string::npos)
@@ -2207,25 +2245,8 @@ namespace liblec {
 
 							// check if this is a table
 							if (widget.second.type() == widgets::widget_type::table_view) {
-								// this is a table, we need to "move" it into a special pane
-
-								// get the table widget
-								auto& table_specs = page._d_page.get_table_view_impl(widget.first).specs();
-
-								// make pane whose alias is prefixed by the special string
-								auto& pane = containers::pane::add(page, widgets::pane_impl::table_pane_alias_prefix() + widget.first);
-
-								// clone essential properties to pane (the pane will handle these and all later calls to this widget's widget will be redirected to the pane)
-								pane
-									.rect(table_specs.rect())
-									.on_resize(table_specs.on_resize())
-									.color_fill(table_specs.color_fill())
-									.color_border(table_specs.color_border())
-									.border(table_specs.border());
-
-								// save move info so we can move the table into the pane later
-								// we cannot do it here because we're iterating
-								tables.push_back({ widget.first, table_specs, page, pane, pane });
+								// book move so we don't modify the page widgets while iterating through them
+								booked = widget.first;
 								break;
 							}
 
@@ -2246,6 +2267,28 @@ namespace liblec {
 									for (auto& page : pane._p_panes)
 										find_tables_to_move(page.second, tables);	// recursion
 								}
+						}
+
+						if (!booked.empty()) {
+							// this is a table, we need to "move" it into a special pane
+
+							// get the table widget
+							auto& table_specs = page._d_page.get_table_view_impl(booked).specs();
+
+							// make pane whose alias is prefixed by the special string
+							auto& pane = containers::pane::add(page, widgets::pane_impl::table_pane_alias_prefix() + booked);
+
+							// clone essential properties to pane (the pane will handle these and all later calls to this widget's widget will be redirected to the pane)
+							pane
+								.rect(table_specs.rect())
+								.on_resize(table_specs.on_resize())
+								.color_fill(table_specs.color_fill())
+								.color_border(table_specs.color_border())
+								.border(table_specs.border());
+
+							// save move info so we can move the table into the pane later
+							// we cannot do it here because we're iterating
+							tables.push_back({ booked, table_specs, page, pane, pane });
 						}
 					}
 				};
