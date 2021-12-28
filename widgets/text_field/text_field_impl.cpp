@@ -376,6 +376,9 @@ namespace liblec {
 				_caret_position++;
 				_caret_visible = true;
 				_skip_blink = true;
+
+				if (_specs.events().change)
+					_specs.events().change(_specs.text());
 			}
 			catch (const std::exception& e) { log(e.what()); }
 		}
@@ -398,6 +401,9 @@ namespace liblec {
 					_caret_visible = true;
 					_skip_blink = true;
 				}
+
+				if (_specs.events().change)
+					_specs.events().change(_specs.text());
 			}
 			catch (const std::exception& e) { log(e.what()); }
 		}
@@ -419,6 +425,9 @@ namespace liblec {
 					_caret_visible = true;
 					_skip_blink = true;
 				}
+
+				if (_specs.events().change)
+					_specs.events().change(_specs.text());
 			}
 			catch (const std::exception& e) { log(e.what()); }
 		}

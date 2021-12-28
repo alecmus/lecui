@@ -42,6 +42,17 @@ namespace liblec {
 					_rect.size({ 200.f, 25.f });
 				}
 
+				/// <summary>Events specific to this widget.</summary>
+				struct text_field_events : basic_events {
+					/// <summary>Handler that's called when the text changes.</summary>
+					/// <remarks>The parameter contains the new text.</remarks>
+					std::function<void(const std::string&)> change = nullptr;
+				};
+
+				text_field_events& events() {
+					return _text_field_events;
+				}
+
 				bool operator==(const text_field&);
 				bool operator!=(const text_field&);
 
@@ -209,6 +220,8 @@ namespace liblec {
 			private:
 				/// <summary>The character to use for masking the text.</summary>
 				char mask = '\0';
+
+				text_field_events _text_field_events;
 
 #if defined(LECUI_EXPORTS)
 				friend class password_field_builder;
