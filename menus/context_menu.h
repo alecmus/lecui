@@ -23,7 +23,7 @@ namespace liblec {
 			/// <summary>The label text of the menu item. Use an empty string to make a separator.</summary>
             std::string label;
 
-			/// <summary>The image to use for the menu item (placed on the right).</summary>
+			/// <summary>The image to use for the menu item (placed on the left).</summary>
             std::string image_file;
 
 			/// <summary>The font to use.</summary>

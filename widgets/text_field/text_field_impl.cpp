@@ -331,6 +331,11 @@ namespace liblec {
 			}
 		}
 
+		void widgets::text_field_impl::on_action() {
+			if (_specs.events().action)
+				_specs.events().action();
+		}
+
 		widgets::text_field&
 			widgets::text_field_impl::specs() { return _specs; }
 

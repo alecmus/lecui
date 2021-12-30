@@ -37,6 +37,7 @@ namespace liblec {
 					const D2D1_SIZE_F& change_in_size, const D2D1_POINT_2F& offset,
 					const bool& render) override;
 				void on_selection_change(const bool& selected) override;
+				void on_action() override;
 
 				/// widget specific methods
 				widgets::text_field& specs();
