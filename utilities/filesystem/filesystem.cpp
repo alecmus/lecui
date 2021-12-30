@@ -30,18 +30,35 @@ namespace liblec {
 		filesystem::~filesystem() { delete& _d; }
 
 		std::string filesystem::select_folder(const std::string& title) {
-			char szDir[MAX_PATH];
-			BROWSEINFOA bInfo = { 0 };
-			bInfo.hwndOwner = _d._fm._d._hWnd;
-			bInfo.pszDisplayName = szDir;
-			bInfo.lpszTitle = title.c_str();
-			bInfo.iImage = -1;
-
 			std::string folder;
-			LPITEMIDLIST lpItem = SHBrowseForFolderA(&bInfo);
-			if (lpItem != NULL) {
-				SHGetPathFromIDListA(lpItem, szDir);
-				folder = szDir;
+
+			IFileDialog* p_file_dialog = nullptr;
+			if (SUCCEEDED(CoCreateInstance(CLSID_FileOpenDialog, NULL, CLSCTX_INPROC_SERVER,
+				IID_PPV_ARGS(&p_file_dialog)))) {
+
+				DWORD options;
+				if (SUCCEEDED(p_file_dialog->GetOptions(&options))) {
+					p_file_dialog->SetOptions(options | FOS_PICKFOLDERS);
+
+					if (!title.empty())
+						p_file_dialog->SetTitle(convert_string(title).c_str());
+
+					if (SUCCEEDED(p_file_dialog->Show(_d._fm._d._hWnd))) {
+
+						IShellItem* p_shell_item = nullptr;
+
+							if (SUCCEEDED(p_file_dialog->GetResult(&p_shell_item))) {
+								LPWSTR result = nullptr;
+								p_shell_item->GetDisplayName(SIGDN_DESKTOPABSOLUTEPARSING, &result);
+								p_shell_item->Release();
+
+								if (result)
+									folder = convert_string(std::wstring(result));
+							}
+					}
+				}
+
+				p_file_dialog->Release();
 			}
 
 			return folder;
