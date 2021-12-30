@@ -73,7 +73,7 @@ namespace liblec {
 			class lecui_api label : public widget {
 				color _color_hot_pressed;
 				bool _multiline = false;
-				bool _center_h = false;
+				text_alignment _alignment = text_alignment::left;
 				bool _center_v = false;
 
 			public:
@@ -142,14 +142,14 @@ namespace liblec {
 				/// <returns>A reference to the modified object.</returns>
 				label& multiline(const bool& multiline);
 
-				/// <summary>Get or set the property for whether to center the text horizontally.</summary>
+				/// <summary>Get or set the text alignment.</summary>
 				/// <returns>A reference to the property.</returns>
-				bool& center_h();
+				text_alignment& alignment();
 
-				/// <summary>Set the property for whether to center the text horizontally.</summary>
-				/// <param name="center_h">Whether to center the text horizontally.</param>
+				/// <summary>Set the text alignment.</summary>
+				/// <param name="alignment">The alignment of the text as defined in <see cref='text_alignment'></see>.</param>
 				/// <returns>A reference to the modified object.</returns>
-				label& center_h(const bool& center_h);
+				label& alignment(const text_alignment& alignment);
 
 				/// <summary>Get or set the property for whether to center the text vertically.</summary>
 				/// <returns>A reference to the property.</returns>

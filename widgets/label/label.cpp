@@ -22,7 +22,7 @@ namespace liblec {
 				(_text == param._text) &&
 				(_color_hot_pressed == param._color_hot_pressed) &&
 				(_multiline == param._multiline) &&
-				(_center_h == param._center_h) &&
+				(_alignment == param._alignment) &&
 				(_center_v == param._center_v);
 		}
 
@@ -128,10 +128,10 @@ namespace liblec {
 			return *this;
 		}
 
-		bool& widgets::label::center_h() { return _center_h; }
+		text_alignment& widgets::label::alignment() { return _alignment; }
 
-		widgets::label& widgets::label::center_h(const bool& center_h) {
-			_center_h = center_h;
+		widgets::label& widgets::label::alignment(const text_alignment& alignment) {
+			_alignment = alignment;
 			return *this;
 		}
 

@@ -32,7 +32,7 @@ namespace liblec {
 				const std::string& formatted_text,
 				const std::string& font,
 				const float font_size,
-				bool center_h,
+				text_alignment alignment,
 				bool center_v,
 				const D2D1_RECT_F max_rect);
 
@@ -40,7 +40,7 @@ namespace liblec {
 				const std::string& formatted_text,
 				const std::string& font,
 				const float font_size,
-				bool center_h,
+				text_alignment alignment,
 				bool center_v,
 				bool allow_h_overflow,
 				bool allow_v_overflow,

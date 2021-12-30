@@ -69,7 +69,7 @@ namespace liblec {
 				const std::string& formatted_text,
 				const std::string& font,
 				const float font_size,
-				bool center_h,
+				text_alignment alignment,
 				bool center_v,
 				const D2D1_RECT_F max_rect) {
 			// the default color doesn't matter here we're just measuring the text
@@ -92,8 +92,22 @@ namespace liblec {
 
 			IDWriteTextLayout* _p_text_layout = nullptr;
 			if (SUCCEEDED(hr)) {
-				_p_text_format->SetTextAlignment(center_h ?
-					DWRITE_TEXT_ALIGNMENT_CENTER : DWRITE_TEXT_ALIGNMENT_LEADING);
+				DWRITE_TEXT_ALIGNMENT _alignment = DWRITE_TEXT_ALIGNMENT_LEADING;
+
+				switch (alignment) {
+				case text_alignment::center:
+					_alignment = DWRITE_TEXT_ALIGNMENT_CENTER;
+					break;
+				case text_alignment::right:
+					_alignment = DWRITE_TEXT_ALIGNMENT_TRAILING;
+					break;
+				case text_alignment::left:
+				default:
+					_alignment = DWRITE_TEXT_ALIGNMENT_LEADING;
+					break;
+				}
+
+				_p_text_format->SetTextAlignment(_alignment);
 				_p_text_format->SetParagraphAlignment(center_v ?
 					DWRITE_PARAGRAPH_ALIGNMENT_CENTER : DWRITE_PARAGRAPH_ALIGNMENT_NEAR);
 
@@ -125,7 +139,7 @@ namespace liblec {
 				const std::string& formatted_text,
 				const std::string& font,
 				const float font_size,
-				bool center_h,
+				text_alignment alignment,
 				bool center_v,
 				bool allow_h_overflow,
 				bool allow_v_overflow,
@@ -155,8 +169,22 @@ namespace liblec {
 
 			IDWriteTextLayout* _p_text_layout = nullptr;
 			if (SUCCEEDED(hr)) {
-				_p_text_format->SetTextAlignment(center_h ?
-					DWRITE_TEXT_ALIGNMENT_CENTER : DWRITE_TEXT_ALIGNMENT_LEADING);
+				DWRITE_TEXT_ALIGNMENT _alignment = DWRITE_TEXT_ALIGNMENT_LEADING;
+
+				switch (alignment) {
+				case text_alignment::center:
+					_alignment = DWRITE_TEXT_ALIGNMENT_CENTER;
+					break;
+				case text_alignment::right:
+					_alignment = DWRITE_TEXT_ALIGNMENT_TRAILING;
+					break;
+				case text_alignment::left:
+				default:
+					_alignment = DWRITE_TEXT_ALIGNMENT_LEADING;
+					break;
+				}
+
+				_p_text_format->SetTextAlignment(_alignment);
 				_p_text_format->SetParagraphAlignment(center_v ?
 					DWRITE_PARAGRAPH_ALIGNMENT_CENTER : DWRITE_PARAGRAPH_ALIGNMENT_NEAR);
 
@@ -244,8 +272,22 @@ namespace liblec {
 					&_p_text_format);
 			}
 			if (SUCCEEDED(hr)) {
-				_p_text_format->SetTextAlignment(_specs.center_h() ?
-					DWRITE_TEXT_ALIGNMENT_CENTER : DWRITE_TEXT_ALIGNMENT_LEADING);
+				DWRITE_TEXT_ALIGNMENT _alignment = DWRITE_TEXT_ALIGNMENT_LEADING;
+
+				switch (_specs.alignment()) {
+				case text_alignment::center:
+					_alignment = DWRITE_TEXT_ALIGNMENT_CENTER;
+					break;
+				case text_alignment::right:
+					_alignment = DWRITE_TEXT_ALIGNMENT_TRAILING;
+					break;
+				case text_alignment::left:
+				default:
+					_alignment = DWRITE_TEXT_ALIGNMENT_LEADING;
+					break;
+				}
+
+				_p_text_format->SetTextAlignment(_alignment);
 				_p_text_format->SetParagraphAlignment(_specs.center_v() ?
 					DWRITE_PARAGRAPH_ALIGNMENT_CENTER : DWRITE_PARAGRAPH_ALIGNMENT_NEAR);
 

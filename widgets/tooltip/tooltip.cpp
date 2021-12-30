@@ -51,7 +51,7 @@ bool liblec::lecui::widgets::tooltip_form::on_initialize(std::string& error) {
 	// compute rect
 	_rect = max_rect;
 
-	_rect = _dim.measure_label(_tooltip_text, _font, _font_size, false, false, _rect);
+	_rect = _dim.measure_label(_tooltip_text, _font, _font_size, text_alignment::left, false, _rect);
 
 	_bottom = _rect.bottom();
 	_right = _rect.right();

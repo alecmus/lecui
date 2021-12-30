@@ -57,10 +57,10 @@ namespace liblec {
 
 		lecui::rect dimensions::measure_label(const std::string& formatted_text,
 			const std::string& font, const float font_size,
-			bool center_h, bool center_v, const lecui::rect max_rect) {
+			text_alignment alignment, bool center_v, const lecui::rect max_rect) {
 			auto rect = convert_rect(max_rect);
 			rect = widgets::measure_label(_d._fm._d._p_directwrite_factory, formatted_text,
-				font, font_size, center_h, center_v, rect);
+				font, font_size, alignment, center_v, rect);
 			return convert_rect(rect);
 		}
 

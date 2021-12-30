@@ -762,5 +762,17 @@ namespace liblec {
 			/// <returns>The text.</returns>
 			static std::string text(const std::any& value);
 		};
+
+		/// <summary>Text alignment.</summary>
+		enum class text_alignment {
+			/// <summary>Align text to the left edge.</summary>
+			left,
+
+			/// <summary>Align text to the center.</summary>
+			center,
+
+			/// <summary>Align text to the right.</summary>
+			right,
+		};
 	}
 }

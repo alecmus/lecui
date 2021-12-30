@@ -241,7 +241,7 @@ namespace liblec {
 						value += _specs.major_tick_unit();
 
 						auto label_rect = widgets::measure_label(_p_directwrite_factory, label,
-							_specs.font(), _specs.font_size(), true, true, max_rect);
+							_specs.font(), _specs.font_size(), text_alignment::center, true, max_rect);
 
 						D2D1_RECT_F optimal_rect = {
 							x_major - (label_rect.right - label_rect.left) / 2.f,
@@ -362,7 +362,7 @@ namespace liblec {
 						value += _specs.major_tick_unit();
 
 						auto label_rect = widgets::measure_label(_p_directwrite_factory, label,
-							_specs.font(), _specs.font_size(), true, true, max_rect);
+							_specs.font(), _specs.font_size(), text_alignment::center, true, max_rect);
 
 						D2D1_RECT_F optimal_rect = {
 							lower_margin + .5f,
