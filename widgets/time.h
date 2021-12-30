@@ -163,5 +163,7 @@ namespace liblec {
 	}
 }
 
+#if defined(lecui_helper)
 /// Helper for getting time widget. Builder documentation applies.
 #define get_time(path) liblec::lecui::widgets::time::get(*this, path)
+#endif

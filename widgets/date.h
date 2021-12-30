@@ -163,5 +163,7 @@ namespace liblec {
 	}
 }
 
+#if defined(lecui_helper)
 /// Helper for getting date widget. Builder documentation applies.
 #define get_date(path) liblec::lecui::widgets::date::get(*this, path)
+#endif

@@ -144,5 +144,7 @@ namespace liblec {
 	}
 }
 
+#if defined(lecui_helper)
 /// Helper for getting progress indicator widget. Builder documentation applies.
 #define get_progress_indicator(path) liblec::lecui::widgets::progress_indicator::get(*this, path)
+#endif

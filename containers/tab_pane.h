@@ -295,8 +295,11 @@ namespace liblec {
 	}
 }
 
+#if defined(lecui_helper)
 /// Helper for getting tab pane widget. Builder documentation applies.
 #define get_tab_pane(path) liblec::lecui::containers::tab_pane::get(*this, path)
 
 /// Helper for getting a tab's page. Builder documentation applies.
 #define get_tab(path) liblec::lecui::containers::tab::get(*this, path)
+#endif
+

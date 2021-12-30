@@ -295,5 +295,7 @@ namespace liblec {
 	}
 }
 
+#if defined(lecui_helper)
 /// Helper for getting combobox widget. Builder documentation applies.
 #define get_combobox(path) liblec::lecui::widgets::combobox::get(*this, path)
+#endif

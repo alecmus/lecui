@@ -130,5 +130,7 @@ namespace liblec {
 	}
 }
 
+#if defined(lecui_helper)
 /// Helper for getting a status pane. Builder documentation applies.
 #define get_status_pane(path) liblec::lecui::containers::status_pane::get(*this, path)
+#endif

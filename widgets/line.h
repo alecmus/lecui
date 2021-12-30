@@ -114,5 +114,7 @@ namespace liblec {
 	}
 }
 
+#if defined(lecui_helper)
 /// Helper for getting line widget. Builder documentation applies.
 #define get_line(path) liblec::lecui::widgets::line::get(*this, path)
+#endif

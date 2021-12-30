@@ -273,5 +273,7 @@ namespace liblec {
 	}
 }
 
+#if defined(lecui_helper)
 /// Helper for getting icon widget. Builder documentation applies.
 #define get_icon(path) liblec::lecui::widgets::icon::get(*this, path)
+#endif

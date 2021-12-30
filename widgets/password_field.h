@@ -44,5 +44,7 @@ namespace liblec {
 	}
 }
 
+#if defined(lecui_helper)
 /// Helper for getting password field widget. Builder documentation applies.
 #define get_password_field(path) liblec::lecui::widgets::password_field::get(*this, path)
+#endif

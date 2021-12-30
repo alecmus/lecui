@@ -188,5 +188,7 @@ namespace liblec {
 	}
 }
 
+#if defined(lecui_helper)
 /// Helper for getting html editor widget. Builder documentation applies.
 #define get_html_editor(path) liblec::lecui::widgets::html_editor::get(*this, path)
+#endif

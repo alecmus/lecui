@@ -351,5 +351,7 @@ namespace liblec {
 	}
 }
 
+#if defined(lecui_helper)
 /// Helper for getting table view widget. Builder documentation applies.
 #define get_table_view(path) liblec::lecui::widgets::table_view::get(*this, path)
+#endif

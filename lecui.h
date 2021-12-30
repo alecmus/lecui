@@ -14,6 +14,9 @@
 	#define lecui_api __declspec(dllexport)
 #else
 	#define lecui_api __declspec(dllimport)
+	
+	// for helper macros, e.g. get_text_field()
+	#define lecui_helper	1
 
 	// for visual styles (message box, open file, save file)
 	#pragma comment(linker, "\"/manifestdependency:type='win32' \

@@ -147,5 +147,7 @@ namespace liblec {
 	}
 }
 
+#if defined(lecui_helper)
 /// Helper for getting rectangle widget. Builder documentation applies.
 #define get_rectangle(path) liblec::lecui::widgets::rectangle::get(*this, path)
+#endif
