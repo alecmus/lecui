@@ -277,6 +277,6 @@ namespace liblec {
 }
 
 #if defined(lecui_helper)
-/// Helper for getting slider widget. Builder documentation applies.
+/// Helper for getting slider widget. 'Get' method documentation applies.
 #define get_slider(path) liblec::lecui::widgets::slider::get(*this, path)
 #endif

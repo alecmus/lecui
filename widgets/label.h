@@ -184,6 +184,6 @@ namespace liblec {
 }
 
 #if defined(lecui_helper)
-/// Helper for getting label widget. Builder documentation applies.
+/// Helper for getting label widget. 'Get' method documentation applies.
 #define get_label(path) liblec::lecui::widgets::label::get(*this, path)
 #endif

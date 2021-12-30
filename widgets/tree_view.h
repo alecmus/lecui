@@ -207,6 +207,6 @@ namespace liblec {
 }
 
 #if defined(lecui_helper)
-/// Helper for getting tree view widget. Builder documentation applies.
+/// Helper for getting tree view widget. 'Get' method documentation applies.
 #define get_tree_view(path) liblec::lecui::widgets::tree_view::get(*this, path)
 #endif

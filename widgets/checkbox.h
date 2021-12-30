@@ -184,6 +184,6 @@ namespace liblec {
 }
 
 #if defined(lecui_helper)
-/// Helper for getting checkbox widget. Builder documentation applies.
+/// Helper for getting checkbox widget. 'Get' method documentation applies.
 #define get_checkbox(path) liblec::lecui::widgets::checkbox::get(*this, path)
 #endif

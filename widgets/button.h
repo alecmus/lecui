@@ -138,6 +138,6 @@ namespace liblec {
 }
 
 #if defined(lecui_helper)
-/// Helper for getting button widget. Builder documentation applies.
+/// Helper for getting button widget. 'Get' method documentation applies.
 #define get_button(path) liblec::lecui::widgets::button::get(*this, path)
 #endif

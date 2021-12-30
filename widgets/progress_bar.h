@@ -135,6 +135,6 @@ namespace liblec {
 }
 
 #if defined(lecui_helper)
-/// Helper for getting progress bar widget. Builder documentation applies.
+/// Helper for getting progress bar widget. 'Get' method documentation applies.
 #define get_progress_bar(path) liblec::lecui::widgets::progress_bar::get(*this, path)
 #endif

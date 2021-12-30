@@ -51,6 +51,6 @@ namespace liblec {
 }
 
 #if defined(lecui_helper)
-/// Helper for getting a side pane. Builder documentation applies.
+/// Helper for getting a side pane. 'Get' method documentation applies.
 #define get_side_pane() liblec::lecui::containers::side_pane::get(*this)
 #endif

@@ -164,6 +164,6 @@ namespace liblec {
 }
 
 #if defined(lecui_helper)
-/// Helper for getting a form's page. Builder documentation applies.
+/// Helper for getting a form's page. 'Get' method documentation applies.
 #define get_page(path) liblec::lecui::page_manager::get(*this, path)
 #endif

@@ -153,6 +153,6 @@ namespace liblec {
 }
 
 #if defined(lecui_helper)
-/// Helper for getting pane widget. Builder documentation applies.
+/// Helper for getting pane widget. 'Get' method documentation applies.
 #define get_pane(path) liblec::lecui::containers::pane::get(*this, path)
 #endif

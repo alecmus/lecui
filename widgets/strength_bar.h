@@ -150,6 +150,6 @@ namespace liblec {
 }
 
 #if defined(lecui_helper)
-/// Helper for getting strength bar widget. Builder documentation applies.
+/// Helper for getting strength bar widget. 'Get' method documentation applies.
 #define get_strength_bar(path) liblec::lecui::widgets::strength_bar::get(*this, path)
 #endif

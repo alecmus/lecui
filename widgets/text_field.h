@@ -233,6 +233,6 @@ namespace liblec {
 }
 
 #if defined(lecui_helper)
-/// Helper for getting text field widget. Builder documentation applies.
+/// Helper for getting text field widget. 'Get' method documentation applies.
 #define get_text_field(path) liblec::lecui::widgets::text_field::get(*this, path)
 #endif

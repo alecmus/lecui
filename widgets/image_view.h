@@ -208,6 +208,6 @@ namespace liblec {
 }
 
 #if defined(lecui_helper)
-/// Helper for getting image view widget. Builder documentation applies.
+/// Helper for getting image view widget. 'Get' method documentation applies.
 #define get_image_view(path) liblec::lecui::widgets::image_view::get(*this, path)
 #endif

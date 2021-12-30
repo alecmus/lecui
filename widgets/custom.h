@@ -125,6 +125,6 @@ namespace liblec {
 }
 
 #if defined(lecui_helper)
-/// Helper for getting custom widget. Builder documentation applies.
+/// Helper for getting custom widget. 'Get' method documentation applies.
 #define get_custom(path) liblec::lecui::widgets::custom::get(*this, path)
 #endif

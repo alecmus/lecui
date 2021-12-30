@@ -164,6 +164,6 @@ namespace liblec {
 }
 
 #if defined(lecui_helper)
-/// Helper for getting group widget. Builder documentation applies.
+/// Helper for getting group widget. 'Get' method documentation applies.
 #define get_group(path) liblec::lecui::containers::group::get(*this, path)
 #endif

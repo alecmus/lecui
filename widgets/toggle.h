@@ -148,6 +148,6 @@ namespace liblec {
 }
 
 #if defined(lecui_helper)
-/// Helper for getting toggle widget. Builder documentation applies.
+/// Helper for getting toggle widget. 'Get' method documentation applies.
 #define get_toggle(path) liblec::lecui::widgets::toggle::get(*this, path)
 #endif
