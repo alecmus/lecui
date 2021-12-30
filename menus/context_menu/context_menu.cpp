@@ -48,7 +48,7 @@ namespace liblec {
                 _menu_specs(menu_specs) {
                 // determine whether any item has an image
                 for (const auto& item : _menu_specs.items)
-                    if (!item.image_file.empty()) {
+                    if (item.image_png_resource || !item.image_file.empty()) {
                         _images = true;
                         break;
                     }
@@ -261,7 +261,11 @@ namespace liblec {
                             image
                                 .rect(_rects[index])
                                 .rect().width(image.rect().height());    // make into a square
-                            image.file(item.image_file).quality(_menu_specs.quality);
+                            image
+                                .png_resource(item.image_png_resource)
+                                .file(item.image_file)
+                                .quality(_menu_specs.quality);
+
                             left_most = image.rect().right() + (_margin / 2.f);
 
                             // padding

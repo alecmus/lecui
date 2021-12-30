@@ -23,8 +23,13 @@ namespace liblec {
 			/// <summary>The label text of the menu item. Use an empty string to make a separator.</summary>
             std::string label;
 
+			/// <summary>The image resource to use for the menu item (placed on the left).</summary>
+			/// <remarks>Takes precedence over <see cref='image_file'></see>.</remarks>
+			int image_png_resource = 0;
+
 			/// <summary>The image to use for the menu item (placed on the left).</summary>
-            std::string image_file;
+			/// <remarks>Used only if <see cref='image_png_resource'></see> is non-zero.</remarks>
+			std::string image_file;
 
 			/// <summary>The font to use.</summary>
 			std::string font = "Segoe UI";
