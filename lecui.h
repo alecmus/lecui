@@ -774,5 +774,17 @@ namespace liblec {
 			/// <summary>Align text to the right.</summary>
 			right,
 		};
+
+		/// <summary>Paragraph alignment.</summary>
+		enum class paragraph_alignment {
+			/// <summary>Align paragraph to the top.</summary>
+			top,
+
+			/// <summary>Align paragraph to the middle.</summary>
+			middle,
+
+			/// <summary>Align paragraph to the bottom.</summary>
+			bottom,
+		};
 	}
 }

@@ -186,7 +186,7 @@ namespace liblec {
 
 				// measure size of badge text
 				auto _rect_badge = measure_text(p_directwrite_factory, badge.text(), badge.font(),
-					badge.font_size(), text_alignment::center, true, true, false, rect);
+					badge.font_size(), text_alignment::center, paragraph_alignment::middle, true, false, rect);
 
 				// add padding
 				const float padding = (_rect_badge.bottom - _rect_badge.top) / 4.f;

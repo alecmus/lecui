@@ -467,7 +467,7 @@ namespace liblec {
 			_p_caption->specs()
 				.tooltip(_caption_tooltip)
 				.text(_caption_formatted)
-				.center_v(true)
+				.paragraph_alignment(paragraph_alignment::middle)
 				.multiline(false)
 
 				// load label settings
@@ -527,7 +527,7 @@ namespace liblec {
 			// determine the optimal rect for the caption
 			const auto rect = widgets::measure_label(_p_directwrite_factory,
 				_p_caption->specs().text(), _p_caption->specs().font(), _p_caption->specs().font_size(),
-				_p_caption->specs().alignment(), _p_caption->specs().center_v(), max_rect);
+				_p_caption->specs().alignment(), _p_caption->specs().paragraph_alignment(), max_rect);
 
 			// to-do: address this ... when form is downsized enough, caption creeps behind control
 			// buttons since we've eliminated resizing caption rect; perhaps use clip???
@@ -552,7 +552,7 @@ namespace liblec {
 				it->specs()
 					.tooltip(main_menu_item.tooltip)
 					.text(main_menu_item.text)
-					.center_v(true)
+					.paragraph_alignment(paragraph_alignment::middle)
 					.multiline(false)
 
 					// load label settings
@@ -574,7 +574,7 @@ namespace liblec {
 				// determine the optimal rect for the caption
 				const auto rect = widgets::measure_label(_p_directwrite_factory,
 					it->specs().text(), it->specs().font(), it->specs().font_size(),
-					it->specs().alignment(), it->specs().center_v(), max_rect);
+					it->specs().alignment(), it->specs().paragraph_alignment(), max_rect);
 
 				// to-do: address this ... when form is downsized enough, caption creeps behind control
 				// buttons since we've eliminated resizing caption rect; perhaps use clip???
@@ -956,7 +956,7 @@ namespace liblec {
 												.text("<strong>B</strong>")
 												.font_size(11.f)
 												.alignment(text_alignment::center)
-												.center_v(true);
+												.paragraph_alignment(paragraph_alignment::middle);
 
 											/// add italic control
 											auto& italic = widgets::rectangle::add(html_controls_page, html_editor.alias_italic());
@@ -974,7 +974,7 @@ namespace liblec {
 												.text("<em><strong>I</strong></em>")
 												.font_size(11.f)
 												.alignment(text_alignment::center)
-												.center_v(true);
+												.paragraph_alignment(paragraph_alignment::middle);
 
 											/// add underline control
 											auto& underline = widgets::rectangle::add(html_controls_page, html_editor.alias_underline());
@@ -992,7 +992,7 @@ namespace liblec {
 												.text("<u>U</u>")
 												.font_size(11.f)
 												.alignment(text_alignment::center)
-												.center_v(true);
+												.paragraph_alignment(paragraph_alignment::middle);
 
 											/// add strikethrough control
 											auto& strikethrough = widgets::rectangle::add(html_controls_page, html_editor.alias_strikethrough());
@@ -1010,7 +1010,7 @@ namespace liblec {
 												.text("<s>abc</s>")
 												.font_size(11.f)
 												.alignment(text_alignment::center)
-												.center_v(true);
+												.paragraph_alignment(paragraph_alignment::middle);
 
 											/// add color control
 											auto& font_color = widgets::rectangle::add(html_controls_page, html_editor.alias_font_color());
@@ -1027,7 +1027,7 @@ namespace liblec {
 												.text("<strong>A</strong>")
 												.font_size(9.5f)
 												.alignment(text_alignment::center)
-												.center_v(true)
+												.paragraph_alignment(paragraph_alignment::middle)
 												.rect(font_color.rect())
 												.rect().bottom() -= 5.f;
 
@@ -1266,7 +1266,7 @@ namespace liblec {
 						hour_label
 							.rect(hour.rect())
 							.alignment(text_alignment::center)
-							.center_v(true)
+							.paragraph_alignment(paragraph_alignment::middle)
 							.on_resize({ 0, 0, 0, 0 })
 							.color_text(time.color_text())
 							.text(time.time_value().hour < 10 ? "0" + std::to_string(time.time_value().hour) :
@@ -1279,7 +1279,7 @@ namespace liblec {
 							.text(":")
 							.color_text(time.color_text())
 							.alignment(text_alignment::center)
-							.center_v(true)
+							.paragraph_alignment(paragraph_alignment::middle)
 							.rect({ 0, 8, 0, 20 })
 							.rect().snap_to(hour.rect(), rect::snap_type::right, 0.f);
 
@@ -1301,7 +1301,7 @@ namespace liblec {
 						minute_label
 							.rect(minute.rect())
 							.alignment(text_alignment::center)
-							.center_v(true)
+							.paragraph_alignment(paragraph_alignment::middle)
 							.on_resize({ 0, 0, 0, 0 })
 							.color_text(time.color_text())
 							.text(time.time_value().minute < 10 ? "0" + std::to_string(time.time_value().minute) :
@@ -1314,7 +1314,7 @@ namespace liblec {
 							.text(":")
 							.color_text(time.color_text())
 							.alignment(text_alignment::center)
-							.center_v(true)
+							.paragraph_alignment(paragraph_alignment::middle)
 							.rect({ 0, 8, 0, 20 })
 							.rect().snap_to(minute.rect(), rect::snap_type::right, 0.f);
 
@@ -1336,7 +1336,7 @@ namespace liblec {
 						second_label
 							.rect(second.rect())
 							.alignment(text_alignment::center)
-							.center_v(true)
+							.paragraph_alignment(paragraph_alignment::middle)
 							.on_resize({ 0, 0, 0, 0 })
 							.color_text(time.color_text())
 							.text(time.time_value().second < 10 ? "0" + std::to_string(time.time_value().second) :
@@ -1645,7 +1645,7 @@ namespace liblec {
 						day_label
 							.rect(day.rect())
 							.alignment(text_alignment::center)
-							.center_v(true)
+							.paragraph_alignment(paragraph_alignment::middle)
 							.on_resize({ 0, 0, 0, 0 })
 							.color_text(date.color_text())
 							.text(date.date_value().day < 10 ? "0" + std::to_string(date.date_value().day) :
@@ -1658,7 +1658,7 @@ namespace liblec {
 							.text("-")
 							.color_text(date.color_text())
 							.alignment(text_alignment::center)
-							.center_v(true)
+							.paragraph_alignment(paragraph_alignment::middle)
 							.rect({ 0, 8, 0, 20 })
 							.rect().snap_to(day.rect(), rect::snap_type::right, 0.f);
 
@@ -1680,7 +1680,7 @@ namespace liblec {
 						month_label
 							.rect(month.rect())
 							.alignment(text_alignment::center)
-							.center_v(true)
+							.paragraph_alignment(paragraph_alignment::middle)
 							.on_resize({ 0, 0, 0, 0 })
 							.color_text(date.color_text())
 							.text(date_time::month_to_string(date.date_value().month));
@@ -1692,7 +1692,7 @@ namespace liblec {
 							.text("-")
 							.color_text(date.color_text())
 							.alignment(text_alignment::center)
-							.center_v(true)
+							.paragraph_alignment(paragraph_alignment::middle)
 							.rect({ 0, 8, 0, 20 })
 							.rect().snap_to(month.rect(), rect::snap_type::right, 0.f);
 
@@ -1715,7 +1715,7 @@ namespace liblec {
 						year_label
 							.rect(year.rect())
 							.alignment(text_alignment::center)
-							.center_v(true)
+							.paragraph_alignment(paragraph_alignment::middle)
 							.on_resize({ 0, 0, 0, 0 })
 							.color_text(date.color_text())
 							.text(std::to_string(date.date_value().year));
@@ -2104,7 +2104,7 @@ namespace liblec {
 								.top(0.f)
 								.bottom(it.destination.size().get_height()));
 							const auto ideal_rect = widgets::measure_label(_p_directwrite_factory, text.text(), text.font(), text.font_size(),
-								text_alignment::left, false, convert_rect(text.rect()));
+								text_alignment::left, paragraph_alignment::top, convert_rect(text.rect()));
 							text.rect().height(ideal_rect.bottom - ideal_rect.top);
 							text.rect().snap_to(image.rect(), rect::snap_type::right_top, icon._gap);
 						}
@@ -2116,7 +2116,7 @@ namespace liblec {
 								.top(icon._padding)
 								.bottom(it.destination.size().get_height()));
 							const auto ideal_rect = widgets::measure_label(_p_directwrite_factory, text.text(), text.font(), text.font_size(),
-								text_alignment::left, false, convert_rect(text.rect()));
+								text_alignment::left, paragraph_alignment::top, convert_rect(text.rect()));
 							text.rect().height(ideal_rect.bottom - ideal_rect.top);
 							text.rect().snap_to(image.rect(), rect::snap_type::left_top, icon._gap);
 						}
@@ -2128,7 +2128,7 @@ namespace liblec {
 								.top(0.f)
 								.bottom(it.destination.size().get_height() - icon._padding));
 							const auto ideal_rect = widgets::measure_label(_p_directwrite_factory, text.text(), text.font(), text.font_size(),
-								text_alignment::left, false, convert_rect(text.rect()));
+								text_alignment::left, paragraph_alignment::top, convert_rect(text.rect()));
 							text.rect().height(ideal_rect.bottom - ideal_rect.top);
 							text.alignment(text_alignment::center);
 						}
@@ -2140,7 +2140,7 @@ namespace liblec {
 								.top(0.f)
 								.bottom(it.destination.size().get_height() - icon._padding));
 							const auto ideal_rect = widgets::measure_label(_p_directwrite_factory, text.text(), text.font(), text.font_size(),
-								text_alignment::left, false, convert_rect(text.rect()));
+								text_alignment::left, paragraph_alignment::top, convert_rect(text.rect()));
 							text.rect().height(ideal_rect.bottom - ideal_rect.top);
 							text.alignment(text_alignment::center);
 							text.rect().snap_to(image.rect(), rect::snap_type::bottom, icon._gap);

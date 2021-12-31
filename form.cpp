@@ -321,7 +321,7 @@ namespace liblec {
 					// measure the question
 					widgets::label specs_lbl;
 					rect = widgets::measure_label(_d._p_directwrite_factory, question,
-						specs_lbl.font(), specs_lbl.font_size(), text_alignment::left, false, rect);
+						specs_lbl.font(), specs_lbl.font_size(), text_alignment::left, paragraph_alignment::top, rect);
 
 					auto width = (rect.right - rect.left) + 2 * _margin;
 					auto height = _d._caption_bar_height + _margin + (rect.bottom - rect.top) +
@@ -418,7 +418,7 @@ namespace liblec {
 						// measure the message
 						widgets::label specs_lbl;
 						rect = widgets::measure_label(_d._p_directwrite_factory, message,
-							specs_lbl.font(), specs_lbl.font_size(), text_alignment::left, false, rect);
+							specs_lbl.font(), specs_lbl.font_size(), text_alignment::left, paragraph_alignment::top, rect);
 
 						auto width = (rect.right - rect.left) + 2 * _margin;
 						auto height = _d._caption_bar_height + _margin + (rect.bottom - rect.top) +

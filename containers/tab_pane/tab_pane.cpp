@@ -238,7 +238,7 @@ namespace liblec {
 						for (const auto& alias : _tab_pane.specs().caption_reserve()) {
 							D2D1_RECT_F max_rect = { 0.f, 0.f, _tab_pane.specs().rect().height(), _tab_pane.caption_bar_height() };
 							auto caption_rect = widgets::measure_label(_page._d_page._p_directwrite_factory, alias, _tab_pane.specs().font(),
-								_tab_pane.specs().font_size(), text_alignment::left, true, max_rect);
+								_tab_pane.specs().font_size(), text_alignment::left, paragraph_alignment::middle, max_rect);
 
 							_tab_height = largest(_tab_height, caption_rect.right - caption_rect.left + 3.f * _tab_pane.padding());
 						}
@@ -248,7 +248,7 @@ namespace liblec {
 						// use current caption to set tab height
 						D2D1_RECT_F max_rect = { 0.f, 0.f, _tab_pane.specs().rect().height(), _tab_pane.caption_bar_height() };
 						auto caption_rect = widgets::measure_label(_page._d_page._p_directwrite_factory, tab_name, _tab_pane.specs().font(),
-							_tab_pane.specs().font_size(), text_alignment::left, true, max_rect);
+							_tab_pane.specs().font_size(), text_alignment::left, paragraph_alignment::middle, max_rect);
 
 						_tab_height = largest(_tab_height, caption_rect.right - caption_rect.left + 3.f * _tab_pane.padding());
 					}

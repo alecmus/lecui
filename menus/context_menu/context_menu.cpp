@@ -98,7 +98,7 @@ namespace liblec {
                     font_size = smallest(font_size, _max_font_size);
 
                     if (!item.label.empty()) {
-                        rect = dim.measure_label(item.label, item.font, font_size, text_alignment::left, false, rect);
+                        rect = dim.measure_label(item.label, item.font, font_size, text_alignment::left, paragraph_alignment::top, rect);
                         rect.bottom() += (2 * _margin);   // padding
                     }
                     else {
@@ -283,7 +283,7 @@ namespace liblec {
                         label
                             .font_size(largest(label.font_size(), _min_font_size))
                             .font_size(smallest(label.font_size(), _max_font_size))
-                            .center_v(true)
+                            .paragraph_alignment(paragraph_alignment::middle)
                             .rect(_rects[index])
                             .rect().left(left_most);
 

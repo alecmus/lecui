@@ -51,7 +51,7 @@ bool liblec::lecui::widgets::tooltip_form::on_initialize(std::string& error) {
 	// compute rect
 	_rect = max_rect;
 
-	_rect = _dim.measure_label(_tooltip_text, _font, _font_size, text_alignment::left, false, _rect);
+	_rect = _dim.measure_label(_tooltip_text, _font, _font_size, text_alignment::left, paragraph_alignment::top, _rect);
 
 	_bottom = _rect.bottom();
 	_right = _rect.right();
@@ -103,7 +103,7 @@ bool liblec::lecui::widgets::tooltip_form::on_layout(std::string& error) {
 	auto& label = lecui::widgets::label::add(home_page, "");
 	label
 		.text(_tooltip_text).font(_font).font_size(_font_size)
-		.rect(_rect).center_v(true);
+		.rect(_rect).paragraph_alignment(paragraph_alignment::middle);
 
 	_page_man.show(_al_page_home);
 	return true;

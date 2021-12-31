@@ -23,7 +23,7 @@ namespace liblec {
 				(_color_hot_pressed == param._color_hot_pressed) &&
 				(_multiline == param._multiline) &&
 				(_alignment == param._alignment) &&
-				(_center_v == param._center_v);
+				(_paragraph_alignment == param._paragraph_alignment);
 		}
 
 		bool widgets::label::operator!=(const label& param) {
@@ -135,10 +135,10 @@ namespace liblec {
 			return *this;
 		}
 
-		bool& widgets::label::center_v() { return _center_v; }
+		lecui::paragraph_alignment& widgets::label::paragraph_alignment() { return _paragraph_alignment; }
 
-		widgets::label& widgets::label::center_v(const bool& center_v) {
-			_center_v = center_v;
+		widgets::label& widgets::label::paragraph_alignment(const lecui::paragraph_alignment& paragraph_alignment) {
+			_paragraph_alignment = paragraph_alignment;
 			return *this;
 		}
 

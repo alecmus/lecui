@@ -74,7 +74,7 @@ namespace liblec {
 				color _color_hot_pressed;
 				bool _multiline = false;
 				text_alignment _alignment = text_alignment::left;
-				bool _center_v = false;
+				paragraph_alignment _paragraph_alignment = paragraph_alignment::top;
 
 			public:
 				label() {
@@ -151,14 +151,14 @@ namespace liblec {
 				/// <returns>A reference to the modified object.</returns>
 				label& alignment(const text_alignment& alignment);
 
-				/// <summary>Get or set the property for whether to center the text vertically.</summary>
+				/// <summary>Get or set the paragraph alignment.</summary>
 				/// <returns>A reference to the property.</returns>
-				bool& center_v();
+				lecui::paragraph_alignment& paragraph_alignment();
 
-				/// <summary>Set the property for whether to center the text vertically.</summary>
-				/// <param name="center_h">Whether to center the text vertically.</param>
+				/// <summary>Set the paragraph alignment.</summary>
+				/// <param name="paragraph_alignment">The paragraph alignment, as defined in <see cref='lecui::paragraph_alignment'></see>.</param>
 				/// <returns>A reference to the modified object.</returns>
-				label& center_v(const bool& center_v);
+				label& paragraph_alignment(const lecui::paragraph_alignment& paragraph_alignment);
 
 			public:
 				/// <summary>Add a label to a container.</summary>

@@ -148,7 +148,7 @@ namespace liblec {
 						rect_node.top = bottom;
 						rect_node.bottom = rect_node.top + 20.f;
 						rect_node = widgets::measure_text(p_directwrite_factory, node.first,
-							font, font_size, text_alignment::left, true, true, false, rect_node);
+							font, font_size, text_alignment::left, paragraph_alignment::middle, true, false, rect_node);
 						rect_node.right += 1.f;	// failsafe to prevent occasional ellipses when scrolling horizontally
 
 						// capture node rectangle

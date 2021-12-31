@@ -33,7 +33,7 @@ namespace liblec {
 				const std::string& font,
 				const float font_size,
 				text_alignment alignment,
-				bool center_v,
+				lecui::paragraph_alignment paragraph_alignment,
 				const D2D1_RECT_F max_rect);
 
 			D2D1_RECT_F measure_text(IDWriteFactory* _p_directwrite_factory,
@@ -41,7 +41,7 @@ namespace liblec {
 				const std::string& font,
 				const float font_size,
 				text_alignment alignment,
-				bool center_v,
+				lecui::paragraph_alignment paragraph_alignment,
 				bool allow_h_overflow,
 				bool allow_v_overflow,
 				const D2D1_RECT_F max_rect);

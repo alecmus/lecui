@@ -179,12 +179,12 @@ namespace liblec {
 			// define text box rect and actual text rect (with possible overflow)
 			const auto _rect_text_box = _rect_text;
 			_rect_text = measure_text(_p_directwrite_factory,
-				_text, _specs.font(), _specs.font_size(), text_alignment::left, true, true, false, _rect_text);
+				_text, _specs.font(), _specs.font_size(), text_alignment::left, paragraph_alignment::middle, true, false, _rect_text);
 
 			// measure the text up to the caret position
 			const auto text_to_caret = _text.substr(0, _caret_position);
 			const auto _rect_up_to_caret = measure_text(_p_directwrite_factory,
-				text_to_caret, _specs.font(), _specs.font_size(), text_alignment::left, true, true, false, _rect_text);
+				text_to_caret, _specs.font(), _specs.font_size(), text_alignment::left, paragraph_alignment::middle, true, false, _rect_text);
 
 			bool iterate = false;
 			do {

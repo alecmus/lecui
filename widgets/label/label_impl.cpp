@@ -70,7 +70,7 @@ namespace liblec {
 				const std::string& font,
 				const float font_size,
 				text_alignment alignment,
-				bool center_v,
+				lecui::paragraph_alignment paragraph_alignment,
 				const D2D1_RECT_F max_rect) {
 			// the default color doesn't matter here we're just measuring the text
 			std::string _plain_text;
@@ -107,9 +107,23 @@ namespace liblec {
 					break;
 				}
 
+				DWRITE_PARAGRAPH_ALIGNMENT _paragraph_alignment = DWRITE_PARAGRAPH_ALIGNMENT_NEAR;
+
+				switch (paragraph_alignment) {
+				case lecui::paragraph_alignment::middle:
+					_paragraph_alignment = DWRITE_PARAGRAPH_ALIGNMENT_CENTER;
+					break;
+				case lecui::paragraph_alignment::bottom:
+					_paragraph_alignment = DWRITE_PARAGRAPH_ALIGNMENT_FAR;
+					break;
+				case lecui::paragraph_alignment::top:
+				default:
+					_paragraph_alignment = DWRITE_PARAGRAPH_ALIGNMENT_NEAR;
+					break;
+				}
+
 				_p_text_format->SetTextAlignment(_alignment);
-				_p_text_format->SetParagraphAlignment(center_v ?
-					DWRITE_PARAGRAPH_ALIGNMENT_CENTER : DWRITE_PARAGRAPH_ALIGNMENT_NEAR);
+				_p_text_format->SetParagraphAlignment(_paragraph_alignment);
 
 				// create a text layout
 				hr = p_directwrite_factory->CreateTextLayout(convert_string(_plain_text).c_str(),
@@ -140,7 +154,7 @@ namespace liblec {
 				const std::string& font,
 				const float font_size,
 				text_alignment alignment,
-				bool center_v,
+				lecui::paragraph_alignment paragraph_alignment,
 				bool allow_h_overflow,
 				bool allow_v_overflow,
 				const D2D1_RECT_F max_rect) {
@@ -184,9 +198,23 @@ namespace liblec {
 					break;
 				}
 
+				DWRITE_PARAGRAPH_ALIGNMENT _paragraph_alignment = DWRITE_PARAGRAPH_ALIGNMENT_NEAR;
+
+				switch (paragraph_alignment) {
+				case lecui::paragraph_alignment::middle:
+					_paragraph_alignment = DWRITE_PARAGRAPH_ALIGNMENT_CENTER;
+					break;
+				case lecui::paragraph_alignment::bottom:
+					_paragraph_alignment = DWRITE_PARAGRAPH_ALIGNMENT_FAR;
+					break;
+				case lecui::paragraph_alignment::top:
+				default:
+					_paragraph_alignment = DWRITE_PARAGRAPH_ALIGNMENT_NEAR;
+					break;
+				}
+
 				_p_text_format->SetTextAlignment(_alignment);
-				_p_text_format->SetParagraphAlignment(center_v ?
-					DWRITE_PARAGRAPH_ALIGNMENT_CENTER : DWRITE_PARAGRAPH_ALIGNMENT_NEAR);
+				_p_text_format->SetParagraphAlignment(_paragraph_alignment);
 
 				// create a text layout
 				hr = p_directwrite_factory->CreateTextLayout(convert_string(_plain_text).c_str(),
@@ -287,9 +315,23 @@ namespace liblec {
 					break;
 				}
 
+				DWRITE_PARAGRAPH_ALIGNMENT _paragraph_alignment = DWRITE_PARAGRAPH_ALIGNMENT_NEAR;
+
+				switch (_specs.paragraph_alignment()) {
+				case lecui::paragraph_alignment::middle:
+					_paragraph_alignment = DWRITE_PARAGRAPH_ALIGNMENT_CENTER;
+					break;
+				case lecui::paragraph_alignment::bottom:
+					_paragraph_alignment = DWRITE_PARAGRAPH_ALIGNMENT_FAR;
+					break;
+				case lecui::paragraph_alignment::top:
+				default:
+					_paragraph_alignment = DWRITE_PARAGRAPH_ALIGNMENT_NEAR;
+					break;
+				}
+
 				_p_text_format->SetTextAlignment(_alignment);
-				_p_text_format->SetParagraphAlignment(_specs.center_v() ?
-					DWRITE_PARAGRAPH_ALIGNMENT_CENTER : DWRITE_PARAGRAPH_ALIGNMENT_NEAR);
+				_p_text_format->SetParagraphAlignment(_paragraph_alignment);
 
 				if (!_specs.multiline())
 					make_single_line(_p_directwrite_factory, _p_text_format);
