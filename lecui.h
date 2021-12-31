@@ -664,9 +664,8 @@ namespace liblec {
 			/// <summary>The list of file types to open, as defined in <see cref="file_type"></see>.</summary>
 			std::vector<file_type> file_types;
 
-			/// <summary>Whether to include and "all supported file types" entry to allow viewing
-			/// of all supported file types instead of being forced to select at least one.</summary>
-			bool include_all_supported_types = true;
+			/// <summary>Whether to include and "all files" entry to allow saving files with a custom extension (or none).</summary>
+			bool include_all_files = true;
 
 			/// <summary>The title of the dialog box, e.g. "Save Document".</summary>
 			std::string title = "Save File";

@@ -67,98 +67,12 @@ namespace liblec {
 			return folder;
 		}
 
-		static auto make_filter_string(const std::vector<file_type>& file_types,
-			const bool& include_all_supported_types,
-			std::vector<std::string>& filetypes_indexed) {
-			/// If we indicate a NULL termminator with a new line character,
-			/// The filter string format is as follows :
-			/// Bitmap Files(*.bmp)
-			/// *.BMP
-			/// JPEG(*.jpg; *.jpeg)
-			/// *.JPG; *.JPEG
-			/// PNG(*.png)
-			/// *.PNG
-			/// All supported images
-			/// *.JPG; *.JPEG; *.PNG; *.BMP
-			std::string filter;
-			filetypes_indexed.clear();
-
-			// create NULL terminator
-			std::string s_null({ '\0' });
-
-			std::vector<file_type> types;
-
-			for (size_t i = 0; i < file_types.size(); i++) {
-				// check if type description hasn't already been captured; if it has,
-				// append it's extension to the other
-				bool b_new = true;
-
-				for (size_t x = 0; x < types.size(); x++) {
-					if (types[x].description == file_types[i].description) {
-						types[x].extension += ";*." + file_types[i].extension;
-
-						b_new = false;
-						break;
-					}
-				}
-
-				if (b_new) {
-					file_type type;
-					type.description = file_types[i].description;
-					type.extension = "*." + file_types[i].extension;
-					types.push_back(type);
-				}
-			}
-
-			std::string all_file_extensions;
-
-			for (size_t i = 0; i < types.size(); i++) {
-				std::string description = types[i].description;
-				std::string extension = types[i].extension;
-
-				if (all_file_extensions.empty())
-					all_file_extensions = extension;
-				else
-					all_file_extensions += ";" + extension;
-
-				std::string _filter;
-				_filter = description + " (" + extension + ")" + s_null;
-				_filter += extension + s_null;
-
-				filter += _filter;
-				filetypes_indexed.push_back(types[i].extension);
-			}
-
-			// add all supported files
-			if (include_all_supported_types) {
-				std::string _filter;
-				std::string description = "All supported files";
-				std::string extension = all_file_extensions;
-				_filter = description + " (" + extension + ")" + s_null;
-				_filter += extension + s_null;
-
-				filter += _filter;
-				filetypes_indexed.push_back("");
-			}
-
-			return filter;
-		}
-
-		// remove anything that includes and comes after the first occurence of c in the string fullpath
-		static void rem_tail(std::string& str, char c) {
-			// remove extension if present
-			const auto char_idx = str.find(c);
-			if (std::string::npos != char_idx)
-				str.erase(char_idx);
-
-			return;
-		}
-
 		/// <summary>Helper class for handling COMDLG_FILTERSPEC filters.</summary>
 		class filter_helper {
 			COMDLG_FILTERSPEC* _filters = nullptr;
 			DWORD _num_extensions = 0;
 			filter_helper() = delete;
+			std::vector<file_type> _og_type_list;
 
 		public:
 			/// <summary>Constructor.</summary>
@@ -186,9 +100,38 @@ namespace liblec {
 				return _num_extensions;
 			}
 
+			std::string get_extension_from_index(DWORD index) {
+				index -= 1;	// GetFileTypeIndex is 1 based not 0 based
+
+				int32_t i = 0;
+				std::string _description;
+
+				while (_filters[i].pszName) {
+					auto description = convert_string(_filters[i].pszName);
+
+					if (i == index)
+						_description = description;
+					
+					i++;
+				}
+
+				std::string _extension;
+
+				for (const auto& type : _og_type_list) {
+					if (type.description == _description) {
+						// use the first occurrence under the description
+						_extension = type.extension;
+						break;
+					}
+				}
+
+				return _extension;
+			}
+
 		private:
 			COMDLG_FILTERSPEC* make_filter(std::vector<file_type> types, DWORD& num_extensions, bool include_all_supported_types) {
 				num_extensions = 0;
+				_og_type_list = types;
 
 				// use a map to group extensions by description
 				std::map<std::string, file_type> _types;
@@ -210,7 +153,7 @@ namespace liblec {
 
 					for (const auto& [description, type] : _types) {
 						std::wstring description_string = convert_string(type.description);
-						std::wstring spec_string = convert_string("*." + type.extension);
+						std::wstring spec_string = type.extension.empty() ? L"*.*" : convert_string("*." + type.extension);
 
 						WCHAR* description_source = (WCHAR*)description_string.c_str();
 						WCHAR* spec_source = (WCHAR*)spec_string.c_str();
@@ -367,75 +310,62 @@ namespace liblec {
 		}
 
 		std::string filesystem::save_file(const std::string& file, const save_file_params& params) {
-			std::vector<std::string> filetypes_indexed;
-			const auto filter_string =
-				make_filter_string(params.file_types, params.include_all_supported_types,
-					filetypes_indexed);
+			std::string file_path;
+			IFileDialog* p_file_dialog = nullptr;
 
-			OPENFILENAMEA ofn;
-			ZeroMemory(&ofn, sizeof(ofn));
-			ofn.lStructSize = sizeof(ofn);
-			char _FilePath[MAX_PATH];
-			if (!file.empty())
-				auto temp = lstrcpynA(_FilePath, file.c_str(), _countof(_FilePath));
-			ofn.hwndOwner = _d._fm._d._hWnd;
-			ofn.lpstrFile = _FilePath;
-			if (file.empty())
-				ofn.lpstrFile[0] = '\0';
-			ofn.nMaxFile = MAX_PATH;
-			ofn.lpstrFilter = filter_string.c_str();
-			ofn.nFilterIndex = 1;
-			ofn.hInstance = GetModuleHandle(NULL);
-			ofn.lpstrTitle = params.title.c_str();
-			ofn.Flags = OFN_ENABLEHOOK | OFN_EXPLORER | OFN_HIDEREADONLY | OFN_PATHMUSTEXIST |
-				OFN_NOTESTFILECREATE | OFN_ENABLESIZING;
+			if (SUCCEEDED(CoCreateInstance(CLSID_FileSaveDialog, NULL, CLSCTX_INPROC_SERVER,
+				IID_PPV_ARGS(&p_file_dialog)))) {
 
-			std::string fullpath;
-			if (GetSaveFileNameA(&ofn) == TRUE) {
-				// capture full path
-				fullpath = _FilePath;
+				DWORD options;
+				if (SUCCEEDED(p_file_dialog->GetOptions(&options))) {
+					p_file_dialog->SetOptions(options | FOS_FORCEFILESYSTEM);
 
-				// remove multiple file extensions
-				for (size_t i = 0; i < filetypes_indexed.size(); i++)
-					rem_tail(filetypes_indexed[i], ';');
+					file_type all_types;
+					all_types.description = "All files";
+					all_types.extension = "";
 
-				// determine selected file type
-				std::string sExtension("");
+					auto file_types = params.file_types;
 
-				///
-				/// nFilterIndex
-				/// Type: DWORD
-				/// The index of the currently selected filter in the File Types control. The buffer
-				/// pointed to by lpstrFilter contains pairs of strings that define the filters. The
-				/// first pair of strings has an index value of 1, the second pair 2, and so on. An
-				/// index of zero indicates the custom filter specified by	lpstrCustomFilter. You
-				/// can specify an index on input to indicate the initial filter description and
-				/// filter pattern for the dialog box. When the user selects a file, nFilterIndex
-				/// returns the index of the currently displayed filter. If nFilterIndex is zero and
-				/// lpstrCustomFilter is NULL, the system uses the first filter in the lpstrFilter
-				/// buffer. If all three members are zero or NULL, the system does not use any
-				/// filters and does not show any files in the file list control of the dialog box.
-				/// https://msdn.microsoft.com/en-us/library/windows/desktop/ms646839(v=vs.85).aspx
-				///
-				if (filetypes_indexed.size() > 0 && filetypes_indexed.size() >= ofn.nFilterIndex - 1)
-					sExtension = filetypes_indexed[ofn.nFilterIndex - 1];
+					if (params.include_all_files)
+						file_types.push_back(all_types);
 
-				// add the selected extension to the full path (if it exists)
-				if (!sExtension.empty()) {
-					// format extension properly
-					const size_t period_idx = sExtension.rfind('.');
+					filter_helper helper(file_types, false);
+					p_file_dialog->SetFileTypes(helper.get_filter_size(), helper.get_filter());
 
-					if (std::basic_string<TCHAR>::npos != period_idx)
-						sExtension.erase(0, period_idx);
+					if (!params.title.empty())
+						p_file_dialog->SetTitle(convert_string(params.title).c_str());
 
-					// add the extension if it's not there
-					if (fullpath.find(sExtension) == std::basic_string<TCHAR>::npos)
-						fullpath += sExtension;
-					else { /* user probably selected an existing file or typed in with an extension */ }
+					if (SUCCEEDED(p_file_dialog->Show(_d._fm._d._hWnd))) {
+
+						IShellItem* p_shell_item = nullptr;
+
+						if (SUCCEEDED(p_file_dialog->GetResult(&p_shell_item))) {
+							LPWSTR result = nullptr;
+							p_shell_item->GetDisplayName(SIGDN_FILESYSPATH, &result);
+
+							if (result)
+								file_path = convert_string(std::wstring(result));
+
+							if (result != NULL)
+								CoTaskMemFree(result);
+
+							UINT fileTypeIndex = 0;
+							if (SUCCEEDED(p_file_dialog->GetFileTypeIndex(&fileTypeIndex))) {
+								std::string extension = helper.get_extension_from_index(fileTypeIndex);
+
+								if (!extension.empty())
+									file_path += "." + extension;
+							}
+
+							p_shell_item->Release();
+						}
+					}
 				}
+
+				p_file_dialog->Release();
 			}
 
-			return fullpath;
+			return file_path;
 		}
 	}
 }
