@@ -140,7 +140,7 @@ namespace liblec {
 			}
 
 		private:
-			COMDLG_FILTERSPEC* make_filter(std::vector<file_type> types, const std::string& default_type, DWORD& num_extensions, DWORD& defaultFileTypeIndex, bool include_all_supported_types) {
+			COMDLG_FILTERSPEC* make_filter(const std::vector<file_type>& types, const std::string& default_type, DWORD& num_extensions, DWORD& defaultFileTypeIndex, const bool& include_all_supported_types) {
 				num_extensions = 0;
 				_og_type_list = types;
 
@@ -253,14 +253,14 @@ namespace liblec {
 				if (SUCCEEDED(p_file_dialog->GetOptions(&options))) {
 					p_file_dialog->SetOptions(options | FOS_FORCEFILESYSTEM);
 
-					if (params.allow_multi_select)
+					if (params.get_allow_multi_select())
 						p_file_dialog->SetOptions(options | FOS_ALLOWMULTISELECT);
 
-					filter_helper helper(params.file_types, params.default_type, params.include_all_supported_types);
+					filter_helper helper(params.get_file_types(), params.get_default_type(), params.get_include_all_supported_types());
 					p_file_dialog->SetFileTypes(helper.get_filter_size(), helper.get_filter());
 
-					if (!params.title.empty())
-						p_file_dialog->SetTitle(convert_string(params.title).c_str());
+					if (!params.get_title().empty())
+						p_file_dialog->SetTitle(convert_string(params.get_title()).c_str());
 
 					auto default_file_type_index = helper.get_default_file_type_index();
 
@@ -269,7 +269,7 @@ namespace liblec {
 
 					if (SUCCEEDED(p_file_dialog->Show(_d._fm._d._hWnd))) {
 
-						if (params.allow_multi_select) {
+						if (params.get_allow_multi_select()) {
 							IFileOpenDialog* p_file_open_dialog;
 							if (SUCCEEDED(p_file_dialog->QueryInterface(IID_IFileOpenDialog, (void**)&p_file_open_dialog))) {
 
@@ -343,16 +343,16 @@ namespace liblec {
 					all_types.description = "All Files";
 					all_types.extension = "";
 
-					auto file_types = params.file_types;
+					auto file_types = params.get_file_types();
 
-					if (params.include_all_files)
+					if (params.get_include_all_files())
 						file_types.push_back(all_types);
 
-					filter_helper helper(file_types, params.default_type, false);
+					filter_helper helper(file_types, params.get_default_type(), false);
 					p_file_dialog->SetFileTypes(helper.get_filter_size(), helper.get_filter());
 
-					if (!params.title.empty())
-						p_file_dialog->SetTitle(convert_string(params.title).c_str());
+					if (!params.get_title().empty())
+						p_file_dialog->SetTitle(convert_string(params.get_title()).c_str());
 
 					auto default_file_type_index = helper.get_default_file_type_index();
 

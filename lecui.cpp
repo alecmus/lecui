@@ -574,5 +574,68 @@ namespace liblec {
 			else
 				return std::any_cast<std::string>(value);
 		}
+
+		std::string& open_file_params::title() { return _title; }
+		const std::string& open_file_params::get_title() const { return _title; }
+		open_file_params& open_file_params::title(const std::string& title) {
+			_title = title;
+			return *this;
+		}
+
+		std::vector<file_type>& open_file_params::file_types() { return _file_types; }
+		const std::vector<file_type>& open_file_params::get_file_types() const { return _file_types; }
+		open_file_params& open_file_params::file_types(const std::vector<file_type>& file_types) {
+			_file_types = file_types;
+			return *this;
+		}
+
+		std::string& open_file_params::default_type() { return _default_type; }
+		const std::string& open_file_params::get_default_type() const { return _default_type; }
+		open_file_params& open_file_params::default_type(const std::string& default_type) {
+			_default_type = default_type;
+			return *this;
+		}
+
+		bool& open_file_params::include_all_supported_types() { return _include_all_supported_types; }
+		const bool& open_file_params::get_include_all_supported_types() const { return _include_all_supported_types; }
+		open_file_params& open_file_params::include_all_supported_types(const bool& include_all_supported_types) {
+			_include_all_supported_types = include_all_supported_types;
+			return *this;
+		}
+
+		bool& open_file_params::allow_multi_select() { return _allow_multi_select; }
+		const bool& open_file_params::get_allow_multi_select() const { return _allow_multi_select; }
+		open_file_params& open_file_params::allow_multi_select(const bool& allow_multi_select) {
+			_allow_multi_select = allow_multi_select;
+			return *this;
+		}
+		
+		std::string& save_file_params::title() { return _title; }
+		const std::string& save_file_params::get_title() const { return _title; }
+		save_file_params& save_file_params::title(const std::string& title) {
+			_title = title;
+			return *this;
+		}
+
+		std::vector<file_type>& save_file_params::file_types() { return _file_types; }
+		const std::vector<file_type>& save_file_params::get_file_types() const { return _file_types; }
+		save_file_params& save_file_params::file_types(const std::vector<file_type>& file_types) {
+			_file_types = file_types;
+			return *this;
+		}
+
+		std::string& save_file_params::default_type() { return _default_type; }
+		const std::string& save_file_params::get_default_type() const { return _default_type; }
+		save_file_params& save_file_params::default_type(const std::string& default_type) {
+			_default_type = default_type;
+			return *this;
+		}
+
+		bool& save_file_params::include_all_files() { return _include_all_files; }
+		const bool& save_file_params::get_include_all_files() const { return _include_all_files; }
+		save_file_params& save_file_params::include_all_files(const bool& include_all_files) {
+			_include_all_files = include_all_files;
+			return *this;
+		}
 	}
 }

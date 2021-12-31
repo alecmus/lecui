@@ -646,41 +646,151 @@ namespace liblec {
 		};
 
 		/// <summary>Open file parameters.</summary>
-		struct open_file_params {
-			/// <summary>The list of file types to open, as defined in <see cref="file_type"></see>.</summary>
-			std::vector<file_type> file_types;
+		class lecui_api open_file_params {
+			std::string _title = "Open File";
+			std::vector<file_type> _file_types;
+			std::string _default_type;
+			bool _include_all_supported_types = true;
+			bool _allow_multi_select = false;
 
-			/// <summary>The file type to open by default, e.g. "PNG Image".</summary>
+		public:
+			/// <summary>Get or set the title of the modal form.</summary>
+			/// <returns>A reference to the property.</returns>
+			std::string& title();
+
+			/// <summary>Get the title of the modal form.</summary>
+			/// <returns>A constant reference to the property.</returns>
+			const std::string& get_title() const;
+
+			/// <summary>Set the title of the modal form.</summary>
+			/// <param name="title">The title of the modal form, e.g. "Open Image".</param>
+			/// <returns>A reference to the modified object.</returns>
+			open_file_params& title(const std::string& title);
+
+			/// <summary>Get or set the file types to open, as defined in <see cref="file_type"></see>.</summary>
+			/// <returns>A reference to the property.</returns>
+			std::vector<file_type>& file_types();
+
+			/// <summary>Get the file types to open, as defined in <see cref="file_type"></see>.</summary>
+			/// <returns>A constant reference to the property.</returns>
+			const std::vector<file_type>& get_file_types() const;
+
+			/// <summary>Set the file types to open.</summary>
+			/// <param name="file_types">The list of file types to open, as defined in <see cref="file_type"></see>.</param>
+			/// <returns>A reference to the modified object.</returns>
+			open_file_params& file_types(const std::vector<file_type>& file_types);
+
+			/// <summary>Get or set the file type to open by default, e.g. "PNG Image".</summary>
+			/// <returns>A reference to the property.</returns>
 			/// <remarks>The description of the file is used here not the extension, since various extensions can
 			/// be grouped under one description, e.g. JPG Image can refer to BOTH .jpg and .jpeg.</remarks>
-			std::string default_type;
+			std::string& default_type();
 
-			/// <summary>Whether to include and "all supported file types" entry to allow viewing
-			/// of all supported file types instead of being forced to select at least one.</summary>
-			bool include_all_supported_types = true;
+			/// <summary>Get the file type to open by default, e.g. "PNG Image".</summary>
+			/// <returns>A constant reference to the property.</returns>
+			/// <remarks>The description of the file is used here not the extension, since various extensions can
+			/// be grouped under one description, e.g. JPG Image can refer to BOTH .jpg and .jpeg.</remarks>
+			const std::string& get_default_type() const;
 
-			/// <summary>Whether to allow the selection of multiple files.</summary>
-			bool allow_multi_select = false;
+			/// <summary>Set the file type to open by default.</summary>
+			/// <param name="default_type">The file type to open by default, e.g. "PNG Image".</param>
+			/// <returns>A reference to the modified object.</returns>
+			/// <remarks>The description of the file is used here not the extension, since various extensions can
+			/// be grouped under one description, e.g. JPG Image can refer to BOTH .jpg and .jpeg.</remarks>
+			open_file_params& default_type(const std::string& default_type);
 
-			/// <summary>The title of the dialog box, e.g. "Open Image".</summary>
-			std::string title = "Open File";
+			/// <summary>Get or set whether to include an entry for "all supported file types".</summary>
+			/// <returns>A reference to the property.</returns>
+			bool& include_all_supported_types();
+
+			/// <summary>Get whether to include an entry for "all supported file types".</summary>
+			/// <returns>A constant reference to the property.</returns>
+			const bool& get_include_all_supported_types() const;
+
+			/// <summary>Set whether to include an entry for "all supported file types".</summary>
+			/// <param name="include_all_supported_types">Whether to include the entry.</param>
+			/// <returns>A reference to the modified object.</returns>
+			open_file_params& include_all_supported_types(const bool& include_all_supported_types);
+
+			/// <summary>Get or set whether to allow the selection of multiple files.</summary>
+			/// <returns>A reference to the property.</returns>
+			bool& allow_multi_select();
+
+			/// <summary>Get whether to allow the selection of multiple files.</summary>
+			/// <returns>A constant reference to the property.</returns>
+			const bool& get_allow_multi_select() const;
+
+			/// <summary>Set whether to allow the selection of multiple files.</summary>
+			/// <param name="allow_multi_select">Whether to allow the selection of multiple files.</param>
+			/// <returns>A reference to the modified object.</returns>
+			open_file_params& allow_multi_select(const bool& allow_multi_select);
 		};
 
 		/// <summary>Save file parameters.</summary>
-		struct save_file_params {
-			/// <summary>The list of file types to open, as defined in <see cref="file_type"></see>.</summary>
-			std::vector<file_type> file_types;
+		class lecui_api save_file_params {
+			std::string _title = "Save File";
+			std::vector<file_type> _file_types;
+			std::string _default_type;
+			bool _include_all_files = true;
 
-			/// <summary>The file type to save to by default, e.g. "PNG Image".</summary>
+		public:
+			/// <summary>Get or set the title of the modal form.</summary>
+			/// <returns>A reference to the property.</returns>
+			std::string& title();
+
+			/// <summary>Get the title of the modal form.</summary>
+			/// <returns>A constant reference to the property.</returns>
+			const std::string& get_title() const;
+
+			/// <summary>Set the title of the modal form.</summary>
+			/// <param name="title">The title of the modal form, e.g. "Save Document".</param>
+			/// <returns>A reference to the modified object.</returns>
+			save_file_params& title(const std::string& title);
+
+			/// <summary>Get or set the file types to save to, as defined in <see cref="file_type"></see>.</summary>
+			/// <returns>A reference to the property.</returns>
+			std::vector<file_type>& file_types();
+
+			/// <summary>Get the file types to save to, as defined in <see cref="file_type"></see>.</summary>
+			/// <returns>A constant reference to the property.</returns>
+			const std::vector<file_type>& get_file_types() const;
+
+			/// <summary>Set the file types to open.</summary>
+			/// <param name="file_types">The list of file types to save to, as defined in <see cref="file_type"></see>.</param>
+			/// <returns>A reference to the modified object.</returns>
+			save_file_params& file_types(const std::vector<file_type>& file_types);
+
+			/// <summary>Get or set the file type to open by default, e.g. "PNG Image".</summary>
+			/// <returns>A reference to the property.</returns>
 			/// <remarks>The description of the file is used here not the extension, since various extensions can
 			/// be grouped under one description, e.g. JPG Image can refer to BOTH .jpg and .jpeg.</remarks>
-			std::string default_type;
+			std::string& default_type();
 
-			/// <summary>Whether to include and "all files" entry to allow saving files with a custom extension (or none).</summary>
-			bool include_all_files = true;
+			/// <summary>Get the file type to open by default, e.g. "PNG Image".</summary>
+			/// <returns>A constant reference to the property.</returns>
+			/// <remarks>The description of the file is used here not the extension, since various extensions can
+			/// be grouped under one description, e.g. JPG Image can refer to BOTH .jpg and .jpeg.</remarks>
+			const std::string& get_default_type() const;
 
-			/// <summary>The title of the dialog box, e.g. "Save Document".</summary>
-			std::string title = "Save File";
+			/// <summary>Set the file type to open by default.</summary>
+			/// <param name="default_type">The file type to open by default, e.g. "PNG Image".</param>
+			/// <returns>A reference to the modified object.</returns>
+			/// <remarks>The description of the file is used here not the extension, since various extensions can
+			/// be grouped under one description, e.g. JPG Image can refer to BOTH .jpg and .jpeg.</remarks>
+			save_file_params& default_type(const std::string& default_type);
+
+			/// <summary>Get or set whether to include and "all files" entry to allow saving files with a custom extension (or none).</summary>
+			/// <returns>A reference to the property.</returns>
+			bool& include_all_files();
+
+			/// <summary>Get whether to include and "all files" entry to allow saving files with a custom extension (or none).</summary>
+			/// <returns>A constant reference to the property.</returns>
+			const bool& get_include_all_files() const;
+
+			/// <summary>Set whether to include and "all files" entry to allow saving files with a custom extension (or none).</summary>
+			/// <param name="include_all_files">Whether to include the entry.</param>
+			/// <returns>A reference to the modified object.</returns>
+			save_file_params& include_all_files(const bool& include_all_files);
 		};
 
 		/// <summary>Table column.</summary>
