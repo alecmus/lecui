@@ -377,8 +377,33 @@ namespace liblec {
 							if (SUCCEEDED(p_file_dialog->GetFileTypeIndex(&fileTypeIndex))) {
 								std::string extension = helper.get_extension_from_index(fileTypeIndex);
 
-								if (!extension.empty())
-									file_path += "." + extension;
+								if (!extension.empty()) {
+									bool extension_already_added = false;
+
+									// check if extension has already been added by the user
+									auto idx = file_path.rfind('.');
+
+									if (idx != std::string::npos) {
+										std::string user_extension = file_path;
+										user_extension.erase(0, idx + 1);
+
+										// make user extension lowercase for comparison
+										for (auto& character : user_extension)
+											character = tolower(character);
+
+										std::string expected_extension = extension;
+
+										// make expected extension lowercase for comparison
+										for (auto& character : expected_extension)
+											character = tolower(character);
+
+										if (user_extension == expected_extension)
+											extension_already_added = true;
+									}
+
+									if (!extension_already_added)
+										file_path += "." + extension;
+								}
 							}
 
 							p_shell_item->Release();
