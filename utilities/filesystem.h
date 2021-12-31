@@ -31,8 +31,8 @@ namespace liblec {
 
 			/// <summary>Display an 'open file' modal dialog.</summary>
 			/// <param name="params">The parameters of the dialog.</param>
-			/// <returns>The full path to the selected file, including it's extension.</returns>
-			[[nodiscard]] std::string open_file(const open_file_params& params);
+			/// <returns>A list of the full paths to the selected file(s), including the extensions.</returns>
+			[[nodiscard]] std::vector<std::string> open_file(const open_file_params& params);
 
 			/// <summary>Display a 'save file' modal dialog so the user can select its properties
 			/// and location.</summary>

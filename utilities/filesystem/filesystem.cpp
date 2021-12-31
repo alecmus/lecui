@@ -285,9 +285,8 @@ namespace liblec {
 			}
 		};
 
-		std::string filesystem::open_file(const open_file_params& params) {
-			std::string file_path;
-
+		std::vector<std::string> filesystem::open_file(const open_file_params& params) {
+			std::vector<std::string> file_list;
 			IFileDialog* p_file_dialog = nullptr;
 
 			if (SUCCEEDED(CoCreateInstance(CLSID_FileOpenDialog, NULL, CLSCTX_INPROC_SERVER,
@@ -297,6 +296,9 @@ namespace liblec {
 				if (SUCCEEDED(p_file_dialog->GetOptions(&options))) {
 					p_file_dialog->SetOptions(options | FOS_FORCEFILESYSTEM);
 
+					if (params.allow_multi_select)
+						p_file_dialog->SetOptions(options | FOS_ALLOWMULTISELECT);
+
 					filter_helper helper(params.file_types, params.include_all_supported_types);
 					p_file_dialog->SetFileTypes(helper.get_filter_size(), helper.get_filter());
 
@@ -305,18 +307,55 @@ namespace liblec {
 
 					if (SUCCEEDED(p_file_dialog->Show(_d._fm._d._hWnd))) {
 
-						IShellItem* p_shell_item = nullptr;
+						if (params.allow_multi_select) {
+							IFileOpenDialog* p_file_open_dialog;
+							if (SUCCEEDED(p_file_dialog->QueryInterface(IID_IFileOpenDialog, (void**)&p_file_open_dialog))) {
 
-						if (SUCCEEDED(p_file_dialog->GetResult(&p_shell_item))) {
-							LPWSTR result = nullptr;
-							p_shell_item->GetDisplayName(SIGDN_FILESYSPATH, &result);
-							p_shell_item->Release();
+								IShellItemArray* p_shell_items = nullptr;
+								if (SUCCEEDED(p_file_open_dialog->GetResults(&p_shell_items))) {
 
-							if (result)
-								file_path = convert_string(std::wstring(result));
+									DWORD count = 0;
+									
+									if (SUCCEEDED(p_shell_items->GetCount(&count))) {
 
-							if (result != NULL)
-								CoTaskMemFree(result);
+										for (DWORD i = 0; i < count; i++) {
+											IShellItem* p_shell_item = nullptr;
+
+											if (SUCCEEDED(p_shell_items->GetItemAt(i, &p_shell_item))) {
+												LPWSTR result = nullptr;
+												p_shell_item->GetDisplayName(SIGDN_FILESYSPATH, &result);
+
+												if (result)
+													file_list.push_back(convert_string(std::wstring(result)));
+
+												if (result != NULL)
+													CoTaskMemFree(result);
+
+												p_shell_item->Release();
+											}
+										}
+										p_shell_items->Release();
+									}
+								}
+
+								p_file_open_dialog->Release();
+							}
+						}
+						else {
+							IShellItem* p_shell_item = nullptr;
+
+							if (SUCCEEDED(p_file_dialog->GetResult(&p_shell_item))) {
+								LPWSTR result = nullptr;
+								p_shell_item->GetDisplayName(SIGDN_FILESYSPATH, &result);
+
+								if (result)
+									file_list.push_back(convert_string(std::wstring(result)));
+
+								if (result != NULL)
+									CoTaskMemFree(result);
+
+								p_shell_item->Release();
+							}
 						}
 					}
 				}
@@ -324,7 +363,7 @@ namespace liblec {
 				p_file_dialog->Release();
 			}
 
-			return file_path;
+			return file_list;
 		}
 
 		std::string filesystem::save_file(const std::string& file, const save_file_params& params) {

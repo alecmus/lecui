@@ -652,6 +652,9 @@ namespace liblec {
 			/// of all supported file types instead of being forced to select at least one.</summary>
 			bool include_all_supported_types = true;
 
+			/// <summary>Whether to allow the selection of multiple files.</summary>
+			bool allow_multi_select = false;
+
 			/// <summary>The title of the dialog box, e.g. "Open Image".</summary>
 			std::string title = "Open File";
 		};
