@@ -71,18 +71,20 @@ namespace liblec {
 		class filter_helper {
 			COMDLG_FILTERSPEC* _filters = nullptr;
 			DWORD _num_extensions = 0;
+			DWORD _default_file_type_index = 0;
 			filter_helper() = delete;
 			std::vector<file_type> _og_type_list;
 
 		public:
 			/// <summary>Constructor.</summary>
 			/// <param name="types">The list of file types.</param>
-			/// <param name="include_all_supported_types">Whether to include an "All supported types" option.</param>
-			filter_helper(std::vector<file_type> types, bool include_all_supported_types) {
+			/// <param name="include_all_supported_types">Whether to include an "All Supported Types" option.</param>
+			filter_helper(std::vector<file_type> types, const std::string& default_type, bool include_all_supported_types) {
 				// make filter
-				_filters = make_filter(types, _num_extensions, include_all_supported_types);
+				_filters = make_filter(types, default_type, _num_extensions, _default_file_type_index, include_all_supported_types);
 			}
 
+			/// <summary>Destructor.</summary>
 			~filter_helper() {
 				// clean-up
 				free_filter(_filters);
@@ -100,6 +102,9 @@ namespace liblec {
 				return _num_extensions;
 			}
 
+			/// <summary>Determine and extension that matches a given index.</summary>
+			/// <param name="index">The index as returned by GetFileTypeIndex().</param>
+			/// <returns>The extension, if a match is found.</returns>
 			std::string get_extension_from_index(DWORD index) {
 				index -= 1;	// GetFileTypeIndex is 1 based not 0 based
 
@@ -128,8 +133,14 @@ namespace liblec {
 				return _extension;
 			}
 
+			/// <summary>Get the index of the default file type.</summary>
+			/// <returns>The index of the default file type, suitable for consumption by SetFileTypeIndex().</returns>
+			DWORD get_default_file_type_index() {
+				return _default_file_type_index;
+			}
+
 		private:
-			COMDLG_FILTERSPEC* make_filter(std::vector<file_type> types, DWORD& num_extensions, bool include_all_supported_types) {
+			COMDLG_FILTERSPEC* make_filter(std::vector<file_type> types, const std::string& default_type, DWORD& num_extensions, DWORD& defaultFileTypeIndex, bool include_all_supported_types) {
 				num_extensions = 0;
 				_og_type_list = types;
 
@@ -170,6 +181,9 @@ namespace liblec {
 							filters[index].pszSpec = spec_buffer;
 
 							all_spec_length += wcslen(filters[index].pszSpec) + 1;
+
+							if (default_type == type.description)
+								defaultFileTypeIndex = index + 1;
 						}
 						else {
 							filters[index].pszName = nullptr;
@@ -181,7 +195,7 @@ namespace liblec {
 					}
 
 					if (include_all_supported_types && _types.size() > 1) {
-						const WCHAR* all_supported_file_types_string = L"All supported files";
+						const WCHAR* all_supported_file_types_string = L"All Supported Files";
 
 						// dynamic memory allocation (name and spec strings)
 						WCHAR* description_buffer = (WCHAR*)std::malloc((wcslen(all_supported_file_types_string) + 1) * sizeof(WCHAR));
@@ -242,11 +256,16 @@ namespace liblec {
 					if (params.allow_multi_select)
 						p_file_dialog->SetOptions(options | FOS_ALLOWMULTISELECT);
 
-					filter_helper helper(params.file_types, params.include_all_supported_types);
+					filter_helper helper(params.file_types, params.default_type, params.include_all_supported_types);
 					p_file_dialog->SetFileTypes(helper.get_filter_size(), helper.get_filter());
 
 					if (!params.title.empty())
 						p_file_dialog->SetTitle(convert_string(params.title).c_str());
+
+					auto default_file_type_index = helper.get_default_file_type_index();
+
+					if (default_file_type_index)
+						p_file_dialog->SetFileTypeIndex(default_file_type_index);
 
 					if (SUCCEEDED(p_file_dialog->Show(_d._fm._d._hWnd))) {
 
@@ -321,7 +340,7 @@ namespace liblec {
 					p_file_dialog->SetOptions(options | FOS_FORCEFILESYSTEM);
 
 					file_type all_types;
-					all_types.description = "All files";
+					all_types.description = "All Files";
 					all_types.extension = "";
 
 					auto file_types = params.file_types;
@@ -329,11 +348,16 @@ namespace liblec {
 					if (params.include_all_files)
 						file_types.push_back(all_types);
 
-					filter_helper helper(file_types, false);
+					filter_helper helper(file_types, params.default_type, false);
 					p_file_dialog->SetFileTypes(helper.get_filter_size(), helper.get_filter());
 
 					if (!params.title.empty())
 						p_file_dialog->SetTitle(convert_string(params.title).c_str());
+
+					auto default_file_type_index = helper.get_default_file_type_index();
+
+					if (default_file_type_index)
+						p_file_dialog->SetFileTypeIndex(default_file_type_index);
 
 					if (SUCCEEDED(p_file_dialog->Show(_d._fm._d._hWnd))) {
 

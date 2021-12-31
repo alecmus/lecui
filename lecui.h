@@ -640,6 +640,8 @@ namespace liblec {
 			std::string extension = "png";
 
 			/// <summary>The description of the file type, e.g. "PNG Image".</summary>
+			/// <remarks>Various extensions can be grouped under one description, e.g. JPG Image can
+			/// refer to BOTH .jpg and .jpeg. To do this just add two file types under the same description.</remarks>
 			std::string description = "PNG Image";
 		};
 
@@ -647,6 +649,11 @@ namespace liblec {
 		struct open_file_params {
 			/// <summary>The list of file types to open, as defined in <see cref="file_type"></see>.</summary>
 			std::vector<file_type> file_types;
+
+			/// <summary>The file type to open by default, e.g. "PNG Image".</summary>
+			/// <remarks>The description of the file is used here not the extension, since various extensions can
+			/// be grouped under one description, e.g. JPG Image can refer to BOTH .jpg and .jpeg.</remarks>
+			std::string default_type;
 
 			/// <summary>Whether to include and "all supported file types" entry to allow viewing
 			/// of all supported file types instead of being forced to select at least one.</summary>
@@ -663,6 +670,11 @@ namespace liblec {
 		struct save_file_params {
 			/// <summary>The list of file types to open, as defined in <see cref="file_type"></see>.</summary>
 			std::vector<file_type> file_types;
+
+			/// <summary>The file type to save to by default, e.g. "PNG Image".</summary>
+			/// <remarks>The description of the file is used here not the extension, since various extensions can
+			/// be grouped under one description, e.g. JPG Image can refer to BOTH .jpg and .jpeg.</remarks>
+			std::string default_type;
 
 			/// <summary>Whether to include and "all files" entry to allow saving files with a custom extension (or none).</summary>
 			bool include_all_files = true;
