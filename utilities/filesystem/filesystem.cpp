@@ -13,7 +13,7 @@
 
 // Windows headers
 #include <Windows.h>
-#include <ShlObj.h>		// for SHBrowseForFolderA
+#include <ShObjIdl_core.h>		// for IFileDialog
 
 namespace liblec {
 	namespace lecui {
@@ -54,6 +54,9 @@ namespace liblec {
 
 								if (result)
 									folder = convert_string(std::wstring(result));
+
+								if (result != NULL)
+									CoTaskMemFree(result);
 							}
 					}
 				}
