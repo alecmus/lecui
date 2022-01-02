@@ -461,20 +461,21 @@ namespace liblec {
 			rect.bottom = rect.top + height;
 		}
 
-		static inline void create_bitmap(ID2D1RenderTarget* pRenderTarget,
-			IWICImagingFactory* pIWICFactory, IWICBitmapDecoder* pDecoder,
-			IWICBitmapFrameDecode* pSource, IWICFormatConverter* pConverter,
-			ID2D1Bitmap** ppBitmap, size target_size,
+		static inline void create_bitmap(ID2D1RenderTarget* p_render_target,
+			IWICImagingFactory* p_IWICFactory, IWICBitmapDecoder* p_decoder,
+			ID2D1Bitmap** pp_bitmap, size target_size,
 			bool enlarge_if_smaller, bool keep_aspect_ratio, image_quality quality) {
-			IWICBitmapScaler* pScaler = NULL;
+			IWICBitmapFrameDecode* pSource = nullptr;
+			IWICFormatConverter* pConverter = nullptr;
+			IWICBitmapScaler* pScaler = nullptr;
 
 			// Create the initial frame.
-			HRESULT hr = pDecoder->GetFrame(0, &pSource);
+			HRESULT hr = p_decoder->GetFrame(0, &pSource);
 
 			if (SUCCEEDED(hr)) {
 				// Convert the image format to 32bppPBGRA
 				// (DXGI_FORMAT_B8G8R8A8_UNORM + D2D1_ALPHA_MODE_PREMULTIPLIED).
-				hr = pIWICFactory->CreateFormatConverter(&pConverter);
+				hr = p_IWICFactory->CreateFormatConverter(&pConverter);
 			}
 
 			if (SUCCEEDED(hr)) {
@@ -494,7 +495,7 @@ namespace liblec {
 
 					if (new_width != original_width || new_height != original_height) {
 						// scale image
-						hr = pIWICFactory->CreateBitmapScaler(&pScaler);
+						hr = p_IWICFactory->CreateBitmapScaler(&pScaler);
 
 						if (SUCCEEDED(hr)) {
 							WICBitmapInterpolationMode mode;
@@ -514,103 +515,95 @@ namespace liblec {
 						}
 						if (SUCCEEDED(hr)) {
 							hr = pConverter->Initialize(pScaler, GUID_WICPixelFormat32bppPBGRA,
-								WICBitmapDitherTypeNone, NULL, 0.f, WICBitmapPaletteTypeMedianCut);
+								WICBitmapDitherTypeNone, nullptr, 0.f, WICBitmapPaletteTypeMedianCut);
 						}
 					}
 					else {
 						// don't scale image
 						hr = pConverter->Initialize(pSource, GUID_WICPixelFormat32bppPBGRA,
-							WICBitmapDitherTypeNone, NULL, 0.f, WICBitmapPaletteTypeMedianCut);
+							WICBitmapDitherTypeNone, nullptr, 0.f, WICBitmapPaletteTypeMedianCut);
 					}
 				}
 			}
 
 			if (SUCCEEDED(hr)) {
 				// Create a Direct2D bitmap from the WIC bitmap.
-				hr = pRenderTarget->CreateBitmapFromWicBitmap(pConverter, NULL, ppBitmap);
+				hr = p_render_target->CreateBitmapFromWicBitmap(pConverter, nullptr, pp_bitmap);
 			}
 
 			safe_release(&pScaler);
+			safe_release(&pConverter);
+			safe_release(&pSource);
 		}
 
-		static inline HRESULT load_bitmap_resource(ID2D1RenderTarget* pRenderTarget,
-			IWICImagingFactory* pIWICFactory, HINSTANCE hInst, int id_image,
-			std::string resource_type, ID2D1Bitmap** ppBitmap,
+		static inline HRESULT load_bitmap_resource(ID2D1RenderTarget* p_render_target,
+			IWICImagingFactory* p_IWICFactory, HINSTANCE h_inst, int id_image,
+			std::string resource_type, ID2D1Bitmap** pp_bitmap,
 			size target_size, bool enlarge_if_smaller, bool keep_aspect_ratio, image_quality quality) {
-			IWICBitmapDecoder* pDecoder = NULL;
-			IWICBitmapFrameDecode* pSource = NULL;
-			IWICStream* pStream = NULL;
-			IWICFormatConverter* pConverter = NULL;
+			IWICBitmapDecoder* p_decoder = nullptr;
+			IWICStream* p_stream = nullptr;
 
-			HRSRC imageResHandle = NULL;
-			HGLOBAL imageResDataHandle = NULL;
-			void* pImageFile = NULL;
-			DWORD imageFileSize = 0;
+			HRSRC image_resource_handle = NULL;
+			HGLOBAL image_resource_data_handle = NULL;
+			void* p_image_file = nullptr;
+			DWORD image_file_size = 0;
 
 			// Locate the resource.
-			imageResHandle = FindResourceA(hInst, MAKEINTRESOURCEA(id_image), resource_type.c_str());
-			HRESULT hr = imageResHandle ? S_OK : E_FAIL;
+			image_resource_handle = FindResourceA(h_inst, MAKEINTRESOURCEA(id_image), resource_type.c_str());
+			HRESULT hr = image_resource_handle ? S_OK : E_FAIL;
 			if (SUCCEEDED(hr)) {
 				// Load the resource.
-				imageResDataHandle = LoadResource(hInst, imageResHandle);
-				hr = imageResDataHandle ? S_OK : E_FAIL;
+				image_resource_data_handle = LoadResource(h_inst, image_resource_handle);
+				hr = image_resource_data_handle ? S_OK : E_FAIL;
 			}
 
 			if (SUCCEEDED(hr)) {
 				// Lock it to get a system memory pointer.
-				pImageFile = LockResource(imageResDataHandle);
-				hr = pImageFile ? S_OK : E_FAIL;
+				p_image_file = LockResource(image_resource_data_handle);
+				hr = p_image_file ? S_OK : E_FAIL;
 			}
 
 			if (SUCCEEDED(hr)) {
 				// Calculate the size.
-				imageFileSize = SizeofResource(hInst, imageResHandle);
-				hr = imageFileSize ? S_OK : E_FAIL;
+				image_file_size = SizeofResource(h_inst, image_resource_handle);
+				hr = image_file_size ? S_OK : E_FAIL;
 			}
 			if (SUCCEEDED(hr)) {
 				// Create a WIC stream to map onto the memory.
-				hr = pIWICFactory->CreateStream(&pStream);
+				hr = p_IWICFactory->CreateStream(&p_stream);
 			}
 			if (SUCCEEDED(hr)) {
 				// Initialize the stream with the memory pointer and size.
-				hr = pStream->InitializeFromMemory(reinterpret_cast<BYTE*>(pImageFile), imageFileSize);
+				hr = p_stream->InitializeFromMemory(reinterpret_cast<BYTE*>(p_image_file), image_file_size);
 			}
 			if (SUCCEEDED(hr)) {
 				// Create a decoder for the stream.
-				hr = pIWICFactory->CreateDecoderFromStream(pStream, NULL,
-					WICDecodeMetadataCacheOnLoad, &pDecoder);
+				hr = p_IWICFactory->CreateDecoderFromStream(p_stream, nullptr,
+					WICDecodeMetadataCacheOnLoad, &p_decoder);
 			}
 
 			if (SUCCEEDED(hr))
-				create_bitmap(pRenderTarget, pIWICFactory, pDecoder, pSource, pConverter,
-					ppBitmap, target_size, enlarge_if_smaller, keep_aspect_ratio, quality);
+				create_bitmap(p_render_target, p_IWICFactory, p_decoder,
+					pp_bitmap, target_size, enlarge_if_smaller, keep_aspect_ratio, quality);
 
-			safe_release(&pDecoder);
-			safe_release(&pSource);
-			safe_release(&pStream);
-			safe_release(&pConverter);
+			safe_release(&p_decoder);
+			safe_release(&p_stream);
 			return hr;
 		}
 
-		static inline HRESULT load_bitmap_file(ID2D1RenderTarget* pRenderTarget,
-			IWICImagingFactory* pIWICFactory, PCWSTR uri, ID2D1Bitmap** ppBitmap,
+		static inline HRESULT load_bitmap_file(ID2D1RenderTarget* p_render_target,
+			IWICImagingFactory* p_IWICFactory, PCWSTR uri, ID2D1Bitmap** pp_bitmap,
 			size target_size, bool enlarge_if_smaller, bool keep_aspect_ratio, image_quality quality) {
-			IWICBitmapDecoder* pDecoder = NULL;
-			IWICBitmapFrameDecode* pSource = NULL;
-			IWICFormatConverter* pConverter = NULL;
-			IWICBitmapScaler* pScaler = NULL;
+			IWICBitmapDecoder* p_decoder = nullptr;
 
-			HRESULT hr = pIWICFactory->CreateDecoderFromFilename(uri, NULL, GENERIC_READ,
-				WICDecodeMetadataCacheOnLoad, &pDecoder);
+			HRESULT hr = p_IWICFactory->CreateDecoderFromFilename(uri, nullptr, GENERIC_READ,
+				WICDecodeMetadataCacheOnLoad, &p_decoder);
 
 			if (SUCCEEDED(hr))
-				create_bitmap(pRenderTarget, pIWICFactory, pDecoder, pSource, pConverter,
-					ppBitmap, target_size, enlarge_if_smaller, keep_aspect_ratio, quality);
+				create_bitmap(p_render_target, p_IWICFactory, p_decoder,
+					pp_bitmap, target_size, enlarge_if_smaller, keep_aspect_ratio, quality);
 
-			safe_release(&pDecoder);
-			safe_release(&pSource);
-			safe_release(&pConverter);
-			safe_release(&pScaler);
+			safe_release(&p_decoder);
 			return hr;
 		}
 
