@@ -170,5 +170,9 @@ namespace liblec {
 		void widget_manager::select(const std::string& path) {
 			_d._fm._d.select(path);
 		}
+
+		bool widget_manager::refresh(const std::string& path, std::string& error) {
+			return _d._fm._d.refresh(path, error);
+		}
 	}
 }

@@ -3089,6 +3089,46 @@ namespace liblec {
 			catch (const std::exception&) {}
 		}
 
+		bool form::impl::refresh(const std::string& path, std::string& error) {
+			bool success = false;
+
+			try {
+				// get the page alias
+				const auto idx = path.find("/");
+
+				if (idx != std::string::npos) {
+					const auto page_alias = path.substr(0, idx);
+					const auto path_remaining = path.substr(idx + 1);
+
+					try {
+						// check form pages
+						auto result = find_widget(_p_pages.at(page_alias), path_remaining);
+						result.widget.discard_resources();
+						update();
+						success = true;
+					}
+					catch (const std::exception& e) { error = e.what(); }
+
+					if (!success) {
+						try {
+							// check status panes
+							auto result = find_widget(_p_status_panes.at(page_alias), path_remaining);
+							result.widget.discard_resources();
+							update();
+							success = true;
+						}
+						catch (const std::exception& e) { error = e.what(); }
+					}
+				}
+			}
+			catch (const std::exception& e) { error = e.what(); }
+
+			if (success)
+				error.clear();
+
+			return success;
+		}
+
 		lecui::size form::impl::get_status_size(containers::status_pane_specs::pane_location type) {
 			std::string alias;
 			switch (type) {

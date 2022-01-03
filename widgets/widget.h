@@ -287,27 +287,41 @@ namespace liblec {
 		/// <summary>Widget manager class.</summary>
 		class lecui_api widget_manager {
 		public:
+			/// <summary>Widget manager constructor.</summary>
+			/// <param name="fm">The form whose widgets we would like to manage.</param>
 			widget_manager(form& fm);
 			~widget_manager();
 
 			/// <summary>Enable a widget.</summary>
 			/// <param name="path">The full path to the widget, e.g. "home_page/username".</param>
+			/// <param name="error">Error information.</param>
 			/// <returns>Returns true if successful, else false.</returns>
+			/// <remarks>Note that a call to form::update() is not necessary after this method is called because
+			/// it sends this call internally.</remarks>
 			bool enable(const std::string& path, std::string& error);
 
 			/// <summary>Disable a widget.</summary>
 			/// <param name="path">The full path to the widget, e.g. "home_page/username".</param>
+			/// <param name="error">Error information.</param>
 			/// <returns>Returns true if successful, else false.</returns>
+			/// <remarks>Note that a call to form::update() is not necessary after this method is called because
+			/// it sends this call internally.</remarks>
 			bool disable(const std::string& path, std::string& error);
 
 			/// <summary>Show a widget.</summary>
 			/// <param name="path">The full path to the widget, e.g. "home_page/username".</param>
+			/// <param name="error">Error information.</param>
 			/// <returns>Returns true if successful, else false.</returns>
+			/// <remarks>Note that a call to form::update() is not necessary after this method is called because
+			/// it sends this call internally.</remarks>
 			bool show(const std::string& path, std::string& error);
 
 			/// <summary>Hide a widget.</summary>
 			/// <param name="path">The full path to the widget, e.g. "home_page/username".</param>
+			/// <param name="error">Error information.</param>
 			/// <returns>Returns true if successful, else false.</returns>
+			/// <remarks>Note that a call to form::update() is not necessary after this method is called because
+			/// it sends this call internally.</remarks>
 			bool hide(const std::string& path, std::string& error);
 
 			/// <summary>Close a widget.</summary>
@@ -319,13 +333,31 @@ namespace liblec {
 			/// failsafe, the widget is not closed immediately when this method is called. Rather
 			/// a special timer is scheduled internally to close the widget. After this, the widget
 			/// is closed as soon as possible, typically soon after the current handler exits.
-			/// </remarks>
+			/// Note that a call to form::update() is not necessary after this method is called because
+			/// it sends this call internally.
+			/// Note that a call to form::update() is not necessary after this method is called because
+			/// it sends this call internally.</remarks>
 			void close(const std::string& path);
 
 			/// <summary>Select a widget.</summary>
 			/// <param name="path">The full path to the widget, e.g. "home_page/username".</param>
-			/// <remarks>Any previous selection within the page is removed.</remarks>
+			/// <remarks>Any previous selection within the page is removed.
+			/// Note that a call to form::update() is not necessary after this method is called because
+			/// it sends this call internally.</remarks>
 			void select(const std::string& path);
+
+			/// <summary>Refresh a widget.</summary>
+			/// <param name="path">The full path to the widget, e.g. "home_page/username".</param>
+			/// <param name="error">Error information.</param>
+			/// <returns>Returns true if successful, else false.</returns>
+			/// <remarks>This method causes all the widget's graphic resources to be recreated. This is
+			/// useful if you need a resource being used by the widget, e.g. a .png file being used by an
+			/// image_view, freed immediately after the widget's properties are changed. A call to form::reload()
+			/// would do this but it's a lot more expensive since it refreshes every widget in every page, and a call
+			/// to form::update() would only free the resource after the next time a paint operation is done.
+			/// Note that a call to form::update() is not necessary after this method is called because
+			/// it sends this call internally.</remarks>
+			bool refresh(const std::string& path, std::string& error);
 
 		private:
 			class impl;

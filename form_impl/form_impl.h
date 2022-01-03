@@ -369,6 +369,7 @@ namespace liblec {
 			void close_container(const std::string& path);
 			void clear_selection(containers::page& container);
 			void select(const std::string& path);
+			bool refresh(const std::string& path, std::string& error);
 
 			lecui::size get_status_size(containers::status_pane_specs::pane_location type);
 			HWND find_native_handle(const std::string& guid);
