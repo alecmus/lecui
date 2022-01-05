@@ -58,7 +58,14 @@ various useful usage examples are available in the
 [lecui demo](https://github.com/alecmus/lecui_demo) repository. These range from minimalist hello world
 examples all the way up to advanced multi-page and multi-layer apps.
 
-Various screenshots are available in the following places:
+### Screenshots
+Below is a screenshot showing the interface of the [spotlight_images](https://github.com/alecmus/spotlight_images) app, built using lecui:<br/><br/>
+<img src="https://github.com/alecmus/files/blob/master/liblec/lecui/screenshots/spotlight_images/spotlight_images_01.png?raw=true" alt="screenshot" width="800"/>
+
+Below is a screenshot showing part of the interface of the [pc_info](https://github.com/alecmus/pc_info) app, also built using lecui:<br/><br/>
+<img src="https://github.com/alecmus/files/blob/master/liblec/lecui/screenshots/pc_info/pc_info_02.png?raw=true" alt="screenshot" width="803"/>
+
+Other screenshots are available in the following places:
 
 Summary Description | Location
 ------------------- | ------------------------------------
