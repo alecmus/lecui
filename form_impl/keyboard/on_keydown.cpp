@@ -304,7 +304,81 @@ namespace liblec {
 			}
 				break;
 
-			default:
+			default: {
+				char c = (char)wParam;
+
+				if (_ctrl_pressed && c == 'A') {
+					// 'ctrl + a' pressed
+
+					bool update = false;
+
+					class helper {
+					public:
+						static void check_widgets(containers::page& page, bool& update) {
+							// check widgets
+							for (auto& widget : page._d_page.widgets()) {
+								if (widget.second.is_static() || !widget.second.visible() || !widget.second.enabled())
+									continue;
+
+								// first things first
+								widget.second.hide_tooltip();
+
+								if (widget.second.type() != widgets::widget_type::html_editor &&
+									widget.second.type() != widgets::widget_type::text_field)
+									continue;
+
+								if (widget.second.selected()) {
+									update = true;
+
+									log("'ctrl + a' pressed for " + widget.first);
+
+									if (widget.second.type() == widgets::widget_type::text_field) {
+										try {
+											// select all
+											auto& text_field = page._d_page.get_text_field_impl(widget.first);
+											text_field.select_all();
+										}
+										catch (const std::exception& e) { log(e.what()); }
+									}
+								}
+								else
+									if (widget.second.type() ==
+										widgets::widget_type::tab_pane) {
+										// get this tab pane
+										auto& tab_pane = page._d_page.get_tab_pane_impl(widget.first);
+
+										auto page_iterator = tab_pane._p_tabs.find(tab_pane.specs().selected());
+
+										if (page_iterator != tab_pane._p_tabs.end())
+											helper::check_widgets(page_iterator->second, update);
+									}
+									else
+										if (widget.second.type() ==
+											widgets::widget_type::pane) {
+											// get this pane
+											auto& pane = page._d_page.get_pane_impl(widget.first);
+
+											auto page_iterator = pane._p_panes.find(pane._current_pane);
+
+											if (page_iterator != pane._p_panes.end())
+												helper::check_widgets(page_iterator->second, update);
+										}
+							}
+						}
+					};
+
+					for (auto& it : _p_status_panes)
+						helper::check_widgets(it.second, update);
+
+					auto page_iterator = _p_pages.find(_current_page);
+
+					if (page_iterator != _p_pages.end())
+						helper::check_widgets(page_iterator->second, update);
+
+					if (update)
+						(*this).update();
+				}
+			}
 				break;
 			}
 
