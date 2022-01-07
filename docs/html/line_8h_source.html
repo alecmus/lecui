@@ -21,7 +21,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">lecui<span id="projectnumber">&#160;1.0.0-alpha.16</span>
+   <div id="projectname">lecui<span id="projectnumber">&#160;1.0.0-alpha.17</span>
    </div>
    <div id="projectbrief">lecui C++ user interface library</div>
   </td>
@@ -160,12 +160,14 @@ $(function() {
 <div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    }</div>
 <div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>}</div>
 <div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span> </div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span><span class="preprocessor">#define get_line(path) liblec::lecui::widgets::line::get(*this, path)</span></div>
-<div class="ttc" id="aclassliblec_1_1lecui_1_1color_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1color.html">liblec::lecui::color</a></div><div class="ttdoc">RGBA color on a standard 0 to 255 scale. For the alpha channel 0 is transparent and 255 is opaque.</div><div class="ttdef"><b>Definition:</b> lecui.h:536</div></div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span><span class="preprocessor">#if defined(lecui_helper)</span></div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span><span class="preprocessor">#define get_line(path) liblec::lecui::widgets::line::get(*this, path)</span></div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1color_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1color.html">liblec::lecui::color</a></div><div class="ttdoc">RGBA color on a standard 0 to 255 scale. For the alpha channel 0 is transparent and 255 is opaque.</div><div class="ttdef"><b>Definition:</b> lecui.h:539</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1containers_1_1page_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1containers_1_1page.html">liblec::lecui::containers::page</a></div><div class="ttdoc">Page container.</div><div class="ttdef"><b>Definition:</b> page.h:31</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1form_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1form.html">liblec::lecui::form</a></div><div class="ttdoc">Form base class. The user must inherit from this class and call one of the two constructors from its ...</div><div class="ttdef"><b>Definition:</b> form.h:102</div></div>
-<div class="ttc" id="aclassliblec_1_1lecui_1_1rect_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1rect.html">liblec::lecui::rect</a></div><div class="ttdoc">Rectangle class.</div><div class="ttdef"><b>Definition:</b> lecui.h:153</div></div>
-<div class="ttc" id="aclassliblec_1_1lecui_1_1resize__params_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1resize__params.html">liblec::lecui::resize_params</a></div><div class="ttdoc">Resize parameters.</div><div class="ttdef"><b>Definition:</b> lecui.h:323</div></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1rect_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1rect.html">liblec::lecui::rect</a></div><div class="ttdoc">Rectangle class.</div><div class="ttdef"><b>Definition:</b> lecui.h:156</div></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1resize__params_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1resize__params.html">liblec::lecui::resize_params</a></div><div class="ttdoc">Resize parameters.</div><div class="ttdef"><b>Definition:</b> lecui.h:326</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1line_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1line.html">liblec::lecui::widgets::line</a></div><div class="ttdoc">Line widget. To instantiate and add to a container use the add static method.</div><div class="ttdef"><b>Definition:</b> line.h:23</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1line_html_a04919b7878d6e49566cb653a1aabfcac"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1line.html#a04919b7878d6e49566cb653a1aabfcac">liblec::lecui::widgets::line::font</a></div><div class="ttdeci">std::string &amp; font() override</div><div class="ttdoc">Get or set the default widget font, e.g. &quot;Georgia&quot;.</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1line_html_a069a7c7063eb7727e3238d1b96882ea4"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1line.html#a069a7c7063eb7727e3238d1b96882ea4">liblec::lecui::widgets::line::text</a></div><div class="ttdeci">std::string &amp; text() override</div><div class="ttdoc">Get or set the widget text.</div></div>

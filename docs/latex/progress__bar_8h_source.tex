@@ -104,6 +104,8 @@
 \DoxyCodeLine{134     \}}
 \DoxyCodeLine{135 \}}
 \DoxyCodeLine{136 }
-\DoxyCodeLine{138 \textcolor{preprocessor}{\#define get\_progress\_bar(path) liblec::lecui::widgets::progress\_bar::get(*this, path)}}
+\DoxyCodeLine{137 \textcolor{preprocessor}{\#if defined(lecui\_helper)}}
+\DoxyCodeLine{139 \textcolor{preprocessor}{\#define get\_progress\_bar(path) liblec::lecui::widgets::progress\_bar::get(*this, path)}}
+\DoxyCodeLine{140 \textcolor{preprocessor}{\#endif}}
 
 \end{DoxyCode}

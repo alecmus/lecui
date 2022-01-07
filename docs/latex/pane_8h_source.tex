@@ -112,6 +112,8 @@
 \DoxyCodeLine{152     \}}
 \DoxyCodeLine{153 \}}
 \DoxyCodeLine{154 }
-\DoxyCodeLine{156 \textcolor{preprocessor}{\#define get\_pane(path) liblec::lecui::containers::pane::get(*this, path)}}
+\DoxyCodeLine{155 \textcolor{preprocessor}{\#if defined(lecui\_helper)}}
+\DoxyCodeLine{157 \textcolor{preprocessor}{\#define get\_pane(path) liblec::lecui::containers::pane::get(*this, path)}}
+\DoxyCodeLine{158 \textcolor{preprocessor}{\#endif}}
 
 \end{DoxyCode}

@@ -159,6 +159,8 @@
 \DoxyCodeLine{206     \}}
 \DoxyCodeLine{207 \}}
 \DoxyCodeLine{208 }
-\DoxyCodeLine{210 \textcolor{preprocessor}{\#define get\_tree\_view(path) liblec::lecui::widgets::tree\_view::get(*this, path)}}
+\DoxyCodeLine{209 \textcolor{preprocessor}{\#if defined(lecui\_helper)}}
+\DoxyCodeLine{211 \textcolor{preprocessor}{\#define get\_tree\_view(path) liblec::lecui::widgets::tree\_view::get(*this, path)}}
+\DoxyCodeLine{212 \textcolor{preprocessor}{\#endif}}
 
 \end{DoxyCode}

@@ -116,6 +116,8 @@
 \DoxyCodeLine{149     \}}
 \DoxyCodeLine{150 \}}
 \DoxyCodeLine{151 }
-\DoxyCodeLine{153 \textcolor{preprocessor}{\#define get\_strength\_bar(path) liblec::lecui::widgets::strength\_bar::get(*this, path)}}
+\DoxyCodeLine{152 \textcolor{preprocessor}{\#if defined(lecui\_helper)}}
+\DoxyCodeLine{154 \textcolor{preprocessor}{\#define get\_strength\_bar(path) liblec::lecui::widgets::strength\_bar::get(*this, path)}}
+\DoxyCodeLine{155 \textcolor{preprocessor}{\#endif}}
 
 \end{DoxyCode}

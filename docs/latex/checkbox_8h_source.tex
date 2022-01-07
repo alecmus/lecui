@@ -136,6 +136,8 @@
 \DoxyCodeLine{183     \}}
 \DoxyCodeLine{184 \}}
 \DoxyCodeLine{185 }
-\DoxyCodeLine{187 \textcolor{preprocessor}{\#define get\_checkbox(path) liblec::lecui::widgets::checkbox::get(*this, path)}}
+\DoxyCodeLine{186 \textcolor{preprocessor}{\#if defined(lecui\_helper)}}
+\DoxyCodeLine{188 \textcolor{preprocessor}{\#define get\_checkbox(path) liblec::lecui::widgets::checkbox::get(*this, path)}}
+\DoxyCodeLine{189 \textcolor{preprocessor}{\#endif}}
 
 \end{DoxyCode}

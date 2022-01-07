@@ -5,7 +5,7 @@
 %%For: 
 %Magnification: 1.00
 %%Orientation: Portrait
-%%BoundingBox: 0 0 500 293.159607
+%%BoundingBox: 0 0 500 325.732910
 %%Pages: 0
 %%BeginSetup
 %%EndSetup
@@ -19,12 +19,12 @@
 /marginwidth 10 def
 /distx 20 def
 /disty 40 def
-/boundaspect 1.705556 def  % aspect ratio of the BoundingBox (width/height)
+/boundaspect 1.535000 def  % aspect ratio of the BoundingBox (width/height)
 /boundx 500 def
 /boundy boundx boundaspect div def
 /xspacing 0 def
 /yspacing 0 def
-/rows 9 def
+/rows 10 def
 /cols 2 def
 /scalefactor 0 def
 /boxfont /Times-Roman findfont fontheight scalefont def
@@ -179,6 +179,7 @@ boxfont setfont
 (liblec::lecui::widgets::date::date_events) cw
 (liblec::lecui::widgets::slider::slider_events) cw
 (liblec::lecui::widgets::table_view::table_view_events) cw
+(liblec::lecui::widgets::text_field::text_field_events) cw
 (liblec::lecui::widgets::time::time_events) cw
 (liblec::lecui::widgets::toggle::toggle_events) cw
 (liblec::lecui::widgets::tree_view::tree_view_events) cw
@@ -193,12 +194,13 @@ boundx scalefactor div boundy scalefactor div scale
 
 % ----- classes -----
 
- (liblec::lecui::widgets::widget::basic_events) 0.000000 8.000000 box
- (liblec::lecui::widgets::checkbox::checkbox_events) 1.000000 7.000000 box
- (liblec::lecui::widgets::combobox::combobox_events) 1.000000 6.000000 box
- (liblec::lecui::widgets::date::date_events) 1.000000 5.000000 box
- (liblec::lecui::widgets::slider::slider_events) 1.000000 4.000000 box
- (liblec::lecui::widgets::table_view::table_view_events) 1.000000 3.000000 box
+ (liblec::lecui::widgets::widget::basic_events) 0.000000 9.000000 box
+ (liblec::lecui::widgets::checkbox::checkbox_events) 1.000000 8.000000 box
+ (liblec::lecui::widgets::combobox::combobox_events) 1.000000 7.000000 box
+ (liblec::lecui::widgets::date::date_events) 1.000000 6.000000 box
+ (liblec::lecui::widgets::slider::slider_events) 1.000000 5.000000 box
+ (liblec::lecui::widgets::table_view::table_view_events) 1.000000 4.000000 box
+ (liblec::lecui::widgets::text_field::text_field_events) 1.000000 3.000000 box
  (liblec::lecui::widgets::time::time_events) 1.000000 2.000000 box
  (liblec::lecui::widgets::toggle::toggle_events) 1.000000 1.000000 box
  (liblec::lecui::widgets::tree_view::tree_view_events) 1.000000 0.000000 box
@@ -206,7 +208,9 @@ boundx scalefactor div boundy scalefactor div scale
 % ----- relations -----
 
 solid
-1 0.000000 7.250000 out
+1 0.000000 8.250000 out
+solid
+0 0.000000 8.500000 hedge
 solid
 0 0.000000 7.500000 hedge
 solid
@@ -224,4 +228,4 @@ solid
 solid
 0 0.000000 0.500000 hedge
 solid
-0.000000 8.000000 0.500000 vedge
+0.000000 9.000000 0.500000 vedge

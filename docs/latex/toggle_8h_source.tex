@@ -116,6 +116,8 @@
 \DoxyCodeLine{147     \}}
 \DoxyCodeLine{148 \}}
 \DoxyCodeLine{149 }
-\DoxyCodeLine{151 \textcolor{preprocessor}{\#define get\_toggle(path) liblec::lecui::widgets::toggle::get(*this, path)}}
+\DoxyCodeLine{150 \textcolor{preprocessor}{\#if defined(lecui\_helper)}}
+\DoxyCodeLine{152 \textcolor{preprocessor}{\#define get\_toggle(path) liblec::lecui::widgets::toggle::get(*this, path)}}
+\DoxyCodeLine{153 \textcolor{preprocessor}{\#endif}}
 
 \end{DoxyCode}

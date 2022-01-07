@@ -185,6 +185,8 @@
 \DoxyCodeLine{295     \}}
 \DoxyCodeLine{296 \}}
 \DoxyCodeLine{297 }
-\DoxyCodeLine{299 \textcolor{preprocessor}{\#define get\_combobox(path) liblec::lecui::widgets::combobox::get(*this, path)}}
+\DoxyCodeLine{298 \textcolor{preprocessor}{\#if defined(lecui\_helper)}}
+\DoxyCodeLine{300 \textcolor{preprocessor}{\#define get\_combobox(path) liblec::lecui::widgets::combobox::get(*this, path)}}
+\DoxyCodeLine{301 \textcolor{preprocessor}{\#endif}}
 
 \end{DoxyCode}

@@ -12,9 +12,8 @@ Widget manager class.
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classliblec_1_1lecui_1_1widget__manager_a6e880bd91770daea7f396afa45e4b36f}\label{classliblec_1_1lecui_1_1widget__manager_a6e880bd91770daea7f396afa45e4b36f}} 
-{\bfseries widget\+\_\+manager} (\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}} \&fm)
-\item 
+\mbox{\hyperlink{classliblec_1_1lecui_1_1widget__manager_a6e880bd91770daea7f396afa45e4b36f}{widget\+\_\+manager}} (\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}} \&fm)
+\begin{DoxyCompactList}\small\item\em Widget manager constructor.\end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classliblec_1_1lecui_1_1widget__manager_a86083e220464ab7e456b7f0c25cd03ec}{enable}} (const std\+::string \&path, std\+::string \&error)
 \begin{DoxyCompactList}\small\item\em Enable a widget.\end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classliblec_1_1lecui_1_1widget__manager_ac6d227bdd289530c80e232df5a7127fe}{disable}} (const std\+::string \&path, std\+::string \&error)
@@ -26,11 +25,31 @@ bool \mbox{\hyperlink{classliblec_1_1lecui_1_1widget__manager_aa73af230f550ebf5c
 void \mbox{\hyperlink{classliblec_1_1lecui_1_1widget__manager_a878389752aaeb56ae7c94b04883d34e8}{close}} (const std\+::string \&path)
 \begin{DoxyCompactList}\small\item\em Close a widget.\end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classliblec_1_1lecui_1_1widget__manager_ac92befb57b4658047f0534fd37ab83c7}{select}} (const std\+::string \&path)
-\begin{DoxyCompactList}\small\item\em Select a widget.\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Select a widget.\end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classliblec_1_1lecui_1_1widget__manager_aaa12d3d55256120577c6fb127a2b327f}{refresh}} (const std\+::string \&path, std\+::string \&error)
+\begin{DoxyCompactList}\small\item\em Refresh a widget.\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 Widget manager class.
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widget__manager_a6e880bd91770daea7f396afa45e4b36f}\label{classliblec_1_1lecui_1_1widget__manager_a6e880bd91770daea7f396afa45e4b36f}} 
+\index{liblec::lecui::widget\_manager@{liblec::lecui::widget\_manager}!widget\_manager@{widget\_manager}}
+\index{widget\_manager@{widget\_manager}!liblec::lecui::widget\_manager@{liblec::lecui::widget\_manager}}
+\doxysubsubsection{\texorpdfstring{widget\_manager()}{widget\_manager()}}
+{\footnotesize\ttfamily liblec\+::lecui\+::widget\+\_\+manager\+::widget\+\_\+manager (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}} \&}]{fm }\end{DoxyParamCaption})}
+
+
+
+Widget manager constructor.
+
+
+\begin{DoxyParams}{Parameters}
+{\em fm} & The form whose widgets we would like to manage.\\
+\hline
+\end{DoxyParams}
+
 
 \doxysubsection{Member Function Documentation}
 \mbox{\Hypertarget{classliblec_1_1lecui_1_1widget__manager_a878389752aaeb56ae7c94b04883d34e8}\label{classliblec_1_1lecui_1_1widget__manager_a878389752aaeb56ae7c94b04883d34e8}} 
@@ -50,7 +69,7 @@ Close a widget.
 \end{DoxyParams}
 
 
-Avoid closing a widget from within its own handler to avoid access violation errors. Also make sure to never keep \textquotesingle{}dangling widget references\textquotesingle{} because attempting to use those references after this method is called will result in access violation errors as well. Make sure to employ proper logic. As a failsafe, the widget is not closed immediately when this method is called. Rather a special timer is scheduled internally to close the widget. After this, the widget is closed as soon as possible, typically soon after the current handler exits. \mbox{\Hypertarget{classliblec_1_1lecui_1_1widget__manager_ac6d227bdd289530c80e232df5a7127fe}\label{classliblec_1_1lecui_1_1widget__manager_ac6d227bdd289530c80e232df5a7127fe}} 
+Avoid closing a widget from within its own handler to avoid access violation errors. Also make sure to never keep \textquotesingle{}dangling widget references\textquotesingle{} because attempting to use those references after this method is called will result in access violation errors as well. Make sure to employ proper logic. As a failsafe, the widget is not closed immediately when this method is called. Rather a special timer is scheduled internally to close the widget. After this, the widget is closed as soon as possible, typically soon after the current handler exits. Note that a call to \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a144e42ae28a7c24d470d5b9b147efebd}{form\+::update()}} is not necessary after this method is called because it sends this call internally. Note that a call to \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a144e42ae28a7c24d470d5b9b147efebd}{form\+::update()}} is not necessary after this method is called because it sends this call internally.\mbox{\Hypertarget{classliblec_1_1lecui_1_1widget__manager_ac6d227bdd289530c80e232df5a7127fe}\label{classliblec_1_1lecui_1_1widget__manager_ac6d227bdd289530c80e232df5a7127fe}} 
 \index{liblec::lecui::widget\_manager@{liblec::lecui::widget\_manager}!disable@{disable}}
 \index{disable@{disable}!liblec::lecui::widget\_manager@{liblec::lecui::widget\_manager}}
 \doxysubsubsection{\texorpdfstring{disable()}{disable()}}
@@ -64,11 +83,15 @@ Disable a widget.
 \begin{DoxyParams}{Parameters}
 {\em path} & The full path to the widget, e.\+g. \char`\"{}home\+\_\+page/username\char`\"{}.\\
 \hline
+{\em error} & Error information.\\
+\hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Returns true if successful, else false.
 \end{DoxyReturn}
-\mbox{\Hypertarget{classliblec_1_1lecui_1_1widget__manager_a86083e220464ab7e456b7f0c25cd03ec}\label{classliblec_1_1lecui_1_1widget__manager_a86083e220464ab7e456b7f0c25cd03ec}} 
+
+
+Note that a call to \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a144e42ae28a7c24d470d5b9b147efebd}{form\+::update()}} is not necessary after this method is called because it sends this call internally.\mbox{\Hypertarget{classliblec_1_1lecui_1_1widget__manager_a86083e220464ab7e456b7f0c25cd03ec}\label{classliblec_1_1lecui_1_1widget__manager_a86083e220464ab7e456b7f0c25cd03ec}} 
 \index{liblec::lecui::widget\_manager@{liblec::lecui::widget\_manager}!enable@{enable}}
 \index{enable@{enable}!liblec::lecui::widget\_manager@{liblec::lecui::widget\_manager}}
 \doxysubsubsection{\texorpdfstring{enable()}{enable()}}
@@ -82,11 +105,15 @@ Enable a widget.
 \begin{DoxyParams}{Parameters}
 {\em path} & The full path to the widget, e.\+g. \char`\"{}home\+\_\+page/username\char`\"{}.\\
 \hline
+{\em error} & Error information.\\
+\hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Returns true if successful, else false.
 \end{DoxyReturn}
-\mbox{\Hypertarget{classliblec_1_1lecui_1_1widget__manager_aa73af230f550ebf5c52a8015107de7eb}\label{classliblec_1_1lecui_1_1widget__manager_aa73af230f550ebf5c52a8015107de7eb}} 
+
+
+Note that a call to \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a144e42ae28a7c24d470d5b9b147efebd}{form\+::update()}} is not necessary after this method is called because it sends this call internally.\mbox{\Hypertarget{classliblec_1_1lecui_1_1widget__manager_aa73af230f550ebf5c52a8015107de7eb}\label{classliblec_1_1lecui_1_1widget__manager_aa73af230f550ebf5c52a8015107de7eb}} 
 \index{liblec::lecui::widget\_manager@{liblec::lecui::widget\_manager}!hide@{hide}}
 \index{hide@{hide}!liblec::lecui::widget\_manager@{liblec::lecui::widget\_manager}}
 \doxysubsubsection{\texorpdfstring{hide()}{hide()}}
@@ -100,11 +127,37 @@ Hide a widget.
 \begin{DoxyParams}{Parameters}
 {\em path} & The full path to the widget, e.\+g. \char`\"{}home\+\_\+page/username\char`\"{}.\\
 \hline
+{\em error} & Error information.\\
+\hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Returns true if successful, else false.
 \end{DoxyReturn}
-\mbox{\Hypertarget{classliblec_1_1lecui_1_1widget__manager_ac92befb57b4658047f0534fd37ab83c7}\label{classliblec_1_1lecui_1_1widget__manager_ac92befb57b4658047f0534fd37ab83c7}} 
+
+
+Note that a call to \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a144e42ae28a7c24d470d5b9b147efebd}{form\+::update()}} is not necessary after this method is called because it sends this call internally.\mbox{\Hypertarget{classliblec_1_1lecui_1_1widget__manager_aaa12d3d55256120577c6fb127a2b327f}\label{classliblec_1_1lecui_1_1widget__manager_aaa12d3d55256120577c6fb127a2b327f}} 
+\index{liblec::lecui::widget\_manager@{liblec::lecui::widget\_manager}!refresh@{refresh}}
+\index{refresh@{refresh}!liblec::lecui::widget\_manager@{liblec::lecui::widget\_manager}}
+\doxysubsubsection{\texorpdfstring{refresh()}{refresh()}}
+{\footnotesize\ttfamily bool liblec\+::lecui\+::widget\+\_\+manager\+::refresh (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{path,  }\item[{std\+::string \&}]{error }\end{DoxyParamCaption})}
+
+
+
+Refresh a widget.
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & The full path to the widget, e.\+g. \char`\"{}home\+\_\+page/username\char`\"{}.\\
+\hline
+{\em error} & Error information.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if successful, else false.
+\end{DoxyReturn}
+
+
+This method causes all the widget\textquotesingle{}s graphic resources to be recreated. This is useful if you need a resource being used by the widget, e.\+g. a .png file being used by an image\+\_\+view, freed immediately after the widget\textquotesingle{}s properties are changed. A call to \mbox{\hyperlink{classliblec_1_1lecui_1_1form_ae2a0525beb9d780abd15a9baa54ac3f7}{form\+::reload()}} would do this but it\textquotesingle{}s a lot more expensive since it refreshes every widget in every page, and a call to \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a144e42ae28a7c24d470d5b9b147efebd}{form\+::update()}} would only free the resource after the next time a paint operation is done. Note that a call to \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a144e42ae28a7c24d470d5b9b147efebd}{form\+::update()}} is not necessary after this method is called because it sends this call internally.\mbox{\Hypertarget{classliblec_1_1lecui_1_1widget__manager_ac92befb57b4658047f0534fd37ab83c7}\label{classliblec_1_1lecui_1_1widget__manager_ac92befb57b4658047f0534fd37ab83c7}} 
 \index{liblec::lecui::widget\_manager@{liblec::lecui::widget\_manager}!select@{select}}
 \index{select@{select}!liblec::lecui::widget\_manager@{liblec::lecui::widget\_manager}}
 \doxysubsubsection{\texorpdfstring{select()}{select()}}
@@ -121,7 +174,7 @@ Select a widget.
 \end{DoxyParams}
 
 
-Any previous selection within the page is removed.\mbox{\Hypertarget{classliblec_1_1lecui_1_1widget__manager_a80a5601975650f0ea9801a114e52644f}\label{classliblec_1_1lecui_1_1widget__manager_a80a5601975650f0ea9801a114e52644f}} 
+Any previous selection within the page is removed. Note that a call to \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a144e42ae28a7c24d470d5b9b147efebd}{form\+::update()}} is not necessary after this method is called because it sends this call internally.\mbox{\Hypertarget{classliblec_1_1lecui_1_1widget__manager_a80a5601975650f0ea9801a114e52644f}\label{classliblec_1_1lecui_1_1widget__manager_a80a5601975650f0ea9801a114e52644f}} 
 \index{liblec::lecui::widget\_manager@{liblec::lecui::widget\_manager}!show@{show}}
 \index{show@{show}!liblec::lecui::widget\_manager@{liblec::lecui::widget\_manager}}
 \doxysubsubsection{\texorpdfstring{show()}{show()}}
@@ -135,11 +188,15 @@ Show a widget.
 \begin{DoxyParams}{Parameters}
 {\em path} & The full path to the widget, e.\+g. \char`\"{}home\+\_\+page/username\char`\"{}.\\
 \hline
+{\em error} & Error information.\\
+\hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Returns true if successful, else false.
 \end{DoxyReturn}
 
+
+Note that a call to \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a144e42ae28a7c24d470d5b9b147efebd}{form\+::update()}} is not necessary after this method is called because it sends this call internally.
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 

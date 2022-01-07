@@ -182,8 +182,11 @@
 \DoxyCodeLine{295     \}}
 \DoxyCodeLine{296 \}}
 \DoxyCodeLine{297 }
-\DoxyCodeLine{299 \textcolor{preprocessor}{\#define get\_tab\_pane(path) liblec::lecui::containers::tab\_pane::get(*this, path)}}
-\DoxyCodeLine{300 }
-\DoxyCodeLine{302 \textcolor{preprocessor}{\#define get\_tab(path) liblec::lecui::containers::tab::get(*this, path)}}
+\DoxyCodeLine{298 \textcolor{preprocessor}{\#if defined(lecui\_helper)}}
+\DoxyCodeLine{300 \textcolor{preprocessor}{\#define get\_tab\_pane(path) liblec::lecui::containers::tab\_pane::get(*this, path)}}
+\DoxyCodeLine{301 }
+\DoxyCodeLine{303 \textcolor{preprocessor}{\#define get\_tab(path) liblec::lecui::containers::tab::get(*this, path)}}
+\DoxyCodeLine{304 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{305 }
 
 \end{DoxyCode}

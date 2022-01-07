@@ -21,7 +21,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">lecui<span id="projectnumber">&#160;1.0.0-alpha.16</span>
+   <div id="projectname">lecui<span id="projectnumber">&#160;1.0.0-alpha.17</span>
    </div>
    <div id="projectbrief">lecui C++ user interface library</div>
   </td>
@@ -185,8 +185,10 @@ $(function() {
 <div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    }</div>
 <div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>}</div>
 <div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span> </div>
-<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span><span class="preprocessor">#define get_group(path) liblec::lecui::containers::group::get(*this, path)</span></div>
-<div class="ttc" id="aclassliblec_1_1lecui_1_1color_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1color.html">liblec::lecui::color</a></div><div class="ttdoc">RGBA color on a standard 0 to 255 scale. For the alpha channel 0 is transparent and 255 is opaque.</div><div class="ttdef"><b>Definition:</b> lecui.h:536</div></div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span><span class="preprocessor">#if defined(lecui_helper)</span></div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span><span class="preprocessor">#define get_group(path) liblec::lecui::containers::group::get(*this, path)</span></div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1color_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1color.html">liblec::lecui::color</a></div><div class="ttdoc">RGBA color on a standard 0 to 255 scale. For the alpha channel 0 is transparent and 255 is opaque.</div><div class="ttdef"><b>Definition:</b> lecui.h:539</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1containers_1_1group_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1containers_1_1group.html">liblec::lecui::containers::group</a></div><div class="ttdoc">Group container. To instantiate and add to a container use the add static method.</div><div class="ttdef"><b>Definition:</b> group.h:28</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1containers_1_1group_html_a046e27868e53d175d148afe65a765fdc"><div class="ttname"><a href="classliblec_1_1lecui_1_1containers_1_1group.html#a046e27868e53d175d148afe65a765fdc">liblec::lecui::containers::group::widgets</a></div><div class="ttdeci">group &amp; widgets(const std::vector&lt; std::string &gt; &amp;widgets)</div><div class="ttdoc">Set the list of the aliases for the widgets to be added to the group. e.g. { &quot;username_text_field&quot;,...</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1containers_1_1group_html_a049f48f5c7b473192f8f40f9e5bc9ea9"><div class="ttname"><a href="classliblec_1_1lecui_1_1containers_1_1group.html#a049f48f5c7b473192f8f40f9e5bc9ea9">liblec::lecui::containers::group::corner_radius_y</a></div><div class="ttdeci">float &amp; corner_radius_y()</div><div class="ttdoc">Get or set the vertical radius of the corners.</div></div>
@@ -216,8 +218,8 @@ $(function() {
 <div class="ttc" id="aclassliblec_1_1lecui_1_1containers_1_1group_html_af74bd17ec369a2bf875c83ea9ea802b8"><div class="ttname"><a href="classliblec_1_1lecui_1_1containers_1_1group.html#af74bd17ec369a2bf875c83ea9ea802b8">liblec::lecui::containers::group::corner_radius_x</a></div><div class="ttdeci">group &amp; corner_radius_x(const float &amp;corner_radius_x)</div><div class="ttdoc">Set the horizontal radius of the corners.</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1containers_1_1page_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1containers_1_1page.html">liblec::lecui::containers::page</a></div><div class="ttdoc">Page container.</div><div class="ttdef"><b>Definition:</b> page.h:31</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1form_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1form.html">liblec::lecui::form</a></div><div class="ttdoc">Form base class. The user must inherit from this class and call one of the two constructors from its ...</div><div class="ttdef"><b>Definition:</b> form.h:102</div></div>
-<div class="ttc" id="aclassliblec_1_1lecui_1_1rect_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1rect.html">liblec::lecui::rect</a></div><div class="ttdoc">Rectangle class.</div><div class="ttdef"><b>Definition:</b> lecui.h:153</div></div>
-<div class="ttc" id="aclassliblec_1_1lecui_1_1resize__params_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1resize__params.html">liblec::lecui::resize_params</a></div><div class="ttdoc">Resize parameters.</div><div class="ttdef"><b>Definition:</b> lecui.h:323</div></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1rect_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1rect.html">liblec::lecui::rect</a></div><div class="ttdoc">Rectangle class.</div><div class="ttdef"><b>Definition:</b> lecui.h:156</div></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1resize__params_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1resize__params.html">liblec::lecui::resize_params</a></div><div class="ttdoc">Resize parameters.</div><div class="ttdef"><b>Definition:</b> lecui.h:326</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1widget_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1widget.html">liblec::lecui::widgets::widget</a></div><div class="ttdoc">Base class for all widgets.</div><div class="ttdef"><b>Definition:</b> widget.h:24</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1widget_html_a893d9dfd53890f3faf6829a6c02aca84"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1widget.html#a893d9dfd53890f3faf6829a6c02aca84">liblec::lecui::widgets::widget::cursor_type</a></div><div class="ttdeci">cursor_type</div><div class="ttdoc">Mouse cursor type.</div><div class="ttdef"><b>Definition:</b> widget.h:27</div></div>
 </div><!-- fragment --></div><!-- contents -->

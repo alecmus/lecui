@@ -21,7 +21,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">lecui<span id="projectnumber">&#160;1.0.0-alpha.16</span>
+   <div id="projectname">lecui<span id="projectnumber">&#160;1.0.0-alpha.17</span>
    </div>
    <div id="projectbrief">lecui C++ user interface library</div>
   </td>
@@ -84,9 +84,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a6a575d2dc5c48a88348fb49c94083648"><td class="memItemLeft" align="right" valign="top"><a id="a6a575d2dc5c48a88348fb49c94083648" name="a6a575d2dc5c48a88348fb49c94083648"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>dimensions</b> (<a class="el" href="classliblec_1_1lecui_1_1form.html">form</a> &amp;fm)</td></tr>
 <tr class="separator:a6a575d2dc5c48a88348fb49c94083648"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5068e51fd7ab831a5b14ff7231892985"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classliblec_1_1lecui_1_1rect.html">lecui::rect</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classliblec_1_1lecui_1_1dimensions.html#a5068e51fd7ab831a5b14ff7231892985">measure_label</a> (const std::string &amp;formatted_text, const std::string &amp;font, const float font_size, bool center_h, bool center_v, const <a class="el" href="classliblec_1_1lecui_1_1rect.html">lecui::rect</a> max_rect)</td></tr>
-<tr class="memdesc:a5068e51fd7ab831a5b14ff7231892985"><td class="mdescLeft">&#160;</td><td class="mdescRight">Measure how much space a label will take. <a href="classliblec_1_1lecui_1_1dimensions.html#a5068e51fd7ab831a5b14ff7231892985">More...</a><br /></td></tr>
-<tr class="separator:a5068e51fd7ab831a5b14ff7231892985"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24ba17e48714f638e61ba2cd01f42ecb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classliblec_1_1lecui_1_1rect.html">lecui::rect</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classliblec_1_1lecui_1_1dimensions.html#a24ba17e48714f638e61ba2cd01f42ecb">measure_label</a> (const std::string &amp;formatted_text, const std::string &amp;font, const float font_size, text_alignment alignment, paragraph_alignment paragraph_alignment, const <a class="el" href="classliblec_1_1lecui_1_1rect.html">lecui::rect</a> max_rect)</td></tr>
+<tr class="memdesc:a24ba17e48714f638e61ba2cd01f42ecb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Measure how much space a label will take. <a href="classliblec_1_1lecui_1_1dimensions.html#a24ba17e48714f638e61ba2cd01f42ecb">More...</a><br /></td></tr>
+<tr class="separator:a24ba17e48714f638e61ba2cd01f42ecb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a10cc9e17ca3f39afdb667b1d72c480fe"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classliblec_1_1lecui_1_1rect.html">lecui::rect</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classliblec_1_1lecui_1_1dimensions.html#a10cc9e17ca3f39afdb667b1d72c480fe">working_area</a> ()</td></tr>
 <tr class="memdesc:a10cc9e17ca3f39afdb667b1d72c480fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the working area of the screen. This is the part of the screen that excludes the operating system's task bar. <a href="classliblec_1_1lecui_1_1dimensions.html#a10cc9e17ca3f39afdb667b1d72c480fe">More...</a><br /></td></tr>
 <tr class="separator:a10cc9e17ca3f39afdb667b1d72c480fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -195,8 +195,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a5068e51fd7ab831a5b14ff7231892985" name="a5068e51fd7ab831a5b14ff7231892985"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5068e51fd7ab831a5b14ff7231892985">&#9670;&nbsp;</a></span>measure_label()</h2>
+<a id="a24ba17e48714f638e61ba2cd01f42ecb" name="a24ba17e48714f638e61ba2cd01f42ecb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a24ba17e48714f638e61ba2cd01f42ecb">&#9670;&nbsp;</a></span>measure_label()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -222,14 +222,14 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>center_h</em>, </td>
+          <td class="paramtype">text_alignment&#160;</td>
+          <td class="paramname"><em>alignment</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>center_v</em>, </td>
+          <td class="paramtype">paragraph_alignment&#160;</td>
+          <td class="paramname"><em>paragraph_alignment</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -251,8 +251,8 @@ Public Member Functions</h2></td></tr>
     <tr><td class="paramname">formatted_text</td><td>The formatted text.</td></tr>
     <tr><td class="paramname">font</td><td>The font, e.g. Segoe UI.</td></tr>
     <tr><td class="paramname">font_size</td><td>The font size, in points, e.g. 9.0f.</td></tr>
-    <tr><td class="paramname">center_h</td><td>Whether to center the text horizontally within the area.</td></tr>
-    <tr><td class="paramname">center_v</td><td>Whether to center the text vertically within the area.</td></tr>
+    <tr><td class="paramname">alignment</td><td>The alignment of the text as defined in <a class="el" href="">text_alignment</a>.</td></tr>
+    <tr><td class="paramname">paragraph_alignment</td><td>The paragraph alignment as defined in <a class="el" href="">lecui::paragraph_alignment</a>.</td></tr>
     <tr><td class="paramname">max_rect</td><td>The area which the text should not exceed.</td></tr>
   </table>
   </dd>

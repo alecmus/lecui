@@ -137,6 +137,8 @@
 \DoxyCodeLine{188     \}}
 \DoxyCodeLine{189 \}}
 \DoxyCodeLine{190 }
-\DoxyCodeLine{192 \textcolor{preprocessor}{\#define get\_html\_editor(path) liblec::lecui::widgets::html\_editor::get(*this, path)}}
+\DoxyCodeLine{191 \textcolor{preprocessor}{\#if defined(lecui\_helper)}}
+\DoxyCodeLine{193 \textcolor{preprocessor}{\#define get\_html\_editor(path) liblec::lecui::widgets::html\_editor::get(*this, path)}}
+\DoxyCodeLine{194 \textcolor{preprocessor}{\#endif}}
 
 \end{DoxyCode}

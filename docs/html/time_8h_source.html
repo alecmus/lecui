@@ -21,7 +21,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">lecui<span id="projectnumber">&#160;1.0.0-alpha.16</span>
+   <div id="projectname">lecui<span id="projectnumber">&#160;1.0.0-alpha.17</span>
    </div>
    <div id="projectbrief">lecui C++ user interface library</div>
   </td>
@@ -193,13 +193,15 @@ $(function() {
 <div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    }</div>
 <div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>}</div>
 <div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span> </div>
-<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span><span class="preprocessor">#define get_time(path) liblec::lecui::widgets::time::get(*this, path)</span></div>
-<div class="ttc" id="aclassliblec_1_1lecui_1_1color_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1color.html">liblec::lecui::color</a></div><div class="ttdoc">RGBA color on a standard 0 to 255 scale. For the alpha channel 0 is transparent and 255 is opaque.</div><div class="ttdef"><b>Definition:</b> lecui.h:536</div></div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span><span class="preprocessor">#if defined(lecui_helper)</span></div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span><span class="preprocessor">#define get_time(path) liblec::lecui::widgets::time::get(*this, path)</span></div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1color_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1color.html">liblec::lecui::color</a></div><div class="ttdoc">RGBA color on a standard 0 to 255 scale. For the alpha channel 0 is transparent and 255 is opaque.</div><div class="ttdef"><b>Definition:</b> lecui.h:539</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1containers_1_1page_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1containers_1_1page.html">liblec::lecui::containers::page</a></div><div class="ttdoc">Page container.</div><div class="ttdef"><b>Definition:</b> page.h:31</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1form_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1form.html">liblec::lecui::form</a></div><div class="ttdoc">Form base class. The user must inherit from this class and call one of the two constructors from its ...</div><div class="ttdef"><b>Definition:</b> form.h:102</div></div>
-<div class="ttc" id="aclassliblec_1_1lecui_1_1rect_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1rect.html">liblec::lecui::rect</a></div><div class="ttdoc">Rectangle class.</div><div class="ttdef"><b>Definition:</b> lecui.h:153</div></div>
-<div class="ttc" id="aclassliblec_1_1lecui_1_1resize__params_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1resize__params.html">liblec::lecui::resize_params</a></div><div class="ttdoc">Resize parameters.</div><div class="ttdef"><b>Definition:</b> lecui.h:323</div></div>
-<div class="ttc" id="aclassliblec_1_1lecui_1_1time_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1time.html">liblec::lecui::time</a></div><div class="ttdoc">Time class.</div><div class="ttdef"><b>Definition:</b> lecui.h:691</div></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1rect_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1rect.html">liblec::lecui::rect</a></div><div class="ttdoc">Rectangle class.</div><div class="ttdef"><b>Definition:</b> lecui.h:156</div></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1resize__params_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1resize__params.html">liblec::lecui::resize_params</a></div><div class="ttdoc">Resize parameters.</div><div class="ttdef"><b>Definition:</b> lecui.h:326</div></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1time_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1time.html">liblec::lecui::time</a></div><div class="ttdoc">Time class.</div><div class="ttdef"><b>Definition:</b> lecui.h:818</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1time_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1time.html">liblec::lecui::widgets::time</a></div><div class="ttdoc">Time widget. To instantiate and add to a container use the add static method.</div><div class="ttdef"><b>Definition:</b> time.h:24</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1time_html_a0bda1832d7a6e5fdfe1d6a954807f9c5"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1time.html#a0bda1832d7a6e5fdfe1d6a954807f9c5">liblec::lecui::widgets::time::tooltip</a></div><div class="ttdeci">std::string &amp; tooltip() override</div><div class="ttdoc">Get or set the widget's tooltip text.</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1time_html_a12416fde68845bf88a4d3bb2d7afc1d7"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1time.html#a12416fde68845bf88a4d3bb2d7afc1d7">liblec::lecui::widgets::time::add</a></div><div class="ttdeci">static time &amp; add(containers::page &amp;page, const std::string &amp;alias=std::string())</div><div class="ttdoc">Add a time widget to a container.</div></div>

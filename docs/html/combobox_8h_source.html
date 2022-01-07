@@ -21,7 +21,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">lecui<span id="projectnumber">&#160;1.0.0-alpha.16</span>
+   <div id="projectname">lecui<span id="projectnumber">&#160;1.0.0-alpha.17</span>
    </div>
    <div id="projectbrief">lecui C++ user interface library</div>
   </td>
@@ -253,12 +253,14 @@ $(function() {
 <div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>    }</div>
 <div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>}</div>
 <div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span> </div>
-<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span><span class="preprocessor">#define get_combobox(path) liblec::lecui::widgets::combobox::get(*this, path)</span></div>
-<div class="ttc" id="aclassliblec_1_1lecui_1_1color_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1color.html">liblec::lecui::color</a></div><div class="ttdoc">RGBA color on a standard 0 to 255 scale. For the alpha channel 0 is transparent and 255 is opaque.</div><div class="ttdef"><b>Definition:</b> lecui.h:536</div></div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span><span class="preprocessor">#if defined(lecui_helper)</span></div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span><span class="preprocessor">#define get_combobox(path) liblec::lecui::widgets::combobox::get(*this, path)</span></div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1color_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1color.html">liblec::lecui::color</a></div><div class="ttdoc">RGBA color on a standard 0 to 255 scale. For the alpha channel 0 is transparent and 255 is opaque.</div><div class="ttdef"><b>Definition:</b> lecui.h:539</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1containers_1_1page_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1containers_1_1page.html">liblec::lecui::containers::page</a></div><div class="ttdoc">Page container.</div><div class="ttdef"><b>Definition:</b> page.h:31</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1form_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1form.html">liblec::lecui::form</a></div><div class="ttdoc">Form base class. The user must inherit from this class and call one of the two constructors from its ...</div><div class="ttdef"><b>Definition:</b> form.h:102</div></div>
-<div class="ttc" id="aclassliblec_1_1lecui_1_1rect_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1rect.html">liblec::lecui::rect</a></div><div class="ttdoc">Rectangle class.</div><div class="ttdef"><b>Definition:</b> lecui.h:153</div></div>
-<div class="ttc" id="aclassliblec_1_1lecui_1_1resize__params_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1resize__params.html">liblec::lecui::resize_params</a></div><div class="ttdoc">Resize parameters.</div><div class="ttdef"><b>Definition:</b> lecui.h:323</div></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1rect_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1rect.html">liblec::lecui::rect</a></div><div class="ttdoc">Rectangle class.</div><div class="ttdef"><b>Definition:</b> lecui.h:156</div></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1resize__params_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1resize__params.html">liblec::lecui::resize_params</a></div><div class="ttdoc">Resize parameters.</div><div class="ttdef"><b>Definition:</b> lecui.h:326</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1combobox_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1combobox.html">liblec::lecui::widgets::combobox</a></div><div class="ttdoc">Combobox widget. To instantiate and add to a container use the add static method.</div><div class="ttdef"><b>Definition:</b> combobox.h:24</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1combobox_html_a03da467ae809e527dfee4939d0975272"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1combobox.html#a03da467ae809e527dfee4939d0975272">liblec::lecui::widgets::combobox::editable</a></div><div class="ttdeci">bool &amp; editable()</div><div class="ttdoc">Get or set the combobox editable property.</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1combobox_html_a0558ffce22fe7db03afa4d60cf7f9590"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1combobox.html#a0558ffce22fe7db03afa4d60cf7f9590">liblec::lecui::widgets::combobox::border</a></div><div class="ttdeci">float &amp; border()</div><div class="ttdoc">Get or set the thickness of the border.</div></div>

@@ -107,6 +107,8 @@
 \DoxyCodeLine{137     \}}
 \DoxyCodeLine{138 \}}
 \DoxyCodeLine{139 }
-\DoxyCodeLine{141 \textcolor{preprocessor}{\#define get\_button(path) liblec::lecui::widgets::button::get(*this, path)}}
+\DoxyCodeLine{140 \textcolor{preprocessor}{\#if defined(lecui\_helper)}}
+\DoxyCodeLine{142 \textcolor{preprocessor}{\#define get\_button(path) liblec::lecui::widgets::button::get(*this, path)}}
+\DoxyCodeLine{143 \textcolor{preprocessor}{\#endif}}
 
 \end{DoxyCode}

@@ -27,8 +27,8 @@
 \DoxyCodeLine{73             \textcolor{keyword}{class }lecui\_api \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1label}{label}} : \textcolor{keyword}{public} \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1widget}{widget}} \{}
 \DoxyCodeLine{74                 \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \_color\_hot\_pressed;}
 \DoxyCodeLine{75                 \textcolor{keywordtype}{bool} \_multiline = \textcolor{keyword}{false};}
-\DoxyCodeLine{76                 \textcolor{keywordtype}{bool} \_center\_h = \textcolor{keyword}{false};}
-\DoxyCodeLine{77                 \textcolor{keywordtype}{bool} \_center\_v = \textcolor{keyword}{false};}
+\DoxyCodeLine{76                 text\_alignment \_alignment = text\_alignment::left;}
+\DoxyCodeLine{77                 paragraph\_alignment \_paragraph\_alignment = paragraph\_alignment::top;}
 \DoxyCodeLine{78 }
 \DoxyCodeLine{79             \textcolor{keyword}{public}:}
 \DoxyCodeLine{80                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1label}{label}}() \{}
@@ -86,13 +86,13 @@
 \DoxyCodeLine{139 }
 \DoxyCodeLine{143                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1label}{label}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1label_a2762267da5db365b4ee4a0c1cf362df5}{multiline}}(\textcolor{keyword}{const} \textcolor{keywordtype}{bool}\& multiline);}
 \DoxyCodeLine{144 }
-\DoxyCodeLine{147                 \textcolor{keywordtype}{bool}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1label_ae13b8f95a17ebb0ea51efa1c1557338a}{center\_h}}();}
+\DoxyCodeLine{147                 text\_alignment\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1label_ac8102d9ade2d5c5105f10b7450c9cb8b}{alignment}}();}
 \DoxyCodeLine{148 }
-\DoxyCodeLine{152                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1label}{label}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1label_af93454b656bec48d165dd7357bb4594a}{center\_h}}(\textcolor{keyword}{const} \textcolor{keywordtype}{bool}\& center\_h);}
+\DoxyCodeLine{152                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1label}{label}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1label_a6fe80cf426a9cd7877401088930f8de0}{alignment}}(\textcolor{keyword}{const} text\_alignment\& alignment);}
 \DoxyCodeLine{153 }
-\DoxyCodeLine{156                 \textcolor{keywordtype}{bool}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1label_ae84a0c9f885f56063eae22d9b134704b}{center\_v}}();}
+\DoxyCodeLine{156                 lecui::paragraph\_alignment\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1label_a8c87e5dfc5a189474d0d88dbb11ea54e}{paragraph\_alignment}}();}
 \DoxyCodeLine{157 }
-\DoxyCodeLine{161                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1label}{label}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1label_a0af7853fc7bfb737a16d147cb80418cd}{center\_v}}(\textcolor{keyword}{const} \textcolor{keywordtype}{bool}\& center\_v);}
+\DoxyCodeLine{161                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1label}{label}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1label_a19de7762a9e5227082811ac2ef228545}{paragraph\_alignment}}(\textcolor{keyword}{const} lecui::paragraph\_alignment\& paragraph\_alignment);}
 \DoxyCodeLine{162 }
 \DoxyCodeLine{163             \textcolor{keyword}{public}:}
 \DoxyCodeLine{170                 [[nodiscard]]}
@@ -105,6 +105,8 @@
 \DoxyCodeLine{183     \}}
 \DoxyCodeLine{184 \}}
 \DoxyCodeLine{185 }
-\DoxyCodeLine{187 \textcolor{preprocessor}{\#define get\_label(path) liblec::lecui::widgets::label::get(*this, path)}}
+\DoxyCodeLine{186 \textcolor{preprocessor}{\#if defined(lecui\_helper)}}
+\DoxyCodeLine{188 \textcolor{preprocessor}{\#define get\_label(path) liblec::lecui::widgets::label::get(*this, path)}}
+\DoxyCodeLine{189 \textcolor{preprocessor}{\#endif}}
 
 \end{DoxyCode}

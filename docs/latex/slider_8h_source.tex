@@ -179,6 +179,8 @@
 \DoxyCodeLine{276     \}}
 \DoxyCodeLine{277 \}}
 \DoxyCodeLine{278 }
-\DoxyCodeLine{280 \textcolor{preprocessor}{\#define get\_slider(path) liblec::lecui::widgets::slider::get(*this, path)}}
+\DoxyCodeLine{279 \textcolor{preprocessor}{\#if defined(lecui\_helper)}}
+\DoxyCodeLine{281 \textcolor{preprocessor}{\#define get\_slider(path) liblec::lecui::widgets::slider::get(*this, path)}}
+\DoxyCodeLine{282 \textcolor{preprocessor}{\#endif}}
 
 \end{DoxyCode}

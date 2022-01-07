@@ -21,7 +21,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">lecui<span id="projectnumber">&#160;1.0.0-alpha.16</span>
+   <div id="projectname">lecui<span id="projectnumber">&#160;1.0.0-alpha.17</span>
    </div>
    <div id="projectbrief">lecui C++ user interface library</div>
   </td>
@@ -105,7 +105,9 @@ $(function() {
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    }</div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>}</div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="preprocessor">#define get_side_pane() liblec::lecui::containers::side_pane::get(*this)</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="preprocessor">#if defined(lecui_helper)</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="preprocessor">#define get_side_pane() liblec::lecui::containers::side_pane::get(*this)</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1containers_1_1side__pane_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1containers_1_1side__pane.html">liblec::lecui::containers::side_pane</a></div><div class="ttdoc">Side pane container. To instantiate and add to a container use the add static method.</div><div class="ttdef"><b>Definition:</b> side_pane.h:25</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1containers_1_1side__pane_html_a0cbe5c4f237bec8386fea368737ce32e"><div class="ttname"><a href="classliblec_1_1lecui_1_1containers_1_1side__pane.html#a0cbe5c4f237bec8386fea368737ce32e">liblec::lecui::containers::side_pane::get</a></div><div class="ttdeci">static containers::status_pane &amp; get(form &amp;fm)</div><div class="ttdoc">Get a reference to an existing side pane.</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1containers_1_1side__pane_html_a589d221fbb9b1211bed4d62e2371b5a7"><div class="ttname"><a href="classliblec_1_1lecui_1_1containers_1_1side__pane.html#a589d221fbb9b1211bed4d62e2371b5a7">liblec::lecui::containers::side_pane::add</a></div><div class="ttdeci">static status_pane &amp; add(form &amp;fm, const float &amp;thickness)</div><div class="ttdoc">Create a side pane.</div></div>

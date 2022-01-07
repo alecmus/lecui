@@ -17,392 +17,466 @@
 \DoxyCodeLine{14 \textcolor{preprocessor}{    \#define lecui\_api \_\_declspec(dllexport)}}
 \DoxyCodeLine{15 \textcolor{preprocessor}{\#else}}
 \DoxyCodeLine{16 \textcolor{preprocessor}{    \#define lecui\_api \_\_declspec(dllimport)}}
-\DoxyCodeLine{17 }
-\DoxyCodeLine{18     \textcolor{comment}{// for visual styles (message box, open file, save file)}}
-\DoxyCodeLine{19 \textcolor{preprocessor}{    \#pragma comment(linker, "{}\(\backslash\)"{}/manifestdependency:type='win32' \(\backslash\)}}
-\DoxyCodeLine{20 \textcolor{preprocessor}{    name='Microsoft.Windows.Common-\/Controls' version='6.0.0.0' \(\backslash\)}}
-\DoxyCodeLine{21 \textcolor{preprocessor}{    processorArchitecture='*' publicKeyToken='6595b64144ccf1df' \(\backslash\)}}
-\DoxyCodeLine{22 \textcolor{preprocessor}{    language='*'\(\backslash\)"{}"{}})}
-\DoxyCodeLine{23 }
-\DoxyCodeLine{24 \textcolor{preprocessor}{    \#if defined(\_WIN64)}}
-\DoxyCodeLine{25 \textcolor{preprocessor}{        \#if defined(\_DEBUG)}}
-\DoxyCodeLine{26 \textcolor{preprocessor}{            \#pragma comment(lib, "{}lecui64d.lib"{}})}
-\DoxyCodeLine{27 \textcolor{preprocessor}{        \#else}}
-\DoxyCodeLine{28 \textcolor{preprocessor}{            \#pragma comment(lib, "{}lecui64.lib"{}})}
-\DoxyCodeLine{29 \textcolor{preprocessor}{        \#endif}}
-\DoxyCodeLine{30 \textcolor{preprocessor}{    \#else}}
-\DoxyCodeLine{31 \textcolor{preprocessor}{        \#if defined(\_DEBUG)}}
-\DoxyCodeLine{32 \textcolor{preprocessor}{            \#pragma comment(lib, "{}lecui32d.lib"{}})}
-\DoxyCodeLine{33 \textcolor{preprocessor}{        \#else}}
-\DoxyCodeLine{34 \textcolor{preprocessor}{            \#pragma comment(lib, "{}lecui32.lib"{}})}
-\DoxyCodeLine{35 \textcolor{preprocessor}{        \#endif}}
-\DoxyCodeLine{36 \textcolor{preprocessor}{    \#endif}}
-\DoxyCodeLine{37 \textcolor{preprocessor}{\#endif}}
-\DoxyCodeLine{38 }
-\DoxyCodeLine{39 \textcolor{preprocessor}{\#if defined(\_MSC\_VER)}}
-\DoxyCodeLine{40 \textcolor{comment}{// Turn off annoying "{}needs to have dll-\/interface"{} warning}}
-\DoxyCodeLine{41 \textcolor{preprocessor}{\#pragma warning(disable:4251)}}
-\DoxyCodeLine{42 \textcolor{preprocessor}{\#endif}}
-\DoxyCodeLine{43 }
-\DoxyCodeLine{44 \textcolor{preprocessor}{\#include <string>}}
-\DoxyCodeLine{45 \textcolor{preprocessor}{\#include <vector>}}
-\DoxyCodeLine{46 \textcolor{preprocessor}{\#include <map>}}
-\DoxyCodeLine{47 \textcolor{preprocessor}{\#include <any>}}
-\DoxyCodeLine{48 }
-\DoxyCodeLine{49 \textcolor{keyword}{namespace }liblec \{}
-\DoxyCodeLine{50     \textcolor{keyword}{namespace }lecui \{}
-\DoxyCodeLine{54         std::string lecui\_api version();}
-\DoxyCodeLine{55 }
-\DoxyCodeLine{60         std::string lecui\_api unique\_string();}
-\DoxyCodeLine{61 }
-\DoxyCodeLine{67         std::string lecui\_api unique\_string\_short();}
-\DoxyCodeLine{68 }
-\DoxyCodeLine{71         \textcolor{keyword}{class }lecui\_api \mbox{\hyperlink{classliblec_1_1lecui_1_1point}{point}} \{}
-\DoxyCodeLine{72             \textcolor{keywordtype}{float} \_x = 0.f;}
-\DoxyCodeLine{73             \textcolor{keywordtype}{float} \_y = 0.f;}
-\DoxyCodeLine{74 }
-\DoxyCodeLine{75         \textcolor{keyword}{public}:}
-\DoxyCodeLine{77             \mbox{\hyperlink{classliblec_1_1lecui_1_1point_addf95ffc9c32601dca66257a296394f6}{point}}();}
-\DoxyCodeLine{78 }
-\DoxyCodeLine{82             \mbox{\hyperlink{classliblec_1_1lecui_1_1point_a7b227e72f972d92a52b23d1f64e6e5ed}{point}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float} x, \textcolor{keyword}{const} \textcolor{keywordtype}{float} y);}
-\DoxyCodeLine{83 }
-\DoxyCodeLine{86             \textcolor{keywordtype}{float}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1point_a72453a25dc24ba1ec2c9be44a2ac9290}{x}}();}
-\DoxyCodeLine{87 }
-\DoxyCodeLine{90             \textcolor{keywordtype}{float} \mbox{\hyperlink{classliblec_1_1lecui_1_1point_ad71f5d0e2cd92c8b5122316689a6cd09}{get\_x}}() \textcolor{keyword}{const};}
-\DoxyCodeLine{91 }
-\DoxyCodeLine{95             \mbox{\hyperlink{classliblec_1_1lecui_1_1point}{point}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1point_a851b1769cce750674421d4694f37ee36}{x}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float}\& x);}
-\DoxyCodeLine{96 }
-\DoxyCodeLine{99             \textcolor{keywordtype}{float}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1point_a9de24a71a7ab269dfbe0feca71668049}{y}}();}
-\DoxyCodeLine{100 }
-\DoxyCodeLine{103             \textcolor{keywordtype}{float} \mbox{\hyperlink{classliblec_1_1lecui_1_1point_a1bcbe2c7e3333a6f53a32cd72617c7d9}{get\_y}}() \textcolor{keyword}{const};}
-\DoxyCodeLine{104 }
-\DoxyCodeLine{108             \mbox{\hyperlink{classliblec_1_1lecui_1_1point}{point}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1point_ae1921d66b01def4683a67a0993ad4673}{y}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float}\& y);}
-\DoxyCodeLine{109         \};}
-\DoxyCodeLine{110 }
-\DoxyCodeLine{112         \textcolor{keyword}{class }lecui\_api \mbox{\hyperlink{classliblec_1_1lecui_1_1size}{size}} \{}
-\DoxyCodeLine{113             \textcolor{keywordtype}{float} \_width = 0.f;}
-\DoxyCodeLine{114             \textcolor{keywordtype}{float} \_height = 0.f;}
-\DoxyCodeLine{115 }
-\DoxyCodeLine{116         \textcolor{keyword}{public}:}
-\DoxyCodeLine{118             \mbox{\hyperlink{classliblec_1_1lecui_1_1size_a0f437d36ef36f7f25a8cf9e5a1030167}{size}}();}
-\DoxyCodeLine{119 }
-\DoxyCodeLine{123             \mbox{\hyperlink{classliblec_1_1lecui_1_1size_a6cebf366eeb7efede6b200f805590b30}{size}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float} width, \textcolor{keyword}{const} \textcolor{keywordtype}{float} height);}
-\DoxyCodeLine{124 }
-\DoxyCodeLine{127             \textcolor{keywordtype}{float}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1size_a4e1e38cb9b423851be9546007698208f}{width}}();}
-\DoxyCodeLine{128 }
-\DoxyCodeLine{131             \textcolor{keywordtype}{float} \mbox{\hyperlink{classliblec_1_1lecui_1_1size_a38b253e0d8d5adb10c028b0b71dd6c16}{get\_width}}() \textcolor{keyword}{const};}
-\DoxyCodeLine{132 }
-\DoxyCodeLine{136             \mbox{\hyperlink{classliblec_1_1lecui_1_1size}{size}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1size_a42120a4c9a2927a2c948042f27fd3096}{width}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float}\& width);}
-\DoxyCodeLine{137 }
-\DoxyCodeLine{140             \textcolor{keywordtype}{float}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1size_af7100a4b4dbb8fb8a6ecdae7cb1371d0}{height}}();}
-\DoxyCodeLine{141 }
-\DoxyCodeLine{144             \textcolor{keywordtype}{float} \mbox{\hyperlink{classliblec_1_1lecui_1_1size_aa7799f97169c2e7b64fc3a9a051082ba}{get\_height}}() \textcolor{keyword}{const};}
-\DoxyCodeLine{145 }
-\DoxyCodeLine{149             \mbox{\hyperlink{classliblec_1_1lecui_1_1size}{size}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1size_af3cec63065a530d8842ffaac7bf5dff0}{height}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float}\& height);}
-\DoxyCodeLine{150         \};}
-\DoxyCodeLine{151 }
-\DoxyCodeLine{153         \textcolor{keyword}{class }lecui\_api \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{rect}} \{}
-\DoxyCodeLine{154             \textcolor{keywordtype}{float} \_left = 0.f;}
-\DoxyCodeLine{155             \textcolor{keywordtype}{float} \_right = 0.f;}
-\DoxyCodeLine{156             \textcolor{keywordtype}{float} \_top = 0.f;}
-\DoxyCodeLine{157             \textcolor{keywordtype}{float} \_bottom = 0.f;}
-\DoxyCodeLine{158 }
-\DoxyCodeLine{159         \textcolor{keyword}{public}:}
-\DoxyCodeLine{161             \mbox{\hyperlink{classliblec_1_1lecui_1_1rect_ab3e9afce7260078dc694348faf200999}{rect}}();}
-\DoxyCodeLine{162 }
-\DoxyCodeLine{168             \mbox{\hyperlink{classliblec_1_1lecui_1_1rect_ae31c57f265fffe2c4a5323521bf00611}{rect}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float} left, \textcolor{keyword}{const} \textcolor{keywordtype}{float} right, \textcolor{keyword}{const} \textcolor{keywordtype}{float} top, \textcolor{keyword}{const} \textcolor{keywordtype}{float} bottom);}
-\DoxyCodeLine{169 }
-\DoxyCodeLine{172             \textcolor{keywordtype}{float}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1rect_a5caa5c61821fe46d3927f8145d65f57e}{left}}();}
-\DoxyCodeLine{173 }
-\DoxyCodeLine{176             \textcolor{keywordtype}{float} \mbox{\hyperlink{classliblec_1_1lecui_1_1rect_a145ff5e149384e27dbd78c84e9784b64}{get\_left}}() \textcolor{keyword}{const};}
-\DoxyCodeLine{177 }
-\DoxyCodeLine{181             \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{rect}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1rect_ae6ca066af9c8a58567b78c502a1ab0d2}{left}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float}\& left);}
-\DoxyCodeLine{182 }
-\DoxyCodeLine{185             \textcolor{keywordtype}{float}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1rect_acdd187ba0fe567ca566aab5e6facfaff}{right}}();}
-\DoxyCodeLine{186 }
-\DoxyCodeLine{189             \textcolor{keywordtype}{float} \mbox{\hyperlink{classliblec_1_1lecui_1_1rect_a32b9b6606d0f172bd6724c8131c6a4df}{get\_right}}() \textcolor{keyword}{const};}
-\DoxyCodeLine{190 }
-\DoxyCodeLine{194             \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{rect}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1rect_a2610632234f51b121d7a7b69cf230c51}{right}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float}\& right);}
-\DoxyCodeLine{195 }
-\DoxyCodeLine{198             \textcolor{keywordtype}{float}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1rect_a8dfc4d54eb5d51543e57684cc515eb3f}{top}}();}
-\DoxyCodeLine{199 }
-\DoxyCodeLine{202             \textcolor{keywordtype}{float} \mbox{\hyperlink{classliblec_1_1lecui_1_1rect_a603230f0e1db5bc2a9defb4fccf31652}{get\_top}}() \textcolor{keyword}{const};}
-\DoxyCodeLine{203 }
-\DoxyCodeLine{207             \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{rect}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1rect_afccdde2acc9d02a502248baa81f31255}{top}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float}\& top);}
-\DoxyCodeLine{208 }
-\DoxyCodeLine{211             \textcolor{keywordtype}{float}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1rect_a6ea2428401d1d3c87370da34ad822513}{bottom}}();}
-\DoxyCodeLine{212 }
-\DoxyCodeLine{215             \textcolor{keywordtype}{float} \mbox{\hyperlink{classliblec_1_1lecui_1_1rect_ae28fbccede541de335ad4b5eefd137a0}{get\_bottom}}() \textcolor{keyword}{const};}
-\DoxyCodeLine{216 }
-\DoxyCodeLine{220             \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{rect}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1rect_ae20cc3891161b4b8956fc5fddf9711f6}{bottom}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float}\& bottom);}
-\DoxyCodeLine{221 }
-\DoxyCodeLine{224             [[nodiscard]] \textcolor{keywordtype}{float} \mbox{\hyperlink{classliblec_1_1lecui_1_1rect_a5846d30d278d9c0f92d7b0a78af62f7c}{width}}() \textcolor{keyword}{const};}
-\DoxyCodeLine{225 }
-\DoxyCodeLine{228             [[nodiscard]] \textcolor{keywordtype}{float} \mbox{\hyperlink{classliblec_1_1lecui_1_1rect_ad98aa9e4bf165f7c062423c3e17db925}{height}}() \textcolor{keyword}{const};}
-\DoxyCodeLine{229 }
-\DoxyCodeLine{232             [[nodiscard]] \mbox{\hyperlink{classliblec_1_1lecui_1_1size}{size}} \mbox{\hyperlink{classliblec_1_1lecui_1_1rect_aa23ae9c2a0722c4bee246e8ae5542f15}{size}}() \textcolor{keyword}{const};}
-\DoxyCodeLine{233 }
-\DoxyCodeLine{238             \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{rect}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1rect_a30e7bfa98304b1ae700d36b81220bf3d}{width}}(\textcolor{keywordtype}{float} width);}
-\DoxyCodeLine{239 }
-\DoxyCodeLine{244             \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{rect}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1rect_a647400bc8f43c17fcb0d91525bb6c395}{height}}(\textcolor{keywordtype}{float} height);}
-\DoxyCodeLine{245 }
-\DoxyCodeLine{250             \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{rect}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1rect_adc8414dfdd2d1c1c274cdf6bdea0e321}{size}}(\mbox{\hyperlink{classliblec_1_1lecui_1_1size}{lecui::size}} \mbox{\hyperlink{classliblec_1_1lecui_1_1size}{size}});}
-\DoxyCodeLine{251 }
-\DoxyCodeLine{257             \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{rect}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1rect_aeb7c4865003e403327c1617f1c4feb55}{size}}(\textcolor{keywordtype}{float} width, \textcolor{keywordtype}{float} height);}
-\DoxyCodeLine{258 }
-\DoxyCodeLine{265             \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{rect}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1rect_aa68d9b981e9f009e025205bffa3681b3}{set}}(\textcolor{keywordtype}{float} x, \textcolor{keywordtype}{float} y, \textcolor{keywordtype}{float} cx, \textcolor{keywordtype}{float} cy);}
-\DoxyCodeLine{266 }
-\DoxyCodeLine{273             \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{rect}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1rect_aed9898c4d2d1c69c0df59ab529af2744}{move}}(\textcolor{keywordtype}{float} x, \textcolor{keywordtype}{float} y);}
-\DoxyCodeLine{274 }
-\DoxyCodeLine{283             \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{rect}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1rect_a5f194fdc51e58a9de0b491b3bed6dbab}{place}}(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{rect}}\& rect\_reference, \textcolor{keyword}{const} \textcolor{keywordtype}{float}\& perc\_h, \textcolor{keyword}{const} \textcolor{keywordtype}{float}\& perc\_v);}
-\DoxyCodeLine{284 }
-\DoxyCodeLine{285             \textcolor{keyword}{enum class} snap\_type \{}
-\DoxyCodeLine{286                 bottom\_left,}
-\DoxyCodeLine{287                 bottom,}
-\DoxyCodeLine{288                 bottom\_right,}
-\DoxyCodeLine{289                 top\_left,}
-\DoxyCodeLine{290                 top,}
-\DoxyCodeLine{291                 top\_right,}
-\DoxyCodeLine{292                 right\_top,}
-\DoxyCodeLine{293                 right,}
-\DoxyCodeLine{294                 right\_bottom,}
-\DoxyCodeLine{295                 left\_top,}
-\DoxyCodeLine{296                 left,}
-\DoxyCodeLine{297                 left\_bottom,}
-\DoxyCodeLine{298             \};}
-\DoxyCodeLine{299 }
-\DoxyCodeLine{306             \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{rect}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1rect_a2d8df6b1972bf85c1104e03e3042f2a1}{snap\_to}}(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{rect}}\& rect\_reference, snap\_type type, \textcolor{keyword}{const} \textcolor{keywordtype}{float}\& clearance);}
-\DoxyCodeLine{307 }
-\DoxyCodeLine{314             \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{rect}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1rect_ad7f8ba0ae3295c65fb80a9d030022241}{clip\_to}}(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{rect}}\& rect\_reference, \textcolor{keyword}{const} \textcolor{keywordtype}{float}\& clearance);}
-\DoxyCodeLine{315 }
-\DoxyCodeLine{316             \textcolor{keywordtype}{bool} operator==(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{rect}}\&);}
-\DoxyCodeLine{317             \textcolor{keywordtype}{bool} operator!=(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{rect}}\&);}
-\DoxyCodeLine{318         \};}
-\DoxyCodeLine{319 }
-\DoxyCodeLine{323         \textcolor{keyword}{class }lecui\_api \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params}{resize\_params}} \{}
-\DoxyCodeLine{324             \textcolor{keywordtype}{float} \_x\_rate = 0.f;}
-\DoxyCodeLine{325             \textcolor{keywordtype}{float} \_y\_rate = 0.f;}
-\DoxyCodeLine{326             \textcolor{keywordtype}{float} \_width\_rate = 0.f;}
-\DoxyCodeLine{327             \textcolor{keywordtype}{float} \_height\_rate = 0.f;}
-\DoxyCodeLine{328             \textcolor{keywordtype}{float} \_min\_x = 0.f;}
-\DoxyCodeLine{329             \textcolor{keywordtype}{float} \_min\_y = 0.f;}
-\DoxyCodeLine{330             \textcolor{keywordtype}{float} \_max\_x = 0.f;}
-\DoxyCodeLine{331             \textcolor{keywordtype}{float} \_max\_y = 0.f;}
-\DoxyCodeLine{332             \textcolor{keywordtype}{float} \_min\_width = 0.f;}
-\DoxyCodeLine{333             \textcolor{keywordtype}{float} \_min\_height = 0.f;}
-\DoxyCodeLine{334             \textcolor{keywordtype}{float} \_max\_width = 0.f;}
-\DoxyCodeLine{335             \textcolor{keywordtype}{float} \_max\_height = 0.f;}
-\DoxyCodeLine{336 }
-\DoxyCodeLine{337         \textcolor{keyword}{public}:}
-\DoxyCodeLine{340             \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_aa514e5f4424d06e088006ed22e828da4}{resize\_params}}();}
-\DoxyCodeLine{341 }
-\DoxyCodeLine{349             \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_a1c9d8d67233e1861baa69e363667dfeb}{resize\_params}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float} x\_rate, \textcolor{keyword}{const} \textcolor{keywordtype}{float} y\_rate, \textcolor{keyword}{const} \textcolor{keywordtype}{float} width\_rate, \textcolor{keyword}{const} \textcolor{keywordtype}{float} height\_rate);}
-\DoxyCodeLine{350 }
-\DoxyCodeLine{355             \textcolor{keywordtype}{float}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_a7e79c0a2d56d4315a4e9bc6ab6c3aa8a}{x\_rate}}();}
-\DoxyCodeLine{356 }
-\DoxyCodeLine{361             \textcolor{keywordtype}{float} \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_aa56a04874d4107c5cd3b33581acc7906}{get\_x\_rate}}() \textcolor{keyword}{const};}
-\DoxyCodeLine{362 }
-\DoxyCodeLine{368             \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params}{resize\_params}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_a5eb1fc77e3ee6ff25f45f0b0fe039b95}{x\_rate}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float}\& x\_rate);}
-\DoxyCodeLine{369 }
-\DoxyCodeLine{374             \textcolor{keywordtype}{float}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_aeded689e0350f79beac779fe9c09206a}{y\_rate}}();}
-\DoxyCodeLine{375 }
-\DoxyCodeLine{380             \textcolor{keywordtype}{float} \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_a124c36feddbcf16070eafb7c87bcbc2c}{get\_y\_rate}}() \textcolor{keyword}{const};}
-\DoxyCodeLine{381 }
-\DoxyCodeLine{387             \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params}{resize\_params}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_a09d19f40fa5b184374ef811c552aa709}{y\_rate}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float}\& y\_rate);}
-\DoxyCodeLine{388 }
-\DoxyCodeLine{393             \textcolor{keywordtype}{float}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_a1370b463171cca8f675379f003d7a64e}{width\_rate}}();}
-\DoxyCodeLine{394 }
-\DoxyCodeLine{399             \textcolor{keywordtype}{float} \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_afd93213a55e8cf631af518c24b35c2c7}{get\_width\_rate}}() \textcolor{keyword}{const};}
-\DoxyCodeLine{400 }
-\DoxyCodeLine{406             \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params}{resize\_params}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_a4cdd11daad99186a543847f87facbe10}{width\_rate}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float}\& width\_rate);}
-\DoxyCodeLine{407 }
-\DoxyCodeLine{412             \textcolor{keywordtype}{float}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_aaff8d8da719f40ea01fc0685f54e6825}{height\_rate}}();}
-\DoxyCodeLine{413 }
-\DoxyCodeLine{418             \textcolor{keywordtype}{float} \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_a8295fe02605ba13eaef2215297eb69fe}{get\_height\_rate}}() \textcolor{keyword}{const};}
-\DoxyCodeLine{419 }
-\DoxyCodeLine{425             \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params}{resize\_params}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_a4337570a7f90263d551ce61584c22fa9}{height\_rate}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float}\& height\_rate);}
-\DoxyCodeLine{426 }
-\DoxyCodeLine{429             \textcolor{keywordtype}{float}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_a8e1bd05c2e7e62ccacfd705562772fee}{min\_x}}();}
-\DoxyCodeLine{430 }
-\DoxyCodeLine{433             \textcolor{keyword}{const} \textcolor{keywordtype}{float} \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_a09032a02be8f8d5a9e40e00975c2dcb6}{get\_min\_x}}() \textcolor{keyword}{const};}
-\DoxyCodeLine{434 }
-\DoxyCodeLine{438             \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params}{resize\_params}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_a6de9652b850af4291452c0c34b4f2fde}{min\_x}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float}\& min\_x);}
-\DoxyCodeLine{439 }
-\DoxyCodeLine{442             \textcolor{keywordtype}{float}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_aee4beed210a0b1c846ef83337f8f8d00}{min\_y}}();}
-\DoxyCodeLine{443 }
-\DoxyCodeLine{446             \textcolor{keywordtype}{float} \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_a246e998b4f70d8ff5f039a739010303b}{get\_min\_y}}() \textcolor{keyword}{const};}
-\DoxyCodeLine{447 }
-\DoxyCodeLine{451             \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params}{resize\_params}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_a4c0a4b212019771a18348034e8f2d222}{min\_y}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float}\& min\_y);}
-\DoxyCodeLine{452 }
-\DoxyCodeLine{455             \textcolor{keywordtype}{float}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_af85ef925572e1d0674a95a4bd4a193e4}{max\_x}}();}
-\DoxyCodeLine{456 }
-\DoxyCodeLine{459             \textcolor{keywordtype}{float} \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_accb8a57af184a3f68e0e7df2fb74d251}{get\_max\_x}}() \textcolor{keyword}{const};}
-\DoxyCodeLine{460 }
-\DoxyCodeLine{464             \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params}{resize\_params}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_a1d90439a7124698813a542425e059b0f}{max\_x}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float}\& max\_x);}
-\DoxyCodeLine{465 }
-\DoxyCodeLine{468             \textcolor{keywordtype}{float}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_aafaa7c87d10e49f02cbbca00d575f16e}{max\_y}}();}
-\DoxyCodeLine{469 }
-\DoxyCodeLine{472             \textcolor{keywordtype}{float} \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_a507d67f6cb4c5154f8cf5c849bba7fab}{get\_max\_y}}() \textcolor{keyword}{const};}
-\DoxyCodeLine{473 }
-\DoxyCodeLine{477             \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params}{resize\_params}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_a1ab9a2bbfff27b692536474276227975}{max\_y}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float}\& max\_y);}
-\DoxyCodeLine{478 }
-\DoxyCodeLine{481             \textcolor{keywordtype}{float}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_a2d5afb9f44717b40830cbe94cf8ad7ee}{min\_width}}();}
-\DoxyCodeLine{482 }
-\DoxyCodeLine{485             \textcolor{keywordtype}{float} \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_a721e146f513030f5d28ce8ba5664b479}{get\_min\_width}}() \textcolor{keyword}{const};}
-\DoxyCodeLine{486 }
-\DoxyCodeLine{490             \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params}{resize\_params}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_a85eedd11db0f0bbb8725f75ee8d335c9}{min\_width}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float}\& min\_width);}
-\DoxyCodeLine{491 }
-\DoxyCodeLine{494             \textcolor{keywordtype}{float}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_a2b7110e3711988702b1f30c15a44ae2a}{min\_height}}();}
-\DoxyCodeLine{495 }
-\DoxyCodeLine{498             \textcolor{keywordtype}{float} \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_aa2d52b216cda44821379a7591ee15cb4}{get\_min\_height}}() \textcolor{keyword}{const};}
-\DoxyCodeLine{499 }
-\DoxyCodeLine{503             \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params}{resize\_params}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_af942f935fe2464069f1f88a8d4822326}{min\_height}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float}\& min\_height);}
-\DoxyCodeLine{504 }
-\DoxyCodeLine{507             \textcolor{keywordtype}{float}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_aa6f2a409891de401e8f8ae24c882b724}{max\_width}}();}
-\DoxyCodeLine{508 }
-\DoxyCodeLine{511             \textcolor{keywordtype}{float} \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_a66d143d3a2422c53b105801ccf981731}{get\_max\_width}}() \textcolor{keyword}{const};}
-\DoxyCodeLine{512 }
-\DoxyCodeLine{516             \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params}{resize\_params}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_ad09ad5e8cd162b656ae339f5b4ddf377}{max\_width}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float}\& max\_width);}
-\DoxyCodeLine{517 }
-\DoxyCodeLine{520             \textcolor{keywordtype}{float}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_a515f20f2fb99b8abb76ff4305937c98d}{max\_height}}();}
-\DoxyCodeLine{521 }
-\DoxyCodeLine{524             \textcolor{keywordtype}{float} \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_ae6d2883bf24a9c517a4fc1b70b9a4018}{get\_max\_height}}() \textcolor{keyword}{const};}
-\DoxyCodeLine{525 }
-\DoxyCodeLine{529             \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params}{resize\_params}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_af0962e91b3c107cacbd98caf86b37acf}{max\_height}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float}\& max\_height);}
-\DoxyCodeLine{530 }
-\DoxyCodeLine{531             \textcolor{keywordtype}{bool} operator==(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params}{resize\_params}}\&);}
-\DoxyCodeLine{532             \textcolor{keywordtype}{bool} operator!=(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params}{resize\_params}}\&);}
-\DoxyCodeLine{533         \};}
-\DoxyCodeLine{534 }
-\DoxyCodeLine{536         \textcolor{keyword}{class }lecui\_api \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \{}
-\DoxyCodeLine{537             \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} \_red = 0;}
-\DoxyCodeLine{538             \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} \_green = 0;}
-\DoxyCodeLine{539             \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} \_blue = 0;}
-\DoxyCodeLine{540             \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} \_alpha = 255;}
-\DoxyCodeLine{541 }
-\DoxyCodeLine{542         \textcolor{keyword}{public}:}
-\DoxyCodeLine{544             \mbox{\hyperlink{classliblec_1_1lecui_1_1color_a1be9c52735e036cc68c439460315b4c5}{color}}();}
-\DoxyCodeLine{545 }
-\DoxyCodeLine{551             \mbox{\hyperlink{classliblec_1_1lecui_1_1color_a6b2b4b11ca74278040dae8fde28944ab}{color}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} red,}
-\DoxyCodeLine{552                 \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} green,}
-\DoxyCodeLine{553                 \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} blue,}
-\DoxyCodeLine{554                 \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} alpha);}
-\DoxyCodeLine{555 }
-\DoxyCodeLine{558             \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1color_accf58563a521fb4364bdb8dc802801cb}{red}}();}
-\DoxyCodeLine{559 }
-\DoxyCodeLine{562             \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} \mbox{\hyperlink{classliblec_1_1lecui_1_1color_a438ec98fd8367fc5c41606f069b624e1}{get\_red}}() \textcolor{keyword}{const};}
-\DoxyCodeLine{563 }
-\DoxyCodeLine{567             \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1color_ad878ad41ac12da5f9f4f45ec97c0c0d6}{red}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short}\& red);}
-\DoxyCodeLine{568             }
-\DoxyCodeLine{571             \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1color_a197aa1ea2507e4a9eadd84bfa344c0f5}{green}}();}
-\DoxyCodeLine{572 }
-\DoxyCodeLine{575             \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} \mbox{\hyperlink{classliblec_1_1lecui_1_1color_a7812e65a8805b7e321cd527286eedbb3}{get\_green}}() \textcolor{keyword}{const};}
-\DoxyCodeLine{576 }
-\DoxyCodeLine{580             \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1color_ae0b49cbab5dd8dab7b02dccad2587828}{green}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short}\& green);}
-\DoxyCodeLine{581 }
-\DoxyCodeLine{584             \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1color_a2518db8f0d07af488dab38d46a8f1ae2}{blue}}();}
-\DoxyCodeLine{585 }
-\DoxyCodeLine{588             \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} \mbox{\hyperlink{classliblec_1_1lecui_1_1color_a6e9a569228d0bc61d6dc181a9cb04349}{get\_blue}}() \textcolor{keyword}{const};}
-\DoxyCodeLine{589 }
-\DoxyCodeLine{593             \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1color_add10dec6a1a009a03c1a02bfdf901ade}{blue}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short}\& blue);}
-\DoxyCodeLine{594 }
-\DoxyCodeLine{597             \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1color_a212b215c17f584b6cf747071de491ab1}{alpha}}();}
-\DoxyCodeLine{598 }
-\DoxyCodeLine{601             \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} \mbox{\hyperlink{classliblec_1_1lecui_1_1color_abc9e7b373fd4842fa970b40d10bdd699}{get\_alpha}}() \textcolor{keyword}{const};}
-\DoxyCodeLine{602 }
-\DoxyCodeLine{606             \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1color_a5da3e78c938b6d7d93045c30499d6df8}{alpha}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short}\& alpha);}
-\DoxyCodeLine{607 }
-\DoxyCodeLine{611             \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1color_aa040b4804822cb3b8d6442d7475b3c9b}{darken}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float}\& percentage);}
-\DoxyCodeLine{612 }
-\DoxyCodeLine{616             \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1color_a3e1295b79decc1cad3ca2fb4feb2dfc5}{lighten}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float}\& percentage);}
-\DoxyCodeLine{617 }
-\DoxyCodeLine{618             \textcolor{keywordtype}{bool} operator==(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\&);}
-\DoxyCodeLine{619             \textcolor{keywordtype}{bool} operator!=(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\&);}
-\DoxyCodeLine{620         \};}
-\DoxyCodeLine{621 }
-\DoxyCodeLine{623         \textcolor{keyword}{enum class} sort\_options \{}
-\DoxyCodeLine{625             ascending,}
-\DoxyCodeLine{626 }
-\DoxyCodeLine{628             descending,}
+\DoxyCodeLine{17     }
+\DoxyCodeLine{18     \textcolor{comment}{// for helper macros, e.g. get\_text\_field()}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{    \#define lecui\_helper    1}}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21     \textcolor{comment}{// for visual styles (message box, open file, save file)}}
+\DoxyCodeLine{22 \textcolor{preprocessor}{    \#pragma comment(linker, "{}\(\backslash\)"{}/manifestdependency:type='win32' \(\backslash\)}}
+\DoxyCodeLine{23 \textcolor{preprocessor}{    name='Microsoft.Windows.Common-\/Controls' version='6.0.0.0' \(\backslash\)}}
+\DoxyCodeLine{24 \textcolor{preprocessor}{    processorArchitecture='*' publicKeyToken='6595b64144ccf1df' \(\backslash\)}}
+\DoxyCodeLine{25 \textcolor{preprocessor}{    language='*'\(\backslash\)"{}"{}})}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27 \textcolor{preprocessor}{    \#if defined(\_WIN64)}}
+\DoxyCodeLine{28 \textcolor{preprocessor}{        \#if defined(\_DEBUG)}}
+\DoxyCodeLine{29 \textcolor{preprocessor}{            \#pragma comment(lib, "{}lecui64d.lib"{}})}
+\DoxyCodeLine{30 \textcolor{preprocessor}{        \#else}}
+\DoxyCodeLine{31 \textcolor{preprocessor}{            \#pragma comment(lib, "{}lecui64.lib"{}})}
+\DoxyCodeLine{32 \textcolor{preprocessor}{        \#endif}}
+\DoxyCodeLine{33 \textcolor{preprocessor}{    \#else}}
+\DoxyCodeLine{34 \textcolor{preprocessor}{        \#if defined(\_DEBUG)}}
+\DoxyCodeLine{35 \textcolor{preprocessor}{            \#pragma comment(lib, "{}lecui32d.lib"{}})}
+\DoxyCodeLine{36 \textcolor{preprocessor}{        \#else}}
+\DoxyCodeLine{37 \textcolor{preprocessor}{            \#pragma comment(lib, "{}lecui32.lib"{}})}
+\DoxyCodeLine{38 \textcolor{preprocessor}{        \#endif}}
+\DoxyCodeLine{39 \textcolor{preprocessor}{    \#endif}}
+\DoxyCodeLine{40 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42 \textcolor{preprocessor}{\#if defined(\_MSC\_VER)}}
+\DoxyCodeLine{43 \textcolor{comment}{// Turn off annoying "{}needs to have dll-\/interface"{} warning}}
+\DoxyCodeLine{44 \textcolor{preprocessor}{\#pragma warning(disable:4251)}}
+\DoxyCodeLine{45 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{48 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{49 \textcolor{preprocessor}{\#include <map>}}
+\DoxyCodeLine{50 \textcolor{preprocessor}{\#include <any>}}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{52 \textcolor{keyword}{namespace }liblec \{}
+\DoxyCodeLine{53     \textcolor{keyword}{namespace }lecui \{}
+\DoxyCodeLine{57         std::string lecui\_api version();}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{63         std::string lecui\_api unique\_string();}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{70         std::string lecui\_api unique\_string\_short();}
+\DoxyCodeLine{71 }
+\DoxyCodeLine{74         \textcolor{keyword}{class }lecui\_api \mbox{\hyperlink{classliblec_1_1lecui_1_1point}{point}} \{}
+\DoxyCodeLine{75             \textcolor{keywordtype}{float} \_x = 0.f;}
+\DoxyCodeLine{76             \textcolor{keywordtype}{float} \_y = 0.f;}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{78         \textcolor{keyword}{public}:}
+\DoxyCodeLine{80             \mbox{\hyperlink{classliblec_1_1lecui_1_1point_addf95ffc9c32601dca66257a296394f6}{point}}();}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{85             \mbox{\hyperlink{classliblec_1_1lecui_1_1point_a7b227e72f972d92a52b23d1f64e6e5ed}{point}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float} x, \textcolor{keyword}{const} \textcolor{keywordtype}{float} y);}
+\DoxyCodeLine{86 }
+\DoxyCodeLine{89             \textcolor{keywordtype}{float}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1point_a72453a25dc24ba1ec2c9be44a2ac9290}{x}}();}
+\DoxyCodeLine{90 }
+\DoxyCodeLine{93             \textcolor{keywordtype}{float} \mbox{\hyperlink{classliblec_1_1lecui_1_1point_ad71f5d0e2cd92c8b5122316689a6cd09}{get\_x}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{94 }
+\DoxyCodeLine{98             \mbox{\hyperlink{classliblec_1_1lecui_1_1point}{point}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1point_a851b1769cce750674421d4694f37ee36}{x}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float}\& x);}
+\DoxyCodeLine{99 }
+\DoxyCodeLine{102             \textcolor{keywordtype}{float}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1point_a9de24a71a7ab269dfbe0feca71668049}{y}}();}
+\DoxyCodeLine{103 }
+\DoxyCodeLine{106             \textcolor{keywordtype}{float} \mbox{\hyperlink{classliblec_1_1lecui_1_1point_a1bcbe2c7e3333a6f53a32cd72617c7d9}{get\_y}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{107 }
+\DoxyCodeLine{111             \mbox{\hyperlink{classliblec_1_1lecui_1_1point}{point}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1point_ae1921d66b01def4683a67a0993ad4673}{y}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float}\& y);}
+\DoxyCodeLine{112         \};}
+\DoxyCodeLine{113 }
+\DoxyCodeLine{115         \textcolor{keyword}{class }lecui\_api \mbox{\hyperlink{classliblec_1_1lecui_1_1size}{size}} \{}
+\DoxyCodeLine{116             \textcolor{keywordtype}{float} \_width = 0.f;}
+\DoxyCodeLine{117             \textcolor{keywordtype}{float} \_height = 0.f;}
+\DoxyCodeLine{118 }
+\DoxyCodeLine{119         \textcolor{keyword}{public}:}
+\DoxyCodeLine{121             \mbox{\hyperlink{classliblec_1_1lecui_1_1size_a0f437d36ef36f7f25a8cf9e5a1030167}{size}}();}
+\DoxyCodeLine{122 }
+\DoxyCodeLine{126             \mbox{\hyperlink{classliblec_1_1lecui_1_1size_a6cebf366eeb7efede6b200f805590b30}{size}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float} width, \textcolor{keyword}{const} \textcolor{keywordtype}{float} height);}
+\DoxyCodeLine{127 }
+\DoxyCodeLine{130             \textcolor{keywordtype}{float}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1size_a4e1e38cb9b423851be9546007698208f}{width}}();}
+\DoxyCodeLine{131 }
+\DoxyCodeLine{134             \textcolor{keywordtype}{float} \mbox{\hyperlink{classliblec_1_1lecui_1_1size_a38b253e0d8d5adb10c028b0b71dd6c16}{get\_width}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{135 }
+\DoxyCodeLine{139             \mbox{\hyperlink{classliblec_1_1lecui_1_1size}{size}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1size_a42120a4c9a2927a2c948042f27fd3096}{width}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float}\& width);}
+\DoxyCodeLine{140 }
+\DoxyCodeLine{143             \textcolor{keywordtype}{float}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1size_af7100a4b4dbb8fb8a6ecdae7cb1371d0}{height}}();}
+\DoxyCodeLine{144 }
+\DoxyCodeLine{147             \textcolor{keywordtype}{float} \mbox{\hyperlink{classliblec_1_1lecui_1_1size_aa7799f97169c2e7b64fc3a9a051082ba}{get\_height}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{148 }
+\DoxyCodeLine{152             \mbox{\hyperlink{classliblec_1_1lecui_1_1size}{size}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1size_af3cec63065a530d8842ffaac7bf5dff0}{height}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float}\& height);}
+\DoxyCodeLine{153         \};}
+\DoxyCodeLine{154 }
+\DoxyCodeLine{156         \textcolor{keyword}{class }lecui\_api \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{rect}} \{}
+\DoxyCodeLine{157             \textcolor{keywordtype}{float} \_left = 0.f;}
+\DoxyCodeLine{158             \textcolor{keywordtype}{float} \_right = 0.f;}
+\DoxyCodeLine{159             \textcolor{keywordtype}{float} \_top = 0.f;}
+\DoxyCodeLine{160             \textcolor{keywordtype}{float} \_bottom = 0.f;}
+\DoxyCodeLine{161 }
+\DoxyCodeLine{162         \textcolor{keyword}{public}:}
+\DoxyCodeLine{164             \mbox{\hyperlink{classliblec_1_1lecui_1_1rect_ab3e9afce7260078dc694348faf200999}{rect}}();}
+\DoxyCodeLine{165 }
+\DoxyCodeLine{171             \mbox{\hyperlink{classliblec_1_1lecui_1_1rect_ae31c57f265fffe2c4a5323521bf00611}{rect}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float} left, \textcolor{keyword}{const} \textcolor{keywordtype}{float} right, \textcolor{keyword}{const} \textcolor{keywordtype}{float} top, \textcolor{keyword}{const} \textcolor{keywordtype}{float} bottom);}
+\DoxyCodeLine{172 }
+\DoxyCodeLine{175             \textcolor{keywordtype}{float}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1rect_a5caa5c61821fe46d3927f8145d65f57e}{left}}();}
+\DoxyCodeLine{176 }
+\DoxyCodeLine{179             \textcolor{keywordtype}{float} \mbox{\hyperlink{classliblec_1_1lecui_1_1rect_a145ff5e149384e27dbd78c84e9784b64}{get\_left}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{180 }
+\DoxyCodeLine{184             \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{rect}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1rect_ae6ca066af9c8a58567b78c502a1ab0d2}{left}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float}\& left);}
+\DoxyCodeLine{185 }
+\DoxyCodeLine{188             \textcolor{keywordtype}{float}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1rect_acdd187ba0fe567ca566aab5e6facfaff}{right}}();}
+\DoxyCodeLine{189 }
+\DoxyCodeLine{192             \textcolor{keywordtype}{float} \mbox{\hyperlink{classliblec_1_1lecui_1_1rect_a32b9b6606d0f172bd6724c8131c6a4df}{get\_right}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{193 }
+\DoxyCodeLine{197             \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{rect}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1rect_a2610632234f51b121d7a7b69cf230c51}{right}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float}\& right);}
+\DoxyCodeLine{198 }
+\DoxyCodeLine{201             \textcolor{keywordtype}{float}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1rect_a8dfc4d54eb5d51543e57684cc515eb3f}{top}}();}
+\DoxyCodeLine{202 }
+\DoxyCodeLine{205             \textcolor{keywordtype}{float} \mbox{\hyperlink{classliblec_1_1lecui_1_1rect_a603230f0e1db5bc2a9defb4fccf31652}{get\_top}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{206 }
+\DoxyCodeLine{210             \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{rect}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1rect_afccdde2acc9d02a502248baa81f31255}{top}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float}\& top);}
+\DoxyCodeLine{211 }
+\DoxyCodeLine{214             \textcolor{keywordtype}{float}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1rect_a6ea2428401d1d3c87370da34ad822513}{bottom}}();}
+\DoxyCodeLine{215 }
+\DoxyCodeLine{218             \textcolor{keywordtype}{float} \mbox{\hyperlink{classliblec_1_1lecui_1_1rect_ae28fbccede541de335ad4b5eefd137a0}{get\_bottom}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{219 }
+\DoxyCodeLine{223             \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{rect}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1rect_ae20cc3891161b4b8956fc5fddf9711f6}{bottom}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float}\& bottom);}
+\DoxyCodeLine{224 }
+\DoxyCodeLine{227             [[nodiscard]] \textcolor{keywordtype}{float} \mbox{\hyperlink{classliblec_1_1lecui_1_1rect_a5846d30d278d9c0f92d7b0a78af62f7c}{width}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{228 }
+\DoxyCodeLine{231             [[nodiscard]] \textcolor{keywordtype}{float} \mbox{\hyperlink{classliblec_1_1lecui_1_1rect_ad98aa9e4bf165f7c062423c3e17db925}{height}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{232 }
+\DoxyCodeLine{235             [[nodiscard]] \mbox{\hyperlink{classliblec_1_1lecui_1_1size}{size}} \mbox{\hyperlink{classliblec_1_1lecui_1_1rect_aa23ae9c2a0722c4bee246e8ae5542f15}{size}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{236 }
+\DoxyCodeLine{241             \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{rect}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1rect_a30e7bfa98304b1ae700d36b81220bf3d}{width}}(\textcolor{keywordtype}{float} width);}
+\DoxyCodeLine{242 }
+\DoxyCodeLine{247             \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{rect}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1rect_a647400bc8f43c17fcb0d91525bb6c395}{height}}(\textcolor{keywordtype}{float} height);}
+\DoxyCodeLine{248 }
+\DoxyCodeLine{253             \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{rect}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1rect_adc8414dfdd2d1c1c274cdf6bdea0e321}{size}}(\mbox{\hyperlink{classliblec_1_1lecui_1_1size}{lecui::size}} \mbox{\hyperlink{classliblec_1_1lecui_1_1size}{size}});}
+\DoxyCodeLine{254 }
+\DoxyCodeLine{260             \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{rect}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1rect_aeb7c4865003e403327c1617f1c4feb55}{size}}(\textcolor{keywordtype}{float} width, \textcolor{keywordtype}{float} height);}
+\DoxyCodeLine{261 }
+\DoxyCodeLine{268             \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{rect}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1rect_aa68d9b981e9f009e025205bffa3681b3}{set}}(\textcolor{keywordtype}{float} x, \textcolor{keywordtype}{float} y, \textcolor{keywordtype}{float} cx, \textcolor{keywordtype}{float} cy);}
+\DoxyCodeLine{269 }
+\DoxyCodeLine{276             \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{rect}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1rect_aed9898c4d2d1c69c0df59ab529af2744}{move}}(\textcolor{keywordtype}{float} x, \textcolor{keywordtype}{float} y);}
+\DoxyCodeLine{277 }
+\DoxyCodeLine{286             \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{rect}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1rect_a5f194fdc51e58a9de0b491b3bed6dbab}{place}}(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{rect}}\& rect\_reference, \textcolor{keyword}{const} \textcolor{keywordtype}{float}\& perc\_h, \textcolor{keyword}{const} \textcolor{keywordtype}{float}\& perc\_v);}
+\DoxyCodeLine{287 }
+\DoxyCodeLine{288             \textcolor{keyword}{enum class} snap\_type \{}
+\DoxyCodeLine{289                 bottom\_left,}
+\DoxyCodeLine{290                 bottom,}
+\DoxyCodeLine{291                 bottom\_right,}
+\DoxyCodeLine{292                 top\_left,}
+\DoxyCodeLine{293                 top,}
+\DoxyCodeLine{294                 top\_right,}
+\DoxyCodeLine{295                 right\_top,}
+\DoxyCodeLine{296                 right,}
+\DoxyCodeLine{297                 right\_bottom,}
+\DoxyCodeLine{298                 left\_top,}
+\DoxyCodeLine{299                 left,}
+\DoxyCodeLine{300                 left\_bottom,}
+\DoxyCodeLine{301             \};}
+\DoxyCodeLine{302 }
+\DoxyCodeLine{309             \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{rect}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1rect_a2d8df6b1972bf85c1104e03e3042f2a1}{snap\_to}}(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{rect}}\& rect\_reference, snap\_type type, \textcolor{keyword}{const} \textcolor{keywordtype}{float}\& clearance);}
+\DoxyCodeLine{310 }
+\DoxyCodeLine{317             \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{rect}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1rect_ad7f8ba0ae3295c65fb80a9d030022241}{clip\_to}}(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{rect}}\& rect\_reference, \textcolor{keyword}{const} \textcolor{keywordtype}{float}\& clearance);}
+\DoxyCodeLine{318 }
+\DoxyCodeLine{319             \textcolor{keywordtype}{bool} operator==(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{rect}}\&);}
+\DoxyCodeLine{320             \textcolor{keywordtype}{bool} operator!=(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{rect}}\&);}
+\DoxyCodeLine{321         \};}
+\DoxyCodeLine{322 }
+\DoxyCodeLine{326         \textcolor{keyword}{class }lecui\_api \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params}{resize\_params}} \{}
+\DoxyCodeLine{327             \textcolor{keywordtype}{float} \_x\_rate = 0.f;}
+\DoxyCodeLine{328             \textcolor{keywordtype}{float} \_y\_rate = 0.f;}
+\DoxyCodeLine{329             \textcolor{keywordtype}{float} \_width\_rate = 0.f;}
+\DoxyCodeLine{330             \textcolor{keywordtype}{float} \_height\_rate = 0.f;}
+\DoxyCodeLine{331             \textcolor{keywordtype}{float} \_min\_x = 0.f;}
+\DoxyCodeLine{332             \textcolor{keywordtype}{float} \_min\_y = 0.f;}
+\DoxyCodeLine{333             \textcolor{keywordtype}{float} \_max\_x = 0.f;}
+\DoxyCodeLine{334             \textcolor{keywordtype}{float} \_max\_y = 0.f;}
+\DoxyCodeLine{335             \textcolor{keywordtype}{float} \_min\_width = 0.f;}
+\DoxyCodeLine{336             \textcolor{keywordtype}{float} \_min\_height = 0.f;}
+\DoxyCodeLine{337             \textcolor{keywordtype}{float} \_max\_width = 0.f;}
+\DoxyCodeLine{338             \textcolor{keywordtype}{float} \_max\_height = 0.f;}
+\DoxyCodeLine{339 }
+\DoxyCodeLine{340         \textcolor{keyword}{public}:}
+\DoxyCodeLine{343             \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_aa514e5f4424d06e088006ed22e828da4}{resize\_params}}();}
+\DoxyCodeLine{344 }
+\DoxyCodeLine{352             \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_a1c9d8d67233e1861baa69e363667dfeb}{resize\_params}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float} x\_rate, \textcolor{keyword}{const} \textcolor{keywordtype}{float} y\_rate, \textcolor{keyword}{const} \textcolor{keywordtype}{float} width\_rate, \textcolor{keyword}{const} \textcolor{keywordtype}{float} height\_rate);}
+\DoxyCodeLine{353 }
+\DoxyCodeLine{358             \textcolor{keywordtype}{float}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_a7e79c0a2d56d4315a4e9bc6ab6c3aa8a}{x\_rate}}();}
+\DoxyCodeLine{359 }
+\DoxyCodeLine{364             \textcolor{keywordtype}{float} \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_aa56a04874d4107c5cd3b33581acc7906}{get\_x\_rate}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{365 }
+\DoxyCodeLine{371             \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params}{resize\_params}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_a5eb1fc77e3ee6ff25f45f0b0fe039b95}{x\_rate}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float}\& x\_rate);}
+\DoxyCodeLine{372 }
+\DoxyCodeLine{377             \textcolor{keywordtype}{float}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_aeded689e0350f79beac779fe9c09206a}{y\_rate}}();}
+\DoxyCodeLine{378 }
+\DoxyCodeLine{383             \textcolor{keywordtype}{float} \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_a124c36feddbcf16070eafb7c87bcbc2c}{get\_y\_rate}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{384 }
+\DoxyCodeLine{390             \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params}{resize\_params}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_a09d19f40fa5b184374ef811c552aa709}{y\_rate}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float}\& y\_rate);}
+\DoxyCodeLine{391 }
+\DoxyCodeLine{396             \textcolor{keywordtype}{float}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_a1370b463171cca8f675379f003d7a64e}{width\_rate}}();}
+\DoxyCodeLine{397 }
+\DoxyCodeLine{402             \textcolor{keywordtype}{float} \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_afd93213a55e8cf631af518c24b35c2c7}{get\_width\_rate}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{403 }
+\DoxyCodeLine{409             \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params}{resize\_params}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_a4cdd11daad99186a543847f87facbe10}{width\_rate}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float}\& width\_rate);}
+\DoxyCodeLine{410 }
+\DoxyCodeLine{415             \textcolor{keywordtype}{float}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_aaff8d8da719f40ea01fc0685f54e6825}{height\_rate}}();}
+\DoxyCodeLine{416 }
+\DoxyCodeLine{421             \textcolor{keywordtype}{float} \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_a8295fe02605ba13eaef2215297eb69fe}{get\_height\_rate}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{422 }
+\DoxyCodeLine{428             \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params}{resize\_params}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_a4337570a7f90263d551ce61584c22fa9}{height\_rate}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float}\& height\_rate);}
+\DoxyCodeLine{429 }
+\DoxyCodeLine{432             \textcolor{keywordtype}{float}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_a8e1bd05c2e7e62ccacfd705562772fee}{min\_x}}();}
+\DoxyCodeLine{433 }
+\DoxyCodeLine{436             \textcolor{keyword}{const} \textcolor{keywordtype}{float} \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_a09032a02be8f8d5a9e40e00975c2dcb6}{get\_min\_x}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{437 }
+\DoxyCodeLine{441             \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params}{resize\_params}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_a6de9652b850af4291452c0c34b4f2fde}{min\_x}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float}\& min\_x);}
+\DoxyCodeLine{442 }
+\DoxyCodeLine{445             \textcolor{keywordtype}{float}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_aee4beed210a0b1c846ef83337f8f8d00}{min\_y}}();}
+\DoxyCodeLine{446 }
+\DoxyCodeLine{449             \textcolor{keywordtype}{float} \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_a246e998b4f70d8ff5f039a739010303b}{get\_min\_y}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{450 }
+\DoxyCodeLine{454             \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params}{resize\_params}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_a4c0a4b212019771a18348034e8f2d222}{min\_y}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float}\& min\_y);}
+\DoxyCodeLine{455 }
+\DoxyCodeLine{458             \textcolor{keywordtype}{float}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_af85ef925572e1d0674a95a4bd4a193e4}{max\_x}}();}
+\DoxyCodeLine{459 }
+\DoxyCodeLine{462             \textcolor{keywordtype}{float} \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_accb8a57af184a3f68e0e7df2fb74d251}{get\_max\_x}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{463 }
+\DoxyCodeLine{467             \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params}{resize\_params}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_a1d90439a7124698813a542425e059b0f}{max\_x}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float}\& max\_x);}
+\DoxyCodeLine{468 }
+\DoxyCodeLine{471             \textcolor{keywordtype}{float}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_aafaa7c87d10e49f02cbbca00d575f16e}{max\_y}}();}
+\DoxyCodeLine{472 }
+\DoxyCodeLine{475             \textcolor{keywordtype}{float} \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_a507d67f6cb4c5154f8cf5c849bba7fab}{get\_max\_y}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{476 }
+\DoxyCodeLine{480             \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params}{resize\_params}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_a1ab9a2bbfff27b692536474276227975}{max\_y}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float}\& max\_y);}
+\DoxyCodeLine{481 }
+\DoxyCodeLine{484             \textcolor{keywordtype}{float}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_a2d5afb9f44717b40830cbe94cf8ad7ee}{min\_width}}();}
+\DoxyCodeLine{485 }
+\DoxyCodeLine{488             \textcolor{keywordtype}{float} \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_a721e146f513030f5d28ce8ba5664b479}{get\_min\_width}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{489 }
+\DoxyCodeLine{493             \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params}{resize\_params}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_a85eedd11db0f0bbb8725f75ee8d335c9}{min\_width}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float}\& min\_width);}
+\DoxyCodeLine{494 }
+\DoxyCodeLine{497             \textcolor{keywordtype}{float}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_a2b7110e3711988702b1f30c15a44ae2a}{min\_height}}();}
+\DoxyCodeLine{498 }
+\DoxyCodeLine{501             \textcolor{keywordtype}{float} \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_aa2d52b216cda44821379a7591ee15cb4}{get\_min\_height}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{502 }
+\DoxyCodeLine{506             \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params}{resize\_params}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_af942f935fe2464069f1f88a8d4822326}{min\_height}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float}\& min\_height);}
+\DoxyCodeLine{507 }
+\DoxyCodeLine{510             \textcolor{keywordtype}{float}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_aa6f2a409891de401e8f8ae24c882b724}{max\_width}}();}
+\DoxyCodeLine{511 }
+\DoxyCodeLine{514             \textcolor{keywordtype}{float} \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_a66d143d3a2422c53b105801ccf981731}{get\_max\_width}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{515 }
+\DoxyCodeLine{519             \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params}{resize\_params}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_ad09ad5e8cd162b656ae339f5b4ddf377}{max\_width}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float}\& max\_width);}
+\DoxyCodeLine{520 }
+\DoxyCodeLine{523             \textcolor{keywordtype}{float}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_a515f20f2fb99b8abb76ff4305937c98d}{max\_height}}();}
+\DoxyCodeLine{524 }
+\DoxyCodeLine{527             \textcolor{keywordtype}{float} \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_ae6d2883bf24a9c517a4fc1b70b9a4018}{get\_max\_height}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{528 }
+\DoxyCodeLine{532             \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params}{resize\_params}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params_af0962e91b3c107cacbd98caf86b37acf}{max\_height}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float}\& max\_height);}
+\DoxyCodeLine{533 }
+\DoxyCodeLine{534             \textcolor{keywordtype}{bool} operator==(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params}{resize\_params}}\&);}
+\DoxyCodeLine{535             \textcolor{keywordtype}{bool} operator!=(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1resize__params}{resize\_params}}\&);}
+\DoxyCodeLine{536         \};}
+\DoxyCodeLine{537 }
+\DoxyCodeLine{539         \textcolor{keyword}{class }lecui\_api \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}} \{}
+\DoxyCodeLine{540             \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} \_red = 0;}
+\DoxyCodeLine{541             \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} \_green = 0;}
+\DoxyCodeLine{542             \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} \_blue = 0;}
+\DoxyCodeLine{543             \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} \_alpha = 255;}
+\DoxyCodeLine{544 }
+\DoxyCodeLine{545         \textcolor{keyword}{public}:}
+\DoxyCodeLine{547             \mbox{\hyperlink{classliblec_1_1lecui_1_1color_a1be9c52735e036cc68c439460315b4c5}{color}}();}
+\DoxyCodeLine{548 }
+\DoxyCodeLine{554             \mbox{\hyperlink{classliblec_1_1lecui_1_1color_a6b2b4b11ca74278040dae8fde28944ab}{color}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} red,}
+\DoxyCodeLine{555                 \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} green,}
+\DoxyCodeLine{556                 \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} blue,}
+\DoxyCodeLine{557                 \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} alpha);}
+\DoxyCodeLine{558 }
+\DoxyCodeLine{561             \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1color_accf58563a521fb4364bdb8dc802801cb}{red}}();}
+\DoxyCodeLine{562 }
+\DoxyCodeLine{565             \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} \mbox{\hyperlink{classliblec_1_1lecui_1_1color_a438ec98fd8367fc5c41606f069b624e1}{get\_red}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{566 }
+\DoxyCodeLine{570             \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1color_ad878ad41ac12da5f9f4f45ec97c0c0d6}{red}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short}\& red);}
+\DoxyCodeLine{571             }
+\DoxyCodeLine{574             \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1color_a197aa1ea2507e4a9eadd84bfa344c0f5}{green}}();}
+\DoxyCodeLine{575 }
+\DoxyCodeLine{578             \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} \mbox{\hyperlink{classliblec_1_1lecui_1_1color_a7812e65a8805b7e321cd527286eedbb3}{get\_green}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{579 }
+\DoxyCodeLine{583             \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1color_ae0b49cbab5dd8dab7b02dccad2587828}{green}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short}\& green);}
+\DoxyCodeLine{584 }
+\DoxyCodeLine{587             \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1color_a2518db8f0d07af488dab38d46a8f1ae2}{blue}}();}
+\DoxyCodeLine{588 }
+\DoxyCodeLine{591             \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} \mbox{\hyperlink{classliblec_1_1lecui_1_1color_a6e9a569228d0bc61d6dc181a9cb04349}{get\_blue}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{592 }
+\DoxyCodeLine{596             \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1color_add10dec6a1a009a03c1a02bfdf901ade}{blue}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short}\& blue);}
+\DoxyCodeLine{597 }
+\DoxyCodeLine{600             \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1color_a212b215c17f584b6cf747071de491ab1}{alpha}}();}
+\DoxyCodeLine{601 }
+\DoxyCodeLine{604             \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} \mbox{\hyperlink{classliblec_1_1lecui_1_1color_abc9e7b373fd4842fa970b40d10bdd699}{get\_alpha}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{605 }
+\DoxyCodeLine{609             \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1color_a5da3e78c938b6d7d93045c30499d6df8}{alpha}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short}\& alpha);}
+\DoxyCodeLine{610 }
+\DoxyCodeLine{614             \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1color_aa040b4804822cb3b8d6442d7475b3c9b}{darken}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float}\& percentage);}
+\DoxyCodeLine{615 }
+\DoxyCodeLine{619             \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1color_a3e1295b79decc1cad3ca2fb4feb2dfc5}{lighten}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float}\& percentage);}
+\DoxyCodeLine{620 }
+\DoxyCodeLine{621             \textcolor{keywordtype}{bool} operator==(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\&);}
+\DoxyCodeLine{622             \textcolor{keywordtype}{bool} operator!=(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1lecui_1_1color}{color}}\&);}
+\DoxyCodeLine{623         \};}
+\DoxyCodeLine{624 }
+\DoxyCodeLine{626         \textcolor{keyword}{enum class} sort\_options \{}
+\DoxyCodeLine{628             ascending,}
 \DoxyCodeLine{629 }
-\DoxyCodeLine{631             none,}
-\DoxyCodeLine{632         \};}
-\DoxyCodeLine{633 }
-\DoxyCodeLine{635         \textcolor{keyword}{struct }\mbox{\hyperlink{structliblec_1_1lecui_1_1file__type}{file\_type}} \{}
-\DoxyCodeLine{637             std::string \mbox{\hyperlink{structliblec_1_1lecui_1_1file__type_aed3575e34e098e123d9ea27f2ba54ece}{extension}} = \textcolor{stringliteral}{"{}png"{}};}
-\DoxyCodeLine{638 }
-\DoxyCodeLine{640             std::string \mbox{\hyperlink{structliblec_1_1lecui_1_1file__type_a88ef0362cc62e3a9797a3adba18fcc7c}{description}} = \textcolor{stringliteral}{"{}PNG Image"{}};}
-\DoxyCodeLine{641         \};}
-\DoxyCodeLine{642 }
-\DoxyCodeLine{644         \textcolor{keyword}{struct }\mbox{\hyperlink{structliblec_1_1lecui_1_1open__file__params}{open\_file\_params}} \{}
-\DoxyCodeLine{646             std::vector<file\_type> \mbox{\hyperlink{structliblec_1_1lecui_1_1open__file__params_ae454fefbd87977d4fb4c23bfd2625263}{file\_types}};}
+\DoxyCodeLine{631             descending,}
+\DoxyCodeLine{632 }
+\DoxyCodeLine{634             none,}
+\DoxyCodeLine{635         \};}
+\DoxyCodeLine{636 }
+\DoxyCodeLine{638         \textcolor{keyword}{struct }\mbox{\hyperlink{structliblec_1_1lecui_1_1file__type}{file\_type}} \{}
+\DoxyCodeLine{640             std::string \mbox{\hyperlink{structliblec_1_1lecui_1_1file__type_aed3575e34e098e123d9ea27f2ba54ece}{extension}} = \textcolor{stringliteral}{"{}png"{}};}
+\DoxyCodeLine{641 }
+\DoxyCodeLine{645             std::string \mbox{\hyperlink{structliblec_1_1lecui_1_1file__type_a88ef0362cc62e3a9797a3adba18fcc7c}{description}} = \textcolor{stringliteral}{"{}PNG Image"{}};}
+\DoxyCodeLine{646         \};}
 \DoxyCodeLine{647 }
-\DoxyCodeLine{650             \textcolor{keywordtype}{bool} \mbox{\hyperlink{structliblec_1_1lecui_1_1open__file__params_ab6f52cf7fc47eb0a71bdec0b76753695}{include\_all\_supported\_types}} = \textcolor{keyword}{true};}
-\DoxyCodeLine{651 }
-\DoxyCodeLine{653             std::string \mbox{\hyperlink{structliblec_1_1lecui_1_1open__file__params_abe2395756e5e1dda95b3b3ce64e37c3a}{title}} = \textcolor{stringliteral}{"{}Open File"{}};}
-\DoxyCodeLine{654         \};}
+\DoxyCodeLine{649         \textcolor{keyword}{class }lecui\_api \mbox{\hyperlink{classliblec_1_1lecui_1_1open__file__params}{open\_file\_params}} \{}
+\DoxyCodeLine{650             std::string \_title = \textcolor{stringliteral}{"{}Open File"{}};}
+\DoxyCodeLine{651             std::vector<file\_type> \_file\_types;}
+\DoxyCodeLine{652             std::string \_default\_type;}
+\DoxyCodeLine{653             \textcolor{keywordtype}{bool} \_include\_all\_supported\_types = \textcolor{keyword}{true};}
+\DoxyCodeLine{654             \textcolor{keywordtype}{bool} \_allow\_multi\_select = \textcolor{keyword}{false};}
 \DoxyCodeLine{655 }
-\DoxyCodeLine{657         \textcolor{keyword}{struct }\mbox{\hyperlink{structliblec_1_1lecui_1_1save__file__params}{save\_file\_params}} \{}
-\DoxyCodeLine{659             std::vector<file\_type> \mbox{\hyperlink{structliblec_1_1lecui_1_1save__file__params_a6313e25dcd7fcb4b395e3c9ec6a29630}{file\_types}};}
+\DoxyCodeLine{656         \textcolor{keyword}{public}:}
+\DoxyCodeLine{659             std::string\& \mbox{\hyperlink{classliblec_1_1lecui_1_1open__file__params_a002a913a374f6e9a798bae03bbde50ed}{title}}();}
 \DoxyCodeLine{660 }
-\DoxyCodeLine{663             \textcolor{keywordtype}{bool} \mbox{\hyperlink{structliblec_1_1lecui_1_1save__file__params_af9576ea1321f44ad8e1560f2486f253b}{include\_all\_supported\_types}} = \textcolor{keyword}{true};}
+\DoxyCodeLine{663             \textcolor{keyword}{const} std::string\& \mbox{\hyperlink{classliblec_1_1lecui_1_1open__file__params_a29cbca06491ffd3ef4ebcab8344f0296}{get\_title}}() \textcolor{keyword}{const};}
 \DoxyCodeLine{664 }
-\DoxyCodeLine{666             std::string \mbox{\hyperlink{structliblec_1_1lecui_1_1save__file__params_a44325d343baf268f2f54b3cfcc1c0f45}{title}} = \textcolor{stringliteral}{"{}Save File"{}};}
-\DoxyCodeLine{667         \};}
-\DoxyCodeLine{668 }
-\DoxyCodeLine{670         \textcolor{keyword}{struct }\mbox{\hyperlink{structliblec_1_1lecui_1_1table__column}{table\_column}} \{}
-\DoxyCodeLine{672             std::string \mbox{\hyperlink{structliblec_1_1lecui_1_1table__column_ae012c514d946382c1b12b7fb2d8fa303}{name}};}
+\DoxyCodeLine{668             \mbox{\hyperlink{classliblec_1_1lecui_1_1open__file__params}{open\_file\_params}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1open__file__params_aee977c6c397757445ab29f40413035f6}{title}}(\textcolor{keyword}{const} std::string\& title);}
+\DoxyCodeLine{669 }
+\DoxyCodeLine{672             std::vector<file\_type>\& \mbox{\hyperlink{classliblec_1_1lecui_1_1open__file__params_a3cc358c601b5fc38b974ef902060668f}{file\_types}}();}
 \DoxyCodeLine{673 }
-\DoxyCodeLine{675             \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} \mbox{\hyperlink{structliblec_1_1lecui_1_1table__column_a536b8a962d8d52ad1c1af5dfa150673d}{width}} = 80;}
-\DoxyCodeLine{676 }
-\DoxyCodeLine{678             \textcolor{keywordtype}{int} \mbox{\hyperlink{structliblec_1_1lecui_1_1table__column_a2f9d4b9739766ff9000af200846c5b49}{precision}} = 2;}
-\DoxyCodeLine{679 }
-\DoxyCodeLine{680             \textcolor{keywordtype}{bool} operator==(\textcolor{keyword}{const} \mbox{\hyperlink{structliblec_1_1lecui_1_1table__column}{table\_column}}\&);}
-\DoxyCodeLine{681             \textcolor{keywordtype}{bool} operator!=(\textcolor{keyword}{const} \mbox{\hyperlink{structliblec_1_1lecui_1_1table__column}{table\_column}}\&);}
-\DoxyCodeLine{682         \};}
-\DoxyCodeLine{683 }
-\DoxyCodeLine{688         \textcolor{keyword}{using} table\_row = std::map<std::string, std::any>;}
-\DoxyCodeLine{689 }
-\DoxyCodeLine{691         \textcolor{keyword}{class }lecui\_api \mbox{\hyperlink{classliblec_1_1lecui_1_1time}{time}} \{}
-\DoxyCodeLine{692         \textcolor{keyword}{public}:}
-\DoxyCodeLine{694             \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} hour = 0;}
-\DoxyCodeLine{695 }
-\DoxyCodeLine{697             \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} minute = 0;}
-\DoxyCodeLine{698 }
-\DoxyCodeLine{700             \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} second = 0;}
+\DoxyCodeLine{676             \textcolor{keyword}{const} std::vector<file\_type>\& \mbox{\hyperlink{classliblec_1_1lecui_1_1open__file__params_ae89284d4007f4acc6cf4554a3c7815ae}{get\_file\_types}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{677 }
+\DoxyCodeLine{681             \mbox{\hyperlink{classliblec_1_1lecui_1_1open__file__params}{open\_file\_params}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1open__file__params_abf87ec17d48c3481b1b3e08874ac9c1e}{file\_types}}(\textcolor{keyword}{const} std::vector<file\_type>\& file\_types);}
+\DoxyCodeLine{682 }
+\DoxyCodeLine{687             std::string\& \mbox{\hyperlink{classliblec_1_1lecui_1_1open__file__params_a403ba267b7a151c55dd3dec462cb224c}{default\_type}}();}
+\DoxyCodeLine{688 }
+\DoxyCodeLine{693             \textcolor{keyword}{const} std::string\& \mbox{\hyperlink{classliblec_1_1lecui_1_1open__file__params_af3ab755780f7ee846526451d491c1ce9}{get\_default\_type}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{694 }
+\DoxyCodeLine{700             \mbox{\hyperlink{classliblec_1_1lecui_1_1open__file__params}{open\_file\_params}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1open__file__params_a2b60758fcfe8f67aad5e11774015d87d}{default\_type}}(\textcolor{keyword}{const} std::string\& default\_type);}
 \DoxyCodeLine{701 }
-\DoxyCodeLine{704             \mbox{\hyperlink{classliblec_1_1lecui_1_1time_affaada602835c9fec25d1d43c09d5e89}{time}}();}
+\DoxyCodeLine{704             \textcolor{keywordtype}{bool}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1open__file__params_ac6c457ad093e7aae89cc1945c42f2319}{include\_all\_supported\_types}}();}
 \DoxyCodeLine{705 }
-\DoxyCodeLine{709             \mbox{\hyperlink{classliblec_1_1lecui_1_1time_a86adfb88fb68f7578e135798c1cfa94a}{time}}(\textcolor{keyword}{const} std::string s);}
-\DoxyCodeLine{710 }
-\DoxyCodeLine{713             std::string \mbox{\hyperlink{classliblec_1_1lecui_1_1time_a567c43708aa7db94db2c405c0f508b45}{to\_string}}();}
-\DoxyCodeLine{714         \};}
-\DoxyCodeLine{715 }
-\DoxyCodeLine{717         \textcolor{keyword}{struct }\mbox{\hyperlink{structliblec_1_1lecui_1_1date}{date}} \{}
-\DoxyCodeLine{719             \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} \mbox{\hyperlink{structliblec_1_1lecui_1_1date_add8de9d90353c46c0b1ebf0e057269ea}{day}} = 1;}
-\DoxyCodeLine{720 }
-\DoxyCodeLine{722             \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} \mbox{\hyperlink{structliblec_1_1lecui_1_1date_a0d9ad745f60858496cd31fccf73fe47a}{month}} = 1;}
-\DoxyCodeLine{723 }
-\DoxyCodeLine{725             \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} \mbox{\hyperlink{structliblec_1_1lecui_1_1date_ab1a3b032c045c37244e9ecc1ad693ec2}{year}} = 2020;}
-\DoxyCodeLine{726         \};}
-\DoxyCodeLine{727 }
-\DoxyCodeLine{729         \textcolor{keyword}{enum class} image\_quality \{}
-\DoxyCodeLine{731             low,}
-\DoxyCodeLine{732 }
-\DoxyCodeLine{734             medium,}
+\DoxyCodeLine{708             \textcolor{keyword}{const} \textcolor{keywordtype}{bool}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1open__file__params_a28bb75aefc39612146cda9d1bc17b6cc}{get\_include\_all\_supported\_types}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{709 }
+\DoxyCodeLine{713             \mbox{\hyperlink{classliblec_1_1lecui_1_1open__file__params}{open\_file\_params}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1open__file__params_a32584f35959e57660222139aca526a00}{include\_all\_supported\_types}}(\textcolor{keyword}{const} \textcolor{keywordtype}{bool}\& include\_all\_supported\_types);}
+\DoxyCodeLine{714 }
+\DoxyCodeLine{717             \textcolor{keywordtype}{bool}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1open__file__params_a0fc460232e49fb8a62f2cdc353cc9276}{allow\_multi\_select}}();}
+\DoxyCodeLine{718 }
+\DoxyCodeLine{721             \textcolor{keyword}{const} \textcolor{keywordtype}{bool}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1open__file__params_a4b9b77b94f4d984c977f74e9ade08aa7}{get\_allow\_multi\_select}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{722 }
+\DoxyCodeLine{726             \mbox{\hyperlink{classliblec_1_1lecui_1_1open__file__params}{open\_file\_params}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1open__file__params_a31e9f364ae1ba385b8ee98514939178a}{allow\_multi\_select}}(\textcolor{keyword}{const} \textcolor{keywordtype}{bool}\& allow\_multi\_select);}
+\DoxyCodeLine{727         \};}
+\DoxyCodeLine{728 }
+\DoxyCodeLine{730         \textcolor{keyword}{class }lecui\_api \mbox{\hyperlink{classliblec_1_1lecui_1_1save__file__params}{save\_file\_params}} \{}
+\DoxyCodeLine{731             std::string \_title = \textcolor{stringliteral}{"{}Save File"{}};}
+\DoxyCodeLine{732             std::vector<file\_type> \_file\_types;}
+\DoxyCodeLine{733             std::string \_default\_type;}
+\DoxyCodeLine{734             \textcolor{keywordtype}{bool} \_include\_all\_files = \textcolor{keyword}{true};}
 \DoxyCodeLine{735 }
-\DoxyCodeLine{737             high,}
-\DoxyCodeLine{738         \};}
-\DoxyCodeLine{739 }
-\DoxyCodeLine{745         \textcolor{keyword}{class }lecui\_api \mbox{\hyperlink{classliblec_1_1lecui_1_1get}{get}} \{}
-\DoxyCodeLine{746         \textcolor{keyword}{public}:}
-\DoxyCodeLine{750             \textcolor{keyword}{static} \textcolor{keywordtype}{int} \mbox{\hyperlink{classliblec_1_1lecui_1_1get_adc07f2b28581e059a53f9cb1e37bc9bd}{integer}}(\textcolor{keyword}{const} std::any\& value);}
-\DoxyCodeLine{751 }
-\DoxyCodeLine{755             \textcolor{keyword}{static} \textcolor{keywordtype}{double} \mbox{\hyperlink{classliblec_1_1lecui_1_1get_a12e47478db25ea94239a08e16bb34ba4}{real}}(\textcolor{keyword}{const} std::any\& value);}
-\DoxyCodeLine{756 }
-\DoxyCodeLine{760             \textcolor{keyword}{static} std::string \mbox{\hyperlink{classliblec_1_1lecui_1_1get_a8431bca3b5d8c72dad3d7444c5886b3e}{text}}(\textcolor{keyword}{const} std::any\& value);}
-\DoxyCodeLine{761         \};}
-\DoxyCodeLine{762     \}}
-\DoxyCodeLine{763 \}}
+\DoxyCodeLine{736         \textcolor{keyword}{public}:}
+\DoxyCodeLine{739             std::string\& \mbox{\hyperlink{classliblec_1_1lecui_1_1save__file__params_acbd23f6ce5a2971b3585b690cf328899}{title}}();}
+\DoxyCodeLine{740 }
+\DoxyCodeLine{743             \textcolor{keyword}{const} std::string\& \mbox{\hyperlink{classliblec_1_1lecui_1_1save__file__params_aeec978081308a1151407233a868e9926}{get\_title}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{744 }
+\DoxyCodeLine{748             \mbox{\hyperlink{classliblec_1_1lecui_1_1save__file__params}{save\_file\_params}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1save__file__params_afac8fd36e7f970059b890bf6555aa989}{title}}(\textcolor{keyword}{const} std::string\& title);}
+\DoxyCodeLine{749 }
+\DoxyCodeLine{752             std::vector<file\_type>\& \mbox{\hyperlink{classliblec_1_1lecui_1_1save__file__params_a7f8a580cf206279ff71101bcd9854f1d}{file\_types}}();}
+\DoxyCodeLine{753 }
+\DoxyCodeLine{756             \textcolor{keyword}{const} std::vector<file\_type>\& \mbox{\hyperlink{classliblec_1_1lecui_1_1save__file__params_ab465a5c0003de2c61bcd59951f9e339b}{get\_file\_types}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{757 }
+\DoxyCodeLine{761             \mbox{\hyperlink{classliblec_1_1lecui_1_1save__file__params}{save\_file\_params}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1save__file__params_a1442afc52f02cdb369b1f3a6d3ee4cb8}{file\_types}}(\textcolor{keyword}{const} std::vector<file\_type>\& file\_types);}
+\DoxyCodeLine{762 }
+\DoxyCodeLine{767             std::string\& \mbox{\hyperlink{classliblec_1_1lecui_1_1save__file__params_a701a4510941c4af8308eb3bd894dd3fa}{default\_type}}();}
+\DoxyCodeLine{768 }
+\DoxyCodeLine{773             \textcolor{keyword}{const} std::string\& \mbox{\hyperlink{classliblec_1_1lecui_1_1save__file__params_afb31ffb01ce14751f87dddd830e2c834}{get\_default\_type}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{774 }
+\DoxyCodeLine{780             \mbox{\hyperlink{classliblec_1_1lecui_1_1save__file__params}{save\_file\_params}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1save__file__params_ac6e05a09c8d7db709c37a17c56df6082}{default\_type}}(\textcolor{keyword}{const} std::string\& default\_type);}
+\DoxyCodeLine{781 }
+\DoxyCodeLine{784             \textcolor{keywordtype}{bool}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1save__file__params_a2ed44630fd56fc4bfffc744ee0c88f91}{include\_all\_files}}();}
+\DoxyCodeLine{785 }
+\DoxyCodeLine{788             \textcolor{keyword}{const} \textcolor{keywordtype}{bool}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1save__file__params_afdfcfba7c2e96a97b549fa108d5991c7}{get\_include\_all\_files}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{789 }
+\DoxyCodeLine{793             \mbox{\hyperlink{classliblec_1_1lecui_1_1save__file__params}{save\_file\_params}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1save__file__params_a608c50d64983a8da1b16cf7dba731400}{include\_all\_files}}(\textcolor{keyword}{const} \textcolor{keywordtype}{bool}\& include\_all\_files);}
+\DoxyCodeLine{794         \};}
+\DoxyCodeLine{795 }
+\DoxyCodeLine{797         \textcolor{keyword}{struct }\mbox{\hyperlink{structliblec_1_1lecui_1_1table__column}{table\_column}} \{}
+\DoxyCodeLine{799             std::string \mbox{\hyperlink{structliblec_1_1lecui_1_1table__column_ae012c514d946382c1b12b7fb2d8fa303}{name}};}
+\DoxyCodeLine{800 }
+\DoxyCodeLine{802             \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} \mbox{\hyperlink{structliblec_1_1lecui_1_1table__column_a536b8a962d8d52ad1c1af5dfa150673d}{width}} = 80;}
+\DoxyCodeLine{803 }
+\DoxyCodeLine{805             \textcolor{keywordtype}{int} \mbox{\hyperlink{structliblec_1_1lecui_1_1table__column_a2f9d4b9739766ff9000af200846c5b49}{precision}} = 2;}
+\DoxyCodeLine{806 }
+\DoxyCodeLine{807             \textcolor{keywordtype}{bool} operator==(\textcolor{keyword}{const} \mbox{\hyperlink{structliblec_1_1lecui_1_1table__column}{table\_column}}\&);}
+\DoxyCodeLine{808             \textcolor{keywordtype}{bool} operator!=(\textcolor{keyword}{const} \mbox{\hyperlink{structliblec_1_1lecui_1_1table__column}{table\_column}}\&);}
+\DoxyCodeLine{809         \};}
+\DoxyCodeLine{810 }
+\DoxyCodeLine{815         \textcolor{keyword}{using} table\_row = std::map<std::string, std::any>;}
+\DoxyCodeLine{816 }
+\DoxyCodeLine{818         \textcolor{keyword}{class }lecui\_api \mbox{\hyperlink{classliblec_1_1lecui_1_1time}{time}} \{}
+\DoxyCodeLine{819         \textcolor{keyword}{public}:}
+\DoxyCodeLine{821             \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} hour = 0;}
+\DoxyCodeLine{822 }
+\DoxyCodeLine{824             \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} minute = 0;}
+\DoxyCodeLine{825 }
+\DoxyCodeLine{827             \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} second = 0;}
+\DoxyCodeLine{828 }
+\DoxyCodeLine{831             \mbox{\hyperlink{classliblec_1_1lecui_1_1time_affaada602835c9fec25d1d43c09d5e89}{time}}();}
+\DoxyCodeLine{832 }
+\DoxyCodeLine{836             \mbox{\hyperlink{classliblec_1_1lecui_1_1time_a86adfb88fb68f7578e135798c1cfa94a}{time}}(\textcolor{keyword}{const} std::string s);}
+\DoxyCodeLine{837 }
+\DoxyCodeLine{840             std::string \mbox{\hyperlink{classliblec_1_1lecui_1_1time_a567c43708aa7db94db2c405c0f508b45}{to\_string}}();}
+\DoxyCodeLine{841         \};}
+\DoxyCodeLine{842 }
+\DoxyCodeLine{844         \textcolor{keyword}{struct }\mbox{\hyperlink{structliblec_1_1lecui_1_1date}{date}} \{}
+\DoxyCodeLine{846             \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} \mbox{\hyperlink{structliblec_1_1lecui_1_1date_add8de9d90353c46c0b1ebf0e057269ea}{day}} = 1;}
+\DoxyCodeLine{847 }
+\DoxyCodeLine{849             \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} \mbox{\hyperlink{structliblec_1_1lecui_1_1date_a0d9ad745f60858496cd31fccf73fe47a}{month}} = 1;}
+\DoxyCodeLine{850 }
+\DoxyCodeLine{852             \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} \mbox{\hyperlink{structliblec_1_1lecui_1_1date_ab1a3b032c045c37244e9ecc1ad693ec2}{year}} = 2020;}
+\DoxyCodeLine{853         \};}
+\DoxyCodeLine{854 }
+\DoxyCodeLine{856         \textcolor{keyword}{enum class} image\_quality \{}
+\DoxyCodeLine{858             low,}
+\DoxyCodeLine{859 }
+\DoxyCodeLine{861             medium,}
+\DoxyCodeLine{862 }
+\DoxyCodeLine{864             high,}
+\DoxyCodeLine{865         \};}
+\DoxyCodeLine{866 }
+\DoxyCodeLine{872         \textcolor{keyword}{class }lecui\_api \mbox{\hyperlink{classliblec_1_1lecui_1_1get}{get}} \{}
+\DoxyCodeLine{873         \textcolor{keyword}{public}:}
+\DoxyCodeLine{877             \textcolor{keyword}{static} \textcolor{keywordtype}{int} \mbox{\hyperlink{classliblec_1_1lecui_1_1get_adc07f2b28581e059a53f9cb1e37bc9bd}{integer}}(\textcolor{keyword}{const} std::any\& value);}
+\DoxyCodeLine{878 }
+\DoxyCodeLine{882             \textcolor{keyword}{static} \textcolor{keywordtype}{double} \mbox{\hyperlink{classliblec_1_1lecui_1_1get_a12e47478db25ea94239a08e16bb34ba4}{real}}(\textcolor{keyword}{const} std::any\& value);}
+\DoxyCodeLine{883 }
+\DoxyCodeLine{887             \textcolor{keyword}{static} std::string \mbox{\hyperlink{classliblec_1_1lecui_1_1get_a8431bca3b5d8c72dad3d7444c5886b3e}{text}}(\textcolor{keyword}{const} std::any\& value);}
+\DoxyCodeLine{888         \};}
+\DoxyCodeLine{889 }
+\DoxyCodeLine{891         \textcolor{keyword}{enum class} text\_alignment \{}
+\DoxyCodeLine{893             left,}
+\DoxyCodeLine{894 }
+\DoxyCodeLine{896             center,}
+\DoxyCodeLine{897 }
+\DoxyCodeLine{899             right,}
+\DoxyCodeLine{900         \};}
+\DoxyCodeLine{901 }
+\DoxyCodeLine{903         \textcolor{keyword}{enum class} paragraph\_alignment \{}
+\DoxyCodeLine{905             top,}
+\DoxyCodeLine{906 }
+\DoxyCodeLine{908             middle,}
+\DoxyCodeLine{909 }
+\DoxyCodeLine{911             bottom,}
+\DoxyCodeLine{912         \};}
+\DoxyCodeLine{913     \}}
+\DoxyCodeLine{914 \}}
 
 \end{DoxyCode}

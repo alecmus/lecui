@@ -21,7 +21,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">lecui<span id="projectnumber">&#160;1.0.0-alpha.16</span>
+   <div id="projectname">lecui<span id="projectnumber">&#160;1.0.0-alpha.17</span>
    </div>
    <div id="projectbrief">lecui C++ user interface library</div>
   </td>
@@ -184,12 +184,14 @@ $(function() {
 <div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    }</div>
 <div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>}</div>
 <div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span> </div>
-<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span><span class="preprocessor">#define get_strength_bar(path) liblec::lecui::widgets::strength_bar::get(*this, path)</span></div>
-<div class="ttc" id="aclassliblec_1_1lecui_1_1color_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1color.html">liblec::lecui::color</a></div><div class="ttdoc">RGBA color on a standard 0 to 255 scale. For the alpha channel 0 is transparent and 255 is opaque.</div><div class="ttdef"><b>Definition:</b> lecui.h:536</div></div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span><span class="preprocessor">#if defined(lecui_helper)</span></div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span><span class="preprocessor">#define get_strength_bar(path) liblec::lecui::widgets::strength_bar::get(*this, path)</span></div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1color_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1color.html">liblec::lecui::color</a></div><div class="ttdoc">RGBA color on a standard 0 to 255 scale. For the alpha channel 0 is transparent and 255 is opaque.</div><div class="ttdef"><b>Definition:</b> lecui.h:539</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1containers_1_1page_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1containers_1_1page.html">liblec::lecui::containers::page</a></div><div class="ttdoc">Page container.</div><div class="ttdef"><b>Definition:</b> page.h:31</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1form_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1form.html">liblec::lecui::form</a></div><div class="ttdoc">Form base class. The user must inherit from this class and call one of the two constructors from its ...</div><div class="ttdef"><b>Definition:</b> form.h:102</div></div>
-<div class="ttc" id="aclassliblec_1_1lecui_1_1rect_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1rect.html">liblec::lecui::rect</a></div><div class="ttdoc">Rectangle class.</div><div class="ttdef"><b>Definition:</b> lecui.h:153</div></div>
-<div class="ttc" id="aclassliblec_1_1lecui_1_1resize__params_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1resize__params.html">liblec::lecui::resize_params</a></div><div class="ttdoc">Resize parameters.</div><div class="ttdef"><b>Definition:</b> lecui.h:323</div></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1rect_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1rect.html">liblec::lecui::rect</a></div><div class="ttdoc">Rectangle class.</div><div class="ttdef"><b>Definition:</b> lecui.h:156</div></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1resize__params_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1resize__params.html">liblec::lecui::resize_params</a></div><div class="ttdoc">Resize parameters.</div><div class="ttdef"><b>Definition:</b> lecui.h:326</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1strength__bar_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1strength__bar.html">liblec::lecui::widgets::strength_bar</a></div><div class="ttdoc">Strength bar widget. To instantiate and add to a container use the add static method.</div><div class="ttdef"><b>Definition:</b> strength_bar.h:24</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1strength__bar_html_a0940b5a4a16c137899f8755e58f44bfe"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1strength__bar.html#a0940b5a4a16c137899f8755e58f44bfe">liblec::lecui::widgets::strength_bar::color_fill</a></div><div class="ttdeci">color &amp; color_fill() override</div><div class="ttdoc">Get or set the fill color of the widget.</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1strength__bar_html_a3d7c1c0597c498f43189f75312c593a2"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1strength__bar.html#a3d7c1c0597c498f43189f75312c593a2">liblec::lecui::widgets::strength_bar::color_text</a></div><div class="ttdeci">color &amp; color_text() override</div><div class="ttdoc">Get or set the color of the widget's text.</div></div>

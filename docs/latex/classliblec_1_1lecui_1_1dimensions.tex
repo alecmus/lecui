@@ -15,7 +15,7 @@ Manipulate a form\textquotesingle{}s dimensions.
 \mbox{\Hypertarget{classliblec_1_1lecui_1_1dimensions_a6a575d2dc5c48a88348fb49c94083648}\label{classliblec_1_1lecui_1_1dimensions_a6a575d2dc5c48a88348fb49c94083648}} 
 {\bfseries dimensions} (\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}} \&fm)
 \item 
-\mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{lecui\+::rect}} \mbox{\hyperlink{classliblec_1_1lecui_1_1dimensions_a5068e51fd7ab831a5b14ff7231892985}{measure\+\_\+label}} (const std\+::string \&formatted\+\_\+text, const std\+::string \&font, const float font\+\_\+size, bool center\+\_\+h, bool center\+\_\+v, const \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{lecui\+::rect}} max\+\_\+rect)
+\mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{lecui\+::rect}} \mbox{\hyperlink{classliblec_1_1lecui_1_1dimensions_a24ba17e48714f638e61ba2cd01f42ecb}{measure\+\_\+label}} (const std\+::string \&formatted\+\_\+text, const std\+::string \&font, const float font\+\_\+size, text\+\_\+alignment alignment, paragraph\+\_\+alignment paragraph\+\_\+alignment, const \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{lecui\+::rect}} max\+\_\+rect)
 \begin{DoxyCompactList}\small\item\em Measure how much space a label will take.\end{DoxyCompactList}\item 
 \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{lecui\+::rect}} \mbox{\hyperlink{classliblec_1_1lecui_1_1dimensions_a10cc9e17ca3f39afdb667b1d72c480fe}{working\+\_\+area}} ()
 \begin{DoxyCompactList}\small\item\em Get the working area of the screen. This is the part of the screen that excludes the operating system\textquotesingle{}s task bar.\end{DoxyCompactList}\item 
@@ -95,11 +95,11 @@ The size, in pixels.
 \end{DoxyReturn}
 
 
-Do not use this for laying out widgets on the form. Widgets are never placed directly onto a form, only into containers. Therefore, use the size of the containers for widget layout. Containers are never the same size as the form, some room is left for the form border, form controls, and depending on the container possibly scroll area etc. Refer to the container\textquotesingle{}s documentation for more details.\mbox{\Hypertarget{classliblec_1_1lecui_1_1dimensions_a5068e51fd7ab831a5b14ff7231892985}\label{classliblec_1_1lecui_1_1dimensions_a5068e51fd7ab831a5b14ff7231892985}} 
+Do not use this for laying out widgets on the form. Widgets are never placed directly onto a form, only into containers. Therefore, use the size of the containers for widget layout. Containers are never the same size as the form, some room is left for the form border, form controls, and depending on the container possibly scroll area etc. Refer to the container\textquotesingle{}s documentation for more details.\mbox{\Hypertarget{classliblec_1_1lecui_1_1dimensions_a24ba17e48714f638e61ba2cd01f42ecb}\label{classliblec_1_1lecui_1_1dimensions_a24ba17e48714f638e61ba2cd01f42ecb}} 
 \index{liblec::lecui::dimensions@{liblec::lecui::dimensions}!measure\_label@{measure\_label}}
 \index{measure\_label@{measure\_label}!liblec::lecui::dimensions@{liblec::lecui::dimensions}}
 \doxysubsubsection{\texorpdfstring{measure\_label()}{measure\_label()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{lecui\+::rect}} liblec\+::lecui\+::dimensions\+::measure\+\_\+label (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{formatted\+\_\+text,  }\item[{const std\+::string \&}]{font,  }\item[{const float}]{font\+\_\+size,  }\item[{bool}]{center\+\_\+h,  }\item[{bool}]{center\+\_\+v,  }\item[{const \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{lecui\+::rect}}}]{max\+\_\+rect }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{lecui\+::rect}} liblec\+::lecui\+::dimensions\+::measure\+\_\+label (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{formatted\+\_\+text,  }\item[{const std\+::string \&}]{font,  }\item[{const float}]{font\+\_\+size,  }\item[{text\+\_\+alignment}]{alignment,  }\item[{paragraph\+\_\+alignment}]{paragraph\+\_\+alignment,  }\item[{const \mbox{\hyperlink{classliblec_1_1lecui_1_1rect}{lecui\+::rect}}}]{max\+\_\+rect }\end{DoxyParamCaption})}
 
 
 
@@ -113,9 +113,9 @@ Measure how much space a label will take.
 \hline
 {\em font\+\_\+size} & The font size, in points, e.\+g. 9.\+0f.\\
 \hline
-{\em center\+\_\+h} & Whether to center the text horizontally within the area.\\
+{\em alignment} & The alignment of the text as defined in \mbox{\hyperlink{}{text\+\_\+alignment}}.\\
 \hline
-{\em center\+\_\+v} & Whether to center the text vertically within the area.\\
+{\em paragraph\+\_\+alignment} & The paragraph alignment as defined in \mbox{\hyperlink{}{lecui\+::paragraph\+\_\+alignment}}.\\
 \hline
 {\em max\+\_\+rect} & The area which the text should not exceed.\\
 \hline

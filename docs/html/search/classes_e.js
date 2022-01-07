@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['save_5ffile_5fparams_0',['save_file_params',['../structliblec_1_1lecui_1_1save__file__params.html',1,'liblec::lecui']]],
+  ['save_5ffile_5fparams_0',['save_file_params',['../classliblec_1_1lecui_1_1save__file__params.html',1,'liblec::lecui']]],
   ['side_5fpane_1',['side_pane',['../classliblec_1_1lecui_1_1containers_1_1side__pane.html',1,'liblec::lecui::containers']]],
   ['size_2',['size',['../classliblec_1_1lecui_1_1size.html',1,'liblec::lecui']]],
   ['slider_3',['slider',['../classliblec_1_1lecui_1_1widgets_1_1slider.html',1,'liblec::lecui::widgets']]],

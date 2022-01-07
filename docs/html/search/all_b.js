@@ -12,7 +12,7 @@ var searchData=
   ['maximize_9',['maximize',['../classliblec_1_1lecui_1_1form.html#a24aed3ecd75221fefebf159b7329ed75',1,'liblec::lecui::form']]],
   ['maximum_10',['maximum',['../structliblec_1_1lecui_1_1widgets_1_1slider_1_1slider__range.html#a4c216898d8ac42dd5c6b2152ada3eaee',1,'liblec::lecui::widgets::slider::slider_range']]],
   ['maximum_5flength_11',['maximum_length',['../classliblec_1_1lecui_1_1widgets_1_1text__field.html#a7120d8ce9172f57ac8a85f3e4a3567a7',1,'liblec::lecui::widgets::text_field::maximum_length()'],['../classliblec_1_1lecui_1_1widgets_1_1text__field.html#ad0349355f3a86fef2ca54222a429ebb8',1,'liblec::lecui::widgets::text_field::maximum_length(const int &amp;maximum_length)']]],
-  ['measure_5flabel_12',['measure_label',['../classliblec_1_1lecui_1_1dimensions.html#a5068e51fd7ab831a5b14ff7231892985',1,'liblec::lecui::dimensions']]],
+  ['measure_5flabel_12',['measure_label',['../classliblec_1_1lecui_1_1dimensions.html#a24ba17e48714f638e61ba2cd01f42ecb',1,'liblec::lecui::dimensions']]],
   ['menu_5fform_5fcaption_13',['menu_form_caption',['../classliblec_1_1lecui_1_1form.html#ac4bd8d0b31ed1a0cc19c2960fe2899fb',1,'liblec::lecui::form']]],
   ['menu_5fitem_14',['menu_item',['../structliblec_1_1lecui_1_1menu__item.html',1,'liblec::lecui']]],
   ['message_15',['message',['../classliblec_1_1lecui_1_1form.html#ae4b44163b6dc7684f0192343d203c7fe',1,'liblec::lecui::form']]],

@@ -21,7 +21,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">lecui<span id="projectnumber">&#160;1.0.0-alpha.16</span>
+   <div id="projectname">lecui<span id="projectnumber">&#160;1.0.0-alpha.17</span>
    </div>
    <div id="projectbrief">lecui C++ user interface library</div>
   </td>
@@ -185,7 +185,9 @@ $(function() {
 <div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    }</div>
 <div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>}</div>
 <div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span> </div>
-<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span><span class="preprocessor">#define get_page(path) liblec::lecui::page_manager::get(*this, path)</span></div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span><span class="preprocessor">#if defined(lecui_helper)</span></div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span><span class="preprocessor">#define get_page(path) liblec::lecui::page_manager::get(*this, path)</span></div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1containers_1_1page_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1containers_1_1page.html">liblec::lecui::containers::page</a></div><div class="ttdoc">Page container.</div><div class="ttdef"><b>Definition:</b> page.h:31</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1containers_1_1page_html_a47e4257dba4434a89319d0fc32a140f6"><div class="ttname"><a href="classliblec_1_1lecui_1_1containers_1_1page.html#a47e4257dba4434a89319d0fc32a140f6">liblec::lecui::containers::page::page</a></div><div class="ttdeci">page(form &amp;fm, const std::string &amp;alias)</div><div class="ttdoc">Page constructor.</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1containers_1_1page_html_ab32a8edb06befdd4a57f76fe7187fd86"><div class="ttname"><a href="classliblec_1_1lecui_1_1containers_1_1page.html#ab32a8edb06befdd4a57f76fe7187fd86">liblec::lecui::containers::page::size</a></div><div class="ttdeci">virtual const size size()</div><div class="ttdoc">Get the size of the page.</div></div>
@@ -198,7 +200,7 @@ $(function() {
 <div class="ttc" id="aclassliblec_1_1lecui_1_1page__manager_html_a770d4164c7816b28f4a48c07db3395d8"><div class="ttname"><a href="classliblec_1_1lecui_1_1page__manager.html#a770d4164c7816b28f4a48c07db3395d8">liblec::lecui::page_manager::get</a></div><div class="ttdeci">static containers::page &amp; get(form &amp;fm, const std::string &amp;alias)</div><div class="ttdoc">Get the page container of an existing page.</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1page__manager_html_a7963e1c4e36279f7d800eddf1807c073"><div class="ttname"><a href="classliblec_1_1lecui_1_1page__manager.html#a7963e1c4e36279f7d800eddf1807c073">liblec::lecui::page_manager::close</a></div><div class="ttdeci">void close(const std::string &amp;path)</div><div class="ttdoc">Close a container.</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1page__manager_html_ad871d2b763d30faf369064101a8ed351"><div class="ttname"><a href="classliblec_1_1lecui_1_1page__manager.html#ad871d2b763d30faf369064101a8ed351">liblec::lecui::page_manager::exists</a></div><div class="ttdeci">bool exists(const std::string &amp;alias)</div><div class="ttdoc">Check if a page exists.</div></div>
-<div class="ttc" id="aclassliblec_1_1lecui_1_1size_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1size.html">liblec::lecui::size</a></div><div class="ttdoc">Size of a rectangular structure.</div><div class="ttdef"><b>Definition:</b> lecui.h:112</div></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1size_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1size.html">liblec::lecui::size</a></div><div class="ttdoc">Size of a rectangular structure.</div><div class="ttdef"><b>Definition:</b> lecui.h:115</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

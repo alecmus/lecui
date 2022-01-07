@@ -21,7 +21,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">lecui<span id="projectnumber">&#160;1.0.0-alpha.16</span>
+   <div id="projectname">lecui<span id="projectnumber">&#160;1.0.0-alpha.17</span>
    </div>
    <div id="projectbrief">lecui C++ user interface library</div>
   </td>
@@ -81,8 +81,8 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a6e880bd91770daea7f396afa45e4b36f"><td class="memItemLeft" align="right" valign="top"><a id="a6e880bd91770daea7f396afa45e4b36f" name="a6e880bd91770daea7f396afa45e4b36f"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>widget_manager</b> (<a class="el" href="classliblec_1_1lecui_1_1form.html">form</a> &amp;fm)</td></tr>
+<tr class="memitem:a6e880bd91770daea7f396afa45e4b36f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classliblec_1_1lecui_1_1widget__manager.html#a6e880bd91770daea7f396afa45e4b36f">widget_manager</a> (<a class="el" href="classliblec_1_1lecui_1_1form.html">form</a> &amp;fm)</td></tr>
+<tr class="memdesc:a6e880bd91770daea7f396afa45e4b36f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Widget manager constructor. <a href="classliblec_1_1lecui_1_1widget__manager.html#a6e880bd91770daea7f396afa45e4b36f">More...</a><br /></td></tr>
 <tr class="separator:a6e880bd91770daea7f396afa45e4b36f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a86083e220464ab7e456b7f0c25cd03ec"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classliblec_1_1lecui_1_1widget__manager.html#a86083e220464ab7e456b7f0c25cd03ec">enable</a> (const std::string &amp;path, std::string &amp;error)</td></tr>
 <tr class="memdesc:a86083e220464ab7e456b7f0c25cd03ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable a widget. <a href="classliblec_1_1lecui_1_1widget__manager.html#a86083e220464ab7e456b7f0c25cd03ec">More...</a><br /></td></tr>
@@ -102,10 +102,40 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ac92befb57b4658047f0534fd37ab83c7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classliblec_1_1lecui_1_1widget__manager.html#ac92befb57b4658047f0534fd37ab83c7">select</a> (const std::string &amp;path)</td></tr>
 <tr class="memdesc:ac92befb57b4658047f0534fd37ab83c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Select a widget. <a href="classliblec_1_1lecui_1_1widget__manager.html#ac92befb57b4658047f0534fd37ab83c7">More...</a><br /></td></tr>
 <tr class="separator:ac92befb57b4658047f0534fd37ab83c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa12d3d55256120577c6fb127a2b327f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classliblec_1_1lecui_1_1widget__manager.html#aaa12d3d55256120577c6fb127a2b327f">refresh</a> (const std::string &amp;path, std::string &amp;error)</td></tr>
+<tr class="memdesc:aaa12d3d55256120577c6fb127a2b327f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Refresh a widget. <a href="classliblec_1_1lecui_1_1widget__manager.html#aaa12d3d55256120577c6fb127a2b327f">More...</a><br /></td></tr>
+<tr class="separator:aaa12d3d55256120577c6fb127a2b327f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >Widget manager class.</p>
-</div><h2 class="groupheader">Member Function Documentation</h2>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a6e880bd91770daea7f396afa45e4b36f" name="a6e880bd91770daea7f396afa45e4b36f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e880bd91770daea7f396afa45e4b36f">&#9670;&nbsp;</a></span>widget_manager()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">liblec::lecui::widget_manager::widget_manager </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classliblec_1_1lecui_1_1form.html">form</a> &amp;&#160;</td>
+          <td class="paramname"><em>fm</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Widget manager constructor.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fm</td><td>The form whose widgets we would like to manage.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
 <a id="a878389752aaeb56ae7c94b04883d34e8" name="a878389752aaeb56ae7c94b04883d34e8"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a878389752aaeb56ae7c94b04883d34e8">&#9670;&nbsp;</a></span>close()</h2>
 
@@ -129,7 +159,7 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<p >Avoid closing a widget from within its own handler to avoid access violation errors. Also make sure to never keep 'dangling widget references' because attempting to use those references after this method is called will result in access violation errors as well. Make sure to employ proper logic. As a failsafe, the widget is not closed immediately when this method is called. Rather a special timer is scheduled internally to close the widget. After this, the widget is closed as soon as possible, typically soon after the current handler exits. </p>
+<p >Avoid closing a widget from within its own handler to avoid access violation errors. Also make sure to never keep 'dangling widget references' because attempting to use those references after this method is called will result in access violation errors as well. Make sure to employ proper logic. As a failsafe, the widget is not closed immediately when this method is called. Rather a special timer is scheduled internally to close the widget. After this, the widget is closed as soon as possible, typically soon after the current handler exits. Note that a call to <a class="el" href="classliblec_1_1lecui_1_1form.html#a144e42ae28a7c24d470d5b9b147efebd" title="Update the form. A low resource refresh of the current page. Typically necessary only after adding a ...">form::update()</a> is not necessary after this method is called because it sends this call internally. Note that a call to <a class="el" href="classliblec_1_1lecui_1_1form.html#a144e42ae28a7c24d470d5b9b147efebd" title="Update the form. A low resource refresh of the current page. Typically necessary only after adding a ...">form::update()</a> is not necessary after this method is called because it sends this call internally.</p>
 
 </div>
 </div>
@@ -163,10 +193,12 @@ Public Member Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">path</td><td>The full path to the widget, e.g. "home_page/username".</td></tr>
+    <tr><td class="paramname">error</td><td>Error information.</td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns true if successful, else false.</dd></dl>
+<p >Note that a call to <a class="el" href="classliblec_1_1lecui_1_1form.html#a144e42ae28a7c24d470d5b9b147efebd" title="Update the form. A low resource refresh of the current page. Typically necessary only after adding a ...">form::update()</a> is not necessary after this method is called because it sends this call internally.</p>
 
 </div>
 </div>
@@ -200,10 +232,12 @@ Public Member Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">path</td><td>The full path to the widget, e.g. "home_page/username".</td></tr>
+    <tr><td class="paramname">error</td><td>Error information.</td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns true if successful, else false.</dd></dl>
+<p >Note that a call to <a class="el" href="classliblec_1_1lecui_1_1form.html#a144e42ae28a7c24d470d5b9b147efebd" title="Update the form. A low resource refresh of the current page. Typically necessary only after adding a ...">form::update()</a> is not necessary after this method is called because it sends this call internally.</p>
 
 </div>
 </div>
@@ -237,10 +271,51 @@ Public Member Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">path</td><td>The full path to the widget, e.g. "home_page/username".</td></tr>
+    <tr><td class="paramname">error</td><td>Error information.</td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns true if successful, else false.</dd></dl>
+<p >Note that a call to <a class="el" href="classliblec_1_1lecui_1_1form.html#a144e42ae28a7c24d470d5b9b147efebd" title="Update the form. A low resource refresh of the current page. Typically necessary only after adding a ...">form::update()</a> is not necessary after this method is called because it sends this call internally.</p>
+
+</div>
+</div>
+<a id="aaa12d3d55256120577c6fb127a2b327f" name="aaa12d3d55256120577c6fb127a2b327f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa12d3d55256120577c6fb127a2b327f">&#9670;&nbsp;</a></span>refresh()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool liblec::lecui::widget_manager::refresh </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>path</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string &amp;&#160;</td>
+          <td class="paramname"><em>error</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Refresh a widget.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>The full path to the widget, e.g. "home_page/username".</td></tr>
+    <tr><td class="paramname">error</td><td>Error information.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns true if successful, else false.</dd></dl>
+<p >This method causes all the widget's graphic resources to be recreated. This is useful if you need a resource being used by the widget, e.g. a .png file being used by an image_view, freed immediately after the widget's properties are changed. A call to <a class="el" href="classliblec_1_1lecui_1_1form.html#ae2a0525beb9d780abd15a9baa54ac3f7" title="Reload the form and all its widgets. A high resource reload of the entire form&#39;s graphic resources....">form::reload()</a> would do this but it's a lot more expensive since it refreshes every widget in every page, and a call to <a class="el" href="classliblec_1_1lecui_1_1form.html#a144e42ae28a7c24d470d5b9b147efebd" title="Update the form. A low resource refresh of the current page. Typically necessary only after adding a ...">form::update()</a> would only free the resource after the next time a paint operation is done. Note that a call to <a class="el" href="classliblec_1_1lecui_1_1form.html#a144e42ae28a7c24d470d5b9b147efebd" title="Update the form. A low resource refresh of the current page. Typically necessary only after adding a ...">form::update()</a> is not necessary after this method is called because it sends this call internally.</p>
 
 </div>
 </div>
@@ -267,7 +342,7 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<p >Any previous selection within the page is removed.</p>
+<p >Any previous selection within the page is removed. Note that a call to <a class="el" href="classliblec_1_1lecui_1_1form.html#a144e42ae28a7c24d470d5b9b147efebd" title="Update the form. A low resource refresh of the current page. Typically necessary only after adding a ...">form::update()</a> is not necessary after this method is called because it sends this call internally.</p>
 
 </div>
 </div>
@@ -301,10 +376,12 @@ Public Member Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">path</td><td>The full path to the widget, e.g. "home_page/username".</td></tr>
+    <tr><td class="paramname">error</td><td>Error information.</td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns true if successful, else false.</dd></dl>
+<p >Note that a call to <a class="el" href="classliblec_1_1lecui_1_1form.html#a144e42ae28a7c24d470d5b9b147efebd" title="Update the form. A low resource refresh of the current page. Typically necessary only after adding a ...">form::update()</a> is not necessary after this method is called because it sends this call internally.</p>
 
 </div>
 </div>

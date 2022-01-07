@@ -92,6 +92,8 @@
 \DoxyCodeLine{114     \}}
 \DoxyCodeLine{115 \}}
 \DoxyCodeLine{116 }
-\DoxyCodeLine{118 \textcolor{preprocessor}{\#define get\_line(path) liblec::lecui::widgets::line::get(*this, path)}}
+\DoxyCodeLine{117 \textcolor{preprocessor}{\#if defined(lecui\_helper)}}
+\DoxyCodeLine{119 \textcolor{preprocessor}{\#define get\_line(path) liblec::lecui::widgets::line::get(*this, path)}}
+\DoxyCodeLine{120 \textcolor{preprocessor}{\#endif}}
 
 \end{DoxyCode}

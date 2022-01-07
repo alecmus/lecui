@@ -21,7 +21,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">lecui<span id="projectnumber">&#160;1.0.0-alpha.16</span>
+   <div id="projectname">lecui<span id="projectnumber">&#160;1.0.0-alpha.17</span>
    </div>
    <div id="projectbrief">lecui C++ user interface library</div>
   </td>
@@ -250,10 +250,13 @@ $(function() {
 <div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>    }</div>
 <div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>}</div>
 <div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span> </div>
-<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span><span class="preprocessor">#define get_tab_pane(path) liblec::lecui::containers::tab_pane::get(*this, path)</span></div>
-<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span> </div>
-<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span><span class="preprocessor">#define get_tab(path) liblec::lecui::containers::tab::get(*this, path)</span></div>
-<div class="ttc" id="aclassliblec_1_1lecui_1_1color_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1color.html">liblec::lecui::color</a></div><div class="ttdoc">RGBA color on a standard 0 to 255 scale. For the alpha channel 0 is transparent and 255 is opaque.</div><div class="ttdef"><b>Definition:</b> lecui.h:536</div></div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span><span class="preprocessor">#if defined(lecui_helper)</span></div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span><span class="preprocessor">#define get_tab_pane(path) liblec::lecui::containers::tab_pane::get(*this, path)</span></div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span> </div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span><span class="preprocessor">#define get_tab(path) liblec::lecui::containers::tab::get(*this, path)</span></div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span> </div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1color_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1color.html">liblec::lecui::color</a></div><div class="ttdoc">RGBA color on a standard 0 to 255 scale. For the alpha channel 0 is transparent and 255 is opaque.</div><div class="ttdef"><b>Definition:</b> lecui.h:539</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1containers_1_1page_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1containers_1_1page.html">liblec::lecui::containers::page</a></div><div class="ttdoc">Page container.</div><div class="ttdef"><b>Definition:</b> page.h:31</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1containers_1_1tab__pane_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1containers_1_1tab__pane.html">liblec::lecui::containers::tab_pane</a></div><div class="ttdoc">Tab pane. To instantiate and add to a container use the add static method.</div><div class="ttdef"><b>Definition:</b> tab_pane.h:28</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1containers_1_1tab__pane_html_a02c4f657cb86d1a595aa37a442c21c99"><div class="ttname"><a href="classliblec_1_1lecui_1_1containers_1_1tab__pane.html#a02c4f657cb86d1a595aa37a442c21c99">liblec::lecui::containers::tab_pane::color_tabs</a></div><div class="ttdeci">tab_pane &amp; color_tabs(const color &amp;color_tabs)</div><div class="ttdoc">Set the fill color of the tabs.</div></div>
@@ -298,9 +301,9 @@ $(function() {
 <div class="ttc" id="aclassliblec_1_1lecui_1_1containers_1_1tab_html_acfdb095af51542cf508780235e597809"><div class="ttname"><a href="classliblec_1_1lecui_1_1containers_1_1tab.html#acfdb095af51542cf508780235e597809">liblec::lecui::containers::tab::badge</a></div><div class="ttdeci">widgets::badge_specs &amp; badge() override</div><div class="ttdoc">Get or set the widget's badge.</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1containers_1_1tab_html_afb5a784d363672eb83fd478a4e504b6d"><div class="ttname"><a href="classliblec_1_1lecui_1_1containers_1_1tab.html#afb5a784d363672eb83fd478a4e504b6d">liblec::lecui::containers::tab::add</a></div><div class="ttdeci">static tab &amp; add(containers::tab_pane &amp;tp, const std::string &amp;tab_name)</div><div class="ttdoc">Create a pane.</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1form_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1form.html">liblec::lecui::form</a></div><div class="ttdoc">Form base class. The user must inherit from this class and call one of the two constructors from its ...</div><div class="ttdef"><b>Definition:</b> form.h:102</div></div>
-<div class="ttc" id="aclassliblec_1_1lecui_1_1rect_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1rect.html">liblec::lecui::rect</a></div><div class="ttdoc">Rectangle class.</div><div class="ttdef"><b>Definition:</b> lecui.h:153</div></div>
-<div class="ttc" id="aclassliblec_1_1lecui_1_1resize__params_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1resize__params.html">liblec::lecui::resize_params</a></div><div class="ttdoc">Resize parameters.</div><div class="ttdef"><b>Definition:</b> lecui.h:323</div></div>
-<div class="ttc" id="aclassliblec_1_1lecui_1_1size_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1size.html">liblec::lecui::size</a></div><div class="ttdoc">Size of a rectangular structure.</div><div class="ttdef"><b>Definition:</b> lecui.h:112</div></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1rect_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1rect.html">liblec::lecui::rect</a></div><div class="ttdoc">Rectangle class.</div><div class="ttdef"><b>Definition:</b> lecui.h:156</div></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1resize__params_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1resize__params.html">liblec::lecui::resize_params</a></div><div class="ttdoc">Resize parameters.</div><div class="ttdef"><b>Definition:</b> lecui.h:326</div></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1size_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1size.html">liblec::lecui::size</a></div><div class="ttdoc">Size of a rectangular structure.</div><div class="ttdef"><b>Definition:</b> lecui.h:115</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1badge__specs_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1badge__specs.html">liblec::lecui::widgets::badge_specs</a></div><div class="ttdoc">Badge specifications.</div><div class="ttdef"><b>Definition:</b> widget.h:165</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1badge__widget_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1badge__widget.html">liblec::lecui::widgets::badge_widget</a></div><div class="ttdoc">Base class for all widgets with badges.</div><div class="ttdef"><b>Definition:</b> widget.h:271</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1widgets_1_1widget_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1widgets_1_1widget.html">liblec::lecui::widgets::widget</a></div><div class="ttdoc">Base class for all widgets.</div><div class="ttdef"><b>Definition:</b> widget.h:24</div></div>

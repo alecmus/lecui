@@ -17,9 +17,9 @@ Interact with the OS file system.
 \item 
 std\+::string \mbox{\hyperlink{classliblec_1_1lecui_1_1filesystem_a069948b5528a180066abdff4b9002be2}{select\+\_\+folder}} (const std\+::string \&title)
 \begin{DoxyCompactList}\small\item\em Display a \textquotesingle{}select folder\textquotesingle{} modal dialog.\end{DoxyCompactList}\item 
-std\+::string \mbox{\hyperlink{classliblec_1_1lecui_1_1filesystem_a33560a6d8e08f4d92c7284c132ac69c6}{open\+\_\+file}} (const \mbox{\hyperlink{structliblec_1_1lecui_1_1open__file__params}{open\+\_\+file\+\_\+params}} \&params)
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{classliblec_1_1lecui_1_1filesystem_a7f23ab8713c78a391ac67c10f24efcfc}{open\+\_\+file}} (const \mbox{\hyperlink{classliblec_1_1lecui_1_1open__file__params}{open\+\_\+file\+\_\+params}} \&params)
 \begin{DoxyCompactList}\small\item\em Display an \textquotesingle{}open file\textquotesingle{} modal dialog.\end{DoxyCompactList}\item 
-std\+::string \mbox{\hyperlink{classliblec_1_1lecui_1_1filesystem_aa669ceee5e0eca15a41029d4bb59ea9c}{save\+\_\+file}} (const std\+::string \&file, const \mbox{\hyperlink{structliblec_1_1lecui_1_1save__file__params}{save\+\_\+file\+\_\+params}} \&params)
+std\+::string \mbox{\hyperlink{classliblec_1_1lecui_1_1filesystem_aa669ceee5e0eca15a41029d4bb59ea9c}{save\+\_\+file}} (const std\+::string \&file, const \mbox{\hyperlink{classliblec_1_1lecui_1_1save__file__params}{save\+\_\+file\+\_\+params}} \&params)
 \begin{DoxyCompactList}\small\item\em Display a \textquotesingle{}save file\textquotesingle{} modal dialog so the user can select its properties and location.\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
@@ -27,11 +27,11 @@ std\+::string \mbox{\hyperlink{classliblec_1_1lecui_1_1filesystem_aa669ceee5e0ec
 Interact with the OS file system.
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{classliblec_1_1lecui_1_1filesystem_a33560a6d8e08f4d92c7284c132ac69c6}\label{classliblec_1_1lecui_1_1filesystem_a33560a6d8e08f4d92c7284c132ac69c6}} 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1filesystem_a7f23ab8713c78a391ac67c10f24efcfc}\label{classliblec_1_1lecui_1_1filesystem_a7f23ab8713c78a391ac67c10f24efcfc}} 
 \index{liblec::lecui::filesystem@{liblec::lecui::filesystem}!open\_file@{open\_file}}
 \index{open\_file@{open\_file}!liblec::lecui::filesystem@{liblec::lecui::filesystem}}
 \doxysubsubsection{\texorpdfstring{open\_file()}{open\_file()}}
-{\footnotesize\ttfamily std\+::string liblec\+::lecui\+::filesystem\+::open\+\_\+file (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structliblec_1_1lecui_1_1open__file__params}{open\+\_\+file\+\_\+params}} \&}]{params }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::string $>$ liblec\+::lecui\+::filesystem\+::open\+\_\+file (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classliblec_1_1lecui_1_1open__file__params}{open\+\_\+file\+\_\+params}} \&}]{params }\end{DoxyParamCaption})}
 
 
 
@@ -43,13 +43,13 @@ Display an \textquotesingle{}open file\textquotesingle{} modal dialog.
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-The full path to the selected file, including it\textquotesingle{}s extension.
+A list of the full paths to the selected file(s), including the extensions.
 \end{DoxyReturn}
 \mbox{\Hypertarget{classliblec_1_1lecui_1_1filesystem_aa669ceee5e0eca15a41029d4bb59ea9c}\label{classliblec_1_1lecui_1_1filesystem_aa669ceee5e0eca15a41029d4bb59ea9c}} 
 \index{liblec::lecui::filesystem@{liblec::lecui::filesystem}!save\_file@{save\_file}}
 \index{save\_file@{save\_file}!liblec::lecui::filesystem@{liblec::lecui::filesystem}}
 \doxysubsubsection{\texorpdfstring{save\_file()}{save\_file()}}
-{\footnotesize\ttfamily std\+::string liblec\+::lecui\+::filesystem\+::save\+\_\+file (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{file,  }\item[{const \mbox{\hyperlink{structliblec_1_1lecui_1_1save__file__params}{save\+\_\+file\+\_\+params}} \&}]{params }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily std\+::string liblec\+::lecui\+::filesystem\+::save\+\_\+file (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{file,  }\item[{const \mbox{\hyperlink{classliblec_1_1lecui_1_1save__file__params}{save\+\_\+file\+\_\+params}} \&}]{params }\end{DoxyParamCaption})}
 
 
 

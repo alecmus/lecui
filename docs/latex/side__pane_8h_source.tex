@@ -37,6 +37,8 @@
 \DoxyCodeLine{50     \}}
 \DoxyCodeLine{51 \}}
 \DoxyCodeLine{52 }
-\DoxyCodeLine{54 \textcolor{preprocessor}{\#define get\_side\_pane() liblec::lecui::containers::side\_pane::get(*this)}}
+\DoxyCodeLine{53 \textcolor{preprocessor}{\#if defined(lecui\_helper)}}
+\DoxyCodeLine{55 \textcolor{preprocessor}{\#define get\_side\_pane() liblec::lecui::containers::side\_pane::get(*this)}}
+\DoxyCodeLine{56 \textcolor{preprocessor}{\#endif}}
 
 \end{DoxyCode}

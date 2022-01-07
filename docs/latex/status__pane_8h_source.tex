@@ -82,6 +82,8 @@
 \DoxyCodeLine{130     \}}
 \DoxyCodeLine{131 \}}
 \DoxyCodeLine{132 }
-\DoxyCodeLine{134 \textcolor{preprocessor}{\#define get\_status\_pane(path) liblec::lecui::containers::status\_pane::get(*this, path)}}
+\DoxyCodeLine{133 \textcolor{preprocessor}{\#if defined(lecui\_helper)}}
+\DoxyCodeLine{135 \textcolor{preprocessor}{\#define get\_status\_pane(path) liblec::lecui::containers::status\_pane::get(*this, path)}}
+\DoxyCodeLine{136 \textcolor{preprocessor}{\#endif}}
 
 \end{DoxyCode}

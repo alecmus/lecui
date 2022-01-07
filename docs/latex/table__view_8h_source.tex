@@ -203,6 +203,8 @@
 \DoxyCodeLine{351     \}}
 \DoxyCodeLine{352 \}}
 \DoxyCodeLine{353 }
-\DoxyCodeLine{355 \textcolor{preprocessor}{\#define get\_table\_view(path) liblec::lecui::widgets::table\_view::get(*this, path)}}
+\DoxyCodeLine{354 \textcolor{preprocessor}{\#if defined(lecui\_helper)}}
+\DoxyCodeLine{356 \textcolor{preprocessor}{\#define get\_table\_view(path) liblec::lecui::widgets::table\_view::get(*this, path)}}
+\DoxyCodeLine{357 \textcolor{preprocessor}{\#endif}}
 
 \end{DoxyCode}

@@ -125,6 +125,8 @@
 \DoxyCodeLine{163     \}}
 \DoxyCodeLine{164 \}}
 \DoxyCodeLine{165 }
-\DoxyCodeLine{167 \textcolor{preprocessor}{\#define get\_time(path) liblec::lecui::widgets::time::get(*this, path)}}
+\DoxyCodeLine{166 \textcolor{preprocessor}{\#if defined(lecui\_helper)}}
+\DoxyCodeLine{168 \textcolor{preprocessor}{\#define get\_time(path) liblec::lecui::widgets::time::get(*this, path)}}
+\DoxyCodeLine{169 \textcolor{preprocessor}{\#endif}}
 
 \end{DoxyCode}

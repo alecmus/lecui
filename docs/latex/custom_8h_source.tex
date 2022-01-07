@@ -96,6 +96,8 @@
 \DoxyCodeLine{124     \}}
 \DoxyCodeLine{125 \}}
 \DoxyCodeLine{126 }
-\DoxyCodeLine{128 \textcolor{preprocessor}{\#define get\_custom(path) liblec::lecui::widgets::custom::get(*this, path)}}
+\DoxyCodeLine{127 \textcolor{preprocessor}{\#if defined(lecui\_helper)}}
+\DoxyCodeLine{129 \textcolor{preprocessor}{\#define get\_custom(path) liblec::lecui::widgets::custom::get(*this, path)}}
+\DoxyCodeLine{130 \textcolor{preprocessor}{\#endif}}
 
 \end{DoxyCode}

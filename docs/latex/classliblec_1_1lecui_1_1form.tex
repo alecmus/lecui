@@ -339,7 +339,7 @@ Set the handler to be called when files are dropped on the form.
 \end{DoxyParams}
 
 
-If this method is never called the form will not accept dropped files. To stop accepting dropped files pass a nullptr to this method.\mbox{\Hypertarget{classliblec_1_1lecui_1_1form_a50ea7e5b9915f781f1d298cff2f37a85}\label{classliblec_1_1lecui_1_1form_a50ea7e5b9915f781f1d298cff2f37a85}} 
+If this method is never called the form will not accept dropped files. To stop accepting dropped files pass a nullptr to this method. The earliest this method will work is in the \mbox{\hyperlink{classliblec_1_1lecui_1_1form_a7644f0c8d1bc55b11a7bd0e884b84e25}{on\+\_\+start}} method because the form needs to have been created.\mbox{\Hypertarget{classliblec_1_1lecui_1_1form_a50ea7e5b9915f781f1d298cff2f37a85}\label{classliblec_1_1lecui_1_1form_a50ea7e5b9915f781f1d298cff2f37a85}} 
 \index{liblec::lecui::form@{liblec::lecui::form}!on\_initialize@{on\_initialize}}
 \index{on\_initialize@{on\_initialize}!liblec::lecui::form@{liblec::lecui::form}}
 \doxysubsubsection{\texorpdfstring{on\_initialize()}{on\_initialize()}}
