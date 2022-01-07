@@ -135,6 +135,12 @@ namespace liblec {
 				_reverse_tab_navigation = true;
 				break;
 
+			case VK_CONTROL:
+				if (!_ctrl_pressed)
+					log("Ctrl pressed");
+				_ctrl_pressed = true;
+				break;
+
 			case VK_SPACE: {
 				if (_space_pressed)
 					break;

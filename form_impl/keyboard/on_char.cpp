@@ -13,6 +13,9 @@
 namespace liblec {
 	namespace lecui {
 		void form::impl::on_char(WPARAM wParam) {
+			if (_ctrl_pressed)
+				return;	// leave the insertion to specialized routines, e.g. for 'ctrl + a'
+
 			const char c = (char)wParam;
 			bool change = false;
 

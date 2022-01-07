@@ -127,6 +127,7 @@ namespace liblec {
 			_unique_id(1000),
 			_reverse_tab_navigation(false),
 			_shift_pressed(false),
+			_ctrl_pressed(false),
 			_space_pressed(false),
 			_lbutton_pressed(false),
 			_on_caption(nullptr),

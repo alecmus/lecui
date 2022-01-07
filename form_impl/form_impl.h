@@ -179,6 +179,7 @@ namespace liblec {
 
 			bool _reverse_tab_navigation;
 			bool _shift_pressed;
+			bool _ctrl_pressed;
 			bool _space_pressed;
 			bool _lbutton_pressed;
 

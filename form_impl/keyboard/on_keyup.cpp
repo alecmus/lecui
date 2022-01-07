@@ -110,6 +110,12 @@ namespace liblec {
 				_shift_pressed = false;
 				break;
 
+			case VK_CONTROL:
+				if (_ctrl_pressed)
+					log("Ctrl released");
+				_ctrl_pressed = false;
+				break;
+
 			case VK_TAB: {
 				class helper {
 				public:
