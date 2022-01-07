@@ -187,6 +187,7 @@ namespace liblec {
 				text_to_caret, _specs.font(), _specs.font_size(), text_alignment::left, paragraph_alignment::middle, true, false, _rect_text);
 
 			bool iterate = false;
+			auto _text_off_set_previous = _text_off_set;
 			do {
 				iterate = false;
 
@@ -245,6 +246,14 @@ namespace liblec {
 
 				// this offset cannot be greater than zero or text will be indented!!!
 				_text_off_set = smallest(_text_off_set, 0.f);
+
+				if (iterate && _text_off_set == _text_off_set_previous) {
+					// prevent indefinite looping (example: if 'ctrl + a' is pressed and insert_character hasn't been prevented)
+					log("Failsafe in text_field routine: prevent indefinite looping");
+					break;
+				}
+
+				_text_off_set_previous = _text_off_set;
 			} while (iterate);
 
 			// apply offset to text rect to ensure visibility of caret
