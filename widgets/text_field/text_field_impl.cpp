@@ -137,6 +137,9 @@ namespace liblec {
 			if (!render || !_visible)
 				return _rect;
 
+			if (!_selected)
+				reset_selection();
+
 			// make sure caret is well positioned in case text has since been changed
 			_caret_position = smallest(_caret_position, static_cast<UINT32>(_specs.text().length()));
 
@@ -486,6 +489,14 @@ namespace liblec {
 				_skip_blink = true;
 			}
 			catch (const std::exception& e) { log(e.what()); }
+		}
+
+		void widgets::text_field_impl::select_all() {
+			// move caret to the end
+			_caret_position = static_cast<UINT32>(_specs.text().length());
+
+			// select all text
+			set_selection(0, _caret_position);
 		}
 
 		UINT32
