@@ -263,7 +263,9 @@ namespace liblec {
 			/// <param name="on_drop_files">The handler. When it is called, the parameter will
 			/// contain the full path to the dropped file, including the file's extension.</param>
 			/// <remarks>If this method is never called the form will not accept dropped files. To
-			/// stop accepting dropped files pass a nullptr to this method.</remarks>
+			/// stop accepting dropped files pass a nullptr to this method. The earliest this method
+			/// will work is in the <see cref='on_start'></see> method because the form needs to have
+			/// been created.</remarks>
 			void on_drop_files(std::function<void(const std::string& file)>on_drop_files);
 
 			/// <summary>Set the handler to be called when data is received from another instance.</summary>
