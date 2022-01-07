@@ -192,6 +192,9 @@ namespace liblec {
 			if (!render || !_visible)
 				return _rect;
 
+			if (!_selected)
+				reset_selection();
+
 			if (!_specs.editable()) {
 				_specs.text().clear();
 
@@ -288,6 +291,7 @@ namespace liblec {
 					text_to_caret, _specs.font(), _specs.font_size(), text_alignment::left, paragraph_alignment::middle, true, false, _rect_text);
 
 				bool iterate = false;
+				auto _text_off_set_previous = _text_off_set;
 				do {
 					iterate = false;
 
@@ -346,6 +350,14 @@ namespace liblec {
 
 					// this offset cannot be greater than zero or text will be indented!!!
 					_text_off_set = smallest(_text_off_set, 0.f);
+
+					if (iterate && _text_off_set == _text_off_set_previous) {
+						// prevent indefinite looping (example: if 'ctrl + a' is pressed and insert_character hasn't been prevented)
+						log("Failsafe in combobox routine: prevent indefinite looping");
+						break;
+					}
+
+					_text_off_set_previous = _text_off_set;
 				} while (iterate);
 
 				// apply offset to text rect to ensure visibility of caret
@@ -653,6 +665,14 @@ namespace liblec {
 				_specs.selected(_specs.text());
 				sort_items();
 			}
+		}
+
+		void widgets::combobox_impl::select_all() {
+			// move caret to the end
+			_caret_position = static_cast<UINT32>(_specs.text().length());
+
+			// select all text
+			set_selection(0, _caret_position);
 		}
 
 		UINT32

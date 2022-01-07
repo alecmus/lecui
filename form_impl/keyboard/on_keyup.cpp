@@ -180,6 +180,15 @@ namespace liblec {
 													}
 													catch (const std::exception& e) { log(e.what()); }
 												}
+												else
+													if (widget.type() == widgets::widget_type::combobox) {
+														try {
+															// select all
+															auto& combobox = page._d_page.get_combobox_impl(alias);
+															combobox.select_all();
+														}
+														catch (const std::exception& e) { log(e.what()); }
+													}
 											}
 									}
 							}

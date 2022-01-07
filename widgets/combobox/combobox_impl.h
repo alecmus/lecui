@@ -51,6 +51,7 @@ namespace liblec {
 				void key_left();
 				void key_right();
 				void key_return();
+				void select_all();
 
 			private:
 				// Default constructor and copying an object of this class are not allowed

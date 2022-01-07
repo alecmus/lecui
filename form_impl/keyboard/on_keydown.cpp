@@ -346,7 +346,8 @@ namespace liblec {
 									}
 									else {
 										if (widget.second.type() != widgets::widget_type::html_editor &&
-											widget.second.type() != widgets::widget_type::text_field)
+											widget.second.type() != widgets::widget_type::text_field &&
+											widget.second.type() != widgets::widget_type::combobox)
 											continue;
 
 										if (widget.second.selected()) {
@@ -371,6 +372,15 @@ namespace liblec {
 													}
 													catch (const std::exception& e) { log(e.what()); }
 												}
+												else
+													if (widget.second.type() == widgets::widget_type::combobox) {
+														try {
+															// select all
+															auto& combobox = page._d_page.get_combobox_impl(widget.first);
+															combobox.select_all();
+														}
+														catch (const std::exception& e) { log(e.what()); }
+													}
 										}
 									}
 							}
