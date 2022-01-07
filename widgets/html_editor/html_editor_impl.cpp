@@ -583,6 +583,14 @@ namespace liblec {
 			_skip_blink = true;
 		}
 
+		void widgets::html_editor_impl::select_all() {
+			// move caret to the end
+			_caret_position = static_cast<UINT32>(_specs.text().length());
+
+			// select all text
+			set_selection(0, _caret_position);
+		}
+
 		void widgets::html_editor_impl::selection_font(const std::string& font_name) {
 			log("selection_font: " + font_name);
 			std::vector<xml_parser::tag_attribute> tag_attributes;

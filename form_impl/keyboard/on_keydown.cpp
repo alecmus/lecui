@@ -362,6 +362,15 @@ namespace liblec {
 												}
 												catch (const std::exception& e) { log(e.what()); }
 											}
+											else
+												if (widget.second.type() == widgets::widget_type::html_editor) {
+													try {
+														// select all
+														auto& html_editor = page._d_page.get_html_editor_impl(widget.first);
+														html_editor.select_all();
+													}
+													catch (const std::exception& e) { log(e.what()); }
+												}
 										}
 									}
 							}
