@@ -171,6 +171,15 @@ namespace liblec {
 											if (select_next && !selected) {
 												widget.select(true);
 												selected = true;
+
+												if (widget.type() == widgets::widget_type::text_field) {
+													try {
+														// select all
+														auto& text_field = page._d_page.get_text_field_impl(alias);
+														text_field.select_all();
+													}
+													catch (const std::exception& e) { log(e.what()); }
+												}
 											}
 									}
 							}
