@@ -9,6 +9,7 @@
 //
 
 #include "../form_impl.h"
+#include <boost/range/adaptor/reversed.hpp>
 
 namespace liblec {
 	namespace lecui {
@@ -26,26 +27,28 @@ namespace liblec {
 			bool selected = false;
 			bool update_anyway = false;
 
-			// check form widgets
-			for (auto& widget : _widgets) {
-				if (widget.second.is_static() || !widget.second.visible() || !widget.second.enabled())
+			// check form widgets (in reverse order)
+			for (const auto& alias : boost::adaptors::reverse(_widgets_order)) {
+				auto& widget = _widgets.at(alias);
+
+				if (widget.is_static() || !widget.visible() || !widget.enabled())
 					continue;
 
-				if (widget.second.selected())
+				if (widget.selected())
 					update_anyway = true;
 
-				widget.second.hide_tooltip();
+				widget.hide_tooltip();
 
 				if (!pressed) {
 					// pressed widget not yet found
-					pressed = widget.second.contains(point);
-					widget.second.press(pressed);
-					widget.second.select(pressed);
+					pressed = widget.contains(point);
+					widget.press(pressed);
+					widget.select(pressed);
 				}
 				else {
 					// pressed widget found
-					widget.second.press(false);
-					widget.second.select(false);
+					widget.press(false);
+					widget.select(false);
 				}
 			}
 
@@ -56,25 +59,26 @@ namespace liblec {
 					bool& scroll_bar_contains) {
 					bool in_page = page._d_page.contains(point);
 
-					// check widgets
-					for (auto& widget : page._d_page.widgets()) {
-						bool is_scroll_bar = (widget.second.type() ==
-							widgets::widget_type::h_scrollbar) ||
-							(widget.second.type() ==
-								widgets::widget_type::v_scrollbar);
+					// check widgets (in reverse order)
+					for (const auto& alias : boost::adaptors::reverse(page._d_page.widgets_order())) {
+						auto& widget = page._d_page.widgets().at(alias);
 
-						if (widget.second.is_static() || !widget.second.visible() || !widget.second.enabled())
+						bool is_scroll_bar = (widget.type() == widgets::widget_type::h_scrollbar) ||
+							(widget.type() == widgets::widget_type::v_scrollbar);
+
+						if (widget.is_static() || !widget.visible() || !widget.enabled())
 							continue;
 
-						if (in_page && is_scroll_bar && widget.second.contains(point))
+						if (in_page && is_scroll_bar && widget.contains(point))
 							scroll_bar_contains = true;
 					}
 
-					for (auto& widget : page._d_page.widgets()) {
-						if (widget.second.type() ==
-							widgets::widget_type::tab_pane) {
+					for (const auto& alias : boost::adaptors::reverse(page._d_page.widgets_order())) {
+						auto& widget = page._d_page.widgets().at(alias);
+
+						if (widget.type() == widgets::widget_type::tab_pane) {
 							// get this tab pane
-							auto& tab_pane = page._d_page.get_tab_pane_impl(widget.first);
+							auto& tab_pane = page._d_page.get_tab_pane_impl(alias);
 
 							auto page_iterator = tab_pane._p_tabs.find(tab_pane.specs().selected());
 
@@ -82,10 +86,9 @@ namespace liblec {
 								helper::check_scroll_bars(page_iterator->second, point, dpi_scale, scroll_bar_contains);
 						}
 						else
-							if (widget.second.type() ==
-								widgets::widget_type::pane) {
+							if (widget.type() == widgets::widget_type::pane) {
 								// get this pane
-								auto& pane = page._d_page.get_pane_impl(widget.first);
+								auto& pane = page._d_page.get_pane_impl(alias);
 
 								auto page_iterator = pane._p_panes.find(pane._current_pane);
 
@@ -100,52 +103,51 @@ namespace liblec {
 					bool& update_anyway, const bool& scroll_bar_hit) {
 					bool in_page = page._d_page.contains(point);
 
-					// check widgets
-					for (auto& widget : page._d_page.widgets()) {
-						bool is_scroll_bar = (widget.second.type() ==
-							widgets::widget_type::h_scrollbar) ||
-							(widget.second.type() ==
-								widgets::widget_type::v_scrollbar);
+					// check widgets (in reverse order)
+					for (const auto& alias : boost::adaptors::reverse(page._d_page.widgets_order())) {
+						auto& widget = page._d_page.widgets().at(alias);
 
-						if (widget.second.is_static() || !widget.second.visible() || !widget.second.enabled())
+						bool is_scroll_bar = (widget.type() == widgets::widget_type::h_scrollbar) ||
+							(widget.type() == widgets::widget_type::v_scrollbar);
+
+						if (widget.is_static() || !widget.visible() || !widget.enabled())
 							continue;
 
-						if (widget.second.selected())
+						if (widget.selected())
 							update_anyway = true;
 
-						widget.second.hide_tooltip();
+						widget.hide_tooltip();
 
 						if (!pressed) {
 							// pressed widget not yet found
-							bool contains = widget.second.contains(point);
+							bool contains = widget.contains(point);
 
 							if (!is_scroll_bar && scroll_bar_hit)
 								contains = false;
 
 							pressed = (in_page || is_scroll_bar) ? contains : false;
 
-							widget.second.press(pressed);
+							widget.press(pressed);
 
-							if (widget.second.type() !=
-								widgets::widget_type::tab_pane)
-								widget.second.select(pressed);
+							if (widget.type() != widgets::widget_type::tab_pane)
+								widget.select(pressed);
 							else
-								if (widget.second.type() !=
-									widgets::widget_type::pane)
-									widget.second.select(pressed);
+								if (widget.type() != widgets::widget_type::pane)
+									widget.select(pressed);
 						}
 						else {
 							// pressed widget found
-							widget.second.press(false);
-							widget.second.select(false);
+							widget.press(false);
+							widget.select(false);
 						}
 					}
 
-					for (auto& widget : page._d_page.widgets()) {
-						if (widget.second.type() ==
-							widgets::widget_type::tab_pane) {
+					for (const auto& alias : boost::adaptors::reverse(page._d_page.widgets_order())) {
+						auto& widget = page._d_page.widgets().at(alias);
+
+						if (widget.type() == widgets::widget_type::tab_pane) {
 							// get this tab pane
-							auto& tab_pane = page._d_page.get_tab_pane_impl(widget.first);
+							auto& tab_pane = page._d_page.get_tab_pane_impl(alias);
 
 							auto page_iterator = tab_pane._p_tabs.find(tab_pane.specs().selected());
 
@@ -154,10 +156,9 @@ namespace liblec {
 									update_anyway, scroll_bar_hit);	// recursion
 						}
 						else
-							if (widget.second.type() ==
-								widgets::widget_type::pane) {
+							if (widget.type() == widgets::widget_type::pane) {
 								// get this pane
-								auto& pane = page._d_page.get_pane_impl(widget.first);
+								auto& pane = page._d_page.get_pane_impl(alias);
 
 								auto page_iterator = pane._p_panes.find(pane._current_pane);
 
@@ -225,23 +226,25 @@ namespace liblec {
 			bool update_anyway = false;
 			std::function<void()> on_click_handler = nullptr;
 
-			// check form widgets
-			for (auto& widget : _widgets) {
-				if (widget.second.is_static() || !widget.second.visible() || !widget.second.enabled())
+			// check form widgets (in reverse order)
+			for (const auto& alias : boost::adaptors::reverse(_widgets_order)) {
+				auto& widget = _widgets.at(alias);
+
+				if (widget.is_static() || !widget.visible() || !widget.enabled())
 					continue;
 
 				if (!clicked &&
-					widget.second.pressed() &&
-					widget.second.contains(point)) {
+					widget.pressed() &&
+					widget.contains(point)) {
 					clicked = true;
-					on_click_handler = [&]() { widget.second.on_click(); };
+					on_click_handler = [&]() { widget.on_click(); };
 				}
 
-				if (widget.second.pressed())
+				if (widget.pressed())
 					update_anyway = true;
 
 				// reset pressed status
-				widget.second.press(false);
+				widget.press(false);
 			}
 
 			class helper {
@@ -249,31 +252,33 @@ namespace liblec {
 				static void check_widgets(containers::page& page,
 					const D2D1_POINT_2F& point, bool& clicked, bool& update_anyway,
 					std::function<void()>& on_click_handler) {
-					// check widgets
-					for (auto& widget : page._d_page.widgets()) {
-						if (widget.second.is_static() || !widget.second.visible() || !widget.second.enabled())
+
+					// check widgets (in reverse order)
+					for (const auto& alias : boost::adaptors::reverse(page._d_page.widgets_order())) {
+						auto& widget = page._d_page.widgets().at(alias);
+
+						if (widget.is_static() || !widget.visible() || !widget.enabled())
 							continue;
 
 						if (!clicked &&
-							widget.second.pressed() &&
-							widget.second.contains(point)) {
+							widget.pressed() &&
+							widget.contains(point)) {
 							clicked = true;
-							on_click_handler = [&]() { widget.second.on_click(); };
+							on_click_handler = [&]() { widget.on_click(); };
 						}
 
-						if (widget.second.pressed())
+						if (widget.pressed())
 							update_anyway = true;
 
 						// reset pressed status
-						widget.second.press(false);
+						widget.press(false);
 
 						// failsafe: for good measure
-						widget.second.hide_tooltip();
+						widget.hide_tooltip();
 
-						if (widget.second.type() ==
-							widgets::widget_type::tab_pane) {
+						if (widget.type() == widgets::widget_type::tab_pane) {
 							// get this tab pane
-							auto& tab_pane = page._d_page.get_tab_pane_impl(widget.first);
+							auto& tab_pane = page._d_page.get_tab_pane_impl(alias);
 
 							auto page_iterator = tab_pane._p_tabs.find(tab_pane.specs().selected());
 
@@ -282,10 +287,9 @@ namespace liblec {
 									on_click_handler);
 						}
 						else
-							if (widget.second.type() ==
-								widgets::widget_type::pane) {
+							if (widget.type() == widgets::widget_type::pane) {
 								// get this pane
-								auto& pane = page._d_page.get_pane_impl(widget.first);
+								auto& pane = page._d_page.get_pane_impl(alias);
 
 								auto page_iterator = pane._p_panes.find(pane._current_pane);
 

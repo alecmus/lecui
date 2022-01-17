@@ -9,6 +9,7 @@
 //
 
 #include "../form_impl.h"
+#include <boost/range/adaptor/reversed.hpp>
 
 namespace liblec {
 	namespace lecui {
@@ -25,18 +26,20 @@ namespace liblec {
 			bool right_clicked = false;
 			std::function<void()> on_right_click_handler = nullptr;
 
-			// check form widgets
-			for (auto& widget : _widgets) {
-				if (widget.second.is_static() || !widget.second.visible() || !widget.second.enabled())
+			// check form widgets (in reverse order)
+			for (const auto& alias : boost::adaptors::reverse(_widgets_order)) {
+				auto& widget = _widgets.at(alias);
+
+				if (widget.is_static() || !widget.visible() || !widget.enabled())
 					continue;
 
 				if (right_clicked)
 					break;
 
 				if (!right_clicked &&
-					widget.second.contains(point)) {
+					widget.contains(point)) {
 					right_clicked = true;
-					on_right_click_handler = [&]() { widget.second.on_right_click(); };
+					on_right_click_handler = [&]() { widget.on_right_click(); };
 				}
 			}
 
@@ -45,23 +48,25 @@ namespace liblec {
 				static void check_widgets(containers::page& page,
 					const D2D1_POINT_2F& point, bool& clicked,
 					std::function<void()>& on_right_click_handler) {
-					// check widgets
-					for (auto& widget : page._d_page.widgets()) {
-						if (widget.second.is_static() || !widget.second.visible() || !widget.second.enabled())
+
+					// check widgets (in reverse order)
+					for (const auto& alias : boost::adaptors::reverse(page._d_page.widgets_order())) {
+						auto& widget = page._d_page.widgets().at(alias);
+
+						if (widget.is_static() || !widget.visible() || !widget.enabled())
 							continue;
 
-						if (!clicked && widget.second.contains(point)) {
+						if (!clicked && widget.contains(point)) {
 							clicked = true;
-							on_right_click_handler = [&]() { widget.second.on_right_click(); };
+							on_right_click_handler = [&]() { widget.on_right_click(); };
 						}
 
 						// failsafe: for good measure
-						widget.second.hide_tooltip();
+						widget.hide_tooltip();
 
-						if (widget.second.type() ==
-							widgets::widget_type::tab_pane) {
+						if (widget.type() == widgets::widget_type::tab_pane) {
 							// get this tab pane
-							auto& tab_pane = page._d_page.get_tab_pane_impl(widget.first);
+							auto& tab_pane = page._d_page.get_tab_pane_impl(alias);
 
 							auto page_iterator = tab_pane._p_tabs.find(tab_pane.specs().selected());
 
@@ -70,10 +75,9 @@ namespace liblec {
 									on_right_click_handler);
 						}
 						else
-							if (widget.second.type() ==
-								widgets::widget_type::pane) {
+							if (widget.type() == widgets::widget_type::pane) {
 								// get this pane
-								auto& pane = page._d_page.get_pane_impl(widget.first);
+								auto& pane = page._d_page.get_pane_impl(alias);
 
 								auto page_iterator = pane._p_panes.find(pane._current_pane);
 
