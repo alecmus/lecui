@@ -262,6 +262,7 @@ namespace liblec {
 			}
 
 			if (!_initial_capture_done) {
+				_rect_original = _specs.rect();
 				_rect_previous = _specs.rect();
 				_initial_capture_done = true;
 			}
@@ -343,6 +344,13 @@ namespace liblec {
 		const D2D1_RECT_F& widgets::pane_impl::pane_area() { return _rect_pane; }
 
 		const float& widgets::pane_impl::content_margin() { return _content_margin; }
+
+		const D2D1_SIZE_F widgets::pane_impl::programmatic_change_in_size() {
+			auto& _specs = _p_panes.at(_current_pane);
+			const auto& width_change = _specs.rect().width() - _rect_original.width();
+			const auto& height_change = _specs.rect().height() - _rect_original.height();
+			return { width_change, height_change };
+		}
 
 		bool widgets::pane_impl::contains() { return false; }
 	}

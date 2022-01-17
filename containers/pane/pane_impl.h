@@ -83,6 +83,7 @@ namespace liblec {
 				const D2D1_RECT_F& client_area();
 				const D2D1_RECT_F& pane_area();
 				const float& content_margin();
+				const D2D1_SIZE_F programmatic_change_in_size();
 
 			private:
 				// Default constructor and copying an object of this class are not allowed
@@ -100,9 +101,11 @@ namespace liblec {
 				const float _content_margin;
 				D2D1_RECT_F _rect_client_area;
 				D2D1_RECT_F _rect_pane;
+				D2D1_SIZE_F _programmatic_change_in_size = { 0.f, 0.f };
 
 				bool _initial_capture_done = false;
 				rect _rect_previous = { 0.f, 0.f, 0.f, 0.f };
+				rect _rect_original = { 0.f, 0.f, 0.f, 0.f };
 
 				/// Important override for pane to work properly.
 				bool contains() override;

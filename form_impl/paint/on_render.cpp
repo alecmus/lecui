@@ -310,9 +310,16 @@ namespace liblec {
 										// get client area for this tab pane
 										const auto& client_area = tab_pane.client_area();
 
-										const D2D1_SIZE_F change_in_size = {
+										const D2D1_SIZE_F resizing_change_in_size = {
 											(tab_pane.tab_pane_area().right - tab_pane.tab_pane_area().left) - tab_pane().rect().width(),
 											(tab_pane.tab_pane_area().bottom - tab_pane.tab_pane_area().top) - tab_pane().rect().height()
+										};
+
+										const D2D1_SIZE_F programmatic_change_in_size = tab_pane.programmatic_change_in_size();
+
+										const D2D1_SIZE_F change_in_size = {
+											resizing_change_in_size.width + programmatic_change_in_size.width,
+											resizing_change_in_size.height + programmatic_change_in_size.height
 										};
 
 										for (auto& tab : tab_pane._p_tabs) {
@@ -340,9 +347,16 @@ namespace liblec {
 											// get client area for this pane
 											const auto& client_area = pane.client_area();
 
-											const D2D1_SIZE_F change_in_size = {
+											const D2D1_SIZE_F resizing_change_in_size = {
 												(pane.pane_area().right - pane.pane_area().left) - pane().rect().width(),
 												(pane.pane_area().bottom - pane.pane_area().top) - pane().rect().height()
+											};
+
+											const D2D1_SIZE_F programmatic_change_in_size = pane.programmatic_change_in_size();
+
+											const D2D1_SIZE_F change_in_size = {
+												resizing_change_in_size.width + programmatic_change_in_size.width,
+												resizing_change_in_size.height + programmatic_change_in_size.height
 											};
 
 											for (auto& page : pane._p_panes) {

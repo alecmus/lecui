@@ -71,6 +71,7 @@ namespace liblec {
 				void set_tab_height(const float height);
 				bool tab_height_set();
 				void close_tab(const std::string& tab_name);
+				const D2D1_SIZE_F programmatic_change_in_size();
 
 			private:
 				// Default constructor and copying an object of this class are not allowed
@@ -106,6 +107,7 @@ namespace liblec {
 
 				bool _initial_capture_done = false;
 				rect _rect_previous = { 0.f, 0.f, 0.f, 0.f };
+				rect _rect_original = { 0.f, 0.f, 0.f, 0.f };
 
 				/// Important override for tab pane to work properly.
 				bool contains();

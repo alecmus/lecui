@@ -167,6 +167,7 @@ namespace liblec {
 			}
 
 			if (!_initial_capture_done) {
+				_rect_original = _specs.rect();
 				_rect_previous = _specs.rect();
 				_initial_capture_done = true;
 			}
@@ -741,6 +742,12 @@ namespace liblec {
 				_tab_order = temp_tab_order;
 			}
 			catch (const std::exception&) {}
+		}
+
+		const D2D1_SIZE_F widgets::tab_pane_impl::programmatic_change_in_size() {
+			const auto& width_change = _specs.rect().width() - _rect_original.width();
+			const auto& height_change = _specs.rect().height() - _rect_original.height();
+			return { width_change, height_change };
 		}
 
 		bool widgets::tab_pane_impl::contains() {
