@@ -91,7 +91,10 @@ namespace liblec {
 		rect::rect() :
 			rect(0.f, 0.f, 0.f, 0.f) {}
 
-		rect::rect(const float left, const float right, const float top, const float bottom):
+		rect::rect(const lecui::size size) :
+			rect(0.f, size.get_width(), 0.f, size.get_height()) {}
+
+		rect::rect(const float left, const float right, const float top, const float bottom) :
 			_left(left), _right(right), _top(top), _bottom(bottom) {}
 
 		float& rect::left() { return _left; }

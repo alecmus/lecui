@@ -164,6 +164,10 @@ namespace liblec {
 			rect();
 
 			/// <summary>Rectangle constructor.</summary>
+			/// <param name="size">The size of the rectangle, in pixels.</param>
+			rect(const lecui::size size);
+
+			/// <summary>Rectangle constructor.</summary>
 			/// <param name="left">The left coordinate, in pixels.</param>
 			/// <param name="right">The right coordinate, in pixels.</param>
 			/// <param name="top">The top coordinate, in pixels.</param>
