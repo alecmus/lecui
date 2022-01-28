@@ -25,7 +25,9 @@ namespace liblec {
 			_h_scrollbar(pg),
 			_v_scrollbar(pg) {
 			_widgets.emplace(_h_scrollbar.alias(), _h_scrollbar);
+			_widgets_order.emplace_back(_h_scrollbar.alias());
 			_widgets.emplace(_v_scrollbar.alias(), _v_scrollbar);
+			_widgets_order.emplace_back(_v_scrollbar.alias());
 		}
 
 		containers::page::impl::~impl() {}
