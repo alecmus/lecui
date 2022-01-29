@@ -56,7 +56,10 @@ namespace liblec {
 						if (widget.is_static() || !widget.visible() || !widget.enabled())
 							continue;
 
+						bool this_widget_clicked = false;
+
 						if (!clicked && widget.contains(point)) {
+							this_widget_clicked = true;
 							clicked = true;
 							on_right_click_handler = [&]() { widget.on_right_click(); };
 						}
@@ -70,9 +73,19 @@ namespace liblec {
 
 							auto page_iterator = tab_pane._p_tabs.find(tab_pane.specs().selected());
 
+							bool local_clicked = this_widget_clicked ? false : clicked;
+
 							if (page_iterator != tab_pane._p_tabs.end())
-								check_widgets(page_iterator->second, point, clicked,
+								check_widgets(page_iterator->second, point, local_clicked,
 									on_right_click_handler);
+
+							if (local_clicked)
+								clicked = local_clicked;
+
+							if (this_widget_clicked && local_clicked) {
+								// prioritize widget over pane since widget is in pane
+								// do nothing since on_right_click_handler has already been updated
+							}
 						}
 						else
 							if (widget.type() == widgets::widget_type::pane) {
@@ -81,9 +94,19 @@ namespace liblec {
 
 								auto page_iterator = pane._p_panes.find(pane._current_pane);
 
+								bool local_clicked = this_widget_clicked ? false : clicked;
+
 								if (page_iterator != pane._p_panes.end())
-									check_widgets(page_iterator->second, point, clicked,
+									check_widgets(page_iterator->second, point, local_clicked,
 										on_right_click_handler);
+
+								if (local_clicked)
+									clicked = local_clicked;
+
+								if (this_widget_clicked && local_clicked) {
+									// prioritize widget over pane since widget is in pane
+									// do nothing since on_right_click_handler has already been updated
+								}
 							}
 					}
 				}
