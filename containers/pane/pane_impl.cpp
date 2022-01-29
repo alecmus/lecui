@@ -217,6 +217,7 @@ namespace liblec {
 
 			_specs_old = _specs;
 			_is_static = false;
+			_h_cursor = get_cursor(_specs.cursor());
 
 			HRESULT hr = S_OK;
 
