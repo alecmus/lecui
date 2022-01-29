@@ -310,9 +310,8 @@ namespace liblec {
 			_rect_pane.top -= offset.y;
 			_rect_pane.bottom -= offset.y;
 
-			// no reponse to hit testing, even though for scroll bar at form level
-			// we need to return the entire region through _rect_pane
-			_rect = { 0.f, 0.f, 0.f, 0.f };
+			// for hit testing
+			_rect = _rect_pane;
 
 			_rect_client_area = _rect_pane;
 
@@ -330,6 +329,8 @@ namespace liblec {
 			// draw the badge
 			draw_badge(_specs.badge(), _rect_pane, p_render_target, _p_directwrite_factory, _badge_resources);
 
+			// for scroll bar at form level
+			// we need to return the entire region through _rect_pane
 			return _rect_pane;
 		}
 
@@ -352,6 +353,8 @@ namespace liblec {
 			return { width_change, height_change };
 		}
 
-		bool widgets::pane_impl::contains() { return false; }
+		bool widgets::pane_impl::contains() {
+			return widget_impl::contains();
+		}
 	}
 }

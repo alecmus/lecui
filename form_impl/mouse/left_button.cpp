@@ -160,9 +160,19 @@ namespace liblec {
 
 								auto page_iterator = pane._p_panes.find(pane._current_pane);
 
+								bool local_pressed = widget.pressed() ? false : pressed;
+
 								if (page_iterator != pane._p_panes.end())
-									helper::check_widgets(page_iterator->second, point, dpi_scale, pressed,
+									helper::check_widgets(page_iterator->second, point, dpi_scale, local_pressed,
 										update_anyway, scroll_bar_hit);	// recursion
+
+								if (local_pressed)
+									pressed = local_pressed;
+
+								if (widget.pressed() && local_pressed) {
+									// prioritize widget over pane since widget is in pane
+									widget.press(false);
+								}
 							}
 					}
 

@@ -46,38 +46,40 @@ namespace liblec {
 							if (widget.second.on_mousewheel(units))
 								update = true;
 						}
+						
+						if (widget.second.type() ==
+							widgets::widget_type::tab_pane) {
+							// get this tab pane
+							auto& tab_pane = page._d_page.get_tab_pane_impl(widget.first);
+
+							auto page_iterator = tab_pane._p_tabs.find(tab_pane.specs().selected());
+
+							if (page_iterator != tab_pane._p_tabs.end()) {
+								helper::check_widgets(page_iterator->second, units, update);
+
+								if (!update && page_iterator->second._d_page.hit())
+									if (page_iterator->second._d_page.on_mousewheel(units))
+										update = true;
+							}
+						}
 						else
 							if (widget.second.type() ==
-								widgets::widget_type::tab_pane) {
-								// get this tab pane
-								auto& tab_pane = page._d_page.get_tab_pane_impl(widget.first);
+								widgets::widget_type::pane) {
+								// get this pane
+								auto& pane = page._d_page.get_pane_impl(widget.first);
 
-								auto page_iterator = tab_pane._p_tabs.find(tab_pane.specs().selected());
+								auto page_iterator = pane._p_panes.find(pane._current_pane);
 
-								if (page_iterator != tab_pane._p_tabs.end()) {
+								if (page_iterator != pane._p_panes.end()) {
 									helper::check_widgets(page_iterator->second, units, update);
 
-									if (!update && page_iterator->second._d_page.hit())
+									if (!update && page_iterator->second._d_page.hit()) {
+										log(page_iterator->first + " wheel");
 										if (page_iterator->second._d_page.on_mousewheel(units))
 											update = true;
-								}
-							}
-							else
-								if (widget.second.type() ==
-									widgets::widget_type::pane) {
-									// get this pane
-									auto& pane = page._d_page.get_pane_impl(widget.first);
-
-									auto page_iterator = pane._p_panes.find(pane._current_pane);
-
-									if (page_iterator != pane._p_panes.end()) {
-										helper::check_widgets(page_iterator->second, units, update);
-
-										if (!update && page_iterator->second._d_page.hit())
-											if (page_iterator->second._d_page.on_mousewheel(units))
-												update = true;
 									}
 								}
+							}
 					}
 				}
 			};
