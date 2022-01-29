@@ -58,9 +58,7 @@ namespace liblec {
 				friend class tab_builder;
 #endif
 			public:
-				tab_pane() {
-					_cursor = cursor_type::hand;
-				}
+				tab_pane() {}
 				
 				bool operator==(const tab_pane&);
 				bool operator!=(const tab_pane&);
