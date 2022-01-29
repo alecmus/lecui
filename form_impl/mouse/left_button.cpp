@@ -129,11 +129,9 @@ namespace liblec {
 
 							widget.press(pressed);
 
-							if (widget.type() != widgets::widget_type::tab_pane)
+							if (widget.type() != widgets::widget_type::tab_pane &&
+								widget.type() != widgets::widget_type::pane)
 								widget.select(pressed);
-							else
-								if (widget.type() != widgets::widget_type::pane)
-									widget.select(pressed);
 						}
 						else {
 							// pressed widget found
