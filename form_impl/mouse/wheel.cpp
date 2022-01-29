@@ -47,8 +47,7 @@ namespace liblec {
 								update = true;
 						}
 						
-						if (widget.second.type() ==
-							widgets::widget_type::tab_pane) {
+						if (widget.second.type() == widgets::widget_type::tab_pane) {
 							// get this tab pane
 							auto& tab_pane = page._d_page.get_tab_pane_impl(widget.first);
 
@@ -63,8 +62,7 @@ namespace liblec {
 							}
 						}
 						else
-							if (widget.second.type() ==
-								widgets::widget_type::pane) {
+							if (widget.second.type() == widgets::widget_type::pane) {
 								// get this pane
 								auto& pane = page._d_page.get_pane_impl(widget.first);
 
@@ -74,7 +72,6 @@ namespace liblec {
 									helper::check_widgets(page_iterator->second, units, update);
 
 									if (!update && page_iterator->second._d_page.hit()) {
-										log(page_iterator->first + " wheel");
 										if (page_iterator->second._d_page.on_mousewheel(units))
 											update = true;
 									}

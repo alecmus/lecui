@@ -149,9 +149,19 @@ namespace liblec {
 
 							auto page_iterator = tab_pane._p_tabs.find(tab_pane.specs().selected());
 
+							bool local_pressed = widget.pressed() ? false : pressed;
+
 							if (page_iterator != tab_pane._p_tabs.end())
-								helper::check_widgets(page_iterator->second, point, dpi_scale, pressed,
+								helper::check_widgets(page_iterator->second, point, dpi_scale, local_pressed,
 									update_anyway, scroll_bar_hit);	// recursion
+
+							if (local_pressed)
+								pressed = local_pressed;
+
+							if (widget.pressed() && local_pressed) {
+								// prioritize widget over pane since widget is in pane
+								widget.press(false);
+							}
 						}
 						else
 							if (widget.type() == widgets::widget_type::pane) {

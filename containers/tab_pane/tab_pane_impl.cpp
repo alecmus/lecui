@@ -259,9 +259,8 @@ namespace liblec {
 				break;
 			}
 
-			// only make the tab area respond to hit testing, even though for scroll bar at form level
-			// we need to return the entire region through _rect_tab_pane
-			_rect = _rect_tabs;
+			// for hit testing
+			_rect = _rect_tab_pane;
 
 			if (!render || !_visible)
 				return _rect_tab_pane;
@@ -673,6 +672,8 @@ namespace liblec {
 				catch (const std::exception&) {}
 			}
 
+			// for scroll bar at form level
+			// we need to return the entire region through _rect_tab_pane
 			return _rect_tab_pane;
 		}
 
@@ -684,6 +685,20 @@ namespace liblec {
 				if (_point.x >= rect.left && _point.x <= rect.right &&
 					_point.y >= rect.top && _point.y <= rect.bottom)
 					_specs.selected(it.first);
+			}
+
+			D2D1_RECT_F rect = _rect;
+			rect.top = _rect_tabs.bottom;
+			scale_RECT(rect, get_dpi_scale());
+
+			if (_point.x >= rect.left && _point.x <= rect.right &&
+				_point.y >= rect.top && _point.y <= rect.bottom) {
+
+				if (_specs.events().click)
+					_specs.events().click();
+
+				if (_specs.events().action)
+					_specs.events().action();
 			}
 		}
 
@@ -759,6 +774,14 @@ namespace liblec {
 					_point.y >= rect.top && _point.y <= rect.bottom)
 					return true;
 			}
+
+			D2D1_RECT_F rect = _rect;
+			rect.top = _rect_tabs.bottom;
+			scale_RECT(rect, get_dpi_scale());
+
+			if (_point.x >= rect.left && _point.x <= rect.right &&
+				_point.y >= rect.top && _point.y <= rect.bottom)
+				return true;
 
 			return false;
 		}
