@@ -245,9 +245,17 @@ namespace liblec {
 			MSG msg = {};
 
 			// main message loop
-			while (GetMessage(&msg, nullptr, 0, 0)) {
-				TranslateMessage(&msg);
-				DispatchMessage(&msg);
+			BOOL result = NULL;
+			while ((result = GetMessage(&msg, nullptr, 0, 0)) != 0) {
+				if (result == -1) {
+					// error occurred
+					error = get_last_error();
+					log(error);
+				}
+				else {
+					TranslateMessage(&msg);
+					DispatchMessage(&msg);
+				}
 			}
 
 			if (_d._parent_closing)
