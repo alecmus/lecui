@@ -20,19 +20,19 @@ lecui user interface library
   <img alt="GitHub commit activity" src="https://img.shields.io/github/commit-activity/y/alecmus/lecui">
 </p>
 
-### About the Library
+### :information_source: About the Library
 The lecui user interface library is designed for the rapid development of modern, efficient and
 easy to maintain C++ applications with a graphical user interface (gui). It is part of the
 [liblec libraries](https://github.com/alecmus/liblec). It enables you to make a simple gui app
 with minimal code but also gives you the power to build a marvel if you need to.
 
-### Wiki
+### :book: Wiki
 The library has a wiki available [here](https://github.com/alecmus/lecui/wiki). The wiki has details about how to use the library, examples, guidelines and more.
 
-### Documentation
+### :beginner: Documentation
 The library uses embedded XML-style documentation. An HTML version of this documentation is available [here](https://alecmus.github.io/lecui).
 
-### Successor to the cui framework
+### :new: Successor to the cui framework
 The lecui user interface library is designed to be a successor to the older
 [cui framework](https://github.com/alecmus/cui). But why? It features newer technologies,
 greater flexibility and a more robust architecture. Below are some of the most important
@@ -52,13 +52,13 @@ of widgets beyond the page or form; lecui supports this and vertical and/or hori
 scrollbars are automatically triggered to permit the user to scroll. These scroll bars are
 supported for all containers.
 
-### Usage Examples
+### :mag: Usage Examples
 The library is used in the [pc_info](https://github.com/alecmus/pc_info) and [spotlight_images](https://github.com/alecmus/spotlight_images) apps and
 various useful usage examples are available in the
 [lecui demo](https://github.com/alecmus/lecui_demo) repository. These range from minimalist hello world
 examples all the way up to advanced multi-page and multi-layer apps.
 
-### Screenshots
+### :eyes: Screenshots
 Below is a screenshot showing the interface of the [spotlight_images](https://github.com/alecmus/spotlight_images) app, built using lecui:<br/><br/>
 <img src="https://github.com/alecmus/files/blob/master/liblec/lecui/screenshots/spotlight_images/spotlight_images_01.png?raw=true" alt="screenshot" width="800"/>
 
@@ -72,16 +72,16 @@ Summary Description | Location
 lecui_show          | https://github.com/alecmus/files/tree/master/liblec/lecui/screenshots/lecui_show
 lecui_minimal       | https://github.com/alecmus/files/tree/master/liblec/lecui/screenshots/lecui_minimal
 
-### Prebuilt Binaries
+### :zap: Prebuilt Binaries
 Prebuilt binaries of the library can be found under
 [releases](https://github.com/alecmus/lecui/releases).
 
-### Building
+### :construction: Building
+Refer to the [wiki](https://github.com/alecmus/lecui/wiki/Installation#compiling-the-source-code).
+
+### :link: Linking to the Library
 Refer to the [wiki](https://github.com/alecmus/lecui/wiki/Installation).
 
-### Linking to the Library
-Refer to the [wiki](https://github.com/alecmus/lecui/wiki).
-
-### Deploying your Application
+### :outbox_tray: Deploying your Application
 If it's the 32 bit build you will need to deploy it with lecui32.dll in the same folder. If it's a
 64 bit build use the lecui64.dll.
