@@ -3540,6 +3540,10 @@ namespace liblec {
 
 			case WM_NCRBUTTONDOWN:
 			case WM_NCLBUTTONDOWN:
+				// for some reason child forms closed here behave weidly ... the GetMessage in the message loop never
+				// receives the WM_QUIT message after the PostQuitMessage(0) call in WM_DESTROY, hence the need for a
+				// failsafe mechanism in the message loop to detect an invalid window handle and force the loop to exit
+				// Without such a failsafe mechanism the child's message loop never exits!
 				for (auto& [key, child] : _form._d._m_children) {
 					if (child && IsWindow(child->_d._hWnd) && (child->_d._menu_form || child->_d._tooltip_form)) {
 						// close child menu forms and child tooltip forms
