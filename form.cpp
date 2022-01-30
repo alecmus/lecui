@@ -251,6 +251,7 @@ namespace liblec {
 					// error occurred
 					error = get_last_error();
 					log(error);
+					break;
 				}
 				else {
 					TranslateMessage(&msg);
