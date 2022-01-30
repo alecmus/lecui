@@ -331,6 +331,7 @@ namespace liblec {
 		std::string filesystem::save_file(const std::string& file, const save_file_params& params) {
 			std::string file_path;
 			IFileDialog* p_file_dialog = nullptr;
+			const std::wstring file_name = convert_string(file);
 
 			if (SUCCEEDED(CoCreateInstance(CLSID_FileSaveDialog, NULL, CLSCTX_INPROC_SERVER,
 				IID_PPV_ARGS(&p_file_dialog)))) {
@@ -338,6 +339,7 @@ namespace liblec {
 				DWORD options;
 				if (SUCCEEDED(p_file_dialog->GetOptions(&options))) {
 					p_file_dialog->SetOptions(options | FOS_FORCEFILESYSTEM);
+					p_file_dialog->SetFileName(file_name.c_str());
 
 					file_type all_types;
 					all_types.description = "All Files";
