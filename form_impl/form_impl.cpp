@@ -597,6 +597,8 @@ namespace liblec {
 						mi.label = item.label;
 						mi.font = item.font;
 						mi.font_size = item.font_size;
+						mi.image_file = item.image_file;
+						mi.image_png_resource = item.image_png_resource;
 						menu_specs.items.push_back(mi);
 					}
 

@@ -29,7 +29,12 @@ namespace liblec {
 			/// <summary>The children of the menu item (used to make a tree).</summary>
 			std::vector<form_menu_item> children;
 
-			/// <summary>The image to use for the menu item (placed on the right).</summary>
+			/// <summary>The image resource to use for the menu item (placed on the left).</summary>
+			/// <remarks>Takes precedence over <see cref='image_file'></see>.</remarks>
+			int image_png_resource = 0;
+
+			/// <summary>The image to use for the menu item (placed on the left).</summary>
+			/// <remarks>Used only if <see cref='image_png_resource'></see> is zero.</remarks>
 			std::string image_file;
 
 			/// <summary>The font to use.</summary>
