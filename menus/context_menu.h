@@ -28,7 +28,7 @@ namespace liblec {
 			int image_png_resource = 0;
 
 			/// <summary>The image to use for the menu item (placed on the left).</summary>
-			/// <remarks>Used only if <see cref='image_png_resource'></see> is non-zero.</remarks>
+			/// <remarks>Used only if <see cref='image_png_resource'></see> is zero.</remarks>
 			std::string image_file;
 
 			/// <summary>The font to use.</summary>
