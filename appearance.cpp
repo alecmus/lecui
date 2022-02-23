@@ -54,7 +54,7 @@ namespace liblec {
 				case item::progress_indicator_text: return { 0, 120, 170, 255 };
 				case item::progress_indicator_unfilled: return { 200, 200, 200, 255 };
 
-				case item::text_field: return { 255, 255, 255, 255 };
+				case item::text_field: return { 250, 250, 250, 255 };
 				case item::text_field_border: return { 150, 150, 150, 255 };
 				case item::text_field_disabled: return { 248, 248, 248, 255 };
 				case item::text_field_prompt: return { 180, 180, 180, 255 };
@@ -113,7 +113,7 @@ namespace liblec {
 				case item::slider_tick: return { 120, 120, 120, 255 };
 				case item::slider_selected: return { 0, 120, 170, 150 };
 
-				case item::html_editor: return { 255, 255, 255, 255 };
+				case item::html_editor: return { 250, 250, 250, 255 };
 				case item::html_editor_border: return { 150, 150, 150, 255 };
 				case item::html_editor_disabled: return { 248, 248, 248, 255 };
 				case item::html_editor_selected: return { 0, 120, 170, 100 };
@@ -122,7 +122,7 @@ namespace liblec {
 				case item::html_control_border: return { 0, 120, 170, 50 };
 
 				case item::combobox: return { 219, 219, 219, 255 };
-				case item::combobox_editable: return { 255, 255, 255, 255 };
+				case item::combobox_editable: return { 250, 250, 250, 255 };
 				case item::combobox_caret: return { 50, 50, 50, 255 };
 				case item::combobox_border: return { 200, 200, 200, 255 };
 				case item::combobox_hover: return { 240, 240, 240, 255 };
@@ -191,7 +191,7 @@ namespace liblec {
 				case item::progress_indicator_text: return { 60, 190, 175, 255 };
 				case item::progress_indicator_unfilled: return { 85, 95, 100, 255 };
 
-				case item::text_field: return { 40, 45, 50, 255 };
+				case item::text_field: return { 14, 26, 32, 255 };
 				case item::text_field_border: return { 150, 150, 150, 255 };
 				case item::text_field_disabled: return { 30, 35, 40, 255 };
 				case item::text_field_prompt: return { 70, 75, 80, 255 };
@@ -250,7 +250,7 @@ namespace liblec {
 				case item::slider_tick: return { 85, 95, 100, 255 };
 				case item::slider_selected: return { 60, 190, 175, 150 };
 
-				case item::html_editor: return { 40, 45, 50, 255 };
+				case item::html_editor: return { 14, 26, 32, 255 };
 				case item::html_editor_border: return { 150, 150, 150, 255 };
 				case item::html_editor_disabled: return { 30, 35, 40, 255 };
 				case item::html_editor_selected: return { 60, 190, 175, 150 };
@@ -259,7 +259,7 @@ namespace liblec {
 				case item::html_control_border: return { 0, 120, 170, 50 };
 
 				case item::combobox: return { 60, 65, 75, 255 };
-				case item::combobox_editable: return { 40, 45, 50, 255 };
+				case item::combobox_editable: return { 14, 26, 32, 255 };
 				case item::combobox_caret: return { 60, 190, 175, 255 };
 				case item::combobox_border: return { 70, 70, 70, 255 };
 				case item::combobox_hover: return { 80, 85, 95, 255 };
