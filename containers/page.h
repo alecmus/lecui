@@ -47,6 +47,20 @@ namespace liblec {
 				/// coordinates are local to a container.</remarks>
 				[[nodiscard]] virtual const size size();
 
+				/// <summary>Programmatically scroll the page vertically.</summary>
+				/// <param name="amount">The amount of pixels to scroll the page widgets by.</param>
+				/// <remarks>A negative value moves the widgets upwards; it's equivalent to sliding
+				/// the vertical scroll bar downwards, and vice-versa. If the page has no vertical scroll
+				/// bar this method has no effect.</remarks>
+				void scroll_vertically(const float& amount);
+
+				/// <summary>Programmatically scroll the page horizontally.</summary>
+				/// <param name="amount">The amount of pixels to scroll the page widgets by.</param>
+				/// <remarks>A negative value moves the widgets to the left; it's equivalent to sliding
+				/// the horizontal scroll bar towards the right, and vice-versa. If the page has no
+				/// horizontal scroll bar this method has no effect.</remarks>
+				void scroll_horizontally(const float& amount);
+
 			protected:
 				class impl;
 				impl& _d_page;

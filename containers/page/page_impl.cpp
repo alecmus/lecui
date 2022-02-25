@@ -575,14 +575,14 @@ namespace liblec {
 			if (_hit && _v_scrollbar.visible()) {
 				float _row_height = 10.f;
 				float adjustment = units * _row_height;
-				scroll(adjustment);
+				scroll_vertically(adjustment);
 				return true;
 			}
 			else
 				return false;
 		}
 
-		void containers::page::impl::scroll(float pixels) {
+		void containers::page::impl::scroll_vertically(float pixels) {
 			if (_v_scrollbar.visible()) {
 				if (!_scrollbar_set) {
 					// check scroll bar
@@ -602,6 +602,29 @@ namespace liblec {
 
 				_v_scrollbar._y_displacement -= adjustment;
 				_v_scrollbar._y_displacement_previous -= adjustment;
+			}
+		}
+
+		void containers::page::impl::scroll_horizontally(float pixels) {
+			if (_h_scrollbar.visible()) {
+				if (!_scrollbar_set) {
+					// check scroll bar
+					_h_scrollbar.max_displacement(
+						_h_scrollbar._max_displacement_left,
+						_h_scrollbar._max_displacement_right);
+					_h_scrollbar._max_displacement_left *= get_dpi_scale();
+					_h_scrollbar._max_displacement_right *= get_dpi_scale();
+
+					_h_scrollbar._max_displacement_left += _h_scrollbar._x_displacement;
+					_h_scrollbar._max_displacement_right += _h_scrollbar._x_displacement;
+
+					_scrollbar_set = true;
+				}
+
+				float adjustment = pixels;
+
+				_h_scrollbar._x_displacement -= adjustment;
+				_h_scrollbar._x_displacement_previous -= adjustment;
 			}
 		}
 

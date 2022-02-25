@@ -17,6 +17,8 @@ namespace liblec {
 		/// This method discards device-specific resources if the Direct3D device dissapears during
 		/// execution and recreates the resources the next time it's invoked
 		HRESULT form::impl::on_render() {
+			bool update_form = false;
+
 			// check if shadow setting has changed
 			if (_previous_shadow_setting != _borderless_shadow) {
 				// implement new shadow setting
@@ -74,7 +76,7 @@ namespace liblec {
 						const float& _dpi_scale,
 						ID2D1SolidColorBrush* _p_brush_theme,
 						ID2D1SolidColorBrush* _p_brush_theme_hot,
-						bool lbutton_pressed) {
+						bool lbutton_pressed, bool update_form) {
 						bool render = page_alias == current_page;
 
 						if (!allow_render)
@@ -92,6 +94,24 @@ namespace liblec {
 							do {
 								// h_scrollbar
 								{
+									// handle scheduled programmatic horizontal scrolling
+									if (page._d_page.h_scrollbar()._scheduled_programmatic_h_scroll) {
+										page._d_page.force_scrollbar_set();
+
+										// compute how much the scroll bar needs to be moved by to move the widgets inside by
+										// _scheduled_programmatic_h_scroll pixels
+										float x_displacement = 0.f;
+										page._d_page.h_scrollbar().reverse_translate_x_displacement(
+											page._d_page.h_scrollbar()._scheduled_programmatic_h_scroll, x_displacement);
+										page._d_page.h_scrollbar()._scheduled_programmatic_h_scroll = 0.f;
+
+										// scroll
+										page._d_page.scroll_horizontally(x_displacement * _dpi_scale);
+
+										// set flag so we can force the translation below
+										page._d_page.h_scrollbar()._force_translate = true;
+									}
+
 									// impose limits
 									if (page._d_page.h_scrollbar()._x_displacement < 0.f)
 										page._d_page.h_scrollbar()._x_displacement =
@@ -116,6 +136,24 @@ namespace liblec {
 
 								// v_scrollbar
 								{
+									// handle scheduled programmatic vertical scrolling
+									if (page._d_page.v_scrollbar()._scheduled_programmatic_v_scroll) {
+										page._d_page.force_scrollbar_set();
+
+										// compute how much the scroll bar needs to be moved by to move the widgets inside by
+										// _scheduled_programmatic_v_scroll pixels
+										float y_displacement = 0.f;
+										page._d_page.v_scrollbar().reverse_translate_y_displacement(
+											page._d_page.v_scrollbar()._scheduled_programmatic_v_scroll, y_displacement);
+										page._d_page.v_scrollbar()._scheduled_programmatic_v_scroll = 0.f;
+
+										// scroll
+										page._d_page.scroll_vertically(y_displacement * _dpi_scale);
+
+										// set flag so we can force the translation below
+										page._d_page.v_scrollbar()._force_translate = true;
+									}
+
 									// impose limits
 									if (page._d_page.v_scrollbar()._y_displacement < 0.f)
 										page._d_page.v_scrollbar()._y_displacement =
@@ -332,7 +370,7 @@ namespace liblec {
 
 											render_page(render ? tab_pane.visible() : false, tab.first, tab_pane.specs().selected(), tab.second,
 												_p_render_target, rect_page, rect_page, change_in_size,
-												_dpi_scale, _p_brush_theme, _p_brush_theme_hot, lbutton_pressed);	// recursion
+												_dpi_scale, _p_brush_theme, _p_brush_theme_hot, lbutton_pressed, update_form);	// recursion
 										}
 									}
 									catch (const std::exception&) {}
@@ -369,7 +407,7 @@ namespace liblec {
 
 												render_page(render ? pane.visible() : false, page.first, pane._current_pane, page.second,
 													_p_render_target, rect_page, rect_page, change_in_size,
-													_dpi_scale, _p_brush_theme, _p_brush_theme_hot, lbutton_pressed);	// recursion
+													_dpi_scale, _p_brush_theme, _p_brush_theme_hot, lbutton_pressed, update_form);	// recursion
 											}
 										}
 										catch (const std::exception&) {}
@@ -396,6 +434,24 @@ namespace liblec {
 						page._d_page.v_scrollbar().render(_p_render_target,
 							change_in_size, { 0.f - client_area.left,
 							0.f - client_area.top }, render);
+
+						if (page._d_page.h_scrollbar()._programmatic_h_scroll) {
+							// capture scheduled scrolling value
+							page._d_page.h_scrollbar()._scheduled_programmatic_h_scroll = page._d_page.h_scrollbar()._programmatic_h_scroll;
+							page._d_page.h_scrollbar()._programmatic_h_scroll = 0.f;
+
+							// schedule update (doing it this time around wouldn't have worked coz changes to widget pages hadn't registered yet).
+							update_form = true;
+						}
+
+						if (page._d_page.v_scrollbar()._programmatic_v_scroll) {
+							// capture scheduled scrolling value
+							page._d_page.v_scrollbar()._scheduled_programmatic_v_scroll = page._d_page.v_scrollbar()._programmatic_v_scroll;
+							page._d_page.v_scrollbar()._programmatic_v_scroll = 0.f;
+
+							// schedule update (doing it this time around wouldn't have worked coz changes to widget pages hadn't registered yet).
+							update_form = true;
+						}
 					}
 				};
 
@@ -417,7 +473,7 @@ namespace liblec {
 
 					helper::render_page(true, page.first, _current_page, page.second, _p_render_target,
 						rect_page, client_area, change_in_size, _dpi_scale,
-						_p_brush_theme, _p_brush_theme_hot, _lbutton_pressed);
+						_p_brush_theme, _p_brush_theme_hot, _lbutton_pressed, update_form);
 				}
 
 				// render status panes
@@ -433,7 +489,7 @@ namespace liblec {
 
 						helper::render_page(true, page.first, page.first, page.second, _p_render_target,
 							rect_page, client_area, change_in_size, _dpi_scale,
-							_p_brush_theme, _p_brush_theme_hot, _lbutton_pressed);
+							_p_brush_theme, _p_brush_theme_hot, _lbutton_pressed, update_form);
 					}
 
 					if (page.first == "status::top") {
@@ -447,7 +503,7 @@ namespace liblec {
 
 						helper::render_page(true, page.first, page.first, page.second, _p_render_target,
 							rect_page, client_area, change_in_size, _dpi_scale,
-							_p_brush_theme, _p_brush_theme_hot, _lbutton_pressed);
+							_p_brush_theme, _p_brush_theme_hot, _lbutton_pressed, update_form);
 					}
 
 					if (page.first == "status::left") {
@@ -461,7 +517,7 @@ namespace liblec {
 
 						helper::render_page(true, page.first, page.first, page.second, _p_render_target,
 							rect_page, client_area, change_in_size, _dpi_scale,
-							_p_brush_theme, _p_brush_theme_hot, _lbutton_pressed);
+							_p_brush_theme, _p_brush_theme_hot, _lbutton_pressed, update_form);
 					}
 
 					if (page.first == "status::right") {
@@ -475,7 +531,7 @@ namespace liblec {
 
 						helper::render_page(true, page.first, page.first, page.second, _p_render_target,
 							rect_page, client_area, change_in_size, _dpi_scale,
-							_p_brush_theme, _p_brush_theme_hot, _lbutton_pressed);
+							_p_brush_theme, _p_brush_theme_hot, _lbutton_pressed, update_form);
 					}
 				}
 
@@ -502,6 +558,9 @@ namespace liblec {
 				hr = S_OK;
 				discard_device_resources();
 			}
+
+			if (update_form)
+				update();
 
 			return hr;
 		}

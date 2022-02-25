@@ -171,6 +171,16 @@ namespace liblec {
 			return false;
 		}
 
+		void widgets::v_scrollbar_impl::reverse_translate_y_displacement(
+			const float& y_displacement_translated, float& y_displacement) {
+			// calculate the scale factor for amplifying the movement of the scroll bar
+			const float height_A = _rectA.bottom - _rectA.top;
+			const float height_C = _rectC.bottom - _rectC.top;
+			const float scale_factor = height_C != 0.f ? height_A / height_C : 1.f;
+
+			y_displacement = y_displacement_translated / scale_factor;
+		}
+
 		void widgets::v_scrollbar_impl::setup(const D2D1_RECT_F& rectA,
 			const D2D1_RECT_F& rectB) {
 			_rectA = rectA;

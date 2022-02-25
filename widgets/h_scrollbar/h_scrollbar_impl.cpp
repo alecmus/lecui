@@ -157,18 +157,28 @@ namespace liblec {
 		}
 
 		bool widgets::h_scrollbar_impl::translate_x_displacement(
-			const float& displacement, float& x_displacement_translated, bool force) {
+			const float& x_displacement, float& x_displacement_translated, bool force) {
 			if (_pressed || force) {
 				// calculate the scale factor for amplifying the movement of the scroll bar
 				const float width_A = _rectA.right - _rectA.left;
 				const float width_C = _rectC.right - _rectC.left;
 				const float scale_factor = width_C != 0.f ? width_A / width_C : 1.f;
 
-				x_displacement_translated = displacement * scale_factor;
+				x_displacement_translated = x_displacement * scale_factor;
 				return true;
 			}
 
 			return false;
+		}
+
+		void widgets::h_scrollbar_impl::reverse_translate_x_displacement(
+			const float& x_displacement_translated, float& x_displacement) {
+			// calculate the scale factor for amplifying the movement of the scroll bar
+			const float width_A = _rectA.right - _rectA.left;
+			const float width_C = _rectC.right - _rectC.left;
+			const float scale_factor = width_C != 0.f ? width_A / width_C : 1.f;
+
+			x_displacement = x_displacement_translated / scale_factor;
 		}
 
 		void widgets::h_scrollbar_impl::setup(const D2D1_RECT_F& rectA,

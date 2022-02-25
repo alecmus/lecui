@@ -99,7 +99,6 @@ namespace liblec {
 				ID2D1SolidColorBrush* _p_brush_selected;
 				IDWriteTextFormat* _p_text_format;
 
-				ID2D1Factory* _p_direct2d_factory;
 				IDWriteFactory* _p_directwrite_factory;
 				IDWriteTextLayout* _p_text_layout;
 

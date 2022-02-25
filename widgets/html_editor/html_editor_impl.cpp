@@ -422,7 +422,7 @@ namespace liblec {
 				timer_manager(get_form()).add(_autoscroll_timer_name, 0,
 					[&]() {
 						// scroll page to ensure caret visibility
-						_page._d_page.scroll(_scroll_amount);
+						_page._d_page.scroll_vertically(_scroll_amount);
 						get_form().update();
 
 						// stop timer

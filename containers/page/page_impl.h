@@ -182,7 +182,8 @@ namespace liblec {
 
 			bool hit();
 			bool on_mousewheel(float units);
-			void scroll(float pixels);
+			void scroll_vertically(float pixels);
+			void scroll_horizontally(float pixels);
 			void force_scrollbar_set();
 
 			float _content_margin = 0.f;

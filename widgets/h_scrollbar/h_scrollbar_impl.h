@@ -31,6 +31,9 @@ namespace liblec {
 				float _max_displacement_right;
 				bool _force_translate;
 
+				float _programmatic_h_scroll = 0.f;
+				float _scheduled_programmatic_h_scroll = 0.f;
+
 				/// constructor and destructor
 				h_scrollbar_impl(containers::page& page);
 				~h_scrollbar_impl();
@@ -49,6 +52,8 @@ namespace liblec {
 				void max_displacement(float& left, float& right);
 				bool translate_x_displacement(const float& x_displacement,
 					float& x_displacement_translated, bool force);
+				void reverse_translate_x_displacement(const float& x_displacement_translated,
+					float& x_displacement);
 				void setup(const D2D1_RECT_F& rectA, const D2D1_RECT_F& rectB);
 
 			private:

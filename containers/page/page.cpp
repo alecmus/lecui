@@ -20,6 +20,14 @@ namespace liblec {
 
 		inline const size containers::page::size() { return _d_page.size(); }
 
+		void containers::page::scroll_vertically(const float& amount) {
+			_d_page.v_scrollbar()._programmatic_v_scroll = amount;
+		}
+
+		void containers::page::scroll_horizontally(const float& amount) {
+			_d_page.h_scrollbar()._programmatic_h_scroll = amount;
+		}
+
 		class page_manager::impl {
 		public:
 			impl(form& fm) :
