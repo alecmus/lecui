@@ -2033,7 +2033,9 @@ namespace liblec {
 								.right(it.destination.size().get_width())
 								.top(0.f)
 								.bottom(it.destination.size().get_height()))
-							.on_resize({ 0.f, 0.f, 0.f, 0.f });
+							.on_resize(resize_params()
+								.width_rate(100.f)
+								.height_rate(100.f));
 
 						// rectangle specs
 						icn
@@ -2045,6 +2047,9 @@ namespace liblec {
 							.color_border(icon.color_border())
 							.color_hot(icon.color_hot())
 							.cursor(widgets::widget::cursor_type::hand)
+							.on_resize(resize_params()
+								.width_rate(100.f)
+								.height_rate(100.f))
 							.rect().size(it.destination.size());
 
 						// move the click and action handler from the icon to the rectangle
@@ -2097,7 +2102,8 @@ namespace liblec {
 						text
 							.text(icon.text())
 							.color_text(icon.color_text())
-							.font_size(icon.font_size());
+							.font_size(icon.font_size())
+							.on_resize(resize_params().width_rate(100.f));
 
 						switch (icon.text_position()) {
 						case widgets::icon::icon_text_position::right: {
@@ -2157,7 +2163,8 @@ namespace liblec {
 						description.text(icon.description())
 							.color_text(icon.color_text_description())
 							.font_size(icon.font_size_description())
-							.multiline(true);
+							.multiline(true)
+							.on_resize(resize_params().width_rate(100.f));
 
 						switch (icon.text_position()) {
 						case widgets::icon::icon_text_position::right: {
