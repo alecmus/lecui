@@ -41,7 +41,7 @@ namespace liblec {
 				bool _user_sort = false;
 				bool _fixed_number_column = false;
 				std::string _fixed_number_column_name = "#";
-				void* _p_special_pane_specs = nullptr;
+				void* _p_special_pane = nullptr;
 
 			public:
 				table_view() {
@@ -339,6 +339,20 @@ namespace liblec {
 				/// calling this static method through the helper macro provided.</remarks>
 				[[nodiscard]]
 				static table_view& get(form& fm, const std::string& path);
+
+				/// <summary>Programmatically scroll the table vertically.</summary>
+				/// <param name="amount">The amount of pixels to scroll the table by.</param>
+				/// <remarks>A negative value moves the table upwards; it's equivalent to sliding
+				/// the vertical scroll bar downwards, and vice-versa. If the table has no vertical scroll
+				/// bar this method has no effect.</remarks>
+				void scroll_vertically(const float& amount);
+
+				/// <summary>Programmatically scroll the table horizontally.</summary>
+				/// <param name="amount">The amount of pixels to scroll the table by.</param>
+				/// <remarks>A negative value moves the table to the left; it's equivalent to sliding
+				/// the horizontal scroll bar towards the right, and vice-versa. If the table has no
+				/// horizontal scroll bar this method has no effect.</remarks>
+				void scroll_horizontally(const float& amount);
 
 			private:
 				table_view_events _table_events;

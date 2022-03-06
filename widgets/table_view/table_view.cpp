@@ -96,15 +96,15 @@ namespace liblec {
 		}
 
 		lecui::rect& widgets::table_view::rect() {
-			if (_p_special_pane_specs)	// redirect to special pane
-				return reinterpret_cast<lecui::containers::pane_specs*>(_p_special_pane_specs)->rect();
+			if (_p_special_pane)	// redirect to special pane
+				return reinterpret_cast<lecui::containers::pane*>(_p_special_pane)->rect();
 			else
 				return _rect;
 		}
 
 		widgets::table_view& widgets::table_view::rect(const lecui::rect& rect) {
-			if (_p_special_pane_specs)	// redirect to special pane
-				reinterpret_cast<lecui::containers::pane_specs*>(_p_special_pane_specs)->rect(rect);
+			if (_p_special_pane)	// redirect to special pane
+				reinterpret_cast<lecui::containers::pane*>(_p_special_pane)->rect(rect);
 			else
 				_rect = rect;
 
@@ -112,15 +112,15 @@ namespace liblec {
 		}
 
 		resize_params& widgets::table_view::on_resize() {
-			if (_p_special_pane_specs)	// redirect to special pane
-				return reinterpret_cast<lecui::containers::pane_specs*>(_p_special_pane_specs)->on_resize();
+			if (_p_special_pane)	// redirect to special pane
+				return reinterpret_cast<lecui::containers::pane*>(_p_special_pane)->on_resize();
 			else
 				return _on_resize;
 		}
 
 		widgets::table_view& widgets::table_view::on_resize(const resize_params& on_resize) {
-			if (_p_special_pane_specs)	// redirect to special pane
-				reinterpret_cast<lecui::containers::pane_specs*>(_p_special_pane_specs)->on_resize(on_resize);
+			if (_p_special_pane)	// redirect to special pane
+				reinterpret_cast<lecui::containers::pane*>(_p_special_pane)->on_resize(on_resize);
 			else
 				_on_resize = on_resize;
 
@@ -156,15 +156,15 @@ namespace liblec {
 		}
 
 		color& widgets::table_view::color_fill() {
-			if (_p_special_pane_specs)	// redirect to special pane
-				return reinterpret_cast<lecui::containers::pane_specs*>(_p_special_pane_specs)->color_fill();
+			if (_p_special_pane)	// redirect to special pane
+				return reinterpret_cast<lecui::containers::pane*>(_p_special_pane)->color_fill();
 			else
 				return _color_fill;
 		}
 
 		widgets::table_view& widgets::table_view::color_fill(const color& color_fill) {
-			if (_p_special_pane_specs)	// redirect to special pane
-				reinterpret_cast<lecui::containers::pane_specs*>(_p_special_pane_specs)->color_fill(color_fill);
+			if (_p_special_pane)	// redirect to special pane
+				reinterpret_cast<lecui::containers::pane*>(_p_special_pane)->color_fill(color_fill);
 			else
 				_color_fill = color_fill;
 
@@ -193,15 +193,15 @@ namespace liblec {
 		}
 
 		float& widgets::table_view::border() {
-			if (_p_special_pane_specs)	// redirect to special pane
-				return reinterpret_cast<lecui::containers::pane_specs*>(_p_special_pane_specs)->border();
+			if (_p_special_pane)	// redirect to special pane
+				return reinterpret_cast<lecui::containers::pane*>(_p_special_pane)->border();
 			else
 				return _border;
 		}
 
 		widgets::table_view& widgets::table_view::border(const float& border) {
-			if (_p_special_pane_specs)	// redirect to special pane
-				reinterpret_cast<lecui::containers::pane_specs*>(_p_special_pane_specs)->border(border);
+			if (_p_special_pane)	// redirect to special pane
+				reinterpret_cast<lecui::containers::pane*>(_p_special_pane)->border(border);
 			else
 				_border = border;
 
@@ -216,15 +216,15 @@ namespace liblec {
 		}
 
 		lecui::color& widgets::table_view::color_border() {
-			if (_p_special_pane_specs)	// redirect to special pane
-				return reinterpret_cast<lecui::containers::pane_specs*>(_p_special_pane_specs)->color_border();
+			if (_p_special_pane)	// redirect to special pane
+				return reinterpret_cast<lecui::containers::pane*>(_p_special_pane)->color_border();
 			else
 				return _color_border;
 		}
 
 		widgets::table_view& widgets::table_view::color_border(const color& color_border) {
-			if (_p_special_pane_specs)	// redirect to special pane
-				reinterpret_cast<lecui::containers::pane_specs*>(_p_special_pane_specs)->color_border(color_border);
+			if (_p_special_pane)	// redirect to special pane
+				reinterpret_cast<lecui::containers::pane*>(_p_special_pane)->color_border(color_border);
 			else
 				_color_border = color_border;
 
@@ -463,6 +463,16 @@ namespace liblec {
 
 		widgets::table_view& liblec::lecui::widgets::table_view::get(form& fm, const std::string& path) {
 			return table_view_builder::specs(fm, path);
+		}
+
+		void widgets::table_view::scroll_vertically(const float& amount) {
+			if (_p_special_pane)	// redirect to special pane
+				reinterpret_cast<lecui::containers::pane*>(_p_special_pane)->scroll_vertically(amount);
+		}
+
+		void widgets::table_view::scroll_horizontally(const float& amount) {
+			if (_p_special_pane)	// redirect to special pane
+				reinterpret_cast<lecui::containers::pane*>(_p_special_pane)->scroll_horizontally(amount);
 		}
 	}
 }

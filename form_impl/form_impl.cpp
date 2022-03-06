@@ -2254,7 +2254,7 @@ namespace liblec {
 				// important that it's not a reference because of deletion in a ranged for loop later
 				lecui::widgets::table_view table;
 				lecui::containers::page& source;
-				lecui::containers::page& destination;
+				lecui::containers::pane& destination;
 				lecui::containers::pane_specs& destination_specs;
 			};
 
@@ -2345,7 +2345,7 @@ namespace liblec {
 							.on_resize({ 0.f, 0.f, 0.f, 0.f });	// critical because table will change size as table is browsed or changed. the pane scroll bars will do the job.
 
 						// copy pointer to pane widget so we can return the pane widget for those properties that are handled by the pane, like the bounding rectangle
-						table._p_special_pane_specs = &it.destination_specs;
+						table._p_special_pane = &it.destination;
 
 						// close widget
 						std::string error;
