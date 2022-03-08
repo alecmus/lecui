@@ -140,7 +140,7 @@ namespace liblec {
 				case item::icon_border: return { 0, 120, 170, 0 };
 				case item::icon_hot: return { 0, 120, 170, 60 };
 				case item::icon_text: return defaults::color(theme, item::label);
-				case item::icon_description_text: return { 150, 150, 150, 255 };
+				case item::icon_description_text: return { 135, 135, 135, 255 };
 
 				case item::strength_bar: return { 234, 234, 234, 255 };
 				case item::strength_bar_border: return { 200, 200, 200, 255 };
