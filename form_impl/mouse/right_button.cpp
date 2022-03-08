@@ -46,8 +46,9 @@ namespace liblec {
 			class helper {
 			public:
 				static void check_widgets(containers::page& page,
-					const D2D1_POINT_2F& point, bool& clicked,
+					const D2D1_POINT_2F& point, const bool& in_parent, bool& clicked,
 					std::function<void()>& on_right_click_handler) {
+					bool in_page = in_parent ? page._d_page.contains(point) : false;
 
 					// check widgets (in reverse order)
 					for (const auto& alias : boost::adaptors::reverse(page._d_page.widgets_order())) {
@@ -58,7 +59,7 @@ namespace liblec {
 
 						bool this_widget_clicked = false;
 
-						if (!clicked && widget.contains(point)) {
+						if (!clicked && in_page && widget.contains(point)) {
 							this_widget_clicked = true;
 							clicked = true;
 							on_right_click_handler = [&]() { widget.on_right_click(); };
@@ -76,7 +77,7 @@ namespace liblec {
 							bool local_clicked = this_widget_clicked ? false : clicked;
 
 							if (page_iterator != tab_pane._p_tabs.end())
-								check_widgets(page_iterator->second, point, local_clicked,
+								check_widgets(page_iterator->second, point, in_page, local_clicked,
 									on_right_click_handler);
 
 							if (local_clicked)
@@ -97,7 +98,7 @@ namespace liblec {
 								bool local_clicked = this_widget_clicked ? false : clicked;
 
 								if (page_iterator != pane._p_panes.end())
-									check_widgets(page_iterator->second, point, local_clicked,
+									check_widgets(page_iterator->second, point, in_page, local_clicked,
 										on_right_click_handler);
 
 								if (local_clicked)
@@ -113,13 +114,13 @@ namespace liblec {
 			};
 
 			for (auto& it : _p_status_panes)
-				helper::check_widgets(it.second, point, right_clicked,
+				helper::check_widgets(it.second, point, true, right_clicked,
 					on_right_click_handler);
 
 			auto page_iterator = _p_pages.find(_current_page);
 
 			if (page_iterator != _p_pages.end())
-				helper::check_widgets(page_iterator->second, point, right_clicked,
+				helper::check_widgets(page_iterator->second, point, true, right_clicked,
 					on_right_click_handler);
 
 			if (right_clicked) {

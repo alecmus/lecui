@@ -124,9 +124,9 @@ namespace liblec {
 				}
 
 				static void hittest_widgets(containers::page& page,
-					const D2D1_POINT_2F& point, bool& contains, bool& change, bool lbutton_pressed, HCURSOR& h_cursor, const bool& scroll_bar_hit,
+					const D2D1_POINT_2F& point, const bool& in_parent, bool& contains, bool& change, bool lbutton_pressed, HCURSOR& h_cursor, const bool& scroll_bar_hit,
 					std::function<void()>& tooltip_func) {
-					bool in_page = page._d_page.contains(point);
+					bool in_page = in_parent ? page._d_page.contains(point) : false;
 
 					// hit test widgets
 					for (auto& widget : page._d_page.widgets()) {
@@ -169,7 +169,7 @@ namespace liblec {
 							auto page_iterator = tab_pane._p_tabs.find(tab_pane.specs().selected());
 
 							if (page_iterator != tab_pane._p_tabs.end())
-								helper::hittest_widgets(page_iterator->second, point, contains, change, lbutton_pressed, h_cursor,
+								helper::hittest_widgets(page_iterator->second, point, in_page, contains, change, lbutton_pressed, h_cursor,
 									scroll_bar_hit, tooltip_func);	// recursion
 						}
 						else
@@ -181,7 +181,7 @@ namespace liblec {
 								auto page_iterator = pane._p_panes.find(pane._current_pane);
 
 								if (page_iterator != pane._p_panes.end())
-									helper::hittest_widgets(page_iterator->second, point, contains, change, lbutton_pressed, h_cursor,
+									helper::hittest_widgets(page_iterator->second, point, in_page, contains, change, lbutton_pressed, h_cursor,
 										scroll_bar_hit, tooltip_func);	// recursion
 							}
 					}
@@ -204,7 +204,7 @@ namespace liblec {
 
 			if (!change) {
 				for (auto& it : _p_status_panes)
-					helper::hittest_widgets(it.second, point, contains, change, _lbutton_pressed, h_cursor,
+					helper::hittest_widgets(it.second, point, true, contains, change, _lbutton_pressed, h_cursor,
 						scroll_bar_hit, tooltip_func);
 			}
 
@@ -212,7 +212,7 @@ namespace liblec {
 				auto page_iterator = _p_pages.find(_current_page);
 
 				if (page_iterator != _p_pages.end())
-					helper::hittest_widgets(page_iterator->second, point, contains, change, _lbutton_pressed, h_cursor,
+					helper::hittest_widgets(page_iterator->second, point, true, contains, change, _lbutton_pressed, h_cursor,
 						scroll_bar_hit, tooltip_func);
 			}
 
