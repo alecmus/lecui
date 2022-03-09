@@ -137,6 +137,7 @@ namespace liblec {
 			_close_called(false),
 			_force_instance(false),
 			_tray_icon_present(false),
+			_start_hidden(false),
 			_side_pane_present(false),
 			_side_pane_thickness(0.f),
 			_png_caption_icon(0) {
