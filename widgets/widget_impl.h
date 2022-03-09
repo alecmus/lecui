@@ -193,6 +193,7 @@ namespace liblec {
 
 				const std::string& alias();
 				bool pressed();
+				bool right_pressed();
 				bool is_static();
 				void show(const bool& show);
 				bool visible();
@@ -222,6 +223,7 @@ namespace liblec {
 				void discard_badge_resources(badge_resources& resources);
 
 				virtual void press(const bool& pressed);
+				virtual void right_press(const bool& right_pressed);
 
 				/// <summary>Check whether a point is within the widget.</summary>
 				/// <param name="point">The point, in pixels.</param>
@@ -264,7 +266,7 @@ namespace liblec {
 				virtual bool contains();
 
 				std::string _alias;
-				bool _is_static, _hit, _pressed;
+				bool _is_static, _hit, _pressed, _right_pressed;
 				D2D1_RECT_F _rect;
 				bool _visible, _is_enabled;
 				D2D1_POINT_2F _point;

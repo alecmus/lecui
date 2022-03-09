@@ -83,7 +83,12 @@ namespace liblec {
 			}
 		}
 
+		void widgets::widget_impl::right_press(const bool& right_pressed) {
+			_right_pressed = right_pressed;
+		}
+
 		bool widgets::widget_impl::pressed() { return _pressed; }
+		bool widgets::widget_impl::right_pressed() { return _right_pressed; }
 		bool widgets::widget_impl::is_static() { return _is_static; }
 		void widgets::widget_impl::show(const bool& show) { _visible = show; }
 		bool widgets::widget_impl::visible() { return _visible; }
