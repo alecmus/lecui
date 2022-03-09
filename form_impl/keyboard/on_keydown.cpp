@@ -304,6 +304,11 @@ namespace liblec {
 			}
 				break;
 
+			case VK_ESCAPE:
+				if (_menu_form)
+					_fm.close();
+				break;
+
 			default: {
 				char c = (char)wParam;
 
