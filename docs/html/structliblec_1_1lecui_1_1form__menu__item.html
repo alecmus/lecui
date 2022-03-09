@@ -21,7 +21,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">lecui<span id="projectnumber">&#160;1.0.0-alpha.18</span>
+   <div id="projectname">lecui<span id="projectnumber">&#160;1.0.0-alpha.19</span>
    </div>
    <div id="projectbrief">lecui C++ user interface library</div>
   </td>
@@ -93,9 +93,11 @@ std::function&lt; void()&gt;&#160;</td><td class="memItemRight" valign="bottom">
 std::vector&lt; <a class="el" href="structliblec_1_1lecui_1_1form__menu__item.html">form_menu_item</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>children</b></td></tr>
 <tr class="memdesc:aeb80fee2770a0b9a04ad9ab6673994d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">The children of the menu item (used to make a tree).<br /></td></tr>
 <tr class="separator:aeb80fee2770a0b9a04ad9ab6673994d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af91470b2e24847b8a51ea3da59d95b63"><td class="memItemLeft" align="right" valign="top"><a id="af91470b2e24847b8a51ea3da59d95b63" name="af91470b2e24847b8a51ea3da59d95b63"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>image_file</b></td></tr>
-<tr class="memdesc:af91470b2e24847b8a51ea3da59d95b63"><td class="mdescLeft">&#160;</td><td class="mdescRight">The image to use for the menu item (placed on the right).<br /></td></tr>
+<tr class="memitem:ac0fbce627a357dff9d9410e14e822402"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structliblec_1_1lecui_1_1form__menu__item.html#ac0fbce627a357dff9d9410e14e822402">image_png_resource</a> = 0</td></tr>
+<tr class="memdesc:ac0fbce627a357dff9d9410e14e822402"><td class="mdescLeft">&#160;</td><td class="mdescRight">The image resource to use for the menu item (placed on the left). <a href="structliblec_1_1lecui_1_1form__menu__item.html#ac0fbce627a357dff9d9410e14e822402">More...</a><br /></td></tr>
+<tr class="separator:ac0fbce627a357dff9d9410e14e822402"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af91470b2e24847b8a51ea3da59d95b63"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structliblec_1_1lecui_1_1form__menu__item.html#af91470b2e24847b8a51ea3da59d95b63">image_file</a></td></tr>
+<tr class="memdesc:af91470b2e24847b8a51ea3da59d95b63"><td class="mdescLeft">&#160;</td><td class="mdescRight">The image to use for the menu item (placed on the left). <a href="structliblec_1_1lecui_1_1form__menu__item.html#af91470b2e24847b8a51ea3da59d95b63">More...</a><br /></td></tr>
 <tr class="separator:af91470b2e24847b8a51ea3da59d95b63"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afec4225c61e228cec06047b32a26f892"><td class="memItemLeft" align="right" valign="top"><a id="afec4225c61e228cec06047b32a26f892" name="afec4225c61e228cec06047b32a26f892"></a>
 std::string&#160;</td><td class="memItemRight" valign="bottom"><b>font</b> = &quot;Segoe UI&quot;</td></tr>
@@ -108,7 +110,42 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>font_size</b> = 9.f<
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >Menu items.</p>
-</div><hr/>The documentation for this struct was generated from the following file:<ul>
+</div><h2 class="groupheader">Member Data Documentation</h2>
+<a id="af91470b2e24847b8a51ea3da59d95b63" name="af91470b2e24847b8a51ea3da59d95b63"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af91470b2e24847b8a51ea3da59d95b63">&#9670;&nbsp;</a></span>image_file</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string liblec::lecui::form_menu_item::image_file</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The image to use for the menu item (placed on the left).</p>
+<p >Used only if <a class="el" href="structliblec_1_1lecui_1_1form__menu__item.html#ac0fbce627a357dff9d9410e14e822402">image_png_resource</a> is zero.</p>
+
+</div>
+</div>
+<a id="ac0fbce627a357dff9d9410e14e822402" name="ac0fbce627a357dff9d9410e14e822402"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0fbce627a357dff9d9410e14e822402">&#9670;&nbsp;</a></span>image_png_resource</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int liblec::lecui::form_menu_item::image_png_resource = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The image resource to use for the menu item (placed on the left).</p>
+<p >Takes precedence over <a class="el" href="structliblec_1_1lecui_1_1form__menu__item.html#af91470b2e24847b8a51ea3da59d95b63">image_file</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this struct was generated from the following file:<ul>
 <li>menus/<a class="el" href="form__menu_8h_source.html">form_menu.h</a></li>
 </ul>
 </div><!-- contents -->

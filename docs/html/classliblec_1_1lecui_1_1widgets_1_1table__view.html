@@ -21,7 +21,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">lecui<span id="projectnumber">&#160;1.0.0-alpha.18</span>
+   <div id="projectname">lecui<span id="projectnumber">&#160;1.0.0-alpha.19</span>
    </div>
    <div id="projectbrief">lecui C++ user interface library</div>
   </td>
@@ -299,6 +299,12 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator!=</b> (const
 <tr class="memitem:a20b81893db4553da8802c8974f39a9ca"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classliblec_1_1lecui_1_1widgets_1_1table__view.html">table_view</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classliblec_1_1lecui_1_1widgets_1_1table__view.html#a20b81893db4553da8802c8974f39a9ca">fixed_number_column_name</a> (const std::string &amp;fixed_number_column_name)</td></tr>
 <tr class="memdesc:a20b81893db4553da8802c8974f39a9ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the name of the fixed number column. <a href="classliblec_1_1lecui_1_1widgets_1_1table__view.html#a20b81893db4553da8802c8974f39a9ca">More...</a><br /></td></tr>
 <tr class="separator:a20b81893db4553da8802c8974f39a9ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaeecc555798102309390d7c477b29728"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classliblec_1_1lecui_1_1widgets_1_1table__view.html#aaeecc555798102309390d7c477b29728">scroll_vertically</a> (const float &amp;amount)</td></tr>
+<tr class="memdesc:aaeecc555798102309390d7c477b29728"><td class="mdescLeft">&#160;</td><td class="mdescRight">Programmatically scroll the table vertically. <a href="classliblec_1_1lecui_1_1widgets_1_1table__view.html#aaeecc555798102309390d7c477b29728">More...</a><br /></td></tr>
+<tr class="separator:aaeecc555798102309390d7c477b29728"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac36f307de6e696002db1b6cddc4bd6b0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classliblec_1_1lecui_1_1widgets_1_1table__view.html#ac36f307de6e696002db1b6cddc4bd6b0">scroll_horizontally</a> (const float &amp;amount)</td></tr>
+<tr class="memdesc:ac36f307de6e696002db1b6cddc4bd6b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Programmatically scroll the table horizontally. <a href="classliblec_1_1lecui_1_1widgets_1_1table__view.html#ac36f307de6e696002db1b6cddc4bd6b0">More...</a><br /></td></tr>
+<tr class="separator:ac36f307de6e696002db1b6cddc4bd6b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classliblec_1_1lecui_1_1widgets_1_1widget"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classliblec_1_1lecui_1_1widgets_1_1widget')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classliblec_1_1lecui_1_1widgets_1_1widget.html">liblec::lecui::widgets::widget</a></td></tr>
 <tr class="memitem:af5e1c7d096a42be0190110f376fb8ad2 inherit pub_methods_classliblec_1_1lecui_1_1widgets_1_1widget"><td class="memItemLeft" align="right" valign="top"><a id="af5e1c7d096a42be0190110f376fb8ad2" name="af5e1c7d096a42be0190110f376fb8ad2"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const <a class="el" href="classliblec_1_1lecui_1_1widgets_1_1widget.html">widget</a> &amp;)</td></tr>
@@ -1608,6 +1614,60 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>_font_size</b> = 9.f
 <dl class="section return"><dt>Returns</dt><dd>A reference to the widget rectangle.</dd></dl>
 
 <p>Implements <a class="el" href="classliblec_1_1lecui_1_1widgets_1_1widget.html#a8dddcacaf724bdc5fc23320e8d99a7a7">liblec::lecui::widgets::widget</a>.</p>
+
+</div>
+</div>
+<a id="ac36f307de6e696002db1b6cddc4bd6b0" name="ac36f307de6e696002db1b6cddc4bd6b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac36f307de6e696002db1b6cddc4bd6b0">&#9670;&nbsp;</a></span>scroll_horizontally()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void liblec::lecui::widgets::table_view::scroll_horizontally </td>
+          <td>(</td>
+          <td class="paramtype">const float &amp;&#160;</td>
+          <td class="paramname"><em>amount</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Programmatically scroll the table horizontally.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">amount</td><td>The amount of pixels to scroll the table by.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p >A negative value moves the table to the left; it's equivalent to sliding the horizontal scroll bar towards the right, and vice-versa. If the table has no horizontal scroll bar this method has no effect.</p>
+
+</div>
+</div>
+<a id="aaeecc555798102309390d7c477b29728" name="aaeecc555798102309390d7c477b29728"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaeecc555798102309390d7c477b29728">&#9670;&nbsp;</a></span>scroll_vertically()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void liblec::lecui::widgets::table_view::scroll_vertically </td>
+          <td>(</td>
+          <td class="paramtype">const float &amp;&#160;</td>
+          <td class="paramname"><em>amount</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Programmatically scroll the table vertically.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">amount</td><td>The amount of pixels to scroll the table by.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p >A negative value moves the table upwards; it's equivalent to sliding the vertical scroll bar downwards, and vice-versa. If the table has no vertical scroll bar this method has no effect.</p>
 
 </div>
 </div>

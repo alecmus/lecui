@@ -43,7 +43,7 @@
 \DoxyCodeLine{41                 \textcolor{keywordtype}{bool} \_user\_sort = \textcolor{keyword}{false};}
 \DoxyCodeLine{42                 \textcolor{keywordtype}{bool} \_fixed\_number\_column = \textcolor{keyword}{false};}
 \DoxyCodeLine{43                 std::string \_fixed\_number\_column\_name = \textcolor{stringliteral}{"{}\#"{}};}
-\DoxyCodeLine{44                 \textcolor{keywordtype}{void}* \_p\_special\_pane\_specs = \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{44                 \textcolor{keywordtype}{void}* \_p\_special\_pane = \textcolor{keyword}{nullptr};}
 \DoxyCodeLine{45 }
 \DoxyCodeLine{46             \textcolor{keyword}{public}:}
 \DoxyCodeLine{47                 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view}{table\_view}}() \{}
@@ -192,19 +192,23 @@
 \DoxyCodeLine{340                 [[nodiscard]]}
 \DoxyCodeLine{341                 \textcolor{keyword}{static} \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view}{table\_view}}\& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view_ada19ee7c245746982bba819caf195986}{get}}(\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}}\& fm, \textcolor{keyword}{const} std::string\& path);}
 \DoxyCodeLine{342 }
-\DoxyCodeLine{343             \textcolor{keyword}{private}:}
-\DoxyCodeLine{344                 \mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1table__view_1_1table__view__events}{table\_view\_events}} \_table\_events;}
-\DoxyCodeLine{345 }
-\DoxyCodeLine{346 \textcolor{preprocessor}{\#if defined(LECUI\_EXPORTS)}}
-\DoxyCodeLine{347                 \textcolor{keyword}{friend} \textcolor{keyword}{class }\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}};}
-\DoxyCodeLine{348 \textcolor{preprocessor}{\#endif}}
-\DoxyCodeLine{349             \};}
-\DoxyCodeLine{350         \}}
-\DoxyCodeLine{351     \}}
-\DoxyCodeLine{352 \}}
-\DoxyCodeLine{353 }
-\DoxyCodeLine{354 \textcolor{preprocessor}{\#if defined(lecui\_helper)}}
-\DoxyCodeLine{356 \textcolor{preprocessor}{\#define get\_table\_view(path) liblec::lecui::widgets::table\_view::get(*this, path)}}
-\DoxyCodeLine{357 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{348                 \textcolor{keywordtype}{void} \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view_aaeecc555798102309390d7c477b29728}{scroll\_vertically}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float}\& amount);}
+\DoxyCodeLine{349 }
+\DoxyCodeLine{355                 \textcolor{keywordtype}{void} \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view_ac36f307de6e696002db1b6cddc4bd6b0}{scroll\_horizontally}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float}\& amount);}
+\DoxyCodeLine{356 }
+\DoxyCodeLine{357             \textcolor{keyword}{private}:}
+\DoxyCodeLine{358                 \mbox{\hyperlink{structliblec_1_1lecui_1_1widgets_1_1table__view_1_1table__view__events}{table\_view\_events}} \_table\_events;}
+\DoxyCodeLine{359 }
+\DoxyCodeLine{360 \textcolor{preprocessor}{\#if defined(LECUI\_EXPORTS)}}
+\DoxyCodeLine{361                 \textcolor{keyword}{friend} \textcolor{keyword}{class }\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}};}
+\DoxyCodeLine{362 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{363             \};}
+\DoxyCodeLine{364         \}}
+\DoxyCodeLine{365     \}}
+\DoxyCodeLine{366 \}}
+\DoxyCodeLine{367 }
+\DoxyCodeLine{368 \textcolor{preprocessor}{\#if defined(lecui\_helper)}}
+\DoxyCodeLine{370 \textcolor{preprocessor}{\#define get\_table\_view(path) liblec::lecui::widgets::table\_view::get(*this, path)}}
+\DoxyCodeLine{371 \textcolor{preprocessor}{\#endif}}
 
 \end{DoxyCode}

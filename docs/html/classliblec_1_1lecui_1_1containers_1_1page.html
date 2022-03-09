@@ -21,7 +21,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">lecui<span id="projectnumber">&#160;1.0.0-alpha.18</span>
+   <div id="projectname">lecui<span id="projectnumber">&#160;1.0.0-alpha.19</span>
    </div>
    <div id="projectbrief">lecui C++ user interface library</div>
   </td>
@@ -102,6 +102,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ab32a8edb06befdd4a57f76fe7187fd86"><td class="memItemLeft" align="right" valign="top">virtual const <a class="el" href="classliblec_1_1lecui_1_1size.html">size</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classliblec_1_1lecui_1_1containers_1_1page.html#ab32a8edb06befdd4a57f76fe7187fd86">size</a> ()</td></tr>
 <tr class="memdesc:ab32a8edb06befdd4a57f76fe7187fd86"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the size of the page. <a href="classliblec_1_1lecui_1_1containers_1_1page.html#ab32a8edb06befdd4a57f76fe7187fd86">More...</a><br /></td></tr>
 <tr class="separator:ab32a8edb06befdd4a57f76fe7187fd86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53bf66252db1fdd20380af45ffc970d1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classliblec_1_1lecui_1_1containers_1_1page.html#a53bf66252db1fdd20380af45ffc970d1">scroll_vertically</a> (const float &amp;amount)</td></tr>
+<tr class="memdesc:a53bf66252db1fdd20380af45ffc970d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Programmatically scroll the page vertically. <a href="classliblec_1_1lecui_1_1containers_1_1page.html#a53bf66252db1fdd20380af45ffc970d1">More...</a><br /></td></tr>
+<tr class="separator:a53bf66252db1fdd20380af45ffc970d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d034fc9c3f61d33fcfddaefbff0c5b9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classliblec_1_1lecui_1_1containers_1_1page.html#a3d034fc9c3f61d33fcfddaefbff0c5b9">scroll_horizontally</a> (const float &amp;amount)</td></tr>
+<tr class="memdesc:a3d034fc9c3f61d33fcfddaefbff0c5b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Programmatically scroll the page horizontally. <a href="classliblec_1_1lecui_1_1containers_1_1page.html#a3d034fc9c3f61d33fcfddaefbff0c5b9">More...</a><br /></td></tr>
+<tr class="separator:a3d034fc9c3f61d33fcfddaefbff0c5b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -161,6 +167,60 @@ impl &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>_d_page</b></td
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a3d034fc9c3f61d33fcfddaefbff0c5b9" name="a3d034fc9c3f61d33fcfddaefbff0c5b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d034fc9c3f61d33fcfddaefbff0c5b9">&#9670;&nbsp;</a></span>scroll_horizontally()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void liblec::lecui::containers::page::scroll_horizontally </td>
+          <td>(</td>
+          <td class="paramtype">const float &amp;&#160;</td>
+          <td class="paramname"><em>amount</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Programmatically scroll the page horizontally.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">amount</td><td>The amount of pixels to scroll the page widgets by.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p >A negative value moves the widgets to the left; it's equivalent to sliding the horizontal scroll bar towards the right, and vice-versa. If the page has no horizontal scroll bar this method has no effect.</p>
+
+</div>
+</div>
+<a id="a53bf66252db1fdd20380af45ffc970d1" name="a53bf66252db1fdd20380af45ffc970d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a53bf66252db1fdd20380af45ffc970d1">&#9670;&nbsp;</a></span>scroll_vertically()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void liblec::lecui::containers::page::scroll_vertically </td>
+          <td>(</td>
+          <td class="paramtype">const float &amp;&#160;</td>
+          <td class="paramname"><em>amount</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Programmatically scroll the page vertically.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">amount</td><td>The amount of pixels to scroll the page widgets by.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p >A negative value moves the widgets upwards; it's equivalent to sliding the vertical scroll bar downwards, and vice-versa. If the page has no vertical scroll bar this method has no effect.</p>
+
+</div>
+</div>
 <a id="ab32a8edb06befdd4a57f76fe7187fd86" name="ab32a8edb06befdd4a57f76fe7187fd86"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab32a8edb06befdd4a57f76fe7187fd86">&#9670;&nbsp;</a></span>size()</h2>
 

@@ -173,7 +173,11 @@ bool \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view_a6898da4
 std\+::string \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view_a2047e38cb2fd5c2272e92baeb8c816a9}{fixed\+\_\+number\+\_\+column\+\_\+name}} ()
 \begin{DoxyCompactList}\small\item\em Get or set the name of the fixed number column.\end{DoxyCompactList}\item 
 \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view}{table\+\_\+view}} \& \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view_a20b81893db4553da8802c8974f39a9ca}{fixed\+\_\+number\+\_\+column\+\_\+name}} (const std\+::string \&fixed\+\_\+number\+\_\+column\+\_\+name)
-\begin{DoxyCompactList}\small\item\em Set the name of the fixed number column.\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Set the name of the fixed number column.\end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view_aaeecc555798102309390d7c477b29728}{scroll\+\_\+vertically}} (const float \&amount)
+\begin{DoxyCompactList}\small\item\em Programmatically scroll the table vertically.\end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1table__view_ac36f307de6e696002db1b6cddc4bd6b0}{scroll\+\_\+horizontally}} (const float \&amount)
+\begin{DoxyCompactList}\small\item\em Programmatically scroll the table horizontally.\end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -949,7 +953,41 @@ A reference to the widget rectangle.
 
 Implements \mbox{\hyperlink{classliblec_1_1lecui_1_1widgets_1_1widget_a8dddcacaf724bdc5fc23320e8d99a7a7}{liblec\+::lecui\+::widgets\+::widget}}.
 
-\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1table__view_addfdc054c278b03bf86de6f760b2e5a5}\label{classliblec_1_1lecui_1_1widgets_1_1table__view_addfdc054c278b03bf86de6f760b2e5a5}} 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1table__view_ac36f307de6e696002db1b6cddc4bd6b0}\label{classliblec_1_1lecui_1_1widgets_1_1table__view_ac36f307de6e696002db1b6cddc4bd6b0}} 
+\index{liblec::lecui::widgets::table\_view@{liblec::lecui::widgets::table\_view}!scroll\_horizontally@{scroll\_horizontally}}
+\index{scroll\_horizontally@{scroll\_horizontally}!liblec::lecui::widgets::table\_view@{liblec::lecui::widgets::table\_view}}
+\doxysubsubsection{\texorpdfstring{scroll\_horizontally()}{scroll\_horizontally()}}
+{\footnotesize\ttfamily void liblec\+::lecui\+::widgets\+::table\+\_\+view\+::scroll\+\_\+horizontally (\begin{DoxyParamCaption}\item[{const float \&}]{amount }\end{DoxyParamCaption})}
+
+
+
+Programmatically scroll the table horizontally.
+
+
+\begin{DoxyParams}{Parameters}
+{\em amount} & The amount of pixels to scroll the table by.\\
+\hline
+\end{DoxyParams}
+
+
+A negative value moves the table to the left; it\textquotesingle{}s equivalent to sliding the horizontal scroll bar towards the right, and vice-\/versa. If the table has no horizontal scroll bar this method has no effect.\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1table__view_aaeecc555798102309390d7c477b29728}\label{classliblec_1_1lecui_1_1widgets_1_1table__view_aaeecc555798102309390d7c477b29728}} 
+\index{liblec::lecui::widgets::table\_view@{liblec::lecui::widgets::table\_view}!scroll\_vertically@{scroll\_vertically}}
+\index{scroll\_vertically@{scroll\_vertically}!liblec::lecui::widgets::table\_view@{liblec::lecui::widgets::table\_view}}
+\doxysubsubsection{\texorpdfstring{scroll\_vertically()}{scroll\_vertically()}}
+{\footnotesize\ttfamily void liblec\+::lecui\+::widgets\+::table\+\_\+view\+::scroll\+\_\+vertically (\begin{DoxyParamCaption}\item[{const float \&}]{amount }\end{DoxyParamCaption})}
+
+
+
+Programmatically scroll the table vertically.
+
+
+\begin{DoxyParams}{Parameters}
+{\em amount} & The amount of pixels to scroll the table by.\\
+\hline
+\end{DoxyParams}
+
+
+A negative value moves the table upwards; it\textquotesingle{}s equivalent to sliding the vertical scroll bar downwards, and vice-\/versa. If the table has no vertical scroll bar this method has no effect.\mbox{\Hypertarget{classliblec_1_1lecui_1_1widgets_1_1table__view_addfdc054c278b03bf86de6f760b2e5a5}\label{classliblec_1_1lecui_1_1widgets_1_1table__view_addfdc054c278b03bf86de6f760b2e5a5}} 
 \index{liblec::lecui::widgets::table\_view@{liblec::lecui::widgets::table\_view}!selected@{selected}}
 \index{selected@{selected}!liblec::lecui::widgets::table\_view@{liblec::lecui::widgets::table\_view}}
 \doxysubsubsection{\texorpdfstring{selected()}{selected()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}

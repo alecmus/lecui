@@ -21,7 +21,11 @@ Inheritance diagram for liblec\+::lecui\+::containers\+::page\+:\begin{figure}[H
 \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1page_a47e4257dba4434a89319d0fc32a140f6}{page}} (\mbox{\hyperlink{classliblec_1_1lecui_1_1form}{form}} \&fm, const std\+::string \&alias)
 \begin{DoxyCompactList}\small\item\em Page constructor.\end{DoxyCompactList}\item 
 virtual const \mbox{\hyperlink{classliblec_1_1lecui_1_1size}{size}} \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1page_ab32a8edb06befdd4a57f76fe7187fd86}{size}} ()
-\begin{DoxyCompactList}\small\item\em Get the size of the page.\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Get the size of the page.\end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1page_a53bf66252db1fdd20380af45ffc970d1}{scroll\+\_\+vertically}} (const float \&amount)
+\begin{DoxyCompactList}\small\item\em Programmatically scroll the page vertically.\end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classliblec_1_1lecui_1_1containers_1_1page_a3d034fc9c3f61d33fcfddaefbff0c5b9}{scroll\+\_\+horizontally}} (const float \&amount)
+\begin{DoxyCompactList}\small\item\em Programmatically scroll the page horizontally.\end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -67,7 +71,41 @@ Page constructor.
 Ensure that the alias is unique within the form. Reusing an alias in a form leads to undefined behavior.
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1page_ab32a8edb06befdd4a57f76fe7187fd86}\label{classliblec_1_1lecui_1_1containers_1_1page_ab32a8edb06befdd4a57f76fe7187fd86}} 
+\mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1page_a3d034fc9c3f61d33fcfddaefbff0c5b9}\label{classliblec_1_1lecui_1_1containers_1_1page_a3d034fc9c3f61d33fcfddaefbff0c5b9}} 
+\index{liblec::lecui::containers::page@{liblec::lecui::containers::page}!scroll\_horizontally@{scroll\_horizontally}}
+\index{scroll\_horizontally@{scroll\_horizontally}!liblec::lecui::containers::page@{liblec::lecui::containers::page}}
+\doxysubsubsection{\texorpdfstring{scroll\_horizontally()}{scroll\_horizontally()}}
+{\footnotesize\ttfamily void liblec\+::lecui\+::containers\+::page\+::scroll\+\_\+horizontally (\begin{DoxyParamCaption}\item[{const float \&}]{amount }\end{DoxyParamCaption})}
+
+
+
+Programmatically scroll the page horizontally.
+
+
+\begin{DoxyParams}{Parameters}
+{\em amount} & The amount of pixels to scroll the page widgets by.\\
+\hline
+\end{DoxyParams}
+
+
+A negative value moves the widgets to the left; it\textquotesingle{}s equivalent to sliding the horizontal scroll bar towards the right, and vice-\/versa. If the page has no horizontal scroll bar this method has no effect.\mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1page_a53bf66252db1fdd20380af45ffc970d1}\label{classliblec_1_1lecui_1_1containers_1_1page_a53bf66252db1fdd20380af45ffc970d1}} 
+\index{liblec::lecui::containers::page@{liblec::lecui::containers::page}!scroll\_vertically@{scroll\_vertically}}
+\index{scroll\_vertically@{scroll\_vertically}!liblec::lecui::containers::page@{liblec::lecui::containers::page}}
+\doxysubsubsection{\texorpdfstring{scroll\_vertically()}{scroll\_vertically()}}
+{\footnotesize\ttfamily void liblec\+::lecui\+::containers\+::page\+::scroll\+\_\+vertically (\begin{DoxyParamCaption}\item[{const float \&}]{amount }\end{DoxyParamCaption})}
+
+
+
+Programmatically scroll the page vertically.
+
+
+\begin{DoxyParams}{Parameters}
+{\em amount} & The amount of pixels to scroll the page widgets by.\\
+\hline
+\end{DoxyParams}
+
+
+A negative value moves the widgets upwards; it\textquotesingle{}s equivalent to sliding the vertical scroll bar downwards, and vice-\/versa. If the page has no vertical scroll bar this method has no effect.\mbox{\Hypertarget{classliblec_1_1lecui_1_1containers_1_1page_ab32a8edb06befdd4a57f76fe7187fd86}\label{classliblec_1_1lecui_1_1containers_1_1page_ab32a8edb06befdd4a57f76fe7187fd86}} 
 \index{liblec::lecui::containers::page@{liblec::lecui::containers::page}!size@{size}}
 \index{size@{size}!liblec::lecui::containers::page@{liblec::lecui::containers::page}}
 \doxysubsubsection{\texorpdfstring{size()}{size()}}

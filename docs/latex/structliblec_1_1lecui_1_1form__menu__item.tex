@@ -21,9 +21,10 @@ std\+::function$<$ void()$>$ {\bfseries action} = nullptr
 \mbox{\Hypertarget{structliblec_1_1lecui_1_1form__menu__item_aeb80fee2770a0b9a04ad9ab6673994d6}\label{structliblec_1_1lecui_1_1form__menu__item_aeb80fee2770a0b9a04ad9ab6673994d6}} 
 std\+::vector$<$ \mbox{\hyperlink{structliblec_1_1lecui_1_1form__menu__item}{form\+\_\+menu\+\_\+item}} $>$ {\bfseries children}
 \begin{DoxyCompactList}\small\item\em The children of the menu item (used to make a tree).\end{DoxyCompactList}\item 
-\mbox{\Hypertarget{structliblec_1_1lecui_1_1form__menu__item_af91470b2e24847b8a51ea3da59d95b63}\label{structliblec_1_1lecui_1_1form__menu__item_af91470b2e24847b8a51ea3da59d95b63}} 
-std\+::string {\bfseries image\+\_\+file}
-\begin{DoxyCompactList}\small\item\em The image to use for the menu item (placed on the right).\end{DoxyCompactList}\item 
+int \mbox{\hyperlink{structliblec_1_1lecui_1_1form__menu__item_ac0fbce627a357dff9d9410e14e822402}{image\+\_\+png\+\_\+resource}} = 0
+\begin{DoxyCompactList}\small\item\em The image resource to use for the menu item (placed on the left).\end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{structliblec_1_1lecui_1_1form__menu__item_af91470b2e24847b8a51ea3da59d95b63}{image\+\_\+file}}
+\begin{DoxyCompactList}\small\item\em The image to use for the menu item (placed on the left).\end{DoxyCompactList}\item 
 \mbox{\Hypertarget{structliblec_1_1lecui_1_1form__menu__item_afec4225c61e228cec06047b32a26f892}\label{structliblec_1_1lecui_1_1form__menu__item_afec4225c61e228cec06047b32a26f892}} 
 std\+::string {\bfseries font} = \char`\"{}Segoe UI\char`\"{}
 \begin{DoxyCompactList}\small\item\em The font to use.\end{DoxyCompactList}\item 
@@ -34,6 +35,29 @@ float {\bfseries font\+\_\+size} = 9.f
 
 \doxysubsection{Detailed Description}
 Menu items.
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structliblec_1_1lecui_1_1form__menu__item_af91470b2e24847b8a51ea3da59d95b63}\label{structliblec_1_1lecui_1_1form__menu__item_af91470b2e24847b8a51ea3da59d95b63}} 
+\index{liblec::lecui::form\_menu\_item@{liblec::lecui::form\_menu\_item}!image\_file@{image\_file}}
+\index{image\_file@{image\_file}!liblec::lecui::form\_menu\_item@{liblec::lecui::form\_menu\_item}}
+\doxysubsubsection{\texorpdfstring{image\_file}{image\_file}}
+{\footnotesize\ttfamily std\+::string liblec\+::lecui\+::form\+\_\+menu\+\_\+item\+::image\+\_\+file}
+
+
+
+The image to use for the menu item (placed on the left).
+
+Used only if \mbox{\hyperlink{structliblec_1_1lecui_1_1form__menu__item_ac0fbce627a357dff9d9410e14e822402}{image\+\_\+png\+\_\+resource}} is zero.\mbox{\Hypertarget{structliblec_1_1lecui_1_1form__menu__item_ac0fbce627a357dff9d9410e14e822402}\label{structliblec_1_1lecui_1_1form__menu__item_ac0fbce627a357dff9d9410e14e822402}} 
+\index{liblec::lecui::form\_menu\_item@{liblec::lecui::form\_menu\_item}!image\_png\_resource@{image\_png\_resource}}
+\index{image\_png\_resource@{image\_png\_resource}!liblec::lecui::form\_menu\_item@{liblec::lecui::form\_menu\_item}}
+\doxysubsubsection{\texorpdfstring{image\_png\_resource}{image\_png\_resource}}
+{\footnotesize\ttfamily int liblec\+::lecui\+::form\+\_\+menu\+\_\+item\+::image\+\_\+png\+\_\+resource = 0}
+
+
+
+The image resource to use for the menu item (placed on the left).
+
+Takes precedence over \mbox{\hyperlink{structliblec_1_1lecui_1_1form__menu__item_af91470b2e24847b8a51ea3da59d95b63}{image\+\_\+file}}.
 
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
