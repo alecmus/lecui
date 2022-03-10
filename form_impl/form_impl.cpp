@@ -950,7 +950,7 @@ namespace liblec {
 												}
 
 												font
-													.selected("Calibri")
+													.selected(html_editor.specs().font())
 													.events().selection = [&](const std::string& font_name) {
 													html_editor.selection_font(font_name);
 												};
@@ -1103,7 +1103,7 @@ namespace liblec {
 													{"18", "Segoe UI", 18},
 													{"24", "Segoe UI", 24},
 													{"36", "Segoe UI", 36} })
-													.selected("11")
+													.text(round_off::to_string(html_editor.specs().font_size(), 1))
 													.events().selection = [&](const std::string& font_size) {
 													float _font_size = 0.f;
 													std::stringstream ss;
