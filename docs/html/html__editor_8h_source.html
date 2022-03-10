@@ -197,17 +197,21 @@ $(function() {
 <div class="line"><a id="l00180" name="l00180"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1widgets_1_1html__editor.html#af80c5a090e7fc75c6d7962f04ef36a3b">  180</a></span>                <span class="keyword">static</span> <a class="code hl_class" href="classliblec_1_1lecui_1_1widgets_1_1html__editor.html">html_editor</a>&amp; <a class="code hl_function" href="classliblec_1_1lecui_1_1widgets_1_1html__editor.html#af80c5a090e7fc75c6d7962f04ef36a3b">get</a>(<a class="code hl_class" href="classliblec_1_1lecui_1_1form.html">form</a>&amp; fm, <span class="keyword">const</span> std::string&amp; path);</div>
 <div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span> </div>
 <div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>            <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span><span class="preprocessor">#if defined(LECUI_EXPORTS)</span></div>
-<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>                <span class="keyword">friend</span> <span class="keyword">class </span><a class="code hl_class" href="classliblec_1_1lecui_1_1form.html">form</a>;</div>
-<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>            };</div>
-<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>        }</div>
-<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>    }</div>
-<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>}</div>
-<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span> </div>
-<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span><span class="preprocessor">#if defined(lecui_helper)</span></div>
-<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span><span class="preprocessor">#define get_html_editor(path) liblec::lecui::widgets::html_editor::get(*this, path)</span></div>
-<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>                <span class="keywordtype">bool</span> view_only = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span> </div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span><span class="preprocessor">#if defined(LECUI_EXPORTS)</span></div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>                <span class="keyword">friend</span> <span class="keyword">class </span>html_view_builder;</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>                <span class="keyword">friend</span> <span class="keyword">class </span>html_editor_impl;</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>                <span class="keyword">friend</span> <span class="keyword">class </span><a class="code hl_class" href="classliblec_1_1lecui_1_1form.html">form</a>;</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>            };</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>        }</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>    }</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>}</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span> </div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span><span class="preprocessor">#if defined(lecui_helper)</span></div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span><span class="preprocessor">#define get_html_editor(path) liblec::lecui::widgets::html_editor::get(*this, path)</span></div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1color_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1color.html">liblec::lecui::color</a></div><div class="ttdoc">RGBA color on a standard 0 to 255 scale. For the alpha channel 0 is transparent and 255 is opaque.</div><div class="ttdef"><b>Definition:</b> lecui.h:543</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1containers_1_1page_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1containers_1_1page.html">liblec::lecui::containers::page</a></div><div class="ttdoc">Page container.</div><div class="ttdef"><b>Definition:</b> page.h:31</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1form_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1form.html">liblec::lecui::form</a></div><div class="ttdoc">Form base class. The user must inherit from this class and call one of the two constructors from its ...</div><div class="ttdef"><b>Definition:</b> form.h:102</div></div>
