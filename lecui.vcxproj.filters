@@ -431,6 +431,9 @@
     <ClInclude Include="containers\side_pane.h">
       <Filter>lecui\containers</Filter>
     </ClInclude>
+    <ClInclude Include="widgets\html_view.h">
+      <Filter>lecui\widgets</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="error\win_error.cpp">

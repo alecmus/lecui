@@ -9,6 +9,7 @@
 //
 
 #include "../html_editor.h"
+#include "../html_view.h"
 #include "../../form_impl/form_impl.h"
 
 namespace liblec {
@@ -343,6 +344,49 @@ namespace liblec {
 			}
 
 			throw std::invalid_argument("Invalid path");
+		}
+
+		namespace widgets {
+			/// <summary>HTML view widget builder.</summary>
+			/// <remarks>Recommended default size is the same as the html_editor widget.</remarks>
+			class html_view_builder : public html_editor_builder {
+			public:
+				/// <summary>HTML view builder constructor.</summary>
+				/// <param name="page">The container to place the widget in.</param>
+				/// <remarks>This constructs the widget with an internally generated random
+				/// alias.</remarks>
+				html_view_builder(containers::page& page);
+
+				/// <summary>HTML view builder constructor.</summary>
+				/// <param name="page">The container to place the widget in.</param>
+				/// <param name="alias">The in-page unique alias, e.g. "review_content".</param>
+				html_view_builder(containers::page& page, const std::string& alias);
+				~html_view_builder();
+
+			private:
+				// Default constructor and copying an object of this class are not allowed
+				html_view_builder() = delete;
+				html_view_builder(const html_view_builder&) = delete;
+				html_view_builder& operator=(const html_view_builder&) = delete;
+			};
+		}
+
+		widgets::html_view_builder::html_view_builder(containers::page& page) :
+			html_view_builder(page, "") {}
+
+		widgets::html_view_builder::html_view_builder(containers::page& page, const std::string& alias) :
+			html_editor_builder(page, alias) {
+			_d._specs.view_only = true;
+		}
+
+		widgets::html_view_builder::~html_view_builder() {}
+
+		widgets::html_editor& liblec::lecui::widgets::html_view::add(containers::page& page, const std::string& alias) {
+			return html_view_builder(page, alias).specs();
+		}
+
+		widgets::html_editor& widgets::html_view::get(form& fm, const std::string& path) {
+			return html_view_builder::specs(fm, path);
 		}
 
 		widgets::html_editor& liblec::lecui::widgets::html_editor::add(containers::page& page, const std::string& alias) {

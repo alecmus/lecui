@@ -466,23 +466,25 @@ namespace liblec {
 
 		// to-do: insertion mechanics for formatted text
 		void widgets::html_editor_impl::insert_character(const char& c) {
-			try {
-				unsigned long tag_number = 0;
-				if (_is_selected) {
-					if (_selection_info.start > _selection_info.end)
-						swap(_selection_info.start, _selection_info.end);
+			if (!_specs.view_only) {
+				try {
+					unsigned long tag_number = 0;
+					if (_is_selected) {
+						if (_selection_info.start > _selection_info.end)
+							swap(_selection_info.start, _selection_info.end);
 
-					_caret_position = _selection_info.start;
-					tag_number = formatted_text_editor().erase(_selection_info.start, _selection_info.end, _specs.text());
-					reset_selection();
+						_caret_position = _selection_info.start;
+						tag_number = formatted_text_editor().erase(_selection_info.start, _selection_info.end, _specs.text());
+						reset_selection();
+					}
+
+					formatted_text_editor().insert_character(c, _caret_position, tag_number, _specs.text());
+					_caret_position++;
+					_caret_visible = true;
+					_skip_blink = true;
 				}
-
-				formatted_text_editor().insert_character(c, _caret_position, tag_number, _specs.text());
-				_caret_position++;
-				_caret_visible = true;
-				_skip_blink = true;
+				catch (const std::exception& e) { log(e.what()); }
 			}
-			catch (const std::exception& e) { log(e.what()); }
 
 			// force scroll bar to set, in case caret is now hidden
 			_page._d_page.force_scrollbar_set();
@@ -490,45 +492,49 @@ namespace liblec {
 
 		// to-do: backspace mechanics for formatted text
 		void widgets::html_editor_impl::key_backspace() {
-			try {
-				unsigned long tag_number = 0;
-				if (_is_selected) {
-					if (_selection_info.start > _selection_info.end)
-						swap(_selection_info.start, _selection_info.end);
+			if (!_specs.view_only) {
+				try {
+					unsigned long tag_number = 0;
+					if (_is_selected) {
+						if (_selection_info.start > _selection_info.end)
+							swap(_selection_info.start, _selection_info.end);
 
-					_caret_position = _selection_info.start;
-					tag_number = formatted_text_editor().erase(_selection_info.start, _selection_info.end, _specs.text());
-					reset_selection();
+						_caret_position = _selection_info.start;
+						tag_number = formatted_text_editor().erase(_selection_info.start, _selection_info.end, _specs.text());
+						reset_selection();
+					}
+					else {
+						tag_number = formatted_text_editor().erase(_caret_position - 1, _caret_position, _specs.text());
+						_caret_position--;
+						_caret_visible = true;
+						_skip_blink = true;
+					}
 				}
-				else {
-					tag_number = formatted_text_editor().erase(_caret_position - 1, _caret_position, _specs.text());
-					_caret_position--;
-					_caret_visible = true;
-					_skip_blink = true;
-				}
+				catch (const std::exception& e) { log(e.what()); }
 			}
-			catch (const std::exception& e) { log(e.what()); }
 		}
 
 		// to-do: deletion mechanics for formatted text
 		void widgets::html_editor_impl::key_delete() {
-			try {
-				unsigned long tag_number = 0;
-				if (_is_selected) {
-					if (_selection_info.start > _selection_info.end)
-						swap(_selection_info.start, _selection_info.end);
+			if (!_specs.view_only) {
+				try {
+					unsigned long tag_number = 0;
+					if (_is_selected) {
+						if (_selection_info.start > _selection_info.end)
+							swap(_selection_info.start, _selection_info.end);
 
-					_caret_position = _selection_info.start;
-					tag_number = formatted_text_editor().erase(_selection_info.start, _selection_info.end, _specs.text());
-					reset_selection();
+						_caret_position = _selection_info.start;
+						tag_number = formatted_text_editor().erase(_selection_info.start, _selection_info.end, _specs.text());
+						reset_selection();
+					}
+					else {
+						tag_number = formatted_text_editor().erase(_caret_position, _caret_position + 1, _specs.text());
+						_caret_visible = true;
+						_skip_blink = true;
+					}
 				}
-				else {
-					tag_number = formatted_text_editor().erase(_caret_position, _caret_position + 1, _specs.text());
-					_caret_visible = true;
-					_skip_blink = true;
-				}
+				catch (const std::exception& e) { log(e.what()); }
 			}
-			catch (const std::exception& e) { log(e.what()); }
 		}
 
 		void widgets::html_editor_impl::key_left() {

@@ -828,6 +828,16 @@ namespace liblec {
 								.on_resize(html_editor_specs.on_resize())
 								.on_resize().height_rate(0.f).min_height(0.f);
 
+							if (html_editor_specs.view_only) {
+								// to-do: remove controls pane completely after finding a way of handling the redirection in the html_editor.cpp
+								
+								// make pane invisible
+								controls_pane
+									.border(0.f);
+								controls_pane
+									.color_fill().alpha(0);
+							}
+
 							// cause controls pane to be initialized by calling get()
 							containers::page& controls_pane_page = controls_pane;
 
@@ -841,7 +851,7 @@ namespace liblec {
 								.border(html_editor_specs.border())
 								.rect(html_editor_specs.rect())
 								.on_resize(html_editor_specs.on_resize())
-								.rect().top(controls_pane.rect().bottom());
+								.rect().top(html_editor_specs.view_only ? controls_pane.rect().top() : controls_pane.rect().bottom());
 
 							if (pane.on_resize().min_height())
 								pane.on_resize().min_height(largest(pane.on_resize().min_height() - controls_pane.rect().height(), 0.f));
@@ -919,189 +929,191 @@ namespace liblec {
 										auto& html_editor = html_page._d_page.get_html_editor_impl(widget_alias);
 
 										if (!html_editor.controls_initialized()) {
-											/// add controls to controls pane
+											if (!html_editor.specs().view_only) {
+												/// add controls to controls pane
 
-											/// add basic font formatting
+												/// add basic font formatting
 
-											/// add font selection combobox
-											auto& font = widgets::combobox::add(html_controls_page, html_editor.alias_font());
-											font.rect({ 0.f, 150.f, 0.f, 25.f })
-												.editable(false);
+												/// add font selection combobox
+												auto& font = widgets::combobox::add(html_controls_page, html_editor.alias_font());
+												font.rect({ 0.f, 150.f, 0.f, 25.f })
+													.editable(false);
 
-											// get list of fonts
-											const auto& font_list = font::available_fonts();
+												// get list of fonts
+												const auto& font_list = font::available_fonts();
 
-											for (const auto& font_name : font_list) {
-												widgets::combobox::combobox_item item;
-												item.label = font_name;
-												item.font = font_name;	// essential for preview
-												font.items().push_back(item);
-											}
-
-											font
-												.selected("Calibri")
-												.events().selection = [&](const std::string& font_name) {
-												html_editor.selection_font(font_name);
-											};
-
-											/// add bold control
-											auto& bold = widgets::rectangle::add(html_controls_page, html_editor.alias_bold());
-											bold.rect().size(20.f, 20.f);
-											bold.rect().snap_to(font.rect(), rect::snap_type::bottom_left, 5.f);
-											bold.color_fill().alpha(0);
-											bold.color_border().alpha(0);
-											bold.events().action = [&]() {
-												html_editor.selection_bold();
-											};
-
-											auto& bold_label = widgets::label::add(html_controls_page);
-											bold_label
-												.rect(bold.rect())
-												.text("<strong>B</strong>")
-												.font_size(11.f)
-												.alignment(text_alignment::center)
-												.paragraph_alignment(paragraph_alignment::middle);
-
-											/// add italic control
-											auto& italic = widgets::rectangle::add(html_controls_page, html_editor.alias_italic());
-											italic.rect().size(20.f, 20.f);
-											italic.rect().snap_to(bold.rect(), rect::snap_type::right, 5.f);
-											italic.color_fill().alpha(0);
-											italic.color_border().alpha(0);
-											italic.events().action = [&]() {
-												html_editor.selection_italic();
-											};
-
-											auto& italic_label = widgets::label::add(html_controls_page);
-											italic_label
-												.rect(italic.rect())
-												.text("<em><strong>I</strong></em>")
-												.font_size(11.f)
-												.alignment(text_alignment::center)
-												.paragraph_alignment(paragraph_alignment::middle);
-
-											/// add underline control
-											auto& underline = widgets::rectangle::add(html_controls_page, html_editor.alias_underline());
-											underline.rect().size(20.f, 20.f);
-											underline.rect().snap_to(italic_label.rect(), rect::snap_type::right, 5.f);
-											underline.color_fill().alpha(0);
-											underline.color_border().alpha(0);
-											underline.events().action = [&]() {
-												html_editor.selection_underline();
-											};
-
-											auto& underline_label = widgets::label::add(html_controls_page);
-											underline_label
-												.rect(underline.rect())
-												.text("<u>U</u>")
-												.font_size(11.f)
-												.alignment(text_alignment::center)
-												.paragraph_alignment(paragraph_alignment::middle);
-
-											/// add strikethrough control
-											auto& strikethrough = widgets::rectangle::add(html_controls_page, html_editor.alias_strikethrough());
-											strikethrough.rect().size(30.f, 20.f);
-											strikethrough.rect().snap_to(underline_label.rect(), rect::snap_type::right, 5.f);
-											strikethrough.color_fill().alpha(0);
-											strikethrough.color_border().alpha(0);
-											strikethrough.events().action = [&]() {
-												html_editor.selection_strikethrough();
-											};
-
-											auto& strikethrough_label = widgets::label::add(html_controls_page);
-											strikethrough_label
-												.rect(strikethrough.rect())
-												.text("<s>abc</s>")
-												.font_size(11.f)
-												.alignment(text_alignment::center)
-												.paragraph_alignment(paragraph_alignment::middle);
-
-											/// add color control
-											auto& font_color = widgets::rectangle::add(html_controls_page, html_editor.alias_font_color());
-											font_color.rect().size(20.f, 20.f);
-											font_color.rect().snap_to(strikethrough.rect(), rect::snap_type::right, 5.f);
-											font_color.color_fill().alpha(0);
-											font_color.color_border().alpha(0);
-											font_color.events().action = [&]() {
-												html_editor.selection_color();
-											};
-
-											auto& font_color_label = widgets::label::add(html_controls_page);
-											font_color_label
-												.text("<strong>A</strong>")
-												.font_size(9.5f)
-												.alignment(text_alignment::center)
-												.paragraph_alignment(paragraph_alignment::middle)
-												.rect(font_color.rect())
-												.rect().bottom() -= 5.f;
-
-											auto& font_color_bar = widgets::rectangle::add(html_controls_page, html_editor.alias_font_color_bar());
-											font_color_bar
-												.color_fill(html_editor.get_last_color())
-												.border(.2f)
-												.rect(font_color.rect())
-												.rect().top(font_color_label.rect().bottom());
-											font_color_bar.rect().bottom() -= 1.f;
-											font_color_bar.rect().left() += 2.f;
-											font_color_bar.rect().right() -= 2.f;
-
-
-											auto& font_color_menu = widgets::rectangle::add(html_controls_page);
-											font_color_menu.rect().size(10.f, 20.f);
-											font_color_menu.rect().snap_to(font_color.rect(), rect::snap_type::right, 2.f);
-											font_color_menu.color_fill().alpha(0);
-											font_color_menu.color_border().alpha(0);
-											font_color_menu.events().action = [&]() {
-												color font_color;
-												if (color_picker(page._d_page._fm).pick(font_color)) {
-													html_editor.selection_color(font_color);
-
-													try {
-														// update font color bar
-														auto& font_color_bar_impl = html_controls_page._d_page.get_rectangle_impl(html_editor.alias_font_color_bar());
-														font_color_bar_impl.specs().color_fill(font_color);
-													}
-													catch (const std::exception&) {}
-
-													page._d_page._fm.update();
+												for (const auto& font_name : font_list) {
+													widgets::combobox::combobox_item item;
+													item.label = font_name;
+													item.font = font_name;	// essential for preview
+													font.items().push_back(item);
 												}
-											};
 
-											auto& font_color_menu_dropdown = widgets::line::add(html_controls_page);
-											font_color_menu_dropdown.rect().size(font_color_menu.rect().width(), font_color_menu.rect().width());	// important for it to be a square
-											font_color_menu_dropdown.rect().place(font_color_menu.rect(), 50.f, 50.f);
-											font_color_menu_dropdown.points().push_back({ .1f * font_color_menu_dropdown.rect().width(), .3f * font_color_menu_dropdown.rect().height() });
-											font_color_menu_dropdown.points().push_back({ .5f * font_color_menu_dropdown.rect().width(), .7f * font_color_menu_dropdown.rect().height() });
-											font_color_menu_dropdown.points().push_back({ .9f * font_color_menu_dropdown.rect().width(), .3f * font_color_menu_dropdown.rect().height() });
+												font
+													.selected("Calibri")
+													.events().selection = [&](const std::string& font_name) {
+													html_editor.selection_font(font_name);
+												};
 
-											/// add font size combobox
-											auto& font_size = widgets::combobox::add(html_controls_page, html_editor.alias_font_size());
-											font_size.rect().size(70.f, 25.f);
-											font_size.rect().snap_to(font.rect(), rect::snap_type::right, 10.f);
-											font_size
-												.editable(true)
-												.force_numerical_sort(true)
-												.items({
-												{"8", "Segoe UI", 8 },
-												{"9", "Segoe UI", 9},
-												{"10", "Segoe UI", 10},
-												{"11", "Segoe UI", 11},
-												{"12", "Segoe UI", 12},
-												{"13", "Segoe UI", 13},
-												{"14", "Segoe UI", 14},
-												{"18", "Segoe UI", 18},
-												{"24", "Segoe UI", 24},
-												{"36", "Segoe UI", 36} })
-												.selected("11")
-												.events().selection = [&](const std::string& font_size) {
-												float _font_size = 0.f;
-												std::stringstream ss;
-												ss << font_size;
-												ss >> _font_size;
-												html_editor.selection_font_size(_font_size);
-											};
+												/// add bold control
+												auto& bold = widgets::rectangle::add(html_controls_page, html_editor.alias_bold());
+												bold.rect().size(20.f, 20.f);
+												bold.rect().snap_to(font.rect(), rect::snap_type::bottom_left, 5.f);
+												bold.color_fill().alpha(0);
+												bold.color_border().alpha(0);
+												bold.events().action = [&]() {
+													html_editor.selection_bold();
+												};
 
-											/// increase font size control
+												auto& bold_label = widgets::label::add(html_controls_page);
+												bold_label
+													.rect(bold.rect())
+													.text("<strong>B</strong>")
+													.font_size(11.f)
+													.alignment(text_alignment::center)
+													.paragraph_alignment(paragraph_alignment::middle);
+
+												/// add italic control
+												auto& italic = widgets::rectangle::add(html_controls_page, html_editor.alias_italic());
+												italic.rect().size(20.f, 20.f);
+												italic.rect().snap_to(bold.rect(), rect::snap_type::right, 5.f);
+												italic.color_fill().alpha(0);
+												italic.color_border().alpha(0);
+												italic.events().action = [&]() {
+													html_editor.selection_italic();
+												};
+
+												auto& italic_label = widgets::label::add(html_controls_page);
+												italic_label
+													.rect(italic.rect())
+													.text("<em><strong>I</strong></em>")
+													.font_size(11.f)
+													.alignment(text_alignment::center)
+													.paragraph_alignment(paragraph_alignment::middle);
+
+												/// add underline control
+												auto& underline = widgets::rectangle::add(html_controls_page, html_editor.alias_underline());
+												underline.rect().size(20.f, 20.f);
+												underline.rect().snap_to(italic_label.rect(), rect::snap_type::right, 5.f);
+												underline.color_fill().alpha(0);
+												underline.color_border().alpha(0);
+												underline.events().action = [&]() {
+													html_editor.selection_underline();
+												};
+
+												auto& underline_label = widgets::label::add(html_controls_page);
+												underline_label
+													.rect(underline.rect())
+													.text("<u>U</u>")
+													.font_size(11.f)
+													.alignment(text_alignment::center)
+													.paragraph_alignment(paragraph_alignment::middle);
+
+												/// add strikethrough control
+												auto& strikethrough = widgets::rectangle::add(html_controls_page, html_editor.alias_strikethrough());
+												strikethrough.rect().size(30.f, 20.f);
+												strikethrough.rect().snap_to(underline_label.rect(), rect::snap_type::right, 5.f);
+												strikethrough.color_fill().alpha(0);
+												strikethrough.color_border().alpha(0);
+												strikethrough.events().action = [&]() {
+													html_editor.selection_strikethrough();
+												};
+
+												auto& strikethrough_label = widgets::label::add(html_controls_page);
+												strikethrough_label
+													.rect(strikethrough.rect())
+													.text("<s>abc</s>")
+													.font_size(11.f)
+													.alignment(text_alignment::center)
+													.paragraph_alignment(paragraph_alignment::middle);
+
+												/// add color control
+												auto& font_color = widgets::rectangle::add(html_controls_page, html_editor.alias_font_color());
+												font_color.rect().size(20.f, 20.f);
+												font_color.rect().snap_to(strikethrough.rect(), rect::snap_type::right, 5.f);
+												font_color.color_fill().alpha(0);
+												font_color.color_border().alpha(0);
+												font_color.events().action = [&]() {
+													html_editor.selection_color();
+												};
+
+												auto& font_color_label = widgets::label::add(html_controls_page);
+												font_color_label
+													.text("<strong>A</strong>")
+													.font_size(9.5f)
+													.alignment(text_alignment::center)
+													.paragraph_alignment(paragraph_alignment::middle)
+													.rect(font_color.rect())
+													.rect().bottom() -= 5.f;
+
+												auto& font_color_bar = widgets::rectangle::add(html_controls_page, html_editor.alias_font_color_bar());
+												font_color_bar
+													.color_fill(html_editor.get_last_color())
+													.border(.2f)
+													.rect(font_color.rect())
+													.rect().top(font_color_label.rect().bottom());
+												font_color_bar.rect().bottom() -= 1.f;
+												font_color_bar.rect().left() += 2.f;
+												font_color_bar.rect().right() -= 2.f;
+
+
+												auto& font_color_menu = widgets::rectangle::add(html_controls_page);
+												font_color_menu.rect().size(10.f, 20.f);
+												font_color_menu.rect().snap_to(font_color.rect(), rect::snap_type::right, 2.f);
+												font_color_menu.color_fill().alpha(0);
+												font_color_menu.color_border().alpha(0);
+												font_color_menu.events().action = [&]() {
+													color font_color;
+													if (color_picker(page._d_page._fm).pick(font_color)) {
+														html_editor.selection_color(font_color);
+
+														try {
+															// update font color bar
+															auto& font_color_bar_impl = html_controls_page._d_page.get_rectangle_impl(html_editor.alias_font_color_bar());
+															font_color_bar_impl.specs().color_fill(font_color);
+														}
+														catch (const std::exception&) {}
+
+														page._d_page._fm.update();
+													}
+												};
+
+												auto& font_color_menu_dropdown = widgets::line::add(html_controls_page);
+												font_color_menu_dropdown.rect().size(font_color_menu.rect().width(), font_color_menu.rect().width());	// important for it to be a square
+												font_color_menu_dropdown.rect().place(font_color_menu.rect(), 50.f, 50.f);
+												font_color_menu_dropdown.points().push_back({ .1f * font_color_menu_dropdown.rect().width(), .3f * font_color_menu_dropdown.rect().height() });
+												font_color_menu_dropdown.points().push_back({ .5f * font_color_menu_dropdown.rect().width(), .7f * font_color_menu_dropdown.rect().height() });
+												font_color_menu_dropdown.points().push_back({ .9f * font_color_menu_dropdown.rect().width(), .3f * font_color_menu_dropdown.rect().height() });
+
+												/// add font size combobox
+												auto& font_size = widgets::combobox::add(html_controls_page, html_editor.alias_font_size());
+												font_size.rect().size(70.f, 25.f);
+												font_size.rect().snap_to(font.rect(), rect::snap_type::right, 10.f);
+												font_size
+													.editable(true)
+													.force_numerical_sort(true)
+													.items({
+													{"8", "Segoe UI", 8 },
+													{"9", "Segoe UI", 9},
+													{"10", "Segoe UI", 10},
+													{"11", "Segoe UI", 11},
+													{"12", "Segoe UI", 12},
+													{"13", "Segoe UI", 13},
+													{"14", "Segoe UI", 14},
+													{"18", "Segoe UI", 18},
+													{"24", "Segoe UI", 24},
+													{"36", "Segoe UI", 36} })
+													.selected("11")
+													.events().selection = [&](const std::string& font_size) {
+													float _font_size = 0.f;
+													std::stringstream ss;
+													ss << font_size;
+													ss >> _font_size;
+													html_editor.selection_font_size(_font_size);
+												};
+
+												/// increase font size control
+											}
 
 											html_editor.initialize_controls(true);
 										}

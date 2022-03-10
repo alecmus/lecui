@@ -180,7 +180,12 @@ namespace liblec {
 				static html_editor& get(form& fm, const std::string& path);
 
 			private:
+				/// <summary>Whether this is a view-only html widget (html view).</summary>
+				bool view_only = false;
+
 #if defined(LECUI_EXPORTS)
+				friend class html_view_builder;
+				friend class html_editor_impl;
 				friend class form;
 #endif
 			};
