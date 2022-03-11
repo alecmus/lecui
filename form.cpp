@@ -246,7 +246,7 @@ namespace liblec {
 
 			// main message loop
 			BOOL result = NULL;
-			while ((result = GetMessage(&msg, nullptr, 0, 0)) != 0) {
+			while ((result = GetMessage(&msg, nullptr, 0, 0)) != 0) {	// GetMessage returns 0 when WM_QUIT is seen
 
 				// quitting via a user defined quit message
 				if (msg.message == UWM_QUIT)
@@ -509,14 +509,28 @@ namespace liblec {
 			MSG msg = {};
 
 			if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE)) {
-				if (msg.message == WM_QUIT) {
-					PostQuitMessage(0);
+				if (msg.message == UWM_QUIT) {
+					// user defined quit message detected ... don't process;
+					// repost it since it was removed from the queue by PM_REMOVE
+					// then return false to notify caller to stop the lengthy operation immediately
+					PostThreadMessage(GetCurrentThreadId(), UWM_QUIT, 0, 0);
 					return false;
 				}
-				else {
-					TranslateMessage(&msg);
-					DispatchMessage(&msg);
-				}
+				else
+					if (msg.message == WM_QUIT) {
+						// not expected ... since we're using user defined quit message but possible,
+						// e.g. if the system is logging off
+						
+						// WM_QUIT detected ... don't process;
+						// repost it since it was removed from the queue by PM_REMOVE
+						// then return false to notify caller to stop the lengthy operation immediately
+						PostQuitMessage(0);
+						return false;
+					}
+					else {
+						TranslateMessage(&msg);
+						DispatchMessage(&msg);
+					}
 			}
 
 			return true;
