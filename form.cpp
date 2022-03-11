@@ -246,8 +246,12 @@ namespace liblec {
 
 			// main message loop
 			BOOL result = NULL;
-			bool invalid_window_handle = false;
 			while ((result = GetMessage(&msg, nullptr, 0, 0)) != 0) {
+
+				// quitting via a user defined quit message
+				if (msg.message == UWM_QUIT)
+					break;
+
 				if (result == -1) {
 					// error occurred
 					error = get_last_error();
@@ -258,25 +262,10 @@ namespace liblec {
 					TranslateMessage(&msg);
 					DispatchMessage(&msg);
 				}
-
-				if (invalid_window_handle) {
-					// we can only get here if for some reason, the window was
-					// destroyed but GetMessage didn't receive the WM_QUIT message
-					// through observation this is happening when a menu is open
-					// and client clicks the title bar (WM_NCRBUTTONDOWN, WM_NCLBUTTONDOWN)
-					log("Failsafe message loop break");
-					break;
-				}
-
-				// failsafe check at the end of loop so GetMessage is called at least once
-				// more after an invalid window handle is detected. After that, if GetMessage
-				// doesn't return 0 then we intervene and break the loop manually.
-				if (!IsWindow(_d._hWnd))
-					invalid_window_handle = true;
 			}
 
 			if (_d._parent_closing)
-				PostQuitMessage(0);
+				PostThreadMessage(_d._current_thread_id, UWM_QUIT, 0, 0);
 
 			return true;
 		}

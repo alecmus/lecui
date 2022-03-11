@@ -36,6 +36,11 @@
 #include <atomic>
 #include <memory>
 
+// user defined quit message to circumvent the issue whereby
+// GetMessage does not receive WM_QUIT when child is closed
+// via the parent's WM_NCRBUTTONDOWN and WM_NCLBUTTONDOWN
+#define UWM_QUIT (WM_APP + 1)
+
 namespace liblec {
 	namespace lecui {
 		class mouse_track {
@@ -97,6 +102,7 @@ namespace liblec {
 			const float _caption_icon_minimum_margin;
 			const float _caption_icon_maximum_size;
 			const std::string _receive_data_timer_alias;
+			const DWORD _current_thread_id;
 
 			// name of dll containing resources like PNGs etc
 			std::string _resource_dll_filename;
