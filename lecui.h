@@ -901,6 +901,9 @@ namespace liblec {
 
 			/// <summary>Align text to the right.</summary>
 			right,
+
+			/// <summary>Justify the text.</summary>
+			justified,
 		};
 
 		/// <summary>Paragraph alignment.</summary>

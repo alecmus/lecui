@@ -101,6 +101,9 @@ namespace liblec {
 				case text_alignment::right:
 					_alignment = DWRITE_TEXT_ALIGNMENT_TRAILING;
 					break;
+				case text_alignment::justified:
+					_alignment = DWRITE_TEXT_ALIGNMENT_JUSTIFIED;
+					break;
 				case text_alignment::left:
 				default:
 					_alignment = DWRITE_TEXT_ALIGNMENT_LEADING;
@@ -191,6 +194,9 @@ namespace liblec {
 					break;
 				case text_alignment::right:
 					_alignment = DWRITE_TEXT_ALIGNMENT_TRAILING;
+					break;
+				case text_alignment::justified:
+					_alignment = DWRITE_TEXT_ALIGNMENT_JUSTIFIED;
 					break;
 				case text_alignment::left:
 				default:
@@ -308,6 +314,9 @@ namespace liblec {
 					break;
 				case text_alignment::right:
 					_alignment = DWRITE_TEXT_ALIGNMENT_TRAILING;
+					break;
+				case text_alignment::justified:
+					_alignment = DWRITE_TEXT_ALIGNMENT_JUSTIFIED;
 					break;
 				case text_alignment::left:
 				default:
