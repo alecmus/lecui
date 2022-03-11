@@ -33,6 +33,8 @@ namespace liblec {
 				/// <summary>The color of the html control pane background.</summary>
 				color _color_control_fill;
 
+				text_alignment _alignment = text_alignment::left;
+
 				void* _p_controls_pane_specs = nullptr;
 				void* _p_html_pane_specs = nullptr;
 				lecui::rect _rect_widget_overall = { 0, 0, 0, 0 };
@@ -159,6 +161,15 @@ namespace liblec {
 				/// <param name="color_control_fill">The color.</param>
 				/// <returns>A reference to the modified object.</returns>
 				html_editor& color_control_fill(const color& color_control_fill);
+
+				/// <summary>Get or set the text alignment.</summary>
+				/// <returns>A reference to the property.</returns>
+				text_alignment& alignment();
+
+				/// <summary>Set the text alignment.</summary>
+				/// <param name="alignment">The alignment of the text as defined in <see cref='text_alignment'></see>.</param>
+				/// <returns>A reference to the modified object.</returns>
+				html_editor& alignment(const text_alignment& alignment);
 
 			public:
 				/// <summary>Add an html editor to a container.</summary>

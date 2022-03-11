@@ -136,7 +136,25 @@ namespace liblec {
 					);
 			}
 			if (SUCCEEDED(hr)) {
-				_p_text_format->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_LEADING);
+				DWRITE_TEXT_ALIGNMENT _alignment = DWRITE_TEXT_ALIGNMENT_LEADING;
+
+				switch (_specs.alignment()) {
+				case text_alignment::center:
+					_alignment = DWRITE_TEXT_ALIGNMENT_CENTER;
+					break;
+				case text_alignment::right:
+					_alignment = DWRITE_TEXT_ALIGNMENT_TRAILING;
+					break;
+				case text_alignment::justified:
+					_alignment = DWRITE_TEXT_ALIGNMENT_JUSTIFIED;
+					break;
+				case text_alignment::left:
+				default:
+					_alignment = DWRITE_TEXT_ALIGNMENT_LEADING;
+					break;
+				}
+
+				_p_text_format->SetTextAlignment(_alignment);
 				_p_text_format->SetParagraphAlignment(DWRITE_PARAGRAPH_ALIGNMENT_NEAR);
 			}
 

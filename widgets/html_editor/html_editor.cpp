@@ -233,6 +233,13 @@ namespace liblec {
 			return *this;
 		}
 
+		text_alignment& widgets::html_editor::alignment() { return _alignment; }
+
+		widgets::html_editor& widgets::html_editor::alignment(const text_alignment& alignment) {
+			_alignment = alignment;
+			return *this;
+		}
+
 		namespace widgets {
 			/// <summary>HTML editor widget builder.</summary>
 			class html_editor_builder {
