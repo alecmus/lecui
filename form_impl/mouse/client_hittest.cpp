@@ -30,9 +30,10 @@ namespace liblec {
 				static void hittest_hscrollbar(const std::string& page_alias,
 					const std::string& current_page, containers::page& page,
 					const D2D1_POINT_2F& point, const D2D1_POINT_2F& point_before,
-					bool& contains, bool& change, bool& scroll_bar_hit) {
+					bool& contains, bool& change, bool& scroll_bar_hit, const bool parent_visible) {
 					// whether pressed or not
-					if (page_alias == current_page &&
+					if (parent_visible &&
+						page_alias == current_page &&
 						page._d_page.h_scrollbar().visible() &&
 						page._d_page.h_scrollbar().contains(point))
 						scroll_bar_hit = true;
@@ -59,7 +60,7 @@ namespace liblec {
 
 								for (auto& tab : tab_pane._p_tabs)
 									hittest_hscrollbar(tab.first, tab_pane.specs().selected(), tab.second,
-										point, point_before, contains, change, scroll_bar_hit);	// recursion
+										point, point_before, contains, change, scroll_bar_hit, widget.second.visible());	// recursion
 							}
 							else
 								if (widget.second.type() ==
@@ -69,7 +70,7 @@ namespace liblec {
 
 									for (auto& page : pane._p_panes)
 										hittest_hscrollbar(page.first, pane._current_pane, page.second,
-											point, point_before, contains, change, scroll_bar_hit);	// recursion
+											point, point_before, contains, change, scroll_bar_hit, widget.second.visible());	// recursion
 								}
 						}
 					}
@@ -78,9 +79,10 @@ namespace liblec {
 				static void hittest_vscrollbar(const std::string& page_alias,
 					const std::string& current_page, containers::page& page,
 					const D2D1_POINT_2F& point, const D2D1_POINT_2F& point_before,
-					bool& contains, bool& change, bool& scroll_bar_hit) {
+					bool& contains, bool& change, bool& scroll_bar_hit, const bool parent_visible) {
 					// whether pressed or not
-					if (page_alias == current_page &&
+					if (parent_visible &&
+						page_alias == current_page &&
 						page._d_page.v_scrollbar().visible() &&
 						page._d_page.v_scrollbar().contains(point))
 						scroll_bar_hit = true;
@@ -107,7 +109,7 @@ namespace liblec {
 
 								for (auto& tab : tab_pane._p_tabs)
 									hittest_vscrollbar(tab.first, tab_pane.specs().selected(), tab.second,
-										point, point_before, contains, change, scroll_bar_hit);	// recursion
+										point, point_before, contains, change, scroll_bar_hit, widget.second.visible());	// recursion
 							}
 							else
 								if (widget.second.type() ==
@@ -117,7 +119,7 @@ namespace liblec {
 
 									for (auto& page : pane._p_panes)
 										hittest_vscrollbar(page.first, pane._current_pane, page.second,
-											point, point_before, contains, change, scroll_bar_hit);	// recursion
+											point, point_before, contains, change, scroll_bar_hit, widget.second.visible());	// recursion
 								}
 						}
 					}
@@ -194,13 +196,13 @@ namespace liblec {
 			if (!change) {
 				for (auto& page : _p_pages)
 					helper::hittest_hscrollbar(page.first, _current_page, page.second,
-						point, _point_before, contains, change, scroll_bar_hit);
+						point, _point_before, contains, change, scroll_bar_hit, true);
 			}
 
 			if (!change)
 				for (auto& page : _p_pages)
 					helper::hittest_vscrollbar(page.first, _current_page, page.second,
-						point, _point_before, contains, change, scroll_bar_hit);
+						point, _point_before, contains, change, scroll_bar_hit, true);
 
 			if (!change) {
 				for (auto& it : _p_status_panes)
