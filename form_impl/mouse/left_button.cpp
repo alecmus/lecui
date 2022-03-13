@@ -56,7 +56,7 @@ namespace liblec {
 			public:
 				static void check_scroll_bars(containers::page& page,
 					const D2D1_POINT_2F& point, const float& dpi_scale,
-					bool& scroll_bar_contains) {
+					bool& scroll_bar_contains, const bool& parent_visible) {
 					bool in_page = page._d_page.contains(point);
 
 					// check widgets (in reverse order)
@@ -69,7 +69,7 @@ namespace liblec {
 						if (widget.is_static() || !widget.visible() || !widget.enabled())
 							continue;
 
-						if (in_page && is_scroll_bar && widget.contains(point))
+						if (parent_visible && in_page && is_scroll_bar && widget.contains(point))
 							scroll_bar_contains = true;
 					}
 
@@ -83,7 +83,7 @@ namespace liblec {
 							auto page_iterator = tab_pane._p_tabs.find(tab_pane.specs().selected());
 
 							if (page_iterator != tab_pane._p_tabs.end())
-								helper::check_scroll_bars(page_iterator->second, point, dpi_scale, scroll_bar_contains);
+								helper::check_scroll_bars(page_iterator->second, point, dpi_scale, scroll_bar_contains, widget.visible());
 						}
 						else
 							if (widget.type() == widgets::widget_type::pane) {
@@ -93,7 +93,7 @@ namespace liblec {
 								auto page_iterator = pane._p_panes.find(pane._current_pane);
 
 								if (page_iterator != pane._p_panes.end())
-									helper::check_scroll_bars(page_iterator->second, point, dpi_scale, scroll_bar_contains);
+									helper::check_scroll_bars(page_iterator->second, point, dpi_scale, scroll_bar_contains, widget.visible());
 							}
 					}
 				}
@@ -227,7 +227,7 @@ namespace liblec {
 			auto page_iterator = _p_pages.find(_current_page);
 
 			if (page_iterator != _p_pages.end())
-				helper::check_scroll_bars(page_iterator->second, point, _dpi_scale, scroll_bar_hit);
+				helper::check_scroll_bars(page_iterator->second, point, _dpi_scale, scroll_bar_hit, true);
 
 			for (auto& it : _p_status_panes)
 				helper::check_widgets(it.second, point, true, _dpi_scale, pressed, update_anyway, scroll_bar_hit);
