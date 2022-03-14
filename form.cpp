@@ -592,5 +592,23 @@ namespace liblec {
 			else
 				return false;
 		}
+
+		void form::prevent_quit() {
+			if (_d._p_close_button)
+				// disable the close button
+				// no need to do anything else to prevent the app from exiting ...
+				// once the close button is disabled even Alt+F4 won't work
+				_d._p_close_button->enable(false);
+
+			update();
+		}
+
+		void form::allow_quit() {
+			if (_d._p_close_button)
+				// enable the close button
+				_d._p_close_button->enable(true);
+
+			update();
+		}
 	}
 }

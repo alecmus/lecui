@@ -317,6 +317,16 @@ namespace liblec {
 			/// <returns>Returns true if the form is minimized, else returns false.</returns>
 			bool minimized();
 
+			/// <summary>Prevent the form from being closed.</summary>
+			/// <remarks>Typically useful when you need to perform a lengthy operation that should not or cannot be interrupted.
+			/// To allow the form to be closed call the <see cref="allow_quit"></see> method.</remarks>
+			void prevent_quit();
+
+			/// <summary>Allow the form to be closed.</summary>
+			/// <remarks>Required at some point after a call to <see cref="prevent_quit"></see> else 
+			/// it will not be possible to close the form.</remarks>
+			void allow_quit();
+
 		private:
 			class impl;
 			impl& _d;
