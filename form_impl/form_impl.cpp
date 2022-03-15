@@ -832,6 +832,10 @@ namespace liblec {
 							if (html_editor_specs.view_only) {
 								// to-do: remove controls pane completely after finding a way of handling the redirection in the html_editor.cpp
 								
+								// make pane of zero height and zero width
+								controls_pane.rect().width(0.f);
+								controls_pane.rect().height(0.f);
+
 								// make pane invisible
 								controls_pane
 									.border(0.f);
