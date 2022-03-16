@@ -73,6 +73,7 @@ namespace liblec {
 						const D2D1_RECT_F& rectB,
 						const D2D1_RECT_F& client_area,
 						const D2D1_SIZE_F& change_in_size,
+						const D2D1_SIZE_F& resizing_change_in_size,
 						const float& _dpi_scale,
 						ID2D1SolidColorBrush* _p_brush_theme,
 						ID2D1SolidColorBrush* _p_brush_theme_hot,
@@ -192,7 +193,7 @@ namespace liblec {
 										continue;
 
 									_rect_widgets = widget.render(_p_render_target,
-										change_in_size,
+										resizing_change_in_size,
 										{ (page._d_page.h_scrollbar()._x_off_set / _dpi_scale) - client_area.left,
 										(page._d_page.v_scrollbar()._y_off_set / _dpi_scale) - client_area.top },
 										false);
@@ -369,7 +370,7 @@ namespace liblec {
 											rect_page.bottom -= _content_margin;
 
 											render_page(render ? tab_pane.visible() : false, tab.first, tab_pane.specs().selected(), tab.second,
-												_p_render_target, rect_page, rect_page, change_in_size,
+												_p_render_target, rect_page, rect_page, change_in_size, resizing_change_in_size,
 												_dpi_scale, _p_brush_theme, _p_brush_theme_hot, lbutton_pressed, update_form);	// recursion
 										}
 									}
@@ -406,7 +407,7 @@ namespace liblec {
 												rect_page.bottom -= _content_margin;
 
 												render_page(render ? pane.visible() : false, page.first, pane._current_pane, page.second,
-													_p_render_target, rect_page, rect_page, change_in_size,
+													_p_render_target, rect_page, rect_page, change_in_size, resizing_change_in_size,
 													_dpi_scale, _p_brush_theme, _p_brush_theme_hot, lbutton_pressed, update_form);	// recursion
 											}
 										}
@@ -426,13 +427,13 @@ namespace liblec {
 						// setup horizontal scroll bar and render it
 						page._d_page.h_scrollbar().setup(rectA, rectB);
 						page._d_page.h_scrollbar().render(_p_render_target,
-							change_in_size, { 0.f - client_area.left,
+							resizing_change_in_size, { 0.f - client_area.left,
 							0.f - client_area.top }, render);
 
 						// setup vertical scroll bar and render it
 						page._d_page.v_scrollbar().setup(rectA, rectB);
 						page._d_page.v_scrollbar().render(_p_render_target,
-							change_in_size, { 0.f - client_area.left,
+							resizing_change_in_size, { 0.f - client_area.left,
 							0.f - client_area.top }, render);
 
 						if (page._d_page.h_scrollbar()._programmatic_h_scroll) {
@@ -472,7 +473,7 @@ namespace liblec {
 					const D2D1_RECT_F client_area = rect_page;
 
 					helper::render_page(true, page.first, _current_page, page.second, _p_render_target,
-						rect_page, client_area, change_in_size, _dpi_scale,
+						rect_page, client_area, change_in_size, change_in_size, _dpi_scale,
 						_p_brush_theme, _p_brush_theme_hot, _lbutton_pressed, update_form);
 				}
 
@@ -488,7 +489,7 @@ namespace liblec {
 						const D2D1_RECT_F client_area = rect_page;
 
 						helper::render_page(true, page.first, page.first, page.second, _p_render_target,
-							rect_page, client_area, change_in_size, _dpi_scale,
+							rect_page, client_area, change_in_size, change_in_size, _dpi_scale,
 							_p_brush_theme, _p_brush_theme_hot, _lbutton_pressed, update_form);
 					}
 
@@ -502,7 +503,7 @@ namespace liblec {
 						const D2D1_RECT_F client_area = rect_page;
 
 						helper::render_page(true, page.first, page.first, page.second, _p_render_target,
-							rect_page, client_area, change_in_size, _dpi_scale,
+							rect_page, client_area, change_in_size, change_in_size, _dpi_scale,
 							_p_brush_theme, _p_brush_theme_hot, _lbutton_pressed, update_form);
 					}
 
@@ -516,7 +517,7 @@ namespace liblec {
 						const D2D1_RECT_F client_area = rect_page;
 
 						helper::render_page(true, page.first, page.first, page.second, _p_render_target,
-							rect_page, client_area, change_in_size, _dpi_scale,
+							rect_page, client_area, change_in_size, change_in_size, _dpi_scale,
 							_p_brush_theme, _p_brush_theme_hot, _lbutton_pressed, update_form);
 					}
 
@@ -530,7 +531,7 @@ namespace liblec {
 						const D2D1_RECT_F client_area = rect_page;
 
 						helper::render_page(true, page.first, page.first, page.second, _p_render_target,
-							rect_page, client_area, change_in_size, _dpi_scale,
+							rect_page, client_area, change_in_size, change_in_size, _dpi_scale,
 							_p_brush_theme, _p_brush_theme_hot, _lbutton_pressed, update_form);
 					}
 				}
