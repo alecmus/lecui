@@ -101,6 +101,15 @@ namespace liblec {
 		/// already open to rescale properly.</remarks>
 		class lecui_api form {
 		public:
+			/// <summary>Form events.</summary>
+			struct form_events {
+				/// <summary>The handler to be called when the form's size changes.</summary>
+				/// <remarks>The parameter contains the new size of the form. This should be interpreted in
+				/// reference to the form's design size (its size at creation). More details about the form's
+				/// design size can be found in the dimensions class under the controls.h header.</remarks>
+				std::function<void(const lecui::size&)> size = nullptr;
+			};
+
 			/// <summary>Make a form with no parent.</summary>
 			/// <param name="caption">The form caption, displayed on the top left. Supports
 			/// formatting like any other label widget. Care has to be taken that the formatting
@@ -326,6 +335,10 @@ namespace liblec {
 			/// <remarks>Required at some point after a call to <see cref="prevent_quit"></see> else 
 			/// it will not be possible to close the form.</remarks>
 			void allow_quit();
+
+			/// <summary>Form events.</summary>
+			/// <returns>A reference to the form's events.</returns>
+			form_events& events();
 
 		private:
 			class impl;

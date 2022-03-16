@@ -3450,6 +3450,10 @@ namespace liblec {
 
 			case WM_SIZE:
 				_form._d.on_resize(LOWORD(lParam), HIWORD(lParam));
+				if (_form._d._form_events.size) {
+					dimensions dim{ _form };
+					_form._d._form_events.size(dim.get_size());
+				}
 				return NULL;
 
 			case WM_MOUSEMOVE:

@@ -610,5 +610,7 @@ namespace liblec {
 
 			update();
 		}
+
+		form::form_events& form::events() { return _d._form_events; }
 	}
 }

@@ -236,6 +236,8 @@ namespace liblec {
 			float _side_pane_thickness;
 			int _png_caption_icon;
 
+			form::form_events _form_events;
+
 			/// we cannot just use WS_POPUP style
 			/// WS_THICKFRAME: without this the window cannot be resized and so aero snap, de-maximizing
 			///  and minimizing won't work
