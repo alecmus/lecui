@@ -98,11 +98,11 @@ namespace liblec {
 			/// <summary>Set the form's size.</summary>
 			/// <param name="size">The size, in pixels.</param>
 			/// <returns>A reference to the modified object.</returns>
-			/// <remarks>To pre-set the form's size before it's created, this manipulation should be done in the form's on_initialize method.</remarks>
+			/// <remarks>To pre-set the form's design size, this manipulation should be done in the form's on_initialize method.</remarks>
 			dimensions& set_size(const lecui::size& size);
 
 			/// <summary>Get the form's size.</summary>
-			/// <returns>The size, in pixels.</returns>
+			/// <returns>The size, in pixels, as defined in <see cref='lecui::size'></see>.</returns>
 			/// <remarks>Do not use this for laying out widgets on the form. Widgets are never
 			/// placed directly onto a form, only into containers. Therefore, use the size
 			/// of the containers for widget layout. Containers are never the same size as the
@@ -110,6 +110,12 @@ namespace liblec {
 			/// container possibly scroll area etc. Refer to the container's documentation for
 			/// more details.</remarks>
 			[[nodiscard]] const lecui::size get_size();
+
+			/// <summary>Get the form's design size.</summary>
+			/// <returns>The size, in pixels, as defined in <see cref='lecui::size'></see>.</returns>
+			/// <remarks>The design size is the the size that pages 'see' when they are added to the form.
+			/// This is the size of the form minus any external resizing by the user or the operating system.</remarks>
+			[[nodiscard]] const lecui::size get_design_size();
 
 			/// <summary>Get the form's position.</summary>
 			/// <returns>Returns the coordinates of the top left corner.</returns>

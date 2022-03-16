@@ -137,7 +137,7 @@ namespace liblec {
 			auto& page_impl = _d._fm._d._p_status_panes.at(_d._alias)._d_page;
 
 			lecui::rect rect_client;
-			rect_client.size(_d._fm._d._size);
+			rect_client.size(_d._fm._d._design_size);
 			rect_client.width(rect_client.width() - (2.f * _d._fm._d._content_margin));
 			rect_client.height(rect_client.height() - (2.f * _d._fm._d._content_margin + (specs._side_pane ? 0.f : _d._fm._d._caption_bar_height)));
 

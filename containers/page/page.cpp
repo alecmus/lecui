@@ -66,7 +66,7 @@ namespace liblec {
 			page_impl._content_margin = _d._fm._d._content_margin;
 
 			// set page size
-			page_impl.size(_d._fm._d._size);
+			page_impl.size(_d._fm._d._design_size);
 			page_impl.width(page_impl.width() - (2.f * page_impl._content_margin));
 			page_impl.height(page_impl.height() - (2.f * page_impl._content_margin + _d._fm._d._caption_bar_height));
 

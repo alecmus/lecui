@@ -128,7 +128,7 @@ namespace liblec {
 
 			// window coordinates
 			point _point;
-			size _size, _min_size;
+			size _design_size, _min_size;
 			bool _allow_resizing, _allow_minimize;
 
 			bool _user_pos;

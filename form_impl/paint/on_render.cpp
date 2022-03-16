@@ -462,7 +462,7 @@ namespace liblec {
 				const auto status_left = get_status_size(containers::status_pane_specs::pane_location::left);
 				const auto status_right = get_status_size(containers::status_pane_specs::pane_location::right);
 
-				const D2D1_SIZE_F change_in_size = { rtSize.width - _size.get_width(), rtSize.height - _size.get_height() };
+				const D2D1_SIZE_F change_in_size = { rtSize.width - _design_size.get_width(), rtSize.height - _design_size.get_height() };
 
 				// render page
 				for (auto& page : _p_pages) {

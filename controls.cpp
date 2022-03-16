@@ -86,20 +86,20 @@ namespace liblec {
 		}
 
 		dimensions& dimensions::set_size(const lecui::size& size) {
-			auto old_size = _d._fm._d._size;
+			auto old_size = _d._fm._d._design_size;
 
 			if (size.get_width()) {
-				_d._fm._d._size.width(size.get_width());
+				_d._fm._d._design_size.width(size.get_width());
 
 				// force minimum width to conform (it cannot be greater)
-				_d._fm._d._min_size.width(smallest(_d._fm._d._size.get_width(), _d._fm._d._min_size.get_width()));
+				_d._fm._d._min_size.width(smallest(_d._fm._d._design_size.get_width(), _d._fm._d._min_size.get_width()));
 			}
 
 			if (size.get_height()) {
-				_d._fm._d._size.height(size.get_height());
+				_d._fm._d._design_size.height(size.get_height());
 
 				// force minimum height to conform (it cannot be greater)
-				_d._fm._d._min_size.height(smallest(_d._fm._d._size.get_height(), _d._fm._d._min_size.height()));
+				_d._fm._d._min_size.height(smallest(_d._fm._d._design_size.get_height(), _d._fm._d._min_size.height()));
 			}
 
 			if (IsWindow(_d._fm._d._hWnd)) {
@@ -112,8 +112,8 @@ namespace liblec {
 					TRUE);
 
 				// move the control buttons
-				const auto change_in_width = _d._fm._d._size.width() - old_size.width();
-				const auto change_in_height = _d._fm._d._size.height() - old_size.height();
+				const auto change_in_width = _d._fm._d._design_size.width() - old_size.width();
+				const auto change_in_height = _d._fm._d._design_size.height() - old_size.height();
 
 				if (_d._fm._d._p_close_button.get()) {
 					_d._fm._d._p_close_button->specs().rect().left() += change_in_width;
@@ -149,7 +149,11 @@ namespace liblec {
 				return _size;
 			}
 			else
-				return _d._fm._d._size;
+				return _d._fm._d._design_size;
+		}
+
+		const lecui::size dimensions::get_design_size() {
+			return _d._fm._d._design_size;
 		}
 
 		const lecui::point dimensions::get_position() {
@@ -165,10 +169,10 @@ namespace liblec {
 
 		dimensions& dimensions::set_minimum(const lecui::size& size) {
 			if (size.get_width())		// do not allow minimum width to be greater than current window width
-				_d._fm._d._min_size.width(smallest(size.get_width(), _d._fm._d._size.get_width()));
+				_d._fm._d._min_size.width(smallest(size.get_width(), _d._fm._d._design_size.get_width()));
 
 			if (size.get_height())	// do not allow minimum height to be greater than current window height
-				_d._fm._d._min_size.height(smallest(size.get_height(), _d._fm._d._size.get_height()));
+				_d._fm._d._min_size.height(smallest(size.get_height(), _d._fm._d._design_size.get_height()));
 
 			return *this;
 		}

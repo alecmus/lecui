@@ -192,17 +192,17 @@ namespace liblec {
 
 			if (_d._user_pos) {
 				if (_d._preset_pos)
-					_d.set_position(_d._form_position, _d._size.get_width(), _d._size.get_height());
+					_d.set_position(_d._form_position, _d._design_size.get_width(), _d._design_size.get_height());
 				else
-					_d.set_position(_d._point.get_x(), _d._point.get_y(), _d._size.get_width(), _d._size.get_height());
+					_d.set_position(_d._point.get_x(), _d._point.get_y(), _d._design_size.get_width(), _d._design_size.get_height());
 			}
 			else {
 				if (IsWindow(_d._hWnd_parent) && IsWindowEnabled(_d._hWnd_parent))
 					_d.set_position(form_position::center_to_parent,
-						_d._size.get_width(), _d._size.get_height());
+						_d._design_size.get_width(), _d._design_size.get_height());
 				else
 					_d.set_position(form_position::center_to_working_area,
-						_d._size.get_width(), _d._size.get_height());
+						_d._design_size.get_width(), _d._design_size.get_height());
 			}
 
 			// Register this instance so other instances can find this form and open it
@@ -215,8 +215,8 @@ namespace liblec {
 				_d._tooltip_form ? WS_POPUP : static_cast<DWORD>(form::impl::style::aero_borderless),
 				static_cast<int>(.5f + _d._point.get_x() * _d._dpi_scale),
 				static_cast<int>(.5f + _d._point.get_y() * _d._dpi_scale),
-				static_cast<int>(.5f + _d._size.get_width() * _d._dpi_scale),
-				static_cast<int>(.5f + _d._size.get_height() * _d._dpi_scale),
+				static_cast<int>(.5f + _d._design_size.get_width() * _d._dpi_scale),
+				static_cast<int>(.5f + _d._design_size.get_height() * _d._dpi_scale),
 				_d._hWnd_parent, nullptr, wcex.hInstance, this)) {
 				error = get_last_error();
 				return false;

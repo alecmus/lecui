@@ -99,7 +99,7 @@ namespace liblec {
 			_caption_formatted(caption_formatted),
 			_activate(true),
 			_point({ 0L, 0L }),
-			_size({ 780.f, 480.f }),
+			_design_size({ 780.f, 480.f }),
 			_min_size({ 500.f, 300.f }),
 			_allow_resizing(true),
 			_allow_minimize(true),
@@ -398,7 +398,7 @@ namespace liblec {
 				.on_resize().x_rate(100.f);
 
 			_p_close_button->specs().rect()
-				.right(_size.get_width() - _control_button_margin)
+				.right(_design_size.get_width() - _control_button_margin)
 				.top(_control_button_margin)
 				.left(_p_close_button->specs().rect().right() - (1.5f * _caption_bar_height - 2.f * _control_button_margin))
 				.bottom(_p_close_button->specs().rect().top() + (_caption_bar_height - 2.f * _control_button_margin));
@@ -2413,8 +2413,8 @@ namespace liblec {
 
 		void form::impl::set_position(const float& ix, const float& iy,
 			const float& icx, const float& icy) {
-			_size.width(icx);
-			_size.height(icy);
+			_design_size.width(icx);
+			_design_size.height(icy);
 
 			// ensure visibility of top left
 			_point.x(largest(ix, 0.f));
@@ -2456,8 +2456,8 @@ namespace liblec {
 
 					_point.x(ix);
 					_point.y(iy);
-					_size.width(icx);
-					_size.height(icy);
+					_design_size.width(icx);
+					_design_size.height(icy);
 
 					break;
 				}
@@ -2475,72 +2475,72 @@ namespace liblec {
 
 				_point.x(ix);
 				_point.y(iy);
-				_size.width(icx);
-				_size.height(icy);
+				_design_size.width(icx);
+				_design_size.height(icy);
 			} break;
 
 			case form_position::top_left: {
 				_point.x(rcWork.left + 0.f);
 				_point.y(rcWork.top + 0.f);
-				_size.width(icx);
-				_size.height(icy);
+				_design_size.width(icx);
+				_design_size.height(icy);
 			} break;
 
 			case form_position::top_left_offset: {
 				_point.x(rcWork.left + offset);
 				_point.y(rcWork.top + offset);
-				_size.width(icx);
-				_size.height(icy);
+				_design_size.width(icx);
+				_design_size.height(icy);
 			} break;
 
 			case form_position::top_right: {
 				_point.x(rcWork.right - icx);
 				_point.y(rcWork.top + 0.f);
-				_size.width(icx);
-				_size.height(icy);
+				_design_size.width(icx);
+				_design_size.height(icy);
 			} break;
 
 			case form_position::top_right_offset: {
 				_point.x(rcWork.right - icx - offset);
 				_point.y(rcWork.top + offset);
-				_size.width(icx);
-				_size.height(icy);
+				_design_size.width(icx);
+				_design_size.height(icy);
 			} break;
 
 			case form_position::bottom_right: {
 				_point.x(rcWork.right - icx);
 				_point.y(rcWork.bottom - icy);
-				_size.width(icx);
-				_size.height(icy);
+				_design_size.width(icx);
+				_design_size.height(icy);
 			} break;
 
 			case form_position::bottom_right_offset: {
 				_point.x(rcWork.right - icx - offset);
 				_point.y(rcWork.bottom - icy - offset);
-				_size.width(icx);
-				_size.height(icy);
+				_design_size.width(icx);
+				_design_size.height(icy);
 			} break;
 
 			case form_position::bottom_left: {
 				_point.x(rcWork.left + 0.f);
 				_point.y(rcWork.bottom - icy);
-				_size.width(icx);
-				_size.height(icy);
+				_design_size.width(icx);
+				_design_size.height(icy);
 			} break;
 
 			case form_position::bottom_left_offset: {
 				_point.x(rcWork.left + offset);
 				_point.y(rcWork.bottom - icy - offset);
-				_size.width(icx);
-				_size.height(icy);
+				_design_size.width(icx);
+				_design_size.height(icy);
 			} break;
 
 			default: {
 				// default to top left
 				_point.x(rcWork.left + 0.f);
 				_point.y(rcWork.top + 0.f);
-				_size.width(icx);
-				_size.height(icy);
+				_design_size.width(icx);
+				_design_size.height(icy);
 			} break;
 			}
 
