@@ -84,6 +84,18 @@ namespace liblec {
 				const std::string& font, const float font_size,
 				text_alignment alignment, paragraph_alignment paragraph_alignment, const lecui::rect max_rect);
 
+			/// <summary>Measure how much space an html widget will take.</summary>
+			/// <param name="formatted_text">The formatted text.</param>
+			/// <param name="font">The font, e.g. Segoe UI.</param>
+			/// <param name="font_size">The font size, in points, e.g. 9.0f.</param>
+			/// <param name="alignment">The alignment of the text as defined in <see cref='text_alignment'></see>.</param>
+			/// <param name="editor">Whether this is an html_editor. Use false for an html_view.</param>
+			/// <param name="max_rect">The area which the text should not exceed.</param>
+			/// <returns>The rectangle that defines the optimal rectangle for the text.</returns>
+			lecui::rect measure_html_widget(const std::string& formatted_text,
+				const std::string& font, const float font_size,
+				text_alignment alignment, const bool editor, const lecui::rect max_rect);
+
 			/// <summary>Get the working area of the screen. This is the part of the screen that
 			/// excludes the operating system's task bar.</summary>
 			/// <returns>The working area rectangle.</returns>

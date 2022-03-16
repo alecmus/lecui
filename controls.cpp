@@ -64,6 +64,27 @@ namespace liblec {
 			return convert_rect(rect);
 		}
 
+		lecui::rect dimensions::measure_html_widget(const std::string& formatted_text,
+			const std::string& font, const float font_size, text_alignment alignment,
+			const bool editor, const lecui::rect max_rect) {
+			auto optimal_rect = measure_label(formatted_text, font, font_size,
+				alignment, lecui::paragraph_alignment::top, max_rect);
+
+			const float html_controls_pane_height =
+				// to-do: eliminate magic numbers
+				(10.f * 2) +	// top and bottom margin
+				25.f +			// first row (font name, font size ...)
+				5.f + 20.f;		// seond row (bold, italic ...)
+
+			optimal_rect.height(optimal_rect.height() +
+				(2.f * 10.f) +	// plus the html's content margin
+				(editor ? html_controls_pane_height : 0.f) +	// controls pane
+				2.5f +	// html view's _margin_y
+				1.f);	// failsafe
+
+			return optimal_rect;
+		}
+
 		lecui::rect dimensions::working_area() {
 			const auto rect = _d._fm._d.get_working_area(GetDesktopWindow());
 			return lecui::rect{ static_cast<float>(rect.left), static_cast<float>(rect.right),

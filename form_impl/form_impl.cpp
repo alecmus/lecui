@@ -818,6 +818,7 @@ namespace liblec {
 							auto& controls_pane = containers::pane::add(page, widgets::pane_impl::html_controls_pane_alias_prefix() + booked);
 							controls_pane.rect(html_editor_specs.rect());
 							controls_pane.rect().height(
+								// to-do: eliminate magic numbers
 								(10.f * 2) +	// top and bottom margin
 								25.f +			// first row (font name, font size ...)
 								5.f + 20.f		// seond row (bold, italic ...)
