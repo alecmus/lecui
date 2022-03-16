@@ -83,6 +83,10 @@ namespace liblec {
 						if (!allow_render)
 							render = false;
 
+						// set the page as rendered, even if it's not being rendered to the screen
+						// here by render we're referring to in-memory rendering not on-screen rendering
+						page._d_page.rendered(true);
+
 						// define horizontal scroll parameters. rectA defines the area that contains
 						// the widgets, while rectB defines the area in the main form outside of which
 						// scrolling should kick in

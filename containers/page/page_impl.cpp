@@ -22,6 +22,7 @@ namespace liblec {
 			_alias(alias),
 			_hit(false),
 			_scrollbar_set(false),
+			_rendered(false),
 			_h_scrollbar(pg),
 			_v_scrollbar(pg) {
 			_widgets.emplace(_h_scrollbar.alias(), _h_scrollbar);
@@ -78,6 +79,25 @@ namespace liblec {
 
 		void containers::page::impl::size(const lecui::size& size) { _size = size; }
 		const size& containers::page::impl::size() { return _size; }
+		const lecui::size containers::page::impl::change_in_size() {
+			lecui::size _change_in_size;
+
+			if (rendered()) {
+				try {
+					// check if minimal page border rect contains the point
+					auto& rect = _rectangles.at(widgets::rectangle_impl::page_rect_alias());
+					auto _rect_current = convert_rect(rect.get_rect());
+					auto _rect_original = rect.specs().rect();
+
+					_change_in_size = lecui::size()
+						.width(_rect_current.width() - _rect_original.width())
+						.height(_rect_current.height() - _rect_original.height());
+				}
+				catch (const std::exception&) {}
+			}
+
+			return _change_in_size;
+		}
 		void containers::page::impl::width(const float& width) { _size.width(width); }
 		const float containers::page::impl::width() { return _size.get_width(); }
 		void containers::page::impl::height(const float& height) { _size.height(height); }
@@ -100,6 +120,9 @@ namespace liblec {
 
 			return _contains;
 		}
+
+		bool containers::page::impl::rendered() { return _rendered; }
+		void containers::page::impl::rendered(const bool& rendered) { _rendered = rendered; }
 
 		containers::tab_pane&
 			containers::page::impl::add_tab_pane(std::string alias, const float& content_margin) {

@@ -19,6 +19,8 @@ namespace liblec {
 		containers::page::~page() { delete& _d_page; }
 
 		inline const size containers::page::size() { return _d_page.size(); }
+		const bool containers::page::rendered() { return _d_page.rendered(); }
+		const lecui::size containers::page::change_in_size() { return _d_page.change_in_size(); }
 
 		void containers::page::scroll_vertically(const float& amount) {
 			_d_page.v_scrollbar()._programmatic_v_scroll = amount;

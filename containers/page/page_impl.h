@@ -63,11 +63,15 @@ namespace liblec {
 
 			void size(const lecui::size& size);
 			const lecui::size& size();
+			const lecui::size change_in_size();
 			void width(const float& width);
 			const float width();
 			void height(const float& height);
 			const float height();
 			bool contains(const D2D1_POINT_2F& point);
+
+			bool rendered();
+			void rendered(const bool& rendered);
 
 			containers::tab_pane&
 				add_tab_pane(std::string alias, const float& content_margin);
@@ -198,6 +202,7 @@ namespace liblec {
 			lecui::size _size;
 			bool _hit;
 			bool _scrollbar_set;
+			bool _rendered;
 
 			std::map<std::string, widgets::widget_impl&> _widgets;
 			std::vector<std::string> _widgets_order;

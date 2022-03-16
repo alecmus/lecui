@@ -47,6 +47,20 @@ namespace liblec {
 				/// coordinates are local to a container.</remarks>
 				[[nodiscard]] virtual const size size();
 
+				/// <summary>Check whether the page has been rendered.</summary>
+				/// <returns>Returns true if the page has been rendered, else false.</returns>
+				const bool rendered();
+				
+				/// <summary>Get the page's change in size.</summary>
+				/// <returns>The change in size, in pixels. If the page has not been rendered this will always
+				/// return no change even if the size has, in fact, changed.</returns>
+				/// <remarks>This size reflects any changes made by the user through the user interface. This is
+				/// useful when a widget's resizing behavior cannot be fully described using the widget's on_resize
+				/// property, e.g. if you need to make an html view's size match its text. It is important to check
+				/// whether the page has been rendered first. If it hasn't been rendered, as shown by
+				/// <see cref='rendered'></see>, then re-call this method later to get the page's actual change in size.</remarks>
+				[[nodiscard]] virtual const lecui::size change_in_size();
+
 				/// <summary>Programmatically scroll the page vertically.</summary>
 				/// <param name="amount">The amount of pixels to scroll the page widgets by.</param>
 				/// <remarks>A negative value moves the widgets upwards; it's equivalent to sliding
