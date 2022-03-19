@@ -131,10 +131,10 @@ namespace liblec {
 						.place(ref_rect, 50.f, 100.f);
 
 					_specs
-						.color_fill(defaults::color(_apprnc.theme(), item::scrollbar))
-						.color_scrollbar_border(defaults::color(_apprnc.theme(), item::scrollbar_border))
-						.color_hot(defaults::color(_apprnc.theme(), item::scrollbar_hover))
-						.color_hot_pressed(defaults::color(_apprnc.theme(), item::scrollbar_pressed));
+						.color_fill(defaults::color(_apprnc.theme(), element::scrollbar))
+						.color_scrollbar_border(defaults::color(_apprnc.theme(), element::scrollbar_border))
+						.color_hot(defaults::color(_apprnc.theme(), element::scrollbar_hover))
+						.color_hot_pressed(defaults::color(_apprnc.theme(), element::scrollbar_pressed));
 				}
 
 				// initialize the page's vertical scroll bar
@@ -155,10 +155,10 @@ namespace liblec {
 						.place(ref_rect, 100.f, 50.f);
 
 					_specs
-						.color_fill(defaults::color(_apprnc.theme(), item::scrollbar))
-						.color_scrollbar_border(defaults::color(_apprnc.theme(), item::scrollbar_border))
-						.color_hot(defaults::color(_apprnc.theme(), item::scrollbar_hover))
-						.color_hot_pressed(defaults::color(_apprnc.theme(), item::scrollbar_pressed));
+						.color_fill(defaults::color(_apprnc.theme(), element::scrollbar))
+						.color_scrollbar_border(defaults::color(_apprnc.theme(), element::scrollbar_border))
+						.color_hot(defaults::color(_apprnc.theme(), element::scrollbar_hover))
+						.color_hot_pressed(defaults::color(_apprnc.theme(), element::scrollbar_pressed));
 				}
 			}
 			catch (const std::exception& e) {

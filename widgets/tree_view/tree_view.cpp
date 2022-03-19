@@ -283,11 +283,11 @@ namespace liblec {
 				_page(page),
 				_specs(_page._d_page.add_tree(alias)) {
 				_specs
-					.color_text(defaults::color(_page._d_page._fm._d._theme, item::label))
-					.color_fill(defaults::color(_page._d_page._fm._d._theme, item::tree_view))
-					.color_border(defaults::color(_page._d_page._fm._d._theme, item::tree_view_border))
-					.color_hot(defaults::color(_page._d_page._fm._d._theme, item::tree_view_hover))
-					.color_selected(defaults::color(_page._d_page._fm._d._theme, item::tree_view_selected));
+					.color_text(defaults::color(_page._d_page._fm._d._theme, element::label))
+					.color_fill(defaults::color(_page._d_page._fm._d._theme, element::tree_view))
+					.color_border(defaults::color(_page._d_page._fm._d._theme, element::tree_view_border))
+					.color_hot(defaults::color(_page._d_page._fm._d._theme, element::tree_view_hover))
+					.color_selected(defaults::color(_page._d_page._fm._d._theme, element::tree_view_selected));
 			}
 			containers::page& _page;
 			tree_view& _specs;

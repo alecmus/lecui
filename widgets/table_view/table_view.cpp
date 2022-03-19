@@ -397,17 +397,17 @@ namespace liblec {
 				_page(page),
 				_specs(_page._d_page.add_table_view(alias)) {
 				_specs
-					.color_text(defaults::color(_page._d_page._fm._d._theme, item::label))
-					.color_text_selected(defaults::color(_page._d_page._fm._d._theme, item::table_view_text_selected))
-					.color_fill(defaults::color(_page._d_page._fm._d._theme, item::table_view))
-					.color_border(defaults::color(_page._d_page._fm._d._theme, item::table_view_border))
-					.color_fill_alternate(defaults::color(_page._d_page._fm._d._theme, item::table_view_alternate))
-					.color_row_hot(defaults::color(_page._d_page._fm._d._theme, item::table_view_row_hover))
-					.color_row_selected(defaults::color(_page._d_page._fm._d._theme, item::table_view_row_selected))
-					.color_text_header(defaults::color(_page._d_page._fm._d._theme, item::table_view_text_header))
-					.color_text_header_hot(defaults::color(_page._d_page._fm._d._theme, item::table_view_text_header_hot))
-					.color_fill_header(defaults::color(_page._d_page._fm._d._theme, item::table_view_header))
-					.color_grid(defaults::color(_page._d_page._fm._d._theme, item::table_view_grid));
+					.color_text(defaults::color(_page._d_page._fm._d._theme, element::label))
+					.color_text_selected(defaults::color(_page._d_page._fm._d._theme, element::table_view_text_selected))
+					.color_fill(defaults::color(_page._d_page._fm._d._theme, element::table_view))
+					.color_border(defaults::color(_page._d_page._fm._d._theme, element::table_view_border))
+					.color_fill_alternate(defaults::color(_page._d_page._fm._d._theme, element::table_view_alternate))
+					.color_row_hot(defaults::color(_page._d_page._fm._d._theme, element::table_view_row_hover))
+					.color_row_selected(defaults::color(_page._d_page._fm._d._theme, element::table_view_row_selected))
+					.color_text_header(defaults::color(_page._d_page._fm._d._theme, element::table_view_text_header))
+					.color_text_header_hot(defaults::color(_page._d_page._fm._d._theme, element::table_view_text_header_hot))
+					.color_fill_header(defaults::color(_page._d_page._fm._d._theme, element::table_view_header))
+					.color_grid(defaults::color(_page._d_page._fm._d._theme, element::table_view_grid));
 			}
 			containers::page& _page;
 			table_view& _specs;

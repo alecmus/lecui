@@ -193,11 +193,11 @@ namespace liblec {
 				_page(page),
 				_specs(_page._d_page.add_toggle(alias)) {
 				_specs
-					.color_text(defaults::color(_page._d_page._fm._d._theme, item::label))
-					.color_fill(defaults::color(_page._d_page._fm._d._theme, item::toggle))
-					.color_on(defaults::color(_page._d_page._fm._d._theme, item::toggle_on))
-					.color_off(defaults::color(_page._d_page._fm._d._theme, item::toggle_off))
-					.color_selected(defaults::color(_page._d_page._fm._d._theme, item::toggle_selected));
+					.color_text(defaults::color(_page._d_page._fm._d._theme, element::label))
+					.color_fill(defaults::color(_page._d_page._fm._d._theme, element::toggle))
+					.color_on(defaults::color(_page._d_page._fm._d._theme, element::toggle_on))
+					.color_off(defaults::color(_page._d_page._fm._d._theme, element::toggle_off))
+					.color_selected(defaults::color(_page._d_page._fm._d._theme, element::toggle_selected));
 			}
 			containers::page& _page;
 			toggle& _specs;

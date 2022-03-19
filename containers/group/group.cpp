@@ -206,8 +206,8 @@ namespace liblec {
 				_page(page),
 				_specs(_page._d_page.add_group(alias)) {
 				_specs
-					.color_fill(defaults::color(_page._d_page._fm._d._theme, item::group))
-					.color_border(defaults::color(_page._d_page._fm._d._theme, item::group_border));
+					.color_fill(defaults::color(_page._d_page._fm._d._theme, element::group))
+					.color_border(defaults::color(_page._d_page._fm._d._theme, element::group_border));
 			}
 			containers::page& _page;
 			group& _specs;

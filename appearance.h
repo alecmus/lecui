@@ -27,8 +27,6 @@ namespace liblec {
 			dark,
 		};
 
-		/// <summary>The item to color.</summary>
-		enum class item {
 			form,
 			titlebar,
 			accent,
@@ -142,6 +140,8 @@ namespace liblec {
 			combobox_dropdown_hot,
 			combobox_dropdown_arrow,
 			combobox_dropdown_arrow_hot,
+		/// <summary>The element to color.</summary>
+		enum class element {
 			
 			line,
 			line_hover,
@@ -163,7 +163,7 @@ namespace liblec {
 
 		class lecui_api defaults {
 		public:
-			static lecui::color color(themes theme, item wc);
+			static lecui::color color(themes theme, element element);
 		};
 
 		/// <summary>Manipulate the form's appearance.</summary>

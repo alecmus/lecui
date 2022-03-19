@@ -199,9 +199,9 @@ namespace liblec {
 				_page(page),
 				_specs(_page._d_page.add_progress_indicator(alias)) {
 				_specs
-					.color_fill(defaults::color(_page._d_page._fm._d._theme, item::progress_indicator))
-					.color_text(defaults::color(_page._d_page._fm._d._theme, item::progress_indicator_text))
-					.color_empty(defaults::color(_page._d_page._fm._d._theme, item::progress_indicator_unfilled));
+					.color_fill(defaults::color(_page._d_page._fm._d._theme, element::progress_indicator))
+					.color_text(defaults::color(_page._d_page._fm._d._theme, element::progress_indicator_text))
+					.color_empty(defaults::color(_page._d_page._fm._d._theme, element::progress_indicator_unfilled));
 			}
 			containers::page& _page;
 			progress_indicator& _specs;

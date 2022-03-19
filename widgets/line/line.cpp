@@ -181,9 +181,9 @@ namespace liblec {
 				_page(page),
 				_specs(_page._d_page.add_line(alias)) {
 				_specs
-					.color_fill(defaults::color(_page._d_page._fm._d._theme, item::line))
-					.color_hot(defaults::color(_page._d_page._fm._d._theme, item::line_hover))
-					.color_selected(defaults::color(_page._d_page._fm._d._theme, item::line_selected));
+					.color_fill(defaults::color(_page._d_page._fm._d._theme, element::line))
+					.color_hot(defaults::color(_page._d_page._fm._d._theme, element::line_hover))
+					.color_selected(defaults::color(_page._d_page._fm._d._theme, element::line_selected));
 
 			}
 			containers::page& _page;

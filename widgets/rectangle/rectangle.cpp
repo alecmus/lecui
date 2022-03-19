@@ -207,16 +207,16 @@ namespace liblec {
 				_page(page),
 				_specs(_page._d_page.add_rectangle(alias)) {
 				_specs
-					.color_fill(defaults::color(_page._d_page._fm._d._theme, item::rectangle))
-					.color_border(defaults::color(_page._d_page._fm._d._theme, item::rectangle_border))
-					.color_border_hot(defaults::color(_page._d_page._fm._d._theme, item::rectangle_border_hot))
-					.color_hot(defaults::color(_page._d_page._fm._d._theme, item::rectangle_hover))
-					.color_selected(defaults::color(_page._d_page._fm._d._theme, item::rectangle_selected));
+					.color_fill(defaults::color(_page._d_page._fm._d._theme, element::rectangle))
+					.color_border(defaults::color(_page._d_page._fm._d._theme, element::rectangle_border))
+					.color_border_hot(defaults::color(_page._d_page._fm._d._theme, element::rectangle_border_hot))
+					.color_hot(defaults::color(_page._d_page._fm._d._theme, element::rectangle_hover))
+					.color_selected(defaults::color(_page._d_page._fm._d._theme, element::rectangle_selected));
 
 				_specs.badge()
-					.color(defaults::color(_page._d_page._fm._d._theme, item::badge))
-					.color_border(defaults::color(_page._d_page._fm._d._theme, item::badge_border))
-					.color_text(defaults::color(_page._d_page._fm._d._theme, item::badge_text));
+					.color(defaults::color(_page._d_page._fm._d._theme, element::badge))
+					.color_border(defaults::color(_page._d_page._fm._d._theme, element::badge_border))
+					.color_text(defaults::color(_page._d_page._fm._d._theme, element::badge_text));
 
 			}
 			containers::page& _page;

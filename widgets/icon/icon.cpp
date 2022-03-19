@@ -306,16 +306,16 @@ namespace liblec {
 				_page(page),
 				_specs(_page._d_page.add_icon(alias)) {
 				_specs
-					.color_fill(defaults::color(_page._d_page._fm._d._theme, item::icon))
-					.color_border(defaults::color(_page._d_page._fm._d._theme, item::icon_border))
-					.color_hot(defaults::color(_page._d_page._fm._d._theme, item::icon_hot))
-					.color_text(defaults::color(_page._d_page._fm._d._theme, item::icon_text))
-					.color_text_description(defaults::color(_page._d_page._fm._d._theme, item::icon_description_text));
+					.color_fill(defaults::color(_page._d_page._fm._d._theme, element::icon))
+					.color_border(defaults::color(_page._d_page._fm._d._theme, element::icon_border))
+					.color_hot(defaults::color(_page._d_page._fm._d._theme, element::icon_hot))
+					.color_text(defaults::color(_page._d_page._fm._d._theme, element::icon_text))
+					.color_text_description(defaults::color(_page._d_page._fm._d._theme, element::icon_description_text));
 
 				_specs.badge()
-					.color(defaults::color(_page._d_page._fm._d._theme, item::badge))
-					.color_border(defaults::color(_page._d_page._fm._d._theme, item::badge_border))
-					.color_text(defaults::color(_page._d_page._fm._d._theme, item::badge_text));
+					.color(defaults::color(_page._d_page._fm._d._theme, element::badge))
+					.color_border(defaults::color(_page._d_page._fm._d._theme, element::badge_border))
+					.color_text(defaults::color(_page._d_page._fm._d._theme, element::badge_text));
 			}
 			containers::page& _page;
 			icon& _specs;

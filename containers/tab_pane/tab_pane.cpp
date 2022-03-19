@@ -70,12 +70,12 @@ namespace liblec {
 				_page(page), _specs(specs) {
 				specs._p_page = &page;
 				_specs
-					.color_text(defaults::color(_page._d_page._fm._d._theme, item::label))
-					.color_fill(defaults::color(_page._d_page._fm._d._theme, item::tab_pane))
-					.color_border(defaults::color(_page._d_page._fm._d._theme, item::tab_pane_border))
-					.color_tabs(defaults::color(_page._d_page._fm._d._theme, item::tab_bar))
-					.color_tabs_border(defaults::color(_page._d_page._fm._d._theme, item::tab_pane_border))
-					.color_selected(defaults::color(_page._d_page._fm._d._theme, item::tab_selected));
+					.color_text(defaults::color(_page._d_page._fm._d._theme, element::label))
+					.color_fill(defaults::color(_page._d_page._fm._d._theme, element::tab_pane))
+					.color_border(defaults::color(_page._d_page._fm._d._theme, element::tab_pane_border))
+					.color_tabs(defaults::color(_page._d_page._fm._d._theme, element::tab_bar))
+					.color_tabs_border(defaults::color(_page._d_page._fm._d._theme, element::tab_pane_border))
+					.color_selected(defaults::color(_page._d_page._fm._d._theme, element::tab_selected));
 			}
 			containers::page& _page;
 			containers::tab_pane& _specs;
@@ -191,9 +191,9 @@ namespace liblec {
 
 				// set the badge defaults
 				_tab_pane._p_tabs.at(tab_name).badge()
-					.color(defaults::color(_page._d_page._fm._d._theme, item::badge))
-					.color_border(defaults::color(_page._d_page._fm._d._theme, item::badge_border))
-					.color_text(defaults::color(_page._d_page._fm._d._theme, item::badge_text));
+					.color(defaults::color(_page._d_page._fm._d._theme, element::badge))
+					.color_border(defaults::color(_page._d_page._fm._d._theme, element::badge_border))
+					.color_text(defaults::color(_page._d_page._fm._d._theme, element::badge_text));
 
 				auto& page_impl = _tab_pane._p_tabs.at(tab_name)._d_page;
 
@@ -336,10 +336,10 @@ namespace liblec {
 						.place(ref_rect, 50.f, 100.f);
 
 					_specs
-						.color_fill(defaults::color(_page._d_page._fm._d._theme, item::scrollbar))
-						.color_scrollbar_border(defaults::color(_page._d_page._fm._d._theme, item::scrollbar_border))
-						.color_hot(defaults::color(_page._d_page._fm._d._theme, item::scrollbar_hover))
-						.color_hot_pressed(defaults::color(_page._d_page._fm._d._theme, item::scrollbar_pressed));
+						.color_fill(defaults::color(_page._d_page._fm._d._theme, element::scrollbar))
+						.color_scrollbar_border(defaults::color(_page._d_page._fm._d._theme, element::scrollbar_border))
+						.color_hot(defaults::color(_page._d_page._fm._d._theme, element::scrollbar_hover))
+						.color_hot_pressed(defaults::color(_page._d_page._fm._d._theme, element::scrollbar_pressed));
 				}
 
 				// initialize the page's vertical scroll bar
@@ -372,10 +372,10 @@ namespace liblec {
 						.place(ref_rect, 100.f, 50.f);
 
 					_specs
-						.color_fill(defaults::color(_page._d_page._fm._d._theme, item::scrollbar))
-						.color_scrollbar_border(defaults::color(_page._d_page._fm._d._theme, item::scrollbar_border))
-						.color_hot(defaults::color(_page._d_page._fm._d._theme, item::scrollbar_hover))
-						.color_hot_pressed(defaults::color(_page._d_page._fm._d._theme, item::scrollbar_pressed));
+						.color_fill(defaults::color(_page._d_page._fm._d._theme, element::scrollbar))
+						.color_scrollbar_border(defaults::color(_page._d_page._fm._d._theme, element::scrollbar_border))
+						.color_hot(defaults::color(_page._d_page._fm._d._theme, element::scrollbar_hover))
+						.color_hot_pressed(defaults::color(_page._d_page._fm._d._theme, element::scrollbar_pressed));
 				}
 
 				// return reference to page so caller can add widgets to it

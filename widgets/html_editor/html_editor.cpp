@@ -296,14 +296,14 @@ namespace liblec {
 				_specs
 					.font("Calibri")
 					.font_size(11.f)
-					.color_text(defaults::color(_page._d_page._fm._d._theme, item::label))
-					.color_fill(defaults::color(_page._d_page._fm._d._theme, item::html_editor))
-					.color_border(defaults::color(_page._d_page._fm._d._theme, item::html_editor_border))
-					.color_disabled(defaults::color(_page._d_page._fm._d._theme, item::html_editor_disabled))
-					.color_selected(defaults::color(_page._d_page._fm._d._theme, item::html_editor_selected))
-					.color_caret(defaults::color(_page._d_page._fm._d._theme, item::html_editor_caret))
-					.color_control_fill(defaults::color(_page._d_page._fm._d._theme, item::html_control))
-					.color_control_border(defaults::color(_page._d_page._fm._d._theme, item::html_control_border));
+					.color_text(defaults::color(_page._d_page._fm._d._theme, element::label))
+					.color_fill(defaults::color(_page._d_page._fm._d._theme, element::html_editor))
+					.color_border(defaults::color(_page._d_page._fm._d._theme, element::html_editor_border))
+					.color_disabled(defaults::color(_page._d_page._fm._d._theme, element::html_editor_disabled))
+					.color_selected(defaults::color(_page._d_page._fm._d._theme, element::html_editor_selected))
+					.color_caret(defaults::color(_page._d_page._fm._d._theme, element::html_editor_caret))
+					.color_control_fill(defaults::color(_page._d_page._fm._d._theme, element::html_control))
+					.color_control_border(defaults::color(_page._d_page._fm._d._theme, element::html_control_border));
 			}
 			containers::page& _page;
 			html_editor& _specs;

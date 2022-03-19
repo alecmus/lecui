@@ -100,10 +100,10 @@ namespace liblec {
 					.top(_specs.rect().bottom() - thickness);
 
 				_specs
-					.color_fill(defaults::color(_d._fm._d._theme, item::scrollbar))
-					.color_scrollbar_border(defaults::color(_d._fm._d._theme, item::scrollbar_border))
-					.color_hot(defaults::color(_d._fm._d._theme, item::scrollbar_hover))
-					.color_hot_pressed(defaults::color(_d._fm._d._theme, item::scrollbar_pressed));
+					.color_fill(defaults::color(_d._fm._d._theme, element::scrollbar))
+					.color_scrollbar_border(defaults::color(_d._fm._d._theme, element::scrollbar_border))
+					.color_hot(defaults::color(_d._fm._d._theme, element::scrollbar_hover))
+					.color_hot_pressed(defaults::color(_d._fm._d._theme, element::scrollbar_pressed));
 			}
 
 			// initialize the page's vertical scroll bar
@@ -119,10 +119,10 @@ namespace liblec {
 					.left(_specs.rect().right() - thickness);
 
 				_specs
-					.color_fill(defaults::color(_d._fm._d._theme, item::scrollbar))
-					.color_scrollbar_border(defaults::color(_d._fm._d._theme, item::scrollbar_border))
-					.color_hot(defaults::color(_d._fm._d._theme, item::scrollbar_hover))
-					.color_hot_pressed(defaults::color(_d._fm._d._theme, item::scrollbar_pressed));
+					.color_fill(defaults::color(_d._fm._d._theme, element::scrollbar))
+					.color_scrollbar_border(defaults::color(_d._fm._d._theme, element::scrollbar_border))
+					.color_hot(defaults::color(_d._fm._d._theme, element::scrollbar_hover))
+					.color_hot_pressed(defaults::color(_d._fm._d._theme, element::scrollbar_pressed));
 			}
 
 			// add an invisible rect to bound the page. This is essential for scroll bars to work

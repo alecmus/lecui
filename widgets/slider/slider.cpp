@@ -274,14 +274,14 @@ namespace liblec {
 				_specs(_page._d_page.add_slider(alias)) {
 				_specs
 					.font_size(7.f)
-					.color_text(defaults::color(_page._d_page._fm._d._theme, item::label))
-					.color_fill(defaults::color(_page._d_page._fm._d._theme, item::slider))
-					.color_border(defaults::color(_page._d_page._fm._d._theme, item::slider_border))
-					.color_knob(defaults::color(_page._d_page._fm._d._theme, item::slider_knob))
-					.color_knob_hot(defaults::color(_page._d_page._fm._d._theme, item::slider_knob_hot))
-					.color_knob_border(defaults::color(_page._d_page._fm._d._theme, item::slider_knob_border))
-					.color_tick(defaults::color(_page._d_page._fm._d._theme, item::slider_tick))
-					.color_selected(defaults::color(_page._d_page._fm._d._theme, item::slider_selected));
+					.color_text(defaults::color(_page._d_page._fm._d._theme, element::label))
+					.color_fill(defaults::color(_page._d_page._fm._d._theme, element::slider))
+					.color_border(defaults::color(_page._d_page._fm._d._theme, element::slider_border))
+					.color_knob(defaults::color(_page._d_page._fm._d._theme, element::slider_knob))
+					.color_knob_hot(defaults::color(_page._d_page._fm._d._theme, element::slider_knob_hot))
+					.color_knob_border(defaults::color(_page._d_page._fm._d._theme, element::slider_knob_border))
+					.color_tick(defaults::color(_page._d_page._fm._d._theme, element::slider_tick))
+					.color_selected(defaults::color(_page._d_page._fm._d._theme, element::slider_selected));
 			}
 			containers::page& _page;
 			slider& _specs;

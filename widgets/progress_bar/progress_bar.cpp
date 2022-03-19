@@ -193,9 +193,9 @@ namespace liblec {
 				_page(page),
 				_specs(_page._d_page.add_progress_bar(alias)) {
 				_specs
-					.color_fill(defaults::color(_page._d_page._fm._d._theme, item::progress_bar))
-					.color_border(defaults::color(_page._d_page._fm._d._theme, item::progress_bar_border))
-					.color_empty(defaults::color(_page._d_page._fm._d._theme, item::progress_bar_unfilled));
+					.color_fill(defaults::color(_page._d_page._fm._d._theme, element::progress_bar))
+					.color_border(defaults::color(_page._d_page._fm._d._theme, element::progress_bar_border))
+					.color_empty(defaults::color(_page._d_page._fm._d._theme, element::progress_bar_unfilled));
 			}
 			containers::page& _page;
 			progress_bar& _specs;

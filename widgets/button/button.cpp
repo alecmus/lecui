@@ -199,16 +199,16 @@ namespace liblec {
 				_page(page),
 				_specs(_page._d_page.add_button(alias)) {
 				_specs
-					.color_text(defaults::color(_page._d_page._fm._d._theme, item::label))
-					.color_fill(defaults::color(_page._d_page._fm._d._theme, item::button))
-					.color_border(defaults::color(_page._d_page._fm._d._theme, item::button_border))
-					.color_hot(defaults::color(_page._d_page._fm._d._theme, item::button_hover))
-					.color_selected(defaults::color(_page._d_page._fm._d._theme, item::button_selected));
+					.color_text(defaults::color(_page._d_page._fm._d._theme, element::label))
+					.color_fill(defaults::color(_page._d_page._fm._d._theme, element::button))
+					.color_border(defaults::color(_page._d_page._fm._d._theme, element::button_border))
+					.color_hot(defaults::color(_page._d_page._fm._d._theme, element::button_hover))
+					.color_selected(defaults::color(_page._d_page._fm._d._theme, element::button_selected));
 
 				_specs.badge()
-					.color(defaults::color(_page._d_page._fm._d._theme, item::badge))
-					.color_border(defaults::color(_page._d_page._fm._d._theme, item::badge_border))
-					.color_text(defaults::color(_page._d_page._fm._d._theme, item::badge_text));
+					.color(defaults::color(_page._d_page._fm._d._theme, element::badge))
+					.color_border(defaults::color(_page._d_page._fm._d._theme, element::badge_border))
+					.color_text(defaults::color(_page._d_page._fm._d._theme, element::badge_text));
 			}
 			containers::page& _page;
 			button& _specs;

@@ -281,17 +281,17 @@ namespace liblec {
 				_page(page),
 				_specs(_page._d_page.add_combobox(alias)) {
 				_specs
-					.color_text(defaults::color(_page._d_page._fm._d._theme, item::label))
-					.color_fill(defaults::color(_page._d_page._fm._d._theme, item::combobox))
-					.color_fill_editable(defaults::color(_page._d_page._fm._d._theme, item::combobox_editable))
-					.color_caret(defaults::color(_page._d_page._fm._d._theme, item::combobox_caret))
-					.color_border(defaults::color(_page._d_page._fm._d._theme, item::combobox_border))
-					.color_hot(defaults::color(_page._d_page._fm._d._theme, item::combobox_hover))
-					.color_selected(defaults::color(_page._d_page._fm._d._theme, item::combobox_selected))
-					.color_dropdown(defaults::color(_page._d_page._fm._d._theme, item::combobox_dropdown))
-					.color_dropdown_hot(defaults::color(_page._d_page._fm._d._theme, item::combobox_dropdown_hot))
-					.color_dropdown_arrow(defaults::color(_page._d_page._fm._d._theme, item::combobox_dropdown_arrow))
-					.color_dropdown_arrow_hot(defaults::color(_page._d_page._fm._d._theme, item::combobox_dropdown_arrow_hot));
+					.color_text(defaults::color(_page._d_page._fm._d._theme, element::label))
+					.color_fill(defaults::color(_page._d_page._fm._d._theme, element::combobox))
+					.color_fill_editable(defaults::color(_page._d_page._fm._d._theme, element::combobox_editable))
+					.color_caret(defaults::color(_page._d_page._fm._d._theme, element::combobox_caret))
+					.color_border(defaults::color(_page._d_page._fm._d._theme, element::combobox_border))
+					.color_hot(defaults::color(_page._d_page._fm._d._theme, element::combobox_hover))
+					.color_selected(defaults::color(_page._d_page._fm._d._theme, element::combobox_selected))
+					.color_dropdown(defaults::color(_page._d_page._fm._d._theme, element::combobox_dropdown))
+					.color_dropdown_hot(defaults::color(_page._d_page._fm._d._theme, element::combobox_dropdown_hot))
+					.color_dropdown_arrow(defaults::color(_page._d_page._fm._d._theme, element::combobox_dropdown_arrow))
+					.color_dropdown_arrow_hot(defaults::color(_page._d_page._fm._d._theme, element::combobox_dropdown_arrow_hot));
 			}
 			containers::page& _page;
 			combobox& _specs;

@@ -57,13 +57,13 @@ namespace liblec {
 				const std::string& alias) :
 				_page(page), _p(p) {
 				_p
-					.color_fill(defaults::color(_page._d_page._fm._d._theme, item::pane))
-					.color_border(defaults::color(_page._d_page._fm._d._theme, item::pane_border));
+					.color_fill(defaults::color(_page._d_page._fm._d._theme, element::pane))
+					.color_border(defaults::color(_page._d_page._fm._d._theme, element::pane_border));
 
 				_p.badge()
-					.color(defaults::color(_page._d_page._fm._d._theme, item::badge))
-					.color_border(defaults::color(_page._d_page._fm._d._theme, item::badge_border))
-					.color_text(defaults::color(_page._d_page._fm._d._theme, item::badge_text));
+					.color(defaults::color(_page._d_page._fm._d._theme, element::badge))
+					.color_border(defaults::color(_page._d_page._fm._d._theme, element::badge_border))
+					.color_text(defaults::color(_page._d_page._fm._d._theme, element::badge_text));
 			}
 			containers::page& _page;
 			containers::pane& _p;

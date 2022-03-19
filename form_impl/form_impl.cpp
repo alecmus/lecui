@@ -87,12 +87,12 @@ namespace liblec {
 			_idi_icon(0),
 			_idi_icon_small(0),
 			_theme(themes::light),
-			_clr_background(defaults::color(_theme, item::form)),
-			_clr_titlebar_background(defaults::color(_theme, item::titlebar)),
-			_clr_theme(defaults::color(_theme, item::accent)),
-			_clr_theme_hot(defaults::color(_theme, item::accent_hover)),
-			_clr_theme_disabled(defaults::color(_theme, item::disabled)),
-			_clr_theme_text(defaults::color(_theme, item::label)),
+			_clr_background(defaults::color(_theme, element::form)),
+			_clr_titlebar_background(defaults::color(_theme, element::titlebar)),
+			_clr_theme(defaults::color(_theme, element::accent)),
+			_clr_theme_hot(defaults::color(_theme, element::accent_hover)),
+			_clr_theme_disabled(defaults::color(_theme, element::disabled)),
+			_clr_theme_text(defaults::color(_theme, element::label)),
 			_top_most(false),
 			_hWnd(nullptr),
 			_hWnd_parent(nullptr),
@@ -392,8 +392,8 @@ namespace liblec {
 				.tooltip("Close")
 				.color_fill(_clr_theme)
 				.color_hot(_theme == themes::dark ?
-					defaults::color(_theme, item::form).lighten(5.f) :
-					defaults::color(_theme, item::form).darken(5.f))
+					defaults::color(_theme, element::form).lighten(5.f) :
+					defaults::color(_theme, element::form).darken(5.f))
 				.color_disabled(_clr_theme_disabled)
 				.on_resize().x_rate(100.f);
 
@@ -418,8 +418,8 @@ namespace liblec {
 				.tooltip("Maximize")
 				.color_fill(_clr_theme)
 				.color_hot(_theme == themes::dark ?
-					defaults::color(_theme, item::form).lighten(5.f) :
-					defaults::color(_theme, item::form).darken(5.f))
+					defaults::color(_theme, element::form).lighten(5.f) :
+					defaults::color(_theme, element::form).darken(5.f))
 				.color_disabled(_clr_theme_disabled)
 				.on_resize().x_rate(100.f);
 
@@ -444,8 +444,8 @@ namespace liblec {
 				.tooltip("Minimize")
 				.color_fill(_clr_theme)
 				.color_hot(_theme == themes::dark ?
-					defaults::color(_theme, item::form).lighten(5.f) :
-					defaults::color(_theme, item::form).darken(5.f))
+					defaults::color(_theme, element::form).lighten(5.f) :
+					defaults::color(_theme, element::form).darken(5.f))
 				.color_disabled(_clr_theme_disabled)
 				.on_resize().x_rate(100.f);
 
@@ -474,11 +474,11 @@ namespace liblec {
 				.multiline(false)
 
 				// load label settings
-				.color_text(defaults::color(_theme, item::label))
-				.color_selected(defaults::color(_theme, item::label_selected))
-				.color_hot(defaults::color(_theme, item::label_hover))
-				.color_hot_pressed(defaults::color(_theme, item::label_pressed))
-				.color_disabled(defaults::color(_theme, item::label_disabled));
+				.color_text(defaults::color(_theme, element::label))
+				.color_selected(defaults::color(_theme, element::label_selected))
+				.color_hot(defaults::color(_theme, element::label_hover))
+				.color_hot_pressed(defaults::color(_theme, element::label_pressed))
+				.color_disabled(defaults::color(_theme, element::label_disabled));
 
 			// determine right-most edge based on available control buttons
 			const auto right_edge = _allow_minimize ?
@@ -512,15 +512,15 @@ namespace liblec {
 					.quality(image_quality::high)
 					
 					// load image settings
-					.color_fill(defaults::color(_theme, item::image_view))
-					.color_border(defaults::color(_theme, item::image_view_border))
-					.color_hot(defaults::color(_theme, item::image_view_hover))
-					.color_selected(defaults::color(_theme, item::image_view_selected));
+					.color_fill(defaults::color(_theme, element::image_view))
+					.color_border(defaults::color(_theme, element::image_view_border))
+					.color_hot(defaults::color(_theme, element::image_view_hover))
+					.color_selected(defaults::color(_theme, element::image_view_selected));
 
 				_p_caption_icon->specs().badge()
-					.color(defaults::color(_theme, item::badge))
-					.color_border(defaults::color(_theme, item::badge_border))
-					.color_text(defaults::color(_theme, item::badge_text));
+					.color(defaults::color(_theme, element::badge))
+					.color_border(defaults::color(_theme, element::badge_border))
+					.color_text(defaults::color(_theme, element::badge_text));
 					;
 
 				// adjust max_rect to factor in for the space taken by the icon
@@ -559,11 +559,11 @@ namespace liblec {
 					.multiline(false)
 
 					// load label settings
-					.color_text(defaults::color(_theme, item::label))
-					.color_selected(defaults::color(_theme, item::label_selected))
-					.color_hot(defaults::color(_theme, item::label_hover))
-					.color_hot_pressed(defaults::color(_theme, item::label_pressed))
-					.color_disabled(defaults::color(_theme, item::label_disabled));
+					.color_text(defaults::color(_theme, element::label))
+					.color_selected(defaults::color(_theme, element::label_selected))
+					.color_hot(defaults::color(_theme, element::label_hover))
+					.color_hot_pressed(defaults::color(_theme, element::label_pressed))
+					.color_disabled(defaults::color(_theme, element::label_disabled));
 
 				// determine right-most edge based on available control buttons
 				const auto right_edge = _allow_minimize ?

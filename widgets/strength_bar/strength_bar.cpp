@@ -203,8 +203,8 @@ namespace liblec {
 				_page(page),
 				_specs(_page._d_page.add_strength_bar(alias)) {
 				_specs
-					.color_fill(defaults::color(_page._d_page._fm._d._theme, item::strength_bar))
-					.color_border(defaults::color(_page._d_page._fm._d._theme, item::strength_bar_border));
+					.color_fill(defaults::color(_page._d_page._fm._d._theme, element::strength_bar))
+					.color_border(defaults::color(_page._d_page._fm._d._theme, element::strength_bar_border));
 			}
 			containers::page& _page;
 			strength_bar& _specs;

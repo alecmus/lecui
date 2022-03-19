@@ -249,14 +249,14 @@ namespace liblec {
 				_page(page),
 				_specs(_page._d_page.add_text_field(alias)) {
 				_specs
-					.color_text(defaults::color(_page._d_page._fm._d._theme, item::label))
-					.color_prompt(defaults::color(_page._d_page._fm._d._theme, item::text_field_prompt))
-					.color_fill(defaults::color(_page._d_page._fm._d._theme, item::text_field))
-					.color_border(defaults::color(_page._d_page._fm._d._theme, item::text_field_border))
-					.color_disabled(defaults::color(_page._d_page._fm._d._theme, item::text_field_disabled))
-					.color_selected(defaults::color(_page._d_page._fm._d._theme, item::text_field_selected))
-					.color_caret(defaults::color(_page._d_page._fm._d._theme, item::text_field_caret))
-					.color_input_error(defaults::color(_page._d_page._fm._d._theme, item::text_field_input_error));
+					.color_text(defaults::color(_page._d_page._fm._d._theme, element::label))
+					.color_prompt(defaults::color(_page._d_page._fm._d._theme, element::text_field_prompt))
+					.color_fill(defaults::color(_page._d_page._fm._d._theme, element::text_field))
+					.color_border(defaults::color(_page._d_page._fm._d._theme, element::text_field_border))
+					.color_disabled(defaults::color(_page._d_page._fm._d._theme, element::text_field_disabled))
+					.color_selected(defaults::color(_page._d_page._fm._d._theme, element::text_field_selected))
+					.color_caret(defaults::color(_page._d_page._fm._d._theme, element::text_field_caret))
+					.color_input_error(defaults::color(_page._d_page._fm._d._theme, element::text_field_input_error));
 			}
 			containers::page& _page;
 			text_field& _specs;
