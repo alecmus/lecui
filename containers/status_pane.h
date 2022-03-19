@@ -29,11 +29,12 @@ namespace liblec {
 			/// panes do. This is by design because of the nature of the status pane.</remarks>
 			class lecui_api status_pane_specs {
 			public:
+				/// <summary>The status pane's location.</summary>
 				enum class pane_location {
-					bottom,
-					top,
-					left,
-					right,
+					bottom,	///< Place the status pane at the bottom.
+					top,	///< Place the status pane at the top.
+					left,	///< Place the status pane on the left.
+					right,	///< Place the status pane on the right.
 				};
 
 			private:
@@ -85,7 +86,12 @@ namespace liblec {
 			/// <summary>Base class for all status panes.</summary>
 			class lecui_api status_pane_base : public containers::page {
 			public:
+				/// <summary>Base class constructor.</summary>
+				/// <param name="fm">A reference to the form.</param>
+				/// <param name="alias">The status pane's unique alias.</param>
 				status_pane_base(form& fm, const std::string& alias);
+
+				/// <summary>Base class destructor.</summary>
 				virtual ~status_pane_base();
 			};
 
@@ -99,7 +105,12 @@ namespace liblec {
 			/// before adding any pages so that the pages can return dimensions that factor for the status panes.</remarks>
 			class lecui_api status_pane : public status_pane_base {
 			public:
-				status_pane(form&, status_pane_specs);
+				/// <summary>Class constructor.</summary>
+				/// <param name="fm">A reference to the form.</param>
+				/// <param name="specs">The status pane's specs.</param>
+				/// <remarks>Never to be called directly. This is called interfally by the library when
+				/// the <see cref="add"></see> static method is called.</remarks>
+				status_pane(form& fm, status_pane_specs specs);
 
 				[[nodiscard]]
 				/// <summary>Create a status pane.</summary>

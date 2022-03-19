@@ -18,6 +18,7 @@
 
 namespace liblec {
 	namespace lecui {
+		/// <summary>Namespace for lecui containers.</summary>
 		namespace containers {
 			/// <summary>Page container.</summary>
 			/// <remarks>This is the generic container type, and is the only one of the containers
@@ -77,7 +78,7 @@ namespace liblec {
 
 			protected:
 				class impl;
-				impl& _d_page;
+				impl& _d_page;	///< Reference to page implementation.
 
 				// Default constructor and copying an object of this class are not allowed
 				page() = delete;
@@ -130,7 +131,11 @@ namespace liblec {
 		/// <summary>Page manager class.</summary>
 		class lecui_api page_manager {
 		public:
+			/// <summary>Page manager constructor.</summary>
+			/// <param name="fm">A reference to the form.</param>
 			page_manager(form& fm);
+
+			/// <summary>Class destructor.</summary>
 			~page_manager();
 
 			/// <summary>Check if a page exists.</summary>

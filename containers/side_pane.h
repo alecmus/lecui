@@ -24,7 +24,12 @@ namespace liblec {
 			/// pane documentation remarks for additional information relating to all side panes.</remarks>
 			class lecui_api side_pane : public status_pane_base {
 			public:
-				side_pane(form&, const float&);
+				/// <summary>Class constructor.</summary>
+				/// <param name="fm">A reference to the form.</param>
+				/// <param name="thickness">The thickness of the side pane.</param>
+				/// <remarks>Never to be called directly. This is called interfally by the library when
+				/// the <see cref="add"></see> static method is called.</remarks>
+				side_pane(form& fm, const float& thickness);
 
 				[[nodiscard]]
 				/// <summary>Create a side pane.</summary>
