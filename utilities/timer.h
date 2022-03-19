@@ -22,8 +22,10 @@ namespace liblec {
 		class lecui_api timer_manager {
 		public:
 			/// <summary>Timer manager constructor.</summary>
-			/// <param name="fm">The form.</param>
+			/// <param name="fm">A reference to the form.</param>
 			timer_manager(form& fm);
+
+			/// <summary>Destructor.</summary>
 			~timer_manager();
 
 			/// <summary>Add a timer.</summary>

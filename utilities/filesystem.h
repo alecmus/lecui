@@ -21,7 +21,11 @@ namespace liblec {
 		/// <summary>Interact with the OS file system.</summary>
 		class lecui_api filesystem {
 		public:
+			/// <summary>Constructor.</summary>
+			/// <param name="fm">A reference to the form.</param>
 			filesystem(form& fm);
+
+			/// <summary>Destructor.</summary>
 			~filesystem();
 
 			/// <summary>Display a 'select folder' modal dialog.</summary>

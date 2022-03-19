@@ -21,7 +21,11 @@ namespace liblec {
 		/// <summary>Color picker.</summary>
 		class lecui_api color_picker {
 		public:
+			/// <summary>Constructor.</summary>
+			/// <param name="fm">A reference to the form.</param>
 			color_picker(form& fm);
+
+			/// <summary>Destructor.</summary>
 			~color_picker();
 
 			/// <summary>Pick a color through a color picker dialog.</summary>

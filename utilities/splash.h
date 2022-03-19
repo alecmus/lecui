@@ -22,9 +22,11 @@ namespace liblec {
 		/// app is loading.</summary>
 		class lecui_api splash {
 		public:
-			splash() = delete;
-
+			/// <summary>Constructor.</summary>
+			/// <param name="fm">A reference to the form.</param>
 			splash(form& fm);
+
+			/// <summary>Destructor.</summary>
 			~splash();
 
 			/// <summary>Display splash screen image.</summary>
@@ -34,7 +36,7 @@ namespace liblec {
 			/// <returns>Returns true if successful, else false (in which case error information
 			/// if written to the "error" parameter.</returns>
 			/// <remarks>To use the same image and have it appear the same size on screens with different DPI settings
-			/// set the <see cref="dpi_aware"></see> flag to true. However, if you would like to have only a sharp,
+			/// set the dpi_aware flag to true. However, if you would like to have only a sharp,
 			/// pixel-perfect splash screen it is recommended to set the flag to false and (optionally) load a different
 			/// resource based on the dpi scale reported through the <see cref="form::get_dpi_scale()"></see> method.
 			/// For example, you may have three different images: one for 1.0 up to 1.5 scale, another for 1.75 to 2.25
@@ -49,7 +51,8 @@ namespace liblec {
 			class impl;
 			impl& _d;
 
-			// Copying an object of this class are not allowed
+			// Default constructor and copying an object of this class are not allowed
+			splash() = delete;
 			splash(const splash&) = delete;
 			splash& operator=(const splash&) = delete;
 		};

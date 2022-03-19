@@ -45,7 +45,7 @@ namespace liblec {
 		class lecui_api tray_icon {
 		public:
 			/// <summary>Constructor.</summary>
-			/// <param name="fm">The form to which the tray icon belongs.</param>
+			/// <param name="fm">A reference to the form to which the tray icon belongs.</param>
 			tray_icon(form& fm);
 			~tray_icon();
 
