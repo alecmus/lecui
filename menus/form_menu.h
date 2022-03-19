@@ -48,7 +48,11 @@ namespace liblec {
 		/// <remarks>Menu is added in the title bar to the right of the form caption.</remarks>
 		class lecui_api form_menu {
 		public:
+			/// <summary>Constructor.</summary>
+			/// <param name="fm">A reference to the form.</param>
 			form_menu(form& fm);
+
+			/// <summary>Destructor.</summary>
 			~form_menu();
 
 			/// <summary>Add form menu label.</summary>

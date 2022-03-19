@@ -43,6 +43,7 @@ namespace liblec {
             std::vector<menu_item> children;
         };
 
+		/// <summary>Context menu.</summary>
 		class lecui_api context_menu {
 		public:
 			/// <summary>Pin type. Used to determine the position of the context menu with
