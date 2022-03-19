@@ -81,17 +81,37 @@ namespace liblec {
 		}
 #endif
 
+		/// <summary>Form position.</summary>
+		/// <remarks>Offset members use 10 pixels.</remarks>
 		enum class form_position {
-			/// offset members use 10 pixels
+			/// <summary>Center the form to the working area. The working area is the desktop, minus the taskbar (if visible).</summary>
 			center_to_working_area,
+
+			/// <summary>Center the form to its parent.</summary>
 			center_to_parent,
+
+			/// <summary>Pin the form to the top left corner of the working area.</summary>
 			top_left,
+
+			/// <summary>Pin the form to the top left corner of the working area, with an offset.</summary>
 			top_left_offset,
+
+			/// <summary>Pin the form to the bottom left corner of the working area.</summary>
 			bottom_left,
+
+			/// <summary>Pin the form to the bottom left corner of the working area, with an offset.</summary>
 			bottom_left_offset,
+
+			/// <summary>Pin the form to the top right corner of the working area.</summary>
 			top_right,
+
+			/// <summary>Pin the form to the top right corner of the working area, with an offset.</summary>
 			top_right_offset,
+
+			/// <summary>Pin the form to the bottom right corner of the working area.</summary>
 			bottom_right,
+
+			/// <summary>Pin the form to the bottom right corner of the working area, with an offset.</summary>
 			bottom_right_offset,
 		};
 
@@ -157,9 +177,9 @@ namespace liblec {
 			/// <summary>Force this instance to run even if an existing instance is found.</summary>
 			/// <remarks>This method causes the <see cref="create"></see> method to continue execution
 			/// regardless of whether an existing instance is present. You would typically do this if you
-			/// need your app to reach the <see cref="initialize"></see> method without the intention of
+			/// need your app to reach the <see cref="on_initialize"></see> method without the intention of
 			/// allowing it to go as far as <see cref="on_layout"></see>, in which case you would call
-			/// the <see cref="close"></see> method within <see cref="initialize"></see>. A typical use-case
+			/// the <see cref="close"></see> method within <see cref="on_initialize"></see>. A typical use-case
 			/// is when the app is calling itself during an update process. Not calling this method would
 			/// mean the spawning of the new instance is not guaranteed since the previous may still be
 			/// running when the new one reaches the instance checking logic. The best place to call this

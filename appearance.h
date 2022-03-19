@@ -20,156 +20,164 @@ namespace liblec {
 	namespace lecui {
 		/// <summary>Themes that are implemented within the library.</summary>
 		enum class themes {
-			/// <summary>The default theme. Best in bright environments.</summary>
-			light,
-
-			/// <summary>Easier on the eyes in darker environments.</summary>
-			dark,
+			light,		///< The default theme. Best in bright environments.
+			dark,		///< Easier on the eyes in darker environments.
 		};
 
-			form,
-			titlebar,
-			accent,
-			accent_hover,
-			disabled,
-
-			scrollbar,
-			scrollbar_border,
-			scrollbar_hover,
-			scrollbar_pressed,
-
-			label,
-			label_selected,
-			label_hover,
-			label_pressed,
-			label_disabled,
-
-			button,
-			button_border,
-			button_hover,
-			button_selected,
-
-			checkbox,
-			checkbox_border,
-			checkbox_tick,
-			checkbox_hover,
-			checkbox_selected,
-
-			progress_bar,
-			progress_bar_border,
-			progress_bar_unfilled,
-
-			progress_indicator,
-			progress_indicator_text,
-			progress_indicator_unfilled,
-
-			text_field,
-			text_field_border,
-			text_field_disabled,
-			text_field_prompt,
-			text_field_selected,
-			text_field_caret,
-			text_field_input_error,
-
-			table_view,
-			table_view_border,
-			table_view_alternate,
-			table_view_row_hover,
-			table_view_row_selected,
-			table_view_text_header,
-			table_view_text_header_hot,
-			table_view_text_selected,
-			table_view_header,
-			table_view_grid,
-
-			toggle,
-			toggle_on,
-			toggle_off,
-			toggle_selected,
-
-			tree_view,
-			tree_view_border,
-			tree_view_hover,
-			tree_view_selected,
-
-			tab_pane,
-			tab_pane_border,
-			tab_bar,
-			tab_selected,
-
-			pane,
-			pane_border,
-
-			image_view,
-			image_view_border,
-			image_view_hover,
-			image_view_selected,
-
-			rectangle,
-			rectangle_border,
-			rectangle_border_hot,
-			rectangle_hover,
-			rectangle_selected,
-
-			group,
-			group_border,
-
-			slider,
-			slider_border,
-			slider_knob,
-			slider_knob_hot,
-			slider_knob_border,
-			slider_tick,
-			slider_selected,
-
-			html_editor,
-			html_editor_border,
-			html_editor_disabled,
-			html_editor_selected,
-			html_editor_caret,
-			html_control,
-			html_control_border,
-
-			combobox,
-			combobox_editable,
-			combobox_caret,
-			combobox_border,
-			combobox_hover,
-			combobox_selected,
-			combobox_dropdown,
-			combobox_dropdown_hot,
-			combobox_dropdown_arrow,
-			combobox_dropdown_arrow_hot,
 		/// <summary>The element to color.</summary>
+		/// <remarks>All hover colors apply to non-static widgets. Refer to widget documentation for more information.</remarks>
 		enum class element {
+			form,							///< The background color of the form.
+			titlebar,						///< The fill color of the form's title bar.
+			accent,							///< The accent color.
+			accent_hover,					///< The accent color on hover.
+			disabled,						///< The color of disabled controls.
 			
-			line,
-			line_hover,
-			line_selected,
+			scrollbar,						///< The fill color of scrollbars.
+			scrollbar_border,				///< The color of scrollbar borders.
+			scrollbar_hover,				///< The fill color of scrollbars when the mouse hovers over them.
+			scrollbar_pressed,				///< The fill color of scrollbars when they are pressed.
 
-			icon,
-			icon_border,
-			icon_hot,
-			icon_text,
-			icon_description_text,
 
-			strength_bar,
-			strength_bar_border,
+			label,							///< The color of labels (text color).
+			label_selected,					///< The background color of selected labels.
+			label_hover,					///< The background color of labels when the mouse hovers over them.
+			label_pressed,					///< The background color of labels when they are pressed.
+			label_disabled,					///< The color of disabled labels (text color).
 
-			badge,
-			badge_border,
-			badge_text,
+			button,							///< The fill color of buttons.
+			button_border,					///< The color of button borders.
+			button_hover,					///< The color of buttons when the mouse hovers over them.
+			button_selected,				///< The border color of selected buttons.
+
+			checkbox,						///< The fill color of checkboxes.
+			checkbox_border,				///< The color of checkbox borders.
+			checkbox_tick,					///< The color of checkbox ticks.
+			checkbox_hover,					///< The fill color of checkboxes when the mouse hovers over them.
+			checkbox_selected,				///< The border color of selected checkboxes.
+
+			progress_bar,					///< The color of the filled portion progress bars.
+			progress_bar_border,			///< The color of progress bar borders.
+			progress_bar_unfilled,			///< The color of the un-filled portion of the progress bar.
+
+			progress_indicator,				///< The line color of the filled portion of progress indicators (including the dot).
+			progress_indicator_text,		///< The color of progress indicator text.
+			progress_indicator_unfilled,	///< The line color of the un-filled portion of progress indicators.
+
+			text_field,						///< The fill color of text fields.
+			text_field_border,				///< The color of text field borders.
+			text_field_disabled,			///< The color of a disabled text field.
+			text_field_prompt,				///< The color of prompt text in a text field.
+			text_field_selected,			///< The border color of a selected text field.
+			text_field_caret,				///< The color of a text field caret.
+			text_field_input_error,			///< The border color of a text field when an invalid input is detected.
+
+			table_view,						///< The background color of table view odd rows.
+			table_view_border,				///< The color of a table view borders.
+			table_view_alternate,			///< The alternate color of table view even rows.
+			table_view_row_hover,			///< The color of a row when the mouse hovers over it.
+			table_view_row_selected,		///< The background color of a selected table view row.
+			table_view_text_header,			///< The color of table view header text.
+			table_view_text_header_hot,		///< The color of table view header text when the mouse is hovered over it.
+			table_view_text_selected,		///< The border color of a selected table view.
+			table_view_header,				///< The background color of table view headers.
+			table_view_grid,				///< The line color of table view grids.
+
+			toggle,							///< The color of the toggle circle.
+			toggle_on,						///< The background color of toggles when they're on.
+			toggle_off,						///< The background color of toggles when they're off.
+			toggle_selected,				///< The background color of toggle labels when the toggle is selected.
+
+			tree_view,						///< The background color of tree views.
+			tree_view_border,				///< The color of tree view borders.
+			tree_view_hover,				///< The background color of tree view labels when the mouse is hovered over them.
+			tree_view_selected,				///< The border color of a selected tree view.
+
+			tab_pane,						///< The background color of tab panes.
+			tab_pane_border,				///< The border color of tab panes.
+			tab_bar,						///< The background color of tabs.
+			tab_selected,					///< The color of the bar that indicates the selected tab.
+
+			pane,							///< The background color of panes.
+			pane_border,					///< The border color of panes.
+
+			image_view,						///< The background color of image views.
+			image_view_border,				///< The border color of image views.
+			image_view_hover,				///< The border color of image views when the mouse is hovered over them.
+			image_view_selected,			///< The border color of a selected image view.
+
+			rectangle,						///< The background color of rectangles.
+			rectangle_border,				///< The border color of rectangles.
+			rectangle_border_hot,			///< The border color of rectangles when the mouse is hovered over them.
+			rectangle_hover,				///< The background color of rectangles when the mouse is hovered over them.
+			rectangle_selected,				///< The border color of a selected rectangle.
+
+			group,							///< The background color of groups.
+			group_border,					///< The border color of groups.
+
+			slider,							///< The background color of a slider.
+			slider_border,					///< The border color of a slider.
+			slider_knob,					///< The color of a slider's knob.
+			slider_knob_hot,				///< The color of a slider's knob when the mouse is hovered over it.
+			slider_knob_border,				///< The border color of a slider's knob.
+			slider_tick,					///< The color of a slider's tick lines.
+			slider_selected,				///< The border color of a slider's knob when the slider is selected.
+
+			html_editor,					///< The background color of html editors.
+			html_editor_border,				///< The border color of html editors.
+			html_editor_disabled,			///< The background color of disabled html editors.
+			html_editor_selected,			///< The border color of a selected html editor.
+			html_editor_caret,				///< The color of the caret in the html editor.
+			html_control,					///< The background color of the html editor control pane.
+			html_control_border,			///< The border color of the html editor control pane.
+
+			combobox,						///< The background color of non-editable comboboxes.
+			combobox_editable,				///< The background color of editable comboboxes.
+			combobox_caret,					///< The color of the cared in editable comboboxes.
+			combobox_border,				///< The border color of comboboxes.
+			combobox_hover,					///< The background color of comboboxes when the mouse is hovered over them.
+			combobox_selected,				///< The border color of a selected combobox.
+			combobox_dropdown,				///< The background color of a combobox dropdown.
+			combobox_dropdown_hot,			///< The background color of a combobox dropdown when the mouse is hovered over it.
+			combobox_dropdown_arrow,		///< The line color of the combobox dropdown arrow.
+			combobox_dropdown_arrow_hot,	///< The line color of the combobox dropdown when the mouse is hovered over it.
+			
+			line,							///< The color of lines.
+			line_hover,						///< The color of lines when the mouse is hovered over them.
+			line_selected,					///< The color of a selected line.
+
+			icon,							///< The background color of icons.
+			icon_border,					///< The color of icon borders.
+			icon_hot,						///< The background color of icons when the mouse is hovered over them.
+			icon_text,						///< The color of icon main text.
+			icon_description_text,			///< The color of icon description text.
+
+			strength_bar,					///< The background color of strength bars.
+			strength_bar_border,			///< The border color of strength bars.
+
+			badge,							///< The background color of badges.
+			badge_border,					///< The border color of badges.
+			badge_text,						///< The color of badge text.
 		};
 
+		/// <summary>lecui defaults class.</summary>
 		class lecui_api defaults {
 		public:
+			/// <summary>Get default lecui color.</summary>
+			/// <param name="theme">The ui theme, as defined in <see cref='themes'></see>.</param>
+			/// <param name="element">The ui element, as defined in <see cref='element'></see>.</param>
+			/// <returns></returns>
 			static lecui::color color(themes theme, element element);
 		};
 
 		/// <summary>Manipulate the form's appearance.</summary>
 		class lecui_api appearance {
 		public:
+			/// <summary>Class constructor.</summary>
+			/// <param name="fm">A reference to the form.</param>
 			appearance(form& fm);
+
+			/// <summary>Class destructor.</summary>
 			~appearance();
 
 			/// <summary>Set a preset theme.</summary>

@@ -12,8 +12,10 @@
 
 #if defined(LECUI_EXPORTS)
 #include "form.h"
+#include "lecui.h"
 #else
 #include <liblec/lecui/form.h>
+#include <liblec/lecui/lecui.h>
 #endif
 
 namespace liblec {
@@ -22,7 +24,11 @@ namespace liblec {
 		/// <remarks>This manipulation is best done in the form's on_initialize method.</remarks>
 		class lecui_api controls {
 		public:
+			/// <summary>Class constructor.</summary>
+			/// <param name="fm">A reference to the form.</param>
 			controls(form& fm);
+
+			/// <summary>Class destructor.</summary>
 			~controls();
 
 			/// <summary>Whether to allow a form to be resizable.</summary>
@@ -69,15 +75,19 @@ namespace liblec {
 		/// <remarks>This manipulation is best done in the form's on_initialize method.</remarks>
 		class lecui_api dimensions {
 		public:
+			/// <summary>Class constructor.</summary>
+			/// <param name="fm">A reference to the form.</param>
 			dimensions(form& fm);
+
+			/// <summary>Class destructor.</summary>
 			~dimensions();
 
 			/// <summary>Measure how much space a label will take.</summary>
 			/// <param name="formatted_text">The formatted text.</param>
 			/// <param name="font">The font, e.g. Segoe UI.</param>
 			/// <param name="font_size">The font size, in points, e.g. 9.0f.</param>
-			/// <param name="alignment">The alignment of the text as defined in <see cref='text_alignment'></see>.</param>
-			/// <param name="paragraph_alignment">The paragraph alignment as defined in <see cref='lecui::paragraph_alignment'></see>.</param>
+			/// <param name="alignment">The alignment of the text.</param>
+			/// <param name="paragraph_alignment">The paragraph alignment.</param>
 			/// <param name="max_rect">The area which the text should not exceed.</param>
 			/// <returns>The rectangle that defines the optimal rectangle for the text.</returns>
 			lecui::rect measure_label(const std::string& formatted_text,
@@ -88,7 +98,7 @@ namespace liblec {
 			/// <param name="formatted_text">The formatted text.</param>
 			/// <param name="font">The font, e.g. Segoe UI.</param>
 			/// <param name="font_size">The font size, in points, e.g. 9.0f.</param>
-			/// <param name="alignment">The alignment of the text as defined in <see cref='text_alignment'></see>.</param>
+			/// <param name="alignment">The alignment of the text.</param>
 			/// <param name="editor">Whether this is an html_editor. Use false for an html_view.</param>
 			/// <param name="max_rect">The area which the text should not exceed.</param>
 			/// <returns>The rectangle that defines the optimal rectangle for the text.</returns>

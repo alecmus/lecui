@@ -49,7 +49,9 @@
 #include <map>
 #include <any>
 
+/// <summary>Top level namespace for the liblec libraries.</summary>
 namespace liblec {
+	/// <summary>Namespace for the lecui library.</summary>
 	namespace lecui {
 		/// <summary>Get the version of the lecui library.</summary>
 		/// <returns>Returns the version number as a string in the form
@@ -196,7 +198,7 @@ namespace liblec {
 			float get_right() const;
 
 			/// <summary>Set the right coordinate.</summary>
-			/// <param name="left">The right coordinate, in pixels.</param>
+			/// <param name="right">The right coordinate, in pixels.</param>
 			/// <returns>A reference to the modified object.</returns>
 			rect& right(const float& right);
 
@@ -209,7 +211,7 @@ namespace liblec {
 			float get_top() const;
 
 			/// <summary>Set the top coordinate.</summary>
-			/// <param name="left">The top coordinate, in pixels.</param>
+			/// <param name="top">The top coordinate, in pixels.</param>
 			/// <returns>A reference to the modified object.</returns>
 			rect& top(const float& top);
 
@@ -222,7 +224,7 @@ namespace liblec {
 			float get_bottom() const;
 
 			/// <summary>Set the bottom coordinate.</summary>
-			/// <param name="left">The bottom coordinate, in pixels.</param>
+			/// <param name="bottom">The bottom coordinate, in pixels.</param>
 			/// <returns>A reference to the modified object.</returns>
 			rect& bottom(const float& bottom);
 
@@ -289,18 +291,42 @@ namespace liblec {
 			/// <remarks>This is a handy method for faster coding and easier maintenance.</remarks>
 			rect& place(const rect& rect_reference, const float& perc_h, const float& perc_v);
 
+			/// <summary>Snap type, used to position a rectangle next to another (reference) rectangle.</summary>
 			enum class snap_type {
+				/// <summary>Snap rectangle to the bottom, with its left side aligned to the reference's left.</summary>
 				bottom_left,
+
+				/// <summary>Snap rectangle to the bottom, with its horizontal center aligned to the reference's horizontal center.</summary>
 				bottom,
+
+				/// <summary>Snap rectangle to the bottom, with its right side aligned to the reference's right.</summary>
 				bottom_right,
+
+				/// <summary>Snap rectangle to the top, with its left side aligned to the reference's left.</summary>
 				top_left,
+
+				/// <summary>Snap rectangle to the top, with its horizontal center aligned to the reference's horizontal center.</summary>
 				top,
+
+				/// <summary>Snap rectangle to the top, with its right side aligned to the reference's right.</summary>
 				top_right,
+
+				/// <summary>Snap rectangle to the right, with its top side aligned to the reference's top.</summary>
 				right_top,
+
+				/// <summary>Snap rectangle to the right, with its vertical center aligned to the reference's vertical center.</summary>
 				right,
+
+				/// <summary>Snap rectangle to the right, with its bottom aligned to the reference's bottom.</summary>
 				right_bottom,
+
+				/// <summary>Snap rectangle to the left, with its top aligned to the reference's top.</summary>
 				left_top,
+
+				/// <summary>Snap rectangle to the left, with its vertical center aligned to the reference's vertical center.</summary>
 				left,
+
+				/// <summary>Snap rectangle to the left, with its bottom aligned to the reference's bottom.</summary>
 				left_bottom,
 			};
 
@@ -320,8 +346,15 @@ namespace liblec {
 			/// the rectangle will get smaller.</remarks>
 			rect& clip_to(const rect& rect_reference, const float& clearance);
 
-			bool operator==(const rect&);
-			bool operator!=(const rect&);
+			/// <summary>Check whether two rectangles are equal. All properties are considered.</summary>
+			/// <param name="param">The rectangle to compare to.</param>
+			/// <returns>Returns true if the rectangles are equal, else false.</returns>
+			bool operator==(const rect& param);
+
+			/// <summary>Check whether two rectangles are NOT equal. All properties are considered.</summary>
+			/// <param name="param">The rectangle to compare to.</param>
+			/// <returns>Returns true if the rectangles are NOT equal, else false.</returns>
+			bool operator!=(const rect& param);
 		};
 
 		/// <summary>Resize parameters.</summary>
@@ -535,8 +568,15 @@ namespace liblec {
 			/// <returns>A reference to the modified object.</returns>
 			resize_params& max_height(const float& max_height);
 
-			bool operator==(const resize_params&);
-			bool operator!=(const resize_params&);
+			/// <summary>Check whether two resize parameter objects are equal. All properties are considered.</summary>
+			/// <param name="param">The object to compare to.</param>
+			/// <returns>Returns true if the objects are equal, else false.</returns>
+			bool operator==(const resize_params& param);
+
+			/// <summary>Check whether two resize parameter objects are NOT equal. All properties are considered.</summary>
+			/// <param name="param">The object to compare to.</param>
+			/// <returns>Returns true if the objects are NOT equal, else false.</returns>
+			bool operator!=(const resize_params& param);
 		};
 
 		/// <summary>RGBA color on a standard 0 to 255 scale. For the alpha channel 0 is transparent and 255 is opaque.</summary>
@@ -622,8 +662,17 @@ namespace liblec {
 			/// <returns>A reference to the modified object.</returns>
 			color& lighten(const float& percentage);
 
-			bool operator==(const color&);
-			bool operator!=(const color&);
+			/// <summary>Check whether two colors are equal.
+			/// All properties are considered.</summary>
+			/// <param name="param">The color to compare to.</param>
+			/// <returns>Returns true if the colors are equal, else returns false.</returns>
+			bool operator==(const color& param);
+
+			/// <summary>Check whether two colors are NOT equal.
+			/// All properties are considered.</summary>
+			/// <param name="param">The color to compare to.</param>
+			/// <returns>Returns true if the colors are NOT equal, else returns false.</returns>
+			bool operator!=(const color& param);
 		};
 
 		/// <summary>Sort options.</summary>
@@ -808,8 +857,15 @@ namespace liblec {
 			/// <summary>The number of decimal places to round off the entries in this column to when displaying (if they are floats or doubles).</summary>
 			int precision = 2;
 
-			bool operator==(const table_column&);
-			bool operator!=(const table_column&);
+			/// <summary>Check whether two columns are equal. Only the name and width are considered.</summary>
+			/// <param name="param">The column to compare to.</param>
+			/// <returns>Returns true if the columns are equal, else false.</returns>
+			bool operator==(const table_column& param);
+
+			/// <summary>Check whether two columns are NOT equal. Only the name and width are considered.</summary>
+			/// <param name="param">The column to compare to.</param>
+			/// <returns>Returns true if the columns are NOT equal, else false.</returns>
+			bool operator!=(const table_column& param);
 		};
 
 		/// <summary>Table row; a list of (column, value) pairs. The map's "key" is

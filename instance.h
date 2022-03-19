@@ -21,7 +21,7 @@ namespace liblec {
 		/// <summary>Manage application instances.</summary>
 		class lecui_api instance_manager {
 		public:
-			/// <summary>Constructor</summary>
+			/// <summary>Class constructor.</summary>
 			/// <param name="fm">A reference to the form.</param>
 			/// <param name="guid">
 			/// Unique guid used to prevent multiple instances of the app,
@@ -36,6 +36,8 @@ namespace liblec {
 			/// created will be brought to the foreground. GUIDs only apply to top level forms.
 			/// </remarks>
 			instance_manager(form& fm, const std::string& guid);
+
+			/// <summary>Class destructor.</summary>
 			~instance_manager();
 
 			/// <summary>Send data to another application instance.</summary>
