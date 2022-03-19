@@ -36,25 +36,37 @@ namespace liblec {
 				};
 
 			protected:
-				std::string _text;
-				std::string _tooltip;
-				lecui::rect _rect;
-				resize_params _on_resize = { 0.f, 0.f, 0.f, 0.f };
-				cursor_type _cursor = cursor_type::arrow;
-				std::string _font = "Segoe UI";
-				float _font_size = 9.f;
-				color _color_text = { 0, 0, 0, 255 };
-				color _color_fill = { 0, 120, 170, 255 };
-				color _color_hot = { 0, 120, 170, 255 };
-				color _color_selected = { 0, 120, 170, 30 };
-				color _color_disabled = { 180, 180, 180, 255 };
+				std::string _text;										///< The widget's text.
+				std::string _tooltip;									///< The widget's tooltip text.
+				lecui::rect _rect;										///< The widget's rectangle.
+				resize_params _on_resize = { 0.f, 0.f, 0.f, 0.f };		///< The widget's behaviour when container is resized.
+				cursor_type _cursor = cursor_type::arrow;				///< The widget's cursor.
+				std::string _font = "Segoe UI";							///< The widget's font.
+				float _font_size = 9.f;									///< The widget's font size.
+				color _color_text = { 0, 0, 0, 255 };					///< The color of the widget's text.
+				color _color_fill = { 0, 120, 170, 255 };				///< The fill color of the widget.
+				color _color_hot = { 0, 120, 170, 255 };				///< The color to indicate when the mouse hovers over the widget.
+				color _color_selected = { 0, 120, 170, 30 };			///< The color to indicate when the widget is selected.
+				color _color_disabled = { 180, 180, 180, 255 };			///< The color to indicate when the widget is disabled.
 
 			public:
+				/// <summary>Widget constructor.</summary>
 				widget() {};
+
+				/// <summary>Widget descructor.</summary>
 				virtual ~widget() {};
 
-				bool operator==(const widget&);
-				bool operator!=(const widget&);
+				/// <summary>Check whether widget's basic specifications are equal. Only those properties that
+				/// require the widget's basic resources to be re-created are considered.</summary>
+				/// <param name="param">The specs to compare to.</param>
+				/// <returns>Returns true if the widget specifications are equal, else false.</returns>
+				bool operator==(const widget& param);
+
+				/// <summary>Check whether widget's basic specifications are NOT equal. Only those properties that
+				/// require the widget's basic resources to be re-created are considered.</summary>
+				/// <param name="param">The specs to compare to.</param>
+				/// <returns>Returns true if the widget specifications are NOT equal, else false.</returns>
+				bool operator!=(const widget& param);
 
 				/// <summary>Events common to all widgets.</summary>
 				struct basic_events {
@@ -180,18 +192,27 @@ namespace liblec {
 				};
 
 			protected:
-				std::string _text;
-				std::string _font = "Segoe UI";
-				float _font_size = 8.f;
-				float _border = .5f;
-				color _color = { 255, 0, 0, 180 };
-				color _color_border = { 255, 255, 255, 180 };
-				color _color_text = { 255, 255, 255, 255 };
-				badge_position _position = badge_position::bottom_right;
+				std::string _text;											///< The badge's text.
+				std::string _font = "Segoe UI";								///< The font to use for the badge's text.
+				float _font_size = 8.f;										///< The font size of the badge's text.
+				float _border = .5f;										///< The thickness of the badge's border.
+				color _color = { 255, 0, 0, 180 };							///< The fill color of the badge.
+				color _color_border = { 255, 255, 255, 180 };				///< The color of the badge's border.
+				color _color_text = { 255, 255, 255, 255 };					///< The color of the badge's text.
+				badge_position _position = badge_position::bottom_right;	///< The badge's position.
 
 			public:
-				bool operator==(const badge_specs&);
-				bool operator!=(const badge_specs&);
+				/// <summary>Check whether badge specs are equal. Only those properties that
+				/// require the widget's basic resources to be re-created are considered.</summary>
+				/// <param name="param">The specs to compare to.</param>
+				/// <returns>Returns true when the badge specs are equal, else false.</returns>
+				bool operator==(const badge_specs& param);
+
+				/// <summary>Check whether badge specs are NOT equal. Only those properties that
+				/// require the widget's basic resources to be re-created are considered.</summary>
+				/// <param name="param">The specs to compare to.</param>
+				/// <returns>Returns true when the badge specs are NOT equal, else false.</returns>
+				bool operator!=(const badge_specs& param);
 
 				/// <summary>Get or set the badge text.</summary>
 				/// <returns>A reference to the badge text.</returns>
@@ -270,11 +291,20 @@ namespace liblec {
 			/// <remarks>Widgets that use badges inherit from both this class and the <see cref="widget"></see> class.</remarks>
 			class lecui_api badge_widget {
 			protected:
-				badge_specs _badge;
+				badge_specs _badge;	///< The badge's specs.
 
 			public:
-				bool operator==(const badge_widget&);
-				bool operator!=(const badge_widget&);
+				/// <summary>Check whether two badges are equal. Only those badge properties that require
+				/// the badge's resources to be re-created are considered.</summary>
+				/// <param name="param">The badge to compare to.</param>
+				/// <returns>Returns true if the badges are equal, else false.</returns>
+				bool operator==(const badge_widget& param);
+
+				/// <summary>Check whether two badges are NOT equal. Only those badge properties that require
+				/// the badge's resources to be re-created are considered.</summary>
+				/// <param name="param">The badge to compare to.</param>
+				/// <returns>Returns true if the badges are NOT equal, else false.</returns>
+				bool operator!=(const badge_widget& param);
 
 				/// <summary>Get or set the widget's badge.</summary>
 				/// <returns>A reference to the badge specs.</returns>
@@ -290,6 +320,8 @@ namespace liblec {
 			/// <summary>Widget manager constructor.</summary>
 			/// <param name="fm">The form whose widgets we would like to manage.</param>
 			widget_manager(form& fm);
+
+			/// <summary>Widget manager destructor.</summary>
 			~widget_manager();
 
 			/// <summary>Enable a widget.</summary>
