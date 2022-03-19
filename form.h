@@ -356,7 +356,7 @@ namespace liblec {
 			/// it will not be possible to close the form.</remarks>
 			void allow_quit();
 
-			/// <summary>Form events.</summary>
+			/// <summary>Get or set form events.</summary>
 			/// <returns>A reference to the form's events.</returns>
 			form_events& events();
 

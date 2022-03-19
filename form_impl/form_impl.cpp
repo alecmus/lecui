@@ -830,7 +830,7 @@ namespace liblec {
 								.on_resize(html_editor_specs.on_resize())
 								.on_resize().height_rate(0.f).min_height(0.f);
 
-							if (html_editor_specs.view_only) {
+							if (html_editor_specs._view_only) {
 								// to-do: remove controls pane completely after finding a way of handling the redirection in the html_editor.cpp
 								
 								// make pane of zero height and zero width
@@ -857,7 +857,7 @@ namespace liblec {
 								.border(html_editor_specs.border())
 								.rect(html_editor_specs.rect())
 								.on_resize(html_editor_specs.on_resize())
-								.rect().top(html_editor_specs.view_only ? controls_pane.rect().top() : controls_pane.rect().bottom());
+								.rect().top(html_editor_specs._view_only ? controls_pane.rect().top() : controls_pane.rect().bottom());
 
 							if (pane.on_resize().min_height())
 								pane.on_resize().min_height(largest(pane.on_resize().min_height() - controls_pane.rect().height(), 0.f));
@@ -935,7 +935,7 @@ namespace liblec {
 										auto& html_editor = html_page._d_page.get_html_editor_impl(widget_alias);
 
 										if (!html_editor.controls_initialized()) {
-											if (!html_editor.specs().view_only) {
+											if (!html_editor.specs()._view_only) {
 												/// add controls to controls pane
 
 												/// add basic font formatting

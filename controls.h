@@ -12,10 +12,8 @@
 
 #if defined(LECUI_EXPORTS)
 #include "form.h"
-#include "lecui.h"
 #else
 #include <liblec/lecui/form.h>
-#include <liblec/lecui/lecui.h>
 #endif
 
 namespace liblec {

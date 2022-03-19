@@ -484,7 +484,7 @@ namespace liblec {
 
 		// to-do: insertion mechanics for formatted text
 		void widgets::html_editor_impl::insert_character(const char& c) {
-			if (!_specs.view_only) {
+			if (!_specs._view_only) {
 				try {
 					unsigned long tag_number = 0;
 					if (_is_selected) {
@@ -510,7 +510,7 @@ namespace liblec {
 
 		// to-do: backspace mechanics for formatted text
 		void widgets::html_editor_impl::key_backspace() {
-			if (!_specs.view_only) {
+			if (!_specs._view_only) {
 				try {
 					unsigned long tag_number = 0;
 					if (_is_selected) {
@@ -534,7 +534,7 @@ namespace liblec {
 
 		// to-do: deletion mechanics for formatted text
 		void widgets::html_editor_impl::key_delete() {
-			if (!_specs.view_only) {
+			if (!_specs._view_only) {
 				try {
 					unsigned long tag_number = 0;
 					if (_is_selected) {

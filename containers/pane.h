@@ -98,7 +98,7 @@ namespace liblec {
 				/// <remarks>This property is not used.</remarks>
 				cursor_type& cursor() override;
 
-				/// <summary>Se the mouse cursor to use when over the widget.</summary>
+				/// <summary>Set the mouse cursor to use when over the widget.</summary>
 				/// <param name="cursor">The cursor type as defined in <see cref="cursor_type"></see>.</param>
 				/// <returns>A reference to the modified object.</returns>
 				/// <remarks>This property is not used.</remarks>
@@ -168,7 +168,7 @@ namespace liblec {
 				/// <remarks>This property is not used.</remarks>
 				pane_specs& color_selected(const color& color_selected);
 
-				/// <summary>Ge tor set the widget's color when it is disabled.</summary>
+				/// <summary>Get or set the widget's color when it is disabled.</summary>
 				/// <returns>a reference to the property.</returns>
 				color& color_disabled() override;
 

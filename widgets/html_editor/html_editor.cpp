@@ -383,7 +383,7 @@ namespace liblec {
 
 		widgets::html_view_builder::html_view_builder(containers::page& page, const std::string& alias) :
 			html_editor_builder(page, alias) {
-			_d._specs.view_only = true;
+			_d._specs._view_only = true;
 		}
 
 		widgets::html_view_builder::~html_view_builder() {}
