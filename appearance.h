@@ -183,8 +183,8 @@ namespace liblec {
 			/// <summary>Set a preset theme.</summary>
 			/// <param name="theme">The theme to set.</param>
 			/// <returns>A reference to the modified object.</returns>
-			/// <remarks>This option has to be set early in on_layout(), or in the
-			/// constructor. Changing this later is not yet supported.</remarks>
+			/// <remarks>This option has to be set early in the form's layout event, or better in the
+			/// form's initialize event. Changing this later is not yet supported.</remarks>
 			appearance& theme(themes theme);
 
 			/// <summary>Get the preset theme.</summary>

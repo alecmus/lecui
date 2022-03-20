@@ -29,7 +29,7 @@ namespace liblec {
 			/// This same guid is also used to allow a new instance to
 			/// (1) Cause a new instance to find and open the existing instance before exiting
 			/// (2) Pass it's command line arguments as data to the existing instance. The latter
-			/// is received in the existing instance through the form's on_receive_data handler.
+			/// is received in the existing instance through the form's receive_data event.
 			/// </param>
 			/// <remarks>It is highly recommended that top level forms within the same app use
 			/// the same guid. This way, when a new instance is attempted, the latest form to be

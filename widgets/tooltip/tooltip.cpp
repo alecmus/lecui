@@ -90,11 +90,6 @@ bool liblec::lecui::widgets::tooltip_form::on_initialize(std::string& error) {
 	return true;
 }
 
-void liblec::lecui::widgets::tooltip_form::on_start() {
-	// set timer to automatically close the tooltip
-	_timer_man.add("lecui::tooltip::autoclose", _lifetime, [&]() { close(); });
-}
-
 bool liblec::lecui::widgets::tooltip_form::on_layout(std::string& error) {
 	// add home page
 	auto& home_page = _page_man.add(_al_page_home);
@@ -109,10 +104,28 @@ bool liblec::lecui::widgets::tooltip_form::on_layout(std::string& error) {
 	return true;
 }
 
+void liblec::lecui::widgets::tooltip_form::on_start() {
+	// set timer to automatically close the tooltip
+	_timer_man.add("lecui::tooltip::autoclose", _lifetime, [&]() { close(); });
+}
+
 liblec::lecui::widgets::tooltip_form::tooltip_form(form& parent, const std::string& text, unsigned long lifetime) :
 	form(tooltip_form_caption(), parent),
 	_tooltip_text(text),
 	_lifetime(lifetime),
-	_parent(parent) {}
+	_parent(parent) {
+
+	events().initialize = [this](std::string& error) {
+		return on_initialize(error);
+	};
+
+	events().layout = [this](std::string& error) {
+		return on_layout(error);
+	};
+
+	events().start = [this]() {
+		return on_start();
+	};
+}
 
 liblec::lecui::widgets::tooltip_form::~tooltip_form() {}

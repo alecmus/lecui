@@ -128,6 +128,56 @@ namespace liblec {
 				/// reference to the form's design size (its size at creation). More details about the form's
 				/// design size can be found in the dimensions class under the controls.h header.</remarks>
 				std::function<void(const lecui::size&)> size = nullptr;
+
+				/// <summary>The handler to be called when files are dropped on the form.</summary>
+				/// <remarks>The parameter contains the full path to the dropped file,
+				/// including the file's extension. This handler needs to be set before the form is created.
+				/// It is recommended that it be set in the <see cref="initialize"></see> event.</remarks>
+				std::function<void(const std::string&)> drop_files = nullptr;
+
+				/// <summary>The handler to be called when data is received from another instance.</summary>
+				/// <remarks>The parameter will contain the received data.</remarks>
+				std::function<void(const std::string&)> receive_data = nullptr;
+
+				/// <summary>The handler to be called when the form's caption is clicked.</summary>
+				/// <remarks>This handler needs to be set before the form is created. It is recommended that it
+				/// be set in the <see cref="initialize"></see> event.</remarks>
+				std::function<void()> caption;
+
+				/// <summary>The handler to be called for all essential app initialization, like reading registry settings etc.</summary>
+				/// <remarks>The handler should return false if an error occurs that makes it necessary to abort the application.
+				/// In such a case, error information should be written to the parameter (note that it's a reference). When false
+				/// is returned application initialization is aborted and the layout event is never called.</remarks>
+				std::function<bool(std::string&)> initialize;
+
+				/// <summary>The handler to be called for the form's layout.</summary>
+				/// <remarks>If there's an error in the layout's implementation write the error information
+				/// to the parameter (note that it's a reference), and return false. This information will
+				/// be internally passed to the blocking <see cref="create"></see> method.
+				/// It is recommended to add at least one page container to the form in this
+				/// method and show it before returning from this method. This becomes the home page.
+				/// All the form's pages can be made in this method but this is not recommended. It is
+				/// recommended to create other pages in the handlers that attempt to open them so that
+				/// they are created dynamically at runtime so that the app uses the least amount of
+				/// resources at any given time.
+				/// </remarks>
+				std::function<bool(std::string&)> layout;
+
+				/// <summary>Handler to be called after the <see cref="form_events::layout"></see> event just before
+				/// the form is displayed. This is a good place to close the splash screen. The splash screen itself
+				/// is best created in the <see cref="form_events::initialize"></see> event.</summary>
+				std::function<void()> start;
+
+				/// <summary>Handler to be called when either the close button on the top right is clicked, or when
+				/// Alt+F4 is pressed on the keyboard. This is a good place to ask the user if they
+				/// really wish to close the form, and then call <see cref="form::close"></see> if they confirm.</summary>
+				/// <remarks>The <see cref="form::close"></see> method is called internally if this handler isn't set.</remarks>
+				std::function<void()> close;
+
+				/// <summary>Handler to be called after closing is confirmed, before the form's destructor is
+				/// called. This is a good place to save user settings.</summary>
+				/// <remarks>Avoid such logic errors as attempting to create widgets here.</remarks>
+				std::function<void()> shutdown;
 			};
 
 			/// <summary>Make a form with no parent.</summary>
@@ -177,9 +227,9 @@ namespace liblec {
 			/// <summary>Force this instance to run even if an existing instance is found.</summary>
 			/// <remarks>This method causes the <see cref="create"></see> method to continue execution
 			/// regardless of whether an existing instance is present. You would typically do this if you
-			/// need your app to reach the <see cref="on_initialize"></see> method without the intention of
-			/// allowing it to go as far as <see cref="on_layout"></see>, in which case you would call
-			/// the <see cref="close"></see> method within <see cref="on_initialize"></see>. A typical use-case
+			/// need your app to reach the <see cref="form_events::initialize"></see> event without the intention of
+			/// allowing it to go as far as the <see cref="form_events::layout"></see> event, in which case you would call
+			/// the <see cref="close"></see> method within the <see cref="form_events::initialize"></see> event. A typical use-case
 			/// is when the app is calling itself during an update process. Not calling this method would
 			/// mean the spawning of the new instance is not guaranteed since the previous may still be
 			/// running when the new one reaches the instance checking logic. The best place to call this
@@ -196,51 +246,10 @@ namespace liblec {
 
 			/// <summary>Close the form. When this is called all activity is stopped and the form
 			/// is closed.</summary>
-			/// <remarks>If called in <see cref="on_initialize"></see> then on_layout is never called
-			/// and the app is terminated gracefully.</remarks>
+			/// <remarks>If called in the <see cref="form_events::initialize"></see> event then
+			/// the <see cref="form_events::layout"></see> event never happens and the app is
+			/// terminated gracefully.</remarks>
 			void close();
-
-			/// <summary>Called before on_layout(). This is a good place to create the splash
-			/// screen and do all essential app initilization like reading registry settings etc.
-			/// </summary>
-			/// <param name="error">Error information on fail.</param>
-			/// <returns>True if successful, else false. If false, error information will be
-			/// written to the error reference.</returns>
-			/// <remarks>Return false if you want to discountinue application initialization.
-			/// This means <see cref="on_layout"></see> won't even be called.
-			/// </remarks>
-			virtual bool on_initialize(std::string& error);
-
-			/// <summary>For defining the form's layout.</summary>
-			/// <param name="error">If there's an error in the layout function's implementation
-			/// write that error information to this reference, and return false. This information
-			/// will be internally passed to the blocking create() method.</param>
-			/// <returns>Return true if the layout is successful, else false.</returns>
-			/// <remarks>It is recommended to add at least one page container to the form in this
-			/// method and show it before returning from this method. This becomes the home page.
-			/// All the form's pages can be made in this method but this is not recommended. It is
-			/// recommended to create other pages in the handlers that attempt to open them so that
-			/// they are created dynamically at runtime so that the app uses the least amount of
-			/// resources.
-			/// </remarks>
-			[[nodiscard]] virtual bool on_layout(std::string& error);
-
-			/// <summary>Called after on_layout() just before the form is displayed. This is a good
-			/// place to close the splash screen. The splash screen itself is best created in
-			/// <see cref="on_initialize"></see>.</summary>
-			virtual void on_start();
-
-			/// <summary>Called when either the close button on the top right is clicked, or when
-			/// Alt+F4 is pressed on the keyboard. This is a good place to ask the user if they
-			/// really wish to close the form, and then call close() if they confirm.</summary>
-			/// <remarks>close() is called internally if this virtual method is never overriden.
-			/// </remarks>
-			virtual void on_close();
-
-			/// <summary>Called after closing is confirmed, before the form's destructor is
-			/// called. This is a good place to save user settings.</summary>
-			/// <remarks>Avoid such logic errors as attempting to create widgets here.</remarks>
-			virtual void on_shutdown();
 
 			/// <summary>Prompt the user for confirmation of an action. Displays a small modal
 			/// message box with yes-no buttons.</summary>
@@ -279,28 +288,6 @@ namespace liblec {
 			/// magically reappear. This reloads the current 'state'.
 			/// </remarks>
 			void reload();
-
-			/// <summary>Set the handler to be called when the form's caption is clicked.</summary>
-			/// <param name="on_caption">The handler.</param>
-			/// <param name="tooltip">The (optional) tooltip text.</param>
-			/// <remarks>The handler has to be set in on_layout() or before, else it will not
-			/// register. Setting the handler in on_start() is too late because the form caption
-			/// will have already been created by then.</remarks>
-			void on_caption(std::function<void()>on_caption, const std::string& tooltip);
-
-			/// <summary>Set the handler to be called when files are dropped on the form.</summary>
-			/// <param name="on_drop_files">The handler. When it is called, the parameter will
-			/// contain the full path to the dropped file, including the file's extension.</param>
-			/// <remarks>If this method is never called the form will not accept dropped files. To
-			/// stop accepting dropped files pass a nullptr to this method. The earliest this method
-			/// will work is in the <see cref='on_start'></see> method because the form needs to have
-			/// been created.</remarks>
-			void on_drop_files(std::function<void(const std::string& file)>on_drop_files);
-
-			/// <summary>Set the handler to be called when data is received from another instance.</summary>
-			/// <param name="on_receive_data">The handler. When it is called, the parameter will
-			/// contain the received data.</param>
-			void on_receive_data(std::function<void(const std::string& data)>on_receive_data);
 
 			/// <summary>Keep UI responsive during lengthy calls.</summary>
 			/// <returns>Returns true to continue operation, and false to quit immediately.</returns>

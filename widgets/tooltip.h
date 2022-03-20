@@ -33,9 +33,9 @@ namespace liblec {
 				const unsigned long _lifetime;
 				lecui::form& _parent;
 
-				bool on_initialize(std::string& error) override;
-				void on_start() override;
-				bool on_layout(std::string& error) override;
+				bool on_initialize(std::string& error);
+				bool on_layout(std::string& error);
+				void on_start();
 
 			public:
 				tooltip_form(form& parent, const std::string& text, unsigned long lifetime);

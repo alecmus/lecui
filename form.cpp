@@ -128,17 +128,21 @@ namespace liblec {
 			else
 				_d._resource_module_handle = GetModuleHandle(nullptr);
 
-			// call the on_initialize virtual method
-			if (!on_initialize(error))
-				return false;
+			// call the initialize handler
+			if (events().initialize) {
+				if (!events().initialize(error))
+					return false;
+			}
 
 			// check if close was called
 			if (_d._close_called)
 				return true;
 
-			// call the on_layout virtual method
-			if (!on_layout(error))
-				return false;
+			// call the layout handler
+			if (events().layout) {
+				if (!events().layout(error))
+					return false;
+			}
 
 			// handle menu form and tooltip form
 			if (_d._menu_form || _d._tooltip_form) {
@@ -151,7 +155,12 @@ namespace liblec {
 
 			// create form controls
 			if (!(_d._menu_form || _d._tooltip_form)) {
-				_d.create_close_button([&]() { on_close(); });
+				_d.create_close_button([&]() {
+					if (events().close)
+						events().close();
+					else
+						close();
+					});
 
 				if (_d._allow_resizing)
 					_d.create_maximize_button();
@@ -242,8 +251,6 @@ namespace liblec {
 			if (!(_d._menu_form || _d._tooltip_form) && IsWindow(_d._hWnd_parent) && IsWindowEnabled(_d._hWnd_parent))
 				EnableWindow(_d._hWnd_parent, FALSE);
 
-
-
 			MSG msg = {};
 
 			// main message loop
@@ -295,12 +302,6 @@ namespace liblec {
 			}
 		}
 
-		bool form::on_initialize(std::string& error) { return true; }
-		bool form::on_layout(std::string& error) { return true; }
-		void form::on_start() {}
-		void form::on_close() { close(); }
-		void form::on_shutdown() {}
-
 		bool form::prompt(const std::string& question) {
 			class prompt_form : public form {
 				const size _min_size = { 220.f, 120.f };
@@ -342,9 +343,13 @@ namespace liblec {
 
 					dimensions dim(*this);
 					dim.set_size({ width, height });
+
+					events().layout = [this](std::string& error) {
+						return on_layout(error);
+					};
 				}
 
-				bool on_layout(std::string& error) override {
+				bool on_layout(std::string& error) {
 					page_manager page_man(*this);
 					auto& home_page = page_man.add("home");
 
@@ -439,9 +444,13 @@ namespace liblec {
 
 						dimensions dim(*this);
 						dim.set_size({ width, height });
+
+						events().layout = [this](std::string& error) {
+							return on_layout(error);
+						};
 					}
 
-					bool on_layout(std::string& error) override {
+					bool on_layout(std::string& error) {
 						page_manager page_man(*this);
 						auto& home_page = page_man.add("home");
 
@@ -484,21 +493,6 @@ namespace liblec {
 
 		// this is an expensive call. only use if update() doesn't get the job done.
 		void form::reload() { _d.discard_device_resources(); _d.update(); }
-
-		void form::on_caption(std::function<void()> on_caption, const std::string& tooltip) {
-			_d._on_caption = on_caption;
-			_d._caption_tooltip = tooltip;
-		}
-
-		void
-			form::on_drop_files(std::function<void(const std::string& file)> on_drop_files) {
-			_d._on_drop_files = on_drop_files;
-			DragAcceptFiles(_d._hWnd, on_drop_files == nullptr ? FALSE : TRUE);
-		}
-
-		void form::on_receive_data(std::function<void(const std::string& data)> on_receive_data) {
-			_d._on_receive_data = on_receive_data;
-		}
 
 		bool form::keep_alive() {
 			MSG msg = {};

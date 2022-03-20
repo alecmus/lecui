@@ -183,11 +183,6 @@ namespace liblec {
 			bool _space_pressed;
 			bool _lbutton_pressed;
 
-			std::function<void()> _on_caption;
-			std::string _caption_tooltip;
-			std::function<void(const std::string& file)> _on_drop_files;
-			std::function<void(const std::string& data)> _on_receive_data;
-
 			std::vector<std::string> _scheduled_for_closure;
 
 			HCURSOR _h_widget_cursor;

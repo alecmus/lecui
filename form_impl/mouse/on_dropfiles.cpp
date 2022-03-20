@@ -13,7 +13,7 @@
 namespace liblec {
 	namespace lecui {
 		void form::impl::on_dropfiles(WPARAM wParam) {
-			if (_on_drop_files != nullptr) {
+			if (_fm.events().drop_files != nullptr) {
 				// a file has been dropped onto the form
 				CHAR file[MAX_PATH];
 				ZeroMemory(file, sizeof(file));
@@ -23,7 +23,7 @@ namespace liblec {
 				DragFinish(hDrp);
 
 				const std::string fullpath = file;
-				_on_drop_files(fullpath);
+				_fm.events().drop_files(fullpath);
 			}
 		}
 	}

@@ -19,7 +19,7 @@
 namespace liblec {
 	namespace lecui {
 		/// <summary>Manipulate a form's controls.</summary>
-		/// <remarks>This manipulation is best done in the form's on_initialize method.</remarks>
+		/// <remarks>This manipulation is best done in the form's initialize event.</remarks>
 		class lecui_api controls {
 		public:
 			/// <summary>Class constructor.</summary>
@@ -70,7 +70,7 @@ namespace liblec {
 		};
 
 		/// <summary>Manipulate a form's dimensions.</summary>
-		/// <remarks>This manipulation is best done in the form's on_initialize method.</remarks>
+		/// <remarks>This manipulation is best done in the form's initialize event.</remarks>
 		class lecui_api dimensions {
 		public:
 			/// <summary>Class constructor.</summary>
@@ -118,7 +118,7 @@ namespace liblec {
 			/// <summary>Set the form's size.</summary>
 			/// <param name="size">The size, in pixels.</param>
 			/// <returns>A reference to the modified object.</returns>
-			/// <remarks>To pre-set the form's design size, this manipulation should be done in the form's on_initialize method.</remarks>
+			/// <remarks>To pre-set the form's design size, this manipulation should be done in the form's initialize event.</remarks>
 			dimensions& set_size(const lecui::size& size);
 
 			/// <summary>Get the form's size.</summary>

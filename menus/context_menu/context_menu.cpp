@@ -228,9 +228,13 @@ namespace liblec {
 
                 // move this form to the cursor position
                 move(top_left);
+
+                events().layout = [this](std::string& error) {
+                    return on_layout(error);
+                };
             }
 
-            bool on_layout(std::string& error) override {
+            bool on_layout(std::string& error) {
                 // add home page
                 auto& home_page = _page_man.add(_al_page_home);
 

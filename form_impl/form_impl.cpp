@@ -130,8 +130,6 @@ namespace liblec {
 			_ctrl_pressed(false),
 			_space_pressed(false),
 			_lbutton_pressed(false),
-			_on_caption(nullptr),
-			_on_drop_files(nullptr),
 			_h_widget_cursor(nullptr),
 			_schedule_refresh(false),
 			_close_called(false),
@@ -467,7 +465,6 @@ namespace liblec {
 			_widgets_order.emplace_back(_p_caption->alias());
 
 			_p_caption->specs()
-				.tooltip(_caption_tooltip)
 				.text(_caption_formatted)
 				.paragraph_alignment(paragraph_alignment::middle)
 				.multiline(false)
@@ -535,7 +532,8 @@ namespace liblec {
 			// buttons since we've eliminated resizing caption rect; perhaps use clip???
 			_p_caption->specs().rect(convert_rect(rect));
 
-			_p_caption->specs().events().action = _on_caption;
+			// capture the caption handler
+			_p_caption->specs().events().action = _fm.events().caption;
 		}
 
 		void form::impl::create_form_menu() {
@@ -3406,7 +3404,11 @@ namespace liblec {
 						GetWindowLong(hWnd, GWL_STYLE) & ~WS_MINIMIZEBOX);
 				}
 
-				_form.on_start();
+				DragAcceptFiles(hWnd, _form.events().drop_files == nullptr ? FALSE : TRUE);
+
+				// call the start handler
+				if (_form.events().start)
+					_form.events().start();
 
 				for (auto& it : _form._d._timers)
 					if (!it.second.running)
@@ -3529,11 +3531,17 @@ namespace liblec {
 						return NULL;
 				}
 				catch (const std::exception&) {}
-				_form.on_close();
+				if (_form.events().close)
+					// call the close handler
+					_form.events().close();
+				else
+					_form.close();
 				return NULL;
 
 			case WM_DESTROY:
-				_form.on_shutdown();
+				// call the shutdown handler
+				if (_form.events().shutdown)
+					_form.events().shutdown();
 				return NULL;
 
 			case WM_NCCALCSIZE:
@@ -3630,7 +3638,7 @@ namespace liblec {
 				if (!_form._d._receiving) {
 					COPYDATASTRUCT* p_copy_data = (COPYDATASTRUCT*)lParam;
 
-					if (p_copy_data && _form._d._on_receive_data) {
+					if (p_copy_data && _form.events().receive_data) {
 						_form._d._data_received = std::string((LPSTR)p_copy_data->lpData, p_copy_data->cbData);
 
 						// forward data to the receive data handler through a timer set to 0
@@ -3638,7 +3646,7 @@ namespace liblec {
 							_form._d._receiving = true;
 							timer_manager(_form).add(_form._d._receive_data_timer_alias, 0, [&]() {
 								timer_manager(_form).stop(_form._d._receive_data_timer_alias);
-								_form._d._on_receive_data(_form._d._data_received);
+								_form.events().receive_data(_form._d._data_received);
 								_form._d._receiving = false;
 								});
 						}
@@ -3646,7 +3654,7 @@ namespace liblec {
 						result = instance_messages::handled;
 					}
 					else {
-						if (!_form._d._on_receive_data)
+						if (!_form.events().receive_data)
 							result = instance_messages::no_handler;
 					}
 				}
