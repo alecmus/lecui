@@ -53,12 +53,14 @@ scrollbars are automatically triggered to permit the user to scroll. These scrol
 supported for all containers.
 
 ### :mag: Usage Examples
-The library is used in the [pc_info](https://github.com/alecmus/pc_info) and [spotlight_images](https://github.com/alecmus/spotlight_images) apps and
-various useful usage examples are available in the
+The library is used in the [pc_info](https://github.com/alecmus/pc_info), [spotlight_images](https://github.com/alecmus/spotlight_images) and [collab](https://github.com/alecmus/collab) apps and various useful usage examples are available in the
 [lecui demo](https://github.com/alecmus/lecui_demo) repository. These range from minimalist hello world
 examples all the way up to advanced multi-page and multi-layer apps.
 
 ### :eyes: Screenshots
+Below is a screenshot showing the interface of the [collab](https://github.com/alecmus/collab) app, built using lecui:<br/><br/>
+<img src="https://github.com/alecmus/files/blob/master/liblec/lecui/screenshots/collab/collab_01.png?raw=true" alt="screenshot" width="809"/>
+
 Below is a screenshot showing the interface of the [spotlight_images](https://github.com/alecmus/spotlight_images) app, built using lecui:<br/><br/>
 <img src="https://github.com/alecmus/files/blob/master/liblec/lecui/screenshots/spotlight_images/spotlight_images_01.png?raw=true" alt="screenshot" width="800"/>
 
