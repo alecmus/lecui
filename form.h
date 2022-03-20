@@ -123,34 +123,36 @@ namespace liblec {
 		public:
 			/// <summary>Form events.</summary>
 			struct form_events {
-				/// <summary>The handler to be called when the form's size changes.</summary>
+				/// <summary>Size event. Happens when the form's size changes.</summary>
 				/// <remarks>The parameter contains the new size of the form. This should be interpreted in
 				/// reference to the form's design size (its size at creation). More details about the form's
 				/// design size can be found in the dimensions class under the controls.h header.</remarks>
 				std::function<void(const lecui::size&)> size = nullptr;
 
-				/// <summary>The handler to be called when files are dropped on the form.</summary>
+				/// <summary>Drop files event. Happens when files are dropped on the form.</summary>
 				/// <remarks>The parameter contains the full path to the dropped file,
 				/// including the file's extension. This handler needs to be set before the form is created.
 				/// It is recommended that it be set in the <see cref="initialize"></see> event.</remarks>
 				std::function<void(const std::string&)> drop_files = nullptr;
 
-				/// <summary>The handler to be called when data is received from another instance.</summary>
+				/// <summary>Receive data event. Happens when data is received from another instance.</summary>
 				/// <remarks>The parameter will contain the received data.</remarks>
 				std::function<void(const std::string&)> receive_data = nullptr;
 
-				/// <summary>The handler to be called when the form's caption is clicked.</summary>
+				/// <summary>Caption event. Happens when the form's caption is clicked.</summary>
 				/// <remarks>This handler needs to be set before the form is created. It is recommended that it
 				/// be set in the <see cref="initialize"></see> event.</remarks>
 				std::function<void()> caption;
 
-				/// <summary>The handler to be called for all essential app initialization, like reading registry settings etc.</summary>
+				/// <summary>Initialize event. Happens when the app is being initialized. All all initialization
+				/// code in this handler, e.g., reading registry settings.</summary>
 				/// <remarks>The handler should return false if an error occurs that makes it necessary to abort the application.
 				/// In such a case, error information should be written to the parameter (note that it's a reference). When false
 				/// is returned application initialization is aborted and the layout event is never called.</remarks>
 				std::function<bool(std::string&)> initialize;
 
-				/// <summary>The handler to be called for the form's layout.</summary>
+				/// <summary>Layout event. Happens when the form's layout is being made. All primary layout
+				/// should be done here.</summary>
 				/// <remarks>If there's an error in the layout's implementation write the error information
 				/// to the parameter (note that it's a reference), and return false. This information will
 				/// be internally passed to the blocking <see cref="create"></see> method.
@@ -163,19 +165,19 @@ namespace liblec {
 				/// </remarks>
 				std::function<bool(std::string&)> layout;
 
-				/// <summary>Handler to be called after the <see cref="form_events::layout"></see> event just before
-				/// the form is displayed. This is a good place to close the splash screen. The splash screen itself
-				/// is best created in the <see cref="form_events::initialize"></see> event.</summary>
+				/// <summary>Start event. Happens after the <see cref="form_events::layout"></see> event
+				/// but just before the form is displayed. This is a good place to close the splash screen. The splash
+				/// screen itself is best created in the <see cref="form_events::initialize"></see> event.</summary>
 				std::function<void()> start;
 
-				/// <summary>Handler to be called when either the close button on the top right is clicked, or when
-				/// Alt+F4 is pressed on the keyboard. This is a good place to ask the user if they
+				/// <summary>Shutdown event. Happens when either the close button on the top right is
+				/// clicked, or when Alt+F4 is pressed on the keyboard. This is a good place to ask the user if they
 				/// really wish to close the form, and then call <see cref="form::close"></see> if they confirm.</summary>
 				/// <remarks>The <see cref="form::close"></see> method is called internally if this handler isn't set.</remarks>
 				std::function<void()> close;
 
-				/// <summary>Handler to be called after closing is confirmed, before the form's destructor is
-				/// called. This is a good place to save user settings.</summary>
+				/// <summary>Shutdown event. Happens after closing is confirmed but before the form's
+				/// destructor is called. This is a good place to save user settings.</summary>
 				/// <remarks>Avoid such logic errors as attempting to create widgets here.</remarks>
 				std::function<void()> shutdown;
 			};

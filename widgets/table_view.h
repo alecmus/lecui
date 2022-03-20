@@ -51,13 +51,13 @@ namespace liblec {
 
 				/// <summary>Events specific to this widget.</summary>
 				struct table_view_events : basic_events {
-					/// <summary>This handler is called when the selection changes.</summary>
+					/// <summary>Selection event. Happens when the selection changes.</summary>
 					/// <remarks>The parameter contains the selected rows.</remarks>
 					std::function<void(
 						const std::vector<table_row>& rows)>
 						selection = nullptr;
 
-					/// <summary>This handler is called when the table view is right clicked.</summary>
+					/// <summary>Context menu event. Happens when the table view is right clicked.</summary>
 					/// <remarks>The parameter contained the selected rows.</remarks>
 					std::function<void(
 						const std::vector<table_row>& rows)>

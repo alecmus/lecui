@@ -47,7 +47,7 @@ namespace liblec {
 
 				/// <summary>Events specific to this widget.</summary>
 				struct checkbox_events : basic_events {
-					/// <summary>Called when the checkbox is clicked.</summary>
+					/// <summary>Check event. Happens when the checkbox is clicked.</summary>
 					/// <remarks>The parameter indicates the new checkbox status.</remarks>
 					std::function<void(checkbox_status checked)> check = nullptr;
 				};

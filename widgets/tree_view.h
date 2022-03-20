@@ -80,7 +80,7 @@ namespace liblec {
 
 				/// <summary>Tree view widget events.</summary>
 				struct tree_view_events : basic_events {
-					/// <summary>The handler to be called when the selection changes. The
+					/// <summary>Selection event. Happens when the selection changes. The
 					/// parameter will contain a reference to the newly selected node.</summary>
 					std::function<void(node& n)> selection;
 				};

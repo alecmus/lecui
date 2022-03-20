@@ -37,7 +37,7 @@ namespace liblec {
 
 				/// <summary>Events specific to this widget.</summary>
 				struct date_events : basic_events {
-					/// <summary>Called when the date is changed.</summary>
+					/// <summary>Date event. Happens when the date is changed.</summary>
 					/// <remarks>The parameter contains the new date.</remarks>
 					std::function<void(const lecui::date&)> change = nullptr;
 				};

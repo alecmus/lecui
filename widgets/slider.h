@@ -62,7 +62,7 @@ namespace liblec {
 
 				/// <summary>Events specific to this widget.</summary>
 				struct slider_events : basic_events {
-					/// <summary>Handler that's called when slider is moved.</summary>
+					/// <summary>Slider event. Happens when the slider is moved.</summary>
 					/// <remarks>The parameter indicates the knob's new position.</remarks>
 					std::function<void(float value)> slider = nullptr;
 				};

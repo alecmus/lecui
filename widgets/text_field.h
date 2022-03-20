@@ -45,7 +45,7 @@ namespace liblec {
 
 				/// <summary>Events specific to this widget.</summary>
 				struct text_field_events : basic_events {
-					/// <summary>Handler that's called when the text changes.</summary>
+					/// <summary>Change event. Happens when the text changes.</summary>
 					/// <remarks>The parameter contains the new text.</remarks>
 					std::function<void(const std::string&)> change = nullptr;
 				};

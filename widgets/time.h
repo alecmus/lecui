@@ -37,7 +37,7 @@ namespace liblec {
 
 				/// <summary>Events specific to this widget.</summary>
 				struct time_events : basic_events {
-					/// <summary>Called when the time is changed.</summary>
+					/// <summary>Change event. Happens when the time is changed.</summary>
 					/// <remarks>The parameter contains the new time.</remarks>
 					std::function<void(lecui::time)> change = nullptr;
 				};

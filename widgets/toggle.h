@@ -38,7 +38,7 @@ namespace liblec {
 
 				/// <summary>Events specific to this widget.</summary>
 				struct toggle_events : basic_events {
-					/// <summary>Handler that's called when toggle is clicked or dragged.</summary>
+					/// <summary>Toggle event. Happens when toggle is clicked or dragged.</summary>
 					/// <remarks>The parameter indicates the toggle's new state.</remarks>
 					std::function<void(bool on)> toggle = nullptr;
 				};

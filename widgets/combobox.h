@@ -56,7 +56,7 @@ namespace liblec {
 
 				/// <summary>Events specific to this widget.</summary>
 				struct combobox_events : basic_events {
-					/// <summary>Called when a selection is made.</summary>
+					/// <summary>Selection event. Happens when a selection is made.</summary>
 					/// <remarks>The parameter contains the selected item.</remarks>
 					std::function<void(const std::string&)> selection = nullptr;
 				};

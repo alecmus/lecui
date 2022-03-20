@@ -70,20 +70,20 @@ namespace liblec {
 
 				/// <summary>Events common to all widgets.</summary>
 				struct basic_events {
-					/// <summary>The handler to be called when either the space bar or enter key
+					/// <summary>Action event. Happens when either the space bar or enter key
 					/// is pressed, or if the widget is clicked.</summary>
 					std::function<void()> action = nullptr;
 
-					/// <summary>The handler to be called when the widget is clicked.</summary>
+					/// <summary>Click event. Happens when the widget is clicked.</summary>
 					std::function<void()> click = nullptr;
 
-					/// <summary>The handler to be called when the widget is right-clicked.</summary>
+					/// <summary>Right click event. Happens when the widget is right-clicked.</summary>
 					std::function<void()> right_click = nullptr;
 
-					/// <summary>The handler to be called when the mouse enters the widget.</summary>
+					/// <summary>Mouse enter event. Happens when the mouse enters the widget.</summary>
 					std::function<void()> mouse_enter = nullptr;
 
-					/// <summary>The handler to be called when the mouse leaves the widget.</summary>
+					/// <summary>Mouse leave event. Happens when the mouse leaves the widget.</summary>
 					std::function<void()> mouse_leave = nullptr;
 				};
 
