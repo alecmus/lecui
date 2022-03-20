@@ -63,7 +63,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><b>liblec</b></li><li class="navelem"><b>lecui</b></li><li class="navelem"><a class="el" href="classliblec_1_1lecui_1_1splash.html">splash</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespaceliblec.html">liblec</a></li><li class="navelem"><a class="el" href="namespaceliblec_1_1lecui.html">lecui</a></li><li class="navelem"><a class="el" href="classliblec_1_1lecui_1_1splash.html">splash</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -81,9 +81,13 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a5eca5d283116750fc8a1dc173c0b4202"><td class="memItemLeft" align="right" valign="top"><a id="a5eca5d283116750fc8a1dc173c0b4202" name="a5eca5d283116750fc8a1dc173c0b4202"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>splash</b> (<a class="el" href="classliblec_1_1lecui_1_1form.html">form</a> &amp;fm)</td></tr>
+<tr class="memitem:a5eca5d283116750fc8a1dc173c0b4202"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classliblec_1_1lecui_1_1splash.html#a5eca5d283116750fc8a1dc173c0b4202">splash</a> (<a class="el" href="classliblec_1_1lecui_1_1form.html">form</a> &amp;fm)</td></tr>
+<tr class="memdesc:a5eca5d283116750fc8a1dc173c0b4202"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor. <a href="classliblec_1_1lecui_1_1splash.html#a5eca5d283116750fc8a1dc173c0b4202">More...</a><br /></td></tr>
 <tr class="separator:a5eca5d283116750fc8a1dc173c0b4202"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a69319f103934efd02530bebabe6d4fe0"><td class="memItemLeft" align="right" valign="top"><a id="a69319f103934efd02530bebabe6d4fe0" name="a69319f103934efd02530bebabe6d4fe0"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>~splash</b> ()</td></tr>
+<tr class="memdesc:a69319f103934efd02530bebabe6d4fe0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor.<br /></td></tr>
+<tr class="separator:a69319f103934efd02530bebabe6d4fe0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af0489764cd75f58d372509433beef140"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classliblec_1_1lecui_1_1splash.html#af0489764cd75f58d372509433beef140">display</a> (int png_resource, bool dpi_aware, std::string &amp;error)</td></tr>
 <tr class="memdesc:af0489764cd75f58d372509433beef140"><td class="mdescLeft">&#160;</td><td class="mdescRight">Display splash screen image. <a href="classliblec_1_1lecui_1_1splash.html#af0489764cd75f58d372509433beef140">More...</a><br /></td></tr>
 <tr class="separator:af0489764cd75f58d372509433beef140"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -94,7 +98,34 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>remove</b> ()</td></t
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >Splash screen class. Useful for displaying graphics while app is loading.</p>
-</div><h2 class="groupheader">Member Function Documentation</h2>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a5eca5d283116750fc8a1dc173c0b4202" name="a5eca5d283116750fc8a1dc173c0b4202"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5eca5d283116750fc8a1dc173c0b4202">&#9670;&nbsp;</a></span>splash()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">liblec::lecui::splash::splash </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classliblec_1_1lecui_1_1form.html">form</a> &amp;&#160;</td>
+          <td class="paramname"><em>fm</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructor.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fm</td><td>A reference to the form.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
 <a id="af0489764cd75f58d372509433beef140" name="af0489764cd75f58d372509433beef140"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af0489764cd75f58d372509433beef140">&#9670;&nbsp;</a></span>display()</h2>
 
@@ -137,7 +168,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>remove</b> ()</td></t
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns true if successful, else false (in which case error information if written to the "error" parameter.</dd></dl>
-<p >To use the same image and have it appear the same size on screens with different DPI settings set the <a class="el" href="">dpi_aware</a> flag to true. However, if you would like to have only a sharp, pixel-perfect splash screen it is recommended to set the flag to false and (optionally) load a different resource based on the dpi scale reported through the <a class="el" href="classliblec_1_1lecui_1_1form.html#a045f0d9eed1c1ede57fa9618b49fdbea">form::get_dpi_scale()</a> method. For example, you may have three different images: one for 1.0 up to 1.5 scale, another for 1.75 to 2.25 and then another for 2.50 and beyond. </p>
+<p >To use the same image and have it appear the same size on screens with different DPI settings set the dpi_aware flag to true. However, if you would like to have only a sharp, pixel-perfect splash screen it is recommended to set the flag to false and (optionally) load a different resource based on the dpi scale reported through the <a class="el" href="classliblec_1_1lecui_1_1form.html#a045f0d9eed1c1ede57fa9618b49fdbea">form::get_dpi_scale()</a> method. For example, you may have three different images: one for 1.0 up to 1.5 scale, another for 1.75 to 2.25 and then another for 2.50 and beyond. </p>
 
 </div>
 </div>

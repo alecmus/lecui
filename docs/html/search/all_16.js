@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['x_0',['x',['../classliblec_1_1lecui_1_1point.html#a72453a25dc24ba1ec2c9be44a2ac9290',1,'liblec::lecui::point::x()'],['../classliblec_1_1lecui_1_1point.html#a851b1769cce750674421d4694f37ee36',1,'liblec::lecui::point::x(const float &amp;x)']]],
-  ['x_5frate_1',['x_rate',['../classliblec_1_1lecui_1_1resize__params.html#a7e79c0a2d56d4315a4e9bc6ab6c3aa8a',1,'liblec::lecui::resize_params::x_rate()'],['../classliblec_1_1lecui_1_1resize__params.html#a5eb1fc77e3ee6ff25f45f0b0fe039b95',1,'liblec::lecui::resize_params::x_rate(const float &amp;x_rate)']]]
+  ['value_0',['value',['../classliblec_1_1lecui_1_1widgets_1_1slider.html#a4ecaa2ad7d7e9037647c63b979579de2',1,'liblec::lecui::widgets::slider::value()'],['../classliblec_1_1lecui_1_1widgets_1_1slider.html#a990321b644ac91a7d4d1d53f4e00363d',1,'liblec::lecui::widgets::slider::value(const float &amp;value)']]],
+  ['version_1',['version',['../namespaceliblec_1_1lecui.html#a51877bf35acca07f276941d77643ab8a',1,'liblec::lecui']]],
+  ['vertical_2',['vertical',['../classliblec_1_1lecui_1_1containers_1_1tab__pane.html#a8867c87433443ba289e93e01ec7227cbae6dec152d6a941fccb0a5e8cc2579cc3',1,'liblec::lecui::containers::tab_pane']]],
+  ['visible_3',['visible',['../classliblec_1_1lecui_1_1form.html#aba58f74e51680cb2b08fcb3eca90673a',1,'liblec::lecui::form']]]
 ];

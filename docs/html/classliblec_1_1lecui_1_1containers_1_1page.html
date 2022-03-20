@@ -63,7 +63,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><b>liblec</b></li><li class="navelem"><b>lecui</b></li><li class="navelem"><b>containers</b></li><li class="navelem"><a class="el" href="classliblec_1_1lecui_1_1containers_1_1page.html">page</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespaceliblec.html">liblec</a></li><li class="navelem"><a class="el" href="namespaceliblec_1_1lecui.html">lecui</a></li><li class="navelem"><a class="el" href="namespaceliblec_1_1lecui_1_1containers.html">containers</a></li><li class="navelem"><a class="el" href="classliblec_1_1lecui_1_1containers_1_1page.html">page</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -102,6 +102,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ab32a8edb06befdd4a57f76fe7187fd86"><td class="memItemLeft" align="right" valign="top">virtual const <a class="el" href="classliblec_1_1lecui_1_1size.html">size</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classliblec_1_1lecui_1_1containers_1_1page.html#ab32a8edb06befdd4a57f76fe7187fd86">size</a> ()</td></tr>
 <tr class="memdesc:ab32a8edb06befdd4a57f76fe7187fd86"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the size of the page. <a href="classliblec_1_1lecui_1_1containers_1_1page.html#ab32a8edb06befdd4a57f76fe7187fd86">More...</a><br /></td></tr>
 <tr class="separator:ab32a8edb06befdd4a57f76fe7187fd86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac3ea98bdf4fec8507109dc113db0fab3"><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classliblec_1_1lecui_1_1containers_1_1page.html#ac3ea98bdf4fec8507109dc113db0fab3">rendered</a> ()</td></tr>
+<tr class="memdesc:ac3ea98bdf4fec8507109dc113db0fab3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check whether the page has been rendered. <a href="classliblec_1_1lecui_1_1containers_1_1page.html#ac3ea98bdf4fec8507109dc113db0fab3">More...</a><br /></td></tr>
+<tr class="separator:ac3ea98bdf4fec8507109dc113db0fab3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2bd63e29e0d4092925d2c1b7928abb47"><td class="memItemLeft" align="right" valign="top">virtual const <a class="el" href="classliblec_1_1lecui_1_1size.html">lecui::size</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classliblec_1_1lecui_1_1containers_1_1page.html#a2bd63e29e0d4092925d2c1b7928abb47">change_in_size</a> ()</td></tr>
+<tr class="memdesc:a2bd63e29e0d4092925d2c1b7928abb47"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the page's change in size. <a href="classliblec_1_1lecui_1_1containers_1_1page.html#a2bd63e29e0d4092925d2c1b7928abb47">More...</a><br /></td></tr>
+<tr class="separator:a2bd63e29e0d4092925d2c1b7928abb47"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a53bf66252db1fdd20380af45ffc970d1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classliblec_1_1lecui_1_1containers_1_1page.html#a53bf66252db1fdd20380af45ffc970d1">scroll_vertically</a> (const float &amp;amount)</td></tr>
 <tr class="memdesc:a53bf66252db1fdd20380af45ffc970d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Programmatically scroll the page vertically. <a href="classliblec_1_1lecui_1_1containers_1_1page.html#a53bf66252db1fdd20380af45ffc970d1">More...</a><br /></td></tr>
 <tr class="separator:a53bf66252db1fdd20380af45ffc970d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -122,6 +128,7 @@ Protected Member Functions</h2></td></tr>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:a4f0c954a62eb467fce4f5e8b88a3bb44"><td class="memItemLeft" align="right" valign="top"><a id="a4f0c954a62eb467fce4f5e8b88a3bb44" name="a4f0c954a62eb467fce4f5e8b88a3bb44"></a>
 impl &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>_d_page</b></td></tr>
+<tr class="memdesc:a4f0c954a62eb467fce4f5e8b88a3bb44"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reference to page implementation. <br /></td></tr>
 <tr class="separator:a4f0c954a62eb467fce4f5e8b88a3bb44"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -167,6 +174,55 @@ impl &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>_d_page</b></td
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a2bd63e29e0d4092925d2c1b7928abb47" name="a2bd63e29e0d4092925d2c1b7928abb47"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2bd63e29e0d4092925d2c1b7928abb47">&#9670;&nbsp;</a></span>change_in_size()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual const <a class="el" href="classliblec_1_1lecui_1_1size.html">lecui::size</a> liblec::lecui::containers::page::change_in_size </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the page's change in size.</p>
+<dl class="section return"><dt>Returns</dt><dd>The change in size, in pixels. If the page has not been rendered this will always return no change even if the size has, in fact, changed.</dd></dl>
+<p >This size reflects any changes made by the user through the user interface. This is useful when a widget's resizing behavior cannot be fully described using the widget's on_resize property, e.g. if you need to make an html view's size match its text. It is important to check whether the page has been rendered first. If it hasn't been rendered, as shown by <a class="el" href="classliblec_1_1lecui_1_1containers_1_1page.html#ac3ea98bdf4fec8507109dc113db0fab3">rendered</a>, then re-call this method later to get the page's actual change in size.</p>
+
+</div>
+</div>
+<a id="ac3ea98bdf4fec8507109dc113db0fab3" name="ac3ea98bdf4fec8507109dc113db0fab3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac3ea98bdf4fec8507109dc113db0fab3">&#9670;&nbsp;</a></span>rendered()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const bool liblec::lecui::containers::page::rendered </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Check whether the page has been rendered.</p>
+<dl class="section return"><dt>Returns</dt><dd>Returns true if the page has been rendered, else false.</dd></dl>
+
+</div>
+</div>
 <a id="a3d034fc9c3f61d33fcfddaefbff0c5b9" name="a3d034fc9c3f61d33fcfddaefbff0c5b9"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3d034fc9c3f61d33fcfddaefbff0c5b9">&#9670;&nbsp;</a></span>scroll_horizontally()</h2>
 

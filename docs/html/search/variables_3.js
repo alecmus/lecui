@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['expand_0',['expand',['../classliblec_1_1lecui_1_1widgets_1_1tree__view_1_1node.html#abf1b6915fc730dabf3f2fcb9944b2d22',1,'liblec::lecui::widgets::tree_view::node']]],
-  ['extension_1',['extension',['../structliblec_1_1lecui_1_1file__type.html#aed3575e34e098e123d9ea27f2ba54ece',1,'liblec::lecui::file_type']]]
+  ['day_0',['day',['../structliblec_1_1lecui_1_1date.html#add8de9d90353c46c0b1ebf0e057269ea',1,'liblec::lecui::date']]],
+  ['description_1',['description',['../structliblec_1_1lecui_1_1file__type.html#a88ef0362cc62e3a9797a3adba18fcc7c',1,'liblec::lecui::file_type']]]
 ];

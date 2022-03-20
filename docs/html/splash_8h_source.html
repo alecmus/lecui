@@ -88,33 +88,36 @@ $(function() {
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;liblec/lecui/form.h&gt;</span></div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#endif</span></div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">namespace </span>liblec {</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceliblec.html">liblec</a> {</div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="keyword">namespace </span>lecui {</div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1splash.html">   23</a></span>        <span class="keyword">class </span>lecui_api <a class="code hl_class" href="classliblec_1_1lecui_1_1splash.html">splash</a> {</div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>        <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>            <a class="code hl_class" href="classliblec_1_1lecui_1_1splash.html">splash</a>() = <span class="keyword">delete</span>;</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>            <a class="code hl_class" href="classliblec_1_1lecui_1_1splash.html">splash</a>(<a class="code hl_class" href="classliblec_1_1lecui_1_1form.html">form</a>&amp; fm);</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>            <a class="code hl_class" href="classliblec_1_1lecui_1_1splash.html">~splash</a>();</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1splash.html#af0489764cd75f58d372509433beef140">   43</a></span>            <span class="keywordtype">bool</span> <a class="code hl_function" href="classliblec_1_1lecui_1_1splash.html#af0489764cd75f58d372509433beef140">display</a>(<span class="keywordtype">int</span> png_resource, <span class="keywordtype">bool</span> dpi_aware, std::string&amp; error);</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1splash.html#aa97d29ad159e313a7baa214b3a234c48">   46</a></span>            <span class="keywordtype">void</span> <a class="code hl_function" href="classliblec_1_1lecui_1_1splash.html#aa97d29ad159e313a7baa214b3a234c48">remove</a>();</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>            <span class="keyword">class </span>impl;</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>            impl&amp; _d;</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>            <span class="comment">// Copying an object of this class are not allowed</span></div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>            <a class="code hl_class" href="classliblec_1_1lecui_1_1splash.html">splash</a>(<span class="keyword">const</span> <a class="code hl_class" href="classliblec_1_1lecui_1_1splash.html">splash</a>&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>            <a class="code hl_class" href="classliblec_1_1lecui_1_1splash.html">splash</a>&amp; operator=(<span class="keyword">const</span> <a class="code hl_class" href="classliblec_1_1lecui_1_1splash.html">splash</a>&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        };</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    }</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>}</div>
-<div class="ttc" id="aclassliblec_1_1lecui_1_1form_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1form.html">liblec::lecui::form</a></div><div class="ttdoc">Form base class. The user must inherit from this class and call one of the two constructors from its ...</div><div class="ttdef"><b>Definition:</b> form.h:102</div></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1splash.html#a5eca5d283116750fc8a1dc173c0b4202">   27</a></span>            <a class="code hl_function" href="classliblec_1_1lecui_1_1splash.html#a5eca5d283116750fc8a1dc173c0b4202">splash</a>(<a class="code hl_class" href="classliblec_1_1lecui_1_1form.html">form</a>&amp; fm);</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1splash.html#a69319f103934efd02530bebabe6d4fe0">   30</a></span>            <a class="code hl_function" href="classliblec_1_1lecui_1_1splash.html#a69319f103934efd02530bebabe6d4fe0">~splash</a>();</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1splash.html#af0489764cd75f58d372509433beef140">   45</a></span>            <span class="keywordtype">bool</span> <a class="code hl_function" href="classliblec_1_1lecui_1_1splash.html#af0489764cd75f58d372509433beef140">display</a>(<span class="keywordtype">int</span> png_resource, <span class="keywordtype">bool</span> dpi_aware, std::string&amp; error);</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="classliblec_1_1lecui_1_1splash.html#aa97d29ad159e313a7baa214b3a234c48">   48</a></span>            <span class="keywordtype">void</span> <a class="code hl_function" href="classliblec_1_1lecui_1_1splash.html#aa97d29ad159e313a7baa214b3a234c48">remove</a>();</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>            <span class="keyword">class </span>impl;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>            impl&amp; _d;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>            <span class="comment">// Default constructor and copying an object of this class are not allowed</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>            <a class="code hl_class" href="classliblec_1_1lecui_1_1splash.html">splash</a>() = <span class="keyword">delete</span>;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>            <a class="code hl_class" href="classliblec_1_1lecui_1_1splash.html">splash</a>(<span class="keyword">const</span> <a class="code hl_class" href="classliblec_1_1lecui_1_1splash.html">splash</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>            <a class="code hl_class" href="classliblec_1_1lecui_1_1splash.html">splash</a>&amp; operator=(<span class="keyword">const</span> <a class="code hl_class" href="classliblec_1_1lecui_1_1splash.html">splash</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        };</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    }</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>}</div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1form_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1form.html">liblec::lecui::form</a></div><div class="ttdoc">Form base class. The user must inherit from this class and call one of the two constructors from its ...</div><div class="ttdef"><b>Definition:</b> form.h:122</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1splash_html"><div class="ttname"><a href="classliblec_1_1lecui_1_1splash.html">liblec::lecui::splash</a></div><div class="ttdoc">Splash screen class. Useful for displaying graphics while app is loading.</div><div class="ttdef"><b>Definition:</b> splash.h:23</div></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1splash_html_a5eca5d283116750fc8a1dc173c0b4202"><div class="ttname"><a href="classliblec_1_1lecui_1_1splash.html#a5eca5d283116750fc8a1dc173c0b4202">liblec::lecui::splash::splash</a></div><div class="ttdeci">splash(form &amp;fm)</div><div class="ttdoc">Constructor.</div></div>
+<div class="ttc" id="aclassliblec_1_1lecui_1_1splash_html_a69319f103934efd02530bebabe6d4fe0"><div class="ttname"><a href="classliblec_1_1lecui_1_1splash.html#a69319f103934efd02530bebabe6d4fe0">liblec::lecui::splash::~splash</a></div><div class="ttdeci">~splash()</div><div class="ttdoc">Destructor.</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1splash_html_aa97d29ad159e313a7baa214b3a234c48"><div class="ttname"><a href="classliblec_1_1lecui_1_1splash.html#aa97d29ad159e313a7baa214b3a234c48">liblec::lecui::splash::remove</a></div><div class="ttdeci">void remove()</div><div class="ttdoc">Remove splash screen image.</div></div>
 <div class="ttc" id="aclassliblec_1_1lecui_1_1splash_html_af0489764cd75f58d372509433beef140"><div class="ttname"><a href="classliblec_1_1lecui_1_1splash.html#af0489764cd75f58d372509433beef140">liblec::lecui::splash::display</a></div><div class="ttdeci">bool display(int png_resource, bool dpi_aware, std::string &amp;error)</div><div class="ttdoc">Display splash screen image.</div></div>
+<div class="ttc" id="anamespaceliblec_html"><div class="ttname"><a href="namespaceliblec.html">liblec</a></div><div class="ttdoc">Top level namespace for the liblec libraries.</div><div class="ttdef"><b>Definition:</b> appearance.h:19</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

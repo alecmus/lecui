@@ -1,4 +1,21 @@
 var searchData=
 [
-  ['action_0',['action',['../structliblec_1_1lecui_1_1form__menu__item.html#a00c14840fac5032b2e3e00d1f5004fab',1,'liblec::lecui::form_menu_item::action()'],['../structliblec_1_1lecui_1_1tray__menu__item.html#a5c354cea94de1721af1b7ac9ee38e32d',1,'liblec::lecui::tray_menu_item::action()'],['../structliblec_1_1lecui_1_1widgets_1_1widget_1_1basic__events.html#a3655dd96f5646470ecd7419d77d1d569',1,'liblec::lecui::widgets::widget::basic_events::action()']]]
+  ['_5fbadge_0',['_badge',['../classliblec_1_1lecui_1_1widgets_1_1badge__widget.html#a0634744ca196d42119cd6476f2323e9f',1,'liblec::lecui::widgets::badge_widget']]],
+  ['_5fborder_1',['_border',['../classliblec_1_1lecui_1_1widgets_1_1badge__specs.html#a8645521c69853c8f48b53c9ac74e9346',1,'liblec::lecui::widgets::badge_specs']]],
+  ['_5fcolor_2',['_color',['../classliblec_1_1lecui_1_1widgets_1_1badge__specs.html#ad49264814e66368a49bc011b6ff0acb1',1,'liblec::lecui::widgets::badge_specs']]],
+  ['_5fcolor_5fborder_3',['_color_border',['../classliblec_1_1lecui_1_1widgets_1_1badge__specs.html#aa4a434fc5f33b95a6347e6847d4ff1a8',1,'liblec::lecui::widgets::badge_specs']]],
+  ['_5fcolor_5fdisabled_4',['_color_disabled',['../classliblec_1_1lecui_1_1widgets_1_1widget.html#a5c8e5dd935405be7b6225a2cb2db52a3',1,'liblec::lecui::widgets::widget']]],
+  ['_5fcolor_5ffill_5',['_color_fill',['../classliblec_1_1lecui_1_1widgets_1_1widget.html#aefdc7845f6e41ba541b55ebd4a60594a',1,'liblec::lecui::widgets::widget']]],
+  ['_5fcolor_5fhot_6',['_color_hot',['../classliblec_1_1lecui_1_1widgets_1_1widget.html#abddc0198aba376b32e1da8c5330189e4',1,'liblec::lecui::widgets::widget']]],
+  ['_5fcolor_5fselected_7',['_color_selected',['../classliblec_1_1lecui_1_1widgets_1_1widget.html#a7e8f51e8cb2d6927f161f64a63206d0e',1,'liblec::lecui::widgets::widget']]],
+  ['_5fcolor_5ftext_8',['_color_text',['../classliblec_1_1lecui_1_1widgets_1_1widget.html#aec684e88c4b920313b2ca9b71a1ccc6f',1,'liblec::lecui::widgets::widget::_color_text()'],['../classliblec_1_1lecui_1_1widgets_1_1badge__specs.html#a9ce7af6f898e708f2a7de5cafbe76e15',1,'liblec::lecui::widgets::badge_specs::_color_text()']]],
+  ['_5fcursor_9',['_cursor',['../classliblec_1_1lecui_1_1widgets_1_1widget.html#af7ef88e7421f57f5da40df8b126ccb10',1,'liblec::lecui::widgets::widget']]],
+  ['_5fd_5fpage_10',['_d_page',['../classliblec_1_1lecui_1_1containers_1_1page.html#a4f0c954a62eb467fce4f5e8b88a3bb44',1,'liblec::lecui::containers::page']]],
+  ['_5ffont_11',['_font',['../classliblec_1_1lecui_1_1widgets_1_1widget.html#ada908dd45a8f2bf5f7d0d398464987c1',1,'liblec::lecui::widgets::widget::_font()'],['../classliblec_1_1lecui_1_1widgets_1_1badge__specs.html#a763c34e38bcb3edcb652c96a72247a94',1,'liblec::lecui::widgets::badge_specs::_font()']]],
+  ['_5ffont_5fsize_12',['_font_size',['../classliblec_1_1lecui_1_1widgets_1_1widget.html#a804f59b9cd2546069db7b445966ac3a0',1,'liblec::lecui::widgets::widget::_font_size()'],['../classliblec_1_1lecui_1_1widgets_1_1badge__specs.html#a5b3e4f199659a8af58f0005c74180105',1,'liblec::lecui::widgets::badge_specs::_font_size()']]],
+  ['_5fon_5fresize_13',['_on_resize',['../classliblec_1_1lecui_1_1widgets_1_1widget.html#a366c862ed20eea5d5889c1e5525795fc',1,'liblec::lecui::widgets::widget']]],
+  ['_5fposition_14',['_position',['../classliblec_1_1lecui_1_1widgets_1_1badge__specs.html#a74ff46026ebb971b44e1a2c77a8eec17',1,'liblec::lecui::widgets::badge_specs']]],
+  ['_5frect_15',['_rect',['../classliblec_1_1lecui_1_1widgets_1_1widget.html#a220a752ccfe7ae2183604ef3a8b3741f',1,'liblec::lecui::widgets::widget']]],
+  ['_5ftext_16',['_text',['../classliblec_1_1lecui_1_1widgets_1_1widget.html#a0f61f38e3b33bda7fd33824534b4a052',1,'liblec::lecui::widgets::widget::_text()'],['../classliblec_1_1lecui_1_1widgets_1_1badge__specs.html#ae99bac033ee672e99504bb9e2bd8ae70',1,'liblec::lecui::widgets::badge_specs::_text()']]],
+  ['_5ftooltip_17',['_tooltip',['../classliblec_1_1lecui_1_1widgets_1_1widget.html#a07994424810c7f0fc275134a34645579',1,'liblec::lecui::widgets::widget']]]
 ];

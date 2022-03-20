@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['right_5fclick_0',['right_click',['../structliblec_1_1lecui_1_1widgets_1_1widget_1_1basic__events.html#a8164bbe802c4a1b2cf125ed256cd3b6e',1,'liblec::lecui::widgets::widget::basic_events']]]
+  ['quality_0',['quality',['../structliblec_1_1lecui_1_1context__menu_1_1specs.html#a6c29e685f18ffb8ce62167f966f3bc94',1,'liblec::lecui::context_menu::specs']]]
 ];

@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['pin_0',['pin',['../structliblec_1_1lecui_1_1context__menu_1_1specs.html#abd274c41e064ab6333aa695ef04a3332',1,'liblec::lecui::context_menu::specs']]],
-  ['precision_1',['precision',['../structliblec_1_1lecui_1_1table__column.html#a2f9d4b9739766ff9000af200846c5b49',1,'liblec::lecui::table_column']]]
+  ['on_5fcreate_5fresources_0',['on_create_resources',['../classliblec_1_1lecui_1_1widgets_1_1custom.html#a979374e006649b40ab1e2671f36ed61b',1,'liblec::lecui::widgets::custom']]],
+  ['on_5fdiscard_5fresources_1',['on_discard_resources',['../classliblec_1_1lecui_1_1widgets_1_1custom.html#a1ce92742c4a02288fc9e0c4c25cf1a10',1,'liblec::lecui::widgets::custom']]],
+  ['on_5frender_2',['on_render',['../classliblec_1_1lecui_1_1widgets_1_1custom.html#aa4f49774761dbc9cea48331d00b9616c',1,'liblec::lecui::widgets::custom']]]
 ];

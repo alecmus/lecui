@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['on_5fcreate_5fresources_0',['on_create_resources',['../classliblec_1_1lecui_1_1widgets_1_1custom.html#a979374e006649b40ab1e2671f36ed61b',1,'liblec::lecui::widgets::custom']]],
-  ['on_5fdiscard_5fresources_1',['on_discard_resources',['../classliblec_1_1lecui_1_1widgets_1_1custom.html#a1ce92742c4a02288fc9e0c4c25cf1a10',1,'liblec::lecui::widgets::custom']]],
-  ['on_5frender_2',['on_render',['../classliblec_1_1lecui_1_1widgets_1_1custom.html#aa4f49774761dbc9cea48331d00b9616c',1,'liblec::lecui::widgets::custom']]]
+  ['name_0',['name',['../structliblec_1_1lecui_1_1table__column.html#ae012c514d946382c1b12b7fb2d8fa303',1,'liblec::lecui::table_column::name()'],['../classliblec_1_1lecui_1_1widgets_1_1tree__view_1_1node.html#acda9f5bbcc8080539190078c12d96668',1,'liblec::lecui::widgets::tree_view::node::name()']]]
 ];
