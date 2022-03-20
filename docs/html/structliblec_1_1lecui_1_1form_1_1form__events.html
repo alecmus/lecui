@@ -21,7 +21,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">lecui<span id="projectnumber">&#160;1.0.0-alpha.19</span>
+   <div id="projectname">lecui<span id="projectnumber">&#160;1.0.0-alpha.20</span>
    </div>
    <div id="projectbrief">lecui C++ user interface library</div>
   </td>
@@ -82,12 +82,156 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a626d89060410d9ed3b1673a2415f9ab3"><td class="memItemLeft" align="right" valign="top">std::function&lt; void(const <a class="el" href="classliblec_1_1lecui_1_1size.html">lecui::size</a> &amp;)&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structliblec_1_1lecui_1_1form_1_1form__events.html#a626d89060410d9ed3b1673a2415f9ab3">size</a> = nullptr</td></tr>
-<tr class="memdesc:a626d89060410d9ed3b1673a2415f9ab3"><td class="mdescLeft">&#160;</td><td class="mdescRight">The handler to be called when the form's size changes. <a href="structliblec_1_1lecui_1_1form_1_1form__events.html#a626d89060410d9ed3b1673a2415f9ab3">More...</a><br /></td></tr>
+<tr class="memdesc:a626d89060410d9ed3b1673a2415f9ab3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Size event. Happens when the form's size changes. <a href="structliblec_1_1lecui_1_1form_1_1form__events.html#a626d89060410d9ed3b1673a2415f9ab3">More...</a><br /></td></tr>
 <tr class="separator:a626d89060410d9ed3b1673a2415f9ab3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d13a37117dac2a1d6187540e9f16a63"><td class="memItemLeft" align="right" valign="top">std::function&lt; void(const std::string &amp;)&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structliblec_1_1lecui_1_1form_1_1form__events.html#a0d13a37117dac2a1d6187540e9f16a63">drop_files</a> = nullptr</td></tr>
+<tr class="memdesc:a0d13a37117dac2a1d6187540e9f16a63"><td class="mdescLeft">&#160;</td><td class="mdescRight">Drop files event. Happens when files are dropped on the form. <a href="structliblec_1_1lecui_1_1form_1_1form__events.html#a0d13a37117dac2a1d6187540e9f16a63">More...</a><br /></td></tr>
+<tr class="separator:a0d13a37117dac2a1d6187540e9f16a63"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad6e5206e9c1187d57937ab96cc18cfe"><td class="memItemLeft" align="right" valign="top">std::function&lt; void(const std::string &amp;)&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structliblec_1_1lecui_1_1form_1_1form__events.html#aad6e5206e9c1187d57937ab96cc18cfe">receive_data</a> = nullptr</td></tr>
+<tr class="memdesc:aad6e5206e9c1187d57937ab96cc18cfe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Receive data event. Happens when data is received from another instance. <a href="structliblec_1_1lecui_1_1form_1_1form__events.html#aad6e5206e9c1187d57937ab96cc18cfe">More...</a><br /></td></tr>
+<tr class="separator:aad6e5206e9c1187d57937ab96cc18cfe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4c320555947f3213d46fb1d6e6f5ee3"><td class="memItemLeft" align="right" valign="top">std::function&lt; void()&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structliblec_1_1lecui_1_1form_1_1form__events.html#ae4c320555947f3213d46fb1d6e6f5ee3">caption</a></td></tr>
+<tr class="memdesc:ae4c320555947f3213d46fb1d6e6f5ee3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Caption event. Happens when the form's caption is clicked. <a href="structliblec_1_1lecui_1_1form_1_1form__events.html#ae4c320555947f3213d46fb1d6e6f5ee3">More...</a><br /></td></tr>
+<tr class="separator:ae4c320555947f3213d46fb1d6e6f5ee3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeac7d18e7c633f537b2ec7031d93ab35"><td class="memItemLeft" align="right" valign="top">std::function&lt; bool(std::string &amp;)&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structliblec_1_1lecui_1_1form_1_1form__events.html#aeac7d18e7c633f537b2ec7031d93ab35">initialize</a></td></tr>
+<tr class="memdesc:aeac7d18e7c633f537b2ec7031d93ab35"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize event. Happens when the app is being initialized. All all initialization code in this handler, e.g., reading registry settings. <a href="structliblec_1_1lecui_1_1form_1_1form__events.html#aeac7d18e7c633f537b2ec7031d93ab35">More...</a><br /></td></tr>
+<tr class="separator:aeac7d18e7c633f537b2ec7031d93ab35"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a222379d3e06554747da0cf96c682a519"><td class="memItemLeft" align="right" valign="top">std::function&lt; bool(std::string &amp;)&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structliblec_1_1lecui_1_1form_1_1form__events.html#a222379d3e06554747da0cf96c682a519">layout</a></td></tr>
+<tr class="memdesc:a222379d3e06554747da0cf96c682a519"><td class="mdescLeft">&#160;</td><td class="mdescRight">Layout event. Happens when the form's layout is being made. All primary layout should be done here. <a href="structliblec_1_1lecui_1_1form_1_1form__events.html#a222379d3e06554747da0cf96c682a519">More...</a><br /></td></tr>
+<tr class="separator:a222379d3e06554747da0cf96c682a519"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a182e0a93d8a4a6bbe37eb0b28a786c34"><td class="memItemLeft" align="right" valign="top"><a id="a182e0a93d8a4a6bbe37eb0b28a786c34" name="a182e0a93d8a4a6bbe37eb0b28a786c34"></a>
+std::function&lt; void()&gt;&#160;</td><td class="memItemRight" valign="bottom"><b>start</b></td></tr>
+<tr class="memdesc:a182e0a93d8a4a6bbe37eb0b28a786c34"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start event. Happens after the <a class="el" href="structliblec_1_1lecui_1_1form_1_1form__events.html#a222379d3e06554747da0cf96c682a519">form_events::layout</a> event but just before the form is displayed. This is a good place to close the splash screen. The splash screen itself is best created in the <a class="el" href="structliblec_1_1lecui_1_1form_1_1form__events.html#aeac7d18e7c633f537b2ec7031d93ab35">form_events::initialize</a> event.<br /></td></tr>
+<tr class="separator:a182e0a93d8a4a6bbe37eb0b28a786c34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f992660c4f3fc0b40f0131c59e499a2"><td class="memItemLeft" align="right" valign="top">std::function&lt; void()&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structliblec_1_1lecui_1_1form_1_1form__events.html#a8f992660c4f3fc0b40f0131c59e499a2">close</a></td></tr>
+<tr class="memdesc:a8f992660c4f3fc0b40f0131c59e499a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shutdown event. Happens when either the close button on the top right is clicked, or when Alt+F4 is pressed on the keyboard. This is a good place to ask the user if they really wish to close the form, and then call <a class="el" href="classliblec_1_1lecui_1_1form.html#ab2331a6e572e672d4e875302da594666">form::close</a> if they confirm. <a href="structliblec_1_1lecui_1_1form_1_1form__events.html#a8f992660c4f3fc0b40f0131c59e499a2">More...</a><br /></td></tr>
+<tr class="separator:a8f992660c4f3fc0b40f0131c59e499a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af215bc2095ea6e8df4bce83766deafb6"><td class="memItemLeft" align="right" valign="top">std::function&lt; void()&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structliblec_1_1lecui_1_1form_1_1form__events.html#af215bc2095ea6e8df4bce83766deafb6">shutdown</a></td></tr>
+<tr class="memdesc:af215bc2095ea6e8df4bce83766deafb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shutdown event. Happens after closing is confirmed but before the form's destructor is called. This is a good place to save user settings. <a href="structliblec_1_1lecui_1_1form_1_1form__events.html#af215bc2095ea6e8df4bce83766deafb6">More...</a><br /></td></tr>
+<tr class="separator:af215bc2095ea6e8df4bce83766deafb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >Form events.</p>
 </div><h2 class="groupheader">Member Data Documentation</h2>
+<a id="ae4c320555947f3213d46fb1d6e6f5ee3" name="ae4c320555947f3213d46fb1d6e6f5ee3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4c320555947f3213d46fb1d6e6f5ee3">&#9670;&nbsp;</a></span>caption</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::function&lt;void()&gt; liblec::lecui::form::form_events::caption</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Caption event. Happens when the form's caption is clicked.</p>
+<p >This handler needs to be set before the form is created. It is recommended that it be set in the <a class="el" href="structliblec_1_1lecui_1_1form_1_1form__events.html#aeac7d18e7c633f537b2ec7031d93ab35">initialize</a> event.</p>
+
+</div>
+</div>
+<a id="a8f992660c4f3fc0b40f0131c59e499a2" name="a8f992660c4f3fc0b40f0131c59e499a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8f992660c4f3fc0b40f0131c59e499a2">&#9670;&nbsp;</a></span>close</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::function&lt;void()&gt; liblec::lecui::form::form_events::close</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Shutdown event. Happens when either the close button on the top right is clicked, or when Alt+F4 is pressed on the keyboard. This is a good place to ask the user if they really wish to close the form, and then call <a class="el" href="classliblec_1_1lecui_1_1form.html#ab2331a6e572e672d4e875302da594666">form::close</a> if they confirm.</p>
+<p >The <a class="el" href="classliblec_1_1lecui_1_1form.html#ab2331a6e572e672d4e875302da594666">form::close</a> method is called internally if this handler isn't set.</p>
+
+</div>
+</div>
+<a id="a0d13a37117dac2a1d6187540e9f16a63" name="a0d13a37117dac2a1d6187540e9f16a63"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d13a37117dac2a1d6187540e9f16a63">&#9670;&nbsp;</a></span>drop_files</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::function&lt;void(const std::string&amp;)&gt; liblec::lecui::form::form_events::drop_files = nullptr</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Drop files event. Happens when files are dropped on the form.</p>
+<p >The parameter contains the full path to the dropped file, including the file's extension. This handler needs to be set before the form is created. It is recommended that it be set in the <a class="el" href="structliblec_1_1lecui_1_1form_1_1form__events.html#aeac7d18e7c633f537b2ec7031d93ab35">initialize</a> event.</p>
+
+</div>
+</div>
+<a id="aeac7d18e7c633f537b2ec7031d93ab35" name="aeac7d18e7c633f537b2ec7031d93ab35"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeac7d18e7c633f537b2ec7031d93ab35">&#9670;&nbsp;</a></span>initialize</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::function&lt;bool(std::string&amp;)&gt; liblec::lecui::form::form_events::initialize</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialize event. Happens when the app is being initialized. All all initialization code in this handler, e.g., reading registry settings.</p>
+<p >The handler should return false if an error occurs that makes it necessary to abort the application. In such a case, error information should be written to the parameter (note that it's a reference). When false is returned application initialization is aborted and the layout event is never called.</p>
+
+</div>
+</div>
+<a id="a222379d3e06554747da0cf96c682a519" name="a222379d3e06554747da0cf96c682a519"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a222379d3e06554747da0cf96c682a519">&#9670;&nbsp;</a></span>layout</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::function&lt;bool(std::string&amp;)&gt; liblec::lecui::form::form_events::layout</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Layout event. Happens when the form's layout is being made. All primary layout should be done here.</p>
+<p >If there's an error in the layout's implementation write the error information to the parameter (note that it's a reference), and return false. This information will be internally passed to the blocking <a class="el" href="classliblec_1_1lecui_1_1form.html#a54ba88558be331b76724721055130beb">create</a> method. It is recommended to add at least one page container to the form in this method and show it before returning from this method. This becomes the home page. All the form's pages can be made in this method but this is not recommended. It is recommended to create other pages in the handlers that attempt to open them so that they are created dynamically at runtime so that the app uses the least amount of resources at any given time. </p>
+
+</div>
+</div>
+<a id="aad6e5206e9c1187d57937ab96cc18cfe" name="aad6e5206e9c1187d57937ab96cc18cfe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aad6e5206e9c1187d57937ab96cc18cfe">&#9670;&nbsp;</a></span>receive_data</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::function&lt;void(const std::string&amp;)&gt; liblec::lecui::form::form_events::receive_data = nullptr</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Receive data event. Happens when data is received from another instance.</p>
+<p >The parameter will contain the received data.</p>
+
+</div>
+</div>
+<a id="af215bc2095ea6e8df4bce83766deafb6" name="af215bc2095ea6e8df4bce83766deafb6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af215bc2095ea6e8df4bce83766deafb6">&#9670;&nbsp;</a></span>shutdown</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::function&lt;void()&gt; liblec::lecui::form::form_events::shutdown</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Shutdown event. Happens after closing is confirmed but before the form's destructor is called. This is a good place to save user settings.</p>
+<p >Avoid such logic errors as attempting to create widgets here.</p>
+
+</div>
+</div>
 <a id="a626d89060410d9ed3b1673a2415f9ab3" name="a626d89060410d9ed3b1673a2415f9ab3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a626d89060410d9ed3b1673a2415f9ab3">&#9670;&nbsp;</a></span>size</h2>
 
@@ -100,7 +244,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>The handler to be called when the form's size changes.</p>
+<p>Size event. Happens when the form's size changes.</p>
 <p >The parameter contains the new size of the form. This should be interpreted in reference to the form's design size (its size at creation). More details about the form's design size can be found in the dimensions class under the <a class="el" href="controls_8h_source.html">controls.h</a> header.</p>
 
 </div>

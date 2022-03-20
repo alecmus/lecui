@@ -16,5 +16,6 @@ var searchData=
   ['dimensions_13',['dimensions',['../classliblec_1_1lecui_1_1dimensions.html#a6a575d2dc5c48a88348fb49c94083648',1,'liblec::lecui::dimensions::dimensions()'],['../classliblec_1_1lecui_1_1dimensions.html',1,'liblec::lecui::dimensions']]],
   ['disable_14',['disable',['../classliblec_1_1lecui_1_1widget__manager.html#ac6d227bdd289530c80e232df5a7127fe',1,'liblec::lecui::widget_manager']]],
   ['disabled_15',['disabled',['../namespaceliblec_1_1lecui.html#a80ae6f3da270024bafc77ef2f99342e5a075ae3d2fc31640504f814f60e5ef713',1,'liblec::lecui']]],
-  ['display_16',['display',['../classliblec_1_1lecui_1_1splash.html#af0489764cd75f58d372509433beef140',1,'liblec::lecui::splash']]]
+  ['display_16',['display',['../classliblec_1_1lecui_1_1splash.html#af0489764cd75f58d372509433beef140',1,'liblec::lecui::splash']]],
+  ['drop_5ffiles_17',['drop_files',['../structliblec_1_1lecui_1_1form_1_1form__events.html#a0d13a37117dac2a1d6187540e9f16a63',1,'liblec::lecui::form::form_events']]]
 ];

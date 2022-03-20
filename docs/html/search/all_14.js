@@ -1,10 +1,10 @@
 var searchData=
 [
   ['tab_0',['tab',['../classliblec_1_1lecui_1_1containers_1_1tab.html',1,'liblec::lecui::containers::tab'],['../classliblec_1_1lecui_1_1containers_1_1tab.html#ab1ec6c74cc830958813ea5bbffaedf24',1,'liblec::lecui::containers::tab::tab()']]],
-  ['tab_5fbar_1',['tab_bar',['../namespaceliblec_1_1lecui.html#a80ae6f3da270024bafc77ef2f99342e5aa5b20e356f8f94c229f68536e2b44520',1,'liblec::lecui']]],
-  ['tab_5fpane_2',['tab_pane',['../classliblec_1_1lecui_1_1containers_1_1tab__pane.html',1,'liblec::lecui::containers::tab_pane'],['../namespaceliblec_1_1lecui.html#a80ae6f3da270024bafc77ef2f99342e5a0fda2f054d41a463cf9d93558c6e2456',1,'liblec::lecui::tab_pane()'],['../classliblec_1_1lecui_1_1containers_1_1tab__pane.html#ab67636d925fa20eb5ed3e3fccf47a477',1,'liblec::lecui::containers::tab_pane::tab_pane()']]],
-  ['tab_5fpane_5fborder_3',['tab_pane_border',['../namespaceliblec_1_1lecui.html#a80ae6f3da270024bafc77ef2f99342e5a153fcd9c384fc129d36dd863115bf137',1,'liblec::lecui']]],
-  ['tab_5fselected_4',['tab_selected',['../namespaceliblec_1_1lecui.html#a80ae6f3da270024bafc77ef2f99342e5aab6965960d6d1f5db3fc045d37014fc3',1,'liblec::lecui']]],
+  ['tab_5fpane_1',['tab_pane',['../classliblec_1_1lecui_1_1containers_1_1tab__pane.html',1,'liblec::lecui::containers::tab_pane'],['../namespaceliblec_1_1lecui.html#a80ae6f3da270024bafc77ef2f99342e5a0fda2f054d41a463cf9d93558c6e2456',1,'liblec::lecui::tab_pane()'],['../classliblec_1_1lecui_1_1containers_1_1tab__pane.html#ab67636d925fa20eb5ed3e3fccf47a477',1,'liblec::lecui::containers::tab_pane::tab_pane()']]],
+  ['tab_5fpane_5fborder_2',['tab_pane_border',['../namespaceliblec_1_1lecui.html#a80ae6f3da270024bafc77ef2f99342e5a153fcd9c384fc129d36dd863115bf137',1,'liblec::lecui']]],
+  ['tab_5fpane_5fselected_5ftab_3',['tab_pane_selected_tab',['../namespaceliblec_1_1lecui.html#a80ae6f3da270024bafc77ef2f99342e5a7296f909eba105eb451755cc821a6ed7',1,'liblec::lecui']]],
+  ['tab_5fpane_5ftabs_4',['tab_pane_tabs',['../namespaceliblec_1_1lecui.html#a80ae6f3da270024bafc77ef2f99342e5a3d588019b84f8635172fefad39138907',1,'liblec::lecui']]],
   ['tab_5fside_5',['tab_side',['../classliblec_1_1lecui_1_1containers_1_1tab__pane.html#ad9c55ce1d09d6abbc84cc858ab5c22df',1,'liblec::lecui::containers::tab_pane::tab_side()'],['../classliblec_1_1lecui_1_1containers_1_1tab__pane.html#a67a9cc391305f6743c6f0faa99675233',1,'liblec::lecui::containers::tab_pane::tab_side(const side &amp;tab_side)']]],
   ['table_5fcolumn_6',['table_column',['../structliblec_1_1lecui_1_1table__column.html',1,'liblec::lecui']]],
   ['table_5frow_7',['table_row',['../namespaceliblec_1_1lecui.html#a53aa9ecfed3ce32ee38fd1c5f40c8ac1',1,'liblec::lecui']]],
