@@ -95,8 +95,8 @@ namespace liblec {
 
 			tab_pane,						///< The background color of tab panes.
 			tab_pane_border,				///< The border color of tab panes.
-			tab_bar,						///< The background color of tabs.
-			tab_selected,					///< The color of the bar that indicates the selected tab.
+			tab_pane_tabs,					///< The background color of tabs.
+			tab_pane_selected_tab,			///< The color of the bar that indicates the selected tab.
 
 			pane,							///< The background color of panes.
 			pane_border,					///< The border color of panes.

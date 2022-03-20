@@ -85,8 +85,8 @@ namespace liblec {
 
 				case element::tab_pane: return { 100, 100, 100, 15 };
 				case element::tab_pane_border: return { 0, 120, 170, 50 };
-				case element::tab_bar: return { 0, 120, 170, 15 };
-				case element::tab_selected: return { 0, 120, 170, 255 };
+				case element::tab_pane_tabs: return { 0, 120, 170, 15 };
+				case element::tab_pane_selected_tab: return { 0, 120, 170, 255 };
 
 				case element::pane: return { 100, 100, 100, 15 };
 				case element::pane_border: return { 0, 120, 170, 50 };
@@ -222,8 +222,8 @@ namespace liblec {
 
 				case element::tab_pane: return { 100, 100, 100, 15 };
 				case element::tab_pane_border: return { 0, 120, 170, 50 };
-				case element::tab_bar: return { 0, 120, 170, 15 };
-				case element::tab_selected: return { 60, 190, 175, 255 };
+				case element::tab_pane_tabs: return { 0, 120, 170, 15 };
+				case element::tab_pane_selected_tab: return { 60, 190, 175, 255 };
 
 				case element::pane: return { 100, 100, 100, 15 };
 				case element::pane_border: return { 0, 120, 170, 50 };

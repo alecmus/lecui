@@ -73,9 +73,9 @@ namespace liblec {
 					.color_text(defaults::color(_page._d_page._fm._d._theme, element::label))
 					.color_fill(defaults::color(_page._d_page._fm._d._theme, element::tab_pane))
 					.color_border(defaults::color(_page._d_page._fm._d._theme, element::tab_pane_border))
-					.color_tabs(defaults::color(_page._d_page._fm._d._theme, element::tab_bar))
+					.color_tabs(defaults::color(_page._d_page._fm._d._theme, element::tab_pane_tabs))
 					.color_tabs_border(defaults::color(_page._d_page._fm._d._theme, element::tab_pane_border))
-					.color_selected(defaults::color(_page._d_page._fm._d._theme, element::tab_selected));
+					.color_selected(defaults::color(_page._d_page._fm._d._theme, element::tab_pane_selected_tab));
 			}
 			containers::page& _page;
 			containers::tab_pane& _specs;
