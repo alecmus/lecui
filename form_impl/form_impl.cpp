@@ -67,7 +67,6 @@ namespace liblec {
 			_p_parent(nullptr),
 			_menu_form(caption_formatted == form::menu_form_caption()),
 			_tooltip_form(caption_formatted == form::tooltip_form_caption()),
-			_parent_closing(false),
 			_create_called(false),
 			_reg_id(0),
 			_receiving(false),
@@ -227,7 +226,7 @@ namespace liblec {
 				_initialized = false;
 			}
 
-			--_instances;	// decremement instances count
+			--_instances;	// decrement instances count
 
 			log("exiting form::impl destructor");
 		}
@@ -3535,7 +3534,6 @@ namespace liblec {
 
 			case WM_DESTROY:
 				_form.on_shutdown();
-				PostThreadMessage(_form._d._current_thread_id, UWM_QUIT, 0, 0);
 				return NULL;
 
 			case WM_NCCALCSIZE:
@@ -3572,10 +3570,6 @@ namespace liblec {
 
 			case WM_NCRBUTTONDOWN:
 			case WM_NCLBUTTONDOWN:
-				// for some reason child forms closed here behave weidly ... the GetMessage in the message loop never
-				// receives the WM_QUIT message after the PostQuitMessage(0) call in WM_DESTROY, hence the need for a
-				// custom thread message (UWM_QUIT) to use in place of PostQuitMessage and its WM_QUIT
-				// Without such a mechanism the child's message loop never exits!
 				for (auto& [key, child] : _form._d._m_children) {
 					if (child && IsWindow(child->_d._hWnd) && (child->_d._menu_form || child->_d._tooltip_form)) {
 						// close child menu forms and child tooltip forms

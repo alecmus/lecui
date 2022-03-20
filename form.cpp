@@ -242,16 +242,13 @@ namespace liblec {
 			if (!(_d._menu_form || _d._tooltip_form) && IsWindow(_d._hWnd_parent) && IsWindowEnabled(_d._hWnd_parent))
 				EnableWindow(_d._hWnd_parent, FALSE);
 
+
+
 			MSG msg = {};
 
 			// main message loop
 			BOOL result = NULL;
 			while ((result = GetMessage(&msg, nullptr, 0, 0)) != 0) {	// GetMessage returns 0 when WM_QUIT is seen
-
-				// quitting via a user defined quit message
-				if (msg.message == UWM_QUIT)
-					break;
-
 				if (result == -1) {
 					// error occurred
 					error = get_last_error();
@@ -262,10 +259,10 @@ namespace liblec {
 					TranslateMessage(&msg);
 					DispatchMessage(&msg);
 				}
-			}
 
-			if (_d._parent_closing)
-				PostThreadMessage(_d._current_thread_id, UWM_QUIT, 0, 0);
+				if (!IsWindow(_d._hWnd))
+					break;
+			}
 
 			return true;
 		}
@@ -283,11 +280,9 @@ namespace liblec {
 				}
 
 				if (!_d._m_children.empty()) {
-					// children exist, notify them the parent is closing and close them
-					for (auto& child : _d._m_children) {
-						child.second->_d._parent_closing = true;
+					// children exist, close them all
+					for (auto& child : _d._m_children)
 						child.second->close();
-					}
 				}
 
 				// Enable parent if this is neither a menu form nor a tooltip form.
@@ -509,28 +504,17 @@ namespace liblec {
 			MSG msg = {};
 
 			if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE)) {
-				if (msg.message == UWM_QUIT) {
-					// user defined quit message detected ... don't process;
+				if (msg.message == WM_QUIT) {
+					// WM_QUIT detected ... don't process;
 					// repost it since it was removed from the queue by PM_REMOVE
 					// then return false to notify caller to stop the lengthy operation immediately
-					PostThreadMessage(GetCurrentThreadId(), UWM_QUIT, 0, 0);
+					PostQuitMessage(0);
 					return false;
 				}
-				else
-					if (msg.message == WM_QUIT) {
-						// not expected ... since we're using user defined quit message but possible,
-						// e.g. if the system is logging off
-						
-						// WM_QUIT detected ... don't process;
-						// repost it since it was removed from the queue by PM_REMOVE
-						// then return false to notify caller to stop the lengthy operation immediately
-						PostQuitMessage(0);
-						return false;
-					}
-					else {
-						TranslateMessage(&msg);
-						DispatchMessage(&msg);
-					}
+				else {
+					TranslateMessage(&msg);
+					DispatchMessage(&msg);
+				}
 			}
 
 			return true;

@@ -36,11 +36,6 @@
 #include <atomic>
 #include <memory>
 
-// user defined quit message to circumvent the issue whereby
-// GetMessage does not receive WM_QUIT when child is closed
-// via the parent's WM_NCRBUTTONDOWN and WM_NCLBUTTONDOWN
-#define UWM_QUIT (WM_APP + 1)
-
 namespace liblec {
 	namespace lecui {
 		class mouse_track {
@@ -84,7 +79,6 @@ namespace liblec {
 			form* _p_parent;
 			bool _menu_form;	// for use as a menu; not resizable & has neither a caption nor control buttons
 			bool _tooltip_form;	// like a menu form but specifically designed for tooltips
-			bool _parent_closing;
 			std::map<form*, form*> _m_children;
 			bool _create_called;
 			std::string _guid;
