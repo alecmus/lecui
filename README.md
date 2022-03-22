@@ -11,7 +11,6 @@ lecui user interface library
 <p>
   <img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/alecmus/lecui">
   <img alt="GitHub Release Date" src="https://img.shields.io/github/release-date/alecmus/lecui">
-  <img alt="GitHub all releases" src="https://img.shields.io/github/downloads/alecmus/lecui/total">
 </p>
 
 #### Commit Info
